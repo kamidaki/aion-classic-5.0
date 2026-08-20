@@ -78,33 +78,58 @@ pub fn decrypt(key: &mut [u8; 8], data: &mut [u8]) {
     data[0] ^= old_key_first_byte;
 }
 
+// As constantes abaixo mudaram entre o Classic 2.5 e o 4.5. As anteriores eram as da 2.5, e com
+// elas o cliente 4.5 nao reconhece pacote nenhum.
+//
+// Foram recuperadas de uma captura real do servidor da Gameforge, nao por tentativa e erro: o
+// primeiro pacote (S_KEY) viaja em claro e traz o seed, o que permite decifrar a sessao inteira.
+// Com 435 pacotes de servidor e 48 de cliente decifrados e checksum conferido em todos, bastou
+// procurar as constantes que fazem os opcodes cairem na tabela extraida do Game.dll 4.5.
+// Resultado: 424/435 do servidor e 48/48 do cliente.
+
 #[inline(always)]
 pub fn decrypt_client_opcode(opcode: u16) -> u16 {
-    (opcode ^ 0x20).wrapping_sub(0xB4) ^ 0x1E
+    (opcode ^ 0x2).wrapping_sub(0xAE)
+}
+
+#[inline(always)]
+pub fn encrypt_client_opcode(opcode: u16) -> u16 {
+    opcode.wrapping_add(0xAE) ^ 0x2
 }
 
 #[inline(always)]
 pub fn encrypt_server_opcode(opcode: u16) -> u16 {
-    (opcode + 0xC0) ^ 0xCF
+    opcode.wrapping_add(0xC4) ^ 0xD4
 }
 
 #[inline(always)]
 pub fn decrypt_server_opcode(opcode: u16) -> u16 {
-    (opcode ^ 0xCF) - 0xC0
+    (opcode ^ 0xD4).wrapping_sub(0xC4)
 }
 
 #[cfg(test)]
 mod test {
     use super::*;
 
+    /// S_KEY (0x47) sai como 0x01DF -- foi o primeiro pacote observado na captura real, e o unico
+    /// que viaja em texto claro, entao serve de ancora para as duas constantes do servidor.
     #[test]
     fn test_encrypt_server_opcode() {
-        assert_eq!(encrypt_server_opcode(0x00), 0x0F)
+        assert_eq!(encrypt_server_opcode(0x0047), 0x01DF);
+        assert_eq!(decrypt_server_opcode(0x01DF), 0x0047);
     }
 
     #[test]
+    fn test_client_opcode_ida_e_volta() {
+        for op in [0x000u16, 0x008, 0x012, 0x034, 0x096, 0x147] {
+            assert_eq!(decrypt_client_opcode(encrypt_client_opcode(op)), op);
+        }
+    }
+
+    /// O 0xF2 do teste antigo era o C_VERSION cifrado na 2.5; na 4.5 o mesmo opcode sai 0xAC.
+    #[test]
     fn test_decrypt_client_opcode() {
-        assert_eq!(decrypt_client_opcode(0xF2), 0);
+        assert_eq!(decrypt_client_opcode(0xAC), 0);
     }
 
     #[test]

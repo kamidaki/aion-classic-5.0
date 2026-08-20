@@ -18,7 +18,9 @@ use crate::{
 
 use crate::game::Serialise;
 
-const SERVER_BYTE: u8 = 0x40;
+/// Byte fixo que separa o opcode do checksum no cabecalho. A captura do servidor da Gameforge
+/// mostra 0x65; o 0x40 que estava aqui vinha da versao 2.5.
+const SERVER_BYTE: u8 = 0x65;
 const LENGTH_LEN: usize = 2;
 
 const VERSION_CHECK: u16 = 0x0000;
