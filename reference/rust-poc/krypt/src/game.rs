@@ -87,16 +87,13 @@ pub fn decrypt(key: &mut [u8; 8], data: &mut [u8]) {
 // procurar as constantes que fazem os opcodes cairem na tabela extraida do Game.dll 4.5.
 // Resultado: 424/435 do servidor e 48/48 do cliente.
 
-/// ATENCAO: ao contrario do lado do servidor, o mapa do cliente NAO e fixo.
+/// Confirmado contra o cliente real: C_VERSION, C_SYNC_TIME, C_HQ_LOGIN e
+/// C_READY_ENTER_WORLD_ACK chegam na ordem certa e com os campos parseando.
 ///
-/// Na captura real estas constantes decodificam corretamente os primeiros pacotes --
-/// C_VERSION, C_SYNC_TIME, C_SYNC_TIME, C_HQ_LOGIN, C_READY_ENTER_WORLD_ACK -- e a partir do
-/// sexto o resultado deixa de fazer sentido (C_TOGGLE_CHEST, C_READY_TO_QUIT num login). A
-/// decriptacao do pacote em si esta certa: o checksum interno confere nos 48 pacotes. Ou seja, a
-/// ofuscacao do opcode de cliente depende de algum estado que avanca durante a sessao.
-///
-/// Serve para o handshake inicial, que e o que o servidor precisa agora. Reconhecer o resto exige
-/// descobrir como esse estado evolui.
+/// Chegamos a suspeitar que este mapa nao fosse fixo, porque a partir do sexto pacote os NOMES
+/// decodificados pareciam absurdos para um login. Era leitura errada: os pacotes 0x5E e 0xD6
+/// carregam, respectivamente, a chave do LOGIN_OK e o MAC/hardware/IP da maquina -- coerentes com
+/// um login. O que esta errado sao os nomes que a tabela extraida da a esses opcodes, nao a cifra.
 #[inline(always)]
 pub fn decrypt_client_opcode(opcode: u16) -> u16 {
     (opcode ^ 0x36).wrapping_sub(0xC4)

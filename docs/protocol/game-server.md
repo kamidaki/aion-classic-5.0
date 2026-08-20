@@ -59,36 +59,52 @@ S_KEY → S_VERSION_CHECK → S_SERVER_ENV → S_SYNC_TIME
 Durante o jogo, o volume vem de `S_PUT_NPC` (157 dos 435), `S_ABNORMAL_STATUS_OTHER`,
 `S_MOVE_NEW`, `S_SYNC_TIME`.
 
-## Cifra do opcode — cliente: NÃO é um mapa fixo
+## Cifra do opcode — cliente
 
 ```
-(opcode ^ 0x36) - 0xC4
+cifrar:    (opcode + 0xC4) ^ 0x36
+decifrar:  (opcode ^ 0x36) - 0xC4
 ```
 
-Isto decodifica corretamente o começo da sessão:
+Confirmado contra o cliente real: a sessão decodifica na ordem certa, com os campos parseando.
 
 ```
-C_VERSION → C_SYNC_TIME → C_SYNC_TIME → C_HQ_LOGIN → C_READY_ENTER_WORLD_ACK
+C_VERSION            aion_version C4, os 6.2
+C_SYNC_TIME          ticks, sequence
+C_HQ_LOGIN           id 0x0262CAB6, key 0x0AD6, authn_token (100 chars, base64)
+C_READY_ENTER_WORLD_ACK
 ```
 
-`C_HQ_LOGIN` é o pacote que leva os dois ids de 4 bytes e o token do STS, exatamente como
-`reference/rust-poc/docs/AUTH.md` descreve. `C_READY_ENTER_WORLD_ACK` responde ao
-`S_READY_ENTER_WORLD` do servidor.
+`C_HQ_LOGIN` fecha o circuito do auth server: o `id` é a chave entregue no `LOGIN_OK` e o `key` é
+o campo de 4 bytes no fim do `SESSION_KEY` cujo propósito estava em aberto
+(`docs/protocol/auth-server.md`). O cliente carrega os dois do auth para o game server.
 
-**A partir do sexto pacote o resultado deixa de fazer sentido** — aparecem `C_GET_OFF_VEHICLE`,
-`C_TOGGLE_CHEST`, `C_READY_TO_QUIT` no meio de um login. Não é erro de decriptação: o checksum
-interno confere nos 48 pacotes. A ofuscação do opcode de cliente depende de algum estado que
-avança durante a sessão.
+### Uma correção que vale registrar
 
-> Cuidado ao avaliar candidatos a constante por "quantos opcodes caem na tabela": os opcodes
-> válidos de cliente são densos (0 a 0x147), então muitas fórmulas afins acertam quase tudo por
-> acidente. Foi assim que uma primeira tentativa deu 48/48 com constantes erradas. **A ordem dos
-> pacotes é o sinal confiável** — uma sessão tem que começar em `C_VERSION`.
+Uma versão anterior deste documento afirmava que o mapa do cliente "derivava" depois do quinto
+pacote, porque a partir dali os nomes deixavam de fazer sentido — apareciam `C_GET_OFF_VEHICLE` e
+`C_SA_CONFIRMGOODS` no meio de um login. **Era conclusão errada, tirada dos nomes.**
+
+Olhando o conteúdo dos mesmos pacotes no servidor rodando:
+
+```
+opcode 0x5E   [B6 CA 62 02]                    -> 0x0262CAB6, a chave do LOGIN_OK
+opcode 0xD6   ... "3C-7C-3F-7C-38-77" ...      -> MAC, id de hardware, IP do cliente
+              ... "BAA80100" ... C0 A8 64 4D
+```
+
+Os dois são perfeitamente coerentes com um login: devolver a chave de sessão e identificar a
+máquina. A cifra estava certa o tempo todo; o que está errado é o **nome** que a tabela extraída dá
+a esses opcodes.
+
+Lição: julgar uma hipótese de cifra pelos nomes decodificados é frágil nos dois sentidos — a
+contagem de "opcodes válidos" acerta por acidente (os válidos são densos, de 0 a 0x147), e os nomes
+podem estar errados mesmo com o valor certo. O que sustenta a conclusão é o **conteúdo dos campos
+parseando** e a **ordem** batendo com um login real.
 
 ### O que falta
 
-Descobrir como esse estado evolui. Duas fontes: o handler no `Game.dll` (a região da tabela de
-opcodes está em texto claro, ver `docs/protocol/README.md`) e a própria captura, comparando
-pacotes repetidos — `C_SYNC_TIME` aparece 12 vezes e deve dar o padrão.
-
-Para o handshake inicial, que é o que o servidor precisa agora, a constante acima basta.
+A tabela de nomes precisa de revisão para uma parte dos opcodes. O pareamento nome↔número foi feito
+por heurística sobre o `Game.dll` (ver `docs/protocol/README.md`), e casos como `0x5E` e `0xD6`
+mostram que ela erra em alguns pontos. O conteúdo dos pacotes, que agora conseguimos ler, é a
+referência para corrigir.
