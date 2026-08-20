@@ -61,6 +61,25 @@ O `gfclient.exe` oficial precisa estar **fechado** — ele cria o mesmo named pi
 conexão. E o IP anunciado não pode ser loopback, senão o cliente descarta a entrada da lista.
 Detalhes em `docs/protocol/auth-server.md`.
 
+### Onde a investigação parou
+
+O `S_CHARACTER_LIST` foi reescrito para o layout 4.5 (`game/message/lista_personagens.rs`), mas
+**derruba o cliente**. A versão capturada continua sendo o padrão; a construída fica atrás de
+`AION_LISTA_CONSTRUIDA=1`.
+
+O que já foi eliminado como causa, para ninguém refazer:
+
+* **o formato** — rodando o serializador com os valores do personagem capturado, o registro sai
+  byte a byte idêntico ao real, cabeçalho e rodapé inclusive
+* **os dados** — mandar id, nome e nível exatos do personagem capturado, pelo nosso código,
+  também derruba
+* **o fio** — capturando o nosso próprio servidor e decodificando com `tools/decode_game.py`,
+  framing, cifra e opcodes saem limpos, e os tamanhos batem (`S_BUILDER_LEVEL` 36, lista vazia 18)
+
+Sobra o **contexto**: algum outro pacote da sessão, ou a diferença entre mandar 1 personagem e os
+2 da captura. O caminho para fechar isso é comparar duas capturas do nosso próprio servidor —
+uma com `AION_LISTA_CONSTRUIDA=1` e outra sem — pacote a pacote.
+
 **Próximo passo:** o botão Start manda `C_ENTER_WORLD`. A captura tem a sequência inteira de
 entrada no mundo em `docs/protocol/game-server.md`, e `tools/decode_game.py` imprime qualquer
 pacote dela com `--dump`.

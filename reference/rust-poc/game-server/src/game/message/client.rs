@@ -152,21 +152,50 @@ pub struct MachineInfo {
 
 impl MachineInfo {
     pub fn handle(&self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        // Duas listas de personagem convivem aqui, e o padrao e a que chega mais longe.
+        //
+        // A CONSTRUIDA (AION_LISTA_CONSTRUIDA=1) monta o pacote no layout 4.5 a partir do banco,
+        // que e o caminho certo a longo prazo: e o unico jeito de os ids serem os do servidor, sem
+        // o que o personagem nao existe no estado do jogo e o mundo carrega sem posicao nem mapa.
+        // Hoje ela derruba o cliente, por motivo ainda nao identificado -- e o que se sabe esta
+        // registrado abaixo.
+        //
+        // A CAPTURADA (padrao) reproduz os bytes da sessao real. Leva o cliente ate a tela de
+        // personagem e ate o mundo, com a ressalva acima.
+        //
+        // O que ja foi eliminado como causa do crash, para ninguem refazer:
+        //   - o formato: o serializador reproduz o registro capturado byte a byte
+        //   - os dados: mandar id, nome e nivel exatos do personagem capturado tambem crasha
+        //   - o fio: capturando o nosso proprio servidor, framing, cifra e opcodes decodificam
+        //     limpos, e os tamanhos batem (BuilderLevel 36, lista vazia 18)
+        // Sobra o contexto: outro pacote da sessao, ou a diferenca de 1 personagem contra 2.
+        if std::env::var("AION_LISTA_CONSTRUIDA").is_ok() {
+            println!("INFO: MachineInfo -> lista CONSTRUIDA (layout 4.5, do banco)");
+            tx.send(session.send(Message::CharacterList(CharacterList)))
+                .unwrap();
+            return vec![s::Message::BuilderLevel(s::BuilderLevel::new())];
+        }
+
         println!(
-            "INFO: MachineInfo recebido ({} bytes); enviando a lista de personagens",
+            "INFO: MachineInfo recebido ({} bytes); enviando a lista capturada",
             self.bruto.len()
         );
-
-        // O POC esperava que o cliente pedisse a lista com C_CHARACTER_LIST. O cliente 4.5 nunca
-        // pede: ele espera a lista empurrada logo apos este pacote. So o momento estava errado.
-        //
-        // Quem monta e a thread do jogo, que carrega o personagem do banco e o registra no estado
-        // -- e por isso que os ids passam a existir do lado do servidor, o que a lista reproduzida
-        // da captura nunca conseguiu.
-        tx.send(session.send(Message::CharacterList(CharacterList)))
-            .unwrap();
-
-        vec![s::Message::BuilderLevel(s::BuilderLevel::new())]
+        use super::capturado as cap;
+        let chave = session.auth_server.id;
+        vec![
+            s::Message::Bruto(s::Bruto::new(
+                cap::BUILDER_LEVEL_OPCODE,
+                cap::com_chave_de_sessao(&cap::BUILDER_LEVEL, chave),
+            )),
+            s::Message::Bruto(s::Bruto::new(
+                cap::CHARACTER_LIST_1_OPCODE,
+                cap::com_chave_de_sessao(&cap::CHARACTER_LIST_1, chave),
+            )),
+            s::Message::Bruto(s::Bruto::new(
+                cap::CHARACTER_LIST_2_OPCODE,
+                cap::com_chave_de_sessao(&cap::CHARACTER_LIST_2, chave),
+            )),
+        ]
     }
 }
 
