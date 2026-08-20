@@ -91,3 +91,48 @@ mas provavelmente descrevem um caminho de código que este cliente não percorre
 O próximo passo não é mexer mais nesses três. É reproduzir a configuração que comprovadamente
 funcionou (launcher + STS 6600 + auth 13001 + os flags do POC em Rust), confirmar até onde o cliente
 chega, e só então portar **esse** protocolo para o Java.
+
+## Sonda passiva: quem fala primeiro
+
+`tools/probe_login.py` aceita a conexao na 2106 e nao envia nada. O cliente ficou 45 segundos
+conectado sem mandar um byte:
+
+```
+[  0.00s] conexao de 127.0.0.1:59840
+>>> o cliente NAO enviou nada sem ser provocado: quem fala primeiro e o servidor
+```
+
+Isso fecha uma duvida que os testes anteriores nao podiam responder, porque tanto o AL quanto o
+auth-server do Rust falam assim que aceitam a conexao.
+
+## Os 32 bytes nao sao Blowfish
+
+O diagnostico exigia checksum valido, o que deixava uma saida em aberto: e se a cifra estivesse
+certa e so o checksum fosse outro? Decifrando o par cifrado/chave capturado na mesma sessao, sem
+exigir checksum:
+
+```
+cifrado                      a2 e4 73 a2 f4 d8 51 e4 a4 7f 74 f4 09 cd 77 ff ...
+com a chave de sessao        a2 89 a2 26 0f 73 71 5c 2f c5 e0 0a c4 b8 db b1 ...
+com a chave estatica         a3 d5 31 7e 67 a5 11 81 a8 08 81 c8 0f 28 6e 92 ...
+```
+
+Entropia pura nos dois casos -- sem opcode pequeno, sem zeros, sem estrutura. Nao e o checksum:
+a cifra esta errada.
+
+## Onde isso trava
+
+Nenhum artefato no disco descreve corretamente o protocolo de login deste cliente. O caminho para
+sair daqui nao passa por mais tentativa e erro contra a porta 2106; passa por obter a verdade de
+uma destas fontes:
+
+1. **Captura de uma sessao real** contra os servidores oficiais da GameForge, com conta ativa.
+   Unica fonte de verdade direta -- e o que o Wireshark sempre foi para este projeto.
+2. **Dump da memoria do cliente ja carregado.** O Game.dll e empacotado com Themida, mas o
+   empacotador desempacota em memoria no startup. Um dump do processo depois de carregado pode ser
+   varrido com as mesmas ferramentas que ja extrairam a tabela de opcodes -- e nessa imagem as
+   constantes de cripto e o codigo de login estariam legiveis. Nao precisa de conta.
+3. **Hook de ws2_32 (send/recv)** no cliente. Da os mesmos bytes cifrados que ja temos, a menos que
+   o hook seja colocado acima da camada de cifra.
+
+A opcao 2 e a continuacao natural do que ja funcionou aqui.
