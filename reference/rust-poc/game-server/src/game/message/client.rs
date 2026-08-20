@@ -151,26 +151,24 @@ pub struct MachineInfo {
 }
 
 impl MachineInfo {
-    pub fn handle(&self, _: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
-        println!("INFO: MachineInfo recebido ({} bytes); enviando a lista de personagens capturada",
-                 self.bruto.len());
+    pub fn handle(&self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        println!(
+            "INFO: MachineInfo recebido ({} bytes); enviando a lista de personagens",
+            self.bruto.len()
+        );
 
-        use super::capturado as cap;
-        let chave = session.auth_server.id;
-        vec![
-            s::Message::Bruto(s::Bruto::new(
-                cap::BUILDER_LEVEL_OPCODE,
-                cap::com_chave_de_sessao(&cap::BUILDER_LEVEL, chave),
-            )),
-            s::Message::Bruto(s::Bruto::new(
-                cap::CHARACTER_LIST_1_OPCODE,
-                cap::com_chave_de_sessao(&cap::CHARACTER_LIST_1, chave),
-            )),
-            s::Message::Bruto(s::Bruto::new(
-                cap::CHARACTER_LIST_2_OPCODE,
-                cap::com_chave_de_sessao(&cap::CHARACTER_LIST_2, chave),
-            )),
-        ]
+        // O POC esperava que o cliente pedisse a lista com C_CHARACTER_LIST, e montava a resposta
+        // a partir do banco. O cliente 4.5 nunca pede: ele espera a lista empurrada logo apos este
+        // pacote. So o momento estava errado, entao aqui usamos o mesmo caminho do
+        // CharacterList::handle -- e a lista sai do banco, com ids que o estado do jogo conhece.
+        //
+        // Antes daqui saiam os bytes capturados. Serviram para provar o caminho ate a tela de
+        // personagem, mas traziam ids de outra sessao: o cliente escolhia um personagem que o
+        // servidor nao tinha, entrava no mundo sem posicao e sem mapa.
+        tx.send(session.send(Message::CharacterList(CharacterList)))
+            .unwrap();
+
+        vec![s::Message::BuilderLevel(s::BuilderLevel::new())]
     }
 }
 
