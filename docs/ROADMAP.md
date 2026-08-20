@@ -1,137 +1,295 @@
 # Aion Classic 4.5 — estado e plano
 
-Alvo: cliente **GameForge Aion Classic 4.5**, `ProductVersion 4526.0820.0706.7137`,
-x64, instalado em `G:\GFAion\aionclassic`.
+Escrito para ser lido frio, sem contexto de conversa anterior.
 
-## O que já existe neste repo
+---
 
-| pasta | o que é |
-|---|---|
-| `server/` | Aion-Lightning (retail 4.x) — base de lógica de jogo, **compila no JDK 21** |
-| `tools/` | extrator estático da tabela de opcodes direto do `Game.dll` |
-| `docs/protocol/` | mapa de opcodes do Classic 4.5: 340 servidor + 244 cliente |
-| `docs/reverse/` | achados de RE do `Game.dll` x64: handshake, `SM_INIT`, `SM_SERVER_LIST` |
-| `reference/dotnet-poc/` | POC em C# que **já leva o cliente 4.5 até a lista de servidores** |
-| `reference/rust-poc/` | POC em Rust do Classic 2.5: crypto, `pcap-parser`, `pak`, `bxml` |
+## 1. O que é este projeto
 
-Os dois POCs em `reference/` não são para rodar — são para consultar. O de C#
-tem os layouts de pacote que já funcionam contra este cliente; o de Rust tem a
-criptografia e os desempacotadores de arquivo do cliente.
+Servidor privado para o cliente **Aion Classic 4.5 da GameForge**, build
+`4526.0820.0706.7137`, x64, instalado em `G:\GFAion\aionclassic`.
 
-## Fase 0 — base compilando ✅
+A base é o **POC em Rust** em `reference/rust-poc` — originalmente escrito para o Classic 2.5 e
+corrigido aqui para a 4.5. A pasta `server/` tem o Aion-Lightning (Java), que foi a base anterior
+e hoje é **só referência de lógica de jogo**; nada dela está em uso.
 
-Aion-Lightning nasceu em Java 6/7 e não compilava no JDK 21. Três correções,
-10 arquivos tocados, os quatro módulos agora compilam com zero erros:
+Tudo que se sabe do protocolo saiu de **uma captura de sessão real** contra os servidores da
+GameForge, não de tentativa e erro. A captura fica em `build/capture/gf-login.pcapng`, fora do git
+porque contém o token de autenticação da conta.
 
-* backport JSR-166 (`chmv8`) removido — virou `java.util.concurrent` no Java 8
-* `sun.misc.Cleaner` / `sun.nio.ch.DirectBuffer` → `Unsafe.invokeCleaner` por reflexão
-* `com.sun.org.apache.xml.internal.serialize` → `javax.xml.transform`
+---
 
-Compilação de referência (o build Ant original ainda pede `source="1.7"`, que o
-javac 21 recusa — use `--release 8`):
+## 2. Estado atual
 
-```bash
-javac --release 8 -encoding UTF-8 -cp "<libs>" -d build/classes @sources.txt
-```
-
-## Estado: o cliente chega à seleção de personagem
-
-Com o stack em Rust (`reference/rust-poc`), um cliente 4.5 real percorre hoje:
+O cliente percorre este caminho, contra servidor local:
 
 ```
 launcher (named pipe) → auth 13001 → STS 6600 → game server 7777
-→ termos → lista de servidores → seleção → tela de personagem
+→ termos → lista de servidores → seleção → tela de personagem → mundo
 ```
 
-A tela de personagem renderiza nomes, níveis, classes e modelos 3D. O `S_CHARACTER_LIST` ainda é
-replay dos bytes capturados (`game-server/src/game/message/capturado.rs`); o resto do caminho é
-código.
+A tela de personagem renderiza nome, nível, classe e modelo 3D. A entrada no mundo carrega a HUD
+completa — minimapa, barra de skills, DP.
 
-**Como rodar:**
+**O que ainda não funciona:** o mundo carrega sem posição e sem mapa, sobre o cenário da tela de
+seleção. A causa é conhecida e está na seção 5.
+
+---
+
+## 3. Como rodar
+
+Quatro processos. O cliente é aberto pelo próprio launcher — não abra o `Aion.exe` na mão.
 
 ```bash
 cd reference/rust-poc
-AION_GAME_IP=<ip da LAN, nao 127.0.0.1> ./target/release/auth-server.exe
+
+AION_GAME_IP=192.168.100.77 ./target/release/auth-server.exe
 ./target/release/sts-server.exe
-AION_DATA_DIR=<xml extraido> ./target/release/game-server.exe
+AION_DATA_DIR="G:/CodexHELPER/ClaudeAion/extracted_xml" ./target/release/game-server.exe
 ./target/release/launcher.exe --auto durak
 ```
 
-O `gfclient.exe` oficial precisa estar **fechado** — ele cria o mesmo named pipe e sequestra a
-conexão. E o IP anunciado não pode ser loopback, senão o cliente descarta a entrada da lista.
-Detalhes em `docs/protocol/auth-server.md`.
+### Duas condições que não são óbvias
 
-### Onde a investigação parou
+Cada uma produz um sintoma **indistinguível de servidor quebrado**. Juntas explicam boa parte dos
+testes que "não funcionavam sem motivo".
 
-O `S_CHARACTER_LIST` foi reescrito para o layout 4.5 (`game/message/lista_personagens.rs`), mas
-**derruba o cliente**. A versão capturada continua sendo o padrão; a construída fica atrás de
+**1. O `gfclient.exe` oficial precisa estar fechado.** Ele cria o mesmo named pipe
+(`\\.\pipe\GameforgeClientJSONRPC`) e o cliente Aion conecta na instância dele. O nosso launcher
+fica em "waiting for client..." para sempre, e o cliente cai no formulário de login manual.
+
+**2. `AION_GAME_IP` não pode ser `127.0.0.1`.** O cliente descarta entradas de loopback na lista de
+servidores **antes de tentar conectar** — nenhum SYN, para lugar nenhum. Use o IP da máquina na
+LAN. O game server escuta em `0.0.0.0`, então aceita nos dois; o que muda é só o texto que o
+cliente lê na lista.
+
+### Variáveis de ambiente
+
+| variável | efeito |
+|---|---|
+| `AION_GAME_IP` | IP anunciado na lista de servidores. **Não pode ser loopback.** |
+| `AION_GAME_PORT` | porta do game server (padrão 7777) |
+| `AION_DATA_DIR` | pasta com `npcs/client_npcs.xml` e `items/client_items.xml` |
+| `AION_REPLAY` | arquivo de replay (padrão `replay.bin`) |
+| `AION_LISTA_CONSTRUIDA` | usa a lista de personagens construída em vez da capturada — **derruba o cliente hoje**, ver seção 5 |
+| `AION_PERSONAGEM_CAPTURADO` | manda os valores exatos do personagem capturado; teste de bissecção |
+
+### Gerar o `replay.bin`
+
+Não vai para o git (deriva da captura). Regenerar com:
+
+```bash
+python tools/export_replay.py build/capture/gf-login.pcapng reference/rust-poc/replay.bin
+```
+
+---
+
+## 4. Mapa do repositório
+
+```
+reference/rust-poc/          A BASE. Workspace Rust, 7 crates, compila limpo.
+  auth-server/               porta 13001 e 2106. Texto claro, 6 pacotes.
+  sts-server/                porta 6600. Identidade federada, RC4/AES/RSA. Funciona.
+  game-server/               porta 7777. Onde está o trabalho.
+    src/game/message/
+      client.rs              pacotes do cliente e seus handlers
+      server.rs              pacotes do servidor
+      lista_personagens.rs   S_CHARACTER_LIST no layout 4.5 (ver seção 5)
+      molde.rs               registro de personagem capturado, gerado
+      capturado.rs           pacotes capturados usados como andaime
+      replay.rs              motor de replay, indexado por opcode
+  launcher/                  named pipe da GameForge + abre o cliente
+  krypt/                     cripto do game server e do STS
+  pak/ bxml/                 desempacotadores de arquivo do cliente
+  pcap-parser/               fora do workspace, não usado
+
+docs/protocol/               O QUE SE SABE DO PROTOCOLO
+  README.md                  tabela de opcodes: como foi extraída, limites
+  auth-server.md             protocolo do auth completo, 6 pacotes
+  game-server.md             cripto, constantes, sequência real decifrada
+  opcodes_server.csv         340 opcodes
+  opcodes_client.csv         244 opcodes
+
+docs/reverse/                achados de engenharia reversa
+tools/                       ferramentas de análise (seção 7)
+server/                      Aion-Lightning (Java). Só referência.
+build/capture/               capturas. Fora do git: contêm token de conta.
+```
+
+---
+
+## 5. O bloqueio atual
+
+O `S_CHARACTER_LIST` foi reescrito para o layout 4.5 em `lista_personagens.rs`, mas **derruba o
+cliente**. Por isso o padrão continua sendo a lista capturada; a construída fica em
 `AION_LISTA_CONSTRUIDA=1`.
 
-O que já foi eliminado como causa, para ninguém refazer:
+### Por que isso importa
 
-* **o formato** — rodando o serializador com os valores do personagem capturado, o registro sai
-  byte a byte idêntico ao real, cabeçalho e rodapé inclusive
-* **os dados** — mandar id, nome e nível exatos do personagem capturado, pelo nosso código,
-  também derruba
-* **o fio** — capturando o nosso próprio servidor e decodificando com `tools/decode_game.py`,
-  framing, cifra e opcodes saem limpos, e os tamanhos batem (`S_BUILDER_LEVEL` 36, lista vazia 18)
+Enquanto a lista for replay da captura, os ids de personagem vêm de outra sessão. O cliente escolhe
+um personagem que o servidor não tem no estado, e a entrada no mundo fica sem posição e sem mapa.
+**Construir a lista é o que destrava o mundo.**
 
-Sobra o **contexto**: algum outro pacote da sessão, ou a diferença entre mandar 1 personagem e os
-2 da captura. O caminho para fechar isso é comparar duas capturas do nosso próprio servidor —
-uma com `AION_LISTA_CONSTRUIDA=1` e outra sem — pacote a pacote.
+### O layout, derivado da captura
 
-**Próximo passo:** o botão Start manda `C_ENTER_WORLD`. A captura tem a sequência inteira de
-entrada no mundo em `docs/protocol/game-server.md`, e `tools/decode_game.py` imprime qualquer
-pacote dela com `--dump`.
+```
+[u8  contagem]
+[u32 chave de sessão]
+[5 bytes zero]
+[registro de 758 bytes] × contagem
+[u8 rodapé]
+```
 
-**Dívida deliberada:** trocar cada pacote capturado por um construído, um de cada vez. O tipo
-`Bruto` existe para isso — dá para substituir sem parar o fluxo.
+São **dois pacotes**, não um: primeiro uma lista vazia (11 bytes de payload), depois a real.
+Mandando só a segunda, o cliente fecha a conexão.
 
-## Fase 1 — camada de rede (o trabalho de verdade)
+Campos conhecidos dentro do registro de 758 bytes:
 
-O que o confronto de tabelas mostrou (detalhes em `docs/protocol/README.md`):
+| offset | campo | como foi confirmado |
+|---|---|---|
+| 0 | slot | `0x02` no personagem do último login, `0x00` nos demais |
+| 1..5 | id do personagem | bate com o que o cliente devolve depois |
+| 5..57 | nome, UTF-16LE | "Durak" / "Kimmie" |
+| 169 | nível, u32 | deu exatamente 60 e 3 nos dois personagens reais |
 
-* **opcodes de cliente**: numeração do AL é 100% incompatível. Tabela descartada
-  e reconstruída a partir do dump — os 244 opcodes já estão em CSV.
-* **opcodes de servidor**: ~parecida, com deslocamentos de −1 e algumas
-  realocações reais (`SM_GROUP_INFO` 0x5a → 0xf7). Auditar pacote a pacote.
-* **corpo dos pacotes**: muda entre retail e Classic. É aqui que entra captura.
+Os outros **607 dos 758 bytes são idênticos entre dois personagens diferentes** da mesma captura —
+aparência, equipamento e campos ainda não decodificados. Por isso o registro sai de um molde
+capturado (`molde.rs`) com os campos conhecidos escritos por cima.
 
-Ordem sugerida, do que destrava mais para o que destrava menos:
+### O que já foi eliminado como causa do crash
 
-1. ~~Login server: portar do POC em C# o handshake que já passa.~~ **Feito** —
-   `SM_INIT`, `SM_LOGIN_OK` e `SM_SERVER_LIST` adaptados, constantes em
-   `ClassicProtocol.java`, offsets verificados por
-   `scripts/verify_login_packets.sh`. Falta testar contra o cliente de verdade
-   (precisa do banco `al_server_ls` criado).
-2. Handshake do game server: `S_KEY` (`0x047`) e o XOR de opcode.
-3. Seleção de personagem: `C_CHARACTER_LIST` (`0x096`) → `S_CHARACTER_LIST` (`0x0c7`).
-4. Entrada no mundo: `C_ENTER_WORLD` (`0x008`) → `S_ENTER_WORLD_CHECK` (`0x00d`)
-   → `S_WORLD` (`0x00f`) → `C_LEVEL_READY` (`0x009`) → `S_PUT_USER` (`0x020`).
-5. Movimento, chat, ataque — a partir daí o AL já tem a lógica pronta.
+Não refaça estes caminhos:
 
-## Fase 2 — dados estáticos do cliente 4.5
+- **Não é o formato.** Rodando o serializador com os valores do personagem capturado, o registro
+  sai **byte a byte idêntico** ao real — cabeçalho e rodapé inclusive. Verificado offline.
+- **Não são os dados.** Mandar id, nome e nível exatos do personagem capturado, pelo nosso código
+  (`AION_PERSONAGEM_CAPTURADO=1`), também derruba.
+- **Não é o fio.** Capturando o nosso próprio servidor e decodificando com `tools/decode_game.py`,
+  o framing, a cifra e os opcodes saem limpos, e os tamanhos batem: `S_BUILDER_LEVEL` 36 bytes,
+  lista vazia 18 bytes.
+- **Não é o `S_BUILDER_LEVEL`.** O do POC e o capturado são ambos 29 bytes de zeros.
 
-`server/AL-Game/data/static_data/` são 195 MB de XML do **retail** 4.x: IDs de
-item, npc e skill em boa parte não valem para o Classic. A fonte correta é o
-próprio cliente, via `pak` + `bxml` (ambos em `reference/rust-poc/`).
+### O próximo experimento
 
-Já existe extração pronta em `G:\CodexHELPER\ClaudeAion\extracted_xml`
-(`client_items.xml` com 189 MB, npcs, skills) — falta conferir de qual build veio
-antes de confiar.
+Comparar **duas capturas do nosso próprio servidor**, pacote a pacote:
 
-## Sobre sniffer / Wireshark
+```bash
+# 1. capturar o caso que funciona
+"C:\Program Files\Wireshark\tshark.exe" -i "\Device\NPF_Loopback" \
+    -w build/capture/funciona.pcapng -f "tcp port 7777"
+# subir o stack SEM AION_LISTA_CONSTRUIDA, rodar o cliente até a tela de personagem
 
-Para **opcodes**, captura não é mais necessária: a tabela sai do binário, é
-completa e é autoritativa. Wireshark serve para o que sobrou:
+# 2. capturar o caso que quebra
+"C:\Program Files\Wireshark\tshark.exe" -i "\Device\NPF_Loopback" \
+    -w build/capture/quebra.pcapng -f "tcp port 7777"
+# subir com AION_LISTA_CONSTRUIDA=1
 
-1. **Loopback do seu próprio servidor** — o Npcap captura em `127.0.0.1`. É o
-   jeito de ver o que você mandou quando o cliente reage errado.
-2. **Proxy MITM** (`reference/dotnet-poc` tem um `Sniffer`) — mais útil que
-   Wireshark puro, porque decripta Blowfish/XOR na hora, em vez de mostrar bytes
-   embaralhados.
-3. **`pcap-parser`** do POC em Rust já implementa a decriptação de pacote e
-   opcode a partir de um `.pcap`.
+# 3. comparar
+python tools/decode_game.py build/capture/funciona.pcapng --ate 30
+python tools/decode_game.py build/capture/quebra.pcapng   --ate 30
+```
 
-Capturar o servidor oficial só faz sentido para descobrir *layout de campo* — e
-exige conta ativa na GameForge.
+O índice da interface do tshark muda entre reinícios — use o nome
+(`\Device\NPF_Loopback`), não o número.
+
+Hipóteses que sobraram, em ordem de probabilidade:
+
+1. **Algum outro pacote da sessão difere.** Os nossos `S_VERSION_CHECK` (59 bytes),
+   `S_SERVER_ENV` (40) e `S_L2AUTH_LOGIN_CHECK` (1192) são **menores** que os reais (61, 67, 1300).
+   São implementações do POC, herdadas da 2.5. Pode ser que uma delas só quebre quando combinada
+   com a lista construída.
+2. **A diferença entre 1 personagem e 2.** A captura tem 2; nós mandamos 1. Testar mandando 2.
+3. **Algo no molde que ainda está errado** e só aparece com contagem 1.
+
+---
+
+## 6. Depois que o mundo carregar
+
+Em ordem. Cada item destrava o seguinte.
+
+### 6.1 Trocar o andaime por implementação
+
+O `replay.rs` serve pacotes capturados para todo opcode sem implementação. Cada um que for
+implementado sai do replay naturalmente. A ordem sensata é a da própria captura — use
+`tools/decode_game.py` para ver qual vem primeiro.
+
+O tipo `Bruto` em `server.rs` existe para essa transição: monta o prelude normalmente e usa payload
+pronto, então dá para trocar um pacote de cada vez sem parar o fluxo.
+
+### 6.2 Corrigir a tabela nome↔opcode
+
+O pareamento nome↔número foi feito por heurística sobre o `Game.dll` e **erra em alguns pontos**.
+Dois casos comprovados:
+
+- `0x5E`, que a tabela chama de `C_GET_OFF_VEHICLE`, na verdade devolve a chave de sessão
+- `0xD6`, que a tabela chama de `C_SA_CONFIRMGOODS`, carrega MAC, id de hardware e IP
+
+Agora que o conteúdo dos pacotes é legível, a tabela é corrigível. `docs/protocol/README.md` explica
+como a extração funciona.
+
+### 6.3 Decodificar o resto do registro de personagem
+
+Os 607 bytes estáticos incluem aparência e equipamento. Enquanto não forem decodificados, todo
+personagem criado no servidor aparece com a aparência do personagem capturado.
+
+Método: criar personagens diferentes no cliente oficial, capturar, e comparar os registros. Cada
+campo que variar isola um atributo.
+
+### 6.4 Dados do cliente 4.5
+
+`AION_DATA_DIR` aponta hoje para XML extraído em `G:\CodexHELPER\ClaudeAion\extracted_xml`, de
+proveniência não confirmada. O certo é regenerar do cliente 4.5 com os crates `pak` e `bxml`, que
+já existem no workspace.
+
+---
+
+## 7. Ferramentas
+
+Todas em `tools/`, todas em Python, todas independentes do servidor.
+
+| ferramenta | o que faz |
+|---|---|
+| `extract_opcodes.py` | extrai a tabela de opcodes do `Game.dll`. Rode a cada patch do cliente. |
+| `decode_auth.py` | decodifica a conversa do auth server a partir de um pcap. Oculta o token por padrão. |
+| `decode_game.py` | decifra a sessão do game server e imprime os pacotes em ordem. `--dump NOME` imprime o payload de um pacote. |
+| `export_replay.py` | exporta uma sessão capturada para o formato do motor de replay. |
+| `probe_login.py` | sonda passiva: aceita a conexão e não envia nada. Serve para descobrir quem fala primeiro. |
+| `pe.py` | parser de PE, usado pelo extrator de opcodes. |
+
+---
+
+## 8. Armadilhas conhecidas
+
+Cada uma destas custou tempo real.
+
+**"Igual nos dois personagens" não significa "vazio".** Significa estático — e estático pode ser
+obrigatório. Zerei quatro bytes de dados reais por deduzir a fronteira do campo de nome em vez de
+medi-la, e o cliente crashou. Meça toda fronteira nos dois registros.
+
+**Contagem de opcodes válidos não valida hipótese de cifra.** Os opcodes válidos são densos
+(0 a 0x147), então muitas fórmulas afins acertam quase tudo por acidente — uma tentativa errada deu
+48 de 48. O sinal confiável é a **ordem**: uma sessão precisa começar em `C_VERSION`.
+
+**Julgar decodificação pelos nomes é frágil nos dois sentidos.** O nome pode estar errado com o
+valor certo. O que sustenta uma conclusão é o **conteúdo dos campos parseando** e a ordem batendo
+com uma sessão real.
+
+**O sintoma quase nunca aponta para a causa.** O cliente para sem mensagem, sem código, e o mesmo
+sintoma serve para porta errada, offset errado, IP recusado, pipe sequestrado e cripto errada. A
+saída é sempre comparar com a captura, nunca deduzir do sintoma.
+
+**Índices de interface do tshark mudam entre reinícios.** Use o nome do dispositivo.
+
+**O binário trava o arquivo.** `cargo build` falha com "failed to remove file" se o servidor estiver
+rodando. Pare antes de compilar.
+
+---
+
+## 9. O que existe e não está em uso
+
+- **`server/`** — Aion-Lightning em Java, base anterior. Compila no JDK 21 (correções em
+  `scripts/build_login.sh`), tem banco criado no MariaDB local. Vale como **referência de lógica de
+  jogo**: quests, skills, IA, instâncias. A camada de rede dele é retail e não serve.
+- **`reference/dotnet-poc/`** — POC em C#. O `walkthrough.md` dele descreve um protocolo de login
+  que este cliente **não usa**; ver `docs/reverse/login-protocol-findings.md`.
+- **`scripts/`** — scripts da era Java (build, banco, verificação de pacotes de login).
