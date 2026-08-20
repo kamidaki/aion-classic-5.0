@@ -48,10 +48,15 @@ fn main() {
     println!("INFO: Loading game data from {}", data_dir.display());
     let game_data = Arc::new(GameData::load(&data_dir));
 
-    // Game client connects to 104.18.41.168:8443 (hardcoded Gameforge address).
-    // We intercept it by adding 104.18.41.168 to the loopback adapter so the OS
-    // routes the connection here instead of to the real Gameforge servers.
-    let listener = TcpListener::bind("0.0.0.0:8443").unwrap();
+    // A captura de uma sessao real mostra o cliente indo para o game server na porta 7777, que e
+    // tambem a porta que o auth server anuncia na lista. O 8443 que estava aqui vinha de outro
+    // caminho (o endereco 104.18.41.168 da Gameforge, interceptado pelo adaptador de loopback) e
+    // nao casava com a lista -- o cliente era mandado para 7777 e nao havia ninguem ouvindo.
+    let port = std::env::var("AION_GAME_PORT")
+        .ok()
+        .and_then(|v| v.parse::<u16>().ok())
+        .unwrap_or(7777);
+    let listener = TcpListener::bind(format!("0.0.0.0:{port}")).unwrap();
     println!("INFO: Listening on {}", listener.local_addr().unwrap());
 
     let clients = Arc::new(Mutex::new(HashMap::new()));

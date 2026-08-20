@@ -110,6 +110,15 @@ struct GameServer {
 impl GameServer {
     const LEN: usize = 63;
 
+    /// Layout conferido contra uma captura real do servidor da Gameforge
+    /// (ver docs/protocol/auth-server.md). O que estava aqui antes era palpite, e errado em
+    /// tres pontos: o IP nao e binario, a porta nao fica logo depois dele e nao e big-endian.
+    ///
+    /// O sintoma disso e traicoeiro: a lista aparece na tela normalmente, porque id, tipo,
+    /// online e contagem de personagens caem nos offsets certos. So que o cliente le o IP como
+    /// ASCII a partir do offset 13, encontra o primeiro byte nulo do endereco binario e fica com
+    /// uma string vazia, e le a porta no 53, que estava zerada. Resultado: trava na tela de
+    /// selecao de servidor, sem mensagem de erro.
     fn serialise(&self) -> [u8; Self::LEN] {
         let mut bytes = [0u8; Self::LEN];
 
@@ -119,13 +128,19 @@ impl GameServer {
         bytes[5] = self.id;
         bytes[9] = self.characters;
 
-        // IP as 4 binary bytes (network/big-endian order), port immediately after.
-        // The client reads these as raw bytes, not as a null-terminated ASCII string.
-        bytes[13..17].copy_from_slice(&self.ip_addr.octets());
-        bytes[17..19].copy_from_slice(&self.port.to_be_bytes());
+        // IP como string ASCII terminada em nulo, a partir do offset 13.
+        let ip = self.ip_addr.to_string();
+        let ip = ip.as_bytes();
+        bytes[13..13 + ip.len()].copy_from_slice(ip);
 
-        if self.typ == 0x4 {
-            bytes[19] = 0x1;
+        // Porta em u16 little-endian no offset 53.
+        bytes[53..55].copy_from_slice(&self.port.to_le_bytes());
+
+        // Na captura este byte so aparece na entrada do servidor de mundo que estava online.
+        // Uma captura sozinha nao separa "e servidor de mundo" de "esta online", entao exigimos
+        // os dois -- a leitura mais conservadora do que foi observado.
+        if self.typ == 0x4 && self.online {
+            bytes[55] = 0x1;
         }
 
         bytes
@@ -171,9 +186,12 @@ impl GameServerList {
         buf[len] = self.last_logged_on;
         len += Self::SUFFIX_LEN;
 
-        buf[0] = len as u8;
+        // Tamanho e quantidade sao u16 little-endian, nao bytes soltos. Com um byte so isso passa
+        // despercebido em listas pequenas e quebra a partir de 4 servidores: 20 entradas dao 1272
+        // bytes, e o cliente leria 248.
+        buf[0..2].copy_from_slice(&(len as u16).to_le_bytes());
         buf[2] = Self::SEQUENCE_NUMBER;
-        buf[6] = self.servers.len() as u8;
+        buf[6..8].copy_from_slice(&(self.servers.len() as u16).to_le_bytes());
 
         len
     }
@@ -303,25 +321,28 @@ mod test {
 
     #[test]
     fn test_game_server() {
+        // Bytes conferidos contra uma captura real do servidor da Gameforge: entrada do servidor
+        // de mundo 0x17, online, com 2 personagens na conta.
         let gs = GameServer {
-            id: 0x15,
-            ip_addr: Ipv4Addr::new(127, 0, 0, 1),
+            id: 0x17,
+            ip_addr: "79.110.83.115".parse().unwrap(),
             online: true,
             port: 7777,
             typ: 4,
-            characters: 1,
+            characters: 2,
         };
 
-        // Binary IP [13..17], port BE [17..19], world-flag [19], zeros [20..63]
-        let target = [
-            0x01, 0x04, 0x00, 0x00, 0x01, 0x15, 0x00, 0x00, 0x00, 0x01, 0x00,
-            0x00, 0x00, 0x7F, 0x00, 0x00, 0x01, 0x1E, 0x61, 0x01, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        ];
-        assert_eq!(gs.serialise(), target);
+        let mut esperado = [0u8; GameServer::LEN];
+        esperado[0] = 0x01;
+        esperado[1] = 0x04;
+        esperado[4] = 0x01;
+        esperado[5] = 0x17;
+        esperado[9] = 0x02;
+        esperado[13..26].copy_from_slice(b"79.110.83.115");   // ASCII, terminado pelo zero em 26
+        esperado[53..55].copy_from_slice(&7777u16.to_le_bytes());
+        esperado[55] = 0x01;
+
+        assert_eq!(gs.serialise(), esperado);
     }
 
     #[test]
@@ -357,12 +378,50 @@ mod test {
         assert_eq!(key[20], 0x15);
     }
 
+    /// Monta a entrada esperada a partir dos offsets documentados, em vez de um blob de bytes.
+    /// O erro que travava o cliente na tela de servidores entrou exatamente por um blob desses:
+    /// escrito a mao a partir de um palpite, e depois "confirmado" por um teste que repetia o
+    /// mesmo palpite.
+    fn entrada_esperada(id: u8, typ: u8, online: bool, chars: u8, ip: &str, port: u16)
+        -> [u8; GameServer::LEN]
+    {
+        let mut e = [0u8; GameServer::LEN];
+        e[0] = 0x01;
+        e[1] = typ;
+        e[4] = online as u8;
+        e[5] = id;
+        e[9] = chars;
+        e[13..13 + ip.len()].copy_from_slice(ip.as_bytes());
+        e[53..55].copy_from_slice(&port.to_le_bytes());
+        if typ == 0x4 && online {
+            e[55] = 0x01;
+        }
+        e
+    }
+
+    fn lista_esperada(ultimo: u8, entradas: &[[u8; GameServer::LEN]]) -> Vec<u8> {
+        let total = GameServerList::PREAMBLE_LEN
+            + entradas.len() * GameServer::LEN
+            + GameServerList::SUFFIX_LEN;
+        let mut buf = vec![0u8; total];
+        buf[0..2].copy_from_slice(&(total as u16).to_le_bytes());
+        buf[2] = GameServerList::SEQUENCE_NUMBER;
+        buf[6..8].copy_from_slice(&(entradas.len() as u16).to_le_bytes());
+        let mut off = GameServerList::PREAMBLE_LEN;
+        for e in entradas {
+            buf[off..off + GameServer::LEN].copy_from_slice(e);
+            off += GameServer::LEN;
+        }
+        buf[off] = ultimo;
+        buf
+    }
+
     #[test]
     fn test_game_servers_list_single() {
         let mut gsl = GameServerList::new(0x15);
         gsl.insert(GameServer {
             id: 0x15,
-            ip_addr: Ipv4Addr::new(127, 0, 0, 1),
+            ip_addr: "127.0.0.1".parse().unwrap(),
             online: true,
             port: 7777,
             typ: 4,
@@ -372,19 +431,11 @@ mod test {
         let mut buf = [0u8; 2048];
         let len = gsl.serialise(&mut buf);
 
-        let target = [
-            75, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00,
-            // server entry: header, binary IP, port, world-flag, padding
-            0x01, 0x04, 0x00, 0x00, 0x01, 0x15, 0x00, 0x00, 0x00, 0x01, 0x00,
-            0x00, 0x00, 0x7F, 0x00, 0x00, 0x01, 0x61, 0x1E, 0x01, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            // suffix
-            0x15, 0x00, 0x00, 0x00,
-        ];
-        assert_eq!(buf[..len], target);
+        let esperado = lista_esperada(
+            0x15,
+            &[entrada_esperada(0x15, 4, true, 1, "127.0.0.1", 7777)],
+        );
+        assert_eq!(&buf[..len], esperado.as_slice());
     }
 
     #[test]
@@ -392,7 +443,7 @@ mod test {
         let mut gsl = GameServerList::new(0x15);
         gsl.insert(GameServer {
             id: 0x15,
-            ip_addr: Ipv4Addr::new(127, 0, 0, 1),
+            ip_addr: "127.0.0.1".parse().unwrap(),
             online: true,
             port: 7777,
             typ: 4,
@@ -400,7 +451,7 @@ mod test {
         });
         gsl.insert(GameServer {
             id: 0x67,
-            ip_addr: Ipv4Addr::new(127, 0, 0, 1),
+            ip_addr: "127.0.0.1".parse().unwrap(),
             online: false,
             port: 7777,
             typ: 5,
@@ -410,26 +461,36 @@ mod test {
         let mut buf = [0u8; 2048];
         let len = gsl.serialise(&mut buf);
 
-        let target: [u8; 138] = [
-            138, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00,
-            // server 0x15: world, online, binary IP, port 7777, world-flag=1
-            0x01, 0x04, 0x00, 0x00, 0x01, 0x15, 0x00, 0x00, 0x00, 0x01, 0x00,
-            0x00, 0x00, 0x7F, 0x00, 0x00, 0x01, 0x61, 0x1E, 0x01, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            // server 0x67: instance, offline, binary IP, port 7777, world-flag=0
-            0x01, 0x05, 0x00, 0x00, 0x00, 0x67, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x7F, 0x00, 0x00, 0x01, 0x61, 0x1E, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            // suffix
-            0x15, 0x00, 0x00, 0x00,
-        ];
-        assert_eq!(buf[..len], target);
+        let esperado = lista_esperada(
+            0x15,
+            &[
+                entrada_esperada(0x15, 4, true, 1, "127.0.0.1", 7777),
+                entrada_esperada(0x67, 5, false, 0, "127.0.0.1", 7777),
+            ],
+        );
+        assert_eq!(&buf[..len], esperado.as_slice());
+    }
+
+    /// Uma lista grande tem que continuar declarando o tamanho certo: com o tamanho escrito num
+    /// byte so, 20 servidores dariam 1272 bytes e o cliente leria 248.
+    #[test]
+    fn test_lista_grande_declara_tamanho_u16() {
+        let mut gsl = GameServerList::new(0x15);
+        for i in 0..20u8 {
+            gsl.insert(GameServer {
+                id: 0x15 + i,
+                ip_addr: "127.0.0.1".parse().unwrap(),
+                online: true,
+                port: 7777,
+                typ: 4,
+                characters: 0,
+            });
+        }
+        let mut buf = [0u8; 2048];
+        let len = gsl.serialise(&mut buf);
+        assert_eq!(len, 8 + 20 * GameServer::LEN + 4);
+        assert_eq!(u16::from_le_bytes([buf[0], buf[1]]) as usize, len);
+        assert_eq!(u16::from_le_bytes([buf[6], buf[7]]), 20);
     }
 
     #[test]
