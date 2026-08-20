@@ -55,8 +55,14 @@ const AUTH_GREETING: [u8; 92] = [
     0x14, 0x0c, 0x00, 0x00,
 ];
 
-const ACCOUNT_ID: u32 = 0x0000_0015;
+/// Na captura real o LOGIN_OK vem com accountId zero. O 0x15 que estava aqui era palpite, e por
+/// acaso igual ao id do primeiro servidor da lista -- coincidencia que so atrapalha ao depurar.
+const ACCOUNT_ID: u32 = 0x0000_0000;
 const LOGIN_OK_KEY: u32 = 0x0262_cab6;
+
+/// Ultimos 4 bytes do SESSION_KEY, como observado na captura do servidor da Gameforge.
+/// Proposito ainda desconhecido; o cliente nao avanca para o game server sem ele.
+const SESSION_TRAILER: u32 = 0x0000_0AD6;
 
 /// Opcode 0x01 — Login OK, sent after receiving the client credential packet.
 fn login_ok() -> [u8; 14] {
@@ -88,7 +94,11 @@ fn session_key(server_selection: &[u8], server_id: u8) -> [u8; 22] {
         bytes[10..14].copy_from_slice(&LOGIN_OK_KEY.to_le_bytes());
     }
     // bytes[14..18] = 0 (zeros = success; non-zero = AuthorizationError shown to client)
-    bytes[20] = server_id;
+
+    // Os quatro ultimos bytes: o servidor real manda 0x00000AD6 aqui. O que havia antes escrevia o
+    // id do servidor no byte 20, deixando 18 e 19 zerados -- o oposto do observado. Sem saber o que
+    // o cliente faz com este campo, o mais seguro e reproduzir o que ele recebe de verdade.
+    bytes[18..22].copy_from_slice(&SESSION_TRAILER.to_le_bytes());
     bytes
 }
 
@@ -197,12 +207,25 @@ impl GameServerList {
     }
 }
 
-/// Build the default server list shown to every connecting client.
+/// Lista espelhada da captura real do servidor da Gameforge: mesmos ids, mesmos tipos, mesma
+/// ordem, mesmo "ultimo logado". Só os IPs mudam.
+///
+/// Os ids importam: o cliente traduz id em nome de servidor (foi assim que "Atreia" apareceu na
+/// tela sem nós mandarmos nenhum texto). Com ids que ele nao reconhece, a lista ate desenha, mas
+/// a selecao morre em "No game server is available to the authorization server. (6)".
 fn default_server_list() -> GameServerList {
     let game_ip = game_server_ip();
-    let mut list = GameServerList::new(0x15);
+    let mut list = GameServerList::new(0x17);
     list.insert(GameServer {
-        id: 0x15,
+        id: 0x67,
+        ip_addr: game_ip,
+        online: false,
+        port: 7777,
+        typ: 5,
+        characters: 0,
+    });
+    list.insert(GameServer {
+        id: 0x17,
         ip_addr: game_ip,
         online: true,
         port: 7777,
@@ -210,15 +233,7 @@ fn default_server_list() -> GameServerList {
         characters: 1,
     });
     list.insert(GameServer {
-        id: 0x16,
-        ip_addr: game_ip,
-        online: true,
-        port: 7777,
-        typ: 4,
-        characters: 0,
-    });
-    list.insert(GameServer {
-        id: 0x67,
+        id: 0x79,
         ip_addr: game_ip,
         online: false,
         port: 7777,
@@ -229,11 +244,11 @@ fn default_server_list() -> GameServerList {
 }
 
 fn selected_server_id(buf: &[u8]) -> u8 {
-    if buf.len() > 6 && matches!(buf[6], 0x15 | 0x16 | 0x67) {
+    if buf.len() > 6 && matches!(buf[6], 0x17 | 0x67 | 0x79) {
         return buf[6];
     }
 
-    0x15
+    0x17
 }
 
 fn game_server_ip() -> Ipv4Addr {
@@ -375,7 +390,9 @@ mod test {
         let key = session_key(&selection, 0x15);
         assert_eq!(&key[0..3], &[22, 0, 4]);
         assert_eq!(&key[6..14], &selection[6..14]);
-        assert_eq!(key[20], 0x15);
+        // Os quatro ultimos bytes reproduzem o que o servidor da Gameforge manda. Antes daqui saia
+        // o id do servidor no byte 20, que nao corresponde a nada do que foi observado.
+        assert_eq!(&key[18..22], &SESSION_TRAILER.to_le_bytes());
     }
 
     /// Monta a entrada esperada a partir dos offsets documentados, em vez de um blob de bytes.
