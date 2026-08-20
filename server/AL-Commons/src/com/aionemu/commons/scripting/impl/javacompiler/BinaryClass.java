@@ -27,15 +27,19 @@ import java.io.OutputStream;
 import java.io.Writer;
 import java.net.URI;
 
-import com.sun.tools.javac.file.BaseFileObject;
+import javax.tools.SimpleJavaFileObject;
 
 /**
  * This class is just a hack to make javac compiler work with classes loaded by prevoius classloader. Also it's used as
  * container for loaded class
- * 
+ *
+ * Herdava de com.sun.tools.javac.file.BaseFileObject, que e interno ao jdk.compiler e inacessivel
+ * desde o Java 9. SimpleJavaFileObject e a classe publica equivalente -- existe exatamente para
+ * este caso -- e cobre tudo que era usado aqui.
+ *
  * @author SoulKeeper
  */
-public class BinaryClass extends BaseFileObject {
+public class BinaryClass extends SimpleJavaFileObject {
 
 	/**
 	 * ClassName
@@ -59,18 +63,8 @@ public class BinaryClass extends BaseFileObject {
 	 *          class name
 	 */
 	protected BinaryClass(String name) {
-		super(null);
+		super(URI.create("bytes:///" + name.replace('.', '/') + Kind.CLASS.extension), Kind.CLASS);
 		this.name = name;
-	}
-
-	/**
-	 * Throws {@link UnsupportedOperationException}
-	 * 
-	 * @return nothing
-	 */
-	@Override
-	public URI toUri() {
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -156,7 +150,6 @@ public class BinaryClass extends BaseFileObject {
 	 *          doesn't matter
 	 * @return class name
 	 */
-	@Override
 	protected String inferBinaryName(Iterable<? extends File> path) {
 		return name;
 	}
@@ -219,11 +212,6 @@ public class BinaryClass extends BaseFileObject {
 		return false;
 	}
 
-	@Override
-	public String getShortName() {
-		return this.name;
-	}
-	
 	@Override
 	public int hashCode() {
 		return this.name.hashCode();

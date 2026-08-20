@@ -21,7 +21,6 @@ package com.aionemu.commons.scripting.impl.javacompiler;
 import com.aionemu.commons.scripting.CompilationResult;
 import com.aionemu.commons.scripting.ScriptClassLoader;
 import com.aionemu.commons.scripting.ScriptCompiler;
-import com.sun.tools.javac.api.JavacTool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,12 +67,14 @@ public class ScriptCompilerImpl implements ScriptCompiler {
 	 *           if compiler is not available
 	 */
 	public ScriptCompilerImpl() {
-		this.javaCompiler = JavacTool.create();
+		// ToolProvider devolve o mesmo javac que JavacTool.create() devolvia, so que por API
+		// publica. Desde o Java 9 o com.sun.tools.javac.api nao e exportado para o unnamed module,
+		// e instanciar o JavacTool direto morre com IllegalAccessError.
+		this.javaCompiler = ToolProvider.getSystemJavaCompiler();
 
 		if (javaCompiler == null) {
-			if (ToolProvider.getSystemJavaCompiler() != null) {
-				throw new RuntimeException(new InstantiationException("JavaCompiler is not aviable."));
-			}
+			throw new RuntimeException(new InstantiationException(
+					"JavaCompiler is not available. Rode o servidor com um JDK, nao com um JRE."));
 		}
 	}
 
@@ -178,7 +179,7 @@ public class ScriptCompilerImpl implements ScriptCompiler {
 	protected CompilationResult doCompilation(Iterable<JavaFileObject> compilationUnits) {
 		List<String> options = Arrays.asList("-encoding", "UTF-8", "-g");
 		DiagnosticListener<JavaFileObject> listener = new ErrorListener();
-		ClassFileManager manager = new ClassFileManager(JavacTool.create(), listener);
+		ClassFileManager manager = new ClassFileManager(javaCompiler, listener);
 		manager.setParentClassLoader(parentClassLoader);
 
 		if (libraries != null) {

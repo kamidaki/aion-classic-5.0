@@ -27,7 +27,9 @@ echo "[3/4] copiando libs e config..."
 mkdir -p "$OUT/libs"
 cp server/AL-Login/libs/*.jar "$OUT/libs/"
 rm -f "$OUT/libs/al-commons.jar"          # usamos as classes recem-compiladas
+cp server/libs-modern/*.jar "$OUT/libs/"  # JAXB: saiu do JDK no Java 11, ver server/deps/pom.xml
 cp -r server/AL-Login/config "$OUT/config"
+cp -r server/AL-Login/data "$OUT/data"    # o DAOManager compila os DAOs daqui no startup
 
 echo "[4/4] gerando o runner..."
 cat > "$OUT/run.sh" <<'RUN'
