@@ -21,12 +21,29 @@ package com.aionemu.loginserver.network.aion.serverpackets;
 import javax.crypto.SecretKey;
 
 import com.aionemu.loginserver.network.aion.AionServerPacket;
+import com.aionemu.loginserver.network.aion.ClassicProtocol;
 import com.aionemu.loginserver.network.aion.LoginConnection;
 
 /**
- * Format: dd b dddd s d: session id d: protocol revision b: 0x90 bytes : 0x80
- * bytes for the scrambled RSA public key 0x10 bytes at 0x00 d: unknow d: unknow
- * d: unknow d: unknow s: blowfish key
+ * Primeiro pacote da conexao: entrega ao cliente o modulo RSA e a chave Blowfish da sessao.
+ *
+ * O layout do Classic 4.5 nao e o do retail. A chave Blowfish fica 4 bytes antes (0x95 em vez de
+ * 0x99), o que abre espaco para o flag 0xFD em 0xA8 e para a versao do cliente em 0xA9. Errar esse
+ * deslocamento e especialmente ingrato: o cliente aceita o SM_INIT em silencio e so falha depois,
+ * quando nenhum pacote seguinte decripta.
+ *
+ * <pre>
+ *   0x00         opcode 0x00
+ *   0x01..0x04   session id
+ *   0x05..0x08   protocol revision (0xC621)
+ *   0x09..0x88   modulo RSA embaralhado (128 bytes)
+ *   0x89..0x94   zeros (12 bytes)
+ *   0x95..0xA4   chave Blowfish da sessao (16 bytes)
+ *   0xA5..0xA7   zeros
+ *   0xA8         flag que habilita o RSA (0xFD)
+ *   0xA9..0xAC   versao do cliente: 04 05 00 00
+ *   0xAD..0xB0   zeros -- padding ate 177 bytes, ver ClassicProtocol.INIT_PACKET_SIZE
+ * </pre>
  */
 public final class SM_INIT extends AionServerPacket {
 
@@ -73,17 +90,25 @@ public final class SM_INIT extends AionServerPacket {
      */
     @Override
     protected void writeImpl(LoginConnection con) {
-        writeD(sessionId); // session id
-        writeD(0x0000c621); // protocol revision
-        writeB(publicRsaKey); // RSA Public Key
-        // unk
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
+        writeD(sessionId);                              // 0x01
+        writeD(0x0000c621);                             // 0x05 protocol revision
+        writeB(publicRsaKey);                           // 0x09 modulo RSA embaralhado
 
-        writeB(blowfishKey); // BlowFish key
-        writeD(197635); // unk
-        writeD(2097152); // unk
+        writeD(0x00);                                   // 0x89
+        writeD(0x00);                                   // 0x8D
+        writeD(0x00);                                   // 0x91
+
+        writeB(blowfishKey);                            // 0x95 chave Blowfish da sessao
+
+        writeC(0x00);                                   // 0xA5
+        writeC(0x00);                                   // 0xA6
+        writeC(0x00);                                   // 0xA7
+        writeC(ClassicProtocol.INIT_RSA_ENABLE_FLAG);   // 0xA8
+        writeC(ClassicProtocol.CLIENT_VERSION_MAJOR);   // 0xA9
+        writeC(ClassicProtocol.CLIENT_VERSION_MINOR);   // 0xAA
+        writeC(0x00);                                   // 0xAB
+        writeC(0x00);                                   // 0xAC
+
+        writeD(0x00);                                   // 0xAD padding ate INIT_PACKET_SIZE
     }
 }

@@ -114,6 +114,12 @@ public class Config {
     public static int PINGPONG_DELAY;
     @Property(key = "loginserver.excluded.ips", defaultValue = "")
     public static String EXCLUDED_IP;
+    /**
+     * Bracket enviado em cada entrada de SM_SERVER_LIST. Precisa ser igual ao -cc:N com que o
+     * cliente e iniciado, senao o servidor nao aparece na lista. GameForge EU usa 2.
+     */
+    @Property(key = "loginserver.classic.bracket", defaultValue = "2")
+    public static int SERVER_BRACKET;
 
     /**
      * Load configs from files.

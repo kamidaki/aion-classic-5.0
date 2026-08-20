@@ -46,9 +46,11 @@ O que o confronto de tabelas mostrou (detalhes em `docs/protocol/README.md`):
 
 Ordem sugerida, do que destrava mais para o que destrava menos:
 
-1. Login server: portar do POC em C# o handshake que já passa
-   (`SM_INIT` com o byte `0xFD` em `0xA8`, flags `0x3F` + assinatura `0xFF FE`,
-   entradas de 21 bytes com `ServerBits 0x401` e o byte de bracket do `-cc:2`).
+1. ~~Login server: portar do POC em C# o handshake que já passa.~~ **Feito** —
+   `SM_INIT`, `SM_LOGIN_OK` e `SM_SERVER_LIST` adaptados, constantes em
+   `ClassicProtocol.java`, offsets verificados por
+   `scripts/verify_login_packets.sh`. Falta testar contra o cliente de verdade
+   (precisa do banco `al_server_ls` criado).
 2. Handshake do game server: `S_KEY` (`0x047`) e o XOR de opcode.
 3. Seleção de personagem: `C_CHARACTER_LIST` (`0x096`) → `S_CHARACTER_LIST` (`0x0c7`).
 4. Entrada no mundo: `C_ENTER_WORLD` (`0x008`) → `S_ENTER_WORLD_CHECK` (`0x00d`)

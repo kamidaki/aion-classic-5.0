@@ -23,11 +23,22 @@ import java.util.Map;
 
 import com.aionemu.loginserver.GameServerInfo;
 import com.aionemu.loginserver.GameServerTable;
+import com.aionemu.loginserver.configs.Config;
 import com.aionemu.loginserver.controller.AccountController;
 import com.aionemu.loginserver.network.aion.AionServerPacket;
+import com.aionemu.loginserver.network.aion.ClassicProtocol;
 import com.aionemu.loginserver.network.aion.LoginConnection;
 
 /**
+ * Lista de servidores mostrada apos o login.
+ *
+ * Cada entrada tem 21 bytes, sendo o ultimo o bracket -- que o cliente compara com o valor passado
+ * em {@code -cc:N} na linha de comando (0x842B1B). Uma entrada cujo bracket nao bate simplesmente
+ * nao aparece na tela, sem erro nenhum.
+ *
+ * A secao de contagem de personagens tambem difere do retail: o cliente Classic le o short e ja
+ * espera 1 byte por servidor, sem o byte intercalado que o retail enviava (0x843077).
+ *
  * @author -Nemesiss-
  * @modified cura
  */
@@ -63,12 +74,11 @@ public class SM_SERVER_LIST extends AionServerPacket {
             writeH(gsi.getCurrentPlayers());// currentPlayers
             writeH(gsi.getMaxPlayers());// maxPlayers
             writeC(gsi.isOnline() ? 1 : 0);// ServerStatus, up=1
-            writeD(1);// bits);
-            writeC(1);// server.brackets ? 0x01 : 0x00);
+            writeD(ClassicProtocol.SERVER_BITS);// bit 10 marca servidor Classic
+            writeC(Config.SERVER_BRACKET);// tem que casar com o -cc:N do cliente
         }
 
-        writeH(maxId + 1);
-        writeC(0x01);
+        writeH(maxId);
 
         for (int i = 1; i <= maxId; i++) {
             if (charactersCountOnServer.containsKey(i)) {

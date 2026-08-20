@@ -19,10 +19,17 @@
 package com.aionemu.loginserver.network.aion.serverpackets;
 
 import com.aionemu.loginserver.network.aion.AionServerPacket;
+import com.aionemu.loginserver.network.aion.ClassicProtocol;
 import com.aionemu.loginserver.network.aion.LoginConnection;
 import com.aionemu.loginserver.network.aion.SessionKey;
 
 /**
+ * Confirma o login e libera o cliente para a tela de selecao de servidor.
+ *
+ * O tamanho e o mesmo do retail (77 bytes); o que muda sao tres campos que o retail deixava
+ * zerados e que o cliente Classic 4.5 confere: as flags de conta em 0x10, a assinatura em 0x20 e
+ * o aceite dos Termos de Servico em 0x30. Ver {@link ClassicProtocol} para o que cada um destrava.
+ *
  * @author -Nemesiss-
  */
 public class SM_LOGIN_OK extends AionServerPacket {
@@ -52,19 +59,22 @@ public class SM_LOGIN_OK extends AionServerPacket {
      */
     @Override
     protected void writeImpl(LoginConnection con) {
-        writeD(accountId);
-        writeD(loginOk);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeD(0x00);
-        writeB(new byte[0x19]);
+        writeD(accountId);                              // 0x00
+        writeD(loginOk);                                // 0x04
+        writeD(0x00);                                   // 0x08
+        writeD(0x00);                                   // 0x0C
+        writeD(ClassicProtocol.ACCOUNT_FLAGS);          // 0x10
+        writeD(ClassicProtocol.ACCOUNT_FLAGS);          // 0x14
+        writeD(ClassicProtocol.ACCOUNT_FLAGS);          // 0x18
+        writeD(ClassicProtocol.ACCOUNT_FLAGS);          // 0x1C
+        writeC(ClassicProtocol.LOGIN_OK_SIGNATURE_0);   // 0x20
+        writeC(ClassicProtocol.LOGIN_OK_SIGNATURE_1);   // 0x21
+        writeC(0x00);                                   // 0x22
+        writeC(0x00);                                   // 0x23
+        writeD(0x00);                                   // 0x24
+        writeD(0x00);                                   // 0x28
+        writeD(0x00);                                   // 0x2C
+        writeD(ClassicProtocol.TOS_ACCEPTED);           // 0x30
+        writeB(new byte[0x19]);                         // 0x34..0x4C
     }
 }
