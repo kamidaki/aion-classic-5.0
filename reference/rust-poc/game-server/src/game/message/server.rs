@@ -142,6 +142,7 @@ pub enum Message {
     AskQuitResult(AskQuitResult),
     PutNpc(PutNpc),
     Bruto(Bruto),
+    ListaPersonagens45(ListaPersonagens45),
 }
 
 impl Serialise for Message {
@@ -205,10 +206,23 @@ impl Serialise for Message {
             Message::HitPointOther(msg) => msg.serialise(&mut buf[2..]),
             Message::HitPoint(msg) => msg.serialise(&mut buf[2..]),
             Message::Bruto(msg) => msg.serialise(&mut buf[2..]),
+            Message::ListaPersonagens45(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
         buf[..LENGTH_LEN].copy_from_slice(&(len as u16).to_le_bytes());
+        len
+    }
+}
+
+/// S_CHARACTER_LIST no layout 4.5. Ver [`super::lista_personagens`].
+#[derive(Debug, Clone)]
+pub struct ListaPersonagens45(pub super::lista_personagens::ListaPersonagens);
+
+impl Serialise for ListaPersonagens45 {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = add_prelude(CHARACTER_LIST, buf);
+        len += self.0.serialise_payload(&mut buf[len..]);
         len
     }
 }

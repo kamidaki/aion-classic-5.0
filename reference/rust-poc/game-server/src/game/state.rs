@@ -5,6 +5,7 @@ use crate::data_loader::GameData;
 use crate::db::Db;
 
 use super::character::Character;
+use super::message::lista_personagens;
 use super::data::gear::LootItem;
 use super::data::{npc, ActionType};
 use super::engine::Coord;
@@ -352,18 +353,23 @@ impl State {
                 };
                 let character =
                     Character::from_persisted(&persisted, update.client_id());
-                let last_logged_in = 1722072570;
+
+                // Layout 4.5. A implementacao antiga (s::CharacterList) e da 2.5 e faz o cliente
+                // 4.5 crashar -- ver game::message::lista_personagens.
+                let lista = lista_personagens::ListaPersonagens::new(
+                    update.chave_de_sessao(),
+                    vec![lista_personagens::Personagem {
+                        id: character.id(),
+                        nome: character.name().clone(),
+                        nivel: character.stats.level,
+                        ultimo_login: true,
+                    }],
+                );
 
                 messages.extend_direct(
                     update.client_id(),
-                    [s::Message::CharacterList(s::CharacterList::new(
-                        [0u8; 4],
-                        character.name().clone(),
-                        character.gear.clone(),
-                        last_logged_in,
-                        character.id(),
-                    ))]
-                    .map(ServerUpdate::new),
+                    [s::Message::ListaPersonagens45(s::ListaPersonagens45(lista))]
+                        .map(ServerUpdate::new),
                 );
                 self.characters.insert(character.id(), character);
             }

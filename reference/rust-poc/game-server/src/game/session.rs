@@ -32,6 +32,7 @@ impl Account {
             self.character_id,
             message,
             self.session_token.clone(),
+            self.auth_server.id,
         )
     }
 

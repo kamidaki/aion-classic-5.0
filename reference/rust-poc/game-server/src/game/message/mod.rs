@@ -3,6 +3,8 @@ use krypt::game::encrypt;
 
 pub mod capturado;
 pub mod client;
+pub mod lista_personagens;
+pub mod molde;
 pub mod replay;
 pub mod server;
 

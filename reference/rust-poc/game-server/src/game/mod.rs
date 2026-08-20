@@ -104,6 +104,9 @@ pub struct ClientUpdate {
     client_id: u16,
     character_id: u32,
     session_token: String,
+    /// Chave que o auth server entregou e o cliente repetiu no HqLogin. O cabecalho do
+    /// S_CHARACTER_LIST a carrega, e a thread do jogo nao tem acesso ao Account.
+    chave_de_sessao: u32,
 }
 
 impl ClientUpdate {
@@ -113,6 +116,9 @@ impl ClientUpdate {
     pub fn character_id(&self) -> u32 {
         self.character_id
     }
+    pub fn chave_de_sessao(&self) -> u32 {
+        self.chave_de_sessao
+    }
     pub fn message(&self) -> &c::Message {
         &self.message
     }
@@ -120,19 +126,21 @@ impl ClientUpdate {
         &self.session_token
     }
     pub fn new(client_id: u16, character_id: u32, message: c::Message) -> Self {
-        Self::new_with_token(client_id, character_id, message, String::new())
+        Self::new_with_token(client_id, character_id, message, String::new(), 0)
     }
     pub fn new_with_token(
         client_id: u16,
         character_id: u32,
         message: c::Message,
         session_token: String,
+        chave_de_sessao: u32,
     ) -> Self {
         Self {
             message,
             client_id,
             character_id,
             session_token,
+            chave_de_sessao,
         }
     }
 }
