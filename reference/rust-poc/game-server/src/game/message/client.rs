@@ -28,10 +28,12 @@ macro_rules! define_messages {
         }
 
         impl Message {
+            /// Devolve a mensagem quando o opcode tem implementacao, ou o proprio opcode
+            /// quando nao tem -- quem chama precisa do numero para servi-lo pelo replay.
             pub fn deserialise(
                 mut buf: &mut [u8],
                 mut key: &mut [u8; 8],
-            ) -> Option<Self> {
+            ) -> Result<Self, u16> {
                 decrypt(&mut key, buf);
 
                 let mut len = 0;
@@ -50,12 +52,12 @@ macro_rules! define_messages {
                 buf = &mut buf[len..];
                 match opcode {
                     $(
-                        $message_const_name => Some(Message::$message(<$message>::deserialise(buf))),
+                        $message_const_name => Ok(Message::$message(<$message>::deserialise(buf))),
                     )*
                     _ => {
                         println!("WARNING: Client Opcode {opcode:02X} not implemented");
                         println!("C RAW: {:02X?}", buf);
-                        None
+                        Err(opcode)
                     }
                 }
             }

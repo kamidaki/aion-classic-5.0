@@ -410,8 +410,17 @@ impl State {
                 }
             }
             c::Message::CurStatus(_) => {
-                let character =
-                    self.characters.get_mut(&update.character_id()).unwrap();
+                // O cliente pode pedir status antes de existir personagem no estado -- acontece,
+                // por exemplo, quando a lista de personagens vem do replay e nao passou pelo
+                // caminho que popula o estado. Derrubar a thread do jogo por causa disso tira
+                // todos os jogadores do ar, entao aqui so ignoramos o pedido.
+                let Some(character) = self.characters.get_mut(&update.character_id()) else {
+                    println!(
+                        "WARNING: CurStatus para personagem {} que nao esta no estado; ignorando",
+                        update.character_id()
+                    );
+                    return;
+                };
 
                 let game_time = 148641933;
                 messages.extend_direct(

@@ -343,6 +343,9 @@ pub struct Connection {
     stream: TcpStream,
     keys: Keys,
     account: Account,
+    /// Sessao capturada usada para responder o que ainda nao sabemos construir. Opcional: sem o
+    /// arquivo o servidor roda normalmente, respondendo so o que tem implementado.
+    replay: Option<message::replay::Replay>,
     /// The game server tx to client rx (batched: one Vec per tick)
     rx: Receiver<Vec<ServerUpdate>>,
     /// The client tx to the game server rx
@@ -367,10 +370,14 @@ impl Connection {
         let len = message::make_key_packet(&mut buf, seed);
         stream.write(&buf[..len]).unwrap();
 
+        let caminho = std::env::var("AION_REPLAY").unwrap_or_else(|_| "replay.bin".to_string());
+        let replay = message::replay::Replay::carregar(std::path::Path::new(&caminho));
+
         Self {
             stream,
             keys: Keys::new(key.to_le_bytes()),
             account: Account::new(client_id),
+            replay,
             rx,
             tx,
         }
@@ -411,6 +418,7 @@ impl Connection {
                 &mut self.account,
                 &self.rx,
                 &self.tx,
+                &mut self.replay,
             );
             if len != 0 {
                 if let Err(e) = self.stream.write(&send_buffer[..len]) {
