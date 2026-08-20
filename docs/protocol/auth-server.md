@@ -129,3 +129,48 @@ A mesma captura ainda contém, não analisados:
   `reference/rust-poc/docs/AUTH.md`). O cliente conecta logo depois do auth.
 * **Game server na 7777** — 98 kB, incluindo a entrada no mundo. É a fonte para os layouts de
   pacote que a tabela de opcodes sozinha não dá.
+
+---
+
+## O cliente recusa endereços de loopback na lista
+
+Sintoma: a lista de servidores desenha corretamente — nome, badge de último login, status,
+contagem de personagens — mas selecionar o servidor dá:
+
+```
+No game server is available to the authorization server. (6)
+```
+
+E o cliente **não emite um único SYN**: nem para a porta anunciada, nem para lugar nenhum. Não é
+rede, não é o game server fora do ar, não é formato de pacote.
+
+A causa é o campo de IP da entrada. Com `127.0.0.1` o cliente descarta a entrada antes de tentar
+conectar. Trocando para o IP da máquina na LAN (`192.168.100.77`), sem mudar mais nada:
+
+```
+INFO: auth complete, closing 127.0.0.1:51332
+INFO: TCP accept from 192.168.100.77:52958
+INFO: new session 192.168.100.77:52958
+```
+
+O game server continua escutando em `0.0.0.0`, então aceita nos dois endereços. O que muda é
+apenas o texto que o cliente lê na lista.
+
+Isso explica retroativamente uma esquisitice do POC em Rust: ele instruía a adicionar
+`104.18.41.168` ao adaptador de loopback e escutava em `8443`, em vez de simplesmente anunciar
+`127.0.0.1`. Todo esse trabalho de roteamento existia para contornar esta rejeição — sem que a
+causa estivesse identificada. Com um IP de LAN normal, a gambiarra é desnecessária.
+
+**Para rodar:** `AION_GAME_IP` precisa ser um endereço não-loopback alcançável pelo cliente.
+
+## Ordem dos bloqueios até entrar no game server
+
+Cada um destes tem sintoma parecido — o cliente para sem explicar — e todos foram encontrados
+comparando com a captura real:
+
+1. entrada da lista com IP binário e porta em offset errado → trava na tela de servidores
+2. porta anunciada (7777) diferente da que o game server escutava (8443)
+3. corrida no named pipe → cai no formulário de login manual, de forma intermitente
+4. `gfclient.exe` oficial aberto → sequestra o pipe, mesmo sintoma do item 3
+5. ids de servidor fora da tabela do cliente
+6. IP de loopback na lista → erro 6, sem tentativa de conexão
