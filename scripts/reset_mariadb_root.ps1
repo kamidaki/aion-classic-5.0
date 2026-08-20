@@ -76,8 +76,13 @@ FLUSH PRIVILEGES;
     $sql | & $mysql '-u' 'root' '-h' '127.0.0.1' '-P' "$TempPort"
     if ($LASTEXITCODE -ne 0) { throw "ALTER USER falhou" }
 
+    # O FLUSH PRIVILEGES acima religou o sistema de permissoes: a partir daqui o temporario ja
+    # exige senha, entao o shutdown tem que ir autenticado. Sem isso ele falha e o temporario
+    # fica de pe segurando o datadir, impedindo o servico de voltar.
     Write-Host "[5/5] derrubando o temporario e religando o servico..." -ForegroundColor Cyan
+    $env:MYSQL_PWD = $NewPassword
     & $mysqladmin '-u' 'root' '-h' '127.0.0.1' '-P' "$TempPort" 'shutdown' *> $null
+    $env:MYSQL_PWD = $null
     if ($temp) { $temp.WaitForExit(20000) | Out-Null }
     $temp = $null
 
@@ -99,11 +104,30 @@ FLUSH PRIVILEGES;
 catch {
     Write-Host "`nFALHOU: $($_.Exception.Message)" -ForegroundColor Red
     Write-Host "religando o servico para nao deixar o banco fora do ar..." -ForegroundColor Yellow
+
+    # A recuperacao nao pode abortar no meio. No PowerShell 5.1 o stderr de um executavel nativo
+    # vira erro terminante quando ErrorActionPreference e 'Stop' -- e foi exatamente assim que uma
+    # versao anterior deste script se sabotou: o mysqladmin daqui falhou, o catch morreu antes do
+    # Start-Service, e o servico ficou parado com o temporario de pe.
+    $ErrorActionPreference = 'Continue'
+
     if ($temp -and -not $temp.HasExited) {
-        & $mysqladmin '-u' 'root' '-h' '127.0.0.1' '-P' "$TempPort" 'shutdown' *> $null
-        Start-Sleep -Seconds 2
-        if (-not $temp.HasExited) { Stop-Process -Id $temp.Id -Force }
+        $env:MYSQL_PWD = $NewPassword
+        try { & $mysqladmin '-u' 'root' '-h' '127.0.0.1' '-P' "$TempPort" 'shutdown' *> $null } catch { }
+        $env:MYSQL_PWD = $null
+        Start-Sleep -Seconds 3
+        if (-not $temp.HasExited) {
+            Write-Host "shutdown limpo nao respondeu; encerrando a forca (o InnoDB vai recuperar no proximo start)" -ForegroundColor Yellow
+            try { Stop-Process -Id $temp.Id -Force } catch { }
+        }
     }
-    try { Start-Service $ServiceName } catch { Write-Host "religue o servico manualmente: net start $ServiceName" -ForegroundColor Red }
+
+    try {
+        Start-Service $ServiceName
+        (Get-Service $ServiceName).WaitForStatus('Running', '00:00:30')
+        Write-Host "servico religado." -ForegroundColor Green
+    } catch {
+        Write-Host "religue o servico manualmente: net start $ServiceName" -ForegroundColor Red
+    }
     exit 1
 }
