@@ -34,6 +34,40 @@ javac 21 recusa — use `--release 8`):
 javac --release 8 -encoding UTF-8 -cp "<libs>" -d build/classes @sources.txt
 ```
 
+## Estado: o cliente chega à seleção de personagem
+
+Com o stack em Rust (`reference/rust-poc`), um cliente 4.5 real percorre hoje:
+
+```
+launcher (named pipe) → auth 13001 → STS 6600 → game server 7777
+→ termos → lista de servidores → seleção → tela de personagem
+```
+
+A tela de personagem renderiza nomes, níveis, classes e modelos 3D. O `S_CHARACTER_LIST` ainda é
+replay dos bytes capturados (`game-server/src/game/message/capturado.rs`); o resto do caminho é
+código.
+
+**Como rodar:**
+
+```bash
+cd reference/rust-poc
+AION_GAME_IP=<ip da LAN, nao 127.0.0.1> ./target/release/auth-server.exe
+./target/release/sts-server.exe
+AION_DATA_DIR=<xml extraido> ./target/release/game-server.exe
+./target/release/launcher.exe --auto durak
+```
+
+O `gfclient.exe` oficial precisa estar **fechado** — ele cria o mesmo named pipe e sequestra a
+conexão. E o IP anunciado não pode ser loopback, senão o cliente descarta a entrada da lista.
+Detalhes em `docs/protocol/auth-server.md`.
+
+**Próximo passo:** o botão Start manda `C_ENTER_WORLD`. A captura tem a sequência inteira de
+entrada no mundo em `docs/protocol/game-server.md`, e `tools/decode_game.py` imprime qualquer
+pacote dela com `--dump`.
+
+**Dívida deliberada:** trocar cada pacote capturado por um construído, um de cada vez. O tipo
+`Bruto` existe para isso — dá para substituir sem parar o fluxo.
+
 ## Fase 1 — camada de rede (o trabalho de verdade)
 
 O que o confronto de tabelas mostrou (detalhes em `docs/protocol/README.md`):
