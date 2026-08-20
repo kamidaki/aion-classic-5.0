@@ -179,6 +179,23 @@ mod test {
         );
     }
 
+    /// O campo de nome foi estimado em 56 bytes numa primeira versao. Os quatro bytes a mais
+    /// continham 0x01 0x00 0x00 0x00 -- dados reais, iguais nos dois personagens da captura -- e
+    /// zera-los fazia o cliente crashar. Este teste fixa a fronteira.
+    #[test]
+    fn molde_preserva_o_que_vem_logo_depois_do_nome() {
+        let lista = ListaPersonagens::new(0, vec![personagem(1, "Durak", 60, true)]);
+        let mut buf = vec![0u8; 4096];
+        lista.serialise_payload(&mut buf);
+
+        let reg = &buf[CABECALHO_LEN..CABECALHO_LEN + REGISTRO_LEN];
+        assert_eq!(
+            &reg[57..61],
+            &[0x01, 0x00, 0x00, 0x00],
+            "os bytes logo depois do campo de nome nao podem ser zerados"
+        );
+    }
+
     #[test]
     fn nome_longo_e_truncado_sem_quebrar_o_utf16() {
         let mut campo = [0xFFu8; 12]; // cabe 5 caracteres + terminador
