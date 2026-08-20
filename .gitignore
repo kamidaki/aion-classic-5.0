@@ -1,0 +1,22 @@
+# saidas de build
+build/
+bin/
+obj/
+target/
+dist/*.jar
+*.class
+__pycache__/
+*.pyc
+
+# artefatos de execucao
+log/
+logs/
+*.log
+
+# IDE
+.idea/
+.vs/
+*.iml
+.classpath
+.project
+.settings/
