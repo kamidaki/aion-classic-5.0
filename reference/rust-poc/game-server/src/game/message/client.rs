@@ -151,24 +151,36 @@ pub struct MachineInfo {
 }
 
 impl MachineInfo {
-    pub fn handle(&self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+    pub fn handle(&self, _: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
         println!(
-            "INFO: MachineInfo recebido ({} bytes); enviando a lista de personagens",
+            "INFO: MachineInfo recebido ({} bytes); enviando a lista de personagens capturada",
             self.bruto.len()
         );
 
-        // O POC esperava que o cliente pedisse a lista com C_CHARACTER_LIST, e montava a resposta
-        // a partir do banco. O cliente 4.5 nunca pede: ele espera a lista empurrada logo apos este
-        // pacote. So o momento estava errado, entao aqui usamos o mesmo caminho do
-        // CharacterList::handle -- e a lista sai do banco, com ids que o estado do jogo conhece.
+        // Aqui vai a lista capturada, e nao a que o POC monta do banco. Nao e preguica: a do POC
+        // e da versao 2.5 -- header de 238 bytes, gear, footer de 146 -- e o cliente 4.5 CRASHA
+        // ao parsea-la. A capturada tem 1527 bytes para dois personagens e o cliente aceita.
         //
-        // Antes daqui saiam os bytes capturados. Serviram para provar o caminho ate a tela de
-        // personagem, mas traziam ids de outra sessao: o cliente escolhia um personagem que o
-        // servidor nao tinha, entrava no mundo sem posicao e sem mapa.
-        tx.send(session.send(Message::CharacterList(CharacterList)))
-            .unwrap();
-
-        vec![s::Message::BuilderLevel(s::BuilderLevel::new())]
+        // O custo e conhecido: os ids vem de outra sessao, entao o personagem escolhido nao existe
+        // no estado do jogo e a entrada no mundo fica sem posicao e sem mapa. Trocar isso por
+        // implementacao exige reescrever o layout do S_CHARACTER_LIST para a 4.5, usando os bytes
+        // capturados como referencia -- nao so trocar a origem dos dados.
+        use super::capturado as cap;
+        let chave = session.auth_server.id;
+        vec![
+            s::Message::Bruto(s::Bruto::new(
+                cap::BUILDER_LEVEL_OPCODE,
+                cap::com_chave_de_sessao(&cap::BUILDER_LEVEL, chave),
+            )),
+            s::Message::Bruto(s::Bruto::new(
+                cap::CHARACTER_LIST_1_OPCODE,
+                cap::com_chave_de_sessao(&cap::CHARACTER_LIST_1, chave),
+            )),
+            s::Message::Bruto(s::Bruto::new(
+                cap::CHARACTER_LIST_2_OPCODE,
+                cap::com_chave_de_sessao(&cap::CHARACTER_LIST_2, chave),
+            )),
+        ]
     }
 }
 
