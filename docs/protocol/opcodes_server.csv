@@ -5,6 +5,7 @@ opcode_dec,opcode_hex,name
 3,0x3,S_HIT_POINT
 4,0x4,S_MANA_POINT
 5,0x5,S_HIT_POINT_OTHER
+6,0x6,S_DP
 7,0x7,S_DP_USER
 8,0x8,S_EXP
 9,0x9,S_LOGIN_CHECK

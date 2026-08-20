@@ -34,8 +34,8 @@ IMM_PATTERNS = [
     re.compile(rb'\xc7\x85....(....)', re.S),       # mov [rbp+disp32], imm32
 ]
 
-OPCODE_NAME = re.compile(rb'^(?:C|S)_[A-Z0-9_]{3,}$')
-PRINTABLE = re.compile(rb'[ -~]{5,64}')
+OPCODE_NAME = re.compile(rb'^(?:C|S)_[A-Z0-9_]{2,}$')
+PRINTABLE = re.compile(rb'[ -~]{4,64}')
 LOOKAHEAD = 48          # bytes apos o lea onde o imm32 aparece
 LOOKBEHIND = 24         # alguns registros carregam o imm32 antes do lea
 CLUSTER_GAP = 4096      # distancia maxima entre registros da mesma tabela
