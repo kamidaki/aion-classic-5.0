@@ -1,5 +1,6 @@
 import com.aionemu.commons.network.packet.BaseServerPacket;
 import com.aionemu.loginserver.network.aion.SessionKey;
+import com.aionemu.loginserver.network.ncrypt.CryptEngine;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -67,10 +68,15 @@ public class VerifyLoginPackets {
         check("0xAB zero", init[0xAB] & 0xFF, 0x00);
         check("0xAC zero", init[0xAC] & 0xFF, 0x00);
 
-        // a CryptEngine deriva o tamanho do primeiro pacote; tem que dar 192
-        int len = init.length + 4 + 4;
-        len += 8 - len % 8;
-        checkLen("tamanho apos a CryptEngine", len, 192);
+        // Tamanho na rede: rodar a CryptEngine de verdade, nao recalcular a formula dela.
+        // Uma versao anterior deste teste refazia a conta a mao e a alimentava com o tamanho do
+        // pacote; o codigo real passava dois bytes a menos, entao o teste dizia 192 enquanto o
+        // servidor mandava 184. Um teste que reimplementa o que deveria verificar so confirma a
+        // propria aritmetica.
+        byte[] wire = new byte[init.length + 64];
+        System.arraycopy(init, 0, wire, 0, init.length);
+        int wireLen = new CryptEngine().encrypt(wire, 0, init.length);
+        checkLen("tamanho na rede apos a CryptEngine", wireLen, 192);
 
         System.out.println("\nSM_LOGIN_OK (Classic 4.5)");
         Class<?> smOk = Class.forName("com.aionemu.loginserver.network.aion.serverpackets.SM_LOGIN_OK");

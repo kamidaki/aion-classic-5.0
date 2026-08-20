@@ -83,6 +83,10 @@ public class LoginConnection extends AConnection {
      */
     private EncryptedRSAKeyPair encryptedRSAKeyPair;
     /**
+     * Chave Blowfish desta sessao, guardada so para o diagnostico de checksum.
+     */
+    private byte[] sessionBlowfishKey;
+    /**
      * Session Key for this connection.
      */
     private SessionKey sessionKey;
@@ -214,10 +218,14 @@ public class LoginConnection extends AConnection {
     private boolean decrypt(ByteBuffer buf) {
         int size = buf.remaining();
         final int offset = buf.arrayOffset() + buf.position();
+        byte[] asReceived = java.util.Arrays.copyOfRange(buf.array(), offset, offset + size);
         boolean ret = cryptEngine.decrypt(buf.array(), offset, size);
 
         if (!ret) {
             log.warn("Wrong checksum from client: " + this);
+            if (sessionBlowfishKey != null) {
+                CryptDiagnostics.explainChecksumFailure(asReceived, 0, size, sessionBlowfishKey);
+            }
         }
 
         return ret;
@@ -230,10 +238,18 @@ public class LoginConnection extends AConnection {
      * @return encrypted packet size.
      */
     public final int encrypt(ByteBuffer buf) {
-        int size = buf.limit() - 2;
+        // O buffer que chega aqui e o slice montado em AionServerPacket.write, que ja comeca no
+        // byte de opcode -- o header de tamanho ficou para tras. O "- 2" que existia aqui descontava
+        // um header que nao esta mais no buffer, e a cripto recebia dois bytes a menos do que o
+        // pacote realmente tem. Nao corrompia nada, mas mudava o arredondamento do padding: o
+        // SM_INIT saia com 184 bytes em vez dos 192 que o cliente Classic espera.
+        int size = buf.limit();
         final int offset = buf.arrayOffset() + buf.position();
 
+        final int declared = size;
         size = cryptEngine.encrypt(buf.array(), offset, size);
+        log.warn("[cripto] slice.limit={} passado para a cripto={} saiu com={}",
+                buf.limit(), declared, size);
 
         return size;
     }
@@ -402,6 +418,7 @@ public class LoginConnection extends AConnection {
 
         cryptEngine = new CryptEngine();
         cryptEngine.updateKey(blowfishKey.getEncoded());
+        sessionBlowfishKey = blowfishKey.getEncoded();
 
         /**
          * Send Init packet
