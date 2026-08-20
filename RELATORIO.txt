@@ -1,0 +1,203 @@
+=========================================================================
+ EMULADOR AION CLASSIC 4.5 - RELATORIO TECNICO
+ 20/08/2026
+=========================================================================
+
+RESUMO
+------
+
+O cliente oficial da GameForge (build 4526.0820.0706.7137, x64) agora
+percorre o login inteiro contra servidor local, chega na tela de selecao
+de personagem e entra no mundo.
+
+Caminho completo funcionando:
+
+  launcher -> named pipe -> auth 13001 -> STS 6600 -> game server 7777
+  -> termos -> lista de servidores -> selecao -> tela de personagem
+  -> mundo (HUD, minimapa, barra de skills)
+
+Antes disso, todo teste parava na lista de servidores.
+
+Numeros:
+  - 9 bloqueios resolvidos
+  - 435 pacotes de servidor decifrados (checksum conferido em todos)
+  - 584 opcodes extraidos do Game.dll
+
+
+O QUE VIROU O JOGO
+------------------
+
+Capturar uma sessao real da GameForge com Wireshark.
+
+Enquanto a gente adivinhava o protocolo, todo erro dava o MESMO sintoma:
+o cliente parava, sem mensagem, sem codigo de erro. Impossivel saber se
+era cripto, offset, ordem ou endereco.
+
+Com a captura em maos, cada bloqueio virou comparacao byte a byte. Os
+nove cairam em sequencia.
+
+
+OS 9 BLOQUEIOS (em ordem - cada um mascarava o seguinte)
+--------------------------------------------------------
+
+1. A PORTA ESTAVA ERRADA DESDE O COMECO
+   O cliente 4.5 NUNCA abre a porta 2106. Ele vai para 13001 (auth),
+   6600 (STS) e 7777 (game). Todo o esforco anterior com handshake
+   Blowfish/RSA/SM_INIT foi contra uma porta que esse cliente nao usa.
+
+2. O LOGIN NAO E CRIPTOGRAFADO
+   O auth server e texto claro. Framing: [u16 tamanho][u8 opcode][3 zeros]
+   e a conversa inteira sao 6 pacotes. Nao existe nenhuma constante de
+   Blowfish dentro do Game.dll.
+
+3. A ENTRADA DA LISTA DE SERVIDORES ESTAVA ESCRITA POR PALPITE
+   - IP nao e binario: e string ASCII no offset 13
+   - Porta nao vem depois do IP nem e big-endian: e u16 little-endian
+     no offset 53
+   - Flag do servidor de mundo fica no offset 55, nao no 19 (onde caia
+     dentro do IP)
+   SINTOMA: a lista aparece na tela, mas selecionar nao faz nada.
+   >>> ESSE ERA O BUG QUE TRAVAVA VOCES NA TELA DE SERVIDOR <<<
+
+4. O TAMANHO DA LISTA ERA ESCRITO NUM BYTE SO
+   Passa despercebido com 3 servidores e quebra a partir de 4: as 20
+   entradas que o codigo permite dao 1272 bytes, e o cliente leria 248.
+
+5. CORRIDA NO NAMED PIPE
+   O cliente abre uma conexao nova A CADA chamada RPC. O servidor de pipe
+   atendia a sessao inteira, fechava, e so entao criava a proxima
+   instancia - e nesse intervalo o nome do pipe deixava de existir no
+   sistema. Uma rodada passava, a seguinte nao, sem nada mudar.
+   SINTOMA: cai no formulario de login manual, de forma intermitente.
+
+6. O LAUNCHER OFICIAL SEQUESTRA O PIPE
+   Com o gfclient.exe aberto em segundo plano, o cliente conecta na
+   instancia DELE e o nosso launcher espera para sempre.
+   SINTOMA identico ao de servidor quebrado.
+   >>> FECHE O GFCLIENT.EXE ANTES DE TESTAR <<<
+
+7. O CLIENTE RECUSA ENDERECOS DE LOOPBACK
+   Com 127.0.0.1 na lista, ele descarta a entrada ANTES de tentar
+   conectar - nenhum SYN, para lugar nenhum. Trocando pelo IP da maquina
+   na LAN, sem mudar mais nada, o game server recebe a conexao.
+   SINTOMA: "No game server is available to the authorization server. (6)"
+
+8. AS CONSTANTES DE CIFRA ERAM DA VERSAO 2.5
+   O algoritmo estava certo, os numeros nao. Com eles o cliente conecta
+   no game server e fica parado, sem erro, porque nao reconhece pacote
+   nenhum.
+
+9. A LISTA DE PERSONAGENS TEM OUTRO FORMATO
+   A implementacao antiga e da 2.5 (header de 238 bytes, gear, footer de
+   146). O cliente 4.5 CRASHA ao parsear. A da captura tem 1527 bytes
+   para 2 personagens e e aceita sem problema.
+
+
+COMO O GAME SERVER FOI DECIFRADO
+---------------------------------
+
+O primeiro pacote do game server (S_KEY) e o unico que viaja em texto
+claro - e ele carrega o seed da sessao:
+
+  0b 00 | df 01 | 65 | 20 fe | ed 91 ab 37
+   tam    opcode  SB   chksum   seed
+          cifrado      (!opcode)
+
+Com o seed, a chave sai por formula fixa:
+
+  chave = ((seed - 0x3FF2CC87) ^ 0xCD92E451) ^ 0x87546CA100000000
+
+E a sessao inteira abre. O checksum e o complemento do opcode, o que da
+um teste de sanidade gratis: se nao bater, a decriptacao esta errada.
+Foi ele que validou tudo - 435 pacotes de servidor e 48 de cliente, sem
+uma falha.
+
+Sequencia real decifrada:
+
+  S_KEY -> S_VERSION_CHECK -> S_SERVER_ENV -> S_SYNC_TIME
+  -> S_REPLY_NP_LOGIN_GAMESVR x2 -> S_READY_ENTER_WORLD
+  -> S_L2AUTH_LOGIN_CHECK (1300 bytes) -> S_REPLY_NP_AUTH_TOKEN
+  -> S_CHARACTER_LIST (1534 bytes) -> S_ALIVE -> S_ADD_SKILL
+  -> S_LOAD_WORKINGQUEST -> S_BATTLEPASS_LIST -> ...
+
+
+CONSTANTES CORRIGIDAS (2.5 -> 4.5)
+-----------------------------------
+
+  Opcode do servidor
+    era:  (op + 0xC0) ^ 0xCF
+    e:    (op + 0xC4) ^ 0xD4
+
+  Opcode do cliente
+    era:  ((op ^ 0x20) - 0xB4) ^ 0x1E
+    e:    (op ^ 0x36) - 0xC4
+
+  SERVER_BYTE
+    era:  0x40
+    e:    0x65
+
+  Porta do game server
+    era:  8443
+    e:    7777
+
+ARMADILHA QUE CUSTOU TEMPO:
+Julgar candidato a constante por "quantos opcodes caem na tabela" NAO
+funciona. Os opcodes validos sao densos (0 a 0x147), entao muitas
+formulas acertam quase tudo por acidente - uma tentativa errada deu
+48 de 48. O sinal confiavel e a ORDEM: uma sessao precisa comecar em
+C_VERSION.
+
+
+COMO RODAR
+----------
+
+Quatro processos, nesta ordem. O cliente e aberto pelo proprio launcher:
+
+  AION_GAME_IP=192.168.x.x  ./auth-server.exe
+  ./sts-server.exe
+  AION_DATA_DIR=<xml extraido>  ./game-server.exe
+  ./launcher.exe --auto <usuario>
+
+DUAS CONDICOES QUE NAO SAO OBVIAS:
+
+  1) O gfclient.exe oficial precisa estar FECHADO.
+     Ele cria o mesmo named pipe e sequestra a conexao do cliente.
+
+  2) O IP anunciado NAO pode ser 127.0.0.1.
+     Use o endereco da maquina na LAN. O game server escuta em 0.0.0.0,
+     entao aceita nos dois - o que muda e so o que o cliente le na lista.
+
+Qualquer uma das duas produz sintoma indistinguivel de servidor
+quebrado. Juntas, explicam boa parte dos testes que "nao funcionavam
+sem motivo".
+
+
+O QUE AINDA E ANDAIME (nao esta pronto)
+----------------------------------------
+
+- A lista de personagens e REPLAY dos bytes capturados. Por isso os
+  personagens que aparecem sao os da conta capturada, nao do banco do
+  servidor.
+
+- A entrada no mundo fica sem posicao e sem mapa. Consequencia direta do
+  item acima: os IDs vem de outra sessao, entao o personagem escolhido
+  nao existe no estado do servidor. A HUD carrega, o cenario nao.
+
+- PROXIMO PASSO: reescrever o S_CHARACTER_LIST para o layout 4.5. E o
+  que destrava o mundo de verdade. Os bytes reais servem de referencia -
+  ja da para ler a contagem, a chave de sessao e os nomes em UTF-16.
+
+- A tabela nome<->opcode extraida do Game.dll erra em alguns pontos.
+  Dois pacotes provaram: o que ela chama de "sair do veiculo" na verdade
+  devolve a chave de sessao, e o "confirmar mercadoria" carrega MAC,
+  hardware e IP da maquina.
+
+
+BASE DO PROJETO
+---------------
+
+POC em Rust para Aion Classic, originalmente escrito para a versao 2.5 e
+corrigido para a 4.5. Os achados de protocolo sairam todos da comparacao
+com uma captura de sessao real - nenhum foi obtido por tentativa e erro.
+
+=========================================================================
