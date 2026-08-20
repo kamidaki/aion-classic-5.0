@@ -141,6 +141,7 @@ pub enum Message {
     LoadItemCooltime(LoadItemCooltime),
     AskQuitResult(AskQuitResult),
     PutNpc(PutNpc),
+    Bruto(Bruto),
 }
 
 impl Serialise for Message {
@@ -203,11 +204,36 @@ impl Serialise for Message {
             Message::ReconnectKey(msg) => msg.serialise(&mut buf[2..]),
             Message::HitPointOther(msg) => msg.serialise(&mut buf[2..]),
             Message::HitPoint(msg) => msg.serialise(&mut buf[2..]),
+            Message::Bruto(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
         buf[..LENGTH_LEN].copy_from_slice(&(len as u16).to_le_bytes());
         len
+    }
+}
+
+/// Pacote montado a partir de bytes capturados de uma sessao real.
+///
+/// Serve para reproduzir um pacote antes de entender o layout dele campo a campo. O prelude
+/// (opcode, SERVER_BYTE, checksum) e construido normalmente; so o payload vem pronto.
+#[derive(Debug, Clone)]
+pub struct Bruto {
+    opcode: u16,
+    payload: Vec<u8>,
+}
+
+impl Bruto {
+    pub fn new(opcode: u16, payload: Vec<u8>) -> Self {
+        Self { opcode, payload }
+    }
+}
+
+impl Serialise for Bruto {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = add_prelude(self.opcode, buf);
+        buf[len..len + self.payload.len()].copy_from_slice(&self.payload);
+        len + self.payload.len()
     }
 }
 

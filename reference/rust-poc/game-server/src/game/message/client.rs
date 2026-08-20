@@ -104,7 +104,81 @@ define_messages!(
     (SECOND_PASSWORD, SecondPassword, 0xD2),
     (READY_ENTER_WORLD_ACK, ReadyEnterWorldAck, 0xE2),
     (HQ_LOGIN, HqLogin, 0xF0),
+    (SESSION_KEY_ECHO, SessionKeyEcho, 0x5E),
+    (MACHINE_INFO, MachineInfo, 0xD6),
 );
+
+/// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
+/// C_READY_ENTER_WORLD_ACK. Na captura real chega como [B6 CA 62 02].
+///
+/// A tabela extraida do Game.dll chama 0x5E de C_GET_OFF_VEHICLE, o que nao bate com o conteudo --
+/// o pareamento nome/numero daquela tabela erra em alguns pontos. O nome aqui vem do que o pacote
+/// carrega.
+#[derive(Debug, Clone)]
+pub struct SessionKeyEcho {
+    chave: u32,
+}
+
+impl SessionKeyEcho {
+    pub fn handle(&self, _: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        if self.chave != session.auth_server.id {
+            println!(
+                "WARNING: chave devolvida pelo cliente (0x{:08X}) difere da do HqLogin (0x{:08X})",
+                self.chave, session.auth_server.id
+            );
+        }
+        vec![]
+    }
+}
+
+impl Deserialise for SessionKeyEcho {
+    fn deserialise(buf: &[u8]) -> Self {
+        Self {
+            chave: u32::from_le_bytes(buf[..4].try_into().unwrap()),
+        }
+    }
+}
+
+/// Identificacao da maquina: MAC, id de hardware e o IP do cliente, em UTF-16.
+///
+/// E o ultimo pacote antes de o servidor real mandar a lista de personagens, e por isso e daqui que
+/// disparamos o replay dos pacotes capturados.
+#[derive(Debug, Clone)]
+pub struct MachineInfo {
+    bruto: Vec<u8>,
+}
+
+impl MachineInfo {
+    pub fn handle(&self, _: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        println!("INFO: MachineInfo recebido ({} bytes); enviando a lista de personagens capturada",
+                 self.bruto.len());
+
+        use super::capturado as cap;
+        let chave = session.auth_server.id;
+        vec![
+            s::Message::Bruto(s::Bruto::new(
+                cap::BUILDER_LEVEL_OPCODE,
+                cap::com_chave_de_sessao(&cap::BUILDER_LEVEL, chave),
+            )),
+            s::Message::Bruto(s::Bruto::new(
+                cap::CHARACTER_LIST_1_OPCODE,
+                cap::com_chave_de_sessao(&cap::CHARACTER_LIST_1, chave),
+            )),
+            s::Message::Bruto(s::Bruto::new(
+                cap::CHARACTER_LIST_2_OPCODE,
+                cap::com_chave_de_sessao(&cap::CHARACTER_LIST_2, chave),
+            )),
+        ]
+    }
+}
+
+impl Deserialise for MachineInfo {
+    fn deserialise(buf: &[u8]) -> Self {
+        Self {
+            bruto: buf.to_vec(),
+        }
+    }
+}
 
 #[derive(Debug, Clone)]
 pub struct SyncTime {

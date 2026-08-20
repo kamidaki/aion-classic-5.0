@@ -1,6 +1,7 @@
 use crossbeam_channel::{Receiver, Sender};
 use krypt::game::encrypt;
 
+pub mod capturado;
 pub mod client;
 pub mod server;
 
