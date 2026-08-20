@@ -140,6 +140,18 @@ mod test {
         assert_eq!(lista.serialise_payload(&mut buf), 1527);
     }
 
+    /// O servidor real manda uma lista vazia antes da lista de verdade. Na captura ela tem 11
+    /// bytes de payload: so o cabecalho e o rodape.
+    #[test]
+    fn lista_vazia_tem_onze_bytes() {
+        let lista = ListaPersonagens::new(0x0262_CAB6, Vec::new());
+        assert_eq!(lista.tamanho(), 11);
+
+        let mut buf = vec![0u8; 64];
+        assert_eq!(lista.serialise_payload(&mut buf), 11);
+        assert_eq!(buf[0], 0, "contagem zero");
+    }
+
     #[test]
     fn campos_caem_nos_offsets_certos() {
         let lista = ListaPersonagens::new(

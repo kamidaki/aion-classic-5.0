@@ -366,10 +366,21 @@ impl State {
                     }],
                 );
 
+                // Sao dois pacotes, nao um. Na captura o servidor manda primeiro uma lista vazia
+                // (contagem zero, 11 bytes de payload) e so depois a lista de verdade. Mandando so
+                // a segunda, o cliente fecha a conexao.
+                let vazia = lista_personagens::ListaPersonagens::new(
+                    update.chave_de_sessao(),
+                    Vec::new(),
+                );
+
                 messages.extend_direct(
                     update.client_id(),
-                    [s::Message::ListaPersonagens45(s::ListaPersonagens45(lista))]
-                        .map(ServerUpdate::new),
+                    [
+                        s::Message::ListaPersonagens45(s::ListaPersonagens45(vazia)),
+                        s::Message::ListaPersonagens45(s::ListaPersonagens45(lista)),
+                    ]
+                    .map(ServerUpdate::new),
                 );
                 self.characters.insert(character.id(), character);
             }
