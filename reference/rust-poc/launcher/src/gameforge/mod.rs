@@ -144,60 +144,94 @@ fn stable_numeric_id(username: &str) -> String {
 pub fn listen(state: Arc<Mutex<LauncherState>>) {
     println!("[GCLIENT] INFO: pipe server starting on {PIPE_NAME}");
 
-    loop {
-        // Create a fresh pipe instance and wait for a client.
-        let pipe = match wyn::Pipe::new(PIPE_NAME, MAX_INSTANCES) {
-            Ok(p) => p,
-            Err(e) => {
-                eprintln!("[GCLIENT] ERROR: CreateNamedPipe failed: {e}");
-                std::thread::sleep(std::time::Duration::from_secs(1));
-                continue;
-            }
-        };
+    // O cliente Aion abre uma conexao nova para cada chamada RPC: conecta, pergunta, desconecta.
+    // A versao anterior criava a instancia, atendia a sessao inteira, fechava e so entao criava a
+    // proxima -- e nesse intervalo o nome do pipe deixava de existir no sistema. Uma conexao que
+    // caisse ali recebia "arquivo nao encontrado", e o cliente desistia do fluxo Gameforge e caia
+    // no formulario de login manual. Como a janela durava todo o tempo de atendimento, dava certo
+    // numa rodada e falhava na seguinte sem nada mudar.
+    //
+    // Agora a proxima instancia e criada assim que um cliente conecta, antes de atende-lo. O nome
+    // nunca some, e conexoes que chegam durante o atendimento ficam enfileiradas em vez de falhar.
+    let mut pendente = match wyn::Pipe::new(PIPE_NAME, MAX_INSTANCES) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("[GCLIENT] ERROR: CreateNamedPipe failed: {e}");
+            return;
+        }
+    };
 
+    loop {
         println!("[GCLIENT] INFO: waiting for client...");
-        if let Err(e) = pipe.listen() {
+        if let Err(e) = pendente.listen() {
             eprintln!("[GCLIENT] ERROR: ConnectNamedPipe failed: {e}");
-            let _ = pipe.close();
+            let _ = pendente.close();
+            match wyn::Pipe::new(PIPE_NAME, MAX_INSTANCES) {
+                Ok(p) => pendente = p,
+                Err(e) => {
+                    eprintln!("[GCLIENT] ERROR: CreateNamedPipe failed: {e}");
+                    std::thread::sleep(std::time::Duration::from_secs(1));
+                    continue;
+                }
+            }
             continue;
         }
         println!("[GCLIENT] INFO: client connected");
 
-        // Handle every message the client sends on this connection.
-        let mut buffer = [0u8; 10 * 1024];
-        loop {
-            let len = match pipe.read(&mut buffer) {
-                Ok(0) => {
-                    // Client closed the pipe — clean disconnect.
-                    println!("[GCLIENT] INFO: client disconnected");
-                    break;
-                }
-                Ok(n) => n as usize,
-                Err(e) => {
-                    eprintln!("[GCLIENT] ERROR: read failed: {e}");
-                    break;
-                }
-            };
-
-            match serde_json::from_slice::<RpcRequest>(&buffer[..len]) {
-                Ok(req) => {
-                    let payload = handle_message(&req, &state);
-                    println!("[GCLIENT] RPC → {payload}");
-                    if let Err(e) = pipe.write(payload.as_bytes()) {
-                        eprintln!("[GCLIENT] ERROR: write failed: {e}");
-                        break;
+        let atual = pendente;
+        pendente = match wyn::Pipe::new(PIPE_NAME, MAX_INSTANCES) {
+            Ok(p) => p,
+            Err(e) => {
+                eprintln!("[GCLIENT] ERROR: CreateNamedPipe failed: {e}");
+                handle_session(&atual, &state);
+                let _ = atual.close();
+                std::thread::sleep(std::time::Duration::from_secs(1));
+                match wyn::Pipe::new(PIPE_NAME, MAX_INSTANCES) {
+                    Ok(p) => p,
+                    Err(e) => {
+                        eprintln!("[GCLIENT] ERROR: CreateNamedPipe failed: {e}");
+                        return;
                     }
                 }
-                Err(e) => {
-                    eprintln!(
-                        "[GCLIENT] WARN: invalid JSON-RPC: {e} | raw: {:?}",
-                        std::str::from_utf8(&buffer[..len])
-                    );
-                    // Don't break — the client may send more valid messages.
+            }
+        };
+
+        handle_session(&atual, &state);
+        let _ = atual.close();
+    }
+}
+
+/// Atende todas as mensagens de uma conexao, ate o cliente desconectar.
+fn handle_session(pipe: &wyn::Pipe, state: &Arc<Mutex<LauncherState>>) {
+    let mut buffer = [0u8; 10 * 1024];
+    loop {
+        let len = match pipe.read(&mut buffer) {
+            Ok(0) => {
+                println!("[GCLIENT] INFO: client disconnected");
+                return;
+            }
+            Ok(n) => n as usize,
+            Err(e) => {
+                eprintln!("[GCLIENT] ERROR: read failed: {e}");
+                return;
+            }
+        };
+
+        match serde_json::from_slice::<RpcRequest>(&buffer[..len]) {
+            Ok(req) => {
+                let payload = handle_message(&req, state);
+                println!("[GCLIENT] RPC -> {payload}");
+                if let Err(e) = pipe.write(payload.as_bytes()) {
+                    eprintln!("[GCLIENT] ERROR: write failed: {e}");
+                    return;
                 }
             }
+            Err(e) => {
+                eprintln!(
+                    "[GCLIENT] WARN: invalid JSON-RPC: {e} | raw: {:?}",
+                    std::str::from_utf8(&buffer[..len])
+                );
+            }
         }
-
-        let _ = pipe.close();
     }
 }
