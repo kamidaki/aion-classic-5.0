@@ -144,7 +144,7 @@ impl Deserialise for SessionKeyEcho {
 /// Identificacao da maquina: MAC, id de hardware e o IP do cliente, em UTF-16.
 ///
 /// E o ultimo pacote antes de o servidor real mandar a lista de personagens, e por isso e daqui que
-/// disparamos o replay dos pacotes capturados.
+/// a nossa lista sai.
 #[derive(Debug, Clone)]
 pub struct MachineInfo {
     bruto: Vec<u8>,
@@ -152,24 +152,20 @@ pub struct MachineInfo {
 
 impl MachineInfo {
     pub fn handle(&self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
-        // Duas listas de personagem convivem aqui, e o padrao e a que chega mais longe.
+        // Duas listas de personagem convivem aqui.
         //
-        // A CONSTRUIDA (AION_LISTA_CONSTRUIDA=1) monta o pacote no layout 4.5 a partir do banco,
-        // que e o caminho certo a longo prazo: e o unico jeito de os ids serem os do servidor, sem
-        // o que o personagem nao existe no estado do jogo e o mundo carrega sem posicao nem mapa.
-        // Hoje ela derruba o cliente, por motivo ainda nao identificado -- e o que se sabe esta
-        // registrado abaixo.
+        // A CONSTRUIDA (padrao) monta o pacote no layout 4.5 a partir do banco. E o unico caminho
+        // que serve a longo prazo: sem ids do proprio servidor, o personagem escolhido nao existe
+        // no estado do jogo e o mundo carrega sem posicao nem mapa.
         //
-        // A CAPTURADA (padrao) reproduz os bytes da sessao real. Leva o cliente ate a tela de
-        // personagem e ate o mundo, com a ressalva acima.
+        // Ela ja derrubou o cliente, e a causa era o cabecalho: a contagem de personagens aparece
+        // duas vezes, e a leitura antiga do layout so escrevia a primeira -- entao com 1 personagem
+        // o cliente lia 2 registros de um pacote que so tinha 1. Ver `lista_personagens`.
         //
-        // O que ja foi eliminado como causa do crash, para ninguem refazer:
-        //   - o formato: o serializador reproduz o registro capturado byte a byte
-        //   - os dados: mandar id, nome e nivel exatos do personagem capturado tambem crasha
-        //   - o fio: capturando o nosso proprio servidor, framing, cifra e opcodes decodificam
-        //     limpos, e os tamanhos batem (BuilderLevel 36, lista vazia 18)
-        // Sobra o contexto: outro pacote da sessao, ou a diferenca de 1 personagem contra 2.
-        if std::env::var("AION_LISTA_CONSTRUIDA").is_ok() {
+        // A CAPTURADA (AION_LISTA_CAPTURADA=1) reproduz os bytes da sessao real. Chega na tela de
+        // personagem com os personagens da conta capturada, e serve de comparacao quando a
+        // construida for suspeita de alguma coisa.
+        if std::env::var("AION_LISTA_CAPTURADA").is_err() {
             println!("INFO: MachineInfo -> lista CONSTRUIDA (layout 4.5, do banco)");
             tx.send(session.send(Message::CharacterList(CharacterList)))
                 .unwrap();

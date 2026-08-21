@@ -357,9 +357,9 @@ impl State {
                 // Layout 4.5. A implementacao antiga (s::CharacterList) e da 2.5 e faz o cliente
                 // 4.5 crashar -- ver game::message::lista_personagens.
                 // AION_PERSONAGEM_CAPTURADO=1 manda os valores exatos do personagem da captura.
-                // E teste de bisseccao: o serializador reproduz o registro capturado byte a byte,
-                // entao se o cliente aceitar com estes valores e recusar com os nossos, o problema
-                // esta no dado (id, nivel, nome) e nao no formato.
+                // E teste de bisseccao: com esses valores o pacote sai byte a byte igual ao
+                // capturado, entao se o cliente aceitar com eles e recusar com os nossos, o
+                // problema esta no dado (id, nivel, nome) e nao no formato.
                 let usar_capturado = std::env::var("AION_PERSONAGEM_CAPTURADO").is_ok();
                 let personagem = if usar_capturado {
                     println!("INFO: usando o personagem da captura (teste de bisseccao)");
@@ -367,14 +367,12 @@ impl State {
                         id: 0x2E0F_3384,
                         nome: "Durak".to_string(),
                         nivel: 60,
-                        ultimo_login: true,
                     }
                 } else {
                     lista_personagens::Personagem {
                         id: character.id(),
                         nome: character.name().clone(),
                         nivel: character.stats.level,
-                        ultimo_login: true,
                     }
                 };
 
