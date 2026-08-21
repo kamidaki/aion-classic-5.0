@@ -32,7 +32,9 @@ A tela de personagem renderiza nome, nível, classe e modelo 3D. A entrada no mu
 completa — minimapa, barra de skills, DP.
 
 **O que ainda não funciona:** o mundo carrega sem posição e sem mapa, sobre o cenário da tela de
-seleção. A causa é conhecida e está na seção 5.
+seleção — sintoma de o personagem escolhido não existir no estado do servidor. A lista de
+personagens acabou de passar a ser montada do banco, o que ataca exatamente essa causa, e ainda não
+foi testada contra o cliente. Seção 5.
 
 ---
 
@@ -71,8 +73,8 @@ cliente lê na lista.
 | `AION_GAME_PORT` | porta do game server (padrão 7777) |
 | `AION_DATA_DIR` | pasta com `npcs/client_npcs.xml` e `items/client_items.xml` |
 | `AION_REPLAY` | arquivo de replay (padrão `replay.bin`) |
-| `AION_LISTA_CONSTRUIDA` | usa a lista de personagens construída em vez da capturada — **derruba o cliente hoje**, ver seção 5 |
-| `AION_PERSONAGEM_CAPTURADO` | manda os valores exatos do personagem capturado; teste de bissecção |
+| `AION_LISTA_CAPTURADA` | volta a lista de personagens para o replay da captura, em vez da construída do banco; ver seção 5 |
+| `AION_PERSONAGEM_CAPTURADO` | monta a lista construída com os valores do personagem capturado; teste de bissecção |
 
 ### Gerar o `replay.bin`
 
@@ -95,7 +97,7 @@ reference/rust-poc/          A BASE. Workspace Rust, 7 crates, compila limpo.
       client.rs              pacotes do cliente e seus handlers
       server.rs              pacotes do servidor
       lista_personagens.rs   S_CHARACTER_LIST no layout 4.5 (ver seção 5)
-      molde.rs               registro de personagem capturado, gerado
+      molde.rs               registro capturado, com os campos que o servidor escreve zerados
       capturado.rs           pacotes capturados usados como andaime
       replay.rs              motor de replay, indexado por opcode
   launcher/                  named pipe da GameForge + abre o cliente
@@ -107,6 +109,7 @@ docs/protocol/               O QUE SE SABE DO PROTOCOLO
   README.md                  tabela de opcodes: como foi extraída, limites
   auth-server.md             protocolo do auth completo, 6 pacotes
   game-server.md             cripto, constantes, sequência real decifrada
+  character-list.md          S_CHARACTER_LIST campo a campo, os 758 bytes do registro
   opcodes_server.csv         340 opcodes
   opcodes_client.csv         244 opcodes
 
@@ -118,11 +121,11 @@ build/capture/               capturas. Fora do git: contêm token de conta.
 
 ---
 
-## 5. O bloqueio atual
+## 5. A lista de personagens
 
-O `S_CHARACTER_LIST` foi reescrito para o layout 4.5 em `lista_personagens.rs`, mas **derruba o
-cliente**. Por isso o padrão continua sendo a lista capturada; a construída fica em
-`AION_LISTA_CONSTRUIDA=1`.
+O `S_CHARACTER_LIST` agora é montado a partir do banco, no layout 4.5
+(`lista_personagens.rs`), e essa é a lista que o servidor manda por padrão. **Isso ainda não foi
+confirmado contra o cliente** — ver "o teste que falta", no fim desta seção.
 
 ### Por que isso importa
 
@@ -130,78 +133,64 @@ Enquanto a lista for replay da captura, os ids de personagem vêm de outra sess�
 um personagem que o servidor não tem no estado, e a entrada no mundo fica sem posição e sem mapa.
 **Construir a lista é o que destrava o mundo.**
 
-### O layout, derivado da captura
+### O crash, e o que era
 
-```
-[u8  contagem]
-[u32 chave de sessão]
-[5 bytes zero]
-[registro de 758 bytes] × contagem
-[u8 rodapé]
-```
+A lista construída derrubava o cliente. A causa era o cabeçalho: **a contagem de personagens
+aparece duas vezes**, no offset 0 e no offset 10, e a leitura antiga do layout só conhecia a
+primeira — tratava o byte do offset 10 como o primeiro byte do registro, um "slot" que valeria
+`0x02` no personagem do último login.
 
-São **dois pacotes**, não um: primeiro uma lista vazia (11 bytes de payload), depois a real.
-Mandando só a segunda, o cliente fecha a conexão.
+Com os 2 personagens da captura, as duas leituras produzem exatamente os mesmos bytes. A diferença
+só aparece com 1 personagem: o cabeçalho dizia 1, o byte do offset 10 continuava dizendo 2, e o
+cliente lia um registro a mais do que existia no pacote.
 
-Campos conhecidos dentro do registro de 758 bytes:
-
-| offset | campo | como foi confirmado |
-|---|---|---|
-| 0 | slot | `0x02` no personagem do último login, `0x00` nos demais |
-| 1..5 | id do personagem | bate com o que o cliente devolve depois |
-| 5..57 | nome, UTF-16LE | "Durak" / "Kimmie" |
-| 169 | nível, u32 | deu exatamente 60 e 3 nos dois personagens reais |
-
-Os outros **607 dos 758 bytes são idênticos entre dois personagens diferentes** da mesma captura —
-aparência, equipamento e campos ainda não decodificados. Por isso o registro sai de um molde
-capturado (`molde.rs`) com os campos conhecidos escritos por cima.
-
-### O que já foi eliminado como causa do crash
-
-Não refaça estes caminhos:
-
-- **Não é o formato.** Rodando o serializador com os valores do personagem capturado, o registro
-  sai **byte a byte idêntico** ao real — cabeçalho e rodapé inclusive. Verificado offline.
-- **Não são os dados.** Mandar id, nome e nível exatos do personagem capturado, pelo nosso código
-  (`AION_PERSONAGEM_CAPTURADO=1`), também derruba.
-- **Não é o fio.** Capturando o nosso próprio servidor e decodificando com `tools/decode_game.py`,
-  o framing, a cifra e os opcodes saem limpos, e os tamanhos batem: `S_BUILDER_LEVEL` 36 bytes,
-  lista vazia 18 bytes.
-- **Não é o `S_BUILDER_LEVEL`.** O do POC e o capturado são ambos 29 bytes de zeros.
-
-### O próximo experimento
-
-Comparar **duas capturas do nosso próprio servidor**, pacote a pacote:
+Como o caso quebrado foi isolado: comparando duas capturas do nosso próprio servidor, pacote a
+pacote, os 18 primeiros pacotes saem **idênticos** nas duas, e o pacote 19 quebrado é o pacote 19
+que funciona, truncado, com um único byte trocado — o do offset 0, de `0x02` para `0x01`. Não
+sobrava mais nada para ser a causa.
 
 ```bash
-# 1. capturar o caso que funciona
-"C:\Program Files\Wireshark\tshark.exe" -i "\Device\NPF_Loopback" \
-    -w build/capture/funciona.pcapng -f "tcp port 7777"
-# subir o stack SEM AION_LISTA_CONSTRUIDA, rodar o cliente até a tela de personagem
-
-# 2. capturar o caso que quebra
-"C:\Program Files\Wireshark\tshark.exe" -i "\Device\NPF_Loopback" \
-    -w build/capture/quebra.pcapng -f "tcp port 7777"
-# subir com AION_LISTA_CONSTRUIDA=1
-
-# 3. comparar
-python tools/decode_game.py build/capture/funciona.pcapng --ate 30
-python tools/decode_game.py build/capture/quebra.pcapng   --ate 30
+python tools/decode_game.py build/capture/funciona.pcapng --ate 20
 ```
 
-O índice da interface do tshark muda entre reinícios — use o nome
-(`\Device\NPF_Loopback`), não o número.
+`funciona.pcapng` é a sessão com a lista capturada, que vai até o mundo; `nosso.pcapng` é a que
+quebra, e termina no pacote 19.
 
-Hipóteses que sobraram, em ordem de probabilidade:
+### O layout
 
-1. **Algum outro pacote da sessão difere.** Os nossos `S_VERSION_CHECK` (59 bytes),
-   `S_SERVER_ENV` (40) e `S_L2AUTH_LOGIN_CHECK` (1192) são **menores** que os reais (61, 67, 1300).
-   São implementações do POC, herdadas da 2.5. Pode ser que uma delas só quebre quando combinada
-   com a lista construída.
-2. **A diferença entre 1 personagem e 2.** A captura tem 2; nós mandamos 1. Testar mandando 2.
-3. **Algo no molde que ainda está errado** e só aparece com contagem 1.
+Está inteiro em `docs/protocol/character-list.md`: cabeçalho, os 758 bytes do registro campo a
+campo, e as entradas de equipamento. Foi derivado da captura com o `writePlayerInfo()` do
+Aion-Lightning (`server/`, a base Java que ficou de referência) como mapa de campos, e validado por
+uma redundância dentro do próprio registro: o campo do offset 144 vale `100000 + raça * 2 + gênero`,
+e a conta fecha nos dois personagens.
 
----
+O servidor escreve id, nome e nível. O resto sai de um molde tirado do registro do Durak, então todo
+personagem ainda aparece com a aparência, o equipamento, a classe, a raça e a posição dele.
+
+### O teste que falta
+
+Uma rodada do cliente até a tela de personagem. O esperado é ver o personagem do banco, com o nome
+do banco, e entrar no mundo com os ids do servidor.
+
+Se derrubar o cliente de novo, capture a sessão e compare com `funciona.pcapng`:
+
+```bash
+"C:\Program Files\Wireshark\tshark.exe" -i "\Device\NPF_Loopback" -w build/capture/quebra.pcapng -f "tcp port 7777"
+```
+
+```bash
+python tools/decode_game.py build/capture/quebra.pcapng --ate 30
+```
+
+O índice da interface do tshark muda entre reinícios — use o nome (`\Device\NPF_Loopback`), não o
+número.
+
+Duas alavancas para bissecção:
+
+| variável | o que faz |
+|---|---|
+| `AION_LISTA_CAPTURADA=1` | volta para o replay da captura, o caminho que se sabe que chega no mundo |
+| `AION_PERSONAGEM_CAPTURADO=1` | monta a lista construída com os valores do Durak. O pacote sai byte a byte igual ao capturado, exceto pela contagem, que é 1 em vez de 2 |
 
 ## 6. Depois que o mundo carregar
 
@@ -227,13 +216,21 @@ Dois casos comprovados:
 Agora que o conteúdo dos pacotes é legível, a tabela é corrigível. `docs/protocol/README.md` explica
 como a extração funciona.
 
-### 6.3 Decodificar o resto do registro de personagem
+### 6.3 Preencher o registro de personagem
 
-Os 607 bytes estáticos incluem aparência e equipamento. Enquanto não forem decodificados, todo
-personagem criado no servidor aparece com a aparência do personagem capturado.
+O registro está decodificado — `docs/protocol/character-list.md` tem a tabela — mas o servidor só
+escreve id, nome e nível. Aparência, equipamento, classe, raça, posição e mapa continuam vindo do
+molde, iguais para todo mundo.
 
-Método: criar personagens diferentes no cliente oficial, capturar, e comparar os registros. Cada
-campo que variar isola um atributo.
+Preencher é escrever nos offsets da tabela. Dois avisos:
+
+- o campo do offset 144 tem que continuar valendo `100000 + raça * 2 + gênero`. É a redundância que
+  valida o registro; se ela sair errada, a lista pode passar e a tela de personagem não
+- o mapa do offset 148 é o que o cliente pré-carrega. Personagem novo com mapa zero é candidato a
+  reproduzir o mundo sem cenário
+
+Os poucos campos que restam sem nome (616, 620, 740, e a ordem dos 52 bytes de aparência) se isolam
+criando personagens diferentes no cliente oficial, capturando, e comparando os registros.
 
 ### 6.4 Dados do cliente 4.5
 
@@ -264,7 +261,19 @@ Cada uma destas custou tempo real.
 
 **"Igual nos dois personagens" não significa "vazio".** Significa estático — e estático pode ser
 obrigatório. Zerei quatro bytes de dados reais por deduzir a fronteira do campo de nome em vez de
-medi-la, e o cliente crashou. Meça toda fronteira nos dois registros.
+medi-la, e o cliente crashou. Eram o gênero, que vale 1 nos dois personagens da captura. Meça toda
+fronteira nos dois registros.
+
+**Reproduzir a captura não prova que o layout está certo.** O `S_CHARACTER_LIST` construído saía
+byte a byte igual ao capturado e mesmo assim estava deslocado em um byte: a captura tem 2
+personagens, e as duas leituras do cabeçalho só divergem com contagem diferente de 2. O que
+desempata um layout é ele parsear em **dois casos diferentes**, ou fechar uma conta interna ao
+pacote — no registro de personagem, `100000 + raça * 2 + gênero`.
+
+**A base Java em `server/` é referência de protocolo, não só de lógica de jogo.** O layout do
+registro de personagem saiu do `writePlayerInfo()` dela em minutos, depois de horas de comparação
+byte a byte. Ela está algumas versões atrás, então serve como mapa de campos a conferir contra a
+captura, não como verdade.
 
 **Contagem de opcodes válidos não valida hipótese de cifra.** Os opcodes válidos são densos
 (0 a 0x147), então muitas fórmulas afins acertam quase tudo por acidente — uma tentativa errada deu
