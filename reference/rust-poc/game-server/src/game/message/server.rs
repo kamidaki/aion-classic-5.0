@@ -1033,17 +1033,34 @@ pub struct World {
     unknown2: [u8; 17],
 }
 impl World {
+    /// O pacote que poe o jogador no mapa. Na captura, 42 bytes:
+    ///
+    /// ```text
+    /// [u32 mapa][u32 mapa de novo][5 zeros][f32 x][f32 y][f32 z][u8 direcao][15 bytes]
+    /// ```
+    ///
+    /// O mapa aparece duas vezes; nao se sabe se os dois tem o mesmo papel, e a captura nao separa
+    /// -- os dois valores sao iguais nela. Os 15 bytes do fim comecam com 0x14 e o resto e zero,
+    /// igual na captura e no POC.
+    ///
+    /// O mapa precisa ser o mesmo que o `S_CHARACTER_LIST` declarou no registro do personagem: e
+    /// por aquele que o cliente pre-carrega o cenario. Por isso os dois leem de
+    /// [`crate::game::mundo`].
     pub fn new(coord: &Coord) -> Self {
+        use crate::game::mundo;
+
+        let mut unknown1 = [0u8; 13];
+        unknown1[0..4].copy_from_slice(&mundo::MAPA.to_le_bytes());
+        unknown1[4..8].copy_from_slice(&mundo::MAPA.to_le_bytes());
+
+        let mut unknown2 = [0u8; 17];
+        unknown2[0] = mundo::DIRECAO;
+        unknown2[1] = 0x14;
+
         Self {
-            unknown1: [
-                0x30, 0x64, 0x1D, 0x0D, 0x30, 0x64, 0x1D, 0x0D, 0x00, 0x00,
-                0x00, 0x00, 0x00,
-            ],
+            unknown1,
             coord: *coord,
-            unknown2: [
-                0x11, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            ],
+            unknown2,
         }
     }
 }

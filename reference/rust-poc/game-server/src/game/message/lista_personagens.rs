@@ -129,11 +129,32 @@ impl ListaPersonagens {
             registro[campo::NIVEL..campo::NIVEL + 2]
                 .copy_from_slice(&personagem.nivel.to_le_bytes());
 
+            escreve_ponto_de_entrada(registro);
+
             len += REGISTRO_LEN;
         }
 
         len
     }
+}
+
+/// Escreve mapa, posicao e direcao por cima do que veio no molde.
+///
+/// O molde e o registro do Durak, e traz o mapa e a posicao dele. Como o `S_WORLD` manda o ponto de
+/// entrada de [`crate::game::mundo`], os dois campos precisam concordar: e pelo mapa daqui que o
+/// cliente pre-carrega o cenario, e entrar num mapa que ele nao carregou nao funciona.
+fn escreve_ponto_de_entrada(registro: &mut [u8]) {
+    use crate::game::mundo;
+
+    registro[campo::MAPA..campo::MAPA + 4].copy_from_slice(&mundo::MAPA.to_le_bytes());
+
+    let posicao = campo::POSICAO;
+    registro[posicao..posicao + 4].copy_from_slice(&mundo::X.to_le_bytes());
+    registro[posicao + 4..posicao + 8].copy_from_slice(&mundo::Y.to_le_bytes());
+    registro[posicao + 8..posicao + 12].copy_from_slice(&mundo::Z.to_le_bytes());
+
+    registro[campo::DIRECAO..campo::DIRECAO + 4]
+        .copy_from_slice(&(mundo::DIRECAO as u32).to_le_bytes());
 }
 
 /// Escape para bissecao: `AION_CABECALHO="2,1"` escreve 2 no offset 0 e 1 no offset 10. Campo
@@ -288,12 +309,36 @@ mod test {
         let mut buf = vec![0u8; 4096];
         let escritos = lista.serialise_payload(&mut buf);
 
-        // A captura tem 2 personagens; comparamos ate onde o primeiro registro vai. So a contagem
-        // muda -- a marca do offset 0 continua sendo a mesma da captura.
+        // A captura tem 2 personagens; comparamos ate onde o primeiro registro vai. Muda a
+        // contagem, e mudam os campos que o servidor escreve por cima do molde -- aqui, o ponto de
+        // entrada. O resto tem que sair byte a byte igual, que e o que prova que o molde nao
+        // perdeu nem ganhou byte.
         let mut esperado = CHARACTER_LIST_2[..escritos].to_vec();
         esperado[10] = 1;
+        escreve_ponto_de_entrada(&mut esperado[CABECALHO_LEN..CABECALHO_LEN + REGISTRO_LEN]);
 
         assert_eq!(&buf[..escritos], &esperado[..]);
+    }
+
+    /// O mapa que a lista declara e o que o cliente pre-carrega. Se ele discordar do que o
+    /// `S_WORLD` mandar depois, o cliente entra num mundo que nao carregou.
+    #[test]
+    fn a_lista_declara_o_mesmo_ponto_de_entrada_do_s_world() {
+        use crate::game::mundo;
+
+        let lista = ListaPersonagens::new(0, vec![personagem(1, "Durak", 60)]);
+        let mut buf = vec![0u8; 4096];
+        lista.serialise_payload(&mut buf);
+
+        let reg = &buf[CABECALHO_LEN..CABECALHO_LEN + REGISTRO_LEN];
+        let u32_em = |o: usize| u32::from_le_bytes(reg[o..o + 4].try_into().unwrap());
+        let f32_em = |o: usize| f32::from_le_bytes(reg[o..o + 4].try_into().unwrap());
+
+        assert_eq!(u32_em(campo::MAPA), mundo::MAPA);
+        assert_eq!(f32_em(campo::POSICAO), mundo::X);
+        assert_eq!(f32_em(campo::POSICAO + 4), mundo::Y);
+        assert_eq!(f32_em(campo::POSICAO + 8), mundo::Z);
+        assert_eq!(u32_em(campo::DIRECAO), mundo::DIRECAO as u32);
     }
 
     #[test]

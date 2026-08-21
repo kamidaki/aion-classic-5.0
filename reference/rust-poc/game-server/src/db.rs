@@ -79,10 +79,14 @@ impl Db {
     /// Ensures an account exists for the given username (creates if missing),
     /// then loads the first character for that account, creating a default
     /// character with the classic hardcoded starting values if none exists.
+    /// Personagem novo nasce no ponto de entrada de [`crate::game::mundo`] -- as coordenadas que
+    /// vinham daqui eram da 2.5 e nao correspondem a mapa nenhum da 4.5.
     pub fn load_or_create_character(
         &self,
         username: &str,
     ) -> Result<PersistedCharacter> {
+        use crate::game::mundo;
+
         self.conn.execute(
             "INSERT OR IGNORE INTO accounts(username) VALUES (?1)",
             params![username],
@@ -128,9 +132,9 @@ impl Db {
                 "Azphelumbra",
                 14_i64,
                 226_334_i64,
-                1816.0_f32,
-                589.0_f32,
-                256.0_f32,
+                mundo::X,
+                mundo::Y,
+                mundo::Z,
                 1148_i64,
                 1080_i64,
             ],
@@ -143,9 +147,9 @@ impl Db {
             name: "Azphelumbra".into(),
             level: 14,
             exp: 226_334,
-            x: 1816.0,
-            y: 589.0,
-            z: 256.0,
+            x: mundo::X,
+            y: mundo::Y,
+            z: mundo::Z,
             hp: 1148,
             mp: 1080,
         })
@@ -200,7 +204,7 @@ mod tests {
         let a = db.load_or_create_character("alice").unwrap();
         assert_eq!(a.name, "Azphelumbra");
         assert_eq!(a.level, 14);
-        assert_eq!(a.x, 1816.0);
+        assert_eq!(a.x, crate::game::mundo::X, "personagem novo nasce no ponto de entrada");
 
         let b = db.load_or_create_character("alice").unwrap();
         assert_eq!(a.id, b.id, "second call must return same character id");

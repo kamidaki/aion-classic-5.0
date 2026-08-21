@@ -400,8 +400,72 @@ impl State {
                 self.characters.insert(character.id(), character);
             }
             c::Message::LevelReady(_) => {
-                let new_character =
-                    self.characters.get(&update.character_id()).unwrap();
+                // O cliente avisa que terminou de carregar o mapa -- opcode 0x19 na 4.5, 0x09 na
+                // 2.5. Sem personagem no estado nao ha o que aparecer, e derrubar a thread do jogo
+                // aqui tiraria todo mundo do ar.
+                let Some(new_character) =
+                    self.characters.get(&update.character_id())
+                else {
+                    println!(
+                        "WARNING: LevelReady para personagem {} que nao esta no estado; ignorando",
+                        update.character_id()
+                    );
+                    return;
+                };
+
+                // O S_PUT_USER e o que faz o personagem aparecer no mundo. O da captura tem 481
+                // bytes e o do POC, que e da 2.5, nao chega perto -- entao aqui vai o capturado,
+                // com o nosso id por cima. A posicao dentro dele ja e a certa: o ponto de entrada
+                // de `mundo` foi tirado desta mesma sessao.
+                //
+                // Depois dele vem o S_INVISIBLE_LEVEL, que fecha o spawn. Sem ele o personagem
+                // aparece piscando: o cliente o desenha, mas nao o considera dentro do mundo -- a
+                // UI nao responde e so o teclado anda. Na captura esse pacote traz [id][40 00 01],
+                // que e o que o POC chama de `start`; o `finish` ([00 00 00]) e que estava sendo
+                // mandado aqui, e e o contrario do que o servidor real faz.
+                // Sao oito pacotes, na ordem da captura -- ver `capturado`. O S_PUT_USER e o
+                // S_INVISIBLE_LEVEL sozinhos deixam o personagem piscando.
+                use super::message::capturado as cap;
+                let id = new_character.id();
+                let bruto = |opcode, payload: Vec<u8>| {
+                    ServerUpdate::new(s::Message::Bruto(s::Bruto::new(opcode, payload)))
+                };
+                messages.extend_direct(
+                    update.client_id(),
+                    [
+                        bruto(cap::INVENCIVEL_ANTES_OPCODE, cap::INVENCIVEL_ANTES.to_vec()),
+                        bruto(cap::ZONA_OPCODE, cap::ZONA.to_vec()),
+                        bruto(
+                            cap::PUT_USER_OPCODE,
+                            cap::com_id_de_personagem(&cap::PUT_USER, 12, id),
+                        ),
+                        bruto(cap::INVENCIVEL_DEPOIS_OPCODE, cap::INVENCIVEL_DEPOIS.to_vec()),
+                        ServerUpdate::new(s::Message::InvisibleLevel(
+                            s::InvisibleLevel::start(id),
+                        )),
+                        bruto(cap::BUILDER_LEVEL_OPCODE, cap::BUILDER_LEVEL.to_vec()),
+                        bruto(cap::STATUS_ANORMAL_OPCODE, cap::STATUS_ANORMAL.to_vec()),
+                        bruto(
+                            cap::PENALIDADE_DE_SKILL_OPCODE,
+                            cap::PENALIDADE_DE_SKILL.to_vec(),
+                        ),
+                        bruto(
+                            cap::ANIMACAO_OPCODE,
+                            cap::com_id_de_personagem(&cap::ANIMACAO, 1, id),
+                        ),
+                        bruto(cap::CENA_DO_MUNDO_OPCODE, cap::CENA_DO_MUNDO.to_vec()),
+                        // Vida e mana do personagem. Na captura sao dois pares de u32 -- valor
+                        // atual e maximo -- e o formato do POC e o mesmo.
+                        ServerUpdate::new(s::Message::HitPoint(s::HitPoint::new(
+                            new_character.stats.hp.current(),
+                            new_character.stats.hp.max(),
+                        ))),
+                    ],
+                );
+
+                if std::env::var("AION_PACOTES_25").is_err() {
+                    return;
+                }
 
                 // Load logging in character for all players
                 messages.broadcast.extend(
@@ -455,12 +519,48 @@ impl State {
                 };
 
                 let game_time = 148641933;
+
+                // Na captura o S_STATUS vem antes do S_WORLD. E ele que da ao cliente o proprio
+                // personagem: sem ele o mapa carrega e nao ha ninguem para controlar. O do POC e
+                // da 2.5 (312 bytes contra 396), entao aqui vai o capturado com o nosso id por
+                // cima, ate ele ser decodificado campo a campo.
+                use super::message::capturado as cap;
                 messages.extend_direct(
                     update.client_id(),
                     [
-                        // Most important packet
+                        s::Message::Bruto(s::Bruto::new(
+                            cap::STATUS_OPCODE,
+                            cap::com_id_de_personagem(&cap::STATUS, 0, character.id()),
+                        )),
+                        // O S_WORLD e o que poe o jogador no mapa, e ja foi conferido contra a
+                        // captura.
                         s::Message::World(s::World::new(character.location())),
-                        // Required
+                        // Estes dois sao implementacao do POC e batem com a captura: o
+                        // S_WORLD_INFO sai byte a byte igual ao pacote #100 da sessao real, e o
+                        // S_CUR_STATUS tem 1 byte nos dois. O resto do que o POC mandava aqui e
+                        // 2.5 e continua desligado, mais abaixo.
+                        s::Message::WorldInfo(s::WorldInfo::new()),
+                        s::Message::CurStatus(s::CurStatus::new()),
+                    ]
+                    .map(ServerUpdate::new),
+                );
+
+                // O resto e implementacao da 2.5 e nenhum bate de tamanho com a 4.5: S_STATUS sai
+                // com 312 bytes contra 389 da captura, S_ADD_SKILL 376 contra 325,
+                // S_LOAD_INVENTORY 1907 contra 3363. Com eles ligados o cliente carrega
+                // Pandaemonium e crasha logo depois.
+                //
+                // Ficam atras de AION_PACOTES_25=1 ate cada um ser reescrito para o layout 4.5,
+                // um de cada vez, conferindo o tamanho contra a captura. Na sessao real o
+                // S_STATUS vem *antes* do S_WORLD, nao depois -- a ordem aqui ja esta corrigida.
+                if std::env::var("AION_PACOTES_25").is_err() {
+                    return;
+                }
+
+                println!("INFO: mandando tambem os pacotes 2.5 (AION_PACOTES_25)");
+                messages.extend_direct(
+                    update.client_id(),
+                    [
                         s::Message::Status(s::Status::new(&character, game_time)),
                         s::Message::WorldInfo(s::WorldInfo::new()),
                         s::Message::CurStatus(s::CurStatus::new()),

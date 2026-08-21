@@ -26,6 +26,13 @@ pub mod campo {
     /// Nome em UTF-16LE, terminado em nulo e preenchido com zeros, ocupando 4..56.
     pub const NOME: usize = 4;
     pub const NOME_MAX_BYTES: usize = 52;
+    /// u32. E por ele que o cliente pre-carrega o cenario, entao tem que ser o mesmo mapa que o
+    /// `S_WORLD` mandar depois.
+    pub const MAPA: usize = 148;
+    /// Tres floats: x, y, z.
+    pub const POSICAO: usize = 152;
+    /// u32 aqui; no `S_WORLD` a mesma direcao ocupa 1 byte.
+    pub const DIRECAO: usize = 164;
     /// u16 -- **nao** u32. Na captura: 60 no personagem de nivel 60, 3 no de nivel 3.
     pub const NIVEL: usize = 168;
 }

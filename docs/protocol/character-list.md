@@ -72,7 +72,7 @@ Confirmado nos dois personagens da captura (Durak, elyos nível 60; Kimmie, asmo
 | 88 | 52 | aparência: 52 valores de 1 byte (rosto, cabelo, nariz, altura de cada traço…) | — | — |
 | 140 | 4 | altura, float | 0.650 | 0.650 |
 | 144 | 4 | **`100000 + raça * 2 + gênero`** | 100001 | 100003 |
-| 148 | 4 | mapa, para o cliente pré-carregar | 800040000 | 120010000 |
+| 148 | 4 | mapa, para o cliente pré-carregar | 800040000 | 120010000 (Pandaemonium) |
 | 152 | 12 | posição x, y, z (3 floats) | 1536.5, 320.3, 411.9 | 1295.8, 1416.3, 208.1 |
 | 164 | 4 | direção | 99 | 109 |
 | 168 | 2 | nível (u16, **não** u32) | 60 | 3 |
@@ -115,9 +115,9 @@ duas entradas é 17.
 2. **`100000 + raça * 2 + gênero` fecha nos dois personagens.** É uma redundância dentro do próprio
    registro: três campos independentes que têm que concordar. Um layout deslocado não passaria nos
    dois.
-3. **Os valores são plausíveis campo a campo.** Mapa 120010000 é Ishalgen, onde um asmodiano de
-   nível 3 estaria; os ids de item caem nas faixas do jogo; as datas de criação são anteriores às de
-   último login.
+3. **Os valores são plausíveis campo a campo.** Mapa 120010000 é Pandaemonium, onde nasce
+   personagem novo na 4.5 — e a Kimmie tinha cinco minutos de criada; os ids de item caem nas faixas
+   do jogo; as datas de criação são anteriores às de último login.
 4. **O serializador reproduz o pacote capturado byte a byte** — teste
    `reproduz_o_pacote_capturado` em `lista_personagens.rs`.
 5. **O cliente aceitou a lista construída** e devolveu o id do nosso banco no `0x18` (a seleção de

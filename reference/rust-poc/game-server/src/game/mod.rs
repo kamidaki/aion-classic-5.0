@@ -11,6 +11,7 @@ mod data;
 mod engine;
 mod entity;
 mod message;
+pub mod mundo;
 mod session;
 mod state;
 
@@ -405,6 +406,7 @@ impl Connection {
                 Ok(len) => ClientMessages::deserialise(
                     &mut recv_buffer[..len],
                     &mut self.keys.client,
+                    self.account.no_mundo(),
                 ),
                 Err(e) => match e.kind() {
                     // Expected when the 1ms read timeout fires — there was

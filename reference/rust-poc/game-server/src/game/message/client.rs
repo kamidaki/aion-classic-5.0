@@ -33,7 +33,7 @@ macro_rules! define_messages {
             pub fn deserialise(
                 mut buf: &mut [u8],
                 mut key: &mut [u8; 8],
-            ) -> Result<Self, u16> {
+            ) -> Result<(Self, u16), u16> {
                 decrypt(&mut key, buf);
 
                 let mut len = 0;
@@ -52,7 +52,9 @@ macro_rules! define_messages {
                 buf = &mut buf[len..];
                 match opcode {
                     $(
-                        $message_const_name => Ok(Message::$message(<$message>::deserialise(buf))),
+                        $message_const_name => {
+                            Ok((Message::$message(<$message>::deserialise(buf)), opcode))
+                        }
                     )*
                     _ => {
                         println!("WARNING: Client Opcode {opcode:02X} not implemented");
@@ -76,8 +78,8 @@ macro_rules! define_messages {
 define_messages!(
     (VERSION, Version, 0x00),
     (ASK_QUIT, AskQuit, 0x03),
-    (ENTER_WORLD, EnterWorld, 0x08),
-    (LEVEL_READY, LevelReady, 0x09),
+    (ENTER_WORLD, EnterWorld, 0x18),
+    (LEVEL_READY, LevelReady, 0x19),
     (READY_TO_QUIT, ReadyToQuit, 0x04),
     (SAVE_CLIENT_SETTINGS, SaveClientSettings, 0x0A),
     (SYNC_TIME, SyncTime, 0x12),
@@ -283,19 +285,30 @@ impl Deserialise for EnterWorld {
 }
 
 impl EnterWorld {
-    /// We prompt for a PIN if [Account] pin_enabled is true
+    /// A selecao de personagem: 4 bytes com o id que a nossa propria lista mandou, de volta.
+    ///
+    /// O opcode e 0x18 na 4.5 -- era 0x08 na 2.5, de onde este POC veio. A tabela extraida do
+    /// Game.dll chama 0x18 de C_TOGGLE_CHEST; o pareamento nome/numero dela erra em alguns pontos,
+    /// e este e mais um. O que vale e o conteudo: os 4 bytes batem com o id do personagem que a
+    /// lista declarou, e na captura sao os da Kimmie.
+    ///
+    /// Sem tratar este pacote a sessao fica com personagem 0, o estado do jogo nao acha ninguem, e
+    /// a entrada no mundo nao manda nem mapa nem posicao -- o cliente carrega a HUD inteira sobre o
+    /// cenario da tela de selecao.
+    ///
+    /// A resposta e o pedido de segunda senha, como na captura (`S_2ND_PASSWORD`, 1 byte). O
+    /// cliente responde sozinho, sem perguntar nada ao jogador, e so entao vem o
+    /// `S_ENTER_WORLD_CHECK` -- que e o que o POC mandava aqui, direto, no fluxo da 2.5.
     pub fn handle(
         &self,
         _: &Sender<ClientUpdate>,
         session: &mut Account,
     ) -> Vec<s::Message> {
+        println!("INFO: personagem {} selecionado", self.character_id);
         session.set_character_id(self.character_id);
+        session.entrou_no_mundo();
 
-        if session.pin_enabled() {
-            vec![s::Message::SecondPassword(s::SecondPassword::request())]
-        } else {
-            vec![s::Message::EnterWorldCheck(s::EnterWorldCheck::new())]
-        }
+        vec![s::Message::SecondPassword(s::SecondPassword::request())]
     }
 }
 
@@ -1643,12 +1656,17 @@ impl Deserialise for UseEquipmentItem {
 #[derive(Debug, Clone)]
 pub struct ReconnectAuth;
 impl ReconnectAuth {
+    /// O cliente manda este pacote no meio da sessao, ja dentro do mundo, e **o servidor real nao
+    /// responde nada**: na captura, depois do 0xB8 vem so a continuacao dos spawns de NPC.
+    ///
+    /// O POC respondia com um S_RECONNECT_KEY, que nao aparece em ponto nenhum da captura. Mandar
+    /// uma chave de reconexao para um cliente que esta dentro do mundo e pedir para ele reconectar.
     pub fn handle(
         &self,
         _: &Sender<ClientUpdate>,
         _: &mut Account,
     ) -> Vec<s::Message> {
-        vec![s::Message::ReconnectKey(s::ReconnectKey::new())]
+        vec![]
     }
 }
 impl Deserialise for ReconnectAuth {

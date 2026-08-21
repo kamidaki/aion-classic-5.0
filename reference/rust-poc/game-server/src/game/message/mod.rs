@@ -12,6 +12,17 @@ use crate::game::{session::Account, Serialise};
 
 use super::{ClientUpdate, ServerUpdate};
 
+/// Opcodes que sao acao do jogador, e por isso nunca podem ser atendidos pelo replay: a resposta
+/// gravada fala de outro movimento, outro alvo, outro momento. Servir isso a um cliente ao vivo
+/// para o personagem no meio do passo -- foi o que aconteceu com o C_MOVE_NEW.
+const ACAO_AO_VIVO: [u16; 5] = [
+    0x30, // C_MOVE_NEW
+    0x20, // C_ATTACK
+    0x21, // C_USE_SKILL
+    0x2C, // C_ALIVE
+    0x26, // C_USE_EQUIPMENT_ITEM
+];
+
 pub struct ClientMessages {
     messages: Vec<client::Message>,
     /// Opcodes que chegaram e ainda nao tem implementacao. Sao esses -- e so esses -- que o
@@ -26,7 +37,19 @@ impl ClientMessages {
             sem_implementacao: Vec::with_capacity(0),
         }
     }
-    pub fn deserialise(mut buffer: &mut [u8], key: &mut [u8; 8]) -> Self {
+    /// `no_mundo` liga o replay completo: depois do C_LEVEL_READY quase nada esta implementado, e
+    /// os lotes que faltam estao indexados sob opcodes que *tem* handler -- o burst de entrada no
+    /// mundo esta sob o C_REQUEST_SERIAL_KILLER_LIST, e o que vem logo antes de o cliente andar
+    /// esta sob o C_SYNC_TIME. Enquanto so os opcodes sem implementacao chamavam o replay, esses
+    /// dois lotes nunca saiam.
+    ///
+    /// Antes de entrar no mundo isso fica desligado de proposito: ali a nossa implementacao chega
+    /// sozinha, e servir o lote capturado por cima duplicaria a lista de personagens.
+    pub fn deserialise(
+        mut buffer: &mut [u8],
+        key: &mut [u8; 8],
+        no_mundo: bool,
+    ) -> Self {
         let mut messages = Vec::new();
         let mut sem_implementacao = Vec::new();
 
@@ -41,9 +64,12 @@ impl ClientMessages {
             }
 
             match client::Message::deserialise(&mut buffer[2..len], key) {
-                Ok(message) => {
+                Ok((message, opcode)) => {
                     println!("C: {message:02X?}");
                     messages.push(message);
+                    if no_mundo && !ACAO_AO_VIVO.contains(&opcode) {
+                        sem_implementacao.push(opcode);
+                    }
                 }
                 Err(opcode) => sem_implementacao.push(opcode),
             }
@@ -70,7 +96,11 @@ impl ClientMessages {
         // O que ainda nao sabemos construir sai da captura, indexado por opcode.
         if let Some(replay) = replay.as_mut() {
             for opcode in &self.sem_implementacao {
-                for reply in replay.resposta_para(*opcode, account.auth_server.id) {
+                for reply in replay.resposta_para(
+                    *opcode,
+                    account.auth_server.id,
+                    account.character_id(),
+                ) {
                     let len = reply.serialise(buf);
                     encrypt(key, &mut buf[2..len]);
                     buf = &mut buf[len..];

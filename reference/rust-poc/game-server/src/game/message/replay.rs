@@ -26,6 +26,14 @@ use super::server;
 /// trocada pela da sessao atual no momento do envio.
 const CHAVE_CAPTURADA: u32 = 0x026E_DF39;
 
+/// Id do personagem que estava logado na captura. Mesmo caso da chave: aparece espalhado pelos
+/// payloads -- estado, animacao, buffs, spawn -- e precisa virar o id do personagem desta sessao.
+///
+/// Sem essa troca o cliente recebe dois "eus": o nosso, com o id do banco, e o da captura, com o
+/// id de outra sessao. Os pacotes que falam do personagem passam a apontar para um objeto que nao
+/// e o que ele controla.
+const ID_CAPTURADO: u32 = 0x2E46_27F1;
+
 const DIRECAO_SERVIDOR: u8 = 0;
 
 /// Um pacote de servidor da captura: opcode ja decifrado e payload sem o prelude.
@@ -96,7 +104,12 @@ impl Replay {
 
     /// Resposta capturada para um opcode de cliente. Cada lote e devolvido uma unica vez; quando
     /// acabam, devolve vazio em vez de repetir -- repetir faria o cliente receber estado velho.
-    pub fn resposta_para(&mut self, opcode: u16, chave_da_sessao: u32) -> Vec<server::Message> {
+    pub fn resposta_para(
+        &mut self,
+        opcode: u16,
+        chave_da_sessao: u32,
+        id_do_personagem: u32,
+    ) -> Vec<server::Message> {
         let Some(fila) = self.respostas.get_mut(&opcode) else {
             return Vec::new();
         };
@@ -111,10 +124,13 @@ impl Replay {
 
         lote.into_iter()
             .map(|(op, payload)| {
-                server::Message::Bruto(server::Bruto::new(
-                    op,
-                    com_chave_de_sessao(&payload, chave_da_sessao),
-                ))
+                let payload = com_chave_de_sessao(&payload, chave_da_sessao);
+                let payload = if id_do_personagem == 0 {
+                    payload
+                } else {
+                    troca(&payload, ID_CAPTURADO, id_do_personagem)
+                };
+                server::Message::Bruto(server::Bruto::new(op, payload))
             })
             .collect()
     }
@@ -125,8 +141,18 @@ impl Replay {
 /// A busca e pela sequencia de bytes, nao por offset: os payloads sao grandes e o campo aparece em
 /// posicoes diferentes conforme o pacote.
 fn com_chave_de_sessao(payload: &[u8], chave: u32) -> Vec<u8> {
-    let de = CHAVE_CAPTURADA.to_le_bytes();
-    let para = chave.to_le_bytes();
+    troca(payload, CHAVE_CAPTURADA, chave)
+}
+
+/// Troca todas as ocorrencias de um u32 por outro, alinhando a busca ao proprio campo.
+///
+/// A busca e pela sequencia de bytes, nao por offset: os payloads sao grandes e os campos aparecem
+/// em posicoes diferentes conforme o pacote. O risco e trocar uma coincidencia -- quatro bytes de
+/// aparencia ou de id de item que por acaso batam -- mas os dois valores trocados aqui sao
+/// especificos o bastante para isso ser improvavel.
+fn troca(payload: &[u8], de: u32, para: u32) -> Vec<u8> {
+    let de = de.to_le_bytes();
+    let para = para.to_le_bytes();
     let mut saida = payload.to_vec();
     let mut i = 0;
     while i + 4 <= saida.len() {
@@ -175,13 +201,31 @@ mod test {
         respostas.insert(0xD6u16, fila);
         let mut replay = Replay { respostas };
 
-        assert_eq!(replay.resposta_para(0xD6, 0).len(), 1);
-        assert!(replay.resposta_para(0xD6, 0).is_empty());
+        assert_eq!(replay.resposta_para(0xD6, 0, 0).len(), 1);
+        assert!(replay.resposta_para(0xD6, 0, 0).is_empty());
+    }
+
+    /// O id do personagem da captura aparece espalhado pelos payloads replayados. Sem trocar, o
+    /// cliente recebe pacotes que falam de um personagem que nao e o dele.
+    #[test]
+    fn troca_o_id_do_personagem_no_lote() {
+        let payload = [
+            ID_CAPTURADO.to_le_bytes().as_slice(),
+            &[0xAA, 0xBB],
+            ID_CAPTURADO.to_le_bytes().as_slice(),
+        ]
+        .concat();
+
+        let trocado = troca(&payload, ID_CAPTURADO, 0x0000_000E);
+
+        assert_eq!(&trocado[0..4], &0x0000_000Eu32.to_le_bytes());
+        assert_eq!(&trocado[4..6], &[0xAA, 0xBB]);
+        assert_eq!(&trocado[6..10], &0x0000_000Eu32.to_le_bytes());
     }
 
     #[test]
     fn opcode_sem_resposta_na_captura_devolve_vazio() {
         let mut replay = Replay { respostas: HashMap::new() };
-        assert!(replay.resposta_para(0x1234, 0).is_empty());
+        assert!(replay.resposta_para(0x1234, 0, 0).is_empty());
     }
 }
