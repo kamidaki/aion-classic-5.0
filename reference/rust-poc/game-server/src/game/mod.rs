@@ -393,6 +393,8 @@ impl Connection {
 
     pub fn handle(mut self) {
         use std::io::ErrorKind;
+        /// `ERROR_IO_PENDING` do Windows: a operacao ainda esta pendente, nao e desconexao.
+        const ERROR_IO_PENDING: i32 = 997;
         // Allocate once; reused every tick to avoid per-iteration zeroing.
         let mut recv_buffer = [0u8; 1024 * 64];
         let mut send_buffer = [0u8; 1024 * 64];
@@ -409,6 +411,14 @@ impl Connection {
                     // nothing for the client to say this tick. Keep looping
                     // so we can still forward server-originated messages.
                     ErrorKind::WouldBlock | ErrorKind::TimedOut => {
+                        ClientMessages::empty()
+                    }
+                    // Mesmo caso, outro numero. No Windows, um read com timeout
+                    // sobre I/O sobreposto pode voltar ERROR_IO_PENDING em vez
+                    // de WSAETIMEDOUT, e o Rust nao classifica esse. Tratar como
+                    // desconexao derrubava a sessao no meio do login, de vez em
+                    // quando, sem nada de errado no fio.
+                    _ if e.raw_os_error() == Some(ERROR_IO_PENDING) => {
                         ClientMessages::empty()
                     }
                     // Real disconnect — bail so main::handle() can free the
