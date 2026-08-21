@@ -43,7 +43,7 @@ const USER_ID: &str = "9E054E89-C0BD-4792-9A22-33116D9EABB7";
 // THIS CHANGES - PROBABLY THE ACTUAL AUTH
 const TOKEN: &str = "00DF51EC-591D-46BF-8859-1C8FEC95FC09";
 // USER_ID + TOKEN then base64?
-const AUTHN_TOKEN: &str = "OUUwNTRFODktQzBCRC00NzkyLTlBMjItMzMxMTZEOUVBQkI3OjY3NDA2NzQ4LTI0NTUtNEQxMy1CRUVFLTFGNjc2NDQxRjRFQwA=";
+const AUTHN_TOKEN: &str = "NDZDRjg1OUEtMDQyNi00N0JELUE5NUEtNTYzQTc4QkIwN0Q0OjUzNjUwMUFFLTBDRUUtNDEzNC05NUY1LUIyRUFDQzQzODExQgA=";
 
 /// Convert the decrypted authn_token the client uploaded in TokenKeyData into
 /// a filesystem-safe-ish username. The raw token often contains `@`, `+`, `/`

@@ -76,7 +76,7 @@ fn handle_message(req: &RpcRequest, state: &Arc<Mutex<LauncherState>>) -> String
         // The auth code the client forwards to the STS server.
         // Must match AUTHN_TOKEN in sts-server so the HQ auth flow completes.
         "ClientLibrary.queryAuthorizationCode" => Some(RpcResult::Str(
-            "OUUwNTRFODktQzBCRC00NzkyLTlBMjItMzMxMTZEOUVBQkI3OjY3NDA2NzQ4LTI0NTUtNEQxMy1CRUVFLTFGNjc2NDQxRjRFQwA=".into(),
+            "NDZDRjg1OUEtMDQyNi00N0JELUE5NUEtNTYzQTc4QkIwN0Q0OjUzNjUwMUFFLTBDRUUtNDEzNC05NUY1LUIyRUFDQzQzODExQgA=".into(),
         )),
 
         // Account display name shown in-game.

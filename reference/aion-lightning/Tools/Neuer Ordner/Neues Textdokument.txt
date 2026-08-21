@@ -1,3 +1,0 @@
-Private Sub frmALBuild_Close(sender As Object, e As EventArgs) Handles MyBase.FormClosing
-
-    End Sub

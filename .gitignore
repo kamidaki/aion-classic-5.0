@@ -33,3 +33,11 @@ replay.bin
 
 # pacote gerado por pacote/empacotar.ps1
 dist/
+
+# banco de dados: estado de execucao (contas, personagens, tokens de sessao). Se regenera sozinho
+# na primeira vez que o servidor sobe, e mudava a cada teste.
+*.db
+
+# base Java de referencia (Aion-Lightning): 359 MB de codigo de terceiros que nao executa aqui.
+# O LEIA-ME-FONTE.txt explica onde encontra-la.
+reference/
