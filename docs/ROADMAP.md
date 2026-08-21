@@ -206,6 +206,24 @@ depois. Ficam atrás de `AION_PACOTES_25=1`.
 Dois do mesmo grupo **batem** com a captura e estão ligados: o `S_WORLD_INFO`, que sai byte a byte
 igual, e o `S_CUR_STATUS`, de 1 byte.
 
+### As skills não disparam, e a captura não ajuda
+
+Apertar uma skill não produz **nenhum pacote**: o cliente recusa do lado dele. O que chega enquanto
+se aperta é `0x3B` (1 byte, `01`) e `0x86` (o id do personagem), que são outra coisa.
+
+E a captura não tem resposta: a sessão gravada só logou, andou um pouco e terminou. Ela não usa
+skill, não ataca, não abre janela nenhuma. Não dá para saber nem qual é o opcode de uso de skill na
+4.5 — a tabela do `Game.dll` chama `0x21` de `C_USE_SKILL`, e essa tabela já errou em cinco pontos
+conhecidos.
+
+**O desbloqueio é uma captura nova**, contra o servidor oficial, cobrindo o que falta: usar skill,
+atacar um mob, pegar loot, abrir inventário e loja, falar no chat, trocar de mapa. Foi assim que a
+captura de login destravou tudo o que existe aqui hoje — cada bloqueio virou comparação byte a
+byte, em vez de tentativa e erro.
+
+Sem ela, o caminho é engenharia reversa do `Game.dll` para achar o opcode e a condição que o
+cliente checa antes de liberar o botão. Muito mais caro.
+
 ### O próximo passo
 
 Decodificar o `S_STATUS` e o `S_PUT_USER`, nessa ordem. São os dois que fazem o personagem ser o do
