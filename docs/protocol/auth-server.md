@@ -126,7 +126,7 @@ O campo de erro **tem que ser zero**; qualquer outro valor o cliente exibe como
 A mesma captura ainda contém, não analisados:
 
 * **STS na 6600** — 11 kB. Identidade federada, com troca de chaves e RC4 (ver
-  `reference/rust-poc/docs/AUTH.md`). O cliente conecta logo depois do auth.
+  `EmuRustDurak/docs/AUTH.md`). O cliente conecta logo depois do auth.
 * **Game server na 7777** — 98 kB, incluindo a entrada no mundo. É a fonte para os layouts de
   pacote que a tabela de opcodes sozinha não dá.
 

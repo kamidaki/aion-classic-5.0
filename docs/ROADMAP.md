@@ -9,8 +9,8 @@ Escrito para ser lido frio, sem contexto de conversa anterior.
 Servidor privado para o cliente **Aion Classic 4.5 da GameForge**, build
 `4526.0820.0706.7137`, x64, instalado em `G:\GFAion\aionclassic`.
 
-A base é o **POC em Rust** em `reference/rust-poc` — originalmente escrito para o Classic 2.5 e
-corrigido aqui para a 4.5. A pasta `server/` tem o Aion-Lightning (Java), que foi a base anterior
+A base é o **POC em Rust** em `EmuRustDurak` — originalmente escrito para o Classic 2.5 e
+corrigido aqui para a 4.5. A pasta `reference/aion-lightning/` tem o Aion-Lightning (Java), que foi a base anterior
 e hoje é **só referência de lógica de jogo**; nada dela está em uso.
 
 Tudo que se sabe do protocolo saiu de **uma captura de sessão real** contra os servidores da
@@ -46,7 +46,7 @@ trabalho da seção 6.
 Quatro processos. O cliente é aberto pelo próprio launcher — não abra o `Aion.exe` na mão.
 
 ```bash
-cd reference/rust-poc
+cd EmuRustDurak
 
 AION_GAME_IP=192.168.100.77 ./target/release/auth-server.exe
 ./target/release/sts-server.exe
@@ -104,7 +104,7 @@ opcional — sem ele o servidor roda igual, só não resolve nome de NPC e item 
 Não vai para o git (deriva da captura). Regenerar com:
 
 ```bash
-python tools/export_replay.py build/capture/gf-login.pcapng reference/rust-poc/replay.bin
+python tools/export_replay.py build/capture/gf-login.pcapng EmuRustDurak/replay.bin
 ```
 
 ---
@@ -112,7 +112,7 @@ python tools/export_replay.py build/capture/gf-login.pcapng reference/rust-poc/r
 ## 4. Mapa do repositório
 
 ```
-reference/rust-poc/          A BASE. Workspace Rust, 7 crates, compila limpo.
+EmuRustDurak/          A BASE. Workspace Rust, 7 crates, compila limpo.
   auth-server/               porta 13001 e 2106. Texto claro, 6 pacotes.
   sts-server/                porta 6600. Identidade federada, RC4/AES/RSA. Funciona.
   game-server/               porta 7777. Onde está o trabalho.
@@ -140,9 +140,19 @@ docs/protocol/               O QUE SE SABE DO PROTOCOLO
 pacote/                      o que vira o pacote para outra pessoa (seção 3)
 docs/reverse/                achados de engenharia reversa
 tools/                       ferramentas de análise (seção 8)
-server/                      Aion-Lightning (Java). Só referência.
+dist/                        pacote gerado. Fora do git.
 build/capture/               capturas. Fora do git: contêm token de conta.
+
+reference/                   NADA AQUI EXECUTA. É material de consulta.
+  aion-lightning/            servidor Aion em Java. Foi de onde saiu o layout do registro
+                             de personagem — é referência de protocolo tanto quanto de
+                             lógica de jogo.
+  dotnet-poc/                POC em C#. O protocolo de login dele não é o deste cliente.
 ```
+
+**`EmuRustDurak/` é o servidor de verdade** — o que compila e roda, e de onde saem os quatro
+executáveis do pacote. A pasta se chamava `reference/rust-poc`, o que sugeria o contrário: nem era
+referência, nem era mais um POC.
 
 ---
 
@@ -349,7 +359,7 @@ personagens, e as duas leituras do cabeçalho só divergem com contagem diferent
 desempata um layout é ele parsear em **dois casos diferentes**, ou fechar uma conta interna ao
 pacote — no registro de personagem, `100000 + raça * 2 + gênero`.
 
-**A base Java em `server/` é referência de protocolo, não só de lógica de jogo.** O layout do
+**A base Java em `reference/aion-lightning/` é referência de protocolo, não só de lógica de jogo.** O layout do
 registro de personagem saiu do `writePlayerInfo()` dela em minutos, depois de horas de comparação
 byte a byte. Ela está algumas versões atrás, então serve como mapa de campos a conferir contra a
 captura, não como verdade.
@@ -375,7 +385,7 @@ rodando. Pare antes de compilar.
 
 ## 10. O que existe e não está em uso
 
-- **`server/`** — Aion-Lightning em Java, base anterior. Compila no JDK 21 (correções em
+- **`reference/aion-lightning/`** — Aion-Lightning em Java, base anterior. Compila no JDK 21 (correções em
   `scripts/build_login.sh`), tem banco criado no MariaDB local. Vale como **referência de lógica de
   jogo**: quests, skills, IA, instâncias. A camada de rede dele é retail e não serve.
 - **`reference/dotnet-poc/`** — POC em C#. O `walkthrough.md` dele descreve um protocolo de login

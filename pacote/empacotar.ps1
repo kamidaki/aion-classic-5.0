@@ -6,7 +6,7 @@
 $ErrorActionPreference = "Stop"
 $aqui = Split-Path -Parent $MyInvocation.MyCommand.Path
 $raiz = Split-Path -Parent $aqui
-$rust = Join-Path $raiz "reference\rust-poc"
+$rust = Join-Path $raiz "EmuRustDurak"
 $saida = Join-Path $raiz "dist\aion-emulador"
 
 Write-Host ""
@@ -24,9 +24,16 @@ if ($rodando) {
 
 Write-Host "  compilando em modo release..."
 Push-Location $rust
+# O cargo escreve os warnings no stderr, e com ErrorActionPreference=Stop o PowerShell 5.1 trata
+# saida de stderr de executavel nativo como erro terminante. Quem decide se deu certo e o codigo
+# de saida, entao afrouxamos so aqui.
+$antes = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 cargo build --release --offline
-if ($LASTEXITCODE -ne 0) { Pop-Location; throw "cargo build falhou" }
+$codigo = $LASTEXITCODE
+$ErrorActionPreference = $antes
 Pop-Location
+if ($codigo -ne 0) { throw "cargo build falhou (codigo $codigo)" }
 
 # --- junta ------------------------------------------------------------------
 
@@ -42,7 +49,7 @@ foreach ($exe in $exes) {
 # na tela de personagem e nao entra no jogo.
 $replay = Join-Path $rust "replay.bin"
 if (-not (Test-Path $replay)) {
-    throw "replay.bin nao existe. Gere com: python tools/export_replay.py build/capture/gf-login.pcapng reference/rust-poc/replay.bin"
+    throw "replay.bin nao existe. Gere com: python tools/export_replay.py build/capture/gf-login.pcapng EmuRustDurak/replay.bin"
 }
 Copy-Item $replay $saida
 
@@ -60,7 +67,7 @@ $texto = [System.Text.Encoding]::Unicode.GetString($bytes)
 if ($texto.Contains("niZZin")) {
     Write-Host ""
     Write-Host "  ! o replay.bin ainda tem o nome da conta capturada." -ForegroundColor Yellow
-    Write-Host "    Regenere com: python tools/export_replay.py build/capture/gf-login.pcapng reference/rust-poc/replay.bin" -ForegroundColor Yellow
+    Write-Host "    Regenere com: python tools/export_replay.py build/capture/gf-login.pcapng EmuRustDurak/replay.bin" -ForegroundColor Yellow
     Write-Host ""
 }
 

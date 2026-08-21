@@ -52,7 +52,7 @@ seções protegidas. A ausência sozinha não prova. Mas some com o resto.
 
 ## O que o POC em Rust mostra
 
-O `reference/rust-poc` é a única base no disco que comprovadamente entrou no mundo com um cliente
+O `EmuRustDurak` é a única base no disco que comprovadamente entrou no mundo com um cliente
 Classic — e **não tem Blowfish em lugar nenhum**. O `krypt` só traz `game.rs` e `sts.rs`. O auth
 server dele é texto claro:
 

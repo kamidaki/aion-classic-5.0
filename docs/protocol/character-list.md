@@ -1,7 +1,7 @@
 # S_CHARACTER_LIST (0x0C7) no layout 4.5
 
 Derivado da captura `build/capture/gf-login.pcapng`, com o `writePlayerInfo()` do Aion-Lightning
-(`server/AL-Game/src/com/aionemu/gameserver/network/aion/PlayerInfo.java`) como mapa de campos.
+(`reference/aion-lightning/AL-Game/src/com/aionemu/gameserver/network/aion/PlayerInfo.java`) como mapa de campos.
 
 ---
 
