@@ -1,23 +1,22 @@
 //! S_CHARACTER_LIST no layout da versao 4.5.
 //!
 //! ```text
-//! [u8  contagem]
+//! [u8  marca: 0x02 na lista com personagens, 0x00 na vazia]
 //! [u32 chave de sessao]
 //! [5 bytes zero]
-//! [u8  contagem, de novo]      <- e este que delimita a lista
+//! [u8  contagem de personagens]
 //! [registro de 758 bytes] x contagem
 //! ```
 //!
 //! Sao **dois pacotes**, nao um: primeiro uma lista vazia (11 bytes de payload), depois a real.
 //! Mandando so a segunda, o cliente fecha a conexao.
 //!
-//! ## A contagem aparece duas vezes
+//! ## Os dois bytes do cabecalho
 //!
-//! Na captura os dois bytes valem 2 (e 0 na lista vazia), entao uma leitura anterior tomou o
-//! segundo como o primeiro byte do registro -- um "slot", que valeria 0x02 no personagem do ultimo
-//! login. Com 2 personagens os dois layouts produzem os mesmos bytes; a diferenca so aparece com
-//! contagem 1. O cabecalho dizia 1, o byte do offset 10 continuava dizendo 2, e o cliente lia um
-//! registro a mais do que existia. **Era esse o crash.**
+//! Na captura o byte 0 e o byte 10 valem a mesma coisa -- 2 na lista de 2 personagens, 0 na vazia
+//! -- entao uma leitura anterior tomou o do offset 10 como o primeiro byte do registro, um "slot"
+//! que valeria 0x02 no personagem do ultimo login. Com 2 personagens as duas leituras produzem os
+//! mesmos bytes; a diferenca so aparece com 1.
 //!
 //! O que descartou a leitura antiga:
 //!
@@ -29,9 +28,9 @@
 //! - o ultimo byte do payload deixa de ser um rodape solto e passa a ser o ultimo byte do ultimo
 //!   registro, igual nos dois
 //!
-//! Qual dos dois bytes o cliente usa de fato para dimensionar a lista, nao se sabe -- na captura
-//! eles nunca discordam. Aqui os dois recebem a contagem, que e a unica combinacao compativel com
-//! tudo que foi observado.
+//! E os dois bytes do cabecalho tem papeis diferentes: o byte 10 e a contagem, e o byte 0 e uma
+//! marca que precisa valer 0x02 -- ver [`MARCA_DE_LISTA`] para a tabela de rodadas que separou um
+//! do outro. Mandar a contagem no byte 0 fazia o cliente parar na tela de servidor, sem mensagem.
 //!
 //! O que isso resolve: os ids passam a ser os do servidor. Antes a lista era reproduzida inteira da
 //! captura, com ids de outra sessao, entao o personagem escolhido nao existia no estado do jogo e a
@@ -42,8 +41,32 @@
 
 use super::molde::{campo, REGISTRO_LEN, REGISTRO_MOLDE};
 
-/// Contagem + chave de sessao + 5 bytes zerados + a contagem de novo.
+/// Marca + chave de sessao + 5 bytes zerados + a contagem.
 const CABECALHO_LEN: usize = 11;
+
+/// O byte 0 do cabecalho, na lista que tem personagens. **Nao e contagem** -- e o cliente que
+/// disse isso, em quatro rodadas:
+///
+/// ```text
+///   byte 0   byte 10   registros   resultado
+///     02       02          2       passa (replay da captura)
+///     01       02          1       para na tela de servidor
+///     01       01          1       para na tela de servidor
+///     02       01          1       passa: tela de personagem e mundo
+/// ```
+///
+/// A captura so tem dois casos -- 0 na lista vazia e 2 na lista de 2 personagens -- e nos dois a
+/// contagem e a marca coincidem, o que escondeu a diferenca. Com 1 personagem elas se separam: o
+/// que importa e o byte 0 valer `0x02`, e o byte 10 e que acompanha a contagem.
+///
+/// O significado continua desconhecido -- tipo de lista, numero de slots da conta, outra coisa. O
+/// que se sabe e que `0x02` serve para 0, 1 e 2 registros (a lista vazia tambem foi aceita com
+/// `0x02` no lugar do `0x00` da captura). Aqui a lista vazia mantem o `0x00`, que e o que o
+/// servidor real manda; para experimentar outros valores existe `AION_CABECALHO`.
+///
+/// Se um dia a conta tiver 3 personagens, e o primeiro caso capaz de separar "constante" de
+/// "numero de slots": vale conferir se `0x02` ainda serve.
+const MARCA_DE_LISTA: u8 = 0x02;
 
 /// Personagem, do ponto de vista desta lista.
 #[derive(Debug, Clone)]
@@ -75,15 +98,21 @@ impl ListaPersonagens {
     /// Escreve o payload (sem o prelude de opcode) e devolve quantos bytes usou.
     pub fn serialise_payload(&self, buf: &mut [u8]) -> usize {
         let contagem = self.personagens.len() as u8;
+        let marca = if self.personagens.is_empty() {
+            0x00
+        } else {
+            MARCA_DE_LISTA
+        };
+        let (byte0, byte10) = cabecalho_de_teste(marca, contagem);
         let mut len = 0;
 
-        buf[len] = contagem;
+        buf[len] = byte0;
         len += 1;
         buf[len..len + 4].copy_from_slice(&self.chave_de_sessao.to_le_bytes());
         len += 4;
         buf[len..len + 5].fill(0);
         len += 5;
-        buf[len] = contagem;
+        buf[len] = byte10;
         len += 1;
 
         for personagem in &self.personagens {
@@ -105,6 +134,33 @@ impl ListaPersonagens {
 
         len
     }
+}
+
+/// Escape para bissecao: `AION_CABECALHO="2,1"` escreve 2 no offset 0 e 1 no offset 10. Campo
+/// vazio ou ausente fica com o valor normal. Existe porque o significado do byte 0 ainda nao esta
+/// fechado -- ver [`MARCA_DE_LISTA`] -- e trocar os dois bytes sem recompilar e o que permite
+/// perguntar para o cliente.
+fn cabecalho_de_teste(marca: u8, contagem: u8) -> (u8, u8) {
+    let Ok(spec) = std::env::var("AION_CABECALHO") else {
+        return (marca, contagem);
+    };
+
+    let mut campos = spec.split(',');
+    let mut le = |rotulo: &str, normal: u8| match campos.next().map(str::trim) {
+        Some(v) if !v.is_empty() => match v.parse::<u8>() {
+            Ok(n) => {
+                println!("INFO: AION_CABECALHO: byte {rotulo} = {n} (em vez de {normal})");
+                n
+            }
+            Err(_) => {
+                eprintln!("WARN: AION_CABECALHO: '{v}' nao e um byte; usando {normal}");
+                normal
+            }
+        },
+        _ => normal,
+    };
+
+    (le("0", marca), le("10", contagem))
 }
 
 /// Escreve o nome em UTF-16LE, terminado em nulo, no campo de tamanho fixo.
@@ -165,10 +221,10 @@ mod test {
         );
     }
 
-    /// As duas contagens tem que andar juntas. Foi a do offset 10 que ficou para tras na leitura
-    /// anterior do layout, e o cliente leu um registro a mais do que existia.
+    /// A marca nao acompanha a contagem. Foi tratar o byte 0 como contagem que fez o cliente parar
+    /// na tela de servidor com 1 personagem, sem mensagem nenhuma.
     #[test]
-    fn as_duas_contagens_batem_com_o_numero_de_registros() {
+    fn marca_e_contagem_tem_papeis_diferentes() {
         for n in 0..3usize {
             let lista = ListaPersonagens::new(
                 0x0262_CAB6,
@@ -177,7 +233,8 @@ mod test {
             let mut buf = vec![0u8; 4096];
             let escritos = lista.serialise_payload(&mut buf);
 
-            assert_eq!(buf[0] as usize, n, "contagem do offset 0");
+            let marca_esperada = if n == 0 { 0x00 } else { MARCA_DE_LISTA };
+            assert_eq!(buf[0], marca_esperada, "marca do offset 0, com {n} personagens");
             assert_eq!(buf[10] as usize, n, "contagem do offset 10");
             assert_eq!(escritos, CABECALHO_LEN + n * REGISTRO_LEN);
         }
@@ -231,10 +288,9 @@ mod test {
         let mut buf = vec![0u8; 4096];
         let escritos = lista.serialise_payload(&mut buf);
 
-        // A captura tem 2 personagens; comparamos ate onde o primeiro registro vai, com a contagem
-        // ajustada para 1 nos dois lugares onde ela aparece.
+        // A captura tem 2 personagens; comparamos ate onde o primeiro registro vai. So a contagem
+        // muda -- a marca do offset 0 continua sendo a mesma da captura.
         let mut esperado = CHARACTER_LIST_2[..escritos].to_vec();
-        esperado[0] = 1;
         esperado[10] = 1;
 
         assert_eq!(&buf[..escritos], &esperado[..]);

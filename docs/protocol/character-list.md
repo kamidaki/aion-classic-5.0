@@ -12,32 +12,46 @@ segunda, o cliente fecha a conexão.
 
 ```
 S_BUILDER_LEVEL   (0x0EE, 29 bytes de payload, tudo zero)
-S_CHARACTER_LIST  (0x0C7, 11 bytes de payload  -> contagem 0)
-S_CHARACTER_LIST  (0x0C7, 1527 bytes           -> contagem 2, na captura)
+S_CHARACTER_LIST  (0x0C7, 11 bytes de payload  -> lista vazia)
+S_CHARACTER_LIST  (0x0C7, 1527 bytes           -> 2 personagens, na captura)
 ```
 
 ## Cabeçalho — 11 bytes
 
 | offset | tam | campo |
 |---:|---:|---|
-| 0 | 1 | contagem de personagens |
+| 0 | 1 | **marca**: `0x02` na lista com personagens, `0x00` na vazia. Não é contagem |
 | 1 | 4 | chave de sessão (a mesma do `C_HQ_LOGIN`) |
 | 5 | 5 | zeros |
-| 10 | 1 | **contagem de personagens, de novo** |
+| 10 | 1 | contagem de personagens |
 
 Depois vêm `contagem` registros de 758 bytes, e nada mais: o último byte do payload é o último byte
 do último registro, não um rodapé.
 
-### A contagem repetida foi o que travou tudo
+### O byte 0 não é contagem, e foi ele que travou tudo
 
-Na captura os dois bytes valem 2, e 0 na lista vazia — então uma leitura anterior tomou o byte do
-offset 10 como o primeiro byte do registro, um "slot" que valeria `0x02` no personagem do último
-login. Com 2 personagens os dois layouts produzem exatamente os mesmos bytes. A diferença só
-aparece com contagem 1: o cabeçalho dizia 1, o byte do offset 10 continuava dizendo 2, e o cliente
-lia um registro a mais do que existia no pacote.
+Na captura os dois bytes valem a mesma coisa — 2 na lista de 2 personagens, 0 na vazia — o que
+esconde a diferença entre eles. Com 1 personagem elas se separam, e o cliente respondeu:
 
-Qual dos dois bytes o cliente usa para dimensionar a lista continua em aberto — na captura eles
-nunca discordam. O servidor escreve a contagem nos dois.
+| byte 0 | byte 10 | registros | resultado |
+|---|---|---|---|
+| `02` | `02` | 2 | passa — é o replay da captura |
+| `01` | `02` | 1 | para na tela de servidor, sem mensagem |
+| `01` | `01` | 1 | para na tela de servidor, sem mensagem |
+| `02` | `01` | 1 | **passa**: tela de personagem e entrada no mundo |
+
+O byte 10 acompanha o número de registros. O byte 0 precisa valer `0x02`, e o que ele significa
+continua desconhecido — tipo de lista, número de slots da conta, outra coisa. O que se sabe é que
+`0x02` serve para 0, 1 e 2 registros: a lista vazia também foi aceita com `0x02` no lugar do `0x00`
+que o servidor real manda.
+
+Uma conta com 3 personagens é o primeiro caso capaz de separar "constante" de "número de slots".
+Até lá, `AION_CABECALHO="2,1"` no game server escreve os dois bytes à mão, para perguntar ao
+cliente sem recompilar.
+
+A leitura anterior do layout juntava os dois num campo só: tratava o byte 10 como o primeiro byte
+do registro, um "slot" que valeria `0x02` no personagem do último login. Com 2 personagens os dois
+layouts produzem exatamente os mesmos bytes.
 
 ## Registro — 758 bytes
 
@@ -106,6 +120,8 @@ duas entradas é 17.
    último login.
 4. **O serializador reproduz o pacote capturado byte a byte** — teste
    `reproduz_o_pacote_capturado` em `lista_personagens.rs`.
+5. **O cliente aceitou a lista construída** e devolveu o id do nosso banco no `0x18` (a seleção de
+   personagem), com a tela de personagem e a entrada no mundo funcionando.
 
 ## O que o servidor escreve hoje
 
