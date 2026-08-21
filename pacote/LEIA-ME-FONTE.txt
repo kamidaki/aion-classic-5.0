@@ -96,16 +96,26 @@ arquivo o cliente chega na tela de personagem e nao entra no mundo.
 
 Ele veio junto porque NAO DA PARA REGENERAR sem a captura original, que
 nao acompanha o pacote -- ela contem o token de autenticacao de uma conta
-de verdade.
+de verdade. O replay.bin daqui ja saiu limpo: o exportador apaga o token
+e o nome da conta, e o empacotador confere de novo antes de zipar.
+
+A sessao gravada tem 22 minutos e 18 mil pacotes -- criacao de personagem,
+skill com alvo, sem alvo e de area, combate ate matar, loot, equipar,
+loja de NPC, quest, teleporte e logout.
 
 Se voce fizer a sua propria captura:
 
   python tools/export_replay.py <sua-captura.pcapng> EmuRustDurak/replay.bin
 
-E aliais o proximo passo do projeto: uma captura nova, cobrindo uso de
-skill, combate, loot e chat. Sem ela, cada bloqueio vira adivinhacao; com
-ela, vira comparacao byte a byte. Foi assim que tudo que funciona hoje
-foi descoberto.
+E precisa de mais um passo, senao o cliente recebe pacotes falando de um
+personagem que nao e o dele: a constante ID_CAPTURADO, em
+game-server/src/game/message/replay.rs, e o id do personagem que estava
+logado na SUA captura. Ele e o u32 no offset 0 do payload de S_STATUS
+(opcode 0x001).
+
+Vale a pena gravar: sem captura, cada bloqueio vira adivinhacao; com ela,
+vira comparacao byte a byte. Foi assim que tudo que funciona hoje foi
+descoberto. O roteiro do que gravar esta na secao 7 do docs/ROADMAP.md.
 
 
 A BASE JAVA NAO VEIO JUNTO

@@ -24,6 +24,9 @@ use super::server;
 
 /// Chave de sessao em uso quando a captura foi feita. Aparece dentro de varios payloads e e
 /// trocada pela da sessao atual no momento do envio.
+///
+/// Duas capturas da mesma conta, feitas em dias diferentes, trouxeram o mesmo valor -- entao ele
+/// identifica a conta, nao a sessao. Continua sendo trocado, porque o cliente ao vivo tem o dele.
 const CHAVE_CAPTURADA: u32 = 0x026E_DF39;
 
 /// Id do personagem que estava logado na captura. Mesmo caso da chave: aparece espalhado pelos
@@ -32,7 +35,11 @@ const CHAVE_CAPTURADA: u32 = 0x026E_DF39;
 /// Sem essa troca o cliente recebe dois "eus": o nosso, com o id do banco, e o da captura, com o
 /// id de outra sessao. Os pacotes que falam do personagem passam a apontar para um objeto que nao
 /// e o que ele controla.
-const ID_CAPTURADO: u32 = 0x2E46_27F1;
+///
+/// **Muda a cada captura**, ao contrario da chave acima. Para achar o valor de uma captura nova, e
+/// o u32 no offset 0 do payload de `S_STATUS` (0x001) -- se aparecer mais de um, a captura tem mais
+/// de um personagem, e vale o mais frequente.
+const ID_CAPTURADO: u32 = 0x2E46_283A;
 
 const DIRECAO_SERVIDOR: u8 = 0;
 

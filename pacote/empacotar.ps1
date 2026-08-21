@@ -11,6 +11,37 @@
 param([switch]$Fonte)
 
 $ErrorActionPreference = "Stop"
+
+# O nome da conta e o token de autenticacao sao apagados na geracao do replay.bin. Se um replay
+# antigo entrar no pacote, eles vao junto -- entao conferimos aqui, que e o ultimo ponto antes de o
+# arquivo sair da maquina. Vale para os dois pacotes: os dois levam o replay.
+function Confere-Replay {
+    param([string]$Arquivo, [string]$PastaParaApagar)
+
+    $bytes = [System.IO.File]::ReadAllBytes($Arquivo)
+    $texto = [System.Text.Encoding]::Unicode.GetString($bytes)
+    $ascii = [System.Text.Encoding]::ASCII.GetString($bytes)
+
+    $sujo = @()
+    if ($texto.Contains("niZZin")) { $sujo += "o nome da conta capturada" }
+
+    # O token viaja em base64 dentro do C_HQ_LOGIN e do S_REPLY_NP_AUTH_TOKEN. Depois de limpo ele
+    # vira uma sequencia de 'A' do mesmo tamanho, entao so um trecho com outras letras e token.
+    foreach ($m in [regex]::Matches($ascii, "[A-Za-z0-9+/]{40,}={0,2}")) {
+        if ($m.Value.Trim("A").Length -gt 0) { $sujo += "o token de autenticacao"; break }
+    }
+    foreach ($m in [regex]::Matches($ascii, "[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}")) {
+        if ($m.Value -ne "00000000-0000-0000-0000-000000000000") { $sujo += "o GUID de sessao"; break }
+    }
+
+    if ($sujo) {
+        if ($PastaParaApagar -and (Test-Path $PastaParaApagar)) {
+            Remove-Item $PastaParaApagar -Recurse -Force
+        }
+        throw ("o replay.bin ainda tem " + ($sujo -join ", ") + ". O pacote NAO foi gerado. " +
+               "Regenere o replay com: python tools/export_replay.py build/capture/jogo.pcapng EmuRustDurak/replay.bin")
+    }
+}
 $aqui = Split-Path -Parent $MyInvocation.MyCommand.Path
 $raiz = Split-Path -Parent $aqui
 $rust = Join-Path $raiz "EmuRustDurak"
@@ -47,6 +78,8 @@ if ($Fonte) {
     # O replay.bin nao esta no git (deriva da captura), e sem ele o cliente nao entra no mundo.
     Copy-Item (Join-Path $raiz "EmuRustDurak\replay.bin") (Join-Path $saidaFonte "EmuRustDurak")
     Copy-Item (Join-Path $aqui "LEIA-ME-FONTE.txt") (Join-Path $saidaFonte "LEIA-ME.txt")
+
+    Confere-Replay -Arquivo (Join-Path $saidaFonte "EmuRustDurak\replay.bin") -PastaParaApagar $saidaFonte
 
     $zipFonte = Join-Path $raiz "dist\aion-emulador-fonte.zip"
     if (Test-Path $zipFonte) { Remove-Item $zipFonte -Force }
@@ -108,17 +141,8 @@ foreach ($arquivo in @("INICIAR.bat", "PARAR.bat", "config.txt", "LEIA-ME.txt"))
 Copy-Item (Join-Path $aqui "iniciar.ps1") $saida
 
 # --- confere ----------------------------------------------------------------
-#
-# O nome da conta que aparecia nos bytes capturados e trocado por um neutro na geracao do
-# replay.bin. Se um replay antigo entrar no pacote, ele vai junto -- entao conferimos aqui.
-$bytes = [System.IO.File]::ReadAllBytes((Join-Path $saida "replay.bin"))
-$texto = [System.Text.Encoding]::Unicode.GetString($bytes)
-if ($texto.Contains("niZZin")) {
-    Write-Host ""
-    Write-Host "  ! o replay.bin ainda tem o nome da conta capturada." -ForegroundColor Yellow
-    Write-Host "    Regenere com: python tools/export_replay.py build/capture/gf-login.pcapng EmuRustDurak/replay.bin" -ForegroundColor Yellow
-    Write-Host ""
-}
+
+Confere-Replay -Arquivo (Join-Path $saida "replay.bin") -PastaParaApagar $saida
 
 # --- zipa -------------------------------------------------------------------
 

@@ -252,22 +252,20 @@ depois. Ficam atrás de `AION_PACOTES_25=1`.
 Dois do mesmo grupo **batem** com a captura e estão ligados: o `S_WORLD_INFO`, que sai byte a byte
 igual, e o `S_CUR_STATUS`, de 1 byte.
 
-### As skills não disparam, e a captura não ajuda
+### As skills não disparam — e agora a captura responde
 
 Apertar uma skill não produz **nenhum pacote**: o cliente recusa do lado dele. O que chega enquanto
 se aperta é `0x3B` (1 byte, `01`) e `0x86` (o id do personagem), que são outra coisa.
 
-E a captura não tem resposta: a sessão gravada só logou, andou um pouco e terminou. Ela não usa
-skill, não ataca, não abre janela nenhuma. Não dá para saber nem qual é o opcode de uso de skill na
-4.5 — a tabela do `Game.dll` chama `0x21` de `C_USE_SKILL`, e essa tabela já errou em cinco pontos
-conhecidos.
+A captura de 21/08 (seção 7) resolveu a parte do formato. No servidor oficial, com a skill
+disparando de verdade, o cliente mandou **73 pacotes `0x021`**, e o servidor respondeu com `0x021`,
+`S_SKILL_SUCCEDED` (`0x02B`) e `S_SKILL_PENALTY_STATUS_OTHER` (`0x0D8`). Ou seja: `0x21` é
+`C_USE_SKILL` mesmo — a tabela do `Game.dll` acertou aqui, apesar de errar em cinco outros pontos.
 
-**O desbloqueio é uma captura nova**, contra o servidor oficial. Foi assim que a captura de login
-destravou tudo o que existe aqui hoje — cada bloqueio virou comparação byte a byte, em vez de
-tentativa e erro. **O roteiro do que gravar, e como, está na seção 7.**
-
-Sem ela, o caminho é engenharia reversa do `Game.dll` para achar o opcode e a condição que o
-cliente checa antes de liberar o botão. Muito mais caro.
+O que sobra é a **condição**: o que o nosso servidor precisa ter mandado antes para o cliente
+liberar o botão. Isso agora se descobre por comparação — a captura tem a sessão inteira em que o
+botão funciona, e dá para conferir o que chegou lá e não chega aqui, em vez de reverter o
+`Game.dll`.
 
 ### O próximo passo
 
@@ -282,10 +280,22 @@ sair do replay é um a menos de sessão emprestada.
 
 ---
 
-## 7. A captura que falta
+## 7. A captura — feita em 21/08/2026
 
-É o próximo passo do projeto, e é trabalho de jogar, não de programar. Meia hora dentro do jogo
-oficial, gravando, destrava a fase inteira que vem depois.
+Era o próximo passo do projeto, e foi trabalho de jogar, não de programar: 22 minutos dentro do
+jogo oficial, gravando. O arquivo é `build/capture/jogo.pcapng` (2,7 MB, fora do git), e dele saiu
+o `EmuRustDurak/replay.bin` atual.
+
+**O que saiu:** 18 486 pacotes decifrados, com **63 opcodes de cliente** — o replay anterior tinha
+25. Cobre criação de personagem (a conta ganhou um terceiro, `Kreatar`, e a lista cresceu de 1534
+para 2292 bytes: exatamente os 758 de um registro), skill com alvo/sem alvo/de área, combate até a
+morte do mob, loot, equipar, loja de NPC, quest, teleporte e logout. Chat entrou com uma linha só.
+
+**O que não dá para confirmar pelo nome:** mover item dentro da bolsa, e o `/comando` do item 13. A
+tabela nome↔opcode erra (seção 8.2), então a ausência de um nome não prova a ausência do pacote —
+mas também não prova a presença.
+
+O resto desta seção continua valendo para a **próxima** captura, quando ela for necessária.
 
 ### Por que uma captura vale tanto
 
@@ -380,9 +390,29 @@ Para virar replay:
 python tools/export_replay.py build/capture/jogo.pcapng EmuRustDurak/replay.bin
 ```
 
-**A captura contém o token de autenticação da conta.** Fica fora do git — o `.gitignore` já cobre
-`build/` — e não vai em pacote nenhum. O `export_replay.py` troca o nome da conta por um neutro
-automaticamente, mas isso vale só para o `replay.bin`, não para o pcap.
+E, uma vez por captura, achar o novo `ID_CAPTURADO` do `replay.rs`: é o u32 no offset 0 do payload
+de `S_STATUS` (`0x001`). Se aparecer mais de um valor, a captura tem mais de um personagem, e vale o
+mais frequente. A `CHAVE_CAPTURADA` ao lado dele **não** muda — duas capturas da mesma conta, em
+dias diferentes, trouxeram `0x026EDF39` nas duas: ela identifica a conta, não a sessão.
+
+### O token de autenticação
+
+**A captura contém as credenciais da conta**, e não só o nome dela:
+
+| onde | o que |
+|---|---|
+| `C_HQ_LOGIN` (`0x0F0`) | o token de login, um par de GUIDs em base64 |
+| `S_REPLY_NP_AUTH_TOKEN` (`0x108`) | o token da resposta, mais o GUID de sessão |
+
+O pcap fica fora do git — o `.gitignore` cobre `build/` — e não vai em pacote nenhum.
+
+O `replay.bin`, esse **vai**: o `empacotar.ps1` copia ele para os dois pacotes. Por isso o
+`export_replay.py` apaga o token e o GUID na exportação, substituindo por bytes do mesmo tamanho
+(o formato continua válido, o segredo não vai junto), além de trocar o nome da conta. Ele avisa
+quantos lugares limpou.
+
+`--sem-anonimizar` desliga as duas coisas, para quando a comparação com o pcap precisar bater byte a
+byte. **Um arquivo gerado assim não pode ser compartilhado.**
 
 ---
 
