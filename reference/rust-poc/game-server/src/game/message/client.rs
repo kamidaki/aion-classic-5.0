@@ -383,7 +383,9 @@ impl HqLogin {
             s::Message::NpShopGoodsCount(s::NpShopGoodsCount::new()),
             s::Message::ReadyEnterWorld(s::ReadyEnterWorld::new()),
             s::Message::L2AuthLoginCheck(s::L2AuthLoginCheck::new()),
-            s::Message::ReplyNpAuthToken(s::ReplyNpAuthToken::new()),
+            s::Message::ReplyNpAuthToken(s::ReplyNpAuthToken::para(
+                &session.session_token,
+            )),
         ]
     }
 }

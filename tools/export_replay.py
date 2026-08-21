@@ -10,6 +10,10 @@ Formato, repetido ate o fim do arquivo:
 
 O payload nao inclui o prelude (opcode, SERVER_BYTE, checksum) -- ele e remontado no envio.
 
+O nome da conta capturada aparece dentro dos payloads e e trocado por um neutro do mesmo tamanho,
+porque o arquivo gerado acompanha o emulador quando ele e compartilhado. `--sem-anonimizar` mantem
+os bytes originais, para quando a comparacao com o pcap precisar bater exatamente.
+
 Uso: python tools/export_replay.py build/capture/gf-login.pcapng build/replay.bin
 """
 import argparse
@@ -17,6 +21,11 @@ import struct
 import subprocess
 
 TSHARK = r"C:/Program Files/Wireshark/tshark.exe"
+
+# Nome da conta que estava logada na captura, e o neutro que entra no lugar. Os dois precisam ter o
+# mesmo numero de caracteres: o campo tem tamanho fixo, e encurtar deslocaria o resto do pacote.
+NOME_DE_CONTA_CAPTURADO = "niZZin"
+NOME_DE_CONTA_NEUTRO = "player"
 STATIC_KEY = b"nKO/WctQ0AVLbpzfBkS6NevDYT8ourG5CRlmdjyJ72aswx4EPq1UgZhFMXH?3iI9"
 
 
@@ -43,7 +52,13 @@ def main():
     ap.add_argument("pcap")
     ap.add_argument("saida")
     ap.add_argument("--porta", type=int, default=7777)
+    ap.add_argument("--sem-anonimizar", action="store_true",
+                    help="mantem o nome da conta capturada nos payloads")
     args = ap.parse_args()
+
+    de = NOME_DE_CONTA_CAPTURADO.encode("utf-16-le")
+    para = NOME_DE_CONTA_NEUTRO.encode("utf-16-le")
+    assert len(de) == len(para), "os dois nomes precisam ter o mesmo tamanho"
 
     campos = subprocess.run(
         [TSHARK, "-r", args.pcap, "-Y", f"tcp.port=={args.porta} && tcp.len>0",
@@ -82,10 +97,17 @@ def main():
             op = ((cif ^ 0xD4) - 0xC4) & 0xFFFF if d == "S" else ((cif ^ 0x36) - 0xC4) & 0xFFFF
             registros.append((0 if d == "S" else 1, op, corpo[5:]))
 
+    trocados = 0
     with open(args.saida, "wb") as fh:
         for direcao, op, payload in registros:
+            if not args.sem_anonimizar and de in payload:
+                trocados += payload.count(de)
+                payload = payload.replace(de, para)
             fh.write(struct.pack("<BHI", direcao, op, len(payload)))
             fh.write(payload)
+
+    if trocados:
+        print(f"nome da conta trocado por '{NOME_DE_CONTA_NEUTRO}' em {trocados} lugar(es)")
 
     n_srv = sum(1 for d, _, _ in registros if d == 0)
     print(f"{len(registros)} pacotes ({n_srv} do servidor, {len(registros)-n_srv} do cliente) "

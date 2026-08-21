@@ -80,6 +80,24 @@ cliente lê na lista.
 | `AION_PERSONAGEM_CAPTURADO` | monta a lista construída com os valores do personagem capturado; teste de bissecção |
 | `AION_CABECALHO` | escreve à mão os dois bytes do cabeçalho da lista, ex. `"2,1"`; para perguntar ao cliente sem recompilar |
 | `AION_PACOTES_25` | manda também os pacotes da 2.5 na entrada no mundo. **Derruba o cliente**; ver seção 6 |
+| `AION_CLIENT` | caminho do `aion.bin`. É a única coisa que muda de máquina para máquina |
+
+### Para outra pessoa rodar
+
+```bash
+powershell -ExecutionPolicy Bypass -File pacote/empacotar.ps1
+```
+
+Compila, junta os quatro executáveis com o `replay.bin` e os scripts, e gera `dist/aion-emulador/`
+mais um zip de ~2,6 MB. Quem receber preenche o caminho do cliente no `config.txt` e clica no
+`INICIAR.bat`; o `LEIA-ME.txt` que vai junto explica o resto, inclusive as duas condições acima.
+
+O `INICIAR.bat` fecha o `gfclient.exe`, detecta o IP da rede, recusa loopback e espera as portas
+abrirem antes de chamar o cliente — cada uma dessas falhas produz o mesmo sintoma de "servidor
+quebrado", e nenhuma é adivinhável de dentro do jogo.
+
+Não vai nada do repositório: nem código, nem captura, nem ferramenta de análise. O `AION_DATA_DIR` é
+opcional — sem ele o servidor roda igual, só não resolve nome de NPC e item nos logs.
 
 ### Gerar o `replay.bin`
 
@@ -119,6 +137,7 @@ docs/protocol/               O QUE SE SABE DO PROTOCOLO
   opcodes_server.csv         340 opcodes
   opcodes_client.csv         244 opcodes
 
+pacote/                      o que vira o pacote para outra pessoa (seção 3)
 docs/reverse/                achados de engenharia reversa
 tools/                       ferramentas de análise (seção 8)
 server/                      Aion-Lightning (Java). Só referência.

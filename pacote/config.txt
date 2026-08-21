@@ -1,0 +1,21 @@
+# Configuracao do servidor local de Aion Classic 4.5.
+# Edite as linhas abaixo. Tudo depois de # e comentario.
+
+# OBRIGATORIO: onde esta o aion.bin da sua instalacao do cliente.
+# E o executavel de verdade do jogo, dentro de bin64. Nao e o launcher da Gameforge.
+# Exemplo: C:\Gameforge\aionclassic\bin64\aion.bin
+CLIENTE=
+
+# Opcional: o IP da sua maquina na rede local. Vazio = detecta sozinho.
+#
+# NAO pode ser 127.0.0.1. O cliente 4.5 descarta entradas de loopback na lista de servidores
+# antes mesmo de tentar conectar -- nao sai nem um pacote, e a tela mostra o mesmo erro de
+# servidor fora do ar. Deixe vazio a nao ser que a deteccao pegue a placa errada.
+IP=
+
+# Opcional: pasta com o XML extraido do cliente (npcs/client_npcs.xml, items/client_items.xml).
+# Sem isso o servidor roda igual; so nao resolve nome de NPC e de item nos logs.
+DADOS=
+
+# Opcional: nome de usuario. Qualquer um serve -- nao ha senha, e a conta e criada na hora.
+USUARIO=durak

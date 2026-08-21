@@ -24,5 +24,12 @@ logs/
 # overrides locais com segredos -- database.properties fica como template
 myls.properties
 
-# derivado da captura, contem dados da conta
+# derivado da captura
 replay.bin
+
+# arquivos de trabalho do SQLite: mudam a cada execucao do servidor
+*.db-shm
+*.db-wal
+
+# pacote gerado por pacote/empacotar.ps1
+dist/

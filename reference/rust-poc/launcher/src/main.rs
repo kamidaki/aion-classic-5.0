@@ -9,7 +9,16 @@ use std::sync::{Arc, Mutex};
 // Config — adjust these to match your installation
 // ---------------------------------------------------------------------------
 
-const GAME_PATH: &str = r#"G:\GFAion\aionclassic\bin64\aion.bin"#;
+/// Caminho padrao do cliente. Quase certamente errado em outra maquina -- use `AION_CLIENT`.
+const GAME_PATH_PADRAO: &str = r#"G:\GFAion\aionclassic\bin64\aion.bin"#;
+/// Onde esta o `aion.bin`. `AION_CLIENT` tem precedencia; sem ela, vale [`GAME_PATH_PADRAO`].
+///
+/// E a unica coisa que muda de maquina para maquina e nao da para adivinhar, entao fica em
+/// variavel de ambiente em vez de constante recompilada.
+fn caminho_do_cliente() -> String {
+    std::env::var("AION_CLIENT").unwrap_or_else(|_| GAME_PATH_PADRAO.to_string())
+}
+
 const AUTH_SERVER: &str = "127.0.0.1";
 const STS_SERVER: &str = "127.0.0.1";
 const DEFAULT_DEV_USERNAME: &str = "dev";
@@ -75,9 +84,10 @@ fn launch_game(state: &Arc<Mutex<LauncherState>>) {
     println!("INFO: launching game as '{username}'");
     println!("INFO:   auth-server  → {AUTH_SERVER}:13001");
     println!("INFO:   STS server   → {STS_SERVER}:6600");
-    println!("INFO:   game binary  → {GAME_PATH}");
+    let game_path = caminho_do_cliente();
+    println!("INFO:   game binary  → {game_path}");
 
-    let result = Command::new(GAME_PATH)
+    let result = Command::new(&game_path)
         // Disable the in-game cash shop / premium server calls
         .arg("-dnpshop")
         // Display language
@@ -115,8 +125,9 @@ fn launch_game(state: &Arc<Mutex<LauncherState>>) {
 
     match result {
         Err(ref e) if e.kind() == ErrorKind::NotFound => {
-            eprintln!("ERROR: game binary not found at '{GAME_PATH}'");
-            eprintln!("       Update GAME_PATH in launcher/src/main.rs");
+            eprintln!("ERROR: nao achei o cliente em '{game_path}'");
+            eprintln!("       Aponte AION_CLIENT para o aion.bin da sua instalacao:");
+            eprintln!("       set AION_CLIENT=C:\\Aion\\aionclassic\\bin64\\aion.bin");
         }
         Err(e) => eprintln!("ERROR: failed to spawn game process: {e}"),
         Ok(_) => println!("INFO: game process spawned — launcher stays open"),
