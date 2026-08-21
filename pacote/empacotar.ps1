@@ -1,7 +1,14 @@
 # Monta o pacote que vai para outra pessoa: compila, junta o que e necessario, e zipa.
 #
-# O criterio do que entra e "roda sem o repositorio". Codigo, capturas e ferramentas de analise
-# ficam de fora; o que sobra e o que o cliente precisa encontrar rodando.
+# Sao dois pacotes, para dois usos que nao se misturam:
+#
+#   (padrao)   so os executaveis. Quem recebe roda; nao precisa de Rust nem do repositorio.
+#   -Fonte     o codigo. Quem recebe compila e altera.
+#
+# O criterio do padrao e "roda sem o repositorio". O do -Fonte e "o que o git rastreia, mais o
+# replay.bin" -- que nao esta no git e nao da para regenerar sem a captura original.
+
+param([switch]$Fonte)
 
 $ErrorActionPreference = "Stop"
 $aqui = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -12,6 +19,48 @@ $saida = Join-Path $raiz "dist\aion-emulador"
 Write-Host ""
 Write-Host "  Empacotando o servidor local de Aion" -ForegroundColor Cyan
 Write-Host ""
+
+# --- pacote de codigo-fonte -------------------------------------------------
+#
+# A lista de arquivos sai do proprio git: e a definicao mais confiavel de "o que e fonte" que
+# existe no repositorio, e ja exclui target/, capturas e o resto do que o .gitignore cobre.
+if ($Fonte) {
+    $saidaFonte = Join-Path $raiz "dist\aion-emulador-fonte"
+    if (Test-Path $saidaFonte) { Remove-Item $saidaFonte -Recurse -Force }
+    New-Item -ItemType Directory -Path $saidaFonte -Force | Out-Null
+
+    Push-Location $raiz
+    # A base Java sao 359 MB de referencia que nao executa -- fica de fora, e o LEIA-ME-FONTE
+    # explica onde encontra-la.
+    $arquivos = git ls-files EmuRustDurak docs tools pacote RELATORIO.txt |
+        Where-Object { $_ -notlike "EmuRustDurak/aion.db*" }
+    Pop-Location
+
+    foreach ($rel in $arquivos) {
+        $origem = Join-Path $raiz $rel
+        if (-not (Test-Path $origem)) { continue }
+        $destino = Join-Path $saidaFonte $rel
+        New-Item -ItemType Directory -Path (Split-Path -Parent $destino) -Force | Out-Null
+        Copy-Item $origem $destino
+    }
+
+    # O replay.bin nao esta no git (deriva da captura), e sem ele o cliente nao entra no mundo.
+    Copy-Item (Join-Path $raiz "EmuRustDurak\replay.bin") (Join-Path $saidaFonte "EmuRustDurak")
+    Copy-Item (Join-Path $aqui "LEIA-ME-FONTE.txt") (Join-Path $saidaFonte "LEIA-ME.txt")
+
+    $zipFonte = Join-Path $raiz "dist\aion-emulador-fonte.zip"
+    if (Test-Path $zipFonte) { Remove-Item $zipFonte -Force }
+    Compress-Archive -Path "$saidaFonte\*" -DestinationPath $zipFonte
+
+    $mb = [math]::Round((Get-Item $zipFonte).Length / 1MB, 1)
+    Write-Host "  Pronto (codigo-fonte)." -ForegroundColor Green
+    Write-Host "    $($arquivos.Count) arquivos rastreados, mais o replay.bin"
+    Write-Host "    zip: $zipFonte  ($mb MB)"
+    Write-Host ""
+    Write-Host "  Quem receber precisa de Rust. O LEIA-ME.txt de dentro explica."
+    Write-Host ""
+    exit 0
+}
 
 # --- compila ----------------------------------------------------------------
 

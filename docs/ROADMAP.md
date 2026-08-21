@@ -9,9 +9,14 @@ Escrito para ser lido frio, sem contexto de conversa anterior.
 Servidor privado para o cliente **Aion Classic 4.5 da GameForge**, build
 `4526.0820.0706.7137`, x64, instalado em `G:\GFAion\aionclassic`.
 
-A base é o **POC em Rust** em `EmuRustDurak` — originalmente escrito para o Classic 2.5 e
-corrigido aqui para a 4.5. A pasta `reference/aion-lightning/` tem o Aion-Lightning (Java), que foi a base anterior
-e hoje é **só referência de lógica de jogo**; nada dela está em uso.
+O servidor é o workspace Rust em **`EmuRustDurak/`** — originalmente um POC escrito para o Classic
+2.5 e corrigido aqui para a 4.5. É de lá que saem os quatro executáveis que rodam.
+
+`reference/aion-lightning/` tem o Aion-Lightning (Java), que foi a base anterior. Nada dela executa,
+mas ela é **referência de protocolo**, não só de lógica de jogo: foi o `writePlayerInfo()` dela que
+entregou o layout do registro de personagem, e o `world_maps.xml` que identificou o mapa de entrada.
+Está algumas versões atrás, então serve como mapa de campos a conferir contra a captura — nunca
+como verdade.
 
 Tudo que se sabe do protocolo saiu de **uma captura de sessão real** contra os servidores da
 GameForge, não de tentativa e erro. A captura fica em `build/capture/gf-login.pcapng`, fora do git
@@ -82,22 +87,34 @@ cliente lê na lista.
 | `AION_PACOTES_25` | manda também os pacotes da 2.5 na entrada no mundo. **Derruba o cliente**; ver seção 6 |
 | `AION_CLIENT` | caminho do `aion.bin`. É a única coisa que muda de máquina para máquina |
 
-### Para outra pessoa rodar
+### Para outra pessoa rodar, ou mexer
+
+São dois pacotes, para dois usos que não se misturam:
 
 ```bash
 powershell -ExecutionPolicy Bypass -File pacote/empacotar.ps1
+powershell -ExecutionPolicy Bypass -File pacote/empacotar.ps1 -Fonte
 ```
 
-Compila, junta os quatro executáveis com o `replay.bin` e os scripts, e gera `dist/aion-emulador/`
-mais um zip de ~2,6 MB. Quem receber preenche o caminho do cliente no `config.txt` e clica no
-`INICIAR.bat`; o `LEIA-ME.txt` que vai junto explica o resto, inclusive as duas condições acima.
+O primeiro é para **rodar**: os quatro executáveis com o `replay.bin` e os scripts, ~2,6 MB. Quem
+recebe não precisa de Rust nem do repositório.
 
-O `INICIAR.bat` fecha o `gfclient.exe`, detecta o IP da rede, recusa loopback e espera as portas
-abrirem antes de chamar o cliente — cada uma dessas falhas produz o mesmo sintoma de "servidor
-quebrado", e nenhuma é adivinhável de dentro do jogo.
+O segundo é para **alterar o código**: o que o git rastreia em `EmuRustDurak/`, `docs/`, `tools/` e
+`pacote/`, mais o `replay.bin` — 0,2 MB, porque o que pesa no repositório é `target/`. Testado
+compilando do zip extraído, fora do repositório. A base Java fica de fora: são 359 MB de referência
+que não executa.
 
-Não vai nada do repositório: nem código, nem captura, nem ferramenta de análise. O `AION_DATA_DIR` é
-opcional — sem ele o servidor roda igual, só não resolve nome de NPC e item nos logs.
+O `replay.bin` vai nos dois porque **não dá para regenerar sem a captura**, e a captura não
+acompanha nenhum dos dois — ela contém o token de autenticação de uma conta real.
+
+Quem receber o pacote de execução preenche o caminho do cliente no `config.txt` e clica no
+`INICIAR.bat`. Esse script fecha o `gfclient.exe`, detecta o IP da rede, recusa loopback e espera as
+portas abrirem antes de chamar o cliente — cada uma dessas falhas produz o mesmo sintoma de
+"servidor quebrado", e nenhuma é adivinhável de dentro do jogo. O `LEIA-ME.txt` que vai junto
+explica o resto.
+
+O `AION_DATA_DIR` é opcional nos dois casos: sem ele o servidor roda igual, só não resolve nome de
+NPC e item nos logs.
 
 ### Gerar o `replay.bin`
 
