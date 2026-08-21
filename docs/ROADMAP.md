@@ -32,11 +32,12 @@ A tela de personagem renderiza nome, nível, classe e modelo 3D. A entrada no mu
 completa — minimapa, barra de skills, DP.
 
 A lista de personagens sai do banco e o cliente devolve o id do banco quando você seleciona — a
-tela de personagem é implementação, não replay. Seção 5.
+tela de personagem é implementação, não replay (seção 5). O mundo carrega em Pandaemonium com
+cenário, NPCs e minimapa; o personagem anda e a UI responde (seção 6).
 
-**O que ainda não funciona:** o mundo carrega sem posição e sem mapa, sobre o cenário da tela de
-seleção. O servidor não trata a seleção de personagem, e a entrada no mundo ainda é replay. Seção
-6.
+**O que ainda é andaime:** o corpo no mundo e boa parte da sessão são bytes da captura com o id
+trocado — o personagem aparece com a cara e o nome do capturado. Trocar isso por implementação é o
+trabalho da seção 6.
 
 ---
 
@@ -78,6 +79,7 @@ cliente lê na lista.
 | `AION_LISTA_CAPTURADA` | volta a lista de personagens para o replay da captura, em vez da construída do banco; ver seção 5 |
 | `AION_PERSONAGEM_CAPTURADO` | monta a lista construída com os valores do personagem capturado; teste de bissecção |
 | `AION_CABECALHO` | escreve à mão os dois bytes do cabeçalho da lista, ex. `"2,1"`; para perguntar ao cliente sem recompilar |
+| `AION_PACOTES_25` | manda também os pacotes da 2.5 na entrada no mundo. **Derruba o cliente**; ver seção 6 |
 
 ### Gerar o `replay.bin`
 
@@ -103,6 +105,7 @@ reference/rust-poc/          A BASE. Workspace Rust, 7 crates, compila limpo.
       molde.rs               registro capturado, com os campos que o servidor escreve zerados
       capturado.rs           pacotes capturados usados como andaime
       replay.rs              motor de replay, indexado por opcode
+    mundo.rs                 mapa, posição e direção do ponto de entrada
   launcher/                  named pipe da GameForge + abre o cliente
   krypt/                     cripto do game server e do STS
   pak/ bxml/                 desempacotadores de arquivo do cliente
@@ -151,52 +154,68 @@ Nenhuma etapa dessa dependeu de adivinhar o que o cliente estava pensando.
 
 ---
 
-## 6. O bloqueio atual: a entrada no mundo
+## 6. A entrada no mundo
 
-O mundo carrega com a HUD completa — minimapa, barra de skills, DP — mas **sobre o cenário da tela
-de seleção, sem mapa e sem posição**.
+O cliente entra em Pandaemonium com cenário, NPCs e minimapa; o personagem aparece, anda, e a UI
+responde. Vida, barra de skills e inventário vêm preenchidos. Confirmado contra o cliente em
+21/08/2026.
 
-A causa agora é conhecida e é outra: o servidor não trata a seleção de personagem, e os pacotes de
-entrada no mundo ainda são replay da captura, com ids e coordenadas de outra sessão.
+Boa parte disso ainda é andaime — ver "o que é reprodução", abaixo.
 
-### O que falta implementar
+### O que estava faltando
 
-**1. `0x18` — a seleção de personagem.** A tabela extraída do `Game.dll` chama de
-`C_TOGGLE_CHEST`, e está errada: o payload são 4 bytes com o id do personagem escolhido. Hoje o
-servidor não trata, então a sessão fica com personagem `0`:
+**Os opcodes da 2.5 estão deslocados em `0x10`.** A seleção de personagem é `0x18` (era `0x08`) e o
+"terminei de carregar" é `0x19` (era `0x09`). Os dois handlers já existiam no POC, registrados nos
+números velhos — nunca eram chamados. Sem tratar a seleção, a sessão ficava com personagem `0` e a
+entrada no mundo saía sem mapa nem posição.
 
-```
-WARNING: CurStatus para personagem 0 que nao esta no estado; ignorando
-```
+**O mapa precisa concordar em dois lugares.** O cliente pré-carrega o cenário pelo mapa que está no
+registro do personagem, dentro do `S_CHARACTER_LIST`, e depois entra pelo mapa do `S_WORLD`. Os dois
+leem de `game::mundo` — Pandaemonium, com a posição e a direção exatas da captura. É o ponto de
+nascimento da 4.5: a Kimmie da captura tinha cinco minutos de criada.
 
-**2. `S_WORLD` (`0x00F`) — onde o personagem entra.** 42 bytes, e é o que põe o jogador no mapa. Na
-captura, quando a Kimmie entra:
+**O id da captura aparece espalhado pelos pacotes replayados.** O replay já trocava a chave de
+sessão; faltava o id do personagem. Sem isso o cliente recebe dois "eus", e os buffs, a animação e o
+estado falam do outro. Foi a troca que fez a Siel's Aura cair no personagem certo.
 
-```
-10 35 27 07 | 10 35 27 07 | 00 00 00 00 00 | 5e fa a1 44 | f4 09 b1 44 | 00 20 50 43 | 6d
-mapa          mapa de novo   zeros            x=1295.8      y=1416.3      z=208.1       109
-```
+**O replay só atendia opcode sem implementação** — e os lotes que faltavam estavam justamente sob
+opcodes que têm handler: o burst de entrada no mundo está indexado sob o
+`C_REQUEST_SERIAL_KILLER_LIST`, o bloco que vem logo antes de o cliente andar está sob o
+`C_SYNC_TIME`, e skills e inventário estão sob o `C_2ND_PASSWORD`. Depois da seleção de personagem o
+replay passa a atender também quem tem implementação.
 
-Mapa, x, y, z e direção — os mesmos valores que estão no registro dela na lista de personagens. O
-mapa aparece duas vezes, como a contagem aparecia na lista; não se sabe se os dois têm o mesmo
-papel.
+Ação do jogador nunca é atendida pelo replay. A resposta gravada fala de outro movimento e para o
+personagem no meio do passo — foi o que aconteceu com o `C_MOVE_NEW`.
 
-O mapa que o `S_WORLD` manda tem que ser o mesmo que a lista de personagens declarou no offset 148
-do registro: é por ele que o cliente pré-carrega o cenário. Hoje a lista manda o mapa do Durak
-(`800040000`), que veio no molde.
+### O que é reprodução, e não implementação
 
-### A sequência real, para implementar na ordem
+| o quê | de onde vem |
+|---|---|
+| lista de personagens | **implementação**: id, nome e nível saem do banco |
+| mapa, posição e direção | **implementação**: `game::mundo`, nos dois lugares |
+| `S_STATUS` (396 bytes) e `S_PUT_USER` (481) | captura, com o id trocado — por isso o corpo no mundo é o da Kimmie |
+| o lote de entrada no mundo (8 pacotes) | captura, em `capturado.rs` |
+| NPCs, buffs, abyss, chat, mail, LFG (~190 pacotes) | captura, pelo motor de replay |
 
-Da captura, depois da seleção (`tools/decode_game.py build/capture/gf-login.pcapng --ate 70`):
+### Os pacotes 2.5 que crasham
 
-```
-#25 C 0x018 seleção de personagem      #38 S_BATTLEPASS_LIST
-#26 S_2ND_PASSWORD                     #46 S_ENTER_WORLD_CHECK
-#29 S_RESULT_PASSPORT                  #53 S_LOAD_CLIENT_SETTINGS
-#30 S_ADD_SKILL                        #57 S_LOAD_INVENTORY
-#32 S_CREATE_ACHIEVEMENT_EVENT         #67 S_WORLD          <- entra no mapa
-#35 S_LOAD_WORKINGQUEST                #164 S_PUT_USER      <- o personagem aparece
-```
+`S_STATUS` sai com 312 bytes contra 396 da captura, `S_ADD_SKILL` 376 contra 325,
+`S_LOAD_INVENTORY` 1907 contra 3363. Com eles ligados o cliente carrega Pandaemonium e crasha logo
+depois. Ficam atrás de `AION_PACOTES_25=1`.
+
+Dois do mesmo grupo **batem** com a captura e estão ligados: o `S_WORLD_INFO`, que sai byte a byte
+igual, e o `S_CUR_STATUS`, de 1 byte.
+
+### O próximo passo
+
+Decodificar o `S_STATUS` e o `S_PUT_USER`, nessa ordem. São os dois que fazem o personagem ser o do
+banco em vez do capturado, e o método é o que já funcionou duas vezes: pegar o `writeImpl` do
+pacote correspondente no Aion-Lightning como mapa de campos, conferir contra os bytes da captura, e
+procurar uma redundância interna que valide o alinhamento — no registro da lista foi
+`100000 + raça * 2 + gênero`.
+
+Depois deles, trocar os pacotes replayados um a um, na ordem em que aparecem na captura. Cada um que
+sair do replay é um a menos de sessão emprestada.
 
 ---
 
@@ -220,6 +239,10 @@ Dois casos comprovados:
 
 - `0x5E`, que a tabela chama de `C_GET_OFF_VEHICLE`, na verdade devolve a chave de sessão
 - `0xD6`, que a tabela chama de `C_SA_CONFIRMGOODS`, carrega MAC, id de hardware e IP
+- `0x18`, que a tabela chama de `C_TOGGLE_CHEST`, é a **seleção de personagem**
+- `0x19`, que a tabela chama de `C_GIVE_ITEM`, é o **"terminei de carregar o mapa"**
+- `0x56`, que a tabela chama de `C_QUERY_NUMBER_RESULT`, é um canal de log do cliente: foi por ele
+  que chegou `[INIT][1] SCANNER : LOADING LIST FAILED.`
 
 Agora que o conteúdo dos pacotes é legível, a tabela é corrigível. `docs/protocol/README.md` explica
 como a extração funciona.
@@ -271,6 +294,12 @@ Cada uma destas custou tempo real.
 obrigatório. Zerei quatro bytes de dados reais por deduzir a fronteira do campo de nome em vez de
 medi-la, e o cliente crashou. Eram o gênero, que vale 1 nos dois personagens da captura. Meça toda
 fronteira nos dois registros.
+
+**Opcode que "não existe" pode ser o mesmo, deslocado.** Entre a 2.5 e a 4.5, a seleção de
+personagem foi de `0x08` para `0x18` e o "terminei de carregar" foi de `0x09` para `0x19` — os dois
+somaram `0x10`. Os handlers já estavam escritos e corretos; só o número estava velho, e o sintoma
+era o servidor ignorar um pacote que o cliente mandava. Antes de escrever handler novo para um
+opcode desconhecido, vale procurar o handler existente que faz exatamente aquilo.
 
 **Um campo que sempre teve o mesmo valor pode ser dois campos.** No cabeçalho da lista de
 personagens, o byte 0 e o byte 10 valem os dois 2 na captura, e valem os dois 0 na lista vazia.
