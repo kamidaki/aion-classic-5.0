@@ -156,7 +156,7 @@ docs/protocol/               O QUE SE SABE DO PROTOCOLO
 
 pacote/                      o que vira o pacote para outra pessoa (seção 3)
 docs/reverse/                achados de engenharia reversa
-tools/                       ferramentas de análise (seção 8)
+tools/                       ferramentas de análise (seção 9)
 dist/                        pacote gerado. Fora do git.
 build/capture/               capturas. Fora do git: contêm token de conta.
 
@@ -262,10 +262,9 @@ skill, não ataca, não abre janela nenhuma. Não dá para saber nem qual é o o
 4.5 — a tabela do `Game.dll` chama `0x21` de `C_USE_SKILL`, e essa tabela já errou em cinco pontos
 conhecidos.
 
-**O desbloqueio é uma captura nova**, contra o servidor oficial, cobrindo o que falta: usar skill,
-atacar um mob, pegar loot, abrir inventário e loja, falar no chat, trocar de mapa. Foi assim que a
-captura de login destravou tudo o que existe aqui hoje — cada bloqueio virou comparação byte a
-byte, em vez de tentativa e erro.
+**O desbloqueio é uma captura nova**, contra o servidor oficial. Foi assim que a captura de login
+destravou tudo o que existe aqui hoje — cada bloqueio virou comparação byte a byte, em vez de
+tentativa e erro. **O roteiro do que gravar, e como, está na seção 7.**
 
 Sem ela, o caminho é engenharia reversa do `Game.dll` para achar o opcode e a condição que o
 cliente checa antes de liberar o botão. Muito mais caro.
@@ -283,11 +282,115 @@ sair do replay é um a menos de sessão emprestada.
 
 ---
 
-## 7. Depois que o mundo carregar
+## 7. A captura que falta
+
+É o próximo passo do projeto, e é trabalho de jogar, não de programar. Meia hora dentro do jogo
+oficial, gravando, destrava a fase inteira que vem depois.
+
+### Por que uma captura vale tanto
+
+**Captura ensina formato. Dado ensina conteúdo.** São coisas diferentes, e confundir as duas leva a
+gravar por semanas à toa.
+
+Uma sessão gravada, com dois personagens, deu o layout dos 758 bytes do registro de personagem — e
+esse layout agora serve para qualquer um. O `Azphelumbra` que aparece na tela tem nome e nível que
+nunca estiveram em captura nenhuma.
+
+| o que se quer saber | de onde vem |
+|---|---|
+| que opcode o cliente manda ao usar skill, e o que o servidor responde | **captura**, uma vez |
+| quais skills cada classe tem, dano, cooldown, alcance | dados |
+| que pacote anuncia o loot | **captura**, uma vez |
+| o que cada mob dropa, onde nasce | dados |
+
+Os dados já estão aqui: `reference/aion-lightning/AL-Game/data/static_data/` tem `npc_drops/`
+(40 MB), `npcs/` (33 MB), `skills/` (11 MB), `spawns/` (11 MB), `items/` (63 MB) e `quest_data/`.
+É de uma versão anterior, então ids e balanceamento divergem em pontos — mas é um corpus que
+ninguém precisa recapturar. O XML do próprio cliente 4.5 é o autoritativo para esta versão.
+
+**Grave categorias, não instâncias.** Uma skill com alvo e uma sem provavelmente têm campos
+diferentes; duas skills com alvo, quase certamente não.
+
+### O comando
+
+```bash
+"C:\Program Files\Wireshark\tshark.exe" -i "\Device\NPF_{188CBCE4-2010-4DDE-B978-4B5487622E81}" -w build/capture/jogo.pcapng -f "tcp port 7777 or tcp port 13001 or tcp port 6600"
+```
+
+É a interface **Ethernet**, não a de loopback — o servidor oficial está na rede, não na máquina.
+O GUID muda por máquina e por reinstalação de driver; para relistar:
+
+```bash
+"C:\Program Files\Wireshark\tshark.exe" -D
+```
+
+Na sessão capturada, o servidor oficial estava em `79.110.83.115:7777` (jogo), `79.110.83.156:13001`
+(auth) e `79.110.83.118:6600` (STS). O filtro por porta sobrevive a mudança de IP; o por IP, não.
+
+### Três regras que decidem se a captura serve
+
+**1. Comece a gravar ANTES de abrir o cliente.** O primeiro pacote da sessão de jogo é o `S_KEY`, e
+é ele que carrega a semente da cifra. Sem ele, nada decifra — a captura inteira vira lixo, e não dá
+para perceber isso enquanto se joga.
+
+**2. Uma gravação contínua.** Parar e recomeçar perde o `S_KEY` do trecho novo. Se precisar
+interromper, a sessão seguinte é outro arquivo, e tem que começar de outro login.
+
+**3. Use o launcher oficial, contra o servidor oficial.** Esta captura é do jogo funcionando, não do
+nosso.
+
+### O roteiro dentro do jogo
+
+Na ordem. Cada item existe por um motivo:
+
+| # | o que fazer | o que isso ensina |
+|---|---|---|
+| 1 | logar e entrar no mundo | uma segunda amostra do que já foi decodificado — serve para conferir a nossa implementação contra uma sessão nova |
+| 2 | **criar um personagem** | não temos nada disso. Hoje toda conta recebe o mesmo boneco fixo |
+| 3 | andar, correr, pular, planar | os pacotes de movimento além do `C_MOVE_NEW` que já vemos |
+| 4 | usar uma skill **com alvo** | o opcode que hoje não sabemos qual é, e a resposta do servidor |
+| 5 | usar uma skill **sem alvo** (buff próprio) | provavelmente outro formato de campos |
+| 6 | usar uma skill **de área** | idem, e é o caso com mais alvos |
+| 7 | atacar um mob até matar | combate, dano, morte |
+| 8 | lootar o mob | como o loot é anunciado e recolhido |
+| 9 | equipar e desequipar um item | `S_WIELD` e o inventário reagindo |
+| 10 | mover um item dentro da bolsa | o pacote de reorganizar inventário |
+| 11 | abrir e fechar: bolsa, ficha, mapa | o que a interface pede ao servidor |
+| 12 | falar com um NPC e abrir a loja dele | diálogo e comércio |
+| 13 | escrever no chat: uma linha normal e um `/comando` | chat, que hoje não existe |
+| 14 | pegar e entregar uma quest | o sistema de quest inteiro começa aqui |
+| 15 | trocar de mapa (portal ou teleporte) | como o cliente carrega outro mundo sem relogar |
+| 16 | deslogar até a tela de personagem | o caminho de saída, que também não temos |
+
+Se der para fazer com **dois personagens de classes diferentes**, melhor: as diferenças entre eles
+separam o que é do personagem do que é do formato.
+
+### Depois de gravar
+
+```bash
+python tools/decode_game.py build/capture/jogo.pcapng --ate 60
+```
+
+Se a primeira linha for `S_KEY (seed em claro)` e os pacotes seguintes tiverem nome, a captura
+presta. Se aparecer `checksum invalido`, a gravação começou tarde — veja a regra 1.
+
+Para virar replay:
+
+```bash
+python tools/export_replay.py build/capture/jogo.pcapng EmuRustDurak/replay.bin
+```
+
+**A captura contém o token de autenticação da conta.** Fica fora do git — o `.gitignore` já cobre
+`build/` — e não vai em pacote nenhum. O `export_replay.py` troca o nome da conta por um neutro
+automaticamente, mas isso vale só para o `replay.bin`, não para o pcap.
+
+---
+
+## 8. Depois que o mundo carregar
 
 Em ordem. Cada item destrava o seguinte.
 
-### 7.1 Trocar o andaime por implementação
+### 8.1 Trocar o andaime por implementação
 
 O `replay.rs` serve pacotes capturados para todo opcode sem implementação. Cada um que for
 implementado sai do replay naturalmente. A ordem sensata é a da própria captura — use
@@ -296,7 +399,7 @@ implementado sai do replay naturalmente. A ordem sensata é a da própria captur
 O tipo `Bruto` em `server.rs` existe para essa transição: monta o prelude normalmente e usa payload
 pronto, então dá para trocar um pacote de cada vez sem parar o fluxo.
 
-### 7.2 Corrigir a tabela nome↔opcode
+### 8.2 Corrigir a tabela nome↔opcode
 
 O pareamento nome↔número foi feito por heurística sobre o `Game.dll` e **erra em alguns pontos**.
 Dois casos comprovados:
@@ -311,7 +414,7 @@ Dois casos comprovados:
 Agora que o conteúdo dos pacotes é legível, a tabela é corrigível. `docs/protocol/README.md` explica
 como a extração funciona.
 
-### 7.3 Preencher o registro de personagem
+### 8.3 Preencher o registro de personagem
 
 O registro está decodificado — `docs/protocol/character-list.md` tem a tabela — mas o servidor só
 escreve id, nome e nível. Aparência, equipamento, classe, raça, posição e mapa continuam vindo do
@@ -327,7 +430,7 @@ Preencher é escrever nos offsets da tabela. Dois avisos:
 Os poucos campos que restam sem nome (616, 620, 740, e a ordem dos 52 bytes de aparência) se isolam
 criando personagens diferentes no cliente oficial, capturando, e comparando os registros.
 
-### 7.4 Dados do cliente 4.5
+### 8.4 Dados do cliente 4.5
 
 `AION_DATA_DIR` aponta hoje para XML extraído em `G:\CodexHELPER\ClaudeAion\extracted_xml`, de
 proveniência não confirmada. O certo é regenerar do cliente 4.5 com os crates `pak` e `bxml`, que
@@ -335,7 +438,7 @@ já existem no workspace.
 
 ---
 
-## 8. Ferramentas
+## 9. Ferramentas
 
 Todas em `tools/`, todas em Python, todas independentes do servidor.
 
@@ -350,7 +453,7 @@ Todas em `tools/`, todas em Python, todas independentes do servidor.
 
 ---
 
-## 9. Armadilhas conhecidas
+## 10. Armadilhas conhecidas
 
 Cada uma destas custou tempo real.
 
@@ -400,7 +503,7 @@ rodando. Pare antes de compilar.
 
 ---
 
-## 10. O que existe e não está em uso
+## 11. O que existe e não está em uso
 
 - **`reference/aion-lightning/`** — Aion-Lightning em Java, base anterior. Compila no JDK 21 (correções em
   `scripts/build_login.sh`), tem banco criado no MariaDB local. Vale como **referência de lógica de
