@@ -36,6 +36,16 @@ const ID_CAPTURADO: u32 = 0x2E46_27F1;
 
 const DIRECAO_SERVIDOR: u8 = 0;
 
+/// Pacotes de servidor que o replay nao pode servir, porque nos ja mandamos os nossos.
+///
+/// O `S_WORLD` duplicado faz o cliente carregar o mundo duas vezes -- a tela de carregamento
+/// aparece duas seguidas. O `S_CHARACTER_LIST` traria de volta os personagens da conta capturada,
+/// por cima da lista que sai do banco.
+const NAO_REPLAYAR: [u16; 2] = [
+    0x00F, // S_WORLD
+    0x0C7, // S_CHARACTER_LIST
+];
+
 /// Um pacote de servidor da captura: opcode ja decifrado e payload sem o prelude.
 type PacoteServidor = (u16, Vec<u8>);
 
@@ -123,6 +133,7 @@ impl Replay {
         );
 
         lote.into_iter()
+            .filter(|(op, _)| !NAO_REPLAYAR.contains(op))
             .map(|(op, payload)| {
                 let payload = com_chave_de_sessao(&payload, chave_da_sessao);
                 let payload = if id_do_personagem == 0 {
@@ -197,12 +208,29 @@ mod test {
     fn cada_lote_e_servido_uma_vez_so() {
         let mut respostas = HashMap::new();
         let mut fila = VecDeque::new();
-        fila.push_back(vec![(0x00C7u16, vec![1, 2, 3])]);
+        fila.push_back(vec![(0x0001u16, vec![1, 2, 3])]);
         respostas.insert(0xD6u16, fila);
         let mut replay = Replay { respostas };
 
         assert_eq!(replay.resposta_para(0xD6, 0, 0).len(), 1);
         assert!(replay.resposta_para(0xD6, 0, 0).is_empty());
+    }
+
+    /// O S_WORLD replayado faz o cliente carregar o mundo de novo -- a tela de carregamento aparece
+    /// duas vezes seguidas -- e o S_CHARACTER_LIST traria de volta os personagens da captura.
+    #[test]
+    fn nao_replaya_o_que_nos_mesmos_mandamos() {
+        let mut respostas = HashMap::new();
+        let mut fila = VecDeque::new();
+        fila.push_back(vec![
+            (0x000Fu16, vec![1]), // S_WORLD
+            (0x00C7u16, vec![2]), // S_CHARACTER_LIST
+            (0x0001u16, vec![3]), // S_STATUS, esse passa
+        ]);
+        respostas.insert(0xD6u16, fila);
+        let mut replay = Replay { respostas };
+
+        assert_eq!(replay.resposta_para(0xD6, 0, 0).len(), 1);
     }
 
     /// O id do personagem da captura aparece espalhado pelos payloads replayados. Sem trocar, o

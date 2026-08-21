@@ -9,6 +9,8 @@ pub struct Account {
     client_id: u16,
     character_id: u32,
     pin_enabled: bool,
+    /// Verdadeiro do spawn ate o primeiro passo. Enquanto dura, o personagem pisca.
+    protecao_de_login: bool,
     /// Verdadeiro depois do C_LEVEL_READY. Dali em diante quase nada esta implementado, e o replay
     /// passa a servir tambem os opcodes que tem handler -- ver `ClientMessages::deserialise`.
     no_mundo: bool,
@@ -22,6 +24,7 @@ impl Account {
     pub fn new(client_id: u16) -> Self {
         Self {
             pin_enabled: false,
+            protecao_de_login: false,
             no_mundo: false,
             client_id,
             character_id: 0,
@@ -46,6 +49,17 @@ impl Account {
 
     pub fn set_character_id(&mut self, character_id: u32) {
         self.character_id = character_id
+    }
+
+    /// O spawn liga a protecao; o primeiro passo desliga, e devolve `true` uma unica vez.
+    pub fn liga_protecao_de_login(&mut self) {
+        self.protecao_de_login = true;
+    }
+
+    pub fn desliga_protecao_de_login(&mut self) -> bool {
+        let estava = self.protecao_de_login;
+        self.protecao_de_login = false;
+        estava
     }
 
     pub fn character_id(&self) -> u32 {

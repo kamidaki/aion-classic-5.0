@@ -1156,12 +1156,29 @@ pub struct MoveNew {
     data: MoveData,
 }
 impl MoveNew {
+    /// O primeiro passo encerra a protecao de login.
+    ///
+    /// Ate ai o personagem fica piscando -- e o estado que o `S_INVISIBLE_LEVEL` ligou no spawn.
+    /// Na captura o par que desliga vem logo depois do primeiro `C_MOVE_NEW`: o
+    /// `S_INVISIBLE_LEVEL` com `[id][00 00 00]` e o `S_INVINCIBLE_TIME` zerado. E o comportamento
+    /// classico do Aion -- a invencibilidade de entrada acaba quando o jogador se mexe.
     pub fn handle(
         self,
         tx: &Sender<ClientUpdate>,
         session: &mut Account,
     ) -> Vec<s::Message> {
+        let id = session.character_id();
+        let primeiro_passo = session.desliga_protecao_de_login();
+
         tx.send(session.send(Message::MoveNew(self))).unwrap();
+
+        if primeiro_passo {
+            println!("INFO: primeiro passo do personagem {id}; fim da protecao de login");
+            return vec![
+                s::Message::InvisibleLevel(s::InvisibleLevel::finish(id)),
+                s::Message::InvincibleTime(s::InvincibleTime::finish()),
+            ];
+        }
         vec![]
     }
 
@@ -1410,6 +1427,7 @@ impl LevelReady {
         tx: &Sender<ClientUpdate>,
         session: &mut Account,
     ) -> Vec<s::Message> {
+        session.liga_protecao_de_login();
         tx.send(session.send(Message::LevelReady(self))).unwrap();
 
         vec![s::Message::InvincibleTime(s::InvincibleTime::finish())]
