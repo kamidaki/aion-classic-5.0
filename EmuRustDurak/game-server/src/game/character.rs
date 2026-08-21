@@ -161,6 +161,9 @@ pub struct Character {
     pub stats: Stats,
     pub skills: Vec<Skill>,
     pub items: HashMap<u32, RawItem>,
+    /// Os 140 bytes que o cliente mandou ao criar o personagem. `None` para quem nasceu antes da
+    /// criacao existir -- esses caem no molde capturado.
+    pub aparencia: Option<Vec<u8>>,
     attack_sequence: u8,
 }
 impl Character {
@@ -557,6 +560,7 @@ impl Character {
                 cast_speed: 1.0,
             },
             skills,
+            aparencia: None,
             attack_sequence: 0,
             items,
         }
@@ -575,6 +579,7 @@ impl Character {
         c.stats.hp.current = p.hp;
         // keep hp.max from defaults; persisted hp may be lower
         c.stats.mp.current = p.mp;
+        c.aparencia = p.aparencia.clone();
         c
     }
 

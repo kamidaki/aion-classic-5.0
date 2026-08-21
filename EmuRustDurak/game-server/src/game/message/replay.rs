@@ -39,7 +39,41 @@ const CHAVE_CAPTURADA: u32 = 0x026E_DF39;
 /// **Muda a cada captura**, ao contrario da chave acima. Para achar o valor de uma captura nova, e
 /// o u32 no offset 0 do payload de `S_STATUS` (0x001) -- se aparecer mais de um, a captura tem mais
 /// de um personagem, e vale o mais frequente.
+///
+/// `AION_ID_CAPTURADO=0x2E4627F1` troca sem recompilar, para alternar entre replays de capturas
+/// diferentes -- o valor aqui e o da captura que gera o `replay.bin` padrao.
 const ID_CAPTURADO: u32 = 0x2E46_283A;
+
+/// O `ID_CAPTURADO` em uso, com o escape por variavel de ambiente aplicado. Aceita `0x` na frente.
+///
+/// Resolvido uma vez: e chamado por pacote servido, e reler a variavel -- e imprimir a linha de
+/// INFO -- em cada um enche o log a ponto de esconder o que interessa.
+fn id_capturado() -> u32 {
+    static VALOR: std::sync::OnceLock<u32> = std::sync::OnceLock::new();
+    *VALOR.get_or_init(resolve_id_capturado)
+}
+
+fn resolve_id_capturado() -> u32 {
+    let Ok(bruto) = std::env::var("AION_ID_CAPTURADO") else {
+        return ID_CAPTURADO;
+    };
+    let texto = bruto.trim();
+    let sem_prefixo = texto.strip_prefix("0x").or_else(|| texto.strip_prefix("0X"));
+    let lido = match sem_prefixo {
+        Some(hex) => u32::from_str_radix(hex, 16),
+        None => u32::from_str_radix(texto, 16),
+    };
+    match lido {
+        Ok(v) => {
+            println!("INFO: AION_ID_CAPTURADO={v:#010X} (no lugar de {ID_CAPTURADO:#010X})");
+            v
+        }
+        Err(_) => {
+            eprintln!("WARNING: AION_ID_CAPTURADO={bruto:?} nao e hexadecimal -- usando o padrao");
+            ID_CAPTURADO
+        }
+    }
+}
 
 const DIRECAO_SERVIDOR: u8 = 0;
 
@@ -146,7 +180,7 @@ impl Replay {
                 let payload = if id_do_personagem == 0 {
                     payload
                 } else {
-                    troca(&payload, ID_CAPTURADO, id_do_personagem)
+                    troca(&payload, id_capturado(), id_do_personagem)
                 };
                 server::Message::Bruto(server::Bruto::new(op, payload))
             })

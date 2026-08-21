@@ -285,6 +285,96 @@ pub fn com_id_de_personagem(payload: &[u8], offset: usize, id: u32) -> Vec<u8> {
     saida
 }
 
+/// Offset do nome dentro do [`PUT_USER`], em UTF-16LE.
+///
+/// O campo e de **tamanho variavel**, terminado em `00 00` -- nao ha preenchimento entre o fim do
+/// nome e o `ff ff` seguinte. Por isso trocar o nome muda o tamanho do pacote, e a funcao abaixo
+/// devolve um `Vec` de comprimento diferente do molde. Duas coisas confirmam o formato: os dois
+/// `S_PUT_USER` da captura tem tamanhos diferentes (481 e 735 bytes), e o `PutUser` do POC tambem
+/// escreve o nome sem padding, com o bloco seguinte comecando em `00 00`.
+pub const PUT_USER_NOME: usize = 55;
+
+/// Escreve `nome` por cima do nome capturado no [`PUT_USER`].
+///
+/// Sem isso todo personagem entra no mundo chamado `Kimmie`, que e quem estava logado na captura --
+/// a lista mostra o nome certo, porque o registro da lista tem o campo escrito por cima, e o mundo
+/// mostra o capturado.
+pub fn com_nome_de_personagem(payload: &[u8], offset: usize, nome: &str) -> Vec<u8> {
+    // O fim do nome capturado e o primeiro par 00 00 alinhado a partir do offset.
+    let mut fim = offset;
+    while fim + 1 < payload.len() && !(payload[fim] == 0 && payload[fim + 1] == 0) {
+        fim += 2;
+    }
+
+    let mut saida = Vec::with_capacity(payload.len() + 32);
+    saida.extend_from_slice(&payload[..offset]);
+    for c in nome.encode_utf16() {
+        saida.extend_from_slice(&c.to_le_bytes());
+    }
+    saida.extend_from_slice(&payload[fim..]);
+    saida
+}
+
+/// Onde a aparencia mora dentro do [`PUT_USER`].
+///
+/// O `PUT_USER` tem layout proprio, diferente do registro da lista -- mas o trecho de cores, rosto
+/// e altura e o mesmo bloco, deslocado de 243: as quatro cores da Kimmie aparecem em 315/319/323/
+/// 327 (contra 72/76/80/84 no registro), os 52 bytes de rosto em 331 (contra 88) e a altura em 383
+/// da 0.65, que e o valor documentado dela.
+///
+/// Identidade fica no cabecalho: a redundancia `100000 + raca * 2 + genero` em 16, e a classe como
+/// **um byte** em 42. Nas 12 amostras da captura a classe varia (7, 19, 4) e a redundancia nao,
+/// porque todos os jogadores eram da mesma raca e genero.
+///
+/// O offset 36 tambem parece de identidade, mas vale 1 em todas as amostras -- e nelas raca e
+/// genero valem 1 -- entao nao da para dizer qual dos dois e. Fica sem escrever.
+pub mod put_user {
+    /// `100000 + raca * 2 + genero`, u32.
+    pub const REDUNDANCIA: usize = 16;
+    /// Classe, um byte.
+    pub const CLASSE: usize = 42;
+    /// Inicio do bloco de cores + rosto + altura, 72 bytes.
+    pub const CORES: usize = 315;
+    /// Tamanho desse bloco: da cor da pele ate o fim da altura.
+    pub const CORES_LEN: usize = 72;
+}
+
+/// Escreve a aparencia escolhida pelo jogador por cima do [`PUT_USER`] capturado.
+///
+/// `bloco` sao os 140 bytes que o cliente mandou ao criar o personagem -- o mesmo trecho `4..144`
+/// do registro da lista. Sem isso o personagem entra no mundo com a cara, a raca e a classe da
+/// `Kimmie`, que e de quem o pacote foi capturado.
+///
+/// Tem que rodar **antes** de [`com_nome_de_personagem`]: o nome fica no offset 55 e trocar ele
+/// muda o tamanho do pacote, deslocando tudo o que vem depois -- inclusive o bloco de cores.
+pub fn com_aparencia_de_personagem(payload: &[u8], bloco: &[u8]) -> Vec<u8> {
+    use super::molde::campo;
+
+    let mut saida = payload.to_vec();
+    if bloco.len() != campo::APARENCIA_LEN {
+        return saida;
+    }
+
+    // Offsets dentro do bloco: ele comeca no campo de nome do registro.
+    let u32_em = |off: usize| {
+        u32::from_le_bytes(bloco[off - campo::NOME..][..4].try_into().unwrap())
+    };
+    let genero = u32_em(campo::GENERO);
+    let raca = u32_em(campo::RACA);
+    let classe = u32_em(campo::CLASSE);
+
+    saida[put_user::REDUNDANCIA..put_user::REDUNDANCIA + 4]
+        .copy_from_slice(&(100_000 + raca * 2 + genero).to_le_bytes());
+    saida[put_user::CLASSE] = classe as u8;
+
+    // Cores, rosto e altura: um pedaco continuo, identico ao do registro.
+    let de = campo::COR_PELE - campo::NOME;
+    saida[put_user::CORES..put_user::CORES + put_user::CORES_LEN]
+        .copy_from_slice(&bloco[de..de + put_user::CORES_LEN]);
+
+    saida
+}
+
 /// Troca a chave de sessao da captura pela da sessao atual, onde quer que ela apareca.
 pub fn com_chave_de_sessao(payload: &[u8], chave: u32) -> Vec<u8> {
     let de = CHAVE_CAPTURADA.to_le_bytes();

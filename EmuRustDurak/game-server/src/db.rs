@@ -16,6 +16,10 @@ pub struct PersistedCharacter {
     pub z: f32,
     pub hp: i32,
     pub mp: u32,
+    /// Bloco de 140 bytes que o cliente mandou ao criar o personagem: nome, genero, raca,
+    /// classe, voz, cores, os 52 bytes de rosto e a altura. E identico ao trecho 4..144 do
+    /// registro da lista -- ver `game::message::lista_personagens::escreve_registro`.
+    pub aparencia: Option<Vec<u8>>,
 }
 
 impl Db {
@@ -47,6 +51,7 @@ impl Db {
                 z REAL NOT NULL,
                 hp INTEGER NOT NULL DEFAULT 100,
                 mp INTEGER NOT NULL DEFAULT 100,
+                aparencia BLOB,
                 updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now'))
             );
             CREATE INDEX IF NOT EXISTS idx_characters_account ON characters(account_id);
@@ -56,7 +61,14 @@ impl Db {
                 issued_at INTEGER NOT NULL DEFAULT (strftime('%s','now'))
             );
             ",
-        )
+        )?;
+
+        // Bancos criados antes da coluna de aparencia. O SQLite nao tem
+        // "ADD COLUMN IF NOT EXISTS", e re-adicionar da erro -- que aqui e o caso normal, e nao
+        // uma falha: a coluna ja estar la e o resultado desejado.
+        let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN aparencia BLOB", []);
+
+        Ok(())
     }
 
     /// Look up the username associated with a session token. Returns None if
@@ -81,6 +93,95 @@ impl Db {
     /// character with the classic hardcoded starting values if none exists.
     /// Personagem novo nasce no ponto de entrada de [`crate::game::mundo`] -- as coordenadas que
     /// vinham daqui eram da 2.5 e nao correspondem a mapa nenhum da 4.5.
+    /// Todos os personagens da conta, na ordem em que foram criados.
+    ///
+    /// O `load_or_create_character` devolve um so (`LIMIT 1`), que era o bastante enquanto nao dava
+    /// para criar personagem. A lista precisa de todos.
+    pub fn personagens_da_conta(
+        &self,
+        username: &str,
+    ) -> Result<Vec<PersistedCharacter>> {
+        let account_id: i64 = self.conn.query_row(
+            "SELECT id FROM accounts WHERE username = ?1",
+            params![username],
+            |row| row.get(0),
+        )?;
+
+        let mut stmt = self.conn.prepare(
+            "SELECT id, account_id, name, level, exp, x, y, z, hp, mp, aparencia
+             FROM characters WHERE account_id = ?1 ORDER BY id",
+        )?;
+        let linhas = stmt.query_map(params![account_id], |row| {
+            Ok(PersistedCharacter {
+                id: row.get::<_, i64>(0)? as u32,
+                account_id: row.get(1)?,
+                name: row.get(2)?,
+                level: row.get::<_, i64>(3)? as u16,
+                exp: row.get::<_, i64>(4)? as u64,
+                x: row.get(5)?,
+                y: row.get(6)?,
+                z: row.get(7)?,
+                hp: row.get::<_, i64>(8)? as i32,
+                mp: row.get::<_, i64>(9)? as u32,
+                aparencia: row.get(10)?,
+            })
+        })?;
+
+        linhas.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
+    }
+
+    /// Cria um personagem novo na conta e devolve o que ficou no banco.
+    ///
+    /// O ponto de entrada e o mesmo de `load_or_create_character` -- o personagem nasce onde os
+    /// outros nascem, porque a posicao inicial de verdade depende de raca, que ainda nao lemos do
+    /// pedido de criacao.
+    pub fn criar_personagem(
+        &self,
+        username: &str,
+        nome: &str,
+        aparencia: &[u8],
+    ) -> Result<PersistedCharacter> {
+        use crate::game::mundo;
+
+        self.conn.execute(
+            "INSERT OR IGNORE INTO accounts(username) VALUES (?1)",
+            params![username],
+        )?;
+        let account_id: i64 = self.conn.query_row(
+            "SELECT id FROM accounts WHERE username = ?1",
+            params![username],
+            |row| row.get(0),
+        )?;
+
+        self.conn.execute(
+            "INSERT INTO characters(account_id, name, level, exp, x, y, z, hp, mp, aparencia)
+             VALUES (?1, ?2, 1, 0, ?3, ?4, ?5, 100, 100, ?6)",
+            params![
+                account_id,
+                nome,
+                mundo::X,
+                mundo::Y,
+                mundo::Z,
+                aparencia
+            ],
+        )?;
+        let id = self.conn.last_insert_rowid();
+
+        Ok(PersistedCharacter {
+            id: id as u32,
+            account_id,
+            name: nome.to_string(),
+            level: 1,
+            exp: 0,
+            x: mundo::X,
+            y: mundo::Y,
+            z: mundo::Z,
+            hp: 100,
+            mp: 100,
+            aparencia: Some(aparencia.to_vec()),
+        })
+    }
+
     pub fn load_or_create_character(
         &self,
         username: &str,
@@ -100,7 +201,7 @@ impl Db {
         let existing: Option<PersistedCharacter> = self
             .conn
             .query_row(
-                "SELECT id, account_id, name, level, exp, x, y, z, hp, mp
+                "SELECT id, account_id, name, level, exp, x, y, z, hp, mp, aparencia
                  FROM characters WHERE account_id = ?1 LIMIT 1",
                 params![account_id],
                 |row| {
@@ -115,6 +216,7 @@ impl Db {
                         z: row.get(7)?,
                         hp: row.get::<_, i64>(8)? as i32,
                         mp: row.get::<_, i64>(9)? as u32,
+                        aparencia: row.get(10)?,
                     })
                 },
             )
@@ -152,6 +254,8 @@ impl Db {
             z: mundo::Z,
             hp: 1148,
             mp: 1080,
+            // O personagem fixo nao veio de uma criacao, entao nao tem bloco: cai no molde.
+            aparencia: None,
         })
     }
 

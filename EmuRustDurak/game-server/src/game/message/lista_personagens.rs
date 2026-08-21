@@ -74,6 +74,10 @@ pub struct Personagem {
     pub id: u32,
     pub nome: String,
     pub nivel: u16,
+    /// Os 140 bytes que o cliente mandou na criacao. Quando presentes substituem o trecho 4..144
+    /// do molde -- nome, genero, raca, classe, voz, cores, rosto e altura de uma vez. Sem eles o
+    /// personagem sai com a cara do molde capturado.
+    pub aparencia: Option<Vec<u8>>,
 }
 
 #[derive(Debug, Clone)]
@@ -116,27 +120,64 @@ impl ListaPersonagens {
         len += 1;
 
         for personagem in &self.personagens {
-            let registro = &mut buf[len..len + REGISTRO_LEN];
-            registro.copy_from_slice(&REGISTRO_MOLDE);
-
-            registro[campo::ID..campo::ID + 4].copy_from_slice(&personagem.id.to_le_bytes());
-
-            escreve_nome(
-                &mut registro[campo::NOME..campo::NOME + campo::NOME_MAX_BYTES],
-                &personagem.nome,
-            );
-
-            registro[campo::NIVEL..campo::NIVEL + 2]
-                .copy_from_slice(&personagem.nivel.to_le_bytes());
-
-            escreve_ponto_de_entrada(registro);
-
+            escreve_registro(&mut buf[len..len + REGISTRO_LEN], personagem);
             len += REGISTRO_LEN;
         }
 
         len
     }
 }
+
+/// Escreve um registro de personagem de [`REGISTRO_LEN`] bytes: o molde capturado com os campos
+/// que o servidor conhece por cima.
+///
+/// Serve a lista e tambem o `S_CREATE_CHARACTER`, que leva o mesmo registro -- ver
+/// [`REGISTRO_CRIACAO_LEN`].
+pub fn escreve_registro(registro: &mut [u8], personagem: &Personagem) {
+    registro.copy_from_slice(&REGISTRO_MOLDE);
+
+    registro[campo::ID..campo::ID + 4].copy_from_slice(&personagem.id.to_le_bytes());
+
+    // O bloco da criacao cobre nome, genero, raca, classe, voz, cores, rosto e altura de uma vez:
+    // o pedido do cliente carrega exatamente o trecho 4..144 do registro, conferido byte a byte
+    // contra a captura. O nome ainda e escrito depois, porque o banco e quem manda nele.
+    if let Some(bloco) = &personagem.aparencia {
+        if bloco.len() == campo::APARENCIA_LEN {
+            registro[campo::NOME..campo::NOME + campo::APARENCIA_LEN].copy_from_slice(bloco);
+            // A redundancia que valida o alinhamento do registro; ver molde::campo.
+            let genero = u32::from_le_bytes(
+                registro[campo::GENERO..campo::GENERO + 4].try_into().unwrap(),
+            );
+            let raca =
+                u32::from_le_bytes(registro[campo::RACA..campo::RACA + 4].try_into().unwrap());
+            registro[campo::REDUNDANCIA..campo::REDUNDANCIA + 4]
+                .copy_from_slice(&(100_000 + raca * 2 + genero).to_le_bytes());
+        } else {
+            eprintln!(
+                "WARNING: bloco de aparencia com {} bytes (esperado {}); usando o molde",
+                bloco.len(),
+                campo::APARENCIA_LEN
+            );
+        }
+    }
+
+    escreve_nome(
+        &mut registro[campo::NOME..campo::NOME + campo::NOME_MAX_BYTES],
+        &personagem.nome,
+    );
+
+    registro[campo::NIVEL..campo::NIVEL + 2].copy_from_slice(&personagem.nivel.to_le_bytes());
+
+    escreve_ponto_de_entrada(registro);
+}
+
+/// Quanto do registro o `S_CREATE_CHARACTER` leva.
+///
+/// O pacote de criacao da captura tem 748 bytes: 4 de resultado mais 744 do registro. Comparado com
+/// o registro do mesmo personagem na lista seguinte, os 744 batem posicao a posicao -- as unicas
+/// diferencas sao mapa, posicao, direcao, nivel e os slots de equipamento, que na criacao ainda nao
+/// tem valor de jogo. Os 14 bytes que o registro da lista tem a mais sao todos zero.
+pub const REGISTRO_CRIACAO_LEN: usize = 744;
 
 /// Escreve mapa, posicao e direcao por cima do que veio no molde.
 ///
@@ -211,7 +252,55 @@ mod test {
             id,
             nome: nome.to_string(),
             nivel,
+            aparencia: None,
         }
+    }
+
+    /// O bloco da criacao cobre exatamente de `NOME` ate `REDUNDANCIA`, e e o mesmo tamanho que o
+    /// pedido do cliente carrega -- foi conferido byte a byte contra a captura.
+    #[test]
+    fn bloco_de_aparencia_vai_do_nome_ate_a_redundancia() {
+        assert_eq!(campo::APARENCIA_LEN, 140);
+        assert_eq!(campo::NOME + campo::APARENCIA_LEN, campo::REDUNDANCIA);
+    }
+
+    /// Com bloco, o registro sai com genero, raca e classe do jogador -- e a redundancia recalculada
+    /// a partir deles, que e o que prova que o alinhamento nao andou.
+    #[test]
+    fn aparencia_escreve_raca_classe_e_recalcula_a_redundancia() {
+        let mut bloco = vec![0u8; campo::APARENCIA_LEN];
+        let genero: u32 = 1;
+        let raca: u32 = 1;
+        let classe: u32 = 7;
+        bloco[campo::GENERO - campo::NOME..][..4].copy_from_slice(&genero.to_le_bytes());
+        bloco[campo::RACA - campo::NOME..][..4].copy_from_slice(&raca.to_le_bytes());
+        bloco[campo::CLASSE - campo::NOME..][..4].copy_from_slice(&classe.to_le_bytes());
+
+        let mut registro = [0u8; REGISTRO_LEN];
+        escreve_registro(
+            &mut registro,
+            &Personagem {
+                id: 7,
+                nome: "Krime".to_string(),
+                nivel: 1,
+                aparencia: Some(bloco),
+            },
+        );
+
+        let ler = |off: usize| u32::from_le_bytes(registro[off..off + 4].try_into().unwrap());
+        assert_eq!(ler(campo::GENERO), genero);
+        assert_eq!(ler(campo::RACA), raca);
+        assert_eq!(ler(campo::CLASSE), classe);
+        assert_eq!(ler(campo::REDUNDANCIA), 100_000 + raca * 2 + genero);
+
+        // O nome continua vindo do banco, escrito depois do bloco.
+        let nome = String::from_utf16_lossy(
+            &registro[campo::NOME..campo::NOME + 10]
+                .chunks(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .collect::<Vec<_>>(),
+        );
+        assert!(nome.starts_with("Krime"), "nome saiu como {nome:?}");
     }
 
     #[test]

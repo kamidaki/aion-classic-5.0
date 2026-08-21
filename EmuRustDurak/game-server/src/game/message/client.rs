@@ -100,6 +100,8 @@ define_messages!(
     (INSTANCE_DUNGEON_COOLTIMES, InstanceDungeonCooltimes, 0xC1),
     (REQUEST_SERIAL_KILLER_LIST, RequestSerialKillerList, 0xC5),
     (_D8, _00D8, 0xD8),
+    (_8B, _008B, 0x8B),
+    (CREATE_CHARACTER, CreateCharacter, 0x5F),
     (CUR_STATUS, CurStatus, 0xAA),
     (QUERY_BLOCK, QueryBlock, 0xA8),
     (SIGN_CLIENT, SignClient, 0xAE),
@@ -1051,6 +1053,101 @@ impl _00D8 {
     }
 }
 impl Deserialise for _00D8 {
+    fn deserialise(_: &[u8]) -> Self
+    where
+        Self: Sized,
+    {
+        Self
+    }
+}
+
+/// Quantos bytes do pedido de criacao sao o bloco do registro (de `NOME` ate `REDUNDANCIA`).
+const APARENCIA_LEN: usize = super::molde::campo::APARENCIA_LEN;
+
+/// Pedido de criacao de personagem.
+///
+/// O payload da captura tem 162 bytes: a chave de sessao, um codigo numerico de 8 digitos, o nome,
+/// e um bloco grande de aparencia -- cores em RGBA, sliders de rosto e corpo, e a altura como float
+/// no fim. Por enquanto so o **nome** e lido: e o que o registro de personagem sabe escrever hoje.
+/// Aparencia continua vindo do molde capturado, como no resto da lista.
+///
+/// As duas cadeias sao UTF-16 terminadas em nulo, uma atras da outra.
+#[derive(Debug, Clone)]
+pub struct CreateCharacter {
+    pub nome: String,
+    /// O trecho do pedido que e, byte a byte, o `4..144` do registro de personagem.
+    pub aparencia: Vec<u8>,
+}
+impl CreateCharacter {
+    pub fn handle(
+        self,
+        tx: &Sender<ClientUpdate>,
+        session: &mut Account,
+    ) -> Vec<s::Message> {
+        // Precisa do banco, entao quem responde e o game loop -- mesma rota do CharacterList.
+        tx.send(session.send(Message::CreateCharacter(self))).unwrap();
+        Vec::new()
+    }
+}
+impl Deserialise for CreateCharacter {
+    fn deserialise(buf: &[u8]) -> Self
+    where
+        Self: Sized,
+    {
+        // [u32 chave][utf16 codigo][utf16 nome]
+        let mut ptr = 4;
+        let mut cadeia = || {
+            let mut chars = Vec::new();
+            while ptr + 1 < buf.len() {
+                let c = u16::from_le_bytes([buf[ptr], buf[ptr + 1]]);
+                ptr += 2;
+                if c == 0 {
+                    break;
+                }
+                chars.push(c);
+            }
+            String::from_utf16_lossy(&chars)
+        };
+
+        let _codigo = cadeia();
+        let nome = cadeia();
+
+        // O bloco comeca no inicio do campo de nome -- tamanho fixo, como no registro -- e vai ate
+        // o fim do payload. `ptr` parou logo depois do nulo do nome, entao voltamos ao inicio dele.
+        let inicio = 4 + 2 * (_codigo.encode_utf16().count() + 1);
+        let aparencia = buf
+            .get(inicio..inicio + APARENCIA_LEN)
+            .map(<[u8]>::to_vec)
+            .unwrap_or_default();
+
+        Self { nome, aparencia }
+    }
+}
+
+/// Sem resposta a este opcode a tela de personagem trava: nao da para entrar no jogo, criar
+/// personagem, nem voltar para a lista de servidores. Os botoes simplesmente nao reagem.
+///
+/// Foi medido rodando sem replay nenhum: dos opcodes que ficaram sem resposta, este e o unico que
+/// bloqueia. O `0x88` e o `0x5F` tambem ficam sem resposta, e o `0x88` nunca teve uma no replay de
+/// login -- ainda assim aquela sessao entrava no mundo.
+///
+/// A resposta do servidor oficial e `S_SA_ACCOUNT_ITEM_NOTI` com quatro bytes zero, identica nas
+/// duas capturas -- a mesma que o `SaAccountItemQuery` (0xBB) ja devolvia.
+///
+/// Sem nome porque a tabela do `Game.dll` chama `0x8B` de `C_CHANGE_TITLE`, e ela erra em pontos
+/// conhecidos; o que responder aqui veio da captura, nao dela.
+#[derive(Debug, Clone)]
+pub struct _008B;
+impl _008B {
+    pub fn handle(
+        &self,
+        _: &Sender<ClientUpdate>,
+        _: &mut Account,
+    ) -> Vec<s::Message> {
+        vec![s::Message::SaAccountItemNoti(s::SaAccountItemNoti::new())]
+    }
+}
+impl Deserialise for _008B {
     fn deserialise(_: &[u8]) -> Self
     where
         Self: Sized,

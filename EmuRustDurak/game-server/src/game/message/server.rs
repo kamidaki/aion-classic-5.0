@@ -93,6 +93,7 @@ pub enum Message {
     ReconnectKey(ReconnectKey),
     LoadClientSettings(LoadClientSettings),
     PutUser(PutUser),
+    CreateCharacter(CreateCharacter),
     TargetInfo(TargetInfo),
     SyncTime(SyncTime),
     NpcChangedTarget(NpcChangedTarget),
@@ -157,6 +158,7 @@ impl Serialise for Message {
             Message::UseSkill(msg) => msg.serialise(&mut buf[2..]),
             Message::SkillSucceded(msg) => msg.serialise(&mut buf[2..]),
             Message::PutUser(msg) => msg.serialise(&mut buf[2..]),
+            Message::CreateCharacter(msg) => msg.serialise(&mut buf[2..]),
             Message::CharacterList(msg) => msg.serialise(&mut buf[2..]),
             Message::CurStatus(msg) => msg.serialise(&mut buf[2..]),
             Message::Key(msg) => msg.serialise(&mut buf[2..]),
@@ -916,6 +918,44 @@ impl Serialise for EnterWorldCheck {
 
         buf[len..len + self.raw.len()].copy_from_slice(&self.raw);
         len += self.raw.len();
+
+        len
+    }
+}
+
+/// Resposta ao pedido de criacao de personagem (cliente 0x5F).
+///
+/// Na captura sao 748 bytes: um u32 de resultado, zero para sucesso, seguido dos primeiros 744
+/// bytes do mesmo registro que a lista de personagens usa -- ver
+/// [`super::lista_personagens::REGISTRO_CRIACAO_LEN`].
+#[derive(Debug, Clone)]
+pub struct CreateCharacter {
+    personagem: super::lista_personagens::Personagem,
+}
+impl CreateCharacter {
+    pub fn new(personagem: super::lista_personagens::Personagem) -> Self {
+        Self { personagem }
+    }
+}
+impl Serialise for CreateCharacter {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        use super::lista_personagens::{escreve_registro, REGISTRO_CRIACAO_LEN};
+        use super::molde::REGISTRO_LEN;
+
+        let mut len = 0;
+        len += add_prelude(CREATE_CHARACTER, buf);
+
+        // Resultado: zero e sucesso, o unico valor que a captura mostra.
+        buf[len..len + 4].fill(0);
+        len += 4;
+
+        // O registro completo tem 758 bytes e o pacote leva 744. Montamos inteiro num buffer a
+        // parte e copiamos o pedaco -- escrever direto cortaria o campo do meio.
+        let mut registro = [0u8; REGISTRO_LEN];
+        escreve_registro(&mut registro, &self.personagem);
+        buf[len..len + REGISTRO_CRIACAO_LEN]
+            .copy_from_slice(&registro[..REGISTRO_CRIACAO_LEN]);
+        len += REGISTRO_CRIACAO_LEN;
 
         len
     }

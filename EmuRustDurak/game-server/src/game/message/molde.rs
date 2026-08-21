@@ -26,6 +26,19 @@ pub mod campo {
     /// Nome em UTF-16LE, terminado em nulo e preenchido com zeros, ocupando 4..56.
     pub const NOME: usize = 4;
     pub const NOME_MAX_BYTES: usize = 52;
+    /// u32. Genero.
+    pub const GENERO: usize = 56;
+    /// u32. Raca -- 0 elyos, 1 asmodiano.
+    pub const RACA: usize = 60;
+    /// u32. Classe.
+    pub const CLASSE: usize = 64;
+    /// Primeira das quatro cores (pele, cabelo, olhos, labios); depois vem o rosto e a altura.
+    pub const COR_PELE: usize = 72;
+    /// `100000 + raca * 2 + genero`. E a redundancia que prova o alinhamento do registro.
+    pub const REDUNDANCIA: usize = 144;
+    /// Tamanho do bloco que o pedido de criacao carrega: de [`NOME`] ate [`REDUNDANCIA`].
+    pub const APARENCIA_LEN: usize = REDUNDANCIA - NOME;
+
     /// u32. E por ele que o cliente pre-carrega o cenario, entao tem que ser o mesmo mapa que o
     /// `S_WORLD` mandar depois.
     pub const MAPA: usize = 148;

@@ -102,6 +102,31 @@ impl State {
         }
     }
 
+    /// Nome de conta desta sessao.
+    ///
+    /// Sai do token que o STS gravou. Sem token -- clientes de bancada que pulam o STS -- vale um
+    /// sintetico pelo id do cliente, para a sessao nao morrer por causa disso.
+    fn username_do_update(&self, update: &ClientUpdate) -> String {
+        let token = update.session_token();
+        if token.is_empty() {
+            return format!("client_{}", update.client_id());
+        }
+        match self.db.lookup_session(token) {
+            Ok(Some(name)) => {
+                println!("INFO: session token resolved to username '{name}'");
+                name
+            }
+            Ok(None) => {
+                eprintln!("WARN: session token not found in DB, using synthetic username");
+                format!("client_{}", update.client_id())
+            }
+            Err(e) => {
+                eprintln!("ERROR: lookup_session: {e}");
+                format!("client_{}", update.client_id())
+            }
+        }
+    }
+
     pub fn respond(&mut self, update: &ClientUpdate, messages: &mut Messages) {
         match &update.message() {
             c::Message::MoveNew(move_new) => {
@@ -316,29 +341,7 @@ impl State {
                 // persisted when issuing RequestGameToken. Fall back to a
                 // synthetic username keyed by client_id so bench clients that
                 // skip STS still work.
-                let token = update.session_token();
-                let username = if token.is_empty() {
-                    format!("client_{}", update.client_id())
-                } else {
-                    match self.db.lookup_session(token) {
-                        Ok(Some(name)) => {
-                            println!(
-                                "INFO: session token resolved to username '{name}'"
-                            );
-                            name
-                        }
-                        Ok(None) => {
-                            eprintln!(
-                                "WARN: session token not found in DB, using synthetic username"
-                            );
-                            format!("client_{}", update.client_id())
-                        }
-                        Err(e) => {
-                            eprintln!("ERROR: lookup_session: {e}");
-                            format!("client_{}", update.client_id())
-                        }
-                    }
-                };
+                let username = self.username_do_update(&update);
                 let persisted = match self
                     .db
                     .load_or_create_character(&username)
@@ -367,18 +370,51 @@ impl State {
                         id: 0x2E0F_3384,
                         nome: "Durak".to_string(),
                         nivel: 60,
+                        aparencia: None,
                     }
                 } else {
                     lista_personagens::Personagem {
                         id: character.id(),
                         nome: character.name().clone(),
                         nivel: character.stats.level,
+                        aparencia: persisted.aparencia.clone(),
                     }
                 };
 
+                // A conta pode ter mais de um personagem desde que dá para criar. O primeiro vem do
+                // `load_or_create_character` acima -- e o que entra no estado do jogo -- e os
+                // demais saem do banco.
+                let mut personagens = vec![personagem];
+                if !usar_capturado {
+                    match self.db.personagens_da_conta(&username) {
+                        Ok(todos) => {
+                            for p in todos {
+                                if p.id == character.id() {
+                                    continue;
+                                }
+                                // Sem isso o personagem aparece na lista mas nao da para entrar
+                                // com ele: o EnterWorld procura no estado e nao acha.
+                                self.characters.insert(
+                                    p.id,
+                                    Character::from_persisted(&p, update.client_id()),
+                                );
+                                personagens.push(lista_personagens::Personagem {
+                                    id: p.id,
+                                    nome: p.name,
+                                    nivel: p.level,
+                                    aparencia: p.aparencia,
+                                });
+                            }
+                        }
+                        Err(e) => {
+                            eprintln!("ERROR: personagens_da_conta({username}): {e}")
+                        }
+                    }
+                }
+
                 let lista = lista_personagens::ListaPersonagens::new(
                     update.chave_de_sessao(),
-                    vec![personagem],
+                    personagens,
                 );
 
                 // Sao dois pacotes, nao um. Na captura o servidor manda primeiro uma lista vazia
@@ -398,6 +434,46 @@ impl State {
                     .map(ServerUpdate::new),
                 );
                 self.characters.insert(character.id(), character);
+            }
+            c::Message::CreateCharacter(pedido) => {
+                let username = self.username_do_update(&update);
+                let nome = pedido.nome.clone();
+
+                let criado = match self
+                    .db
+                    .criar_personagem(&username, &nome, &pedido.aparencia)
+                {
+                    Ok(c) => c,
+                    Err(e) => {
+                        eprintln!("ERROR: criar_personagem({username}, {nome}): {e}");
+                        return;
+                    }
+                };
+                println!(
+                    "INFO: personagem '{}' criado (id {}) para '{}'",
+                    criado.name, criado.id, username
+                );
+
+                // O cliente entra no mundo direto depois de criar, sem pedir a lista de novo --
+                // entao inserir no estado so quando a lista e montada chega tarde demais, e o
+                // EnterWorld nao acha o personagem.
+                self.characters.insert(
+                    criado.id,
+                    Character::from_persisted(&criado, update.client_id()),
+                );
+
+                messages.extend_direct(
+                    update.client_id(),
+                    [s::Message::CreateCharacter(s::CreateCharacter::new(
+                        lista_personagens::Personagem {
+                            id: criado.id,
+                            nome: criado.name,
+                            nivel: criado.level,
+                            aparencia: criado.aparencia,
+                        },
+                    ))]
+                    .map(ServerUpdate::new),
+                );
             }
             c::Message::LevelReady(_) => {
                 // O cliente avisa que terminou de carregar o mapa -- opcode 0x19 na 4.5, 0x09 na
@@ -427,6 +503,10 @@ impl State {
                 // S_INVISIBLE_LEVEL sozinhos deixam o personagem piscando.
                 use super::message::capturado as cap;
                 let id = new_character.id();
+                // O nome tambem: sem escrever por cima, todo mundo entra no mundo como `Kimmie`,
+                // que e quem estava logada na captura de onde o PUT_USER saiu.
+                let nome_no_mundo = new_character.name().clone();
+                let aparencia = new_character.aparencia.clone();
                 let bruto = |opcode, payload: Vec<u8>| {
                     ServerUpdate::new(s::Message::Bruto(s::Bruto::new(opcode, payload)))
                 };
@@ -435,10 +515,23 @@ impl State {
                     [
                         bruto(cap::INVENCIVEL_ANTES_OPCODE, cap::INVENCIVEL_ANTES.to_vec()),
                         bruto(cap::ZONA_OPCODE, cap::ZONA.to_vec()),
-                        bruto(
-                            cap::PUT_USER_OPCODE,
-                            cap::com_id_de_personagem(&cap::PUT_USER, 12, id),
-                        ),
+                        bruto(cap::PUT_USER_OPCODE, {
+                            // A ordem importa: a aparencia escreve em offsets fixos, e o nome muda
+                            // o tamanho do pacote e desloca tudo o que vem depois dele.
+                            let com_id =
+                                cap::com_id_de_personagem(&cap::PUT_USER, 12, id);
+                            let com_cara = match &aparencia {
+                                Some(bloco) => {
+                                    cap::com_aparencia_de_personagem(&com_id, bloco)
+                                }
+                                None => com_id,
+                            };
+                            cap::com_nome_de_personagem(
+                                &com_cara,
+                                cap::PUT_USER_NOME,
+                                &nome_no_mundo,
+                            )
+                        }),
                         bruto(cap::INVENCIVEL_DEPOIS_OPCODE, cap::INVENCIVEL_DEPOIS.to_vec()),
                         ServerUpdate::new(s::Message::InvisibleLevel(
                             s::InvisibleLevel::start(id),
