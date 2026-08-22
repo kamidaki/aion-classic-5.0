@@ -7,6 +7,7 @@ use std::{
 };
 
 mod character;
+pub mod craft;
 mod data;
 mod engine;
 mod entity;
