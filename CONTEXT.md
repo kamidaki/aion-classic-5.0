@@ -74,7 +74,8 @@ O objetivo deste projeto é o desenvolvimento de um **Emulador de Alta Performan
 | **17** | [17_AGENDAMENTOS_CRON_EVENTOS_E_SIEGE_GUERRA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/17_AGENDAMENTOS_CRON_EVENTOS_E_SIEGE_GUERRA.md) | **Concluída** | Agendador Cron, Sieges de Fortalezas, Assalto Balaur, Bases, Vórtices e Raides Mundiais. |
 | **18** | [18_ARENAS_CAMPOS_BATALHA_E_AUTOGROUP.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/18_ARENAS_CAMPOS_BATALHA_E_AUTOGROUP.md) | **Concluída** | Matchmaking AutoGroup, Arenas (Discipline 1v1, Chaos FFA, Glory), Dreadgion e Tiarkh. |
 | **19** | [19_SISTEMAS_ADMIN_ANTIHACK_E_MONITORAMENTO.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/19_SISTEMAS_ADMIN_ANTIHACK_E_MONITORAMENTO.md) | **Concluída** | Toolkit de GM, Punições (Prisão, Mute, Ban), Anti-Hack nativo e Monitoramento de Carga. |
-| **20** | [20_MAPEAMENTO_COMPLETO_PACOTES_CM_SM_4_5.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/20_MAPEAMENTO_COMPLETO_PACOTES_CM_SM_4_5.md) | **Pendente** | Dicionário Exaustivo de Opcodes e Payloads de TODOS os pacotes CM (189+) e SM (239+). |
+| **20** | [20_MAPEAMENTO_COMPLETO_PACOTES_CM_SM_4_5.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/20_MAPEAMENTO_COMPLETO_PACOTES_CM_SM_4_5.md) | **Concluída** | Dicionário Exaustivo de Opcodes e Payloads de TODOS os pacotes CM (189+) e SM (239+). |
+| **21** | [21_VALIDACAO_AUTONOMA_TESTES_E_DEPLOY.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/21_VALIDACAO_AUTONOMA_TESTES_E_DEPLOY.md) | **Pendente** | Protocolo Autônomo de Testes do Agente: Execução do cliente, Wireshark, debug e deploy. |
 
 
 ---

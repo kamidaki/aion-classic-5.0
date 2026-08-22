@@ -6,6 +6,7 @@ pub mod client;
 pub mod entrada;
 pub mod lista_personagens;
 pub mod molde;
+pub mod packet_registry;
 pub mod replay;
 pub mod server;
 
