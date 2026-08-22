@@ -35,16 +35,40 @@ use std::time::Duration;
 use error::Error;
 
 const DB_PATH: &str = "aion.db";
-const DEFAULT_DATA_DIR: &str = "../extracted_xml";
+
+fn find_data_dir() -> PathBuf {
+    if let Ok(dir) = std::env::var("AION_DATA_DIR") {
+        let p = PathBuf::from(dir);
+        if p.exists() {
+            return p;
+        }
+    }
+
+    let candidates = [
+        "data/client",
+        "data",
+        "../data/client",
+        "../data",
+        "../extracted_xml",
+        "extracted_xml",
+    ];
+
+    for c in candidates {
+        let p = PathBuf::from(c);
+        if p.exists() {
+            return p;
+        }
+    }
+
+    PathBuf::from("data/client")
+}
 
 fn main() {
     println!("INFO: Starting Game Server");
     let db = Db::open(DB_PATH).expect("failed to open SQLite db");
     println!("INFO: Opened DB at {DB_PATH}");
 
-    let data_dir = std::env::var("AION_DATA_DIR")
-        .map(PathBuf::from)
-        .unwrap_or_else(|_| PathBuf::from(DEFAULT_DATA_DIR));
+    let data_dir = find_data_dir();
     println!("INFO: Loading game data from {}", data_dir.display());
     let game_data = Arc::new({
         let mut gd = GameData::load(&data_dir);

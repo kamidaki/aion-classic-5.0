@@ -207,21 +207,31 @@ const XOR_TABLE2: [u8; 1056] = [
 struct AionPack;
 
 impl AionPack {
-    fn from(path: impl AsRef<Path>) {
-        let mut file = File::open(&path).unwrap();
+    fn unpack(path: impl AsRef<Path>, base_in: &Path, out_prefix: &Path) {
+        let path = path.as_ref();
+        let mut file = match File::open(path) {
+            Ok(f) => f,
+            Err(e) => {
+                eprintln!("ERROR: Failed to open {}: {e}", path.display());
+                return;
+            }
+        };
 
         let mut buf = Vec::new();
-        let len = file.read_to_end(&mut buf).unwrap();
+        let len = match file.read_to_end(&mut buf) {
+            Ok(l) => l,
+            Err(e) => {
+                eprintln!("ERROR: Failed to read {}: {e}", path.display());
+                return;
+            }
+        };
         let mut ptr = 0;
 
-        let root_path = path
-            .as_ref()
-            .strip_prefix(AION_PREFIX)
-            .unwrap()
-            .parent()
-            .unwrap()
-            .to_str()
-            .unwrap();
+        let rel_parent = path
+            .strip_prefix(base_in)
+            .ok()
+            .and_then(|p| p.parent())
+            .unwrap_or_else(|| Path::new(""));
 
         while ptr < len {
             let magic = consume!(buf.as_slice(), u32, ptr);
@@ -229,23 +239,14 @@ impl AionPack {
                 LocalFile::MAGIC => {
                     let mut local_file = LocalFile::parse(&buf[ptr..]);
                     let raw = local_file.decompress();
-                    let path = &format!(
-                        "{OUT_PREFIX}/{root_path}/{}",
-                        local_file.filename
-                    );
-                    let destination_file = Path::new(&path);
+                    let destination_file = out_prefix.join(rel_parent).join(&local_file.filename);
 
-                    if destination_file.extension() == Some(OsStr::new("xml")) {
-                        create_dir_all(destination_file.parent().unwrap())
-                            .unwrap();
+                    if let Some(parent) = destination_file.parent() {
+                        let _ = create_dir_all(parent);
+                    }
 
-                        let mut file = File::options()
-                            .append(false)
-                            .create(true)
-                            .write(true)
-                            .open(destination_file)
-                            .unwrap();
-                        file.write(raw.as_slice()).unwrap();
+                    if let Ok(mut file) = File::create(&destination_file) {
+                        let _ = file.write_all(raw.as_slice());
                     }
                     ptr += local_file.len();
                 }
@@ -260,8 +261,8 @@ impl AionPack {
                 }
                 magic => {
                     println!(
-                        "Invalid Magic, {magic:02X?}, {:?}",
-                        &path.as_ref()
+                        "Invalid Magic, {magic:02X?}, {}",
+                        path.display()
                     );
                     return;
                 }
@@ -567,23 +568,32 @@ fn get_paks(path: impl AsRef<Path>) -> Vec<Box<Path>> {
 
 fn main() {
     const THREADS: usize = 16;
-    // Allow scoping to a single subdir via `cargo run -p pak -- data/items`
-    let scope_arg = std::env::args().nth(1);
-    let base = match &scope_arg {
-        Some(sub) => format!("{AION_PREFIX}{sub}"),
-        None => AION_PREFIX.to_string(),
-    };
-    println!("INFO: scanning {base}");
-    println!("INFO: output  {OUT_PREFIX}");
+    let in_arg = std::env::args().nth(1).unwrap_or_else(|| {
+        std::env::var("AION_CLIENT_DATA").unwrap_or_else(|_| {
+            "D:\\AION RUST\\AionEMU\\AionEMU\\Cliente\\GFAion\\aionclassic\\data".to_string()
+        })
+    });
+    let out_arg = std::env::args().nth(2).unwrap_or_else(|| {
+        std::env::var("AION_OUT_DATA").unwrap_or_else(|_| "data/client_raw".to_string())
+    });
+
+    let base_in = std::path::PathBuf::from(&in_arg);
+    let out_prefix = std::path::PathBuf::from(&out_arg);
+
+    println!("INFO: PAK extractor scanning {}", base_in.display());
+    println!("INFO: Output directory {}", out_prefix.display());
+
+    let paks = Arc::new(get_paks(&base_in));
+    if paks.is_empty() {
+        println!("WARN: no .pak files found under {}", base_in.display());
+        return;
+    }
+    println!("INFO: found {} .pak files", paks.len());
+
+    let base_in_arc = Arc::new(base_in);
+    let out_prefix_arc = Arc::new(out_prefix);
 
     std::thread::scope(|s| {
-        let paks = Arc::new(get_paks(&base));
-        if paks.is_empty() {
-            println!("WARN: no .pak files found under {base}");
-            return;
-        }
-        println!("INFO: found {} .pak files", paks.len());
-
         let threads = THREADS.min(paks.len());
         let chunk_size = paks.len().div_ceil(threads);
         let chunks: Vec<Vec<Box<Path>>> = paks
@@ -592,13 +602,17 @@ fn main() {
             .collect();
 
         for chunk in chunks {
-            s.spawn(|| {
+            let base_ref = Arc::clone(&base_in_arc);
+            let out_ref = Arc::clone(&out_prefix_arc);
+            s.spawn(move || {
                 for pak in chunk {
-                    AionPack::from(pak);
+                    AionPack::unpack(pak, &base_ref, &out_ref);
                 }
             });
         }
-    })
+    });
+
+    println!("INFO: Extraction of .pak files completed successfully!");
 }
 
 #[cfg(test)]

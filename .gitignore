@@ -42,3 +42,5 @@ dist/
 dist/*.zip
 replay.bin
 myls.properties
+**/client_raw/
+
