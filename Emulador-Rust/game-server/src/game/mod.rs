@@ -13,6 +13,7 @@ mod entity;
 mod message;
 pub mod mundo;
 mod session;
+pub mod social;
 mod state;
 
 use crossbeam_channel::{Receiver, Sender};
