@@ -64,12 +64,13 @@ const TOKEN: &str = "536501AE-0CEE-4134-95F5-B2EACC43811B";
 // USER_ID + TOKEN then base64?
 const AUTHN_TOKEN: &str = "NDZDRjg1OUEtMDQyNi00N0JELUE5NUEtNTYzQTc4QkIwN0Q0OjUzNjUwMUFFLTBDRUUtNDEzNC05NUY1LUIyRUFDQzQzODExQgA=";
 
-fn login_reply() -> Reply {
+fn login_reply(username: &str) -> Reply {
+    let login_name = format!("{}@local", username);
     let external_accounts = ExternalAccounts {
         external_account: vec![ExternalAccount {
             auth_provider_code: Some(AUTH_PROVIDER_CODE.into()),
             external_account_key: Some(EXTERNAL_ACCOUNT_KEY.into()),
-            external_account_name: Some(EXTERNAL_ACCOUNT_NAME.into()),
+            external_account_name: Some(username.into()),
             ..Default::default()
         }],
     };
@@ -81,8 +82,8 @@ fn login_reply() -> Reply {
         user_center: Some(USER_CENTER),
         login_center: Some(USER_CENTER),
         user_market_code: Some(USER_CENTER),
-        user_name: Some(USER_NAME.into()),
-        login_name: Some(LOGIN_NAME.into()),
+        user_name: Some(username.into()),
+        login_name: Some(login_name),
         is_login_name_validated: Some(IS_LOGIN_NAME_VALIDATED),
         external_accounts: Some(external_accounts),
         game_account_id: Some(GAME_ACCOUNT_ID.into()),
@@ -121,7 +122,7 @@ impl Api {
             Api::Auth(method) => method.handle(session, request, seq),
             Api::Sts(method) => method.handle(seq),
             Api::GameAccount(method) => method.handle(seq),
-            Api::AccountV1(method) => method.handle(seq),
+            Api::AccountV1(method) => method.handle(session, seq),
             Api::VirtualCurrency(method) => method.handle(seq),
             Api::Presence(_) => empty_reply(seq),
             Api::Unknown(api) => {
@@ -215,10 +216,12 @@ pub enum AccountV1 {
     GetUserInfo,
 }
 impl AccountV1 {
-    fn handle(&self, sequence: Option<u16>) -> Option<Response> {
+    fn handle(&self, session: &Session, sequence: Option<u16>) -> Option<Response> {
         match self {
             Self::GetUserInfo => {
                 let header = ResponseHeader::new(sequence);
+                let username = if session.authn_token.is_empty() { "teste" } else { &session.authn_token };
+                let login_name = format!("{}@local", username);
 
                 let external_account_apps = ExternalAccountApps {
                     external_account_app: vec![ExternalAccountApp {
@@ -231,7 +234,7 @@ impl AccountV1 {
                     external_account: vec![ExternalAccount {
                         auth_provider_code: Some(USER_CREDENTIAL_CODE.into()),
                         external_account_key: Some(EXTERNAL_ACCOUNT_KEY.into()),
-                        external_account_name: Some(EXTERNAL_ACCOUNT_NAME.into()),
+                        external_account_name: Some(username.into()),
                         created: Some(CREATED2.into()),
                         manual_associated: Some(false),
                         dissociable: Some(false),
@@ -246,8 +249,8 @@ impl AccountV1 {
                     created: Some(CREATED.into()),
                     user_market_code: Some(USER_CENTER),
                     user_center: Some(USER_CENTER),
-                    user_name: Some(USER_NAME.into()),
-                    login_name: Some(LOGIN_NAME.into()),
+                    user_name: Some(username.into()),
+                    login_name: Some(login_name),
                     is_login_name_validated: Some(IS_LOGIN_NAME_VALIDATED),
                     external_accounts: Some(external_accounts),
                     ..Default::default()
@@ -379,26 +382,36 @@ impl Auth {
                     Body::Request(request) => request,
                     _ => todo!(),
                 };
-                session.authn_token = request
+                let raw_name = request
                     .login_name()
                     .clone()
                     .unwrap_or_else(|| LOGIN_NAME.to_string());
+                let clean_username = if raw_name.contains('@') {
+                    raw_name.split('@').next().unwrap_or(&raw_name).to_string()
+                } else {
+                    raw_name.clone()
+                };
+                session.authn_token = clean_username.clone();
                 println!(
-                    "INFO: classic LoginStart accepted for '{}'",
-                    session.authn_token
+                    "INFO: classic LoginStart accepted for '{}' (raw: '{}')",
+                    session.authn_token, raw_name
                 );
+
+                if let Err(e) = session.db.registra_token(AUTHN_TOKEN, &clean_username) {
+                    eprintln!("ERROR: LoginStart registra_token: {e}");
+                }
 
                 let header = ResponseHeader::new(sequence);
                 Some(Response {
                     header,
-                    body: login_reply(),
+                    body: login_reply(&session.authn_token),
                 })
             }
             Self::LoginFinish => {
                 let header = ResponseHeader::new(sequence);
                 Some(Response {
                     header,
-                    body: login_reply(),
+                    body: login_reply(&session.authn_token),
                 })
             }
             Self::RequestToken => {
@@ -412,15 +425,17 @@ impl Auth {
                 Some(Response { header, body })
             }
             Self::RequestGameToken => {
-                let username = CONTA_LOCAL.to_string();
+                let username = if !session.authn_token.is_empty() {
+                    session.authn_token.clone()
+                } else {
+                    CONTA_LOCAL.to_string()
+                };
                 let token = session.db.issue_session(&username).unwrap_or_else(|e| {
                     eprintln!("ERROR: issue_session: {e}");
                     TOKEN.to_string()
                 });
                 println!("INFO: issued token {token} for username '{username}'");
 
-                // E este que o game server vai procurar: o cliente manda o AUTHN_TOKEN, nao o
-                // token acima. Ver Db::registra_token.
                 if let Err(e) = session.db.registra_token(AUTHN_TOKEN, &username) {
                     eprintln!("ERROR: registra_token: {e}");
                 }

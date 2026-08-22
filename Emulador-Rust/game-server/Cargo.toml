@@ -8,3 +8,5 @@ crossbeam-channel = { version = "0.5.13", default-features = false, features = [
 krypt = { version = "0.1.0", path = "../krypt" }
 rusqlite = { version = "0.32", features = ["bundled"] }
 quick-xml = "0.37"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"

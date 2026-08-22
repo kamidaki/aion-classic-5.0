@@ -1,0 +1,24 @@
+# ============================================================================
+# Aion Classic - Game Server Configuration
+# ============================================================================
+
+[network]
+bind_address = "0.0.0.0"
+port = 7777
+
+[server]
+server_id = 23
+server_name = "Atreia"
+tick_rate = 144.0
+
+[database]
+database_path = "aion.db"
+
+[world]
+data_dir = "data/client"
+spawns_file = "data/spawns.csv"
+initial_kit_file = "data/itens_iniciais.csv"
+vision_radius = 100.0
+
+[security]
+require_valid_session = true

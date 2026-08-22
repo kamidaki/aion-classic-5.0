@@ -33,15 +33,185 @@ use std::thread::spawn;
 use std::time::Duration;
 
 use error::Error;
+use serde::Deserialize;
 
-const DB_PATH: &str = "aion.db";
+#[derive(Debug, Deserialize, Clone)]
+pub struct GameServerConfig {
+    #[serde(default)]
+    pub network: NetworkConfig,
+    #[serde(default)]
+    pub server: ServerInfoConfig,
+    #[serde(default)]
+    pub database: DatabaseConfig,
+    #[serde(default)]
+    pub world: WorldConfig,
+    #[serde(default)]
+    pub security: SecurityConfig,
+}
 
-fn find_data_dir() -> PathBuf {
+#[derive(Debug, Deserialize, Clone)]
+pub struct NetworkConfig {
+    #[serde(default = "default_bind_address")]
+    pub bind_address: String,
+    #[serde(default = "default_port")]
+    pub port: u16,
+}
+
+impl Default for NetworkConfig {
+    fn default() -> Self {
+        Self {
+            bind_address: default_bind_address(),
+            port: default_port(),
+        }
+    }
+}
+
+fn default_bind_address() -> String {
+    "0.0.0.0".to_string()
+}
+fn default_port() -> u16 {
+    7777
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct ServerInfoConfig {
+    #[serde(default = "default_server_id")]
+    pub server_id: u8,
+    #[serde(default = "default_server_name")]
+    pub server_name: String,
+    #[serde(default = "default_tick_rate")]
+    pub tick_rate: f32,
+}
+
+impl Default for ServerInfoConfig {
+    fn default() -> Self {
+        Self {
+            server_id: default_server_id(),
+            server_name: default_server_name(),
+            tick_rate: default_tick_rate(),
+        }
+    }
+}
+
+fn default_server_id() -> u8 {
+    23
+}
+fn default_server_name() -> String {
+    "Atreia".to_string()
+}
+fn default_tick_rate() -> f32 {
+    144.0
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct DatabaseConfig {
+    #[serde(default = "default_db_path")]
+    pub database_path: String,
+}
+
+impl Default for DatabaseConfig {
+    fn default() -> Self {
+        Self {
+            database_path: default_db_path(),
+        }
+    }
+}
+
+fn default_db_path() -> String {
+    "aion.db".to_string()
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct WorldConfig {
+    #[serde(default = "default_data_dir")]
+    pub data_dir: String,
+    #[serde(default = "default_spawns_file")]
+    pub spawns_file: String,
+    #[serde(default = "default_kit_file")]
+    pub initial_kit_file: String,
+    #[serde(default = "default_vision_radius")]
+    pub vision_radius: f32,
+}
+
+impl Default for WorldConfig {
+    fn default() -> Self {
+        Self {
+            data_dir: default_data_dir(),
+            spawns_file: default_spawns_file(),
+            initial_kit_file: default_kit_file(),
+            vision_radius: default_vision_radius(),
+        }
+    }
+}
+
+fn default_data_dir() -> String {
+    "data/client".to_string()
+}
+fn default_spawns_file() -> String {
+    "data/spawns.csv".to_string()
+}
+fn default_kit_file() -> String {
+    "data/itens_iniciais.csv".to_string()
+}
+fn default_vision_radius() -> f32 {
+    100.0
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct SecurityConfig {
+    #[serde(default = "default_true")]
+    pub require_valid_session: bool,
+}
+
+impl Default for SecurityConfig {
+    fn default() -> Self {
+        Self {
+            require_valid_session: true,
+        }
+    }
+}
+
+fn default_true() -> bool {
+    true
+}
+
+fn load_config() -> GameServerConfig {
+    let candidates = [
+        "config/game_server.toml",
+        "../config/game_server.toml",
+        "game_server.toml",
+    ];
+
+    for path in candidates {
+        if let Ok(content) = std::fs::read_to_string(path) {
+            if let Ok(cfg) = toml::from_str::<GameServerConfig>(&content) {
+                println!("INFO: Loaded Game config from {path}");
+                return cfg;
+            }
+        }
+    }
+
+    println!("INFO: Using default Game config");
+    GameServerConfig {
+        network: NetworkConfig::default(),
+        server: ServerInfoConfig::default(),
+        database: DatabaseConfig::default(),
+        world: WorldConfig::default(),
+        security: SecurityConfig::default(),
+    }
+}
+
+fn find_data_dir(configured: &str) -> PathBuf {
     if let Ok(dir) = std::env::var("AION_DATA_DIR") {
         let p = PathBuf::from(dir);
         if p.exists() {
             return p;
         }
+    }
+
+    let configured_path = PathBuf::from(configured);
+    if configured_path.exists() {
+        return configured_path;
     }
 
     let candidates = [
@@ -65,34 +235,26 @@ fn find_data_dir() -> PathBuf {
 
 fn main() {
     println!("INFO: Starting Game Server");
-    let db = Db::open(DB_PATH).expect("failed to open SQLite db");
-    println!("INFO: Opened DB at {DB_PATH}");
+    let config = load_config();
 
-    let data_dir = find_data_dir();
+    let db = Db::open(&config.database.database_path).expect("failed to open SQLite db");
+    println!("INFO: Opened DB at {}", config.database.database_path);
+
+    let data_dir = find_data_dir(&config.world.data_dir);
     println!("INFO: Loading game data from {}", data_dir.display());
     let game_data = Arc::new({
         let mut gd = GameData::load(&data_dir);
-        // A tabela de spawns nao vem do cliente: e gerada da captura por tools/extrai_spawns.py.
         let spawns = std::env::var("AION_SPAWNS")
-            .unwrap_or_else(|_| "data/spawns.csv".to_string());
+            .unwrap_or_else(|_| config.world.spawns_file.clone());
         gd.carrega_spawns(std::path::Path::new(&spawns));
-        // O kit inicial tambem nao vem do cliente: e a tabela do player_initial_data.xml da base
-        // de referencia, com os ids conferidos contra o catalogo 4.5.
         let kit = std::env::var("AION_ITENS_INICIAIS")
-            .unwrap_or_else(|_| "data/itens_iniciais.csv".to_string());
+            .unwrap_or_else(|_| config.world.initial_kit_file.clone());
         gd.carrega_itens_iniciais(std::path::Path::new(&kit));
         gd
     });
 
-    // A captura de uma sessao real mostra o cliente indo para o game server na porta 7777, que e
-    // tambem a porta que o auth server anuncia na lista. O 8443 que estava aqui vinha de outro
-    // caminho (o endereco 104.18.41.168 da Gameforge, interceptado pelo adaptador de loopback) e
-    // nao casava com a lista -- o cliente era mandado para 7777 e nao havia ninguem ouvindo.
-    let port = std::env::var("AION_GAME_PORT")
-        .ok()
-        .and_then(|v| v.parse::<u16>().ok())
-        .unwrap_or(7777);
-    let listener = TcpListener::bind(format!("0.0.0.0:{port}")).unwrap();
+    let bind_addr = format!("{}:{}", config.network.bind_address, config.network.port);
+    let listener = TcpListener::bind(&bind_addr).unwrap();
     println!("INFO: Listening on {}", listener.local_addr().unwrap());
 
     let clients = Arc::new(Mutex::new(HashMap::new()));

@@ -227,32 +227,38 @@ pub struct Request {
 #[allow(dead_code)]
 impl Request {
     pub fn deserialise(buffer: &[u8]) -> Result<(Self, usize)> {
-        let text = from_utf8(buffer).map_err(Error::PacketNotValidUtf8)?;
-        println!("DEBUG: Recieved\r\n{text}");
-        let mut split_text = text.split("\r\n\r\n");
+        let header_delim = b"\r\n\r\n";
+        let header_end = buffer
+            .windows(header_delim.len())
+            .position(|window| window == header_delim)
+            .ok_or(Error::InvalidHeaders)?;
 
-        let raw_headers = split_text.next().ok_or(Error::EmptyPacket)?;
+        let raw_headers = from_utf8(&buffer[..header_end]).map_err(Error::PacketNotValidUtf8)?;
         let header = RequestHeader::deserialise(raw_headers)?;
 
-        let raw_body = split_text.next().ok_or(Error::MissingPacketBody)?;
-        let raw_body = &raw_body
-            .get(..*header.len())
-            .ok_or(Error::PacketLenOverflow)?;
+        let body_start = header_end + header_delim.len();
+        let body_len = *header.len();
+        let total_msg_len = body_start + body_len;
+
+        if buffer.len() < total_msg_len {
+            return Err(Error::PacketLenOverflow);
+        }
+
+        let raw_body_bytes = &buffer[body_start..total_msg_len];
+        let raw_body = from_utf8(raw_body_bytes).map_err(Error::PacketNotValidUtf8)?;
+        println!("DEBUG: Recieved STS request: {} (body len: {body_len})", header.api);
+
         let body = if raw_body.trim().is_empty() {
             Body::Empty
         } else if raw_body.trim() == "</Request>" {
             println!("WARN: accepting malformed empty Request body");
             Body::Empty
-        } else if raw_body.len() != 0 {
-            Body::deserialise(raw_body)?
         } else {
-            Body::Empty
+            Body::deserialise(raw_body)?
         };
 
-        let msg_len = header.len().checked_add(raw_headers.len() + 4);
-
         let message = Request { header, body };
-        Ok((message, msg_len.ok_or(Error::PacketLenOverflow)?))
+        Ok((message, total_msg_len))
     }
 
     pub fn serialise(&mut self, buffer: &mut [u8]) -> usize {

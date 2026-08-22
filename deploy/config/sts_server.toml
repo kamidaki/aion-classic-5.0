@@ -1,0 +1,15 @@
+# ============================================================================
+# Aion Classic - STS (Secure Token Service) Server Configuration
+# ============================================================================
+
+[network]
+bind_address = "0.0.0.0"
+port = 6600
+
+[database]
+database_path = "aion.db"
+
+[authentication]
+user_center = 22
+user_status = 1
+default_account_name = "teste"

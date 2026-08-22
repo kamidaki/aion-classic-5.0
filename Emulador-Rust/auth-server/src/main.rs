@@ -1,26 +1,220 @@
+mod db;
 mod error;
+mod gameforge;
 
 use std::io::{Read, Write};
 use std::net::{Ipv4Addr, TcpListener, TcpStream};
+use std::sync::Arc;
 use std::thread::spawn;
 
+use db::AuthDb;
 use error::Result;
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct AuthConfig {
+    #[serde(default)]
+    pub network: NetworkConfig,
+    #[serde(default)]
+    pub database: DatabaseConfig,
+    #[serde(default)]
+    pub accounts: AccountsConfig,
+    #[serde(default)]
+    pub game_servers: GameServersConfig,
+    #[serde(default)]
+    pub gameforge_pipe: GameforgePipeConfig,
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct NetworkConfig {
+    #[serde(default = "default_bind_address")]
+    pub bind_address: String,
+    #[serde(default = "default_client_port")]
+    pub client_port: u16,
+    #[serde(default = "default_hq_port")]
+    pub hq_port: u16,
+}
+
+impl Default for NetworkConfig {
+    fn default() -> Self {
+        Self {
+            bind_address: default_bind_address(),
+            client_port: default_client_port(),
+            hq_port: default_hq_port(),
+        }
+    }
+}
+
+fn default_bind_address() -> String {
+    "0.0.0.0".to_string()
+}
+fn default_client_port() -> u16 {
+    2106
+}
+fn default_hq_port() -> u16 {
+    13001
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct DatabaseConfig {
+    #[serde(default = "default_db_path")]
+    pub database_path: String,
+}
+
+impl Default for DatabaseConfig {
+    fn default() -> Self {
+        Self {
+            database_path: default_db_path(),
+        }
+    }
+}
+
+fn default_db_path() -> String {
+    "aion.db".to_string()
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct AccountsConfig {
+    #[serde(default = "default_true")]
+    pub auto_create_accounts: bool,
+    #[serde(default = "default_true")]
+    pub development_mode: bool,
+    #[serde(default = "default_dev_username")]
+    pub default_dev_username: String,
+}
+
+impl Default for AccountsConfig {
+    fn default() -> Self {
+        Self {
+            auto_create_accounts: true,
+            development_mode: true,
+            default_dev_username: default_dev_username(),
+        }
+    }
+}
+
+fn default_true() -> bool {
+    true
+}
+fn default_dev_username() -> String {
+    "teste".to_string()
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct GameServersConfig {
+    #[serde(default = "default_server_id_val")]
+    pub default_server_id: u8,
+    #[serde(default = "default_game_server_ip")]
+    pub game_server_ip: String,
+    #[serde(default = "default_game_server_port")]
+    pub game_server_port: u16,
+}
+
+impl Default for GameServersConfig {
+    fn default() -> Self {
+        Self {
+            default_server_id: default_server_id_val(),
+            game_server_ip: default_game_server_ip(),
+            game_server_port: default_game_server_port(),
+        }
+    }
+}
+
+fn default_server_id_val() -> u8 {
+    23
+}
+fn default_game_server_ip() -> String {
+    "127.0.0.1".to_string()
+}
+fn default_game_server_port() -> u16 {
+    7777
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct GameforgePipeConfig {
+    #[serde(default = "default_true")]
+    pub enabled: bool,
+    #[serde(default = "default_pipe_name")]
+    pub pipe_name: String,
+}
+
+impl Default for GameforgePipeConfig {
+    fn default() -> Self {
+        Self {
+            enabled: true,
+            pipe_name: default_pipe_name(),
+        }
+    }
+}
+
+fn default_pipe_name() -> String {
+    "\\\\.\\pipe\\GameforgeClientJSONRPC".to_string()
+}
+
+fn load_config() -> AuthConfig {
+    let candidates = [
+        "config/auth_server.toml",
+        "../config/auth_server.toml",
+        "auth_server.toml",
+    ];
+
+    for path in candidates {
+        if let Ok(content) = std::fs::read_to_string(path) {
+            if let Ok(cfg) = toml::from_str::<AuthConfig>(&content) {
+                println!("INFO: Loaded Auth config from {path}");
+                return cfg;
+            }
+        }
+    }
+
+    println!("INFO: Using default Auth config");
+    AuthConfig {
+        network: NetworkConfig::default(),
+        database: DatabaseConfig::default(),
+        accounts: AccountsConfig::default(),
+        game_servers: GameServersConfig::default(),
+        gameforge_pipe: GameforgePipeConfig::default(),
+    }
+}
 
 fn main() {
     println!("INFO: Starting Auth Server");
+    let config = Arc::new(load_config());
 
-    for port in [13001u16, 2106] {
-        let listener = TcpListener::bind(format!("0.0.0.0:{port}")).unwrap();
-        println!("INFO: Listening on {}", listener.local_addr().unwrap());
-        spawn(move || {
-            while let Ok((stream, _)) = listener.accept() {
-                spawn(|| {
-                    if let Err(e) = handle(stream) {
-                        println!("ERROR: auth session failed: {e}");
+    let db = Arc::new(
+        AuthDb::open(&config.database.database_path).expect("failed to open Auth SQLite db"),
+    );
+    println!("INFO: Opened Auth DB at {}", config.database.database_path);
+
+    // Start internal Gameforge Named Pipe provider if enabled
+    if config.gameforge_pipe.enabled {
+        gameforge::start_pipe_server(config.accounts.default_dev_username.clone(), db.clone());
+    }
+
+    let ports = [config.network.hq_port, config.network.client_port];
+    for port in ports {
+        let bind_addr = format!("{}:{port}", config.network.bind_address);
+        match TcpListener::bind(&bind_addr) {
+            Ok(listener) => {
+                println!("INFO: Listening on {}", listener.local_addr().unwrap());
+                let config = config.clone();
+                let db = db.clone();
+                spawn(move || {
+                    while let Ok((stream, _)) = listener.accept() {
+                        let config = config.clone();
+                        let db = db.clone();
+                        spawn(move || {
+                            if let Err(e) = handle(stream, &config, &db) {
+                                println!("ERROR: auth session failed: {e}");
+                            }
+                        });
                     }
                 });
             }
-        });
+            Err(e) => {
+                eprintln!("ERROR: Failed to bind to {bind_addr}: {e}");
+            }
+        }
     }
 
     // Keep main thread alive
@@ -33,10 +227,6 @@ fn main() {
 // Protocol constants
 // ---------------------------------------------------------------------------
 
-/// Opcode 0x05 — Auth greeting sent immediately on connect.
-/// Payload: auth_key_1 (null-terminated), auth_key_2 (null-terminated),
-///          service name "aiongfc" (null-terminated), then 4 trailer bytes.
-/// The two keys are opaque UUIDs used by the client for HMAC-style auth.
 const AUTH_GREETING: [u8; 92] = [
     0x5c, 0x00, 0x05, 0x00, 0x00, 0x00,
     // auth_key_1: "5B4503FA-8521-4608-BB60-5CFAC87BD63A"
@@ -55,16 +245,10 @@ const AUTH_GREETING: [u8; 92] = [
     0x14, 0x0c, 0x00, 0x00,
 ];
 
-/// Na captura real o LOGIN_OK vem com accountId zero. O 0x15 que estava aqui era palpite, e por
-/// acaso igual ao id do primeiro servidor da lista -- coincidencia que so atrapalha ao depurar.
 const ACCOUNT_ID: u32 = 0x0000_0000;
 const LOGIN_OK_KEY: u32 = 0x0262_cab6;
-
-/// Ultimos 4 bytes do SESSION_KEY, como observado na captura do servidor da Gameforge.
-/// Proposito ainda desconhecido; o cliente nao avanca para o game server sem ele.
 const SESSION_TRAILER: u32 = 0x0000_0AD6;
 
-/// Opcode 0x01 — Login OK, sent after receiving the client credential packet.
 fn login_ok() -> [u8; 14] {
     let mut bytes = [0u8; 14];
     let len = bytes.len() as u16;
@@ -75,10 +259,7 @@ fn login_ok() -> [u8; 14] {
     bytes
 }
 
-/// Opcode 0x04 — play OK, sent after the client picks a game server.
-/// bytes[14..18] MUST be zero — the client interprets any non-zero value there
-/// as an "Authorization Error" code and disconnects before reaching the game server.
-fn session_key(server_selection: &[u8], server_id: u8) -> [u8; 22] {
+fn session_key(server_selection: &[u8], _server_id: u8) -> [u8; 22] {
     let mut bytes = [0u8; 22];
     let len = bytes.len() as u16;
     bytes[0..2].copy_from_slice(&len.to_le_bytes());
@@ -93,11 +274,6 @@ fn session_key(server_selection: &[u8], server_id: u8) -> [u8; 22] {
         bytes[6..10].copy_from_slice(&ACCOUNT_ID.to_le_bytes());
         bytes[10..14].copy_from_slice(&LOGIN_OK_KEY.to_le_bytes());
     }
-    // bytes[14..18] = 0 (zeros = success; non-zero = AuthorizationError shown to client)
-
-    // Os quatro ultimos bytes: o servidor real manda 0x00000AD6 aqui. O que havia antes escrevia o
-    // id do servidor no byte 20, deixando 18 e 19 zerados -- o oposto do observado. Sem saber o que
-    // o cliente faz com este campo, o mais seguro e reproduzir o que ele recebe de verdade.
     bytes[18..22].copy_from_slice(&SESSION_TRAILER.to_le_bytes());
     bytes
 }
@@ -112,7 +288,6 @@ struct GameServer {
     ip_addr: Ipv4Addr,
     online: bool,
     port: u16,
-    /// 0x4 = normal world server, 0x5 = instance server
     typ: u8,
     characters: u8,
 }
@@ -120,15 +295,6 @@ struct GameServer {
 impl GameServer {
     const LEN: usize = 63;
 
-    /// Layout conferido contra uma captura real do servidor da Gameforge
-    /// (ver docs/protocol/auth-server.md). O que estava aqui antes era palpite, e errado em
-    /// tres pontos: o IP nao e binario, a porta nao fica logo depois dele e nao e big-endian.
-    ///
-    /// O sintoma disso e traicoeiro: a lista aparece na tela normalmente, porque id, tipo,
-    /// online e contagem de personagens caem nos offsets certos. So que o cliente le o IP como
-    /// ASCII a partir do offset 13, encontra o primeiro byte nulo do endereco binario e fica com
-    /// uma string vazia, e le a porta no 53, que estava zerada. Resultado: trava na tela de
-    /// selecao de servidor, sem mensagem de erro.
     fn serialise(&self) -> [u8; Self::LEN] {
         let mut bytes = [0u8; Self::LEN];
 
@@ -138,17 +304,12 @@ impl GameServer {
         bytes[5] = self.id;
         bytes[9] = self.characters;
 
-        // IP como string ASCII terminada em nulo, a partir do offset 13.
         let ip = self.ip_addr.to_string();
         let ip = ip.as_bytes();
         bytes[13..13 + ip.len()].copy_from_slice(ip);
 
-        // Porta em u16 little-endian no offset 53.
         bytes[53..55].copy_from_slice(&self.port.to_le_bytes());
 
-        // Na captura este byte so aparece na entrada do servidor de mundo que estava online.
-        // Uma captura sozinha nao separa "e servidor de mundo" de "esta online", entao exigimos
-        // os dois -- a leitura mais conservadora do que foi observado.
         if self.typ == 0x4 && self.online {
             bytes[55] = 0x1;
         }
@@ -175,8 +336,6 @@ impl GameServerList {
         }
     }
 
-    /// Add a server to the list. Silently ignores the entry if the list is
-    /// already at MAX capacity (20 servers).
     fn insert(&mut self, server: GameServer) {
         if self.servers.len() < Self::MAX {
             self.servers.push(server);
@@ -196,9 +355,6 @@ impl GameServerList {
         buf[len] = self.last_logged_on;
         len += Self::SUFFIX_LEN;
 
-        // Tamanho e quantidade sao u16 little-endian, nao bytes soltos. Com um byte so isso passa
-        // despercebido em listas pequenas e quebra a partir de 4 servidores: 20 entradas dao 1272
-        // bytes, e o cliente leria 248.
         buf[0..2].copy_from_slice(&(len as u16).to_le_bytes());
         buf[2] = Self::SEQUENCE_NUMBER;
         buf[6..8].copy_from_slice(&(self.servers.len() as u16).to_le_bytes());
@@ -207,78 +363,65 @@ impl GameServerList {
     }
 }
 
-/// Lista espelhada da captura real do servidor da Gameforge: mesmos ids, mesmos tipos, mesma
-/// ordem, mesmo "ultimo logado". Só os IPs mudam.
-///
-/// Os ids importam: o cliente traduz id em nome de servidor (foi assim que "Atreia" apareceu na
-/// tela sem nós mandarmos nenhum texto). Com ids que ele nao reconhece, a lista ate desenha, mas
-/// a selecao morre em "No game server is available to the authorization server. (6)".
-fn default_server_list() -> GameServerList {
-    let game_ip = game_server_ip();
-    let mut list = GameServerList::new(0x17);
+fn build_server_list(config: &AuthConfig, char_count: u8) -> GameServerList {
+    let game_ip: Ipv4Addr = config
+        .game_servers
+        .game_server_ip
+        .parse()
+        .unwrap_or(Ipv4Addr::new(127, 0, 0, 1));
+    let game_port = config.game_servers.game_server_port;
+    let server_id = config.game_servers.default_server_id;
+
+    let mut list = GameServerList::new(server_id);
     list.insert(GameServer {
         id: 0x67,
         ip_addr: game_ip,
         online: false,
-        port: 7777,
+        port: game_port,
         typ: 5,
         characters: 0,
     });
     list.insert(GameServer {
-        id: 0x17,
+        id: server_id,
         ip_addr: game_ip,
         online: true,
-        port: 7777,
+        port: game_port,
         typ: 4,
-        characters: 1,
+        characters: char_count,
     });
     list.insert(GameServer {
         id: 0x79,
         ip_addr: game_ip,
         online: false,
-        port: 7777,
+        port: game_port,
         typ: 5,
         characters: 0,
     });
     list
 }
 
-fn selected_server_id(buf: &[u8]) -> u8 {
+fn selected_server_id(buf: &[u8], default_id: u8) -> u8 {
     if buf.len() > 6 && matches!(buf[6], 0x17 | 0x67 | 0x79) {
         return buf[6];
     }
-
-    0x17
-}
-
-fn game_server_ip() -> Ipv4Addr {
-    if let Some(arg) = std::env::args().nth(1) {
-        if let Ok(ip) = arg.parse() {
-            return ip;
-        }
-    }
-    std::env::var("AION_GAME_IP")
-        .ok()
-        .and_then(|value| value.parse().ok())
-        .unwrap_or_else(|| Ipv4Addr::new(127, 0, 0, 1))
+    default_id
 }
 
 // ---------------------------------------------------------------------------
 // Per-connection handler
 // ---------------------------------------------------------------------------
 
-fn handle(mut stream: TcpStream) -> Result<()> {
+fn handle(mut stream: TcpStream, config: &AuthConfig, db: &Arc<AuthDb>) -> Result<()> {
     let peer = stream.peer_addr()?;
     println!("INFO: incoming {peer}");
 
-    // Shared read buffer reused for all client reads this session.
     let mut buf = [0u8; 512];
 
     // 1. Greet: send auth keys + service name
     stream.write_all(&AUTH_GREETING)?;
     println!("DEBUG: → AUTH_GREETING ({} bytes)", AUTH_GREETING.len());
 
-    // 2. Receive client credentials (username / password hash — not yet verified)
+    // 2. Receive client credentials
     let len = stream.read(&mut buf)?;
     if len == 0 {
         println!("INFO: client closed connection before sending credentials (normal probe/disconnect)");
@@ -286,43 +429,37 @@ fn handle(mut stream: TcpStream) -> Result<()> {
     }
     println!("DEBUG: ← credentials ({len} bytes): {:02X?}", &buf[..len]);
 
+    // Handle account lookup / auto creation
+    let username = &config.accounts.default_dev_username;
+    let account_id = db
+        .get_or_create_account(username, config.accounts.auto_create_accounts)
+        .unwrap_or(None)
+        .unwrap_or(1);
+    let char_count = db.count_characters(account_id);
+
     // 3. Acknowledge login
     let login_ok = login_ok();
     stream.write_all(&login_ok)?;
     println!("DEBUG: → LOGIN_OK: {:02X?}", login_ok);
 
     // 4. Send game server list
-    // Upper bound: MAX servers × 63 bytes + 8 preamble + 4 suffix = 1272 bytes.
     let mut gs_buf = [0u8; 2048];
-    let gs_len = default_server_list().serialise(&mut gs_buf);
+    let server_list = build_server_list(config, char_count);
+    let gs_len = server_list.serialise(&mut gs_buf);
     stream.write_all(&gs_buf[..gs_len])?;
-    println!(
-        "INFO: server list summary: len={} msg_type={} count6={} count7={} first_online={} first_id={} first_ip={}.{}.{}.{} first_port={}",
-        gs_len,
-        gs_buf[2],
-        gs_buf[6],
-        gs_buf[7],
-        gs_buf[12],
-        gs_buf[13],
-        gs_buf[21],
-        gs_buf[22],
-        gs_buf[23],
-        gs_buf[24],
-        u16::from_be_bytes([gs_buf[25], gs_buf[26]]),
-    );
-    println!("DEBUG: → server list ({gs_len} bytes): {:02X?}", &gs_buf[..gs_len]);
+    println!("DEBUG: → server list ({gs_len} bytes)");
 
     // 5. Receive server selection from client
     let len = stream.read(&mut buf)?;
     if len == 0 {
-        println!("WARN: client closed connection after server list (rejected list — error 6?)");
+        println!("WARN: client closed connection after server list");
         return Ok(());
     }
     println!("DEBUG: ← server selection ({len} bytes): {:02X?}", &buf[..len]);
-    let selected_server_id = selected_server_id(&buf[..len]);
-    println!("INFO: selected server id: {selected_server_id} (default 0x15 when packet omits it)");
+    let selected_server_id = selected_server_id(&buf[..len], config.game_servers.default_server_id);
+    println!("INFO: selected server id: {selected_server_id}");
 
-    // 6. Send session key → client forwards it to game server on connect
+    // 6. Send session key
     let session_key = session_key(&buf[..len], selected_server_id);
     stream.write_all(&session_key)?;
     println!("DEBUG: → SESSION_KEY: {:02X?}", session_key);
@@ -334,6 +471,7 @@ fn handle(mut stream: TcpStream) -> Result<()> {
     println!("INFO: auth complete, closing {peer}");
     Ok(())
 }
+
 
 // ---------------------------------------------------------------------------
 // Tests

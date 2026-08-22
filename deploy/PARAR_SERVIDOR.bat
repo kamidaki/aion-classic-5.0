@@ -13,7 +13,6 @@ echo [*] Encerrando processos de servidores Rust...
 taskkill /F /IM game-server.exe 2>nul
 taskkill /F /IM auth-server.exe 2>nul
 taskkill /F /IM sts-server.exe 2>nul
-taskkill /F /IM launcher.exe 2>nul
 
 echo.
 echo   [+] Todos os processos do servidor foram encerrados com sucesso!

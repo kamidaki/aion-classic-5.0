@@ -11,14 +11,90 @@ use crate::db::Db;
 use crate::error::Error;
 use crate::net::Session;
 
-const DB_PATH: &str = "aion.db";
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize)]
+struct Config {
+    #[serde(default)]
+    network: NetworkConfig,
+    #[serde(default)]
+    database: DatabaseConfig,
+}
+
+#[derive(Debug, Deserialize)]
+struct NetworkConfig {
+    #[serde(default = "default_bind_address")]
+    bind_address: String,
+    #[serde(default = "default_port")]
+    port: u16,
+}
+
+impl Default for NetworkConfig {
+    fn default() -> Self {
+        Self {
+            bind_address: default_bind_address(),
+            port: default_port(),
+        }
+    }
+}
+
+fn default_bind_address() -> String {
+    "0.0.0.0".to_string()
+}
+
+fn default_port() -> u16 {
+    6600
+}
+
+#[derive(Debug, Deserialize)]
+struct DatabaseConfig {
+    #[serde(default = "default_db_path")]
+    database_path: String,
+}
+
+impl Default for DatabaseConfig {
+    fn default() -> Self {
+        Self {
+            database_path: default_db_path(),
+        }
+    }
+}
+
+fn default_db_path() -> String {
+    "aion.db".to_string()
+}
+
+fn load_config() -> Config {
+    let candidates = [
+        "config/sts_server.toml",
+        "../config/sts_server.toml",
+        "sts_server.toml",
+    ];
+
+    for path in candidates {
+        if let Ok(content) = std::fs::read_to_string(path) {
+            if let Ok(cfg) = toml::from_str::<Config>(&content) {
+                println!("INFO: Loaded STS config from {path}");
+                return cfg;
+            }
+        }
+    }
+
+    println!("INFO: Using default STS config");
+    Config {
+        network: NetworkConfig::default(),
+        database: DatabaseConfig::default(),
+    }
+}
 
 fn main() {
     println!("INFO: Starting STS Server");
-    let db = Arc::new(Db::open(DB_PATH).expect("failed to open STS db"));
-    println!("INFO: Opened shared DB at {DB_PATH}");
+    let config = load_config();
+    let db = Arc::new(Db::open(&config.database.database_path).expect("failed to open STS db"));
+    println!("INFO: Opened shared DB at {}", config.database.database_path);
 
-    let listener = TcpListener::bind("0.0.0.0:6600").unwrap();
+    let bind_addr = format!("{}:{}", config.network.bind_address, config.network.port);
+    let listener = TcpListener::bind(&bind_addr).unwrap();
     println!("INFO: Listening on {}", listener.local_addr().unwrap());
 
     while let Ok((stream, _)) = listener.accept() {

@@ -32,14 +32,22 @@ O objetivo deste projeto é o desenvolvimento de um **Emulador de Alta Performan
 ## 3. Estado Atual do Emulador Rust (`Emulador-Rust`)
 
 ### Conquistas Recentes:
+- **Arquitetura 100% Autônoma e Eliminação do `launcher.exe`**:
+  - Remoção completa da dependência de executáveis externos de launcher.
+  - Provedor Named Pipe RPC do Gameforge (`\\.\pipe\GameforgeClientJSONRPC`) integrado diretamente como thread de background dentro do `auth-server`.
+  - O cliente é iniciado diretamente via `Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat` apontando para `bin64\aion.bin` com parâmetros padrão (`-lang:ENG -ip:127.0.0.1 -port:2106 ...`).
+- **Resolução Definitiva do Framing STS e Disconnect 10054**:
+  - Reescrita do parser de pacotes HTTP/STS para respeitar os delimitadores `\r\n\r\n` e o header de tamanho `l:<len>` de forma exata, eliminando truncamento de requisições e corrupção de mensagens pipelined (`</Request>` órfão).
+  - Persistência e associação de sessões no banco de dados SQLite (`aion.db`) tanto em `LoginStart` quanto em `RequestGameToken`.
+- **Arquitetura Modular de Configuração TOML**:
+  - Suporte completo a arquivos de configuração `.toml` (`config/auth_server.toml`, `config/sts_server.toml`, `config/game_server.toml`) com auto-criação de contas (`auto_create_accounts = true`) e modo de desenvolvimento (`development_mode = true`).
 - **Independência do Replay**: O cliente conecta, cria personagens e entra no mundo em Pandaemonium sem depender de pacotes gravados estáticos.
-- **Autenticação STS e Launcher**: Integração via Named Pipe (`\\.\pipe\aion_launch`) e Handshake STS com criptografia AES/RSA/RC4 e tokens estáveis.
 - **Criação e Lista de Personagens**:
   - Mapeamento do deslocamento do pedido de criação (bytes 22..162 mapeados para 4..144 do registro da lista).
   - Cálculo de redundância de mesh (`100000 + raca*2 + genero`).
   - Persistência básica de contas e personagens no banco SQLite (`aion.db`).
 - **Extração de NPCs e Streaming**:
-  - Extração de 1.054 NPCs reais de Pandaemonium via PCAP e catalogo de nomes do cliente.
+  - Extração de 1.254 NPCs reais de Pandaemonium via PCAP e catálogo de nomes do cliente.
   - Implementação de streaming por alcance de visão (~20m) e despawn dinâmico (`S_PUT_NPC` / `S_REMOVE_OBJECT`).
 - **Correção Crítica de I/O**:
   - Substituição de `write` parcial por `write_all`, resolvendo telas de carregamento travadas e erros de "Packet Checksum Failed".

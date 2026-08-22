@@ -12,3 +12,4 @@ krypt = { version = "0.1.0", path = "../krypt" }
 base64 = { version = "0.22.1", default-features = false }
 rusqlite = { version = "0.32", features = ["bundled"] }
 rand = "0.8"
+toml = "0.8"
