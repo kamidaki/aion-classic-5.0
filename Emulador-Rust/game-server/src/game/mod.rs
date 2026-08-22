@@ -20,6 +20,7 @@ pub mod pet;
 mod session;
 pub mod social;
 mod state;
+pub mod web_services;
 
 use crossbeam_channel::{Receiver, Sender};
 use krypt::game::{gen_xor_key, gen_xor_seed};
