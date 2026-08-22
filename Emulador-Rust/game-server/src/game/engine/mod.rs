@@ -122,3 +122,81 @@ impl Direction {
         self.0
     }
 }
+
+/// Interface da GeoEngine para consultas de terreno, colisão 3D e linha de visão (LoS).
+pub trait GeoService: Send + Sync {
+    /// Retorna a altura Z estimada ou exata do terreno no mapa
+    fn get_z(&self, world_id: u32, x: f32, y: f32) -> f32;
+
+    /// Verifica se há linha de visão desobstruída (Raycast)
+    fn can_see(&self, world_id: u32, from: &Coord, to: &Coord) -> bool;
+
+    /// Valida se uma posição está em zona de voo autorizada
+    fn is_fly_zone(&self, world_id: u32, pos: &Coord) -> bool;
+
+    /// Valida se a velocidade de deslocamento do jogador é legítima
+    fn validate_speed(&self, from: &Coord, to: &Coord, dt_seconds: f32, max_speed: f32) -> bool {
+        if dt_seconds <= 0.0 {
+            return true;
+        }
+        let dist = from.distance(to);
+        dist / dt_seconds <= max_speed * 1.3
+    }
+}
+
+/// Implementação padrão resiliente da GeoEngine
+#[derive(Debug, Default, Clone)]
+pub struct DefaultGeoEngine;
+
+impl GeoService for DefaultGeoEngine {
+    fn get_z(&self, _world_id: u32, _x: f32, _y: f32) -> f32 {
+        0.0
+    }
+
+    fn can_see(&self, _world_id: u32, _from: &Coord, _to: &Coord) -> bool {
+        true
+    }
+
+    fn is_fly_zone(&self, world_id: u32, _pos: &Coord) -> bool {
+        // Reshanta (400010000) e certas zonas de capitais permitem voo livre
+        matches!(world_id, 400_010_000 | 110_010_000 | 120_010_000)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn coord_distance_and_add_work_properly() {
+        let a = Coord::new(0.0, 0.0, 0.0);
+        let b = Coord::new(3.0, 4.0, 0.0);
+        assert_eq!(a.distance(&b), 5.0);
+
+        let c = &a + &b;
+        assert_eq!(c.x(), 3.0);
+        assert_eq!(c.y(), 4.0);
+        assert_eq!(c.z(), 0.0);
+    }
+
+    #[test]
+    fn move_type_bit_mask_detection() {
+        let mt = MoveType::from_bits(MoveType::GLIDE.bits() | MoveType::TURN.bits());
+        assert!(mt.contains(MoveType::GLIDE));
+        assert!(mt.contains(MoveType::TURN));
+        assert!(!mt.contains(MoveType::FALL));
+    }
+
+    #[test]
+    fn geo_engine_validates_speed_and_fly_zones() {
+        let geo = DefaultGeoEngine;
+        let p1 = Coord::new(100.0, 100.0, 200.0);
+        let p2 = Coord::new(106.0, 100.0, 200.0); // 6m em 1s = 6m/s
+
+        assert!(geo.validate_speed(&p1, &p2, 1.0, 6.0));
+        assert!(!geo.validate_speed(&p1, &p2, 0.1, 6.0), "60m/s deve ser rejeitado por speedhack");
+
+        assert!(geo.is_fly_zone(400_010_000, &p1), "Reshanta e zona de voo");
+        assert!(!geo.is_fly_zone(210_010_000, &p1), "Poeta padrao nao e zona de voo livre");
+    }
+}
