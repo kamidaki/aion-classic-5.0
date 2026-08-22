@@ -6,6 +6,7 @@ use std::{
     time::{Duration, Instant},
 };
 
+pub mod arena;
 mod character;
 pub mod craft;
 pub mod cron_events;
