@@ -1,6 +1,6 @@
 # ETAPA 08: IA DE NPCS, COMPORTAMENTO DE MONSTROS E SPAWNENGINE
 
-> **Status da Etapa**: Pendente  
+> **Status da Etapa**: Concluída  
 > **Prioridade**: Alta (Povoamento do Mundo e Desafio PvE)  
 > **Dependências**: [03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md), [04_SISTEMA_MOVIMENTACAO_FISICA_GEOENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/04_SISTEMA_MOVIMENTACAO_FISICA_GEOENGINE.md), [07_SISTEMA_DE_COMBATE_E_HABILIDADES_SKILLENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/07_SISTEMA_DE_COMBATE_E_HABILIDADES_SKILLENGINE.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.ai2`, `com.aionemu.gameserver.spawnengine`, `com.aionemu.gameserver.services.drop.DropService`
