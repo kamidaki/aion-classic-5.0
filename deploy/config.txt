@@ -7,8 +7,7 @@ CLIENTE = D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic\bin64\AION.bin
 
 # Endereço IP anunciado para os clientes conectarem.
 # IMPORTANTE: O cliente Aion 4.5 descarta conexões loopback (127.0.0.1).
-# Deixe em branco para detecção automática do IP da sua placa de rede local / Hamachi / Radmin / Dedicado.
-IP = 
+IP = 192.168.3.184
 
 # Portas dos Serviços:
 # STS Server (Handshake de Segurança e Tokens): 10241

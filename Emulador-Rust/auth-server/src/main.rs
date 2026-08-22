@@ -252,10 +252,15 @@ fn selected_server_id(buf: &[u8]) -> u8 {
 }
 
 fn game_server_ip() -> Ipv4Addr {
+    if let Some(arg) = std::env::args().nth(1) {
+        if let Ok(ip) = arg.parse() {
+            return ip;
+        }
+    }
     std::env::var("AION_GAME_IP")
         .ok()
         .and_then(|value| value.parse().ok())
-        .unwrap_or_else(|| Ipv4Addr::new(192, 168, 100, 77))
+        .unwrap_or_else(|| Ipv4Addr::new(127, 0, 0, 1))
 }
 
 // ---------------------------------------------------------------------------

@@ -9,18 +9,45 @@ use std::sync::{Arc, Mutex};
 // Config — adjust these to match your installation
 // ---------------------------------------------------------------------------
 
-/// Caminho padrao do cliente. Quase certamente errado em outra maquina -- use `AION_CLIENT`.
-const GAME_PATH_PADRAO: &str = r#"G:\GFAion\aionclassic\bin64\aion.bin"#;
-/// Onde esta o `aion.bin`. `AION_CLIENT` tem precedencia; sem ela, vale [`GAME_PATH_PADRAO`].
-///
-/// E a unica coisa que muda de maquina para maquina e nao da para adivinhar, entao fica em
-/// variavel de ambiente em vez de constante recompilada.
+/// Candidatos padrão para encontrar o aion.bin no Windows
+const GAME_PATH_PADRAO: &str = r#"D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic\bin64\aion.bin"#;
+
 fn caminho_do_cliente() -> String {
-    std::env::var("AION_CLIENT").unwrap_or_else(|_| GAME_PATH_PADRAO.to_string())
+    if let Ok(path) = std::env::var("AION_CLIENT") {
+        if std::path::Path::new(&path).exists() {
+            return path;
+        }
+    }
+
+    let candidates = [
+        r#"D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic\bin64\aion.bin"#,
+        r#"..\Cliente\GFAion\aionclassic\bin64\aion.bin"#,
+        r#"Cliente\GFAion\aionclassic\bin64\aion.bin"#,
+        r#"..\..\Cliente\GFAion\aionclassic\bin64\aion.bin"#,
+        r#"G:\GFAion\aionclassic\bin64\aion.bin"#,
+    ];
+
+    for candidate in candidates {
+        if std::path::Path::new(candidate).exists() {
+            return candidate.to_string();
+        }
+    }
+
+    GAME_PATH_PADRAO.to_string()
 }
 
-const AUTH_SERVER: &str = "127.0.0.1";
-const STS_SERVER: &str = "127.0.0.1";
+fn auth_server_ip() -> String {
+    std::env::var("AION_AUTH_IP")
+        .or_else(|_| std::env::var("AION_GAME_IP"))
+        .unwrap_or_else(|_| "192.168.3.184".to_string())
+}
+
+fn sts_server_ip() -> String {
+    std::env::var("AION_STS_IP")
+        .or_else(|_| std::env::var("AION_GAME_IP"))
+        .unwrap_or_else(|_| "192.168.3.184".to_string())
+}
+
 const DEFAULT_DEV_USERNAME: &str = "dev";
 
 // ---------------------------------------------------------------------------
@@ -81,9 +108,12 @@ fn launch_game(state: &Arc<Mutex<LauncherState>>) {
         s.username.clone()
     };
 
+    let auth_ip = auth_server_ip();
+    let sts_ip = sts_server_ip();
+
     println!("INFO: launching game as '{username}'");
-    println!("INFO:   auth-server  → {AUTH_SERVER}:13001");
-    println!("INFO:   STS server   → {STS_SERVER}:6600");
+    println!("INFO:   auth-server  → {auth_ip}:13001");
+    println!("INFO:   STS server   → {sts_ip}:6600");
     let game_path = caminho_do_cliente();
     println!("INFO:   game binary  → {game_path}");
 
@@ -96,12 +126,12 @@ fn launch_game(state: &Arc<Mutex<LauncherState>>) {
         // our auth-server on port 13001 and then to STS on 6600.
         .env("_TNT_SESSION_ID", "")
         .env("_TNT_CLIENT_APPLICATION_ID", "")
-        .arg(format!("-ip:{AUTH_SERVER}"))
+        .arg(format!("-ip:{auth_ip}"))
         .arg("-port:2106")
         .arg("-usehqserver")
-        .arg(format!("-hqip:{AUTH_SERVER}"))
+        .arg(format!("-hqip:{auth_ip}"))
         .arg("-hqport:13001")
-        .arg(format!("-np:{STS_SERVER}"))
+        .arg(format!("-np:{sts_ip}"))
         .arg("-dwsm")
         .arg("-pwd16")
         .arg("-npsa")
