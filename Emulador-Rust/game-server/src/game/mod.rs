@@ -8,21 +8,29 @@ use std::{
 
 pub mod admin;
 pub mod arena;
+pub mod broker;
 mod character;
 pub mod craft;
 pub mod cron_events;
 pub mod data;
+pub mod enchant;
 pub mod engine;
 pub mod entity;
 pub mod environment;
-mod message;
-pub mod instance;
 pub mod housing;
+pub mod instance;
+pub mod mail;
+mod message;
 pub mod mundo;
 pub mod pet;
 mod session;
 pub mod social;
+pub mod stigma;
 mod state;
+pub mod teleport;
+pub mod tester;
+pub mod title;
+pub mod trade;
 pub mod web_services;
 
 use crossbeam_channel::{Receiver, Sender};

@@ -1,0 +1,168 @@
+use std::collections::HashMap;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum TeleportType {
+    Flight,
+    Portal,
+    Statue,
+    Direct,
+}
+
+#[derive(Debug, Clone)]
+pub struct TeleportLocation {
+    pub loc_id: u32,
+    pub map_id: u32,
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub heading: u8,
+    pub price: u64,
+    pub required_level: u8,
+    pub required_race: Option<u8>, // 0: Elyos, 1: Asmodian
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct TeleportService {
+    pub locations: HashMap<u32, TeleportLocation>,
+}
+
+impl TeleportService {
+    pub fn new() -> Self {
+        let mut locations = HashMap::new();
+
+        // 1. Sanctum Teleport Locations
+        locations.insert(
+            1,
+            TeleportLocation {
+                loc_id: 1,
+                map_id: 110010000, // Sanctum
+                x: 1322.0,
+                y: 1511.0,
+                z: 568.0,
+                heading: 0,
+                price: 120,
+                required_level: 10,
+                required_race: Some(0),
+            },
+        );
+
+        // 2. Pandaemonium Teleport Locations
+        locations.insert(
+            2,
+            TeleportLocation {
+                loc_id: 2,
+                map_id: 120010000, // Pandaemonium
+                x: 1679.0,
+                y: 1399.0,
+                z: 206.0,
+                heading: 0,
+                price: 120,
+                required_level: 10,
+                required_race: Some(1),
+            },
+        );
+
+        // 3. Poeta (Akarios Village)
+        locations.insert(
+            11,
+            TeleportLocation {
+                loc_id: 11,
+                map_id: 210010000,
+                x: 820.0,
+                y: 1240.0,
+                z: 118.0,
+                heading: 0,
+                price: 50,
+                required_level: 1,
+                required_race: Some(0),
+            },
+        );
+
+        // 4. Ishalgen (Aldelle Village)
+        locations.insert(
+            12,
+            TeleportLocation {
+                loc_id: 12,
+                map_id: 220010000,
+                x: 575.0,
+                y: 2530.0,
+                z: 280.0,
+                heading: 0,
+                price: 50,
+                required_level: 1,
+                required_race: Some(1),
+            },
+        );
+
+        // 5. Reshanta / Core Abyss
+        locations.insert(
+            50,
+            TeleportLocation {
+                loc_id: 50,
+                map_id: 400010000,
+                x: 2150.0,
+                y: 1980.0,
+                z: 2850.0,
+                heading: 0,
+                price: 1500,
+                required_level: 25,
+                required_race: None,
+            },
+        );
+
+        Self { locations }
+    }
+
+    pub fn validate_and_teleport(
+        &self,
+        loc_id: u32,
+        player_level: u8,
+        player_race: u8,
+        player_kinah: u64,
+    ) -> Result<(&TeleportLocation, u64), &'static str> {
+        let loc = self.locations.get(&loc_id).ok_or("Local de teleporte desconhecido")?;
+
+        if player_level < loc.required_level {
+            return Err("Nivel insuficiente para este destino");
+        }
+
+        if let Some(req_race) = loc.required_race {
+            if req_race != player_race {
+                return Err("Destino exclusivo da faccao oposta");
+            }
+        }
+
+        if player_kinah < loc.price {
+            return Err("Kinah insuficiente para transporte");
+        }
+
+        let remaining = player_kinah - loc.price;
+        Ok((loc, remaining))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_teleport_validation() {
+        let tp = TeleportService::new();
+
+        // 1. Teleporte valido para Sanctum
+        let (loc, remaining) = tp
+            .validate_and_teleport(1, 15, 0, 5000)
+            .expect("deve permitir teleporte");
+        assert_eq!(loc.map_id, 110010000);
+        assert_eq!(remaining, 4880);
+
+        // 2. Faccão errada (Asmodian tentando ir pra Sanctum)
+        assert!(tp.validate_and_teleport(1, 15, 1, 5000).is_err());
+
+        // 3. Level insuficiente
+        assert!(tp.validate_and_teleport(1, 5, 0, 5000).is_err());
+
+        // 4. Kinah insuficiente
+        assert!(tp.validate_and_teleport(1, 15, 0, 50).is_err());
+    }
+}
