@@ -11,6 +11,7 @@ mod data;
 mod engine;
 mod entity;
 mod message;
+pub mod instance;
 pub mod mundo;
 mod session;
 pub mod social;

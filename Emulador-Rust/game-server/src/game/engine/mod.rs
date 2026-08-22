@@ -2,7 +2,7 @@ use crate::consume_le_bytes;
 
 pub mod damage;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Coord {
     x: f32,
     y: f32,
