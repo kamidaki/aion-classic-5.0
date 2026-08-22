@@ -731,6 +731,28 @@ impl State {
                     .map(ServerUpdate::new),
                 );
             }
+            c::Message::DeleteCharacter(pedido) => {
+                let username = self.username_do_update(&update);
+                let ok = self
+                    .db
+                    .deletar_personagem(&username, pedido.character_id)
+                    .unwrap_or(false);
+                if ok {
+                    self.characters.remove(&pedido.character_id);
+                    println!(
+                        "INFO: personagem (id {}) deletado da conta '{}'",
+                        pedido.character_id, username
+                    );
+                }
+                messages.extend_direct(
+                    update.client_id(),
+                    [s::Message::DeleteCharacter(s::DeleteCharacter::new(
+                        if ok { pedido.character_id } else { 0 },
+                        0,
+                    ))]
+                    .map(ServerUpdate::new),
+                );
+            }
             c::Message::EnterWorld(selecao) => {
                 // Selecionou personagem: a proxima entrada no mundo vale de novo. Sem isto, sair
                 // para a lista e voltar deixaria o cliente sem o S_WORLD.

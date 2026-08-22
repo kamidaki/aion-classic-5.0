@@ -64,6 +64,7 @@ const SECOND_PASSWORD: u16 = 0x00B0;
 const L2AUTH_LOGIN_CHECK: u16 = 0x00C6;
 const CHARACTER_LIST: u16 = 0x00C7;
 const CREATE_CHARACTER: u16 = 0x00C8;
+const DELETE_CHARACTER: u16 = 0x00C9;
 const LOOT_ITEMLIST: u16 = 0x00CD;
 const LOOT: u16 = 0xCC;
 const RECIPE_LIST: u16 = 0x00CE;
@@ -149,6 +150,7 @@ pub enum Message {
     PutNpc(PutNpc),
     Bruto(Bruto),
     ListaPersonagens45(ListaPersonagens45),
+    DeleteCharacter(DeleteCharacter),
 }
 
 impl Serialise for Message {
@@ -217,6 +219,7 @@ impl Serialise for Message {
             Message::HitPoint(msg) => msg.serialise(&mut buf[2..]),
             Message::Bruto(msg) => msg.serialise(&mut buf[2..]),
             Message::ListaPersonagens45(msg) => msg.serialise(&mut buf[2..]),
+            Message::DeleteCharacter(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -1092,6 +1095,38 @@ impl Serialise for CreateCharacter {
         buf[len..len + REGISTRO_CRIACAO_LEN]
             .copy_from_slice(&registro[..REGISTRO_CRIACAO_LEN]);
         len += REGISTRO_CRIACAO_LEN;
+
+        len
+    }
+}
+
+/// Resposta ao pedido de deleção de personagem (cliente 0x05 / SM_DELETE_CHARACTER 0x00C9)
+#[derive(Debug, Clone)]
+pub struct DeleteCharacter {
+    pub character_id: u32,
+    pub deletion_time: u32,
+}
+
+impl DeleteCharacter {
+    pub fn new(character_id: u32, deletion_time: u32) -> Self {
+        Self { character_id, deletion_time }
+    }
+}
+
+impl Serialise for DeleteCharacter {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(DELETE_CHARACTER, buf);
+
+        if self.character_id != 0 {
+            to_le_bytes!(len, buf, 0_u32); // status: 0 = sucesso
+            to_le_bytes!(len, buf, self.character_id);
+            to_le_bytes!(len, buf, self.deletion_time);
+        } else {
+            to_le_bytes!(len, buf, 0x10_u32); // erro
+            to_le_bytes!(len, buf, 0_u32);
+            to_le_bytes!(len, buf, 0_u32);
+        }
 
         len
     }

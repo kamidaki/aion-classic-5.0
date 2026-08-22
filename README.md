@@ -44,7 +44,7 @@ O repositório é mantido limpo e organizado estritamente em duas frentes:
 
 ---
 
-## 🚀 Como Iniciar o Emulador em 1 Clique (Produção)
+## Como Iniciar o Emulador em 1 Clique (Produção)
 
 Não é necessário ter o Rust ou compiladores instalados para executar o servidor na pasta `deploy/`:
 
@@ -57,7 +57,7 @@ Não é necessário ter o Rust ou compiladores instalados para executar o servid
 
 ---
 
-## 🛠️ Como Compilar e Modificar o Código-Fonte (`Emulador-Rust`)
+## Como Compilar e Modificar o Código-Fonte (`Emulador-Rust`)
 
 ### Pré-requisitos:
 - **Rust (Toolchain estável 1.80+)**: [rustup.rs](https://rustup.rs/)
@@ -79,7 +79,7 @@ cargo build --release
 
 ---
 
-## 📦 Como Publicar Atualizações na Pasta `deploy/`
+## Como Publicar Atualizações na Pasta `deploy/`
 
 Sempre que realizar alterações no código-fonte em Rust e validar o funcionamento, atualize a pasta de deploy executando:
 
@@ -91,7 +91,7 @@ Esse script compila o workspace em modo `--release` e copia automaticamente os n
 
 ---
 
-## 🗺️ Plano de Desenvolvimento Sequencial
+## Plano de Desenvolvimento Sequencial
 
 O emulador segue uma arquitetura modular inspirada na estrutura consagrada do **Emulador Java 4.8 Retail**, adaptada para as funcionalidades e opcodes do **Aion Classic 4.5**.
 
@@ -104,7 +104,7 @@ Consulte a pasta [PLANO-DESENVOLVIMENTO/](file:///d:/AION%20RUST/AionEMU/AionEMU
 
 ---
 
-## 🔄 Política de Versionamento no GitHub
+## Política de Versionamento no GitHub
 
 > [!IMPORTANT]
 > **Instrução para Agentes de IA e Desenvolvedores**:

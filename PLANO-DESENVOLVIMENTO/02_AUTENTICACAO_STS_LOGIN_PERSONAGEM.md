@@ -1,6 +1,6 @@
 # ETAPA 02: AUTENTICAÇÃO STS, LOGIN E GESTÃO DE PERSONAGENS (LOBBY)
 
-> **Status da Etapa**: Pendente  
+> **Status da Etapa**: Concluída  
 > **Prioridade**: Crítica (Acesso ao Jogo)  
 > **Dependências**: [01_INFRAESTRUTURA_REDE_SEGURANCA_PROTOCOLOS.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/01_INFRAESTRUTURA_REDE_SEGURANCA_PROTOCOLOS.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.network.aion.clientpackets.CM_CHARACTER_LIST`, `CM_CREATE_CHARACTER`, `CM_ENTER_WORLD`, `com.aionemu.gameserver.services.player.PlayerService`

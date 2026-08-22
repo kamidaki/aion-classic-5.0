@@ -118,6 +118,7 @@ define_messages!(
     (HQ_LOGIN, HqLogin, 0xF0),
     (SESSION_KEY_ECHO, SessionKeyEcho, 0x5E),
     (MACHINE_INFO, MachineInfo, 0xD6),
+    (DELETE_CHARACTER, DeleteCharacter, 0x05),
 );
 
 /// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
@@ -1135,6 +1136,34 @@ impl Deserialise for CreateCharacter {
             .unwrap_or_default();
 
         Self { nome, aparencia }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct DeleteCharacter {
+    pub character_id: u32,
+}
+
+impl DeleteCharacter {
+    pub fn handle(
+        self,
+        tx: &Sender<ClientUpdate>,
+        session: &mut Account,
+    ) -> Vec<s::Message> {
+        tx.send(session.send(Message::DeleteCharacter(self))).unwrap();
+        Vec::new()
+    }
+}
+
+impl Deserialise for DeleteCharacter {
+    fn deserialise(buf: &[u8]) -> Self
+    where
+        Self: Sized,
+    {
+        let mut len = 0;
+        let _play_ok = if buf.len() >= 4 { consume_le_bytes!(len, buf, u32) } else { 0 };
+        let character_id = if buf.len() >= 8 { consume_le_bytes!(len, buf, u32) } else { 0 };
+        Self { character_id }
     }
 }
 
