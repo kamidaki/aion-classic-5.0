@@ -1,6 +1,6 @@
 # ETAPA 21: PROTOCOLO AUTÔNOMO DE TESTES, DEPURAÇÃO DE PACOTES E DEPLOY
 
-> **Status da Etapa**: Pendente  
+> **Status da Etapa**: Concluída  
 > **Prioridade**: Contínua / Mandatória  
 > **Dependências**: Todas as etapas anteriores (00 a 20)  
 > **Ferramentas Utilizadas**: Wireshark (`E:\Programas instalados - Leves\Wireshark`), Cliente Classic (`D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic`), `pcap-parser` e Logs
