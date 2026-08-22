@@ -41,3 +41,8 @@ dist/
 # base Java de referencia (Aion-Lightning): 359 MB de codigo de terceiros que nao executa aqui.
 # O LEIA-ME-FONTE.txt explica onde encontra-la.
 reference/
+
+# copia da instalacao do cliente. Sao dezenas de GB, e o motivo dela existir e justamente nao
+# depender do launcher: quando a Gameforge atualizar para 5.0, os arquivos de nivel e os .pak de
+# 4.5 so existem aqui. Nao entra no git.
+Cliente/

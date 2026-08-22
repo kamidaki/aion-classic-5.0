@@ -377,7 +377,7 @@ impl Connection {
         // S_KEY Packet
         let mut buf = [0u8; 11];
         let len = message::make_key_packet(&mut buf, seed);
-        stream.write(&buf[..len]).unwrap();
+        stream.write_all(&buf[..len]).unwrap();
 
         let caminho = std::env::var("AION_REPLAY").unwrap_or_else(|_| "replay.bin".to_string());
         let replay = message::replay::Replay::carregar(std::path::Path::new(&caminho));
@@ -441,7 +441,12 @@ impl Connection {
                 &mut self.replay,
             );
             if len != 0 {
-                if let Err(e) = self.stream.write(&send_buffer[..len]) {
+                // `write_all`, e nao `write`: o segundo pode escrever so parte do buffer e
+                // devolver quantos bytes foram -- e o retorno era ignorado. Enquanto os lotes
+                // eram pequenos isso nunca aparecia; com os NPCs do mundo (uns 17 KB de uma vez)
+                // o socket enche, o resto some em silencio, e o cliente recebe um pacote cortado
+                // no meio. Dai ele dessincroniza a decifracao e a sessao morre.
+                if let Err(e) = self.stream.write_all(&send_buffer[..len]) {
                     println!("INFO: client write error ({e}); closing");
                     return;
                 }

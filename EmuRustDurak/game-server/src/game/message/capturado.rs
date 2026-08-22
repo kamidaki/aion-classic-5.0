@@ -10,6 +10,9 @@
 /// Chave de sessao que estava em uso quando a captura foi feita.
 pub const CHAVE_CAPTURADA: u32 = 0x026E_DF39;
 
+/// Opcode do `S_PUT_NPC`. O payload nao mora aqui: vem da tabela de spawns, um por NPC.
+pub const PUT_NPC_OPCODE: u16 = 0x000E;
+
 /// Opcode 0x0EE, 29 bytes de payload.
 pub const BUILDER_LEVEL_OPCODE: u16 = 0x00EE;
 pub const BUILDER_LEVEL: [u8; 29] = [
@@ -323,11 +326,20 @@ pub fn com_nome_de_personagem(payload: &[u8], offset: usize, nome: &str) -> Vec<
 /// da 0.65, que e o valor documentado dela.
 ///
 /// Identidade fica no cabecalho: a redundancia `100000 + raca * 2 + genero` em 16, e a classe como
-/// **um byte** em 42. Nas 12 amostras da captura a classe varia (7, 19, 4) e a redundancia nao,
+/// **um byte** em 42. A redundancia seleciona o mesh do corpo e por isso fica sem escrever -- ver
+/// [`com_aparencia_de_personagem`]. Nas 12 amostras da captura a classe varia (7, 19, 4) e a redundancia nao,
 /// porque todos os jogadores eram da mesma raca e genero.
 ///
-/// O offset 36 tambem parece de identidade, mas vale 1 em todas as amostras -- e nelas raca e
-/// genero valem 1 -- entao nao da para dizer qual dos dois e. Fica sem escrever.
+/// Raca e genero ficam entre os offsets 36, 41, 43 e 44: sao os unicos que **nao variam** entre os
+/// 14 jogadores da captura, e todos eles eram da mesma raca e do mesmo genero. Uma captura so nao
+/// separa qual e qual, entao os dois saem por variavel de ambiente:
+///
+/// ```text
+/// AION_PUT_USER_RACA=41     AION_PUT_USER_GENERO=43
+/// ```
+///
+/// Aceitam lista separada por virgula. Sem elas, nada e escrito -- que era o comportamento antes
+/// de existirem.
 pub mod put_user {
     /// `100000 + raca * 2 + genero`, u32.
     pub const REDUNDANCIA: usize = 16;
@@ -363,16 +375,104 @@ pub fn com_aparencia_de_personagem(payload: &[u8], bloco: &[u8]) -> Vec<u8> {
     let raca = u32_em(campo::RACA);
     let classe = u32_em(campo::CLASSE);
 
-    saida[put_user::REDUNDANCIA..put_user::REDUNDANCIA + 4]
-        .copy_from_slice(&(100_000 + raca * 2 + genero).to_le_bytes());
     saida[put_user::CLASSE] = classe as u8;
 
+    // A redundancia NAO e escrita, e a bisseccao mostrou por que. Com ela ligada e um personagem
+    // elyos, o modelo no mundo entra sem cabeca; desligando so ela, com todo o resto igual, a
+    // cabeca volta. Ela seleciona o mesh do corpo, e o `PUT_USER` capturado e de uma personagem
+    // asmodiana: trocar so este campo pede um corpo elyos e o resto do pacote nao acompanha.
+    //
+    // Enquanto o pacote for um molde remendado, a raca no mundo e a da captura. Sai daqui quando o
+    // `S_PUT_USER` for construido campo a campo -- e ai este campo volta, junto com os outros.
+    //
+    // `AION_PUT_USER_COM_RED=1` religa, para quando alguem for atras do resto do mesh.
+    if std::env::var("AION_PUT_USER_COM_RED").is_ok() {
+        println!("INFO: AION_PUT_USER_COM_RED -- escrevendo a redundancia (modelo pode quebrar)");
+        saida[put_user::REDUNDANCIA..put_user::REDUNDANCIA + 4]
+            .copy_from_slice(&(100_000 + raca * 2 + genero).to_le_bytes());
+    }
+
+    for off in offsets_de("AION_PUT_USER_RACA") {
+        if off < saida.len() {
+            saida[off] = raca as u8;
+        }
+    }
+    for off in offsets_de("AION_PUT_USER_GENERO") {
+        if off < saida.len() {
+            saida[off] = genero as u8;
+        }
+    }
+
     // Cores, rosto e altura: um pedaco continuo, identico ao do registro.
+    //
+    // O tamanho e ajustavel para bisseccao, porque escrever os 72 bytes deixou o personagem sem
+    // cabeca no mundo -- antes disso ele aparecia inteiro, com a cara da captura. Os cortes uteis:
+    //
+    // ```text
+    // AION_PUT_USER_CORES_LEN=0    nao escreve nada  (controle: a cabeca deve voltar)
+    //                        =16   so as quatro cores
+    //                        =68   cores e rosto, sem a altura
+    //                        =72   tudo (padrao)
+    // ```
+    let quanto = std::env::var("AION_PUT_USER_CORES_LEN")
+        .ok()
+        .and_then(|v| v.trim().parse::<usize>().ok())
+        .map(|v| v.min(put_user::CORES_LEN))
+        .unwrap_or(put_user::CORES_LEN);
+    if quanto != put_user::CORES_LEN {
+        println!("INFO: AION_PUT_USER_CORES_LEN={quanto} (de {})", put_user::CORES_LEN);
+    }
     let de = campo::COR_PELE - campo::NOME;
-    saida[put_user::CORES..put_user::CORES + put_user::CORES_LEN]
-        .copy_from_slice(&bloco[de..de + put_user::CORES_LEN]);
+    saida[put_user::CORES..put_user::CORES + quanto]
+        .copy_from_slice(&bloco[de..de + quanto]);
 
     saida
+}
+
+/// Onde ficam os campos ja identificados dentro do [`STATUS`].
+///
+/// O mapa saiu da propria tela do cliente: com a ficha aberta sobre o personagem capturado, cada
+/// numero exibido foi procurado no payload. Bateu em quase tudo -- ataque fisico em 106, defesa em
+/// 110, resistencia magica em 114, evasao em 122, parry em 124, block em 126, critico em 128,
+/// precisao em 132, magic boost em 150. HP nao aparece aqui porque ja vem do nosso `S_HIT_POINT`,
+/// e era por isso que era o unico numero certo na tela.
+pub mod status {
+    /// Nivel, u16. Vale 3 na captura, que e o nivel da personagem gravada.
+    pub const NIVEL: usize = 32;
+
+    /// A classe aparece em tres lugares, com o mesmo valor. Nao da para dizer qual deles o cliente
+    /// le -- uma captura so nao separa -- entao escrevemos nos tres, coerentes entre si, que e o
+    /// que um servidor de verdade faria de qualquer forma. Se algum dia um deles se mostrar outra
+    /// coisa, e aqui que se descobre.
+    pub const CLASSE: [usize; 3] = [180, 256, 392];
+}
+
+/// Escreve nivel e classe do personagem por cima do [`STATUS`] capturado.
+///
+/// Sem isso todo mundo entra no mundo com a ficha da personagem da captura: nivel 3 e Chanter,
+/// independentemente do que a lista de personagens diga.
+pub fn com_ficha_de_personagem(payload: &[u8], nivel: u16, classe: u32) -> Vec<u8> {
+    let mut saida = payload.to_vec();
+    saida[status::NIVEL..status::NIVEL + 2].copy_from_slice(&nivel.to_le_bytes());
+    for off in status::CLASSE {
+        saida[off..off + 4].copy_from_slice(&classe.to_le_bytes());
+    }
+    saida
+}
+
+/// Le uma lista de offsets de uma variavel de ambiente, ex. `"41"` ou `"41,44"`.
+fn offsets_de(variavel: &str) -> Vec<usize> {
+    let Ok(bruto) = std::env::var(variavel) else {
+        return Vec::new();
+    };
+    let lista: Vec<usize> = bruto
+        .split(',')
+        .filter_map(|t| t.trim().parse().ok())
+        .collect();
+    if !lista.is_empty() {
+        println!("INFO: {variavel}={lista:?}");
+    }
+    lista
 }
 
 /// Troca a chave de sessao da captura pela da sessao atual, onde quer que ela apareca.

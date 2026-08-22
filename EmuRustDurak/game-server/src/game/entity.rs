@@ -14,8 +14,8 @@ pub struct Entity {
     id: u32,
     target_id: Option<u32>,
     location: Coord,
-    npc_id: npc::Id,
-    npc_name: npc::Name,
+    npc_id: u32,
+    npc_name: u32,
     level: u16,
     pub hp: Hp,
     max_hp: i32,
@@ -25,11 +25,24 @@ pub struct Entity {
     attack_cooldown: f32,
 }
 impl Entity {
+    /// Construtor a partir dos enums escritos a mao, que existem para os poucos NPCs que o
+    /// codigo referencia por nome.
     pub fn new(
         id: u32,
         location: Coord,
         npc_id: npc::Id,
         npc_name: npc::Name,
+    ) -> Self {
+        Self::novo(id, location, npc_id as u32, npc_name as u32)
+    }
+
+    /// Construtor a partir dos numeros crus, que e o que vem da tabela de spawns extraida da
+    /// captura -- 530 NPCs distintos, longe demais para caber num enum.
+    pub fn novo(
+        id: u32,
+        location: Coord,
+        npc_id: u32,
+        npc_name: u32,
     ) -> Self {
         Self {
             id,
@@ -96,10 +109,10 @@ impl Entity {
     pub fn location(&self) -> &Coord {
         &self.location
     }
-    pub fn npc_id(&self) -> npc::Id {
+    pub fn npc_id(&self) -> u32 {
         self.npc_id
     }
-    pub fn npc_name(&self) -> npc::Name {
+    pub fn npc_name(&self) -> u32 {
         self.npc_name
     }
     pub fn level(&self) -> u16 {

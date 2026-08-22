@@ -78,6 +78,10 @@ pub struct Personagem {
     /// do molde -- nome, genero, raca, classe, voz, cores, rosto e altura de uma vez. Sem eles o
     /// personagem sai com a cara do molde capturado.
     pub aparencia: Option<Vec<u8>>,
+    /// Onde o personagem esta. Tem que ser o mesmo que o `S_WORLD` mandar depois: e pelo registro
+    /// que o cliente pre-carrega o cenario, e se os dois discordarem ele desenha o personagem num
+    /// lugar e o servidor o coloca noutro -- os NPCs aparecem longe, ou nao aparecem.
+    pub posicao: (f32, f32, f32),
 }
 
 #[derive(Debug, Clone)]
@@ -168,7 +172,7 @@ pub fn escreve_registro(registro: &mut [u8], personagem: &Personagem) {
 
     registro[campo::NIVEL..campo::NIVEL + 2].copy_from_slice(&personagem.nivel.to_le_bytes());
 
-    escreve_ponto_de_entrada(registro);
+    escreve_ponto_de_entrada(registro, personagem.posicao);
 }
 
 /// Quanto do registro o `S_CREATE_CHARACTER` leva.
@@ -184,15 +188,23 @@ pub const REGISTRO_CRIACAO_LEN: usize = 744;
 /// O molde e o registro do Durak, e traz o mapa e a posicao dele. Como o `S_WORLD` manda o ponto de
 /// entrada de [`crate::game::mundo`], os dois campos precisam concordar: e pelo mapa daqui que o
 /// cliente pre-carrega o cenario, e entrar num mapa que ele nao carregou nao funciona.
-fn escreve_ponto_de_entrada(registro: &mut [u8]) {
+/// Escreve mapa, posicao e direcao.
+///
+/// A posicao vem do personagem, nao de uma constante: o banco guarda onde ele deslogou, e o
+/// `S_WORLD` manda esse mesmo lugar. Enquanto isto era fixo, quem deslogava longe voltava com o
+/// cenario pre-carregado no ponto de entrada e o corpo noutro ponto -- e os NPCs, que o servidor
+/// manda em volta da posicao de verdade, apareciam a mais de cem metros.
+///
+/// O mapa continua constante porque o banco ainda nao guarda mapa, so x, y e z.
+fn escreve_ponto_de_entrada(registro: &mut [u8], (x, y, z): (f32, f32, f32)) {
     use crate::game::mundo;
 
     registro[campo::MAPA..campo::MAPA + 4].copy_from_slice(&mundo::MAPA.to_le_bytes());
 
     let posicao = campo::POSICAO;
-    registro[posicao..posicao + 4].copy_from_slice(&mundo::X.to_le_bytes());
-    registro[posicao + 4..posicao + 8].copy_from_slice(&mundo::Y.to_le_bytes());
-    registro[posicao + 8..posicao + 12].copy_from_slice(&mundo::Z.to_le_bytes());
+    registro[posicao..posicao + 4].copy_from_slice(&x.to_le_bytes());
+    registro[posicao + 4..posicao + 8].copy_from_slice(&y.to_le_bytes());
+    registro[posicao + 8..posicao + 12].copy_from_slice(&z.to_le_bytes());
 
     registro[campo::DIRECAO..campo::DIRECAO + 4]
         .copy_from_slice(&(mundo::DIRECAO as u32).to_le_bytes());
@@ -253,6 +265,7 @@ mod test {
             nome: nome.to_string(),
             nivel,
             aparencia: None,
+            posicao: (crate::game::mundo::X, crate::game::mundo::Y, crate::game::mundo::Z),
         }
     }
 
@@ -284,6 +297,7 @@ mod test {
                 nome: "Krime".to_string(),
                 nivel: 1,
                 aparencia: Some(bloco),
+                posicao: (crate::game::mundo::X, crate::game::mundo::Y, crate::game::mundo::Z),
             },
         );
 
@@ -404,7 +418,10 @@ mod test {
         // perdeu nem ganhou byte.
         let mut esperado = CHARACTER_LIST_2[..escritos].to_vec();
         esperado[10] = 1;
-        escreve_ponto_de_entrada(&mut esperado[CABECALHO_LEN..CABECALHO_LEN + REGISTRO_LEN]);
+        escreve_ponto_de_entrada(
+            &mut esperado[CABECALHO_LEN..CABECALHO_LEN + REGISTRO_LEN],
+            (crate::game::mundo::X, crate::game::mundo::Y, crate::game::mundo::Z),
+        );
 
         assert_eq!(&buf[..escritos], &esperado[..]);
     }

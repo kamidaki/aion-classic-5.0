@@ -46,7 +46,14 @@ fn main() {
         .map(PathBuf::from)
         .unwrap_or_else(|_| PathBuf::from(DEFAULT_DATA_DIR));
     println!("INFO: Loading game data from {}", data_dir.display());
-    let game_data = Arc::new(GameData::load(&data_dir));
+    let game_data = Arc::new({
+        let mut gd = GameData::load(&data_dir);
+        // A tabela de spawns nao vem do cliente: e gerada da captura por tools/extrai_spawns.py.
+        let spawns = std::env::var("AION_SPAWNS")
+            .unwrap_or_else(|_| "data/spawns.csv".to_string());
+        gd.carrega_spawns(std::path::Path::new(&spawns));
+        gd
+    });
 
     // A captura de uma sessao real mostra o cliente indo para o game server na porta 7777, que e
     // tambem a porta que o auth server anuncia na lista. O 8443 que estava aqui vinha de outro

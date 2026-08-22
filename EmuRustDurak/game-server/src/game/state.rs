@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::collections::HashSet;
 use std::sync::Arc;
 
 use crate::data_loader::GameData;
@@ -6,6 +7,7 @@ use crate::db::Db;
 
 use super::character::Character;
 use super::message::lista_personagens;
+use super::mundo;
 use super::data::gear::LootItem;
 use super::data::{npc, ActionType};
 use super::engine::Coord;
@@ -13,11 +15,76 @@ use super::entity::Entity;
 use super::message::{client as c, server as s};
 use super::{ClientUpdate, Messages, ServerUpdate};
 
+/// Nome interno da classe no XML do cliente, e o da classe base de que ela herda skills.
+///
+/// O numero vem do bloco de criacao; os nomes sao os que o `client_skill_learns.xml` usa, que nao
+/// sao os nomes de tela: gladiador e `BATTLEMASTER`, templario e `KNIGHT`, feiticeiro e `WIZARD`.
+///
+/// O par foi conferido contra a captura: um feiticeiro (classe 7) de nivel 11 recebeu 29 skills, e
+/// `WIZARD` + `MAGE` + universais preve todas as 29.
+fn classe_no_xml(classe: u32) -> (&'static str, &'static str) {
+    match classe {
+        0 => ("FIGHTER", "FIGHTER"),
+        1 => ("BATTLEMASTER", "FIGHTER"),
+        2 => ("KNIGHT", "FIGHTER"),
+        3 => ("SCOUT", "SCOUT"),
+        4 => ("ASSASSIN", "SCOUT"),
+        5 => ("RANGER", "SCOUT"),
+        6 => ("MAGE", "MAGE"),
+        7 => ("WIZARD", "MAGE"),
+        8 => ("ELEMENTALLIST", "MAGE"),
+        9 => ("PRIEST", "PRIEST"),
+        10 => ("CLERIC", "PRIEST"),
+        11 => ("CHANTER", "PRIEST"),
+        13 => ("GUNNER", "GUNNER"),
+        // As classes de 4.7 em diante nao aparecem na criacao da 4.5. Sem nome, o personagem so
+        // recebe as universais -- melhor que mandar skill de outra classe.
+        _ => ("", ""),
+    }
+}
+
+/// Ate onde o servidor manda NPC, em metros.
+///
+/// Existe porque mandar o mundo inteiro estoura o buffer de envio: 1008 NPCs a ~110 bytes dao uns
+/// 110 KB contra os 64 KB do buffer, e o `PutNpc` entrava em panico no meio de um pacote --
+/// derrubando a conexao com o cliente ja dentro do mundo.
+///
+/// Mas o limite nao e so pratico: e o que o servidor real faz. O cliente so recebe o que esta no
+/// alcance de visao, e foi por isso que a captura trouxe 89 NPCs na entrada e o resto foi chegando
+/// conforme a personagem andava. A 100 metros ficam ~155 NPCs, uns 17 KB.
+///
+/// Ajustavel com `AION_VISAO`.
+const VISAO_PADRAO: f32 = 100.0;
+
+/// Quanto o personagem precisa andar para o servidor recalcular quem esta em cena.
+///
+/// O cliente manda posicao a cada passo -- 1220 pacotes de movimento nos 22 minutos da captura --
+/// e refazer a conta em todos seria varrer mil NPCs por passo sem nada mudar.
+const PASSO_DO_STREAM: f32 = 20.0;
+
+fn raio_de_visao() -> f32 {
+    std::env::var("AION_VISAO")
+        .ok()
+        .and_then(|v| v.trim().parse().ok())
+        .unwrap_or(VISAO_PADRAO)
+}
+
+/// Classe de quem nao tem bloco de criacao -- o personagem automatico, que sai do molde do Durak.
+/// 11 e a da personagem capturada, que e o que o STATUS ja trazia.
+const CLASSE_DO_MOLDE: u32 = 11;
+
 pub struct State {
     characters: HashMap<u32, Character>,
     entities: Vec<Entity>,
+    /// O `S_PUT_NPC` capturado de cada entidade, por id. Ver `data_loader::Spawn::payload`.
+    put_npc: HashMap<u32, Vec<u8>>,
+    /// Que NPCs cada personagem ja tem desenhados, e de onde a lista foi calculada.
+    ///
+    /// O cliente nao esquece um NPC sozinho: quem entrou em cena fica ate receber um
+    /// `S_REMOVE_OBJECT`. Guardar o conjunto e o que permite mandar so a diferenca quando o
+    /// personagem anda, em vez de reenviar tudo.
+    npcs_em_cena: HashMap<u32, (HashSet<u32>, Coord)>,
     db: Db,
-    #[allow(dead_code)]
     game_data: Arc<GameData>,
 }
 
@@ -41,9 +108,35 @@ impl State {
         }
         entities.push(mosbear);
 
+        // O mundo de verdade: NPCs nas posicoes que o servidor oficial usou. Ids de entidade tem o
+        // bit alto ligado, como o do mosbear acima -- e o que o cliente 4.5 espera.
+        let mut put_npc: HashMap<u32, Vec<u8>> = HashMap::new();
+        for (i, sp) in game_data.spawns.iter().enumerate() {
+            let id = 0x8000_0000 | (i as u32 + 1);
+            entities.push(Entity::novo(
+                id,
+                Coord::new(sp.x, sp.y, sp.z),
+                sp.npc_id,
+                sp.nome_id,
+            ));
+
+            // O pacote capturado deste NPC, com o id de entidade trocado pelo nosso.
+            let mut payload = sp.payload.clone();
+            let off = crate::data_loader::OFFSET_ID_ENTIDADE;
+            if payload.len() >= off + 4 {
+                payload[off..off + 4].copy_from_slice(&id.to_le_bytes());
+                put_npc.insert(id, payload);
+            }
+        }
+        if !game_data.spawns.is_empty() {
+            println!("INFO: {} NPCs no mundo", game_data.spawns.len());
+        }
+
         Self {
             characters: HashMap::with_capacity(1000),
             entities,
+            put_npc,
+            npcs_em_cena: HashMap::new(),
             db,
             game_data,
         }
@@ -127,6 +220,84 @@ impl State {
         }
     }
 
+    /// Popula a cena de quem acabou de entrar no mundo, e diz quantos foram.
+    fn povoa_cena(
+        &mut self,
+        character_id: u32,
+        client_id: u16,
+        aqui: Coord,
+        messages: &mut Messages,
+    ) {
+        // Entrar no mundo e o caso em que ninguem esta em cena ainda.
+        self.npcs_em_cena.remove(&character_id);
+        let (enviados, _) =
+            self.atualiza_npcs_em_cena(character_id, client_id, aqui, messages);
+        println!(
+            "INFO: {enviados} NPCs em cena de {} (raio {:.0}m)",
+            self.entities.len(),
+            raio_de_visao()
+        );
+    }
+
+    /// Manda os NPCs que entraram no alcance e tira os que sairam.
+    ///
+    /// Devolve `(entraram, sairam)`. Chamado na entrada no mundo e a cada `PASSO_DO_STREAM` metros
+    /// andados.
+    fn atualiza_npcs_em_cena(
+        &mut self,
+        character_id: u32,
+        client_id: u16,
+        aqui: Coord,
+        messages: &mut Messages,
+    ) -> (usize, usize) {
+        let raio = raio_de_visao();
+        let perto: HashSet<u32> = self
+            .entities
+            .iter()
+            .filter(|e| {
+                let la = e.location();
+                let dx = la.x() - aqui.x();
+                let dy = la.y() - aqui.y();
+                let dz = la.z() - aqui.z();
+                dx * dx + dy * dy + dz * dz <= raio * raio
+            })
+            .map(|e| e.id())
+            .collect();
+
+        let em_cena = match self.npcs_em_cena.get(&character_id) {
+            Some((c, _)) => c.clone(),
+            None => HashSet::new(),
+        };
+
+        let entraram: Vec<u32> = perto.difference(&em_cena).copied().collect();
+        let sairam: Vec<u32> = em_cena.difference(&perto).copied().collect();
+
+        for id in &sairam {
+            messages.push_direct(
+                client_id,
+                ServerUpdate::new(s::Message::RemoveObject(s::RemoveObject::new(*id))),
+            );
+        }
+        for id in &entraram {
+            let Some(entity) = self.entities.iter().find(|e| e.id() == *id) else {
+                continue;
+            };
+            // O pacote capturado quando existe; o do POC so para o mob escrito a mao.
+            let msg = match self.put_npc.get(id) {
+                Some(p) => s::Message::Bruto(s::Bruto::new(
+                    super::message::capturado::PUT_NPC_OPCODE,
+                    p.clone(),
+                )),
+                None => s::Message::PutNpc(s::PutNpc::new(entity)),
+            };
+            messages.push_direct(client_id, ServerUpdate::new(msg));
+        }
+
+        let contagem = (entraram.len(), sairam.len());
+        self.npcs_em_cena.insert(character_id, (perto, aqui));
+        contagem
+    }
+
     pub fn respond(&mut self, update: &ClientUpdate, messages: &mut Messages) {
         match &update.message() {
             c::Message::MoveNew(move_new) => {
@@ -136,11 +307,47 @@ impl State {
                 let s_move_new =
                     s::Message::MoveNew(move_new.calculate(character.id()));
                 character.set_location(move_new.location());
+                let aqui = *character.location();
+                let id = character.id();
 
                 messages
                     .push_others(update.client_id(), ServerUpdate::new(s_move_new));
+
+                // NPC entra e sai de cena conforme o personagem anda. So recalcula depois de
+                // PASSO_DO_STREAM metros -- ver a constante.
+                let andou = match self.npcs_em_cena.get(&id) {
+                    Some((_, de_onde)) => {
+                        let dx = aqui.x() - de_onde.x();
+                        let dy = aqui.y() - de_onde.y();
+                        let dz = aqui.z() - de_onde.z();
+                        dx * dx + dy * dy + dz * dz >= PASSO_DO_STREAM * PASSO_DO_STREAM
+                    }
+                    None => true,
+                };
+                if andou {
+                    let (entraram, sairam) =
+                        self.atualiza_npcs_em_cena(id, update.client_id(), aqui, messages);
+                    if entraram + sairam > 0 {
+                        println!("INFO: cena: +{entraram} -{sairam} NPCs");
+                    }
+                }
             }
             c::Message::UseSkill(use_skill) => {
+                // Skill que age sobre si mesmo nao toca em alvo. Sem esta conferencia o servidor
+                // tratava toda skill igual -- se houvesse alvo selecionado, tirava vida --, e a
+                // skill de voltar ao ponto de vinculo dava dano em quem estivesse na mira.
+                //
+                // O `first_target` vem do XML do cliente; skill desconhecida nao machuca ninguem.
+                let no_alvo = self
+                    .game_data
+                    .skill_no_alvo
+                    .get(&(use_skill.skill_id as u32))
+                    .copied()
+                    .unwrap_or(false);
+                if !no_alvo {
+                    return;
+                }
+
                 let character =
                     self.characters.get_mut(&update.character_id).unwrap();
 
@@ -371,6 +578,7 @@ impl State {
                         nome: "Durak".to_string(),
                         nivel: 60,
                         aparencia: None,
+                        posicao: (mundo::X, mundo::Y, mundo::Z),
                     }
                 } else {
                     lista_personagens::Personagem {
@@ -378,6 +586,10 @@ impl State {
                         nome: character.name().clone(),
                         nivel: character.stats.level,
                         aparencia: persisted.aparencia.clone(),
+                        posicao: {
+                            let l = character.location();
+                            (l.x(), l.y(), l.z())
+                        },
                     }
                 };
 
@@ -403,6 +615,7 @@ impl State {
                                     nome: p.name,
                                     nivel: p.level,
                                     aparencia: p.aparencia,
+                                    posicao: (p.x, p.y, p.z),
                                 });
                             }
                         }
@@ -470,6 +683,7 @@ impl State {
                             nome: criado.name,
                             nivel: criado.level,
                             aparencia: criado.aparencia,
+                            posicao: (criado.x, criado.y, criado.z),
                         },
                     ))]
                     .map(ServerUpdate::new),
@@ -556,7 +770,55 @@ impl State {
                     ],
                 );
 
+                // Skills: saem do XML do proprio cliente, pela classe e pelo nivel. Nao ha nada de
+                // capturado aqui -- a captura serviu so para provar o formato do pacote e para
+                // conferir a regra, que acertou as 29 skills do feiticeiro gravado.
+                let classe_do_personagem = new_character
+                    .aparencia
+                    .as_ref()
+                    .and_then(|b| {
+                        let off = super::message::molde::campo::CLASSE
+                            - super::message::molde::campo::NOME;
+                        b.get(off..off + 4)
+                    })
+                    .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
+                    .unwrap_or(CLASSE_DO_MOLDE);
+                let (classe, base) = classe_no_xml(classe_do_personagem);
+                let skills = self.game_data.skills_de(
+                    classe,
+                    base,
+                    new_character.stats.level,
+                );
+                println!(
+                    "INFO: {} skills para '{}' (classe {} = {}, nivel {})",
+                    skills.len(),
+                    new_character.name(),
+                    classe_do_personagem,
+                    if classe.is_empty() { "<sem nome>" } else { classe },
+                    new_character.stats.level,
+                );
+                if !skills.is_empty() {
+                    let agora = std::time::SystemTime::now()
+                        .duration_since(std::time::UNIX_EPOCH)
+                        .map(|d| d.as_secs() as u32)
+                        .unwrap_or(0);
+                    messages.extend_direct(
+                        update.client_id(),
+                        [ServerUpdate::new(s::Message::AddSkill45(
+                            s::AddSkill45::new(skills, agora),
+                        ))],
+                    );
+                }
+
+                // Os NPCs do mundo, so os que estao perto. Ficavam atras do portao dos pacotes
+                // 2.5 junto com o resto, e por isso nem o unico mob escrito a mao aparecia.
+                // A chamada em si fica no fim do handler: ela pega `&mut self`, e
+                // `new_character` e um emprestimo de `self.characters` que ainda esta em uso.
+                let aqui = *new_character.location();
+                let id_do_personagem = new_character.id();
+
                 if std::env::var("AION_PACOTES_25").is_err() {
+                    self.povoa_cena(id_do_personagem, update.client_id(), aqui, messages);
                     return;
                 }
 
@@ -590,13 +852,7 @@ impl State {
                     );
                 }
 
-                // Load all entities for logging in player
-                for entity in &self.entities {
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::PutNpc(s::PutNpc::new(entity))),
-                    );
-                }
+                self.povoa_cena(id_do_personagem, update.client_id(), aqui, messages);
             }
             c::Message::CurStatus(_) => {
                 // O cliente pode pedir status antes de existir personagem no estado -- acontece,
@@ -623,7 +879,31 @@ impl State {
                     [
                         s::Message::Bruto(s::Bruto::new(
                             cap::STATUS_OPCODE,
-                            cap::com_id_de_personagem(&cap::STATUS, 0, character.id()),
+                            {
+                                // Nivel e classe por cima do capturado -- sem isso a ficha mostra
+                                // a personagem da captura, nivel 3 e Chanter, seja quem for que
+                                // entrou. A classe sai do bloco de criacao, no mesmo offset que o
+                                // registro da lista usa.
+                                let classe = character
+                                    .aparencia
+                                    .as_ref()
+                                    .and_then(|b| {
+                                        let off = super::message::molde::campo::CLASSE
+                                            - super::message::molde::campo::NOME;
+                                        b.get(off..off + 4)
+                                    })
+                                    .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
+                                    .unwrap_or(CLASSE_DO_MOLDE);
+                                cap::com_ficha_de_personagem(
+                                    &cap::com_id_de_personagem(
+                                        &cap::STATUS,
+                                        0,
+                                        character.id(),
+                                    ),
+                                    character.stats.level,
+                                    classe,
+                                )
+                            },
                         )),
                         // O S_WORLD e o que poe o jogador no mapa, e ja foi conferido contra a
                         // captura.

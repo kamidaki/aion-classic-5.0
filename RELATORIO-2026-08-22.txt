@@ -1,0 +1,289 @@
+=========================================================================
+ EMULADOR AION CLASSIC 4.5 - RELATORIO TECNICO
+ 22/08/2026
+=========================================================================
+
+
+RESUMO
+------
+
+O emulador deixou de depender do replay. Na sessao anterior a entrada no
+mundo era servida por pacotes gravados; agora o cliente loga, cria
+personagem, entra em Pandaemonium povoada e recebe suas skills sem que o
+motor de replay seja consultado uma unica vez.
+
+O personagem tambem deixou de ser emprestado: nome, rosto, cores,
+altura, classe e nivel sao os que o jogador escolheu, e sobrevivem ao
+fechar o cliente.
+
+Numeros desta sessao:
+  - 1 opcode de 4 bytes destravava a tela de personagem inteira
+  - S_CREATE_CHARACTER, S_ADD_SKILL e S_REMOVE_OBJECT decodificados
+  - 1054 NPCs extraidos da captura e postos no mundo
+  - 18 644 regras de skill lidas do XML do cliente
+  - persistencia consertada (era uma conta nova por conexao)
+  - 1 bug de I/O (write parcial) que explicava tres sintomas distintos
+  - 7 identificadores de uma conta real tirados do codigo
+
+
+O BLOQUEIO QUE ERA UM OPCODE
+-----------------------------
+
+Sem replay, a tela de personagem ficava morta: nao dava para entrar no
+jogo, criar personagem, nem voltar para a lista de servidores. Medindo o
+que ficava sem resposta, sobrava um unico opcode bloqueante: 0x8B.
+
+O servidor oficial responde a ele com S_SA_ACCOUNT_ITEM_NOTI e quatro
+bytes zero, identico nas duas capturas. E o SaAccountItemNoti que
+responde ja existia no codigo, usado pelo 0xBB, com um comentario
+dizendo que o cliente trava sem essa resposta. Faltava so registrar o
+opcode na tabela.
+
+Quatro bytes. Com eles, a entrada no mundo passa a rodar com o que ja
+era nosso: o LevelReady dispara os blobs do capturado.rs com id e nome
+por cima, e o replay nao e consultado.
+
+
+O PEDIDO DE CRIACAO CARREGA O REGISTRO INTEIRO
+-----------------------------------------------
+
+A descoberta mais util da sessao. Os bytes 22..162 do pedido de criacao
+sao, byte a byte, o trecho 4..144 do registro que a lista de personagens
+usa -- deslocados de 18:
+
+  nome (52) | genero | raca | classe | voz | 4 cores | rosto (52) | altura
+
+O cliente ja manda o registro pronto. Guardamos o bloco no banco e
+escrevemos ele inteiro, recalculando a redundancia
+100000 + raca*2 + genero a partir do que o jogador escolheu.
+
+O S_CREATE_CHARACTER, a resposta, e o mesmo registro: 4 bytes de
+resultado mais os primeiros 744 do registro de 758. Comparado com o
+registro do mesmo personagem na lista seguinte, os 744 batem posicao a
+posicao -- as unicas diferencas sao mapa, posicao, direcao, nivel e os
+slots de equipamento, que na criacao ainda nao tem valor de jogo. Os 14
+bytes que a lista tem a mais sao todos zero.
+
+
+SKILLS: A CAPTURA DEU O FORMATO, O CLIENTE DEU O CONTEUDO
+----------------------------------------------------------
+
+Formato do S_ADD_SKILL, conferido em quatro tamanhos independentes:
+
+  [u16 quantas][entrada * quantas][u32 zero]
+  entrada = [u16 skill][u16 nivel][u16 zero][u32 quando][u8 zero]
+
+  17 = 2+1*11+4   39 = 2+3*11+4   325 = 2+29*11+4   1975 = 2+179*11+4
+
+O conteudo saiu do client_skill_learns.xml do proprio cliente: skills da
+classe, da classe base e de ALL, com pc_level menor ou igual ao nivel e
+autolearn verdadeiro, mais tres universais (coleta, coleta aerea e
+extracao de eter) que nao estao em arvore de classe nenhuma.
+
+A regra foi validada contra a captura antes de virar codigo: para o
+feiticeiro de nivel 11 gravado, ela preve as 29 skills que o servidor
+oficial concedeu -- todas, com um extra so.
+
+Isso custou um erro que vale registrar. O primeiro cruzamento deu 7 de
+29 e a conclusao foi "o XML nao e da mesma versao do cliente". Estava
+errado: os ids resolviam para nomes de feiticeiro, e o pacote era do
+personagem criado durante a captura, nao da personagem principal. O
+filtro estava na classe errada, e a conclusao apressada quase mandou o
+projeto atras de dados que ja estavam certos.
+
+
+NPCs: A CAPTURA COMO FONTE DE CONTEUDO
+---------------------------------------
+
+O roadmap dizia que captura ensina formato e dado ensina conteudo. Esta
+sessao achou a excecao: posicionamento de NPC nao esta em XML nenhum --
+mora nos arquivos de nivel do .pak e no servidor. Para esse dado a
+captura e a unica fonte que existe.
+
+Os 4772 S_PUT_NPC renderam 1054 NPCs distintos em Pandaemonium 4.5, com
+nomes que conferem no catalogo do cliente.
+
+  0..12  x, y, z (f32)
+  12..16 id de entidade (bit alto ligado)
+  16..20 npc_id      20..24 npc_id repetido
+  24 tipo   25 estado (0x41 = vivo)   28..32 id do nome
+
+Tres erros de metodo aconteceram aqui, e cada um ensinou algo:
+
+  1. Agrupar posicoes por distancia multiplicava NPC que anda -- um
+     unico id aparecia em 124 posicoes. O certo e agrupar pelo id de
+     entidade: um id e um NPC, e ele mantem o id ao se mover. Isso
+     tambem corrigiu o vies oposto, porque o agrupamento de 15 metros
+     fundia NPCs diferentes que estavam proximos.
+
+  2. Mandar os 1054 de uma vez estourava o buffer de 64 KB e o servidor
+     entrava em panico no meio de um pacote, derrubando quem ja estava
+     no mundo. O conserto e o alcance de visao, que e o que o servidor
+     real faz -- foi por isso que a captura trouxe 89 NPCs na entrada e
+     o resto conforme a personagem andava.
+
+  3. Reconstruir o S_PUT_NPC com a implementacao herdada da 2.5 nao
+     funcionou: ela tem tamanho fixo e o cliente 4.5 ignorou. Os
+     capturados tem de 107 a 267 bytes. A solucao foi guardar o pacote
+     que o servidor oficial mandou e trocar so o id de entidade.
+
+Streaming: o servidor guarda quem cada personagem tem em cena e, a cada
+20 metros andados, manda a diferenca -- S_PUT_NPC de quem entrou,
+S_REMOVE_OBJECT de quem saiu. Os 20 metros vem de uma medida: o cliente
+manda posicao a cada passo, 1220 vezes nos 22 minutos gravados.
+
+
+O BUG QUE ESTAVA POR TRAS DE VARIOS SINTOMAS
+--------------------------------------------
+
+O servidor escrevia no socket com `write` e ignorava o retorno. `write`
+pode escrever apenas parte do buffer -- o numero de bytes aceitos vem no
+valor devolvido, e ninguem olhava.
+
+Enquanto os lotes eram de algumas centenas de bytes, o socket sempre
+aceitava tudo e o bug era invisivel. Com os NPCs do mundo -- uns 17 KB
+de uma vez -- o buffer do socket enche, o resto e descartado em
+silencio, e o cliente recebe um pacote cortado no meio. Dai ele
+dessincroniza a decifracao, e o proximo pacote que ele manda falha o
+checksum no servidor.
+
+Tres sintomas que estavam sendo tratados como problemas separados eram o
+mesmo bug:
+
+  - a tela de carregamento de Pandaemonium ficando presa;
+  - "Packet Checksum Failed" derrubando a sessao assim que entrava;
+  - quedas atribuidas ao buffer de 64 KB.
+
+O conserto e uma palavra: `write_all`.
+
+A licao de metodo: o alcance de visao e o agrupamento por id de entidade
+seguem sendo corretos e necessarios, mas eles mascaravam o problema real
+ao reduzir o volume. Diagnosticar por volume ("cabe ou nao cabe") levou
+a tres consertos parciais antes de alguem olhar para a chamada de I/O.
+
+
+PERSISTENCIA: ERAM DOIS TOKENS DIFERENTES
+------------------------------------------
+
+Personagens sumiam a cada login. O STS gerava um UUID aleatorio no
+RequestGameToken, gravava no banco e devolvia ao cliente -- mas o que
+chega ao game server dentro do C_HQ_LOGIN e o AUTHN_TOKEN que o launcher
+entrega, um valor fixo, outro completamente.
+
+A busca nunca casava, caia num nome de conta sintetico derivado do id da
+conexao, e como esse id muda a cada conexao, todo login virava uma conta
+nova -- com um personagem automatico novo e sem os criados antes. Agora
+o STS registra tambem o token que o cliente vai apresentar, e o game
+server apara o byte nulo do fim antes de comparar; o cliente manda a
+cadeia terminada em nulo, e a comparacao literal falhava por esse byte
+invisivel.
+
+O nome da conta virou uma constante. Antes saia de uma derivacao do que
+o cliente enviava, e na pratica vinha de "locale=en_GB&auth_data=7":
+estavel enquanto nada mudasse, mas trocar o idioma do cliente trocaria a
+conta e orfanaria todos os personagens.
+
+
+O PUT_USER E O LIMITE DO MOLDE
+-------------------------------
+
+Escrever a aparencia no S_PUT_USER funciona: cores, rosto e altura caem
+243 bytes adiante do que caem no registro (315 contra 72), e a classe e
+um byte no offset 42.
+
+A redundancia no offset 16 -- 100000 + raca*2 + genero -- nao. Ela
+seleciona o mesh do corpo, e o PUT_USER capturado e de uma personagem
+asmodiana. Escrever raca elyos ali pede um corpo que o resto do pacote
+nao acompanha, e o personagem entra no mundo sem cabeca. Bisseccionado
+campo a campo: desligando so ela, com todo o resto igual, a cabeca
+volta.
+
+Enquanto o pacote for um molde remendado, a raca no mundo e a da
+captura. Sai quando o S_PUT_USER for construido campo a campo.
+
+
+O MAPA DO S_STATUS, DE GRACA
+-----------------------------
+
+Em vez de decodificar 396 bytes no escuro, o mapa saiu de uma captura de
+tela da ficha do personagem: cada numero que o cliente exibiu foi
+procurado no payload, e quase todos apareceram uma vez so, num offset
+unico.
+
+  32  nivel        106 ataque fisico   110 defesa fisica
+  114 resist.mag   122 evasao          124 parry
+  126 block        128 critico         132 precisao
+  138 prec.magica  140 crit spell      148 concentracao
+  150 magic boost
+
+HP nao aparece porque ja vem do nosso S_HIT_POINT -- e era por isso que
+era o unico numero certo na tela. Nivel e classe ja sao escritos; os
+atributos ainda vem da captura.
+
+
+DADOS CAPTURADOS TIRADOS DO CODIGO
+-----------------------------------
+
+USER_ID, TOKEN, SESSION, LOCATION_ID, GAME_ACCOUNT_ID, LOGIN_NAME e a
+chave de conta externa eram capturados de uma sessao real da Gameforge,
+alguns em base64 e outros em texto puro. Viraram valores locais gerados
+aqui, preservando as duas relacoes que precisavam sobreviver.
+
+O replay.bin carregava o token de autenticacao da conta em texto claro,
+e o empacotar.ps1 o copia para os dois pacotes. O exportador agora apaga
+token e GUID, e o empacotador confere de novo antes de zipar -- se
+achar, apaga a pasta e aborta em vez de so avisar.
+
+O aion.db (contas, personagens, tokens de sessao) e os 359 MB do
+Aion-Lightning sairam do rastreamento do git.
+
+
+O QUE AINDA E CAPTURADO
+------------------------
+
+  - os oito blobs da entrada no mundo (capturado.rs)
+  - o molde do registro de personagem (758 bytes, do Durak)
+  - os atributos do S_STATUS (bloco 106..152)
+  - o payload de cada S_PUT_NPC (386 KB em spawns.csv)
+
+Cada um sai quando o pacote correspondente for construido campo a campo.
+
+
+PROXIMOS PASSOS
+---------------
+
+  1. Itens iniciais por classe. O player_initial_data.xml da base de
+     referencia tem kinah, arma de treino, armadura e pocoes por classe.
+     O inventario deixa de ser vazio.
+
+  2. Atributos reais no S_STATUS. O mapa acima ja existe; falta ligar ao
+     character.stats.
+
+  3. Separar dano de controle. O servidor so olha o first_target, entao
+     Sleep ainda tira vida. O skill_category do XML resolve.
+
+  4. S_PUT_USER campo a campo. Destrava raca elyos no mundo, e com ela a
+     trava de faccao que o cliente impoe hoje.
+
+  5. Geodata. Nao e pre-requisito de nada acima, mas e o que separa um
+     mundo com NPCs parados de um mundo que reage: perseguicao, linha de
+     visao, altura de terreno, validacao de posicao.
+
+
+AVISO SOBRE O UPDATE PARA 5.0
+------------------------------
+
+Quando a Gameforge atualizar o cliente:
+
+  - nao havera mais como capturar 4.5 do servidor oficial;
+  - os arquivos do cliente -- XML de skills, npcs e itens, e os arquivos
+    de nivel de onde sai a geodata -- serao sobrescritos.
+
+A captura de 22 minutos cobre mais do que parecia: movimentacao de item
+(0x02E), separar unidades (0x0B5), fusao de itens (0x05A), warehouse,
+loja, chat, criacao de personagem, combate, loot e quest. O /help nao
+gerou pacote porque e resolvido dentro do cliente.
+
+O item sem substituto e a instalacao do cliente. Copiada em 22/08/2026.
+
+=========================================================================

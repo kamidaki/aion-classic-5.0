@@ -29,6 +29,7 @@ const HIT_POINT: u16 = 0x0003;
 const HIT_POINT_OTHER: u16 = 0x0005;
 const ENTER_WORLD_CHECK: u16 = 0x000D;
 const PUT_NPC: u16 = 0x000E;
+const REMOVE_OBJECT: u16 = 0x0016;
 const WORLD: u16 = 0x000F;
 const MESSAGE_CODE: u16 = 0x0019;
 const LOAD_INVENTORY: u16 = 0x001A;
@@ -94,6 +95,8 @@ pub enum Message {
     LoadClientSettings(LoadClientSettings),
     PutUser(PutUser),
     CreateCharacter(CreateCharacter),
+    AddSkill45(AddSkill45),
+    RemoveObject(RemoveObject),
     TargetInfo(TargetInfo),
     SyncTime(SyncTime),
     NpcChangedTarget(NpcChangedTarget),
@@ -159,6 +162,8 @@ impl Serialise for Message {
             Message::SkillSucceded(msg) => msg.serialise(&mut buf[2..]),
             Message::PutUser(msg) => msg.serialise(&mut buf[2..]),
             Message::CreateCharacter(msg) => msg.serialise(&mut buf[2..]),
+            Message::AddSkill45(msg) => msg.serialise(&mut buf[2..]),
+            Message::RemoveObject(msg) => msg.serialise(&mut buf[2..]),
             Message::CharacterList(msg) => msg.serialise(&mut buf[2..]),
             Message::CurStatus(msg) => msg.serialise(&mut buf[2..]),
             Message::Key(msg) => msg.serialise(&mut buf[2..]),
@@ -918,6 +923,84 @@ impl Serialise for EnterWorldCheck {
 
         buf[len..len + self.raw.len()].copy_from_slice(&self.raw);
         len += self.raw.len();
+
+        len
+    }
+}
+
+/// Tira uma entidade de cena.
+///
+/// Cinco bytes na captura, sempre: o id da entidade e um zero. E o par do `S_PUT_NPC` -- sem ele,
+/// NPC que sai do alcance de visao fica desenhado para sempre.
+#[derive(Debug, Clone)]
+pub struct RemoveObject {
+    entity_id: u32,
+}
+impl RemoveObject {
+    pub fn new(entity_id: u32) -> Self {
+        Self { entity_id }
+    }
+}
+impl Serialise for RemoveObject {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(REMOVE_OBJECT, buf);
+        buf[len..len + 4].copy_from_slice(&self.entity_id.to_le_bytes());
+        len += 4;
+        buf[len] = 0;
+        len += 1;
+        len
+    }
+}
+
+/// Concede skills ao personagem.
+///
+/// Formato conferido nos quatro tamanhos que a captura mostra -- 17, 39, 325 e 1975 bytes:
+///
+/// ```text
+/// [u16 quantas][entrada * quantas][u32 zero]
+/// entrada = [u16 skill][u16 nivel][u16 zero][u32 quando][u8 zero]   // 11 bytes
+/// ```
+///
+/// 17 = 2 + 1*11 + 4, 39 = 2 + 3*11 + 4, 325 = 2 + 29*11 + 4, 1975 = 2 + 179*11 + 4.
+///
+/// `quando` e um unix time; na captura todas as entradas de um mesmo lote trazem o mesmo valor,
+/// que e o momento em que o personagem as recebeu.
+#[derive(Debug, Clone)]
+pub struct AddSkill45 {
+    skills: Vec<u32>,
+    quando: u32,
+}
+impl AddSkill45 {
+    pub fn new(skills: Vec<u32>, quando: u32) -> Self {
+        Self { skills, quando }
+    }
+}
+impl Serialise for AddSkill45 {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(ADD_SKILL, buf);
+
+        buf[len..len + 2].copy_from_slice(&(self.skills.len() as u16).to_le_bytes());
+        len += 2;
+
+        for id in &self.skills {
+            buf[len..len + 2].copy_from_slice(&(*id as u16).to_le_bytes());
+            len += 2;
+            // Nivel da skill. Toda skill concedida por nivel de personagem entra no grau 1; os
+            // graus seguintes sao outra linha da arvore, com outro id.
+            buf[len..len + 2].copy_from_slice(&1u16.to_le_bytes());
+            len += 2;
+            buf[len..len + 2].fill(0);
+            len += 2;
+            buf[len..len + 4].copy_from_slice(&self.quando.to_le_bytes());
+            len += 4;
+            buf[len] = 0;
+            len += 1;
+        }
+
+        buf[len..len + 4].fill(0);
+        len += 4;
 
         len
     }
@@ -1946,13 +2029,15 @@ pub struct PutNpc {
     location: Coord,
     /// Unique ID of specific npc
     entity_id: u32,
-    status_bar_id: npc::Id,
-    appearence_id: npc::Id,
+    /// Numericos, e nao os enums de antes: a tabela de spawns extraida da captura tem 530 NPCs
+    /// distintos, e os enums cobriam quatro.
+    status_bar_id: u32,
+    appearence_id: u32,
     ty: npc::Type,
     state: npc::State,
     rotation: u8,
     /// Name is an Id that client references to find string of name
-    name: npc::Name,
+    name: u32,
     current_hp_pct: u8,
     current_hp: i32,
     level: u16,

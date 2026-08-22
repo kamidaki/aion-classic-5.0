@@ -4,6 +4,10 @@ Escrito para ser lido frio, sem contexto de conversa anterior.
 
 ---
 
+> **Leia antes:** `RELATORIO-2026-08-22.txt` conta a sessão em que o replay saiu do caminho, com os
+> formatos decodificados e os erros de método que custaram tempo. Este roadmap descreve o estado; o
+> relatório descreve como se chegou nele.
+
 ## 1. O que é este projeto
 
 Servidor privado para o cliente **Aion Classic 4.5 da GameForge**, build
@@ -36,13 +40,30 @@ launcher (named pipe) → auth 13001 → STS 6600 → game server 7777
 A tela de personagem renderiza nome, nível, classe e modelo 3D. A entrada no mundo carrega a HUD
 completa — minimapa, barra de skills, DP.
 
-A lista de personagens sai do banco e o cliente devolve o id do banco quando você seleciona — a
-tela de personagem é implementação, não replay (seção 5). O mundo carrega em Pandaemonium com
-cenário, NPCs e minimapa; o personagem anda e a UI responde (seção 6).
+**O replay saiu do caminho.** Desde 22/08/2026 o emulador faz tudo isso sem consultar o motor de
+replay uma única vez — dá para conferir rodando com `AION_REPLAY` apontando para um arquivo que não
+existe. O que destravou foi um opcode de quatro bytes; ver o `RELATORIO-2026-08-22.txt`.
 
-**O que ainda é andaime:** o corpo no mundo e boa parte da sessão são bytes da captura com o id
-trocado — o personagem aparece com a cara e o nome do capturado. Trocar isso por implementação é o
-trabalho da seção 6.
+O que funciona hoje, e de onde vem cada coisa:
+
+| | origem |
+|---|---|
+| login, lista, criação de personagem, entrada no mundo | implementação nossa |
+| nome, rosto, cores, altura, classe e nível do personagem | o bloco que o cliente manda ao criar |
+| persistência entre sessões | token do launcher registrado no banco |
+| skills por classe e nível | `client_skill_learns.xml` do cliente 4.5 |
+| NPCs com nome, miráveis, entrando e saindo de cena | 1054 posições extraídas da captura |
+
+**O que ainda é andaime**, em ordem de tamanho da dívida:
+
+- o payload de cada `S_PUT_NPC` (386 KB em `EmuRustDurak/data/spawns.csv`)
+- os oito blobs da entrada no mundo (`capturado.rs`)
+- o molde do registro de personagem — 758 bytes, do `Durak`
+- os atributos do `S_STATUS`, bloco 106..152
+
+Cada um sai quando o pacote correspondente for construído campo a campo. A raça no mundo é a da
+captura: escrever raça diferente no `S_PUT_USER` deixa o personagem sem cabeça, porque o molde é de
+uma personagem asmodiana e o pacote inteiro é coerente com isso — ver seção 6.
 
 ---
 
@@ -86,6 +107,12 @@ cliente lê na lista.
 | `AION_CABECALHO` | escreve à mão os dois bytes do cabeçalho da lista, ex. `"2,1"`; para perguntar ao cliente sem recompilar |
 | `AION_PACOTES_25` | manda também os pacotes da 2.5 na entrada no mundo. **Derruba o cliente**; ver seção 6 |
 | `AION_CLIENT` | caminho do `aion.bin`. É a única coisa que muda de máquina para máquina |
+| `AION_SPAWNS` | tabela de NPCs (padrão `data/spawns.csv`), gerada por `tools/extrai_spawns.py` |
+| `AION_VISAO` | até onde o servidor manda NPC, em metros (padrão 100) |
+| `AION_ID_CAPTURADO` | id do personagem da captura usada pelo replay, ex. `0x2E4627F1` |
+| `AION_PUT_USER_SEM` | não escreve campos no `S_PUT_USER`: `red`, `classe`. Bissecção |
+| `AION_PUT_USER_COM_RED` | religa a redundância do offset 16 — **deixa o modelo sem cabeça** |
+| `AION_PUT_USER_CORES_LEN` | quantos bytes do bloco de aparência escrever (padrão 72) |
 
 ### Para outra pessoa rodar, ou mexer
 
@@ -419,6 +446,35 @@ byte. **Um arquivo gerado assim não pode ser compartilhado.**
 ## 8. Depois que o mundo carregar
 
 Em ordem. Cada item destrava o seguinte.
+
+### 8.0 O que fazer primeiro — atualizado em 22/08/2026
+
+Em ordem, com a fonte de dado de cada um já identificada:
+
+1. **Itens iniciais por classe.** `reference/aion-lightning/AL-Game/data/static_data/player_initial_data.xml`
+   traz kinah, arma de treino, armadura e poções por classe, e os pontos de nascimento por raça.
+   O inventário deixa de ser vazio. É o item mais barato da lista.
+
+2. **Atributos reais no `S_STATUS`.** O mapa dos campos já existe — ataque em 106, defesa em 110,
+   evasão em 122, precisão em 132, magic boost em 150 (relatório de 22/08). Falta ligar ao
+   `character.stats`; hoje nível e classe já são escritos e o resto vem da captura.
+
+3. **Separar dano de controle.** O servidor só consulta o `first_target` do XML, então `Sleep`
+   ainda tira vida por cair no mesmo caminho de dano fixo. O `skill_category` resolve.
+
+4. **`S_PUT_USER` campo a campo.** Destrava raça no mundo, e com ela a trava de facção que o
+   cliente impõe hoje (toda conta nasce elyos porque o molde do registro é do `Durak`).
+
+5. **Geodata.** Não é pré-requisito de nada acima. É o que separa um mundo com NPCs parados de um
+   mundo que reage: perseguição, linha de visão, altura de terreno, validação de posição. O insumo
+   são os arquivos de nível do cliente — ver o aviso sobre o update para 5.0, abaixo.
+
+**Antes do update para 5.0.** A Gameforge vai atualizar o cliente, e com isso somem duas coisas: a
+possibilidade de capturar 4.5 do servidor oficial, e os arquivos do cliente 4.5 — o XML que alimenta
+skills, npcs e itens, e os arquivos de nível de onde sairia a geodata. A instalação foi copiada em
+22/08/2026 para `Cliente/` (fora do git). A captura de 22 minutos está em `build/capture/jogo.pcapng`
+e cobre movimentação de item, separar unidades, fusão, warehouse, loja, chat, criação de personagem,
+combate, loot e quest.
 
 ### 8.1 Trocar o andaime por implementação
 

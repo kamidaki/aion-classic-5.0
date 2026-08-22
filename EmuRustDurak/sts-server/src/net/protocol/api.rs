@@ -38,6 +38,18 @@ const CREATED: &str = "2023-04-25T10:47:54Z";
 const CREATED2: &str = "2023-04-25T12:47:54.820+02:00";
 const USER_CENTER: u16 = 22;
 const USER_NAME: &str = "Nickname";
+/// Nome da conta no banco do game server.
+///
+/// Uma constante, e nao algo derivado do que o cliente manda, porque e o **nome da conta que
+/// decide de quem sao os personagens**. Antes ele saia do `derive_username` aplicado ao token que
+/// o cliente subiu, e na pratica isso vinha de `locale=en_GB&auth_data=7`: estavel enquanto nada
+/// mudasse, mas trocar o idioma do cliente trocava a conta junto e orfanava todos os personagens.
+///
+/// O aperto de mao daqui e de conta unica -- o `AUTHN_TOKEN` e fixo, o mesmo em toda sessao --
+/// entao derivar identidade dele nunca separou ninguem de ninguem. Quando existirem contas de
+/// verdade, e aqui que a identidade real entra.
+const CONTA_LOCAL: &str = "local";
+
 const LOGIN_NAME: &str = "a83cf26f-9cfa-454d-834c-08773abad985@local";
 const IS_LOGIN_NAME_VALIDATED: u16 = 0;
 const AUTH_PROVIDER_CODE: &str = "gameforge";
@@ -51,22 +63,6 @@ const USER_ID: &str = "46CF859A-0426-47BD-A95A-563A78BB07D4";
 const TOKEN: &str = "536501AE-0CEE-4134-95F5-B2EACC43811B";
 // USER_ID + TOKEN then base64?
 const AUTHN_TOKEN: &str = "NDZDRjg1OUEtMDQyNi00N0JELUE5NUEtNTYzQTc4QkIwN0Q0OjUzNjUwMUFFLTBDRUUtNDEzNC05NUY1LUIyRUFDQzQzODExQgA=";
-
-/// Convert the decrypted authn_token the client uploaded in TokenKeyData into
-/// a filesystem-safe-ish username. The raw token often contains `@`, `+`, `/`
-/// and trailing padding — we keep only the first 32 alphanumeric bytes.
-fn derive_username(authn_token: &str) -> String {
-    let filtered: String = authn_token
-        .chars()
-        .filter(|c| c.is_ascii_alphanumeric())
-        .take(32)
-        .collect();
-    if filtered.is_empty() {
-        LOGIN_NAME.to_string()
-    } else {
-        filtered
-    }
-}
 
 fn login_reply() -> Reply {
     let external_accounts = ExternalAccounts {
@@ -416,15 +412,7 @@ impl Auth {
                 Some(Response { header, body })
             }
             Self::RequestGameToken => {
-                // Derive a stable username from whatever identity the client
-                // ultimately sent (session.authn_token after TokenKeyData).
-                // If we haven't captured one yet, fall back to the static
-                // LOGIN_NAME so the flow still completes.
-                let username = if session.authn_token.is_empty() {
-                    LOGIN_NAME.to_string()
-                } else {
-                    derive_username(&session.authn_token)
-                };
+                let username = CONTA_LOCAL.to_string();
                 let token = session.db.issue_session(&username).unwrap_or_else(|e| {
                     eprintln!("ERROR: issue_session: {e}");
                     TOKEN.to_string()
