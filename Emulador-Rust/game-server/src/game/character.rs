@@ -626,4 +626,92 @@ impl Character {
 
         hits
     }
+
+    /// Executa um tique de regeneração periódica de HP, MP e FP.
+    pub fn regenerate(&mut self, seated: bool, in_combat: bool) -> (bool, bool) {
+        let mut hp_changed = false;
+        let mut mp_changed = false;
+
+        let multiplier: f32 = if seated {
+            3.0
+        } else if in_combat {
+            0.2
+        } else {
+            1.0
+        };
+
+        // HP regen
+        if self.stats.hp.current < self.stats.hp.max {
+            let base_rate = (self.stats.hp.max as f32 * 0.05).max(5.0);
+            let gain = (base_rate * multiplier) as i32;
+            self.stats.hp.current = (self.stats.hp.current + gain).min(self.stats.hp.max);
+            hp_changed = true;
+        }
+
+        // MP regen
+        if self.stats.mp.current < self.stats.mp.max {
+            let base_rate = (self.stats.mp.max as f32 * 0.05).max(5.0);
+            let gain = (base_rate * multiplier) as u32;
+            self.stats.mp.current = (self.stats.mp.current + gain).min(self.stats.mp.max);
+            mp_changed = true;
+        }
+
+        // FP regen (no solo)
+        if self.stats.flight_time_current < self.stats.flight_time_max {
+            self.stats.flight_time_current = (self.stats.flight_time_current + 2).min(self.stats.flight_time_max);
+        }
+
+        (hp_changed, mp_changed)
+    }
+
+    /// Drena FP quando o personagem está voando ou planando
+    pub fn drain_flight_points(&mut self, amount: u32) -> bool {
+        if self.stats.flight_time_current > amount {
+            self.stats.flight_time_current -= amount;
+            true
+        } else {
+            self.stats.flight_time_current = 0;
+            false // FP esgotado
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn character_regeneration_seated_and_combat() {
+        let mut c = Character::new(1, 1, Coord::new(0.0, 0.0, 0.0));
+        c.stats.hp.current = 100;
+        c.stats.mp.current = 100;
+
+        // Normal standing regen
+        c.regenerate(false, false);
+        assert!(c.stats.hp.current > 100);
+        assert!(c.stats.mp.current > 100);
+
+        // Seated regen is significantly faster
+        let hp_before = c.stats.hp.current;
+        c.regenerate(true, false);
+        let seated_gain = c.stats.hp.current - hp_before;
+
+        let hp_before2 = c.stats.hp.current;
+        c.regenerate(false, true); // in combat
+        let combat_gain = c.stats.hp.current - hp_before2;
+
+        assert!(seated_gain > combat_gain, "Regeneração sentado deve ser mais rápida que em combate");
+    }
+
+    #[test]
+    fn character_flight_drain_and_empty() {
+        let mut c = Character::new(1, 1, Coord::new(0.0, 0.0, 0.0));
+        c.stats.flight_time_current = 10;
+
+        assert!(c.drain_flight_points(5));
+        assert_eq!(c.stats.flight_time_current, 5);
+
+        assert!(!c.drain_flight_points(10), "Deve indicar que o FP esgotou");
+        assert_eq!(c.stats.flight_time_current, 0);
+    }
 }
