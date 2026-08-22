@@ -8,6 +8,7 @@ use std::{
 
 mod character;
 pub mod craft;
+pub mod cron_events;
 pub mod data;
 pub mod engine;
 pub mod entity;
