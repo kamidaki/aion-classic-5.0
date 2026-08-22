@@ -61,7 +61,8 @@ impl ClientMessages {
 
             let len = u16::from_le_bytes([buffer[0], buffer[1]]) as usize;
             if len > buffer.len() || len < 2 {
-                panic!("Invalid Packet Len");
+                eprintln!("WARNING: Invalid packet framing (len: {len}, available: {})", buffer.len());
+                break;
             }
 
             match client::Message::deserialise(&mut buffer[2..len], key) {

@@ -34,6 +34,11 @@ macro_rules! define_messages {
                 mut buf: &mut [u8],
                 mut key: &mut [u8; 8],
             ) -> Result<(Self, u16), u16> {
+                if buf.len() < 5 {
+                    eprintln!("WARNING: Client packet payload too short (len: {})", buf.len());
+                    return Err(0xFFFF);
+                }
+
                 decrypt(&mut key, buf);
 
                 let mut len = 0;
@@ -45,7 +50,8 @@ macro_rules! define_messages {
                 let checksum = consume_le_bytes!(len, buf, u16);
 
                 if checksum != !opcode {
-                    panic!("Packet Checksum Failed, {opcode:02X}-{checksum:02X}");
+                    eprintln!("WARNING: Packet Checksum Failed, {opcode:02X}-{checksum:02X}");
+                    return Err(0xFFFF);
                 }
                 let opcode = decrypt_client_opcode(opcode);
 

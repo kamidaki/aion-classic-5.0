@@ -269,4 +269,23 @@ mod test {
         encrypt(&mut key, &mut input);
         assert_eq!(input, target_cipher);
     }
+
+    #[test]
+    fn test_all_server_opcodes_roundtrip() {
+        for op in 0x0000u16..=0x01FFu16 {
+            let enc = encrypt_server_opcode(op);
+            let dec = decrypt_server_opcode(enc);
+            assert_eq!(dec, op, "Falha no roundtrip do opcode de servidor 0x{:04X}", op);
+        }
+    }
+
+    #[test]
+    fn test_all_client_opcodes_roundtrip() {
+        for op in 0x0000u16..=0x01FFu16 {
+            let enc = encrypt_client_opcode(op);
+            let dec = decrypt_client_opcode(enc);
+            assert_eq!(dec, op, "Falha no roundtrip do opcode de cliente 0x{:04X}", op);
+        }
+    }
 }
+
