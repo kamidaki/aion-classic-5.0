@@ -295,6 +295,21 @@ impl GameplayTestRunner {
             format!("GM: {}; {}; {}", gm1, gm2, gm3),
         ));
 
+        // 8. Viagem Multi-Mapa com .goto
+        let goto_poeta = player.execute_gm_command(".goto poeta");
+        let poeta_ok = player.map_id == 210010000;
+        let _goto_sanctum = player.execute_gm_command(".goto sanctum");
+        let sanctum_ok = player.map_id == 110010000;
+        let _goto_abyss = player.execute_gm_command(".goto abyss");
+        let abyss_ok = player.map_id == 400010000;
+        let goto_pandae = player.execute_gm_command(".goto pandaemonium");
+        let pandae_ok = player.map_id == 120010000;
+        results.push((
+            "Multi-Map Teleportation via .goto Command",
+            poeta_ok && sanctum_ok && abyss_ok && pandae_ok,
+            format!("Teleportes validados: Poeta ({}), Sanctum, Abyss e Pandaemonium ({})", goto_poeta, goto_pandae),
+        ));
+
         results
     }
 }
