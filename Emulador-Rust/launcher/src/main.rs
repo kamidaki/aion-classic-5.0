@@ -10,7 +10,7 @@ use std::sync::{Arc, Mutex};
 // ---------------------------------------------------------------------------
 
 /// Candidatos padrão para encontrar o aion.bin no Windows
-const GAME_PATH_PADRAO: &str = r#"D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic\bin64\aion.bin"#;
+const GAME_PATH_PADRAO: &str = r#"bin64\aion.bin"#;
 
 fn caminho_do_cliente() -> String {
     if let Ok(path) = std::env::var("AION_CLIENT") {
@@ -20,11 +20,11 @@ fn caminho_do_cliente() -> String {
     }
 
     let candidates = [
-        r#"D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic\bin64\aion.bin"#,
+        r#"bin64\aion.bin"#,
         r#"..\Cliente\GFAion\aionclassic\bin64\aion.bin"#,
         r#"Cliente\GFAion\aionclassic\bin64\aion.bin"#,
         r#"..\..\Cliente\GFAion\aionclassic\bin64\aion.bin"#,
-        r#"G:\GFAion\aionclassic\bin64\aion.bin"#,
+        r#"..\..\..\Cliente\GFAion\aionclassic\bin64\aion.bin"#,
     ];
 
     for candidate in candidates {
@@ -39,14 +39,15 @@ fn caminho_do_cliente() -> String {
 fn auth_server_ip() -> String {
     std::env::var("AION_AUTH_IP")
         .or_else(|_| std::env::var("AION_GAME_IP"))
-        .unwrap_or_else(|_| "192.168.3.184".to_string())
+        .unwrap_or_else(|_| "127.0.0.1".to_string())
 }
 
 fn sts_server_ip() -> String {
     std::env::var("AION_STS_IP")
         .or_else(|_| std::env::var("AION_GAME_IP"))
-        .unwrap_or_else(|_| "192.168.3.184".to_string())
+        .unwrap_or_else(|_| "127.0.0.1".to_string())
 }
+
 
 const DEFAULT_DEV_USERNAME: &str = "dev";
 

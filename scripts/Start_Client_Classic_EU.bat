@@ -7,27 +7,35 @@ echo      Iniciando Cliente Aion Classic EU (Gameforge x64)
 echo ============================================================
 echo.
 
-set AION_DIR=D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic
-set CLIENT_EXE=%AION_DIR%\bin64\Aion.exe
-set CLIENT_BIN=%AION_DIR%\bin64\Aion.bin
+set ROOT_DIR=%~dp0..
+set CLIENT_DIR=%ROOT_DIR%\Cliente\GFAion\aionclassic
+set CLIENT_BIN=%CLIENT_DIR%\bin64\aion.bin
+set LAUNCHER_EXE=%ROOT_DIR%\deploy\launcher.exe
 
-if not exist "%AION_DIR%" (
-    echo [ERRO] Pasta do Aion Classic nao encontrada em: %AION_DIR%
+if not exist "%CLIENT_BIN%" (
+    echo [ERRO] Binario aion.bin nao encontrado em: %CLIENT_BIN%
     pause
     exit /b 1
 )
 
-if not exist "%CLIENT_EXE%" (
-    echo Criando Aion.exe a partir de Aion.bin...
-    copy /y "%CLIENT_BIN%" "%CLIENT_EXE%" >nul
-)
-
-echo Diretorio do jogo: %AION_DIR%
-echo Conectando ao servidor local: 127.0.0.1:2106 ...
+echo Diretorio do jogo: %CLIENT_DIR%
+echo Conectando ao servidor local: 127.0.0.1 ...
 echo.
 
-cd /d "%AION_DIR%"
+cd /d "%CLIENT_DIR%"
+set AION_CLIENT=%CLIENT_BIN%
+set AION_AUTH_IP=127.0.0.1
+set AION_STS_IP=127.0.0.1
+set AION_GAME_IP=127.0.0.1
 
-start "" "%CLIENT_EXE%" -ip:127.0.0.1 -port:2106 -cc:2 -lang:eng -account:durak -password:durak -noweb -noauthgg -nowebshop -nowebadpopup -webfin -ls -charencrypt
+if exist "%LAUNCHER_EXE%" (
+    echo [*] Iniciando via Launcher RPC (Autenticacao Automatica)...
+    start "Aion Classic Launcher RPC" "%LAUNCHER_EXE%" --auto durak
+) else (
+    echo [*] Iniciando binario direto com parametros Gameforge HQ...
+    start "" "%CLIENT_BIN%" -lang:ENG -ip:127.0.0.1 -port:2106 -usehqserver -hqip:127.0.0.1 -hqport:13001 -np:127.0.0.1 -dwsm -pwd16 -npsa -probability -nospamcheck -noweb -nowebshop -st -dpetition -hidepromo -nosatab -nosarefund -dingameshop -disabletempbanner -disabledevaschedule -recserveridx:1 -old_charInstance
+)
 
-echo [OK] Cliente iniciado!
+echo.
+echo [OK] Cliente disparado com sucesso!
+ping 127.0.0.1 -n 3 >nul

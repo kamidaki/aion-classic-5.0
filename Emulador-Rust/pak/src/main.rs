@@ -566,16 +566,30 @@ fn get_paks(path: impl AsRef<Path>) -> Vec<Box<Path>> {
     paths
 }
 
+fn find_default_client_data() -> String {
+    let candidates = [
+        "data",
+        "Cliente\\GFAion\\aionclassic\\data",
+        "..\\Cliente\\GFAion\\aionclassic\\data",
+        "..\\..\\Cliente\\GFAion\\aionclassic\\data",
+    ];
+    for c in candidates {
+        if std::path::Path::new(c).exists() {
+            return c.to_string();
+        }
+    }
+    "data".to_string()
+}
+
 fn main() {
     const THREADS: usize = 16;
     let in_arg = std::env::args().nth(1).unwrap_or_else(|| {
-        std::env::var("AION_CLIENT_DATA").unwrap_or_else(|_| {
-            "D:\\AION RUST\\AionEMU\\AionEMU\\Cliente\\GFAion\\aionclassic\\data".to_string()
-        })
+        std::env::var("AION_CLIENT_DATA").unwrap_or_else(|_| find_default_client_data())
     });
     let out_arg = std::env::args().nth(2).unwrap_or_else(|| {
         std::env::var("AION_OUT_DATA").unwrap_or_else(|_| "data/client_raw".to_string())
     });
+
 
     let base_in = std::path::PathBuf::from(&in_arg);
     let out_prefix = std::path::PathBuf::from(&out_arg);

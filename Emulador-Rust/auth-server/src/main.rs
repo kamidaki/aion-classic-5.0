@@ -280,6 +280,10 @@ fn handle(mut stream: TcpStream) -> Result<()> {
 
     // 2. Receive client credentials (username / password hash — not yet verified)
     let len = stream.read(&mut buf)?;
+    if len == 0 {
+        println!("INFO: client closed connection before sending credentials (normal probe/disconnect)");
+        return Ok(());
+    }
     println!("DEBUG: ← credentials ({len} bytes): {:02X?}", &buf[..len]);
 
     // 3. Acknowledge login
