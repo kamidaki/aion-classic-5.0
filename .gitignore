@@ -1,48 +1,44 @@
-# saidas de build
+# =========================================================================
+#  AION CLASSIC 4.5 RUST EMULATOR - .GITIGNORE
+# =========================================================================
+
+# Compilação e binários temporários de desenvolvimento
+target/
+**/target/
 build/
 bin/
 obj/
-target/
-dist/*.jar
 *.class
 __pycache__/
 *.pyc
 
-# artefatos de execucao
+# Arquivos de log e depuração
 log/
 logs/
 *.log
+*.pcap
+*.pcapng
 
-# IDE
+# Arquivos de trabalho e bancos de dados locais de teste
+*.db-shm
+*.db-wal
+*.db
+!deploy/data/*.db
+
+# IDEs e Editores
 .idea/
 .vs/
+.vscode/
 *.iml
 .classpath
 .project
 .settings/
 
-# overrides locais com segredos -- database.properties fica como template
-myls.properties
-
-# derivado da captura
-replay.bin
-
-# arquivos de trabalho do SQLite: mudam a cada execucao do servidor
-*.db-shm
-*.db-wal
-
-# pacote gerado por pacote/empacotar.ps1
-dist/
-
-# banco de dados: estado de execucao (contas, personagens, tokens de sessao). Se regenera sozinho
-# na primeira vez que o servidor sobe, e mudava a cada teste.
-*.db
-
-# base Java de referencia (Aion-Lightning): 359 MB de codigo de terceiros que nao executa aqui.
-# O LEIA-ME-FONTE.txt explica onde encontra-la.
-reference/
-
-# copia da instalacao do cliente. Sao dezenas de GB, e o motivo dela existir e justamente nao
-# depender do launcher: quando a Gameforge atualizar para 5.0, os arquivos de nivel e os .pak de
-# 4.5 so existem aqui. Nao entra no git.
+# Dados pesados externos de referência e cliente
+JAVA EMU - 4.8 RETAIL/
 Cliente/
+reference/
+dist/
+dist/*.zip
+replay.bin
+myls.properties

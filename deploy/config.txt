@@ -1,0 +1,23 @@
+# =========================================================================
+#  AION CLASSIC 4.5 RUST EMULATOR - CONFIGURAÇÃO DO SERVIDOR (DEPLOY)
+# =========================================================================
+
+# Caminho completo para o executável do Cliente Classic (bin64\AION.bin ou aion.exe)
+CLIENTE = D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic\bin64\AION.bin
+
+# Endereço IP anunciado para os clientes conectarem.
+# IMPORTANTE: O cliente Aion 4.5 descarta conexões loopback (127.0.0.1).
+# Deixe em branco para detecção automática do IP da sua placa de rede local / Hamachi / Radmin / Dedicado.
+IP = 
+
+# Portas dos Serviços:
+# STS Server (Handshake de Segurança e Tokens): 10241
+# Auth Server (Lista de Servidores e Autenticação): 2106
+# Game Server (Mundo, Personagens e Gameplay): 7777
+
+# Usuário padrão para o Launcher emular autenticação
+USUARIO = durak
+
+# Diretório de dados estáticos do cliente (XMLs de NPCs, Itens e Skills)
+# Deixe em branco para usar a pasta 'data' local
+DADOS = data
