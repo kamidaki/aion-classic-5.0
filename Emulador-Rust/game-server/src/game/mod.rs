@@ -8,9 +8,10 @@ use std::{
 
 mod character;
 pub mod craft;
-mod data;
-mod engine;
-mod entity;
+pub mod data;
+pub mod engine;
+pub mod entity;
+pub mod environment;
 mod message;
 pub mod instance;
 pub mod housing;
