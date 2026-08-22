@@ -14,6 +14,7 @@ mod entity;
 mod message;
 pub mod instance;
 pub mod mundo;
+pub mod pet;
 mod session;
 pub mod social;
 mod state;
