@@ -1,34 +1,39 @@
 @echo off
-title Aion Classic (EU 4.5) - Iniciar Servidores (.NET 9)
+title Aion Classic (EU 4.5) - Iniciar Servidores (Rust)
 color 0a
 
 echo ============================================================
-echo      Iniciando Servidores Aion Classic EU (Gameforge)      
+echo      Iniciando Servidores Aion Classic EU (Rust)      
 echo ============================================================
 echo.
 
-set LS_EXE=%~dp0src\AionClassic.LoginServer\bin\Debug\net9.0\AionClassic.LoginServer.exe
-set GS_EXE=%~dp0src\AionClassic.GameServer\bin\Debug\net9.0\AionClassic.GameServer.exe
-
-if not exist "%LS_EXE%" (
-    echo Compilando servidores...
-    "%LOCALAPPDATA%\Microsoft\dotnet\dotnet.exe" build "%~dp0AionClassic.sln" -c Debug
+set DEPLOY_DIR=%~dp0..\deploy
+if not exist "%DEPLOY_DIR%\game-server.exe" (
+    set DEPLOY_DIR=%~dp0deploy
 )
 
-echo [1/2] Iniciando Login Server (Porta 2106)...
-start "Aion Classic - Login Server" "%LS_EXE%"
+cd /d "%DEPLOY_DIR%"
 
-timeout /t 2 /nobreak >nul
+echo [1/3] Iniciando STS Server (Porta 6600)...
+start "Aion Classic - STS Server (Rust)" "sts-server.exe"
 
-echo [2/2] Iniciando Game Server (Porta 7777)...
-start "Aion Classic - Game Server" "%GS_EXE%"
+ping 127.0.0.1 -n 2 >nul
+
+echo [2/3] Iniciando Auth Server (Portas 13001 e 2106)...
+start "Aion Classic - Auth Server (Rust)" "auth-server.exe" 127.0.0.1
+
+ping 127.0.0.1 -n 2 >nul
+
+echo [3/3] Iniciando Game Server (Porta 7777 - 20 TPS)...
+start "Aion Classic - Game Server (Rust)" "game-server.exe"
 
 echo.
 echo ============================================================
-echo   Servidores em execucao!
-echo   Login Server: 127.0.0.1:2106
-echo   Game Server:  127.0.0.1:7777
-echo.
-echo   Agora de dois cliques em: Start_Client_Classic_EU.bat
+echo   Servidores Rust em execucao com sucesso!
+echo   STS Server:  127.0.0.1:6600
+echo   Auth Server: 127.0.0.1:2106 / 13001
+echo   Game Server: 127.0.0.1:7777 (1254 NPCs carregados)
 echo ============================================================
-pause
+ping 127.0.0.1 -n 3 >nul
+
+
