@@ -1,6 +1,6 @@
 # ETAPA 07: SISTEMA DE COMBATE, HABILIDADES E MOTOR DE EFEITOS (SKILLENGINE)
 
-> **Status da Etapa**: Pendente  
+> **Status da Etapa**: Concluída  
 > **Prioridade**: Crítica (Núcleo da Jogabilidade de Combate)  
 > **Dependências**: [04_SISTEMA_MOVIMENTACAO_FISICA_GEOENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/04_SISTEMA_MOVIMENTACAO_FISICA_GEOENGINE.md), [05_STATUS_ATRIBUTOS_SISTEMA_VIDA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/05_STATUS_ATRIBUTOS_SISTEMA_VIDA.md), [06_ITENS_INVENTARIO_EQUIPAMENTOS_ECONOMIA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/06_ITENS_INVENTARIO_EQUIPAMENTOS_ECONOMIA.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.skillengine`, `com.aionemu.gameserver.controllers.attack`, `com.aionemu.gameserver.network.aion.serverpackets.SM_CASTSPELL`, `SM_CASTSPELL_RESULT`
