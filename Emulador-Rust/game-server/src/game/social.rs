@@ -16,10 +16,36 @@ pub enum ChatChannel {
 pub enum GmCommand {
     Spawn { npc_id: u32 },
     Teleport { map_id: u32, x: f32, y: f32, z: f32 },
+    Goto { destination: String },
     AddItem { item_id: u32, count: u32 },
     SetLevel { level: u16 },
     GodMode,
     Unknown(String),
+}
+
+pub fn resolve_goto_location(dest: &str) -> Option<(u32, f32, f32, f32)> {
+    match dest.trim().to_lowercase().as_str() {
+        "poeta" => Some((210010000, 820.0, 1240.0, 118.0)),
+        "sanctum" => Some((110010000, 1322.0, 1511.0, 568.0)),
+        "verteron" => Some((210030000, 1530.0, 1540.0, 115.0)),
+        "eltnen" => Some((210020000, 1500.0, 1500.0, 200.0)),
+        "heiron" => Some((210040000, 1600.0, 1600.0, 150.0)),
+        "theobomos" => Some((210060000, 1400.0, 1400.0, 200.0)),
+        "ishalgen" => Some((220010000, 575.0, 2530.0, 280.0)),
+        "pandaemonium" | "pandae" => Some((120010000, 1679.0, 1399.0, 206.0)),
+        "altgard" => Some((220030000, 1700.0, 1800.0, 230.0)),
+        "morheim" => Some((220020000, 1800.0, 1900.0, 250.0)),
+        "beluslan" => Some((220040000, 400.0, 400.0, 200.0)),
+        "brusthonin" => Some((220050000, 1500.0, 2000.0, 50.0)),
+        "abyss" | "reshanta" => Some((400010000, 2150.0, 1980.0, 2850.0)),
+        "inggison" => Some((210050000, 1300.0, 500.0, 500.0)),
+        "gelkmaros" | "gelk" => Some((220070000, 1700.0, 1100.0, 400.0)),
+        "sarpan" => Some((600020000, 1500.0, 1500.0, 500.0)),
+        "tiamaranta" => Some((600030000, 1500.0, 1500.0, 500.0)),
+        "katalam" => Some((600050000, 1500.0, 1500.0, 500.0)),
+        "danaria" => Some((600060000, 1500.0, 1500.0, 500.0)),
+        _ => None,
+    }
 }
 
 impl GmCommand {
@@ -45,6 +71,9 @@ impl GmCommand {
                 let y = parts[3].parse().unwrap_or(0.0);
                 let z = parts[4].parse().unwrap_or(0.0);
                 Some(GmCommand::Teleport { map_id, x, y, z })
+            }
+            ".goto" if parts.len() >= 2 => {
+                Some(GmCommand::Goto { destination: parts[1].to_string() })
             }
             ".additem" if parts.len() >= 3 => {
                 let item_id = parts[1].parse().unwrap_or(0);

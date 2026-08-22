@@ -118,6 +118,9 @@ define_messages!(
     (HQ_LOGIN, HqLogin, 0xF0),
     (SESSION_KEY_ECHO, SessionKeyEcho, 0x5E),
     (MACHINE_INFO, MachineInfo, 0xD6),
+    (CHAT_MESSAGE_PUBLIC, ChatMessagePublic, 0x1B),
+    (SHOW_DIALOG, ShowDialog, 0x34),
+    (DIALOG_SELECT, DialogSelect, 0x36),
     (DELETE_CHARACTER, DeleteCharacter, 0x05),
 );
 
@@ -1855,5 +1858,78 @@ impl Deserialise for Alive {
         Self: Sized,
     {
         Self
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct ChatMessagePublic {
+    pub chat_type: u8,
+    pub message: String,
+}
+impl ChatMessagePublic {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::ChatMessagePublic(self))).unwrap();
+        vec![]
+    }
+}
+impl Deserialise for ChatMessagePublic {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let chat_type = if !buf.is_empty() { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        let message = if buf.len() > ptr {
+            let u16_slice: Vec<u16> = buf[ptr..]
+                .chunks_exact(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .take_while(|&c| c != 0)
+                .collect();
+            String::from_utf16_lossy(&u16_slice)
+        } else {
+            String::new()
+        };
+        Self { chat_type, message }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct ShowDialog {
+    pub target_id: u32,
+    pub dialog_id: u32,
+}
+impl ShowDialog {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::ShowDialog(self))).unwrap();
+        vec![]
+    }
+}
+impl Deserialise for ShowDialog {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let target_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let dialog_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        Self { target_id, dialog_id }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct DialogSelect {
+    pub target_id: u32,
+    pub dialog_id: u32,
+    pub last_page: u32,
+    pub quest_id: u32,
+}
+impl DialogSelect {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::DialogSelect(self))).unwrap();
+        vec![]
+    }
+}
+impl Deserialise for DialogSelect {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let target_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let dialog_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let last_page = if buf.len() >= 12 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let quest_id = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        Self { target_id, dialog_id, last_page, quest_id }
     }
 }

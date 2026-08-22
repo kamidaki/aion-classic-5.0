@@ -1209,6 +1209,48 @@ impl State {
                         .map(ServerUpdate::new),
                     );
             }
+            c::Message::ChatMessagePublic(chat) => {
+                let Some(character) = self.characters.get_mut(&update.character_id()) else {
+                    return;
+                };
+                let text = chat.message.trim();
+                println!("[CHAT:{}] {}", character.name(), text);
+
+                if let Some(cmd) = crate::game::social::GmCommand::parse(text) {
+                    match cmd {
+                        crate::game::social::GmCommand::Goto { destination } => {
+                            if let Some((map_id, x, y, z)) = crate::game::social::resolve_goto_location(&destination) {
+                                println!("INFO: Teleporting {} via .goto {} to map {} ({:.1}, {:.1}, {:.1})", character.name(), destination, map_id, x, y, z);
+                                character.set_location(Coord::new(x, y, z));
+                                let char_id = character.id();
+                                let loc = *character.location();
+                                self.povoa_cena(char_id, update.client_id(), loc, messages);
+                            }
+                        }
+                        crate::game::social::GmCommand::SetLevel { level } => {
+                            character.stats.level = level;
+                            println!("INFO: SetLevel {} for {}", level, character.name());
+                        }
+                        crate::game::social::GmCommand::Teleport { map_id, x, y, z } => {
+                            println!("INFO: Teleporting {} to map {} ({:.1}, {:.1}, {:.1})", character.name(), map_id, x, y, z);
+                            character.set_location(Coord::new(x, y, z));
+                            let char_id = character.id();
+                            let loc = *character.location();
+                            self.povoa_cena(char_id, update.client_id(), loc, messages);
+                        }
+                        crate::game::social::GmCommand::Spawn { npc_id } => {
+                            println!("INFO: GM Spawn NPC {} near {}", npc_id, character.name());
+                        }
+                        _ => (),
+                    }
+                }
+            }
+            c::Message::ShowDialog(dialog) => {
+                println!("INFO: Player {} opened dialog with target {} (dialog_id: {})", update.character_id(), dialog.target_id, dialog.dialog_id);
+            }
+            c::Message::DialogSelect(sel) => {
+                println!("INFO: Player {} selected dialog option {} for target {} (quest: {})", update.character_id(), sel.dialog_id, sel.target_id, sel.quest_id);
+            }
             _ => (),
         }
     }

@@ -193,6 +193,16 @@ impl SimulatedCharacter {
                 }
                 "Uso: .teleport <x> <y> <z>".to_string()
             }
+            ".goto" => {
+                if let Some(dest) = parts.get(1) {
+                    if let Some((map_id, x, y, z)) = crate::game::social::resolve_goto_location(dest) {
+                        self.map_id = map_id;
+                        self.move_to(x, y, z, 0);
+                        return format!("Teletransportado via .goto para {} (map: {}, x: {:.1}, y: {:.1}, z: {:.1})", dest, map_id, x, y, z);
+                    }
+                }
+                "Uso: .goto <poeta|sanctum|verteron|ishalgen|pandaemonium|altgard|abyss|inggison|gelkmaros>".to_string()
+            }
             ".givekinah" => {
                 if let Some(amt_str) = parts.get(1) {
                     if let Ok(amt) = amt_str.parse::<u64>() {
