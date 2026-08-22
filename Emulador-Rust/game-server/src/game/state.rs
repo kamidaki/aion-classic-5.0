@@ -858,9 +858,31 @@ impl State {
                 // `new_character` e um emprestimo de `self.characters` que ainda esta em uso.
                 let aqui = *new_character.location();
                 let id_do_personagem = new_character.id();
+                let new_character_clone = new_character.clone();
 
                 if std::env::var("AION_PACOTES_25").is_err() {
                     self.povoa_cena(id_do_personagem, update.client_id(), aqui, messages);
+
+                    // Sincroniza outros jogadores presentes no raio de visao (60m)
+                    for other in self.characters.values() {
+                        if other.id() == id_do_personagem {
+                            continue;
+                        }
+                        let other_loc = other.location();
+                        let dx = other_loc.x() - aqui.x();
+                        let dy = other_loc.y() - aqui.y();
+                        let dz = other_loc.z() - aqui.z();
+                        if dx * dx + dy * dy + dz * dz <= 60.0 * 60.0 {
+                            messages.push_direct(
+                                update.client_id(),
+                                ServerUpdate::new(s::Message::PutUser(s::PutUser::new(other))),
+                            );
+                            messages.push_direct(
+                                other.client_id(),
+                                ServerUpdate::new(s::Message::PutUser(s::PutUser::new(&new_character_clone))),
+                            );
+                        }
+                    }
                     return;
                 }
 
@@ -1230,5 +1252,55 @@ impl State {
                 None => continue,
             };
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn streaming_espacial_calcula_entidades_dentro_e_fora_do_raio() {
+        let db = Db::open(":memory:").unwrap();
+        let game_data = Arc::new(GameData {
+            spawns: vec![
+                crate::data_loader::Spawn {
+                    mapa: 120010000,
+                    x: 100.0,
+                    y: 100.0,
+                    z: 0.0,
+                    npc_id: 210001,
+                    nome_id: 210001,
+                    payload: vec![0u8; 32],
+                },
+                crate::data_loader::Spawn {
+                    mapa: 120010000,
+                    x: 500.0,
+                    y: 500.0,
+                    z: 0.0,
+                    npc_id: 210002,
+                    nome_id: 210002,
+                    payload: vec![0u8; 32],
+                },
+            ],
+            npcs: HashMap::new(),
+            items: HashMap::new(),
+            aprendizado: Vec::new(),
+            skill_no_alvo: HashMap::new(),
+            itens_iniciais: HashMap::new(),
+        });
+
+        let mut state = State::new(db, game_data);
+        let mut messages = Messages::new();
+
+        // Personagem entra perto do primeiro NPC (a 10m dele)
+        let (entraram, sairam) = state.atualiza_npcs_em_cena(1, 1, Coord::new(105.0, 100.0, 0.0), &mut messages);
+        assert_eq!(entraram, 1, "Apenas o NPC próximo (100, 100) deve entrar na cena");
+        assert_eq!(sairam, 0, "Nenhum NPC deve sair na primeira inserção");
+
+        // Personagem anda para perto do segundo NPC (a 500, 500)
+        let (entraram2, sairam2) = state.atualiza_npcs_em_cena(1, 1, Coord::new(505.0, 500.0, 0.0), &mut messages);
+        assert_eq!(entraram2, 1, "O segundo NPC deve entrar na cena");
+        assert_eq!(sairam2, 1, "O primeiro NPC deve sair da cena por estar fora do raio");
     }
 }
