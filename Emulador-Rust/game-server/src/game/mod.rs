@@ -6,6 +6,7 @@ use std::{
     time::{Duration, Instant},
 };
 
+pub mod admin;
 pub mod arena;
 mod character;
 pub mod craft;
