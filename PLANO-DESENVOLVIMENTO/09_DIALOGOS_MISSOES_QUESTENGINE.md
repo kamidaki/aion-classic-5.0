@@ -1,6 +1,6 @@
 # ETAPA 09: DIÁLOGOS DE NPCS, MISSÕES E QUESTENGINE
 
-> **Status da Etapa**: Pendente  
+> **Status da Etapa**: Concluída  
 > **Prioridade**: Alta (Narrativa e Progressão do Jogador)  
 > **Dependências**: [03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md), [06_ITENS_INVENTARIO_EQUIPAMENTOS_ECONOMIA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/06_ITENS_INVENTARIO_EQUIPAMENTOS_ECONOMIA.md), [08_IA_DE_NPCS_MONSTROS_E_SPAWNENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/08_IA_DE_NPCS_MONSTROS_E_SPAWNENGINE.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.questEngine`, `com.aionemu.gameserver.services.DialogService`, `com.aionemu.gameserver.services.QuestService`
