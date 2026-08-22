@@ -35,7 +35,7 @@ graph TD
 
 ### 3.1 Compilação e Validação do Código Rust
 ```powershell
-# Executar a partir de D:\AION RUST\AionEMU\AionEMU\EmuRustDurak
+# Executar a partir de D:\AION RUST\AionEMU\AionEMU\Emulador-Rust
 # Dica: Em ambiente Windows, carregar as variáveis MSVC caso necessário
 cmd.exe /c "`"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat`" && cargo check --workspace"
 cargo test --workspace
@@ -62,11 +62,11 @@ cargo run --bin launcher
 ### 3.4 Captura e Análise de Tráfego de Rede
 - **Wireshark**: Localizado em `E:\Programas instalados - Leves\Wireshark\Wireshark.exe` (ou usar o `tshark.exe` via terminal):
   ```powershell
-  & "E:\Programas instalados - Leves\Wireshark\tshark.exe" -i "Loopback" -f "tcp port 7777 or tcp port 2106 or tcp port 10241" -w "D:\AION RUST\AionEMU\AionEMU\EmuRustDurak\test_session.pcap"
+  & "E:\Programas instalados - Leves\Wireshark\tshark.exe" -i "Loopback" -f "tcp port 7777 or tcp port 2106 or tcp port 10241" -w "D:\AION RUST\AionEMU\AionEMU\Emulador-Rust\test_session.pcap"
   ```
 - **Análise com o `pcap-parser` do Projeto**:
   ```powershell
-  cargo run --package pcap-parser -- "D:\AION RUST\AionEMU\AionEMU\EmuRustDurak\test_session.pcap"
+  cargo run --package pcap-parser -- "D:\AION RUST\AionEMU\AionEMU\Emulador-Rust\test_session.pcap"
   ```
 
 ---

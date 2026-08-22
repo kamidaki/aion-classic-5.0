@@ -272,7 +272,7 @@ impl Deserialise for CharacterList {
 /// Client sends a packet chosing which character they wish to log in as
 #[derive(Debug, Clone)]
 pub struct EnterWorld {
-    character_id: u32,
+    pub character_id: u32,
 }
 impl Deserialise for EnterWorld {
     fn deserialise(buf: &[u8]) -> Self
@@ -381,6 +381,9 @@ impl HqLogin {
             session.session_token.len()
         );
         vec![
+            // Duas vezes, com o mesmo `00 01`. As duas capturas concordam, de contas e dias
+            // diferentes -- nao e repeticao acidental de uma sessao.
+            s::Message::ReplyNpLoginGamesvr(s::ReplyNpLoginGamesvr::new()),
             s::Message::ReplyNpLoginGamesvr(s::ReplyNpLoginGamesvr::new()),
             s::Message::NpShopGoodsCount(s::NpShopGoodsCount::new()),
             s::Message::ReadyEnterWorld(s::ReadyEnterWorld::new()),
@@ -1003,12 +1006,17 @@ impl Deserialise for CurStatus {
 pub struct ReadyToQuit;
 
 impl ReadyToQuit {
+    /// O servidor oficial responde com `S_ALIVE`, dois bytes zero -- nas duas capturas, no mesmo
+    /// ponto: logo depois da lista de personagens. Ficava sem resposta aqui.
+    ///
+    /// O nome do opcode na tabela extraida do `Game.dll` e `C_READY_TO_QUIT`, o que nao combina
+    /// com receber um "estou vivo" de volta; e mais um ponto onde o pareamento nome-numero erra.
     pub fn handle(
         &self,
         _: &Sender<ClientUpdate>,
         _: &mut Account,
     ) -> Vec<s::Message> {
-        vec![]
+        vec![s::Message::Alive(s::Alive::new())]
     }
 }
 impl Deserialise for ReadyToQuit {

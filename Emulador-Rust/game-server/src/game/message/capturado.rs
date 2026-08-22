@@ -353,6 +353,34 @@ pub mod put_user {
 
 /// Escreve a aparencia escolhida pelo jogador por cima do [`PUT_USER`] capturado.
 ///
+/// Onde a posicao do personagem aparece dentro do `S_PUT_USER`.
+///
+/// Duas vezes, com os mesmos tres floats. Achadas varrendo o blob atras de triplas que caem na
+/// faixa de coordenada de mundo: so estas duas aparecem, e as duas trazem
+/// `(1295.82, 1416.31, 208.12)` -- onde a personagem da captura estava, em Pandaemonium.
+///
+/// Sem escrever por cima, o cliente carrega o mapa no ponto que o `S_WORLD` mandou e poe o
+/// **corpo** no ponto da captura. Para um personagem elyos em Sanctum a diferenca de altura e de
+/// 360 metros, e o resultado e o personagem debaixo do cenario, olhando a cidade de baixo. Parece
+/// falta de geodata, e nao e.
+pub const PUT_USER_POSICAO: [usize; 2] = [0, 418];
+
+/// Escreve a posicao do personagem no `S_PUT_USER`.
+///
+/// Tem que rodar **antes** de [`com_nome_de_personagem`], pelo mesmo motivo da aparencia: o nome
+/// muda o tamanho do pacote e desloca o offset 418.
+pub fn com_posicao_de_personagem(payload: &[u8], x: f32, y: f32, z: f32) -> Vec<u8> {
+    let mut saida = payload.to_vec();
+    for off in PUT_USER_POSICAO {
+        if off + 12 <= saida.len() {
+            saida[off..off + 4].copy_from_slice(&x.to_le_bytes());
+            saida[off + 4..off + 8].copy_from_slice(&y.to_le_bytes());
+            saida[off + 8..off + 12].copy_from_slice(&z.to_le_bytes());
+        }
+    }
+    saida
+}
+
 /// `bloco` sao os 140 bytes que o cliente mandou ao criar o personagem -- o mesmo trecho `4..144`
 /// do registro da lista. Sem isso o personagem entra no mundo com a cara, a raca e a classe da
 /// `Kimmie`, que e de quem o pacote foi capturado.
@@ -490,4 +518,33 @@ pub fn com_chave_de_sessao(payload: &[u8], chave: u32) -> Vec<u8> {
         }
     }
     saida
+}
+
+#[cfg(test)]
+mod testes_de_posicao {
+    use super::*;
+
+    /// A posicao do corpo entra nos dois lugares do blob.
+    ///
+    /// O `S_PUT_USER` capturado traz `(1295.82, 1416.31, 208.12)` cravado nos offsets 0 e 418 --
+    /// onde a personagem da captura estava. Deixar isso passar poe o corpo no ponto dela dentro
+    /// do mapa que o `S_WORLD` mandou: para um elyos em Sanctum sao 360 metros abaixo do chao, e
+    /// o sintoma se parece com falta de geodata.
+    #[test]
+    fn a_posicao_do_corpo_e_a_nossa() {
+        let capturada = [1295.823974609375f32, 1416.31103515625, 208.125];
+        for off in PUT_USER_POSICAO {
+            let x = f32::from_le_bytes(PUT_USER[off..off + 4].try_into().unwrap());
+            let y = f32::from_le_bytes(PUT_USER[off + 4..off + 8].try_into().unwrap());
+            let z = f32::from_le_bytes(PUT_USER[off + 8..off + 12].try_into().unwrap());
+            assert_eq!([x, y, z], capturada, "offset {off} do blob capturado");
+        }
+
+        let nosso = com_posicao_de_personagem(&PUT_USER, 1314.705, 1513.34, 568.1);
+        assert_eq!(nosso.len(), PUT_USER.len(), "o tamanho nao muda");
+        for off in PUT_USER_POSICAO {
+            let z = f32::from_le_bytes(nosso[off + 8..off + 12].try_into().unwrap());
+            assert_eq!(z, 568.1, "offset {off} continuou com a altura da captura");
+        }
+    }
 }

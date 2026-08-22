@@ -188,6 +188,99 @@ impl Replay {
     }
 }
 
+/// O bloco de entrada no mundo da captura, **por posicao** em vez de por opcode de cliente.
+///
+/// # Por que existe
+///
+/// Instrumento de medicao, atras de `AION_BURST=1`. O cliente nao manda o `LevelReady` e a tela de
+/// carregamento nao sai; ja foram tentadas tres hipoteses de qual pacote falta, e nenhuma acertou.
+/// Em vez de uma quarta, isto manda **tudo** o que o servidor oficial mandou entre a selecao de
+/// personagem e o `LevelReady`, e responde uma pergunta que vale mais que qualquer palpite:
+///
+/// - se o cliente entrar, a resposta e "faltam pacotes", e da para remover um por um ate quebrar
+///   -- o que sobra e o conjunto minimo, medido, e cada um vira implementacao com prioridade;
+/// - se travar mesmo assim, nao e quantidade de pacote: alguma coisa que mandamos esta malformada,
+///   e a busca muda de lugar.
+///
+/// A diferenca para o replay normal e o gatilho: aqui o lote sai num ponto fixo do fluxo, nao
+/// quando o cliente pede. Foi exatamente isso que falhou -- o maior lote esta indexado sob o
+/// `C_SA_GOODSLIST`, que o cliente ao vivo nunca manda.
+///
+/// Nao fica ligado por padrao, e nao e solucao: e como se descobre o que implementar.
+pub fn burst_de_entrada(caminho: &Path) -> Vec<PacoteServidor> {
+    /// Selecao de personagem, que abre a janela.
+    const ENTER_WORLD: u16 = 0x018;
+    /// "Terminei de carregar o mapa", que a fecha.
+    const LEVEL_READY: u16 = 0x019;
+    /// O que nao entra: o que ja construimos, e mandaria em dobro.
+    const NOSSOS: [u16; 3] = [
+        0x00F, // S_WORLD -- o mapa depende da raca, e o capturado e de outra
+        0x0C7, // S_CHARACTER_LIST
+        0x001, // S_STATUS -- vai o nosso, com o id e a ficha deste personagem
+    ];
+
+    let Ok(dados) = fs::read(caminho) else {
+        eprintln!("WARNING: AION_BURST ligado mas sem {}", caminho.display());
+        return Vec::new();
+    };
+
+    // O botao da bisseccao: `AION_BURST_SEM=089,0d0` tira esses opcodes do lote. E como se
+    // descobre quais o cliente exige de verdade -- um a menos por vez, sem recompilar.
+    let excluidos: Vec<u16> = std::env::var("AION_BURST_SEM")
+        .unwrap_or_default()
+        .split(',')
+        .filter_map(|t| {
+            let t = t.trim().trim_start_matches("0x").trim_start_matches("0X");
+            u16::from_str_radix(t, 16).ok()
+        })
+        .collect();
+    if !excluidos.is_empty() {
+        println!("INFO: AION_BURST_SEM: {} opcodes fora do lote", excluidos.len());
+    }
+
+    let mut saida = Vec::new();
+    let mut dentro = false;
+    let mut i = 0;
+    while i + 7 <= dados.len() {
+        let direcao = dados[i];
+        let opcode = u16::from_le_bytes([dados[i + 1], dados[i + 2]]);
+        let tamanho =
+            u32::from_le_bytes([dados[i + 3], dados[i + 4], dados[i + 5], dados[i + 6]]) as usize;
+        i += 7;
+        if i + tamanho > dados.len() {
+            break;
+        }
+        if direcao != DIRECAO_SERVIDOR {
+            if opcode == ENTER_WORLD {
+                dentro = true;
+            } else if opcode == LEVEL_READY && dentro {
+                break;
+            }
+        } else if dentro && !NOSSOS.contains(&opcode) && !excluidos.contains(&opcode) {
+            saida.push((opcode, dados[i..i + tamanho].to_vec()));
+        }
+        i += tamanho;
+    }
+
+    println!("INFO: AION_BURST: {} pacotes da janela de entrada", saida.len());
+    saida
+}
+
+/// Prepara um pacote do bloco para esta sessao: troca a chave e o id do personagem.
+pub fn para_esta_sessao(
+    (opcode, payload): &PacoteServidor,
+    chave: u32,
+    id_do_personagem: u32,
+) -> server::Message {
+    let payload = com_chave_de_sessao(payload, chave);
+    let payload = if id_do_personagem == 0 {
+        payload
+    } else {
+        troca(&payload, id_capturado(), id_do_personagem)
+    };
+    server::Message::Bruto(server::Bruto::new(*opcode, payload))
+}
+
 /// Troca a chave de sessao da captura pela da sessao atual, onde quer que ela apareca.
 ///
 /// A busca e pela sequencia de bytes, nao por offset: os payloads sao grandes e o campo aparece em

@@ -379,8 +379,27 @@ impl Connection {
         let len = message::make_key_packet(&mut buf, seed);
         stream.write_all(&buf[..len]).unwrap();
 
-        let caminho = std::env::var("AION_REPLAY").unwrap_or_else(|_| "replay.bin".to_string());
-        let replay = message::replay::Replay::carregar(std::path::Path::new(&caminho));
+        // O replay so entra se alguem pedir, por `AION_REPLAY`. **Ligado por padrao, ele impedia
+        // a entrada no mundo.**
+        //
+        // O motor indexa os pacotes gravados pelo opcode de cliente que veio antes deles, e
+        // devolve o lote de *onde quer que* aquele opcode tenha aparecido na sessao de 22
+        // minutos. Durante o carregamento o cliente manda `0x122`, e recebia sete pacotes que na
+        // captura respondiam a outra coisa, vinte minutos depois. Nao era pacote faltando: era
+        // pacote valido chegando no contexto errado, e o cliente nunca mandava o `LevelReady`.
+        //
+        // Como o disparo dependia de quais opcodes o cliente resolvia mandar, e cada lote e
+        // consumido uma vez so, o sintoma ia e voltava -- e chegou a ser documentado como
+        // resolvido. Com o replay fora, o personagem entra em cena com os NPCs em volta.
+        //
+        // Continua util como instrumento: `AION_REPLAY=replay.bin` liga de novo, para comparar um
+        // pacote nosso com o gravado.
+        let replay = match std::env::var("AION_REPLAY") {
+            Ok(caminho) if !caminho.is_empty() => {
+                message::replay::Replay::carregar(std::path::Path::new(&caminho))
+            }
+            _ => None,
+        };
 
         Self {
             stream,

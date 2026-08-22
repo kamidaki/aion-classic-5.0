@@ -19,7 +19,7 @@ O objetivo deste projeto é o desenvolvimento de um **Emulador de Alta Performan
 
 | **Repositório GitHub** | `https://github.com/kamidaki/aion-classic-rust` | Repositório oficial do emulador para versionamento e controle de versão contínuo. |
 | **Pasta de Deploy Limpa** | `D:\AION RUST\AionEMU\AionEMU\deploy` | Pasta de produção limpa com executáveis e inicializador de 1 clique (`INICIAR_SERVIDOR.bat`). |
-| **Emulador Rust (Principal)** | `D:\AION RUST\AionEMU\AionEMU\EmuRustDurak` | Código-fonte do servidor Rust (`game-server`, `auth-server`, `sts-server`, `launcher`, `krypt`, `pak`, `bxml`, `pcap-parser`). |
+| **Emulador Rust (Principal)** | `D:\AION RUST\AionEMU\AionEMU\Emulador-Rust` | Código-fonte do servidor Rust (`game-server`, `auth-server`, `sts-server`, `launcher`, `krypt`, `pak`, `bxml`, `pcap-parser`). |
 | **Cliente Aion Classic 4.5** | `D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic` | Binários do cliente oficial (`bin64/AION.bin`, `aion.exe`, `.pak`, dados XML). Usado para testes e capturas reais. |
 | **Emulador Java 4.8 Retail** | `D:\AION RUST\AionEMU\AionEMU\JAVA EMU - 4.8 RETAIL` | **Referência Completa e Estável (Java 25)**. Base estrutural de CM/SM, controllers, services, managers, regras de combate e banco de dados. |
 | **Wireshark** | `E:\Programas instalados - Leves\Wireshark` | Captura e inspeção de tráfego de rede TCP/UDP para análise de pacotes e payloads. |
@@ -29,7 +29,7 @@ O objetivo deste projeto é o desenvolvimento de um **Emulador de Alta Performan
 
 ---
 
-## 3. Estado Atual do Emulador Rust (`EmuRustDurak`)
+## 3. Estado Atual do Emulador Rust (`Emulador-Rust`)
 
 ### Conquistas Recentes:
 - **Independência do Replay**: O cliente conecta, cria personagens e entra no mundo em Pandaemonium sem depender de pacotes gravados estáticos.

@@ -172,7 +172,18 @@ pub fn escreve_registro(registro: &mut [u8], personagem: &Personagem) {
 
     registro[campo::NIVEL..campo::NIVEL + 2].copy_from_slice(&personagem.nivel.to_le_bytes());
 
-    escreve_ponto_de_entrada(registro, personagem.posicao);
+    // A raca decide a capital. Sem bloco de aparencia -- personagem criado antes da criacao
+    // existir -- vale a do molde, que e asmodiano: e de la que o molde foi capturado.
+    let raca = personagem
+        .aparencia
+        .as_ref()
+        .and_then(|b| {
+            let off = campo::RACA - campo::NOME;
+            b.get(off..off + 4)
+        })
+        .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
+        .unwrap_or(1);
+    escreve_ponto_de_entrada(registro, personagem.posicao, raca);
 }
 
 /// Quanto do registro o `S_CREATE_CHARACTER` leva.
@@ -195,11 +206,13 @@ pub const REGISTRO_CRIACAO_LEN: usize = 744;
 /// cenario pre-carregado no ponto de entrada e o corpo noutro ponto -- e os NPCs, que o servidor
 /// manda em volta da posicao de verdade, apareciam a mais de cem metros.
 ///
-/// O mapa continua constante porque o banco ainda nao guarda mapa, so x, y e z.
-fn escreve_ponto_de_entrada(registro: &mut [u8], (x, y, z): (f32, f32, f32)) {
+/// O mapa vem da **raca**, nao de uma constante: elyos e asmodiano nascem em capitais diferentes,
+/// e o banco ainda nao guarda mapa. Ver [`crate::game::mundo::ponto_de_entrada`].
+fn escreve_ponto_de_entrada(registro: &mut [u8], (x, y, z): (f32, f32, f32), raca: u32) {
     use crate::game::mundo;
 
-    registro[campo::MAPA..campo::MAPA + 4].copy_from_slice(&mundo::MAPA.to_le_bytes());
+    let ponto = mundo::ponto_de_entrada(raca);
+    registro[campo::MAPA..campo::MAPA + 4].copy_from_slice(&ponto.mapa.to_le_bytes());
 
     let posicao = campo::POSICAO;
     registro[posicao..posicao + 4].copy_from_slice(&x.to_le_bytes());
@@ -207,7 +220,7 @@ fn escreve_ponto_de_entrada(registro: &mut [u8], (x, y, z): (f32, f32, f32)) {
     registro[posicao + 8..posicao + 12].copy_from_slice(&z.to_le_bytes());
 
     registro[campo::DIRECAO..campo::DIRECAO + 4]
-        .copy_from_slice(&(mundo::DIRECAO as u32).to_le_bytes());
+        .copy_from_slice(&(ponto.direcao as u32).to_le_bytes());
 }
 
 /// Escape para bissecao: `AION_CABECALHO="2,1"` escreve 2 no offset 0 e 1 no offset 10. Campo
@@ -421,6 +434,7 @@ mod test {
         escreve_ponto_de_entrada(
             &mut esperado[CABECALHO_LEN..CABECALHO_LEN + REGISTRO_LEN],
             (crate::game::mundo::X, crate::game::mundo::Y, crate::game::mundo::Z),
+            1,
         );
 
         assert_eq!(&buf[..escritos], &esperado[..]);

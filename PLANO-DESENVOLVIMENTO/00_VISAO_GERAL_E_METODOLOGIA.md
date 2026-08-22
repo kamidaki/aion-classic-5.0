@@ -8,7 +8,7 @@
 
 ## 1. Propósito e Filosofia do Projeto
 
-O objetivo principal deste projeto é a construção de um **Emulador de Servidor de Aion Classic 4.5** em **Rust** (`EmuRustDurak`), combinando:
+O objetivo principal deste projeto é a construção de um **Emulador de Servidor de Aion Classic 4.5** em **Rust** (`Emulador-Rust`), combinando:
 1. **Performance Extrema & Concorrência Limpa**: Uso de I/O assíncrono moderno (`tokio`), canais de baixa latência (`crossbeam`) e manipulação de memória sem overhead de coleta de lixo.
 2. **Confiabilidade & Anti-Crash**: Tratamento estruturado de pacotes (CM/SM) que impede que pacotes desconhecidos ou com tamanhos inconsistentes causem crash no cliente Aion Classic 4.5.
 3. **Fidelidade de Mecânicas**: Utilização da arquitetura consagrada do **Emulador Java 4.8 Retail** (`JAVA EMU - 4.8 RETAIL`) como molde estrutural, adaptando para o protocolo e recursos modernos do Aion Classic 4.5.
@@ -34,7 +34,7 @@ O objetivo principal deste projeto é a construção de um **Emulador de Servido
 | :--- | :--- | :--- |
 | **Repositório GitHub** | `https://github.com/kamidaki/aion-classic-rust` | Repositório oficial do emulador para versionamento e controle de versão contínuo. |
 | **Pasta de Deploy Limpa** | `D:\AION RUST\AionEMU\AionEMU\deploy` | Pasta de produção limpa com executáveis e inicializador de 1 clique (`INICIAR_SERVIDOR.bat`). |
-| **Emulador Rust** | `D:\AION RUST\AionEMU\AionEMU\EmuRustDurak` | Código-fonte principal onde toda a implementação ocorre. |
+| **Emulador Rust** | `D:\AION RUST\AionEMU\AionEMU\Emulador-Rust` | Código-fonte principal onde toda a implementação ocorre. |
 | **Cliente Aion Classic** | `D:\AION RUST\AionEMU\AionEMU\Cliente\GFAion\aionclassic` | Executáveis do jogo (`bin64/AION.bin`, `aion.exe`) e arquivos `.pak`/XML para testes e extração. |
 | **Emulador Java 4.8** | `D:\AION RUST\AionEMU\AionEMU\JAVA EMU - 4.8 RETAIL` | **Guia Mestre de Design**: Estrutura de pacotes, controllers, services e cálculos matemáticos. |
 | **Wireshark** | `E:\Programas instalados - Leves\Wireshark` | Captura de tráfego de rede entre cliente oficial e servidor para validação de payloads. |

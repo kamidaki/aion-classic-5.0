@@ -16,7 +16,7 @@ Repositório Oficial: [https://github.com/kamidaki/aion-classic-rust](https://gi
 O repositório é mantido limpo e organizado estritamente em duas frentes:
 
 ```
-├── EmuRustDurak/            # CÓDIGO-FONTE RUST (Workspace & Crates)
+├── Emulador-Rust/           # CÓDIGO-FONTE RUST (Workspace & Crates)
 │   ├── auth-server/         # Servidor de autenticação e lista de reinos (Blowfish/RSA)
 │   ├── sts-server/          # STS Server (Handshake de segurança e tokens AES/RC4)
 │   ├── game-server/         # Game Server (Mundo, combate, inventário, skills, SQLite)
@@ -57,14 +57,14 @@ Não é necessário ter o Rust ou compiladores instalados para executar o servid
 
 ---
 
-## 🛠️ Como Compilar e Modificar o Código-Fonte (`EmuRustDurak`)
+## 🛠️ Como Compilar e Modificar o Código-Fonte (`Emulador-Rust`)
 
 ### Pré-requisitos:
 - **Rust (Toolchain estável 1.80+)**: [rustup.rs](https://rustup.rs/)
 - **Visual Studio 2022 / Build Tools C++** (com suporte a MSVC x64).
 
 ### Comandos de Compilação:
-Abra o terminal no diretório `EmuRustDurak/`:
+Abra o terminal no diretório `Emulador-Rust/`:
 
 ```powershell
 # 1. Checagem rápida de tipos e compilação

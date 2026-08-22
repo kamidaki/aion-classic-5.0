@@ -1,6 +1,7 @@
 use super::Deserialise;
 
 pub mod gear;
+pub mod item;
 pub mod npc;
 pub mod skill;
 

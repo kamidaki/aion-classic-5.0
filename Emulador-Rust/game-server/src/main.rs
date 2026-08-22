@@ -52,6 +52,11 @@ fn main() {
         let spawns = std::env::var("AION_SPAWNS")
             .unwrap_or_else(|_| "data/spawns.csv".to_string());
         gd.carrega_spawns(std::path::Path::new(&spawns));
+        // O kit inicial tambem nao vem do cliente: e a tabela do player_initial_data.xml da base
+        // de referencia, com os ids conferidos contra o catalogo 4.5.
+        let kit = std::env::var("AION_ITENS_INICIAIS")
+            .unwrap_or_else(|_| "data/itens_iniciais.csv".to_string());
+        gd.carrega_itens_iniciais(std::path::Path::new(&kit));
         gd
     });
 

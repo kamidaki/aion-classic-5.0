@@ -28,17 +28,17 @@ pub enum Slot {
     /// Nao equipavel: pocao, comida, kinah, material.
     Nenhum,
     /// Arma. O bloco de slot e o `SLOTS_WEAPON`, com a mao principal e a secundaria.
-    Arma { principal: u64, secundario: u64 },
+    ///
+    /// `duas_maos` sai do `equipment_slots` do catalogo: `main` e arma de duas maos -- arco,
+    /// orbe, cajado, lanca --, `main_or_sub` e de uma mao. A diferenca importa no pacote: o
+    /// registro de arma de duas maos abre com um bloco de item composto, e o de uma mao nao.
+    Arma { principal: u64, secundario: u64, duas_maos: bool },
+    /// Escudo. Tem bloco proprio, de 20 bytes, e vai sempre na mao secundaria.
+    Escudo(u64),
     /// Peca de armadura de corpo -- peitoral, calca, luva, bota, ombreira.
     Armadura(u64),
     /// Acessorio: elmo, colar, brinco, anel, cinto, asa.
     Acessorio { principal: u64, secundario: u64 },
-}
-
-impl Slot {
-    pub fn equipavel(&self) -> bool {
-        !matches!(self, Slot::Nenhum)
-    }
 }
 
 #[derive(Debug, Clone)]
@@ -114,6 +114,11 @@ pub struct GameData {
     /// Existe porque o servidor tratava toda skill igual -- se houvesse alvo, tirava vida. Com
     /// isso a skill de voltar ao ponto de vinculo dava dano em quem estivesse selecionado.
     pub skill_no_alvo: HashMap<u32, bool>,
+    /// O kit que cada grupo de classe recebe ao nascer: `(item_id, quantidade)`.
+    ///
+    /// A chave e a classe base -- `FIGHTER`, `SCOUT`, `MAGE`, `PRIEST` -- porque as duas classes
+    /// que saem de cada uma comecam iguais. Ver `data/itens_iniciais.csv`.
+    pub itens_iniciais: HashMap<String, Vec<(u32, u32)>>,
 }
 
 impl GameData {
@@ -177,6 +182,46 @@ impl GameData {
         }
 
         gd
+    }
+
+    /// Le o kit inicial de `data/itens_iniciais.csv`.
+    ///
+    /// Fica fora do `load` pelo mesmo motivo dos spawns: nao vem do catalogo do cliente. O
+    /// conteudo e do `player_initial_data.xml` da base de referencia, que nao acompanha o
+    /// repositorio -- por isso a tabela virou arquivo nosso, com os ids ja conferidos contra o
+    /// catalogo 4.5.
+    pub fn carrega_itens_iniciais(&mut self, caminho: &Path) {
+        let texto = match std::fs::read_to_string(caminho) {
+            Ok(t) => t,
+            Err(e) => {
+                eprintln!("WARN: sem kit inicial ({}): {e}", caminho.display());
+                return;
+            }
+        };
+
+        for linha in texto.lines() {
+            let linha = linha.trim();
+            if linha.is_empty() || linha.starts_with('#') {
+                continue;
+            }
+            let campos: Vec<&str> = linha.split(',').collect();
+            if campos.len() != 3 {
+                continue;
+            }
+            if let (Ok(item), Ok(quantidade)) =
+                (campos[1].trim().parse::<u32>(), campos[2].trim().parse::<u32>())
+            {
+                self.itens_iniciais
+                    .entry(campos[0].trim().to_ascii_uppercase())
+                    .or_default()
+                    .push((item, quantidade));
+            }
+        }
+        println!(
+            "INFO: kit inicial de {} classes lido de {}",
+            self.itens_iniciais.len(),
+            caminho.display()
+        );
     }
 
     /// Le a tabela de spawns gerada por `tools/extrai_spawns.py`.
@@ -244,12 +289,23 @@ fn slot_do_catalogo(texto: &str) -> Slot {
 
     let bit = |n: u32| 1u64 << n;
     match texto {
-        // Arma de uma mao que pode ir nas duas maos, e arma que so vai na principal. Nos dois
-        // casos a captura mostra o par (1, 2) -- ver o `SLOTS_WEAPON` do item 100001443.
-        "main_or_sub" | "main" | "sub" => Slot::Arma {
+        // Arma de uma mao. O par de slots e (1, 2) -- conferido no `SLOTS_WEAPON` do item
+        // 100001443, e de novo na espada e na adaga da captura de 22/08.
+        "main_or_sub" => Slot::Arma {
             principal: MAO_PRINCIPAL,
             secundario: MAO_SECUNDARIA,
+            duas_maos: false,
         },
+        // Arma de duas maos: arco, orbe, grimorio, cajado, lanca, espadao. Mesmo par de slots, e
+        // um bloco de item composto na frente. Conferido no arco `bow_n_l1_1a` da captura.
+        "main" => Slot::Arma {
+            principal: MAO_PRINCIPAL,
+            secundario: MAO_SECUNDARIA,
+            duas_maos: true,
+        },
+        // So escudo usa `sub`. Bloco proprio de 20 bytes, com a mascara da mao secundaria --
+        // medido no `shield_n_l1_1a` que o templario da captura recebeu.
+        "sub" => Slot::Escudo(MAO_SECUNDARIA),
         "torso" => Slot::Armadura(bit(3)),
         "glove" => Slot::Armadura(bit(4)),
         "foot" => Slot::Armadura(bit(5)),
@@ -534,84 +590,25 @@ fn load_aprendizado(
 /// Streaming parse: for each element named `record_tag`, extract the `<id>`
 /// and `<name>` children. Skips records without a parseable id.
 fn load_catalog(path: &Path, record_tag: &[u8]) -> Result<Vec<(u32, String)>, String> {
-    let mut reader = Reader::from_file(path)
-        .map_err(|e| format!("open {}: {e}", path.display()))?;
-    reader.config_mut().trim_text(true);
-
-    let mut buf = Vec::new();
-    let mut out = Vec::new();
-
-    let mut depth = 0usize;
-    let mut in_record = false;
-    let mut record_depth = 0usize;
-    let mut current_field: Option<Vec<u8>> = None;
-    let mut cur_id: Option<u32> = None;
-    let mut cur_name: Option<String> = None;
-
-    loop {
-        match reader.read_event_into(&mut buf) {
-            Ok(Event::Start(e)) => {
-                depth += 1;
-                let name = e.name().as_ref().to_vec();
-                if !in_record && name == record_tag {
-                    in_record = true;
-                    record_depth = depth;
-                    cur_id = None;
-                    cur_name = None;
-                    current_field = None;
-                } else if in_record && depth == record_depth + 1 {
-                    current_field = Some(name);
-                }
-            }
-            Ok(Event::End(e)) => {
-                let name = e.name().as_ref().to_vec();
-                if in_record && depth == record_depth && name == record_tag {
-                    if let Some(id) = cur_id.take() {
-                        out.push((id, cur_name.take().unwrap_or_default()));
-                    }
-                    in_record = false;
-                    current_field = None;
-                    cur_id = None;
-                    cur_name = None;
-                } else if in_record && depth == record_depth + 1 {
-                    current_field = None;
-                }
-                depth = depth.saturating_sub(1);
-            }
-            Ok(Event::Text(t)) => {
-                if let Some(field) = &current_field {
-                    if in_record && depth == record_depth + 1 {
-                        let text = t.unescape().unwrap_or_default();
-                        match field.as_slice() {
-                            b"id" => {
-                                cur_id = text.trim().parse().ok();
-                            }
-                            b"name" => {
-                                cur_name = Some(text.into_owned());
-                            }
-                            _ => {}
-                        }
-                    }
-                }
-            }
-            Ok(Event::Eof) => break,
-            Err(e) => {
-                return Err(format!("parse {}: {e}", path.display()));
-            }
-            _ => {}
-        }
-        buf.clear();
-    }
-
-    Ok(out)
+    let registros = load_catalog_campos(path, record_tag, &[b"name"])?;
+    Ok(registros
+        .into_iter()
+        .map(|(id, campos)| {
+            (id, campos.get(b"name".as_slice()).cloned().unwrap_or_default())
+        })
+        .collect())
 }
 
-/// Streaming parse: for each element named `record_tag`, extract the `<id>`
-/// and the specified `campos` children. Skips records without a parseable id.
+/// O mesmo percurso, guardando os campos pedidos em vez de so o nome.
+///
+/// Existe porque o catalogo de itens tem 189 MB e cada item precisa de uma duzia de campos --
+/// slot, tamanho da pilha e os booleanos que formam a mascara. Ler o arquivo uma vez e escolher
+/// na hora e mais barato que uma passada por campo, e guardar o registro inteiro custaria
+/// memoria a toa.
 fn load_catalog_campos(
     path: &Path,
     record_tag: &[u8],
-    campos: &[&[u8]],
+    campos_pedidos: &[&[u8]],
 ) -> Result<Vec<(u32, HashMap<Vec<u8>, String>)>, String> {
     let mut reader = Reader::from_file(path)
         .map_err(|e| format!("open {}: {e}", path.display()))?;
@@ -663,7 +660,7 @@ fn load_catalog_campos(
                         let text = t.unescape().unwrap_or_default();
                         if field.as_slice() == b"id" {
                             cur_id = text.trim().parse().ok();
-                        } else if campos.iter().any(|&c| c == field.as_slice()) {
+                        } else if campos_pedidos.contains(&field.as_slice()) {
                             cur_campos.insert(field.clone(), text.into_owned());
                         }
                     }
@@ -679,4 +676,78 @@ fn load_catalog_campos(
     }
 
     Ok(out)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn campos(pares: &[(&str, &str)]) -> HashMap<Vec<u8>, String> {
+        pares
+            .iter()
+            .map(|(k, v)| (k.as_bytes().to_vec(), v.to_string()))
+            .collect()
+    }
+
+    /// A mascara calculada bate com a que o servidor oficial mandou.
+    ///
+    /// Os tres itens abaixo saem da captura, e os campos sao os do catalogo do cliente 4.5. Sao
+    /// os tres casos que separam os bits: uma pocao empilhavel que nao se troca, um peitoral que
+    /// nao se empilha nem se extrai, e o kinah, que e trocavel e vai nos dois armazens.
+    #[test]
+    fn mascara_reproduz_a_captura() {
+        let pocao = campos(&[
+            ("can_sell_to_npc", "TRUE"),
+            ("can_deposit_to_character_warehouse", "TRUE"),
+            ("breakable", "TRUE"),
+            ("max_stack_count", "100"),
+        ]);
+        assert_eq!(mascara_do_item(&pocao, "none"), 0x612C, "item 164000224");
+
+        let peitoral = campos(&[
+            ("can_sell_to_npc", "TRUE"),
+            ("can_deposit_to_character_warehouse", "TRUE"),
+            ("breakable", "TRUE"),
+            ("cannot_extraction", "TRUE"),
+            ("max_stack_count", "1"),
+        ]);
+        assert_eq!(mascara_do_item(&peitoral, "torso"), 0x802C, "item 110101547");
+
+        let kinah = campos(&[
+            ("can_exchange", "TRUE"),
+            ("can_sell_to_npc", "TRUE"),
+            ("can_deposit_to_character_warehouse", "TRUE"),
+            ("can_deposit_to_account_warehouse", "TRUE"),
+            ("max_stack_count", "0"),
+        ]);
+        assert_eq!(mascara_do_item(&kinah, "none"), 0x631E, "item 182400001");
+    }
+
+    /// Os bits de slot sao os que a captura mostra nos itens que a personagem usava.
+    #[test]
+    fn slots_batem_com_a_captura() {
+        assert!(matches!(slot_do_catalogo("torso"), Slot::Armadura(8)));
+        assert!(matches!(slot_do_catalogo("leg"), Slot::Armadura(4096)));
+        assert!(matches!(slot_do_catalogo("shoulder"), Slot::Armadura(2048)));
+        assert!(matches!(
+            slot_do_catalogo("neck"),
+            Slot::Acessorio { principal: 1024, .. }
+        ));
+        assert!(matches!(
+            slot_do_catalogo("waist"),
+            Slot::Acessorio { principal: 65536, .. }
+        ));
+        assert!(matches!(
+            slot_do_catalogo("main_or_sub"),
+            Slot::Arma { principal: 1, secundario: 2, duas_maos: false }
+        ));
+        // Arma de duas maos: mesmo par de slots, e o bloco composto na frente.
+        assert!(matches!(
+            slot_do_catalogo("main"),
+            Slot::Arma { duas_maos: true, .. }
+        ));
+        // So escudo usa `sub`, e ele vai na mao secundaria.
+        assert!(matches!(slot_do_catalogo("sub"), Slot::Escudo(2)));
+        assert!(matches!(slot_do_catalogo("none"), Slot::Nenhum));
+    }
 }

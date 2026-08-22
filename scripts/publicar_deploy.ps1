@@ -5,7 +5,7 @@
 $ErrorActionPreference = "Stop"
 $aqui = Split-Path -Parent $MyInvocation.MyCommand.Path
 $raiz = Split-Path -Parent $aqui
-$rust = Join-Path $raiz "EmuRustDurak"
+$rust = Join-Path $raiz "Emulador-Rust"
 $deploy = Join-Path $raiz "deploy"
 
 Write-Host ""
@@ -51,7 +51,15 @@ if (-not (Test-Path $destinoData)) {
 }
 
 if (Test-Path $origemData) {
-    Copy-Item -Path "$origemData\*" -Destination $destinoData -Recurse -Force
+    Get-ChildItem -Path $origemData -Recurse -File | Where-Object {
+        $_.Name -notlike "Cargo.toml" -and $_.FullName -notmatch '\\src\\'
+    } | ForEach-Object {
+        $rel = $_.FullName.Substring($origemData.Length + 1)
+        $dest = Join-Path $destinoData $rel
+        $parent = Split-Path -Parent $dest
+        if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent -Force | Out-Null }
+        Copy-Item -Path $_.FullName -Destination $dest -Force
+    }
     Write-Host "  + Dados estáticos copiados para deploy/data." -ForegroundColor Green
 }
 

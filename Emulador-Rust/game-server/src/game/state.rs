@@ -43,6 +43,29 @@ fn classe_no_xml(classe: u32) -> (&'static str, &'static str) {
     }
 }
 
+/// A classe cujo kit inicial o personagem recebe.
+///
+/// E a classe **especifica**, nao a base: assassino e ranger sao os dois SCOUT e recebem armaduras
+/// diferentes -- `lt_torso_n_l1_assassin_1a` contra `lt_torso_n_l1_ranger_1a`. Conferido na
+/// captura de 22/08/2026, que gravou a criacao de um assassino, um templario e um ranger.
+///
+/// Os nomes sao os do catalogo do cliente, e batem com os de `classe_no_xml`.
+fn classe_do_kit(classe: u32) -> &'static str {
+    match classe {
+        1 => "BATTLEMASTER",
+        2 => "KNIGHT",
+        4 => "ASSASSIN",
+        5 => "RANGER",
+        7 => "WIZARD",
+        8 => "ELEMENTALLIST",
+        10 => "CLERIC",
+        11 => "CHANTER",
+        // As classes base (0, 3, 6, 9) nao aparecem na criacao da 4.5 -- o jogador escolhe a
+        // classe final direto. As de 4.7 em diante nao existem aqui.
+        _ => "",
+    }
+}
+
 /// Ate onde o servidor manda NPC, em metros.
 ///
 /// Existe porque mandar o mundo inteiro estoura o buffer de envio: 1008 NPCs a ~110 bytes dao uns
@@ -84,6 +107,17 @@ pub struct State {
     /// `S_REMOVE_OBJECT`. Guardar o conjunto e o que permite mandar so a diferenca quando o
     /// personagem anda, em vez de reenviar tudo.
     npcs_em_cena: HashMap<u32, (HashSet<u32>, Coord)>,
+    /// O bloco de entrada capturado, por posicao. Vazio a menos que `AION_BURST=1`.
+    ///
+    /// Instrumento de medicao -- ver `message::replay::burst_de_entrada`.
+    burst: Vec<(u16, Vec<u8>)>,
+    /// Quem ja recebeu a ordem de entrar no mundo nesta selecao de personagem.
+    ///
+    /// O `S_STATUS` + `S_WORLD` sai no primeiro `C_CUR_STATUS` e **so nele**. Na captura o
+    /// servidor oficial manda o `S_WORLD` uma vez, antes do primeiro `C_CUR_STATUS` do cliente --
+    /// nao e resposta a ele. Mandar de novo no segundo pedido reinicia o carregamento do mapa no
+    /// meio, e o cliente nunca chega a mandar o `LevelReady`: fica preso na tela de carregamento.
+    mundo_enviado: HashSet<u32>,
     db: Db,
     game_data: Arc<GameData>,
 }
@@ -137,6 +171,14 @@ impl State {
             entities,
             put_npc,
             npcs_em_cena: HashMap::new(),
+            mundo_enviado: HashSet::new(),
+            burst: if std::env::var("AION_BURST").is_ok() {
+                let caminho = std::env::var("AION_REPLAY")
+                    .unwrap_or_else(|_| "replay.bin".to_string());
+                super::message::replay::burst_de_entrada(std::path::Path::new(&caminho))
+            } else {
+                Vec::new()
+            },
             db,
             game_data,
         }
@@ -689,6 +731,11 @@ impl State {
                     .map(ServerUpdate::new),
                 );
             }
+            c::Message::EnterWorld(selecao) => {
+                // Selecionou personagem: a proxima entrada no mundo vale de novo. Sem isto, sair
+                // para a lista e voltar deixaria o cliente sem o S_WORLD.
+                self.mundo_enviado.remove(&selecao.character_id);
+            }
             c::Message::LevelReady(_) => {
                 // O cliente avisa que terminou de carregar o mapa -- opcode 0x19 na 4.5, 0x09 na
                 // 2.5. Sem personagem no estado nao ha o que aparecer, e derrubar a thread do jogo
@@ -720,6 +767,10 @@ impl State {
                 // O nome tambem: sem escrever por cima, todo mundo entra no mundo como `Kimmie`,
                 // que e quem estava logada na captura de onde o PUT_USER saiu.
                 let nome_no_mundo = new_character.name().clone();
+                let (aqui_x, aqui_y, aqui_z) = {
+                    let l = new_character.location();
+                    (l.x(), l.y(), l.z())
+                };
                 let aparencia = new_character.aparencia.clone();
                 let bruto = |opcode, payload: Vec<u8>| {
                     ServerUpdate::new(s::Message::Bruto(s::Bruto::new(opcode, payload)))
@@ -734,11 +785,20 @@ impl State {
                             // o tamanho do pacote e desloca tudo o que vem depois dele.
                             let com_id =
                                 cap::com_id_de_personagem(&cap::PUT_USER, 12, id);
+                            // A posicao do corpo. O blob traz a da captura cravada, e sem trocar
+                            // ela o personagem aparece onde a Kimmie estava -- 360 metros abaixo
+                            // do chao, se o mapa for Sanctum.
+                            let com_lugar = cap::com_posicao_de_personagem(
+                                &com_id,
+                                aqui_x,
+                                aqui_y,
+                                aqui_z,
+                            );
                             let com_cara = match &aparencia {
                                 Some(bloco) => {
-                                    cap::com_aparencia_de_personagem(&com_id, bloco)
+                                    cap::com_aparencia_de_personagem(&com_lugar, bloco)
                                 }
-                                None => com_id,
+                                None => com_lugar,
                             };
                             cap::com_nome_de_personagem(
                                 &com_cara,
@@ -769,46 +829,6 @@ impl State {
                         ))),
                     ],
                 );
-
-                // Skills: saem do XML do proprio cliente, pela classe e pelo nivel. Nao ha nada de
-                // capturado aqui -- a captura serviu so para provar o formato do pacote e para
-                // conferir a regra, que acertou as 29 skills do feiticeiro gravado.
-                let classe_do_personagem = new_character
-                    .aparencia
-                    .as_ref()
-                    .and_then(|b| {
-                        let off = super::message::molde::campo::CLASSE
-                            - super::message::molde::campo::NOME;
-                        b.get(off..off + 4)
-                    })
-                    .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
-                    .unwrap_or(CLASSE_DO_MOLDE);
-                let (classe, base) = classe_no_xml(classe_do_personagem);
-                let skills = self.game_data.skills_de(
-                    classe,
-                    base,
-                    new_character.stats.level,
-                );
-                println!(
-                    "INFO: {} skills para '{}' (classe {} = {}, nivel {})",
-                    skills.len(),
-                    new_character.name(),
-                    classe_do_personagem,
-                    if classe.is_empty() { "<sem nome>" } else { classe },
-                    new_character.stats.level,
-                );
-                if !skills.is_empty() {
-                    let agora = std::time::SystemTime::now()
-                        .duration_since(std::time::UNIX_EPOCH)
-                        .map(|d| d.as_secs() as u32)
-                        .unwrap_or(0);
-                    messages.extend_direct(
-                        update.client_id(),
-                        [ServerUpdate::new(s::Message::AddSkill45(
-                            s::AddSkill45::new(skills, agora),
-                        ))],
-                    );
-                }
 
                 // Os NPCs do mundo, so os que estao perto. Ficavam atras do portao dos pacotes
                 // 2.5 junto com o resto, e por isso nem o unico mob escrito a mao aparecia.
@@ -869,6 +889,180 @@ impl State {
 
                 let game_time = 148641933;
 
+                // O cliente pede status varias vezes enquanto carrega. A entrada no mundo sai uma
+                // vez so -- ver `mundo_enviado`. Nas outras, so o S_CUR_STATUS.
+                if !self.mundo_enviado.insert(update.character_id()) {
+                    messages.extend_direct(
+                        update.client_id(),
+                        [ServerUpdate::new(s::Message::CurStatus(s::CurStatus::new()))],
+                    );
+                    return;
+                }
+
+                // Quem entrou: id, nome, nivel e classe. A classe sai do bloco de criacao,
+                // no mesmo offset que o registro da lista usa.
+                let id_na_bolsa = character.id();
+                let nome_na_bolsa = character.name().clone();
+                let nivel_na_bolsa = character.stats.level;
+                let raca_na_bolsa = character
+                    .aparencia
+                    .as_ref()
+                    .and_then(|b| {
+                        let off = super::message::molde::campo::RACA
+                            - super::message::molde::campo::NOME;
+                        b.get(off..off + 4)
+                    })
+                    .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
+                    .unwrap_or(1);
+                let classe_na_bolsa = character
+                    .aparencia
+                    .as_ref()
+                    .and_then(|b| {
+                        let off = super::message::molde::campo::CLASSE
+                            - super::message::molde::campo::NOME;
+                        b.get(off..off + 4)
+                    })
+                    .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
+                    .unwrap_or(CLASSE_DO_MOLDE);
+
+                // Medicao: com AION_BURST, o bloco inteiro da captura sai no lugar do nosso, e
+                // tambem no lugar das skills e da bolsa -- senao o cliente recebe cada coisa duas
+                // vezes. E para responder se o que falta e quantidade de pacote; nao e solucao.
+                let medindo = !self.burst.is_empty();
+                let bruto_de_entrada = |(opcode, payload): (u16, Vec<u8>)| {
+                    ServerUpdate::new(s::Message::Bruto(s::Bruto::new(opcode, payload)))
+                };
+                if medindo {
+                    println!(
+                        "INFO: AION_BURST: mandando os {} pacotes capturados da janela de entrada",
+                        self.burst.len()
+                    );
+                    let chave = update.chave_de_sessao();
+                    let id = update.character_id();
+                    let lote: Vec<_> = self
+                        .burst
+                        .iter()
+                        .map(|p| {
+                            ServerUpdate::new(super::message::replay::para_esta_sessao(
+                                p, chave, id,
+                            ))
+                        })
+                        .collect();
+                    messages.extend_direct(update.client_id(), lote);
+                } else {
+                    messages.extend_direct(
+                        update.client_id(),
+                        super::message::entrada::antes_do_mundo(update.character_id())
+                            .into_iter()
+                            .map(bruto_de_entrada)
+                            .collect::<Vec<_>>(),
+                    );
+                }
+
+                // Skills. Na captura elas vem aqui -- 22 pacotes entre #32 e #53, logo
+                // depois da segunda senha e antes da bolsa --, nao depois do LevelReady, que era
+                // onde o servidor as mandava. O conteudo sai do XML do proprio cliente, pela
+                // classe e pelo nivel; a captura serviu para provar o formato e conferir a regra,
+                // que acertou as 29 skills do feiticeiro gravado.
+                let (classe, base) = classe_no_xml(classe_na_bolsa);
+                let skills = self.game_data.skills_de(classe, base, nivel_na_bolsa);
+                println!(
+                    "INFO: {} skills para '{nome_na_bolsa}' (classe {classe_na_bolsa} = {}, nivel {nivel_na_bolsa})",
+                    skills.len(),
+                    if classe.is_empty() { "<sem nome>" } else { classe },
+                );
+                if !skills.is_empty() && !medindo {
+                    let agora = std::time::SystemTime::now()
+                        .duration_since(std::time::UNIX_EPOCH)
+                        .map(|d| d.as_secs() as u32)
+                        .unwrap_or(0);
+                    messages.extend_direct(
+                        update.client_id(),
+                        [ServerUpdate::new(s::Message::AddSkill45(
+                            s::AddSkill45::new(skills, agora),
+                        ))],
+                    );
+                }
+
+                // A bolsa, antes do S_STATUS -- e onde ela cai na captura, entre o
+                // S_LOAD_ITEM_COOLTIME e o S_STATUS.
+                //
+                // O kit inicial e entregue aqui, e nao na criacao do personagem, por dois
+                // motivos: a classe ja esta resolvida neste ponto, e quem foi criado antes desta
+                // versao tambem recebe -- uma vez so, marcada no personagem.
+                let grupo = classe_do_kit(classe_na_bolsa);
+                if let Some(kit) = self.game_data.itens_iniciais.get(grupo) {
+                    match self.db.garante_kit_inicial(id_na_bolsa, kit) {
+                        Ok(true) => println!(
+                            "INFO: kit inicial de {grupo} ({} itens) para '{nome_na_bolsa}'",
+                            kit.len()
+                        ),
+                        Ok(false) => {}
+                        Err(e) => {
+                            eprintln!("ERROR: garante_kit_inicial({id_na_bolsa}): {e}")
+                        }
+                    }
+                }
+                // Bissecao do pacote de bolsa, porque a falha dele nao tem sintoma proprio: o
+                // cliente para na tela de carregamento, que e o mesmo sintoma de meia duzia de
+                // outras coisas. `off` nao manda nada; `simples` manda so o que nao se equipa.
+                let modo_da_bolsa =
+                    std::env::var("AION_BOLSA").unwrap_or_else(|_| "tudo".to_string());
+                match self.db.itens_do_personagem(id_na_bolsa) {
+                    _ if medindo || modo_da_bolsa == "off" => {
+                        println!("INFO: bolsa desligada (AION_BOLSA=off)");
+                    }
+                    Ok(itens) if !itens.is_empty() => {
+                        let bolsa: Vec<_> = itens
+                            .into_iter()
+                            .filter(|i| {
+                                modo_da_bolsa != "simples"
+                                    || self
+                                        .game_data
+                                        .items
+                                        .get(&i.item_id)
+                                        .map(|d| {
+                                            matches!(d.slot, crate::data_loader::Slot::Nenhum)
+                                        })
+                                        .unwrap_or(true)
+                            })
+                            .map(|i| {
+                                super::data::item::ItemInventario::novo(
+                                    i.obj_id,
+                                    i.item_id,
+                                    i.quantidade,
+                                    i.posicao,
+                                    self.game_data.items.get(&i.item_id),
+                                )
+                            })
+                            .collect();
+                        println!(
+                            "INFO: {} itens na bolsa de '{nome_na_bolsa}'",
+                            bolsa.len()
+                        );
+
+                        // Em levas de dez, como na captura, e uma leva vazia para fechar. Sem ela
+                        // o cliente fica esperando o resto da bolsa.
+                        let mut levas: Vec<ServerUpdate> = bolsa
+                            .chunks(s::CarregaInventario45::POR_LEVA)
+                            .enumerate()
+                            .map(|(n, pedaco)| {
+                                ServerUpdate::new(s::Message::CarregaInventario45(
+                                    s::CarregaInventario45::leva(n == 0, pedaco.to_vec()),
+                                ))
+                            })
+                            .collect();
+                        levas.push(ServerUpdate::new(s::Message::CarregaInventario45(
+                            s::CarregaInventario45::fim(),
+                        )));
+                        messages.extend_direct(update.client_id(), levas);
+                    }
+                    Ok(_) => {}
+                    Err(e) => {
+                        eprintln!("ERROR: itens_do_personagem({id_na_bolsa}): {e}")
+                    }
+                }
+
                 // Na captura o S_STATUS vem antes do S_WORLD. E ele que da ao cliente o proprio
                 // personagem: sem ele o mapa carrega e nao ha ninguem para controlar. O do POC e
                 // da 2.5 (312 bytes contra 396), entao aqui vai o capturado com o nosso id por
@@ -907,7 +1101,14 @@ impl State {
                         )),
                         // O S_WORLD e o que poe o jogador no mapa, e ja foi conferido contra a
                         // captura.
-                        s::Message::World(s::World::new(character.location())),
+                        // O mapa vem da raca do personagem, e tem que ser o mesmo que o
+                        // registro da lista declarou -- e por aquele que o cliente pre-carrega o
+                        // cenario. Mandar um elyos para Pandaemonium e o que fazia o jogador ver
+                        // a capital errada.
+                        s::Message::World(s::World::new(
+                            character.location(),
+                            mundo::ponto_de_entrada(raca_na_bolsa),
+                        )),
                         // Estes dois sao implementacao do POC e batem com a captura: o
                         // S_WORLD_INFO sai byte a byte igual ao pacote #100 da sessao real, e o
                         // S_CUR_STATUS tem 1 byte nos dois. O resto do que o POC mandava aqui e
@@ -917,6 +1118,22 @@ impl State {
                     ]
                     .map(ServerUpdate::new),
                 );
+
+                // O resto do bloco: armazem, correio, macros, filtros de chat. Na captura estao
+                // espalhados dos dois lados do S_WORLD; o que o cliente cobra e a presenca, e o
+                // S_WORLD -- que tem lugar fixo -- ja foi.
+                if !medindo {
+                    messages.extend_direct(
+                        update.client_id(),
+                        super::message::entrada::depois_do_mundo(
+                            update.character_id(),
+                            game_time,
+                        )
+                        .into_iter()
+                        .map(bruto_de_entrada)
+                        .collect::<Vec<_>>(),
+                    );
+                }
 
                 // O resto e implementacao da 2.5 e nenhum bate de tamanho com a 4.5: S_STATUS sai
                 // com 312 bytes contra 389 da captura, S_ADD_SKILL 376 contra 325,
