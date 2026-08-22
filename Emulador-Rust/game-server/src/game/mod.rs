@@ -13,6 +13,7 @@ mod engine;
 mod entity;
 mod message;
 pub mod instance;
+pub mod housing;
 pub mod mundo;
 pub mod pet;
 mod session;
