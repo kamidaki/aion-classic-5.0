@@ -39,6 +39,28 @@ impl Db {
     /// Ensure an account exists, generate a random session token, persist the
     /// (token → username) mapping, and return the token as an uppercase UUID
     /// string in the form the Aion client expects.
+    /// Registra um token ja conhecido para a conta, sem inventar um novo.
+    ///
+    /// Existe porque o cliente **nao** usa o token que o `issue_session` devolve. Quem chega ao
+    /// game server, dentro do `C_HQ_LOGIN`, e o `AUTHN_TOKEN` que o launcher entrega -- um valor
+    /// fixo, o mesmo em toda sessao. Sem esta linha o game server procura esse valor, nao acha,
+    /// cai num nome de conta sintetico derivado do id da conexao, e cada login vira uma conta
+    /// nova: os personagens criados na sessao anterior somem da lista.
+    ///
+    /// `INSERT OR REPLACE` porque o token e fixo e reaparece a cada login.
+    pub fn registra_token(&self, token: &str, username: &str) -> Result<()> {
+        let conn = self.conn.lock().unwrap();
+        conn.execute(
+            "INSERT OR IGNORE INTO accounts(username) VALUES (?1)",
+            params![username],
+        )?;
+        conn.execute(
+            "INSERT OR REPLACE INTO sessions(token, username) VALUES (?1, ?2)",
+            params![token, username],
+        )?;
+        Ok(())
+    }
+
     pub fn issue_session(&self, username: &str) -> Result<String> {
         let conn = self.conn.lock().unwrap();
         conn.execute(

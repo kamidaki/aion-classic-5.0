@@ -16,22 +16,29 @@ use super::{
 };
 
 // This is static
-const EXTERNAL_ACCOUNT_KEY: &str = "1bb702a4-02f9-4b9d-b44d-15ffb2e84568";
+const EXTERNAL_ACCOUNT_KEY: &str = "dbe9ab65-3818-4e8b-86c5-93a1387a55f2";
+// Identidades que o STS devolve ao cliente. Sao **valores locais**, nao de conta nenhuma: o
+// cliente so as ecoa de volta e nunca as confere contra um servico de verdade, porque o servico
+// aqui somos nos. As capturadas que estavam nestes lugares sairam do repositorio.
+//
+// Duas relacoes precisam continuar valendo: SESSION e LOCATION_ID sao o mesmo valor, e o
+// AUTHN_TOKEN e `USER_ID:TOKEN` em base64, com um nulo no fim.
+
 // This is static
 const ACCESS_MASK: &str = "134217727";
 // This is static
-const SESSION: &str = "4BEEADEB-5C6B-4191-BC4A-0B517750E202";
+const SESSION: &str = "6D5F3085-362A-4D6D-9010-D9C8F7CBEB16";
 // this is static
-const LOCATION_ID: &str = "4BEEADEB-5C6B-4191-BC4A-0B517750E202";
+const LOCATION_ID: &str = "6D5F3085-362A-4D6D-9010-D9C8F7CBEB16";
 // This is static
-const GAME_ACCOUNT_ID: &str = "40028854";
+const GAME_ACCOUNT_ID: &str = "10000001";
 
 const USER_STATUS: u16 = 1;
 const CREATED: &str = "2023-04-25T10:47:54Z";
 const CREATED2: &str = "2023-04-25T12:47:54.820+02:00";
 const USER_CENTER: u16 = 22;
 const USER_NAME: &str = "Nickname";
-const LOGIN_NAME: &str = "0187b806-ec9a-72f8-9a6f-d8bbf29ae667@gameforge.com";
+const LOGIN_NAME: &str = "a83cf26f-9cfa-454d-834c-08773abad985@local";
 const IS_LOGIN_NAME_VALIDATED: u16 = 0;
 const AUTH_PROVIDER_CODE: &str = "gameforge";
 const EXTERNAL_ACCOUNT_NAME: &str = "Nickname";
@@ -39,9 +46,9 @@ const USER_CREDENTIAL_CODE: &str = "gameforge";
 const APP_GROUP_CODE: &str = "aiongfc";
 
 // this is static
-const USER_ID: &str = "9E054E89-C0BD-4792-9A22-33116D9EABB7";
+const USER_ID: &str = "46CF859A-0426-47BD-A95A-563A78BB07D4";
 // THIS CHANGES - PROBABLY THE ACTUAL AUTH
-const TOKEN: &str = "00DF51EC-591D-46BF-8859-1C8FEC95FC09";
+const TOKEN: &str = "536501AE-0CEE-4134-95F5-B2EACC43811B";
 // USER_ID + TOKEN then base64?
 const AUTHN_TOKEN: &str = "NDZDRjg1OUEtMDQyNi00N0JELUE5NUEtNTYzQTc4QkIwN0Q0OjUzNjUwMUFFLTBDRUUtNDEzNC05NUY1LUIyRUFDQzQzODExQgA=";
 
@@ -423,6 +430,12 @@ impl Auth {
                     TOKEN.to_string()
                 });
                 println!("INFO: issued token {token} for username '{username}'");
+
+                // E este que o game server vai procurar: o cliente manda o AUTHN_TOKEN, nao o
+                // token acima. Ver Db::registra_token.
+                if let Err(e) = session.db.registra_token(AUTHN_TOKEN, &username) {
+                    eprintln!("ERROR: registra_token: {e}");
+                }
 
                 let header = ResponseHeader::new(sequence);
                 let body = Reply {
