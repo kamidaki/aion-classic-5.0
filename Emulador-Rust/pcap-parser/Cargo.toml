@@ -1,8 +1,0 @@
-[package]
-name = "pcap-parser"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-krypt = { version = "0.1.0", path = "../krypt" }
-pcap = "2.0.0"

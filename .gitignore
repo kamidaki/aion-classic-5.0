@@ -23,7 +23,7 @@ logs/
 *.db-shm
 *.db-wal
 *.db
-!deploy/data/*.db
+!Produto Final/data/*.db
 
 # IDEs e Editores
 .idea/
@@ -43,4 +43,7 @@ dist/*.zip
 replay.bin
 myls.properties
 **/client_raw/
+Produto Final/data/client/
+**/data/client/
+data/client/
 

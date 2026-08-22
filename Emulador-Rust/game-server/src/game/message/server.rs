@@ -1,4 +1,4 @@
-use krypt::game::encrypt_server_opcode;
+use commons::game::encrypt_server_opcode;
 
 use crate::{
     copy_bytes,

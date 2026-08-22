@@ -3,7 +3,7 @@
 //! [CLIENT] 1 Byte - Always 0x6F
 //! [CHECKSUM] 2 Bytes - Checksum should be == bitwise not opcode
 
-use krypt::game::{decrypt, decrypt_client_opcode};
+use commons::game::{decrypt, decrypt_client_opcode};
 
 use super::server as s;
 use crate::consume_le_bytes;

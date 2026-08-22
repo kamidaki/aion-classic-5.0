@@ -1,115 +1,119 @@
-# Aion Classic 4.5 - Emulador em Rust (Alta Performance)
+# Aion Classic EU — EmuRust (Emulador Rust de Alta Performance)
 
-[![Rust](https://img.shields.io/badge/Rust-1.80%2B-orange.svg)](https://www.rust-lang.org/)
-[![License](https://img.shields.io/badge/License-MIT%2FApache--2.0-blue.svg)]()
-[![Platform](https://img.shields.io/badge/Platform-Windows%20x64-lightgrey.svg)]()
-[![Version](https://img.shields.io/badge/Aion%20Client-Classic%204.5-red.svg)]()
+[![Rust](https://img.shields.io/badge/rust-stable-brightgreen.svg)](https://www.rust-lang.org/)
+[![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows%20x64-lightgrey.svg)]()
+[![Status](https://img.shields.io/badge/status-Production%20Ready-success.svg)]()
 
-Emulador de servidor de alta performance desenvolvido nativamente em **Rust** para **Aion Classic (Cliente versão 4.5 GameForge)**.
-
-Repositório Oficial: [https://github.com/kamidaki/aion-classic-rust](https://github.com/kamidaki/aion-classic-rust)
+O **EmuRust** é um emulador moderno em **Rust** voltado para o cliente de 64 bits do **Aion Classic EU (Gameforge)**. Projetado sob os princípios de modularidade do clássico emulador Java (4.8 Retail), o EmuRust implementa **3 servidores isolados** gerenciados por um único aplicativo supervisor com **Dashboard Gráfico moderno estilo macOS/iOS/Grafana**.
 
 ---
 
-## 🏛️ Estrutura do Repositório
+## 🏛️ Arquitetura do Sistema
 
-O repositório é mantido limpo e organizado estritamente em duas frentes:
-
-```
-├── Emulador-Rust/           # CÓDIGO-FONTE RUST (Workspace & Crates)
-│   ├── auth-server/         # Servidor de autenticação e lista de reinos (Blowfish/RSA)
-│   ├── sts-server/          # STS Server (Handshake de segurança e tokens AES/RC4)
-│   ├── game-server/         # Game Server (Mundo, combate, inventário, skills, SQLite)
-│   ├── launcher/            # Emulador do Launcher oficial via Named Pipe
-│   ├── krypt/               # Biblioteca compartilhada de cifras (XOR, RSA, RC4, AES)
-│   ├── pak/ & bxml/         # Ferramentas de extração de dados .pak e binary XML
-│   └── data/                # Dados estáticos (tabelas de spawn, itens e skills)
-│
-├── deploy/                  # EMULADOR DE PRODUÇÃO (Execução Limpa)
-│   ├── auth-server.exe      # Binário de produção compilado
-│   ├── sts-server.exe       # Binário de produção compilado
-│   ├── game-server.exe      # Binário de produção compilado
-│   ├── launcher.exe         # Binário de produção do launcher
-│   ├── config.txt           # Configuração de IP, portas e caminho do cliente
-│   ├── INICIAR_SERVIDOR.bat # Inicializador do servidor completo em 1 CLIQUE
-│   ├── PARAR_SERVIDOR.bat   # Encerramento limpo de todos os processos em 1 CLIQUE
-│   ├── iniciar.ps1          # Orquestrador PowerShell de produção
-│   └── data/                # Dados estáticos essenciais de produção
-│
-├── PLANO-DESENVOLVIMENTO/   # ROTEIRO COMPLETO DE DESENVOLVIMENTO (22 Etapas)
-├── scripts/                 # Scripts de automação (publicar_deploy.ps1)
-├── CONTEXT.md               # Documento central de rastreamento de estado e progresso
-└── README.md                # Este documento de referência
+```text
+┌──────────────────────────────────────────────────────────────────────────┐
+│                   AUTO-START EMURUST.EXE (GUI MANAGER)                   │
+│                                                                          │
+│  [ Dashboard Estilo macOS/iOS/Grafana | CPU/RAM | Logs Coloridos | JSON ]│
+└────────────────────────────────────┬─────────────────────────────────────┘
+                                     │
+         ┌───────────────────────────┼───────────────────────────┐
+         │ (Supervisão & Processos)  │ (Supervisão & Processos)  │ (Supervisão & Processos)
+         ▼                           ▼                           ▼
+┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
+│  LOGIN-SERVER   │         │   GAME-SERVER   │         │   CHAT-SERVER   │
+│                 │         │                 │         │                 │
+│ • Auth Protocol │◄───────►│ • World / Map   │◄───────►│ • Channels      │
+│ • STS Protocol  │   IPC   │ • NPCs / Spawns │   IPC   │ • Whispers      │
+│ • Named Pipe    │ (Auth/  │ • Combat / Sys  │ (Sync/  │ • Client Socket │
+│ • Auto-Accounts │ Session)│ • Entities      │ Verify) │ • Lifecycle     │
+│ • Brute-Force   │         │ • Inventory     │         │ • Sub-systems   │
+└─────────────────┘         └─────────────────┘         └─────────────────┘
 ```
 
 ---
 
-## Como Iniciar o Emulador em 1 Clique (Produção)
+## ⚡ Principais Recursos
 
-Não é necessário ter o Rust ou compiladores instalados para executar o servidor na pasta `deploy/`:
+1. **3 Servidores Totalmente Isolados**:
+   * **`login-server`**: Unifica autenticação (portas `2106` e `13001`), protocolo STS (porta `6600`), Named Pipe Gameforge (`\\.\pipe\GameforgeClientJSONRPC`), auto-criação de contas e proteção anti-bruteforce.
+   * **`game-server`**: Processo de mundo dedicado (porta `7777`, 20 TPS fixo) carregando **39.747 NPCs**, **76.693 Itens**, **11.476 Skills** e **1.254 Spawns**.
+   * **`chat-server`**: Microserviço dedicado (porta `10241`) para canais regionais, LFG, comércio e whispers.
 
-1. Abra a pasta **`deploy/`**.
-2. *(Opcional)* Edite o arquivo **`config.txt`** para definir o caminho do seu cliente e seu IP de rede (se deixado em branco, o IP da sua placa de rede será detectado automaticamente).
-3. Dê um duplo-clique no arquivo **`INICIAR_SERVIDOR.bat`**.
-   - O inicializador validará as portas, encerrará processos antigos e subirá os 3 servidores (`sts-server`, `auth-server` e `game-server`) em sequência.
-   - Pressione **`L`** no terminal para disparar o cliente do jogo automaticamente.
-4. Para parar o servidor, execute **`PARAR_SERVIDOR.bat`**.
+2. **Gerenciador Unificado `Auto-Start EmuRust.exe`**:
+   * **Dashboard Gráfico**: Interface web moderna em `http://127.0.0.1:18080`.
+   * **Métricas em Tempo Real**: Medição de CPU (%) e Memória (MB) por servidor via Windows API.
+   * **Controles Granulares**: Ligar, parar e reiniciar servidores individualmente.
+   * **Central de Logs Colorida**:
+     * ⚪ **Login-Server**: Logs em Branco.
+     * 🟢 **Game-Server**: Logs em Verde.
+     * 🔵 **Chat-Server**: Logs em Ciano.
+   * **Crash Detection & Auto-Restart**: Reinicia automaticamente processos que falharem.
+   * **Rotação Diária com Retenção de 10 Dias**: Limpeza automática de arquivos antigos em `logs/`.
+
+3. **Configuração Centralizada**:
+   * Arquivo único `launcher.json` auto-documentado.
 
 ---
 
-## Como Compilar e Modificar o Código-Fonte (`Emulador-Rust`)
+## 🚀 Como Iniciar o Emulador
 
-### Pré-requisitos:
-- **Rust (Toolchain estável 1.80+)**: [rustup.rs](https://rustup.rs/)
-- **Visual Studio 2022 / Build Tools C++** (com suporte a MSVC x64).
+### 1. Iniciar os Servidores
+Abra a pasta `Produto Final/` e execute:
+```text
+Produto Final\Auto-Start EmuRust.exe
+```
+O painel do gerenciador será aberto automaticamente no seu navegador.
 
-### Comandos de Compilação:
-Abra o terminal no diretório `Emulador-Rust/`:
+### 2. Iniciar o Cliente de Jogo
+Na pasta do cliente, execute:
+```text
+Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat
+```
+
+---
+
+## 📂 Estrutura do Repositório
+
+```text
+AionEMU/
+├── Produto Final/               # Pacote de produção pronto para rodar
+│   ├── Auto-Start EmuRust.exe   # Gerenciador gráfico e supervisor
+│   ├── login-server.exe         # Servidor de autenticação e STS
+│   ├── game-server.exe          # Servidor de mundo e gameplay
+│   ├── chat-server.exe          # Servidor de chat e canais
+│   ├── aion.db                  # Banco de dados SQLite
+│   ├── config/launcher.json     # Configuração centralizada
+│   ├── data/                    # Dados de NPCs, Itens e Spawns
+│   └── logs/                    # Logs físicos diários com retenção
+│
+├── Emulador-Rust/               # Código-fonte do emulador em Rust
+│   ├── login-server/            # Crate do Login-Server
+│   ├── game-server/             # Crate do Game-Server
+│   ├── chat-server/             # Crate do Chat-Server
+│   ├── auto-start/              # Crate do Supervisor e GUI
+│   └── commons/                 # Crate compartilhado de criptografia e utilitários
+│
+├── PLANO-LOGINSERVER/           # 20 documentos do plano técnico de migração
+├── PLANO-DESENVOLVIMENTO/       # Memória técnica geral de desenvolvimento
+├── Cliente/                     # Cliente de jogo Aion Classic EU
+├── docs/                        # Documentação de protocolos e engenharia reversa
+├── CONTEXT.md                   # Manual técnico detalhado de offsets e opcodes
+└── README.md                    # Este arquivo
+```
+
+---
+
+## 🛠️ Compilação a partir do Código-Fonte
+
+Requisitos:
+* Rust 1.75+ (Cargo)
+* Visual Studio 2022 com C++ Build Tools (MSVC x64)
 
 ```powershell
-# 1. Checagem rápida de tipos e compilação
-cargo check --workspace
-
-# 2. Executar testes unitários
-cargo test --workspace
-
-# 3. Compilar executáveis otimizados para produção (Release)
-cargo build --release
+cd Emulador-Rust
+cargo build --workspace --release
 ```
 
----
-
-## Como Publicar Atualizações na Pasta `deploy/`
-
-Sempre que realizar alterações no código-fonte em Rust e validar o funcionamento, atualize a pasta de deploy executando:
-
-```powershell
-# A partir da raiz do projeto:
-powershell -ExecutionPolicy Bypass -File scripts\publicar_deploy.ps1
-```
-Esse script compila o workspace em modo `--release` e copia automaticamente os novos binários (`.exe`) e dados atualizados para a pasta `deploy/`.
-
----
-
-## Plano de Desenvolvimento Sequencial
-
-O emulador segue uma arquitetura modular inspirada na estrutura consagrada do **Emulador Java 4.8 Retail**, adaptada para as funcionalidades e opcodes do **Aion Classic 4.5**.
-
-Consulte a pasta [PLANO-DESENVOLVIMENTO/](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO) para acompanhar as 22 etapas numeradas:
-- **Etapas 00 a 02**: Infraestrutura de Rede, Criptografia, STS, Auth e Criação de Personagens.
-- **Etapas 03 a 06**: Motor de Mundo, Spatial Grid, GeoEngine, Atributos e Economia/Itens.
-- **Etapas 07 a 11**: Combate (SkillEngine), IA de Monstros, Quests, Legiões/PvP e Instâncias.
-- **Etapas 12 a 16**: Coleta/Crafting, Mascotes/Invocações, Habitações, Vento/Clima, Loja Web e Daeva Pass.
-- **Etapas 17 a 21**: Agendamentos Cron, Sieges, Arenas, Anti-Hack, Mapeamento de Opcodes e Testes Autônomos.
-
----
-
-## Política de Versionamento no GitHub
-
-> [!IMPORTANT]
-> **Instrução para Agentes de IA e Desenvolvedores**:
-> A cada marco técnico alcançado, bug corrigido ou etapa do plano concluída com sucesso:
-> 1. Atualizar o arquivo [CONTEXT.md](file:///d:/AION%20RUST/AionEMU/AionEMU/CONTEXT.md).
-> 2. Atualizar a pasta `deploy/` via `scripts/publicar_deploy.ps1`.
-> 3. Realizar `git add .` e `git commit` com mensagem descritiva detalhando as mudanças para permitir rastreabilidade e facilitar rollbacks imediatos se necessário.
-> 4. Realizar `git push` para o repositório remoto [https://github.com/kamidaki/aion-classic-rust](https://github.com/kamidaki/aion-classic-rust).
+Os binários compilados estarão em `Emulador-Rust/target/release/`.

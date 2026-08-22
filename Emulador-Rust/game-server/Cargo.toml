@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 crossbeam-channel = { version = "0.5.13", default-features = false, features = ["std"] }
-krypt = { version = "0.1.0", path = "../krypt" }
+commons = { version = "0.1.0", path = "../commons" }
 rusqlite = { version = "0.32", features = ["bundled"] }
 quick-xml = "0.37"
 serde = { version = "1.0", features = ["derive"] }

@@ -34,7 +34,7 @@ pub mod trade;
 pub mod web_services;
 
 use crossbeam_channel::{Receiver, Sender};
-use krypt::game::{gen_xor_key, gen_xor_seed};
+use commons::game::{gen_xor_key, gen_xor_seed};
 use message::{client as c, server as s, ClientMessages};
 use session::Account;
 

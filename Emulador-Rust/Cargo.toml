@@ -2,11 +2,9 @@
 resolver = "2"
 
 members = [
-    "auth-server",
-    "sts-server",
+    "login-server",
     "game-server",
-	"krypt",
-	"pak",
-	"bxml",
+    "chat-server",
+    "auto-start",
+    "commons",
 ]
-exclude = ["launcher", "data", "pcap-parser"]
