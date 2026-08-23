@@ -147,7 +147,7 @@ async fn handle_ncsoft_client(
         session_key1: u32,
         username: &str,
     ) -> Result<(), std::io::Error> {
-        let mut raw = vec![0u8; 53];
+        let mut raw = vec![0u8; 78];
         raw[0] = 0x03; // Opcode SM_LOGIN_OK
         raw[1..5].copy_from_slice(&account_id.to_le_bytes()); // offset 0x00 in body
         raw[5..9].copy_from_slice(&session_key1.to_le_bytes()); // offset 0x04 in body
@@ -155,9 +155,10 @@ async fn handle_ncsoft_client(
         raw[21..25].copy_from_slice(&0x0000003Fu32.to_le_bytes());
         raw[25..29].copy_from_slice(&0x0000003Fu32.to_le_bytes());
         raw[29..33].copy_from_slice(&0x0000003Fu32.to_le_bytes());
-        raw[33] = 0xFF; // offset 0x20 in body: Magic Classic
-        raw[34] = 0xFE; // offset 0x21 in body: Magic Classic
+        raw[33] = 0xFF; // offset 0x20 in body: Magic Classic Signature
+        raw[34] = 0xFE; // offset 0x21 in body: Magic Classic Signature
         raw[49..53].copy_from_slice(&0x00000001u32.to_le_bytes()); // offset 0x30 in body: TOS agreement = 1
+        // raw[53..78] is trailing zero padding (25 bytes)
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
@@ -166,7 +167,7 @@ async fn handle_ncsoft_client(
 
         socket.write_all(&pkt).await?;
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK (Opcode 0x03, Account: '{}', ID: {}, Flags: 0x3F, TOS: 1)",
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK (78 bytes, Account: '{}', ID: {}, Flags: 0x3F, TOS: 1)",
             session_id, username, account_id
         );
         Ok(())
@@ -421,6 +422,34 @@ async fn handle_ncsoft_client(
                     session_id
                 );
                 let char_count = db.get_character_count(&current_username);
+                let _ = send_server_list(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    &announce_ip,
+                    announce_port,
+                    default_server_id,
+                    char_count,
+                )
+                .await;
+            }
+            0x0A | 0x0C => {
+                // CM_TOS_AGREE / CM_USER_AGREEMENT
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_TOS_AGREE] User Agreement accepted by '{}'",
+                    session_id, current_username
+                );
+                let char_count = db.get_character_count(&current_username);
+                let _ = send_login_ok(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    10000001,
+                    session_key1,
+                    &current_username,
+                )
+                .await;
+                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
                 let _ = send_server_list(
                     &mut socket,
                     &crypt_engine,

@@ -216,3 +216,37 @@ CREATE TABLE IF NOT EXISTS players (
     name TEXT UNIQUE NOT NULL
 );
 ```
+
+---
+
+## 10. Changelog de Correções e Evoluções (Sucessos)
+
+Esta seção documenta o histórico de correções aplicadas no projeto, contrastando o estado anterior (**Como era**) com a solução implementada (**Como foi corrigido**).
+
+### 1. Remoção da Janela Preta de Console do Auto-Start
+* **Como era antes**: O executável `Auto-Start EmuRust.exe` abria uma janela preta de console (CMD) no desktop do usuário exibindo logs em texto bruto.
+* **Como foi corrigido**: Adicionada a diretiva `#![windows_subsystem = "windows"]` no `auto-start/src/main.rs`. A inicialização passou a ser 100% limpa em segundo plano (GUI/Tray), sem abrir nenhuma janela preta de console.
+
+### 2. Painel Dashboard Embutido e Integração com Bandeja do Sistema (Tray)
+* **Como era antes**: Não havia interface de visualização ou monitoramento de processos em tempo real; logs eram apenas jogados no terminal.
+* **Como foi corrigido**: Desenvolvido um Dashboard completo em Vanilla CSS/JS com estética Glassmorphism escura moderna embutida no `auto-start` via WebView2, integrando ícone na bandeja do Windows (`AppTray.ico`), monitor de métricas de CPU/RAM, amostragem com histórico em buffers, controle de serviços (Start/Stop/Restart) e rotação de logs em 10 dias.
+
+### 3. Proteção de Instância Única (Single Instance Guard)
+* **Como era antes**: Múltiplas instâncias do emulador podiam ser abertas simultaneamente, causando conflito e travamento de portas (`2106`, `7777`, `13001`, `6600`).
+* **Como foi corrigido**: Implementado o `SingleInstanceGuard` utilizando Win32 Named Mutexes (`Local\EmuRust_AutoStart_Mutex`). Tentativas de abrir instâncias duplicadas são interceptadas com alerta nativo e encerramento seguro.
+
+### 4. Correção do Erro de Shop Server `(33)(901)` e Congelamento no Login
+* **Como era antes**: O script `Start_Client_Classic_EU.bat` continha `-usehqserver`, `-np:127.0.0.1` e `-dingameshop`. O cliente (`game.dll`) entrava no modo Sandbox Cligate da Gameforge, tentava carregar a loja web em `127.0.0.1`, puxava o cookie banner do `consent.gameforge.com` no box "Announcement", disparava o popup fatal `An unknown error has occurred while connecting to the shop server. (33)(901)` e congelava os botões da tela de login.
+* **Como foi corrigido**: 
+  1. Parâmetros de inicialização do cliente corrigidos no `Start_Client_Classic_EU.bat` para o modo direto Classic: `-ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -noweb -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu`.
+  2. Bypassa totalmente as rotas externas de web shop e direciona a conexão limpa para a porta 2106 do Login Server.
+
+### 5. Motor de Criptografia Blowfish Puro e Handshake NCSoft
+* **Como era antes**: O Login Server enviava o pacote de boas-vindas `SM_INIT` sem criptografia. O `game.dll` (no offset `0x842301`) decifrava o pacote usando a chave estática Blowfish antes de ler o byte `0xFD` em `0xA8`, resultando em dados corrompidos e travamento do handshake.
+* **Como foi corrigido**: Implementado em Rust puro o `BlowfishCipher` de 64 bits (`login-server/src/crypto/blowfish.rs`) e o `LoginCryptEngine` (`login-server/src/crypto/login_crypt.rs`) com o algoritmo cumulativo `enc_xor_pass`, checksum de 32 bits, empacotamento cifrado de `SM_INIT` (194 bytes com flag `0xFD` e versão 4.5.0.0) e decifragem de pacotes com suporte a chaves dinâmicas de sessão.
+
+### 6. Correção do Erro `Authorization Error (188)` e Aceite de Termos (User Agreement)
+* **Como era antes**: O pacote `SM_LOGIN_OK` era montado com apenas 53 bytes. Ao chegar na tela de "User Agreement", o `game.dll` tentava ler o buffer completo de 77 bytes (offsets `0x00..0x4C`), encontrava o payload truncado e disparava o erro fatal `Authorization Error (188)`.
+* **Como foi corrigido**: 
+  1. Alinhado o pacote `SM_LOGIN_OK` para o tamanho exato de 78 bytes (1 byte opcode + 77 bytes de corpo), incluindo a assinatura mágica `0xFF 0xFE` nos offsets `0x20..0x21`, as flags de conta `0x0000003F` (bit `0x10` ativo) nos offsets `0x10..0x1F`, a flag `TOS_ACCEPTED = 1` no offset `0x30` e os 25 bytes de trailing padding `0x34..0x4C`.
+  2. Adicionado tratamento dos opcodes de aceite de termos `0x0A` e `0x0C` (`CM_TOS_AGREE`) no loop do Login Server, liberando a transição imediata para a tela de Seleção de Servidores sem erros de autorização.
