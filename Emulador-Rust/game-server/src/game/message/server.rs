@@ -49,6 +49,7 @@ const ABNORMAL_STATUS: u16 = 0x0031;
 const ABNORMAL_STATUS_OTHER: u16 = 0x0032;
 const ATTACK: u16 = 0x0036;
 const MOVE_NEW: u16 = 0x0037;
+const DIALOG_WINDOW: u16 = 0x003C;
 const WEATHER: u16 = 0x0042;
 const INVISIBLE_LEVEL: u16 = 0x0043;
 const KEY: u16 = 0x0047;
@@ -151,6 +152,7 @@ pub enum Message {
     Bruto(Bruto),
     ListaPersonagens45(ListaPersonagens45),
     DeleteCharacter(DeleteCharacter),
+    DialogWindow(DialogWindow),
 }
 
 impl Serialise for Message {
@@ -220,6 +222,7 @@ impl Serialise for Message {
             Message::Bruto(msg) => msg.serialise(&mut buf[2..]),
             Message::ListaPersonagens45(msg) => msg.serialise(&mut buf[2..]),
             Message::DeleteCharacter(msg) => msg.serialise(&mut buf[2..]),
+            Message::DialogWindow(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -2671,10 +2674,50 @@ impl Serialise for Alive {
     }
 }
 
+/// Janela HTML de diálogo com NPC (Opcode 0x3C)
+#[derive(Debug, Clone)]
+pub struct DialogWindow {
+    pub target_id: u32,
+    pub dialog_id: u32,
+    pub quest_id: u32,
+}
+
+impl DialogWindow {
+    pub fn new(target_id: u32, dialog_id: u32, quest_id: u32) -> Self {
+        Self {
+            target_id,
+            dialog_id,
+            quest_id,
+        }
+    }
+}
+
+impl Serialise for DialogWindow {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(DIALOG_WINDOW, buf);
+        to_le_bytes!(len, buf, self.target_id);
+        to_le_bytes!(len, buf, self.dialog_id);
+        to_le_bytes!(len, buf, self.quest_id);
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
     use crate::data_loader::Slot;
+
+    #[test]
+    fn test_dialog_window_serialise() {
+        let dialog = DialogWindow::new(2147586830, 10, 0);
+        let mut buf = [0u8; 64];
+        let n = dialog.serialise(&mut buf);
+        assert_eq!(n, 5 + 12, "5 bytes prelude + 12 bytes payload (3 x u32)");
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 2147586830);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 10);
+        assert_eq!(u32::from_le_bytes(buf[13..17].try_into().unwrap()), 0);
+    }
 
     fn item(item_id: u32, posicao: u16, slot: Slot) -> ItemInventario {
         ItemInventario {

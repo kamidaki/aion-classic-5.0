@@ -1247,9 +1247,26 @@ impl State {
             }
             c::Message::ShowDialog(dialog) => {
                 println!("INFO: Player {} opened dialog with target {} (dialog_id: {})", update.character_id(), dialog.target_id, dialog.dialog_id);
+                let dialog_id = if dialog.dialog_id == 0 { 10 } else { dialog.dialog_id };
+                messages.push_direct(
+                    update.client_id(),
+                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
+                        dialog.target_id,
+                        dialog_id,
+                        0,
+                    ))),
+                );
             }
             c::Message::DialogSelect(sel) => {
                 println!("INFO: Player {} selected dialog option {} for target {} (quest: {})", update.character_id(), sel.dialog_id, sel.target_id, sel.quest_id);
+                messages.push_direct(
+                    update.client_id(),
+                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
+                        sel.target_id,
+                        sel.dialog_id,
+                        sel.quest_id,
+                    ))),
+                );
             }
             _ => (),
         }
