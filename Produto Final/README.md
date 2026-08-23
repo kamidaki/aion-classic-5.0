@@ -18,24 +18,29 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
 
 ## Recursos do Dashboard (Gerenciador Central)
 
-*   **3 Cards de Controle Independentes**:
-    *   **Login-Server**: Monitora status, uptime, portas `2106`, `13001`, `6600` e Named Pipe.
-    *   **Game-Server**: Monitora status, uptime, porta `7777`, tick rate de 20 TPS e consumo de CPU otimizado (0.00% ocioso).
-    *   **Chat-Server**: Monitora status, uptime e porta de canais `10241`.
-*   **Métricas em Tempo Real**: Medidores dinâmicos de uso de **CPU (%)** e **Memória RAM (MB)** para cada processo individual.
-*   **Controles Granulares**: Botões `LIGAR`, `PARAR` e `REINICIAR` para cada servidor separadamente, além dos botões mestres `LIGAR TODOS`, `PARAR TODOS` e `REINICIAR TODOS`.
-*   **Central de Logs**:
-    *   **Login-Server**: Logs do servidor de autenticação e STS.
-    *   **Game-Server**: Logs do servidor de mundo, combate, spawns e entidades.
-    *   **Chat-Server**: Logs de mensagens de canais e whispers.
-    *   Filtros por servidor e por nível (`INFO`, `WARN`, `ERROR`, `DEBUG`), busca em tempo real e auto-scroll.
-*   **Crash Detection & Auto-Restart**: Se qualquer servidor falhar inesperadamente, o supervisor detecta e reinicia apenas aquele serviço específico de forma transparente.
+* **Telemetria Day-Trade em Tempo Real**:
+  * Gráfico multicurva interativo com linhas individuais para **Login-Server**, **Game-Server**, **Chat-Server**, **Launcher** e **Consumo Total**.
+  * Alternância entre **Modo CPU (%)** (com Níveis Fibonacci) e **Modo Memória RAM (MB)**.
+  * Painel de estatísticas com valores de Mínimo, Máximo, Média e Amostragem instantânea (1s).
+* **Header Compacto & Ergonômico**:
+  * Altura slim de 48px que maximiza o espaço útil de tela.
+  * Pílulas com minileds de status rápido e botões de ação em 1 clique (`INICIAR`, `PARAR`, `REINICIAR`, `TELA CHEIA`, `ENCERRAR`).
+* **Gaveta Lateral Esquerda (Left Drawer)**:
+  * Registradores de Sistema: Target TPS (20.0 fixo), Tamanho do Banco `aion.db`, Memória Total do SO e Uptime.
+  * Mapeamento de Portas de Rede ativas (`2106`, `7777`, `10241`, `6600`, `13001`, `18080`).
+  * Conexão Mobile LAN com link direto e botão de cópia.
+* **Experiência Mobile iOS-Like**:
+  * Acesso remoto via navegador pelo celular no mesmo Wi-Fi (`http://<LAN-IP>:18080`).
+  * Barra de navegação inferior estilo vidro fosco (`Status`, `Gráfico`, `Logs`, `Menu`) e Botão de Ação Flutuante (FAB).
+* **Central de Logs Unificada**:
+  * Monitoramento consolidado de todos os servidores + logs internos do supervisor.
+  * Filtros por serviço, busca em tempo real, auto-scroll e limpeza de console.
+* **Crash Detection & Auto-Restart**:
+  * Se qualquer servidor encerrar de forma inesperada, o supervisor detecta e reinicia apenas aquele serviço específico de forma silenciosa.
 
 ---
 
-## Configuração (`config/launcher.json`)
-
-Toda a configuração dos servidores e do inicializador está centralizada em `config/launcher.json`:
+## Configuração Central (`config/launcher.json`)
 
 ```json
 {
@@ -45,9 +50,9 @@ Toda a configuração dos servidores e do inicializador está centralizada em `c
     "client_port": 2106,
     "hq_port": 13001,
     "sts_port": 6600,
-    "announce_game_server_ip": "192.168.3.184",
+    "announce_game_server_ip": "127.0.0.1",
     "announce_game_server_port": 7777,
-    "default_server_id": 23,
+    "default_server_id": 1,
     "auto_create_accounts": true,
     "development_mode": true,
     "default_dev_username": "teste",
@@ -65,7 +70,7 @@ Toda a configuração dos servidores e do inicializador está centralizada em `c
     "enabled": true,
     "bind_address": "0.0.0.0",
     "port": 7777,
-    "server_id": 23,
+    "server_id": 1,
     "server_name": "Atreia (Classic EU)",
     "tick_rate_tps": 20,
     "max_players": 1000,
@@ -109,42 +114,14 @@ Toda a configuração dos servidores e do inicializador está centralizada em `c
 }
 ```
 
-### Principais Opções:
-1. **`announce_game_server_ip`**: IP de rede local (LAN) anunciado para o client (ex: `192.168.3.184`). **Nunca usar `127.0.0.1`**, pois o client Aion Classic rejeita endereços de loopback na lista de mundos.
-2. **`auto_create_accounts`**: Quando `true`, cria qualquer conta automaticamente ao digitar usuário e senha na tela de login.
-3. **`retentionDays`**: Rotação diária com retenção automática máxima de 10 dias de logs.
-
 ---
 
-## Como Conectar o Cliente de Jogo
+## Como Iniciar o Cliente do Jogo
 
-Para abrir o jogo, execute:
-
-```text
-Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat
-```
-
-O script inicia o executável `bin64\Aion.bin` com os parâmetros corretos (`-usehqserver -hqip:127.0.0.1 -hqport:13001 -np:127.0.0.1 -dwsm -loginex ...`), comunicando diretamente com o `login-server.exe` através do Named Pipe interno.
-
----
-
-## Estrutura de Pastas
-
-```text
-Produto Final/
- Auto-Start EmuRust.exe   # Gerenciador gráfico, tray e supervisor
- login-server.exe         # Servidor de autenticação e STS
- game-server.exe          # Servidor de mundo e gameplay (0.00% CPU ocioso)
- chat-server.exe          # Servidor dedicado de canais e chat
- aion.db                  # Banco de dados SQLite compartilhado (WAL mode)
- config/
-    launcher.json        # Configuração centralizada
- data/
-    client/              # Templates de NPCs, Itens e Skills
-    itens_iniciais.csv   # Kits iniciais das classes
-    spawns.csv           # 1.254 Spawns de NPCs no mundo
- logs/
-     login-server/        # Logs diários do Login-Server
-     game-server/         # Logs diários do Game-Server
-     chat-server/         # Logs diários do Chat-Server
-```
+1. Certifique-se de que os servidores estão com status `ONLINE` no **Auto-Start EmuRust**.
+2. Execute:
+   ```text
+   Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat
+   ```
+3. Digite qualquer usuário e senha na tela de login e clique em **OK**.
+4. O emulador autenticará a conta automaticamente e carregará a tela de seleção de mundos.

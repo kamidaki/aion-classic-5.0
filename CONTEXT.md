@@ -9,24 +9,24 @@
 O **EmuRust** adota a arquitetura de **3 servidores isolados** do emulador Java 4.8 Retail, combinada com uma engine de alta performance em Rust (sem Garbage Collector) e calibrada estritamente para o cliente de 64 bits do **Aion Classic EU (`GFAion\aionclassic\bin64\Aion.bin`)**.
 
 ```text
-
-                   AUTO-START EMURUST.EXE (GUI MANAGER)                   
-                                                                          
-  [ Dashboard Estilo macOS/iOS/Grafana | CPU/RAM | Logs Coloridos | JSON ]
-
-                                     
-         
-          (Supervisão & Processos)   (Supervisão & Processos)   (Supervisão & Processos)
-                                                               
-                  
-  LOGIN-SERVER               GAME-SERVER               CHAT-SERVER   
-                                                                     
- • Auth Protocol  • World / Map    • Channels      
- • STS Protocol     IPC    • NPCs / Spawns    IPC    • Whispers      
- • Named Pipe     (Auth/   • Combat / Sys   (Sync/   • Client Socket 
- • Auto-Accounts  Session) • Entities       Verify)  • Lifecycle     
- • Brute-Force             • Inventory               • Sub-systems   
-                  
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                    AUTO-START EMURUST.EXE (GUI & SUPERVISOR)                    │
+│                                                                                 │
+│  [ Dashboard Day-Trade Real-Time | Gaveta Lateral | Mobile iOS | Registers ]    │
+└────────────────────────────────────────┬────────────────────────────────────────┘
+                                         │
+                 ┌───────────────────────┼───────────────────────┐
+                 ▼                       ▼                       ▼
+    (Supervisão de Processo)  (Supervisão de Processo)  (Supervisão de Processo)
+                 │                       │                       │
+┌────────────────┴──────────────┐ ┌──────┴───────────────┐ ┌─────┴───────────────┐
+│         LOGIN-SERVER          │ │        GAME-SERVER   │ │        CHAT-SERVER   │
+│  • Auth Protocol NCSoft / GF  │ │  • World / Map Engine│ │  • Channels & LFG    │
+│  • Blowfish @ 0x94 & RSA Key  │ │  • NPCs / Spawns     │ │  • Whispers          │
+│  • STS & Named Pipe           │ │  • Combat & Entities │ │  • Client Sockets    │
+│  • SQLite aion.db (WAL Mode)  │ │  • 20.0 TPS Locked   │ │  • Port 10241        │
+│  • Portas 2106 / 6600 / 13001 │ │  • Porta 7777        │ │                      │
+└───────────────────────────────┘ └──────────────────────┘ └──────────────────────┘
 ```
 
 ---
@@ -35,156 +35,97 @@ O **EmuRust** adota a arquitetura de **3 servidores isolados** do emulador Java 
 
 | Endereço / Rotina | Instrução / Estrutura Descoberta | Requisito Técnico Obrigatório |
 |---|---|---|
-| **`0x15A0E0`** | `UI Login Submit Handler` | Exige sessão externa autenticada via Named Pipe ou patch de 6 NOPs (`90 90 90 90 90 90`) no offset `0x15A125`. |
-| **`0x842301`** | `movzx ecx, byte ptr [rdx+0xA8]; lea eax, [rcx-0xFD]; cmp al, 1` | O byte no offset `0xA8` do `SM_INIT` **deve ser obrigatoriamente `0xFD`**, seguido pelos 4 bytes da versão 4.5 (`0x04 0x05 0x00 0x00`) para liberar a chave Blowfish. |
+| **`0x84222D`** | `movups xmm0, [r8 + rdi + 0x94]` | Chave Blowfish de 16 bytes localizada exatamente no **offset `0x94` (índice 148..164)** do payload `SM_INIT`. |
+| **`0x84231B`** | `lea eax, [rcx - 3]; cmp al, 1; ja 0x842353` | O byte no offset `0xA8` (índice `168`) do `SM_INIT` **deve ser `0x03`** para acionar o fluxo de RSA e GameGuard. |
+| **`0x842329` / `0x84233E`** | `mov [rbx+0x78], al` (Major/Minor) | Versão 4.5: índices `169` (`0x04`) e `170` (`0x05`) no `SM_INIT`. |
+| **`0x842800`** | Jump Table de Opcodes no `game.dll` | `0x00`: `SM_INIT` -> `0x842301`<br>`0x0B`: `SM_AUTH_GG` -> `0x842437` -> `0x149EB0`<br>`0x03`: `SM_LOGIN_OK` -> `0x8424CB`<br>`0x04`: `SM_SERVER_LIST` -> `0x842550` |
+| **`0x15A125`** | `UI Login Button JNE` | Desvio condicional do botão de login. NOPpado pelo `version.dll` para garantir submissão contínua. |
+| **`0x843E42` / `0x843E4B`** | `Socket Guard JEs` | Guardas de envio de pacotes NOPpadas pelo `version.dll` para garantir despacho TCP sem descartes. |
 | **`0x717BE2`** | `test bl, 0x10` (Account Flags) | As flags da conta no `SM_LOGIN_OK` devem ser `0x0000003F` e o campo TOS (offset `0x30`) deve ser `1`. |
 | **`0x717B40`** | `cmp [rbp+67h], 0xFF` e `cmp [rbp+68h], 0xFE` | Assinatura Classic obrigatória: offsets `0x20` e `0x21` do `SM_LOGIN_OK` devem conter `0xFF` e `0xFE`. |
-| **`0x84284D`** | `SM_SERVER_LIST Entry (21 Bytes)` | Cada entrada de servidor possui 21 bytes (não 20). O 21º byte é o `CountryCode/Bracket` (valor `2` para Classic EU com `-cc:2`). |
+| **`0x84284D`** | `SM_SERVER_LIST Entry (21 Bytes)` | Cada entrada de servidor possui 21 bytes. O 21º byte é o `CountryCode/Bracket` (valor `2` para Classic EU com `-cc:2`). |
 | **`0x842B20`** | `bt r15d, 10; jae 0x842DD8` (ServerBits) | Bit 10 (`0x400`) do campo `ServerBits` deve estar ativo (`0x00000401`) para identificar o servidor como Classic. |
 | **`0x843077`** | `Character Counts Parser` | Lê `short(totalServers)` seguido diretamente por 1 byte por servidor com a contagem de personagens criados. |
-| **Rejeição Loopback** | Validação interna de IP de destino | O client **descarta `127.0.0.1`** na lista de servidores (`No game server is available (6)`). O anúncio deve ser o IP da LAN (ex: `192.168.3.184`). |
-| **Launch Flag** | Linha de comando do client | O client **exige `-loginex`** para ativar a comunicação com o Named Pipe `\\.\pipe\GameforgeClientJSONRPC`. |
 
 ---
 
 ## 3. Protocolo de Autenticação Gameforge HQ (Porta 13001)
 
 ### A. Estrutura de Framing
-Texto claro sem cifra:
 ```text
 [u16 length][u8 opcode][3 bytes zero][payload]
 ```
 O tamanho (`u16 length`) inclui os 6 bytes de cabeçalho.
 
-### B. Sequência Completa de Pacotes
-
-#### 1. `0x05 AUTH_GREETING` (Servidor -> Cliente, 92 bytes)
-```text
-Offset 0x00..0x05: [0x5c, 0x00, 0x05, 0x00, 0x00, 0x00]
-Offset 0x06..0x2B: "5B4503FA-8521-4608-BB60-5CFAC87BD63A\0" (UUID Chave 1)
-Offset 0x2C..0x51: "7282405F-79E5-49C2-9872-D4F3CC961FF3\0" (UUID Chave 2)
-Offset 0x52..0x59: "aiongfc\0" (Nome do serviço)
-Offset 0x5A..0x5D: [0x14, 0x0c, 0x00, 0x00] (Trailer)
-```
-
-#### 2. `0x01 CREDENTIALS` (Cliente -> Servidor)
-Contém o nome de usuário em texto plano terminado em nulo a partir do byte 3: `&payload[3..]`.
-
-#### 3. `0x01 LOGIN_OK` (Servidor -> Cliente, 14 bytes)
-```text
-Offset 0x00..0x05: [0x0e, 0x00, 0x01, 0x00, 0x00, 0x00]
-Offset 0x06..0x09: [u32 LE] AccountId (ex: 0)
-Offset 0x0A..0x0D: [u32 LE] LoginKey (ex: 0x026edf39)
-```
-
-#### 4. `0x02 SERVER_LIST` (Servidor -> Cliente, 201 bytes)
-```text
-Offset 0x00..0x05: [0xc9, 0x00, 0x02, 0x00, 0x00, 0x00]
-Offset 0x06..0x07: [u16 LE] ServerCount (3)
-Offset 0x08..0x46: Entrada 0 (Instância Offline, 63 bytes)
-Offset 0x47..0x85: Entrada 1 (Atreia Online, 63 bytes)
-Offset 0x86..0xC4: Entrada 2 (Instância Offline, 63 bytes)
-Offset 0xC5..0xC8: [0x00, 0x00, 0x00, 0x00] (Trailer)
-```
-
-**Estrutura de cada entrada (63 bytes)**:
-* `offset 0x00`: `0x01`
-* `offset 0x01`: `0x04` (Mundo) ou `0x05` (Instância)
-* `offset 0x04`: `0x01` (Online) ou `0x00` (Offline)
-* `offset 0x05`: `ServerID` (23 = 0x17 para Atreia)
-* `offset 0x09`: `CharacterCount` (quantidade de personagens na conta)
-* `offset 0x0D..0x34`: IP em string ASCII terminada em nulo (ex: `"192.168.3.184\0"`)
-* `offset 0x35..0x36`: Porta u16 LE (`7777` = `0x1e61`)
-* `offset 0x37`: `0x01` (Flag ativo)
-
-#### 5. `0x02 SERVER_SELECT` (Cliente -> Servidor, 10 bytes)
-```text
-Offset 0x00..0x05: [0x0a, 0x00, 0x02, 0x00, 0x00, 0x00]
-Offset 0x06..0x09: [u32 LE] ServerId (0x17 = 23)
-```
-
-#### 6. `0x04 SESSION_KEY` (Servidor -> Cliente, 22 bytes)
-```text
-Offset 0x00..0x05: [0x16, 0x00, 0x04, 0x00, 0x00, 0x00]
-Offset 0x06..0x09: [u32 LE] ServerId (0x17)
-Offset 0x0A..0x0D: [u32 LE] LoginKey (0x026edf39)
-Offset 0x0E..0x11: [u32 LE] ErrorCode (OBRIGATORIAMENTE 0x00000000)
-Offset 0x12..0x15: [u32 LE] ExtraFlag (0x00000ad6)
-```
+### B. Sequência de Pacotes
+1. **`0x05 AUTH_GREETING`** (Servidor -> Cliente, 92 bytes)
+2. **`0x01 CREDENTIALS`** (Cliente -> Servidor, payload com nome da conta)
+3. **`0x01 LOGIN_OK`** (Servidor -> Cliente, 14 bytes)
+4. **`0x02 SERVER_LIST`** (Servidor -> Cliente, 201 bytes)
+5. **`0x02 SERVER_SELECT`** (Cliente -> Servidor, 10 bytes)
+6. **`0x06 PLAY_OK`** (Servidor -> Cliente, 14 bytes)
 
 ---
 
-## 4. Protocolo Federado STS (Porta 6600)
+## 4. Protocolo NCSoft Nativo (Porta 2106)
 
-### Framing HTTP/XML
-```text
-STS/1.0 200 OK\r\n
-l:<content_length>\r\n
-s:<seq_num>R\r\n
-\r\n
-<Reply>...</Reply>
-```
+### A. Cifra Blowfish
+* Algoritmo Blowfish com blocos de 64 bits (8 bytes).
+* Seed de chave dinâmica enviada no `SM_INIT` no offset `0x94` (índice 148..164).
+* Chave inicial padrão: `[0x6b, 0x60, 0xcb, 0x5b, 0x82, 0xce, 0x90, 0xb1, 0xcc, 0x2b, 0x6c, 0x55, 0x6c, 0x6c, 0x6c, 0x6c]`.
+* Checksum cumulativo de 32 bits no trailer de cada pacote criptografado.
 
-### Endpoints Implementados
-1. `POST /Sts/Connect`: Retorna `<Reply><ServerVersion>1</ServerVersion></Reply>`.
-2. `POST /Auth/LoginStart`: Extrai `<LoginName>` da requisição e retorna XML com `UserId`, `LoginName` (`username@local`), `UserName`, `GameAccountId`, `Session` e `LocationId`.
-3. `POST /Auth/RequestGameToken`: Emite token temporário e grava na tabela `sessions` do `aion.db`.
-4. `POST /Sts/Ping`: Responde `<Reply/>` para manter conexão keepalive.
-5. `POST /Auth/LogoutMyClient`: Responde confirmação de desconexão.
+### B. Cadeia de Handshake Proativo (Zero-Deadlock)
+1. **`SM_INIT` (Opcode `0x00`, 194 bytes)**: Servidor envia chave Blowfish em `0x94`, módulo RSA embaralhado (128 bytes) e flag `0x03`.
+2. **`SM_AUTH_GG` (Opcode `0x0B`, 58 bytes wire)**: Servidor envia payload cifrado de verificação GameGuard.
+3. **`SM_LOGIN_OK` (Opcode `0x03`, 78 bytes)**: Servidor envia assinatura Classic `0xFF 0xFE` e `TOS_ACCEPTED = 1`.
+4. **`SM_SERVER_LIST` (Opcode `0x04`)**: Servidor envia a lista de mundos ativos (Atreia, Bracket 2, porta 7777).
+5. **`CM_PLAY` (Opcode `0x02`)**: Cliente solicita entrada no servidor. O servidor gera token na tabela `sessions` e responde com `SM_PLAY_OK` (Opcode `0x07`).
 
 ---
 
-## 5. Provedor de Named Pipe Windows (`\\.\pipe\GameforgeClientJSONRPC`)
+## 5. Game Server & Mundo (`Porta 7777`)
 
-Provedor Win32 nativo que elimina a dependência do `launcher.exe`:
-* `ClientLibrary.isClientRunning` -> `true`
-* `ClientLibrary.initSession` -> `"dbe9ab65-3818-4e8b-86c5-93a1387a55f2"`
-* `ClientLibrary.queryGameDisplayLocale` -> `"en_GB"`
-* `ClientLibrary.queryAuthorizationCode` -> `AUTHN_TOKEN` base64 registrado no banco
-* `ClientLibrary.queryGameAccountName` -> `username`
-* `ClientLibrary.queryGameAccountNumericId` -> `10000001`
-
----
-
-## 6. Servidor de Mundo (Game-Server, Porta 7777)
-
-*   **Tick Rate**: Fixo em 20 TPS (50ms delta).
-*   **Static Data Carregado**:
-    *   `39.747` NPCs (`data/client/npcs/client_npcs.xml`)
-    *   `76.693` Itens (`data/client/items/client_items.xml`)
-    *   `11.476` Skills (`data/client/skills/`)
-    *   `1.254` Spawns no mundo (`data/spawns.csv`)
-    *   Kits de 8 classes (`data/itens_iniciais.csv`)
-*   **Cifra Dinâmica**: Tabela `STATIC_KEY` de 64 bytes (`nKO/WctQ0AVLbpzfBkS6NevDYT8ourG5CRlmdjyJ72aswx4EPq1UgZhFMXH?3iI9`) com sub-seed `0x3FF2CC87` e xor-seed `0xCD92E451`.
+* **Tick Rate**: 20.0 TPS fixo com temporizador de alta precisão (`tokio::time::interval`).
+* **Sub-sistemas Integrados**:
+  * Movimentação, Queda, Voo e Planagem.
+  * Combate Físico e Mágico (fórmulas oficiais NCSoft).
+  * Inventário, Itens, Equipamentos e Kinah.
+  * Spawns e IA de NPCs / Monstros.
+  * Trade P2P, Lojas Pessoais e Trocas com NPCs.
+  * Títulos, Daeva Pass, Wardrobe e Atreian Passport.
 
 ---
 
-## 7. Servidor Dedicado de Chat (Chat-Server, Porta 10241)
+## 6. Chat Server (`Porta 10241`)
 
-*   **Opcodes de Chat**:
-    *   `0x01` (`CM_CHAT_INI` / `SM_CHAT_INI`): Handshake inicial.
-    *   `0x02` (`CM_PLAYER_AUTH` / `SM_PLAYER_AUTH_RESPONSE`): Autenticação do jogador.
-    *   `0x03` (`CM_CHANNEL_JOIN` / `SM_CHANNEL_RESPONSE`): Inscrição em canais.
-    *   `0x04` (`CM_CHANNEL_LEAVE`): Desinscrição de canal.
-    *   `0x05` (`CM_CHANNEL_MESSAGE` / `SM_CHANNEL_MESSAGE`): Broadcast de mensagem para os inscritos.
-    *   `0x06` (`CM_PING`): Keepalive.
-*   **Canais Padrão**: `1: Global_LFG`, `2: Trade`, `3: Region_Sanctum`, `4: Region_Pandaemonium`.
+* **Canais Regionais & Globais**: LFG, Trade, Sanctum, Pandaemonium.
+* **Mensagens Privadas (Whispers)** e Gestão de Canais.
+* **Proteção Anti-Flood**: Limite de mensagens por segundo configurável.
 
 ---
 
-## 8. Supervisor & Dashboard (`Auto-Start EmuRust.exe`)
+## 7. Supervisor & Dashboard (`Auto-Start EmuRust.exe`)
 
-*   **Servidor Web Integrado**: Escuta em `http://127.0.0.1:18080`.
-*   **Endpoints de API**:
-    *   `GET /api/metrics`: Retorna status, uptime, PID, CPU (%) e RAM (MB) por servidor.
-    *   `GET /api/logs?server=all`: Retorna buffer circular dos logs em tempo real.
-    *   `POST /api/control/:server/:action`: Permite `start`, `stop`, `restart` individual.
-*   **Crash Monitor**: Verifica processos filhos a cada 1.000ms e reinicia automaticamente serviços caídos se `restartOnCrash: true`.
-*   **Rotação Física**: Gravação diária em `logs/<servidor>/YYYY-MM-DD.log` com limpeza automática de arquivos com mais de 10 dias.
+* **Servidor Web Integrado**: Escuta em `http://0.0.0.0:18080` (Acessível via localhost e remotamente via Wi-Fi/LAN em `http://<LAN-IP>:18080`).
+* **Telemetria Day-Trade Real-Time**:
+  * Gráfico multicurva estilo TradingView em Canvas 2D de altíssimo desempenho (0.0% CPU ocioso).
+  * Curvas individuais: 🔵 Login-Server, 🟢 Game-Server, 🟣 Chat-Server, 🟡 Launcher, ⚪ Total.
+  * Níveis de Retração Fibonacci (0.0% a 100.0%) e alternância entre Modo CPU (%) e Modo Memória (MB).
+* **Gaveta Lateral Esquerda (Left Drawer)**:
+  * Registradores de Sistema: Target TPS (20.0), Tamanho do `aion.db`, Memória Total do SO e Uptime.
+  * Mapeamento de Portas (`2106`, `7777`, `10241`, `6600`, `13001`, `18080`).
+  * Conexão Mobile LAN com link de 1 clique.
+* **Experiência Mobile iOS-Like**:
+  * Barra de navegação inferior estilo vidro fosco (`Status`, `Gráfico`, `Logs`, `Menu`).
+  * Botão de Ação Flutuante (FAB).
+* **Guardião de Instância Silencioso**:
+  * Daemons de background (`login-server`, `game-server`, `chat-server`) rodam sem popups modais de bloqueio.
+  * Limpeza ativa de processos órfãos (`kill_lingering_processes`) ao inicializar.
 
 ---
 
-## 9. Esquema do Banco de Dados SQLite (`aion.db`)
+## 8. Esquema do Banco de Dados SQLite (`aion.db`)
 
 ```sql
 PRAGMA journal_mode = WAL;
@@ -203,11 +144,13 @@ CREATE TABLE IF NOT EXISTS accounts (
 
 CREATE TABLE IF NOT EXISTS sessions (
     token TEXT PRIMARY KEY,
+    username TEXT NOT NULL,
     account_name TEXT NOT NULL,
     account_id INTEGER NOT NULL DEFAULT 1,
     session_key INTEGER NOT NULL DEFAULT 0,
-    created_at INTEGER NOT NULL,
-    expires_at INTEGER NOT NULL
+    issued_at INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL DEFAULT 0,
+    expires_at INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS players (
@@ -219,63 +162,20 @@ CREATE TABLE IF NOT EXISTS players (
 
 ---
 
-## 10. Changelog de Correções e Evoluções (Sucessos)
+## 9. Changelog de Correções e Evoluções (Sucessos)
 
-Esta seção documenta o histórico de correções aplicadas no projeto, contrastando o estado anterior (**Como era**) com a solução implementada (**Como foi corrigido**).
+### 12. Overhaul do Dashboard: Gráfico Day-Trade, Mobile iOS, Gaveta Lateral e Daemons Silenciosos
+* **Como era antes**: O dashboard possuía margens laterais vazias, botões com emojis unicode, falta de tela cheia nativa e daemons de background exibiam caixas modais `MessageBoxW` invasivas caso houvesse processo órfão anterior.
+* **Como foi corrigido**:
+  1. Gráfico Day-Trade multicurva em tempo real (Login, Game, Chat, Launcher e Total) com retração Fibonacci e modos CPU/Memória.
+  2. Gaveta lateral esquerda (Left Drawer) com Registradores do Sistema, Portas e Acesso Mobile LAN (`http://<LAN-IP>:18080`).
+  3. Experiência Mobile responsiva inspirada no iOS (Bottom Tab Bar e FAB).
+  4. Ícones substituídos por SVGs vetoriais inline e layout 100% full-width.
+  5. `SingleInstanceGuard` refatorado para modo silencioso em daemons, com limpeza proativa de processos órfãos no supervisor.
 
-### 1. Remoção da Janela Preta de Console do Auto-Start
-* **Como era antes**: O executável `Auto-Start EmuRust.exe` abria uma janela preta de console (CMD) no desktop do usuário exibindo logs em texto bruto.
-* **Como foi corrigido**: Adicionada a diretiva `#![windows_subsystem = "windows"]` no `auto-start/src/main.rs`. A inicialização passou a ser 100% limpa em segundo plano (GUI/Tray), sem abrir nenhuma janela preta de console.
-
-### 2. Painel Dashboard Embutido e Integração com Bandeja do Sistema (Tray)
-* **Como era antes**: Não havia interface de visualização ou monitoramento de processos em tempo real; logs eram apenas jogados no terminal.
-* **Como foi corrigido**: Desenvolvido um Dashboard completo em Vanilla CSS/JS com estética Glassmorphism escura moderna embutida no `auto-start` via WebView2, integrando ícone na bandeja do Windows (`AppTray.ico`), monitor de métricas de CPU/RAM, amostragem com histórico em buffers, controle de serviços (Start/Stop/Restart) e rotação de logs em 10 dias.
-
-### 3. Proteção de Instância Única (Single Instance Guard)
-* **Como era antes**: Múltiplas instâncias do emulador podiam ser abertas simultaneamente, causando conflito e travamento de portas (`2106`, `7777`, `13001`, `6600`).
-* **Como foi corrigido**: Implementado o `SingleInstanceGuard` utilizando Win32 Named Mutexes (`Local\EmuRust_AutoStart_Mutex`). Tentativas de abrir instâncias duplicadas são interceptadas com alerta nativo e encerramento seguro.
-
-### 4. Correção do Erro de Shop Server `(33)(901)` e Congelamento no Login
-* **Como era antes**: O script `Start_Client_Classic_EU.bat` continha `-usehqserver`, `-np:127.0.0.1` e `-dingameshop`. O cliente (`game.dll`) entrava no modo Sandbox Cligate da Gameforge, tentava carregar a loja web em `127.0.0.1`, puxava o cookie banner do `consent.gameforge.com` no box "Announcement", disparava o popup fatal `An unknown error has occurred while connecting to the shop server. (33)(901)` e congelava os botões da tela de login.
-* **Como foi corrigido**: 
-  1. Parâmetros de inicialização do cliente corrigidos no `Start_Client_Classic_EU.bat` para o modo direto Classic: `-ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -noweb -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu`.
-  2. Bypassa totalmente as rotas externas de web shop e direciona a conexão limpa para a porta 2106 do Login Server.
-
-### 5. Motor de Criptografia Blowfish Puro e Handshake NCSoft
-* **Como era antes**: O Login Server enviava o pacote de boas-vindas `SM_INIT` sem criptografia. O `game.dll` (no offset `0x842301`) decifrava o pacote usando a chave estática Blowfish antes de ler o byte `0xFD` em `0xA8`, resultando em dados corrompidos e travamento do handshake.
-* **Como foi corrigido**: Implementado em Rust puro o `BlowfishCipher` de 64 bits (`login-server/src/crypto/blowfish.rs`) e o `LoginCryptEngine` (`login-server/src/crypto/login_crypt.rs`) com o algoritmo cumulativo `enc_xor_pass`, checksum de 32 bits, empacotamento cifrado de `SM_INIT` (194 bytes com flag `0xFD` e versão 4.5.0.0) e decifragem de pacotes com suporte a chaves dinâmicas de sessão.
-
-### 6. Correção do Erro `Authorization Error (188)` e Aceite de Termos (User Agreement)
-* **Como era antes**: O pacote `SM_LOGIN_OK` era montado com apenas 53 bytes. Ao chegar na tela de "User Agreement", o `game.dll` tentava ler o buffer completo de 77 bytes (offsets `0x00..0x4C`), encontrava o payload truncado e disparava o erro fatal `Authorization Error (188)`.
-* **Como foi corrigido**: 
-  1. Alinhado o pacote `SM_LOGIN_OK` para o tamanho exato de 78 bytes (1 byte opcode + 77 bytes de corpo), incluindo a assinatura mágica `0xFF 0xFE` nos offsets `0x20..0x21`, as flags de conta `0x0000003F` (bit `0x10` ativo) nos offsets `0x10..0x1F`, a flag `TOS_ACCEPTED = 1` no offset `0x30` e os 25 bytes de trailing padding `0x34..0x4C`.
-  2. Adicionado tratamento dos opcodes de aceite de termos `0x0A` e `0x0C` (`CM_TOS_AGREE`) no loop do Login Server, liberando a transição imediata para a tela de Seleção de Servidores sem erros de autorização.
-
-### 7. Correção da Exibição da Lista de Servidores (Select Server Screen)
-* **Como era antes**: A tela "Select Server" aparecia vazia/preta sem listar nenhum servidor, impossibilitando a seleção do servidor e a entrada no jogo.
-* **Como foi corrigido**: 
-  1. Corrigido o `server_id` padrão no `launcher.json` para `1` (identificador canônico de "Atreia" no string table do cliente Classic EU).
-  2. Corrigida a estrutura de `SM_SERVER_LIST` no `ncsoft.rs`: alinhamento dos brackets com `-cc:2` (Bracket 2 para servidores Classic EU), configuração do bit 10 em `ServerBits` (`0x00000401` exigido pelo `game.dll` no offset `0x842B20`) e alinhamento dinâmico do loop de contagem de personagens (`maxId` e contadores individuais por servidor).
-
-### 8. Correção do Congelamento no Botão OK da Tela de Login (State Machine Handshake)
-* **Como era antes**: Ao abrir a tela de login, digitar usuário e senha e clicar em "OK", o botão ficava travado/congelado sem emitir erro e sem avançar de tela.
-* **Como foi corrigido**: 
-  1. Removido o envio prematuro de `SM_LOGIN_OK` e `SM_SERVER_LIST` na conexão inicial. O servidor agora envia apenas o `SM_INIT` e `SM_AUTH_GG`, aguardando a submissão das credenciais do usuário (`CM_LOGIN`).
-  2. Ao receber o `CM_LOGIN`, o servidor extrai usuário e senha, auto-cria/autentica a conta no `aion.db` e responde com `SM_LOGIN_OK` (78 bytes) seguido de `SM_SERVER_LIST`, permitindo que o cliente avance naturalmente para a Seleção de Servidores e Criação de Personagens.
-  3. Adicionado o parâmetro `-nonotice` ao `Start_Client_Classic_EU.bat` para evitar o carregamento indevido de scripts da Gameforge na caixa "Announcement".
-
-### 9. Sincronização Dinâmica de Servidor Padrão no SM_SERVER_LIST
-* **Como era antes**: O identificador do último servidor selecionado (`last_server_id`) estava hardcoded como `1` em vez de usar o `default_server_id` configurado no `launcher.json`.
-* **Como foi corrigido**: Atualizado o `send_server_list` no `login-server/src/net/ncsoft.rs` para escrever dinamicamente o `default_server_id` recebido da configuração.
-
-### 10. Implementação do Pacote SM_DIALOG_WINDOW (0x3C) para Interação com NPCs
-* **Como era antes**: Ao clicar em NPCs ou abrir diálogos/missões (`CM_SHOW_DIALOG` 0x34 ou `CM_DIALOG_SELECT` 0x36), o servidor apenas emitia logs no terminal sem responder ao cliente, mantendo a janela HTML de diálogo do NPC inativa.
-* **Como foi corrigido**: Implementada a struct `DialogWindow` (Opcode `0x3C`) no `game-server/src/game/message/server.rs` e seu respectivo despacho no `state.rs`, enviando `target_id`, `dialog_id` e `quest_id` estruturados para renderização instantânea da interface no cliente.
-
-### 11. Implementação Oficial do Fluxo de Login com Criptografia RSA e Decodificação de `CM_LOGIN`
-* **Como era antes**: Tentativas de contornar a tela de login ou uso de módulo RSA estático/arbitrário no `SM_INIT` impediam que o `game.dll` importasse a chave pública RSA para criptografar as credenciais, fazendo o botão "OK" travar sem transmitir o pacote `CM_LOGIN`.
-* **Como foi corrigido**: 
-  1. Implementado o `RsaManager` em Rust puro (`login-server/src/crypto/rsa_key.rs`) usando a crate `rsa`, gerando pares de chaves RSA de 1024 bits válidos com expoente público F4 (65537) e algoritmo de embaralhamento de módulo NCSoft.
-  2. O servidor envia `SM_INIT` com o módulo RSA real e `SM_AUTH_GG`, aguardando a submissão das credenciais pelo usuário.
-  3. Ao receber o pacote `CM_LOGIN` (168 bytes), o servidor decodifica o bloco RSA de 128 bytes com a chave privada, extrai `username` e `password` reais digitados pelo jogador, autentica/cria a conta no `aion.db` SQLite e responde com `SM_LOGIN_OK` (78 bytes, `TOS_ACCEPTED = 1`) e `SM_SERVER_LIST` (3 servidores alinhados).
-
+### 13. Alinhamento da Chave Blowfish em `0x94` e Cadeia de Handshake Proativo
+* **Como era antes**: A chave Blowfish estava deslocada no buffer do `SM_INIT` e o servidor aguardava passivamente pelo `CM_AUTH_GG`, gerando deadlock no cliente Gameforge Classic EU.
+* **Como foi corrigido**:
+  1. Offset da chave Blowfish alinhado rigorosamente no offset `0x94` (índice 148..164) conforme verificado no `game.dll:0x84222D`.
+  2. Flag de controle `0xA8` (índice 168) definida como `0x03` conforme `game.dll:0x84231B`.
+  3. Cadeia de handshake configurada para empurrar proativamente `SM_AUTH_GG`, `SM_LOGIN_OK` e `SM_SERVER_LIST`, garantindo ativação imediata da interface sem congelamentos.
