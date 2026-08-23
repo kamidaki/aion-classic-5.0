@@ -69,7 +69,7 @@ async fn handle_ncsoft_client(
 
     let scrambled_modulus = rsa_manager.get_scrambled_modulus();
 
-    // 1. Construct SM_INIT (192 bytes payload -> 194 bytes with header)
+    // 1. Construct SM_INIT (192 bytes payload -> 194 bytes with 2-byte header)
     let mut raw_init = vec![0u8; 192];
     raw_init[0] = 0x00; // Opcode SM_INIT
     raw_init[1..5].copy_from_slice(&session_id.to_le_bytes());
@@ -96,38 +96,38 @@ async fn handle_ncsoft_client(
         session_id, session_id
     );
 
-    // Short pacing
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-
-    // 2. Construct SM_AUTH_GG (Opcode 0x0B)
-    let mut auth_gg_raw = vec![0u8; 21];
-    auth_gg_raw[0] = 0x0B; // Opcode SM_AUTH_GG
-    auth_gg_raw[1..5].copy_from_slice(&session_id.to_le_bytes());
-
-    let encrypted_auth_gg = crypt_engine.encrypt_packet(&auth_gg_raw);
-    let mut auth_gg_pkt = Vec::with_capacity(encrypted_auth_gg.len() + 2);
-    auth_gg_pkt.extend_from_slice(&((encrypted_auth_gg.len() + 2) as u16).to_le_bytes());
-    auth_gg_pkt.extend_from_slice(&encrypted_auth_gg);
-
-    if let Err(e) = socket.write_all(&auth_gg_pkt).await {
-        eprintln!(
-            "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_AUTH_GG: {}",
-            session_id, e
-        );
-        return;
-    }
-    println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG (Opcode 0x0B, {} bytes)",
-        session_id, auth_gg_pkt.len()
-    );
-
     let mut current_username = default_user.clone();
     let mut account_id = 1u32;
 
     let session_key1: u32 = 0x026edf39;
     let session_key2: u32 = rand::random();
 
-    // Helper closure to build and send SM_LOGIN_OK
+    // Helper to send SM_AUTH_GG (Opcode 0x0B, 46 bytes payload)
+    async fn send_auth_gg(
+        socket: &mut TcpStream,
+        crypt_engine: &LoginCryptEngine,
+        session_id: u32,
+    ) -> Result<(), std::io::Error> {
+        let mut raw = vec![0u8; 46];
+        raw[0] = 0x0B; // Opcode SM_AUTH_GG
+        raw[1..5].copy_from_slice(&session_id.to_le_bytes());
+        // raw[5..21]: 16 zero bytes
+        // raw[21..46]: 25 zero bytes
+
+        let enc = crypt_engine.encrypt_packet(&raw);
+        let mut pkt = Vec::with_capacity(enc.len() + 2);
+        pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+        pkt.extend_from_slice(&enc);
+
+        socket.write_all(&pkt).await?;
+        println!(
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG (Opcode 0x0B, {} bytes wire length)",
+            session_id, pkt.len()
+        );
+        Ok(())
+    }
+
+    // Helper to send SM_LOGIN_OK (Opcode 0x03, 78 bytes payload)
     async fn send_login_ok(
         socket: &mut TcpStream,
         crypt_engine: &LoginCryptEngine,
@@ -138,16 +138,16 @@ async fn handle_ncsoft_client(
     ) -> Result<(), std::io::Error> {
         let mut raw = vec![0u8; 78];
         raw[0] = 0x03; // Opcode SM_LOGIN_OK
-        raw[1..5].copy_from_slice(&account_id.to_le_bytes()); // offset 0x00 in body
-        raw[5..9].copy_from_slice(&session_key1.to_le_bytes()); // offset 0x04 in body
-        raw[17..21].copy_from_slice(&0x0000003Fu32.to_le_bytes()); // offset 0x10: Account Flags (0x3F)
+        raw[1..5].copy_from_slice(&account_id.to_le_bytes());
+        raw[5..9].copy_from_slice(&session_key1.to_le_bytes());
+        raw[17..21].copy_from_slice(&0x0000003Fu32.to_le_bytes()); // Account Flags (0x3F)
         raw[21..25].copy_from_slice(&0x0000003Fu32.to_le_bytes());
         raw[25..29].copy_from_slice(&0x0000003Fu32.to_le_bytes());
         raw[29..33].copy_from_slice(&0x0000003Fu32.to_le_bytes());
-        raw[33] = 0xFF; // offset 0x20 in body: Magic Classic Signature
-        raw[34] = 0xFE; // offset 0x21 in body: Magic Classic Signature
-        raw[49..53].copy_from_slice(&0x00000001u32.to_le_bytes()); // offset 0x30 in body: TOS agreement = 1
-        // raw[53..78] is trailing zero padding (25 bytes)
+        raw[33] = 0xFF; // Magic Classic Signature
+        raw[34] = 0xFE; // Magic Classic Signature
+        raw[49..53].copy_from_slice(&0x00000001u32.to_le_bytes()); // TOS accepted = 1
+        // raw[53..78]: 25 zero bytes
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
@@ -162,7 +162,7 @@ async fn handle_ncsoft_client(
         Ok(())
     }
 
-    // Helper closure to build and send SM_SERVER_LIST
+    // Helper to send SM_SERVER_LIST (Opcode 0x04)
     async fn send_server_list(
         socket: &mut TcpStream,
         crypt_engine: &LoginCryptEngine,
@@ -175,7 +175,7 @@ async fn handle_ncsoft_client(
         let mut raw = Vec::new();
         raw.push(0x04); // Opcode SM_SERVER_LIST
         raw.push(3);    // 3 servers
-        raw.push(default_server_id);    // Last server ID
+        raw.push(default_server_id); // Last server ID
 
         let ip_parts: Vec<u8> = announce_ip
             .split('.')
@@ -208,7 +208,7 @@ async fn handle_ncsoft_client(
             raw.extend_from_slice(&srv);
         }
 
-        // Character counts section (3 servers)
+        // Character counts section
         raw.extend_from_slice(&3u16.to_le_bytes());
         raw.push(char_count); // Server 1 char count
         raw.push(0);          // Server 2 char count
@@ -228,7 +228,7 @@ async fn handle_ncsoft_client(
     }
 
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready (SM_INIT + SM_AUTH_GG). Awaiting client credentials (CM_LOGIN)...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready (SM_INIT sent). Awaiting CM_AUTH_GG or CM_LOGIN...",
         session_id
     );
 
@@ -333,10 +333,10 @@ async fn handle_ncsoft_client(
             continue;
         }
 
-        // Decrypt with Blowfish if not already in plaintext opcode format
+        // Decrypt with Blowfish
         let mut dec_payload = payload.clone();
         let decrypted = crypt_engine.decrypt_packet(&mut dec_payload);
-        
+
         let (active_buf, opcode) = if payload.len() >= 1 && (payload[0] == 0x02 || payload[0] == 0x07 || payload[0] == 0x05 || payload[0] == 0x08 || payload[0] == 0x0B) {
             (&payload, payload[0])
         } else {
@@ -362,7 +362,7 @@ async fn handle_ncsoft_client(
                     "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_AUTH_GG] GameGuard verification keepalive",
                     session_id
                 );
-                let _ = socket.write_all(&auth_gg_pkt).await;
+                let _ = send_auth_gg(&mut socket, &crypt_engine, session_id).await;
             }
             0x0B | 0x08 => {
                 // CM_LOGIN
@@ -448,16 +448,6 @@ async fn handle_ncsoft_client(
                     session_id, current_username
                 );
                 let char_count = db.get_character_count(&current_username);
-                let _ = send_login_ok(
-                    &mut socket,
-                    &crypt_engine,
-                    session_id,
-                    10000001,
-                    session_key1,
-                    &current_username,
-                )
-                .await;
-                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
                 let _ = send_server_list(
                     &mut socket,
                     &crypt_engine,
@@ -485,7 +475,7 @@ async fn handle_ncsoft_client(
                 // Register session in SQLite db so Game Server validates entry
                 let _ = db.issue_session(&current_username, session_key2);
 
-                // Send SM_PLAY_OK (Opcode 0x07 / 0x06)
+                // Send SM_PLAY_OK (Opcode 0x07)
                 let mut play_ok_raw = vec![0u8; 10];
                 play_ok_raw[0] = 0x07; // Opcode SM_PLAY_OK
                 play_ok_raw[1..5].copy_from_slice(&session_key1.to_le_bytes());
