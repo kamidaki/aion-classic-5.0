@@ -77,7 +77,7 @@ async fn handle_ncsoft_client(
     raw_init[9..137].copy_from_slice(scrambled_modulus);
     raw_init[148..164].copy_from_slice(&blowfish_key);
     raw_init[149..165].copy_from_slice(&blowfish_key);
-    raw_init[168] = 0x03; // Login Type: 0x03 (AUTHED_GG / Session Ready)
+    raw_init[168] = 0xFD; // Flag de ativacao do x64 / RSA Enable Flag
     raw_init[169..173].copy_from_slice(&[0x04, 0x05, 0x00, 0x00]); // Versao Classic 4.5
 
     let encrypted_init = crypt_engine.encrypt_init(&raw_init, blowfish_key);
