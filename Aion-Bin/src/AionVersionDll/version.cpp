@@ -133,19 +133,9 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
         }
     }
 
-    // 3. Also set the state variable to 3 (AUTHED_READY)
-    unsigned char* stateVar = base + 0x14BB6F8;
-    DWORD oldProt;
-    if (VirtualProtect(stateVar, 1, PAGE_EXECUTE_READWRITE, &oldProt)) {
-        *stateVar = 3;
-        VirtualProtect(stateVar, 1, oldProt, &oldProt);
-        if (logF) {
-            fprintf(logF, "[version.dll] SUCCESS: Set login state variable at %p to 3 (AUTHED_READY)!\n", stateVar);
-            fflush(logF);
-        }
-    }
-
-    // 4. NOP out socket guard jumps in 0x8439c0 (0x843E42 and 0x843E4B)
+    // 3. Socket Guard JEs NOP patch in 0x8439c0 (0x843E42 and 0x843E4B)
+    // game.dll contains two conditional jumps that discard outgoing packets (CM_AUTH_GG / CM_LOGIN)
+    // if the connected flag is not yet acknowledged. NOPing them ensures every packet is sent.
     unsigned char* je1 = base + 0x843E42;
     unsigned char* je2 = base + 0x843E4B;
     if (je1[0] == 0x74 && je2[0] == 0x74) {

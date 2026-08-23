@@ -8,6 +8,7 @@ pub enum UserEvent {
     ShowDashboard,
     HideDashboard,
     RequestShutdown,
+    ToggleFullscreen,
 }
 
 pub struct WebViewApp {
@@ -33,7 +34,7 @@ impl WebViewApp {
     ) {
         let window = WindowBuilder::new()
             .with_title("Aion Classic - Emulador Rust")
-            .with_inner_size(LogicalSize::new(1340.0, 860.0))
+            .with_inner_size(LogicalSize::new(1440.0, 900.0))
             .with_min_inner_size(LogicalSize::new(1024.0, 680.0))
             .build(&self.event_loop)
             .expect("Failed to build window");
@@ -60,6 +61,14 @@ impl WebViewApp {
                 }
                 Event::UserEvent(UserEvent::HideDashboard) => {
                     window.set_visible(false);
+                }
+                Event::UserEvent(UserEvent::ToggleFullscreen) => {
+                    let is_fs = window.fullscreen().is_some();
+                    if is_fs {
+                        window.set_fullscreen(None);
+                    } else {
+                        window.set_fullscreen(Some(tao::window::Fullscreen::Borderless(None)));
+                    }
                 }
                 Event::UserEvent(UserEvent::RequestShutdown) => {
                     let _ = std::fs::write("logs/exit_reason.log", "RequestShutdown received\n");

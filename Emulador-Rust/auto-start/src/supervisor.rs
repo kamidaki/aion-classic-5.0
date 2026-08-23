@@ -3,6 +3,7 @@ use crate::logs::LogCenter;
 use parking_lot::Mutex;
 use serde::Serialize;
 use std::collections::{HashMap, VecDeque};
+use std::net::UdpSocket;
 use std::process::Stdio;
 use std::sync::Arc;
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
@@ -11,7 +12,7 @@ use tokio::io::{AsyncBufReadExt, BufReader};
 use tokio::process::{Child, Command};
 
 const CREATE_NO_WINDOW: u32 = 0x08000000;
-const MAX_HISTORY_POINTS: usize = 60;
+const MAX_HISTORY_POINTS: usize = 120; // 2 minutes history at 1s intervals
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum ServerStatus {
@@ -44,7 +45,28 @@ pub struct HistoryPoint {
     pub login_cpu: f32,
     pub game_cpu: f32,
     pub chat_cpu: f32,
+    pub launcher_cpu: f32,
+    pub login_mem_mb: f32,
+    pub game_mem_mb: f32,
+    pub chat_mem_mb: f32,
+    pub launcher_mem_mb: f32,
     pub players_count: usize,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct SystemRegisters {
+    pub lan_ip: String,
+    pub external_url: String,
+    pub http_port: u16,
+    pub target_tps: u32,
+    pub active_db_size_kb: u64,
+    pub os_total_memory_mb: f32,
+    pub os_used_memory_mb: f32,
+    pub login_port: u16,
+    pub game_port: u16,
+    pub chat_port: u16,
+    pub sts_port: u16,
+    pub hq_port: u16,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -66,6 +88,7 @@ pub struct DashboardStateResponse {
     pub online_players: Vec<OnlinePlayerInfo>,
     pub online_count: usize,
     pub launcher_uptime_secs: u64,
+    pub registers: SystemRegisters,
 }
 
 struct ManagedServer {
@@ -87,10 +110,47 @@ pub struct Supervisor {
     system: Arc<Mutex<System>>,
     start_time: Instant,
     history: Arc<Mutex<VecDeque<HistoryPoint>>>,
+    launcher_pid: u32,
+}
+
+/// Discovers primary local LAN IPv4 address without external internet calls
+pub fn get_local_lan_ip() -> String {
+    if let Ok(socket) = UdpSocket::bind("0.0.0.0:0") {
+        if socket.connect("8.8.8.8:80").is_ok() {
+            if let Ok(addr) = socket.local_addr() {
+                return addr.ip().to_string();
+            }
+        }
+    }
+    "127.0.0.1".to_string()
+}
+
+/// Forcefully terminates lingering/orphan server processes from prior detached runs
+fn kill_lingering_processes(names: &[&str]) {
+    let mut sys = System::new_all();
+    sys.refresh_all();
+    let current_pid = std::process::id();
+    for (pid, process) in sys.processes() {
+        let p_name = process.name();
+        let pid_u32 = pid.as_u32();
+        if pid_u32 == current_pid {
+            continue;
+        }
+        for target in names {
+            let target_exe = format!("{}.exe", target);
+            if p_name.eq_ignore_ascii_case(target) || p_name.eq_ignore_ascii_case(&target_exe) {
+                println!("INFO: [Supervisor] Encerrou processo órfão anterior: {} (PID {})", p_name, pid_u32);
+                process.kill();
+            }
+        }
+    }
 }
 
 impl Supervisor {
     pub fn new(config: RootConfig, log_center: LogCenter) -> Self {
+        // Clean up any stale or orphan processes before starting
+        kill_lingering_processes(&["login-server", "game-server", "chat-server"]);
+
         let mut servers = HashMap::new();
 
         servers.insert(
@@ -136,8 +196,14 @@ impl Supervisor {
         );
 
         let system = System::new_with_specifics(
-            RefreshKind::new().with_processes(ProcessRefreshKind::new().with_cpu().with_memory()),
+            RefreshKind::new()
+                .with_processes(ProcessRefreshKind::new().with_cpu().with_memory())
+                .with_memory(sysinfo::MemoryRefreshKind::everything()),
         );
+
+        let launcher_pid = std::process::id();
+
+        log_center.push("launcher", &format!("Auto-Start EmuRust inicializado (PID {}, Porta HTTP {})", launcher_pid, config.launcher.gui.http_port));
 
         Self {
             servers: Arc::new(Mutex::new(servers)),
@@ -146,6 +212,7 @@ impl Supervisor {
             system: Arc::new(Mutex::new(system)),
             start_time: Instant::now(),
             history: Arc::new(Mutex::new(VecDeque::with_capacity(MAX_HISTORY_POINTS))),
+            launcher_pid,
         }
     }
 
@@ -163,6 +230,11 @@ impl Supervisor {
             (server.executable.clone(), name.to_string())
         };
 
+        // Guarantee no old orphan process of this executable remains running
+        let clean_name = exe.replace(".exe", "");
+        kill_lingering_processes(&[&clean_name]);
+        tokio::time::sleep(Duration::from_millis(150)).await;
+
         let log_center = self.log_center.clone();
         let exe_dir = std::env::current_exe()
             .ok()
@@ -178,7 +250,7 @@ impl Supervisor {
         match cmd.spawn() {
             Ok(mut child) => {
                 let pid = child.id();
-                log_center.push(&server_name, &format!("Serviço iniciado com PID {:?}", pid));
+                log_center.push(&server_name, &format!("Serviço iniciado com sucesso (PID {:?})", pid));
 
                 if let Some(stdout) = child.stdout.take() {
                     let lc = log_center.clone();
@@ -229,7 +301,7 @@ impl Supervisor {
     }
 
     pub async fn stop_server(&self, name: &str) -> Result<(), String> {
-        let child_opt = {
+        let (child_opt, pid_opt) = {
             let mut servers = self.servers.lock();
             let server = servers.get_mut(name).ok_or_else(|| "Server not found".to_string())?;
 
@@ -239,14 +311,24 @@ impl Supervisor {
 
             server.status = ServerStatus::Stopping;
             server.user_stopped = true;
+            let pid = server.pid;
+            let child = server.child.take();
             server.pid = None;
             server.start_time = None;
-            server.child.take()
+            (child, pid)
         };
 
         if let Some(mut child) = child_opt {
             let _ = child.kill().await;
-            self.log_center.push(name, "Serviço encerrado com sucesso.");
+            let _ = child.wait().await;
+            self.log_center.push(name, "Serviço encerrado ordenadamente.");
+        } else if let Some(pid) = pid_opt {
+            let mut sys = System::new_all();
+            sys.refresh_all();
+            if let Some(proc) = sys.process(Pid::from(pid as usize)) {
+                proc.kill();
+            }
+            self.log_center.push(name, "Serviço encerrado via PID.");
         }
 
         {
@@ -271,7 +353,7 @@ impl Supervisor {
         // 1. Stop Game Server first
         self.log_center.push("launcher", "Encerrando Game-Server...");
         let _ = self.stop_server("game").await;
-        tokio::time::sleep(Duration::from_millis(500)).await;
+        tokio::time::sleep(Duration::from_millis(400)).await;
 
         // 2. Stop Login Server second
         self.log_center.push("launcher", "Encerrando Login-Server...");
@@ -283,6 +365,9 @@ impl Supervisor {
         let _ = self.stop_server("chat").await;
         tokio::time::sleep(Duration::from_millis(300)).await;
 
+        // Ensure no lingering processes remain
+        kill_lingering_processes(&["login-server", "game-server", "chat-server"]);
+
         self.log_center.push("launcher", "Todos os servidores encerrados. Finalizando Auto-Start.");
     }
 
@@ -292,11 +377,12 @@ impl Supervisor {
             loop {
                 tokio::time::sleep(Duration::from_millis(1000)).await;
 
-                // 1. Refresh system processes
+                // 1. Refresh processes & memory
                 let mut sys = sup.system.lock();
                 sys.refresh_processes_specifics(
                     ProcessRefreshKind::new().with_cpu().with_memory(),
                 );
+                sys.refresh_memory();
 
                 let now_ts = chrono::Local::now().format("%H:%M:%S").to_string();
                 let mut total_cpu = 0.0f32;
@@ -304,6 +390,9 @@ impl Supervisor {
                 let mut l_cpu = 0.0f32;
                 let mut g_cpu = 0.0f32;
                 let mut c_cpu = 0.0f32;
+                let mut l_mem = 0.0f32;
+                let mut g_mem = 0.0f32;
+                let mut c_mem = 0.0f32;
 
                 {
                     let mut servers = sup.servers.lock();
@@ -315,9 +404,9 @@ impl Supervisor {
                                 total_cpu += cpu;
                                 total_mem += mem;
 
-                                if name == "login" { l_cpu = cpu; }
-                                else if name == "game" { g_cpu = cpu; }
-                                else if name == "chat" { c_cpu = cpu; }
+                                if name == "login" { l_cpu = cpu; l_mem = mem; }
+                                else if name == "game" { g_cpu = cpu; g_mem = mem; }
+                                else if name == "chat" { c_cpu = cpu; c_mem = mem; }
 
                                 s.cpu_history.push_back(cpu);
                                 if s.cpu_history.len() > MAX_HISTORY_POINTS {
@@ -328,10 +417,20 @@ impl Supervisor {
                     }
                 }
 
+                // Measure launcher's own resource footprint
+                let (launcher_cpu, launcher_mem) = if let Some(proc) = sys.process(Pid::from(sup.launcher_pid as usize)) {
+                    (proc.cpu_usage(), (proc.memory() as f32) / (1024.0 * 1024.0))
+                } else {
+                    (0.0, 0.0)
+                };
+
+                total_cpu += launcher_cpu;
+                total_mem += launcher_mem;
+
                 let players = sup.get_online_players();
                 let players_count = players.len();
 
-                // 2. Add history point
+                // 2. Add history point with individual breakdown
                 {
                     let mut hist = sup.history.lock();
                     hist.push_back(HistoryPoint {
@@ -341,6 +440,11 @@ impl Supervisor {
                         login_cpu: l_cpu,
                         game_cpu: g_cpu,
                         chat_cpu: c_cpu,
+                        launcher_cpu,
+                        login_mem_mb: l_mem,
+                        game_mem_mb: g_mem,
+                        chat_mem_mb: c_mem,
+                        launcher_mem_mb: launcher_mem,
                         players_count,
                     });
                     if hist.len() > MAX_HISTORY_POINTS {
@@ -411,9 +515,41 @@ impl Supervisor {
             });
         }
 
+        // Include launcher's own stats
+        let (launcher_cpu, launcher_mem) = if let Some(proc) = sys.process(Pid::from(self.launcher_pid as usize)) {
+            (proc.cpu_usage(), (proc.memory() as f32) / (1024.0 * 1024.0))
+        } else {
+            (0.0, 0.0)
+        };
+        total_cpu += launcher_cpu;
+        total_mem += launcher_mem;
+
         let history = self.history.lock().iter().cloned().collect();
         let online_players = self.get_online_players();
         let online_count = online_players.len();
+
+        let lan_ip = get_local_lan_ip();
+        let http_port = self.config.launcher.gui.http_port;
+        let external_url = format!("http://{}:{}", lan_ip, http_port);
+
+        let db_size = std::fs::metadata("aion.db").map(|m| m.len() / 1024).unwrap_or(0);
+        let os_total_mem = (sys.total_memory() as f32) / (1024.0 * 1024.0);
+        let os_used_mem = (sys.used_memory() as f32) / (1024.0 * 1024.0);
+
+        let registers = SystemRegisters {
+            lan_ip,
+            external_url,
+            http_port,
+            target_tps: 20,
+            active_db_size_kb: db_size,
+            os_total_memory_mb: os_total_mem,
+            os_used_memory_mb: os_used_mem,
+            login_port: 2106,
+            game_port: 7777,
+            chat_port: 10241,
+            sts_port: 6600,
+            hq_port: 13001,
+        };
 
         DashboardStateResponse {
             servers: servers_out,
@@ -423,6 +559,7 @@ impl Supervisor {
             online_players,
             online_count,
             launcher_uptime_secs: self.start_time.elapsed().as_secs(),
+            registers,
         }
     }
 
@@ -432,26 +569,30 @@ impl Supervisor {
 
         if let Ok(conn) = rusqlite::Connection::open_with_flags(
             db_path,
-            rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY | rusqlite::OpenFlags::SQLITE_OPEN_NO_MUTEX,
+            rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY | rusqlite::OpenFlags::SQLITE_OPEN_NO_MUTEX | rusqlite::OpenFlags::SQLITE_OPEN_SHARED_CACHE,
         ) {
+            let _ = conn.busy_timeout(Duration::from_millis(500));
             let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
+            let active_threshold = now - 900; // 15 minutes window
             
             let stmt = conn.prepare(
                 "SELECT s.token, s.username, s.issued_at, IFNULL(c.name, 'Nenhum') 
                  FROM sessions s 
                  LEFT JOIN accounts a ON a.username = s.username 
                  LEFT JOIN characters c ON c.account_id = a.id 
+                 WHERE s.issued_at > ?1 
                  ORDER BY s.issued_at DESC LIMIT 50"
             ).or_else(|_| {
                 conn.prepare(
                     "SELECT token, account_name, created_at, 'Personagem Ativo' 
                      FROM sessions 
+                     WHERE created_at > ?1 
                      ORDER BY created_at DESC LIMIT 50"
                 )
             });
 
             if let Ok(mut query) = stmt {
-                let rows = query.query_map([], |row| {
+                let rows = query.query_map([active_threshold], |row| {
                     let _token: String = row.get(0)?;
                     let username: String = row.get(1)?;
                     let created_at: i64 = row.get(2)?;

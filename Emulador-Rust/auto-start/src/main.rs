@@ -33,7 +33,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 
     // 1. Single Instance Protection via Named Mutex
-    let _instance_guard = match commons::single_instance::SingleInstanceGuard::acquire(
+    let _instance_guard = match commons::single_instance::SingleInstanceGuard::acquire_with_ui(
         "Auto-Start EmuRust",
         "Local\\EmuRust_AutoStart_Mutex",
     ) {
@@ -212,12 +212,22 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             });
 
+        // Route: POST /api/window/fullscreen -> Toggle Native Fullscreen
+        let proxy_fs = proxy_for_web.clone();
+        let fullscreen_route = warp::path!("api" / "window" / "fullscreen")
+            .and(warp::post())
+            .map(move || {
+                let _ = proxy_fs.send_event(UserEvent::ToggleFullscreen);
+                warp::reply::json(&serde_json::json!({ "status": "ok" }))
+            });
+
         let routes = index_route
             .or(metrics_route)
             .or(players_route)
             .or(logs_route)
             .or(control_route)
-            .or(shutdown_route);
+            .or(shutdown_route)
+            .or(fullscreen_route);
 
         let port = cfg_clone.launcher.gui.http_port;
         warp::serve(routes).run(([0, 0, 0, 0], port)).await;

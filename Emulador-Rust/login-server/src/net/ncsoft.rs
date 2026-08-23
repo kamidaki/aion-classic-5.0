@@ -70,15 +70,29 @@ async fn handle_ncsoft_client(
     let scrambled_modulus = rsa_manager.get_scrambled_modulus();
 
     // 1. Construct SM_INIT (192 bytes payload -> 194 bytes with header)
+    //
+    // Verified against game.dll disassembly:
+    //   [0x00]        opcode 0x00
+    //   [0x01..0x04]  session_id
+    //   [0x05..0x08]  protocol revision 0xC621 (checked at game.dll:0x842213)
+    //   [0x09..0x88]  scrambled RSA modulus (128 bytes, read at game.dll:0x84221E)
+    //   [0x89..0x93]  zeros (11 bytes padding)
+    //   [0x94..0xA3]  Blowfish session key (16 bytes = raw[148..164], read at game.dll:0x84222D!)
+    //   [0xA4..0xA7]  zeros (4 bytes)
+    //   [0xA8]        = raw[168] = 0x03 (RSA & GG enable flag, checked at game.dll:0x84231B)
+    //   [0xA9]        version major = 0x04 (read at game.dll:0x842329)
+    //   [0xAA]        version minor = 0x05 (read at game.dll:0x84233E)
     let mut raw_init = vec![0u8; 192];
     raw_init[0] = 0x00; // Opcode SM_INIT
     raw_init[1..5].copy_from_slice(&session_id.to_le_bytes());
     raw_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes()); // Protocol revision
     raw_init[9..137].copy_from_slice(scrambled_modulus);
+    // Blowfish key at offset 0x94 = index 148 (game.dll:0x84222D -> movups xmm0, [r8 + rdi + 0x94])
     raw_init[148..164].copy_from_slice(&blowfish_key);
-    raw_init[149..165].copy_from_slice(&blowfish_key);
-    raw_init[168] = 0xFD; // Flag de ativacao do x64 / RSA Enable Flag
-    raw_init[169..173].copy_from_slice(&[0x04, 0x05, 0x00, 0x00]); // Versao Classic 4.5
+    // CRITICAL: 0x03 enables CM_AUTH_GG path in game.dll:0x84231B
+    raw_init[168] = 0x03;
+    raw_init[169] = 0x04; // version major
+    raw_init[170] = 0x05; // version minor
 
     let encrypted_init = crypt_engine.encrypt_init(&raw_init, blowfish_key);
     let mut init_pkt = Vec::with_capacity(encrypted_init.len() + 2);
@@ -93,14 +107,11 @@ async fn handle_ncsoft_client(
         return;
     }
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_INIT (194 bytes) [SessionID: 0x{:08X}, Flag: 0xFD, Version: 4.5.0.0, Valid RSA 1024-bit]",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_INIT (194 bytes) [SessionID: 0x{:08X}, Flag: 0x03, Version: 4.5, BF@0x94]",
         session_id, session_id
     );
 
-    // Short pacing
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-
-    // 2. Construct SM_AUTH_GG (Opcode 0x0B, 46 bytes payload -> 58 bytes wire length)
+    // Prepare SM_AUTH_GG response template (Opcode 0x0B, 46 bytes payload -> 58 bytes wire length)
     let mut auth_gg_raw = vec![0u8; 46];
     auth_gg_raw[0] = 0x0B; // Opcode SM_AUTH_GG
     auth_gg_raw[1..5].copy_from_slice(&session_id.to_le_bytes());
@@ -109,18 +120,6 @@ async fn handle_ncsoft_client(
     let mut auth_gg_pkt = Vec::with_capacity(encrypted_auth_gg.len() + 2);
     auth_gg_pkt.extend_from_slice(&((encrypted_auth_gg.len() + 2) as u16).to_le_bytes());
     auth_gg_pkt.extend_from_slice(&encrypted_auth_gg);
-
-    if let Err(e) = socket.write_all(&auth_gg_pkt).await {
-        eprintln!(
-            "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_AUTH_GG: {}",
-            session_id, e
-        );
-        return;
-    }
-    println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG (Opcode 0x0B, {} bytes)",
-        session_id, auth_gg_pkt.len()
-    );
 
     let mut current_username = default_user.clone();
     let mut account_id = 1u32;
@@ -229,7 +228,7 @@ async fn handle_ncsoft_client(
     }
 
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready (SM_INIT + SM_AUTH_GG). Awaiting client credentials (CM_LOGIN)...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT sent. Awaiting CM_AUTH_GG (Opcode 0x07) from client...",
         session_id
     );
 

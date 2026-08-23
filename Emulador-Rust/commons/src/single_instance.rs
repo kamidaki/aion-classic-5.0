@@ -12,10 +12,17 @@ unsafe impl Send for SingleInstanceGuard {}
 unsafe impl Sync for SingleInstanceGuard {}
 
 impl SingleInstanceGuard {
-    /// Attempts to acquire an exclusive named OS mutex.
-    /// If another instance already holds the mutex, shows a warning MessageBox,
-    /// logs the event, and returns None.
+    /// Attempts to acquire an exclusive named OS mutex quietly without blocking UI popups.
     pub fn acquire(app_name: &str, mutex_name: &str) -> Option<Self> {
+        Self::acquire_internal(app_name, mutex_name, false)
+    }
+
+    /// Attempts to acquire an exclusive named OS mutex and displays a Windows warning MessageBox if duplicate.
+    pub fn acquire_with_ui(app_name: &str, mutex_name: &str) -> Option<Self> {
+        Self::acquire_internal(app_name, mutex_name, true)
+    }
+
+    fn acquire_internal(app_name: &str, mutex_name: &str, show_ui: bool) -> Option<Self> {
         unsafe {
             SetLastError(0);
             let wide_name: Vec<u16> = mutex_name.encode_utf16().chain(std::iter::once(0)).collect();
@@ -32,19 +39,21 @@ impl SingleInstanceGuard {
                     app_name
                 );
 
-                let title: Vec<u16> = "Emulador Rust\0".encode_utf16().collect();
-                let msg_text = format!(
-                    "Este aplicativo já está em execução.\n\nUma instância do Emulador Rust ({}) já está aberta.",
-                    app_name
-                );
-                let msg: Vec<u16> = msg_text.encode_utf16().chain(std::iter::once(0)).collect();
+                if show_ui {
+                    let title: Vec<u16> = "Emulador Rust\0".encode_utf16().collect();
+                    let msg_text = format!(
+                        "Este aplicativo já está em execução.\n\nUma instância do Emulador Rust ({}) já está aberta.",
+                        app_name
+                    );
+                    let msg: Vec<u16> = msg_text.encode_utf16().chain(std::iter::once(0)).collect();
 
-                MessageBoxW(
-                    0,
-                    msg.as_ptr(),
-                    title.as_ptr(),
-                    MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST,
-                );
+                    MessageBoxW(
+                        0,
+                        msg.as_ptr(),
+                        title.as_ptr(),
+                        MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST,
+                    );
+                }
 
                 CloseHandle(handle);
                 return None;
