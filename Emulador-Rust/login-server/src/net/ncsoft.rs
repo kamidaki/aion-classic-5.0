@@ -46,6 +46,13 @@ pub async fn run_ncsoft_server(
     }
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+enum ConnectionState {
+    Connected,
+    AuthedGg,
+    AuthedLogin,
+}
+
 async fn handle_ncsoft_client(
     mut socket: TcpStream,
     addr: std::net::SocketAddr,
@@ -70,37 +77,35 @@ async fn handle_ncsoft_client(
     let mut crypt_engine = LoginCryptEngine::new();
     let rsa_manager = RsaManager::new();
 
-    let blowfish_key: [u8; 16] = [
-        0x6b, 0x60, 0xcb, 0x5b, 0x82, 0xce, 0x90, 0xb1,
-        0xcc, 0x2b, 0x6c, 0x55, 0x6c, 0x6c, 0x6c, 0x6c,
-    ];
+    // Generate random 16-byte Blowfish session key
+    let mut blowfish_key = [0u8; 16];
+    rand::Rng::fill(&mut rand::thread_rng(), &mut blowfish_key[..]);
 
     let scrambled_modulus = rsa_manager.get_scrambled_modulus();
 
-    // 1. Construct SM_INIT (192 bytes payload -> 194 bytes with header)
-    //
-    // Verified against game.dll disassembly:
-    //   [0x00]        opcode 0x00
-    //   [0x01..0x04]  session_id
-    //   [0x05..0x08]  protocol revision 0xC621 (checked at game.dll:0x842213)
-    //   [0x09..0x88]  scrambled RSA modulus (128 bytes, read at game.dll:0x84221E)
-    //   [0x89..0x93]  zeros (11 bytes padding)
-    //   [0x94..0xA3]  Blowfish session key (16 bytes = raw[148..164], read at game.dll:0x84222D!)
-    //   [0xA4..0xA7]  zeros (4 bytes)
-    //   [0xA8]        = raw[168] = 0x03 (RSA & GG enable flag, checked at game.dll:0x84231B)
-    //   [0xA9]        version major = 0x04 (read at game.dll:0x842329)
-    //   [0xAA]        version minor = 0x05 (read at game.dll:0x84233E)
+    // =========================================================================
+    // 1. Construct SM_INIT (Java 2.4 Classic EU standard format)
+    // =========================================================================
+    // Payload layout:
+    // [0x00]        0x00 (Opcode SM_INIT)
+    // [0x01..0x05]  session_id (u32 LE)
+    // [0x05..0x09]  0x0000C621 (Protocol revision u32 LE)
+    // [0x09..0x89]  scrambled_modulus (128 bytes RSA modulus)
+    // [0x89..0x99]  zeros (16 bytes = 4 * writeD(0))
+    // [0x99..0xA9]  blowfish_key (16 bytes session key)
+    // [0xA9..0xAD]  197635 (0x00030403 u32 LE) -> Flag: 0x03, Ver: 4.3
+    // [0xAD..0xB1]  2097152 (0x00200000 u32 LE)
+    // [0xB1..0xC0]  zeros (15 bytes padding to 192 bytes)
+    // =========================================================================
     let mut raw_init = vec![0u8; 192];
     raw_init[0] = 0x00; // Opcode SM_INIT
     raw_init[1..5].copy_from_slice(&session_id.to_le_bytes());
-    raw_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes()); // Protocol revision
+    raw_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes());
     raw_init[9..137].copy_from_slice(scrambled_modulus);
-    // Blowfish key at offset 0x94 = index 148 (game.dll:0x84222D -> movups xmm0, [r8 + rdi + 0x94])
-    raw_init[148..164].copy_from_slice(&blowfish_key);
-    // CRITICAL: 0x03 enables CM_AUTH_GG path in game.dll:0x84231B
-    raw_init[168] = 0x03;
-    raw_init[169] = 0x04; // version major
-    raw_init[170] = 0x05; // version minor
+    // raw_init[137..153] is 16 bytes zeros
+    raw_init[153..169].copy_from_slice(&blowfish_key);
+    raw_init[169..173].copy_from_slice(&197635u32.to_le_bytes());
+    raw_init[173..177].copy_from_slice(&2097152u32.to_le_bytes());
 
     let encrypted_init = crypt_engine.encrypt_init(&raw_init, blowfish_key);
     let mut init_pkt = Vec::with_capacity(encrypted_init.len() + 2);
@@ -115,47 +120,59 @@ async fn handle_ncsoft_client(
         return;
     }
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_INIT (194 bytes) [SessionID: 0x{:08X}, Flag: 0x03, Version: 4.5, BF@0x94]",
-        session_id, session_id
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_INIT (194 bytes wire size)",
+        session_id
     );
 
-    // Prepare SM_AUTH_GG response template (Opcode 0x0B, 46 bytes payload -> 58 bytes wire length)
-    let mut auth_gg_raw = vec![0u8; 46];
-    auth_gg_raw[0] = 0x0B; // Opcode SM_AUTH_GG
-    auth_gg_raw[1..5].copy_from_slice(&session_id.to_le_bytes());
+    // =========================================================================
+    // Helper closures for server responses
+    // =========================================================================
 
-    let encrypted_auth_gg = crypt_engine.encrypt_packet(&auth_gg_raw);
-    let mut auth_gg_pkt = Vec::with_capacity(encrypted_auth_gg.len() + 2);
-    auth_gg_pkt.extend_from_slice(&((encrypted_auth_gg.len() + 2) as u16).to_le_bytes());
-    auth_gg_pkt.extend_from_slice(&encrypted_auth_gg);
+    // SM_AUTH_GG (Opcode 0x0B, 40 bytes unencrypted payload)
+    async fn send_auth_gg(
+        socket: &mut TcpStream,
+        crypt_engine: &LoginCryptEngine,
+        session_id: u32,
+    ) -> Result<(), std::io::Error> {
+        let mut raw = vec![0u8; 40];
+        raw[0] = 0x0B; // Opcode SM_AUTH_GG
+        raw[1..5].copy_from_slice(&session_id.to_le_bytes());
+        // raw[5..21] is 4 * writeD(0) (16 bytes zeros)
+        // raw[21..40] is 19 bytes zeros
+        let enc = crypt_engine.encrypt_packet(&raw);
+        let mut pkt = Vec::with_capacity(enc.len() + 2);
+        pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+        pkt.extend_from_slice(&enc);
+        socket.write_all(&pkt).await?;
+        println!(
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG (50 bytes wire size)",
+            session_id
+        );
+        Ok(())
+    }
 
-    let mut current_username = default_user.clone();
-    let mut account_id = 1u32;
-
-    let session_key1: u32 = 0x026edf39;
-    let session_key2: u32 = rand::random();
-
-    // Helper closure to build and send SM_LOGIN_OK
+    // SM_LOGIN_OK (Opcode 0x03, 68 bytes unencrypted payload)
     async fn send_login_ok(
         socket: &mut TcpStream,
         crypt_engine: &LoginCryptEngine,
         session_id: u32,
         account_id: u32,
-        session_key1: u32,
+        login_ok: u32,
         username: &str,
     ) -> Result<(), std::io::Error> {
-        let mut raw = vec![0u8; 78];
+        let mut raw = vec![0u8; 68];
         raw[0] = 0x03; // Opcode SM_LOGIN_OK
-        raw[1..5].copy_from_slice(&account_id.to_le_bytes()); // offset 0x00 in body
-        raw[5..9].copy_from_slice(&session_key1.to_le_bytes()); // offset 0x04 in body
-        raw[17..21].copy_from_slice(&0x0000003Fu32.to_le_bytes()); // offset 0x10: Account Flags (0x3F)
-        raw[21..25].copy_from_slice(&0x0000003Fu32.to_le_bytes());
-        raw[25..29].copy_from_slice(&0x0000003Fu32.to_le_bytes());
-        raw[29..33].copy_from_slice(&0x0000003Fu32.to_le_bytes());
-        raw[33] = 0xFF; // offset 0x20 in body: Magic Classic Signature
-        raw[34] = 0xFE; // offset 0x21 in body: Magic Classic Signature
-        raw[49..53].copy_from_slice(&0x00000001u32.to_le_bytes()); // offset 0x30 in body: TOS agreement = 1
-        // raw[53..78] is trailing zero padding (25 bytes)
+        raw[1..5].copy_from_slice(&account_id.to_le_bytes());
+        raw[5..9].copy_from_slice(&login_ok.to_le_bytes());
+        // raw[9..17] is 2 * writeD(0) (8 bytes zeros)
+        raw[17..21].copy_from_slice(&1002u32.to_le_bytes());
+        // Hex bytes: E4C85FEB000000000000000000000000000000000000000000000000000000004E5464454D6A52424F6A59ACC02BB3314F446C (47 bytes)
+        let magic_hex: [u8; 47] = [
+            0xE4, 0xC8, 0x5F, 0xEB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x4E, 0x54, 0x64, 0x45, 0x4D, 0x6A, 0x52, 0x42, 0x4F, 0x6A, 0x59, 0xAC, 0xC0, 0x2B, 0xB3,
+        ];
+        raw[21..68].copy_from_slice(&magic_hex);
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
@@ -164,13 +181,13 @@ async fn handle_ncsoft_client(
 
         socket.write_all(&pkt).await?;
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK (78 bytes, Account: '{}', ID: {}, Flags: 0x3F, TOS: 1)",
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK (74 bytes wire size, Account: '{}', ID: {})",
             session_id, username, account_id
         );
         Ok(())
     }
 
-    // Helper closure to build and send SM_SERVER_LIST
+    // SM_SERVER_LIST (Opcode 0x04)
     async fn send_server_list(
         socket: &mut TcpStream,
         crypt_engine: &LoginCryptEngine,
@@ -182,8 +199,8 @@ async fn handle_ncsoft_client(
     ) -> Result<(), std::io::Error> {
         let mut raw = Vec::new();
         raw.push(0x04); // Opcode SM_SERVER_LIST
-        raw.push(3);    // 3 servers
-        raw.push(default_server_id);    // Last server ID
+        raw.push(1);    // 1 Server in list
+        raw.push(default_server_id); // Last server ID
 
         let ip_parts: Vec<u8> = announce_ip
             .split('.')
@@ -195,32 +212,32 @@ async fn handle_ncsoft_client(
             [127, 0, 0, 1]
         };
 
-        let servers = [
-            (1u8, 2u8), // Server 1: Atreia (Bracket 2 - Classic EU)
-            (2u8, 1u8), // Server 2: Tahabata (Bracket 1 - NA)
-            (3u8, 0u8), // Server 3: Universal (Bracket 0)
-        ];
+        // Server 1 entry
+        raw.push(default_server_id); // Server ID (1)
+        raw.extend_from_slice(&ip_arr); // Server IP (4 bytes)
+        raw.extend_from_slice(&(announce_port as u32).to_le_bytes()); // Port (4 bytes)
+        raw.push(0); // Age limit = 0
+        raw.push(1); // PvP = 1
+        raw.extend_from_slice(&0u16.to_le_bytes()); // Current players = 0
+        raw.extend_from_slice(&1000u16.to_le_bytes()); // Max players = 1000
+        raw.push(1); // Server Status Up = 1
+        raw.push(0); // Brackets = 0
+        raw.extend_from_slice(&4u32.to_le_bytes()); // ServerBits: 4 (Classic)
 
-        for &(id, bracket) in &servers {
-            let mut srv = [0u8; 21];
-            srv[0] = id; // Server ID
-            srv[1..5].copy_from_slice(&ip_arr); // Server IP
-            srv[5..9].copy_from_slice(&(announce_port as u32).to_le_bytes()); // Port (7777)
-            srv[9] = 0; // Age limit
-            srv[10] = 1; // PvP
-            srv[11..13].copy_from_slice(&0u16.to_le_bytes()); // Online count
-            srv[13..15].copy_from_slice(&1000u16.to_le_bytes()); // Max count
-            srv[15] = 1; // Status Online (1)
-            srv[16..20].copy_from_slice(&0x00000401u32.to_le_bytes()); // ServerBits: Bit 10 = Classic (0x0401)
-            srv[20] = bracket; // Bracket (2 = Classic EU)
-            raw.extend_from_slice(&srv);
+        // Character count section
+        let max_id = default_server_id as u16;
+        raw.extend_from_slice(&(max_id + 1).to_le_bytes());
+        raw.push(0x01);
+
+        for i in 1..=max_id {
+            if i == (default_server_id as u16) {
+                raw.push(char_count);
+            } else {
+                raw.push(0);
+            }
         }
-
-        // Character counts section (3 servers)
-        raw.extend_from_slice(&3u16.to_le_bytes());
-        raw.push(char_count); // Server 1 char count
-        raw.push(0);          // Server 2 char count
-        raw.push(0);          // Server 3 char count
+        // 15 bytes Classic NA/EU padding
+        raw.extend_from_slice(&[0u8; 15]);
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
@@ -229,32 +246,51 @@ async fn handle_ncsoft_client(
 
         socket.write_all(&pkt).await?;
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_SERVER_LIST (Opcode 0x04, 3 Servers, Target: {}:{}, Chars: {})",
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_SERVER_LIST (Opcode 0x04, Target: {}:{}, Chars: {})",
             session_id, announce_ip, announce_port, char_count
         );
         Ok(())
     }
 
-    // Proactively send SM_AUTH_GG to unblock client UI
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-    if let Err(e) = socket.write_all(&auth_gg_pkt).await {
-        eprintln!(
-            "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_AUTH_GG: {}",
-            session_id, e
+    // SM_PLAY_OK (Opcode 0x07, 24 bytes unencrypted payload)
+    async fn send_play_ok(
+        socket: &mut TcpStream,
+        crypt_engine: &LoginCryptEngine,
+        session_id: u32,
+        play_ok1: u32,
+        play_ok2: u32,
+        server_id: u8,
+    ) -> Result<(), std::io::Error> {
+        let mut raw = vec![0u8; 24];
+        raw[0] = 0x07; // Opcode SM_PLAY_OK
+        raw[1..5].copy_from_slice(&play_ok1.to_le_bytes());
+        raw[5..9].copy_from_slice(&play_ok2.to_le_bytes());
+        raw[9] = server_id;
+        // raw[10..24] is 14 bytes zeros
+
+        let enc = crypt_engine.encrypt_packet(&raw);
+        let mut pkt = Vec::with_capacity(enc.len() + 2);
+        pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+        pkt.extend_from_slice(&enc);
+
+        socket.write_all(&pkt).await?;
+        println!(
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_PLAY_OK (Opcode 0x07, PlayOk1: 0x{:08X}, PlayOk2: 0x{:08X}, ServerID: {})",
+            session_id, play_ok1, play_ok2, server_id
         );
-        return;
+        Ok(())
     }
-    println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG (Opcode 0x0B, {} bytes)",
-        session_id, auth_gg_pkt.len()
-    );
 
-    println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready. Awaiting user credentials (CM_LOGIN)...",
-        session_id
-    );
+    let mut state = ConnectionState::Connected;
+    let mut current_username = default_user.clone();
+    let mut account_id = 1u32;
+    let login_ok: u32 = 0x026edf39;
+    let play_ok1: u32 = 0x026edf39;
+    let play_ok2: u32 = rand::random();
 
-    // Packet reception loop
+    // =========================================================================
+    // 2. Packet Reception Loop
+    // =========================================================================
     let mut header_buf = [0u8; 2];
     loop {
         match socket.read_exact(&mut header_buf).await {
@@ -293,44 +329,49 @@ async fn handle_ncsoft_client(
             session_id, pkt_len, raw_hex.trim()
         );
 
-        // Decrypt with Blowfish session/static key
+        // Decrypt with Blowfish session key
         let mut dec_payload = payload.clone();
         let decrypted = crypt_engine.decrypt_packet(&mut dec_payload);
-        
         let active_buf = if decrypted {
             &dec_payload
-        } else if payload.len() >= 1 && (payload[0] == 0x00 || payload[0] == 0x02 || payload[0] == 0x07 || payload[0] == 0x05 || payload[0] == 0x08 || payload[0] == 0x0B || payload[0] == 0x0A || payload[0] == 0x0C) {
-            &payload
         } else {
-            &dec_payload
+            &payload
         };
 
         let opcode = if !active_buf.is_empty() { active_buf[0] } else { 0xFF };
         let active_hex: String = active_buf.iter().take(16).map(|b| format!("{:02X} ", b)).collect();
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- Opcode 0x{:02X} (Decrypted: {}, Len: {} bytes, Raw: {}...)",
-            session_id, opcode, decrypted, active_buf.len(), active_hex.trim()
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- Opcode 0x{:02X} (State: {:?}, Decrypted: {}, Len: {} bytes, Body: {}...)",
+            session_id, opcode, state, decrypted, active_buf.len(), active_hex.trim()
         );
 
         match opcode {
             0x07 => {
                 // CM_AUTH_GG
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_AUTH_GG] GameGuard verification keepalive",
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_AUTH_GG] GameGuard handshake request",
                     session_id
                 );
-                let _ = socket.write_all(&auth_gg_pkt).await;
+                state = ConnectionState::AuthedGg;
+                let _ = send_auth_gg(&mut socket, &crypt_engine, session_id).await;
             }
-            0x00 | 0x08 | 0x0B => {
-                // CM_LOGIN (Credentials packet)
+            0x08 => {
+                // CM_UPDATE_SESSION
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_UPDATE_SESSION]",
+                    session_id
+                );
+            }
+            0x0B | 0x12 | 0x00 => {
+                // CM_LOGIN (Opcode 0x0B) / CM_NP_LOGIN (Opcode 0x12)
                 println!(
                     "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X}, {} bytes)",
                     session_id, opcode, active_buf.len()
                 );
 
-                // Multi-offset RSA scanning for 128-byte encrypted credentials
                 let mut resolved_user = None;
-                for &offset in &[1, 4, 8, 12, 0] {
+                // Scan for 128-byte RSA block at common offsets
+                for &offset in &[1, 4, 5, 8, 12, 0] {
                     if active_buf.len() >= offset + 128 {
                         if let Some((user, pass)) = rsa_manager.decrypt_credentials(&active_buf[offset..offset + 128]) {
                             if !user.is_empty() && user.chars().all(|c| c.is_ascii_graphic() || c == ' ') {
@@ -345,9 +386,8 @@ async fn handle_ncsoft_client(
                     }
                 }
 
-                // If not found in active_buf and active_buf was dec_payload, also scan raw payload
                 if resolved_user.is_none() && decrypted {
-                    for &offset in &[1, 4, 8, 12, 0] {
+                    for &offset in &[1, 4, 5, 8, 12, 0] {
                         if payload.len() >= offset + 128 {
                             if let Some((user, pass)) = rsa_manager.decrypt_credentials(&payload[offset..offset + 128]) {
                                 if !user.is_empty() && user.chars().all(|c| c.is_ascii_graphic() || c == ' ') {
@@ -380,33 +420,21 @@ async fn handle_ncsoft_client(
                     session_id, current_username, account_id, auto_create
                 );
 
-                let char_count = db.get_character_count(&current_username);
+                state = ConnectionState::AuthedLogin;
                 let _ = send_login_ok(
                     &mut socket,
                     &crypt_engine,
                     session_id,
                     account_id,
-                    session_key1,
+                    login_ok,
                     &current_username,
-                )
-                .await;
-
-                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-                let _ = send_server_list(
-                    &mut socket,
-                    &crypt_engine,
-                    session_id,
-                    &announce_ip,
-                    announce_port,
-                    default_server_id,
-                    char_count,
                 )
                 .await;
             }
             0x05 => {
-                // CM_SERVER_LIST request
+                // CM_SERVER_LIST
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_SERVER_LIST] Refresh server list request",
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_SERVER_LIST] Requesting Server List",
                     session_id
                 );
                 let char_count = db.get_character_count(&current_username);
@@ -421,37 +449,11 @@ async fn handle_ncsoft_client(
                 )
                 .await;
             }
-            0x0A | 0x0C => {
-                // CM_TOS_AGREE / CM_USER_AGREEMENT
-                println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_TOS_AGREE] User Agreement accepted by '{}'",
-                    session_id, current_username
-                );
-                let char_count = db.get_character_count(&current_username);
-                let _ = send_login_ok(
-                    &mut socket,
-                    &crypt_engine,
-                    session_id,
-                    account_id,
-                    session_key1,
-                    &current_username,
-                )
-                .await;
-                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-                let _ = send_server_list(
-                    &mut socket,
-                    &crypt_engine,
-                    session_id,
-                    &announce_ip,
-                    announce_port,
-                    default_server_id,
-                    char_count,
-                )
-                .await;
-            }
             0x02 => {
-                // CM_PLAY / CM_SERVER_SELECT
-                let selected_id = if active_buf.len() > 1 && active_buf[1] > 0 {
+                // CM_PLAY
+                let selected_id = if active_buf.len() > 8 && active_buf[8] > 0 {
+                    active_buf[8]
+                } else if active_buf.len() > 1 && active_buf[1] > 0 {
                     active_buf[1]
                 } else {
                     default_server_id
@@ -462,38 +464,23 @@ async fn handle_ncsoft_client(
                     session_id, selected_id, current_username
                 );
 
-                // Register session in SQLite db so Game Server validates entry
-                let _ = db.issue_session(account_id, &current_username, session_key2);
+                // Register session in SQLite db for GameServer validation
+                let _ = db.issue_session(account_id, &current_username, play_ok2);
 
-                // Send SM_PLAY_OK (Opcode 0x07 / 0x06)
-                let mut play_ok_raw = vec![0u8; 10];
-                play_ok_raw[0] = 0x07; // Opcode SM_PLAY_OK
-                play_ok_raw[1..5].copy_from_slice(&session_key1.to_le_bytes());
-                play_ok_raw[5..9].copy_from_slice(&session_key2.to_le_bytes());
-                play_ok_raw[9] = selected_id;
-
-                let enc = crypt_engine.encrypt_packet(&play_ok_raw);
-                let mut pkt = Vec::with_capacity(enc.len() + 2);
-                pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
-                pkt.extend_from_slice(&enc);
-
-                if let Err(e) = socket.write_all(&pkt).await {
-                    eprintln!(
-                        "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_PLAY_OK: {}",
-                        session_id, e
-                    );
-                    break;
-                }
-
-                println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_PLAY_OK (Opcode 0x07, SessionKey1: 0x{:08X}, SessionKey2: 0x{:08X}, ServerID: {}). Handshake Complete!",
-                    session_id, session_key1, session_key2, selected_id
-                );
+                let _ = send_play_ok(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    play_ok1,
+                    play_ok2,
+                    selected_id,
+                )
+                .await;
             }
             _ => {
                 println!(
-                    "WARN: [LoginServer-NCSoft] [SESSION-{:08X}] Unhandled opcode 0x{:02X} (Payload len: {} bytes)",
-                    session_id, opcode, dec_payload.len()
+                    "WARN: [LoginServer-NCSoft] [SESSION-{:08X}] Unhandled opcode 0x{:02X} (Len: {} bytes)",
+                    session_id, opcode, active_buf.len()
                 );
             }
         }

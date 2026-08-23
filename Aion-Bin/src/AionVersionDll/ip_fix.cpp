@@ -8,16 +8,24 @@
 static decltype(connect)* real_connect = connect;
 static int WSAAPI zzconnect(_In_ SOCKET s, _In_reads_bytes_(namelen) const struct sockaddr FAR* name, _In_ int namelen) {
     if (name && namelen >= sizeof(sockaddr_in)) {
-        const sockaddr_in* sin = (const sockaddr_in*)name;
+        sockaddr_in sin = *(const sockaddr_in*)name;
         char ipBuf[64] = {0};
-        strcpy_s(ipBuf, inet_ntoa(sin->sin_addr));
-        u_short port = ntohs(sin->sin_port);
+        strcpy_s(ipBuf, inet_ntoa(sin.sin_addr));
+        u_short port = ntohs(sin.sin_port);
+
+        // If client connects to loopback and port is not GameServer(7777) or ChatServer(10241), ensure port 2106
+        if ((strcmp(ipBuf, "127.0.0.1") == 0 || strcmp(ipBuf, "0.0.0.0") == 0) && port != 7777 && port != 10241 && port != 2106) {
+            port = 2106;
+            sin.sin_port = htons(2106);
+        }
+
         FILE* logF = nullptr;
         fopen_s(&logF, "version_hook.log", "a");
         if (logF) {
             fprintf(logF, "[version.dll] connect(socket=%llu, IP=%s, Port=%u)\n", (unsigned long long)s, ipBuf, port);
             fclose(logF);
         }
+        return real_connect(s, (const sockaddr*)&sin, sizeof(sin));
     }
     return real_connect(s, name, namelen);
 }

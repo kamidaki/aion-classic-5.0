@@ -1,3 +1,5 @@
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#include <winsock2.h>
 #include "exports.h"
 #include <stdio.h>
 #include "detours.h"
@@ -48,6 +50,20 @@ void InstallIpFix();
 void InstallShaderFix();
 void Install64BitStackFix();
 
+typedef void (*Fn_SubmitCredentials)(void* pThis, const wchar_t* username, const wchar_t* password, int flag);
+static Fn_SubmitCredentials real_SubmitCredentials = nullptr;
+
+static void hooked_SubmitCredentials(void* pThis, const wchar_t* username, const wchar_t* password, int flag) {
+    FILE* logF = nullptr;
+    fopen_s(&logF, "version_hook.log", "a");
+    if (logF) {
+        fprintf(logF, "[version.dll] >>> HOOK: SubmitCredentials(this=%p, user='%ls', flag=%d)\n",
+            pThis, username ? username : L"(null)", flag);
+        fclose(logF);
+    }
+    real_SubmitCredentials(pThis, username, password, flag);
+}
+
 static DWORD WINAPI LoginPatchThread(LPVOID) {
     FILE* logF = nullptr;
     fopen_s(&logF, "version_hook.log", "a");
@@ -78,6 +94,12 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
 
     bool patched = false;
     unsigned char* base = (unsigned char*)hGame;
+
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
+    real_SubmitCredentials = (Fn_SubmitCredentials)(base + 0x1419C0);
+    DetourAttach(&(PVOID&)real_SubmitCredentials, hooked_SubmitCredentials);
+    DetourTransactionCommit();
 
     // 1. Patch Login Button JNE at 0x15A125 (6 bytes)
     unsigned char* directTarget = base + 0x15A125;
@@ -178,6 +200,38 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
             FlushInstructionCache(GetCurrentProcess(), sendGate2, 2);
             if (logF) {
                 fprintf(logF, "[version.dll] SUCCESS: Patched Socket Send Gate at %p (0x88F26C) with NOPs!\n", sendGate2);
+                fflush(logF);
+            }
+        }
+    }
+
+    // 5. Direct Login Gate at 0x12247E (74 33 -> EB 33)
+    // Forces the client to take the direct credentials extraction path instead of the GF STS path
+    unsigned char* directLoginGate = base + 0x12247E;
+    if (directLoginGate[0] == 0x74 && directLoginGate[1] == 0x33) {
+        DWORD oldP;
+        if (VirtualProtect(directLoginGate, 2, PAGE_EXECUTE_READWRITE, &oldP)) {
+            directLoginGate[0] = 0xEB; // JMP short 0x1224B3
+            VirtualProtect(directLoginGate, 2, oldP, &oldP);
+            FlushInstructionCache(GetCurrentProcess(), directLoginGate, 2);
+            if (logF) {
+                fprintf(logF, "[version.dll] SUCCESS: Patched Direct Login Gate at %p (0x12247E) to unconditional JMP!\n", directLoginGate);
+                fflush(logF);
+            }
+        }
+    }
+
+    // 6. Direct Credentials Extraction Gate at 0x122515 (0F 84 74 01 00 00 -> 6 NOPs)
+    // Prevents jumping to the legacy server table check and forces direct extraction of account & password
+    unsigned char* extractGate = base + 0x122515;
+    if (extractGate[0] == 0x0F && extractGate[1] == 0x84) {
+        DWORD oldP;
+        if (VirtualProtect(extractGate, 6, PAGE_EXECUTE_READWRITE, &oldP)) {
+            memset(extractGate, 0x90, 6);
+            VirtualProtect(extractGate, 6, oldP, &oldP);
+            FlushInstructionCache(GetCurrentProcess(), extractGate, 6);
+            if (logF) {
+                fprintf(logF, "[version.dll] SUCCESS: Patched Direct Credentials Extraction Gate at %p (0x122515) with NOPs!\n", extractGate);
                 fflush(logF);
             }
         }
