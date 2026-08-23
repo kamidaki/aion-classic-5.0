@@ -241,35 +241,8 @@ async fn handle_ncsoft_client(
         session_id, auth_gg_pkt.len()
     );
 
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-
-    // Send initial pre-login state (SM_LOGIN_OK + SM_SERVER_LIST) so client immediately activates
-    let char_count = db.get_character_count(&current_username);
-    let _ = send_login_ok(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        account_id,
-        session_key1,
-        &current_username,
-    )
-    .await;
-
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-
-    let _ = send_server_list(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        &announce_ip,
-        announce_port,
-        default_server_id,
-        char_count,
-    )
-    .await;
-
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready. Listening for client requests (CM_LOGIN, CM_PLAY, CM_TOS_AGREE)...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready. Awaiting user credentials (CM_LOGIN)...",
         session_id
     );
 
