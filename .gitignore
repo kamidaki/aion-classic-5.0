@@ -50,8 +50,11 @@ dist/*.zip
 replay.bin
 myls.properties
 **/client_raw/
-Produto Final/data/client/
-**/data/client/
-data/client/
+Produto Final/data/client/*
+!Produto Final/data/client/README.md
+**/data/client/*
+!**/data/client/README.md
+data/client/*
+!data/client/README.md
 
 
