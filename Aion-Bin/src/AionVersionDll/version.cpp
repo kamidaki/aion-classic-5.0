@@ -48,18 +48,38 @@ void InstallIpFix();
 void InstallShaderFix();
 void Install64BitStackFix();
 
-static bool s_loginFixInstalled = false;
+static DWORD WINAPI LoginPatchThread(LPVOID) {
+    FILE* logF = nullptr;
+    fopen_s(&logF, "version_hook.log", "a");
+    if (logF) {
+        fprintf(logF, "[version.dll] LoginPatchThread started.\n");
+        fflush(logF);
+    }
 
-static void InstallLoginButtonFix() {
-    HMODULE hGame = GetModuleHandle(L"game.dll");
+    HMODULE hGame = nullptr;
+    for (int i = 0; i < 200; i++) {
+        hGame = GetModuleHandle(L"game.dll");
+        if (hGame) break;
+        Sleep(50);
+    }
+
     if (!hGame) {
-        return;
+        if (logF) {
+            fprintf(logF, "[version.dll] game.dll not found in process.\n");
+            fclose(logF);
+        }
+        return 0;
+    }
+
+    if (logF) {
+        fprintf(logF, "[version.dll] game.dll found at %p. Scanning for Login Button check...\n", hGame);
+        fflush(logF);
     }
 
     MEMORY_BASIC_INFORMATION mbi = {};
     unsigned char* p = (unsigned char*)hGame;
-    
-    // Scan executable sections of game.dll
+    bool patched = false;
+
     while (VirtualQuery(p, &mbi, sizeof(mbi))) {
         if ((mbi.State == MEM_COMMIT) && 
             (mbi.Protect == PAGE_EXECUTE_READ || mbi.Protect == PAGE_EXECUTE_READWRITE || mbi.Protect == PAGE_EXECUTE_WRITECOPY)) {
@@ -77,20 +97,34 @@ static void InstallLoginButtonFix() {
                     
                     DWORD oldProtect;
                     if (VirtualProtect(&block[i+17], 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                        // NOP out the 6-byte conditional jump: 0F 85 xx xx xx xx -> 90 90 90 90 90 90
                         memset(&block[i+17], 0x90, 6);
                         VirtualProtect(&block[i+17], 6, oldProtect, &oldProtect);
                         FlushInstructionCache(GetCurrentProcess(), &block[i+17], 6);
+                        patched = true;
+                        if (logF) {
+                            fprintf(logF, "[version.dll] SUCCESS: Patched Login Button JNE at %p with NOPs!\n", &block[i+17]);
+                            fflush(logF);
+                        }
                     }
-                    return;
+                    break;
                 }
             }
         }
+        if (patched) break;
         p += mbi.RegionSize;
         if (p < (unsigned char*)hGame || p > (unsigned char*)hGame + 0x3000000) {
             break;
         }
     }
+
+    if (!patched && logF) {
+        fprintf(logF, "[version.dll] WARN: Pattern 80 3D ... 0F 85 not matched in executable memory.\n");
+    }
+
+    if (logF) {
+        fclose(logF);
+    }
+    return 0;
 }
 
 static decltype(SetWindowLongA)* real_SetWindowLongA = SetWindowLongA;
@@ -99,14 +133,9 @@ static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG d
         EnableHighQualityGraphicsOptions();
         s_gfxEnabled = true;
     }
-    if (!s_loginFixInstalled) {
-        InstallLoginButtonFix();
-        s_loginFixInstalled = true;
-    }
     InstallOrUpdateCameraFix(hWnd);
     return real_SetWindowLongA(hWnd, nIndex, dwNewLong);
 }
-
 
 static void PreloadDXVK() {
     LoadLibrary(L"d3d9.dll");
@@ -141,6 +170,9 @@ static void InstallPatch() {
     DetourTransactionCommit();
 
     FixClientStartupWithHighCoreCountCpus();
+
+    // Launch background thread to hook game.dll login button check
+    CreateThread(nullptr, 0, LoginPatchThread, nullptr, 0, nullptr);
 }
 
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
