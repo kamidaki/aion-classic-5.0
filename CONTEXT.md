@@ -263,3 +263,12 @@ Esta seção documenta o histórico de correções aplicadas no projeto, contras
   1. Removido o envio prematuro de `SM_LOGIN_OK` e `SM_SERVER_LIST` na conexão inicial. O servidor agora envia apenas o `SM_INIT` e `SM_AUTH_GG`, aguardando a submissão das credenciais do usuário (`CM_LOGIN`).
   2. Ao receber o `CM_LOGIN`, o servidor extrai usuário e senha, auto-cria/autentica a conta no `aion.db` e responde com `SM_LOGIN_OK` (78 bytes) seguido de `SM_SERVER_LIST`, permitindo que o cliente avance naturalmente para a Seleção de Servidores e Criação de Personagens.
   3. Adicionado o parâmetro `-nonotice` ao `Start_Client_Classic_EU.bat` para evitar o carregamento indevido de scripts da Gameforge na caixa "Announcement".
+
+### 9. Sincronização Dinâmica de Servidor Padrão no SM_SERVER_LIST
+* **Como era antes**: O identificador do último servidor selecionado (`last_server_id`) estava hardcoded como `1` em vez de usar o `default_server_id` configurado no `launcher.json`.
+* **Como foi corrigido**: Atualizado o `send_server_list` no `login-server/src/net/ncsoft.rs` para escrever dinamicamente o `default_server_id` recebido da configuração.
+
+### 10. Implementação do Pacote SM_DIALOG_WINDOW (0x3C) para Interação com NPCs
+* **Como era antes**: Ao clicar em NPCs ou abrir diálogos/missões (`CM_SHOW_DIALOG` 0x34 ou `CM_DIALOG_SELECT` 0x36), o servidor apenas emitia logs no terminal sem responder ao cliente, mantendo a janela HTML de diálogo do NPC inativa.
+* **Como foi corrigido**: Implementada a struct `DialogWindow` (Opcode `0x3C`) no `game-server/src/game/message/server.rs` e seu respectivo despacho no `state.rs`, enviando `target_id`, `dialog_id` e `quest_id` estruturados para renderização instantânea da interface no cliente.
+
