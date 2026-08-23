@@ -145,6 +145,23 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
         }
     }
 
+    // 4. NOP out socket guard jumps in 0x8439c0 (0x843E42 and 0x843E4B)
+    unsigned char* je1 = base + 0x843E42;
+    unsigned char* je2 = base + 0x843E4B;
+    if (je1[0] == 0x74 && je2[0] == 0x74) {
+        DWORD oldP;
+        if (VirtualProtect(je1, 16, PAGE_EXECUTE_READWRITE, &oldP)) {
+            je1[0] = 0x90; je1[1] = 0x90;
+            je2[0] = 0x90; je2[1] = 0x90;
+            VirtualProtect(je1, 16, oldP, &oldP);
+            FlushInstructionCache(GetCurrentProcess(), je1, 16);
+            if (logF) {
+                fprintf(logF, "[version.dll] SUCCESS: Patched Socket Guard JEs at %p and %p with NOPs!\n", je1, je2);
+                fflush(logF);
+            }
+        }
+    }
+
     if (logF) {
         fclose(logF);
     }
