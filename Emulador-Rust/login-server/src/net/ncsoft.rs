@@ -128,6 +128,10 @@ async fn handle_ncsoft_client(
         Ok(())
     }
 
+    // Send SM_AUTH_GG immediately after SM_INIT to ready the client
+    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+    let _ = send_auth_gg(&mut socket, &crypt_engine, session_id).await;
+
     // Helper to send SM_LOGIN_OK (Opcode 0x03, 78 bytes payload)
     async fn send_login_ok(
         socket: &mut TcpStream,
