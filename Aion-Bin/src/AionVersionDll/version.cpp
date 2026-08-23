@@ -79,7 +79,7 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
     bool patched = false;
     unsigned char* base = (unsigned char*)hGame;
 
-    // 1. Patch Login Button JNE at 0x15A125
+    // 1. Patch Login Button JNE at 0x15A125 (6 bytes)
     unsigned char* directTarget = base + 0x15A125;
     if (directTarget[0] == 0x0F && directTarget[1] == 0x85) {
         DWORD oldProtect;
@@ -89,7 +89,7 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
             FlushInstructionCache(GetCurrentProcess(), directTarget, 6);
             patched = true;
             if (logF) {
-                fprintf(logF, "[version.dll] SUCCESS: Patched Login Button JNE at direct offset %p with NOPs!\n", directTarget);
+                fprintf(logF, "[version.dll] SUCCESS: Patched Login Button JNE at %p (0x15A125) with NOPs!\n", directTarget);
                 fflush(logF);
             }
         }
@@ -150,25 +150,36 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
         }
     }
 
-    // 3. Socket Send Gate NOP patch in 0x88F250 (0x88F26C: 74 6F -> 90 90)
-    // This allows raw TCP send() to execute without being dropped by the unacknowledged socket state check
-    unsigned char* sendGate = base + 0x88F26C;
-    if (sendGate[0] == 0x74 && sendGate[1] == 0x6F) {
+    // 3. Socket State Guard NOP patch in 0x845150 (0x845207: 0F 84 8C 00 00 00 -> 6 NOPs)
+    // This allows SendPacket to execute without aborting when socket state is pending/unacknowledged
+    unsigned char* sendGate1 = base + 0x845207;
+    if (sendGate1[0] == 0x0F && sendGate1[1] == 0x84) {
         DWORD oldP;
-        if (VirtualProtect(sendGate, 2, PAGE_EXECUTE_READWRITE, &oldP)) {
-            sendGate[0] = 0x90;
-            sendGate[1] = 0x90;
-            VirtualProtect(sendGate, 2, oldP, &oldP);
-            FlushInstructionCache(GetCurrentProcess(), sendGate, 2);
+        if (VirtualProtect(sendGate1, 6, PAGE_EXECUTE_READWRITE, &oldP)) {
+            memset(sendGate1, 0x90, 6);
+            VirtualProtect(sendGate1, 6, oldP, &oldP);
+            FlushInstructionCache(GetCurrentProcess(), sendGate1, 6);
             if (logF) {
-                fprintf(logF, "[version.dll] SUCCESS: Patched Socket Send Gate at %p (0x88F26C) with NOPs!\n", sendGate);
+                fprintf(logF, "[version.dll] SUCCESS: Patched SendPacket Gate at %p (0x845207) with NOPs!\n", sendGate1);
                 fflush(logF);
             }
         }
-    } else {
-        if (logF) {
-            fprintf(logF, "[version.dll] Socket Send Gate at %p bytes: %02X %02X\n", sendGate, sendGate[0], sendGate[1]);
-            fflush(logF);
+    }
+
+    // 4. Socket Send Gate NOP patch in 0x88F250 (0x88F26C: 74 6F -> 90 90)
+    // This allows raw TCP send() to execute without being dropped by the unacknowledged socket state check
+    unsigned char* sendGate2 = base + 0x88F26C;
+    if (sendGate2[0] == 0x74 && sendGate2[1] == 0x6F) {
+        DWORD oldP;
+        if (VirtualProtect(sendGate2, 2, PAGE_EXECUTE_READWRITE, &oldP)) {
+            sendGate2[0] = 0x90;
+            sendGate2[1] = 0x90;
+            VirtualProtect(sendGate2, 2, oldP, &oldP);
+            FlushInstructionCache(GetCurrentProcess(), sendGate2, 2);
+            if (logF) {
+                fprintf(logF, "[version.dll] SUCCESS: Patched Socket Send Gate at %p (0x88F26C) with NOPs!\n", sendGate2);
+                fflush(logF);
+            }
         }
     }
 
