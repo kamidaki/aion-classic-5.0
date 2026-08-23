@@ -14,50 +14,50 @@ A arquitetura final do workspace deve conter:
 
 ```text
 Emulador-Rust/
-├── Cargo.toml (Virtual Workspace)
-├── login-server/             -> Binário: login-server.exe
-│   ├── Cargo.toml
-│   └── src/
-│       ├── main.rs
-│       ├── account/          (Modelos de contas e auto-create)
-│       ├── session/          (Sessões ativas e tokens)
-│       ├── security/         (Rate limiter e anti-bruteforce)
-│       ├── net/
-│       │   ├── ncsoft/       (Listener porta 2106)
-│       │   ├── hq/           (Listener porta 13001)
-│       │   ├── sts/          (Listener porta 6600)
-│       │   └── pipe/         (Named Pipe Gameforge)
-│       └── db/               (SQLite / aion.db)
-│
-├── game-server/              -> Binário: game-server.exe
-│   ├── Cargo.toml
-│   └── src/
-│       ├── main.rs
-│       ├── game/             (World, NPCs, Spawns, Skills, Items)
-│       ├── net/              (Listener porta 7777)
-│       └── ipc/              (Clientes IPC para Login e Chat)
-│
-├── chat-server/              -> Binário: chat-server.exe
-│   ├── Cargo.toml
-│   └── src/
-│       ├── main.rs
-│       ├── channels/         (Canais de chat, LFG, Região, Whispers)
-│       ├── net/              (Listener porta 10241)
-│       └── ipc/              (Listener IPC para GameServer)
-│
-├── auto-start/               -> Binário: Auto-Start EmuRust.exe
-│   ├── Cargo.toml
-│   └── src/
-│       ├── main.rs
-│       ├── supervisor/       (Gerenciamento de processos filhos, crash detection, restart)
-│       ├── metrics/          (Coleta de CPU/RAM em tempo real via Windows API)
-│       ├── logs/             (Roteamento, colorização e rotação de logs)
-│       └── ui/               (Interface gráfica moderna estilo macOS/iOS/Grafana)
-│
-├── krypt/                    (Crate compartilhado de criptografia)
-├── bxml/                     (Crate compartilhado de leitura BXML)
-└── config/
-    └── launcher.json         (Configuração central unificada)
+ Cargo.toml (Virtual Workspace)
+ login-server/             -> Binário: login-server.exe
+    Cargo.toml
+    src/
+        main.rs
+        account/          (Modelos de contas e auto-create)
+        session/          (Sessões ativas e tokens)
+        security/         (Rate limiter e anti-bruteforce)
+        net/
+           ncsoft/       (Listener porta 2106)
+           hq/           (Listener porta 13001)
+           sts/          (Listener porta 6600)
+           pipe/         (Named Pipe Gameforge)
+        db/               (SQLite / aion.db)
+
+ game-server/              -> Binário: game-server.exe
+    Cargo.toml
+    src/
+        main.rs
+        game/             (World, NPCs, Spawns, Skills, Items)
+        net/              (Listener porta 7777)
+        ipc/              (Clientes IPC para Login e Chat)
+
+ chat-server/              -> Binário: chat-server.exe
+    Cargo.toml
+    src/
+        main.rs
+        channels/         (Canais de chat, LFG, Região, Whispers)
+        net/              (Listener porta 10241)
+        ipc/              (Listener IPC para GameServer)
+
+ auto-start/               -> Binário: Auto-Start EmuRust.exe
+    Cargo.toml
+    src/
+        main.rs
+        supervisor/       (Gerenciamento de processos filhos, crash detection, restart)
+        metrics/          (Coleta de CPU/RAM em tempo real via Windows API)
+        logs/             (Roteamento, colorização e rotação de logs)
+        ui/               (Interface gráfica moderna estilo macOS/iOS/Grafana)
+
+ krypt/                    (Crate compartilhado de criptografia)
+ bxml/                     (Crate compartilhado de leitura BXML)
+ config/
+     launcher.json         (Configuração central unificada)
 ```
 
 ## SOLUÇÃO

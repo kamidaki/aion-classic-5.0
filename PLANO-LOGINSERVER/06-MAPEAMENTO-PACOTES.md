@@ -16,25 +16,25 @@ O tráfego de rede capturado com Wireshark/tshark (`traffic_capture.pcapng` e `g
 ### 1. Sequência Completa de Handshake (Modo Gameforge HQ)
 ```text
 Client                  Login-Server (13001)       STS-Server (6600)        Game-Server (7777)
-  │                              │                         │                        │
-  │─── 1. TCP SYN/ACK ──────────►│                         │                        │
-  │◄── 2. 0x05 AUTH_GREETING ────│ (92 bytes)              │                        │
-  │                              │                         │                        │
-  │─── 3. TCP SYN/ACK ────────────────────────────────────►│                        │
-  │─── 4. POST /Sts/Connect ──────────────────────────────►│                        │
-  │─── 5. POST /Auth/LoginStart ──────────────────────────►│                        │
-  │◄── 6. STS/1.0 200 OK (<Reply> LoginName) ──────────────│                        │
-  │                                                        │                        │
-  │─── 7. 0x01 CREDENTIALS ─────►│ (Token / Plaintext)     │                        │
-  │◄── 8. 0x01 LOGIN_OK ─────────│ (14 bytes)              │                        │
-  │◄── 9. 0x02 SERVER_LIST ──────│ (201 bytes)             │                        │
-  │─── 10. 0x02 SERVER_SELECT ──►│ (10 bytes, id 0x17)     │                        │
-  │◄── 11. 0x04 SESSION_KEY ─────│ (22 bytes, err=0)       │                        │
-  │                              │                         │                        │
-  │─── 12. TCP SYN/ACK ────────────────────────────────────────────────────────────►│
-  │◄── 13. SM_KEY ──────────────────────────────────────────────────────────────────│
-  │─── 14. CM_ENTER_WORLD (SessionKey) ────────────────────────────────────────────►│
-  │◄── 15. SM_CHARACTER_LIST ───────────────────────────────────────────────────────│
+                                                                                 
+   1. TCP SYN/ACK                                                  
+   2. 0x05 AUTH_GREETING  (92 bytes)                                      
+                                                                                 
+   3. TCP SYN/ACK                         
+   4. POST /Sts/Connect                         
+   5. POST /Auth/LoginStart                         
+   6. STS/1.0 200 OK (<Reply> LoginName)                         
+                                                                                  
+   7. 0x01 CREDENTIALS  (Token / Plaintext)                             
+   8. 0x01 LOGIN_OK  (14 bytes)                                      
+   9. 0x02 SERVER_LIST  (201 bytes)                                     
+   10. 0x02 SERVER_SELECT  (10 bytes, id 0x17)                             
+   11. 0x04 SESSION_KEY  (22 bytes, err=0)                               
+                                                                                 
+   12. TCP SYN/ACK 
+   13. SM_KEY 
+   14. CM_ENTER_WORLD (SessionKey) 
+   15. SM_CHARACTER_LIST 
 ```
 
 ### 2. Opcodes Mapeados do Login Server (Modo NCSoft Clássico - Porta 2106)

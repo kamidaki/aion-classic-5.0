@@ -234,6 +234,16 @@ fn find_data_dir(configured: &str) -> PathBuf {
 }
 
 fn main() {
+    let _instance_guard = match commons::single_instance::SingleInstanceGuard::acquire(
+        "Game Server",
+        "Local\\EmuRust_GameServer_Mutex",
+    ) {
+        Some(g) => g,
+        None => {
+            std::process::exit(1);
+        }
+    };
+
     println!("INFO: Starting Game Server");
     let config = load_config();
 
@@ -286,7 +296,7 @@ fn handle(
     println!("INFO: new session {peer_addr}");
 
     stream
-        .set_read_timeout(Some(Duration::from_millis(1)))
+        .set_read_timeout(Some(Duration::from_millis(20)))
         .map_err(Error::SetStreamTimeout)?;
     //    stream
     //        .set_write_timeout(Some(Duration::from_secs(60)))
@@ -301,3 +311,4 @@ fn handle(
 
     Ok(())
 }
+

@@ -4,7 +4,7 @@ Ambiente de produção e execução do **EmuRust**, o emulador em Rust de alta p
 
 ---
 
-## 🚀 Como Iniciar o Emulador
+##  Como Iniciar o Emulador
 
 Basta executar com **2 cliques**:
 
@@ -14,11 +14,11 @@ Auto-Start EmuRust.exe
 
 Ao iniciar, o painel do gerenciador abrirá automaticamente no seu navegador padrão em:
 
-👉 **`http://127.0.0.1:18080`**
+ **`http://127.0.0.1:18080`**
 
 ---
 
-## 🖥️ Recursos do Dashboard (Gerenciador Central)
+##  Recursos do Dashboard (Gerenciador Central)
 
 *   **3 Cards de Controle Independentes**:
     *   **Login-Server**: Monitora status, uptime, portas `2106`, `13001`, `6600` e Named Pipe.
@@ -27,15 +27,15 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente no seu navegador pad
 *   **Métricas em Tempo Real**: Medidores dinâmicos de uso de **CPU (%)** e **Memória RAM (MB)** para cada processo individual.
 *   **Controles Granulares**: Botões `LIGAR`, `PARAR` e `REINICIAR` para cada servidor separadamente, além dos botões mestres `LIGAR TODOS`, `PARAR TODOS` e `REINICIAR TODOS`.
 *   **Central de Logs Colorida**:
-    *   ⚪ **Login-Server**: Logs em **Branco / Prata**.
+    *    **Login-Server**: Logs em **Branco / Prata**.
     *   🟢 **Game-Server**: Logs em **Verde Esmeralda**.
-    *   🔵 **Chat-Server**: Logs em **Ciano / Azul Claro**.
+    *    **Chat-Server**: Logs em **Ciano / Azul Claro**.
     *   Filtros por servidor e por nível (`INFO`, `WARN`, `ERROR`, `DEBUG`), busca em tempo real e auto-scroll.
 *   **Crash Detection & Auto-Restart**: Se qualquer servidor falhar inesperadamente, o supervisor detecta e reinicia apenas aquele serviço específico de forma transparente.
 
 ---
 
-## ⚙️ Configuração (`config/launcher.json`)
+##  Configuração (`config/launcher.json`)
 
 Toda a configuração dos servidores e do inicializador está centralizada em `config/launcher.json`:
 
@@ -118,7 +118,7 @@ Toda a configuração dos servidores e do inicializador está centralizada em `c
 
 ---
 
-## 🎮 Como Conectar o Cliente de Jogo
+##  Como Conectar o Cliente de Jogo
 
 Para abrir o jogo, execute:
 
@@ -130,23 +130,23 @@ O script inicia o executável `bin64\Aion.bin` com os parâmetros corretos (`-us
 
 ---
 
-## 📁 Estrutura de Pastas
+##  Estrutura de Pastas
 
 ```text
 Produto Final/
-├── Auto-Start EmuRust.exe   # Gerenciador gráfico e supervisor
-├── login-server.exe         # Servidor de autenticação e STS
-├── game-server.exe          # Servidor de mundo e gameplay
-├── chat-server.exe          # Servidor dedicado de canais e chat
-├── aion.db                  # Banco de dados SQLite compartilhado (WAL mode)
-├── config/
-│   └── launcher.json        # Configuração centralizada
-├── data/
-│   ├── client/              # Templates de NPCs, Itens e Skills
-│   ├── itens_iniciais.csv   # Kits iniciais das classes
-│   └── spawns.csv           # 1.254 Spawns de NPCs no mundo
-└── logs/
-    ├── login-server/        # Logs diários do Login-Server
-    ├── game-server/         # Logs diários do Game-Server
-    └── chat-server/         # Logs diários do Chat-Server
+ Auto-Start EmuRust.exe   # Gerenciador gráfico e supervisor
+ login-server.exe         # Servidor de autenticação e STS
+ game-server.exe          # Servidor de mundo e gameplay
+ chat-server.exe          # Servidor dedicado de canais e chat
+ aion.db                  # Banco de dados SQLite compartilhado (WAL mode)
+ config/
+    launcher.json        # Configuração centralizada
+ data/
+    client/              # Templates de NPCs, Itens e Skills
+    itens_iniciais.csv   # Kits iniciais das classes
+    spawns.csv           # 1.254 Spawns de NPCs no mundo
+ logs/
+     login-server/        # Logs diários do Login-Server
+     game-server/         # Logs diários do Game-Server
+     chat-server/         # Logs diários do Chat-Server
 ```

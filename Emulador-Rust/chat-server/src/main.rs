@@ -11,7 +11,18 @@ use tokio::net::{TcpListener, TcpStream};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let _instance_guard = match commons::single_instance::SingleInstanceGuard::acquire(
+        "Chat Server",
+        "Local\\EmuRust_ChatServer_Mutex",
+    ) {
+        Some(g) => g,
+        None => {
+            std::process::exit(1);
+        }
+    };
+
     println!("INFO: [ChatServer] Starting Aion Classic Dedicated Chat Server...");
+
 
     let cfg_path = "config/launcher.json";
     let cfg = load_config(cfg_path);

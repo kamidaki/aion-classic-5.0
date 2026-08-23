@@ -9,24 +9,24 @@
 O **EmuRust** adota a arquitetura de **3 servidores isolados** do emulador Java 4.8 Retail, combinada com uma engine de alta performance em Rust (sem Garbage Collector) e calibrada estritamente para o cliente de 64 bits do **Aion Classic EU (`GFAion\aionclassic\bin64\Aion.bin`)**.
 
 ```text
-┌──────────────────────────────────────────────────────────────────────────┐
-│                   AUTO-START EMURUST.EXE (GUI MANAGER)                   │
-│                                                                          │
-│  [ Dashboard Estilo macOS/iOS/Grafana | CPU/RAM | Logs Coloridos | JSON ]│
-└────────────────────────────────────┬─────────────────────────────────────┘
-                                     │
-         ┌───────────────────────────┼───────────────────────────┐
-         │ (Supervisão & Processos)  │ (Supervisão & Processos)  │ (Supervisão & Processos)
-         ▼                           ▼                           ▼
-┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
-│  LOGIN-SERVER   │         │   GAME-SERVER   │         │   CHAT-SERVER   │
-│                 │         │                 │         │                 │
-│ • Auth Protocol │◄───────►│ • World / Map   │◄───────►│ • Channels      │
-│ • STS Protocol  │   IPC   │ • NPCs / Spawns │   IPC   │ • Whispers      │
-│ • Named Pipe    │ (Auth/  │ • Combat / Sys  │ (Sync/  │ • Client Socket │
-│ • Auto-Accounts │ Session)│ • Entities      │ Verify) │ • Lifecycle     │
-│ • Brute-Force   │         │ • Inventory     │         │ • Sub-systems   │
-└─────────────────┘         └─────────────────┘         └─────────────────┘
+
+                   AUTO-START EMURUST.EXE (GUI MANAGER)                   
+                                                                          
+  [ Dashboard Estilo macOS/iOS/Grafana | CPU/RAM | Logs Coloridos | JSON ]
+
+                                     
+         
+          (Supervisão & Processos)   (Supervisão & Processos)   (Supervisão & Processos)
+                                                               
+                  
+  LOGIN-SERVER               GAME-SERVER               CHAT-SERVER   
+                                                                     
+ • Auth Protocol  • World / Map    • Channels      
+ • STS Protocol     IPC    • NPCs / Spawns    IPC    • Whispers      
+ • Named Pipe     (Auth/   • Combat / Sys   (Sync/   • Client Socket 
+ • Auto-Accounts  Session) • Entities       Verify)  • Lifecycle     
+ • Brute-Force             • Inventory               • Sub-systems   
+                  
 ```
 
 ---

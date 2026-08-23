@@ -10,3 +10,7 @@ rusqlite = { version = "0.32", features = ["bundled"] }
 quick-xml = "0.37"
 serde = { version = "1.0", features = ["derive"] }
 toml = "0.8"
+
+[build-dependencies]
+winres = "0.1"
+

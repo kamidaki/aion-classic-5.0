@@ -257,16 +257,20 @@ pub fn game_update(
     let mut outbox: HashMap<u16, Vec<ServerUpdate>> = HashMap::with_capacity(100);
     let mut dirty_outbox: Vec<u16> = Vec::with_capacity(100);
 
-    let mut now = Instant::now();
+    let tick_duration = Duration::from_secs_f32(1.0 / TICK_RATE);
+    let mut last_tick = Instant::now();
     let mut last_persist = Instant::now();
     const PERSIST_INTERVAL: Duration = Duration::from_secs(10);
     loop {
-        // Only update on tick rate
-        if now.elapsed() < Duration::from_secs_f32(1. / TICK_RATE) {
-            std::thread::yield_now();
+        // Only update on tick rate - sleep rather than spinning with yield_now()
+        let elapsed = last_tick.elapsed();
+        if elapsed < tick_duration {
+            let remaining = tick_duration - elapsed;
+            std::thread::sleep(remaining);
             continue;
         }
-        now = Instant::now();
+        last_tick = Instant::now();
+
 
         // Respond to client messages
         for update in server_rx.try_iter() {

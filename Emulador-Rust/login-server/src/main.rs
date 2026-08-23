@@ -9,7 +9,18 @@ use std::sync::Arc;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let _instance_guard = match commons::single_instance::SingleInstanceGuard::acquire(
+        "Login Server",
+        "Local\\EmuRust_LoginServer_Mutex",
+    ) {
+        Some(g) => g,
+        None => {
+            std::process::exit(1);
+        }
+    };
+
     println!("INFO: [LoginServer] Starting Unified Aion Classic Login Server...");
+
 
     let cfg_path = "config/launcher.json";
     let cfg = load_config(cfg_path);

@@ -18,6 +18,9 @@ logs/
 *.log
 *.pcap
 *.pcapng
+*.WebView2/
+**/*.WebView2/
+
 
 # Arquivos de trabalho e bancos de dados locais de teste
 *.db-shm

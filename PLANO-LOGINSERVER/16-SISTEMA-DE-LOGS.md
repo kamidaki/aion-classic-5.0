@@ -13,18 +13,18 @@ Ausência de uma política de rotação automática diária (`daily rotation`) e
 Estrutura física obrigatória:
 ```text
 logs/
-├── login-server/
-│   ├── 2026-08-22.log
-│   ├── 2026-08-21.log
-│   └── ... (até 10 dias)
-├── game-server/
-│   ├── 2026-08-22.log
-│   ├── 2026-08-21.log
-│   └── ... (até 10 dias)
-└── chat-server/
-    ├── 2026-08-22.log
-    ├── 2026-08-21.log
-    └── ... (até 10 dias)
+ login-server/
+    2026-08-22.log
+    2026-08-21.log
+    ... (até 10 dias)
+ game-server/
+    2026-08-22.log
+    2026-08-21.log
+    ... (até 10 dias)
+ chat-server/
+     2026-08-22.log
+     2026-08-21.log
+     ... (até 10 dias)
 ```
 
 Regras Estritas:

@@ -1,12 +1,13 @@
-use chrono::{Local, Utc};
+use chrono::Local;
 use parking_lot::Mutex;
 use serde::Serialize;
 use std::collections::VecDeque;
 use std::fs::{self, OpenOptions};
 use std::io::Write;
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 use std::sync::Arc;
 use std::time::SystemTime;
+
 
 #[derive(Debug, Clone, Serialize)]
 pub struct LogEntry {
