@@ -272,3 +272,10 @@ Esta seção documenta o histórico de correções aplicadas no projeto, contras
 * **Como era antes**: Ao clicar em NPCs ou abrir diálogos/missões (`CM_SHOW_DIALOG` 0x34 ou `CM_DIALOG_SELECT` 0x36), o servidor apenas emitia logs no terminal sem responder ao cliente, mantendo a janela HTML de diálogo do NPC inativa.
 * **Como foi corrigido**: Implementada a struct `DialogWindow` (Opcode `0x3C`) no `game-server/src/game/message/server.rs` e seu respectivo despacho no `state.rs`, enviando `target_id`, `dialog_id` e `quest_id` estruturados para renderização instantânea da interface no cliente.
 
+### 11. Implementação Oficial do Fluxo de Login com Criptografia RSA e Decodificação de `CM_LOGIN`
+* **Como era antes**: Tentativas de contornar a tela de login ou uso de módulo RSA estático/arbitrário no `SM_INIT` impediam que o `game.dll` importasse a chave pública RSA para criptografar as credenciais, fazendo o botão "OK" travar sem transmitir o pacote `CM_LOGIN`.
+* **Como foi corrigido**: 
+  1. Implementado o `RsaManager` em Rust puro (`login-server/src/crypto/rsa_key.rs`) usando a crate `rsa`, gerando pares de chaves RSA de 1024 bits válidos com expoente público F4 (65537) e algoritmo de embaralhamento de módulo NCSoft.
+  2. O servidor envia `SM_INIT` com o módulo RSA real e `SM_AUTH_GG`, aguardando a submissão das credenciais pelo usuário.
+  3. Ao receber o pacote `CM_LOGIN` (168 bytes), o servidor decodifica o bloco RSA de 128 bytes com a chave privada, extrai `username` e `password` reais digitados pelo jogador, autentica/cria a conta no `aion.db` SQLite e responde com `SM_LOGIN_OK` (78 bytes, `TOS_ACCEPTED = 1`) e `SM_SERVER_LIST` (3 servidores alinhados).
+
