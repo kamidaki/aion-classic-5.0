@@ -75,6 +75,7 @@ async fn handle_ncsoft_client(
     raw_init[1..5].copy_from_slice(&session_id.to_le_bytes());
     raw_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes()); // Protocol revision
     raw_init[9..137].copy_from_slice(scrambled_modulus);
+    raw_init[148..164].copy_from_slice(&blowfish_key);
     raw_init[149..165].copy_from_slice(&blowfish_key);
     raw_init[168] = 0xFD; // Flag de ativacao do x64
     raw_init[169..173].copy_from_slice(&[0x04, 0x05, 0x00, 0x00]); // Versao Classic 4.5
