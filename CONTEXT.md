@@ -250,3 +250,9 @@ Esta seção documenta o histórico de correções aplicadas no projeto, contras
 * **Como foi corrigido**: 
   1. Alinhado o pacote `SM_LOGIN_OK` para o tamanho exato de 78 bytes (1 byte opcode + 77 bytes de corpo), incluindo a assinatura mágica `0xFF 0xFE` nos offsets `0x20..0x21`, as flags de conta `0x0000003F` (bit `0x10` ativo) nos offsets `0x10..0x1F`, a flag `TOS_ACCEPTED = 1` no offset `0x30` e os 25 bytes de trailing padding `0x34..0x4C`.
   2. Adicionado tratamento dos opcodes de aceite de termos `0x0A` e `0x0C` (`CM_TOS_AGREE`) no loop do Login Server, liberando a transição imediata para a tela de Seleção de Servidores sem erros de autorização.
+
+### 7. Correção da Exibição da Lista de Servidores (Select Server Screen)
+* **Como era antes**: A tela "Select Server" aparecia vazia/preta sem listar nenhum servidor, impossibilitando a seleção do servidor e a entrada no jogo.
+* **Como foi corrigido**: 
+  1. Corrigido o `server_id` padrão no `launcher.json` para `1` (identificador canônico de "Atreia" no string table do cliente Classic EU).
+  2. Corrigida a estrutura de `SM_SERVER_LIST` no `ncsoft.rs`: alinhamento dos brackets com `-cc:2` (Bracket 2 para servidores Classic EU), configuração do bit 10 em `ServerBits` (`0x00000401` exigido pelo `game.dll` no offset `0x842B20`) e alinhamento dinâmico do loop de contagem de personagens (`maxId` e contadores individuais por servidor).

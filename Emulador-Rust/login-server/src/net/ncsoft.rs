@@ -185,8 +185,26 @@ async fn handle_ncsoft_client(
     ) -> Result<(), std::io::Error> {
         let mut raw = Vec::new();
         raw.push(0x04); // Opcode SM_SERVER_LIST
-        raw.push(3); // 3 servers (Brackets 2, 1, 0)
-        raw.push(default_server_id); // Last server ID
+
+        let srv_id = if default_server_id > 0 { default_server_id } else { 1 };
+
+        let entries = vec![
+            (1u8, 2u8), // Atreia - Classic EU (Bracket 2)
+            (2u8, 2u8), // Tahabata - Classic EU (Bracket 2)
+            (srv_id, 2u8), // Default server ID (Bracket 2)
+            (3u8, 0u8), // Universal
+        ];
+
+        let mut unique_entries = Vec::new();
+        let mut seen = std::collections::HashSet::new();
+        for (id, bracket) in entries {
+            if seen.insert(id) {
+                unique_entries.push((id, bracket));
+            }
+        }
+
+        raw.push(unique_entries.len() as u8); // Server count
+        raw.push(1); // Last server ID = 1
 
         let ip_parts: Vec<u8> = announce_ip
             .split('.')
@@ -198,10 +216,13 @@ async fn handle_ncsoft_client(
             [127, 0, 0, 1]
         };
 
-        // Write 3 server entries (21 bytes each)
-        for (idx, bracket) in [(default_server_id, 2), (2, 1), (3, 0)] {
+        let mut max_id: u16 = 0;
+        for &(id, bracket) in &unique_entries {
+            if (id as u16) > max_id {
+                max_id = id as u16;
+            }
             let mut srv = [0u8; 21];
-            srv[0] = idx; // Server ID
+            srv[0] = id; // Server ID
             srv[1..5].copy_from_slice(&ip_arr); // Server IP
             srv[5..9].copy_from_slice(&(announce_port as u32).to_le_bytes()); // Port (7777)
             srv[9] = 0; // Age limit
@@ -209,16 +230,21 @@ async fn handle_ncsoft_client(
             srv[11..13].copy_from_slice(&0u16.to_le_bytes()); // Online count
             srv[13..15].copy_from_slice(&1000u16.to_le_bytes()); // Max count
             srv[15] = 1; // Status Online (1)
-            srv[16..20].copy_from_slice(&0x00000401u32.to_le_bytes()); // ServerBits: Bit 10 = Classic
-            srv[20] = bracket; // Bracket (2 = Classic EU, 1 = NA, 0 = Universal)
+            srv[16..20].copy_from_slice(&0x00000401u32.to_le_bytes()); // ServerBits: Bit 10 = Classic (0x0401)
+            srv[20] = bracket; // Bracket (2 = Classic EU)
             raw.extend_from_slice(&srv);
         }
 
         // Character counts header
-        raw.extend_from_slice(&3u16.to_le_bytes()); // 3 server character counts
-        raw.push(char_count); // Server 1 char count
-        raw.push(0); // Server 2 char count
-        raw.push(0); // Server 3 char count
+        let char_count_max = max_id.max(3);
+        raw.extend_from_slice(&char_count_max.to_le_bytes());
+        for i in 1..=char_count_max {
+            if i == (srv_id as u16) || i == 1 {
+                raw.push(char_count);
+            } else {
+                raw.push(0);
+            }
+        }
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
@@ -227,8 +253,8 @@ async fn handle_ncsoft_client(
 
         socket.write_all(&pkt).await?;
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_SERVER_LIST (Opcode 0x04, 3 Servers, Target: {}:{}, Chars: {})",
-            session_id, announce_ip, announce_port, char_count
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_SERVER_LIST (Opcode 0x04, {} Servers, Target: {}:{}, Chars: {})",
+            session_id, unique_entries.len(), announce_ip, announce_port, char_count
         );
         Ok(())
     }
