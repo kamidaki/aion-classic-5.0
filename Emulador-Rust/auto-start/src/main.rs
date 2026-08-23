@@ -1,6 +1,7 @@
 #![windows_subsystem = "windows"]
 
 mod config;
+mod db_manager;
 mod logs;
 mod supervisor;
 mod tray;
@@ -8,6 +9,7 @@ mod ui;
 mod webview;
 
 use config::load_config;
+use db_manager::DbManager;
 use logs::LogCenter;
 use supervisor::Supervisor;
 use std::convert::Infallible;
@@ -221,13 +223,138 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 warp::reply::json(&serde_json::json!({ "status": "ok" }))
             });
 
+        // Database Studio Endpoints
+        let db_manager = DbManager::new("aion.db");
+        let db_filter = {
+            let db = db_manager.clone();
+            warp::any().map(move || db.clone())
+        };
+
+        // GET /api/db/schema
+        let db_schema_route = warp::path!("api" / "db" / "schema")
+            .and(warp::get())
+            .and(db_filter.clone())
+            .map(|db: DbManager| {
+                match db.get_all_tables_schema() {
+                    Ok(schemas) => warp::reply::json(&serde_json::json!({ "status": "ok", "tables": schemas })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // GET /api/db/table/:table/rows
+        let db_rows_route = warp::path!("api" / "db" / "table" / String / "rows")
+            .and(warp::get())
+            .and(warp::query::<std::collections::HashMap<String, String>>())
+            .and(db_filter.clone())
+            .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManager| {
+                let page = params.get("page").and_then(|p| p.parse::<usize>().ok()).unwrap_or(1);
+                let limit = params.get("limit").and_then(|l| l.parse::<usize>().ok()).unwrap_or(50);
+                let search = params.get("search").map(|s| s.as_str());
+                let sort_col = params.get("sort").map(|s| s.as_str());
+                let sort_order = params.get("order").map(|s| s.as_str());
+
+                match db.get_table_data(&table, page, limit, search, sort_col, sort_order) {
+                    Ok(data) => warp::reply::json(&serde_json::json!({ "status": "ok", "data": data })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // POST /api/db/table/:table/row (Insert)
+        let db_insert_route = warp::path!("api" / "db" / "table" / String / "row")
+            .and(warp::post())
+            .and(warp::body::json::<std::collections::HashMap<String, serde_json::Value>>())
+            .and(db_filter.clone())
+            .map(|table: String, body: std::collections::HashMap<String, serde_json::Value>, db: DbManager| {
+                match db.insert_row(&table, &body) {
+                    Ok(id) => warp::reply::json(&serde_json::json!({ "status": "ok", "inserted_id": id })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // PUT /api/db/table/:table/row (Update)
+        #[derive(serde::Deserialize)]
+        struct UpdateRowPayload {
+            pk: std::collections::HashMap<String, serde_json::Value>,
+            updates: std::collections::HashMap<String, serde_json::Value>,
+        }
+        let db_update_route = warp::path!("api" / "db" / "table" / String / "row")
+            .and(warp::put())
+            .and(warp::body::json::<UpdateRowPayload>())
+            .and(db_filter.clone())
+            .map(|table: String, payload: UpdateRowPayload, db: DbManager| {
+                match db.update_row(&table, &payload.pk, &payload.updates) {
+                    Ok(count) => warp::reply::json(&serde_json::json!({ "status": "ok", "rows_affected": count })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // DELETE /api/db/table/:table/row (Delete)
+        #[derive(serde::Deserialize)]
+        struct DeleteRowPayload {
+            pk: std::collections::HashMap<String, serde_json::Value>,
+        }
+        let db_delete_route = warp::path!("api" / "db" / "table" / String / "row")
+            .and(warp::delete())
+            .and(warp::body::json::<DeleteRowPayload>())
+            .and(db_filter.clone())
+            .map(|table: String, payload: DeleteRowPayload, db: DbManager| {
+                match db.delete_row(&table, &payload.pk) {
+                    Ok(count) => warp::reply::json(&serde_json::json!({ "status": "ok", "rows_affected": count })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // POST /api/db/table/:table/truncate (Truncate single table)
+        let db_truncate_table_route = warp::path!("api" / "db" / "table" / String / "truncate")
+            .and(warp::post())
+            .and(db_filter.clone())
+            .map(|table: String, db: DbManager| {
+                match db.truncate_table(&table) {
+                    Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Tabela '{}' limpa com sucesso.", table) })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // POST /api/db/clean_all (Truncate all tables)
+        let db_clean_all_route = warp::path!("api" / "db" / "clean_all")
+            .and(warp::post())
+            .and(db_filter.clone())
+            .map(|db: DbManager| {
+                match db.clean_all_tables() {
+                    Ok(tables) => warp::reply::json(&serde_json::json!({ "status": "ok", "cleaned_tables": tables })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // POST /api/db/query (Custom SQL Query)
+        #[derive(serde::Deserialize)]
+        struct RawSqlPayload {
+            sql: String,
+        }
+        let db_query_route = warp::path!("api" / "db" / "query")
+            .and(warp::post())
+            .and(warp::body::json::<RawSqlPayload>())
+            .and(db_filter.clone())
+            .map(|payload: RawSqlPayload, db: DbManager| {
+                let res = db.execute_raw_sql(&payload.sql);
+                warp::reply::json(&serde_json::json!({ "status": "ok", "result": res }))
+            });
+
         let routes = index_route
             .or(metrics_route)
             .or(players_route)
             .or(logs_route)
             .or(control_route)
             .or(shutdown_route)
-            .or(fullscreen_route);
+            .or(fullscreen_route)
+            .or(db_schema_route)
+            .or(db_rows_route)
+            .or(db_insert_route)
+            .or(db_update_route)
+            .or(db_delete_route)
+            .or(db_truncate_table_route)
+            .or(db_clean_all_route)
+            .or(db_query_route);
 
         let port = cfg_clone.launcher.gui.http_port;
         warp::serve(routes).run(([0, 0, 0, 0], port)).await;

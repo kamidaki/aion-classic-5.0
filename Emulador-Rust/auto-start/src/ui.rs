@@ -825,6 +825,398 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             }
             .log-console { max-height: 320px; height: 320px; }
         }
+    
+        /* Database Studio (MySQL Workbench / Navicat Style) */
+        .btn-db-studio {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
+        }
+        .btn-db-studio:active, .btn-db-studio:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+        }
+
+        .db-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(4, 7, 15, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .db-modal-overlay.open { display: flex; }
+
+        .db-window {
+            width: 98vw;
+            height: 94vh;
+            max-width: 1400px;
+            background: #090e1a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .db-header {
+            background: #0f172a;
+            border-bottom: 1px solid var(--border-glass);
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .db-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .db-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .db-body {
+            flex: 1;
+            display: flex;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        /* Sidebar Tables Explorer */
+        .db-sidebar {
+            width: 260px;
+            background: #070b14;
+            border-right: 1px solid var(--border-glass);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .db-sidebar-header {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .db-sidebar-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .db-table-search {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-glass);
+            border-radius: 5px;
+            padding: 4px 8px;
+            font-size: 0.72rem;
+            color: #fff;
+            outline: none;
+            width: 100%;
+        }
+
+        .db-tables-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .db-table-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 10px;
+            border-radius: 6px;
+            color: #cbd5e1;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .db-table-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+        .db-table-item.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.35);
+            color: var(--accent-login);
+            font-weight: 700;
+        }
+
+        .db-table-badge {
+            font-size: 0.65rem;
+            padding: 1px 6px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        .db-table-item.active .db-table-badge {
+            background: rgba(56, 189, 248, 0.25);
+            color: var(--accent-login);
+        }
+
+        /* Main Workspace */
+        .db-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            background: #0a0f1d;
+            overflow: hidden;
+        }
+
+        .db-toolbar {
+            padding: 8px 14px;
+            background: #0d1424;
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .db-tab-group {
+            display: flex;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 2px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .db-tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+        .db-tab-btn.active {
+            background: rgba(56, 189, 248, 0.25);
+            color: var(--accent-login);
+            font-weight: 700;
+        }
+
+        .db-content-area {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Grid View */
+        .db-grid-wrapper {
+            flex: 1;
+            min-height: 0;
+            overflow: auto;
+            background: #070a12;
+        }
+
+        .db-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.74rem;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .db-table th {
+            position: sticky;
+            top: 0;
+            background: #111a2e;
+            color: #94a3b8;
+            padding: 7px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.04);
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .db-table th:hover {
+            color: #fff;
+            background: #16223b;
+        }
+
+        .db-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            color: #e2e8f0;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .db-table tr:hover td {
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .db-pk-tag {
+            font-size: 0.6rem;
+            color: #eab308;
+            background: rgba(234, 179, 8, 0.15);
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-left: 4px;
+            font-weight: 700;
+        }
+
+        .db-null-val {
+            color: #64748b;
+            font-style: italic;
+            font-size: 0.68rem;
+        }
+
+        .db-pagination-bar {
+            padding: 6px 14px;
+            background: #0d1424;
+            border-top: 1px solid var(--border-glass);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        /* SQL Editor View */
+        .db-sql-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            padding: 12px;
+            gap: 10px;
+        }
+
+        .db-sql-editor {
+            width: 100%;
+            height: 120px;
+            background: #050811;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px;
+            color: #38bdf8;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+            font-size: 0.78rem;
+            line-height: 1.4;
+            resize: vertical;
+            outline: none;
+        }
+
+        .db-sql-result-box {
+            flex: 1;
+            min-height: 0;
+            background: #070a12;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            overflow: auto;
+            padding: 6px;
+        }
+
+        /* Row Edit Modal */
+        .db-row-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 1600;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .db-row-modal.open { display: flex; }
+
+        .db-row-card {
+            width: 90%;
+            max-width: 550px;
+            max-height: 85vh;
+            background: #0d1424;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .db-row-form {
+            padding: 14px 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .db-form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .db-form-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .db-form-input {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 6px 10px;
+            color: #fff;
+            font-size: 0.78rem;
+            outline: none;
+        }
+        .db-form-input:focus {
+            border-color: var(--accent-login);
+        }
+
     </style>
 </head>
 <body>
@@ -1078,6 +1470,25 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     <div class="drawer-row"><span style="color: var(--text-muted);">IP Local (LAN):</span><span class="drawer-val" id="reg-lan-ip">127.0.0.1</span></div>
                     <div class="drawer-row"><span style="color: var(--text-muted);">URL do Painel:</span><span class="drawer-val" id="reg-ext-url" style="color: var(--accent-login); word-break: break-all;">http://127.0.0.1:18080</span></div>
                     <button class="btn-secondary" style="margin-top: 4px;" onclick="copyExternalUrl()">Copiar Link do Painel</button>
+                </div>
+            </div>
+
+            
+            <!-- Section: Banco de Dados & Gestão de Tabelas -->
+            <div>
+                <div class="drawer-section-title">
+                    <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+                    Banco de Dados (aion.db)
+                </div>
+                <div class="drawer-card">
+                    <div style="display: flex; gap: 6px;">
+                        <button class="btn-db-studio" style="flex:1;" onclick="toggleDrawer(false); openDbStudio();">
+                            <span>🗄️ Abrir Studio</span>
+                        </button>
+                        <button class="btn-danger" style="flex:1;" onclick="openCleanAllModal();">
+                            <span>🗑️ Limpar Tudo</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -1475,9 +1886,664 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         window.addEventListener('resize', drawDayTradeChart);
         setInterval(fetchMetrics, 1000);
         setInterval(fetchLogs, 800);
+        
+        // ==========================================
+        // DATABASE STUDIO & WORKBENCH LOGIC
+        // ==========================================
+        let dbSchemas = [];
+        let currentDbTable = null;
+        let currentDbPage = 1;
+        let currentDbLimit = 50;
+        let currentDbSearch = "";
+        let currentDbSortCol = null;
+        let currentDbSortOrder = "ASC";
+        let currentDbTab = 'grid'; // 'grid', 'schema', 'sql'
+        let editingRowPk = null;
+        let isInsertingRow = false;
+
+        function openDbStudio() {
+            document.getElementById('db-studio-modal').classList.add('open');
+            loadDbSchema();
+        }
+
+        function closeDbStudio() {
+            document.getElementById('db-studio-modal').classList.remove('open');
+        }
+
+        async function loadDbSchema(preserveSelection = false) {
+            try {
+                const res = await fetch('/api/db/schema');
+                const data = await res.json();
+                if (data.status === 'ok') {
+                    dbSchemas = data.tables || [];
+                    document.getElementById('db-total-tables-pill').innerText = `${dbSchemas.length} Tabelas`;
+                    document.getElementById('db-tables-count').innerText = dbSchemas.length;
+                    renderTablesList();
+
+                    if (!preserveSelection || !currentDbTable) {
+                        if (dbSchemas.length > 0) {
+                            selectDbTable(dbSchemas[0].name);
+                        }
+                    } else {
+                        loadTableData();
+                    }
+                }
+            } catch (e) {
+                console.error("Error loading DB schema:", e);
+            }
+        }
+
+        function renderTablesList() {
+            const filter = (document.getElementById('db-filter-table-input')?.value || '').toLowerCase();
+            const container = document.getElementById('db-tables-container');
+            if (!container) return;
+
+            container.innerHTML = dbSchemas
+                .filter(t => !filter || t.name.toLowerCase().includes(filter))
+                .map(t => {
+                    const activeClass = (currentDbTable === t.name) ? 'active' : '';
+                    return `<div class="db-table-item ${activeClass}" onclick="selectDbTable('${t.name}')">
+                        <span style="display:flex; align-items:center; gap:6px;">
+                            <span class="btn-svg" style="color:var(--accent-login);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span>
+                            ${t.name}
+                        </span>
+                        <span class="db-table-badge">${t.row_count}</span>
+                    </div>`;
+                })
+                .join('');
+        }
+
+        function filterTablesList() {
+            renderTablesList();
+        }
+
+        function selectDbTable(tableName) {
+            currentDbTable = tableName;
+            currentDbPage = 1;
+            currentDbSearch = "";
+            currentDbSortCol = null;
+            currentDbSortOrder = "ASC";
+            if (document.getElementById('db-row-search-input')) {
+                document.getElementById('db-row-search-input').value = "";
+            }
+            renderTablesList();
+            loadTableData();
+            renderSchemaTab();
+        }
+
+        async function loadTableData(resetPage = false) {
+            if (!currentDbTable) return;
+            if (resetPage) currentDbPage = 1;
+
+            try {
+                let url = `/api/db/table/${encodeURIComponent(currentDbTable)}/rows?page=${currentDbPage}&limit=${currentDbLimit}`;
+                if (currentDbSearch) url += `&search=${encodeURIComponent(currentDbSearch)}`;
+                if (currentDbSortCol) url += `&sort=${encodeURIComponent(currentDbSortCol)}&order=${currentDbSortOrder}`;
+
+                const res = await fetch(url);
+                const json = await res.json();
+
+                if (json.status === 'ok') {
+                    renderGridData(json.data);
+                } else {
+                    alert("Erro ao carregar dados: " + json.message);
+                }
+            } catch (e) {
+                console.error("Error loading table rows:", e);
+            }
+        }
+
+        function renderGridData(data) {
+            const thead = document.getElementById('db-table-head');
+            const tbody = document.getElementById('db-table-body');
+            if (!thead || !tbody) return;
+
+            // Render Header
+            let thHtml = `<th style="width:70px; text-align:center;">Ações</th>`;
+            data.columns.forEach(col => {
+                const isPk = col.pk;
+                const pkBadge = isPk ? `<span class="db-pk-tag">PK</span>` : '';
+                const sortIcon = (currentDbSortCol === col.name) ? (currentDbSortOrder === 'ASC' ? ' ▲' : ' ▼') : '';
+                thHtml += `<th onclick="sortTableBy('${col.name}')">
+                    ${col.name} ${pkBadge} <span style="font-size:0.62rem; color:#64748b;">(${col.type_name})</span><span style="color:var(--accent-login);">${sortIcon}</span>
+                </th>`;
+            });
+            thead.innerHTML = `<tr>${thHtml}</tr>`;
+
+            // Render Rows
+            if (!data.rows || data.rows.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="${data.columns.length + 1}" style="text-align:center; padding:30px; color:#64748b;">Nenhum registro encontrado nesta tabela.</td></tr>`;
+            } else {
+                tbody.innerHTML = data.rows.map(row => {
+                    const rowEncoded = encodeURIComponent(JSON.stringify(row));
+                    let tdHtml = `<td style="text-align:center;">
+                        <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem;" onclick="openEditRowModal('${rowEncoded}')" title="Editar Linha">✏️</button>
+                        <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem; color:#f87171;" onclick="deleteRow('${rowEncoded}')" title="Excluir Linha">🗑️</button>
+                    </td>`;
+
+                    data.columns.forEach(col => {
+                        const val = row[col.name];
+                        if (val === null || val === undefined) {
+                            tdHtml += `<td><span class="db-null-val">NULL</span></td>`;
+                        } else {
+                            tdHtml += `<td title="${escapeHtml(String(val))}">${escapeHtml(String(val))}</td>`;
+                        }
+                    });
+
+                    return `<tr>${tdHtml}</tr>`;
+                }).join('');
+            }
+
+            // Update Pagination
+            document.getElementById('db-total-rows-txt').innerText = data.total_rows;
+            document.getElementById('db-page-info').innerText = `Página ${data.page} de ${data.total_pages}`;
+            document.getElementById('db-prev-page-btn').disabled = data.page <= 1;
+            document.getElementById('db-next-page-btn').disabled = data.page >= data.total_pages;
+        }
+
+        function sortTableBy(colName) {
+            if (currentDbSortCol === colName) {
+                currentDbSortOrder = currentDbSortOrder === 'ASC' ? 'DESC' : 'ASC';
+            } else {
+                currentDbSortCol = colName;
+                currentDbSortOrder = 'ASC';
+            }
+            loadTableData(true);
+        }
+
+        function executeRowSearch() {
+            currentDbSearch = (document.getElementById('db-row-search-input')?.value || '').trim();
+            loadTableData(true);
+        }
+
+        function prevPage() {
+            if (currentDbPage > 1) {
+                currentDbPage--;
+                loadTableData();
+            }
+        }
+
+        function nextPage() {
+            currentDbPage++;
+            loadTableData();
+        }
+
+        function changePageLimit(limit) {
+            currentDbLimit = parseInt(limit, 10);
+            loadTableData(true);
+        }
+
+        function switchDbTab(tab) {
+            currentDbTab = tab;
+            document.querySelectorAll('.db-tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`db-tab-${tab}`).classList.add('active');
+
+            document.getElementById('db-view-grid').style.display = tab === 'grid' ? 'flex' : 'none';
+            document.getElementById('db-view-schema').style.display = tab === 'schema' ? 'flex' : 'none';
+            document.getElementById('db-view-sql').style.display = tab === 'sql' ? 'flex' : 'none';
+
+            const gridControls = document.getElementById('db-grid-controls');
+            const gridActions = document.getElementById('db-grid-actions');
+            if (gridControls) gridControls.style.display = tab === 'grid' ? 'flex' : 'none';
+            if (gridActions) gridActions.style.display = tab === 'grid' ? 'flex' : 'none';
+
+            if (tab === 'schema') renderSchemaTab();
+        }
+
+        function renderSchemaTab() {
+            if (!currentDbTable) return;
+            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            const tbody = document.getElementById('db-schema-table-body');
+            if (!schema || !tbody) return;
+
+            tbody.innerHTML = schema.columns.map((c, i) => {
+                return `<tr>
+                    <td>${i + 1}</td>
+                    <td><b>${c.name}</b></td>
+                    <td><span style="color:var(--accent-login); font-weight:600;">${c.type_name}</span></td>
+                    <td>${c.pk ? '<span class="db-pk-tag">SIM (CHAVE PRIMÁRIA)</span>' : '<span style="color:#64748b;">NÃO</span>'}</td>
+                    <td>${c.notnull ? '<span style="color:#f87171; font-weight:700;">SIM</span>' : '<span style="color:#64748b;">NÃO</span>'}</td>
+                    <td>${c.dflt_value !== null ? `<code>${escapeHtml(c.dflt_value)}</code>` : '<span class="db-null-val">NULL</span>'}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        // Add / Edit Row Modal
+        function openInsertRowModal() {
+            if (!currentDbTable) return;
+            isInsertingRow = true;
+            editingRowPk = null;
+            document.getElementById('db-row-modal-title').innerText = `➕ Novo Registro em '${currentDbTable}'`;
+
+            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            if (!schema) return;
+
+            const form = document.getElementById('db-row-form-fields');
+            form.innerHTML = schema.columns.map(col => {
+                const isAutoPk = col.pk && col.type_name.toUpperCase().includes('INT');
+                const placeholder = isAutoPk ? '(Auto-Increment)' : (col.dflt_value ? `Padrão: ${col.dflt_value}` : '');
+                return `<div class="db-form-field">
+                    <div class="db-form-label">
+                        <span>${col.name} ${col.pk ? '<span class="db-pk-tag">PK</span>' : ''}</span>
+                        <span style="font-size:0.65rem; color:#64748b;">${col.type_name}</span>
+                    </div>
+                    <input type="text" class="db-form-input" id="db-input-${col.name}" placeholder="${placeholder}">
+                </div>`;
+            }).join('');
+
+            document.getElementById('db-row-modal').classList.add('open');
+        }
+
+        function openEditRowModal(encodedRowJson) {
+            if (!currentDbTable) return;
+            const row = JSON.parse(decodeURIComponent(encodedRowJson));
+            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            if (!schema) return;
+
+            isInsertingRow = false;
+            editingRowPk = {};
+            schema.columns.filter(c => c.pk).forEach(c => {
+                editingRowPk[c.name] = row[c.name];
+            });
+
+            document.getElementById('db-row-modal-title').innerText = `✏️ Editar Registro em '${currentDbTable}'`;
+
+            const form = document.getElementById('db-row-form-fields');
+            form.innerHTML = schema.columns.map(col => {
+                const val = row[col.name] !== null && row[col.name] !== undefined ? row[col.name] : '';
+                const isPk = col.pk;
+                return `<div class="db-form-field">
+                    <div class="db-form-label">
+                        <span>${col.name} ${col.pk ? '<span class="db-pk-tag">PK</span>' : ''}</span>
+                        <span style="font-size:0.65rem; color:#64748b;">${col.type_name}</span>
+                    </div>
+                    <input type="text" class="db-form-input" id="db-input-${col.name}" value="${escapeHtml(String(val))}">
+                </div>`;
+            }).join('');
+
+            document.getElementById('db-row-modal').classList.add('open');
+        }
+
+        function closeRowModal() {
+            document.getElementById('db-row-modal').classList.remove('open');
+        }
+
+        async function saveRowData() {
+            if (!currentDbTable) return;
+            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            if (!schema) return;
+
+            const rowData = {};
+            schema.columns.forEach(col => {
+                const el = document.getElementById(`db-input-${col.name}`);
+                if (el) {
+                    let v = el.value.trim();
+                    if (isInsertingRow && col.pk && col.type_name.toUpperCase().includes('INT') && v === '') {
+                        return; // Let SQLite autoincrement
+                    }
+                    if (v === '' && !col.notnull) {
+                        rowData[col.name] = null;
+                    } else if (col.type_name.toUpperCase().includes('INT')) {
+                        const num = parseInt(v, 10);
+                        rowData[col.name] = isNaN(num) ? v : num;
+                    } else if (col.type_name.toUpperCase().includes('REAL') || col.type_name.toUpperCase().includes('FLOAT')) {
+                        const flt = parseFloat(v);
+                        rowData[col.name] = isNaN(flt) ? v : flt;
+                    } else {
+                        rowData[col.name] = v;
+                    }
+                }
+            });
+
+            try {
+                if (isInsertingRow) {
+                    const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(rowData)
+                    });
+                    const json = await res.json();
+                    if (json.status === 'ok') {
+                        closeRowModal();
+                        loadDbSchema(true);
+                    } else {
+                        alert("Erro ao inserir registro: " + json.message);
+                    }
+                } else {
+                    const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ pk: editingRowPk, updates: rowData })
+                    });
+                    const json = await res.json();
+                    if (json.status === 'ok') {
+                        closeRowModal();
+                        loadTableData();
+                    } else {
+                        alert("Erro ao atualizar registro: " + json.message);
+                    }
+                }
+            } catch (e) {
+                alert("Erro ao comunicar com o servidor: " + e);
+            }
+        }
+
+        async function deleteRow(encodedRowJson) {
+            if (!currentDbTable) return;
+            const row = JSON.parse(decodeURIComponent(encodedRowJson));
+            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            if (!schema) return;
+
+            const pk = {};
+            schema.columns.filter(c => c.pk).forEach(c => {
+                pk[c.name] = row[c.name];
+            });
+
+            if (!confirm(`Tem certeza que deseja excluir o registro selecionado de '${currentDbTable}'?`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pk })
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    loadDbSchema(true);
+                } else {
+                    alert("Erro ao excluir registro: " + json.message);
+                }
+            } catch (e) {
+                alert("Erro ao excluir registro: " + e);
+            }
+        }
+
+        async function truncateCurrentTable() {
+            if (!currentDbTable) return;
+            if (!confirm(`⚠️ ATENÇÃO: Tem certeza que deseja limpar TODOS os registros da tabela '${currentDbTable}'?`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/truncate`, {
+                    method: 'POST'
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    loadDbSchema(true);
+                } else {
+                    alert("Erro ao limpar tabela: " + json.message);
+                }
+            } catch (e) {
+                alert("Erro: " + e);
+            }
+        }
+
+        function openCleanAllModal() {
+            document.getElementById('clean-all-modal').style.display = 'flex';
+        }
+        function closeCleanAllModal() {
+            document.getElementById('clean-all-modal').style.display = 'none';
+        }
+
+        async function confirmCleanAll() {
+            closeCleanAllModal();
+            try {
+                const res = await fetch('/api/db/clean_all', { method: 'POST' });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    alert("Todas as tabelas foram limpas com sucesso!");
+                    loadDbSchema();
+                } else {
+                    alert("Erro ao limpar tabelas: " + json.message);
+                }
+            } catch (e) {
+                alert("Erro ao comunicar com o servidor: " + e);
+            }
+        }
+
+        // Custom SQL Console
+        function setSqlTemplate(sql) {
+            const input = document.getElementById('db-sql-input');
+            if (input) input.value = sql;
+            executeCustomSql();
+        }
+
+        async function executeCustomSql() {
+            const sql = (document.getElementById('db-sql-input')?.value || '').trim();
+            if (!sql) return;
+
+            const banner = document.getElementById('db-sql-status-banner');
+            const thead = document.getElementById('db-sql-table-head');
+            const tbody = document.getElementById('db-sql-table-body');
+
+            try {
+                const res = await fetch('/api/db/query', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sql })
+                });
+                const data = await res.json();
+
+                if (data.status === 'ok') {
+                    const r = data.result;
+                    if (r.error) {
+                        banner.style.display = 'block';
+                        banner.style.background = 'rgba(239, 68, 68, 0.2)';
+                        banner.style.color = '#fca5a5';
+                        banner.innerText = `❌ Erro na execução (${r.execution_time_ms.toFixed(1)}ms): ${r.error}`;
+                        thead.innerHTML = '';
+                        tbody.innerHTML = '';
+                    } else if (r.is_select) {
+                        banner.style.display = 'block';
+                        banner.style.background = 'rgba(16, 185, 129, 0.2)';
+                        banner.style.color = '#a7f3d0';
+                        banner.innerText = `✅ Sucesso: ${r.affected_rows} linhas retornadas em ${r.execution_time_ms.toFixed(1)}ms`;
+
+                        thead.innerHTML = `<tr>${r.columns.map(c => `<th>${c}</th>`).join('')}</tr>`;
+                        tbody.innerHTML = r.rows.map(row => {
+                            return `<tr>${row.map(v => `<td>${escapeHtml(v !== null ? String(v) : 'NULL')}</td>`).join('')}</tr>`;
+                        }).join('');
+                    } else {
+                        banner.style.display = 'block';
+                        banner.style.background = 'rgba(16, 185, 129, 0.2)';
+                        banner.style.color = '#a7f3d0';
+                        banner.innerText = `✅ Comando executado com sucesso: ${r.affected_rows} linha(s) afetada(s) em ${r.execution_time_ms.toFixed(1)}ms`;
+                        thead.innerHTML = '';
+                        tbody.innerHTML = '';
+                        loadDbSchema(true);
+                    }
+                }
+            } catch (e) {
+                banner.style.display = 'block';
+                banner.style.background = 'rgba(239, 68, 68, 0.2)';
+                banner.style.color = '#fca5a5';
+                banner.innerText = `❌ Erro: ${e}`;
+            }
+        }
+
         fetchMetrics();
         fetchLogs();
     </script>
+
+    <!-- Database Studio Modal (MySQL Workbench / Navicat Style) -->
+    <div class="db-modal-overlay" id="db-studio-modal">
+        <div class="db-window">
+            <div class="db-header">
+                <div class="db-header-title">
+                    <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+                    <span>Database Studio & Workbench (aion.db)</span>
+                    <span class="brand-pill" id="db-total-tables-pill">0 Tabelas</span>
+                </div>
+                <div class="db-header-actions">
+                    <button class="btn-secondary" onclick="loadDbSchema(true)" title="Atualizar Estrutura">
+                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
+                        <span>Recarregar</span>
+                    </button>
+                    <button class="btn-danger" onclick="openCleanAllModal()" title="Limpar/Truncate em Todas as Tabelas">
+                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                        <span>Limpar Todas as Tabelas</span>
+                    </button>
+                    <button class="drawer-close-btn" onclick="closeDbStudio()">✕</button>
+                </div>
+            </div>
+
+            <div class="db-body">
+                <!-- Left Sidebar: Tables Explorer -->
+                <div class="db-sidebar">
+                    <div class="db-sidebar-header">
+                        <div class="db-sidebar-title">
+                            <span>Tabelas</span>
+                            <span id="db-tables-count" style="color:var(--accent-login);">0</span>
+                        </div>
+                        <input type="text" class="db-table-search" id="db-filter-table-input" placeholder="Filtrar tabelas..." onkeyup="filterTablesList()">
+                    </div>
+                    <div class="db-tables-list" id="db-tables-container"></div>
+                </div>
+
+                <!-- Main Area: Grid, Schema & SQL -->
+                <div class="db-main">
+                    <div class="db-toolbar">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div class="db-tab-group">
+                                <button class="db-tab-btn active" id="db-tab-grid" onclick="switchDbTab('grid')">
+                                    <span>📊 Dados (Grid)</span>
+                                </button>
+                                <button class="db-tab-btn" id="db-tab-schema" onclick="switchDbTab('schema')">
+                                    <span>📐 Estrutura</span>
+                                </button>
+                                <button class="db-tab-btn" id="db-tab-sql" onclick="switchDbTab('sql')">
+                                    <span>💻 Console SQL</span>
+                                </button>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 6px;" id="db-grid-controls">
+                                <input type="text" class="search-box" style="width: 180px;" id="db-row-search-input" placeholder="Buscar registros..." onkeyup="if(event.key==='Enter') executeRowSearch()">
+                                <button class="btn-secondary" style="padding: 4px 8px;" onclick="executeRowSearch()">Buscar</button>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 6px;" id="db-grid-actions">
+                            <button class="btn-start" onclick="openInsertRowModal()">
+                                <span>➕ Novo Registro</span>
+                            </button>
+                            <button class="btn-secondary" onclick="loadTableData(true)" title="Recarregar dados da tabela">
+                                <span>🔄 Atualizar</span>
+                            </button>
+                            <button class="btn-stop" onclick="truncateCurrentTable()" title="Excluir todos os registros desta tabela">
+                                <span>⚠️ Truncate Tabela</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="db-content-area">
+                        <!-- Tab 1: Grid View -->
+                        <div id="db-view-grid" style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+                            <div class="db-grid-wrapper" id="db-grid-scroll">
+                                <table class="db-table" id="db-data-table">
+                                    <thead id="db-table-head"></thead>
+                                    <tbody id="db-table-body"></tbody>
+                                </table>
+                            </div>
+                            <div class="db-pagination-bar" id="db-pagination-container">
+                                <div>Total: <b id="db-total-rows-txt" style="color:#fff;">0</b> registros</div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span>Exibir:</span>
+                                    <select id="db-limit-select" onchange="changePageLimit(this.value)" style="background:#090d18; color:#fff; border:1px solid var(--border-glass); border-radius:4px; padding:2px 4px; font-size:0.72rem;">
+                                        <option value="25">25</option>
+                                        <option value="50" selected>50</option>
+                                        <option value="100">100</option>
+                                        <option value="250">250</option>
+                                    </select>
+                                    <button class="filter-btn" id="db-prev-page-btn" onclick="prevPage()">◀ Anterior</button>
+                                    <span id="db-page-info">Página 1 de 1</span>
+                                    <button class="filter-btn" id="db-next-page-btn" onclick="nextPage()">Próxima ▶</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Schema View -->
+                        <div id="db-view-schema" style="display: none; flex-direction: column; width: 100%; height: 100%; overflow: auto; padding: 12px;">
+                            <table class="db-table" style="background:#070a12; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nome da Coluna</th>
+                                        <th>Tipo de Dados</th>
+                                        <th>Chave Primária (PK)</th>
+                                        <th>Não Nulo (NOT NULL)</th>
+                                        <th>Valor Padrão (DEFAULT)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="db-schema-table-body"></tbody>
+                            </table>
+                        </div>
+
+                        <!-- Tab 3: SQL Console -->
+                        <div id="db-view-sql" style="display: none; flex-direction: column; width: 100%; height: 100%;">
+                            <div class="db-sql-container">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size:0.75rem; color:var(--text-muted);">Editor SQL (Execução Direta no aion.db):</span>
+                                    <div style="display: flex; gap: 6px;">
+                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM accounts LIMIT 50;')">SELECT accounts</button>
+                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM characters LIMIT 50;')">SELECT characters</button>
+                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM sessions LIMIT 50;')">SELECT sessions</button>
+                                        <button class="btn-start" onclick="executeCustomSql()">▶ Executar SQL (F5)</button>
+                                    </div>
+                                </div>
+                                <textarea class="db-sql-editor" id="db-sql-input" placeholder="Digite sua consulta SQL aqui (ex: SELECT * FROM accounts;)...">SELECT * FROM accounts LIMIT 50;</textarea>
+                                <div id="db-sql-status-banner" style="font-size:0.72rem; padding:4px 8px; border-radius:4px; display:none;"></div>
+                                <div class="db-sql-result-box" id="db-sql-results-box">
+                                    <table class="db-table" id="db-sql-table">
+                                        <thead id="db-sql-table-head"></thead>
+                                        <tbody id="db-sql-table-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row Insert/Edit Modal -->
+    <div class="db-row-modal" id="db-row-modal">
+        <div class="db-row-card">
+            <div class="db-header">
+                <div class="db-header-title">
+                    <span id="db-row-modal-title">Editar Registro</span>
+                </div>
+                <button class="drawer-close-btn" onclick="closeRowModal()">✕</button>
+            </div>
+            <div class="db-row-form" id="db-row-form-fields"></div>
+            <div style="padding: 10px 16px; background:#0b111e; border-top:1px solid var(--border-glass); display:flex; justify-content:flex-end; gap:8px;">
+                <button class="btn-secondary" onclick="closeRowModal()">Cancelar</button>
+                <button class="btn-start" onclick="saveRowData()">Salvar Alterações</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clean All Tables Confirmation Modal -->
+    <div class="modal-overlay" id="clean-all-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); z-index:2100; align-items:center; justify-content:center;">
+        <div style="background:#0e1526; border:1px solid #ef4444; border-radius:12px; padding:20px; width:90%; max-width:440px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-weight:700; font-size:0.95rem; color:#f87171; display:flex; align-items:center; gap:8px;">
+                <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+                ⚠️ Limpar / Resetar Todas as Tabelas
+            </div>
+            <div style="color:var(--text-muted); font-size:0.8rem; line-height:1.4;">
+                Tem certeza que deseja limpar completamente todas as tabelas do banco de dados (<b>accounts, sessions, characters, character_items, player_quests</b>)?<br><br>
+                <span style="color:#fca5a5;">Esta ação apagará todos os dados e resetará o banco para o estado inicial limpo.</span>
+            </div>
+            <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top:4px;">
+                <button class="btn-secondary" onclick="closeCleanAllModal()">Cancelar</button>
+                <button class="btn-danger" onclick="confirmCleanAll()">Sim, Limpar Tudo</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
 "##;
