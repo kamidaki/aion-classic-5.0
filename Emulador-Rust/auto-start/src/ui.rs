@@ -17,6 +17,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             --accent-login: #38bdf8;
             --accent-game: #10b981;
             --accent-chat: #a855f7;
+            --accent-db: #3b82f6;
             --accent-launcher: #eab308;
             --accent-red: #ef4444;
             --font-scale: 1rem;
@@ -246,6 +247,16 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
         .btn-danger:active, .btn-danger:hover { box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5); transform: translateY(-1px); }
 
+        .btn-db-studio {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
+        }
+        .btn-db-studio:active, .btn-db-studio:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+        }
+
         /* Main Layout */
         main {
             flex: 1;
@@ -259,10 +270,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             overflow: hidden;
         }
 
-        /* 3 Server Cards Grid */
+        /* 4 Top Cards Grid (Login, Game, Chat, Database) */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             width: 100%;
             flex-shrink: 0;
@@ -294,6 +305,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         .card-login::before { background: linear-gradient(90deg, transparent, var(--accent-login), transparent); }
         .card-game::before  { background: linear-gradient(90deg, transparent, var(--accent-game), transparent); }
         .card-chat::before  { background: linear-gradient(90deg, transparent, var(--accent-chat), transparent); }
+        .card-db::before    { background: linear-gradient(90deg, transparent, var(--accent-db), transparent); }
 
         .card-header {
             display: flex;
@@ -371,6 +383,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         .fill-login { background: linear-gradient(90deg, #0284c7, #38bdf8); }
         .fill-game  { background: linear-gradient(90deg, #059669, #10b981); }
         .fill-chat  { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+        .fill-db    { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
 
         .card-actions {
             display: flex;
@@ -422,6 +435,33 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             flex-wrap: wrap;
         }
 
+        .legend-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.68rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 2px 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            white-space: nowrap;
+        }
+
+        .legend-line {
+            width: 12px;
+            height: 3px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
         .toggle-group {
             display: flex;
             align-items: center;
@@ -450,34 +490,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             font-weight: 700;
         }
 
-        .legend-bar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.68rem;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            padding: 2px 6px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            white-space: nowrap;
-        }
-
-        .legend-line {
-            width: 12px;
-            height: 3px;
-            border-radius: 2px;
-            flex-shrink: 0;
-        }
-
-        /* Day-Trade Multi-Curve Canvas */
         .chart-visual-container {
             position: relative;
             width: 100%;
@@ -556,6 +568,9 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             border-radius: 5px;
             font-size: 0.7rem;
             flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
         .filter-btn.active {
             background: rgba(56, 189, 248, 0.2);
@@ -793,50 +808,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             cursor: pointer;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            html, body {
-                overflow-y: auto !important;
-                height: auto !important;
-            }
-            .cards-grid { display: none !important; }
-            .header-status-pills { display: flex; }
-            .header-status-pills .mini-stat-label span { display: none; }
-            .lan-text-badge { display: none !important; }
-            
-            .mobile-bottom-bar { display: flex; }
-            .mobile-fab { display: flex; }
-            
-            main {
-                padding: 10px 12px calc(62px + var(--safe-bottom)) 12px;
-                gap: 10px;
-                overflow: visible !important;
-                flex: initial !important;
-            }
-            
-            .telemetry-section { padding: 8px 10px; }
-            .chart-visual-container { height: 130px; }
-            .chart-stats-grid { grid-template-columns: repeat(2, 1fr); font-size: 0.68rem; }
-            
-            .log-center {
-                padding: 10px 12px;
-                min-height: 280px;
-                flex: initial !important;
-            }
-            .log-console { max-height: 320px; height: 320px; }
-        }
-    
-        /* Database Studio (MySQL Workbench / Navicat Style) */
-        .btn-db-studio {
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            color: #fff;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
-        }
-        .btn-db-studio:active, .btn-db-studio:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
-        }
-
+        /* Database Studio Modal & Workbench (Full Glassmorphism) */
         .db-modal-overlay {
             position: fixed;
             top: 0;
@@ -899,7 +871,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             overflow: hidden;
         }
 
-        /* Sidebar Tables Explorer */
         .db-sidebar {
             width: 260px;
             background: #070b14;
@@ -984,7 +955,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             color: var(--accent-login);
         }
 
-        /* Main Workspace */
         .db-main {
             flex: 1;
             display: flex;
@@ -1042,7 +1012,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             position: relative;
         }
 
-        /* Grid View */
         .db-grid-wrapper {
             flex: 1;
             min-height: 0;
@@ -1116,7 +1085,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             flex-shrink: 0;
         }
 
-        /* SQL Editor View */
         .db-sql-container {
             flex: 1;
             display: flex;
@@ -1151,7 +1119,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             padding: 6px;
         }
 
-        /* Row Edit Modal */
         .db-row-modal {
             position: fixed;
             top: 0;
@@ -1217,6 +1184,41 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             border-color: var(--accent-login);
         }
 
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            html, body {
+                overflow-y: auto !important;
+                height: auto !important;
+            }
+            .cards-grid { grid-template-columns: 1fr !important; }
+            .header-status-pills { display: flex; }
+            .header-status-pills .mini-stat-label span { display: none; }
+            .lan-text-badge { display: none !important; }
+            
+            .mobile-bottom-bar { display: flex; }
+            .mobile-fab { display: flex; }
+            
+            main {
+                padding: 10px 12px calc(62px + var(--safe-bottom)) 12px;
+                gap: 10px;
+                overflow: visible !important;
+                flex: initial !important;
+            }
+            
+            .telemetry-section { padding: 8px 10px; }
+            .chart-visual-container { height: 130px; }
+            .chart-stats-grid { grid-template-columns: repeat(2, 1fr); font-size: 0.68rem; }
+            
+            .log-center {
+                padding: 10px 12px;
+                min-height: 280px;
+                flex: initial !important;
+            }
+            .log-console { max-height: 320px; height: 320px; }
+
+            .db-body { flex-direction: column; }
+            .db-sidebar { width: 100%; height: 160px; }
+        }
     </style>
 </head>
 <body>
@@ -1239,7 +1241,13 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         </div>
 
         <div class="header-right">
-            <!-- Plain Host:Port Text Display (Copy on click) -->
+            <!-- Database Studio Header Button -->
+            <button class="btn-db-studio" onclick="openDbStudio()" title="Gerenciador e Editor do Banco de Dados SQLite (Workbench / Navicat)">
+                <span class="btn-svg"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+                <span>Banco de Dados</span>
+            </button>
+
+            <!-- Simple Host:Port Text Display (Copy on click) -->
             <div class="lan-text-badge" onclick="copyExternalUrl()" title="Clique para copiar o endereço do painel">
                 <span class="btn-svg" style="color: var(--accent-login);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
                 <span>Web: <b id="hdr-lan-ip">127.0.0.1:18080</b></span>
@@ -1256,7 +1264,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
     <!-- Main Content -->
     <main>
-        <!-- Desktop 3 Server Cards -->
+        <!-- Desktop 4 Cards (Login, Game, Chat, Database) -->
         <div class="cards-grid">
             <!-- Login Server -->
             <div class="card card-login" id="card-login">
@@ -1326,6 +1334,34 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     <button class="btn-restart" onclick="controlServer('chat', 'restart')">Reiniciar</button>
                 </div>
             </div>
+
+            <!-- Database Card -->
+            <div class="card card-db" id="card-db">
+                <div class="card-header">
+                    <div class="card-title-box">
+                        <div class="status-dot online" id="dot-db"></div>
+                        <div class="card-title">Banco SQLite</div>
+                    </div>
+                    <div class="card-tag">aion.db</div>
+                </div>
+                <div class="metrics-box">
+                    <div class="metric-row"><span class="metric-label">Engine / Modo:</span><span class="metric-value" style="color:var(--accent-game);">WAL (Ativo)</span></div>
+                    <div class="metric-row"><span class="metric-label">Tabelas:</span><span class="metric-value" id="val-db-tables" style="color:var(--accent-db);">5 Tabelas</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-db" style="width: 100%;"></div></div>
+                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Tamanho em Disco:</span><span class="metric-value" id="val-db-size">0 KB</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-db" style="width: 100%;"></div></div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-db-studio" onclick="openDbStudio()">
+                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+                        <span>Abrir Estúdio</span>
+                    </button>
+                    <button class="btn-danger" onclick="openCleanAllModal()">
+                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                        <span>Limpar Tudo</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- Real-Time Day-Trade Fibonacci Multi-Curve Telemetry Section -->
@@ -1375,8 +1411,14 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         LOGS UNIFICADOS (LOGIN, GAME, CHAT, LAUNCHER)
                     </span>
                     <div style="display: flex; gap: 5px;">
-                        <button class="filter-btn" onclick="clearLogs()">Limpar</button>
-                        <button class="filter-btn" id="pause-btn" onclick="togglePause()">Pausar</button>
+                        <button class="filter-btn" onclick="clearLogs()">
+                            <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
+                            <span>Limpar</span>
+                        </button>
+                        <button class="filter-btn" id="pause-btn" onclick="togglePause()">
+                            <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></span>
+                            <span id="pause-btn-text">Pausar</span>
+                        </button>
                     </div>
                 </div>
 
@@ -1402,25 +1444,12 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         <div class="drawer-header">
             <div class="drawer-title">
                 <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-                Menu e Gestão de Servidores
+                Painel & Gestão
             </div>
             <button class="drawer-close-btn" onclick="toggleDrawer(false)">✕</button>
         </div>
 
         <div class="drawer-content">
-            <!-- Section: Ações Mestres -->
-            <div>
-                <div class="drawer-section-title">
-                    <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
-                    Controles Mestres
-                </div>
-                <div style="display: flex; gap: 6px;">
-                    <button class="btn-start" style="flex:1;" onclick="startAll()">Iniciar Todos</button>
-                    <button class="btn-stop" style="flex:1;" onclick="stopAll()">Parar Todos</button>
-                    <button class="btn-restart" style="flex:1;" onclick="restartAll()">Reiniciar</button>
-                </div>
-            </div>
-
             <!-- Section: Servidores Individuais -->
             <div>
                 <div class="drawer-section-title">
@@ -1460,6 +1489,26 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 </div>
             </div>
 
+            <!-- Section: Banco de Dados -->
+            <div>
+                <div class="drawer-section-title">
+                    <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+                    Banco de Dados (aion.db)
+                </div>
+                <div class="drawer-card">
+                    <div style="display: flex; gap: 6px;">
+                        <button class="btn-db-studio" style="flex:1;" onclick="toggleDrawer(false); openDbStudio();">
+                            <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+                            <span>Abrir Studio</span>
+                        </button>
+                        <button class="btn-danger" style="flex:1;" onclick="openCleanAllModal();">
+                            <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
+                            <span>Limpar Tudo</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Section: Acesso Mobile & LAN -->
             <div>
                 <div class="drawer-section-title">
@@ -1469,26 +1518,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 <div class="drawer-card">
                     <div class="drawer-row"><span style="color: var(--text-muted);">IP Local (LAN):</span><span class="drawer-val" id="reg-lan-ip">127.0.0.1</span></div>
                     <div class="drawer-row"><span style="color: var(--text-muted);">URL do Painel:</span><span class="drawer-val" id="reg-ext-url" style="color: var(--accent-login); word-break: break-all;">http://127.0.0.1:18080</span></div>
-                    <button class="btn-secondary" style="margin-top: 4px;" onclick="copyExternalUrl()">Copiar Link do Painel</button>
-                </div>
-            </div>
-
-            
-            <!-- Section: Banco de Dados & Gestão de Tabelas -->
-            <div>
-                <div class="drawer-section-title">
-                    <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-                    Banco de Dados (aion.db)
-                </div>
-                <div class="drawer-card">
-                    <div style="display: flex; gap: 6px;">
-                        <button class="btn-db-studio" style="flex:1;" onclick="toggleDrawer(false); openDbStudio();">
-                            <span>🗄️ Abrir Studio</span>
-                        </button>
-                        <button class="btn-danger" style="flex:1;" onclick="openCleanAllModal();">
-                            <span>🗑️ Limpar Tudo</span>
-                        </button>
-                    </div>
+                    <button class="btn-secondary" style="margin-top: 4px;" onclick="copyExternalUrl()">
+                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+                        <span>Copiar Link do Painel</span>
+                    </button>
                 </div>
             </div>
 
@@ -1534,9 +1567,9 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
             Logs
         </button>
-        <button class="tab-btn" id="tab-btn-servers" onclick="switchMobileTab('servers')">
-            <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
-            Servidores
+        <button class="tab-btn" id="tab-btn-db" onclick="openDbStudio()">
+            <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+            Banco
         </button>
         <button class="tab-btn" id="tab-btn-menu" onclick="switchMobileTab('menu')">
             <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span>
@@ -1548,6 +1581,204 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
     <button class="mobile-fab" onclick="toggleDrawer(true)" title="Menu e Servidores">
         <span class="btn-svg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
     </button>
+
+    <!-- Database Studio Modal (MySQL Workbench / Navicat Style - SVG Icons Only) -->
+    <div class="db-modal-overlay" id="db-studio-modal">
+        <div class="db-window">
+            <div class="db-header">
+                <div class="db-header-title">
+                    <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+                    <span>Database Studio & Workbench (aion.db)</span>
+                    <span class="brand-pill" id="db-total-tables-pill">0 Tabelas</span>
+                </div>
+                <div class="db-header-actions">
+                    <button class="btn-secondary" onclick="loadDbSchema(true)" title="Atualizar Estrutura">
+                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
+                        <span>Recarregar</span>
+                    </button>
+                    <button class="btn-danger" onclick="openCleanAllModal()" title="Limpar/Truncate em Todas as Tabelas">
+                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                        <span>Limpar Todas as Tabelas</span>
+                    </button>
+                    <button class="drawer-close-btn" onclick="closeDbStudio()">✕</button>
+                </div>
+            </div>
+
+            <div class="db-body">
+                <!-- Left Sidebar: Tables Explorer -->
+                <div class="db-sidebar">
+                    <div class="db-sidebar-header">
+                        <div class="db-sidebar-title">
+                            <span>Tabelas</span>
+                            <span id="db-tables-count" style="color:var(--accent-login);">0</span>
+                        </div>
+                        <input type="text" class="db-table-search" id="db-filter-table-input" placeholder="Filtrar tabelas..." onkeyup="filterTablesList()">
+                    </div>
+                    <div class="db-tables-list" id="db-tables-container"></div>
+                </div>
+
+                <!-- Main Area: Grid, Schema & SQL -->
+                <div class="db-main">
+                    <div class="db-toolbar">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div class="db-tab-group">
+                                <button class="db-tab-btn active" id="db-tab-grid" onclick="switchDbTab('grid')">
+                                    <span class="btn-svg"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span>
+                                    <span>Dados (Grid)</span>
+                                </button>
+                                <button class="db-tab-btn" id="db-tab-schema" onclick="switchDbTab('schema')">
+                                    <span class="btn-svg"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+                                    <span>Estrutura</span>
+                                </button>
+                                <button class="db-tab-btn" id="db-tab-sql" onclick="switchDbTab('sql')">
+                                    <span class="btn-svg"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
+                                    <span>Console SQL</span>
+                                </button>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 6px;" id="db-grid-controls">
+                                <input type="text" class="search-box" style="width: 180px;" id="db-row-search-input" placeholder="Buscar registros..." onkeyup="if(event.key==='Enter') executeRowSearch()">
+                                <button class="btn-secondary" style="padding: 4px 8px;" onclick="executeRowSearch()">
+                                    <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                                    <span>Buscar</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 6px;" id="db-grid-actions">
+                            <button class="btn-start" onclick="openInsertRowModal()">
+                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                                <span>Novo Registro</span>
+                            </button>
+                            <button class="btn-secondary" onclick="loadTableData(true)" title="Recarregar dados da tabela">
+                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
+                                <span>Atualizar</span>
+                            </button>
+                            <button class="btn-stop" onclick="truncateCurrentTable()" title="Excluir todos os registros desta tabela">
+                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                                <span>Truncate Tabela</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="db-content-area">
+                        <!-- Tab 1: Grid View -->
+                        <div id="db-view-grid" style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+                            <div class="db-grid-wrapper" id="db-grid-scroll">
+                                <table class="db-table" id="db-data-table">
+                                    <thead id="db-table-head"></thead>
+                                    <tbody id="db-table-body"></tbody>
+                                </table>
+                            </div>
+                            <div class="db-pagination-bar" id="db-pagination-container">
+                                <div>Total: <b id="db-total-rows-txt" style="color:#fff;">0</b> registros</div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span>Exibir:</span>
+                                    <select id="db-limit-select" onchange="changePageLimit(this.value)" style="background:#090d18; color:#fff; border:1px solid var(--border-glass); border-radius:4px; padding:2px 4px; font-size:0.72rem;">
+                                        <option value="25">25</option>
+                                        <option value="50" selected>50</option>
+                                        <option value="100">100</option>
+                                        <option value="250">250</option>
+                                    </select>
+                                    <button class="filter-btn" id="db-prev-page-btn" onclick="prevPage()">◀ Anterior</button>
+                                    <span id="db-page-info">Página 1 de 1</span>
+                                    <button class="filter-btn" id="db-next-page-btn" onclick="nextPage()">Próxima ▶</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Schema View -->
+                        <div id="db-view-schema" style="display: none; flex-direction: column; width: 100%; height: 100%; overflow: auto; padding: 12px;">
+                            <table class="db-table" style="background:#070a12; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nome da Coluna</th>
+                                        <th>Tipo de Dados</th>
+                                        <th>Chave Primária (PK)</th>
+                                        <th>Não Nulo (NOT NULL)</th>
+                                        <th>Valor Padrão (DEFAULT)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="db-schema-table-body"></tbody>
+                            </table>
+                        </div>
+
+                        <!-- Tab 3: SQL Console -->
+                        <div id="db-view-sql" style="display: none; flex-direction: column; width: 100%; height: 100%;">
+                            <div class="db-sql-container">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size:0.75rem; color:var(--text-muted); display:flex; align-items:center; gap:5px;">
+                                        <span class="btn-svg" style="color:var(--accent-login);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
+                                        Editor SQL (Execução Direta no aion.db):
+                                    </span>
+                                    <div style="display: flex; gap: 6px;">
+                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM accounts LIMIT 50;')">accounts</button>
+                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM characters LIMIT 50;')">characters</button>
+                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM sessions LIMIT 50;')">sessions</button>
+                                        <button class="btn-start" onclick="executeCustomSql()">
+                                            <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                                            <span>Executar SQL (F5)</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <textarea class="db-sql-editor" id="db-sql-input" placeholder="Digite sua consulta SQL aqui (ex: SELECT * FROM accounts;)...">SELECT * FROM accounts LIMIT 50;</textarea>
+                                <div id="db-sql-status-banner" style="font-size:0.72rem; padding:4px 8px; border-radius:4px; display:none;"></div>
+                                <div class="db-sql-result-box" id="db-sql-results-box">
+                                    <table class="db-table" id="db-sql-table">
+                                        <thead id="db-sql-table-head"></thead>
+                                        <tbody id="db-sql-table-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row Insert/Edit Modal -->
+    <div class="db-row-modal" id="db-row-modal">
+        <div class="db-row-card">
+            <div class="db-header">
+                <div class="db-header-title">
+                    <span class="btn-svg" style="color:var(--accent-login);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+                    <span id="db-row-modal-title">Editar Registro</span>
+                </div>
+                <button class="drawer-close-btn" onclick="closeRowModal()">✕</button>
+            </div>
+            <div class="db-row-form" id="db-row-form-fields"></div>
+            <div style="padding: 10px 16px; background:#0b111e; border-top:1px solid var(--border-glass); display:flex; justify-content:flex-end; gap:8px;">
+                <button class="btn-secondary" onclick="closeRowModal()">Cancelar</button>
+                <button class="btn-start" onclick="saveRowData()">
+                    <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+                    <span>Salvar Alterações</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clean All Tables Confirmation Modal -->
+    <div class="modal-overlay" id="clean-all-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); z-index:2100; align-items:center; justify-content:center;">
+        <div style="background:#0e1526; border:1px solid #ef4444; border-radius:12px; padding:20px; width:90%; max-width:440px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-weight:700; font-size:0.95rem; color:#f87171; display:flex; align-items:center; gap:8px;">
+                <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                <span>Limpar / Resetar Todas as Tabelas</span>
+            </div>
+            <div style="color:var(--text-muted); font-size:0.8rem; line-height:1.4;">
+                Tem certeza que deseja limpar completamente todas as tabelas do banco de dados (<b>accounts, sessions, characters, character_items, player_quests</b>)?<br><br>
+                <span style="color:#fca5a5;">Esta ação apagará todos os dados e resetará o banco para o estado inicial limpo.</span>
+            </div>
+            <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top:4px;">
+                <button class="btn-secondary" onclick="closeCleanAllModal()">Cancelar</button>
+                <button class="btn-danger" onclick="confirmCleanAll()">
+                    <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
+                    <span>Sim, Limpar Tudo</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Shutdown Modal -->
     <div class="modal-overlay" id="shutdown-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); backdrop-filter:blur(8px); z-index:2000; align-items:center; justify-content:center;">
@@ -1721,14 +1952,16 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     });
                 }
 
-                // 2. Update System Registers & Header IP Badge
+                // 2. Update System Registers & DB Card
                 if (data.registers) {
                     const r = data.registers;
                     externalUrlStr = r.external_url;
                     document.getElementById('hdr-lan-ip').innerText = `${r.lan_ip}:${r.http_port}`;
                     document.getElementById('reg-lan-ip').innerText = r.lan_ip;
                     document.getElementById('reg-ext-url').innerText = r.external_url;
-                    document.getElementById('reg-db-size').innerText = `aion.db (${(r.active_db_size_kb / 1024).toFixed(2)} MB)`;
+                    const dbSizeStr = `aion.db (${(r.active_db_size_kb / 1024).toFixed(2)} MB)`;
+                    document.getElementById('reg-db-size').innerText = dbSizeStr;
+                    document.getElementById('val-db-size').innerText = `${(r.active_db_size_kb / 1024).toFixed(2)} MB`;
                     document.getElementById('reg-os-mem').innerText = `${(r.os_used_memory_mb / 1024).toFixed(1)} / ${(r.os_total_memory_mb / 1024).toFixed(1)} GB`;
                 }
 
@@ -1806,7 +2039,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         function togglePause() {
             isPaused = !isPaused;
             const btn = document.getElementById('pause-btn');
-            btn.innerText = isPaused ? 'Continuar' : 'Pausar';
+            const text = document.getElementById('pause-btn-text');
+            text.innerText = isPaused ? 'Continuar' : 'Pausar';
             btn.classList.toggle('active', isPaused);
         }
 
@@ -1826,7 +2060,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             } else if (tab === 'logs') {
                 toggleDrawer(false);
                 document.getElementById('section-logs').scrollIntoView({ behavior: 'smooth' });
-            } else if (tab === 'servers' || tab === 'menu') {
+            } else if (tab === 'menu') {
                 toggleDrawer(true);
             }
         }
@@ -1865,30 +2099,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             } catch (e) {}
         }
 
-        async function startAll() {
-            await controlServer('login', 'start');
-            await controlServer('game', 'start');
-            await controlServer('chat', 'start');
-        }
-
-        async function stopAll() {
-            await controlServer('chat', 'stop');
-            await controlServer('game', 'stop');
-            await controlServer('login', 'stop');
-        }
-
-        async function restartAll() {
-            await controlServer('login', 'restart');
-            await controlServer('game', 'restart');
-            await controlServer('chat', 'restart');
-        }
-
-        window.addEventListener('resize', drawDayTradeChart);
-        setInterval(fetchMetrics, 1000);
-        setInterval(fetchLogs, 800);
-        
         // ==========================================
-        // DATABASE STUDIO & WORKBENCH LOGIC
+        // DATABASE STUDIO & WORKBENCH LOGIC (SVG)
         // ==========================================
         let dbSchemas = [];
         let currentDbTable = null;
@@ -1918,6 +2130,11 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     dbSchemas = data.tables || [];
                     document.getElementById('db-total-tables-pill').innerText = `${dbSchemas.length} Tabelas`;
                     document.getElementById('db-tables-count').innerText = dbSchemas.length;
+                    
+                    const totalRows = dbSchemas.reduce((acc, t) => acc + (t.row_count || 0), 0);
+                    const dbTablesEl = document.getElementById('val-db-tables');
+                    if (dbTablesEl) dbTablesEl.innerText = `${dbSchemas.length} Tabelas`;
+
                     renderTablesList();
 
                     if (!preserveSelection || !currentDbTable) {
@@ -2017,8 +2234,12 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 tbody.innerHTML = data.rows.map(row => {
                     const rowEncoded = encodeURIComponent(JSON.stringify(row));
                     let tdHtml = `<td style="text-align:center;">
-                        <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem;" onclick="openEditRowModal('${rowEncoded}')" title="Editar Linha">✏️</button>
-                        <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem; color:#f87171;" onclick="deleteRow('${rowEncoded}')" title="Excluir Linha">🗑️</button>
+                        <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem;" onclick="openEditRowModal('${rowEncoded}')" title="Editar Linha">
+                            <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+                        </button>
+                        <button class="filter-btn" style="padding:2px 5px; font-size:0.65rem; color:#f87171;" onclick="deleteRow('${rowEncoded}')" title="Excluir Linha">
+                            <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
+                        </button>
                     </td>`;
 
                     data.columns.forEach(col => {
@@ -2113,7 +2334,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             if (!currentDbTable) return;
             isInsertingRow = true;
             editingRowPk = null;
-            document.getElementById('db-row-modal-title').innerText = `➕ Novo Registro em '${currentDbTable}'`;
+            document.getElementById('db-row-modal-title').innerText = `Novo Registro em '${currentDbTable}'`;
 
             const schema = dbSchemas.find(s => s.name === currentDbTable);
             if (!schema) return;
@@ -2146,7 +2367,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 editingRowPk[c.name] = row[c.name];
             });
 
-            document.getElementById('db-row-modal-title').innerText = `✏️ Editar Registro em '${currentDbTable}'`;
+            document.getElementById('db-row-modal-title').innerText = `Editar Registro em '${currentDbTable}'`;
 
             const form = document.getElementById('db-row-form-fields');
             form.innerHTML = schema.columns.map(col => {
@@ -2262,7 +2483,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
         async function truncateCurrentTable() {
             if (!currentDbTable) return;
-            if (!confirm(`⚠️ ATENÇÃO: Tem certeza que deseja limpar TODOS os registros da tabela '${currentDbTable}'?`)) {
+            if (!confirm(`ATENÇÃO: Tem certeza que deseja limpar TODOS os registros da tabela '${currentDbTable}'?`)) {
                 return;
             }
 
@@ -2333,14 +2554,14 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         banner.style.display = 'block';
                         banner.style.background = 'rgba(239, 68, 68, 0.2)';
                         banner.style.color = '#fca5a5';
-                        banner.innerText = `❌ Erro na execução (${r.execution_time_ms.toFixed(1)}ms): ${r.error}`;
+                        banner.innerText = `Erro na execução (${r.execution_time_ms.toFixed(1)}ms): ${r.error}`;
                         thead.innerHTML = '';
                         tbody.innerHTML = '';
                     } else if (r.is_select) {
                         banner.style.display = 'block';
                         banner.style.background = 'rgba(16, 185, 129, 0.2)';
                         banner.style.color = '#a7f3d0';
-                        banner.innerText = `✅ Sucesso: ${r.affected_rows} linhas retornadas em ${r.execution_time_ms.toFixed(1)}ms`;
+                        banner.innerText = `Sucesso: ${r.affected_rows} linhas retornadas em ${r.execution_time_ms.toFixed(1)}ms`;
 
                         thead.innerHTML = `<tr>${r.columns.map(c => `<th>${c}</th>`).join('')}</tr>`;
                         tbody.innerHTML = r.rows.map(row => {
@@ -2350,7 +2571,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         banner.style.display = 'block';
                         banner.style.background = 'rgba(16, 185, 129, 0.2)';
                         banner.style.color = '#a7f3d0';
-                        banner.innerText = `✅ Comando executado com sucesso: ${r.affected_rows} linha(s) afetada(s) em ${r.execution_time_ms.toFixed(1)}ms`;
+                        banner.innerText = `Comando executado com sucesso: ${r.affected_rows} linha(s) afetada(s) em ${r.execution_time_ms.toFixed(1)}ms`;
                         thead.innerHTML = '';
                         tbody.innerHTML = '';
                         loadDbSchema(true);
@@ -2360,190 +2581,16 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 banner.style.display = 'block';
                 banner.style.background = 'rgba(239, 68, 68, 0.2)';
                 banner.style.color = '#fca5a5';
-                banner.innerText = `❌ Erro: ${e}`;
+                banner.innerText = `Erro: ${e}`;
             }
         }
 
+        window.addEventListener('resize', drawDayTradeChart);
+        setInterval(fetchMetrics, 1000);
+        setInterval(fetchLogs, 800);
         fetchMetrics();
         fetchLogs();
     </script>
-
-    <!-- Database Studio Modal (MySQL Workbench / Navicat Style) -->
-    <div class="db-modal-overlay" id="db-studio-modal">
-        <div class="db-window">
-            <div class="db-header">
-                <div class="db-header-title">
-                    <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-                    <span>Database Studio & Workbench (aion.db)</span>
-                    <span class="brand-pill" id="db-total-tables-pill">0 Tabelas</span>
-                </div>
-                <div class="db-header-actions">
-                    <button class="btn-secondary" onclick="loadDbSchema(true)" title="Atualizar Estrutura">
-                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
-                        <span>Recarregar</span>
-                    </button>
-                    <button class="btn-danger" onclick="openCleanAllModal()" title="Limpar/Truncate em Todas as Tabelas">
-                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
-                        <span>Limpar Todas as Tabelas</span>
-                    </button>
-                    <button class="drawer-close-btn" onclick="closeDbStudio()">✕</button>
-                </div>
-            </div>
-
-            <div class="db-body">
-                <!-- Left Sidebar: Tables Explorer -->
-                <div class="db-sidebar">
-                    <div class="db-sidebar-header">
-                        <div class="db-sidebar-title">
-                            <span>Tabelas</span>
-                            <span id="db-tables-count" style="color:var(--accent-login);">0</span>
-                        </div>
-                        <input type="text" class="db-table-search" id="db-filter-table-input" placeholder="Filtrar tabelas..." onkeyup="filterTablesList()">
-                    </div>
-                    <div class="db-tables-list" id="db-tables-container"></div>
-                </div>
-
-                <!-- Main Area: Grid, Schema & SQL -->
-                <div class="db-main">
-                    <div class="db-toolbar">
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <div class="db-tab-group">
-                                <button class="db-tab-btn active" id="db-tab-grid" onclick="switchDbTab('grid')">
-                                    <span>📊 Dados (Grid)</span>
-                                </button>
-                                <button class="db-tab-btn" id="db-tab-schema" onclick="switchDbTab('schema')">
-                                    <span>📐 Estrutura</span>
-                                </button>
-                                <button class="db-tab-btn" id="db-tab-sql" onclick="switchDbTab('sql')">
-                                    <span>💻 Console SQL</span>
-                                </button>
-                            </div>
-
-                            <div style="display: flex; align-items: center; gap: 6px;" id="db-grid-controls">
-                                <input type="text" class="search-box" style="width: 180px;" id="db-row-search-input" placeholder="Buscar registros..." onkeyup="if(event.key==='Enter') executeRowSearch()">
-                                <button class="btn-secondary" style="padding: 4px 8px;" onclick="executeRowSearch()">Buscar</button>
-                            </div>
-                        </div>
-
-                        <div style="display: flex; align-items: center; gap: 6px;" id="db-grid-actions">
-                            <button class="btn-start" onclick="openInsertRowModal()">
-                                <span>➕ Novo Registro</span>
-                            </button>
-                            <button class="btn-secondary" onclick="loadTableData(true)" title="Recarregar dados da tabela">
-                                <span>🔄 Atualizar</span>
-                            </button>
-                            <button class="btn-stop" onclick="truncateCurrentTable()" title="Excluir todos os registros desta tabela">
-                                <span>⚠️ Truncate Tabela</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="db-content-area">
-                        <!-- Tab 1: Grid View -->
-                        <div id="db-view-grid" style="display: flex; flex-direction: column; width: 100%; height: 100%;">
-                            <div class="db-grid-wrapper" id="db-grid-scroll">
-                                <table class="db-table" id="db-data-table">
-                                    <thead id="db-table-head"></thead>
-                                    <tbody id="db-table-body"></tbody>
-                                </table>
-                            </div>
-                            <div class="db-pagination-bar" id="db-pagination-container">
-                                <div>Total: <b id="db-total-rows-txt" style="color:#fff;">0</b> registros</div>
-                                <div style="display: flex; align-items: center; gap: 8px;">
-                                    <span>Exibir:</span>
-                                    <select id="db-limit-select" onchange="changePageLimit(this.value)" style="background:#090d18; color:#fff; border:1px solid var(--border-glass); border-radius:4px; padding:2px 4px; font-size:0.72rem;">
-                                        <option value="25">25</option>
-                                        <option value="50" selected>50</option>
-                                        <option value="100">100</option>
-                                        <option value="250">250</option>
-                                    </select>
-                                    <button class="filter-btn" id="db-prev-page-btn" onclick="prevPage()">◀ Anterior</button>
-                                    <span id="db-page-info">Página 1 de 1</span>
-                                    <button class="filter-btn" id="db-next-page-btn" onclick="nextPage()">Próxima ▶</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab 2: Schema View -->
-                        <div id="db-view-schema" style="display: none; flex-direction: column; width: 100%; height: 100%; overflow: auto; padding: 12px;">
-                            <table class="db-table" style="background:#070a12; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nome da Coluna</th>
-                                        <th>Tipo de Dados</th>
-                                        <th>Chave Primária (PK)</th>
-                                        <th>Não Nulo (NOT NULL)</th>
-                                        <th>Valor Padrão (DEFAULT)</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="db-schema-table-body"></tbody>
-                            </table>
-                        </div>
-
-                        <!-- Tab 3: SQL Console -->
-                        <div id="db-view-sql" style="display: none; flex-direction: column; width: 100%; height: 100%;">
-                            <div class="db-sql-container">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <span style="font-size:0.75rem; color:var(--text-muted);">Editor SQL (Execução Direta no aion.db):</span>
-                                    <div style="display: flex; gap: 6px;">
-                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM accounts LIMIT 50;')">SELECT accounts</button>
-                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM characters LIMIT 50;')">SELECT characters</button>
-                                        <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM sessions LIMIT 50;')">SELECT sessions</button>
-                                        <button class="btn-start" onclick="executeCustomSql()">▶ Executar SQL (F5)</button>
-                                    </div>
-                                </div>
-                                <textarea class="db-sql-editor" id="db-sql-input" placeholder="Digite sua consulta SQL aqui (ex: SELECT * FROM accounts;)...">SELECT * FROM accounts LIMIT 50;</textarea>
-                                <div id="db-sql-status-banner" style="font-size:0.72rem; padding:4px 8px; border-radius:4px; display:none;"></div>
-                                <div class="db-sql-result-box" id="db-sql-results-box">
-                                    <table class="db-table" id="db-sql-table">
-                                        <thead id="db-sql-table-head"></thead>
-                                        <tbody id="db-sql-table-body"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Row Insert/Edit Modal -->
-    <div class="db-row-modal" id="db-row-modal">
-        <div class="db-row-card">
-            <div class="db-header">
-                <div class="db-header-title">
-                    <span id="db-row-modal-title">Editar Registro</span>
-                </div>
-                <button class="drawer-close-btn" onclick="closeRowModal()">✕</button>
-            </div>
-            <div class="db-row-form" id="db-row-form-fields"></div>
-            <div style="padding: 10px 16px; background:#0b111e; border-top:1px solid var(--border-glass); display:flex; justify-content:flex-end; gap:8px;">
-                <button class="btn-secondary" onclick="closeRowModal()">Cancelar</button>
-                <button class="btn-start" onclick="saveRowData()">Salvar Alterações</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Clean All Tables Confirmation Modal -->
-    <div class="modal-overlay" id="clean-all-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); z-index:2100; align-items:center; justify-content:center;">
-        <div style="background:#0e1526; border:1px solid #ef4444; border-radius:12px; padding:20px; width:90%; max-width:440px; display:flex; flex-direction:column; gap:12px;">
-            <div style="font-weight:700; font-size:0.95rem; color:#f87171; display:flex; align-items:center; gap:8px;">
-                <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
-                ⚠️ Limpar / Resetar Todas as Tabelas
-            </div>
-            <div style="color:var(--text-muted); font-size:0.8rem; line-height:1.4;">
-                Tem certeza que deseja limpar completamente todas as tabelas do banco de dados (<b>accounts, sessions, characters, character_items, player_quests</b>)?<br><br>
-                <span style="color:#fca5a5;">Esta ação apagará todos os dados e resetará o banco para o estado inicial limpo.</span>
-            </div>
-            <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top:4px;">
-                <button class="btn-secondary" onclick="closeCleanAllModal()">Cancelar</button>
-                <button class="btn-danger" onclick="confirmCleanAll()">Sim, Limpar Tudo</button>
-            </div>
-        </div>
-    </div>
-
 </body>
 </html>
 "##;
