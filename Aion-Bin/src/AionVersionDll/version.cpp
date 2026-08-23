@@ -57,68 +57,92 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
     }
 
     HMODULE hGame = nullptr;
-    for (int i = 0; i < 200; i++) {
+    for (int i = 0; i < 1800; i++) {
         hGame = GetModuleHandle(L"game.dll");
         if (hGame) break;
-        Sleep(50);
+        Sleep(100);
     }
 
     if (!hGame) {
         if (logF) {
-            fprintf(logF, "[version.dll] game.dll not found in process.\n");
+            fprintf(logF, "[version.dll] game.dll not found after 180s.\n");
             fclose(logF);
         }
         return 0;
     }
 
     if (logF) {
-        fprintf(logF, "[version.dll] game.dll found at %p. Scanning for Login Button check...\n", hGame);
+        fprintf(logF, "[version.dll] game.dll found at %p. Applying Login Button patch...\n", hGame);
         fflush(logF);
     }
 
-    MEMORY_BASIC_INFORMATION mbi = {};
-    unsigned char* p = (unsigned char*)hGame;
     bool patched = false;
+    unsigned char* base = (unsigned char*)hGame;
 
-    while (VirtualQuery(p, &mbi, sizeof(mbi))) {
-        if ((mbi.State == MEM_COMMIT) && 
-            (mbi.Protect == PAGE_EXECUTE_READ || mbi.Protect == PAGE_EXECUTE_READWRITE || mbi.Protect == PAGE_EXECUTE_WRITECOPY)) {
-            
-            unsigned char* block = (unsigned char*)mbi.BaseAddress;
-            size_t len = mbi.RegionSize;
-            
-            for (size_t i = 0; i + 24 < len; i++) {
-                // Pattern at 0x15A110:
-                // 80 3D xx xx xx xx 03 0F B7 F0 66 89 05 xx xx xx xx 0F 85
-                if (block[i] == 0x80 && block[i+1] == 0x3D && block[i+6] == 0x03 &&
-                    block[i+7] == 0x0F && block[i+8] == 0xB7 && block[i+9] == 0xF0 &&
-                    block[i+10] == 0x66 && block[i+11] == 0x89 && block[i+12] == 0x05 &&
-                    block[i+17] == 0x0F && block[i+18] == 0x85) {
-                    
-                    DWORD oldProtect;
-                    if (VirtualProtect(&block[i+17], 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
-                        memset(&block[i+17], 0x90, 6);
-                        VirtualProtect(&block[i+17], 6, oldProtect, &oldProtect);
-                        FlushInstructionCache(GetCurrentProcess(), &block[i+17], 6);
-                        patched = true;
-                        if (logF) {
-                            fprintf(logF, "[version.dll] SUCCESS: Patched Login Button JNE at %p with NOPs!\n", &block[i+17]);
-                            fflush(logF);
-                        }
-                    }
-                    break;
-                }
+    // 1. Try direct offset 0x15A125 first
+    unsigned char* directTarget = base + 0x15A125;
+    if (directTarget[0] == 0x0F && directTarget[1] == 0x85) {
+        DWORD oldProtect;
+        if (VirtualProtect(directTarget, 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+            memset(directTarget, 0x90, 6);
+            VirtualProtect(directTarget, 6, oldProtect, &oldProtect);
+            FlushInstructionCache(GetCurrentProcess(), directTarget, 6);
+            patched = true;
+            if (logF) {
+                fprintf(logF, "[version.dll] SUCCESS: Patched Login Button JNE at direct offset %p with NOPs!\n", directTarget);
+                fflush(logF);
             }
-        }
-        if (patched) break;
-        p += mbi.RegionSize;
-        if (p < (unsigned char*)hGame || p > (unsigned char*)hGame + 0x3000000) {
-            break;
         }
     }
 
-    if (!patched && logF) {
-        fprintf(logF, "[version.dll] WARN: Pattern 80 3D ... 0F 85 not matched in executable memory.\n");
+    // 2. Pattern search fallback if direct offset not matched
+    if (!patched) {
+        MEMORY_BASIC_INFORMATION mbi = {};
+        unsigned char* p = base;
+        while (VirtualQuery(p, &mbi, sizeof(mbi))) {
+            if ((mbi.State == MEM_COMMIT) && 
+                (mbi.Protect == PAGE_EXECUTE_READ || mbi.Protect == PAGE_EXECUTE_READWRITE || mbi.Protect == PAGE_EXECUTE_WRITECOPY)) {
+                
+                unsigned char* block = (unsigned char*)mbi.BaseAddress;
+                size_t len = mbi.RegionSize;
+                
+                for (size_t i = 0; i + 24 < len; i++) {
+                    if (block[i] == 0x80 && block[i+1] == 0x3D && block[i+6] == 0x03 &&
+                        block[i+7] == 0x0F && block[i+8] == 0xB7 && block[i+9] == 0xF0 &&
+                        block[i+10] == 0x66 && block[i+11] == 0x89 && block[i+12] == 0x05 &&
+                        block[i+17] == 0x0F && block[i+18] == 0x85) {
+                        
+                        DWORD oldProtect;
+                        if (VirtualProtect(&block[i+17], 6, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                            memset(&block[i+17], 0x90, 6);
+                            VirtualProtect(&block[i+17], 6, oldProtect, &oldProtect);
+                            FlushInstructionCache(GetCurrentProcess(), &block[i+17], 6);
+                            patched = true;
+                            if (logF) {
+                                fprintf(logF, "[version.dll] SUCCESS: Patched Login Button JNE at pattern %p with NOPs!\n", &block[i+17]);
+                                fflush(logF);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            if (patched) break;
+            p += mbi.RegionSize;
+            if (p < base || p > base + 0x3000000) break;
+        }
+    }
+
+    // 3. Also set the state variable to 3 (AUTHED_READY)
+    unsigned char* stateVar = base + 0x14BB6F8;
+    DWORD oldProt;
+    if (VirtualProtect(stateVar, 1, PAGE_EXECUTE_READWRITE, &oldProt)) {
+        *stateVar = 3;
+        VirtualProtect(stateVar, 1, oldProt, &oldProt);
+        if (logF) {
+            fprintf(logF, "[version.dll] SUCCESS: Set login state variable at %p to 3 (AUTHED_READY)!\n", stateVar);
+            fflush(logF);
+        }
     }
 
     if (logF) {
