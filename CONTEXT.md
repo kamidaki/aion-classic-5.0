@@ -256,3 +256,10 @@ Esta seção documenta o histórico de correções aplicadas no projeto, contras
 * **Como foi corrigido**: 
   1. Corrigido o `server_id` padrão no `launcher.json` para `1` (identificador canônico de "Atreia" no string table do cliente Classic EU).
   2. Corrigida a estrutura de `SM_SERVER_LIST` no `ncsoft.rs`: alinhamento dos brackets com `-cc:2` (Bracket 2 para servidores Classic EU), configuração do bit 10 em `ServerBits` (`0x00000401` exigido pelo `game.dll` no offset `0x842B20`) e alinhamento dinâmico do loop de contagem de personagens (`maxId` e contadores individuais por servidor).
+
+### 8. Correção do Congelamento no Botão OK da Tela de Login (State Machine Handshake)
+* **Como era antes**: Ao abrir a tela de login, digitar usuário e senha e clicar em "OK", o botão ficava travado/congelado sem emitir erro e sem avançar de tela.
+* **Como foi corrigido**: 
+  1. Removido o envio prematuro de `SM_LOGIN_OK` e `SM_SERVER_LIST` na conexão inicial. O servidor agora envia apenas o `SM_INIT` e `SM_AUTH_GG`, aguardando a submissão das credenciais do usuário (`CM_LOGIN`).
+  2. Ao receber o `CM_LOGIN`, o servidor extrai usuário e senha, auto-cria/autentica a conta no `aion.db` e responde com `SM_LOGIN_OK` (78 bytes) seguido de `SM_SERVER_LIST`, permitindo que o cliente avance naturalmente para a Seleção de Servidores e Criação de Personagens.
+  3. Adicionado o parâmetro `-nonotice` ao `Start_Client_Classic_EU.bat` para evitar o carregamento indevido de scripts da Gameforge na caixa "Announcement".
