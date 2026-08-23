@@ -18,12 +18,6 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             --accent-game: #10b981;
             --accent-chat: #a855f7;
             --accent-launcher: #eab308;
-            --accent-skills: #ec4899;
-            --accent-teleport: #06b6d4;
-            --accent-world: #10b981;
-            --accent-inventory: #8b5cf6;
-            --accent-broker: #f59e0b;
-            --accent-auth: #38bdf8;
             --accent-red: #ef4444;
             --font-scale: 1rem;
             --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -377,7 +371,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             font-size: 0.7rem;
         }
 
-        /* Day-Trade Real-Time Multi-Curve Telemetry Section */
+        /* Day-Trade Real-Time Multi-Curve Telemetry Section (With Subsystem & Class Level Granularity!) */
         .daytrade-section {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
@@ -442,25 +436,32 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .legend-bar {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 0.68rem;
+            gap: 8px;
+            font-size: 0.66rem;
             flex-wrap: wrap;
             width: 100%;
+            max-height: 48px;
+            overflow-y: auto;
+            scrollbar-width: none;
         }
+        .legend-bar::-webkit-scrollbar { display: none; }
 
         .legend-item {
             display: flex;
             align-items: center;
             gap: 4px;
             cursor: pointer;
-            padding: 2px 4px;
+            padding: 2px 5px;
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 4px;
-            transition: opacity 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.2s;
+            white-space: nowrap;
         }
-        .legend-item.dimmed { opacity: 0.3; }
+        .legend-item.dimmed { opacity: 0.25; filter: grayscale(1); }
 
         .legend-line {
-            width: 11px;
+            width: 10px;
             height: 3px;
             border-radius: 2px;
             flex-shrink: 0;
@@ -509,7 +510,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
         .stat-col span { color: #fff; font-weight: 700; margin-left: 3px; }
 
-        /* Central Log Center - Fills Entire Bottom Space! */
+        /* Central Log Center - Fills ALL remaining vertical space on desktop! */
         .log-center {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
@@ -658,8 +659,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             position: fixed;
             top: 0;
             left: 0;
-            width: 380px;
-            max-width: 88vw;
+            width: 400px;
+            max-width: 90vw;
             height: 100vh;
             background: #0b111e;
             border-right: 1px solid var(--border-glass);
@@ -744,15 +745,25 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .drawer-val { font-weight: 700; color: #fff; }
 
         /* Subsystem Class Metric Card */
+        .subsystem-category-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 4px;
+            margin-bottom: 2px;
+        }
+
         .subsystem-pill-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 6px 8px;
+            padding: 5px 8px;
             background: rgba(0, 0, 0, 0.25);
             border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 0.74rem;
+            font-size: 0.72rem;
+            margin-bottom: 4px;
         }
 
         /* Modal Dialogs */
@@ -1069,7 +1080,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     <!-- Scope Switcher: Servidores vs Classes/Subsistemas -->
                     <div class="toggle-group">
                         <button class="mode-btn active" id="btn-scope-servers" onclick="setChartScope('servers')">Servidores</button>
-                        <button class="mode-btn" id="btn-scope-classes" onclick="setChartScope('classes')">Classes & Módulos</button>
+                        <button class="mode-btn" id="btn-scope-classes" onclick="setChartScope('classes')">Classes (src/game)</button>
                     </div>
 
                     <!-- Metric Switcher: CPU % vs RAM MB -->
@@ -1080,7 +1091,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Dynamic Legend Bar -->
+            <!-- Dynamic Legend Bar for all 22 classes -->
             <div class="legend-bar" id="legend-bar-container"></div>
 
             <div class="daytrade-canvas-container" id="chart-container">
@@ -1132,7 +1143,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         <div class="drawer-header">
             <div class="drawer-title">
                 <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-                Menu, Classes & Servidores
+                Classes, Módulos & Servidores
             </div>
             <button class="drawer-close-btn" onclick="toggleDrawer(false)">✕</button>
         </div>
@@ -1151,13 +1162,13 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Section: Monitoria de Classes & Módulos do Game Server -->
+            <!-- Section: Monitoria de Todas as Classes de game-server/src/game -->
             <div>
                 <div class="drawer-section-title">
-                    <span class="btn-svg" style="color: var(--accent-skills);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
-                    Classes & Subsistemas do Servidor
+                    <span class="btn-svg" style="color: #ec4899;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+                    Classes & Subsistemas (src/game)
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 6px;" id="drawer-subsystems-list">
+                <div style="display: flex; flex-direction: column; gap: 4px;" id="drawer-subsystems-list">
                     <!-- Dynamic Subsystem Cards Injected by JS -->
                 </div>
             </div>
@@ -1288,18 +1299,6 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     <div class="drawer-row"><span>Web Dashboard:</span><span class="drawer-val" style="color: var(--accent-launcher);">18080 (HTTP)</span></div>
                 </div>
             </div>
-
-            <!-- Section: Opções de Visualização -->
-            <div>
-                <div class="drawer-section-title">
-                    <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-                    Visualização & Zoom
-                </div>
-                <div class="drawer-card" style="flex-direction: row; gap: 8px;">
-                    <button class="btn-secondary" style="flex:1;" onclick="zoomFont(-1)">A- Diminuir</button>
-                    <button class="btn-secondary" style="flex:1;" onclick="zoomFont(1)">A+ Aumentar</button>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -1336,7 +1335,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 Acesso Mobile no Celular / LAN
             </div>
             <div class="modal-text">
-                Conecte seu celular na mesma rede Wi-Fi e acesse o endereço abaixo pelo navegador (Safari, Chrome) para monitorar o emulador remotamente com visual estilo iOS:
+                Conecte seu celular na mesma rede Wi-Fi e acesse o endereço abaixo pelo navegador (Safari, Chrome) para monitorar o emulador remotamente:
             </div>
             <div class="qr-placeholder-box">
                 <input type="text" class="url-copy-input" id="modal-url-input" readonly value="http://127.0.0.1:18080">
@@ -1386,12 +1385,22 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             { key: 'launcher', name: 'Launcher', color: '#eab308', dash: [], val: d => chartMetric === 'cpu' ? d.launcher_cpu : d.launcher_mem_mb }
         ];
 
+        // All classes from game-server/src/game
         const classSeriesDefs = [
+            { key: 'world', name: 'World & Spawns AI', color: '#10b981', dash: [], val: d => chartMetric === 'cpu' ? d.sub_world_cpu : d.sub_world_mem },
             { key: 'skills', name: 'Skills & Stigmas', color: '#ec4899', dash: [], val: d => chartMetric === 'cpu' ? d.sub_skills_cpu : d.sub_skills_mem },
-            { key: 'teleport', name: 'Teleport & Movimento', color: '#06b6d4', dash: [], val: d => chartMetric === 'cpu' ? d.sub_teleport_cpu : d.sub_teleport_mem },
-            { key: 'world', name: 'NPCs & World AI', color: '#10b981', dash: [], val: d => chartMetric === 'cpu' ? d.sub_world_cpu : d.sub_world_mem },
+            { key: 'combat', name: 'Combat & Damage', color: '#f43f5e', dash: [], val: d => chartMetric === 'cpu' ? d.sub_combat_cpu : d.sub_combat_mem },
             { key: 'inventory', name: 'Inventário & Itens', color: '#8b5cf6', dash: [], val: d => chartMetric === 'cpu' ? d.sub_inventory_cpu : d.sub_inventory_mem },
-            { key: 'broker', name: 'Broker & Trade', color: '#f59e0b', dash: [], val: d => chartMetric === 'cpu' ? d.sub_broker_cpu : d.sub_broker_mem },
+            { key: 'teleport', name: 'Teleport & Flight', color: '#06b6d4', dash: [], val: d => chartMetric === 'cpu' ? d.sub_teleport_cpu : d.sub_teleport_mem },
+            { key: 'character', name: 'Character & Stats', color: '#3b82f6', dash: [], val: d => chartMetric === 'cpu' ? d.sub_character_cpu : d.sub_character_mem },
+            { key: 'craft', name: 'Craft & Gathering', color: '#d97706', dash: [], val: d => chartMetric === 'cpu' ? d.sub_craft_cpu : d.sub_craft_mem },
+            { key: 'instance', name: 'Instances & Dungeons', color: '#6366f1', dash: [], val: d => chartMetric === 'cpu' ? d.sub_instance_cpu : d.sub_instance_mem },
+            { key: 'arena', name: 'PvP Arena & Abyss', color: '#e11d48', dash: [], val: d => chartMetric === 'cpu' ? d.sub_arena_cpu : d.sub_arena_mem },
+            { key: 'enchant', name: 'Enchant & Manastones', color: '#a855f7', dash: [], val: d => chartMetric === 'cpu' ? d.sub_enchant_cpu : d.sub_enchant_mem },
+            { key: 'broker', name: 'Trade Broker', color: '#f59e0b', dash: [], val: d => chartMetric === 'cpu' ? d.sub_broker_cpu : d.sub_broker_mem },
+            { key: 'social', name: 'Legion & Social', color: '#0284c7', dash: [], val: d => chartMetric === 'cpu' ? d.sub_social_cpu : d.sub_social_mem },
+            { key: 'housing', name: 'Housing & Decor', color: '#f97316', dash: [], val: d => chartMetric === 'cpu' ? d.sub_housing_cpu : d.sub_housing_mem },
+            { key: 'admin', name: 'Admin & GM Engine', color: '#db2777', dash: [], val: d => chartMetric === 'cpu' ? d.sub_admin_cpu : d.sub_admin_mem },
             { key: 'auth', name: 'Auth & Cripto', color: '#38bdf8', dash: [], val: d => chartMetric === 'cpu' ? d.sub_auth_cpu : d.sub_auth_mem }
         ];
 
@@ -1534,26 +1543,35 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     });
                 }
 
-                // 2. Update Subsystems List in Drawer
+                // 2. Update Subsystems List in Drawer organized by categories
                 if (data.subsystems) {
                     subsystemsData = data.subsystems;
                     const subContainer = document.getElementById('drawer-subsystems-list');
                     if (subContainer) {
-                        subContainer.innerHTML = data.subsystems.map(sub => `
-                            <div class="subsystem-pill-row">
-                                <div style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-                                    <span style="font-weight:700; color:${sub.color}; display:flex; align-items:center; gap:5px;">
-                                        <span style="width:6px; height:6px; border-radius:50%; background:${sub.color};"></span>
-                                        ${sub.name}
-                                    </span>
-                                    <span style="font-size:0.65rem; color:var(--text-muted);">${sub.status} • ${sub.server}</span>
+                        let currentCat = '';
+                        let html = '';
+                        data.subsystems.forEach(sub => {
+                            if (sub.category !== currentCat) {
+                                currentCat = sub.category;
+                                html += `<div class="subsystem-category-title">${currentCat}</div>`;
+                            }
+                            html += `
+                                <div class="subsystem-pill-row">
+                                    <div style="display:flex; flex-direction:column; gap:2px; min-width:0;">
+                                        <span style="font-weight:700; color:${sub.color}; display:flex; align-items:center; gap:5px;">
+                                            <span style="width:6px; height:6px; border-radius:50%; background:${sub.color};"></span>
+                                            ${sub.name}
+                                        </span>
+                                        <span style="font-size:0.64rem; color:var(--text-muted);">${sub.count_metric} • <span style="color:#64748b;">${sub.file_source}</span></span>
+                                    </div>
+                                    <div style="text-align:right; font-size:0.7rem; flex-shrink:0;">
+                                        <div><b style="color:#fff;">${sub.cpu_percent.toFixed(1)}%</b> CPU</div>
+                                        <div style="color:var(--text-muted);">${sub.memory_mb.toFixed(1)} MB</div>
+                                    </div>
                                 </div>
-                                <div style="text-align:right; font-size:0.72rem; flex-shrink:0;">
-                                    <div><b style="color:#fff;">${sub.cpu_percent.toFixed(1)}%</b> CPU</div>
-                                    <div style="color:var(--text-muted);">${sub.memory_mb.toFixed(1)} MB</div>
-                                </div>
-                            </div>
-                        `).join('');
+                            `;
+                        });
+                        subContainer.innerHTML = html;
                     }
                 }
 
@@ -1617,7 +1635,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 const maxInHist = Math.max(...historyData.map(d => {
                     return Math.max(...activeDefs.map(s => s.val(d) || 0));
                 }));
-                maxVal = Math.max(maxInHist * 1.3, 100.0);
+                maxVal = Math.max(maxInHist * 1.3, 50.0);
             }
 
             // Draw Fibonacci Retracement Grid Lines
