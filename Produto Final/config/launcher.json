@@ -14,21 +14,20 @@
     "default_dev_username": "teste",
     "security": {
       "enable_rate_limit": true,
-      "max_attempts_per_minute": 5,
+      "max_attempts_per_minute": 15,
       "temp_ban_minutes": 10
     },
     "database": {
       "path": "aion.db"
     }
   },
-
   "############################################################": "GAME-SERVER CONFIGURATION",
   "game-server": {
     "enabled": true,
     "bind_address": "127.0.0.1",
     "port": 7777,
     "server_id": 1,
-    "server_name": "Atreia (Classic EU)",
+    "server_name": "Brasil em Chamas (São Paulo)",
     "tick_rate_tps": 20,
     "max_players": 1000,
     "data_path": "data/client",
@@ -36,7 +35,6 @@
       "path": "aion.db"
     }
   },
-
   "############################################################": "CHAT-SERVER CONFIGURATION",
   "chat-server": {
     "enabled": true,
@@ -48,14 +46,13 @@
       "path": "aion.db"
     }
   },
-
   "############################################################": "LAUNCHER & SUPERVISOR CONFIGURATION",
   "launcher": {
     "autoStartLoginServer": true,
     "autoStartGameServer": true,
     "autoStartChatServer": true,
     "restartOnCrash": true,
-    "crashRestartDelayMs": 2000,
+    "crashRestartDelayMs": 5000,
     "gui": {
       "theme": "dark",
       "window_width": 1150,
@@ -63,7 +60,6 @@
       "http_port": 18080
     }
   },
-
   "############################################################": "LOGGING & RETENTION (10 DAYS MAX)",
   "logging": {
     "retentionDays": 10,
