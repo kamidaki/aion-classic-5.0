@@ -71,7 +71,7 @@ impl LoginCryptEngine {
             return true;
         }
 
-        let mut static_cipher = BlowfishCipher::new(&STATIC_BLOWFISH_KEY);
+        let static_cipher = BlowfishCipher::new(&STATIC_BLOWFISH_KEY);
         let mut static_data = data.to_vec();
         static_cipher.decipher(&mut static_data);
         if Self::verify_checksum(&static_data) {

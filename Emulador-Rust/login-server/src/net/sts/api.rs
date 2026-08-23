@@ -55,7 +55,12 @@ impl StsSession {
                     self.dev_user.clone()
                 };
 
-                let token = self.db.issue_session(&username, 0x026edf39).unwrap_or_else(|_| "6D5F3085".to_string());
+                let acc = self.db.get_or_create_account(&username, true);
+                let acc_id = match acc {
+                    Ok(Some(a)) => a.id as u32,
+                    _ => 1,
+                };
+                let token = self.db.issue_session(acc_id, &username, 0x026edf39).unwrap_or_else(|_| "6D5F3085".to_string());
                 println!("INFO: [LoginServer-STS] Issued GameToken '{}' for username '{}'", token, username);
                 let xml = format!(r#"<Reply><GameToken>{}</GameToken></Reply>"#, token);
                 (xml, 2)

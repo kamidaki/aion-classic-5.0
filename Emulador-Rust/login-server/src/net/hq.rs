@@ -119,7 +119,11 @@ async fn handle_hq_client(
     }
 
     println!("INFO: [LoginServer-HQ] Authentication accepted for user '{}'", username);
-    let _ = db.get_or_create_account(&username, auto_create);
+    let acc = db.get_or_create_account(&username, auto_create);
+    let account_id = match acc {
+        Ok(Some(a)) => a.id as u32,
+        _ => 1,
+    };
     let char_count = db.get_character_count(&username);
 
     // 3. Send LOGIN_OK (14 bytes)
@@ -198,7 +202,7 @@ async fn handle_hq_client(
     println!("INFO: [LoginServer-HQ] <- Player selected server ID 0x{:02X} ({})", server_id, server_id);
 
     // 6. Send SESSION_KEY (22 bytes)
-    let _ = db.issue_session(&username, login_key);
+    let _ = db.issue_session(account_id, &username, login_key);
     let mut session_key_pkt = vec![
         0x16, 0x00, // length = 22
         0x04, 0x00, 0x00, 0x00, // opcode 0x04
