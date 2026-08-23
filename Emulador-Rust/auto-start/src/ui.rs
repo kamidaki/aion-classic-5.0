@@ -18,6 +18,12 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             --accent-game: #10b981;
             --accent-chat: #a855f7;
             --accent-launcher: #eab308;
+            --accent-skills: #ec4899;
+            --accent-teleport: #06b6d4;
+            --accent-world: #10b981;
+            --accent-inventory: #8b5cf6;
+            --accent-broker: #f59e0b;
+            --accent-auth: #38bdf8;
             --accent-red: #ef4444;
             --font-scale: 1rem;
             --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -36,16 +42,14 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         html, body {
             width: 100%;
             height: 100%;
+            margin: 0;
+            padding: 0;
             background: radial-gradient(circle at 85% 10%, #111a33 0%, #060910 80%);
             color: var(--text-main);
-            overflow-x: hidden;
+            overflow: hidden;
             font-size: var(--font-scale);
-        }
-
-        body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
         /* Compact Slim Top Header */
@@ -58,11 +62,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glass);
-            position: sticky;
-            top: 0;
             z-index: 100;
             width: 100%;
-            height: calc(48px + var(--safe-top));
+            height: calc(46px + var(--safe-top));
+            flex-shrink: 0;
         }
 
         .header-left {
@@ -76,8 +79,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--border-glass);
             color: var(--text-main);
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -171,9 +174,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
 
         button {
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-weight: 600;
-            padding: 6px 10px;
+            padding: 5px 9px;
             border-radius: 6px;
             border: 1px solid transparent;
             cursor: pointer;
@@ -236,35 +239,38 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
         .btn-danger:active, .btn-danger:hover { box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5); transform: translateY(-1px); }
 
-        /* Main Full Width Layout */
+        /* Main Full Width & Height Filling Layout */
         main {
             flex: 1;
-            padding: 12px 16px;
+            padding: 10px 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
             max-width: 100%;
+            min-height: 0;
+            overflow: hidden;
         }
 
         /* Desktop Only 3 Server Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
             width: 100%;
+            flex-shrink: 0;
         }
 
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
-            border-radius: 10px;
-            padding: 12px 14px;
+            border-radius: 9px;
+            padding: 10px 12px;
             backdrop-filter: blur(16px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             position: relative;
             overflow: hidden;
             width: 100%;
@@ -291,30 +297,30 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .card-title-box {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
         }
 
         .status-dot {
-            width: 9px;
-            height: 9px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--accent-red);
-            box-shadow: 0 0 8px var(--accent-red);
+            box-shadow: 0 0 7px var(--accent-red);
             transition: all 0.3s;
             display: inline-block;
         }
-        .status-dot.online { background: var(--accent-game); box-shadow: 0 0 8px var(--accent-game); }
-        .status-dot.starting { background: var(--accent-launcher); box-shadow: 0 0 8px var(--accent-launcher); }
-        .status-dot.crashed { background: #e11d48; box-shadow: 0 0 10px #e11d48; }
+        .status-dot.online { background: var(--accent-game); box-shadow: 0 0 7px var(--accent-game); }
+        .status-dot.starting { background: var(--accent-launcher); box-shadow: 0 0 7px var(--accent-launcher); }
+        .status-dot.crashed { background: #e11d48; box-shadow: 0 0 9px #e11d48; }
 
         .card-title {
-            font-size: 0.9rem;
+            font-size: 0.86rem;
             font-weight: 700;
         }
 
         .card-tag {
-            font-size: 0.66rem;
-            padding: 2px 6px;
+            font-size: 0.65rem;
+            padding: 2px 5px;
             border-radius: 4px;
             background: rgba(255, 255, 255, 0.06);
             color: var(--text-muted);
@@ -324,10 +330,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .metrics-box {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
             background: rgba(0, 0, 0, 0.25);
-            padding: 8px;
-            border-radius: 7px;
+            padding: 6px 8px;
+            border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
@@ -335,7 +341,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.76rem;
+            font-size: 0.74rem;
         }
 
         .metric-label { color: var(--text-muted); }
@@ -343,7 +349,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
         .progress-bar-bg {
             width: 100%;
-            height: 4px;
+            height: 3.5px;
             background: rgba(255, 255, 255, 0.08);
             border-radius: 2px;
             overflow: hidden;
@@ -361,27 +367,28 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
         .card-actions {
             display: flex;
-            gap: 6px;
+            gap: 5px;
             margin-top: auto;
         }
 
         .card-actions button {
             flex: 1;
-            padding: 5px;
-            font-size: 0.72rem;
+            padding: 4px;
+            font-size: 0.7rem;
         }
 
         /* Day-Trade Real-Time Multi-Curve Telemetry Section */
         .daytrade-section {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 12px 14px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
+            flex-shrink: 0;
         }
 
         .daytrade-header {
@@ -389,36 +396,45 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .daytrade-title-box {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.86rem;
+            font-size: 0.84rem;
             font-weight: 700;
         }
 
-        .daytrade-toggles {
+        .daytrade-controls-row {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 2px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .mode-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: transparent;
+            border: none;
             color: var(--text-muted);
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 0.7rem;
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-size: 0.68rem;
             cursor: pointer;
             white-space: nowrap;
         }
         .mode-btn.active {
-            background: rgba(56, 189, 248, 0.2);
-            border-color: var(--accent-login);
+            background: rgba(56, 189, 248, 0.25);
             color: var(--accent-login);
             font-weight: 700;
         }
@@ -427,7 +443,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             flex-wrap: wrap;
             width: 100%;
         }
@@ -441,27 +457,22 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             border-radius: 4px;
             transition: opacity 0.2s;
         }
-        .legend-item.dimmed { opacity: 0.35; }
+        .legend-item.dimmed { opacity: 0.3; }
 
         .legend-line {
-            width: 12px;
+            width: 11px;
             height: 3px;
             border-radius: 2px;
             flex-shrink: 0;
         }
-        .legend-login { background: var(--accent-login); }
-        .legend-game  { background: var(--accent-game); }
-        .legend-chat  { background: var(--accent-chat); }
-        .legend-launcher { background: var(--accent-launcher); }
-        .legend-total { background: #ffffff; }
 
         .daytrade-canvas-container {
             position: relative;
             width: 100%;
-            height: 175px;
+            height: 140px;
             background: #050810;
             border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
         }
 
@@ -477,8 +488,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             background: rgba(12, 18, 30, 0.95);
             border: 1px solid var(--accent-login);
             border-radius: 6px;
-            padding: 6px 10px;
-            font-size: 0.7rem;
+            padding: 6px 9px;
+            font-size: 0.68rem;
             color: #fff;
             pointer-events: none;
             z-index: 50;
@@ -491,33 +502,35 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             grid-template-columns: repeat(4, 1fr);
             gap: 6px;
             background: rgba(0, 0, 0, 0.25);
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 0.68rem;
             color: var(--text-muted);
         }
         .stat-col span { color: #fff; font-weight: 700; margin-left: 3px; }
 
-        /* Central Log Center */
+        /* Central Log Center - Fills Entire Bottom Space! */
         .log-center {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 12px 14px;
+            border-radius: 10px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            gap: 6px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
             flex: 1;
-            min-height: 280px;
+            min-height: 0;
             width: 100%;
+            overflow: hidden;
         }
 
         .log-header {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
+            flex-shrink: 0;
         }
 
         .log-header-top {
@@ -529,7 +542,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
         .log-filter-scroll-row {
             display: flex;
-            gap: 5px;
+            gap: 4px;
             overflow-x: auto;
             white-space: nowrap;
             padding-bottom: 2px;
@@ -542,9 +555,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: var(--text-muted);
-            padding: 4px 9px;
+            padding: 3px 8px;
             border-radius: 5px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             flex-shrink: 0;
         }
         .filter-btn.active {
@@ -564,10 +577,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .search-box {
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid var(--border-glass);
-            padding: 5px 9px;
+            padding: 4px 8px;
             border-radius: 5px;
             color: #fff;
-            font-size: 0.74rem;
+            font-size: 0.72rem;
             outline: none;
             flex: 1;
             min-width: 0;
@@ -579,19 +592,21 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             border-radius: 6px;
             padding: 8px;
             flex: 1;
+            height: 100%;
+            max-height: none;
+            min-height: 0;
             overflow-y: auto;
-            font-size: 0.73rem;
-            line-height: 1.45;
-            max-height: 320px;
+            font-size: 0.72rem;
+            line-height: 1.4;
             width: 100%;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
             -webkit-overflow-scrolling: touch;
         }
 
         .log-line {
             display: flex;
             gap: 6px;
-            padding: 2.5px 0;
+            padding: 2px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.015);
             align-items: flex-start;
         }
@@ -622,7 +637,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .log-msg.srv-chat  { color: #e9d5ff; }
         .log-msg.srv-launcher { color: #fef08a; }
 
-        /* Left Drawer Sidebar (Gaveta Lateral) */
+        /* Left Drawer Sidebar (Janela Gaveta Lateral Esquerda) */
         .drawer-overlay {
             position: fixed;
             top: 0;
@@ -643,8 +658,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             position: fixed;
             top: 0;
             left: 0;
-            width: 360px;
-            max-width: 86vw;
+            width: 380px;
+            max-width: 88vw;
             height: 100vh;
             background: #0b111e;
             border-right: 1px solid var(--border-glass);
@@ -727,6 +742,18 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             font-size: 0.78rem;
         }
         .drawer-val { font-weight: 700; color: #fff; }
+
+        /* Subsystem Class Metric Card */
+        .subsystem-pill-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 8px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.74rem;
+        }
 
         /* Modal Dialogs */
         .modal-overlay {
@@ -852,10 +879,11 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
         /* Mobile Responsive Adjustments (Phones & Tablets <= 768px) */
         @media (max-width: 768px) {
-            /* Hide 3 cards on main page on mobile (placed cleanly in Left Drawer!) */
+            html, body {
+                overflow-y: auto !important;
+                height: auto !important;
+            }
             .cards-grid { display: none !important; }
-            
-            /* Compact Header for mobile */
             .header-status-pills { display: flex; }
             .header-status-pills .mini-stat-label span { display: none; }
             .header-right .btn-start, .header-right .btn-stop, .header-right .btn-restart, .header-right .btn-mobile-url { display: none !important; }
@@ -866,17 +894,20 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             main {
                 padding: 10px 12px calc(62px + var(--safe-bottom)) 12px;
                 gap: 10px;
+                overflow: visible !important;
+                flex: initial !important;
             }
             
             .daytrade-section { padding: 10px 12px; }
-            .daytrade-canvas-container { height: 160px; }
+            .daytrade-canvas-container { height: 155px; }
             .chart-stats-grid { grid-template-columns: repeat(2, 1fr); font-size: 0.68rem; }
             
             .log-center {
                 padding: 10px 12px;
-                min-height: 300px;
+                min-height: 280px;
+                flex: initial !important;
             }
-            .log-console { max-height: calc(100vh - 380px); min-height: 200px; }
+            .log-console { max-height: 320px; height: 320px; }
         }
     </style>
 </head>
@@ -925,7 +956,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         </div>
     </header>
 
-    <!-- Main Content (On Mobile: ONLY Telemetry & Logs!) -->
+    <!-- Main Content (Fills entire screen on desktop!) -->
     <main>
         <!-- Desktop Only Server Cards (Hidden on Mobile) -->
         <div class="cards-grid">
@@ -948,7 +979,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                         <span class="metric-value" id="val-cpu-login">0.0%</span>
                     </div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-login" id="bar-cpu-login"></div></div>
-                    <div class="metric-row" style="margin-top: 3px;">
+                    <div class="metric-row" style="margin-top: 2px;">
                         <span class="metric-label">Memória RAM:</span>
                         <span class="metric-value" id="val-mem-login">0.0 MB</span>
                     </div>
@@ -980,7 +1011,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                         <span class="metric-value" id="val-cpu-game">0.0%</span>
                     </div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-game" id="bar-cpu-game"></div></div>
-                    <div class="metric-row" style="margin-top: 3px;">
+                    <div class="metric-row" style="margin-top: 2px;">
                         <span class="metric-label">Memória RAM:</span>
                         <span class="metric-value" id="val-mem-game">0.0 MB</span>
                     </div>
@@ -1012,7 +1043,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                         <span class="metric-value" id="val-cpu-chat">0.0%</span>
                     </div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-chat" id="bar-cpu-chat"></div></div>
-                    <div class="metric-row" style="margin-top: 3px;">
+                    <div class="metric-row" style="margin-top: 2px;">
                         <span class="metric-label">Memória RAM:</span>
                         <span class="metric-value" id="val-mem-chat">0.0 MB</span>
                     </div>
@@ -1026,27 +1057,31 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- 1. Day-Trade Real-Time Telemetry Section -->
+        <!-- 1. Day-Trade Real-Time Telemetry Section (With Subsystem & Class Level Granularity!) -->
         <div class="daytrade-section" id="section-telemetry">
             <div class="daytrade-header">
                 <div class="daytrade-title-box">
                     <span class="btn-svg" style="color: var(--accent-login);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-                    Telemetria Real-Time Day-Trade
+                    Telemetria Day-Trade Real-Time
                 </div>
 
-                <div class="daytrade-toggles">
-                    <button class="mode-btn active" id="btn-mode-cpu" onclick="setChartMode('cpu')">CPU (%)</button>
-                    <button class="mode-btn" id="btn-mode-mem" onclick="setChartMode('mem')">RAM (MB)</button>
+                <div class="daytrade-controls-row">
+                    <!-- Scope Switcher: Servidores vs Classes/Subsistemas -->
+                    <div class="toggle-group">
+                        <button class="mode-btn active" id="btn-scope-servers" onclick="setChartScope('servers')">Servidores</button>
+                        <button class="mode-btn" id="btn-scope-classes" onclick="setChartScope('classes')">Classes & Módulos</button>
+                    </div>
+
+                    <!-- Metric Switcher: CPU % vs RAM MB -->
+                    <div class="toggle-group">
+                        <button class="mode-btn active" id="btn-mode-cpu" onclick="setChartMetric('cpu')">CPU (%)</button>
+                        <button class="mode-btn" id="btn-mode-mem" onclick="setChartMetric('mem')">RAM (MB)</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="legend-bar">
-                <div class="legend-item" id="leg-login" onclick="toggleSeries('login')"><div class="legend-line legend-login"></div> Login</div>
-                <div class="legend-item" id="leg-game" onclick="toggleSeries('game')"><div class="legend-line legend-game"></div> Game</div>
-                <div class="legend-item" id="leg-chat" onclick="toggleSeries('chat')"><div class="legend-line legend-chat"></div> Chat</div>
-                <div class="legend-item" id="leg-launcher" onclick="toggleSeries('launcher')"><div class="legend-line legend-launcher"></div> Launcher</div>
-                <div class="legend-item" id="leg-total" onclick="toggleSeries('total')"><div class="legend-line legend-total"></div> Total</div>
-            </div>
+            <!-- Dynamic Legend Bar -->
+            <div class="legend-bar" id="legend-bar-container"></div>
 
             <div class="daytrade-canvas-container" id="chart-container">
                 <canvas id="daytrade-canvas"></canvas>
@@ -1061,13 +1096,13 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- 2. Central Live Logs Section -->
+        <!-- 2. Central Live Logs Section (Fills ALL remaining vertical space on desktop!) -->
         <div class="log-center" id="section-logs">
             <div class="log-header">
                 <div class="log-header-top">
                     <span style="font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 5px;">
                         <span class="btn-svg" style="color: var(--accent-login);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
-                        LOGS UNIFICADOS
+                        LOGS UNIFICADOS (LOGIN, GAME, CHAT, LAUNCHER)
                     </span>
                     <div style="display: flex; gap: 5px;">
                         <button class="filter-btn" onclick="clearLogs()">Limpar</button>
@@ -1084,7 +1119,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 </div>
 
                 <div class="log-controls-row">
-                    <input type="text" class="search-box" id="search-input" placeholder="Buscar nos logs..." onkeyup="renderLogs()">
+                    <input type="text" class="search-box" id="search-input" placeholder="Buscar nos logs em tempo real..." onkeyup="renderLogs()">
                 </div>
             </div>
             <div class="log-console" id="log-console"></div>
@@ -1097,7 +1132,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         <div class="drawer-header">
             <div class="drawer-title">
                 <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-                Menu & Servidores
+                Menu, Classes & Servidores
             </div>
             <button class="drawer-close-btn" onclick="toggleDrawer(false)">✕</button>
         </div>
@@ -1116,7 +1151,18 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Section: Servidores Individuais (Completo na Gaveta) -->
+            <!-- Section: Monitoria de Classes & Módulos do Game Server -->
+            <div>
+                <div class="drawer-section-title">
+                    <span class="btn-svg" style="color: var(--accent-skills);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+                    Classes & Subsistemas do Servidor
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;" id="drawer-subsystems-list">
+                    <!-- Dynamic Subsystem Cards Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Section: Servidores Individuais -->
             <div>
                 <div class="drawer-section-title">
                     <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
@@ -1257,7 +1303,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         </div>
     </div>
 
-    <!-- Mobile Bottom Tab Bar (iOS Glassmorphism) -->
+    <!-- Mobile Bottom Tab Bar (iOS Glass Style) -->
     <div class="mobile-bottom-bar">
         <button class="tab-btn active" id="tab-btn-telemetry" onclick="switchMobileTab('telemetry')">
             <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
@@ -1290,7 +1336,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 Acesso Mobile no Celular / LAN
             </div>
             <div class="modal-text">
-                Conecte seu celular na mesma rede Wi-Fi e acesse o endereço abaixo pelo navegador (Safari, Chrome) para monitorar o emulador com interface responsiva estilo iOS:
+                Conecte seu celular na mesma rede Wi-Fi e acesse o endereço abaixo pelo navegador (Safari, Chrome) para monitorar o emulador remotamente com visual estilo iOS:
             </div>
             <div class="qr-placeholder-box">
                 <input type="text" class="url-copy-input" id="modal-url-input" readonly value="http://127.0.0.1:18080">
@@ -1325,23 +1371,62 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         let isPaused = false;
         let logBuffer = [];
         let historyData = [];
-        let chartMode = 'cpu'; // 'cpu' or 'mem'
+        let subsystemsData = [];
+        let chartScope = 'servers'; // 'servers' or 'classes'
+        let chartMetric = 'cpu';   // 'cpu' or 'mem'
         let hiddenSeries = {};
         let currentFontScale = 1.0;
         let externalUrlStr = "http://127.0.0.1:18080";
 
-        function setChartMode(mode) {
-            chartMode = mode;
-            document.getElementById('btn-mode-cpu').classList.toggle('active', mode === 'cpu');
-            document.getElementById('btn-mode-mem').classList.toggle('active', mode === 'mem');
+        const serverSeriesDefs = [
+            { key: 'total', name: 'Total', color: '#ffffff', dash: [4, 3], val: d => chartMetric === 'cpu' ? d.total_cpu : d.total_mem_mb },
+            { key: 'login', name: 'Login', color: '#38bdf8', dash: [], val: d => chartMetric === 'cpu' ? d.login_cpu : d.login_mem_mb },
+            { key: 'game',  name: 'Game',  color: '#10b981', dash: [], val: d => chartMetric === 'cpu' ? d.game_cpu : d.game_mem_mb },
+            { key: 'chat',  name: 'Chat',  color: '#a855f7', dash: [], val: d => chartMetric === 'cpu' ? d.chat_cpu : d.chat_mem_mb },
+            { key: 'launcher', name: 'Launcher', color: '#eab308', dash: [], val: d => chartMetric === 'cpu' ? d.launcher_cpu : d.launcher_mem_mb }
+        ];
+
+        const classSeriesDefs = [
+            { key: 'skills', name: 'Skills & Stigmas', color: '#ec4899', dash: [], val: d => chartMetric === 'cpu' ? d.sub_skills_cpu : d.sub_skills_mem },
+            { key: 'teleport', name: 'Teleport & Movimento', color: '#06b6d4', dash: [], val: d => chartMetric === 'cpu' ? d.sub_teleport_cpu : d.sub_teleport_mem },
+            { key: 'world', name: 'NPCs & World AI', color: '#10b981', dash: [], val: d => chartMetric === 'cpu' ? d.sub_world_cpu : d.sub_world_mem },
+            { key: 'inventory', name: 'Inventário & Itens', color: '#8b5cf6', dash: [], val: d => chartMetric === 'cpu' ? d.sub_inventory_cpu : d.sub_inventory_mem },
+            { key: 'broker', name: 'Broker & Trade', color: '#f59e0b', dash: [], val: d => chartMetric === 'cpu' ? d.sub_broker_cpu : d.sub_broker_mem },
+            { key: 'auth', name: 'Auth & Cripto', color: '#38bdf8', dash: [], val: d => chartMetric === 'cpu' ? d.sub_auth_cpu : d.sub_auth_mem }
+        ];
+
+        function setChartScope(scope) {
+            chartScope = scope;
+            document.getElementById('btn-scope-servers').classList.toggle('active', scope === 'servers');
+            document.getElementById('btn-scope-classes').classList.toggle('active', scope === 'classes');
+            renderLegend();
             drawDayTradeChart();
         }
 
-        function toggleSeries(name) {
-            hiddenSeries[name] = !hiddenSeries[name];
-            const legEl = document.getElementById(`leg-${name}`);
-            if (legEl) legEl.classList.toggle('dimmed', hiddenSeries[name]);
+        function setChartMetric(metric) {
+            chartMetric = metric;
+            document.getElementById('btn-mode-cpu').classList.toggle('active', metric === 'cpu');
+            document.getElementById('btn-mode-mem').classList.toggle('active', metric === 'mem');
             drawDayTradeChart();
+        }
+
+        function toggleSeries(key) {
+            hiddenSeries[key] = !hiddenSeries[key];
+            const legEl = document.getElementById(`leg-${key}`);
+            if (legEl) legEl.classList.toggle('dimmed', hiddenSeries[key]);
+            drawDayTradeChart();
+        }
+
+        function renderLegend() {
+            const container = document.getElementById('legend-bar-container');
+            const activeDefs = chartScope === 'servers' ? serverSeriesDefs : classSeriesDefs;
+
+            container.innerHTML = activeDefs.map(s => `
+                <div class="legend-item ${hiddenSeries[s.key] ? 'dimmed' : ''}" id="leg-${s.key}" onclick="toggleSeries('${s.key}')">
+                    <div class="legend-line" style="background: ${s.color};"></div>
+                    <span>${s.name}</span>
+                </div>
+            `).join('');
         }
 
         function toggleDrawer(open) {
@@ -1365,13 +1450,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             }
         }
 
-        function openMobileModal() {
-            document.getElementById('mobile-modal').style.display = 'flex';
-        }
-
-        function closeMobileModal() {
-            document.getElementById('mobile-modal').style.display = 'none';
-        }
+        function openMobileModal() { document.getElementById('mobile-modal').style.display = 'flex'; }
+        function closeMobileModal() { document.getElementById('mobile-modal').style.display = 'none'; }
 
         function copyExternalUrl() {
             navigator.clipboard.writeText(externalUrlStr).then(() => {
@@ -1411,12 +1491,11 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 const res = await fetch('/api/metrics');
                 const data = await res.json();
 
-                // 1. Update Desktop Server Cards & Drawer Server Cards
+                // 1. Update Server Cards (Desktop & Drawer)
                 if (data.servers) {
                     data.servers.forEach(s => {
                         const stateClass = s.status === 'Online' ? 'online' : (s.status === 'Starting' ? 'starting' : (s.status === 'Crashed' ? 'crashed' : ''));
                         
-                        // Desktop Card elements
                         const dot = document.getElementById(`dot-${s.name}`);
                         const uptimeVal = document.getElementById(`val-uptime-${s.name}`);
                         const cpuVal = document.getElementById(`val-cpu-${s.name}`);
@@ -1424,7 +1503,6 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                         const memVal = document.getElementById(`val-mem-${s.name}`);
                         const memBar = document.getElementById(`bar-mem-${s.name}`);
 
-                        // Header & Drawer elements
                         const hdrDot = document.getElementById(`hdr-dot-${s.name}`);
                         const drawerDot = document.getElementById(`drawer-dot-${s.name}`);
                         const drawerUptime = document.getElementById(`drawer-uptime-${s.name}`);
@@ -1456,7 +1534,30 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     });
                 }
 
-                // 2. Update System Registers in Drawer
+                // 2. Update Subsystems List in Drawer
+                if (data.subsystems) {
+                    subsystemsData = data.subsystems;
+                    const subContainer = document.getElementById('drawer-subsystems-list');
+                    if (subContainer) {
+                        subContainer.innerHTML = data.subsystems.map(sub => `
+                            <div class="subsystem-pill-row">
+                                <div style="display:flex; flex-direction:column; gap:2px; min-width:0;">
+                                    <span style="font-weight:700; color:${sub.color}; display:flex; align-items:center; gap:5px;">
+                                        <span style="width:6px; height:6px; border-radius:50%; background:${sub.color};"></span>
+                                        ${sub.name}
+                                    </span>
+                                    <span style="font-size:0.65rem; color:var(--text-muted);">${sub.status} • ${sub.server}</span>
+                                </div>
+                                <div style="text-align:right; font-size:0.72rem; flex-shrink:0;">
+                                    <div><b style="color:#fff;">${sub.cpu_percent.toFixed(1)}%</b> CPU</div>
+                                    <div style="color:var(--text-muted);">${sub.memory_mb.toFixed(1)} MB</div>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                }
+
+                // 3. Update System Registers
                 if (data.registers) {
                     const r = data.registers;
                     externalUrlStr = r.external_url;
@@ -1477,7 +1578,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     document.getElementById('reg-uptime').innerText = `${uHrs}:${uMins}:${uSecs}`;
                 }
 
-                // 3. Process History Points & Draw Day-Trade Graph
+                // 4. Process History Points & Draw Day-Trade Graph
                 if (data.history && data.history.length > 0) {
                     historyData = data.history;
                     drawDayTradeChart();
@@ -1502,22 +1603,26 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
             const w = rect.width;
             const h = rect.height;
-            const padTop = 12;
-            const padBottom = 12;
+            const padTop = 10;
+            const padBottom = 10;
             const plotH = h - padTop - padBottom;
 
             ctx.clearRect(0, 0, w, h);
 
+            const activeDefs = chartScope === 'servers' ? serverSeriesDefs : classSeriesDefs;
+
             // Compute Max Scale based on active mode
-            let maxVal = chartMode === 'cpu' ? 100.0 : 250.0;
-            if (chartMode === 'mem') {
-                const maxInHist = Math.max(...historyData.map(d => d.total_mem_mb || 0));
-                maxVal = Math.max(maxInHist * 1.25, 250.0);
+            let maxVal = chartMetric === 'cpu' ? 100.0 : 250.0;
+            if (chartMetric === 'mem') {
+                const maxInHist = Math.max(...historyData.map(d => {
+                    return Math.max(...activeDefs.map(s => s.val(d) || 0));
+                }));
+                maxVal = Math.max(maxInHist * 1.3, 100.0);
             }
 
             // Draw Fibonacci Retracement Grid Lines
             const fibRatios = [
-                { r: 1.0, label: chartMode === 'cpu' ? '100%' : `${maxVal.toFixed(0)}MB` },
+                { r: 1.0, label: chartMetric === 'cpu' ? '100%' : `${maxVal.toFixed(0)}MB` },
                 { r: 0.786, label: '78.6%' },
                 { r: 0.618, label: '61.8%' },
                 { r: 0.50, label: '50.0%' },
@@ -1545,21 +1650,13 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             // Draw Multi-Curves
             const step = w / (historyData.length - 1);
 
-            const seriesList = [
-                { key: 'total', name: 'Total', color: '#ffffff', dash: [4, 3], val: d => chartMode === 'cpu' ? d.total_cpu : d.total_mem_mb },
-                { key: 'login', name: 'Login', color: '#38bdf8', dash: [], val: d => chartMode === 'cpu' ? d.login_cpu : d.login_mem_mb },
-                { key: 'game',  name: 'Game',  color: '#10b981', dash: [], val: d => chartMode === 'cpu' ? d.game_cpu : d.game_mem_mb },
-                { key: 'chat',  name: 'Chat',  color: '#a855f7', dash: [], val: d => chartMode === 'cpu' ? d.chat_cpu : d.chat_mem_mb },
-                { key: 'launcher', name: 'Launcher', color: '#eab308', dash: [], val: d => chartMode === 'cpu' ? d.launcher_cpu : d.launcher_mem_mb }
-            ];
-
-            seriesList.forEach(s => {
+            activeDefs.forEach(s => {
                 if (hiddenSeries[s.key]) return;
 
                 ctx.beginPath();
                 ctx.strokeStyle = s.color;
                 ctx.lineWidth = s.key === 'total' ? 2 : 1.7;
-                ctx.setLineDash(s.dash);
+                ctx.setLineDash(s.dash || []);
 
                 historyData.forEach((d, i) => {
                     const val = s.val(d) || 0;
@@ -1576,11 +1673,11 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             ctx.setLineDash([]);
 
             // Update stats summary on bottom
-            const totals = historyData.map(d => chartMode === 'cpu' ? d.total_cpu : d.total_mem_mb);
+            const totals = historyData.map(d => chartMetric === 'cpu' ? d.total_cpu : d.total_mem_mb);
             const minV = Math.min(...totals);
             const maxV = Math.max(...totals);
             const avgV = totals.reduce((a, b) => a + b, 0) / totals.length;
-            const unit = chartMode === 'cpu' ? '%' : ' MB';
+            const unit = chartMetric === 'cpu' ? '%' : ' MB';
 
             document.getElementById('stat-min-val').innerText = `${minV.toFixed(1)}${unit}`;
             document.getElementById('stat-max-val').innerText = `${maxV.toFixed(1)}${unit}`;
@@ -1680,6 +1777,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
 
         window.addEventListener('resize', drawDayTradeChart);
+        renderLegend();
         setInterval(fetchMetrics, 1000);
         setInterval(fetchLogs, 800);
         fetchMetrics();
