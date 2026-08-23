@@ -1,22 +1,8 @@
-use crate::crypto::LoginCryptEngine;
+use crate::crypto::{LoginCryptEngine, RsaManager};
 use crate::db::AuthDb;
 use std::sync::Arc;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::{TcpListener, TcpStream};
-
-const RSA_MODULUS_RAW: [u8; 128] = [
-    0x8b, 0x92, 0x1f, 0x6e, 0x22, 0x3d, 0x94, 0x48, 0x7b, 0x04, 0x24, 0x39,
-    0x91, 0x31, 0x9c, 0x68, 0x8a, 0xca, 0xeb, 0xbb, 0x8d, 0x51, 0xb8, 0x59,
-    0xa3, 0x27, 0x4d, 0x1a, 0x88, 0x05, 0x52, 0x3e, 0x7c, 0x95, 0xb5, 0x3e,
-    0x61, 0x8b, 0x83, 0x61, 0x54, 0xef, 0xc7, 0xae, 0x71, 0xeb, 0x4c, 0xd0,
-    0xa9, 0xa5, 0x85, 0xb3, 0x0e, 0x60, 0x80, 0x9a, 0x37, 0x8d, 0x71, 0x52,
-    0xa0, 0x25, 0x72, 0xb8, 0xb7, 0x1f, 0xef, 0x7b, 0x44, 0x07, 0x63, 0x89,
-    0x29, 0xef, 0x54, 0x07, 0x25, 0x5d, 0x30, 0xb3, 0x0e, 0xee, 0x04, 0x55,
-    0x63, 0x5b, 0x03, 0x6d, 0x75, 0x16, 0x1c, 0x02, 0x23, 0x32, 0x22, 0x50,
-    0x57, 0x95, 0x2e, 0x69, 0x84, 0x78, 0x73, 0x5e, 0x3a, 0x4b, 0x80, 0x6b,
-    0x02, 0xbd, 0x6a, 0xa3, 0xd3, 0x98, 0x6c, 0x41, 0x69, 0xb9, 0xb0, 0x2c,
-    0x62, 0x19, 0x64, 0x5b, 0x3d, 0xa8, 0x4b, 0x2b,
-];
 
 pub async fn run_ncsoft_server(
     bind_addr: &str,
@@ -74,20 +60,21 @@ async fn handle_ncsoft_client(
     );
 
     let mut crypt_engine = LoginCryptEngine::new();
+    let rsa_manager = RsaManager::new();
 
     let blowfish_key: [u8; 16] = [
         0x6b, 0x60, 0xcb, 0x5b, 0x82, 0xce, 0x90, 0xb1,
         0xcc, 0x2b, 0x6c, 0x55, 0x6c, 0x6c, 0x6c, 0x6c,
     ];
 
-    let scrambled_modulus = LoginCryptEngine::scramble_modulus(&RSA_MODULUS_RAW);
+    let scrambled_modulus = rsa_manager.get_scrambled_modulus();
 
     // 1. Construct SM_INIT (192 bytes payload -> 194 bytes with header)
     let mut raw_init = vec![0u8; 192];
     raw_init[0] = 0x00; // Opcode SM_INIT
     raw_init[1..5].copy_from_slice(&session_id.to_le_bytes());
     raw_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes()); // Protocol revision
-    raw_init[9..137].copy_from_slice(&scrambled_modulus);
+    raw_init[9..137].copy_from_slice(scrambled_modulus);
     raw_init[149..165].copy_from_slice(&blowfish_key);
     raw_init[168] = 0xFD; // Flag de ativacao do x64
     raw_init[169..173].copy_from_slice(&[0x04, 0x05, 0x00, 0x00]); // Versao Classic 4.5
@@ -105,7 +92,7 @@ async fn handle_ncsoft_client(
         return;
     }
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_INIT (194 bytes) [SessionID: 0x{:08X}, Flag: 0xFD, Version: 4.5.0.0]",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_INIT (194 bytes) [SessionID: 0x{:08X}, Flag: 0xFD, Version: 4.5.0.0, Valid RSA 1024-bit]",
         session_id, session_id
     );
 
@@ -135,10 +122,7 @@ async fn handle_ncsoft_client(
     );
 
     let mut current_username = default_user.clone();
-    let account_id = match db.get_or_create_account(&current_username, auto_create) {
-        Ok(Some(acc)) => (acc.id as u32).max(1),
-        _ => 1,
-    };
+    let mut account_id = 1u32;
 
     let session_key1: u32 = 0x026edf39;
     let session_key2: u32 = rand::random();
@@ -243,33 +227,8 @@ async fn handle_ncsoft_client(
         Ok(())
     }
 
-    // Send initial pre-login state to ready the client
-    let _ = send_login_ok(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        account_id,
-        session_key1,
-        &current_username,
-    )
-    .await;
-
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-
-    let char_count = db.get_character_count(&current_username);
-    let _ = send_server_list(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        &announce_ip,
-        announce_port,
-        default_server_id,
-        char_count,
-    )
-    .await;
-
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready. Listening for client requests...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready (SM_INIT + SM_AUTH_GG). Awaiting client credentials (CM_LOGIN)...",
         session_id
     );
 
@@ -319,15 +278,34 @@ async fn handle_ncsoft_client(
                 session_id, payload.len()
             );
 
-            // Extract username if readable
-            if let Some(user) = extract_string_from_payload(&payload) {
+            // Attempt RSA decryption of 128-byte block
+            let rsa_block = if payload.len() >= 132 {
+                &payload[4..132]
+            } else if payload.len() >= 128 {
+                &payload[..128]
+            } else {
+                &payload[..]
+            };
+
+            if let Some((user, pass)) = rsa_manager.decrypt_credentials(rsa_block) {
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials: User='{}', Pass='{}'",
+                    session_id, user, pass
+                );
+                current_username = user;
+            } else if let Some(user) = extract_string_from_payload(&payload) {
                 current_username = user;
             }
 
             let acc = db.get_or_create_account(&current_username, auto_create);
+            account_id = match acc {
+                Ok(Some(a)) => (a.id as u32).max(1),
+                _ => 1,
+            };
+
             println!(
-                "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Authenticated Account: '{}' (Auto-Created: {}, Exists: {})",
-                session_id, current_username, auto_create, acc.is_ok()
+                "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Authenticated Account: '{}' (ID: {}, Auto-Created: {})",
+                session_id, current_username, account_id, auto_create
             );
 
             let char_count = db.get_character_count(&current_username);
@@ -335,7 +313,7 @@ async fn handle_ncsoft_client(
                 &mut socket,
                 &crypt_engine,
                 session_id,
-                10000001,
+                account_id,
                 session_key1,
                 &current_username,
             )
@@ -385,30 +363,6 @@ async fn handle_ncsoft_client(
                     session_id
                 );
                 let _ = socket.write_all(&auth_gg_pkt).await;
-
-                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-                let char_count = db.get_character_count(&current_username);
-                let _ = send_login_ok(
-                    &mut socket,
-                    &crypt_engine,
-                    session_id,
-                    account_id,
-                    session_key1,
-                    &current_username,
-                )
-                .await;
-
-                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-                let _ = send_server_list(
-                    &mut socket,
-                    &crypt_engine,
-                    session_id,
-                    &announce_ip,
-                    announce_port,
-                    default_server_id,
-                    char_count,
-                )
-                .await;
             }
             0x0B | 0x08 => {
                 // CM_LOGIN
@@ -416,19 +370,34 @@ async fn handle_ncsoft_client(
                     "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X})",
                     session_id, opcode
                 );
-                if let Some(user) = extract_string_from_payload(active_buf) {
+
+                let rsa_block = if active_buf.len() >= 132 {
+                    &active_buf[4..132]
+                } else if active_buf.len() >= 128 {
+                    &active_buf[..128]
+                } else {
+                    active_buf
+                };
+
+                if let Some((user, pass)) = rsa_manager.decrypt_credentials(rsa_block) {
+                    println!(
+                        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials: User='{}', Pass='{}'",
+                        session_id, user, pass
+                    );
+                    current_username = user;
+                } else if let Some(user) = extract_string_from_payload(active_buf) {
                     current_username = user;
                 }
 
                 let acc = db.get_or_create_account(&current_username, auto_create);
-                let acc_id = match acc {
+                account_id = match acc {
                     Ok(Some(a)) => (a.id as u32).max(1),
-                    _ => account_id,
+                    _ => 1,
                 };
 
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Account '{}' verified successfully (ID: {}).",
-                    session_id, current_username, acc_id
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Authenticated Account: '{}' (ID: {}, Auto-Created: {})",
+                    session_id, current_username, account_id, auto_create
                 );
 
                 let char_count = db.get_character_count(&current_username);
@@ -436,7 +405,7 @@ async fn handle_ncsoft_client(
                     &mut socket,
                     &crypt_engine,
                     session_id,
-                    acc_id,
+                    account_id,
                     session_key1,
                     &current_username,
                 )

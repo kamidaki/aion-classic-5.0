@@ -15,6 +15,7 @@ parking_lot = "0.12"
 chrono = "0.4"
 rand = "0.8"
 commons = { path = "../commons" }
+rsa = "0.9.10"
 
 [build-dependencies]
 winres = "0.1"
