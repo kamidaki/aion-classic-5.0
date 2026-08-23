@@ -385,6 +385,30 @@ async fn handle_ncsoft_client(
                     session_id
                 );
                 let _ = socket.write_all(&auth_gg_pkt).await;
+
+                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+                let char_count = db.get_character_count(&current_username);
+                let _ = send_login_ok(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    account_id,
+                    session_key1,
+                    &current_username,
+                )
+                .await;
+
+                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+                let _ = send_server_list(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    &announce_ip,
+                    announce_port,
+                    default_server_id,
+                    char_count,
+                )
+                .await;
             }
             0x0B | 0x08 => {
                 // CM_LOGIN
@@ -396,10 +420,15 @@ async fn handle_ncsoft_client(
                     current_username = user;
                 }
 
-                let _ = db.get_or_create_account(&current_username, auto_create);
+                let acc = db.get_or_create_account(&current_username, auto_create);
+                let acc_id = match acc {
+                    Ok(Some(a)) => (a.id as u32).max(1),
+                    _ => account_id,
+                };
+
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Account '{}' verified successfully.",
-                    session_id, current_username
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Account '{}' verified successfully (ID: {}).",
+                    session_id, current_username, acc_id
                 );
 
                 let char_count = db.get_character_count(&current_username);
@@ -407,7 +436,7 @@ async fn handle_ncsoft_client(
                     &mut socket,
                     &crypt_engine,
                     session_id,
-                    10000001,
+                    acc_id,
                     session_key1,
                     &current_username,
                 )
