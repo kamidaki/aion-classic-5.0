@@ -63,8 +63,24 @@ impl LoginCryptEngine {
         if data.len() % 8 != 0 || data.len() < 8 {
             return false;
         }
-        self.cipher.decipher(data);
-        Self::verify_checksum(data)
+        
+        let mut session_data = data.to_vec();
+        self.cipher.decipher(&mut session_data);
+        if Self::verify_checksum(&session_data) {
+            data.copy_from_slice(&session_data);
+            return true;
+        }
+
+        let mut static_cipher = BlowfishCipher::new(&STATIC_BLOWFISH_KEY);
+        let mut static_data = data.to_vec();
+        static_cipher.decipher(&mut static_data);
+        if Self::verify_checksum(&static_data) {
+            data.copy_from_slice(&static_data);
+            return true;
+        }
+
+        data.copy_from_slice(&session_data);
+        false
     }
 
     pub fn verify_checksum(data: &[u8]) -> bool {
