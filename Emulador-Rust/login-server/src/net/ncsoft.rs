@@ -12,6 +12,7 @@ pub async fn run_ncsoft_server(
     db: Arc<AuthDb>,
     auto_create: bool,
     default_user: String,
+    security: Arc<crate::security::SecurityManager>,
 ) -> Result<(), Box<dyn std::error::Error>> {
     let listener = TcpListener::bind(bind_addr).await?;
     println!("INFO: [LoginServer-NCSoft] Listening on {}", bind_addr);
@@ -22,6 +23,7 @@ pub async fn run_ncsoft_server(
                 let db_clone = Arc::clone(&db);
                 let ip_clone = announce_ip.clone();
                 let def_user = default_user.clone();
+                let sec_clone = Arc::clone(&security);
                 tokio::spawn(async move {
                     handle_ncsoft_client(
                         socket,
@@ -32,6 +34,7 @@ pub async fn run_ncsoft_server(
                         db_clone,
                         auto_create,
                         def_user,
+                        sec_clone,
                     )
                     .await;
                 });
@@ -52,7 +55,12 @@ async fn handle_ncsoft_client(
     db: Arc<AuthDb>,
     auto_create: bool,
     default_user: String,
+    security: Arc<crate::security::SecurityManager>,
 ) {
+    if !security.check_connection(addr.ip()) {
+        println!("WARN: [LoginServer-NCSoft] Connection from {} rejected by rate-limiter.", addr);
+        return;
+    }
     let session_id: u32 = rand::random();
     println!(
         "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Incoming connection from {}",
@@ -497,7 +505,7 @@ async fn handle_ncsoft_client(
                 );
 
                 // Register session in SQLite db so Game Server validates entry
-                let _ = db.issue_session(&current_username, session_key2);
+                let _ = db.issue_session(account_id, &current_username, session_key2);
 
                 // Send SM_PLAY_OK (Opcode 0x07 / 0x06)
                 let mut play_ok_raw = vec![0u8; 10];

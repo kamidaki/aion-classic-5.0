@@ -42,11 +42,21 @@ impl AuthDb {
                  expires_at INTEGER NOT NULL
              );
              
-             CREATE TABLE IF NOT EXISTS players (
+             CREATE TABLE IF NOT EXISTS characters (
                  id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 account_name TEXT NOT NULL,
-                 name TEXT UNIQUE NOT NULL
-             );",
+                 account_id INTEGER NOT NULL REFERENCES accounts(id),
+                 name TEXT NOT NULL,
+                 level INTEGER NOT NULL DEFAULT 1,
+                 exp INTEGER NOT NULL DEFAULT 0,
+                 x REAL NOT NULL DEFAULT 0.0,
+                 y REAL NOT NULL DEFAULT 0.0,
+                 z REAL NOT NULL DEFAULT 0.0,
+                 hp INTEGER NOT NULL DEFAULT 100,
+                 mp INTEGER NOT NULL DEFAULT 100,
+                 aparencia BLOB,
+                 updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now'))
+             );
+             CREATE INDEX IF NOT EXISTS idx_characters_account ON characters(account_id);",
         )?;
 
         // Ensure default developer account exists
@@ -96,7 +106,9 @@ impl AuthDb {
 
     pub fn get_character_count(&self, account_name: &str) -> u8 {
         let conn = self.conn.lock();
-        let mut stmt = match conn.prepare("SELECT COUNT(*) FROM players WHERE account_name = ?1 COLLATE NOCASE") {
+        let mut stmt = match conn.prepare(
+            "SELECT COUNT(*) FROM characters WHERE account_id = (SELECT id FROM accounts WHERE name = ?1 COLLATE NOCASE)"
+        ) {
             Ok(s) => s,
             Err(_) => return 0,
         };
@@ -104,16 +116,16 @@ impl AuthDb {
         count as u8
     }
 
-    pub fn issue_session(&self, account_name: &str, session_key: u32) -> Result<String> {
+    pub fn issue_session(&self, account_id: u32, account_name: &str, session_key: u32) -> Result<String> {
         let token = format!("{:08x}{:08x}", rand::random::<u32>(), rand::random::<u32>());
         let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
         let expires = now + 600; // 10 minutes
 
         let conn = self.conn.lock();
         conn.execute(
-            "INSERT OR REPLACE INTO sessions (token, account_name, session_key, created_at, expires_at)
-             VALUES (?1, ?2, ?3, ?4, ?5)",
-            params![token, account_name, session_key as i64, now, expires],
+            "INSERT OR REPLACE INTO sessions (token, account_name, account_id, session_key, created_at, expires_at)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+            params![token, account_name, account_id as i64, session_key as i64, now, expires],
         )?;
 
         Ok(token)

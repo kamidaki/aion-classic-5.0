@@ -40,6 +40,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
 
+    let security = Arc::new(security::SecurityManager::new(
+        cfg.security.enable_rate_limit,
+        cfg.security.max_attempts_per_minute,
+        cfg.security.temp_ban_minutes,
+    ));
+
     // 1. Start Windows Named Pipe provider
     let pipe_name = r"\\.\pipe\GameforgeClientJSONRPC";
     net::pipe::spawn_named_pipe_provider(pipe_name, Arc::clone(&db), cfg.default_dev_username.clone());
@@ -62,6 +68,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let srv_id_nc = cfg.default_server_id;
     let auto_create_nc = cfg.auto_create_accounts;
     let dev_user_nc = cfg.default_dev_username.clone();
+    let sec_nc = Arc::clone(&security);
     tokio::spawn(async move {
         if let Err(e) = net::ncsoft::run_ncsoft_server(
             &ncsoft_bind,
@@ -71,6 +78,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             db_ncsoft,
             auto_create_nc,
             dev_user_nc,
+            sec_nc,
         )
         .await
         {
@@ -86,8 +94,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let srv_id_hq = cfg.default_server_id;
     let auto_create_hq = cfg.auto_create_accounts;
     let dev_user_hq = cfg.default_dev_username.clone();
+    let sec_hq = Arc::clone(&security);
 
-    println!("INFO: [LoginServer] All sub-services initialized successfully.");
+    println!("INFO: [LoginServer] All sub-services initialized successfully with active SecurityManager.");
     net::hq::run_hq_server(
         &hq_bind,
         announce_ip_hq,
@@ -96,6 +105,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         db_hq,
         auto_create_hq,
         dev_user_hq,
+        sec_hq,
     )
     .await?;
 

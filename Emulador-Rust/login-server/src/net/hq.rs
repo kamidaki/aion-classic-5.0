@@ -29,6 +29,7 @@ pub async fn run_hq_server(
     db: Arc<AuthDb>,
     auto_create: bool,
     default_user: String,
+    security: Arc<crate::security::SecurityManager>,
 ) -> Result<(), Box<dyn std::error::Error>> {
     let listener = TcpListener::bind(bind_addr).await?;
     println!("INFO: [LoginServer-HQ] Listening on {}", bind_addr);
@@ -39,6 +40,7 @@ pub async fn run_hq_server(
                 let db_clone = Arc::clone(&db);
                 let ip_clone = announce_ip.clone();
                 let def_user = default_user.clone();
+                let sec_clone = Arc::clone(&security);
                 tokio::spawn(async move {
                     handle_hq_client(
                         socket,
@@ -49,6 +51,7 @@ pub async fn run_hq_server(
                         db_clone,
                         auto_create,
                         def_user,
+                        sec_clone,
                     )
                     .await;
                 });
@@ -69,7 +72,12 @@ async fn handle_hq_client(
     db: Arc<AuthDb>,
     auto_create: bool,
     default_user: String,
+    security: Arc<crate::security::SecurityManager>,
 ) {
+    if !security.check_connection(addr.ip()) {
+        println!("WARN: [LoginServer-HQ] Connection from {} rejected by rate-limiter.", addr);
+        return;
+    }
     println!("INFO: [LoginServer-HQ] Incoming client connection from {}", addr);
 
     // 1. Send AUTH_GREETING (92 bytes)
