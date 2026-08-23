@@ -259,8 +259,33 @@ async fn handle_ncsoft_client(
         Ok(())
     }
 
+    // Send initial pre-login state to ready the client
+    let _ = send_login_ok(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        10000001,
+        session_key1,
+        &current_username,
+    )
+    .await;
+
+    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+
+    let char_count = db.get_character_count(&current_username);
+    let _ = send_server_list(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        &announce_ip,
+        announce_port,
+        default_server_id,
+        char_count,
+    )
+    .await;
+
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready (SM_INIT + SM_AUTH_GG). Listening for client authentication...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready. Listening for client requests...",
         session_id
     );
 
