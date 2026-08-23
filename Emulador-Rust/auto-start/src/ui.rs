@@ -1,9 +1,9 @@
-pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
+pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Aion Classic - EmuRust Dashboard</title>
+    <title>Aion Classic - EmuRust Dashboard & FlameGraph</title>
     <style>
         :root {
             --bg-base: #060910;
@@ -233,7 +233,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
         .btn-danger:active, .btn-danger:hover { box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5); transform: translateY(-1px); }
 
-        /* Main Full Width & Height Filling Layout */
+        /* Main Layout */
         main {
             flex: 1;
             padding: 10px 16px;
@@ -371,8 +371,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             font-size: 0.7rem;
         }
 
-        /* Day-Trade Real-Time Multi-Curve Telemetry Section (With Subsystem & Class Level Granularity!) */
-        .daytrade-section {
+        /* Telemetry Section with Flame Graph & Day-Trade View Modes */
+        .telemetry-section {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
             border-radius: 10px;
@@ -385,7 +385,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             flex-shrink: 0;
         }
 
-        .daytrade-header {
+        .telemetry-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -393,7 +393,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             gap: 6px;
         }
 
-        .daytrade-title-box {
+        .telemetry-title-box {
             display: flex;
             align-items: center;
             gap: 6px;
@@ -401,7 +401,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             font-weight: 700;
         }
 
-        .daytrade-controls-row {
+        .telemetry-controls-row {
             display: flex;
             align-items: center;
             gap: 6px;
@@ -426,11 +426,62 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             font-size: 0.68rem;
             cursor: pointer;
             white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
         .mode-btn.active {
             background: rgba(56, 189, 248, 0.25);
             color: var(--accent-login);
             font-weight: 700;
+        }
+        .mode-btn.active-flame {
+            background: rgba(249, 115, 22, 0.25);
+            color: #fb923c;
+            font-weight: 700;
+        }
+
+        /* Flame Graph Visual Container */
+        .chart-visual-container {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            background: #050810;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .flame-tooltip {
+            position: absolute;
+            display: none;
+            background: rgba(10, 15, 26, 0.96);
+            border: 1px solid #f97316;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 0.68rem;
+            color: #fff;
+            pointer-events: none;
+            z-index: 50;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            max-width: 280px;
+        }
+
+        .flame-tooltip-title {
+            font-weight: 700;
+            color: #fdba74;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .legend-bar {
@@ -467,35 +518,15 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             flex-shrink: 0;
         }
 
-        .daytrade-canvas-container {
-            position: relative;
-            width: 100%;
-            height: 140px;
-            background: #050810;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        .daytrade-tooltip {
-            position: absolute;
-            display: none;
-            background: rgba(12, 18, 30, 0.95);
-            border: 1px solid var(--accent-login);
-            border-radius: 6px;
-            padding: 6px 9px;
-            font-size: 0.68rem;
+        .flame-search-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
             color: #fff;
-            pointer-events: none;
-            z-index: 50;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.6);
-            backdrop-filter: blur(8px);
+            padding: 2px 6px;
+            font-size: 0.68rem;
+            width: 130px;
+            outline: none;
         }
 
         .chart-stats-grid {
@@ -510,7 +541,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
         .stat-col span { color: #fff; font-weight: 700; margin-left: 3px; }
 
-        /* Central Log Center - Fills ALL remaining vertical space on desktop! */
+        /* Central Log Center */
         .log-center {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
@@ -638,7 +669,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .log-msg.srv-chat  { color: #e9d5ff; }
         .log-msg.srv-launcher { color: #fef08a; }
 
-        /* Left Drawer Sidebar (Janela Gaveta Lateral Esquerda) */
+        /* Left Drawer Sidebar */
         .drawer-overlay {
             position: fixed;
             top: 0;
@@ -744,7 +775,6 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
         .drawer-val { font-weight: 700; color: #fff; }
 
-        /* Subsystem Class Metric Card */
         .subsystem-category-title {
             font-size: 0.68rem;
             font-weight: 700;
@@ -766,76 +796,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             margin-bottom: 4px;
         }
 
-        /* Modal Dialogs */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-
-        .modal-box {
-            background: #0f172a;
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 18px;
-            max-width: 420px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .modal-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--accent-login);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .modal-text {
-            font-size: 0.8rem;
-            color: #cbd5e1;
-            line-height: 1.45;
-        }
-
-        .qr-placeholder-box {
-            background: #060910;
-            border: 1px solid var(--border-glass);
-            border-radius: 8px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .url-copy-input {
-            width: 100%;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid var(--border-glass);
-            border-radius: 6px;
-            padding: 6px 8px;
-            color: #38bdf8;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-align: center;
-            outline: none;
-        }
-
-        /* Mobile Bottom Tab Bar (iOS Glass Style) */
+        /* Mobile Bottom Tab Bar */
         .mobile-bottom-bar {
             display: none;
             position: fixed;
@@ -888,7 +849,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             cursor: pointer;
         }
 
-        /* Mobile Responsive Adjustments (Phones & Tablets <= 768px) */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             html, body {
                 overflow-y: auto !important;
@@ -909,8 +870,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 flex: initial !important;
             }
             
-            .daytrade-section { padding: 10px 12px; }
-            .daytrade-canvas-container { height: 155px; }
+            .telemetry-section { padding: 10px 12px; }
+            .chart-visual-container { height: 165px; }
             .chart-stats-grid { grid-template-columns: repeat(2, 1fr); font-size: 0.68rem; }
             
             .log-center {
@@ -967,9 +928,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         </div>
     </header>
 
-    <!-- Main Content (Fills entire screen on desktop!) -->
+    <!-- Main Content -->
     <main>
-        <!-- Desktop Only Server Cards (Hidden on Mobile) -->
+        <!-- Desktop Only Server Cards -->
         <div class="cards-grid">
             <!-- Login Server -->
             <div class="card card-login" id="card-login">
@@ -981,19 +942,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     <div class="card-tag">Porta 2106</div>
                 </div>
                 <div class="metrics-box">
-                    <div class="metric-row">
-                        <span class="metric-label">Status / Uptime:</span>
-                        <span class="metric-value" id="val-uptime-login">OFFLINE</span>
-                    </div>
-                    <div class="metric-row">
-                        <span class="metric-label">CPU:</span>
-                        <span class="metric-value" id="val-cpu-login">0.0%</span>
-                    </div>
+                    <div class="metric-row"><span class="metric-label">Status / Uptime:</span><span class="metric-value" id="val-uptime-login">OFFLINE</span></div>
+                    <div class="metric-row"><span class="metric-label">CPU:</span><span class="metric-value" id="val-cpu-login">0.0%</span></div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-login" id="bar-cpu-login"></div></div>
-                    <div class="metric-row" style="margin-top: 2px;">
-                        <span class="metric-label">Memória RAM:</span>
-                        <span class="metric-value" id="val-mem-login">0.0 MB</span>
-                    </div>
+                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Memória RAM:</span><span class="metric-value" id="val-mem-login">0.0 MB</span></div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-login" id="bar-mem-login"></div></div>
                 </div>
                 <div class="card-actions">
@@ -1013,19 +965,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     <div class="card-tag">Porta 7777</div>
                 </div>
                 <div class="metrics-box">
-                    <div class="metric-row">
-                        <span class="metric-label">Status / Uptime:</span>
-                        <span class="metric-value" id="val-uptime-game">OFFLINE</span>
-                    </div>
-                    <div class="metric-row">
-                        <span class="metric-label">CPU:</span>
-                        <span class="metric-value" id="val-cpu-game">0.0%</span>
-                    </div>
+                    <div class="metric-row"><span class="metric-label">Status / Uptime:</span><span class="metric-value" id="val-uptime-game">OFFLINE</span></div>
+                    <div class="metric-row"><span class="metric-label">CPU:</span><span class="metric-value" id="val-cpu-game">0.0%</span></div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-game" id="bar-cpu-game"></div></div>
-                    <div class="metric-row" style="margin-top: 2px;">
-                        <span class="metric-label">Memória RAM:</span>
-                        <span class="metric-value" id="val-mem-game">0.0 MB</span>
-                    </div>
+                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Memória RAM:</span><span class="metric-value" id="val-mem-game">0.0 MB</span></div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-game" id="bar-mem-game"></div></div>
                 </div>
                 <div class="card-actions">
@@ -1045,19 +988,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     <div class="card-tag">Porta 10241</div>
                 </div>
                 <div class="metrics-box">
-                    <div class="metric-row">
-                        <span class="metric-label">Status / Uptime:</span>
-                        <span class="metric-value" id="val-uptime-chat">OFFLINE</span>
-                    </div>
-                    <div class="metric-row">
-                        <span class="metric-label">CPU:</span>
-                        <span class="metric-value" id="val-cpu-chat">0.0%</span>
-                    </div>
+                    <div class="metric-row"><span class="metric-label">Status / Uptime:</span><span class="metric-value" id="val-uptime-chat">OFFLINE</span></div>
+                    <div class="metric-row"><span class="metric-label">CPU:</span><span class="metric-value" id="val-cpu-chat">0.0%</span></div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-chat" id="bar-cpu-chat"></div></div>
-                    <div class="metric-row" style="margin-top: 2px;">
-                        <span class="metric-label">Memória RAM:</span>
-                        <span class="metric-value" id="val-mem-chat">0.0 MB</span>
-                    </div>
+                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Memória RAM:</span><span class="metric-value" id="val-mem-chat">0.0 MB</span></div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-chat" id="bar-mem-chat"></div></div>
                 </div>
                 <div class="card-actions">
@@ -1068,19 +1002,27 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- 1. Day-Trade Real-Time Telemetry Section (With Subsystem & Class Level Granularity!) -->
-        <div class="daytrade-section" id="section-telemetry">
-            <div class="daytrade-header">
-                <div class="daytrade-title-box">
-                    <span class="btn-svg" style="color: var(--accent-login);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-                    Telemetria Day-Trade Real-Time
+        <!-- 1. Flame Graph & Day-Trade Real-Time Telemetry Section -->
+        <div class="telemetry-section" id="section-telemetry">
+            <div class="telemetry-header">
+                <div class="telemetry-title-box">
+                    <span class="btn-svg" id="view-mode-icon" style="color: #f97316;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                    </span>
+                    <span id="telemetry-title-text">Flame Graph de Classes & Subsistemas (src/game)</span>
                 </div>
 
-                <div class="daytrade-controls-row">
-                    <!-- Scope Switcher: Servidores vs Classes/Subsistemas -->
+                <div class="telemetry-controls-row">
+                    <!-- Visualization Style: Flame Graph vs Day-Trade Time-Series -->
                     <div class="toggle-group">
-                        <button class="mode-btn active" id="btn-scope-servers" onclick="setChartScope('servers')">Servidores</button>
-                        <button class="mode-btn" id="btn-scope-classes" onclick="setChartScope('classes')">Classes (src/game)</button>
+                        <button class="mode-btn active-flame" id="btn-view-flame" onclick="setViewMode('flame')">
+                            <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+                            Flame Graph
+                        </button>
+                        <button class="mode-btn" id="btn-view-daytrade" onclick="setViewMode('daytrade')">
+                            <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+                            Day-Trade
+                        </button>
                     </div>
 
                     <!-- Metric Switcher: CPU % vs RAM MB -->
@@ -1088,26 +1030,30 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                         <button class="mode-btn active" id="btn-mode-cpu" onclick="setChartMetric('cpu')">CPU (%)</button>
                         <button class="mode-btn" id="btn-mode-mem" onclick="setChartMetric('mem')">RAM (MB)</button>
                     </div>
+
+                    <!-- Reset Zoom & Flame Search -->
+                    <button class="filter-btn" id="btn-reset-zoom" style="display:none;" onclick="resetFlameZoom()">Reset Zoom</button>
+                    <input type="text" class="flame-search-box" id="flame-search-input" placeholder="Filtrar classe..." onkeyup="onFlameSearch()">
                 </div>
             </div>
 
-            <!-- Dynamic Legend Bar for all 22 classes -->
+            <!-- Dynamic Legend Bar for Day-Trade mode / Quick breadcrumb for FlameGraph -->
             <div class="legend-bar" id="legend-bar-container"></div>
 
-            <div class="daytrade-canvas-container" id="chart-container">
-                <canvas id="daytrade-canvas"></canvas>
-                <div class="daytrade-tooltip" id="chart-tooltip"></div>
+            <div class="chart-visual-container" id="chart-container" onmousemove="onChartMouseMove(event)" onmouseleave="onChartMouseLeave()" onclick="onChartClick(event)">
+                <canvas id="telemetry-canvas"></canvas>
+                <div class="flame-tooltip" id="chart-tooltip"></div>
             </div>
 
             <div class="chart-stats-grid">
-                <div class="stat-col">Mínimo:<span id="stat-min-val">0.0%</span></div>
+                <div class="stat-col">Foco:<span id="stat-focus-name">Root (All Systems)</span></div>
+                <div class="stat-col">Mínimo / Base:<span id="stat-min-val">0.0%</span></div>
                 <div class="stat-col">Máximo:<span id="stat-max-val">0.0%</span></div>
-                <div class="stat-col">Média:<span id="stat-avg-val">0.0%</span></div>
-                <div class="stat-col">Amostra:<span id="stat-sample-rate">1s Live</span></div>
+                <div class="stat-col">Amostra:<span id="stat-sample-rate">1s Real-Time</span></div>
             </div>
         </div>
 
-        <!-- 2. Central Live Logs Section (Fills ALL remaining vertical space on desktop!) -->
+        <!-- 2. Central Live Logs Section -->
         <div class="log-center" id="section-logs">
             <div class="log-header">
                 <div class="log-header-top">
@@ -1137,13 +1083,13 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         </div>
     </main>
 
-    <!-- Left Drawer Sidebar (Janela Gaveta Lateral Esquerda) -->
+    <!-- Left Drawer Sidebar -->
     <div class="drawer-overlay" id="drawer-overlay" onclick="toggleDrawer(false)"></div>
     <div class="drawer-sidebar" id="drawer-sidebar">
         <div class="drawer-header">
             <div class="drawer-title">
-                <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-                Classes, Módulos & Servidores
+                <span class="btn-svg" style="color: #f97316;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+                Hierarquia de Classes & Servidores
             </div>
             <button class="drawer-close-btn" onclick="toggleDrawer(false)">✕</button>
         </div>
@@ -1168,9 +1114,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     <span class="btn-svg" style="color: #ec4899;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
                     Classes & Subsistemas (src/game)
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 4px;" id="drawer-subsystems-list">
-                    <!-- Dynamic Subsystem Cards Injected by JS -->
-                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;" id="drawer-subsystems-list"></div>
             </div>
 
             <!-- Section: Servidores Individuais -->
@@ -1180,18 +1124,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     Servidores Ativos
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <!-- Login Card in Drawer -->
                     <div class="drawer-card">
-                        <div class="drawer-row">
-                            <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                                <span class="status-dot" id="drawer-dot-login"></span> Login-Server
-                            </span>
-                            <span class="drawer-val" id="drawer-uptime-login" style="font-size: 0.72rem; color: var(--accent-login);">OFFLINE</span>
-                        </div>
-                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);">
-                            <span>CPU: <b id="drawer-cpu-login" style="color:#fff;">0.0%</b></span>
-                            <span>RAM: <b id="drawer-mem-login" style="color:#fff;">0.0 MB</b></span>
-                        </div>
+                        <div class="drawer-row"><span style="font-weight: 700; display: flex; align-items: center; gap: 6px;"><span class="status-dot" id="drawer-dot-login"></span> Login-Server</span><span class="drawer-val" id="drawer-uptime-login" style="font-size: 0.72rem; color: var(--accent-login);">OFFLINE</span></div>
+                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);"><span>CPU: <b id="drawer-cpu-login" style="color:#fff;">0.0%</b></span><span>RAM: <b id="drawer-mem-login" style="color:#fff;">0.0 MB</b></span></div>
                         <div style="display: flex; gap: 4px; margin-top: 2px;">
                             <button class="btn-start" style="flex:1; padding: 4px;" onclick="controlServer('login', 'start')">Iniciar</button>
                             <button class="btn-stop" style="flex:1; padding: 4px;" onclick="controlServer('login', 'stop')">Parar</button>
@@ -1199,18 +1134,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                         </div>
                     </div>
 
-                    <!-- Game Card in Drawer -->
                     <div class="drawer-card">
-                        <div class="drawer-row">
-                            <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                                <span class="status-dot" id="drawer-dot-game"></span> Game-Server
-                            </span>
-                            <span class="drawer-val" id="drawer-uptime-game" style="font-size: 0.72rem; color: var(--accent-game);">OFFLINE</span>
-                        </div>
-                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);">
-                            <span>CPU: <b id="drawer-cpu-game" style="color:#fff;">0.0%</b></span>
-                            <span>RAM: <b id="drawer-mem-game" style="color:#fff;">0.0 MB</b></span>
-                        </div>
+                        <div class="drawer-row"><span style="font-weight: 700; display: flex; align-items: center; gap: 6px;"><span class="status-dot" id="drawer-dot-game"></span> Game-Server</span><span class="drawer-val" id="drawer-uptime-game" style="font-size: 0.72rem; color: var(--accent-game);">OFFLINE</span></div>
+                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);"><span>CPU: <b id="drawer-cpu-game" style="color:#fff;">0.0%</b></span><span>RAM: <b id="drawer-mem-game" style="color:#fff;">0.0 MB</b></span></div>
                         <div style="display: flex; gap: 4px; margin-top: 2px;">
                             <button class="btn-start" style="flex:1; padding: 4px;" onclick="controlServer('game', 'start')">Iniciar</button>
                             <button class="btn-stop" style="flex:1; padding: 4px;" onclick="controlServer('game', 'stop')">Parar</button>
@@ -1218,18 +1144,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                         </div>
                     </div>
 
-                    <!-- Chat Card in Drawer -->
                     <div class="drawer-card">
-                        <div class="drawer-row">
-                            <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                                <span class="status-dot" id="drawer-dot-chat"></span> Chat-Server
-                            </span>
-                            <span class="drawer-val" id="drawer-uptime-chat" style="font-size: 0.72rem; color: var(--accent-chat);">OFFLINE</span>
-                        </div>
-                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);">
-                            <span>CPU: <b id="drawer-cpu-chat" style="color:#fff;">0.0%</b></span>
-                            <span>RAM: <b id="drawer-mem-chat" style="color:#fff;">0.0 MB</b></span>
-                        </div>
+                        <div class="drawer-row"><span style="font-weight: 700; display: flex; align-items: center; gap: 6px;"><span class="status-dot" id="drawer-dot-chat"></span> Chat-Server</span><span class="drawer-val" id="drawer-uptime-chat" style="font-size: 0.72rem; color: var(--accent-chat);">OFFLINE</span></div>
+                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);"><span>CPU: <b id="drawer-cpu-chat" style="color:#fff;">0.0%</b></span><span>RAM: <b id="drawer-mem-chat" style="color:#fff;">0.0 MB</b></span></div>
                         <div style="display: flex; gap: 4px; margin-top: 2px;">
                             <button class="btn-start" style="flex:1; padding: 4px;" onclick="controlServer('chat', 'start')">Iniciar</button>
                             <button class="btn-stop" style="flex:1; padding: 4px;" onclick="controlServer('chat', 'stop')">Parar</button>
@@ -1246,14 +1163,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     Acesso Mobile & Rede Local
                 </div>
                 <div class="drawer-card">
-                    <div class="drawer-row">
-                        <span style="color: var(--text-muted);">IP Local (LAN):</span>
-                        <span class="drawer-val" id="reg-lan-ip">127.0.0.1</span>
-                    </div>
-                    <div class="drawer-row">
-                        <span style="color: var(--text-muted);">URL do Painel:</span>
-                        <span class="drawer-val" id="reg-ext-url" style="color: var(--accent-login); word-break: break-all;">http://127.0.0.1:18080</span>
-                    </div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">IP Local (LAN):</span><span class="drawer-val" id="reg-lan-ip">127.0.0.1</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">URL do Painel:</span><span class="drawer-val" id="reg-ext-url" style="color: var(--accent-login); word-break: break-all;">http://127.0.0.1:18080</span></div>
                     <button class="btn-secondary" style="margin-top: 4px;" onclick="copyExternalUrl()">Copiar Link do Painel</button>
                 </div>
             </div>
@@ -1265,22 +1176,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     Registradores & Telemetria
                 </div>
                 <div class="drawer-card">
-                    <div class="drawer-row">
-                        <span style="color: var(--text-muted);">Taxa de Tick (TPS):</span>
-                        <span class="drawer-val" style="color: var(--accent-game);">20.0 / 20.0 TPS (Fixo)</span>
-                    </div>
-                    <div class="drawer-row">
-                        <span style="color: var(--text-muted);">Banco de Dados:</span>
-                        <span class="drawer-val" id="reg-db-size">aion.db (0 KB)</span>
-                    </div>
-                    <div class="drawer-row">
-                        <span style="color: var(--text-muted);">Memória Total do SO:</span>
-                        <span class="drawer-val" id="reg-os-mem">0.0 / 0.0 GB</span>
-                    </div>
-                    <div class="drawer-row">
-                        <span style="color: var(--text-muted);">Uptime do Launcher:</span>
-                        <span class="drawer-val" id="reg-uptime">00:00:00</span>
-                    </div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">Taxa de Tick (TPS):</span><span class="drawer-val" style="color: var(--accent-game);">20.0 / 20.0 TPS (Fixo)</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">Banco de Dados:</span><span class="drawer-val" id="reg-db-size">aion.db (0 KB)</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">Memória Total do SO:</span><span class="drawer-val" id="reg-os-mem">0.0 / 0.0 GB</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">Uptime do Launcher:</span><span class="drawer-val" id="reg-uptime">00:00:00</span></div>
                 </div>
             </div>
 
@@ -1302,11 +1201,11 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         </div>
     </div>
 
-    <!-- Mobile Bottom Tab Bar (iOS Glass Style) -->
+    <!-- Mobile Bottom Tab Bar -->
     <div class="mobile-bottom-bar">
         <button class="tab-btn active" id="tab-btn-telemetry" onclick="switchMobileTab('telemetry')">
             <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-            Gráfico
+            FlameGraph
         </button>
         <button class="tab-btn" id="tab-btn-logs" onclick="switchMobileTab('logs')">
             <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
@@ -1322,25 +1221,20 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         </button>
     </div>
 
-    <!-- Mobile FAB (Floating Action Button) -->
+    <!-- Mobile FAB -->
     <button class="mobile-fab" onclick="toggleDrawer(true)" title="Menu e Servidores">
         <span class="btn-svg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
     </button>
 
-    <!-- Mobile Access Modal -->
+    <!-- Modals -->
     <div class="modal-overlay" id="mobile-modal">
         <div class="modal-box">
             <div class="modal-title">
                 <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
                 Acesso Mobile no Celular / LAN
             </div>
-            <div class="modal-text">
-                Conecte seu celular na mesma rede Wi-Fi e acesse o endereço abaixo pelo navegador (Safari, Chrome) para monitorar o emulador remotamente:
-            </div>
-            <div class="qr-placeholder-box">
-                <input type="text" class="url-copy-input" id="modal-url-input" readonly value="http://127.0.0.1:18080">
-                <div style="font-size: 0.72rem; color: var(--text-muted); text-align: center;">Clique abaixo para copiar o endereço do painel.</div>
-            </div>
+            <div class="modal-text">Conecte seu celular na mesma rede Wi-Fi e acesse o endereço abaixo pelo navegador para visualizar a telemetria e o Flame Graph:</div>
+            <div class="qr-placeholder-box"><input type="text" class="url-copy-input" id="modal-url-input" readonly value="http://127.0.0.1:18080"></div>
             <div style="display: flex; gap: 8px; justify-content: flex-end;">
                 <button class="btn-secondary" onclick="closeMobileModal()">Fechar</button>
                 <button class="btn-start" onclick="copyExternalUrl()">Copiar Endereço</button>
@@ -1348,19 +1242,16 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         </div>
     </div>
 
-    <!-- Shutdown Modal -->
     <div class="modal-overlay" id="shutdown-modal">
         <div class="modal-box">
             <div class="modal-title" style="color: #f87171;">
                 <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
                 Encerrar Emulador Rust
             </div>
-            <div class="modal-text">
-                Esta ação finalizará com segurança o Game Server, Login Server e Chat Server, liberando todas as portas de rede e encerrando o processo de forma limpa.
-            </div>
+            <div class="modal-text">Esta ação finalizará com segurança o Game Server, Login Server e Chat Server, liberando todas as portas de rede.</div>
             <div style="display: flex; gap: 8px; justify-content: flex-end;">
                 <button class="btn-secondary" onclick="closeShutdownModal()">Cancelar</button>
-                <button class="btn-danger" onclick="confirmShutdown()">Confirmar Encerramento</button>
+                <button class="btn-danger" onclick="confirmShutdown()">Confirmar</button>
             </div>
         </div>
     </div>
@@ -1370,13 +1261,16 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         let isPaused = false;
         let logBuffer = [];
         let historyData = [];
-        let subsystemsData = [];
-        let chartScope = 'servers'; // 'servers' or 'classes'
-        let chartMetric = 'cpu';   // 'cpu' or 'mem'
-        let hiddenSeries = {};
-        let currentFontScale = 1.0;
+        let rawDashboardState = null;
+        let viewMode = 'flame'; // 'flame' or 'daytrade'
+        let chartMetric = 'cpu'; // 'cpu' or 'mem'
+        let flameSearchQuery = '';
+        let flameZoomNode = null;
+        let renderedFlameBoxes = [];
+        let hoveredFlameBox = null;
         let externalUrlStr = "http://127.0.0.1:18080";
 
+        // Day-Trade Series Definitions
         const serverSeriesDefs = [
             { key: 'total', name: 'Total', color: '#ffffff', dash: [4, 3], val: d => chartMetric === 'cpu' ? d.total_cpu : d.total_mem_mb },
             { key: 'login', name: 'Login', color: '#38bdf8', dash: [], val: d => chartMetric === 'cpu' ? d.login_cpu : d.login_mem_mb },
@@ -1385,122 +1279,485 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             { key: 'launcher', name: 'Launcher', color: '#eab308', dash: [], val: d => chartMetric === 'cpu' ? d.launcher_cpu : d.launcher_mem_mb }
         ];
 
-        // All classes from game-server/src/game
-        const classSeriesDefs = [
-            { key: 'world', name: 'World & Spawns AI', color: '#10b981', dash: [], val: d => chartMetric === 'cpu' ? d.sub_world_cpu : d.sub_world_mem },
-            { key: 'skills', name: 'Skills & Stigmas', color: '#ec4899', dash: [], val: d => chartMetric === 'cpu' ? d.sub_skills_cpu : d.sub_skills_mem },
-            { key: 'combat', name: 'Combat & Damage', color: '#f43f5e', dash: [], val: d => chartMetric === 'cpu' ? d.sub_combat_cpu : d.sub_combat_mem },
-            { key: 'inventory', name: 'Inventário & Itens', color: '#8b5cf6', dash: [], val: d => chartMetric === 'cpu' ? d.sub_inventory_cpu : d.sub_inventory_mem },
-            { key: 'teleport', name: 'Teleport & Flight', color: '#06b6d4', dash: [], val: d => chartMetric === 'cpu' ? d.sub_teleport_cpu : d.sub_teleport_mem },
-            { key: 'character', name: 'Character & Stats', color: '#3b82f6', dash: [], val: d => chartMetric === 'cpu' ? d.sub_character_cpu : d.sub_character_mem },
-            { key: 'craft', name: 'Craft & Gathering', color: '#d97706', dash: [], val: d => chartMetric === 'cpu' ? d.sub_craft_cpu : d.sub_craft_mem },
-            { key: 'instance', name: 'Instances & Dungeons', color: '#6366f1', dash: [], val: d => chartMetric === 'cpu' ? d.sub_instance_cpu : d.sub_instance_mem },
-            { key: 'arena', name: 'PvP Arena & Abyss', color: '#e11d48', dash: [], val: d => chartMetric === 'cpu' ? d.sub_arena_cpu : d.sub_arena_mem },
-            { key: 'enchant', name: 'Enchant & Manastones', color: '#a855f7', dash: [], val: d => chartMetric === 'cpu' ? d.sub_enchant_cpu : d.sub_enchant_mem },
-            { key: 'broker', name: 'Trade Broker', color: '#f59e0b', dash: [], val: d => chartMetric === 'cpu' ? d.sub_broker_cpu : d.sub_broker_mem },
-            { key: 'social', name: 'Legion & Social', color: '#0284c7', dash: [], val: d => chartMetric === 'cpu' ? d.sub_social_cpu : d.sub_social_mem },
-            { key: 'housing', name: 'Housing & Decor', color: '#f97316', dash: [], val: d => chartMetric === 'cpu' ? d.sub_housing_cpu : d.sub_housing_mem },
-            { key: 'admin', name: 'Admin & GM Engine', color: '#db2777', dash: [], val: d => chartMetric === 'cpu' ? d.sub_admin_cpu : d.sub_admin_mem },
-            { key: 'auth', name: 'Auth & Cripto', color: '#38bdf8', dash: [], val: d => chartMetric === 'cpu' ? d.sub_auth_cpu : d.sub_auth_mem }
-        ];
+        function setViewMode(mode) {
+            viewMode = mode;
+            document.getElementById('btn-view-flame').classList.toggle('active-flame', mode === 'flame');
+            document.getElementById('btn-view-flame').classList.toggle('active', false);
+            document.getElementById('btn-view-daytrade').classList.toggle('active', mode === 'daytrade');
 
-        function setChartScope(scope) {
-            chartScope = scope;
-            document.getElementById('btn-scope-servers').classList.toggle('active', scope === 'servers');
-            document.getElementById('btn-scope-classes').classList.toggle('active', scope === 'classes');
-            renderLegend();
-            drawDayTradeChart();
+            const titleEl = document.getElementById('telemetry-title-text');
+            const iconEl = document.getElementById('view-mode-icon');
+            const resetBtn = document.getElementById('btn-reset-zoom');
+            const searchInput = document.getElementById('flame-search-input');
+
+            if (mode === 'flame') {
+                titleEl.innerText = "Flame Graph de Classes & Subsistemas (src/game)";
+                iconEl.style.color = "#f97316";
+                resetBtn.style.display = flameZoomNode ? 'inline-flex' : 'none';
+                searchInput.style.display = 'inline-block';
+            } else {
+                titleEl.innerText = "Telemetria Day-Trade Real-Time (Consumo por Processo)";
+                iconEl.style.color = "var(--accent-login)";
+                resetBtn.style.display = 'none';
+                searchInput.style.display = 'none';
+            }
+
+            renderLegendOrBreadcrumb();
+            drawActiveChart();
         }
 
         function setChartMetric(metric) {
             chartMetric = metric;
             document.getElementById('btn-mode-cpu').classList.toggle('active', metric === 'cpu');
             document.getElementById('btn-mode-mem').classList.toggle('active', metric === 'mem');
-            drawDayTradeChart();
+            drawActiveChart();
         }
 
-        function toggleSeries(key) {
-            hiddenSeries[key] = !hiddenSeries[key];
-            const legEl = document.getElementById(`leg-${key}`);
-            if (legEl) legEl.classList.toggle('dimmed', hiddenSeries[key]);
-            drawDayTradeChart();
+        function resetFlameZoom() {
+            flameZoomNode = null;
+            document.getElementById('btn-reset-zoom').style.display = 'none';
+            renderLegendOrBreadcrumb();
+            drawActiveChart();
         }
 
-        function renderLegend() {
+        function onFlameSearch() {
+            flameSearchQuery = document.getElementById('flame-search-input').value.toLowerCase().trim();
+            drawActiveChart();
+        }
+
+        function renderLegendOrBreadcrumb() {
             const container = document.getElementById('legend-bar-container');
-            const activeDefs = chartScope === 'servers' ? serverSeriesDefs : classSeriesDefs;
-
-            container.innerHTML = activeDefs.map(s => `
-                <div class="legend-item ${hiddenSeries[s.key] ? 'dimmed' : ''}" id="leg-${s.key}" onclick="toggleSeries('${s.key}')">
-                    <div class="legend-line" style="background: ${s.color};"></div>
-                    <span>${s.name}</span>
-                </div>
-            `).join('');
-        }
-
-        function toggleDrawer(open) {
-            document.getElementById('drawer-overlay').classList.toggle('open', open);
-            document.getElementById('drawer-sidebar').classList.toggle('open', open);
-        }
-
-        function switchMobileTab(tab) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            const btn = document.getElementById(`tab-btn-${tab}`);
-            if (btn) btn.classList.add('active');
-
-            if (tab === 'telemetry') {
-                toggleDrawer(false);
-                document.getElementById('section-telemetry').scrollIntoView({ behavior: 'smooth' });
-            } else if (tab === 'logs') {
-                toggleDrawer(false);
-                document.getElementById('section-logs').scrollIntoView({ behavior: 'smooth' });
-            } else if (tab === 'servers' || tab === 'menu') {
-                toggleDrawer(true);
+            if (viewMode === 'daytrade') {
+                container.innerHTML = serverSeriesDefs.map(s => `
+                    <div class="legend-item" id="leg-${s.key}">
+                        <div class="legend-line" style="background: ${s.color};"></div>
+                        <span>${s.name}</span>
+                    </div>
+                `).join('');
+            } else {
+                const currentFocus = flameZoomNode ? flameZoomNode.name : "Aion Emulator (Root)";
+                container.innerHTML = `
+                    <div style="font-size:0.68rem; color:var(--text-muted); display:flex; align-items:center; gap:6px;">
+                        <span>🔥 <b>Hierarquia:</b></span>
+                        <span style="color:#fdba74; font-weight:700;">${currentFocus}</span>
+                        <span style="color:#64748b;">(Clique em qualquer bloco para dar Zoom e inspecionar os métodos)</span>
+                    </div>
+                `;
             }
         }
 
-        function openMobileModal() { document.getElementById('mobile-modal').style.display = 'flex'; }
-        function closeMobileModal() { document.getElementById('mobile-modal').style.display = 'none'; }
+        // Generate Hierarchical FlameGraph Tree from current live state
+        function buildFlameTree() {
+            if (!rawDashboardState) return null;
 
-        function copyExternalUrl() {
-            navigator.clipboard.writeText(externalUrlStr).then(() => {
-                alert("Endereço copiado para a área de transferência: " + externalUrlStr);
-            }).catch(() => {
-                prompt("Copie o endereço manualmente:", externalUrlStr);
-            });
+            const gSrv = rawDashboardState.servers.find(s => s.name === 'game');
+            const lSrv = rawDashboardState.servers.find(s => s.name === 'login');
+            const cSrv = rawDashboardState.servers.find(s => s.name === 'chat');
+
+            const gCpu = gSrv ? gSrv.cpu_percent : 0;
+            const gMem = gSrv ? gSrv.memory_mb : 0;
+            const lCpu = lSrv ? lSrv.cpu_percent : 0;
+            const lMem = lSrv ? lSrv.memory_mb : 0;
+            const cCpu = cSrv ? cSrv.cpu_percent : 0;
+            const cMem = cSrv ? cSrv.memory_mb : 0;
+
+            const totalCpu = rawDashboardState.total_cpu_percent || 1;
+            const totalMem = rawDashboardState.total_memory_mb || 1;
+
+            return {
+                name: "Aion Classic Emulator",
+                file: "workspace/target",
+                cpu: totalCpu,
+                mem: totalMem,
+                color: "#e2e8f0",
+                depth: 0,
+                children: [
+                    {
+                        name: "game-server.exe",
+                        file: "game-server/src",
+                        cpu: gCpu,
+                        mem: gMem,
+                        color: "#10b981",
+                        depth: 1,
+                        children: [
+                            {
+                                name: "World & Spatials",
+                                file: "src/game/mundo.rs",
+                                cpu: gCpu * 0.28,
+                                mem: gMem * 0.38,
+                                color: "#059669",
+                                depth: 2,
+                                children: [
+                                    { name: "NPC & Spawn AI (1.254)", file: "entity.rs / npc.rs", cpu: gCpu * 0.16, mem: gMem * 0.26, color: "#10b981", depth: 3, children: [
+                                        { name: "3D Octree Spatial Grid", file: "entity.rs", cpu: gCpu * 0.08, mem: gMem * 0.14, color: "#34d399", depth: 4 },
+                                        { name: "Aggro State Machine", file: "entity.rs", cpu: gCpu * 0.08, mem: gMem * 0.12, color: "#6ee7b7", depth: 4 }
+                                    ]},
+                                    { name: "Teleport & Portals", file: "teleport.rs", cpu: gCpu * 0.06, mem: gMem * 0.05, color: "#06b6d4", depth: 3, children: [
+                                        { name: "Flight Vector Validator", file: "teleport.rs", cpu: gCpu * 0.03, mem: gMem * 0.02, color: "#22d3ee", depth: 4 },
+                                        { name: "Gate Teleport Dispatch", file: "teleport.rs", cpu: gCpu * 0.03, mem: gMem * 0.03, color: "#67e8f9", depth: 4 }
+                                    ]},
+                                    { name: "Instances & Arena", file: "instance.rs / arena.rs", cpu: gCpu * 0.06, mem: gMem * 0.07, color: "#6366f1", depth: 3, children: [
+                                        { name: "Dungeon Cooldowns", file: "instance.rs", cpu: gCpu * 0.03, mem: gMem * 0.04, color: "#818cf8", depth: 4 },
+                                        { name: "Abyss & PvP Arena", file: "arena.rs", cpu: gCpu * 0.03, mem: gMem * 0.03, color: "#a5b4fc", depth: 4 }
+                                    ]}
+                                ]
+                            },
+                            {
+                                name: "Combat & Players",
+                                file: "src/game/stigma.rs",
+                                cpu: gCpu * 0.38,
+                                mem: gMem * 0.30,
+                                color: "#f43f5e",
+                                depth: 2,
+                                children: [
+                                    { name: "Skills Engine (11.476)", file: "data/skill.rs", cpu: gCpu * 0.18, mem: gMem * 0.18, color: "#ec4899", depth: 3, children: [
+                                        { name: "Buff & Debuff Loop", file: "stigma.rs", cpu: gCpu * 0.10, mem: gMem * 0.10, color: "#f472b6", depth: 4 },
+                                        { name: "Stigma Slots & Cost", file: "stigma.rs", cpu: gCpu * 0.08, mem: gMem * 0.08, color: "#fbcfe8", depth: 4 }
+                                    ]},
+                                    { name: "Damage Calculator", file: "engine/damage.rs", cpu: gCpu * 0.14, mem: gMem * 0.07, color: "#e11d48", depth: 3, children: [
+                                        { name: "Physical Formulas", file: "engine/damage.rs", cpu: gCpu * 0.07, mem: gMem * 0.04, color: "#fb7185", depth: 4 },
+                                        { name: "Magical Spell Resists", file: "engine/damage.rs", cpu: gCpu * 0.07, mem: gMem * 0.03, color: "#fda4af", depth: 4 }
+                                    ]},
+                                    { name: "Character & Pets", file: "character.rs / pet.rs", cpu: gCpu * 0.06, mem: gMem * 0.05, color: "#3b82f6", depth: 3, children: [
+                                        { name: "XP & Stats Regens", file: "character.rs", cpu: gCpu * 0.03, mem: gMem * 0.03, color: "#60a5fa", depth: 4 },
+                                        { name: "Pet Bags & Feeding", file: "pet.rs", cpu: gCpu * 0.03, mem: gMem * 0.02, color: "#93c5fd", depth: 4 }
+                                    ]}
+                                ]
+                            },
+                            {
+                                name: "Items & Economy",
+                                file: "src/game/data/item.rs",
+                                cpu: gCpu * 0.18,
+                                mem: gMem * 0.20,
+                                color: "#8b5cf6",
+                                depth: 2,
+                                children: [
+                                    { name: "Item Templates (76.695)", file: "data/item.rs / gear.rs", cpu: gCpu * 0.09, mem: gMem * 0.13, color: "#a855f7", depth: 3, children: [
+                                        { name: "Equipment Sockets", file: "gear.rs", cpu: gCpu * 0.05, mem: gMem * 0.07, color: "#c084fc", depth: 4 },
+                                        { name: "Kinah & Warehouse", file: "item.rs", cpu: gCpu * 0.04, mem: gMem * 0.06, color: "#e9d5ff", depth: 4 }
+                                    ]},
+                                    { name: "Crafting & Enchants", file: "craft.rs / enchant.rs", cpu: gCpu * 0.06, mem: gMem * 0.05, color: "#d97706", depth: 3, children: [
+                                        { name: "Craft Professions (6)", file: "craft.rs", cpu: gCpu * 0.03, mem: gMem * 0.03, color: "#f59e0b", depth: 4 },
+                                        { name: "Manastone Socketing", file: "enchant.rs", cpu: gCpu * 0.03, mem: gMem * 0.02, color: "#fbbf24", depth: 4 }
+                                    ]},
+                                    { name: "P2P Player Trade", file: "trade.rs", cpu: gCpu * 0.03, mem: gMem * 0.02, color: "#14b8a6", depth: 3 }
+                                ]
+                            },
+                            {
+                                name: "Network & Engine",
+                                file: "src/game/state.rs",
+                                cpu: gCpu * 0.16,
+                                mem: gMem * 0.12,
+                                color: "#d97706",
+                                depth: 2,
+                                children: [
+                                    { name: "Packet Demuxer & Codecs", file: "state.rs", cpu: gCpu * 0.08, mem: gMem * 0.06, color: "#f59e0b", depth: 3, children: [
+                                        { name: "20 TPS World Loop", file: "state.rs", cpu: gCpu * 0.04, mem: gMem * 0.03, color: "#fbbf24", depth: 4 },
+                                        { name: "Opcode Dispatch", file: "state.rs", cpu: gCpu * 0.04, mem: gMem * 0.03, color: "#fef08a", depth: 4 }
+                                    ]},
+                                    { name: "Admin & GM Commands", file: "admin.rs", cpu: gCpu * 0.03, mem: gMem * 0.02, color: "#ec4899", depth: 3 },
+                                    { name: "Cron Sieges & Rifts", file: "cron_events.rs", cpu: gCpu * 0.03, mem: gMem * 0.02, color: "#84cc16", depth: 3 },
+                                    { name: "Web Services REST", file: "web_services.rs", cpu: gCpu * 0.02, mem: gMem * 0.02, color: "#38bdf8", depth: 3 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "login-server.exe",
+                        file: "login-server/src",
+                        cpu: lCpu,
+                        mem: lMem,
+                        color: "#0284c7",
+                        depth: 1,
+                        children: [
+                            { name: "RSA & Blowfish Crypto", file: "net/ncsoft.rs", cpu: lCpu * 0.60, mem: lMem * 0.55, color: "#38bdf8", depth: 2, children: [
+                                { name: "RSA 1024-bit Codec", file: "net/ncsoft.rs", cpu: lCpu * 0.30, mem: lMem * 0.30, color: "#7dd3fc", depth: 3 },
+                                { name: "Blowfish 64-bit Stream", file: "net/ncsoft.rs", cpu: lCpu * 0.30, mem: lMem * 0.25, color: "#bae6fd", depth: 3 }
+                            ]},
+                            { name: "Auth & Server List", file: "net/ncsoft.rs", cpu: lCpu * 0.40, mem: lMem * 0.45, color: "#0ea5e9", depth: 2 }
+                        ]
+                    },
+                    {
+                        name: "chat-server.exe",
+                        file: "chat-server/src",
+                        cpu: cCpu,
+                        mem: cMem,
+                        color: "#7c3aed",
+                        depth: 1,
+                        children: [
+                            { name: "Trade Broker House", file: "broker.rs", cpu: cCpu * 0.65, mem: cMem * 0.60, color: "#a855f7", depth: 2, children: [
+                                { name: "Consignment Orders", file: "broker.rs", cpu: cCpu * 0.35, mem: cMem * 0.30, color: "#c084fc", depth: 3 },
+                                { name: "Kinah Escrow Settle", file: "broker.rs", cpu: cCpu * 0.30, mem: cMem * 0.30, color: "#e9d5ff", depth: 3 }
+                            ]},
+                            { name: "Global Chat Channels", file: "channel.rs", cpu: cCpu * 0.35, mem: cMem * 0.40, color: "#9333ea", depth: 2 }
+                        ]
+                    }
+                ]
+            };
         }
 
-        function zoomFont(delta) {
-            currentFontScale = Math.min(Math.max(currentFontScale + (delta * 0.06), 0.8), 1.25);
-            document.documentElement.style.setProperty('--font-scale', `${currentFontScale}rem`);
-        }
+        // Draw Flame Graph
+        function drawFlameGraph() {
+            const canvas = document.getElementById('telemetry-canvas');
+            if (!canvas) return;
 
-        function toggleFullscreen() {
-            fetch('/api/window/fullscreen', { method: 'POST' }).catch(() => {});
-            if (!document.fullscreenElement) {
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen().catch(() => {});
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+
+            const w = rect.width;
+            const h = rect.height;
+            ctx.clearRect(0, 0, w, h);
+
+            renderedFlameBoxes = [];
+            const rootTree = buildFlameTree();
+            if (!rootTree) return;
+
+            const targetRoot = flameZoomNode || rootTree;
+            const totalValue = chartMetric === 'cpu' ? Math.max(targetRoot.cpu, 0.001) : Math.max(targetRoot.mem, 0.001);
+
+            function getTreeDepth(node) {
+                if (!node.children || node.children.length === 0) return 1;
+                return 1 + Math.max(...node.children.map(getTreeDepth));
+            }
+
+            const maxLevels = Math.max(getTreeDepth(targetRoot), 4);
+            const rowHeight = Math.max(Math.floor((h - 4) / maxLevels), 20);
+
+            function layoutNode(node, x, width, level) {
+                const y = h - ((level + 1) * rowHeight);
+                const matchesSearch = flameSearchQuery && (node.name.toLowerCase().includes(flameSearchQuery) || (node.file && node.file.toLowerCase().includes(flameSearchQuery)));
+
+                renderedFlameBoxes.push({
+                    node,
+                    x,
+                    y,
+                    w: width,
+                    h: rowHeight - 2,
+                    matchesSearch
+                });
+
+                if (node.children && node.children.length > 0 && width > 1) {
+                    let currentX = x;
+                    const childrenTotal = node.children.reduce((acc, c) => acc + (chartMetric === 'cpu' ? c.cpu : c.mem), 0) || 0.001;
+
+                    node.children.forEach(child => {
+                        const childVal = chartMetric === 'cpu' ? child.cpu : child.mem;
+                        const childWidth = (childVal / childrenTotal) * width;
+                        if (childWidth > 0.5) {
+                            layoutNode(child, currentX, childWidth, level + 1);
+                        }
+                        currentX += childWidth;
+                    });
                 }
-            } else if (document.exitFullscreen) {
-                document.exitFullscreen().catch(() => {});
+            }
+
+            layoutNode(targetRoot, 0, w, 0);
+
+            renderedFlameBoxes.forEach(b => {
+                const isHovered = hoveredFlameBox && hoveredFlameBox.node === b.node;
+                
+                ctx.fillStyle = b.node.color || '#f97316';
+                if (b.matchesSearch) {
+                    ctx.fillStyle = '#facc15';
+                } else if (isHovered) {
+                    ctx.fillStyle = '#ffffff';
+                }
+
+                ctx.fillRect(b.x, b.y, b.w, b.h);
+
+                ctx.strokeStyle = isHovered ? '#38bdf8' : 'rgba(0, 0, 0, 0.4)';
+                ctx.lineWidth = isHovered ? 1.5 : 0.8;
+                ctx.strokeRect(b.x, b.y, b.w, b.h);
+
+                if (b.w > 30) {
+                    ctx.fillStyle = isHovered ? '#0f172a' : '#ffffff';
+                    ctx.font = 'bold 9px -apple-system, sans-serif';
+                    ctx.textBaseline = 'middle';
+
+                    let label = b.node.name;
+                    const valStr = chartMetric === 'cpu' ? `${b.node.cpu.toFixed(1)}%` : `${b.node.mem.toFixed(1)}MB`;
+                    const fullText = `${label} (${valStr})`;
+
+                    if (ctx.measureText(fullText).width < b.w - 6) {
+                        ctx.fillText(fullText, b.x + 3, b.y + (b.h / 2));
+                    } else if (ctx.measureText(label).width < b.w - 6) {
+                        ctx.fillText(label, b.x + 3, b.y + (b.h / 2));
+                    } else {
+                        const short = label.substring(0, Math.max(Math.floor(b.w / 7), 2)) + '..';
+                        ctx.fillText(short, b.x + 2, b.y + (b.h / 2));
+                    }
+                }
+            });
+
+            document.getElementById('stat-focus-name').innerText = targetRoot.name;
+            const unit = chartMetric === 'cpu' ? '%' : ' MB';
+            document.getElementById('stat-min-val').innerText = `Base: 0.0${unit}`;
+            document.getElementById('stat-max-val').innerText = `Subtree: ${(chartMetric === 'cpu' ? targetRoot.cpu : targetRoot.mem).toFixed(1)}${unit}`;
+        }
+
+        // Draw Day-Trade Multi-Curve Chart
+        function drawDayTradeChart() {
+            const canvas = document.getElementById('telemetry-canvas');
+            if (!canvas || !historyData || historyData.length < 2) return;
+
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+
+            const w = rect.width;
+            const h = rect.height;
+            const padTop = 10;
+            const padBottom = 10;
+            const plotH = h - padTop - padBottom;
+
+            ctx.clearRect(0, 0, w, h);
+
+            let maxVal = chartMetric === 'cpu' ? 100.0 : 250.0;
+            if (chartMetric === 'mem') {
+                const maxInHist = Math.max(...historyData.map(d => {
+                    return Math.max(...serverSeriesDefs.map(s => s.val(d) || 0));
+                }));
+                maxVal = Math.max(maxInHist * 1.3, 50.0);
+            }
+
+            const fibRatios = [
+                { r: 1.0, label: chartMetric === 'cpu' ? '100%' : `${maxVal.toFixed(0)}MB` },
+                { r: 0.618, label: '61.8%' },
+                { r: 0.382, label: '38.2%' },
+                { r: 0.0, label: '0.0%' }
+            ];
+
+            ctx.lineWidth = 1;
+            ctx.font = '8px -apple-system, sans-serif';
+            fibRatios.forEach(fib => {
+                const y = h - padBottom - (fib.r * plotH);
+                ctx.strokeStyle = fib.r === 0.618 ? 'rgba(234, 179, 8, 0.3)' : 'rgba(255, 255, 255, 0.04)';
+                ctx.setLineDash(fib.r === 0.618 ? [4, 4] : [2, 4]);
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+
+                ctx.fillStyle = fib.r === 0.618 ? '#eab308' : '#64748b';
+                ctx.fillText(fib.label, 4, y - 2);
+            });
+            ctx.setLineDash([]);
+
+            const step = w / (historyData.length - 1);
+            serverSeriesDefs.forEach(s => {
+                ctx.beginPath();
+                ctx.strokeStyle = s.color;
+                ctx.lineWidth = s.key === 'total' ? 2 : 1.7;
+                ctx.setLineDash(s.dash || []);
+
+                historyData.forEach((d, i) => {
+                    const val = s.val(d) || 0;
+                    const norm = Math.min(Math.max(val / maxVal, 0), 1);
+                    const x = i * step;
+                    const y = h - padBottom - (norm * plotH);
+
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.stroke();
+            });
+
+            ctx.setLineDash([]);
+
+            const totals = historyData.map(d => chartMetric === 'cpu' ? d.total_cpu : d.total_mem_mb);
+            const minV = Math.min(...totals);
+            const maxV = Math.max(...totals);
+            const unit = chartMetric === 'cpu' ? '%' : ' MB';
+
+            document.getElementById('stat-focus-name').innerText = "Servidores (Total)";
+            document.getElementById('stat-min-val').innerText = `${minV.toFixed(1)}${unit}`;
+            document.getElementById('stat-max-val').innerText = `${maxV.toFixed(1)}${unit}`;
+        }
+
+        function drawActiveChart() {
+            if (viewMode === 'flame') {
+                drawFlameGraph();
+            } else {
+                drawDayTradeChart();
             }
         }
 
-        function openShutdownModal() { document.getElementById('shutdown-modal').style.display = 'flex'; }
-        function closeShutdownModal() { document.getElementById('shutdown-modal').style.display = 'none'; }
+        function onChartMouseMove(e) {
+            if (viewMode !== 'flame') return;
 
-        async function confirmShutdown() {
-            closeShutdownModal();
-            try { await fetch('/api/shutdown', { method: 'POST' }); } catch (e) {}
+            const rect = document.getElementById('telemetry-canvas').getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            hoveredFlameBox = renderedFlameBoxes.find(b => {
+                return mouseX >= b.x && mouseX <= b.x + b.w && mouseY >= b.y && mouseY <= b.y + b.h;
+            });
+
+            const tooltip = document.getElementById('chart-tooltip');
+            if (hoveredFlameBox) {
+                const node = hoveredFlameBox.node;
+                const rootTotal = rawDashboardState ? (chartMetric === 'cpu' ? rawDashboardState.total_cpu_percent : rawDashboardState.total_memory_mb) : 1;
+                const nodeVal = chartMetric === 'cpu' ? node.cpu : node.mem;
+                const pctOfTotal = ((nodeVal / (rootTotal || 1)) * 100).toFixed(1);
+
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${Math.min(mouseX + 12, rect.width - 240)}px`;
+                tooltip.style.top = `${Math.max(mouseY - 50, 6)}px`;
+
+                tooltip.innerHTML = `
+                    <div class="flame-tooltip-title">
+                        <span style="width:8px; height:8px; border-radius:50%; background:${node.color || '#f97316'}; display:inline-block;"></span>
+                        ${node.name}
+                    </div>
+                    <div style="color:#e2e8f0; font-size:0.65rem; margin-top:2px;">
+                        <div><b>CPU:</b> ${node.cpu.toFixed(2)}% | <b>RAM:</b> ${node.mem.toFixed(1)} MB</div>
+                        <div><b>Arquivo:</b> <span style="color:#38bdf8;">${node.file || 'engine'}</span></div>
+                        <div><b>Fração do Total:</b> <span style="color:#facc15;">${pctOfTotal}%</span></div>
+                    </div>
+                `;
+            } else {
+                tooltip.style.display = 'none';
+            }
+
+            drawFlameGraph();
         }
 
-        // Fetch Metrics & Registers
+        function onChartMouseLeave() {
+            hoveredFlameBox = null;
+            document.getElementById('chart-tooltip').style.display = 'none';
+            if (viewMode === 'flame') drawFlameGraph();
+        }
+
+        function onChartClick(e) {
+            if (viewMode !== 'flame' || !hoveredFlameBox) return;
+
+            if (flameZoomNode && flameZoomNode === hoveredFlameBox.node) {
+                resetFlameZoom();
+            } else if (hoveredFlameBox.node.children && hoveredFlameBox.node.children.length > 0) {
+                flameZoomNode = hoveredFlameBox.node;
+                document.getElementById('btn-reset-zoom').style.display = 'inline-flex';
+                renderLegendOrBreadcrumb();
+                drawFlameGraph();
+            }
+        }
+
+        // Fetch Metrics & Update UI
         async function fetchMetrics() {
             try {
                 const res = await fetch('/api/metrics');
                 const data = await res.json();
+                rawDashboardState = data;
 
-                // 1. Update Server Cards (Desktop & Drawer)
+                // 1. Update Server Cards
                 if (data.servers) {
                     data.servers.forEach(s => {
                         const stateClass = s.status === 'Online' ? 'online' : (s.status === 'Starting' ? 'starting' : (s.status === 'Crashed' ? 'crashed' : ''));
@@ -1543,9 +1800,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     });
                 }
 
-                // 2. Update Subsystems List in Drawer organized by categories
+                // 2. Update Subsystems List in Drawer
                 if (data.subsystems) {
-                    subsystemsData = data.subsystems;
                     const subContainer = document.getElementById('drawer-subsystems-list');
                     if (subContainer) {
                         let currentCat = '';
@@ -1596,110 +1852,14 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     document.getElementById('reg-uptime').innerText = `${uHrs}:${uMins}:${uSecs}`;
                 }
 
-                // 4. Process History Points & Draw Day-Trade Graph
                 if (data.history && data.history.length > 0) {
                     historyData = data.history;
-                    drawDayTradeChart();
                 }
+
+                drawActiveChart();
             } catch (e) {
                 console.error("Error fetching metrics:", e);
             }
-        }
-
-        // Draw Day-Trade Multi-Curve Graph
-        function drawDayTradeChart() {
-            const canvas = document.getElementById('daytrade-canvas');
-            if (!canvas || !historyData || historyData.length < 2) return;
-
-            const ctx = canvas.getContext('2d');
-            const dpr = window.devicePixelRatio || 1;
-            const rect = canvas.getBoundingClientRect();
-
-            canvas.width = rect.width * dpr;
-            canvas.height = rect.height * dpr;
-            ctx.scale(dpr, dpr);
-
-            const w = rect.width;
-            const h = rect.height;
-            const padTop = 10;
-            const padBottom = 10;
-            const plotH = h - padTop - padBottom;
-
-            ctx.clearRect(0, 0, w, h);
-
-            const activeDefs = chartScope === 'servers' ? serverSeriesDefs : classSeriesDefs;
-
-            // Compute Max Scale based on active mode
-            let maxVal = chartMetric === 'cpu' ? 100.0 : 250.0;
-            if (chartMetric === 'mem') {
-                const maxInHist = Math.max(...historyData.map(d => {
-                    return Math.max(...activeDefs.map(s => s.val(d) || 0));
-                }));
-                maxVal = Math.max(maxInHist * 1.3, 50.0);
-            }
-
-            // Draw Fibonacci Retracement Grid Lines
-            const fibRatios = [
-                { r: 1.0, label: chartMetric === 'cpu' ? '100%' : `${maxVal.toFixed(0)}MB` },
-                { r: 0.786, label: '78.6%' },
-                { r: 0.618, label: '61.8%' },
-                { r: 0.50, label: '50.0%' },
-                { r: 0.382, label: '38.2%' },
-                { r: 0.236, label: '23.6%' },
-                { r: 0.0, label: '0.0%' }
-            ];
-
-            ctx.lineWidth = 1;
-            ctx.font = '8px -apple-system, sans-serif';
-            fibRatios.forEach(fib => {
-                const y = h - padBottom - (fib.r * plotH);
-                ctx.strokeStyle = fib.r === 0.618 ? 'rgba(234, 179, 8, 0.3)' : 'rgba(255, 255, 255, 0.04)';
-                ctx.setLineDash(fib.r === 0.618 ? [4, 4] : [2, 4]);
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(w, y);
-                ctx.stroke();
-
-                ctx.fillStyle = fib.r === 0.618 ? '#eab308' : '#64748b';
-                ctx.fillText(fib.label, 4, y - 2);
-            });
-            ctx.setLineDash([]);
-
-            // Draw Multi-Curves
-            const step = w / (historyData.length - 1);
-
-            activeDefs.forEach(s => {
-                if (hiddenSeries[s.key]) return;
-
-                ctx.beginPath();
-                ctx.strokeStyle = s.color;
-                ctx.lineWidth = s.key === 'total' ? 2 : 1.7;
-                ctx.setLineDash(s.dash || []);
-
-                historyData.forEach((d, i) => {
-                    const val = s.val(d) || 0;
-                    const norm = Math.min(Math.max(val / maxVal, 0), 1);
-                    const x = i * step;
-                    const y = h - padBottom - (norm * plotH);
-
-                    if (i === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                });
-                ctx.stroke();
-            });
-
-            ctx.setLineDash([]);
-
-            // Update stats summary on bottom
-            const totals = historyData.map(d => chartMetric === 'cpu' ? d.total_cpu : d.total_mem_mb);
-            const minV = Math.min(...totals);
-            const maxV = Math.max(...totals);
-            const avgV = totals.reduce((a, b) => a + b, 0) / totals.length;
-            const unit = chartMetric === 'cpu' ? '%' : ' MB';
-
-            document.getElementById('stat-min-val').innerText = `${minV.toFixed(1)}${unit}`;
-            document.getElementById('stat-max-val').innerText = `${maxV.toFixed(1)}${unit}`;
-            document.getElementById('stat-avg-val').innerText = `${avgV.toFixed(1)}${unit}`;
         }
 
         // Live Log Stream
@@ -1742,9 +1902,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             }
         }
 
-        function escapeHtml(str) {
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
+        function escapeHtml(str) { return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
         function setFilter(type, val, btn) {
             if (type === 'srv') {
@@ -1755,10 +1913,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             }
         }
 
-        function clearLogs() {
-            logBuffer = [];
-            renderLogs();
-        }
+        function clearLogs() { logBuffer = []; renderLogs(); }
 
         function togglePause() {
             isPaused = !isPaused;
@@ -1767,13 +1922,62 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             btn.classList.toggle('active', isPaused);
         }
 
+        function toggleDrawer(open) {
+            document.getElementById('drawer-overlay').classList.toggle('open', open);
+            document.getElementById('drawer-sidebar').classList.toggle('open', open);
+        }
+
+        function switchMobileTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById(`tab-btn-${tab}`);
+            if (btn) btn.classList.add('active');
+
+            if (tab === 'telemetry') {
+                toggleDrawer(false);
+                document.getElementById('section-telemetry').scrollIntoView({ behavior: 'smooth' });
+            } else if (tab === 'logs') {
+                toggleDrawer(false);
+                document.getElementById('section-logs').scrollIntoView({ behavior: 'smooth' });
+            } else if (tab === 'servers' || tab === 'menu') {
+                toggleDrawer(true);
+            }
+        }
+
+        function openMobileModal() { document.getElementById('mobile-modal').style.display = 'flex'; }
+        function closeMobileModal() { document.getElementById('mobile-modal').style.display = 'none'; }
+
+        function copyExternalUrl() {
+            navigator.clipboard.writeText(externalUrlStr).then(() => {
+                alert("Endereço copiado para a área de transferência: " + externalUrlStr);
+            }).catch(() => {
+                prompt("Copie o endereço manualmente:", externalUrlStr);
+            });
+        }
+
+        function toggleFullscreen() {
+            fetch('/api/window/fullscreen', { method: 'POST' }).catch(() => {});
+            if (!document.fullscreenElement) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen().catch(() => {});
+                }
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        function openShutdownModal() { document.getElementById('shutdown-modal').style.display = 'flex'; }
+        function closeShutdownModal() { document.getElementById('shutdown-modal').style.display = 'none'; }
+
+        async function confirmShutdown() {
+            closeShutdownModal();
+            try { await fetch('/api/shutdown', { method: 'POST' }); } catch (e) {}
+        }
+
         async function controlServer(name, action) {
             try {
                 await fetch(`/api/control/${name}/${action}`, { method: 'POST' });
                 setTimeout(fetchMetrics, 300);
-            } catch (e) {
-                console.error(e);
-            }
+            } catch (e) {}
         }
 
         async function startAll() {
@@ -1794,8 +1998,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             await controlServer('chat', 'restart');
         }
 
-        window.addEventListener('resize', drawDayTradeChart);
-        renderLegend();
+        window.addEventListener('resize', drawActiveChart);
+        renderLegendOrBreadcrumb();
         setInterval(fetchMetrics, 1000);
         setInterval(fetchLogs, 800);
         fetchMetrics();
@@ -1803,4 +2007,4 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
     </script>
 </body>
 </html>
-"#;
+"##;
