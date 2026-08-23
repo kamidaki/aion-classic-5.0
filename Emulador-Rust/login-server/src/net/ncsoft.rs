@@ -378,7 +378,7 @@ async fn handle_ncsoft_client(
         let mut dec_payload = payload.clone();
         let decrypted = crypt_engine.decrypt_packet(&mut dec_payload);
         
-        let (active_buf, opcode) = if payload.len() >= 1 && (payload[0] == 0x02 || payload[0] == 0x07 || payload[0] == 0x05 || payload[0] == 0x08 || payload[0] == 0x0B) {
+        let (active_buf, opcode) = if payload.len() >= 1 && (payload[0] == 0x00 || payload[0] == 0x02 || payload[0] == 0x07 || payload[0] == 0x05 || payload[0] == 0x08 || payload[0] == 0x0B) {
             (&payload, payload[0])
         } else {
             if !decrypted {
@@ -405,7 +405,7 @@ async fn handle_ncsoft_client(
                 );
                 let _ = socket.write_all(&auth_gg_pkt).await;
             }
-            0x0B | 0x08 => {
+            0x00 | 0x08 | 0x0B => {
                 // CM_LOGIN
                 println!(
                     "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X})",

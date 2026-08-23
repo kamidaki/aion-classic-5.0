@@ -72,14 +72,14 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
     }
 
     if (logF) {
-        fprintf(logF, "[version.dll] game.dll found at %p. Applying Login Button patch...\n", hGame);
+        fprintf(logF, "[version.dll] game.dll found at %p. Applying Network & Login patches...\n", hGame);
         fflush(logF);
     }
 
     bool patched = false;
     unsigned char* base = (unsigned char*)hGame;
 
-    // 1. Try direct offset 0x15A125 first
+    // 1. Patch Login Button JNE at 0x15A125
     unsigned char* directTarget = base + 0x15A125;
     if (directTarget[0] == 0x0F && directTarget[1] == 0x85) {
         DWORD oldProtect;
@@ -95,7 +95,7 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
         }
     }
 
-    // 2. Pattern search fallback if direct offset not matched
+    // Pattern search fallback if direct offset not matched
     if (!patched) {
         MEMORY_BASIC_INFORMATION mbi = {};
         unsigned char* p = base;
@@ -133,9 +133,7 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
         }
     }
 
-    // 3. Socket Guard JEs NOP patch in 0x8439c0 (0x843E42 and 0x843E4B)
-    // game.dll contains two conditional jumps that discard outgoing packets (CM_AUTH_GG / CM_LOGIN)
-    // if the connected flag is not yet acknowledged. NOPing them ensures every packet is sent.
+    // 2. Socket Guard JEs NOP patch in 0x8439c0 (0x843E42 and 0x843E4B)
     unsigned char* je1 = base + 0x843E42;
     unsigned char* je2 = base + 0x843E4B;
     if (je1[0] == 0x74 && je2[0] == 0x74) {
@@ -149,6 +147,28 @@ static DWORD WINAPI LoginPatchThread(LPVOID) {
                 fprintf(logF, "[version.dll] SUCCESS: Patched Socket Guard JEs at %p and %p with NOPs!\n", je1, je2);
                 fflush(logF);
             }
+        }
+    }
+
+    // 3. Socket Send Gate NOP patch in 0x88F250 (0x88F26C: 74 6F -> 90 90)
+    // This allows raw TCP send() to execute without being dropped by the unacknowledged socket state check
+    unsigned char* sendGate = base + 0x88F26C;
+    if (sendGate[0] == 0x74 && sendGate[1] == 0x6F) {
+        DWORD oldP;
+        if (VirtualProtect(sendGate, 2, PAGE_EXECUTE_READWRITE, &oldP)) {
+            sendGate[0] = 0x90;
+            sendGate[1] = 0x90;
+            VirtualProtect(sendGate, 2, oldP, &oldP);
+            FlushInstructionCache(GetCurrentProcess(), sendGate, 2);
+            if (logF) {
+                fprintf(logF, "[version.dll] SUCCESS: Patched Socket Send Gate at %p (0x88F26C) with NOPs!\n", sendGate);
+                fflush(logF);
+            }
+        }
+    } else {
+        if (logF) {
+            fprintf(logF, "[version.dll] Socket Send Gate at %p bytes: %02X %02X\n", sendGate, sendGate[0], sendGate[1]);
+            fflush(logF);
         }
     }
 
@@ -173,7 +193,6 @@ static void PreloadDXVK() {
 }
 
 static void InstallGraphicsOptionsFixAndCameraFix() {
-    // enable disabled graphics settings on high resolutions and install camera fix
     DetourAttach(&(PVOID&)real_SetWindowLongA, zzSetWindowLongA);
 }
 
@@ -202,7 +221,7 @@ static void InstallPatch() {
 
     FixClientStartupWithHighCoreCountCpus();
 
-    // Launch background thread to hook game.dll login button check
+    // Launch background thread to hook game.dll login button & network socket gates
     CreateThread(nullptr, 0, LoginPatchThread, nullptr, 0, nullptr);
 }
 
