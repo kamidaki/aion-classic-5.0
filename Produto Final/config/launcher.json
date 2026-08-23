@@ -2,7 +2,7 @@
   "############################################################": "LOGIN-SERVER CONFIGURATION",
   "login-server": {
     "enabled": true,
-    "bind_address": "0.0.0.0",
+    "bind_address": "127.0.0.1",
     "client_port": 2106,
     "hq_port": 13001,
     "sts_port": 6600,
@@ -25,7 +25,7 @@
   "############################################################": "GAME-SERVER CONFIGURATION",
   "game-server": {
     "enabled": true,
-    "bind_address": "0.0.0.0",
+    "bind_address": "127.0.0.1",
     "port": 7777,
     "server_id": 1,
     "server_name": "Atreia (Classic EU)",
@@ -40,7 +40,7 @@
   "############################################################": "CHAT-SERVER CONFIGURATION",
   "chat-server": {
     "enabled": true,
-    "bind_address": "0.0.0.0",
+    "bind_address": "127.0.0.1",
     "port": 10241,
     "max_channels": 500,
     "anti_flood_messages_per_sec": 5,
