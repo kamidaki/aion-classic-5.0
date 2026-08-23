@@ -14,6 +14,7 @@ pub struct GuiConfig {
     pub http_port: u16,
 }
 
+#[allow(non_snake_case)]
 #[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct LauncherConfig {
     #[serde(default = "default_true")]
@@ -30,6 +31,7 @@ pub struct LauncherConfig {
     pub gui: GuiConfig,
 }
 
+#[allow(non_snake_case)]
 #[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct LoggingConfig {
     #[serde(default = "default_retention")]

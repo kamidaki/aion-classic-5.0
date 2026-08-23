@@ -191,7 +191,7 @@ async fn handle_ncsoft_client(
         let mut raw = Vec::new();
         raw.push(0x04); // Opcode SM_SERVER_LIST
         raw.push(3);    // 3 servers
-        raw.push(1);    // Last server ID = 1
+        raw.push(default_server_id);    // Last server ID
 
         let ip_parts: Vec<u8> = announce_ip
             .split('.')

@@ -3,7 +3,6 @@ use crate::logs::LogCenter;
 use parking_lot::Mutex;
 use serde::Serialize;
 use std::collections::{HashMap, VecDeque};
-use std::os::windows::process::CommandExt;
 use std::process::Stdio;
 use std::sync::Arc;
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
