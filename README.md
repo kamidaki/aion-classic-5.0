@@ -1,11 +1,11 @@
-# Aion Classic EU — EmuRust (Emulador Rust de Alta Performance)
+# Aion Classic 4.5 — Emulador Rust de Alta Performance
 
 [![Rust](https://img.shields.io/badge/rust-stable-brightgreen.svg)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20x64-lightgrey.svg)]()
 [![Status](https://img.shields.io/badge/status-Production%20Ready-success.svg)]()
 
-O **EmuRust** é um emulador moderno em **Rust** voltado para o cliente de 64 bits do **Aion Classic EU (Gameforge)**. Projetado sob os princípios de modularidade do clássico emulador Java (4.8 Retail), o EmuRust implementa **3 servidores isolados** gerenciados por um único aplicativo supervisor com **Dashboard Gráfico moderno embutido via WebView2**.
+O **Emulador Rust** é um projeto moderno em **Rust** voltado para o cliente **Aion Classic EU (Gameforge)**. Implementa **3 servidores isolados** gerenciados por um único aplicativo supervisor com **Dashboard Gráfico moderno embutido via WebView2**.
 
 ---
 
