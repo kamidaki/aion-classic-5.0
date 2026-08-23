@@ -2,7 +2,7 @@
 
 > **Status da Etapa**: Concluída  
 > **Prioridade**: Alta (Sustentação do RPG)  
-> **Dependências**: [05_STATUS_ATRIBUTOS_SISTEMA_VIDA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/05_STATUS_ATRIBUTOS_SISTEMA_VIDA.md)  
+> **Dependências**: [05_STATUS_ATRIBUTOS_SISTEMA_VIDA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/PLANO-DESENVOLVIMENTO/05_STATUS_ATRIBUTOS_SISTEMA_VIDA.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.model.items`, `com.aionemu.gameserver.services.item`, `com.aionemu.gameserver.services.ExchangeService`, `com.aionemu.gameserver.services.BrokerService`
 
 ---

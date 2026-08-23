@@ -4,7 +4,7 @@ Ambiente de produção e execução do **EmuRust**, o emulador em Rust de alta p
 
 ---
 
-##  Como Iniciar o Emulador
+## Como Iniciar o Emulador
 
 Basta executar com **2 cliques**:
 
@@ -12,30 +12,28 @@ Basta executar com **2 cliques**:
 Auto-Start EmuRust.exe
 ```
 
-Ao iniciar, o painel do gerenciador abrirá automaticamente no seu navegador padrão em:
-
- **`http://127.0.0.1:18080`**
+Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa embutida e registrará o ícone na bandeja do sistema (System Tray).
 
 ---
 
-##  Recursos do Dashboard (Gerenciador Central)
+## Recursos do Dashboard (Gerenciador Central)
 
 *   **3 Cards de Controle Independentes**:
     *   **Login-Server**: Monitora status, uptime, portas `2106`, `13001`, `6600` e Named Pipe.
-    *   **Game-Server**: Monitora status, uptime, porta `7777` e tick rate de 20 TPS.
+    *   **Game-Server**: Monitora status, uptime, porta `7777`, tick rate de 20 TPS e consumo de CPU otimizado (0.00% ocioso).
     *   **Chat-Server**: Monitora status, uptime e porta de canais `10241`.
 *   **Métricas em Tempo Real**: Medidores dinâmicos de uso de **CPU (%)** e **Memória RAM (MB)** para cada processo individual.
 *   **Controles Granulares**: Botões `LIGAR`, `PARAR` e `REINICIAR` para cada servidor separadamente, além dos botões mestres `LIGAR TODOS`, `PARAR TODOS` e `REINICIAR TODOS`.
-*   **Central de Logs Colorida**:
-    *    **Login-Server**: Logs em **Branco / Prata**.
-    *   🟢 **Game-Server**: Logs em **Verde Esmeralda**.
-    *    **Chat-Server**: Logs em **Ciano / Azul Claro**.
+*   **Central de Logs**:
+    *   **Login-Server**: Logs do servidor de autenticação e STS.
+    *   **Game-Server**: Logs do servidor de mundo, combate, spawns e entidades.
+    *   **Chat-Server**: Logs de mensagens de canais e whispers.
     *   Filtros por servidor e por nível (`INFO`, `WARN`, `ERROR`, `DEBUG`), busca em tempo real e auto-scroll.
 *   **Crash Detection & Auto-Restart**: Se qualquer servidor falhar inesperadamente, o supervisor detecta e reinicia apenas aquele serviço específico de forma transparente.
 
 ---
 
-##  Configuração (`config/launcher.json`)
+## Configuração (`config/launcher.json`)
 
 Toda a configuração dos servidores e do inicializador está centralizada em `config/launcher.json`:
 
@@ -118,7 +116,7 @@ Toda a configuração dos servidores e do inicializador está centralizada em `c
 
 ---
 
-##  Como Conectar o Cliente de Jogo
+## Como Conectar o Cliente de Jogo
 
 Para abrir o jogo, execute:
 
@@ -130,13 +128,13 @@ O script inicia o executável `bin64\Aion.bin` com os parâmetros corretos (`-us
 
 ---
 
-##  Estrutura de Pastas
+## Estrutura de Pastas
 
 ```text
 Produto Final/
- Auto-Start EmuRust.exe   # Gerenciador gráfico e supervisor
+ Auto-Start EmuRust.exe   # Gerenciador gráfico, tray e supervisor
  login-server.exe         # Servidor de autenticação e STS
- game-server.exe          # Servidor de mundo e gameplay
+ game-server.exe          # Servidor de mundo e gameplay (0.00% CPU ocioso)
  chat-server.exe          # Servidor dedicado de canais e chat
  aion.db                  # Banco de dados SQLite compartilhado (WAL mode)
  config/

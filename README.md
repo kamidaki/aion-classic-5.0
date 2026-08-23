@@ -5,11 +5,11 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%20x64-lightgrey.svg)]()
 [![Status](https://img.shields.io/badge/status-Production%20Ready-success.svg)]()
 
-O **EmuRust** é um emulador moderno em **Rust** voltado para o cliente de 64 bits do **Aion Classic EU (Gameforge)**. Projetado sob os princípios de modularidade do clássico emulador Java (4.8 Retail), o EmuRust implementa **3 servidores isolados** gerenciados por um único aplicativo supervisor com **Dashboard Gráfico moderno estilo macOS/iOS/Grafana**.
+O **EmuRust** é um emulador moderno em **Rust** voltado para o cliente de 64 bits do **Aion Classic EU (Gameforge)**. Projetado sob os princípios de modularidade do clássico emulador Java (4.8 Retail), o EmuRust implementa **3 servidores isolados** gerenciados por um único aplicativo supervisor com **Dashboard Gráfico moderno embutido via WebView2**.
 
 ---
 
-##  Arquitetura do Sistema
+## Arquitetura do Sistema
 
 ```text
 
@@ -19,7 +19,7 @@ O **EmuRust** é um emulador moderno em **Rust** voltado para o cliente de 64 bi
 
                                      
          
-          (Supervisão & Processos)   (Supervisão & Processos)   (Supervisão & Processos)
+          (Supervisao & Processos)   (Supervisao & Processos)   (Supervisao & Processos)
                                                                
                   
   LOGIN-SERVER               GAME-SERVER               CHAT-SERVER   
@@ -34,37 +34,35 @@ O **EmuRust** é um emulador moderno em **Rust** voltado para o cliente de 64 bi
 
 ---
 
-##  Principais Recursos
+## Principais Recursos
 
 1. **3 Servidores Totalmente Isolados**:
    * **`login-server`**: Unifica autenticação (portas `2106` e `13001`), protocolo STS (porta `6600`), Named Pipe Gameforge (`\\.\pipe\GameforgeClientJSONRPC`), auto-criação de contas e proteção anti-bruteforce.
-   * **`game-server`**: Processo de mundo dedicado (porta `7777`, 20 TPS fixo) carregando **39.747 NPCs**, **76.693 Itens**, **11.476 Skills** e **1.254 Spawns**.
+   * **`game-server`**: Processo de mundo dedicado (porta `7777`, 20 TPS fixo, 0.00% CPU ocioso) carregando **39.747 NPCs**, **76.693 Itens**, **11.476 Skills** e **1.254 Spawns**.
    * **`chat-server`**: Microserviço dedicado (porta `10241`) para canais regionais, LFG, comércio e whispers.
 
 2. **Gerenciador Unificado `Auto-Start EmuRust.exe`**:
-   * **Dashboard Gráfico**: Interface web moderna em `http://127.0.0.1:18080`.
-   * **Métricas em Tempo Real**: Medição de CPU (%) e Memória (MB) por servidor via Windows API.
-   * **Controles Granulares**: Ligar, parar e reiniciar servidores individualmente.
-   * **Central de Logs Colorida**:
-     *  **Login-Server**: Logs em Branco.
-     * 🟢 **Game-Server**: Logs em Verde.
-     *  **Chat-Server**: Logs em Ciano.
+   * **Dashboard Gráfico Embutido**: Interface nativa desktop embutida (WebView2) com tipografia Arial, 100% PT-BR, gráficos com retração de Fibonacci e tabela de contas/jogadores online.
+   * **Bandeja do Sistema (System Tray)**: Ícone nativo com tooltip em tempo real e menu de contexto (Abrir Painel / Encerrar Emulador).
+   * **Métricas em Tempo Real**: Medição dinâmica de CPU (%) e Memória (MB) por servidor via Windows API.
+   * **Controles Granulares**: Ligar, parar e reiniciar servidores individualmente ou em lote.
+   * **Central de Logs**: Filtros em tempo real por serviço (`login`, `game`, `chat`) e nível de severidade.
    * **Crash Detection & Auto-Restart**: Reinicia automaticamente processos que falharem.
    * **Rotação Diária com Retenção de 10 Dias**: Limpeza automática de arquivos antigos em `logs/`.
 
 3. **Configuração Centralizada**:
-   * Arquivo único `launcher.json` auto-documentado.
+   * Arquivo único `config/launcher.json` auto-documentado.
 
 ---
 
-##  Como Iniciar o Emulador
+## Como Iniciar o Emulador
 
 ### 1. Iniciar os Servidores
 Abra a pasta `Produto Final/` e execute:
 ```text
 Produto Final\Auto-Start EmuRust.exe
 ```
-O painel do gerenciador será aberto automaticamente no seu navegador.
+O gerenciador abrirá a janela nativa do painel e criará o ícone na bandeja do sistema.
 
 ### 2. Iniciar o Cliente de Jogo
 Na pasta do cliente, execute:
@@ -74,14 +72,14 @@ Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat
 
 ---
 
-##  Estrutura do Repositório
+## Estrutura do Repositório
 
 ```text
 AionEMU/
  Produto Final/               # Pacote de produção pronto para rodar
-    Auto-Start EmuRust.exe   # Gerenciador gráfico e supervisor
+    Auto-Start EmuRust.exe   # Gerenciador gráfico, tray e supervisor
     login-server.exe         # Servidor de autenticação e STS
-    game-server.exe          # Servidor de mundo e gameplay
+    game-server.exe          # Servidor de mundo e gameplay (0.00% CPU ocioso)
     chat-server.exe          # Servidor de chat e canais
     aion.db                  # Banco de dados SQLite
     config/launcher.json     # Configuração centralizada
@@ -92,20 +90,23 @@ AionEMU/
     login-server/            # Crate do Login-Server
     game-server/             # Crate do Game-Server
     chat-server/             # Crate do Chat-Server
-    auto-start/              # Crate do Supervisor e GUI
-    commons/                 # Crate compartilhado de criptografia e utilitários
+    auto-start/              # Crate do Supervisor, Tray e Dashboard
+    commons/                 # Crate compartilhado (criptografia, single-instance)
 
- PLANO-LOGINSERVER/           # 20 documentos do plano técnico de migração
- PLANO-DESENVOLVIMENTO/       # Memória técnica geral de desenvolvimento
+ Docs-Refs/                   # Documentação técnica, referências e planos
+    PLANO-LOGINSERVER/       # 20 documentos do plano técnico de migração
+    PLANO-DESENVOLVIMENTO/   # Memória técnica geral de desenvolvimento
+    JAVA EMU - 4.8 RETAIL/   # Código-fonte de referência Java 4.8 Retail
+    reference/               # Dumps de rede e referências binárias
+
  Cliente/                     # Cliente de jogo Aion Classic EU
- docs/                        # Documentação de protocolos e engenharia reversa
  CONTEXT.md                   # Manual técnico detalhado de offsets e opcodes
  README.md                    # Este arquivo
 ```
 
 ---
 
-##  Compilação a partir do Código-Fonte
+## Compilação a partir do Código-Fonte
 
 Requisitos:
 * Rust 1.75+ (Cargo)

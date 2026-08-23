@@ -2,7 +2,7 @@
 
 > **Status da Etapa**: Concluída  
 > **Prioridade**: Alta (Jogabilidade & Integridade Física)  
-> **Dependências**: [03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md)  
+> **Dependências**: [03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/PLANO-DESENVOLVIMENTO/03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.network.aion.clientpackets.CM_MOVE`, `com.aionemu.gameserver.controllers.movement`, `com.aionemu.gameserver.geoEngine`  
 > **Ferramenta Auxiliar**: `GeoBuilder` em `F:\Servidor Aion\SERVIDOR RETAIL 7.7\GeoBuilder`
 

@@ -35,7 +35,7 @@ Criar o novo crate `chat-server` em Rust (`Emulador-Rust/chat-server/`):
 * Módulos de serialização e desserialização binária dos pacotes `CM_*` e `SM_*`.
 
 ## ARQUIVOS ENVOLVIDOS
-* `JAVA EMU - 4.8 RETAIL/chat-server/`
+* `Docs-Refs/JAVA EMU - 4.8 RETAIL/chat-server/`
 * `Emulador-Rust/chat-server/Cargo.toml`
 * `Emulador-Rust/chat-server/src/main.rs`
 * `Emulador-Rust/chat-server/src/channels/mod.rs`

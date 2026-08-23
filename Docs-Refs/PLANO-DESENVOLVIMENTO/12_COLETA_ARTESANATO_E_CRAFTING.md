@@ -2,7 +2,7 @@
 
 > **Status da Etapa**: Concluída  
 > **Prioridade**: Média-Alta (Economia e Fabricação)  
-> **Dependências**: [06_ITENS_INVENTARIO_EQUIPAMENTOS_ECONOMIA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/06_ITENS_INVENTARIO_EQUIPAMENTOS_ECONOMIA.md)  
+> **Dependências**: [06_ITENS_INVENTARIO_EQUIPAMENTOS_ECONOMIA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/PLANO-DESENVOLVIMENTO/06_ITENS_INVENTARIO_EQUIPAMENTOS_ECONOMIA.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.services.craft`, `com.aionemu.gameserver.services.RecipeService`, `com.aionemu.gameserver.model.gameobjects.Gatherable`, `com.aionemu.gameserver.network.aion.clientpackets.CM_GATHER`, `SM_GATHER_UPDATE`, `SM_GATHER_ANIMATION`
 
 ---

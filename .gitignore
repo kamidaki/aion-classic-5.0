@@ -39,8 +39,12 @@ logs/
 
 # Dados pesados externos de referência e cliente
 JAVA EMU - 4.8 RETAIL/
-Cliente/
+**/JAVA EMU - 4.8 RETAIL/
+Docs-Refs/JAVA EMU - 4.8 RETAIL/
 reference/
+**/reference/
+Docs-Refs/reference/
+Cliente/
 dist/
 dist/*.zip
 replay.bin
@@ -49,4 +53,5 @@ myls.properties
 Produto Final/data/client/
 **/data/client/
 data/client/
+
 

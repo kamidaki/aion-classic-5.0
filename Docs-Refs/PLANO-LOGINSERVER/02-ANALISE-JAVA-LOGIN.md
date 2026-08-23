@@ -26,7 +26,7 @@ Modelar o novo crate `login-server` em Rust com as mesmas camadas conceituais:
 * `AionNetListener`: Suporte aos múltiplos protocolos de entrada (porta clássica 2106, porta HQ 13001, porta STS 6600 e Named Pipe).
 
 ## ARQUIVOS ENVOLVIDOS
-* `JAVA EMU - 4.8 RETAIL/login-server/`
+* `Docs-Refs/JAVA EMU - 4.8 RETAIL/login-server/`
 * `Emulador-Rust/login-server/src/main.rs`
 * `Emulador-Rust/login-server/src/account/mod.rs`
 * `Emulador-Rust/login-server/src/session/mod.rs`

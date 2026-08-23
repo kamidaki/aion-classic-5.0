@@ -28,7 +28,8 @@ Itens que Devem Ser PRESERVADOS Intactos:
 * `Cliente/GFAion/aionclassic/Start_Client_Classic_EU.bat` (Entry point único do jogador).
 * `data/client/` (Templates de NPCs, Itens, Skills, Spawns).
 * `Emulador-Rust/aion.db` (Banco de dados SQLite compartilhado).
-* `Emulador-Rust/PLANO-LOGINSERVER/` (Memória técnica permanente do projeto).
+* `Docs-Refs/PLANO-LOGINSERVER/` (Memória técnica permanente do projeto).
+
 * `docs/` e arquivos de documentação técnica de engenharia reversa.
 
 ## SOLUÇÃO

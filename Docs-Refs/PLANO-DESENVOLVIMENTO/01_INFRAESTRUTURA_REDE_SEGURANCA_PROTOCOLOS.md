@@ -2,7 +2,7 @@
 
 > **Status da Etapa**: Concluída  
 > **Prioridade**: Crítica (Fundação da Comunicação)  
-> **Dependências**: [00_VISAO_GERAL_E_METODOLOGIA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/00_VISAO_GERAL_E_METODOLOGIA.md)  
+> **Dependências**: [00_VISAO_GERAL_E_METODOLOGIA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/PLANO-DESENVOLVIMENTO/00_VISAO_GERAL_E_METODOLOGIA.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.network` e `com.aionemu.commons.network`
 
 ---

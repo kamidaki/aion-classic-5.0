@@ -2,7 +2,7 @@
 
 > **Status da Etapa**: Concluída  
 > **Prioridade**: Alta (Povoamento do Mundo e Desafio PvE)  
-> **Dependências**: [03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md), [04_SISTEMA_MOVIMENTACAO_FISICA_GEOENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/04_SISTEMA_MOVIMENTACAO_FISICA_GEOENGINE.md), [07_SISTEMA_DE_COMBATE_E_HABILIDADES_SKILLENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/PLANO-DESENVOLVIMENTO/07_SISTEMA_DE_COMBATE_E_HABILIDADES_SKILLENGINE.md)  
+> **Dependências**: [03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/PLANO-DESENVOLVIMENTO/03_MOTOR_MUNDO_SPATIAL_ENTIDADES.md), [04_SISTEMA_MOVIMENTACAO_FISICA_GEOENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/PLANO-DESENVOLVIMENTO/04_SISTEMA_MOVIMENTACAO_FISICA_GEOENGINE.md), [07_SISTEMA_DE_COMBATE_E_HABILIDADES_SKILLENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/PLANO-DESENVOLVIMENTO/07_SISTEMA_DE_COMBATE_E_HABILIDADES_SKILLENGINE.md)  
 > **Referência Principal em Java**: `com.aionemu.gameserver.ai2`, `com.aionemu.gameserver.spawnengine`, `com.aionemu.gameserver.services.drop.DropService`
 
 ---
@@ -79,7 +79,7 @@ Quando um monstro é derrotado:
 2. **Arquivos de Nível do Cliente (`.pak`)**:
    - Extração de posições de monstros e pontos de coleta através do módulo `pak` e `bxml`.
 3. **Servidor Retail 4.8 como Referência de Comportamento**:
-   - Os templates de skills de monstros e tabelas de drop de `JAVA EMU - 4.8 RETAIL/game-server/data/static_data` fornecem as regras de combate dos chefes clássicos (ex: Tahabata, Stormwing, Kromede).
+   - Os templates de skills de monstros e tabelas de drop de `Docs-Refs/JAVA EMU - 4.8 RETAIL/game-server/data/static_data` fornecem as regras de combate dos chefes clássicos (ex: Tahabata, Stormwing, Kromede).
 
 ---
 

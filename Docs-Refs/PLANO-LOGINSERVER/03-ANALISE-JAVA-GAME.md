@@ -25,7 +25,7 @@ No Rust `game-server`:
 * Implementar o canal de IPC com o `chat-server` para autenticação de canais.
 
 ## ARQUIVOS ENVOLVIDOS
-* `JAVA EMU - 4.8 RETAIL/game-server/`
+* `Docs-Refs/JAVA EMU - 4.8 RETAIL/game-server/`
 * `Emulador-Rust/game-server/src/main.rs`
 * `Emulador-Rust/game-server/src/game/`
 * `Emulador-Rust/game-server/src/net/`
