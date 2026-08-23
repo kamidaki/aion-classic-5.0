@@ -227,8 +227,49 @@ async fn handle_ncsoft_client(
         Ok(())
     }
 
+    // Proactively send SM_AUTH_GG to unblock client UI
+    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+    if let Err(e) = socket.write_all(&auth_gg_pkt).await {
+        eprintln!(
+            "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_AUTH_GG: {}",
+            session_id, e
+        );
+        return;
+    }
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT sent. Awaiting CM_AUTH_GG (Opcode 0x07) from client...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG (Opcode 0x0B, {} bytes)",
+        session_id, auth_gg_pkt.len()
+    );
+
+    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+
+    // Send initial pre-login state (SM_LOGIN_OK + SM_SERVER_LIST) so client immediately activates
+    let char_count = db.get_character_count(&current_username);
+    let _ = send_login_ok(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        account_id,
+        session_key1,
+        &current_username,
+    )
+    .await;
+
+    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+
+    let _ = send_server_list(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        &announce_ip,
+        announce_port,
+        default_server_id,
+        char_count,
+    )
+    .await;
+
+    println!(
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready. Listening for client requests (CM_LOGIN, CM_PLAY, CM_TOS_AGREE)...",
         session_id
     );
 
