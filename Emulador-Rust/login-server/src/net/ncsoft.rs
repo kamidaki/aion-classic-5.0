@@ -293,88 +293,23 @@ async fn handle_ncsoft_client(
             session_id, pkt_len, raw_hex.trim()
         );
 
-        // Check if raw unencrypted or CM_LOGIN format (168 bytes)
-        if payload.len() == 168 || (payload.len() >= 5 && payload[4] == 0x0B) {
-            println!(
-                "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] Native credentials packet received ({} bytes)",
-                session_id, payload.len()
-            );
-
-            // Attempt RSA decryption of 128-byte block
-            let rsa_block = if payload.len() >= 132 {
-                &payload[4..132]
-            } else if payload.len() >= 128 {
-                &payload[..128]
-            } else {
-                &payload[..]
-            };
-
-            if let Some((user, pass)) = rsa_manager.decrypt_credentials(rsa_block) {
-                println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials: User='{}', Pass='{}'",
-                    session_id, user, pass
-                );
-                current_username = user;
-            } else if let Some(user) = extract_string_from_payload(&payload) {
-                current_username = user;
-            }
-
-            let acc = db.get_or_create_account(&current_username, auto_create);
-            account_id = match acc {
-                Ok(Some(a)) => (a.id as u32).max(1),
-                _ => 1,
-            };
-
-            println!(
-                "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Authenticated Account: '{}' (ID: {}, Auto-Created: {})",
-                session_id, current_username, account_id, auto_create
-            );
-
-            let char_count = db.get_character_count(&current_username);
-            let _ = send_login_ok(
-                &mut socket,
-                &crypt_engine,
-                session_id,
-                account_id,
-                session_key1,
-                &current_username,
-            )
-            .await;
-
-            tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-            let _ = send_server_list(
-                &mut socket,
-                &crypt_engine,
-                session_id,
-                &announce_ip,
-                announce_port,
-                default_server_id,
-                char_count,
-            )
-            .await;
-            continue;
-        }
-
-        // Decrypt with Blowfish if not already in plaintext opcode format
+        // Decrypt with Blowfish session/static key
         let mut dec_payload = payload.clone();
         let decrypted = crypt_engine.decrypt_packet(&mut dec_payload);
         
-        let (active_buf, opcode) = if payload.len() >= 1 && (payload[0] == 0x00 || payload[0] == 0x02 || payload[0] == 0x07 || payload[0] == 0x05 || payload[0] == 0x08 || payload[0] == 0x0B) {
-            (&payload, payload[0])
+        let active_buf = if decrypted {
+            &dec_payload
+        } else if payload.len() >= 1 && (payload[0] == 0x00 || payload[0] == 0x02 || payload[0] == 0x07 || payload[0] == 0x05 || payload[0] == 0x08 || payload[0] == 0x0B || payload[0] == 0x0A || payload[0] == 0x0C) {
+            &payload
         } else {
-            if !decrypted {
-                println!(
-                    "DEBUG: [LoginServer-NCSoft] [SESSION-{:08X}] Blowfish decrypt checksum mismatch (len: {} bytes)",
-                    session_id, dec_payload.len()
-                );
-            }
-            (&dec_payload, dec_payload[0])
+            &dec_payload
         };
 
+        let opcode = if !active_buf.is_empty() { active_buf[0] } else { 0xFF };
         let active_hex: String = active_buf.iter().take(16).map(|b| format!("{:02X} ", b)).collect();
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- Opcode 0x{:02X} (Payload: {}...)",
-            session_id, opcode, active_hex.trim()
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- Opcode 0x{:02X} (Decrypted: {}, Len: {} bytes, Raw: {}...)",
+            session_id, opcode, decrypted, active_buf.len(), active_hex.trim()
         );
 
         match opcode {
@@ -387,25 +322,48 @@ async fn handle_ncsoft_client(
                 let _ = socket.write_all(&auth_gg_pkt).await;
             }
             0x00 | 0x08 | 0x0B => {
-                // CM_LOGIN
+                // CM_LOGIN (Credentials packet)
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X})",
-                    session_id, opcode
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X}, {} bytes)",
+                    session_id, opcode, active_buf.len()
                 );
 
-                let rsa_block = if active_buf.len() >= 132 {
-                    &active_buf[4..132]
-                } else if active_buf.len() >= 128 {
-                    &active_buf[..128]
-                } else {
-                    active_buf
-                };
+                // Multi-offset RSA scanning for 128-byte encrypted credentials
+                let mut resolved_user = None;
+                for &offset in &[1, 4, 8, 12, 0] {
+                    if active_buf.len() >= offset + 128 {
+                        if let Some((user, pass)) = rsa_manager.decrypt_credentials(&active_buf[offset..offset + 128]) {
+                            if !user.is_empty() && user.chars().all(|c| c.is_ascii_graphic() || c == ' ') {
+                                println!(
+                                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials at offset {}: User='{}', Pass='{}'",
+                                    session_id, offset, user, pass
+                                );
+                                resolved_user = Some(user);
+                                break;
+                            }
+                        }
+                    }
+                }
 
-                if let Some((user, pass)) = rsa_manager.decrypt_credentials(rsa_block) {
-                    println!(
-                        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials: User='{}', Pass='{}'",
-                        session_id, user, pass
-                    );
+                // If not found in active_buf and active_buf was dec_payload, also scan raw payload
+                if resolved_user.is_none() && decrypted {
+                    for &offset in &[1, 4, 8, 12, 0] {
+                        if payload.len() >= offset + 128 {
+                            if let Some((user, pass)) = rsa_manager.decrypt_credentials(&payload[offset..offset + 128]) {
+                                if !user.is_empty() && user.chars().all(|c| c.is_ascii_graphic() || c == ' ') {
+                                    println!(
+                                        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials in raw payload at offset {}: User='{}', Pass='{}'",
+                                        session_id, offset, user, pass
+                                    );
+                                    resolved_user = Some(user);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if let Some(user) = resolved_user {
                     current_username = user;
                 } else if let Some(user) = extract_string_from_payload(active_buf) {
                     current_username = user;

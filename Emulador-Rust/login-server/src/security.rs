@@ -25,7 +25,7 @@ impl SecurityManager {
     }
 
     pub fn check_connection(&self, ip: IpAddr) -> bool {
-        if !self.enabled {
+        if !self.enabled || ip.is_loopback() {
             return true;
         }
 

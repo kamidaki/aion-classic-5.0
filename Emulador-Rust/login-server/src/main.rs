@@ -54,7 +54,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let sts_bind = format!("{}:{}", cfg.bind_address, cfg.sts_port);
     let db_sts = Arc::clone(&db);
     let dev_user_sts = cfg.default_dev_username.clone();
-    tokio::spawn(async move {
+    let sts_handle = tokio::spawn(async move {
         if let Err(e) = net::sts::run_sts_server(&sts_bind, db_sts, dev_user_sts).await {
             eprintln!("ERROR: [LoginServer-STS] Fatal error: {}", e);
         }
@@ -69,7 +69,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let auto_create_nc = cfg.auto_create_accounts;
     let dev_user_nc = cfg.default_dev_username.clone();
     let sec_nc = Arc::clone(&security);
-    tokio::spawn(async move {
+    let ncsoft_handle = tokio::spawn(async move {
         if let Err(e) = net::ncsoft::run_ncsoft_server(
             &ncsoft_bind,
             announce_ip_nc,
@@ -86,7 +86,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     });
 
-    // 4. Run HQ Server (Port 13001) as foreground task
+    // 4. Run HQ Server (Port 13001)
     let hq_bind = format!("{}:{}", cfg.bind_address, cfg.hq_port);
     let db_hq = Arc::clone(&db);
     let announce_ip_hq = cfg.announce_game_server_ip.clone();
@@ -95,19 +95,27 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let auto_create_hq = cfg.auto_create_accounts;
     let dev_user_hq = cfg.default_dev_username.clone();
     let sec_hq = Arc::clone(&security);
+    let hq_handle = tokio::spawn(async move {
+        if let Err(e) = net::hq::run_hq_server(
+            &hq_bind,
+            announce_ip_hq,
+            announce_port_hq,
+            srv_id_hq,
+            db_hq,
+            auto_create_hq,
+            dev_user_hq,
+            sec_hq,
+        )
+        .await
+        {
+            eprintln!("ERROR: [LoginServer-HQ] Fatal error: {}", e);
+        }
+    });
 
     println!("INFO: [LoginServer] All sub-services initialized successfully with active SecurityManager.");
-    net::hq::run_hq_server(
-        &hq_bind,
-        announce_ip_hq,
-        announce_port_hq,
-        srv_id_hq,
-        db_hq,
-        auto_create_hq,
-        dev_user_hq,
-        sec_hq,
-    )
-    .await?;
+
+    // Keep all services running indefinitely
+    std::future::pending::<()>().await;
 
     Ok(())
 }

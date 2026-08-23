@@ -24,42 +24,53 @@ impl SingleInstanceGuard {
 
     fn acquire_internal(app_name: &str, mutex_name: &str, show_ui: bool) -> Option<Self> {
         unsafe {
-            SetLastError(0);
             let wide_name: Vec<u16> = mutex_name.encode_utf16().chain(std::iter::once(0)).collect();
-            let handle = CreateMutexW(std::ptr::null(), 1, wide_name.as_ptr());
+            let attempts = if show_ui { 1 } else { 5 };
 
-            if handle == 0 {
-                eprintln!("WARN: [SingleInstance] Failed to create mutex: {}", mutex_name);
-                return None;
-            }
+            for attempt in 1..=attempts {
+                SetLastError(0);
+                let handle = CreateMutexW(std::ptr::null(), 1, wide_name.as_ptr());
 
-            if GetLastError() == ERROR_ALREADY_EXISTS {
-                eprintln!(
-                    "WARN: [SingleInstance] Este aplicativo já está em execução. Uma instância de {} já está aberta.",
-                    app_name
-                );
-
-                if show_ui {
-                    let title: Vec<u16> = "Emulador Rust\0".encode_utf16().collect();
-                    let msg_text = format!(
-                        "Este aplicativo já está em execução.\n\nUma instância do Emulador Rust ({}) já está aberta.",
-                        app_name
-                    );
-                    let msg: Vec<u16> = msg_text.encode_utf16().chain(std::iter::once(0)).collect();
-
-                    MessageBoxW(
-                        0,
-                        msg.as_ptr(),
-                        title.as_ptr(),
-                        MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST,
-                    );
+                if handle == 0 {
+                    eprintln!("WARN: [SingleInstance] Failed to create mutex: {}", mutex_name);
+                    return None;
                 }
 
-                CloseHandle(handle);
-                return None;
+                if GetLastError() == ERROR_ALREADY_EXISTS {
+                    CloseHandle(handle);
+                    if attempt < attempts {
+                        std::thread::sleep(std::time::Duration::from_millis(200));
+                        continue;
+                    }
+
+                    eprintln!(
+                        "WARN: [SingleInstance] Este aplicativo já está em execução. Uma instância de {} já está aberta.",
+                        app_name
+                    );
+
+                    if show_ui {
+                        let title: Vec<u16> = "Emulador Rust\0".encode_utf16().collect();
+                        let msg_text = format!(
+                            "Este aplicativo já está em execução.\n\nUma instância do Emulador Rust ({}) já está aberta.",
+                            app_name
+                        );
+                        let msg: Vec<u16> = msg_text.encode_utf16().chain(std::iter::once(0)).collect();
+
+                        MessageBoxW(
+                            0,
+                            msg.as_ptr(),
+                            title.as_ptr(),
+                            MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST,
+                        );
+                    }
+
+                    return None;
+                }
+
+                return Some(Self { handle });
             }
 
-            Some(Self { handle })
+            None
         }
     }
 }
