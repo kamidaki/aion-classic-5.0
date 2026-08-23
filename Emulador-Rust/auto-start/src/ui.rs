@@ -2,16 +2,16 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Aion Classic - EmuRust Dashboard</title>
     <style>
         :root {
             --bg-base: #060910;
             --bg-surface: #0c121e;
-            --bg-card: rgba(15, 23, 42, 0.85);
-            --bg-card-hover: rgba(22, 33, 58, 0.95);
+            --bg-card: rgba(13, 20, 36, 0.88);
+            --bg-card-hover: rgba(20, 30, 54, 0.95);
             --border-glass: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(56, 189, 248, 0.3);
+            --border-glow: rgba(56, 189, 248, 0.25);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent-login: #38bdf8;
@@ -21,6 +21,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             --accent-red: #ef4444;
             --font-scale: 1rem;
             --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --safe-top: env(safe-area-inset-top, 0px);
         }
 
         * {
@@ -29,13 +30,13 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             padding: 0;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
         }
 
         html, body {
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at top right, #111a33, #060910 75%);
+            background: radial-gradient(circle at 85% 10%, #111a33 0%, #060910 80%);
             color: var(--text-main);
             overflow-x: hidden;
             font-size: var(--font-scale);
@@ -52,7 +53,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 18px;
+            padding: calc(6px + var(--safe-top)) 16px 6px 16px;
             background: rgba(8, 12, 22, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -61,29 +62,31 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             top: 0;
             z-index: 100;
             width: 100%;
-            height: 48px;
+            height: calc(48px + var(--safe-top));
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            min-width: 0;
         }
 
         .drawer-toggle-btn {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--border-glass);
             color: var(--text-main);
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s;
+            flex-shrink: 0;
         }
-        .drawer-toggle-btn:hover {
+        .drawer-toggle-btn:active, .drawer-toggle-btn:hover {
             background: rgba(255, 255, 255, 0.12);
             border-color: var(--accent-login);
         }
@@ -91,46 +94,51 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .brand-box {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
+            min-width: 0;
         }
 
         .brand-icon {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             background: linear-gradient(135deg, #0284c7, #38bdf8);
-            border-radius: 7px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 15px;
+            font-size: 14px;
             color: #fff;
-            box-shadow: 0 2px 10px rgba(56, 189, 248, 0.35);
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35);
+            flex-shrink: 0;
         }
 
         .brand-text {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 700;
             letter-spacing: -0.3px;
+            white-space: nowrap;
         }
 
         .brand-pill {
-            font-size: 0.68rem;
-            padding: 2px 6px;
+            font-size: 0.65rem;
+            padding: 2px 5px;
             background: rgba(56, 189, 248, 0.15);
             color: var(--accent-login);
             border-radius: 4px;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .header-status-pills {
             display: flex;
             align-items: center;
             gap: 8px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4px 10px;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 3px 8px;
             border-radius: 20px;
             border: 1px solid var(--border-glass);
+            flex-shrink: 0;
         }
 
         .mini-dot {
@@ -139,29 +147,33 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             border-radius: 50%;
             background: var(--accent-red);
             transition: all 0.3s;
+            display: inline-block;
         }
         .mini-dot.online { background: var(--accent-game); box-shadow: 0 0 6px var(--accent-game); }
         .mini-dot.starting { background: var(--accent-launcher); box-shadow: 0 0 6px var(--accent-launcher); }
+        .mini-dot.crashed { background: #e11d48; box-shadow: 0 0 8px #e11d48; }
 
         .mini-stat-label {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: var(--text-muted);
             display: flex;
             align-items: center;
             gap: 4px;
+            white-space: nowrap;
         }
 
         .header-right {
             display: flex;
             align-items: center;
             gap: 6px;
+            flex-shrink: 0;
         }
 
         button {
-            font-size: 0.76rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            padding: 6px 11px;
+            padding: 6px 10px;
             border-radius: 6px;
             border: 1px solid transparent;
             cursor: pointer;
@@ -170,6 +182,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             align-items: center;
             justify-content: center;
             gap: 5px;
+            white-space: nowrap;
         }
 
         .btn-svg {
@@ -178,6 +191,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             justify-content: center;
             width: 13px;
             height: 13px;
+            flex-shrink: 0;
         }
 
         .btn-start {
@@ -185,47 +199,47 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             color: #fff;
             box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
         }
-        .btn-start:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
+        .btn-start:active, .btn-start:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
 
         .btn-stop {
             background: rgba(239, 68, 68, 0.15);
             border: 1px solid rgba(239, 68, 68, 0.4);
             color: #fca5a5;
         }
-        .btn-stop:hover { background: rgba(239, 68, 68, 0.25); transform: translateY(-1px); }
+        .btn-stop:active, .btn-stop:hover { background: rgba(239, 68, 68, 0.25); transform: translateY(-1px); }
 
         .btn-restart {
             background: rgba(56, 189, 248, 0.15);
             border: 1px solid rgba(56, 189, 248, 0.4);
             color: #7dd3fc;
         }
-        .btn-restart:hover { background: rgba(56, 189, 248, 0.25); transform: translateY(-1px); }
+        .btn-restart:active, .btn-restart:hover { background: rgba(56, 189, 248, 0.25); transform: translateY(-1px); }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid var(--border-glass);
             color: #e2e8f0;
         }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.14); }
+        .btn-secondary:active, .btn-secondary:hover { background: rgba(255, 255, 255, 0.14); }
 
         .btn-mobile-url {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(56, 189, 248, 0.2));
-            border: 1px solid rgba(168, 85, 247, 0.4);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.18), rgba(56, 189, 248, 0.18));
+            border: 1px solid rgba(168, 85, 247, 0.35);
             color: #e9d5ff;
         }
-        .btn-mobile-url:hover { background: rgba(168, 85, 247, 0.35); transform: translateY(-1px); }
+        .btn-mobile-url:active, .btn-mobile-url:hover { background: rgba(168, 85, 247, 0.3); transform: translateY(-1px); }
 
         .btn-danger {
             background: linear-gradient(135deg, #dc2626, #ef4444);
             color: #fff;
             box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
         }
-        .btn-danger:hover { box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5); transform: translateY(-1px); }
+        .btn-danger:active, .btn-danger:hover { box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5); transform: translateY(-1px); }
 
         /* Main Full Width Layout */
         main {
             flex: 1;
-            padding: 12px 18px;
+            padding: 12px 16px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -233,7 +247,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             max-width: 100%;
         }
 
-        /* 3 Server Status Cards */
+        /* Desktop Only 3 Server Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -264,9 +278,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             width: 100%;
             height: 2.5px;
         }
-        #card-login::before { background: linear-gradient(90deg, transparent, var(--accent-login), transparent); }
-        #card-game::before { background: linear-gradient(90deg, transparent, var(--accent-game), transparent); }
-        #card-chat::before { background: linear-gradient(90deg, transparent, var(--accent-chat), transparent); }
+        .card-login::before { background: linear-gradient(90deg, transparent, var(--accent-login), transparent); }
+        .card-game::before  { background: linear-gradient(90deg, transparent, var(--accent-game), transparent); }
+        .card-chat::before  { background: linear-gradient(90deg, transparent, var(--accent-chat), transparent); }
 
         .card-header {
             display: flex;
@@ -287,18 +301,19 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             background: var(--accent-red);
             box-shadow: 0 0 8px var(--accent-red);
             transition: all 0.3s;
+            display: inline-block;
         }
         .status-dot.online { background: var(--accent-game); box-shadow: 0 0 8px var(--accent-game); }
         .status-dot.starting { background: var(--accent-launcher); box-shadow: 0 0 8px var(--accent-launcher); }
         .status-dot.crashed { background: #e11d48; box-shadow: 0 0 10px #e11d48; }
 
         .card-title {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 700;
         }
 
         .card-tag {
-            font-size: 0.68rem;
+            font-size: 0.66rem;
             padding: 2px 6px;
             border-radius: 4px;
             background: rgba(255, 255, 255, 0.06);
@@ -309,9 +324,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .metrics-box {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             background: rgba(0, 0, 0, 0.25);
-            padding: 9px;
+            padding: 8px;
             border-radius: 7px;
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
@@ -320,7 +335,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
         }
 
         .metric-label { color: var(--text-muted); }
@@ -341,8 +356,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             transition: width 0.4s ease;
         }
         .fill-login { background: linear-gradient(90deg, #0284c7, #38bdf8); }
-        .fill-game { background: linear-gradient(90deg, #059669, #10b981); }
-        .fill-chat { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+        .fill-game  { background: linear-gradient(90deg, #059669, #10b981); }
+        .fill-chat  { background: linear-gradient(90deg, #7c3aed, #a855f7); }
 
         .card-actions {
             display: flex;
@@ -360,7 +375,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .daytrade-section {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 12px 14px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             display: flex;
@@ -380,15 +395,15 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .daytrade-title-box {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.88rem;
+            gap: 6px;
+            font-size: 0.86rem;
             font-weight: 700;
         }
 
         .daytrade-toggles {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .mode-btn {
@@ -397,8 +412,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             color: var(--text-muted);
             padding: 3px 8px;
             border-radius: 5px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             cursor: pointer;
+            white-space: nowrap;
         }
         .mode-btn.active {
             background: rgba(56, 189, 248, 0.2);
@@ -410,21 +426,28 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .legend-bar {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 0.72rem;
+            gap: 10px;
+            font-size: 0.7rem;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: opacity 0.2s;
         }
+        .legend-item.dimmed { opacity: 0.35; }
+
         .legend-line {
-            width: 14px;
+            width: 12px;
             height: 3px;
             border-radius: 2px;
+            flex-shrink: 0;
         }
         .legend-login { background: var(--accent-login); }
         .legend-game  { background: var(--accent-game); }
@@ -435,7 +458,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .daytrade-canvas-container {
             position: relative;
             width: 100%;
-            height: 180px;
+            height: 175px;
             background: #050810;
             border: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 8px;
@@ -466,11 +489,11 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .chart-stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 6px;
             background: rgba(0, 0, 0, 0.25);
             padding: 6px 10px;
             border-radius: 6px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
         }
         .stat-col span { color: #fff; font-weight: 700; margin-left: 3px; }
@@ -479,31 +502,41 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .log-center {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 12px 14px;
             display: flex;
             flex-direction: column;
             gap: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             flex: 1;
-            min-height: 240px;
+            min-height: 280px;
             width: 100%;
         }
 
         .log-header {
             display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .log-header-top {
+            display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
             gap: 6px;
         }
 
-        .log-filters {
+        .log-filter-scroll-row {
             display: flex;
             gap: 5px;
-            align-items: center;
-            flex-wrap: wrap;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 2px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
+        .log-filter-scroll-row::-webkit-scrollbar { display: none; }
 
         .filter-btn {
             background: rgba(255, 255, 255, 0.05);
@@ -512,6 +545,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             padding: 4px 9px;
             border-radius: 5px;
             font-size: 0.72rem;
+            flex-shrink: 0;
         }
         .filter-btn.active {
             background: rgba(56, 189, 248, 0.2);
@@ -520,15 +554,23 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             font-weight: 700;
         }
 
+        .log-controls-row {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            width: 100%;
+        }
+
         .search-box {
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid var(--border-glass);
-            padding: 4px 9px;
+            padding: 5px 9px;
             border-radius: 5px;
             color: #fff;
             font-size: 0.74rem;
             outline: none;
-            width: 160px;
+            flex: 1;
+            min-width: 0;
         }
 
         .log-console {
@@ -538,28 +580,30 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             padding: 8px;
             flex: 1;
             overflow-y: auto;
-            font-size: 0.74rem;
-            line-height: 1.4;
-            max-height: 260px;
+            font-size: 0.73rem;
+            line-height: 1.45;
+            max-height: 320px;
             width: 100%;
-            font-family: Consolas, "Courier New", monospace !important;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+            -webkit-overflow-scrolling: touch;
         }
 
         .log-line {
             display: flex;
             gap: 6px;
-            padding: 2px 0;
+            padding: 2.5px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.015);
             align-items: flex-start;
         }
 
-        .log-ts { color: #64748b; min-width: 68px; font-weight: 700; font-size: 0.7rem; }
+        .log-ts { color: #64748b; min-width: 64px; font-weight: 600; font-size: 0.68rem; flex-shrink: 0; }
         .log-badge {
             padding: 1px 4px;
             border-radius: 3px;
-            font-size: 0.64rem;
+            font-size: 0.62rem;
             font-weight: 700;
             text-transform: uppercase;
+            flex-shrink: 0;
         }
 
         .badge-login { background: rgba(56, 189, 248, 0.2); color: var(--accent-login); }
@@ -567,7 +611,12 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .badge-chat  { background: rgba(168, 85, 247, 0.2); color: var(--accent-chat); }
         .badge-launcher { background: rgba(234, 179, 8, 0.2); color: var(--accent-launcher); }
 
-        .log-msg { color: #e2e8f0; word-break: break-all; flex: 1; }
+        .log-msg {
+            color: #e2e8f0;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            flex: 1;
+        }
         .log-msg.srv-login { color: #f1f5f9; }
         .log-msg.srv-game  { color: #a7f3d0; }
         .log-msg.srv-chat  { color: #e9d5ff; }
@@ -580,8 +629,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             z-index: 1000;
             display: none;
             opacity: 0;
@@ -593,8 +643,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             position: fixed;
             top: 0;
             left: 0;
-            width: 380px;
-            max-width: 88vw;
+            width: 360px;
+            max-width: 86vw;
             height: 100vh;
             background: #0b111e;
             border-right: 1px solid var(--border-glass);
@@ -608,8 +658,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         .drawer-sidebar.open { transform: translateX(0); }
 
         .drawer-header {
-            padding: 16px;
-            background: rgba(15, 23, 42, 0.9);
+            padding: calc(14px + var(--safe-top)) 16px 14px 16px;
+            background: rgba(15, 23, 42, 0.92);
             border-bottom: 1px solid var(--border-glass);
             display: flex;
             justify-content: space-between;
@@ -617,7 +667,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
 
         .drawer-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -636,19 +686,20 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             align-items: center;
             justify-content: center;
         }
-        .drawer-close-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.15); }
+        .drawer-close-btn:active, .drawer-close-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.15); }
 
         .drawer-content {
-            padding: 16px;
+            padding: 14px 16px calc(24px + var(--safe-bottom)) 16px;
             overflow-y: auto;
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
+            -webkit-overflow-scrolling: touch;
         }
 
         .drawer-section-title {
-            font-size: 0.76rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--accent-login);
@@ -663,17 +714,17 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-glass);
             border-radius: 8px;
-            padding: 12px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 7px;
         }
 
         .drawer-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
         }
         .drawer-val { font-weight: 700; color: #fff; }
 
@@ -687,18 +738,20 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             height: 100vh;
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 2000;
             align-items: center;
             justify-content: center;
+            padding: 16px;
         }
 
         .modal-box {
             background: #0f172a;
             border: 1px solid var(--border-glass);
             border-radius: 12px;
-            padding: 20px;
-            max-width: 440px;
-            width: 90%;
+            padding: 18px;
+            max-width: 420px;
+            width: 100%;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             display: flex;
             flex-direction: column;
@@ -706,7 +759,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
 
         .modal-title {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--accent-login);
             display: flex;
@@ -715,7 +768,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
 
         .modal-text {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: #cbd5e1;
             line-height: 1.45;
         }
@@ -724,7 +777,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             background: #060910;
             border: 1px solid var(--border-glass);
             border-radius: 8px;
-            padding: 14px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -736,10 +789,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             background: rgba(255,255,255,0.06);
             border: 1px solid var(--border-glass);
             border-radius: 6px;
-            padding: 6px 10px;
+            padding: 6px 8px;
             color: #38bdf8;
             font-weight: 700;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             text-align: center;
             outline: none;
         }
@@ -751,7 +804,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             bottom: 0;
             left: 0;
             width: 100%;
-            height: calc(52px + var(--safe-bottom));
+            height: calc(50px + var(--safe-bottom));
             padding-bottom: var(--safe-bottom);
             background: rgba(10, 16, 28, 0.94);
             backdrop-filter: blur(20px);
@@ -767,24 +820,25 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 3px;
+            gap: 2px;
             color: var(--text-muted);
-            font-size: 0.65rem;
+            font-size: 0.64rem;
             font-weight: 600;
             background: transparent;
             border: none;
-            padding: 4px 8px;
+            padding: 3px 8px;
             cursor: pointer;
+            flex: 1;
         }
         .tab-btn.active { color: var(--accent-login); }
 
         .mobile-fab {
             display: none;
             position: fixed;
-            bottom: calc(64px + var(--safe-bottom));
-            right: 16px;
-            width: 46px;
-            height: 46px;
+            bottom: calc(58px + var(--safe-bottom));
+            right: 14px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: linear-gradient(135deg, #0284c7, #38bdf8);
             box-shadow: 0 4px 16px rgba(56, 189, 248, 0.45);
@@ -796,15 +850,33 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             cursor: pointer;
         }
 
-        /* Mobile Responsive Adjustments */
+        /* Mobile Responsive Adjustments (Phones & Tablets <= 768px) */
         @media (max-width: 768px) {
-            .cards-grid { grid-template-columns: 1fr; }
-            .header-status-pills { display: none; }
+            /* Hide 3 cards on main page on mobile (placed cleanly in Left Drawer!) */
+            .cards-grid { display: none !important; }
+            
+            /* Compact Header for mobile */
+            .header-status-pills { display: flex; }
+            .header-status-pills .mini-stat-label span { display: none; }
+            .header-right .btn-start, .header-right .btn-stop, .header-right .btn-restart, .header-right .btn-mobile-url { display: none !important; }
+            
             .mobile-bottom-bar { display: flex; }
             .mobile-fab { display: flex; }
-            main { padding-bottom: calc(64px + var(--safe-bottom)); }
-            .header-right .btn-start, .header-right .btn-stop, .header-right .btn-restart { display: none; }
-            .chart-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            
+            main {
+                padding: 10px 12px calc(62px + var(--safe-bottom)) 12px;
+                gap: 10px;
+            }
+            
+            .daytrade-section { padding: 10px 12px; }
+            .daytrade-canvas-container { height: 160px; }
+            .chart-stats-grid { grid-template-columns: repeat(2, 1fr); font-size: 0.68rem; }
+            
+            .log-center {
+                padding: 10px 12px;
+                min-height: 300px;
+            }
+            .log-console { max-height: calc(100vh - 380px); min-height: 200px; }
         }
     </style>
 </head>
@@ -812,7 +884,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
     <!-- Top Header -->
     <header>
         <div class="header-left">
-            <button class="drawer-toggle-btn" onclick="toggleDrawer(true)" title="Menu e Registradores">
+            <button class="drawer-toggle-btn" onclick="toggleDrawer(true)" title="Menu e Servidores">
                 <span class="btn-svg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span>
             </button>
             <div class="brand-box">
@@ -821,9 +893,9 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 <div class="brand-pill">Classic 4.5</div>
             </div>
             <div class="header-status-pills">
-                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-login"></div> Login</div>
-                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-game"></div> Game</div>
-                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-chat"></div> Chat</div>
+                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-login"></div> <span>Login</span></div>
+                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-game"></div> <span>Game</span></div>
+                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-chat"></div> <span>Chat</span></div>
             </div>
         </div>
 
@@ -853,18 +925,18 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content (On Mobile: ONLY Telemetry & Logs!) -->
     <main>
-        <!-- 3 Server Status Cards -->
+        <!-- Desktop Only Server Cards (Hidden on Mobile) -->
         <div class="cards-grid">
             <!-- Login Server -->
-            <div class="card" id="card-login">
+            <div class="card card-login" id="card-login">
                 <div class="card-header">
                     <div class="card-title-box">
                         <div class="status-dot" id="dot-login"></div>
                         <div class="card-title">Login-Server</div>
                     </div>
-                    <div class="card-tag">Portas: 2106 | 6600</div>
+                    <div class="card-tag">Porta 2106</div>
                 </div>
                 <div class="metrics-box">
                     <div class="metric-row">
@@ -890,13 +962,13 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             </div>
 
             <!-- Game Server -->
-            <div class="card" id="card-game">
+            <div class="card card-game" id="card-game">
                 <div class="card-header">
                     <div class="card-title-box">
                         <div class="status-dot" id="dot-game"></div>
                         <div class="card-title">Game-Server</div>
                     </div>
-                    <div class="card-tag">Porta: 7777 | 20 TPS</div>
+                    <div class="card-tag">Porta 7777</div>
                 </div>
                 <div class="metrics-box">
                     <div class="metric-row">
@@ -922,13 +994,13 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             </div>
 
             <!-- Chat Server -->
-            <div class="card" id="card-chat">
+            <div class="card card-chat" id="card-chat">
                 <div class="card-header">
                     <div class="card-title-box">
                         <div class="status-dot" id="dot-chat"></div>
                         <div class="card-title">Chat-Server</div>
                     </div>
-                    <div class="card-tag">Porta: 10241</div>
+                    <div class="card-tag">Porta 10241</div>
                 </div>
                 <div class="metrics-box">
                     <div class="metric-row">
@@ -954,26 +1026,26 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- Day-Trade Real-Time Multi-Curve Telemetry Section -->
+        <!-- 1. Day-Trade Real-Time Telemetry Section -->
         <div class="daytrade-section" id="section-telemetry">
             <div class="daytrade-header">
                 <div class="daytrade-title-box">
                     <span class="btn-svg" style="color: var(--accent-login);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-                    Telemetria Day-Trade Real-Time (Consumo por Subsistema)
+                    Telemetria Real-Time Day-Trade
                 </div>
 
                 <div class="daytrade-toggles">
-                    <button class="mode-btn active" id="btn-mode-cpu" onclick="setChartMode('cpu')">Uso de CPU (%)</button>
-                    <button class="mode-btn" id="btn-mode-mem" onclick="setChartMode('mem')">Memória RAM (MB)</button>
+                    <button class="mode-btn active" id="btn-mode-cpu" onclick="setChartMode('cpu')">CPU (%)</button>
+                    <button class="mode-btn" id="btn-mode-mem" onclick="setChartMode('mem')">RAM (MB)</button>
                 </div>
+            </div>
 
-                <div class="legend-bar">
-                    <div class="legend-item" onclick="toggleSeries('login')"><div class="legend-line legend-login"></div> Login</div>
-                    <div class="legend-item" onclick="toggleSeries('game')"><div class="legend-line legend-game"></div> Game</div>
-                    <div class="legend-item" onclick="toggleSeries('chat')"><div class="legend-line legend-chat"></div> Chat</div>
-                    <div class="legend-item" onclick="toggleSeries('launcher')"><div class="legend-line legend-launcher"></div> Launcher</div>
-                    <div class="legend-item" onclick="toggleSeries('total')"><div class="legend-line legend-total"></div> Total</div>
-                </div>
+            <div class="legend-bar">
+                <div class="legend-item" id="leg-login" onclick="toggleSeries('login')"><div class="legend-line legend-login"></div> Login</div>
+                <div class="legend-item" id="leg-game" onclick="toggleSeries('game')"><div class="legend-line legend-game"></div> Game</div>
+                <div class="legend-item" id="leg-chat" onclick="toggleSeries('chat')"><div class="legend-line legend-chat"></div> Chat</div>
+                <div class="legend-item" id="leg-launcher" onclick="toggleSeries('launcher')"><div class="legend-line legend-launcher"></div> Launcher</div>
+                <div class="legend-item" id="leg-total" onclick="toggleSeries('total')"><div class="legend-line legend-total"></div> Total</div>
             </div>
 
             <div class="daytrade-canvas-container" id="chart-container">
@@ -985,46 +1057,131 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 <div class="stat-col">Mínimo:<span id="stat-min-val">0.0%</span></div>
                 <div class="stat-col">Máximo:<span id="stat-max-val">0.0%</span></div>
                 <div class="stat-col">Média:<span id="stat-avg-val">0.0%</span></div>
-                <div class="stat-col">Tempo de Amostra:<span id="stat-sample-rate">1s Live</span></div>
+                <div class="stat-col">Amostra:<span id="stat-sample-rate">1s Live</span></div>
             </div>
         </div>
 
-        <!-- Central Live Logs Section -->
+        <!-- 2. Central Live Logs Section -->
         <div class="log-center" id="section-logs">
             <div class="log-header">
-                <div class="log-filters">
+                <div class="log-header-top">
                     <span style="font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 5px;">
                         <span class="btn-svg" style="color: var(--accent-login);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
-                        LOGS UNIFICADOS:
+                        LOGS UNIFICADOS
                     </span>
+                    <div style="display: flex; gap: 5px;">
+                        <button class="filter-btn" onclick="clearLogs()">Limpar</button>
+                        <button class="filter-btn" id="pause-btn" onclick="togglePause()">Pausar</button>
+                    </div>
+                </div>
+
+                <div class="log-filter-scroll-row">
                     <button class="filter-btn active" onclick="setFilter('srv', 'all', this)">Todos</button>
                     <button class="filter-btn" onclick="setFilter('srv', 'login', this)">Login</button>
                     <button class="filter-btn" onclick="setFilter('srv', 'game', this)">Game</button>
                     <button class="filter-btn" onclick="setFilter('srv', 'chat', this)">Chat</button>
                     <button class="filter-btn" onclick="setFilter('srv', 'launcher', this)">Launcher</button>
                 </div>
-                <div class="log-filters">
-                    <input type="text" class="search-box" id="search-input" placeholder="Filtrar logs..." onkeyup="renderLogs()">
-                    <button class="filter-btn" onclick="clearLogs()">Limpar</button>
-                    <button class="filter-btn" id="pause-btn" onclick="togglePause()">Pausar</button>
+
+                <div class="log-controls-row">
+                    <input type="text" class="search-box" id="search-input" placeholder="Buscar nos logs..." onkeyup="renderLogs()">
                 </div>
             </div>
             <div class="log-console" id="log-console"></div>
         </div>
     </main>
 
-    <!-- Left Drawer Sidebar (Janela Gaveta Lateral) -->
+    <!-- Left Drawer Sidebar (Janela Gaveta Lateral Esquerda) -->
     <div class="drawer-overlay" id="drawer-overlay" onclick="toggleDrawer(false)"></div>
     <div class="drawer-sidebar" id="drawer-sidebar">
         <div class="drawer-header">
             <div class="drawer-title">
                 <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-                Menu & Registradores
+                Menu & Servidores
             </div>
             <button class="drawer-close-btn" onclick="toggleDrawer(false)">✕</button>
         </div>
 
         <div class="drawer-content">
+            <!-- Section: Ações Mestres -->
+            <div>
+                <div class="drawer-section-title">
+                    <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                    Controles Mestres
+                </div>
+                <div style="display: flex; gap: 6px;">
+                    <button class="btn-start" style="flex:1;" onclick="startAll()">Iniciar Todos</button>
+                    <button class="btn-stop" style="flex:1;" onclick="stopAll()">Parar Todos</button>
+                    <button class="btn-restart" style="flex:1;" onclick="restartAll()">Reiniciar</button>
+                </div>
+            </div>
+
+            <!-- Section: Servidores Individuais (Completo na Gaveta) -->
+            <div>
+                <div class="drawer-section-title">
+                    <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
+                    Servidores Ativos
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <!-- Login Card in Drawer -->
+                    <div class="drawer-card">
+                        <div class="drawer-row">
+                            <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <span class="status-dot" id="drawer-dot-login"></span> Login-Server
+                            </span>
+                            <span class="drawer-val" id="drawer-uptime-login" style="font-size: 0.72rem; color: var(--accent-login);">OFFLINE</span>
+                        </div>
+                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);">
+                            <span>CPU: <b id="drawer-cpu-login" style="color:#fff;">0.0%</b></span>
+                            <span>RAM: <b id="drawer-mem-login" style="color:#fff;">0.0 MB</b></span>
+                        </div>
+                        <div style="display: flex; gap: 4px; margin-top: 2px;">
+                            <button class="btn-start" style="flex:1; padding: 4px;" onclick="controlServer('login', 'start')">Iniciar</button>
+                            <button class="btn-stop" style="flex:1; padding: 4px;" onclick="controlServer('login', 'stop')">Parar</button>
+                            <button class="btn-restart" style="flex:1; padding: 4px;" onclick="controlServer('login', 'restart')">Reiniciar</button>
+                        </div>
+                    </div>
+
+                    <!-- Game Card in Drawer -->
+                    <div class="drawer-card">
+                        <div class="drawer-row">
+                            <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <span class="status-dot" id="drawer-dot-game"></span> Game-Server
+                            </span>
+                            <span class="drawer-val" id="drawer-uptime-game" style="font-size: 0.72rem; color: var(--accent-game);">OFFLINE</span>
+                        </div>
+                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);">
+                            <span>CPU: <b id="drawer-cpu-game" style="color:#fff;">0.0%</b></span>
+                            <span>RAM: <b id="drawer-mem-game" style="color:#fff;">0.0 MB</b></span>
+                        </div>
+                        <div style="display: flex; gap: 4px; margin-top: 2px;">
+                            <button class="btn-start" style="flex:1; padding: 4px;" onclick="controlServer('game', 'start')">Iniciar</button>
+                            <button class="btn-stop" style="flex:1; padding: 4px;" onclick="controlServer('game', 'stop')">Parar</button>
+                            <button class="btn-restart" style="flex:1; padding: 4px;" onclick="controlServer('game', 'restart')">Reiniciar</button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Card in Drawer -->
+                    <div class="drawer-card">
+                        <div class="drawer-row">
+                            <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <span class="status-dot" id="drawer-dot-chat"></span> Chat-Server
+                            </span>
+                            <span class="drawer-val" id="drawer-uptime-chat" style="font-size: 0.72rem; color: var(--accent-chat);">OFFLINE</span>
+                        </div>
+                        <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted);">
+                            <span>CPU: <b id="drawer-cpu-chat" style="color:#fff;">0.0%</b></span>
+                            <span>RAM: <b id="drawer-mem-chat" style="color:#fff;">0.0 MB</b></span>
+                        </div>
+                        <div style="display: flex; gap: 4px; margin-top: 2px;">
+                            <button class="btn-start" style="flex:1; padding: 4px;" onclick="controlServer('chat', 'start')">Iniciar</button>
+                            <button class="btn-stop" style="flex:1; padding: 4px;" onclick="controlServer('chat', 'stop')">Parar</button>
+                            <button class="btn-restart" style="flex:1; padding: 4px;" onclick="controlServer('chat', 'restart')">Reiniciar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Section: Acesso Mobile & LAN -->
             <div>
                 <div class="drawer-section-title">
@@ -1053,7 +1210,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 <div class="drawer-card">
                     <div class="drawer-row">
                         <span style="color: var(--text-muted);">Taxa de Tick (TPS):</span>
-                        <span class="drawer-val" style="color: var(--accent-game);">20.0 / 20.0 TPS (Travado)</span>
+                        <span class="drawer-val" style="color: var(--accent-game);">20.0 / 20.0 TPS (Fixo)</span>
                     </div>
                     <div class="drawer-row">
                         <span style="color: var(--text-muted);">Banco de Dados:</span>
@@ -1102,27 +1259,27 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
     <!-- Mobile Bottom Tab Bar (iOS Glassmorphism) -->
     <div class="mobile-bottom-bar">
-        <button class="tab-btn active" onclick="scrollToSection('top')">
-            <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-            Status
-        </button>
-        <button class="tab-btn" onclick="scrollToSection('section-telemetry')">
+        <button class="tab-btn active" id="tab-btn-telemetry" onclick="switchMobileTab('telemetry')">
             <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
             Gráfico
         </button>
-        <button class="tab-btn" onclick="scrollToSection('section-logs')">
+        <button class="tab-btn" id="tab-btn-logs" onclick="switchMobileTab('logs')">
             <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
             Logs
         </button>
-        <button class="tab-btn" onclick="toggleDrawer(true)">
+        <button class="tab-btn" id="tab-btn-servers" onclick="switchMobileTab('servers')">
+            <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
+            Servidores
+        </button>
+        <button class="tab-btn" id="tab-btn-menu" onclick="switchMobileTab('menu')">
             <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span>
             Menu
         </button>
     </div>
 
     <!-- Mobile FAB (Floating Action Button) -->
-    <button class="mobile-fab" onclick="toggleDrawer(true)">
-        <span class="btn-svg"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+    <button class="mobile-fab" onclick="toggleDrawer(true)" title="Menu e Servidores">
+        <span class="btn-svg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
     </button>
 
     <!-- Mobile Access Modal -->
@@ -1133,11 +1290,11 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 Acesso Mobile no Celular / LAN
             </div>
             <div class="modal-text">
-                Conecte seu celular na mesma rede Wi-Fi e acesse o endereço abaixo pelo navegador (Safari, Chrome, Firefox) para monitorar o emulador remotamente com visual estilo iOS:
+                Conecte seu celular na mesma rede Wi-Fi e acesse o endereço abaixo pelo navegador (Safari, Chrome) para monitorar o emulador com interface responsiva estilo iOS:
             </div>
             <div class="qr-placeholder-box">
                 <input type="text" class="url-copy-input" id="modal-url-input" readonly value="http://127.0.0.1:18080">
-                <div style="font-size: 0.72rem; color: var(--text-muted); text-align: center;">Clique abaixo para copiar ou digite diretamente na barra do navegador do celular.</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); text-align: center;">Clique abaixo para copiar o endereço do painel.</div>
             </div>
             <div style="display: flex; gap: 8px; justify-content: flex-end;">
                 <button class="btn-secondary" onclick="closeMobileModal()">Fechar</button>
@@ -1182,12 +1339,30 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
         function toggleSeries(name) {
             hiddenSeries[name] = !hiddenSeries[name];
+            const legEl = document.getElementById(`leg-${name}`);
+            if (legEl) legEl.classList.toggle('dimmed', hiddenSeries[name]);
             drawDayTradeChart();
         }
 
         function toggleDrawer(open) {
             document.getElementById('drawer-overlay').classList.toggle('open', open);
             document.getElementById('drawer-sidebar').classList.toggle('open', open);
+        }
+
+        function switchMobileTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById(`tab-btn-${tab}`);
+            if (btn) btn.classList.add('active');
+
+            if (tab === 'telemetry') {
+                toggleDrawer(false);
+                document.getElementById('section-telemetry').scrollIntoView({ behavior: 'smooth' });
+            } else if (tab === 'logs') {
+                toggleDrawer(false);
+                document.getElementById('section-logs').scrollIntoView({ behavior: 'smooth' });
+            } else if (tab === 'servers' || tab === 'menu') {
+                toggleDrawer(true);
+            }
         }
 
         function openMobileModal() {
@@ -1207,7 +1382,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         }
 
         function zoomFont(delta) {
-            currentFontScale = Math.min(Math.max(currentFontScale + (delta * 0.06), 0.8), 1.3);
+            currentFontScale = Math.min(Math.max(currentFontScale + (delta * 0.06), 0.8), 1.25);
             document.documentElement.style.setProperty('--font-scale', `${currentFontScale}rem`);
         }
 
@@ -1230,49 +1405,53 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             try { await fetch('/api/shutdown', { method: 'POST' }); } catch (e) {}
         }
 
-        function scrollToSection(id) {
-            if (id === 'top') window.scrollTo({ top: 0, behavior: 'smooth' });
-            else {
-                const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
         // Fetch Metrics & Registers
         async function fetchMetrics() {
             try {
                 const res = await fetch('/api/metrics');
                 const data = await res.json();
 
-                // 1. Update Server Cards & Mini Status Dots
+                // 1. Update Desktop Server Cards & Drawer Server Cards
                 if (data.servers) {
                     data.servers.forEach(s => {
+                        const stateClass = s.status === 'Online' ? 'online' : (s.status === 'Starting' ? 'starting' : (s.status === 'Crashed' ? 'crashed' : ''));
+                        
+                        // Desktop Card elements
                         const dot = document.getElementById(`dot-${s.name}`);
-                        const hdrDot = document.getElementById(`hdr-dot-${s.name}`);
                         const uptimeVal = document.getElementById(`val-uptime-${s.name}`);
                         const cpuVal = document.getElementById(`val-cpu-${s.name}`);
                         const cpuBar = document.getElementById(`bar-cpu-${s.name}`);
                         const memVal = document.getElementById(`val-mem-${s.name}`);
                         const memBar = document.getElementById(`bar-mem-${s.name}`);
 
-                        const stateClass = s.status === 'Online' ? 'online' : (s.status === 'Starting' ? 'starting' : (s.status === 'Crashed' ? 'crashed' : ''));
+                        // Header & Drawer elements
+                        const hdrDot = document.getElementById(`hdr-dot-${s.name}`);
+                        const drawerDot = document.getElementById(`drawer-dot-${s.name}`);
+                        const drawerUptime = document.getElementById(`drawer-uptime-${s.name}`);
+                        const drawerCpu = document.getElementById(`drawer-cpu-${s.name}`);
+                        const drawerMem = document.getElementById(`drawer-mem-${s.name}`);
+
                         if (dot) dot.className = 'status-dot ' + stateClass;
                         if (hdrDot) hdrDot.className = 'mini-dot ' + stateClass;
+                        if (drawerDot) drawerDot.className = 'status-dot ' + stateClass;
 
-                        if (uptimeVal) {
-                            if (s.status === 'Online') {
-                                const hrs = Math.floor(s.uptime_secs / 3600).toString().padStart(2, '0');
-                                const mins = Math.floor((s.uptime_secs % 3600) / 60).toString().padStart(2, '0');
-                                const secs = (s.uptime_secs % 60).toString().padStart(2, '0');
-                                uptimeVal.innerText = `ONLINE (${hrs}:${mins}:${secs})`;
-                            } else {
-                                uptimeVal.innerText = s.status.toUpperCase();
-                            }
+                        let uptimeFormatted = s.status.toUpperCase();
+                        if (s.status === 'Online') {
+                            const hrs = Math.floor(s.uptime_secs / 3600).toString().padStart(2, '0');
+                            const mins = Math.floor((s.uptime_secs % 3600) / 60).toString().padStart(2, '0');
+                            const secs = (s.uptime_secs % 60).toString().padStart(2, '0');
+                            uptimeFormatted = `ONLINE (${hrs}:${mins}:${secs})`;
                         }
 
+                        if (uptimeVal) uptimeVal.innerText = uptimeFormatted;
+                        if (drawerUptime) drawerUptime.innerText = uptimeFormatted;
+
                         if (cpuVal) cpuVal.innerText = `${s.cpu_percent.toFixed(1)}%`;
+                        if (drawerCpu) drawerCpu.innerText = `${s.cpu_percent.toFixed(1)}%`;
                         if (cpuBar) cpuBar.style.width = `${Math.min(s.cpu_percent, 100)}%`;
+
                         if (memVal) memVal.innerText = `${s.memory_mb.toFixed(1)} MB`;
+                        if (drawerMem) drawerMem.innerText = `${s.memory_mb.toFixed(1)} MB`;
                         if (memBar) memBar.style.width = `${Math.min((s.memory_mb / 2048) * 100, 100)}%`;
                     });
                 }
@@ -1284,7 +1463,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                     document.getElementById('reg-lan-ip').innerText = r.lan_ip;
                     document.getElementById('reg-ext-url').innerText = r.external_url;
                     document.getElementById('modal-url-input').value = r.external_url;
-                    document.getElementById('btn-mobile-label').innerText = `${r.lan_ip}:${r.http_port}`;
+                    const btnMobLabel = document.getElementById('btn-mobile-label');
+                    if (btnMobLabel) btnMobLabel.innerText = `${r.lan_ip}:${r.http_port}`;
                     document.getElementById('reg-db-size').innerText = `aion.db (${(r.active_db_size_kb / 1024).toFixed(2)} MB)`;
                     document.getElementById('reg-os-mem').innerText = `${(r.os_used_memory_mb / 1024).toFixed(1)} / ${(r.os_total_memory_mb / 1024).toFixed(1)} GB`;
                 }
@@ -1307,7 +1487,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             }
         }
 
-        // Draw Day-Trade Financial Style Multi-Curve Graph
+        // Draw Day-Trade Multi-Curve Graph
         function drawDayTradeChart() {
             const canvas = document.getElementById('daytrade-canvas');
             if (!canvas || !historyData || historyData.length < 2) return;
@@ -1322,8 +1502,8 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
             const w = rect.width;
             const h = rect.height;
-            const padTop = 15;
-            const padBottom = 15;
+            const padTop = 12;
+            const padBottom = 12;
             const plotH = h - padTop - padBottom;
 
             ctx.clearRect(0, 0, w, h);
@@ -1332,7 +1512,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             let maxVal = chartMode === 'cpu' ? 100.0 : 250.0;
             if (chartMode === 'mem') {
                 const maxInHist = Math.max(...historyData.map(d => d.total_mem_mb || 0));
-                maxVal = Math.max(maxInHist * 1.25, 300.0);
+                maxVal = Math.max(maxInHist * 1.25, 250.0);
             }
 
             // Draw Fibonacci Retracement Grid Lines
@@ -1347,10 +1527,10 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             ];
 
             ctx.lineWidth = 1;
-            ctx.font = '9px Arial';
+            ctx.font = '8px -apple-system, sans-serif';
             fibRatios.forEach(fib => {
                 const y = h - padBottom - (fib.r * plotH);
-                ctx.strokeStyle = fib.r === 0.618 ? 'rgba(234, 179, 8, 0.35)' : 'rgba(255, 255, 255, 0.05)';
+                ctx.strokeStyle = fib.r === 0.618 ? 'rgba(234, 179, 8, 0.3)' : 'rgba(255, 255, 255, 0.04)';
                 ctx.setLineDash(fib.r === 0.618 ? [4, 4] : [2, 4]);
                 ctx.beginPath();
                 ctx.moveTo(0, y);
@@ -1358,7 +1538,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
                 ctx.stroke();
 
                 ctx.fillStyle = fib.r === 0.618 ? '#eab308' : '#64748b';
-                ctx.fillText(fib.label, 6, y - 3);
+                ctx.fillText(fib.label, 4, y - 2);
             });
             ctx.setLineDash([]);
 
@@ -1378,7 +1558,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
 
                 ctx.beginPath();
                 ctx.strokeStyle = s.color;
-                ctx.lineWidth = s.key === 'total' ? 2 : 1.8;
+                ctx.lineWidth = s.key === 'total' ? 2 : 1.7;
                 ctx.setLineDash(s.dash);
 
                 historyData.forEach((d, i) => {
@@ -1454,7 +1634,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
         function setFilter(type, val, btn) {
             if (type === 'srv') {
                 currentSrvFilter = val;
-                document.querySelectorAll('.log-filters .filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.log-filter-scroll-row .filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 renderLogs();
             }
@@ -1499,6 +1679,7 @@ pub const HTML_DASHBOARD: &str = r#"<!DOCTYPE html>
             await controlServer('chat', 'restart');
         }
 
+        window.addEventListener('resize', drawDayTradeChart);
         setInterval(fetchMetrics, 1000);
         setInterval(fetchLogs, 800);
         fetchMetrics();
