@@ -14,8 +14,8 @@
     "default_dev_username": "teste",
     "security": {
       "enable_rate_limit": true,
-      "max_attempts_per_minute": 15,
-      "temp_ban_minutes": 15
+      "max_attempts_per_minute": 5,
+      "temp_ban_minutes": 10
     },
     "database": {
       "path": "aion.db"

@@ -59,11 +59,30 @@ impl AuthDb {
              CREATE INDEX IF NOT EXISTS idx_characters_account ON characters(account_id);",
         )?;
 
+        // Automatic column migrations for existing SQLite databases
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN name TEXT", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN username TEXT", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN password_hash TEXT NOT NULL DEFAULT ''", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN access_level INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN membership INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN last_ip TEXT NOT NULL DEFAULT ''", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
+
+        let _ = conn.execute("ALTER TABLE sessions ADD COLUMN account_name TEXT", []);
+        let _ = conn.execute("ALTER TABLE sessions ADD COLUMN username TEXT", []);
+        let _ = conn.execute("ALTER TABLE sessions ADD COLUMN account_id INTEGER NOT NULL DEFAULT 1", []);
+        let _ = conn.execute("ALTER TABLE sessions ADD COLUMN session_key INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE sessions ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE sessions ADD COLUMN expires_at INTEGER NOT NULL DEFAULT 0", []);
+
+        let _ = conn.execute("ALTER TABLE characters ADD COLUMN aparencia BLOB", []);
+        let _ = conn.execute("ALTER TABLE characters ADD COLUMN kit_inicial INTEGER NOT NULL DEFAULT 0", []);
+
         // Ensure default developer account exists
         let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
         let _ = conn.execute(
-            "INSERT OR IGNORE INTO accounts (name, password_hash, access_level, membership, created_at)
-             VALUES ('teste', 'teste', 3, 2, ?1)",
+            "INSERT OR IGNORE INTO accounts (name, username, password_hash, access_level, membership, created_at)
+             VALUES ('teste', 'teste', 'teste', 3, 2, ?1)",
             params![now],
         );
 
@@ -74,7 +93,7 @@ impl AuthDb {
 
     pub fn get_or_create_account(&self, name: &str, auto_create: bool) -> Result<Option<Account>> {
         let conn = self.conn.lock();
-        let mut stmt = conn.prepare("SELECT id, name, access_level, membership FROM accounts WHERE name = ?1 COLLATE NOCASE")?;
+        let mut stmt = conn.prepare("SELECT id, COALESCE(NULLIF(name, ''), username, ?1), access_level, membership FROM accounts WHERE name = ?1 OR username = ?1 COLLATE NOCASE")?;
         let mut rows = stmt.query(params![name])?;
 
         if let Some(row) = rows.next()? {
@@ -89,7 +108,7 @@ impl AuthDb {
             drop(stmt);
             let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
             conn.execute(
-                "INSERT INTO accounts (name, password_hash, access_level, membership, created_at) VALUES (?1, ?1, 0, 0, ?2)",
+                "INSERT INTO accounts (name, username, password_hash, access_level, membership, created_at) VALUES (?1, ?1, ?1, 0, 0, ?2)",
                 params![name, now],
             )?;
             let id = conn.last_insert_rowid();
@@ -107,7 +126,7 @@ impl AuthDb {
     pub fn get_character_count(&self, account_name: &str) -> u8 {
         let conn = self.conn.lock();
         let mut stmt = match conn.prepare(
-            "SELECT COUNT(*) FROM characters WHERE account_id = (SELECT id FROM accounts WHERE name = ?1 COLLATE NOCASE)"
+            "SELECT COUNT(*) FROM characters WHERE account_id = (SELECT id FROM accounts WHERE name = ?1 OR username = ?1 COLLATE NOCASE)"
         ) {
             Ok(s) => s,
             Err(_) => return 0,
@@ -123,8 +142,8 @@ impl AuthDb {
 
         let conn = self.conn.lock();
         conn.execute(
-            "INSERT OR REPLACE INTO sessions (token, account_name, account_id, session_key, created_at, expires_at)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+            "INSERT OR REPLACE INTO sessions (token, account_name, username, account_id, session_key, created_at, expires_at)
+             VALUES (?1, ?2, ?2, ?3, ?4, ?5, ?6)",
             params![token, account_name, account_id as i64, session_key as i64, now, expires],
         )?;
 
@@ -136,8 +155,8 @@ impl AuthDb {
         let expires = now + 600;
         let conn = self.conn.lock();
         conn.execute(
-            "INSERT OR REPLACE INTO sessions (token, account_name, created_at, expires_at)
-             VALUES (?1, ?2, ?3, ?4)",
+            "INSERT OR REPLACE INTO sessions (token, account_name, username, created_at, expires_at)
+             VALUES (?1, ?2, ?2, ?3, ?4)",
             params![token, account_name, now, expires],
         )?;
         Ok(())

@@ -115,8 +115,20 @@ impl Db {
         // Compatibilidade com colunas legadas se existirem
         let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN aparencia BLOB", []);
         let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN kit_inicial INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN name TEXT", []);
         let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN username TEXT", []);
+        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN password_hash TEXT NOT NULL DEFAULT ''", []);
+        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN access_level INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN membership INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN last_ip TEXT NOT NULL DEFAULT ''", []);
+        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
+
+        let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN account_name TEXT", []);
         let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN username TEXT", []);
+        let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN account_id INTEGER NOT NULL DEFAULT 1", []);
+        let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN session_key INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN expires_at INTEGER NOT NULL DEFAULT 0", []);
 
         Ok(())
     }

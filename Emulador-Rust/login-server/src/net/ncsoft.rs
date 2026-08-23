@@ -432,7 +432,7 @@ async fn handle_ncsoft_client(
                     &mut socket,
                     &crypt_engine,
                     session_id,
-                    10000001,
+                    account_id,
                     session_key1,
                     &current_username,
                 )

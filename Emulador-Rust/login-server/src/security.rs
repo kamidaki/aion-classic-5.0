@@ -43,11 +43,11 @@ impl SecurityManager {
             }
         }
 
-        // Check rate limiter
+        // Check rate limiter (Bruteforce window: 5 attempts in < 5 seconds)
         {
             let mut limits = self.rate_limiter.lock();
             let entry = limits.entry(ip).or_insert((now, 0));
-            if now.duration_since(entry.0).as_secs() >= 60 {
+            if now.duration_since(entry.0).as_secs() >= 5 {
                 entry.0 = now;
                 entry.1 = 1;
             } else {
@@ -56,7 +56,7 @@ impl SecurityManager {
                     // Trigger temporary ban
                     let mut banned = self.banned_ips.lock();
                     banned.insert(ip, now);
-                    println!("WARN: [LoginSecurity] IP {} exceeded {} attempts/min and is temporarily banned for {:?}.", ip, self.max_attempts, self.ban_duration);
+                    println!("WARN: [LoginSecurity] IP {} exceeded {} attempts in <5s (Bruteforce detected) and is temporarily banned for {:?}.", ip, self.max_attempts, self.ban_duration);
                     return false;
                 }
             }
