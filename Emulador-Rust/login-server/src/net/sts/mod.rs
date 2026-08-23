@@ -15,6 +15,7 @@ pub async fn run_sts_server(bind_addr: &str, db: Arc<AuthDb>, dev_user: String) 
     loop {
         match listener.accept().await {
             Ok((mut socket, addr)) => {
+                println!("INFO: [LoginServer-STS] Incoming client connection from {}", addr);
                 let db_clone = Arc::clone(&db);
                 let user_clone = dev_user.clone();
                 tokio::spawn(async move {
@@ -24,7 +25,10 @@ pub async fn run_sts_server(bind_addr: &str, db: Arc<AuthDb>, dev_user: String) 
 
                     loop {
                         match socket.read(&mut buf).await {
-                            Ok(0) => break,
+                            Ok(0) => {
+                                println!("INFO: [LoginServer-STS] Connection closed by {}", addr);
+                                break;
+                            }
                             Ok(n) => {
                                 read_buf.extend_from_slice(&buf[..n]);
 
@@ -43,12 +47,18 @@ pub async fn run_sts_server(bind_addr: &str, db: Arc<AuthDb>, dev_user: String) 
                                         body: reply_xml.into_bytes(),
                                     };
                                     let resp_bytes = reply_frame.encode(seq);
-                                    let _ = socket.write_all(&resp_bytes).await;
+                                    if let Err(e) = socket.write_all(&resp_bytes).await {
+                                        eprintln!("ERROR: [LoginServer-STS] Write error: {}", e);
+                                        break;
+                                    }
 
                                     read_buf.drain(..consumed);
                                 }
                             }
-                            Err(_) => break,
+                            Err(e) => {
+                                eprintln!("ERROR: [LoginServer-STS] Read error from {}: {}", addr, e);
+                                break;
+                            }
                         }
                     }
                 });

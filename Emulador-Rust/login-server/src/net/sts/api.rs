@@ -18,10 +18,12 @@ impl StsSession {
 
     pub fn handle_request(&mut self, path: &str, body: &[u8]) -> (String, u32) {
         let body_str = String::from_utf8_lossy(body);
+        println!("INFO: [LoginServer-STS] <- STS Request: '{}' (Body len: {} bytes)", path, body.len());
 
         match path {
             "/Sts/Connect" => {
                 let xml = r#"<Reply><ServerVersion>1</ServerVersion></Reply>"#;
+                println!("INFO: [LoginServer-STS] -> Response /Sts/Connect: ServerVersion 1");
                 (xml.to_string(), 1)
             }
             "/Auth/LoginStart" => {
@@ -36,6 +38,7 @@ impl StsSession {
                     }
                 }
 
+                println!("INFO: [LoginServer-STS] Processing /Auth/LoginStart for username '{}'", username);
                 self.authn_token = username.clone();
                 let _ = self.db.get_or_create_account(&username, true);
 
@@ -53,6 +56,7 @@ impl StsSession {
                 };
 
                 let token = self.db.issue_session(&username, 0x026edf39).unwrap_or_else(|_| "6D5F3085".to_string());
+                println!("INFO: [LoginServer-STS] Issued GameToken '{}' for username '{}'", token, username);
                 let xml = format!(r#"<Reply><GameToken>{}</GameToken></Reply>"#, token);
                 (xml, 2)
             }
@@ -60,9 +64,11 @@ impl StsSession {
                 (r#"<Reply/>"#.to_string(), 0)
             }
             "/Auth/LogoutMyClient" => {
+                println!("INFO: [LoginServer-STS] Client logged out");
                 (r#"<Reply/>"#.to_string(), 2)
             }
             _ => {
+                println!("WARN: [LoginServer-STS] Unhandled endpoint: '{}'", path);
                 (r#"<Reply/>"#.to_string(), 0)
             }
         }

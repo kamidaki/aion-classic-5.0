@@ -27,6 +27,7 @@ pub fn spawn_named_pipe_provider(pipe_name: &str, db: Arc<AuthDb>, default_user:
             match NamedPipe::create(&name) {
                 Ok(pipe) => {
                     if pipe.accept().is_ok() {
+                        println!("INFO: [GameforgeRPC] Named Pipe client connected.");
                         let mut buf = [0u8; 4096];
                         while let Ok(n) = pipe.read(&mut buf) {
                             if n == 0 {
@@ -39,13 +40,16 @@ pub fn spawn_named_pipe_provider(pipe_name: &str, db: Arc<AuthDb>, default_user:
                                     }
                                     if let Ok(req) = serde_json::from_str::<RpcRequest>(line) {
                                         let req_id = req.id.unwrap_or(serde_json::Value::Null);
+                                        println!("INFO: [GameforgeRPC] <- RPC Method: '{}'", req.method);
                                         let response_str = handle_rpc_method(&req.method, req_id, &db, &default_user);
+                                        println!("INFO: [GameforgeRPC] -> RPC Response: {}", response_str);
                                         let _ = pipe.write_all(response_str.as_bytes());
                                         let _ = pipe.write_all(b"\n");
                                     }
                                 }
                             }
                         }
+                        println!("INFO: [GameforgeRPC] Named Pipe client disconnected.");
                         pipe.disconnect();
                     }
                 }

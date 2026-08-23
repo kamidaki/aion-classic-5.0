@@ -1,10 +1,10 @@
+use crate::crypto::LoginCryptEngine;
 use crate::db::AuthDb;
-use bytes::BufMut;
 use std::sync::Arc;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::{TcpListener, TcpStream};
 
-const RSA_MODULUS: [u8; 128] = [
+const RSA_MODULUS_RAW: [u8; 128] = [
     0x8b, 0x92, 0x1f, 0x6e, 0x22, 0x3d, 0x94, 0x48, 0x7b, 0x04, 0x24, 0x39,
     0x91, 0x31, 0x9c, 0x68, 0x8a, 0xca, 0xeb, 0xbb, 0x8d, 0x51, 0xb8, 0x59,
     0xa3, 0x27, 0x4d, 0x1a, 0x88, 0x05, 0x52, 0x3e, 0x7c, 0x95, 0xb5, 0x3e,
@@ -67,122 +67,438 @@ async fn handle_ncsoft_client(
     auto_create: bool,
     default_user: String,
 ) {
-    println!("INFO: [LoginServer-NCSoft] Incoming connection from {}", addr);
-
     let session_id: u32 = rand::random();
+    println!(
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Incoming connection from {}",
+        session_id, addr
+    );
+
+    let mut crypt_engine = LoginCryptEngine::new();
+
     let blowfish_key: [u8; 16] = [
         0x6b, 0x60, 0xcb, 0x5b, 0x82, 0xce, 0x90, 0xb1,
         0xcc, 0x2b, 0x6c, 0x55, 0x6c, 0x6c, 0x6c, 0x6c,
     ];
 
-    // 1. Construct SM_INIT (194 bytes)
-    let mut sm_init = vec![0u8; 194];
-    sm_init[0] = 0x00; // Opcode SM_INIT
-    sm_init[1..5].copy_from_slice(&session_id.to_le_bytes());
-    sm_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes()); // Protocol revision
-    sm_init[9..137].copy_from_slice(&RSA_MODULUS);
-    sm_init[149..165].copy_from_slice(&blowfish_key);
-    sm_init[168] = 0xFD; // Flag de ativação do x64
-    sm_init[169..173].copy_from_slice(&[0x04, 0x05, 0x00, 0x00]); // Versão Classic 4.5
+    let scrambled_modulus = LoginCryptEngine::scramble_modulus(&RSA_MODULUS_RAW);
 
-    // Add 2-byte length header
-    let mut init_pkt = vec![];
-    init_pkt.put_u16_le((sm_init.len() + 2) as u16);
-    init_pkt.extend_from_slice(&sm_init);
+    // 1. Construct SM_INIT (192 bytes payload -> 194 bytes with header)
+    let mut raw_init = vec![0u8; 192];
+    raw_init[0] = 0x00; // Opcode SM_INIT
+    raw_init[1..5].copy_from_slice(&session_id.to_le_bytes());
+    raw_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes()); // Protocol revision
+    raw_init[9..137].copy_from_slice(&scrambled_modulus);
+    raw_init[149..165].copy_from_slice(&blowfish_key);
+    raw_init[168] = 0xFD; // Flag de ativacao do x64
+    raw_init[169..173].copy_from_slice(&[0x04, 0x05, 0x00, 0x00]); // Versao Classic 4.5
+
+    let encrypted_init = crypt_engine.encrypt_init(&raw_init, blowfish_key);
+    let mut init_pkt = Vec::with_capacity(encrypted_init.len() + 2);
+    init_pkt.extend_from_slice(&((encrypted_init.len() + 2) as u16).to_le_bytes());
+    init_pkt.extend_from_slice(&encrypted_init);
 
     if let Err(e) = socket.write_all(&init_pkt).await {
-        eprintln!("ERROR: [LoginServer-NCSoft] Failed to send SM_INIT: {}", e);
+        eprintln!(
+            "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_INIT: {}",
+            session_id, e
+        );
         return;
     }
+    println!(
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_INIT (194 bytes) [SessionID: 0x{:08X}, Flag: 0xFD, Version: 4.5.0.0]",
+        session_id, session_id
+    );
 
-    let mut buf = [0u8; 2048];
+    // Short pacing
+    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
 
-    // 2. Read CM_LOGIN
-    let n = match socket.read(&mut buf).await {
-        Ok(n) if n > 2 => n,
-        _ => return,
-    };
+    // 2. Construct SM_AUTH_GG (Opcode 0x0B)
+    let mut auth_gg_raw = vec![0u8; 21];
+    auth_gg_raw[0] = 0x0B; // Opcode SM_AUTH_GG
+    auth_gg_raw[1..5].copy_from_slice(&session_id.to_le_bytes());
 
-    let mut username = default_user.clone();
-    if n > 4 {
-        let raw_user = &buf[3..n];
-        let null_pos = raw_user.iter().position(|&b| b == 0).unwrap_or(raw_user.len());
-        if let Ok(u) = std::str::from_utf8(&raw_user[..null_pos]) {
-            let trimmed = u.trim();
-            if !trimmed.is_empty() && trimmed.chars().all(|c| c.is_alphanumeric() || c == '_' || c == '-') {
-                username = trimmed.to_string();
+    let encrypted_auth_gg = crypt_engine.encrypt_packet(&auth_gg_raw);
+    let mut auth_gg_pkt = Vec::with_capacity(encrypted_auth_gg.len() + 2);
+    auth_gg_pkt.extend_from_slice(&((encrypted_auth_gg.len() + 2) as u16).to_le_bytes());
+    auth_gg_pkt.extend_from_slice(&encrypted_auth_gg);
+
+    if let Err(e) = socket.write_all(&auth_gg_pkt).await {
+        eprintln!(
+            "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_AUTH_GG: {}",
+            session_id, e
+        );
+        return;
+    }
+    println!(
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG (Opcode 0x0B, {} bytes)",
+        session_id, auth_gg_pkt.len()
+    );
+
+    let mut current_username = default_user.clone();
+    let session_key1: u32 = 0x026edf39;
+    let session_key2: u32 = rand::random();
+
+    // Helper closure to build and send SM_LOGIN_OK
+    async fn send_login_ok(
+        socket: &mut TcpStream,
+        crypt_engine: &LoginCryptEngine,
+        session_id: u32,
+        account_id: u32,
+        session_key1: u32,
+        username: &str,
+    ) -> Result<(), std::io::Error> {
+        let mut raw = vec![0u8; 53];
+        raw[0] = 0x03; // Opcode SM_LOGIN_OK
+        raw[1..5].copy_from_slice(&account_id.to_le_bytes()); // offset 0x00 in body
+        raw[5..9].copy_from_slice(&session_key1.to_le_bytes()); // offset 0x04 in body
+        raw[17..21].copy_from_slice(&0x0000003Fu32.to_le_bytes()); // offset 0x10: Account Flags (0x3F)
+        raw[21..25].copy_from_slice(&0x0000003Fu32.to_le_bytes());
+        raw[25..29].copy_from_slice(&0x0000003Fu32.to_le_bytes());
+        raw[29..33].copy_from_slice(&0x0000003Fu32.to_le_bytes());
+        raw[33] = 0xFF; // offset 0x20 in body: Magic Classic
+        raw[34] = 0xFE; // offset 0x21 in body: Magic Classic
+        raw[49..53].copy_from_slice(&0x00000001u32.to_le_bytes()); // offset 0x30 in body: TOS agreement = 1
+
+        let enc = crypt_engine.encrypt_packet(&raw);
+        let mut pkt = Vec::with_capacity(enc.len() + 2);
+        pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+        pkt.extend_from_slice(&enc);
+
+        socket.write_all(&pkt).await?;
+        println!(
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK (Opcode 0x03, Account: '{}', ID: {}, Flags: 0x3F, TOS: 1)",
+            session_id, username, account_id
+        );
+        Ok(())
+    }
+
+    // Helper closure to build and send SM_SERVER_LIST
+    async fn send_server_list(
+        socket: &mut TcpStream,
+        crypt_engine: &LoginCryptEngine,
+        session_id: u32,
+        announce_ip: &str,
+        announce_port: u16,
+        default_server_id: u8,
+        char_count: u8,
+    ) -> Result<(), std::io::Error> {
+        let mut raw = Vec::new();
+        raw.push(0x04); // Opcode SM_SERVER_LIST
+        raw.push(3); // 3 servers (Brackets 2, 1, 0)
+        raw.push(default_server_id); // Last server ID
+
+        let ip_parts: Vec<u8> = announce_ip
+            .split('.')
+            .filter_map(|s| s.parse::<u8>().ok())
+            .collect();
+        let ip_arr: [u8; 4] = if ip_parts.len() == 4 {
+            [ip_parts[0], ip_parts[1], ip_parts[2], ip_parts[3]]
+        } else {
+            [127, 0, 0, 1]
+        };
+
+        // Write 3 server entries (21 bytes each)
+        for (idx, bracket) in [(default_server_id, 2), (2, 1), (3, 0)] {
+            let mut srv = [0u8; 21];
+            srv[0] = idx; // Server ID
+            srv[1..5].copy_from_slice(&ip_arr); // Server IP
+            srv[5..9].copy_from_slice(&(announce_port as u32).to_le_bytes()); // Port (7777)
+            srv[9] = 0; // Age limit
+            srv[10] = 1; // PvP
+            srv[11..13].copy_from_slice(&0u16.to_le_bytes()); // Online count
+            srv[13..15].copy_from_slice(&1000u16.to_le_bytes()); // Max count
+            srv[15] = 1; // Status Online (1)
+            srv[16..20].copy_from_slice(&0x00000401u32.to_le_bytes()); // ServerBits: Bit 10 = Classic
+            srv[20] = bracket; // Bracket (2 = Classic EU, 1 = NA, 0 = Universal)
+            raw.extend_from_slice(&srv);
+        }
+
+        // Character counts header
+        raw.extend_from_slice(&3u16.to_le_bytes()); // 3 server character counts
+        raw.push(char_count); // Server 1 char count
+        raw.push(0); // Server 2 char count
+        raw.push(0); // Server 3 char count
+
+        let enc = crypt_engine.encrypt_packet(&raw);
+        let mut pkt = Vec::with_capacity(enc.len() + 2);
+        pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+        pkt.extend_from_slice(&enc);
+
+        socket.write_all(&pkt).await?;
+        println!(
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_SERVER_LIST (Opcode 0x04, 3 Servers, Target: {}:{}, Chars: {})",
+            session_id, announce_ip, announce_port, char_count
+        );
+        Ok(())
+    }
+
+    // Send initial pre-login state to ready the client
+    let _ = send_login_ok(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        10000001,
+        session_key1,
+        &current_username,
+    )
+    .await;
+
+    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+
+    let char_count = db.get_character_count(&current_username);
+    let _ = send_server_list(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        &announce_ip,
+        announce_port,
+        default_server_id,
+        char_count,
+    )
+    .await;
+
+    println!(
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake ready. Listening for client requests...",
+        session_id
+    );
+
+    // Packet reception loop
+    let mut header_buf = [0u8; 2];
+    loop {
+        match socket.read_exact(&mut header_buf).await {
+            Ok(_) => {}
+            Err(e) => {
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Connection closed by client: {}",
+                    session_id, e
+                );
+                break;
+            }
+        }
+
+        let pkt_len = u16::from_le_bytes(header_buf) as usize;
+        if pkt_len < 2 || pkt_len > 8192 {
+            eprintln!(
+                "WARN: [LoginServer-NCSoft] [SESSION-{:08X}] Invalid packet length: {} bytes. Disconnecting.",
+                session_id, pkt_len
+            );
+            break;
+        }
+
+        let payload_len = pkt_len - 2;
+        let mut payload = vec![0u8; payload_len];
+        if let Err(e) = socket.read_exact(&mut payload).await {
+            eprintln!(
+                "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to read packet payload ({} bytes): {}",
+                session_id, payload_len, e
+            );
+            break;
+        }
+
+        let raw_hex: String = payload.iter().take(16).map(|b| format!("{:02X} ", b)).collect();
+        println!(
+            "DEBUG: [LoginServer-NCSoft] [SESSION-{:08X}] <- Received {} bytes (Raw: {}...)",
+            session_id, pkt_len, raw_hex.trim()
+        );
+
+        // Check if raw unencrypted or CM_LOGIN format (168 bytes)
+        if payload.len() == 168 || (payload.len() >= 5 && payload[4] == 0x0B) {
+            println!(
+                "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] Native credentials packet received ({} bytes)",
+                session_id, payload.len()
+            );
+
+            // Extract username if readable
+            if let Some(user) = extract_string_from_payload(&payload) {
+                current_username = user;
+            }
+
+            let acc = db.get_or_create_account(&current_username, auto_create);
+            println!(
+                "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Authenticated Account: '{}' (Auto-Created: {}, Exists: {})",
+                session_id, current_username, auto_create, acc.is_ok()
+            );
+
+            let char_count = db.get_character_count(&current_username);
+            let _ = send_login_ok(
+                &mut socket,
+                &crypt_engine,
+                session_id,
+                10000001,
+                session_key1,
+                &current_username,
+            )
+            .await;
+
+            tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+            let _ = send_server_list(
+                &mut socket,
+                &crypt_engine,
+                session_id,
+                &announce_ip,
+                announce_port,
+                default_server_id,
+                char_count,
+            )
+            .await;
+            continue;
+        }
+
+        // Decrypt with Blowfish if not already in plaintext opcode format
+        let mut dec_payload = payload.clone();
+        let decrypted = crypt_engine.decrypt_packet(&mut dec_payload);
+        
+        let (active_buf, opcode) = if payload.len() >= 1 && (payload[0] == 0x02 || payload[0] == 0x07 || payload[0] == 0x05 || payload[0] == 0x08 || payload[0] == 0x0B) {
+            (&payload, payload[0])
+        } else {
+            if !decrypted {
+                println!(
+                    "DEBUG: [LoginServer-NCSoft] [SESSION-{:08X}] Blowfish decrypt checksum mismatch (len: {} bytes)",
+                    session_id, dec_payload.len()
+                );
+            }
+            (&dec_payload, dec_payload[0])
+        };
+
+        let active_hex: String = active_buf.iter().take(16).map(|b| format!("{:02X} ", b)).collect();
+        println!(
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- Opcode 0x{:02X} (Payload: {}...)",
+            session_id, opcode, active_hex.trim()
+        );
+
+        match opcode {
+            0x07 => {
+                // CM_AUTH_GG
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_AUTH_GG] GameGuard verification keepalive",
+                    session_id
+                );
+                let _ = socket.write_all(&auth_gg_pkt).await;
+            }
+            0x0B | 0x08 => {
+                // CM_LOGIN
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X})",
+                    session_id, opcode
+                );
+                if let Some(user) = extract_string_from_payload(active_buf) {
+                    current_username = user;
+                }
+
+                let _ = db.get_or_create_account(&current_username, auto_create);
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Account '{}' verified successfully.",
+                    session_id, current_username
+                );
+
+                let char_count = db.get_character_count(&current_username);
+                let _ = send_login_ok(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    10000001,
+                    session_key1,
+                    &current_username,
+                )
+                .await;
+
+                tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+                let _ = send_server_list(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    &announce_ip,
+                    announce_port,
+                    default_server_id,
+                    char_count,
+                )
+                .await;
+            }
+            0x05 => {
+                // CM_SERVER_LIST request
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_SERVER_LIST] Refresh server list request",
+                    session_id
+                );
+                let char_count = db.get_character_count(&current_username);
+                let _ = send_server_list(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    &announce_ip,
+                    announce_port,
+                    default_server_id,
+                    char_count,
+                )
+                .await;
+            }
+            0x02 => {
+                // CM_PLAY / CM_SERVER_SELECT
+                let selected_id = if active_buf.len() > 1 && active_buf[1] > 0 {
+                    active_buf[1]
+                } else {
+                    default_server_id
+                };
+
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_PLAY] Entering World on Server ID {} for user '{}'",
+                    session_id, selected_id, current_username
+                );
+
+                // Register session in SQLite db so Game Server validates entry
+                let _ = db.issue_session(&current_username, session_key2);
+
+                // Send SM_PLAY_OK (Opcode 0x07 / 0x06)
+                let mut play_ok_raw = vec![0u8; 10];
+                play_ok_raw[0] = 0x07; // Opcode SM_PLAY_OK
+                play_ok_raw[1..5].copy_from_slice(&session_key1.to_le_bytes());
+                play_ok_raw[5..9].copy_from_slice(&session_key2.to_le_bytes());
+                play_ok_raw[9] = selected_id;
+
+                let enc = crypt_engine.encrypt_packet(&play_ok_raw);
+                let mut pkt = Vec::with_capacity(enc.len() + 2);
+                pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+                pkt.extend_from_slice(&enc);
+
+                if let Err(e) = socket.write_all(&pkt).await {
+                    eprintln!(
+                        "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_PLAY_OK: {}",
+                        session_id, e
+                    );
+                    break;
+                }
+
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_PLAY_OK (Opcode 0x07, SessionKey1: 0x{:08X}, SessionKey2: 0x{:08X}, ServerID: {}). Handshake Complete!",
+                    session_id, session_key1, session_key2, selected_id
+                );
+            }
+            _ => {
+                println!(
+                    "WARN: [LoginServer-NCSoft] [SESSION-{:08X}] Unhandled opcode 0x{:02X} (Payload len: {} bytes)",
+                    session_id, opcode, dec_payload.len()
+                );
             }
         }
     }
+}
 
-    println!("INFO: [LoginServer-NCSoft] Authentication success for '{}'", username);
-    let _ = db.get_or_create_account(&username, auto_create);
-    let char_count = db.get_character_count(&username);
-
-    // 3. Send SM_LOGIN_OK (52 bytes)
-    let session_key1: u32 = 0x026edf39;
-    let mut sm_login_ok = vec![0u8; 52];
-    sm_login_ok[0..4].copy_from_slice(&10000001u32.to_le_bytes()); // AccountId
-    sm_login_ok[4..8].copy_from_slice(&session_key1.to_le_bytes());
-    sm_login_ok[16..20].copy_from_slice(&0x0000003Fu32.to_le_bytes()); // Account Flags
-    sm_login_ok[32] = 0xFF; // Assinatura Classic
-    sm_login_ok[33] = 0xFE; // Assinatura Classic
-    sm_login_ok[48..52].copy_from_slice(&0x00000001u32.to_le_bytes()); // TOS flag
-
-    let mut login_ok_pkt = vec![];
-    login_ok_pkt.put_u16_le((sm_login_ok.len() + 3) as u16);
-    login_ok_pkt.put_u8(0x03); // Opcode SM_LOGIN_OK
-    login_ok_pkt.extend_from_slice(&sm_login_ok);
-    let _ = socket.write_all(&login_ok_pkt).await;
-
-    // 4. Send SM_SERVER_LIST (21 bytes per server entry)
-    let mut srv_entry = [0u8; 21];
-    srv_entry[0] = default_server_id; // Server ID (23 = Atreia)
-    let ip_parts: Vec<u8> = announce_ip.split('.').filter_map(|s| s.parse::<u8>().ok()).collect();
-    if ip_parts.len() == 4 {
-        srv_entry[1..5].copy_from_slice(&ip_parts);
-    } else {
-        srv_entry[1..5].copy_from_slice(&[192, 168, 3, 184]);
+fn extract_string_from_payload(payload: &[u8]) -> Option<String> {
+    for start in 1..payload.len().saturating_sub(3) {
+        let slice = &payload[start..];
+        let null_pos = slice.iter().position(|&b| b == 0).unwrap_or(slice.len());
+        if null_pos >= 3 && null_pos <= 32 {
+            if let Ok(s) = std::str::from_utf8(&slice[..null_pos]) {
+                let trimmed = s.trim();
+                if !trimmed.is_empty()
+                    && trimmed
+                        .chars()
+                        .all(|c| c.is_ascii_alphanumeric() || c == '_' || c == '-')
+                {
+                    return Some(trimmed.to_string());
+                }
+            }
+        }
     }
-    srv_entry[5..9].copy_from_slice(&(announce_port as u32).to_le_bytes());
-    srv_entry[9] = 0; // Age limit
-    srv_entry[10] = 1; // PvP
-    srv_entry[11..13].copy_from_slice(&0u16.to_le_bytes()); // Online players
-    srv_entry[13..15].copy_from_slice(&1000u16.to_le_bytes()); // Max players
-    srv_entry[15] = 1; // Status online
-    srv_entry[16..20].copy_from_slice(&0x00000401u32.to_le_bytes()); // ServerBits: Bit 10 = Classic
-    srv_entry[20] = 2; // Bracket / Country Code (2 = Classic EU)
-
-    let mut srv_list_pkt = vec![];
-    let payload_len = 2 + 21 + 2 + 1; // count(1) + lastServer(1) + entry(21) + charCountLen(2) + count(1)
-    srv_list_pkt.put_u16_le((payload_len + 3) as u16);
-    srv_list_pkt.put_u8(0x04); // Opcode SM_SERVER_LIST
-    srv_list_pkt.put_u8(1); // 1 server
-    srv_list_pkt.put_u8(default_server_id);
-    srv_list_pkt.extend_from_slice(&srv_entry);
-    srv_list_pkt.put_u16_le(1); // 1 server count
-    srv_list_pkt.put_u8(char_count); // Character count on this server
-
-    let _ = socket.write_all(&srv_list_pkt).await;
-
-    // 5. Read CM_SERVER_SELECT
-    let n2 = match socket.read(&mut buf).await {
-        Ok(n) if n > 2 => n,
-        _ => return,
-    };
-
-    let selected_id = if n2 >= 4 { buf[3] } else { default_server_id };
-    println!("INFO: [LoginServer-NCSoft] Player selected server ID {}", selected_id);
-
-    // 6. Send SM_PLAY_OK
-    let session_key2: u32 = 0x026edf39;
-    let _ = db.issue_session(&username, session_key2);
-    let mut play_ok_pkt = vec![];
-    play_ok_pkt.put_u16_le((8 + 3) as u16);
-    play_ok_pkt.put_u8(0x06); // Opcode SM_PLAY_OK
-    play_ok_pkt.extend_from_slice(&session_key1.to_le_bytes());
-    play_ok_pkt.extend_from_slice(&session_key2.to_le_bytes());
-    let _ = socket.write_all(&play_ok_pkt).await;
-
-    println!("INFO: [LoginServer-NCSoft] Handshake complete for user '{}'.", username);
+    None
 }

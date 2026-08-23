@@ -77,14 +77,25 @@ async fn handle_hq_client(
         eprintln!("ERROR: [LoginServer-HQ] Failed to send AUTH_GREETING: {}", e);
         return;
     }
+    println!("INFO: [LoginServer-HQ] -> Sent AUTH_GREETING (92 bytes, Opcode 0x05)");
 
     let mut buf = [0u8; 1024];
 
     // 2. Read CREDENTIALS
     let n = match socket.read(&mut buf).await {
         Ok(n) if n > 0 => n,
-        _ => return,
+        Ok(_) => {
+            println!("INFO: [LoginServer-HQ] Client disconnected during credentials phase.");
+            return;
+        }
+        Err(e) => {
+            eprintln!("ERROR: [LoginServer-HQ] Read error on credentials: {}", e);
+            return;
+        }
     };
+
+    let raw_hex: String = buf[..n.min(24)].iter().map(|b| format!("{:02X} ", b)).collect();
+    println!("DEBUG: [LoginServer-HQ] <- Received {} bytes (Raw: {})", n, raw_hex.trim());
 
     // Extract dynamic username from raw payload
     let mut username = default_user.clone();
@@ -108,7 +119,11 @@ async fn handle_hq_client(
     let mut login_ok = vec![0x0e, 0x00, 0x01, 0x00, 0x00, 0x00];
     login_ok.extend_from_slice(&0u32.to_le_bytes()); // account_id
     login_ok.extend_from_slice(&login_key.to_le_bytes()); // login_key
-    let _ = socket.write_all(&login_ok).await;
+    if let Err(e) = socket.write_all(&login_ok).await {
+        eprintln!("ERROR: [LoginServer-HQ] Failed to send LOGIN_OK: {}", e);
+        return;
+    }
+    println!("INFO: [LoginServer-HQ] -> Sent LOGIN_OK (14 bytes, Account: '{}', LoginKey: 0x{:08X})", username, login_key);
 
     // 4. Send SERVER_LIST (201 bytes)
     let mut server_list = vec![
@@ -147,12 +162,23 @@ async fn handle_hq_client(
 
     // Trailer
     server_list.extend_from_slice(&[0x00, 0x00, 0x00, 0x00]);
-    let _ = socket.write_all(&server_list).await;
+    if let Err(e) = socket.write_all(&server_list).await {
+        eprintln!("ERROR: [LoginServer-HQ] Failed to send SERVER_LIST: {}", e);
+        return;
+    }
+    println!("INFO: [LoginServer-HQ] -> Sent SERVER_LIST (201 bytes, Main Server ID: {}, Target: {}:{}, Chars: {})", default_server_id, announce_ip, announce_port, char_count);
 
     // 5. Read SERVER_SELECT
     let n2 = match socket.read(&mut buf).await {
         Ok(n) if n > 0 => n,
-        _ => return,
+        Ok(_) => {
+            println!("INFO: [LoginServer-HQ] Client disconnected waiting for SERVER_SELECT.");
+            return;
+        }
+        Err(e) => {
+            eprintln!("ERROR: [LoginServer-HQ] Read error on SERVER_SELECT: {}", e);
+            return;
+        }
     };
 
     let server_id = if n2 >= 10 {
@@ -161,7 +187,7 @@ async fn handle_hq_client(
         default_server_id as u32
     };
 
-    println!("INFO: [LoginServer-HQ] Player selected server ID 0x{:02X}", server_id);
+    println!("INFO: [LoginServer-HQ] <- Player selected server ID 0x{:02X} ({})", server_id, server_id);
 
     // 6. Send SESSION_KEY (22 bytes)
     let _ = db.issue_session(&username, login_key);
@@ -173,7 +199,10 @@ async fn handle_hq_client(
     session_key_pkt.extend_from_slice(&login_key.to_le_bytes());
     session_key_pkt.extend_from_slice(&[0x00, 0x00, 0x00, 0x00]); // Error code = 0 (MUST BE ZERO)
     session_key_pkt.extend_from_slice(&[0xd6, 0x0a, 0x00, 0x00]); // Extra flag
-    let _ = socket.write_all(&session_key_pkt).await;
+    if let Err(e) = socket.write_all(&session_key_pkt).await {
+        eprintln!("ERROR: [LoginServer-HQ] Failed to send SESSION_KEY: {}", e);
+        return;
+    }
 
-    println!("INFO: [LoginServer-HQ] Session established for user '{}'. Transitioning to Game Server.", username);
+    println!("INFO: [LoginServer-HQ] -> Sent SESSION_KEY (22 bytes, Error: 0, Server: 0x{:02X}). Session established for user '{}'. Transitioning to Game Server.", server_id, username);
 }

@@ -68,13 +68,16 @@ impl ClientMessages {
 
             match client::Message::deserialise(&mut buffer[2..len], key) {
                 Ok((message, opcode)) => {
-                    println!("C: {message:02X?}");
+                    println!("INFO: [GameServer] <- Client Packet 0x{:04X} [{:?}]", opcode, message);
                     messages.push(message);
                     if no_mundo && !ACAO_AO_VIVO.contains(&opcode) {
                         sem_implementacao.push(opcode);
                     }
                 }
-                Err(opcode) => sem_implementacao.push(opcode),
+                Err(opcode) => {
+                    println!("DEBUG: [GameServer] <- Client Packet 0x{:04X} (passthrough)", opcode);
+                    sem_implementacao.push(opcode);
+                }
             }
 
             buffer = &mut buffer[len..];
