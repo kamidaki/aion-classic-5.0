@@ -287,5 +287,86 @@ mod test {
             assert_eq!(dec, op, "Falha no roundtrip do opcode de cliente 0x{:04X}", op);
         }
     }
-}
 
+    // =====================================================================================
+    // Prova contra o servidor oficial. Os quadros abaixo foram capturados em 24/08/2026 do
+    // servidor da Gameforge (79.110.83.115:7777), no comeco de uma sessao real.
+    //
+    // Os testes acima sao todos de ida e volta: cifram e decifram os proprios dados, e por isso
+    // passariam mesmo com as constantes erradas. Este nao: ele pega bytes que a Gameforge pos na
+    // rede e exige que as nossas constantes os abram. Foi trocando SUB_SEED, XOR_SEED_32 e
+    // XOR_SEED_64 do Classic 2.5 para os do 4.5 que esta sessao passou a decifrar.
+    // =====================================================================================
+
+    /// S_KEY, o primeiro quadro da sessao. Viaja em claro e carrega o seed.
+    const OFICIAL_S1: &str = "0b00df016520fe929fcb73";
+    /// Quadro seguinte do servidor, ja cifrado.
+    const OFICIAL_S2: &str = concat!(
+        "3d004a365668616e59eb7b0e12c4fde2cc2d356970dcc9c3e15c06e0f869bfa173e039d79bf8cc35e7da46bc68e43226",
+        "09a5fc255fdc81b589485f3133",
+    );
+    /// E o terceiro, que so abre se a chave tiver avancado pelo tamanho do segundo.
+    const OFICIAL_S3: &str = concat!(
+        "430093ee8ea6aeffde09a6d1c77fb6a88668abf7ee26c9a4864589ebd2439789d163b5d0f665a0a6ef228085ae23c9dd",
+        "bd7fb8c2b912d41d5e9f4788d79c66637ec03b",
+    );
+
+    fn de_hex(h: &str) -> Vec<u8> {
+        (0..h.len())
+            .step_by(2)
+            .map(|i| u8::from_str_radix(&h[i..i + 2], 16).unwrap())
+            .collect()
+    }
+
+    /// Le o seed do S_KEY. O quadro vem em claro: `[u16 tamanho][...][u32 seed]`.
+    fn seed_do_s_key(quadro: &[u8]) -> u32 {
+        assert_eq!(
+            u16::from_le_bytes([quadro[0], quadro[1]]) as usize,
+            quadro.len(),
+            "o tamanho declarado tem que bater com o quadro"
+        );
+        u32::from_le_bytes(quadro[7..11].try_into().unwrap())
+    }
+
+    #[test]
+    fn a_sessao_real_do_servidor_oficial_decifra() {
+        let seed = seed_do_s_key(&de_hex(OFICIAL_S1));
+        assert_eq!(seed, 0x73CB_9F92);
+
+        let mut key = gen_xor_key(seed).to_le_bytes();
+
+        // A chave nao avanca no S_KEY, e avanca pelo tamanho de cada quadro decifrado depois.
+        for (hex, opcode_esperado) in [(OFICIAL_S2, 0x000u16), (OFICIAL_S3, 0x10E)] {
+            let quadro = de_hex(hex);
+            let mut corpo = quadro[2..].to_vec();
+            decrypt(&mut key, &mut corpo);
+
+            let cifrado = u16::from_le_bytes([corpo[0], corpo[1]]);
+            let checksum = u16::from_le_bytes([corpo[3], corpo[4]]);
+            assert_eq!(
+                checksum, !cifrado,
+                "checksum nao fecha -- a chave derivada do seed esta errada"
+            );
+            assert_eq!(
+                decrypt_server_opcode(cifrado),
+                opcode_esperado,
+                "opcode do servidor oficial"
+            );
+        }
+    }
+
+    #[test]
+    fn com_o_seed_errado_a_sessao_nao_abre() {
+        // Guarda: se `gen_xor_key` mudar, ou as constantes voltarem para as do 2.5, o checksum
+        // para de fechar. E o unico sintoma -- nao ha erro, so lixo.
+        let mut key = gen_xor_key(0x73CB_9F92 ^ 1).to_le_bytes();
+
+        let quadro = de_hex(OFICIAL_S2);
+        let mut corpo = quadro[2..].to_vec();
+        decrypt(&mut key, &mut corpo);
+
+        let cifrado = u16::from_le_bytes([corpo[0], corpo[1]]);
+        let checksum = u16::from_le_bytes([corpo[3], corpo[4]]);
+        assert_ne!(checksum, !cifrado, "com o seed errado nao pode fechar");
+    }
+}
