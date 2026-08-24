@@ -1,29 +1,46 @@
-//! # ATENCAO: o cliente Gameforge nao le esta porta
+//! # O que o cliente faz nesta porta, medido de dentro dele
 //!
-//! Medido em 25/08/2026 contra o cliente real, pela janela de recepcao do TCP: em **9 de 9**
-//! conexoes o cliente recebeu os 368 bytes da cadeia (194 + 50 + 74 + 50), a janela caiu
-//! exatamente 368 bytes e **nunca se recuperou**. Ou seja, os dados ficaram parados no buffer do
-//! socket: o cliente conecta, nao le um unico byte e fecha.
+//! Instrumentando o `version.dll` com hooks de `recv`/`WSARecv` (25/08/2026), da para ver a
+//! sequencia exata do lado do cliente:
 //!
-//! O metodo se valida contra a captura do servidor oficial, onde 1,2 MB passaram por uma janela
-//! de 128 KB -- o que so acontece se a aplicacao estiver consumindo.
+//! ```text
+//! connect(Port=2106)
+//! recv(pediu=2)   -> 2      <- le o cabecalho de tamanho
+//! recv(pediu=192) -> 192    <- le o corpo do SM_INIT
+//! recv(pediu=2)   -> 2      <- e assim por diante, para os quatro pacotes
+//! recv(pediu=48)  -> 48
+//! recv(pediu=2)   -> 2
+//! recv(pediu=72)  -> 72
+//! recv(pediu=2)   -> 2
+//! recv(pediu=48)  -> 48
+//! recv(pediu=2)   -> FALHOU WSA=10035   <- e fica em laco pedindo mais
+//! ```
 //!
-//! ## O que isso invalida
+//! O cliente **le tudo**, com o enquadramento correto: pede 2 bytes, descobre o tamanho, pede o
+//! restante. `10035` e `WSAEWOULDBLOCK` -- nao ha mais dado --, nao erro. A conexao fica saudavel.
 //!
-//! A escada de mensagens que aparecia ao mexer no `SM_LOGIN_OK` -- `Authorization Error (-101)`,
-//! depois `Your account has been blocked`, depois nenhuma -- foi atribuida ao conteudo desses
-//! pacotes. **Essa atribuicao esta errada**: o cliente nao os leu. A correlacao era coincidencia,
-//! e a origem daquelas mensagens continua desconhecida.
+//! ## CORRECAO de uma afirmacao anterior
 //!
-//! Os layouts abaixo seguem `CONTEXT.md` e `Docs-Refs/PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md`,
-//! e nesse sentido estao corretos. Mas **nenhum deles foi confirmado contra o cliente**, e nao ha
-//! como confirmar enquanto ele nao ler a porta.
+//! Este arquivo dizia, com base na janela de recepcao do TCP, que o cliente "nao le um unico
+//! byte". **Isso estava errado.** A janela nao se recuperava porque o Windows nao emite window
+//! update quando a aplicacao le rapido e nada mais chega -- sinal ambiguo, que foi lido como
+//! prova. A medicao de dentro do processo desmente.
 //!
-//! ## Consequencia pratica
+//! ## O que sobra
 //!
-//! Mexer em byte de pacote daqui nao muda o comportamento do cliente. O bloqueio e antes: ele
-//! abre o socket e nunca chega ao estado em que o atende. Quem manda nesse estado e a
-//! autenticacao pelo named pipe (`net::pipe`), nao esta porta.
+//! O cliente le, nao se da por satisfeito e espera mais. Nunca envia: zero `send`/`WSASend` no
+//! socket, com os guards de socket NOPpados. E o hook de `SubmitCredentials`
+//! (`game.dll+0x1419C0`) nunca dispara -- o clique no login nao chega a submeter credenciais.
+//!
+//! Testado e descartado:
+//!
+//! * **cadeia proativa** -- com so o `SM_INIT`, o comportamento e identico (le, espera, nao
+//!   envia). Nao e excesso de pacote inesperado.
+//! * **estado `AUTHED_READY`** -- o patch `0x14BB6F8 = 3` aplica e nao muda nada.
+//! * **porta e protocolo** -- na 13001, com o protocolo HQ, o cliente tambem le e espera.
+//!
+//! Os layouts abaixo seguem `CONTEXT.md` e `PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md`. Nenhum
+//! foi confirmado por reacao do cliente, porque ele nao reage a nenhum deles.
 
 use crate::crypto::{LoginCryptEngine, RsaManager};
 use crate::db::AuthDb;
@@ -508,6 +525,15 @@ async fn handle_ncsoft_client(
     }
     let char_count = db.get_character_count(&current_username);
 
+    // A cadeia proativa vem do CONTEXT.md e nunca foi validada contra o cliente. Medido com a
+    // instrumentacao da version.dll: o cliente le os quatro pacotes, nao se da por satisfeito e
+    // fica chamando `recv` em laco (WSAEWOULDBLOCK), sem nunca enviar nada. Uma explicacao e que
+    // ele descarte AUTH_GG/LOGIN_OK/SERVER_LIST por serem respostas a pedidos que ele nao fez.
+    //
+    // `AION_SEM_PROATIVO=1` manda so o SM_INIT e espera, para separar as duas hipoteses.
+    let proativo = env_num("AION_SEM_PROATIVO", 0) == 0;
+
+    if proativo {
     if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
         eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
         return;
@@ -544,6 +570,12 @@ async fn handle_ncsoft_client(
         "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Cadeia proativa entregue (conta '{}', id {}, {} personagens)",
         session_id, current_username, account_id, char_count
     );
+    } else {
+        println!(
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] AION_SEM_PROATIVO: so o SM_INIT foi enviado, aguardando o cliente",
+            session_id
+        );
+    }
 
     // =========================================================================
     // 3. Packet Reception Loop

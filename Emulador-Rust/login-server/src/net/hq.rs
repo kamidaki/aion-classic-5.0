@@ -1,29 +1,46 @@
-//! # ATENCAO: medido, o cliente tambem nao le esta porta
+//! # O que o cliente faz nesta porta, medido de dentro dele
 //!
-//! O mesmo que acontece na 2106 (ver a nota em `net::ncsoft`) acontece aqui. Medido em 25/08/2026
-//! pela janela de recepcao do TCP: o servidor manda os 92 bytes do `AUTH_GREETING`, a janela do
-//! cliente cai exatamente 92 e nao se recupera. Ele nao le, nao responde e fecha.
+//! Instrumentando o `version.dll` com hooks de `recv`/`WSARecv` (25/08/2026), da para ver a
+//! sequencia exata do lado do cliente:
 //!
-//! O teste foi feito na combinacao que faltava -- `version.dll` instalado e com os patches
-//! aplicando, token do pipe no valor original, HQ e STS alinhados com a captura do servidor
-//! oficial. Mesmo assim: 92 bytes parados no buffer.
+//! ```text
+//! connect(Port=2106)
+//! recv(pediu=2)   -> 2      <- le o cabecalho de tamanho
+//! recv(pediu=192) -> 192    <- le o corpo do SM_INIT
+//! recv(pediu=2)   -> 2      <- e assim por diante, para os quatro pacotes
+//! recv(pediu=48)  -> 48
+//! recv(pediu=2)   -> 2
+//! recv(pediu=72)  -> 72
+//! recv(pediu=2)   -> 2
+//! recv(pediu=48)  -> 48
+//! recv(pediu=2)   -> FALHOU WSA=10035   <- e fica em laco pedindo mais
+//! ```
 //!
-//! ## O que isso estabelece
+//! O cliente **le tudo**, com o enquadramento correto: pede 2 bytes, descobre o tamanho, pede o
+//! restante. `10035` e `WSAEWOULDBLOCK` -- nao ha mais dado --, nao erro. A conexao fica saudavel.
 //!
-//! O cliente nao le o socket de login **em nenhuma das duas portas**, com nenhum dos dois
-//! protocolos:
+//! ## CORRECAO de uma afirmacao anterior
 //!
-//! | porta | protocolo      | recebeu | leu |
-//! |-------|----------------|---------|-----|
-//! | 2106  | NCSoft/Blowfish| 368 B   | 0   |
-//! | 13001 | Gameforge HQ   | 92 B    | 0   |
+//! Este arquivo dizia, com base na janela de recepcao do TCP, que o cliente "nao le um unico
+//! byte". **Isso estava errado.** A janela nao se recuperava porque o Windows nao emite window
+//! update quando a aplicacao le rapido e nada mais chega -- sinal ambiguo, que foi lido como
+//! prova. A medicao de dentro do processo desmente.
 //!
-//! Logo, o bloqueio nao e conteudo de pacote, nem porta, nem escolha de protocolo. Ele abre a
-//! conexao e nunca chega ao estado em que a atende. Mexer no que esta abaixo nao muda isso.
+//! ## O que sobra
 //!
-//! O layout deste arquivo continua confirmado byte a byte contra a captura do servidor oficial --
-//! ver os testes no fim. O que nao esta confirmado e que ele seja suficiente, porque o cliente
-//! nunca chegou a le-lo.
+//! O cliente le, nao se da por satisfeito e espera mais. Nunca envia: zero `send`/`WSASend` no
+//! socket, com os guards de socket NOPpados. E o hook de `SubmitCredentials`
+//! (`game.dll+0x1419C0`) nunca dispara -- o clique no login nao chega a submeter credenciais.
+//!
+//! Testado e descartado:
+//!
+//! * **cadeia proativa** -- com so o `SM_INIT`, o comportamento e identico (le, espera, nao
+//!   envia). Nao e excesso de pacote inesperado.
+//! * **estado `AUTHED_READY`** -- o patch `0x14BB6F8 = 3` aplica e nao muda nada.
+//! * **porta e protocolo** -- na 13001, com o protocolo HQ, o cliente tambem le e espera.
+//!
+//! Os layouts abaixo seguem `CONTEXT.md` e `PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md`. Nenhum
+//! foi confirmado por reacao do cliente, porque ele nao reage a nenhum deles.
 
 //! Protocolo de autenticacao Gameforge HQ (porta 13001).
 //!
