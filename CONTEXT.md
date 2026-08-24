@@ -302,3 +302,38 @@ CREATE TABLE IF NOT EXISTS broker_history (
      - `chat.db`: Tabelas `chat_channels`, `chat_bans`.
      - Consulta cruzada transparente de sessões via `ATTACH DATABASE 'login.db' AS login_db`.
   5. **100% dos 176 testes automatizados aprovados e compatibilidade total validada**.
+
+---
+
+## 8. Arquitetura de Comunicação Inter-Servidores (CS <> LS <> GS)
+
+O emulador **EmuRust** implementa a mesma arquitetura de segurança de rede inter-servidores do **Java AionEMU (Aion-Lightning / Encom 2.4 Classic)**, utilizando portas TCP internas dedicadas com autenticação obrigatória por senha criptografada:
+
+### A. Tabela de Portas e Credenciais Inter-Servidores
+
+| Conexão | Porta Interna | Papel do Servidor | Senha Padrão (`launcher.json`) | Validação no DB |
+|---|---|---|---|---|
+| **GS -> LS** | `TCP 9014` | **Login Server** escuta conexões internas do Game Server. | `"Sabrewolf100!"` | Tabela `gameservers` (`login.db`) e chave `gameserver_password`. |
+| **GS -> CS** | `TCP 9021` | **Chat Server** escuta conexões internas do Game Server. | `"Sabrewolf100!"` | Chave `chat_password` no `launcher.json`. |
+
+### B. Protocolo de Handshake e Registro
+
+```text
+┌──────────────┐                               ┌──────────────┐
+│ Game-Server  │                               │ Login-Server │
+└──────┬───────┘                               └──────┬───────┘
+       │                                              │
+       │  CM_GS_AUTH (server_id, port, max, pass)     │
+       │─────────────────────────────────────────────>│ (Valida senha no gameservers e launcher.json)
+       │                                              │
+       │  SM_GS_AUTH_RESPONSE (Status 0 = AUTHED)     │
+       │<─────────────────────────────────────────────│ (Registra GameServer no Active Registry)
+       │                                              │
+       │  CM_GS_PONG / Heartbeat (a cada 15s)         │
+       │<────────────────────────────────────────────>│
+       │                                              │
+```
+
+1. **Rejeição Automática**: Se um Game Server ou Chat Server tentar se conectar com senha incorreta ou ID não registrado, a conexão é **imediatamente rejeitada com código 1 (`REJECTED`)** e o socket é encerrado.
+2. **Sincronização em Tempo Real**: O Login Server atualiza dinamicamente a contagem de jogadores online no `SM_SERVER_LIST` conforme o Game Server envia os relatórios periódicos de status.
+3. **Resiliência e Reconexão Automática**: O Game Server monitora a saúde das conexões com o Login Server e Chat Server, efetuando reconexão automática em caso de reinício de qualquer serviço.

@@ -16,10 +16,12 @@
 //! 3. The server then responds with a payload about the client version, looks
 //! like OS version info from `GetVersionExA` and `GetACP` for the ANSI format
 
+mod chat_connector;
 mod data_loader;
 mod db;
 mod error;
 mod game;
+mod login_connector;
 
 use crossbeam_channel::Sender;
 use data_loader::GameData;
@@ -47,6 +49,57 @@ pub struct GameServerConfig {
     pub world: WorldConfig,
     #[serde(default)]
     pub security: SecurityConfig,
+    #[serde(default)]
+    pub inter_server: InterServerConfig,
+}
+
+impl Default for GameServerConfig {
+    fn default() -> Self {
+        Self {
+            network: NetworkConfig::default(),
+            server: ServerInfoConfig::default(),
+            database: DatabaseConfig::default(),
+            world: WorldConfig::default(),
+            security: SecurityConfig::default(),
+            inter_server: InterServerConfig::default(),
+        }
+    }
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct InterServerConfig {
+    #[serde(default = "default_login_address")]
+    pub login_server_address: String,
+    #[serde(default = "default_gameserver_password")]
+    pub gameserver_password: String,
+    #[serde(default = "default_chat_address")]
+    pub chat_server_address: String,
+    #[serde(default = "default_chat_password")]
+    pub chat_password: String,
+}
+
+impl Default for InterServerConfig {
+    fn default() -> Self {
+        Self {
+            login_server_address: default_login_address(),
+            gameserver_password: default_gameserver_password(),
+            chat_server_address: default_chat_address(),
+            chat_password: default_chat_password(),
+        }
+    }
+}
+
+fn default_login_address() -> String {
+    "127.0.0.1:9014".to_string()
+}
+fn default_gameserver_password() -> String {
+    "Sabrewolf100!".to_string()
+}
+fn default_chat_address() -> String {
+    "127.0.0.1:9021".to_string()
+}
+fn default_chat_password() -> String {
+    "Sabrewolf100!".to_string()
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -81,6 +134,8 @@ pub struct ServerInfoConfig {
     pub server_name: String,
     #[serde(default = "default_tick_rate")]
     pub tick_rate: f32,
+    #[serde(default = "default_max_players")]
+    pub max_players: u32,
 }
 
 impl Default for ServerInfoConfig {
@@ -89,18 +144,22 @@ impl Default for ServerInfoConfig {
             server_id: default_server_id(),
             server_name: default_server_name(),
             tick_rate: default_tick_rate(),
+            max_players: default_max_players(),
         }
     }
 }
 
 fn default_server_id() -> u8 {
-    23
+    1
 }
 fn default_server_name() -> String {
-    "Atreia".to_string()
+    "Brasil em Chamas (São Paulo)".to_string()
 }
 fn default_tick_rate() -> f32 {
-    144.0
+    20.0
+}
+fn default_max_players() -> u32 {
+    1000
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -176,13 +235,67 @@ fn default_true() -> bool {
 }
 
 fn load_config() -> GameServerConfig {
-    let candidates = [
+    // 1. Prioriza config/launcher.json
+    let launcher_candidates = [
+        "config/launcher.json",
+        "../Produto Final/config/launcher.json",
+        "launcher.json",
+    ];
+
+    for path in launcher_candidates {
+        if let Ok(content) = std::fs::read_to_string(path) {
+            if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
+                if let Some(gs_val) = json.get("game-server") {
+                    println!("INFO: Loaded Game config from {path} (JSON)");
+                    let mut cfg = GameServerConfig::default();
+
+                    if let Some(b) = gs_val.get("bind_address").and_then(|v| v.as_str()) {
+                        cfg.network.bind_address = b.to_string();
+                    }
+                    if let Some(p) = gs_val.get("port").and_then(|v| v.as_u64()) {
+                        cfg.network.port = p as u16;
+                    }
+                    if let Some(id) = gs_val.get("server_id").and_then(|v| v.as_u64()) {
+                        cfg.server.server_id = id as u8;
+                    }
+                    if let Some(name) = gs_val.get("server_name").and_then(|v| v.as_str()) {
+                        cfg.server.server_name = name.to_string();
+                    }
+                    if let Some(max_p) = gs_val.get("max_players").and_then(|v| v.as_u64()) {
+                        cfg.server.max_players = max_p as u32;
+                    }
+                    if let Some(la) = gs_val.get("login_server_address").and_then(|v| v.as_str()) {
+                        cfg.inter_server.login_server_address = la.to_string();
+                    }
+                    if let Some(lp) = gs_val.get("gameserver_password").and_then(|v| v.as_str()) {
+                        cfg.inter_server.gameserver_password = lp.to_string();
+                    }
+                    if let Some(ca) = gs_val.get("chat_server_address").and_then(|v| v.as_str()) {
+                        cfg.inter_server.chat_server_address = ca.to_string();
+                    }
+                    if let Some(cp) = gs_val.get("chat_password").and_then(|v| v.as_str()) {
+                        cfg.inter_server.chat_password = cp.to_string();
+                    }
+                    if let Some(db_path) = gs_val.get("database").and_then(|d| d.get("path")).and_then(|v| v.as_str()) {
+                        cfg.database.database_path = db_path.to_string();
+                    }
+                    if let Some(d_path) = gs_val.get("data_path").and_then(|v| v.as_str()) {
+                        cfg.world.data_dir = d_path.to_string();
+                    }
+
+                    return cfg;
+                }
+            }
+        }
+    }
+
+    let toml_candidates = [
         "config/game_server.toml",
         "../config/game_server.toml",
         "game_server.toml",
     ];
 
-    for path in candidates {
+    for path in toml_candidates {
         if let Ok(content) = std::fs::read_to_string(path) {
             if let Ok(cfg) = toml::from_str::<GameServerConfig>(&content) {
                 println!("INFO: Loaded Game config from {path}");
@@ -198,6 +311,7 @@ fn load_config() -> GameServerConfig {
         database: DatabaseConfig::default(),
         world: WorldConfig::default(),
         security: SecurityConfig::default(),
+        inter_server: InterServerConfig::default(),
     }
 }
 
@@ -247,6 +361,21 @@ fn main() {
     println!("INFO: Starting Game Server");
     let config = load_config();
 
+    // Inicia conectores inter-servidores (Java Architecture)
+    login_connector::start_login_connector(login_connector::LoginConnectorConfig {
+        login_address: config.inter_server.login_server_address.clone(),
+        server_id: config.server.server_id,
+        game_port: config.network.port,
+        max_players: config.server.max_players,
+        password: config.inter_server.gameserver_password.clone(),
+    });
+
+    chat_connector::start_chat_connector(chat_connector::ChatConnectorConfig {
+        chat_address: config.inter_server.chat_server_address.clone(),
+        server_id: config.server.server_id,
+        password: config.inter_server.chat_password.clone(),
+    });
+
     let db = Db::open(&config.database.database_path).expect("failed to open SQLite db");
     db.migrate().expect("failed to migrate SQLite schema");
     println!("INFO: Opened and migrated DB at {}", config.database.database_path);
@@ -266,6 +395,7 @@ fn main() {
 
     let bind_addr = format!("{}:{}", config.network.bind_address, config.network.port);
     let listener = TcpListener::bind(&bind_addr).unwrap();
+    println!("INFO: Listening on {}", listener.local_addr().unwrap());
     println!("INFO: Listening on {}", listener.local_addr().unwrap());
 
     let clients = Arc::new(Mutex::new(HashMap::new()));

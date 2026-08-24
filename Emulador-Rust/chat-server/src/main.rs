@@ -1,5 +1,6 @@
 mod channels;
 mod config;
+mod internal_gs;
 mod protocol;
 
 use channels::ChannelManager;
@@ -46,8 +47,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let channel_manager = Arc::new(ChannelManager::new(cfg.anti_flood_messages_per_sec));
 
+    // Spawn inter-server GS listener (Port 9021)
+    let cfg_internal = cfg.clone();
+    let mgr_internal = Arc::clone(&channel_manager);
+    tokio::spawn(async move {
+        internal_gs::start_internal_gs_listener(cfg_internal, mgr_internal).await;
+    });
+
     println!("INFO: [ChatServer] Initialized channel manager with {} default channels", 4);
-    println!("INFO: [ChatServer] Ready to accept client and inter-server connections.");
+    println!("INFO: [ChatServer] Ready to accept client and inter-server connections (Internal Port: {}).", cfg.internal_port);
 
     loop {
         match listener.accept().await {

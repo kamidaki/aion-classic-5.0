@@ -10,6 +10,10 @@ pub struct ChatServerConfig {
     pub bind_address: String,
     #[serde(default = "default_port")]
     pub port: u16,
+    #[serde(default = "default_internal_port")]
+    pub internal_port: u16,
+    #[serde(default = "default_chat_password")]
+    pub chat_password: String,
     #[serde(default = "default_max_channels")]
     pub max_channels: u32,
     #[serde(default = "default_anti_flood")]
@@ -25,6 +29,12 @@ fn default_bind() -> String {
 fn default_port() -> u16 {
     10241
 }
+fn default_internal_port() -> u16 {
+    9021
+}
+fn default_chat_password() -> String {
+    "Sabrewolf100!".to_string()
+}
 fn default_max_channels() -> u32 {
     500
 }
@@ -38,6 +48,8 @@ impl Default for ChatServerConfig {
             enabled: default_enabled(),
             bind_address: default_bind(),
             port: default_port(),
+            internal_port: default_internal_port(),
+            chat_password: default_chat_password(),
             max_channels: default_max_channels(),
             anti_flood_messages_per_sec: default_anti_flood(),
         }

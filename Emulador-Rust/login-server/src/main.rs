@@ -95,7 +95,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let auto_create_hq = cfg.auto_create_accounts;
     let dev_user_hq = cfg.default_dev_username.clone();
     let sec_hq = Arc::clone(&security);
-    let hq_handle = tokio::spawn(async move {
+    let _hq_handle = tokio::spawn(async move {
         if let Err(e) = net::hq::run_hq_server(
             &hq_bind,
             announce_ip_hq,
@@ -112,7 +112,16 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     });
 
-    println!("INFO: [LoginServer] All sub-services initialized successfully with active SecurityManager.");
+    // 5. Spawn Internal GameServer Listener (Port 9014 - Java Architecture)
+    let registry = net::internal_gs::new_registry();
+    let cfg_internal = cfg.clone();
+    let db_internal = Arc::clone(&db);
+    let reg_internal = Arc::clone(&registry);
+    let _internal_handle = tokio::spawn(async move {
+        net::internal_gs::start_internal_gs_listener(cfg_internal, db_internal, reg_internal).await;
+    });
+
+    println!("INFO: [LoginServer] All sub-services initialized successfully with active SecurityManager & Inter-Server Port {}.", cfg.gameserver_port);
 
     // Keep all services running indefinitely
     std::future::pending::<()>().await;

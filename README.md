@@ -173,6 +173,21 @@ Utiliza bancos de dados SQLite individuais no modo **WAL (Write-Ahead Logging)**
 
 ---
 
+## Comunicacao Inter-Servidores (CS <> LS <> GS)
+
+Assim como na arquitetura dos emuladores Java de referencia, o **EmuRust** opera com portas TCP internas dedicadas e autenticacao obrigatoria por senha configuravel via `launcher.json`:
+
+* **Game-Server -> Login-Server (Porta `9014`)**:
+  * Autenticacao com senha (`gameserver_password = "Sabrewolf100!"`).
+  * Validada na tabela `gameservers` do banco `login.db`.
+  * Sincronizacao de status, heartbeat e contagem de jogadores online em tempo real.
+* **Game-Server -> Chat-Server (Porta `9021`)**:
+  * Autenticacao com senha (`chat_password = "Sabrewolf100!"`).
+  * Sincronizacao e autorizacao de canais de comunicacao.
+* **Protecao Ativa**: Conexoes sem a senha correta ou com IDs nao autorizados sao imediatamente recusadas (`REJECTED`) e desconectadas.
+
+---
+
 ## Como Iniciar
 
 1. Abra a pasta `Produto Final`.
