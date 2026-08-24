@@ -224,7 +224,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             });
 
         // Database Studio Endpoints
-        let db_manager = DbManager::new("aion.db");
+        let db_path = if std::path::Path::new("data/Banco de Dados/login.db").exists() {
+            "data/Banco de Dados/login.db"
+        } else if std::path::Path::new("data/Banco de Dados/aion.db").exists() {
+            "data/Banco de Dados/aion.db"
+        } else if std::path::Path::new("login.db").exists() {
+            "login.db"
+        } else {
+            "aion.db"
+        };
+        let db_manager = DbManager::new(db_path);
         let db_filter = {
             let db = db_manager.clone();
             warp::any().map(move || db.clone())

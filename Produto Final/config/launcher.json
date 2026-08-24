@@ -11,13 +11,14 @@
     "default_server_id": 1,
     "auto_create_accounts": true,
     "development_mode": false,
+    "default_dev_username": "fly",
     "security": {
       "enable_rate_limit": true,
       "max_attempts_per_minute": 15,
       "temp_ban_minutes": 10
     },
     "database": {
-      "path": "login.db"
+      "path": "data/Banco de Dados/login.db"
     }
   },
   "############################################################": "GAME-SERVER CONFIGURATION",
@@ -31,7 +32,7 @@
     "max_players": 1000,
     "data_path": "data/client",
     "database": {
-      "path": "game.db"
+      "path": "data/Banco de Dados/game.db"
     }
   },
   "############################################################": "CHAT-SERVER CONFIGURATION",
@@ -42,7 +43,7 @@
     "max_channels": 500,
     "anti_flood_messages_per_sec": 5,
     "database": {
-      "path": "chat.db"
+      "path": "data/Banco de Dados/chat.db"
     }
   },
   "############################################################": "LAUNCHER & SUPERVISOR CONFIGURATION",

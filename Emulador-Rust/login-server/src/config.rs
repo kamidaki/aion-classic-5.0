@@ -82,7 +82,7 @@ fn default_ban_minutes() -> u32 {
     15
 }
 fn default_db_path() -> String {
-    "login.db".to_string()
+    "data/Banco de Dados/login.db".to_string()
 }
 
 impl Default for SecurityConfig {

@@ -84,6 +84,9 @@ impl DbManager {
                      PRAGMA busy_timeout = 5000;
                      PRAGMA synchronous = NORMAL;",
                 );
+                let _ = c.execute("ATTACH DATABASE 'data/Banco de Dados/login.db' AS login_db", []);
+                let _ = c.execute("ATTACH DATABASE 'data/Banco de Dados/game.db' AS game_db", []);
+                let _ = c.execute("ATTACH DATABASE 'data/Banco de Dados/chat.db' AS chat_db", []);
                 let _ = c.execute("ATTACH DATABASE 'login.db' AS login_db", []);
                 let _ = c.execute("ATTACH DATABASE 'game.db' AS game_db", []);
                 let _ = c.execute("ATTACH DATABASE 'chat.db' AS chat_db", []);

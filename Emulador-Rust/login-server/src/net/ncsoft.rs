@@ -505,27 +505,67 @@ async fn handle_ncsoft_client(
     }
 
     let mut state = ConnectionState::Connected;
-    let mut current_username = String::new();
+    let mut current_username = if !default_user.is_empty() {
+        default_user.clone()
+    } else {
+        "fly".to_string()
+    };
     let mut account_id = 1u32;
     let login_ok: u32 = 0x026edf39;
     let play_ok1: u32 = 0x026edf39;
     let play_ok2: u32 = rand::random();
 
+    if let Ok(Some(a)) = db.get_or_create_account(&current_username, auto_create) {
+        account_id = a.id as u32;
+    }
+    let char_count = db.get_character_count(&current_username);
+
     // =========================================================================
-    // 2. Handshake GameGuard Inicial (SM_AUTH_GG)
+    // 2. Sequencia Completa de Autenticacao NCSoft / Gameforge Classic 4.5
     // =========================================================================
-    // O cliente NCSoft / Gameforge Classic EU 4.5 exige receber o SM_AUTH_GG (Opcode 0x0B)
-    // apos o SM_INIT para transicionar o estado interno de seguranca e habilitar o formulario
-    // de login na tela. Sem o SM_AUTH_GG, o cliente ignora o clique no botao "OK" e nao envia o CM_LOGIN.
+    // O cliente 4.5 Classic EU x64 transiciona para a tela de Selecao de Servidor e Criacao
+    // de Personagem ao receber a sequencia SM_INIT -> SM_AUTH_GG -> SM_LOGIN_OK -> SM_SERVER_LIST.
     tokio::time::sleep(tokio::time::Duration::from_millis(60)).await;
     if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Falha ao enviar SM_AUTH_GG inicial: {}", session_id, e);
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
         return;
     }
-    state = ConnectionState::AuthedGg;
+
+    tokio::time::sleep(tokio::time::Duration::from_millis(80)).await;
+    if let Err(e) = send_login_ok(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        account_id,
+        login_ok,
+        &current_username,
+    )
+    .await
+    {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_LOGIN_OK: {}", session_id, e);
+        return;
+    }
+
+    tokio::time::sleep(tokio::time::Duration::from_millis(80)).await;
+    if let Err(e) = send_server_list(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        &announce_ip,
+        announce_port,
+        default_server_id,
+        char_count,
+    )
+    .await
+    {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_SERVER_LIST: {}", session_id, e);
+        return;
+    }
+
+    state = ConnectionState::AuthedLogin;
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG inicial entregue. Formulario in-game ativo, aguardando credenciais (CM_LOGIN)...",
-        session_id
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake concluido com sucesso (Conta: '{}', ID: {}, Chars: {}). Aguardando selecao de mundo (CM_PLAY)...",
+        session_id, current_username, account_id, char_count
     );
 
     // =========================================================================

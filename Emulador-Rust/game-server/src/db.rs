@@ -310,6 +310,7 @@ impl Db {
         let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN expires_at INTEGER NOT NULL DEFAULT 0", []);
 
         // Anexa login.db se existir para permitir consultas cruzadas de sessao
+        let _ = self.conn.execute("ATTACH DATABASE 'data/Banco de Dados/login.db' AS login_db", []);
         let _ = self.conn.execute("ATTACH DATABASE 'login.db' AS login_db", []);
 
         Ok(())

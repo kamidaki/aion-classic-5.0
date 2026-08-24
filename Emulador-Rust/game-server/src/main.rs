@@ -118,7 +118,7 @@ impl Default for DatabaseConfig {
 }
 
 fn default_db_path() -> String {
-    "game.db".to_string()
+    "data/Banco de Dados/game.db".to_string()
 }
 
 #[derive(Debug, Deserialize, Clone)]
