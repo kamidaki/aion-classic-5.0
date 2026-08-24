@@ -627,6 +627,14 @@ impl Character {
         }
         11
     }
+    pub fn attack_speed_ms(&self) -> u64 {
+        let spd = self.stats.attack_speed;
+        if spd > 0 {
+            spd as u64
+        } else {
+            1500
+        }
+    }
     pub fn serialise_name_utf16(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;
         self.name.encode_utf16().for_each(|c| {

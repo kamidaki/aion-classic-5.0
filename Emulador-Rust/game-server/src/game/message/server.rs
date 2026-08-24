@@ -27,7 +27,9 @@ const LENGTH_LEN: usize = 2;
 const VERSION_CHECK: u16 = 0x0000;
 const STATUS: u16 = 0x0001;
 const HIT_POINT: u16 = 0x0003;
+const HIT_POINT_MP: u16 = 0x0004;
 const HIT_POINT_OTHER: u16 = 0x0005;
+const HIT_POINT_DP: u16 = 0x0006;
 const ENTER_WORLD_CHECK: u16 = 0x000D;
 const PUT_NPC: u16 = 0x000E;
 const REQUEST_TELEPORT: u16 = 0x0014;
@@ -161,6 +163,8 @@ pub enum Message {
     WindStateInfo(WindStateInfo),
     WindPathResult(WindPathResult),
     SkillPenaltyStatusOther(SkillPenaltyStatusOther),
+    HitPointMp(HitPointMp),
+    HitPointDp(HitPointDp),
 }
 
 impl Serialise for Message {
@@ -235,6 +239,8 @@ impl Serialise for Message {
             Message::WindStateInfo(msg) => msg.serialise(&mut buf[2..]),
             Message::WindPathResult(msg) => msg.serialise(&mut buf[2..]),
             Message::SkillPenaltyStatusOther(msg) => msg.serialise(&mut buf[2..]),
+            Message::HitPointMp(msg) => msg.serialise(&mut buf[2..]),
+            Message::HitPointDp(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -2637,53 +2643,116 @@ impl Serialise for SkillPenaltyStatusOther {
     }
 }
 
+/// S_STATUPDATE_HP (0x03) — HP do jogador local
 #[derive(Debug, Clone)]
 pub struct HitPoint {
-    hp_current: i32,
-    hp_max: i32,
+    pub hp_current: u32,
+    pub hp_max: u32,
 }
+
 impl HitPoint {
-    pub fn new(hp_current: i32, hp_max: i32) -> Self {
+    pub fn new(hp_current: u32, hp_max: u32) -> Self {
         Self { hp_current, hp_max }
     }
 }
+
 impl Serialise for HitPoint {
     fn serialise(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;
         len += add_prelude(HIT_POINT, buf);
-
         to_le_bytes!(len, buf, self.hp_current);
         to_le_bytes!(len, buf, self.hp_max);
-
         len
     }
 }
 
+/// S_STATUPDATE_MP (0x04) — MP do jogador local
+#[derive(Debug, Clone)]
+pub struct HitPointMp {
+    pub mp_current: u32,
+    pub mp_max: u32,
+}
+
+impl HitPointMp {
+    pub fn new(mp_current: u32, mp_max: u32) -> Self {
+        Self { mp_current, mp_max }
+    }
+}
+
+impl Serialise for HitPointMp {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(HIT_POINT_MP, buf);
+        to_le_bytes!(len, buf, self.mp_current);
+        to_le_bytes!(len, buf, self.mp_max);
+        len
+    }
+}
+
+/// S_STATUPDATE_DP (0x06) — DP do jogador local
+#[derive(Debug, Clone)]
+pub struct HitPointDp {
+    pub dp_current: u32,
+    pub dp_max: u32,
+}
+
+impl HitPointDp {
+    pub fn new(dp_current: u32, dp_max: u32) -> Self {
+        Self { dp_current, dp_max }
+    }
+}
+
+impl Serialise for HitPointDp {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(HIT_POINT_DP, buf);
+        to_le_bytes!(len, buf, self.dp_current);
+        to_le_bytes!(len, buf, self.dp_max);
+        len
+    }
+}
+
+/// S_ATTACK_STATUS (0x05) — HP do alvo após hit
 #[derive(Debug, Clone)]
 pub struct HitPointOther {
-    entity_id: u32,
-    hp_percent: u8,
+    pub entity_id: u32,
+    pub damage: i32,
+    pub hp_current: u32,
+    pub hp_max: u32,
+    pub damage_type: u8,
+    pub is_critical: u8,
 }
+
 impl HitPointOther {
-    pub fn new(entity_id: u32, hp_percent: u8) -> Self {
+    pub fn new(
+        entity_id: u32,
+        damage: i32,
+        hp_current: u32,
+        hp_max: u32,
+        damage_type: u8,
+        is_critical: u8,
+    ) -> Self {
         Self {
             entity_id,
-            hp_percent,
+            damage,
+            hp_current,
+            hp_max,
+            damage_type,
+            is_critical,
         }
     }
 }
+
 impl Serialise for HitPointOther {
     fn serialise(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;
         len += add_prelude(HIT_POINT_OTHER, buf);
-
         to_le_bytes!(len, buf, self.entity_id);
-        to_le_bytes!(len, buf, 0_u32);
-        to_le_bytes!(len, buf, 0x05_u8);
-        to_le_bytes!(len, buf, self.hp_percent);
-        to_le_bytes!(len, buf, 0_u16);
-        to_le_bytes!(len, buf, 0xB2_u16);
-
+        to_le_bytes!(len, buf, self.damage);
+        to_le_bytes!(len, buf, self.hp_current);
+        to_le_bytes!(len, buf, self.hp_max);
+        to_le_bytes!(len, buf, self.damage_type);
+        to_le_bytes!(len, buf, self.is_critical);
         len
     }
 }
@@ -2945,6 +3014,42 @@ mod testes_de_inventario {
         assert_eq!(u32::from_le_bytes(buf[13..17].try_into().unwrap()), 1001);
         assert_eq!(u32::from_le_bytes(buf[17..21].try_into().unwrap()), 30000);
         assert_eq!(buf[21], 1);
+    }
+
+    #[test]
+    fn test_hit_point_other_serialise() {
+        let hpo = HitPointOther::new(200, 150, 850, 1000, 0, 1);
+        let mut buf = [0u8; 64];
+        let n = hpo.serialise(&mut buf);
+        assert_eq!(n, 5 + 4 + 4 + 4 + 4 + 1 + 1, "5 prelude + 18 payload");
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 200);
+        assert_eq!(i32::from_le_bytes(buf[9..13].try_into().unwrap()), 150);
+        assert_eq!(u32::from_le_bytes(buf[13..17].try_into().unwrap()), 850);
+        assert_eq!(u32::from_le_bytes(buf[17..21].try_into().unwrap()), 1000);
+        assert_eq!(buf[21], 0);
+        assert_eq!(buf[22], 1);
+    }
+
+    #[test]
+    fn test_hit_point_statupdates_serialise() {
+        let hp = HitPoint::new(1000, 1500);
+        let mut buf = [0u8; 32];
+        let n = hp.serialise(&mut buf);
+        assert_eq!(n, 5 + 8);
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 1000);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 1500);
+
+        let mp = HitPointMp::new(800, 1200);
+        let n = mp.serialise(&mut buf);
+        assert_eq!(n, 5 + 8);
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 800);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 1200);
+
+        let dp = HitPointDp::new(2000, 4000);
+        let n = dp.serialise(&mut buf);
+        assert_eq!(n, 5 + 8);
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 2000);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 4000);
     }
 
     #[test]

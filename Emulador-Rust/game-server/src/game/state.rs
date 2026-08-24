@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::sync::Arc;
+use std::time::{Duration, Instant};
 
 use crate::data_loader::GameData;
 use crate::db::Db;
@@ -119,6 +120,7 @@ pub struct State {
     /// meio, e o cliente nunca chega a mandar o `LevelReady`: fica preso na tela de carregamento.
     mundo_enviado: HashSet<u32>,
     pub windstream_service: crate::game::environment::WindstreamService,
+    pub attack_timers: HashMap<u32, (u32, Instant)>,
     db: Db,
     game_data: Arc<GameData>,
 }
@@ -181,6 +183,7 @@ impl State {
                 Vec::new()
             },
             windstream_service: crate::game::environment::WindstreamService::new(),
+            attack_timers: HashMap::new(),
             db,
             game_data,
         }
@@ -465,7 +468,11 @@ impl State {
                             )),
                             s::Message::HitPointOther(s::HitPointOther::new(
                                 entity.id(),
-                                entity.hp.percent(),
+                                damage,
+                                entity.hp.current() as u32,
+                                entity.hp.max() as u32,
+                                0,
+                                is_crit,
                             )),
                         ]
                         .map(ServerUpdate::new),
@@ -488,18 +495,39 @@ impl State {
                 }
             }
             c::Message::Attack(attack) => {
-                if let Some(entity) = self.entities.iter_mut().find(|entity| {
+                let char_id = update.character_id();
+                if attack.target_id == 0 {
+                    self.attack_timers.remove(&char_id);
+                } else if let Some(entity) = self.entities.iter_mut().find(|entity| {
                     entity.id() == attack.target_id && entity.is_alive()
                 }) {
-                    // Calculate the client attack and broadcast it
-                    let character = self
-                        .characters
-                        .get_mut(&update.character_id())
-                        .unwrap();
-                    let hits = character.attack(entity);
-                    let s_hit_point_other =
-                        s::HitPointOther::new(entity.id(), entity.hp.percent());
+                    let character = self.characters.get_mut(&char_id).unwrap();
+                    let hit = crate::game::engine::damage::CombatEngine::calculate_physical_hit(
+                        character.stats.secondary.main_hand_attack,
+                        1.0,
+                        100,
+                        character.stats.secondary.main_hand_accuracy,
+                        100,
+                        100,
+                        100,
+                        character.stats.secondary.main_hand_crit,
+                        50,
+                        1.5,
+                    );
+                    let damage = hit.damage.max(1);
+                    let is_crit = if hit.ty == crate::game::engine::damage::Type::Critical { 1 } else { 0 };
+                    entity.hp.update(-damage);
 
+                    let s_hit_point_other = s::HitPointOther::new(
+                        entity.id(),
+                        damage,
+                        entity.hp.current() as u32,
+                        entity.hp.max() as u32,
+                        0,
+                        is_crit,
+                    );
+
+                    let hits = vec![hit];
                     messages.broadcast.extend(
                         [
                             s::Message::Attack(s::Attack::new(
@@ -514,6 +542,7 @@ impl State {
                     );
 
                     if entity.is_dead() {
+                        self.attack_timers.remove(&char_id);
                         messages.broadcast.extend(
                             [
                                 s::Message::Action(s::Action::new(
@@ -526,30 +555,9 @@ impl State {
                             ]
                             .map(ServerUpdate::new),
                         );
-                    }
-
-                    // Gain aggro if mob is not fighting
-                    if entity.target_id().is_none() {
-                        let target = entity.set_taget(character.id());
-
-                        messages.broadcast.extend(
-                            [
-                                s::Message::NpcChangedTarget(target),
-                                s::Message::Action(s::Action::new(
-                                    entity.id(),
-                                    ActionType::EntityDrawWeapon,
-                                    character.stats.move_speed,
-                                    character.id(),
-                                )),
-                                s::Message::Action(s::Action::new(
-                                    entity.id(),
-                                    ActionType::Attack,
-                                    character.stats.move_speed,
-                                    character.id(),
-                                )),
-                            ]
-                            .map(ServerUpdate::new),
-                        );
+                    } else {
+                        let swing_delay = Duration::from_millis(character.attack_speed_ms());
+                        self.attack_timers.insert(char_id, (attack.target_id, Instant::now() + swing_delay));
                     }
                 }
             }
@@ -908,8 +916,8 @@ impl State {
                         // Vida e mana do personagem. Na captura sao dois pares de u32 -- valor
                         // atual e maximo -- e o formato do POC e o mesmo.
                         ServerUpdate::new(s::Message::HitPoint(s::HitPoint::new(
-                            new_character.stats.hp.current(),
-                            new_character.stats.hp.max(),
+                            new_character.stats.hp.current() as u32,
+                            new_character.stats.hp.max() as u32,
                         ))),
                     ],
                 );
@@ -1447,6 +1455,88 @@ impl State {
     }
 
     pub fn update(&mut self, messages: &mut Messages) {
+        let now = Instant::now();
+        let mut dead_targets = Vec::new();
+        let mut finished_timers = Vec::new();
+
+        for (&char_id, (target_id, next_swing)) in &mut self.attack_timers {
+            if now >= *next_swing {
+                if let Some(character) = self.characters.get_mut(&char_id) {
+                    let char_move_speed = character.stats.move_speed;
+                    let swing_delay = Duration::from_millis(character.attack_speed_ms());
+                    *next_swing = now + swing_delay;
+
+                    if let Some(entity) = self.entities.iter_mut().find(|e| e.id() == *target_id && e.is_alive()) {
+                        let hit = crate::game::engine::damage::CombatEngine::calculate_physical_hit(
+                            character.stats.secondary.main_hand_attack,
+                            1.0,
+                            100,
+                            character.stats.secondary.main_hand_accuracy,
+                            100,
+                            100,
+                            100,
+                            character.stats.secondary.main_hand_crit,
+                            50,
+                            1.5,
+                        );
+                        let damage = hit.damage.max(1);
+                        let is_crit = if hit.ty == crate::game::engine::damage::Type::Critical { 1 } else { 0 };
+                        entity.hp.update(-damage);
+
+                        let s_hit_point_other = s::HitPointOther::new(
+                            entity.id(),
+                            damage,
+                            entity.hp.current() as u32,
+                            entity.hp.max() as u32,
+                            0,
+                            is_crit,
+                        );
+
+                        messages.broadcast.extend(
+                            [
+                                s::Message::Attack(s::Attack::new(
+                                    entity.id(),
+                                    char_id,
+                                    0,
+                                    vec![hit],
+                                )),
+                                s::Message::HitPointOther(s_hit_point_other),
+                            ]
+                            .map(ServerUpdate::new),
+                        );
+
+                        if entity.is_dead() {
+                            dead_targets.push((*target_id, char_id, char_move_speed));
+                            finished_timers.push(char_id);
+                        }
+                    } else {
+                        finished_timers.push(char_id);
+                    }
+                } else {
+                    finished_timers.push(char_id);
+                }
+            }
+        }
+
+        for char_id in finished_timers {
+            self.attack_timers.remove(&char_id);
+        }
+
+        for (target_id, killer_id, move_speed) in dead_targets {
+            messages.broadcast.extend(
+                [
+                    s::Message::Action(s::Action::new(
+                        target_id,
+                        ActionType::Die,
+                        move_speed,
+                        killer_id,
+                    )),
+                    s::Message::Loot(s::Loot::new(target_id, 0)),
+                ]
+                .map(ServerUpdate::new),
+            );
+        }
+
         // Run update for all entities
         for entity in &mut self.entities {
             if entity.hp.current() <= 0 {
@@ -1458,18 +1548,25 @@ impl State {
                 None => continue,
             };
 
-            let target = self.characters.get_mut(&target_id).unwrap();
+            let target = match self.characters.get_mut(&target_id) {
+                Some(t) => t,
+                None => continue,
+            };
 
             match entity.attack(target) {
                 Some(hits) => {
-                    let attack =
-                        s::Attack::new(target.id(), entity.id(), 0, hits);
+                    let total_dmg: i32 = hits.iter().map(|h| h.damage).sum();
+                    let attack = s::Attack::new(target.id(), entity.id(), 0, hits);
                     messages.broadcast.extend(
                         [
                             s::Message::Attack(attack),
                             s::Message::HitPointOther(s::HitPointOther::new(
                                 target.id(),
-                                target.stats.hp.percent(),
+                                total_dmg,
+                                target.stats.hp.current() as u32,
+                                target.stats.hp.max() as u32,
+                                0,
+                                0,
                             )),
                         ]
                         .map(ServerUpdate::new),
@@ -1477,8 +1574,8 @@ impl State {
                     messages.push_direct(
                         target.client_id(),
                         ServerUpdate::new(s::Message::HitPoint(s::HitPoint::new(
-                            target.stats.hp.current(),
-                            target.stats.hp.max(),
+                            target.stats.hp.current() as u32,
+                            target.stats.hp.max() as u32,
                         ))),
                     )
                 }

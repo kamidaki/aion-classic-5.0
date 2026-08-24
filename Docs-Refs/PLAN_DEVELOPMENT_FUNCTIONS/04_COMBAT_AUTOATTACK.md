@@ -1,6 +1,6 @@
-﻿# PLAN-04: Combate — Auto-Ataque (C_ATTACK 0x20, S_ATTACK_STATUS 0x05, S_CASTSPELL_RESULT 0x2B)
+# PLAN-04: Combate — Auto-Ataque (C_ATTACK 0x20, S_ATTACK_STATUS 0x05, S_CASTSPELL_RESULT 0x2B)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** ALTA — ataque físico automático é a mecânica de combate base.
 
 ---
