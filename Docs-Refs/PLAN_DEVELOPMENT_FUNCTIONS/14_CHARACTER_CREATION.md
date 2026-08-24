@@ -1,6 +1,6 @@
-﻿# PLAN-14: Criação de Personagem — CM_CREATE_CHARACTER Completo, Kit Inicial, Skills
+# PLAN-14: Criação de Personagem — CM_CREATE_CHARACTER Completo, Kit Inicial, Skills
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** ALTA — a criação de personagem é o ponto de entrada para qualquer jogador novo.
 
 ---

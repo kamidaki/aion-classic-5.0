@@ -263,6 +263,84 @@ impl Db {
         linhas.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
     }
 
+    /// HP e MP base para nível 1 por classe
+    pub fn base_stats_for_class(class_id: u32) -> (i32, u32) {
+        match class_id {
+            1 | 2 => (1278, 577),     // Warrior / Gladiator / Templar
+            3 | 4 | 5 => (1148, 634), // Scout / Assassin / Ranger
+            6 | 7 | 8 => (976, 1022), // Mage / Sorcerer / Spiritmaster
+            9 | 10 | 11 => (1050, 908), // Priest / Cleric / Chanter
+            _ => (1000, 500),
+        }
+    }
+
+    /// Kit inicial de equipamentos por classe
+    pub fn kit_for_class(class_id: u32) -> Vec<(u32, u32)> {
+        match class_id {
+            1 => vec![ // Gladiator
+                (100000001, 1), // sword_l1_1a
+                (110300001, 1), // lt_torso_n_l1_battlemaster_1a
+                (110700001, 1), // lt_pants_n_l1_battlemaster_1a
+                (111100001, 1), // lt_feet_n_l1_battlemaster_1a
+                (111500001, 1), // lt_hands_n_l1_battlemaster_1a
+            ],
+            2 => vec![ // Templar
+                (100000001, 1), // sword_l1_1a
+                (115000001, 1), // shield
+                (110300001, 1),
+                (110700001, 1),
+                (111100001, 1),
+                (111500001, 1),
+            ],
+            3 | 4 => vec![ // Scout / Assassin
+                (100200001, 1), // dagger_l1_1a
+                (110300001, 1),
+                (110700001, 1),
+                (111100001, 1),
+                (111500001, 1),
+            ],
+            5 => vec![ // Ranger
+                (101300001, 1), // bow_l1_1a
+                (110300001, 1),
+                (110700001, 1),
+                (111100001, 1),
+                (111500001, 1),
+            ],
+            6 | 7 | 8 => vec![ // Mage / Sorcerer / Spiritmaster
+                (100500001, 1), // staff_l1_1a
+                (110100001, 1), // cl_torso
+                (110500001, 1), // cl_pants
+                (110900001, 1), // cl_feet
+                (111300001, 1), // cl_hands
+            ],
+            9 | 10 | 11 => vec![ // Priest / Cleric / Chanter
+                (100100001, 1), // mace_l1_1a
+                (110100001, 1),
+                (110500001, 1),
+                (110900001, 1),
+                (111300001, 1),
+            ],
+            _ => vec![
+                (100000001, 1),
+                (110300001, 1),
+                (110700001, 1),
+                (111100001, 1),
+                (111500001, 1),
+            ],
+        }
+    }
+
+    /// Skills iniciais de nível 1 por classe
+    pub fn initial_skills_for_class(class_id: u32) -> Vec<(u32, u8)> {
+        match class_id {
+            1 | 2 => vec![(1, 1), (2, 1), (3, 1), (10, 1)],
+            3 | 4 | 5 => vec![(20, 1), (21, 1), (22, 1), (25, 1)],
+            6 | 7 | 8 => vec![(30, 1), (31, 1), (32, 1), (35, 1)],
+            9 | 10 | 11 => vec![(40, 1), (41, 1), (42, 1), (45, 1)],
+            _ => vec![(1, 1), (2, 1)],
+        }
+    }
+
     /// Cria um personagem novo na conta e devolve o que ficou no banco.
     pub fn criar_personagem(
         &self,
@@ -288,11 +366,16 @@ impl Db {
             .get(56..60)
             .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
             .unwrap_or(1);
+        let classe = aparencia
+            .get(60..64)
+            .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
+            .unwrap_or(1);
         let ponto = mundo::ponto_de_entrada(raca);
+        let (base_hp, base_mp) = Self::base_stats_for_class(classe);
 
         self.conn.execute(
-            "INSERT INTO characters(account_id, name, level, exp, x, y, z, map_id, heading, hp, mp, aparencia)
-             VALUES (?1, ?2, 1, 0, ?3, ?4, ?5, ?6, ?7, 100, 100, ?8)",
+            "INSERT INTO characters(account_id, name, level, exp, x, y, z, map_id, heading, hp, mp, aparencia, kit_inicial)
+             VALUES (?1, ?2, 1, 0, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, 1)",
             params![
                 account_id,
                 nome,
@@ -301,13 +384,28 @@ impl Db {
                 ponto.z,
                 ponto.mapa as i64,
                 ponto.direcao as i64,
+                base_hp as i64,
+                base_mp as i64,
                 aparencia
             ],
         )?;
-        let id = self.conn.last_insert_rowid();
+        let id = self.conn.last_insert_rowid() as u32;
+
+        // Inserir kit inicial de itens
+        let kit = Self::kit_for_class(classe);
+        for (pos, (item_id, qtd)) in kit.iter().enumerate() {
+            let _ = self.conn.execute(
+                "INSERT INTO character_items(character_id, item_id, quantidade, posicao) VALUES (?1, ?2, ?3, ?4)",
+                params![id as i64, *item_id as i64, *qtd as i64, pos as i64],
+            );
+        }
+
+        // Inserir skills iniciais
+        let skills = Self::initial_skills_for_class(classe);
+        let _ = self.salvar_skills(id, &skills);
 
         Ok(PersistedCharacter {
-            id: id as u32,
+            id,
             account_id,
             name: nome.to_string(),
             level: 1,
@@ -317,8 +415,8 @@ impl Db {
             z: ponto.z,
             map_id: ponto.mapa,
             heading: ponto.direcao,
-            hp: 100,
-            mp: 100,
+            hp: base_hp,
+            mp: base_mp,
             aparencia: Some(aparencia.to_vec()),
         })
     }
@@ -1350,5 +1448,25 @@ mod tests {
         assert_eq!(loaded.len(), 3);
         assert_eq!(loaded[0], (1001, 1));
         assert_eq!(loaded[2], (2001, 5));
+    }
+
+    #[test]
+    fn personagem_criacao_gera_kit_e_skills() {
+        let db = in_memory();
+        let mut aparencia = vec![0u8; 140];
+        aparencia[56..60].copy_from_slice(&0u32.to_le_bytes()); // Elyos
+        aparencia[60..64].copy_from_slice(&1u32.to_le_bytes()); // Gladiator (Warrior)
+
+        let criado = db.criar_personagem("conta_teste", "Guerreiro", &aparencia).unwrap();
+        assert_eq!(criado.level, 1);
+        assert_eq!(criado.hp, 1278);
+        assert_eq!(criado.mp, 577);
+        assert_eq!(criado.map_id, 110070000); // Kaisinel Academy
+
+        let itens = db.itens_do_personagem(criado.id).unwrap();
+        assert_eq!(itens.len(), 5); // 5 kit items
+
+        let skills = db.carregar_skills(criado.id).unwrap();
+        assert_eq!(skills.len(), 4); // 4 warrior skills
     }
 }
