@@ -83,8 +83,6 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
     "announce_game_server_port": 7777,
     "default_server_id": 1,
     "auto_create_accounts": true,
-    "development_mode": false,
-    "default_dev_username": "fly",
     "database": {
       "path": "data/Banco de Dados/login.db"
     }

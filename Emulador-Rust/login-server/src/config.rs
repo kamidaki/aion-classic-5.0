@@ -42,8 +42,6 @@ pub struct LoginServerConfig {
     pub default_server_id: u8,
     #[serde(default = "default_true")]
     pub auto_create_accounts: bool,
-    #[serde(default = "default_true")]
-    pub development_mode: bool,
     #[serde(default = "default_dev_user")]
     pub default_dev_username: String,
     #[serde(default)]
@@ -127,7 +125,6 @@ impl Default for LoginServerConfig {
             announce_game_server_port: default_announce_port(),
             default_server_id: default_server_id(),
             auto_create_accounts: true,
-            development_mode: true,
             default_dev_username: default_dev_user(),
             security: SecurityConfig::default(),
             database: DatabaseConfig::default(),
