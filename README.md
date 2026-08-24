@@ -149,19 +149,27 @@ O executavel `Auto-Start EmuRust.exe` integra uma interface moderna inspirada em
 
 ---
 
-## Banco de Dados SQLite v2
+## Banco de Dados SQLite Isolado (login.db / game.db / chat.db)
 
-Utiliza **SQLite** no modo **WAL (Write-Ahead Logging)** de altissima concorrencia:
-* `accounts`: Identificadores, nomes, senhas e niveis de acesso (GM).
-* `sessions`: Tokens ativos para validacao de transicao Login -> Game.
-* `characters`: Personagens criados, raca, classe, nivel, HP, MP, DP, Kinah e coordenadas.
-* `character_items`: Inventario, slots de equipamento, manastones e enchant.
-* `character_skills`: Habilidades aprendidas e niveis.
-* `player_quests`: Missoes ativas, etapas e missoes concluidas.
-* `character_mail`: Sistema de correio com itens e Kinah anexados.
-* `guilds` & `guild_members`: Legioes, hierarquia e arvore de buffs.
-* `character_buddies`: Lista de amigos e notas.
-* `broker_listings` & `broker_history`: Mercado de negociacao global.
+Utiliza bancos de dados SQLite individuais no modo **WAL (Write-Ahead Logging)** com alta concorrencia e schemas integrados das referencias Java 2.4 Classic e Java 4.8 Retail:
+* **`login.db`**:
+  * `accounts` / `account_data`: Identificadores, nomes, senhas, status de ativacao e niveis de acesso.
+  * `account_time`: Tempo acumulado online, sessoes e restricoes.
+  * `banned_ip` & `banned_mac`: Controle de bans por endereco IP e MAC.
+  * `gameservers`: Registro de mundos e mascaras de conexao.
+  * `sessions`: Tokens ativos e chaves de sessao para validacao de transicao Login -> Game.
+* **`game.db`**:
+  * `characters` / `players`: Personagens, raca, classe, nivel, HP, MP, DP, Kinah, coordenadas e aparencia BLOB.
+  * `character_items` / `inventory`: Inventario, slots de equipamento, manastones, godstones e enchant.
+  * `character_skills` / `player_skills`: Habilidades aprendidas e niveis.
+  * `player_quests`: Missoes ativas, etapas de progresso e missoes concluidas.
+  * `character_mail`: Sistema de correio com itens e Kinah anexados (4 variantes).
+  * `guilds` / `legions` & `guild_members` / `legion_members`: Legioes, hierarquia e arvore de buffs.
+  * `character_buddies`: Lista de amigos e notas.
+  * `broker_listings` & `broker_history`: Mercado de negociacao global e historico de transacoes.
+  * `abyss_rank`, `player_titles`, `player_effects`, `player_bind_point`.
+* **`chat.db`**:
+  * `chat_channels` & `chat_bans`: Canais customizados e controle de moderacao.
 
 ---
 

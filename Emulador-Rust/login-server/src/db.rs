@@ -23,68 +23,134 @@ impl AuthDb {
              PRAGMA busy_timeout = 5000;
              PRAGMA synchronous = NORMAL;
              
+             -- Tabela principal de contas (padrao Classic 2.4 / 4.8 e compativel com EmuRust)
              CREATE TABLE IF NOT EXISTS accounts (
                  id INTEGER PRIMARY KEY AUTOINCREMENT,
                  name TEXT UNIQUE NOT NULL,
+                 username TEXT,
                  password_hash TEXT NOT NULL DEFAULT '',
+                 activated INTEGER NOT NULL DEFAULT 1,
                  access_level INTEGER NOT NULL DEFAULT 0,
                  membership INTEGER NOT NULL DEFAULT 0,
+                 old_membership INTEGER NOT NULL DEFAULT 0,
+                 last_server INTEGER NOT NULL DEFAULT -1,
+                 last_ip TEXT NOT NULL DEFAULT '',
+                 last_mac TEXT NOT NULL DEFAULT 'xx-xx-xx-xx-xx-xx',
+                 ip_force TEXT DEFAULT NULL,
+                 expire INTEGER DEFAULT NULL,
+                 toll INTEGER NOT NULL DEFAULT 0,
+                 email TEXT DEFAULT NULL,
                  created_at INTEGER NOT NULL DEFAULT 0,
-                 last_ip TEXT NOT NULL DEFAULT ''
+                 updated_at INTEGER NOT NULL DEFAULT 0
              );
              
+             -- Tabela account_data oficial da referencia 2.4 Classic
+             CREATE TABLE IF NOT EXISTS account_data (
+                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                 name TEXT UNIQUE NOT NULL,
+                 password TEXT NOT NULL DEFAULT '',
+                 activated INTEGER NOT NULL DEFAULT 1,
+                 access_level INTEGER NOT NULL DEFAULT 0,
+                 membership INTEGER NOT NULL DEFAULT 0,
+                 old_membership INTEGER NOT NULL DEFAULT 0,
+                 last_server INTEGER NOT NULL DEFAULT -1,
+                 last_ip TEXT NOT NULL DEFAULT '',
+                 last_mac TEXT NOT NULL DEFAULT 'xx-xx-xx-xx-xx-xx',
+                 ip_force TEXT DEFAULT NULL,
+                 expire INTEGER DEFAULT NULL,
+                 toll INTEGER NOT NULL DEFAULT 0,
+                 email TEXT DEFAULT NULL,
+                 created_at INTEGER NOT NULL DEFAULT 0,
+                 updated_at INTEGER NOT NULL DEFAULT 0
+             );
+             
+             -- Tabela account_time oficial da referencia
+             CREATE TABLE IF NOT EXISTS account_time (
+                 account_id INTEGER PRIMARY KEY,
+                 last_active INTEGER NOT NULL DEFAULT 0,
+                 expiration_time INTEGER DEFAULT NULL,
+                 session_duration INTEGER DEFAULT 0,
+                 accumulated_online INTEGER DEFAULT 0,
+                 accumulated_rest INTEGER DEFAULT 0,
+                 penalty_end INTEGER DEFAULT NULL
+             );
+             
+             -- Tabela banned_ip oficial da referencia
+             CREATE TABLE IF NOT EXISTS banned_ip (
+                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                 mask TEXT UNIQUE NOT NULL,
+                 time_end INTEGER DEFAULT NULL
+             );
+             
+             -- Tabela banned_mac oficial da referencia
+             CREATE TABLE IF NOT EXISTS banned_mac (
+                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                 address TEXT UNIQUE NOT NULL,
+                 details TEXT DEFAULT '',
+                 time INTEGER NOT NULL DEFAULT 0
+             );
+             
+             -- Tabela gameservers oficial da referencia
+             CREATE TABLE IF NOT EXISTS gameservers (
+                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                 mask TEXT NOT NULL,
+                 password TEXT NOT NULL DEFAULT ''
+             );
+             
+             -- Tabela de sessoes ativas para validacao no GameServer
              CREATE TABLE IF NOT EXISTS sessions (
                  token TEXT PRIMARY KEY,
+                 username TEXT NOT NULL,
                  account_name TEXT NOT NULL,
                  account_id INTEGER NOT NULL DEFAULT 1,
                  session_key INTEGER NOT NULL DEFAULT 0,
-                 created_at INTEGER NOT NULL,
-                 expires_at INTEGER NOT NULL
+                 issued_at INTEGER NOT NULL DEFAULT 0,
+                 created_at INTEGER NOT NULL DEFAULT 0,
+                 expires_at INTEGER NOT NULL DEFAULT 0
              );
              
+             -- Tabela characters para contagem de chars no login
              CREATE TABLE IF NOT EXISTS characters (
                  id INTEGER PRIMARY KEY AUTOINCREMENT,
                  account_id INTEGER NOT NULL REFERENCES accounts(id),
                  name TEXT NOT NULL,
                  level INTEGER NOT NULL DEFAULT 1,
                  exp INTEGER NOT NULL DEFAULT 0,
-                 x REAL NOT NULL DEFAULT 0.0,
-                 y REAL NOT NULL DEFAULT 0.0,
-                 z REAL NOT NULL DEFAULT 0.0,
-                 hp INTEGER NOT NULL DEFAULT 100,
-                 mp INTEGER NOT NULL DEFAULT 100,
+                 x REAL NOT NULL DEFAULT 457.0,
+                 y REAL NOT NULL DEFAULT 251.0,
+                 z REAL NOT NULL DEFAULT 127.04,
+                 hp INTEGER NOT NULL DEFAULT 1000,
+                 mp INTEGER NOT NULL DEFAULT 1000,
                  aparencia BLOB,
-                 updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now'))
+                 updated_at INTEGER NOT NULL DEFAULT 0
              );
              CREATE INDEX IF NOT EXISTS idx_characters_account ON characters(account_id);",
         )?;
 
         // Automatic column migrations for existing SQLite databases
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN name TEXT", []);
         let _ = conn.execute("ALTER TABLE accounts ADD COLUMN username TEXT", []);
         let _ = conn.execute("ALTER TABLE accounts ADD COLUMN password_hash TEXT NOT NULL DEFAULT ''", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN activated INTEGER NOT NULL DEFAULT 1", []);
         let _ = conn.execute("ALTER TABLE accounts ADD COLUMN access_level INTEGER NOT NULL DEFAULT 0", []);
         let _ = conn.execute("ALTER TABLE accounts ADD COLUMN membership INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN old_membership INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN last_server INTEGER NOT NULL DEFAULT -1", []);
         let _ = conn.execute("ALTER TABLE accounts ADD COLUMN last_ip TEXT NOT NULL DEFAULT ''", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN last_mac TEXT NOT NULL DEFAULT 'xx-xx-xx-xx-xx-xx'", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN ip_force TEXT DEFAULT NULL", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN expire INTEGER DEFAULT NULL", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN toll INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN email TEXT DEFAULT NULL", []);
         let _ = conn.execute("ALTER TABLE accounts ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN updated_at INTEGER NOT NULL DEFAULT 0", []);
 
         let _ = conn.execute("ALTER TABLE sessions ADD COLUMN account_name TEXT", []);
         let _ = conn.execute("ALTER TABLE sessions ADD COLUMN username TEXT", []);
         let _ = conn.execute("ALTER TABLE sessions ADD COLUMN account_id INTEGER NOT NULL DEFAULT 1", []);
         let _ = conn.execute("ALTER TABLE sessions ADD COLUMN session_key INTEGER NOT NULL DEFAULT 0", []);
+        let _ = conn.execute("ALTER TABLE sessions ADD COLUMN issued_at INTEGER NOT NULL DEFAULT 0", []);
         let _ = conn.execute("ALTER TABLE sessions ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
         let _ = conn.execute("ALTER TABLE sessions ADD COLUMN expires_at INTEGER NOT NULL DEFAULT 0", []);
-
-        let _ = conn.execute("ALTER TABLE characters ADD COLUMN aparencia BLOB", []);
-        let _ = conn.execute("ALTER TABLE characters ADD COLUMN kit_inicial INTEGER NOT NULL DEFAULT 0", []);
-
-        // Ensure default developer account exists
-        let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
-        let _ = conn.execute(
-            "INSERT OR IGNORE INTO accounts (name, username, password_hash, access_level, membership, created_at)
-             VALUES ('teste', 'teste', 'teste', 3, 2, ?1)",
-            params![now],
-        );
 
         Ok(Self {
             conn: Arc::new(Mutex::new(conn)),
@@ -108,10 +174,19 @@ impl AuthDb {
             drop(stmt);
             let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
             conn.execute(
-                "INSERT INTO accounts (name, username, password_hash, access_level, membership, created_at) VALUES (?1, ?1, ?1, 0, 0, ?2)",
+                "INSERT INTO accounts (name, username, password_hash, access_level, membership, created_at, updated_at)
+                 VALUES (?1, ?1, ?1, 0, 0, ?2, ?2)",
                 params![name, now],
             )?;
             let id = conn.last_insert_rowid();
+
+            // Sincroniza tambem com a tabela account_data para compatibilidade total com a referencia 2.4
+            let _ = conn.execute(
+                "INSERT OR REPLACE INTO account_data (id, name, password, access_level, membership, created_at, updated_at)
+                 VALUES (?1, ?2, ?2, 0, 0, ?3, ?3)",
+                params![id, name, now],
+            );
+
             Ok(Some(Account {
                 id,
                 name: name.to_string(),
@@ -142,8 +217,8 @@ impl AuthDb {
 
         let conn = self.conn.lock();
         conn.execute(
-            "INSERT OR REPLACE INTO sessions (token, account_name, username, account_id, session_key, created_at, expires_at)
-             VALUES (?1, ?2, ?2, ?3, ?4, ?5, ?6)",
+            "INSERT OR REPLACE INTO sessions (token, account_name, username, account_id, session_key, issued_at, created_at, expires_at)
+             VALUES (?1, ?2, ?2, ?3, ?4, ?5, ?5, ?6)",
             params![token, account_name, account_id as i64, session_key as i64, now, expires],
         )?;
 
@@ -155,8 +230,8 @@ impl AuthDb {
         let expires = now + 600;
         let conn = self.conn.lock();
         conn.execute(
-            "INSERT OR REPLACE INTO sessions (token, account_name, username, created_at, expires_at)
-             VALUES (?1, ?2, ?2, ?3, ?4)",
+            "INSERT OR REPLACE INTO sessions (token, account_name, username, issued_at, created_at, expires_at)
+             VALUES (?1, ?2, ?2, ?3, ?3, ?4)",
             params![token, account_name, now, expires],
         )?;
         Ok(())

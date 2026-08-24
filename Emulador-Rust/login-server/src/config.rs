@@ -73,7 +73,7 @@ fn default_server_id() -> u8 {
     23
 }
 fn default_dev_user() -> String {
-    "teste".to_string()
+    String::new()
 }
 fn default_max_attempts() -> u32 {
     15
@@ -82,7 +82,7 @@ fn default_ban_minutes() -> u32 {
     15
 }
 fn default_db_path() -> String {
-    "aion.db".to_string()
+    "login.db".to_string()
 }
 
 impl Default for SecurityConfig {

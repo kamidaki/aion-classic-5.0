@@ -505,78 +505,21 @@ async fn handle_ncsoft_client(
     }
 
     let mut state = ConnectionState::Connected;
-    let mut current_username = default_user.clone();
+    let mut current_username = String::new();
     let mut account_id = 1u32;
     let login_ok: u32 = 0x026edf39;
     let play_ok1: u32 = 0x026edf39;
     let play_ok2: u32 = rand::random();
 
     // =========================================================================
-    // 2. Cadeia de handshake proativo
+    // 2. Loop de recepcao de pacotes do cliente (Padrao Oficial & Java 2.4/4.8)
     // =========================================================================
-    // O cliente Gameforge Classic EU nao manda nada depois do SM_INIT: ele espera o servidor
-    // empurrar o resto da cadeia. Entrar direto no laco de leitura aqui trava os dois lados -- o
-    // servidor esperando um CM_AUTH_GG que nunca vem, o cliente esperando o SM_AUTH_GG -- e a tela
-    // de login fica inerte, sem devolver um unico byte.
-    //
-    // Medido: com o laco de leitura logo depois do SM_INIT, a conexao fica aberta e o cliente
-    // manda 0 bytes. Ver CONTEXT.md secao 4B e o item 13 do changelog.
-    if let Ok(Some(a)) = db.get_or_create_account(&current_username, auto_create) {
-        account_id = a.id as u32;
-    }
-    let char_count = db.get_character_count(&current_username);
-
-    // A cadeia proativa vem do CONTEXT.md e nunca foi validada contra o cliente. Medido com a
-    // instrumentacao da version.dll: o cliente le os quatro pacotes, nao se da por satisfeito e
-    // fica chamando `recv` em laco (WSAEWOULDBLOCK), sem nunca enviar nada. Uma explicacao e que
-    // ele descarte AUTH_GG/LOGIN_OK/SERVER_LIST por serem respostas a pedidos que ele nao fez.
-    //
-    // `AION_SEM_PROATIVO=1` manda so o SM_INIT e espera, para separar as duas hipoteses.
-    let proativo = env_num("AION_SEM_PROATIVO", 0) == 0;
-
-    if proativo {
-    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
-        return;
-    }
-    if let Err(e) = send_login_ok(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        account_id,
-        login_ok,
-        &current_username,
-    )
-    .await
-    {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_LOGIN_OK: {}", session_id, e);
-        return;
-    }
-    if let Err(e) = send_server_list(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        &announce_ip,
-        announce_port,
-        default_server_id,
-        char_count,
-    )
-    .await
-    {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_SERVER_LIST: {}", session_id, e);
-        return;
-    }
-    state = ConnectionState::AuthedLogin;
-    println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Cadeia proativa entregue (conta '{}', id {}, {} personagens)",
-        session_id, current_username, account_id, char_count
-    );
-    } else {
-        println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] AION_SEM_PROATIVO: so o SM_INIT foi enviado, aguardando o cliente",
-            session_id
-        );
-    }
+    // Apos o SM_INIT, o servidor aguarda a submissao de pacotes pelo cliente:
+    // - CM_AUTH_GG (0x07): responde com SM_AUTH_GG (0x0B)
+    // - CM_LOGIN / CM_NP_LOGIN (0x0B / 0x12 / 0x00): decifra RSA, obtem credenciais reais (ex: 'fly'),
+    //   consulta/cria conta no banco, envia SM_LOGIN_OK (0x03) e SM_SERVER_LIST (0x04)
+    // - CM_SERVER_LIST (0x05): envia SM_SERVER_LIST (0x04)
+    // - CM_PLAY (0x02): registra sessao no banco e envia SM_PLAY_OK (0x07)
 
     // =========================================================================
     // 3. Packet Reception Loop
@@ -718,6 +661,19 @@ async fn handle_ncsoft_client(
                     account_id,
                     login_ok,
                     &current_username,
+                )
+                .await;
+
+                // Envia imediatamente a lista de servidores com a contagem de chars da conta
+                let char_count = db.get_character_count(&current_username);
+                let _ = send_server_list(
+                    &mut socket,
+                    &crypt_engine,
+                    session_id,
+                    &announce_ip,
+                    announce_port,
+                    default_server_id,
+                    char_count,
                 )
                 .await;
             }

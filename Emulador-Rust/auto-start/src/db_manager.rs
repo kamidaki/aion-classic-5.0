@@ -84,6 +84,9 @@ impl DbManager {
                      PRAGMA busy_timeout = 5000;
                      PRAGMA synchronous = NORMAL;",
                 );
+                let _ = c.execute("ATTACH DATABASE 'login.db' AS login_db", []);
+                let _ = c.execute("ATTACH DATABASE 'game.db' AS game_db", []);
+                let _ = c.execute("ATTACH DATABASE 'chat.db' AS chat_db", []);
                 *guard = Some(c);
             } else {
                 return Err(format!("Não foi possível abrir o banco de dados '{}'", self.db_path));
@@ -96,15 +99,23 @@ impl DbManager {
         let guard = self.get_conn()?;
         let conn = guard.as_ref().unwrap();
 
-        let mut stmt = conn
-            .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC")
-            .map_err(|e| e.to_string())?;
-
-        let table_names: Vec<String> = stmt
-            .query_map([], |row| row.get(0))
-            .map_err(|e| e.to_string())?
-            .filter_map(|r| r.ok())
-            .collect();
+        let mut table_names: Vec<String> = Vec::new();
+        for db_prefix in &["", "login_db.", "game_db.", "chat_db."] {
+            let sql = if db_prefix.is_empty() {
+                "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC".to_string()
+            } else {
+                format!("SELECT name FROM {}sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC", db_prefix)
+            };
+            if let Ok(mut stmt) = conn.prepare(&sql) {
+                if let Ok(rows) = stmt.query_map([], |row| row.get::<_, String>(0)) {
+                    for r in rows.flatten() {
+                        if !table_names.contains(&r) {
+                            table_names.push(r);
+                        }
+                    }
+                }
+            }
+        }
 
         let mut schemas = Vec::new();
         for table in table_names {

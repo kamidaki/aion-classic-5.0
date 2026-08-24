@@ -51,7 +51,7 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
   * Altura slim de 48px que maximiza o espaço útil de tela.
   * Pílulas com minileds de status rápido e botões de ação em 1 clique (`INICIAR`, `PARAR`, `REINICIAR`, `TELA CHEIA`, `ENCERRAR`).
 * **Gaveta Lateral Esquerda (Left Drawer)**:
-  * Registradores de Sistema: Target TPS (20.0 fixo), Tamanho do Banco `aion.db`, Memória Total do SO e Uptime.
+  * Registradores de Sistema: Target TPS (20.0 fixo), Tamanho dos Bancos (`login.db` / `game.db` / `chat.db`), Memória Total do SO e Uptime.
   * Mapeamento de Portas de Rede ativas (`2106`, `7777`, `10241`, `6600`, `13001`, `18080`).
   * Conexão Mobile LAN com link direto e botão de cópia.
 * **Experiência Mobile iOS-Like**:

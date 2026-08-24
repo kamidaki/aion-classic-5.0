@@ -1342,7 +1342,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         <div class="status-dot online" id="dot-db"></div>
                         <div class="card-title">Banco SQLite</div>
                     </div>
-                    <div class="card-tag">aion.db</div>
+                    <div class="card-tag">SQLite (login / game / chat)</div>
                 </div>
                 <div class="metrics-box">
                     <div class="metric-row"><span class="metric-label">Engine / Modo:</span><span class="metric-value" style="color:var(--accent-game);">WAL (Ativo)</span></div>
@@ -1493,7 +1493,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             <div>
                 <div class="drawer-section-title">
                     <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-                    Banco de Dados (aion.db)
+                    Bancos de Dados (login / game / chat)
                 </div>
                 <div class="drawer-card">
                     <div style="display: flex; gap: 6px;">
@@ -1533,7 +1533,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 </div>
                 <div class="drawer-card">
                     <div class="drawer-row"><span style="color: var(--text-muted);">Taxa de Tick (TPS):</span><span class="drawer-val" style="color: var(--accent-game);">20.0 / 20.0 TPS (Fixo)</span></div>
-                    <div class="drawer-row"><span style="color: var(--text-muted);">Banco de Dados:</span><span class="drawer-val" id="reg-db-size">aion.db (0 KB)</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">Bancos SQLite:</span><span class="drawer-val" id="reg-db-size">login / game / chat (0 KB)</span></div>
                     <div class="drawer-row"><span style="color: var(--text-muted);">Memória Total do SO:</span><span class="drawer-val" id="reg-os-mem">0.0 / 0.0 GB</span></div>
                     <div class="drawer-row"><span style="color: var(--text-muted);">Uptime do Launcher:</span><span class="drawer-val" id="reg-uptime">00:00:00</span></div>
                 </div>
@@ -1588,7 +1588,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             <div class="db-header">
                 <div class="db-header-title">
                     <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-                    <span>Database Studio & Workbench (aion.db)</span>
+                    <span>Database Studio & Workbench (login.db / game.db / chat.db)</span>
                     <span class="brand-pill" id="db-total-tables-pill">0 Tabelas</span>
                 </div>
                 <div class="db-header-actions">
@@ -1710,7 +1710,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <span style="font-size:0.75rem; color:var(--text-muted); display:flex; align-items:center; gap:5px;">
                                         <span class="btn-svg" style="color:var(--accent-login);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
-                                        Editor SQL (Execução Direta no aion.db):
+                                        Editor SQL (Execução Direta nos Bancos SQLite):
                                     </span>
                                     <div style="display: flex; gap: 6px;">
                                         <button class="filter-btn" onclick="setSqlTemplate('SELECT * FROM accounts LIMIT 50;')">accounts</button>
@@ -1959,7 +1959,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     document.getElementById('hdr-lan-ip').innerText = `${r.lan_ip}:${r.http_port}`;
                     document.getElementById('reg-lan-ip').innerText = r.lan_ip;
                     document.getElementById('reg-ext-url').innerText = r.external_url;
-                    const dbSizeStr = `aion.db (${(r.active_db_size_kb / 1024).toFixed(2)} MB)`;
+                    const dbSizeStr = `SQLite (${(r.active_db_size_kb / 1024).toFixed(2)} MB)`;
                     document.getElementById('reg-db-size').innerText = dbSizeStr;
                     document.getElementById('val-db-size').innerText = `${(r.active_db_size_kb / 1024).toFixed(2)} MB`;
                     document.getElementById('reg-os-mem').innerText = `${(r.os_used_memory_mb / 1024).toFixed(1)} / ${(r.os_total_memory_mb / 1024).toFixed(1)} GB`;

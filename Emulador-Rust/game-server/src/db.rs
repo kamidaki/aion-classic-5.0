@@ -182,6 +182,110 @@ impl Db {
                 PRIMARY KEY (character_id, skill_id)
             );
             CREATE INDEX IF NOT EXISTS idx_skills_character ON character_skills(character_id);
+
+            -- Tabelas adicionais da referencia Classic 2.4 / 4.8 Retail
+            CREATE TABLE IF NOT EXISTS players (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT UNIQUE NOT NULL,
+                account_id INTEGER NOT NULL,
+                account_name TEXT NOT NULL DEFAULT '',
+                exp INTEGER NOT NULL DEFAULT 0,
+                x REAL NOT NULL DEFAULT 457.0,
+                y REAL NOT NULL DEFAULT 251.0,
+                z REAL NOT NULL DEFAULT 127.04,
+                heading INTEGER NOT NULL DEFAULT 0,
+                world_id INTEGER NOT NULL DEFAULT 110070000,
+                gender INTEGER NOT NULL DEFAULT 0,
+                race INTEGER NOT NULL DEFAULT 0,
+                player_class INTEGER NOT NULL DEFAULT 1,
+                creation_date INTEGER NOT NULL DEFAULT 0,
+                last_online INTEGER NOT NULL DEFAULT 0,
+                hp INTEGER NOT NULL DEFAULT 1000,
+                mp INTEGER NOT NULL DEFAULT 1000,
+                dp INTEGER NOT NULL DEFAULT 0,
+                title_id INTEGER NOT NULL DEFAULT 0,
+                kinah INTEGER NOT NULL DEFAULT 0
+            );
+
+            CREATE TABLE IF NOT EXISTS inventory (
+                item_unique_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                item_id INTEGER NOT NULL,
+                item_count INTEGER NOT NULL DEFAULT 1,
+                item_color INTEGER NOT NULL DEFAULT 0,
+                item_owner INTEGER NOT NULL,
+                item_creator TEXT DEFAULT '',
+                item_location INTEGER NOT NULL DEFAULT 0,
+                is_equiped INTEGER NOT NULL DEFAULT 0,
+                is_soul_bound INTEGER NOT NULL DEFAULT 0,
+                slot INTEGER NOT NULL DEFAULT 0,
+                enchant INTEGER NOT NULL DEFAULT 0,
+                fusioned_item INTEGER NOT NULL DEFAULT 0
+            );
+
+            CREATE TABLE IF NOT EXISTS player_skills (
+                player_id INTEGER NOT NULL,
+                skill_id INTEGER NOT NULL,
+                skill_level INTEGER NOT NULL DEFAULT 1,
+                PRIMARY KEY (player_id, skill_id)
+            );
+
+            CREATE TABLE IF NOT EXISTS legions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT UNIQUE NOT NULL,
+                rank INTEGER NOT NULL DEFAULT 0,
+                level INTEGER NOT NULL DEFAULT 1,
+                contribution_points INTEGER NOT NULL DEFAULT 0,
+                leader_id INTEGER NOT NULL DEFAULT 0
+            );
+
+            CREATE TABLE IF NOT EXISTS legion_members (
+                legion_id INTEGER NOT NULL,
+                player_id INTEGER NOT NULL,
+                nickname TEXT DEFAULT '',
+                rank INTEGER NOT NULL DEFAULT 0,
+                PRIMARY KEY (legion_id, player_id)
+            );
+
+            CREATE TABLE IF NOT EXISTS abyss_rank (
+                player_id INTEGER PRIMARY KEY,
+                daily_ap INTEGER NOT NULL DEFAULT 0,
+                weekly_ap INTEGER NOT NULL DEFAULT 0,
+                ap INTEGER NOT NULL DEFAULT 0,
+                rank INTEGER NOT NULL DEFAULT 1,
+                top_ranking INTEGER NOT NULL DEFAULT 0,
+                daily_kill INTEGER NOT NULL DEFAULT 0,
+                weekly_kill INTEGER NOT NULL DEFAULT 0,
+                all_kill INTEGER NOT NULL DEFAULT 0,
+                max_rank INTEGER NOT NULL DEFAULT 1,
+                last_kill INTEGER NOT NULL DEFAULT 0,
+                last_ap INTEGER NOT NULL DEFAULT 0,
+                gp INTEGER NOT NULL DEFAULT 0
+            );
+
+            CREATE TABLE IF NOT EXISTS player_titles (
+                player_id INTEGER NOT NULL,
+                title_id INTEGER NOT NULL,
+                remaining_time INTEGER NOT NULL DEFAULT -1,
+                PRIMARY KEY (player_id, title_id)
+            );
+
+            CREATE TABLE IF NOT EXISTS player_effects (
+                player_id INTEGER NOT NULL,
+                skill_id INTEGER NOT NULL,
+                skill_lvl INTEGER NOT NULL DEFAULT 1,
+                current_time INTEGER NOT NULL DEFAULT 0,
+                end_time INTEGER NOT NULL DEFAULT 0,
+                PRIMARY KEY (player_id, skill_id)
+            );
+
+            CREATE TABLE IF NOT EXISTS player_bind_point (
+                player_id INTEGER PRIMARY KEY,
+                map_id INTEGER NOT NULL DEFAULT 110070000,
+                x REAL NOT NULL DEFAULT 457.0,
+                y REAL NOT NULL DEFAULT 251.0,
+                z REAL NOT NULL DEFAULT 127.04,
+                heading INTEGER NOT NULL DEFAULT 0
+            );
             ",
         )?;
 
@@ -204,6 +308,9 @@ impl Db {
         let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN session_key INTEGER NOT NULL DEFAULT 0", []);
         let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
         let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN expires_at INTEGER NOT NULL DEFAULT 0", []);
+
+        // Anexa login.db se existir para permitir consultas cruzadas de sessao
+        let _ = self.conn.execute("ATTACH DATABASE 'login.db' AS login_db", []);
 
         Ok(())
     }

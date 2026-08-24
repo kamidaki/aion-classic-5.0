@@ -118,7 +118,7 @@ impl Default for DatabaseConfig {
 }
 
 fn default_db_path() -> String {
-    "aion.db".to_string()
+    "game.db".to_string()
 }
 
 #[derive(Debug, Deserialize, Clone)]

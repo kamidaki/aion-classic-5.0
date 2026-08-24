@@ -664,7 +664,11 @@ impl Supervisor {
         let http_port = self.config.launcher.gui.http_port;
         let external_url = format!("http://{}:{}", lan_ip, http_port);
 
-        let db_size = std::fs::metadata("aion.db").map(|m| m.len() / 1024).unwrap_or(0);
+        let db_size: u64 = ["login.db", "game.db", "chat.db", "aion.db"]
+            .iter()
+            .filter_map(|p| std::fs::metadata(p).ok())
+            .map(|m| m.len() / 1024)
+            .sum();
         let os_total_mem = (sys.total_memory() as f32) / (1024.0 * 1024.0);
         let os_used_mem = (sys.used_memory() as f32) / (1024.0 * 1024.0);
 
@@ -982,7 +986,13 @@ impl Supervisor {
 
     pub fn get_online_players(&self) -> Vec<OnlinePlayerInfo> {
         let mut players = Vec::new();
-        let db_path = "aion.db";
+        let db_path = if std::path::Path::new("game.db").exists() {
+            "game.db"
+        } else if std::path::Path::new("login.db").exists() {
+            "login.db"
+        } else {
+            "aion.db"
+        };
 
         if let Ok(conn) = rusqlite::Connection::open_with_flags(
             db_path,
