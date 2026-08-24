@@ -1018,9 +1018,9 @@ impl Supervisor {
             let active_threshold = now - 900; // 15 minutes window
             
             let stmt = conn.prepare(
-                "SELECT s.token, s.username, s.issued_at, IFNULL(c.name, 'Nenhum') 
+                "SELECT s.token, COALESCE(NULLIF(s.account_name, ''), s.username), s.issued_at, IFNULL(c.name, 'Nenhum') 
                  FROM sessions s 
-                 LEFT JOIN accounts a ON a.username = s.username 
+                 LEFT JOIN account_data a ON a.name = s.username OR a.name = s.account_name 
                  LEFT JOIN characters c ON c.account_id = a.id 
                  WHERE s.issued_at > ?1 
                  ORDER BY s.issued_at DESC LIMIT 50"

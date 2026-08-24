@@ -288,11 +288,16 @@ pub fn build_server_list_payload_com(
     // Servidor 3: Bracket 0 (Universal Classic)
     write_server_entry(&mut raw, 3, &ip, announce_port, 0, SERVER_BITS_CLASSIC);
 
-    // Contagem de personagens: total de servidores (u16 = 3) e um byte por servidor
-    raw.extend_from_slice(&3u16.to_le_bytes());
+    // Secao de contagem de personagens conforme padrao oficial Classic:
+    // writeH(maxId + 1 = 4)
+    raw.extend_from_slice(&4u16.to_le_bytes());
+    // writeC(0x01) -> habilita o botao do servidor e lista ativa na UI do cliente
+    raw.push(0x01);
     raw.push(char_count); // Servidor 1
     raw.push(0);          // Servidor 2
     raw.push(0);          // Servidor 3
+    // Trailer de 15 bytes zeros do Classic
+    raw.extend_from_slice(&[0u8; 15]);
 
     raw
 }
@@ -306,8 +311,8 @@ fn write_server_entry(raw: &mut Vec<u8>, server_id: u8, ip: &[u8; 4], port: u16,
     raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online
     raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo
     raw.push(1); // status: online
-    raw.extend_from_slice(&server_bits.to_le_bytes());
-    raw.push(bracket);
+    raw.push(bracket); // bracket / country code (vem ANTES do ServerBits na referencia 2.4)
+    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401)
 }
 
 async fn handle_ncsoft_client(
@@ -1069,14 +1074,15 @@ mod test {
         assert_eq!(u32::from_le_bytes(e[0x05..0x09].try_into().unwrap()), 7777, "porta");
         assert_eq!(e[0x09], 0, "limite de idade");
         assert_eq!(e[0x0A], 1, "pvp");
+        assert_eq!(u16::from_le_bytes(e[0x0B..0x0D].try_into().unwrap()), 0, "jogadores online");
         assert_eq!(u16::from_le_bytes(e[0x0D..0x0F].try_into().unwrap()), 1000, "maximo");
         assert_eq!(e[0x0F], 1, "online");
+        assert_eq!(e[0x10], BRACKET_CLASSIC_EU, "bracket em 0x10");
         assert_eq!(
-            u32::from_le_bytes(e[0x10..0x14].try_into().unwrap()),
+            u32::from_le_bytes(e[0x11..0x15].try_into().unwrap()),
             SERVER_BITS_CLASSIC,
-            "ServerBits em 0x10, com o bit 10 ligado"
+            "ServerBits em 0x11..0x15, com o bit 10 ligado"
         );
-        assert_eq!(e[0x14], BRACKET_CLASSIC_EU, "bracket em 0x14");
     }
 
     #[test]
@@ -1090,9 +1096,8 @@ mod test {
         let p = build_server_list_payload("192.168.1.50", 7777, 23, 3);
         let e = &p[3..3 + SERVER_ENTRY_LEN_NC];
 
-        assert_ne!(e[0x10], BRACKET_CLASSIC_EU, "0x10 e o ServerBits, nao o bracket");
-        assert_eq!(e[0x10], 0x01, "primeiro byte de 0x00000401 em LE");
-        assert_eq!(e[0x14], 2);
+        assert_eq!(e[0x10], BRACKET_CLASSIC_EU, "0x10 e o bracket");
+        assert_eq!(e[0x11], 0x01, "primeiro byte de 0x00000401 em LE em 0x11");
     }
 
     #[test]
@@ -1102,10 +1107,11 @@ mod test {
 
         assert_eq!(
             u16::from_le_bytes(p[depois..depois + 2].try_into().unwrap()),
-            3,
-            "tres servidores na lista"
+            4,
+            "maxId + 1 = 4"
         );
-        assert_eq!(p[depois + 2], 4, "a contagem de personagens vem logo em seguida");
+        assert_eq!(p[depois + 2], 1, "flag que habilita botao do servidor");
+        assert_eq!(p[depois + 3], 4, "a contagem de personagens vem logo em seguida");
     }
 
     #[test]

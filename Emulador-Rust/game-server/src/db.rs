@@ -61,10 +61,10 @@ impl Db {
             "
             PRAGMA journal_mode=WAL;
             PRAGMA synchronous=NORMAL;
-            CREATE TABLE IF NOT EXISTS accounts (
+            CREATE TABLE IF NOT EXISTS account_data (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT UNIQUE NOT NULL,
-                password_hash TEXT NOT NULL DEFAULT '',
+                password TEXT NOT NULL DEFAULT '',
                 access_level INTEGER NOT NULL DEFAULT 0,
                 membership INTEGER NOT NULL DEFAULT 0,
                 created_at INTEGER NOT NULL DEFAULT (strftime('%s','now')),
@@ -72,7 +72,7 @@ impl Db {
             );
             CREATE TABLE IF NOT EXISTS characters (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                account_id INTEGER NOT NULL REFERENCES accounts(id),
+                account_id INTEGER NOT NULL REFERENCES account_data(id),
                 name TEXT NOT NULL,
                 level INTEGER NOT NULL DEFAULT 1,
                 exp INTEGER NOT NULL DEFAULT 0,
@@ -294,13 +294,12 @@ impl Db {
         let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN kit_inicial INTEGER NOT NULL DEFAULT 0", []);
         let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN map_id INTEGER NOT NULL DEFAULT 110070000", []);
         let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN heading INTEGER NOT NULL DEFAULT 0", []);
-        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN name TEXT", []);
-        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN username TEXT", []);
-        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN password_hash TEXT NOT NULL DEFAULT ''", []);
-        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN access_level INTEGER NOT NULL DEFAULT 0", []);
-        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN membership INTEGER NOT NULL DEFAULT 0", []);
-        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN last_ip TEXT NOT NULL DEFAULT ''", []);
-        let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE account_data ADD COLUMN name TEXT", []);
+        let _ = self.conn.execute("ALTER TABLE account_data ADD COLUMN password TEXT NOT NULL DEFAULT ''", []);
+        let _ = self.conn.execute("ALTER TABLE account_data ADD COLUMN access_level INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE account_data ADD COLUMN membership INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE account_data ADD COLUMN last_ip TEXT NOT NULL DEFAULT ''", []);
+        let _ = self.conn.execute("ALTER TABLE account_data ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
 
         let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN account_name TEXT", []);
         let _ = self.conn.execute("ALTER TABLE sessions ADD COLUMN username TEXT", []);
@@ -372,7 +371,7 @@ impl Db {
         username: &str,
     ) -> Result<Vec<PersistedCharacter>> {
         let account_id: i64 = self.conn.query_row(
-            "SELECT id FROM accounts WHERE name = ?1 OR username = ?1 COLLATE NOCASE",
+            "SELECT id FROM account_data WHERE name = ?1 COLLATE NOCASE",
             params![username],
             |row| row.get(0),
         )?;
@@ -490,11 +489,11 @@ impl Db {
         use crate::game::mundo;
 
         self.conn.execute(
-            "INSERT OR IGNORE INTO accounts(name, password_hash, access_level, membership, created_at) VALUES (?1, ?1, 0, 0, strftime('%s','now'))",
+            "INSERT OR IGNORE INTO account_data(name, password, access_level, membership, created_at) VALUES (?1, ?1, 0, 0, strftime('%s','now'))",
             params![username],
         )?;
         let account_id: i64 = self.conn.query_row(
-            "SELECT id FROM accounts WHERE name = ?1 OR username = ?1 COLLATE NOCASE",
+            "SELECT id FROM account_data WHERE name = ?1 COLLATE NOCASE",
             params![username],
             |row| row.get(0),
         )?;
@@ -565,7 +564,7 @@ impl Db {
         let account_id: Option<i64> = self
             .conn
             .query_row(
-                "SELECT id FROM accounts WHERE name = ?1 OR username = ?1 COLLATE NOCASE",
+                "SELECT id FROM account_data WHERE name = ?1 COLLATE NOCASE",
                 params![username],
                 |row| row.get(0),
             )
@@ -594,11 +593,11 @@ impl Db {
         use crate::game::mundo;
 
         self.conn.execute(
-            "INSERT OR IGNORE INTO accounts(name, password_hash, access_level, membership, created_at) VALUES (?1, ?1, 0, 0, strftime('%s','now'))",
+            "INSERT OR IGNORE INTO account_data(name, password, access_level, membership, created_at) VALUES (?1, ?1, 0, 0, strftime('%s','now'))",
             params![username],
         )?;
         let account_id: i64 = self.conn.query_row(
-            "SELECT id FROM accounts WHERE name = ?1 OR username = ?1 COLLATE NOCASE",
+            "SELECT id FROM account_data WHERE name = ?1 COLLATE NOCASE",
             params![username],
             |row| row.get(0),
         )?;

@@ -23,28 +23,7 @@ impl AuthDb {
              PRAGMA busy_timeout = 5000;
              PRAGMA synchronous = NORMAL;
              
-             -- Tabela principal de contas (padrao Classic 2.4 / 4.8 e compativel com EmuRust)
-             CREATE TABLE IF NOT EXISTS accounts (
-                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 name TEXT UNIQUE NOT NULL,
-                 username TEXT,
-                 password_hash TEXT NOT NULL DEFAULT '',
-                 activated INTEGER NOT NULL DEFAULT 1,
-                 access_level INTEGER NOT NULL DEFAULT 0,
-                 membership INTEGER NOT NULL DEFAULT 0,
-                 old_membership INTEGER NOT NULL DEFAULT 0,
-                 last_server INTEGER NOT NULL DEFAULT -1,
-                 last_ip TEXT NOT NULL DEFAULT '',
-                 last_mac TEXT NOT NULL DEFAULT 'xx-xx-xx-xx-xx-xx',
-                 ip_force TEXT DEFAULT NULL,
-                 expire INTEGER DEFAULT NULL,
-                 toll INTEGER NOT NULL DEFAULT 0,
-                 email TEXT DEFAULT NULL,
-                 created_at INTEGER NOT NULL DEFAULT 0,
-                 updated_at INTEGER NOT NULL DEFAULT 0
-             );
-             
-             -- Tabela account_data oficial da referencia 2.4 Classic
+             -- Tabela account_data oficial da referencia Aion Classic 2.4 / 4.8
              CREATE TABLE IF NOT EXISTS account_data (
                  id INTEGER PRIMARY KEY AUTOINCREMENT,
                  name TEXT UNIQUE NOT NULL,
@@ -112,7 +91,7 @@ impl AuthDb {
              -- Tabela characters para contagem de chars no login
              CREATE TABLE IF NOT EXISTS characters (
                  id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 account_id INTEGER NOT NULL REFERENCES accounts(id),
+                 account_id INTEGER NOT NULL REFERENCES account_data(id),
                  name TEXT NOT NULL,
                  level INTEGER NOT NULL DEFAULT 1,
                  exp INTEGER NOT NULL DEFAULT 0,
@@ -127,22 +106,13 @@ impl AuthDb {
              CREATE INDEX IF NOT EXISTS idx_characters_account ON characters(account_id);",
         )?;
 
-        // Automatic column migrations for existing SQLite databases
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN username TEXT", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN password_hash TEXT NOT NULL DEFAULT ''", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN activated INTEGER NOT NULL DEFAULT 1", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN access_level INTEGER NOT NULL DEFAULT 0", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN membership INTEGER NOT NULL DEFAULT 0", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN old_membership INTEGER NOT NULL DEFAULT 0", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN last_server INTEGER NOT NULL DEFAULT -1", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN last_ip TEXT NOT NULL DEFAULT ''", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN last_mac TEXT NOT NULL DEFAULT 'xx-xx-xx-xx-xx-xx'", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN ip_force TEXT DEFAULT NULL", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN expire INTEGER DEFAULT NULL", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN toll INTEGER NOT NULL DEFAULT 0", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN email TEXT DEFAULT NULL", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0", []);
-        let _ = conn.execute("ALTER TABLE accounts ADD COLUMN updated_at INTEGER NOT NULL DEFAULT 0", []);
+        // Migracao automatica: migra dados de accounts legado para account_data e remove accounts
+        let _ = conn.execute(
+            "INSERT OR IGNORE INTO account_data (name, password, access_level, membership, created_at, updated_at)
+             SELECT COALESCE(NULLIF(name, ''), username), password_hash, access_level, membership, created_at, updated_at FROM accounts WHERE name IS NOT NULL OR username IS NOT NULL",
+            [],
+        );
+        let _ = conn.execute("DROP TABLE IF EXISTS accounts", []);
 
         let _ = conn.execute("ALTER TABLE sessions ADD COLUMN account_name TEXT", []);
         let _ = conn.execute("ALTER TABLE sessions ADD COLUMN username TEXT", []);
@@ -159,7 +129,7 @@ impl AuthDb {
 
     pub fn get_or_create_account(&self, name: &str, auto_create: bool) -> Result<Option<Account>> {
         let conn = self.conn.lock();
-        let mut stmt = conn.prepare("SELECT id, COALESCE(NULLIF(name, ''), username, ?1), access_level, membership FROM accounts WHERE name = ?1 OR username = ?1 COLLATE NOCASE")?;
+        let mut stmt = conn.prepare("SELECT id, name, access_level, membership FROM account_data WHERE name = ?1 COLLATE NOCASE")?;
         let mut rows = stmt.query(params![name])?;
 
         if let Some(row) = rows.next()? {
@@ -174,17 +144,15 @@ impl AuthDb {
             drop(stmt);
             let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
             conn.execute(
-                "INSERT INTO accounts (name, username, password_hash, access_level, membership, created_at, updated_at)
-                 VALUES (?1, ?1, ?1, 0, 0, ?2, ?2)",
+                "INSERT INTO account_data (name, password, access_level, membership, created_at, updated_at)
+                 VALUES (?1, ?1, 0, 0, ?2, ?2)",
                 params![name, now],
             )?;
             let id = conn.last_insert_rowid();
 
-            // Sincroniza tambem com a tabela account_data para compatibilidade total com a referencia 2.4
             let _ = conn.execute(
-                "INSERT OR REPLACE INTO account_data (id, name, password, access_level, membership, created_at, updated_at)
-                 VALUES (?1, ?2, ?2, 0, 0, ?3, ?3)",
-                params![id, name, now],
+                "INSERT OR REPLACE INTO account_time (account_id, last_active) VALUES (?1, ?2)",
+                params![id, now],
             );
 
             Ok(Some(Account {
@@ -201,7 +169,7 @@ impl AuthDb {
     pub fn get_character_count(&self, account_name: &str) -> u8 {
         let conn = self.conn.lock();
         let mut stmt = match conn.prepare(
-            "SELECT COUNT(*) FROM characters WHERE account_id = (SELECT id FROM accounts WHERE name = ?1 OR username = ?1 COLLATE NOCASE)"
+            "SELECT COUNT(*) FROM characters WHERE account_id = (SELECT id FROM account_data WHERE name = ?1 COLLATE NOCASE)"
         ) {
             Ok(s) => s,
             Err(_) => return 0,
