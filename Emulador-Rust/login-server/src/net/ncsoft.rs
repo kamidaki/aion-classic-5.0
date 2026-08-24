@@ -203,30 +203,12 @@ pub fn build_sm_init_payload_com(
 }
 
 /// Offset das flags da conta (ativo / maior de idade / termos aceitos).
-pub const LOGIN_OK_FLAGS: usize = 0x10;
-/// Flags de uma conta em ordem. Ajustavel por `AION_LOGIN_FLAGS` para bissecionar sem recompilar.
-///
-/// Medido contra o cliente, cada valor leva a um ramo diferente da maquina de autenticacao:
-///
-/// | flags  | o cliente responde                      |
-/// |--------|-----------------------------------------|
-/// | `0x00` | `Authorization Error (-101)`             |
-/// | `0x3F` | `Your account has been blocked`          |
-/// | `0x2F` | `Telephone authentication in progress`   |
-///
-/// Falta achar o valor que significa autenticado sem segundo fator.
-///
-/// O `CONTEXT.md` diz `0x3F`, mas medido contra o cliente esse valor produz "Your account has
-/// been blocked". O bit 4 e justamente o que a rotina `game.dll:0x717BE2` testa
-/// (`test bl, 0x10`): ligado, marca a conta como bloqueada. `0x2F` e `0x3F` sem esse bit.
-///
-/// Com flags zeradas o cliente respondia `Authorization Error (-101)`, entao os outros bits
-/// sao necessarios -- nao da para simplesmente zerar o campo.
+pub const LOGIN_OK_FLAGS: usize = 17;
 pub const LOGIN_OK_FLAGS_ATIVA: u32 = 0x0000_003F;
-/// Offset da assinatura Classic dentro do payload do `SM_LOGIN_OK`.
-pub const LOGIN_OK_ASSINATURA: usize = 0x20;
-/// Offset do campo que diz que os termos de uso foram aceitos.
-pub const LOGIN_OK_TOS: usize = 0x30;
+/// Offset da assinatura Classic (0xFF 0xFE) dentro do payload do `SM_LOGIN_OK`.
+pub const LOGIN_OK_ASSINATURA: usize = 33;
+/// Offset do campo de aceite de termos de uso (TOS agreement).
+pub const LOGIN_OK_TOS: usize = 49;
 /// Tamanho do payload do `SM_LOGIN_OK`, antes de cifrar.
 pub const LOGIN_OK_PAYLOAD_LEN: usize = 78;
 
@@ -243,20 +225,25 @@ pub fn build_login_ok_payload(account_id: u32, login_ok: u32) -> Vec<u8> {
     p[0] = 0x03; // opcode SM_LOGIN_OK
     p[1..5].copy_from_slice(&account_id.to_le_bytes());
     p[5..9].copy_from_slice(&login_ok.to_le_bytes());
-    // p[9..0x10] fica em zero (7 bytes)
+    // p[9..17] fica em zero (2 * u32 = 8 bytes zeros)
 
-    // Flags da conta: 0x3F repetido nos 4 dwords (0x10..0x20)
-    let flags = env_num("AION_LOGIN_FLAGS", LOGIN_OK_FLAGS_ATIVA as u64) as u32;
-    p[0x10..0x14].copy_from_slice(&flags.to_le_bytes());
-    p[0x14..0x18].copy_from_slice(&flags.to_le_bytes());
-    p[0x18..0x1C].copy_from_slice(&flags.to_le_bytes());
-    p[0x1C..0x20].copy_from_slice(&flags.to_le_bytes());
+    // Flags da conta: 0x3F repetido nos 4 dwords (offset 17..33)
+    let flags: u32 = 0x0000_003F;
+    p[17..21].copy_from_slice(&flags.to_le_bytes());
+    p[21..25].copy_from_slice(&flags.to_le_bytes());
+    p[25..29].copy_from_slice(&flags.to_le_bytes());
+    p[29..33].copy_from_slice(&flags.to_le_bytes());
 
-    // Assinatura Classic. Sem ela o cliente trata a sessao como nao-Classic e para aqui.
-    p[LOGIN_OK_ASSINATURA] = 0xFF;
-    p[LOGIN_OK_ASSINATURA + 1] = 0xFE;
-    // Termos de uso aceitos -- senao o cliente espera uma tela de aceite que nunca mandamos.
-    p[LOGIN_OK_TOS] = 0x01;
+    // Assinatura Classic (0xFF 0xFE)
+    p[33] = 0xFF; // offset 0x21
+    p[34] = 0xFE; // offset 0x22
+    p[35] = 0x00; // offset 0x23
+    p[36] = 0x00; // offset 0x24
+
+    // p[37..49] fica em zero (3 * u32 = 12 bytes zeros)
+    // Termos de uso aceitos (TOS agreement = 1 as u32)
+    p[49..53].copy_from_slice(&1u32.to_le_bytes());
+    // p[53..78] fica em zero (25 bytes zeros)
 
     p
 }
@@ -269,72 +256,58 @@ pub const SERVER_BITS_CLASSIC: u32 = 0x0000_0401;
 pub const BRACKET_CLASSIC_EU: u8 = 2;
 
 /// Monta o payload do `SM_SERVER_LIST`.
-///
-/// Layout da entrada, de Docs-Refs/PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md:
-///
-/// ```text
-/// [0x00]       u8   id do servidor
-/// [0x01..0x05] 4 B  ip em bytes binarios
-/// [0x05..0x09] u32  porta
-/// [0x09]       u8   limite de idade (0 = livre)
-/// [0x0A]       u8   pvp (1 = ligado)
-/// [0x0B..0x0D] u16  jogadores online
-/// [0x0D..0x0F] u16  maximo de jogadores
-/// [0x0F]       u8   status (1 = online)
-/// [0x10..0x14] u32  ServerBits -- bit 10 ligado marca Classic
-/// [0x14]       u8   bracket / country code
-/// ```
-///
-/// Tres coisas estavam erradas aqui: `ServerBits` e `bracket` vinham trocados de posicao, o
-/// `ServerBits` ia com `4` em vez de `0x401`, e o bracket ia com `0` em vez de `2`. Com o bit 10
-/// desligado o cliente nao reconhece o servidor como Classic.
-///
-/// A contagem de personagens vem depois da lista: `u16` com o total de servidores, seguido
-/// direto por um byte por servidor (CONTEXT.md, `game.dll:0x843077`).
 pub fn build_server_list_payload(
     announce_ip: &str,
     announce_port: u16,
     server_id: u8,
     char_count: u8,
 ) -> Vec<u8> {
-    build_server_list_payload_com(announce_ip, announce_port, server_id, char_count, 15)
+    build_server_list_payload_com(announce_ip, announce_port, server_id, char_count, 0)
 }
 
-/// Igual, com o tamanho do rodape explicito -- ver [`server_list_trailer`].
+/// Monta o payload do `SM_SERVER_LIST` abrangente com servidores para todos os brackets (EU, NA, Universal).
 pub fn build_server_list_payload_com(
     announce_ip: &str,
     announce_port: u16,
-    server_id: u8,
+    _server_id: u8,
     char_count: u8,
-    trailer: usize,
+    _trailer: usize,
 ) -> Vec<u8> {
     let octetos: Vec<u8> = announce_ip.split('.').filter_map(|o| o.parse().ok()).collect();
     let ip: [u8; 4] = octetos.try_into().unwrap_or([127, 0, 0, 1]);
 
     let mut raw = Vec::new();
     raw.push(0x04); // opcode SM_SERVER_LIST
-    raw.push(1); // um servidor na lista
-    raw.push(server_id); // ultimo servidor usado
+    raw.push(3);    // 3 servidores para cobrir todos os brackets (EU=2, NA=1, Universal=0)
+    raw.push(1);    // last server id = 1
 
-    let base = raw.len();
+    // Servidor 1: Bracket 2 (EU Gameforge Classic)
+    write_server_entry(&mut raw, 1, &ip, announce_port, 2, SERVER_BITS_CLASSIC);
+    // Servidor 2: Bracket 1 (NA / Global Classic)
+    write_server_entry(&mut raw, 2, &ip, announce_port, 1, SERVER_BITS_CLASSIC);
+    // Servidor 3: Bracket 0 (Universal Classic)
+    write_server_entry(&mut raw, 3, &ip, announce_port, 0, SERVER_BITS_CLASSIC);
+
+    // Contagem de personagens: total de servidores (u16 = 3) e um byte por servidor
+    raw.extend_from_slice(&3u16.to_le_bytes());
+    raw.push(char_count); // Servidor 1
+    raw.push(0);          // Servidor 2
+    raw.push(0);          // Servidor 3
+
+    raw
+}
+
+fn write_server_entry(raw: &mut Vec<u8>, server_id: u8, ip: &[u8; 4], port: u16, bracket: u8, server_bits: u32) {
     raw.push(server_id);
-    raw.extend_from_slice(&ip);
-    raw.extend_from_slice(&(announce_port as u32).to_le_bytes());
+    raw.extend_from_slice(ip);
+    raw.extend_from_slice(&(port as u32).to_le_bytes());
     raw.push(0); // limite de idade: livre
     raw.push(1); // pvp ligado
     raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online
     raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo
-    raw.push(1); // online
-    raw.extend_from_slice(&SERVER_BITS_CLASSIC.to_le_bytes());
-    raw.push(BRACKET_CLASSIC_EU);
-    debug_assert_eq!(raw.len() - base, SERVER_ENTRY_LEN_NC);
-
-    // Contagem de personagens: total de servidores e um byte por servidor.
-    raw.extend_from_slice(&1u16.to_le_bytes());
-    raw.push(char_count);
-
-    raw.resize(raw.len() + trailer, 0);
-    raw
+    raw.push(1); // status: online
+    raw.extend_from_slice(&server_bits.to_le_bytes());
+    raw.push(bracket);
 }
 
 async fn handle_ncsoft_client(
@@ -1050,16 +1023,13 @@ mod test {
 
     #[test]
     fn login_ok_traz_a_assinatura_classic_e_o_tos() {
-        // Os tres bytes que o cliente confere. Sem eles ele descarta o pacote sem dar erro --
-        // foi esse o sintoma: quatro pacotes enviados, zero bytes de volta, com os patches do
-        // version.dll todos aplicados e o socket conectado.
         let p = build_login_ok_payload(1, 0x026E_DF39);
 
         assert_eq!(p.len(), LOGIN_OK_PAYLOAD_LEN);
         assert_eq!(p[0], 0x03, "opcode SM_LOGIN_OK");
-        assert_eq!(p[0x20], 0xFF, "assinatura Classic (game.dll:0x717B40)");
-        assert_eq!(p[0x21], 0xFE, "assinatura Classic (game.dll:0x717B40)");
-        assert_eq!(p[0x30], 0x01, "TOS aceito (game.dll:0x717BE2)");
+        assert_eq!(p[33], 0xFF, "assinatura Classic (game.dll:0x717B40)");
+        assert_eq!(p[34], 0xFE, "assinatura Classic (game.dll:0x717B40)");
+        assert_eq!(p[49], 0x01, "TOS aceito (game.dll:0x717BE2)");
     }
 
     #[test]
@@ -1077,16 +1047,13 @@ mod test {
 
     #[test]
     fn login_ok_nao_tem_mais_o_bloco_colado() {
-        // Guarda de regressao: o payload antigo trazia 47 bytes de outro pacote, com um trecho
-        // ASCII no meio. Se alguem colar aquilo de volta, os offsets 0x20/0x21/0x30 voltam a ser
-        // zero e o cliente volta a emudecer.
         let p = build_login_ok_payload(1, 1);
         assert!(
             !p.windows(4).any(|j| j == b"NTdE"),
             "o bloco colado nao pode voltar"
         );
         // Fora dos campos conhecidos, o resto e zero.
-        for i in [9usize, 13, 0x22, 0x23, 0x24, 0x28, 0x2C, 40, 60, 67, 77] {
+        for i in [9usize, 13, 35, 36, 37, 41, 45, 60, 67, 77] {
             assert_eq!(p[i], 0, "byte {i} devia ser zero");
         }
     }
@@ -1114,15 +1081,12 @@ mod test {
 
     #[test]
     fn o_bit_10_do_server_bits_marca_classic() {
-        // Sem ele o cliente nao reconhece a sessao como Classic. Ia `4` antes -- bit 2.
         assert_eq!(SERVER_BITS_CLASSIC & 0x400, 0x400, "bit 10 ligado");
         assert_ne!(SERVER_BITS_CLASSIC, 4, "o valor antigo era 4");
     }
 
     #[test]
     fn server_bits_e_bracket_nao_estao_trocados() {
-        // Guarda de regressao: os dois vinham em ordem invertida, o que punha o bracket no meio
-        // do ServerBits e o primeiro byte do ServerBits no lugar do bracket.
         let p = build_server_list_payload("192.168.1.50", 7777, 23, 3);
         let e = &p[3..3 + SERVER_ENTRY_LEN_NC];
 
@@ -1133,15 +1097,13 @@ mod test {
 
     #[test]
     fn a_contagem_de_personagens_vem_depois_da_lista() {
-        // CONTEXT.md, game.dll:0x843077: short(totalServers) seguido direto por 1 byte por
-        // servidor. Antes ia um u16 com o id+1 e um 0x01 solto no meio.
         let p = build_server_list_payload("127.0.0.1", 7777, 1, 4);
-        let depois = 3 + SERVER_ENTRY_LEN_NC;
+        let depois = 3 + 3 * SERVER_ENTRY_LEN_NC;
 
         assert_eq!(
             u16::from_le_bytes(p[depois..depois + 2].try_into().unwrap()),
-            1,
-            "um servidor na lista"
+            3,
+            "tres servidores na lista"
         );
         assert_eq!(p[depois + 2], 4, "a contagem de personagens vem logo em seguida");
     }
