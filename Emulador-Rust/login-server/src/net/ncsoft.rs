@@ -204,7 +204,7 @@ pub fn build_sm_init_payload_com(
 
 /// Offset das flags da conta (ativo / maior de idade / termos aceitos).
 pub const LOGIN_OK_FLAGS: usize = 17;
-pub const LOGIN_OK_FLAGS_ATIVA: u32 = 0x0000_002F;
+pub const LOGIN_OK_FLAGS_ATIVA: u32 = 0x0000_003F;
 /// Offset da assinatura Classic (0xFF 0xFE) dentro do payload do `SM_LOGIN_OK`.
 pub const LOGIN_OK_ASSINATURA: usize = 33;
 /// Offset do campo de aceite de termos de uso (TOS agreement).
@@ -223,8 +223,8 @@ pub fn build_login_ok_payload(account_id: u32, login_ok: u32, tos_accepted: bool
     p[5..9].copy_from_slice(&login_ok.to_le_bytes());
     // p[9..17] fica em zero (2 * u32 = 8 bytes zeros)
 
-    // Flags da conta: bit 4 (0x10) e a flag de TOS aceito (0x3F quando aceito, 0x2F quando pendente)
-    let flags: u32 = if tos_accepted { 0x0000_003F } else { 0x0000_002F };
+    // Flags da conta: bit 4 (0x10) e a flag de conta ativa (sempre 0x3F para passar na checagem test bl, 0x10 do client)
+    let flags: u32 = 0x0000_003F;
     p[17..21].copy_from_slice(&flags.to_le_bytes());
     p[21..25].copy_from_slice(&flags.to_le_bytes());
     p[25..29].copy_from_slice(&flags.to_le_bytes());
@@ -531,17 +531,12 @@ async fn handle_ncsoft_client(
     let play_ok2: u32 = rand::random();
 
     // =========================================================================
-    // 2. SM_AUTH_GG -- o unico pacote enviado antes de receber credenciais.
-    //    O cliente exibe o formulario de login in-game e aguarda o jogador
-    //    digitar usuario+senha e clicar em OK. Somente entao ele envia CM_LOGIN.
+    // 2. SM_AUTH_GG -- O cliente exibe o formulario de login in-game e aguarda 
+    //    o jogador digitar usuario+senha e clicar em OK. Somente entao ele envia
+    //    CM_AUTH_GG e depois CM_LOGIN. Nao enviamos proativamente para nao travar.
     // =========================================================================
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
-        return;
-    }
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT + SM_AUTH_GG enviados. Aguardando CM_LOGIN com credenciais do jogador...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT enviado. Aguardando pacote do cliente...",
         session_id
     );
 
@@ -712,11 +707,11 @@ async fn handle_ncsoft_client(
                     account_id,
                     login_ok,
                     &current_username,
-                    true, // Pula/Bypassa a tela de Termos de Uso (TOS) no cliente
+                    false, // Exige aceite manual dos Termos de Uso (TOS) na tela do cliente
                 )
                 .await;
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Termos de Uso (TOS) ignorados (bypassed). Conexao autorizada.",
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Termos de Uso (TOS) apresentados na tela. Aguardando aceite do jogador (CM_SERVER_LIST)...",
                     session_id
                 );
             }
@@ -1055,10 +1050,10 @@ mod test {
         assert_eq!(p[34], 0xFE, "assinatura Classic (game.dll:0x717B40)");
         assert_eq!(p[49], 0x01, "TOS aceito");
 
-        // Quando tos_accepted e false, byte 49 e 0 e flag e 0x2F (exige aceite manual pelo jogador)
+        // Quando tos_accepted e false, byte 49 e 0 e flag segue 0x3F (exige aceite manual mas a conta nao e bloqueada)
         let p_manual = build_login_ok_payload(1, 0x026E_DF39, false);
         assert_eq!(p_manual[49], 0x00, "TOS pendente de aceite");
-        assert_eq!(p_manual[LOGIN_OK_FLAGS], 0x2F, "flag de conta sem bit de TOS auto-aceito");
+        assert_eq!(p_manual[LOGIN_OK_FLAGS], 0x3F, "flag de conta com bit 4 ativo");
     }
 
     #[test]
@@ -1150,6 +1145,6 @@ mod test {
         assert_eq!(p_accepted[LOGIN_OK_FLAGS] & 0x10, 0x10);
 
         let p_manual = build_login_ok_payload(1, 1, false);
-        assert_eq!(p_manual[LOGIN_OK_FLAGS] & 0x10, 0);
+        assert_eq!(p_manual[LOGIN_OK_FLAGS] & 0x10, 0x10);
     }
 }

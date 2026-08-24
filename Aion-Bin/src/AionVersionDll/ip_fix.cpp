@@ -6,6 +6,7 @@
 #include <ws2tcpip.h>
 #include "exports.h"
 #include "detours.h"
+#include <mutex>
 
 // =========================================================================
 //  IP Spoofing & Dynamic Network Hook for Aion Classic Client
@@ -31,6 +32,7 @@ static const char* const kOfficialIps[] = {
 };
 
 static std::list<std::string> possibleConnectIps = {};
+static std::mutex possibleIpsMutex;
 
 static bool contains(const std::list<std::string>& list, const char* element) {
     return !list.empty() && std::find(list.begin(), list.end(), element) != list.end();
@@ -64,9 +66,12 @@ static decltype(inet_ntoa)* real_inet_ntoa = inet_ntoa;
 /// Gathers game server IPs from the server list
 static char* WINAPI zzinet_ntoa(_In_ struct in_addr in) {
     char* addr = real_inet_ntoa(in);
-    if (addr && !contains(possibleConnectIps, addr)) {
-        possibleConnectIps.push_back(addr);
-        VersionLog("[NET] inet_ntoa: registered candidate game server IP '%s'", addr);
+    if (addr) {
+        std::lock_guard<std::mutex> lock(possibleIpsMutex);
+        if (!contains(possibleConnectIps, addr)) {
+            possibleConnectIps.push_back(addr);
+            VersionLog("[NET] inet_ntoa: registered candidate game server IP '%s'", addr);
+        }
     }
     return addr;
 }
@@ -74,10 +79,13 @@ static char* WINAPI zzinet_ntoa(_In_ struct in_addr in) {
 static decltype(lstrcpynA)* real_lstrcpynA = lstrcpynA;
 /// Spoofs the IP copy when the client validates the server list entry against official network bounds
 static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ LPCSTR lpString2, _In_ int iMaxLength) {
-    if (iMaxLength == 256 && lpString2 && contains(possibleConnectIps, lpString2)) {
-        VersionLog("[NET] lstrcpynA: spoofing server IP '%s' -> '%s' (validation bypass)", lpString2, kDefaultOfficialIp);
-        possibleConnectIps.clear();
-        return real_lstrcpynA(lpString1, kDefaultOfficialIp, iMaxLength);
+    if (iMaxLength == 256 && lpString2) {
+        std::lock_guard<std::mutex> lock(possibleIpsMutex);
+        if (contains(possibleConnectIps, lpString2)) {
+            VersionLog("[NET] lstrcpynA: spoofing server IP '%s' -> '%s' (validation bypass)", lpString2, kDefaultOfficialIp);
+            possibleConnectIps.clear();
+            return real_lstrcpynA(lpString1, kDefaultOfficialIp, iMaxLength);
+        }
     }
     return real_lstrcpynA(lpString1, lpString2, iMaxLength);
 }
@@ -85,7 +93,10 @@ static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ L
 static decltype(connect)* real_connect = connect;
 /// Standard TCP connect hook with dynamic official IP redirection and full telemetry
 static int WSAAPI zzconnect(_In_ SOCKET s, _In_reads_bytes_(namelen) const struct sockaddr FAR* name, _In_ int namelen) {
-    possibleConnectIps.clear();
+    {
+        std::lock_guard<std::mutex> lock(possibleIpsMutex);
+        possibleConnectIps.clear();
+    }
     char ipStr[64] = {0};
     u_short port = 0;
     struct sockaddr_in redirectedSin;
