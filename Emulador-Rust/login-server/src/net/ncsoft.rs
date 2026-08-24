@@ -136,7 +136,7 @@ fn server_list_trailer() -> usize {
 }
 
 /// Offset da chave de sessao Blowfish dentro do payload do `SM_INIT`.
-pub const INIT_KEY_OFFSET: usize = 0x94;
+pub const INIT_KEY_OFFSET: usize = 0x95;
 /// Offset do byte de flag que liga o fluxo de RSA e GameGuard.
 pub const INIT_FLAG_OFFSET: usize = 0xA8;
 /// Valor padrao desse byte, segundo o CONTEXT.md.
@@ -850,7 +850,7 @@ mod test {
         assert_eq!(&p[9..137], &modulo_falso()[..], "modulo RSA");
 
         // O que o `game.dll` le, conferido em CONTEXT.md secao 2.
-        assert_eq!(&p[0x94..0x94 + 16], &chave_falsa()[..], "chave em 0x94 (game.dll:0x84222D)");
+        assert_eq!(&p[0x95..0x95 + 16], &chave_falsa()[..], "chave em 0x95 (game.dll:0x84222D)");
         assert_eq!(p[0xA8], 0xFD, "flag RSA/GameGuard em 0xA8 (game.dll:0x84231B)");
         assert_eq!(p[0xA9], 0x04, "major em 169 (game.dll:0x842329)");
         assert_eq!(p[0xAA], 0x05, "minor em 170");
@@ -864,7 +864,7 @@ mod test {
         antigo[153..169].copy_from_slice(&chave_falsa());
 
         assert_ne!(
-            &antigo[0x94..0x94 + 16],
+            &antigo[0x95..0x95 + 16],
             &chave_falsa()[..],
             "com o layout 2.4 o cliente le lixo no lugar da chave"
         );
@@ -887,9 +887,9 @@ mod test {
         let recuperado = como_o_cliente_decifra(&cifrado);
 
         assert_eq!(
-            &recuperado[0x94..0x94 + 16],
+            &recuperado[0x95..0x95 + 16],
             &chave[..],
-            "o cliente precisa achar a chave de sessao em 0x94"
+            "o cliente precisa achar a chave de sessao em 0x95"
         );
         assert_eq!(recuperado[0xA8], 0xFD, "flag em 0xA8 depois de decifrar");
         assert_eq!(recuperado[0xA9], 0x04);
@@ -990,9 +990,9 @@ mod test {
         assert_eq!(init[0xA9], 0x04, "major 4");
         assert_eq!(init[0xAA], 0x05, "minor 5");
 
-        // Passo 2: a chave de sessao sai de 0x94.
+        // Passo 2: a chave de sessao sai de 0x94 (para este pacote de captura historico).
         let mut chave = [0u8; 16];
-        chave.copy_from_slice(&init[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16]);
+        chave.copy_from_slice(&init[0x94..0x94 + 16]);
         assert_ne!(chave, [0u8; 16], "a chave nao pode sair zerada");
 
         // Passo 3: com ela, os tres pacotes seguintes tem que abrir e fechar o checksum.
@@ -1027,7 +1027,7 @@ mod test {
         chave_errada.copy_from_slice(&init[153..169]);
         assert_ne!(
             chave_errada,
-            init[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16],
+            init[0x94..0x94 + 16],
             "os dois offsets tem que dar chaves diferentes"
         );
 
