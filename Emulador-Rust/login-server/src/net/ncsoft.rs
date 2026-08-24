@@ -204,7 +204,7 @@ pub fn build_sm_init_payload_com(
 
 /// Offset das flags da conta (ativo / maior de idade / termos aceitos).
 pub const LOGIN_OK_FLAGS: usize = 17;
-pub const LOGIN_OK_FLAGS_ATIVA: u32 = 0x0000_003F;
+pub const LOGIN_OK_FLAGS_ATIVA: u32 = 0x0000_002F;
 /// Offset da assinatura Classic (0xFF 0xFE) dentro do payload do `SM_LOGIN_OK`.
 pub const LOGIN_OK_ASSINATURA: usize = 33;
 /// Offset do campo de aceite de termos de uso (TOS agreement).
@@ -214,21 +214,17 @@ pub const LOGIN_OK_PAYLOAD_LEN: usize = 78;
 
 /// Monta o payload do `SM_LOGIN_OK`.
 ///
-/// Campos conferidos pelo cliente conforme o protocolo Classic 4.5 e rotinas do Game.dll:
-/// ```text
-/// game.dll:0x717B40   cmp [rbp+67h], 0xFF   -> [0x20] precisa ser 0xFF
-/// game.dll:0x717B40   cmp [rbp+68h], 0xFE   -> [0x21] precisa ser 0xFE
-/// game.dll:0x717BE2   test bl, 0x10         -> [0x30] (TOS aceito) precisa ser 1
-/// ```
-pub fn build_login_ok_payload(account_id: u32, login_ok: u32) -> Vec<u8> {
+/// `tos_accepted`: se `false`, o cliente exibira a janela de Termos de Uso (TOS / User Agreement)
+/// na tela para que o jogador leia e clique no botao de concordar/aceitar manualmente.
+pub fn build_login_ok_payload(account_id: u32, login_ok: u32, tos_accepted: bool) -> Vec<u8> {
     let mut p = vec![0u8; LOGIN_OK_PAYLOAD_LEN];
     p[0] = 0x03; // opcode SM_LOGIN_OK
     p[1..5].copy_from_slice(&account_id.to_le_bytes());
     p[5..9].copy_from_slice(&login_ok.to_le_bytes());
     // p[9..17] fica em zero (2 * u32 = 8 bytes zeros)
 
-    // Flags da conta: 0x3F repetido nos 4 dwords (offset 17..33)
-    let flags: u32 = 0x0000_003F;
+    // Flags da conta: bit 4 (0x10) e a flag de TOS aceito (0x3F quando aceito, 0x2F quando pendente)
+    let flags: u32 = if tos_accepted { 0x0000_003F } else { 0x0000_002F };
     p[17..21].copy_from_slice(&flags.to_le_bytes());
     p[21..25].copy_from_slice(&flags.to_le_bytes());
     p[25..29].copy_from_slice(&flags.to_le_bytes());
@@ -241,8 +237,9 @@ pub fn build_login_ok_payload(account_id: u32, login_ok: u32) -> Vec<u8> {
     p[36] = 0x00; // offset 0x24
 
     // p[37..49] fica em zero (3 * u32 = 12 bytes zeros)
-    // Termos de uso aceitos (TOS agreement = 1 as u32)
-    p[49..53].copy_from_slice(&1u32.to_le_bytes());
+    // Termos de uso: 0 = exige aceite manual pelo usuario na tela, 1 = ja aceito
+    let tos_val: u32 = if tos_accepted { 1 } else { 0 };
+    p[49..53].copy_from_slice(&tos_val.to_le_bytes());
     // p[53..78] fica em zero (25 bytes zeros)
 
     p
@@ -446,8 +443,9 @@ async fn handle_ncsoft_client(
         account_id: u32,
         login_ok: u32,
         username: &str,
+        tos_accepted: bool,
     ) -> Result<(), std::io::Error> {
-        let raw = build_login_ok_payload(account_id, login_ok);
+        let raw = build_login_ok_payload(account_id, login_ok, tos_accepted);
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
@@ -456,8 +454,8 @@ async fn handle_ncsoft_client(
 
         socket.write_all(&pkt).await?;
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK (74 bytes wire size, Account: '{}', ID: {})",
-            session_id, username, account_id
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK (74 bytes wire size, Account: '{}', ID: {}, TOS: {})",
+            session_id, username, account_id, if tos_accepted { "Accepted" } else { "Manual Accept Required" }
         );
         Ok(())
     }
@@ -537,55 +535,13 @@ async fn handle_ncsoft_client(
     if let Ok(Some(a)) = db.get_or_create_account(&current_username, auto_create) {
         account_id = a.id as u32;
     }
-    let char_count = db.get_character_count(&current_username);
 
     // =========================================================================
-    // 2. Sequencia Completa de Autenticacao NCSoft / Gameforge Classic 4.5
+    // 2. Aguarda requisicao do cliente (CM_AUTH_GG / CM_LOGIN)
     // =========================================================================
-    // O cliente 4.5 Classic EU x64 transiciona para a tela de Selecao de Servidor e Criacao
-    // de Personagem ao receber a sequencia SM_INIT -> SM_AUTH_GG -> SM_LOGIN_OK -> SM_SERVER_LIST.
-    tokio::time::sleep(tokio::time::Duration::from_millis(60)).await;
-    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
-        return;
-    }
-
-    tokio::time::sleep(tokio::time::Duration::from_millis(80)).await;
-    if let Err(e) = send_login_ok(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        account_id,
-        login_ok,
-        &current_username,
-    )
-    .await
-    {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_LOGIN_OK: {}", session_id, e);
-        return;
-    }
-
-    tokio::time::sleep(tokio::time::Duration::from_millis(80)).await;
-    if let Err(e) = send_server_list(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        &announce_ip,
-        announce_port,
-        default_server_id,
-        char_count,
-        &db,
-    )
-    .await
-    {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_SERVER_LIST: {}", session_id, e);
-        return;
-    }
-
-    state = ConnectionState::AuthedLogin;
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake concluido com sucesso (Conta: '{}', ID: {}, Chars: {}). Aguardando selecao de mundo (CM_PLAY)...",
-        session_id, current_username, account_id, char_count
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT enviado. Aguardando autenticacao do cliente...",
+        session_id
     );
 
     // =========================================================================
@@ -728,27 +684,18 @@ async fn handle_ncsoft_client(
                     account_id,
                     login_ok,
                     &current_username,
+                    false, // Exige aceite manual dos Termos de Uso (TOS) na tela do cliente
                 )
                 .await;
-
-                // Envia imediatamente a lista de servidores com a contagem de chars da conta
-                let char_count = db.get_character_count(&current_username);
-                let _ = send_server_list(
-                    &mut socket,
-                    &crypt_engine,
-                    session_id,
-                    &announce_ip,
-                    announce_port,
-                    default_server_id,
-                    char_count,
-                    &db,
-                )
-                .await;
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Termos de Uso (TOS) apresentados na tela. Aguardando aceite do jogador (CM_SERVER_LIST)...",
+                    session_id
+                );
             }
             0x05 => {
-                // CM_SERVER_LIST
+                // CM_SERVER_LIST (enviado pelo cliente assim que o jogador clica em 'Aceitar' nos Termos de Uso ou solicita refresh)
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_SERVER_LIST] Requesting Server List",
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_SERVER_LIST] Jogador aceitou os Termos de Uso! Enviando lista de mundos...",
                     session_id
                 );
                 let char_count = db.get_character_count(&current_username);
@@ -1072,18 +1019,23 @@ mod test {
 
     #[test]
     fn login_ok_traz_a_assinatura_classic_e_o_tos() {
-        let p = build_login_ok_payload(1, 0x026E_DF39);
+        let p = build_login_ok_payload(1, 0x026E_DF39, true);
 
         assert_eq!(p.len(), LOGIN_OK_PAYLOAD_LEN);
         assert_eq!(p[0], 0x03, "opcode SM_LOGIN_OK");
         assert_eq!(p[33], 0xFF, "assinatura Classic (game.dll:0x717B40)");
         assert_eq!(p[34], 0xFE, "assinatura Classic (game.dll:0x717B40)");
-        assert_eq!(p[49], 0x01, "TOS aceito (game.dll:0x717BE2)");
+        assert_eq!(p[49], 0x01, "TOS aceito");
+
+        // Quando tos_accepted e false, byte 49 e 0 e flag e 0x2F (exige aceite manual pelo jogador)
+        let p_manual = build_login_ok_payload(1, 0x026E_DF39, false);
+        assert_eq!(p_manual[49], 0x00, "TOS pendente de aceite");
+        assert_eq!(p_manual[LOGIN_OK_FLAGS], 0x2F, "flag de conta sem bit de TOS auto-aceito");
     }
 
     #[test]
     fn login_ok_carrega_conta_e_chave() {
-        let p = build_login_ok_payload(0x1234_5678, 0x026E_DF39);
+        let p = build_login_ok_payload(0x1234_5678, 0x026E_DF39, false);
 
         assert_eq!(u32::from_le_bytes(p[1..5].try_into().unwrap()), 0x1234_5678);
         assert_eq!(u32::from_le_bytes(p[5..9].try_into().unwrap()), 0x026E_DF39);
@@ -1096,7 +1048,7 @@ mod test {
 
     #[test]
     fn login_ok_nao_tem_mais_o_bloco_colado() {
-        let p = build_login_ok_payload(1, 1);
+        let p = build_login_ok_payload(1, 1, false);
         assert!(
             !p.windows(4).any(|j| j == b"NTdE"),
             "o bloco colado nao pode voltar"
@@ -1166,10 +1118,10 @@ mod test {
 
     #[test]
     fn o_bit_de_termos_e_conta_ativa_fica_ligado() {
-        assert_eq!(LOGIN_OK_FLAGS_ATIVA & 0x10, 0x10, "bit 4 (termos aceitos) tem que estar ligado");
-        assert_eq!(LOGIN_OK_FLAGS_ATIVA, 0x3F);
+        let p_accepted = build_login_ok_payload(1, 1, true);
+        assert_eq!(p_accepted[LOGIN_OK_FLAGS] & 0x10, 0x10);
 
-        let p = build_login_ok_payload(1, 1);
-        assert_eq!(p[LOGIN_OK_FLAGS] & 0x10, 0x10);
+        let p_manual = build_login_ok_payload(1, 1, false);
+        assert_eq!(p_manual[LOGIN_OK_FLAGS] & 0x10, 0);
     }
 }
