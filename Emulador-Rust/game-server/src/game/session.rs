@@ -40,6 +40,7 @@ impl Account {
             message,
             self.session_token.clone(),
             self.auth_server.id,
+            self.auth_server.key,
         )
     }
 

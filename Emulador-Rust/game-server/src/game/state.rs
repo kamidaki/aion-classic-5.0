@@ -239,12 +239,37 @@ impl State {
 
     /// Nome de conta desta sessao.
     ///
-    /// Sai do token que o STS gravou. Sem token -- clientes de bancada que pulam o STS -- vale um
-    /// sintetico pelo id do cliente, para a sessao nao morrer por causa disso.
+    /// A via boa e o par `(account_id, session_key)` que o cliente apresentou no `C_HQ_LOGIN`:
+    /// o login server o gravou na tabela `sessions` antes de entregar a chave, entao so casa se
+    /// a sessao existir de fato e nao tiver expirado.
+    ///
+    /// Se nao casar, ainda tenta o token do STS -- e depois cai num nome sintetico pelo id do
+    /// cliente, para clientes de bancada que pulam o login inteiro nao morrerem por causa disso.
     fn username_do_update(&self, update: &ClientUpdate) -> String {
+        let sintetico = || format!("client_{}", update.client_id());
+
+        if update.session_key() != 0 {
+            match self.db.resolver_sessao(update.account_id(), update.session_key()) {
+                Ok(Some(name)) => {
+                    println!(
+                        "INFO: sessao validada (account_id={}, session_key=0x{:08X}) -> '{name}'",
+                        update.account_id(),
+                        update.session_key()
+                    );
+                    return name;
+                }
+                Ok(None) => eprintln!(
+                    "WARN: sessao nao confere (account_id={}, session_key=0x{:08X}); tentando o token do STS",
+                    update.account_id(),
+                    update.session_key()
+                ),
+                Err(e) => eprintln!("ERROR: resolver_sessao: {e}"),
+            }
+        }
+
         let token = update.session_token();
         if token.is_empty() {
-            return format!("client_{}", update.client_id());
+            return sintetico();
         }
         match self.db.lookup_session(token) {
             Ok(Some(name)) => {
@@ -253,11 +278,11 @@ impl State {
             }
             Ok(None) => {
                 eprintln!("WARN: session token not found in DB, using synthetic username");
-                format!("client_{}", update.client_id())
+                sintetico()
             }
             Err(e) => {
                 eprintln!("ERROR: lookup_session: {e}");
-                format!("client_{}", update.client_id())
+                sintetico()
             }
         }
     }
@@ -668,7 +693,7 @@ impl State {
                 }
 
                 let lista = lista_personagens::ListaPersonagens::new(
-                    update.chave_de_sessao(),
+                    update.account_id(),
                     personagens,
                 );
 
@@ -676,7 +701,7 @@ impl State {
                 // (contagem zero, 11 bytes de payload) e so depois a lista de verdade. Mandando so
                 // a segunda, o cliente fecha a conexao.
                 let vazia = lista_personagens::ListaPersonagens::new(
-                    update.chave_de_sessao(),
+                    update.account_id(),
                     Vec::new(),
                 );
 
@@ -981,7 +1006,7 @@ impl State {
                         "INFO: AION_BURST: mandando os {} pacotes capturados da janela de entrada",
                         self.burst.len()
                     );
-                    let chave = update.chave_de_sessao();
+                    let chave = update.account_id();
                     let id = update.character_id();
                     let lote: Vec<_> = self
                         .burst

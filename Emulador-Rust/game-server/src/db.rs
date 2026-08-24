@@ -152,6 +152,37 @@ impl Db {
             })
     }
 
+    /// Valida a sessao pelo par que o cliente apresenta no `C_HQ_LOGIN` (0xF0) e devolve o nome
+    /// da conta.
+    ///
+    /// Esses dois `u32` sao os unicos dados de autenticacao que chegam ao game server: o cliente
+    /// os recebe do login server no pacote `0x04` da porta 13001 e os repete intactos. Confirmado
+    /// nas duas capturas do servidor oficial -- a chave do `0x04` reaparece byte a byte no `0xF0`.
+    ///
+    /// Uma linha expirada nao vale: `expires_at` zero significa "sem prazo" (sessoes antigas,
+    /// gravadas antes da coluna existir).
+    pub fn resolver_sessao(&self, account_id: u32, session_key: u32) -> Result<Option<String>> {
+        let agora = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .map(|d| d.as_secs() as i64)
+            .unwrap_or(0);
+
+        self.conn
+            .query_row(
+                "SELECT COALESCE(NULLIF(account_name, ''), username) FROM sessions
+                 WHERE account_id = ?1 AND session_key = ?2
+                   AND (expires_at = 0 OR expires_at >= ?3)
+                 ORDER BY created_at DESC LIMIT 1",
+                params![account_id as i64, session_key as i64, agora],
+                |row| row.get::<_, String>(0),
+            )
+            .map(Some)
+            .or_else(|e| match e {
+                rusqlite::Error::QueryReturnedNoRows => Ok(None),
+                other => Err(other),
+            })
+    }
+
     /// Personagens da conta, na ordem em que foram criados.
     pub fn personagens_da_conta(
         &self,
@@ -567,6 +598,82 @@ mod tests {
         let db = Db { conn };
         db.init_schema().unwrap();
         db
+    }
+
+    /// Grava uma linha em `sessions` como o login server faz ao mandar o pacote 0x04.
+    fn grava_sessao(db: &Db, token: &str, conta: &str, account_id: u32, key: u32, expires_at: i64) {
+        db.conn
+            .execute(
+                "INSERT INTO sessions (token, account_name, account_id, session_key, created_at, expires_at)
+                 VALUES (?1, ?2, ?3, ?4, 0, ?5)",
+                params![token, conta, account_id as i64, key as i64, expires_at],
+            )
+            .unwrap();
+    }
+
+    fn daqui_a(segundos: i64) -> i64 {
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_secs() as i64
+            + segundos
+    }
+
+    #[test]
+    fn resolver_sessao_casa_o_par_do_hq_login() {
+        let db = in_memory();
+        // Os numeros sao os da captura de 21/08: conta 40820537, chave 0x161E.
+        grava_sessao(&db, "tok1", "kamidaki", 40_820_537, 0x161E, daqui_a(600));
+
+        assert_eq!(
+            db.resolver_sessao(40_820_537, 0x161E).unwrap().as_deref(),
+            Some("kamidaki")
+        );
+    }
+
+    #[test]
+    fn resolver_sessao_recusa_chave_errada() {
+        let db = in_memory();
+        grava_sessao(&db, "tok1", "kamidaki", 40_820_537, 0x161E, daqui_a(600));
+
+        // Chave da outra captura, na mesma conta: nao pode valer.
+        assert_eq!(db.resolver_sessao(40_820_537, 0x3939).unwrap(), None);
+        // Conta errada com a chave certa tambem nao.
+        assert_eq!(db.resolver_sessao(1, 0x161E).unwrap(), None);
+    }
+
+    #[test]
+    fn resolver_sessao_recusa_sessao_expirada() {
+        let db = in_memory();
+        grava_sessao(&db, "tok1", "kamidaki", 40_820_537, 0x161E, daqui_a(-1));
+
+        assert_eq!(db.resolver_sessao(40_820_537, 0x161E).unwrap(), None);
+    }
+
+    #[test]
+    fn resolver_sessao_aceita_prazo_zero() {
+        // Linhas gravadas antes de a coluna existir vem com expires_at = 0: sem prazo, nao
+        // expiradas.
+        let db = in_memory();
+        grava_sessao(&db, "tok1", "kamidaki", 40_820_537, 0x161E, 0);
+
+        assert_eq!(
+            db.resolver_sessao(40_820_537, 0x161E).unwrap().as_deref(),
+            Some("kamidaki")
+        );
+    }
+
+    #[test]
+    fn resolver_sessao_pega_a_mais_recente_da_conta() {
+        // Relogar gera uma chave nova; a antiga nao pode continuar valendo por acidente.
+        let db = in_memory();
+        grava_sessao(&db, "tok1", "kamidaki", 40_820_537, 0x161E, daqui_a(600));
+        grava_sessao(&db, "tok2", "kamidaki", 40_820_537, 0x3939, daqui_a(600));
+
+        assert_eq!(
+            db.resolver_sessao(40_820_537, 0x3939).unwrap().as_deref(),
+            Some("kamidaki")
+        );
     }
 
     #[test]
