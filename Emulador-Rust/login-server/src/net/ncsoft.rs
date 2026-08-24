@@ -262,44 +262,73 @@ pub fn build_server_list_payload(
     server_id: u8,
     char_count: u8,
 ) -> Vec<u8> {
-    build_server_list_payload_com(announce_ip, announce_port, server_id, char_count, 0)
-}
-
-/// Monta o payload do `SM_SERVER_LIST` abrangente com servidores para todos os brackets (EU, NA, Universal).
-pub fn build_server_list_payload_com(
-    announce_ip: &str,
-    announce_port: u16,
-    _server_id: u8,
-    char_count: u8,
-    _trailer: usize,
-) -> Vec<u8> {
     let octetos: Vec<u8> = announce_ip.split('.').filter_map(|o| o.parse().ok()).collect();
     let ip: [u8; 4] = octetos.try_into().unwrap_or([127, 0, 0, 1]);
 
     let mut raw = Vec::new();
     raw.push(0x04); // opcode SM_SERVER_LIST
-    raw.push(3);    // 3 servidores para cobrir todos os brackets (EU=2, NA=1, Universal=0)
-    raw.push(1);    // last server id = 1
+    raw.push(1);    // 1 servidor
+    raw.push(server_id); // last server id
 
-    // Servidor 1: Bracket 2 (EU Gameforge Classic)
-    write_server_entry(&mut raw, 1, &ip, announce_port, 2, SERVER_BITS_CLASSIC);
-    // Servidor 2: Bracket 1 (NA / Global Classic)
-    write_server_entry(&mut raw, 2, &ip, announce_port, 1, SERVER_BITS_CLASSIC);
-    // Servidor 3: Bracket 0 (Universal Classic)
-    write_server_entry(&mut raw, 3, &ip, announce_port, 0, SERVER_BITS_CLASSIC);
+    // Entrada do servidor (21 bytes exatos conforme AL-Login Classic)
+    write_server_entry(&mut raw, server_id, &ip, announce_port, BRACKET_CLASSIC_EU, SERVER_BITS_CLASSIC);
 
-    // Secao de contagem de personagens conforme padrao oficial Classic:
-    // writeH(maxId + 1 = 4)
-    raw.extend_from_slice(&4u16.to_le_bytes());
-    // writeC(0x01) -> habilita o botao do servidor e lista ativa na UI do cliente
-    raw.push(0x01);
-    raw.push(char_count); // Servidor 1
-    raw.push(0);          // Servidor 2
-    raw.push(0);          // Servidor 3
-    // Trailer de 15 bytes zeros do Classic
-    raw.extend_from_slice(&[0u8; 15]);
+    // Contagem de personagens conforme AL-Login Classic (game.dll:0x843077):
+    // u16 com maxId, seguido de 1 byte por servidor.
+    raw.extend_from_slice(&(server_id as u16).to_le_bytes());
+    raw.push(char_count);
 
     raw
+}
+
+/// Monta o payload do `SM_SERVER_LIST` consultando dinamicamente a tabela `gameservers`.
+pub fn build_server_list_payload_from_db(
+    db: &AuthDb,
+    fallback_ip: &str,
+    fallback_port: u16,
+    default_server_id: u8,
+    char_count: u8,
+) -> Vec<u8> {
+    let servers = db.get_game_servers().unwrap_or_default();
+    if servers.is_empty() {
+        return build_server_list_payload(fallback_ip, fallback_port, default_server_id, char_count);
+    }
+
+    let mut raw = Vec::new();
+    raw.push(0x04); // opcode SM_SERVER_LIST
+    raw.push(servers.len() as u8); // total de servidores
+    raw.push(servers[0].id); // last server id
+
+    let mut max_id = 0u16;
+    for s in &servers {
+        if (s.id as u16) > max_id {
+            max_id = s.id as u16;
+        }
+        let octetos: Vec<u8> = s.mask.split('.').filter_map(|o| o.parse().ok()).collect();
+        let ip: [u8; 4] = octetos.try_into().unwrap_or([127, 0, 0, 1]);
+        write_server_entry(&mut raw, s.id, &ip, s.port, BRACKET_CLASSIC_EU, SERVER_BITS_CLASSIC);
+    }
+
+    raw.extend_from_slice(&max_id.to_le_bytes());
+    for i in 1..=max_id {
+        if i == 1 {
+            raw.push(char_count);
+        } else {
+            raw.push(0);
+        }
+    }
+
+    raw
+}
+
+pub fn build_server_list_payload_com(
+    announce_ip: &str,
+    announce_port: u16,
+    server_id: u8,
+    char_count: u8,
+    _trailer: usize,
+) -> Vec<u8> {
+    build_server_list_payload(announce_ip, announce_port, server_id, char_count)
 }
 
 fn write_server_entry(raw: &mut Vec<u8>, server_id: u8, ip: &[u8; 4], port: u16, bracket: u8, server_bits: u32) {
@@ -311,8 +340,8 @@ fn write_server_entry(raw: &mut Vec<u8>, server_id: u8, ip: &[u8; 4], port: u16,
     raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online
     raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo
     raw.push(1); // status: online
-    raw.push(bracket); // bracket / country code (vem ANTES do ServerBits na referencia 2.4)
     raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401)
+    raw.push(bracket); // bracket / country code (2 = EU para -cc:2)
 }
 
 async fn handle_ncsoft_client(
@@ -431,13 +460,14 @@ async fn handle_ncsoft_client(
         announce_port: u16,
         default_server_id: u8,
         char_count: u8,
+        db: &AuthDb,
     ) -> Result<(), std::io::Error> {
-        let raw = build_server_list_payload_com(
+        let raw = build_server_list_payload_from_db(
+            db,
             announce_ip,
             announce_port,
             default_server_id,
             char_count,
-            server_list_trailer(),
         );
 
         let enc = crypt_engine.encrypt_packet(&raw);
@@ -533,6 +563,7 @@ async fn handle_ncsoft_client(
         announce_port,
         default_server_id,
         char_count,
+        &db,
     )
     .await
     {
@@ -699,6 +730,7 @@ async fn handle_ncsoft_client(
                     announce_port,
                     default_server_id,
                     char_count,
+                    &db,
                 )
                 .await;
             }
@@ -717,6 +749,7 @@ async fn handle_ncsoft_client(
                     announce_port,
                     default_server_id,
                     char_count,
+                    &db,
                 )
                 .await;
             }
@@ -1077,12 +1110,12 @@ mod test {
         assert_eq!(u16::from_le_bytes(e[0x0B..0x0D].try_into().unwrap()), 0, "jogadores online");
         assert_eq!(u16::from_le_bytes(e[0x0D..0x0F].try_into().unwrap()), 1000, "maximo");
         assert_eq!(e[0x0F], 1, "online");
-        assert_eq!(e[0x10], BRACKET_CLASSIC_EU, "bracket em 0x10");
         assert_eq!(
-            u32::from_le_bytes(e[0x11..0x15].try_into().unwrap()),
+            u32::from_le_bytes(e[0x10..0x14].try_into().unwrap()),
             SERVER_BITS_CLASSIC,
-            "ServerBits em 0x11..0x15, com o bit 10 ligado"
+            "ServerBits em 0x10..0x14, com o bit 10 ligado"
         );
+        assert_eq!(e[0x14], BRACKET_CLASSIC_EU, "bracket em 0x14");
     }
 
     #[test]
@@ -1096,22 +1129,21 @@ mod test {
         let p = build_server_list_payload("192.168.1.50", 7777, 23, 3);
         let e = &p[3..3 + SERVER_ENTRY_LEN_NC];
 
-        assert_eq!(e[0x10], BRACKET_CLASSIC_EU, "0x10 e o bracket");
-        assert_eq!(e[0x11], 0x01, "primeiro byte de 0x00000401 em LE em 0x11");
+        assert_eq!(e[0x10], 0x01, "primeiro byte de 0x00000401 em LE em 0x10");
+        assert_eq!(e[0x14], BRACKET_CLASSIC_EU, "0x14 e o bracket");
     }
 
     #[test]
     fn a_contagem_de_personagens_vem_depois_da_lista() {
         let p = build_server_list_payload("127.0.0.1", 7777, 1, 4);
-        let depois = 3 + 3 * SERVER_ENTRY_LEN_NC;
+        let depois = 3 + SERVER_ENTRY_LEN_NC;
 
         assert_eq!(
             u16::from_le_bytes(p[depois..depois + 2].try_into().unwrap()),
-            4,
-            "maxId + 1 = 4"
+            1,
+            "maxId = 1"
         );
-        assert_eq!(p[depois + 2], 1, "flag que habilita botao do servidor");
-        assert_eq!(p[depois + 3], 4, "a contagem de personagens vem logo em seguida");
+        assert_eq!(p[depois + 2], 4, "a contagem de personagens vem logo em seguida");
     }
 
     #[test]
