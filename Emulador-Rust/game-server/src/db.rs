@@ -146,6 +146,12 @@ impl Db {
                 PRIMARY KEY (guild_id, player_id)
             );
             CREATE INDEX IF NOT EXISTS idx_guild_members_player ON guild_members(player_id);
+            CREATE TABLE IF NOT EXISTS character_buddies (
+                player_id INTEGER NOT NULL REFERENCES characters(id),
+                buddy_id INTEGER NOT NULL REFERENCES characters(id),
+                PRIMARY KEY (player_id, buddy_id)
+            );
+            CREATE INDEX IF NOT EXISTS idx_buddies_player ON character_buddies(player_id);
             ",
         )?;
 
@@ -806,6 +812,71 @@ impl Db {
             Ok(None)
         }
     }
+
+    pub fn adicionar_amigo(&self, player_id: u32, buddy_id: u32) -> Result<()> {
+        self.conn.execute(
+            "INSERT OR IGNORE INTO character_buddies (player_id, buddy_id) VALUES (?1, ?2)",
+            params![player_id as i64, buddy_id as i64],
+        )?;
+        Ok(())
+    }
+
+    pub fn remover_amigo(&self, player_id: u32, buddy_id: u32) -> Result<bool> {
+        let n = self.conn.execute(
+            "DELETE FROM character_buddies WHERE player_id = ?1 AND buddy_id = ?2",
+            params![player_id as i64, buddy_id as i64],
+        )?;
+        Ok(n > 0)
+    }
+
+    pub fn amigos_do_personagem(&self, player_id: u32) -> Result<Vec<crate::game::message::server::BuddyEntry>> {
+        let mut stmt = self.conn.prepare(
+            "SELECT c.id, c.name, c.level, c.map_id
+             FROM character_buddies b
+             INNER JOIN characters c ON c.id = b.buddy_id
+             WHERE b.player_id = ?1",
+        )?;
+        let rows = stmt.query_map(params![player_id as i64], |row| {
+            Ok(crate::game::message::server::BuddyEntry {
+                player_id: row.get::<_, i64>(0)? as u32,
+                name: row.get(1)?,
+                is_online: true,
+                map_id: row.get::<_, i64>(3)? as u32,
+                level: row.get::<_, i64>(2)? as u8,
+                class_id: 1,
+            })
+        })?;
+        rows.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
+    }
+
+    pub fn buscar_personagem_por_nome(&self, name: &str) -> Result<Option<PersistedCharacter>> {
+        let mut stmt = self.conn.prepare(
+            "SELECT id, account_id, name, level, exp, x, y, z, map_id, heading, hp, mp, aparencia
+             FROM characters WHERE name = ?1",
+        )?;
+        let mut rows = stmt.query_map(params![name], |row| {
+            Ok(PersistedCharacter {
+                id: row.get::<_, i64>(0)? as u32,
+                account_id: row.get(1)?,
+                name: row.get(2)?,
+                level: row.get::<_, i64>(3)? as u16,
+                exp: row.get::<_, i64>(4)? as u64,
+                x: row.get(5)?,
+                y: row.get(6)?,
+                z: row.get(7)?,
+                map_id: row.get::<_, i64>(8)? as u32,
+                heading: row.get::<_, i64>(9)? as u8,
+                hp: row.get(10)?,
+                mp: row.get::<_, i64>(11)? as u32,
+                aparencia: row.get(12)?,
+            })
+        })?;
+        if let Some(r) = rows.next() {
+            Ok(Some(r?))
+        } else {
+            Ok(None)
+        }
+    }
 }
 
 #[cfg(test)]
@@ -1007,5 +1078,21 @@ mod tests {
         assert!(db.remover_membro_guild(gid, member.id).unwrap());
         let g2 = db.guild_do_jogador(leader.id).unwrap().unwrap();
         assert_eq!(g2.members.len(), 1);
+    }
+
+    #[test]
+    fn buddy_adicionar_remover_e_listar() {
+        let db = in_memory();
+        let alice = db.load_or_create_character("alice").unwrap();
+        let bob = db.load_or_create_character("bob").unwrap();
+
+        db.adicionar_amigo(alice.id, bob.id).unwrap();
+        let amigos = db.amigos_do_personagem(alice.id).unwrap();
+        assert_eq!(amigos.len(), 1);
+        assert_eq!(amigos[0].player_id, bob.id);
+
+        assert!(db.remover_amigo(alice.id, bob.id).unwrap());
+        let amigos2 = db.amigos_do_personagem(alice.id).unwrap();
+        assert!(amigos2.is_empty());
     }
 }

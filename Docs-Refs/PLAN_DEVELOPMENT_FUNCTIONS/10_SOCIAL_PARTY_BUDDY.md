@@ -1,6 +1,6 @@
-﻿# PLAN-10: Social — Grupo, Trade P2P, Aliança e Amigos
+# PLAN-10: Social — Grupo, Trade P2P, Aliança e Amigos
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** MÉDIA — C_PARTY (0x060), C_ADD_BUDDY (0x06F), S_BUDDY_LIST (0x083), S_ALLIANCE_INFO (0x0F5).
 
 ---

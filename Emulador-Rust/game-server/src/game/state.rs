@@ -122,6 +122,7 @@ pub struct State {
     pub windstream_service: crate::game::environment::WindstreamService,
     pub attack_timers: HashMap<u32, (u32, Instant)>,
     pub guild_manager: crate::game::guild::GuildManager,
+    pub party_service: crate::game::social::PartyService,
     db: Db,
     game_data: Arc<GameData>,
 }
@@ -186,6 +187,7 @@ impl State {
             windstream_service: crate::game::environment::WindstreamService::new(),
             attack_timers: HashMap::new(),
             guild_manager: crate::game::guild::GuildManager::new(),
+            party_service: crate::game::social::PartyService::new(),
             db,
             game_data,
         }
@@ -1329,6 +1331,9 @@ impl State {
                     );
                 }
 
+                let buddies = self.db.amigos_do_personagem(update.character_id()).unwrap_or_default();
+                messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::BuddyList(s::BuddyList::from_entries(buddies))));
+
                 // O resto do bloco: armazem, correio, macros, filtros de chat. Na captura estao
                 // espalhados dos dois lados do S_WORLD; o que o cliente cobra e a presenca, e o
                 // S_WORLD -- que tem lugar fixo -- ja foi.
@@ -1844,6 +1849,41 @@ impl State {
             }
             c::Message::GuildManage(manage) => {
                 println!("INFO: Player {} GuildManage (action: {}, target: {})", update.character_id(), manage.action, manage.target_id);
+            }
+            c::Message::Party(party) => {
+                let char_id = update.character_id();
+                println!("INFO: Player {} Party (target: {}, action: {})", char_id, party.target_player_id, party.action);
+                match party.action {
+                    0 => {
+                        let gid = self.party_service.group_of(char_id).unwrap_or_else(|| self.party_service.create_party(char_id));
+                        self.party_service.add_member(gid, party.target_player_id);
+                    }
+                    3 => {
+                        self.party_service.remove_member(char_id);
+                    }
+                    _ => {}
+                }
+            }
+            c::Message::PartyByName(pbn) => {
+                let char_id = update.character_id();
+                println!("INFO: Player {} PartyByName (target_name: {})", char_id, pbn.name);
+                if let Ok(Some(target)) = self.db.buscar_personagem_por_nome(&pbn.name) {
+                    let gid = self.party_service.group_of(char_id).unwrap_or_else(|| self.party_service.create_party(char_id));
+                    self.party_service.add_member(gid, target.id);
+                }
+            }
+            c::Message::AddBuddy(add_buddy) => {
+                let char_id = update.character_id();
+                println!("INFO: Player {} AddBuddy (name: {}, action: {})", char_id, add_buddy.name, add_buddy.action);
+                if let Ok(Some(target)) = self.db.buscar_personagem_por_nome(&add_buddy.name) {
+                    if add_buddy.action == 0 {
+                        let _ = self.db.adicionar_amigo(char_id, target.id);
+                    } else if add_buddy.action == 1 {
+                        let _ = self.db.remover_amigo(char_id, target.id);
+                    }
+                }
+                let buddies = self.db.amigos_do_personagem(char_id).unwrap_or_default();
+                messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::BuddyList(s::BuddyList::from_entries(buddies))));
             }
             _ => (),
         }

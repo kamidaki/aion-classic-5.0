@@ -75,8 +75,11 @@ const CUSTOM_ANIM: u16 = 0x0093;
 const MAIL: u16 = 0x00A0;
 const WIND_PATH_RESULT: u16 = 0x00A2;
 const WIND_STATE_INFO: u16 = 0x00A3;
+const PARTY_MATCH: u16 = 0x00A5;
 const USER_SELL_HISTORY_LIST: u16 = 0x00A6;
 const TITLE: u16 = 0x00AF;
+const ALLIANCE_INFO: u16 = 0x00F5;
+const ALLIANCE_MEMBER_INFO: u16 = 0x00F6;
 const SECOND_PASSWORD: u16 = 0x00B0;
 const L2AUTH_LOGIN_CHECK: u16 = 0x00C6;
 const CHARACTER_LIST: u16 = 0x00C7;
@@ -189,6 +192,8 @@ pub enum Message {
     UserGuildDonation(UserGuildDonation),
     UserGuildCoin(UserGuildCoin),
     GuildOpenedBuffTreeInfo(GuildOpenedBuffTreeInfo),
+    AllianceInfo(AllianceInfo),
+    AllianceMemberInfo(AllianceMemberInfo),
 }
 
 impl Serialise for Message {
@@ -277,6 +282,8 @@ impl Serialise for Message {
             Message::UserGuildDonation(msg) => msg.serialise(&mut buf[2..]),
             Message::UserGuildCoin(msg) => msg.serialise(&mut buf[2..]),
             Message::GuildOpenedBuffTreeInfo(msg) => msg.serialise(&mut buf[2..]),
+            Message::AllianceInfo(msg) => msg.serialise(&mut buf[2..]),
+            Message::AllianceMemberInfo(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -1501,23 +1508,43 @@ impl Serialise for RecipeList {
     }
 }
 
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct BuddyEntry {
+    pub player_id: u32,
+    pub name: String,
+    pub is_online: bool,
+    pub map_id: u32,
+    pub level: u8,
+    pub class_id: u8,
+}
+
 #[derive(Debug, Clone)]
 pub struct BuddyList {
-    raw: [u8; 3],
+    pub buddies: Vec<BuddyEntry>,
 }
 impl BuddyList {
     pub fn new() -> Self {
-        Self { raw: [0, 0, 0] }
+        Self { buddies: Vec::new() }
+    }
+    pub fn from_entries(buddies: Vec<BuddyEntry>) -> Self {
+        Self { buddies }
     }
 }
 impl Serialise for BuddyList {
     fn serialise(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;
         len += add_prelude(BUDDY_LIST, buf);
-
-        buf[len..len + self.raw.len()].copy_from_slice(&self.raw);
-        len += self.raw.len();
-
+        to_le_bytes!(len, buf, self.buddies.len() as u16);
+        for b in &self.buddies {
+            to_le_bytes!(len, buf, b.player_id);
+            let name_utf16: Vec<u8> = b.name.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+            to_le_bytes!(len, buf, name_utf16.len() as u16);
+            copy_bytes!(len, buf, name_utf16);
+            to_le_bytes!(len, buf, b.is_online as u8);
+            to_le_bytes!(len, buf, b.map_id);
+            to_le_bytes!(len, buf, b.level);
+            to_le_bytes!(len, buf, b.class_id);
+        }
         len
     }
 }
@@ -3577,6 +3604,107 @@ impl Serialise for GuildOpenedBuffTreeInfo {
     }
 }
 
+/// S_ALLIANCE_INFO (0x00F5) — Informações da Aliança
+#[derive(Debug, Clone)]
+pub struct AllianceInfo {
+    pub alliance_id: u32,
+    pub name: String,
+    pub leader_id: u32,
+    pub member_count: u8,
+}
+
+impl AllianceInfo {
+    pub fn new(alliance_id: u32, name: String, leader_id: u32, member_count: u8) -> Self {
+        Self {
+            alliance_id,
+            name,
+            leader_id,
+            member_count,
+        }
+    }
+}
+
+impl Serialise for AllianceInfo {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(ALLIANCE_INFO, buf);
+        to_le_bytes!(len, buf, self.alliance_id);
+        let name_utf16: Vec<u8> = self.name.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+        to_le_bytes!(len, buf, name_utf16.len() as u16);
+        copy_bytes!(len, buf, name_utf16);
+        to_le_bytes!(len, buf, self.leader_id);
+        to_le_bytes!(len, buf, self.member_count);
+        len
+    }
+}
+
+/// S_ALLIANCE_MEMBER_INFO (0x00F6) — Membro da Aliança
+#[derive(Debug, Clone)]
+pub struct AllianceMemberInfo {
+    pub alliance_id: u32,
+    pub player_id: u32,
+    pub group_index: u8,
+    pub name: String,
+    pub hp_current: u32,
+    pub hp_max: u32,
+    pub mp_current: u32,
+    pub mp_max: u32,
+    pub level: u8,
+    pub class_id: u8,
+    pub is_online: u8,
+}
+
+impl AllianceMemberInfo {
+    pub fn new(
+        alliance_id: u32,
+        player_id: u32,
+        group_index: u8,
+        name: String,
+        hp_current: u32,
+        hp_max: u32,
+        mp_current: u32,
+        mp_max: u32,
+        level: u8,
+        class_id: u8,
+        is_online: u8,
+    ) -> Self {
+        Self {
+            alliance_id,
+            player_id,
+            group_index,
+            name,
+            hp_current,
+            hp_max,
+            mp_current,
+            mp_max,
+            level,
+            class_id,
+            is_online,
+        }
+    }
+}
+
+impl Serialise for AllianceMemberInfo {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(ALLIANCE_MEMBER_INFO, buf);
+        to_le_bytes!(len, buf, self.alliance_id);
+        to_le_bytes!(len, buf, self.player_id);
+        to_le_bytes!(len, buf, self.group_index);
+        let name_utf16: Vec<u8> = self.name.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+        to_le_bytes!(len, buf, name_utf16.len() as u16);
+        copy_bytes!(len, buf, name_utf16);
+        to_le_bytes!(len, buf, self.hp_current);
+        to_le_bytes!(len, buf, self.hp_max);
+        to_le_bytes!(len, buf, self.mp_current);
+        to_le_bytes!(len, buf, self.mp_max);
+        to_le_bytes!(len, buf, self.level);
+        to_le_bytes!(len, buf, self.class_id);
+        to_le_bytes!(len, buf, self.is_online);
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
@@ -3762,6 +3890,26 @@ mod testes_de_inventario {
         );
         let n_m = g_member.serialise(&mut buf);
         assert!(n_m > 5 + 8);
+    }
+
+    #[test]
+    fn test_buddy_and_alliance_serialise() {
+        let b = BuddyEntry {
+            player_id: 1002,
+            name: "Loki".into(),
+            is_online: true,
+            map_id: 110010000,
+            level: 45,
+            class_id: 4,
+        };
+        let bl = BuddyList::from_entries(vec![b]);
+        let mut buf = [0u8; 128];
+        let n = bl.serialise(&mut buf);
+        assert!(n > 5 + 2);
+
+        let ai = AllianceInfo::new(1, "LegionAlliance".into(), 1001, 12);
+        let n_ai = ai.serialise(&mut buf);
+        assert!(n_ai > 5 + 4);
     }
 
     #[test]

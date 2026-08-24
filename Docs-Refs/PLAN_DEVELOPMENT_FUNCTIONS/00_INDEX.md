@@ -27,7 +27,7 @@
 | 07 | 07_INVENTORY_ITEMS.md | SM_INVENTORY_INFO, equip/desequip, SM_UPDATE_PLAYER_APPEARANCE | `[x]` |
 | 08 | 08_MAIL_SYSTEM.md | C_MAIL_READ, C_MAIL_POSTMAN, S_MAIL (0x0a0) | `[x]` |
 | 09 | 09_LEGION_GUILD.md | S_GUILD_INFO, S_GUILD_MEMBER_INFO, emblemas, buffs | `[x]` |
-| 10 | 10_SOCIAL_PARTY_BUDDY.md | C_PARTY, C_ADD_BUDDY, S_BUDDY_LIST, S_ALLIANCE_INFO | `[ ]` |
+| 10 | 10_SOCIAL_PARTY_BUDDY.md | C_PARTY, C_ADD_BUDDY, S_BUDDY_LIST, S_ALLIANCE_INFO | `[x]` |
 | 11 | 11_TRADE_BROKER.md | S_GLOBAL_TRADE_LIST, S_GLOBAL_TRADE_SALESLOG, S_GLOBAL_TRADE_STATE | `[ ]` |
 | 12 | 12_CHAT_CHANNELS.md | SM_MESSAGE, whisper, canais regionais, anti-flood | `[ ]` |
 | 13 | 13_DATABASE_SCHEMA.md | SQLite: players expandido, quests, mail, legion, inventory | `[ ]` |

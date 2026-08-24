@@ -104,7 +104,7 @@ define_messages!(
     (RECIPE_LIST, RecipeList, 0x9E),
     (RECONNECT_AUTH, ReconnectAuth, 0xB8),
     (INSTANCE_DUNGEON_COOLTIMES, InstanceDungeonCooltimes, 0xC1),
-    (REQUEST_SERIAL_KILLER_LIST, RequestSerialKillerList, 0xC5),
+    (REQUEST_GUILD_HISTORY, RequestGuildHistory, 0xC5),
     (_D8, _00D8, 0xD8),
     (_8B, _008B, 0x8B),
     (CREATE_CHARACTER, CreateCharacter, 0x5F),
@@ -127,9 +127,11 @@ define_messages!(
     (BUY_SELL, BuySell, 0x33),
     (MAIL_READ, MailRead, 0x86),
     (MAIL_POSTMAN, MailPostman, 0xA2),
-    (REQUEST_GUILD_HISTORY, RequestGuildHistory, 0xC5),
     (GUILD_USER_BUY_BUFF, GuildUserBuyBuff, 0xC6),
     (GUILD_MANAGE, GuildManage, 0xC7),
+    (PARTY, Party, 0x60),
+    (PARTY_BY_NAME, PartyByName, 0x61),
+    (ADD_BUDDY, AddBuddy, 0x6F),
 );
 
 /// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
@@ -2221,5 +2223,93 @@ impl Deserialise for GuildManage {
         let action = if buf.len() >= 1 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
         let target_id = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
         Self { action, target_id }
+    }
+}
+
+/// Cliente interage com grupo/party (Opcode 0x60).
+#[derive(Debug, Clone)]
+pub struct Party {
+    pub target_player_id: u32,
+    pub action: u8,
+}
+
+impl Party {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::Party(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for Party {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let target_player_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        Self { target_player_id, action }
+    }
+}
+
+/// Cliente convida para grupo por nome (Opcode 0x61).
+#[derive(Debug, Clone)]
+pub struct PartyByName {
+    pub name: String,
+}
+
+impl PartyByName {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::PartyByName(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for PartyByName {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let name_len = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) as usize } else { 0 };
+        let name = if buf.len() >= ptr + name_len {
+            let u16_slice: Vec<u16> = buf[ptr..ptr + name_len]
+                .chunks_exact(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .take_while(|&c| c != 0)
+                .collect();
+            String::from_utf16_lossy(&u16_slice)
+        } else {
+            String::new()
+        };
+        Self { name }
+    }
+}
+
+/// Cliente adiciona ou remove amigo (Opcode 0x6F).
+#[derive(Debug, Clone)]
+pub struct AddBuddy {
+    pub name: String,
+    pub action: u8,
+}
+
+impl AddBuddy {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::AddBuddy(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for AddBuddy {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let name_len = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) as usize } else { 0 };
+        let name = if buf.len() >= ptr + name_len {
+            let u16_slice: Vec<u16> = buf[ptr..ptr + name_len]
+                .chunks_exact(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .take_while(|&c| c != 0)
+                .collect();
+            ptr += name_len;
+            String::from_utf16_lossy(&u16_slice)
+        } else {
+            String::new()
+        };
+        let action = if buf.len() > ptr { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        Self { name, action }
     }
 }

@@ -21,7 +21,7 @@ pub mod guild;
 pub mod housing;
 pub mod instance;
 pub mod mail;
-mod message;
+pub mod message;
 pub mod mundo;
 pub mod pet;
 mod session;

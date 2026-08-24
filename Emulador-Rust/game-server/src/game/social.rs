@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use super::engine::Coord;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -219,6 +220,57 @@ impl Party {
         } else {
             false
         }
+    }
+}
+
+#[derive(Debug, Default)]
+pub struct PartyService {
+    pub groups: HashMap<u32, Party>,
+    pub player_party_map: HashMap<u32, u32>,
+    next_id: u32,
+}
+
+impl PartyService {
+    pub fn new() -> Self {
+        Self {
+            groups: HashMap::new(),
+            player_party_map: HashMap::new(),
+            next_id: 1,
+        }
+    }
+
+    pub fn create_party(&mut self, leader_id: u32) -> u32 {
+        let id = self.next_id;
+        self.next_id = self.next_id.wrapping_add(1);
+        let party = Party::new(id, leader_id);
+        self.player_party_map.insert(leader_id, id);
+        self.groups.insert(id, party);
+        id
+    }
+
+    pub fn add_member(&mut self, group_id: u32, player_id: u32) -> bool {
+        if let Some(party) = self.groups.get_mut(&group_id) {
+            if party.add_member(player_id) {
+                self.player_party_map.insert(player_id, group_id);
+                return true;
+            }
+        }
+        false
+    }
+
+    pub fn remove_member(&mut self, player_id: u32) -> Option<u32> {
+        let group_id = self.player_party_map.remove(&player_id)?;
+        if let Some(party) = self.groups.get_mut(&group_id) {
+            party.remove_member(player_id);
+            if party.members.is_empty() {
+                self.groups.remove(&group_id);
+            }
+        }
+        Some(group_id)
+    }
+
+    pub fn group_of(&self, player_id: u32) -> Option<u32> {
+        self.player_party_map.get(&player_id).copied()
     }
 }
 
