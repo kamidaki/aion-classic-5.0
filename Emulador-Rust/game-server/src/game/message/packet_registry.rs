@@ -45,6 +45,7 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x2B, name: "CM_EMOTION", direction: PacketDirection::ClientToServer, description: "Emotes, asas abertas, sentar ou pular" },
         PacketDefinition { opcode: 0x2C, name: "CM_PING", direction: PacketDirection::ClientToServer, description: "Heartbeat de conexão ativa" },
         PacketDefinition { opcode: 0x30, name: "CM_MOVE", direction: PacketDirection::ClientToServer, description: "Vetor de deslocamento contínuo" },
+        PacketDefinition { opcode: 0x31, name: "CM_PATH_FLY", direction: PacketDirection::ClientToServer, description: "Progresso de voo em corrente de vento" },
         PacketDefinition { opcode: 0x34, name: "CM_SHOW_DIALOG", direction: PacketDirection::ClientToServer, description: "Abertura de diálogo com NPC" },
         PacketDefinition { opcode: 0x36, name: "CM_DIALOG_SELECT", direction: PacketDirection::ClientToServer, description: "Seleção de opção em diálogo HTML" },
         PacketDefinition { opcode: 0x46, name: "CM_WINDSTREAM", direction: PacketDirection::ClientToServer, description: "Navegação em rota de fluxo de vento" },
@@ -84,6 +85,8 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x43, name: "SM_WEATHER", direction: PacketDirection::ServerToClient, description: "Sincronização de clima e efeitos visuais" },
         PacketDefinition { opcode: 0x47, name: "SM_QUEST_LIST", direction: PacketDirection::ServerToClient, description: "Lista de missões ativas e completadas" },
         PacketDefinition { opcode: 0x8B, name: "S_SA_ACCOUNT_ITEM_NOTI", direction: PacketDirection::ServerToClient, description: "Destrava essencial do lobby de personagens" },
+        PacketDefinition { opcode: 0xA2, name: "SM_WIND_PATH_RESULT", direction: PacketDirection::ServerToClient, description: "Rota pré-calculada de voo em corrente de vento" },
+        PacketDefinition { opcode: 0xA3, name: "SM_WIND_STATE_INFO", direction: PacketDirection::ServerToClient, description: "Confirmação de estado em corrente de vento" },
     ];
 
     pub fn find_client_packet(opcode: u16) -> Option<&'static PacketDefinition> {

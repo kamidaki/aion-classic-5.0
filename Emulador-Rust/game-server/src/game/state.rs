@@ -118,6 +118,7 @@ pub struct State {
     /// nao e resposta a ele. Mandar de novo no segundo pedido reinicia o carregamento do mapa no
     /// meio, e o cliente nunca chega a mandar o `LevelReady`: fica preso na tela de carregamento.
     mundo_enviado: HashSet<u32>,
+    pub windstream_service: crate::game::environment::WindstreamService,
     db: Db,
     game_data: Arc<GameData>,
 }
@@ -179,6 +180,7 @@ impl State {
             } else {
                 Vec::new()
             },
+            windstream_service: crate::game::environment::WindstreamService::new(),
             db,
             game_data,
         }
@@ -1311,6 +1313,73 @@ impl State {
                         sel.quest_id,
                     ))),
                 );
+            }
+            c::Message::MoveNew(ref move_new) => {
+                if let Some(character) = self.characters.get_mut(&update.character_id()) {
+                    character.set_location(move_new.location());
+                    let s_move = move_new.calculate(character.id());
+                    messages.push_others(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::MoveNew(s_move)),
+                    );
+                }
+            }
+            c::Message::WindPath(wind_path) => {
+                println!(
+                    "INFO: Player {} WindPath request (stream_id: {}, action: {})",
+                    update.character_id(),
+                    wind_path.windstream_id,
+                    wind_path.action
+                );
+                let char_id = update.character_id();
+                if wind_path.action == 1 {
+                    // Entrar na corrente
+                    let waypoints = self
+                        .windstream_service
+                        .get_waypoints(wind_path.windstream_id)
+                        .unwrap_or_else(|| {
+                            vec![
+                                (1300.0, 1400.0, 300.0),
+                                (1350.0, 1450.0, 320.0),
+                                (1400.0, 1500.0, 310.0),
+                                (1450.0, 1550.0, 290.0),
+                            ]
+                        });
+                    let duration_ms = (waypoints.len() as f32) * 2000.0;
+                    messages.extend_direct(
+                        update.client_id(),
+                        [
+                            ServerUpdate::new(s::Message::WindPathResult(s::WindPathResult::new(
+                                char_id,
+                                wind_path.windstream_id,
+                                waypoints,
+                                duration_ms,
+                            ))),
+                            ServerUpdate::new(s::Message::WindStateInfo(s::WindStateInfo::new(
+                                char_id,
+                                wind_path.windstream_id,
+                                1, // dentro
+                                22.0,
+                            ))),
+                        ],
+                    );
+                } else {
+                    // Sair da corrente
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::WindStateInfo(s::WindStateInfo::new(
+                            char_id,
+                            wind_path.windstream_id,
+                            0, // fora
+                            0.0,
+                        ))),
+                    );
+                }
+            }
+            c::Message::PathFly(path_fly) => {
+                if let Some(character) = self.characters.get_mut(&update.character_id()) {
+                    character.set_location(Coord::new(path_fly.x, path_fly.y, path_fly.z));
+                }
             }
             _ => (),
         }

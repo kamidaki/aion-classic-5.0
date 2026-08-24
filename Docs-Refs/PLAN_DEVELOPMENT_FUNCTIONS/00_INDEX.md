@@ -19,7 +19,7 @@
 | # | Arquivo | Domínio | Status |
 |---|---------|---------|--------|
 | 01 | 01_ENTRADA_MUNDO_SPAWN.md | Spawn, Cutscene, S_REQUEST_TELEPORT | `[x]` |
-| 02 | 02_MOVEMENT_WINDSTREAM.md | C_MOVE, S_MOVE, Windstream (0x046/0x0a2/0x0a3) | `[ ]` |
+| 02 | 02_MOVEMENT_WINDSTREAM.md | C_MOVE, S_MOVE, Windstream (0x046/0x0a2/0x0a3) | `[x]` |
 | 03 | 03_COMBAT_SKILLS.md | C_USE_SKILL, S_SKILL_SUCCEDED, S_ABNORMAL_STATUS | `[ ]` |
 | 04 | 04_COMBAT_AUTOATTACK.md | C_ATTACK, S_ATTACK_STATUS, SM_CASTSPELL_RESULT | `[ ]` |
 | 05 | 05_NPC_DIALOG_QUESTS.md | SM_DIALOG_WINDOW, missões, SM_QUEST_LIST | `[ ]` |

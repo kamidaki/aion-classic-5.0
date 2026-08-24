@@ -106,6 +106,61 @@ impl Windstream {
     }
 }
 
+#[derive(Debug, Clone)]
+pub struct WindstreamService {
+    pub streams: std::collections::HashMap<u32, Windstream>,
+}
+
+impl Default for WindstreamService {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl WindstreamService {
+    pub fn new() -> Self {
+        let mut streams = std::collections::HashMap::new();
+        // Inggison Windstream 1
+        streams.insert(
+            1,
+            Windstream::new(
+                1,
+                210050000,
+                vec![
+                    Coord::new(1300.0, 1400.0, 300.0),
+                    Coord::new(1350.0, 1450.0, 320.0),
+                    Coord::new(1400.0, 1500.0, 310.0),
+                    Coord::new(1450.0, 1550.0, 290.0),
+                ],
+            ),
+        );
+        // Gelkmaros Windstream 2
+        streams.insert(
+            2,
+            Windstream::new(
+                2,
+                220050000,
+                vec![
+                    Coord::new(1600.0, 1700.0, 350.0),
+                    Coord::new(1650.0, 1750.0, 370.0),
+                    Coord::new(1700.0, 1800.0, 360.0),
+                ],
+            ),
+        );
+        Self { streams }
+    }
+
+    pub fn get_stream(&self, stream_id: u32) -> Option<&Windstream> {
+        self.streams.get(&stream_id)
+    }
+
+    pub fn get_waypoints(&self, stream_id: u32) -> Option<Vec<(f32, f32, f32)>> {
+        self.streams.get(&stream_id).map(|s| {
+            s.waypoints.iter().map(|c| (c.x(), c.y(), c.z())).collect()
+        })
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum WeatherCondition {
     Clear = 0,

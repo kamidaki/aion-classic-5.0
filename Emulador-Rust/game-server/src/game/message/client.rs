@@ -122,6 +122,8 @@ define_messages!(
     (SHOW_DIALOG, ShowDialog, 0x34),
     (DIALOG_SELECT, DialogSelect, 0x36),
     (DELETE_CHARACTER, DeleteCharacter, 0x05),
+    (WIND_PATH, WindPath, 0x46),
+    (PATH_FLY, PathFly, 0x31),
 );
 
 /// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
@@ -1931,5 +1933,69 @@ impl Deserialise for DialogSelect {
         let last_page = if buf.len() >= 12 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
         let quest_id = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
         Self { target_id, dialog_id, last_page, quest_id }
+    }
+}
+
+/// Cliente solicita entrada ou saída em corrente de vento (Opcode 0x46).
+#[derive(Debug, Clone)]
+pub struct WindPath {
+    pub windstream_id: u32,
+    pub action: u8, // 1=entrar, 2=sair
+}
+
+impl WindPath {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::WindPath(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for WindPath {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let windstream_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 1 };
+        Self {
+            windstream_id,
+            action,
+        }
+    }
+}
+
+/// Cliente reporta progresso de voo em corrente de vento (Opcode 0x31).
+#[derive(Debug, Clone)]
+pub struct PathFly {
+    pub entity_id: u32,
+    pub windstream_id: u32,
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub progress: f32,
+}
+
+impl PathFly {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::PathFly(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for PathFly {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let entity_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let windstream_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let x = if buf.len() >= 12 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+        let y = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+        let z = if buf.len() >= 20 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+        let progress = if buf.len() >= 24 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+        Self {
+            entity_id,
+            windstream_id,
+            x,
+            y,
+            z,
+            progress,
+        }
     }
 }

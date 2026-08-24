@@ -1,6 +1,6 @@
-﻿# PLAN-02: Movimentação — C_MOVE (0x30), S_MOVE (0x37), Windstream (0x046/0x0a2/0x0a3)
+# PLAN-02: Movimentação — C_MOVE (0x30), S_MOVE (0x37), Windstream (0x046/0x0a2/0x0a3)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** ALTA — o personagem se move, mas Windstream e voo não funcionam.
 
 ---

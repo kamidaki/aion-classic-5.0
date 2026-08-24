@@ -61,6 +61,8 @@ const SA_ACCOUNT_ITEM_NOTI: u16 = 0x0088;
 const WORLD_SCENE_STATUS: u16 = 0x008B;
 const ALIVE: u16 = 0x008D;
 const CUSTOM_ANIM: u16 = 0x0093;
+const WIND_PATH_RESULT: u16 = 0x00A2;
+const WIND_STATE_INFO: u16 = 0x00A3;
 const TITLE: u16 = 0x00AF;
 const SECOND_PASSWORD: u16 = 0x00B0;
 const L2AUTH_LOGIN_CHECK: u16 = 0x00C6;
@@ -155,6 +157,8 @@ pub enum Message {
     DeleteCharacter(DeleteCharacter),
     DialogWindow(DialogWindow),
     RequestTeleport(RequestTeleport),
+    WindStateInfo(WindStateInfo),
+    WindPathResult(WindPathResult),
 }
 
 impl Serialise for Message {
@@ -226,6 +230,8 @@ impl Serialise for Message {
             Message::DeleteCharacter(msg) => msg.serialise(&mut buf[2..]),
             Message::DialogWindow(msg) => msg.serialise(&mut buf[2..]),
             Message::RequestTeleport(msg) => msg.serialise(&mut buf[2..]),
+            Message::WindStateInfo(msg) => msg.serialise(&mut buf[2..]),
+            Message::WindPathResult(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -2794,10 +2800,125 @@ impl Serialise for RequestTeleport {
     }
 }
 
+/// Confirmação de estado na corrente de vento (Opcode 0x00A3).
+///
+/// Layout oficial (13 bytes):
+/// - [u32 entity_id]
+/// - [u32 windstream_id]
+/// - [u8 state]       — 0=fora, 1=dentro, 2=saindo
+/// - [f32 speed]       — ex: 22.0
+#[derive(Debug, Clone)]
+pub struct WindStateInfo {
+    pub entity_id: u32,
+    pub windstream_id: u32,
+    pub state: u8,
+    pub speed: f32,
+}
+
+impl WindStateInfo {
+    pub fn new(entity_id: u32, windstream_id: u32, state: u8, speed: f32) -> Self {
+        Self {
+            entity_id,
+            windstream_id,
+            state,
+            speed,
+        }
+    }
+}
+
+impl Serialise for WindStateInfo {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(WIND_STATE_INFO, buf);
+        to_le_bytes!(len, buf, self.entity_id);
+        to_le_bytes!(len, buf, self.windstream_id);
+        to_le_bytes!(len, buf, self.state);
+        to_le_bytes!(len, buf, self.speed);
+        len
+    }
+}
+
+/// Rota pré-calculada de voo em corrente de vento (Opcode 0x00A2).
+///
+/// Layout oficial:
+/// - [u32 entity_id]
+/// - [u32 windstream_id]
+/// - [u16 waypoint_count]
+/// - for each waypoint: [f32 x][f32 y][f32 z]
+/// - [f32 duration_ms]
+#[derive(Debug, Clone)]
+pub struct WindPathResult {
+    pub entity_id: u32,
+    pub windstream_id: u32,
+    pub waypoints: Vec<(f32, f32, f32)>,
+    pub duration_ms: f32,
+}
+
+impl WindPathResult {
+    pub fn new(
+        entity_id: u32,
+        windstream_id: u32,
+        waypoints: Vec<(f32, f32, f32)>,
+        duration_ms: f32,
+    ) -> Self {
+        Self {
+            entity_id,
+            windstream_id,
+            waypoints,
+            duration_ms,
+        }
+    }
+}
+
+impl Serialise for WindPathResult {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(WIND_PATH_RESULT, buf);
+        to_le_bytes!(len, buf, self.entity_id);
+        to_le_bytes!(len, buf, self.windstream_id);
+        let count = self.waypoints.len() as u16;
+        to_le_bytes!(len, buf, count);
+        for wp in &self.waypoints {
+            to_le_bytes!(len, buf, wp.0);
+            to_le_bytes!(len, buf, wp.1);
+            to_le_bytes!(len, buf, wp.2);
+        }
+        to_le_bytes!(len, buf, self.duration_ms);
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
     use crate::data_loader::Slot;
+
+    #[test]
+    fn test_wind_state_info_serialise_13_bytes() {
+        let ws = WindStateInfo::new(12345, 1, 1, 22.0);
+        let mut buf = [0u8; 64];
+        let n = ws.serialise(&mut buf);
+        assert_eq!(n, 5 + 13, "5 bytes prelude + 13 bytes payload");
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 12345);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 1);
+        assert_eq!(buf[13], 1, "state = 1");
+        assert_eq!(f32::from_le_bytes(buf[14..18].try_into().unwrap()), 22.0);
+    }
+
+    #[test]
+    fn test_wind_path_result_serialise() {
+        let waypoints = vec![(100.0, 200.0, 300.0), (110.0, 210.0, 310.0)];
+        let wpr = WindPathResult::new(12345, 1, waypoints, 5000.0);
+        let mut buf = [0u8; 128];
+        let n = wpr.serialise(&mut buf);
+        assert_eq!(n, 5 + 4 + 4 + 2 + 24 + 4, "5 prelude + 38 payload");
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 12345);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 1);
+        assert_eq!(u16::from_le_bytes(buf[13..15].try_into().unwrap()), 2);
+        assert_eq!(f32::from_le_bytes(buf[15..19].try_into().unwrap()), 100.0);
+        assert_eq!(f32::from_le_bytes(buf[35..39].try_into().unwrap()), 310.0);
+        assert_eq!(f32::from_le_bytes(buf[39..43].try_into().unwrap()), 5000.0);
+    }
 
     #[test]
     fn test_request_teleport_serialise_22_bytes() {
