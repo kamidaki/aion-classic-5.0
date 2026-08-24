@@ -81,6 +81,32 @@ macro_rules! define_messages {
     };
 }
 
+// Os numeros abaixo saem de duas fontes: a tabela extraida do `Game.dll` 4.5 e as duas capturas
+// do servidor oficial da Gameforge (21/08 e 23/08 de 2026). Onde as duas discordam, vale a
+// captura -- a tabela erra o pareamento nome/numero em pontos conhecidos.
+//
+// Cruzando as capturas com o roteiro do que o jogador fez, 16 opcodes deste bloco nunca
+// apareceram em captura nenhuma, embora o jogador tenha feito as acoes correspondentes (chat,
+// troca de alvo, loot, equipar, falar com NPC). Ou seja, o numero esta errado neles. Tres ja
+// foram corrigidos, cada um com duas provas independentes -- a resposta do servidor que se segue
+// e o tamanho do payload batendo com a struct:
+//
+// | Opcode  | Era    | Prova                                                              |
+// |---------|--------|--------------------------------------------------------------------|
+// | `0x8B`  | `0xBB` | 9/9 `S_SA_ACCOUNT_ITEM_NOTI` logo depois; pedido sem payload        |
+// | `0xB6`  | `0x9E` | `S_RECIPE_LIST` logo depois nas duas capturas; pedido sem payload   |
+// | `0x86`  | `0xAE` | `S_SIGN_CLIENT` logo depois; 10 bytes, o tamanho do `[u8; 10]`      |
+//
+// Continuam com numero suspeito, sem prova suficiente para mexer:
+// `SAVE_CLIENT_SETTINGS` (0x0A), `CHAT_MESSAGE_PUBLIC` (0x1B), `CHANGE_TARGET` (0x1F),
+// `USE_EQUIPMENT_ITEM` (0x26), `ACTION` (0x2B), `ALIVE` (0x2C), `SHOW_DIALOG` (0x34),
+// `DIALOG_SELECT` (0x36), `ASK_LOG` (0x3E), `QUERY_BUDDY` (0x6E), `LOOT` (0x9A),
+// `LOOT_ITEM` (0x9B) e `_D8` (0xD8).
+//
+// Pistas ja levantadas para eles: `S_DIALOG_WINDOW` vem 86 vezes logo depois do opcode que a
+// desofuscacao devolve como `0xFFFE`, e `S_LOAD_CLIENT_SETTINGS` vem depois de `C 0xAA` -- que
+// hoje esta ocupado por `CUR_STATUS`. Mexer neles sem resolver o conflito trocaria um erro por
+// outro.
 define_messages!(
     (VERSION, Version, 0x00),
     (ASK_QUIT, AskQuit, 0x03),
@@ -101,17 +127,16 @@ define_messages!(
     (CHARACTER_LIST, CharacterList, 0x96),
     (LOOT, Loot, 0x9A),
     (LOOT_ITEM, LootItem, 0x9B),
-    (RECIPE_LIST, RecipeList, 0x9E),
+    (RECIPE_LIST, RecipeList, 0xB6),
     (RECONNECT_AUTH, ReconnectAuth, 0xB8),
     (INSTANCE_DUNGEON_COOLTIMES, InstanceDungeonCooltimes, 0xC1),
     (REQUEST_SERIAL_KILLER_LIST, RequestSerialKillerList, 0xC5),
     (_D8, _00D8, 0xD8),
-    (_8B, _008B, 0x8B),
     (CREATE_CHARACTER, CreateCharacter, 0x5F),
     (CUR_STATUS, CurStatus, 0xAA),
     (QUERY_BLOCK, QueryBlock, 0xA8),
-    (SIGN_CLIENT, SignClient, 0xAE),
-    (SA_ACCOUNT_ITEM_QUERY, SaAccountItemQuery, 0xBB),
+    (SIGN_CLIENT, SignClient, 0x86),
+    (SA_ACCOUNT_ITEM_QUERY, SaAccountItemQuery, 0x8B),
     (ROUTE_INFO, RouteInfo, 0xBE),
     (SECOND_PASSWORD, SecondPassword, 0xD2),
     (READY_ENTER_WORLD_ACK, ReadyEnterWorldAck, 0xE2),
@@ -348,6 +373,17 @@ impl Deserialise for SecondPassword {
     }
 }
 
+/// Opcode `0x8B`. Sem resposta a este opcode a tela de personagem trava: nao da para entrar no
+/// jogo, criar personagem, nem voltar para a lista de servidores. Os botoes simplesmente nao
+/// reagem.
+///
+/// O numero saiu das capturas, nao da tabela do `Game.dll` -- que chama `0x8B` de
+/// `C_CHANGE_TITLE` e erra em pontos conhecidos. Nas duas capturas, todas as 9 ocorrencias de
+/// `S_SA_ACCOUNT_ITEM_NOTI` vem imediatamente depois de um `C 0x8B`, e o pedido chega sem
+/// payload -- o que casa com esta struct unitaria.
+///
+/// Antes ficavam dois handlers identicos: este, mapeado no `0xBB` (numero que nao aparece em
+/// captura nenhuma, logo nunca disparava), e um `_008B` sem nome no numero certo.
 #[derive(Debug, Clone)]
 pub struct SaAccountItemQuery;
 
@@ -1170,38 +1206,6 @@ impl Deserialise for DeleteCharacter {
     }
 }
 
-/// Sem resposta a este opcode a tela de personagem trava: nao da para entrar no jogo, criar
-/// personagem, nem voltar para a lista de servidores. Os botoes simplesmente nao reagem.
-///
-/// Foi medido rodando sem replay nenhum: dos opcodes que ficaram sem resposta, este e o unico que
-/// bloqueia. O `0x88` e o `0x5F` tambem ficam sem resposta, e o `0x88` nunca teve uma no replay de
-/// login -- ainda assim aquela sessao entrava no mundo.
-///
-/// A resposta do servidor oficial e `S_SA_ACCOUNT_ITEM_NOTI` com quatro bytes zero, identica nas
-/// duas capturas -- a mesma que o `SaAccountItemQuery` (0xBB) ja devolvia.
-///
-/// Sem nome porque a tabela do `Game.dll` chama `0x8B` de `C_CHANGE_TITLE`, e ela erra em pontos
-/// conhecidos; o que responder aqui veio da captura, nao dela.
-#[derive(Debug, Clone)]
-pub struct _008B;
-impl _008B {
-    pub fn handle(
-        &self,
-        _: &Sender<ClientUpdate>,
-        _: &mut Account,
-    ) -> Vec<s::Message> {
-        vec![s::Message::SaAccountItemNoti(s::SaAccountItemNoti::new())]
-    }
-}
-impl Deserialise for _008B {
-    fn deserialise(_: &[u8]) -> Self
-    where
-        Self: Sized,
-    {
-        Self
-    }
-}
-
 #[derive(Debug, Clone)]
 pub struct RecipeList;
 impl RecipeList {
@@ -1931,5 +1935,68 @@ impl Deserialise for DialogSelect {
         let last_page = if buf.len() >= 12 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
         let quest_id = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
         Self { target_id, dialog_id, last_page, quest_id }
+    }
+}
+
+#[cfg(test)]
+mod testes_de_opcode {
+    use super::*;
+    use commons::game::{encrypt, encrypt_client_opcode, gen_xor_key};
+
+    /// Monta um pacote de cliente como o cliente o manda: opcode cifrado, byte de servidor,
+    /// checksum e payload, tudo cifrado a partir do offset do opcode.
+    fn pacote_do_cliente(opcode: u16, payload: &[u8], chave: &mut [u8; 8]) -> Vec<u8> {
+        let cifrado = encrypt_client_opcode(opcode);
+        let mut buf = Vec::new();
+        buf.extend_from_slice(&cifrado.to_le_bytes());
+        buf.push(0x6F); // byte de servidor
+        buf.extend_from_slice(&(!cifrado).to_le_bytes());
+        buf.extend_from_slice(payload);
+        encrypt(chave, &mut buf);
+        buf
+    }
+
+    fn chave_nova() -> [u8; 8] {
+        gen_xor_key(0x1234_5678).to_le_bytes()
+    }
+
+    /// Os tres opcodes renumerados a partir das capturas precisam cair no handler certo.
+    ///
+    /// Se alguem trocar um numero por engano, o pacote passa a cair no ramo "not implemented" e
+    /// este teste quebra -- que e exatamente o sintoma que os 16 opcodes errados produziam.
+    #[test]
+    fn opcodes_renumerados_caem_no_handler_certo() {
+        let casos: [(u16, &[u8], fn(&Message) -> bool); 3] = [
+            (0x8B, &[], |m| matches!(m, Message::SaAccountItemQuery(_))),
+            (0xB6, &[], |m| matches!(m, Message::RecipeList(_))),
+            (0x86, &[0u8; 10], |m| matches!(m, Message::SignClient(_))),
+        ];
+
+        for (opcode, payload, e_o_esperado) in casos {
+            let mut chave_envio = chave_nova();
+            let mut buf = pacote_do_cliente(opcode, payload, &mut chave_envio);
+
+            let mut chave_leitura = chave_nova();
+            let (msg, lido) = Message::deserialise(&mut buf, &mut chave_leitura)
+                .unwrap_or_else(|op| panic!("opcode 0x{opcode:02X} caiu como nao implementado (0x{op:02X})"));
+
+            assert_eq!(lido, opcode, "opcode desofuscado nao confere");
+            assert!(e_o_esperado(&msg), "0x{opcode:02X} caiu no handler errado: {msg:?}");
+        }
+    }
+
+    /// Os numeros antigos nao podem continuar respondendo: eram justamente os que nunca chegavam.
+    #[test]
+    fn opcodes_antigos_nao_tem_mais_handler() {
+        for antigo in [0xBBu16, 0x9E, 0xAE] {
+            let mut chave_envio = chave_nova();
+            let mut buf = pacote_do_cliente(antigo, &[], &mut chave_envio);
+
+            let mut chave_leitura = chave_nova();
+            assert!(
+                Message::deserialise(&mut buf, &mut chave_leitura).is_err(),
+                "0x{antigo:02X} ainda tem handler"
+            );
+        }
     }
 }
