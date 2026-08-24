@@ -17,6 +17,7 @@ pub mod enchant;
 pub mod engine;
 pub mod entity;
 pub mod environment;
+pub mod guild;
 pub mod housing;
 pub mod instance;
 pub mod mail;

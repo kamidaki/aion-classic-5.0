@@ -173,6 +173,7 @@ pub struct Character {
     pub active_quests: HashMap<u32, s::QuestEntry>,
     pub buyback_history: Vec<s::SellHistoryEntry>,
     pub mailbox: crate::game::mail::Mailbox,
+    pub guild_id: Option<u32>,
     /// Os 140 bytes que o cliente mandou ao criar o personagem. `None` para quem nasceu antes da
     /// criacao existir -- esses caem no molde capturado.
     pub aparencia: Option<Vec<u8>>,
@@ -577,6 +578,7 @@ impl Character {
             active_quests: HashMap::new(),
             buyback_history: Vec::new(),
             mailbox: crate::game::mail::Mailbox::new(),
+            guild_id: None,
             aparencia: None,
             attack_sequence: 0,
             items,

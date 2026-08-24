@@ -1,6 +1,6 @@
-﻿# PLAN-09: Legião/Guild (S_GUILD_INFO 0x06D, S_GUILD_MEMBER_INFO 0x09C, Emblema 0x0D5, Buffs, Doações)
+# PLAN-09: Legião/Guild (S_GUILD_INFO 0x06D, S_GUILD_MEMBER_INFO 0x09C, Emblema 0x0D5, Buffs, Doações)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** MÉDIA — 2.565 pacotes capturados cobrindo ciclo de vida completo.
 
 ---

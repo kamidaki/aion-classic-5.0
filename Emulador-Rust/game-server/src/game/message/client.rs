@@ -127,6 +127,9 @@ define_messages!(
     (BUY_SELL, BuySell, 0x33),
     (MAIL_READ, MailRead, 0x86),
     (MAIL_POSTMAN, MailPostman, 0xA2),
+    (REQUEST_GUILD_HISTORY, RequestGuildHistory, 0xC5),
+    (GUILD_USER_BUY_BUFF, GuildUserBuyBuff, 0xC6),
+    (GUILD_MANAGE, GuildManage, 0xC7),
 );
 
 /// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
@@ -2153,5 +2156,70 @@ impl Deserialise for MailPostman {
             item_quantity,
             kinah_amount,
         }
+    }
+}
+
+/// Cliente solicita histórico da Legião (Opcode 0xC5).
+#[derive(Debug, Clone)]
+pub struct RequestGuildHistory {
+    pub page: u16,
+}
+
+impl RequestGuildHistory {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::RequestGuildHistory(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for RequestGuildHistory {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let page = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) } else { 0 };
+        Self { page }
+    }
+}
+
+/// Cliente compra ou ativa buff de Legião (Opcode 0xC6).
+#[derive(Debug, Clone)]
+pub struct GuildUserBuyBuff {
+    pub buff_id: u32,
+}
+
+impl GuildUserBuyBuff {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::GuildUserBuyBuff(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for GuildUserBuyBuff {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let buff_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        Self { buff_id }
+    }
+}
+
+/// Operações de Legião enviadas pelo cliente (Opcode 0xC7).
+#[derive(Debug, Clone)]
+pub struct GuildManage {
+    pub action: u8,
+    pub target_id: u32,
+}
+
+impl GuildManage {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::GuildManage(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for GuildManage {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let action = if buf.len() >= 1 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        let target_id = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        Self { action, target_id }
     }
 }

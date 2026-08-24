@@ -121,6 +121,7 @@ pub struct State {
     mundo_enviado: HashSet<u32>,
     pub windstream_service: crate::game::environment::WindstreamService,
     pub attack_timers: HashMap<u32, (u32, Instant)>,
+    pub guild_manager: crate::game::guild::GuildManager,
     db: Db,
     game_data: Arc<GameData>,
 }
@@ -184,6 +185,7 @@ impl State {
             },
             windstream_service: crate::game::environment::WindstreamService::new(),
             attack_timers: HashMap::new(),
+            guild_manager: crate::game::guild::GuildManager::new(),
             db,
             game_data,
         }
@@ -1257,6 +1259,76 @@ impl State {
                     .map(ServerUpdate::new),
                 );
 
+                if let Some(guild) = self.guild_manager.get_guild_for_player(update.character_id()) {
+                    let g_info = s::GuildInfo::new(
+                        guild.id,
+                        guild.name.clone(),
+                        guild.rank,
+                        guild.race,
+                        guild.exp,
+                        guild.contribution_points,
+                        guild.members.len() as u16,
+                        30,
+                        guild.leader_id,
+                        guild.notice.clone(),
+                        guild.kinah,
+                    );
+                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GuildInfo(g_info)));
+
+                    for member in &guild.members {
+                        let m_info = s::GuildMemberInfo::new(
+                            guild.id,
+                            member.player_id,
+                            member.guild_rank_index,
+                            member.name.clone(),
+                            member.class_id,
+                            member.level,
+                            member.race,
+                            member.is_online as u8,
+                            member.last_online,
+                            member.contribution,
+                            member.map_id,
+                        );
+                        messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GuildMemberInfo(m_info)));
+                    }
+
+                    for chunk in guild.build_emblem_packets() {
+                        messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GuildEmblemImgData(chunk)));
+                    }
+
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::UserGuildDonation(s::UserGuildDonation::new(
+                            update.character_id(),
+                            0,
+                            100000,
+                            0,
+                            0,
+                        ))),
+                    );
+
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::UserGuildCoin(s::UserGuildCoin::new(
+                            update.character_id(),
+                            100,
+                        ))),
+                    );
+
+                    let buff_entries = guild.active_buffs.iter().map(|b| s::GuildBuffEntry {
+                        buff_id: b.buff_id,
+                        remaining_ms: b.remaining_ms,
+                        level: b.level,
+                    }).collect();
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::GuildOpenedBuffTreeInfo(s::GuildOpenedBuffTreeInfo::new(
+                            guild.id,
+                            buff_entries,
+                        ))),
+                    );
+                }
+
                 // O resto do bloco: armazem, correio, macros, filtros de chat. Na captura estao
                 // espalhados dos dois lados do S_WORLD; o que o cliente cobra e a presenca, e o
                 // S_WORLD -- que tem lugar fixo -- ja foi.
@@ -1763,6 +1835,15 @@ impl State {
                 if let Some(character) = self.characters.get_mut(&update.character_id()) {
                     character.set_location(Coord::new(path_fly.x, path_fly.y, path_fly.z));
                 }
+            }
+            c::Message::RequestGuildHistory(req) => {
+                println!("INFO: Player {} RequestGuildHistory (page: {})", update.character_id(), req.page);
+            }
+            c::Message::GuildUserBuyBuff(buy_buff) => {
+                println!("INFO: Player {} GuildUserBuyBuff (buff_id: {})", update.character_id(), buy_buff.buff_id);
+            }
+            c::Message::GuildManage(manage) => {
+                println!("INFO: Player {} GuildManage (action: {}, target: {})", update.character_id(), manage.action, manage.target_id);
             }
             _ => (),
         }

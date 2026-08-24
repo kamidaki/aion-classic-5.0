@@ -54,6 +54,9 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x75, name: "CM_REGISTER_AUTOGROUP", direction: PacketDirection::ClientToServer, description: "Entrada na fila de matchmaking de arena" },
         PacketDefinition { opcode: 0x86, name: "CM_MAIL_READ", direction: PacketDirection::ClientToServer, description: "Leitura ou interação com carta no correio" },
         PacketDefinition { opcode: 0xA2, name: "CM_MAIL_POSTMAN", direction: PacketDirection::ClientToServer, description: "Envio de carta pelo correio ou mensageiro" },
+        PacketDefinition { opcode: 0xC5, name: "CM_REQUEST_GUILD_HISTORY", direction: PacketDirection::ClientToServer, description: "Histórico de eventos e registros da legião" },
+        PacketDefinition { opcode: 0xC6, name: "CM_GUILD_USER_BUY_BUFF", direction: PacketDirection::ClientToServer, description: "Compra ou ativação de buff da legião" },
+        PacketDefinition { opcode: 0xC7, name: "CM_GUILD", direction: PacketDirection::ClientToServer, description: "Operações gerais de gerenciamento da legião" },
     ];
 
     /// Lista de todos os opcodes SM (Servidor -> Cliente) mapeados
@@ -87,13 +90,21 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x3C, name: "SM_DIALOG_WINDOW", direction: PacketDirection::ServerToClient, description: "Janela HTML de diálogo com NPC" },
         PacketDefinition { opcode: 0x43, name: "SM_WEATHER", direction: PacketDirection::ServerToClient, description: "Sincronização de clima e efeitos visuais" },
         PacketDefinition { opcode: 0x47, name: "SM_QUEST_LIST", direction: PacketDirection::ServerToClient, description: "Lista de missões ativas e completadas" },
+        PacketDefinition { opcode: 0x6D, name: "SM_GUILD_INFO", direction: PacketDirection::ServerToClient, description: "Informações principais da legião/guild" },
         PacketDefinition { opcode: 0x8B, name: "S_SA_ACCOUNT_ITEM_NOTI", direction: PacketDirection::ServerToClient, description: "Destrava essencial do lobby de personagens" },
+        PacketDefinition { opcode: 0x9C, name: "SM_GUILD_MEMBER_INFO", direction: PacketDirection::ServerToClient, description: "Detalhes de um membro da legião" },
         PacketDefinition { opcode: 0xA0, name: "SM_MAIL", direction: PacketDirection::ServerToClient, description: "Lista de cartas e mensagens da caixa de correio" },
         PacketDefinition { opcode: 0xA2, name: "SM_WIND_PATH_RESULT", direction: PacketDirection::ServerToClient, description: "Rota pré-calculada de voo em corrente de vento" },
         PacketDefinition { opcode: 0xA3, name: "SM_WIND_STATE_INFO", direction: PacketDirection::ServerToClient, description: "Confirmação de estado em corrente de vento" },
         PacketDefinition { opcode: 0xA6, name: "SM_USER_SELL_HISTORY_LIST", direction: PacketDirection::ServerToClient, description: "Histórico de itens vendidos recentemente (Buyback)" },
+        PacketDefinition { opcode: 0xD5, name: "SM_GUILD_EMBLEM_IMG_DATA", direction: PacketDirection::ServerToClient, description: "Fragmento do arquivo PNG do emblema da legião" },
         PacketDefinition { opcode: 0xD8, name: "SM_SKILL_PENALTY_STATUS_OTHER", direction: PacketDirection::ServerToClient, description: "Penalidade e cooldown de habilidade" },
         PacketDefinition { opcode: 0xFD, name: "SM_STORE_SALE_INFO", direction: PacketDirection::ServerToClient, description: "Confirmação e resultado de compra/venda em loja" },
+        PacketDefinition { opcode: 0x0157, name: "SM_GUILD_DONATION", direction: PacketDirection::ServerToClient, description: "Informações de doação da legião" },
+        PacketDefinition { opcode: 0x0158, name: "SM_USER_GUILD_DONATION", direction: PacketDirection::ServerToClient, description: "Estado de doações diárias do jogador" },
+        PacketDefinition { opcode: 0x0159, name: "SM_USER_GUILD_DONATION_LIST", direction: PacketDirection::ServerToClient, description: "Lista de doações efetuadas" },
+        PacketDefinition { opcode: 0x0165, name: "SM_USER_GUILD_COIN", direction: PacketDirection::ServerToClient, description: "Saldo de moedas de legião do jogador" },
+        PacketDefinition { opcode: 0x0166, name: "SM_GUILD_OPENED_BUFF_TREE_INFO", direction: PacketDirection::ServerToClient, description: "Árvore de buffs ativos da legião" },
     ];
 
     pub fn find_client_packet(opcode: u16) -> Option<&'static PacketDefinition> {

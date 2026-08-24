@@ -62,6 +62,12 @@ const KEY: u16 = 0x0047;
 const ASK_QUIT_RESULT: u16 = 0x0061;
 const LOAD_ITEM_COOLTIME: u16 = 0x0066;
 const BUDDY_LIST: u16 = 0x0083;
+const GUILD_INFO: u16 = 0x006D;
+const GUILD_MEMBER_INFO: u16 = 0x009C;
+const GUILD_EMBLEM_IMG_DATA: u16 = 0x00D5;
+const USER_GUILD_DONATION: u16 = 0x0158;
+const USER_GUILD_COIN: u16 = 0x0165;
+const GUILD_OPENED_BUFF_TREE_INFO: u16 = 0x0166;
 const SA_ACCOUNT_ITEM_NOTI: u16 = 0x0088;
 const WORLD_SCENE_STATUS: u16 = 0x008B;
 const ALIVE: u16 = 0x008D;
@@ -177,6 +183,12 @@ pub enum Message {
     StoreSaleInfo(StoreSaleInfo),
     UpdatePlayerAppearance(UpdatePlayerAppearance),
     Mail(Mail),
+    GuildInfo(GuildInfo),
+    GuildMemberInfo(GuildMemberInfo),
+    GuildEmblemImgData(GuildEmblemImgData),
+    UserGuildDonation(UserGuildDonation),
+    UserGuildCoin(UserGuildCoin),
+    GuildOpenedBuffTreeInfo(GuildOpenedBuffTreeInfo),
 }
 
 impl Serialise for Message {
@@ -259,6 +271,12 @@ impl Serialise for Message {
             Message::StoreSaleInfo(msg) => msg.serialise(&mut buf[2..]),
             Message::UpdatePlayerAppearance(msg) => msg.serialise(&mut buf[2..]),
             Message::Mail(msg) => msg.serialise(&mut buf[2..]),
+            Message::GuildInfo(msg) => msg.serialise(&mut buf[2..]),
+            Message::GuildMemberInfo(msg) => msg.serialise(&mut buf[2..]),
+            Message::GuildEmblemImgData(msg) => msg.serialise(&mut buf[2..]),
+            Message::UserGuildDonation(msg) => msg.serialise(&mut buf[2..]),
+            Message::UserGuildCoin(msg) => msg.serialise(&mut buf[2..]),
+            Message::GuildOpenedBuffTreeInfo(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -3288,6 +3306,277 @@ impl Serialise for Mail {
     }
 }
 
+/// S_GUILD_INFO (0x006D) — Informações principais da Legião
+#[derive(Debug, Clone)]
+pub struct GuildInfo {
+    pub guild_id: u32,
+    pub guild_name: String,
+    pub rank: u8,
+    pub race: u8,
+    pub exp: u32,
+    pub contribution_points: u32,
+    pub member_count: u16,
+    pub member_max: u16,
+    pub leader_id: u32,
+    pub notice: String,
+    pub kinah: u64,
+}
+
+impl GuildInfo {
+    pub fn new(
+        guild_id: u32,
+        guild_name: String,
+        rank: u8,
+        race: u8,
+        exp: u32,
+        contribution_points: u32,
+        member_count: u16,
+        member_max: u16,
+        leader_id: u32,
+        notice: String,
+        kinah: u64,
+    ) -> Self {
+        Self {
+            guild_id,
+            guild_name,
+            rank,
+            race,
+            exp,
+            contribution_points,
+            member_count,
+            member_max,
+            leader_id,
+            notice,
+            kinah,
+        }
+    }
+}
+
+impl Serialise for GuildInfo {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GUILD_INFO, buf);
+        to_le_bytes!(len, buf, self.guild_id);
+        let name_utf16: Vec<u8> = self.guild_name.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+        to_le_bytes!(len, buf, name_utf16.len() as u16);
+        copy_bytes!(len, buf, name_utf16);
+        to_le_bytes!(len, buf, self.rank);
+        to_le_bytes!(len, buf, self.race);
+        to_le_bytes!(len, buf, self.exp);
+        to_le_bytes!(len, buf, self.contribution_points);
+        to_le_bytes!(len, buf, self.member_count);
+        to_le_bytes!(len, buf, self.member_max);
+        to_le_bytes!(len, buf, self.leader_id);
+        let notice_utf16: Vec<u8> = self.notice.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+        to_le_bytes!(len, buf, notice_utf16.len() as u16);
+        copy_bytes!(len, buf, notice_utf16);
+        to_le_bytes!(len, buf, self.kinah);
+        len
+    }
+}
+
+/// S_GUILD_MEMBER_INFO (0x009C) — Informações de um membro da Legião
+#[derive(Debug, Clone)]
+pub struct GuildMemberInfo {
+    pub guild_id: u32,
+    pub member_id: u32,
+    pub guild_rank_index: u8,
+    pub name: String,
+    pub class_id: u8,
+    pub level: u8,
+    pub race: u8,
+    pub is_online: u8,
+    pub last_online_timestamp: u32,
+    pub contribution: u64,
+    pub map_id: u32,
+}
+
+impl GuildMemberInfo {
+    pub fn new(
+        guild_id: u32,
+        member_id: u32,
+        guild_rank_index: u8,
+        name: String,
+        class_id: u8,
+        level: u8,
+        race: u8,
+        is_online: u8,
+        last_online_timestamp: u32,
+        contribution: u64,
+        map_id: u32,
+    ) -> Self {
+        Self {
+            guild_id,
+            member_id,
+            guild_rank_index,
+            name,
+            class_id,
+            level,
+            race,
+            is_online,
+            last_online_timestamp,
+            contribution,
+            map_id,
+        }
+    }
+}
+
+impl Serialise for GuildMemberInfo {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GUILD_MEMBER_INFO, buf);
+        to_le_bytes!(len, buf, self.guild_id);
+        to_le_bytes!(len, buf, self.member_id);
+        to_le_bytes!(len, buf, self.guild_rank_index);
+        let name_utf16: Vec<u8> = self.name.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+        to_le_bytes!(len, buf, name_utf16.len() as u16);
+        copy_bytes!(len, buf, name_utf16);
+        to_le_bytes!(len, buf, self.class_id);
+        to_le_bytes!(len, buf, self.level);
+        to_le_bytes!(len, buf, self.race);
+        to_le_bytes!(len, buf, self.is_online);
+        to_le_bytes!(len, buf, self.last_online_timestamp);
+        to_le_bytes!(len, buf, self.contribution);
+        to_le_bytes!(len, buf, self.map_id);
+        len
+    }
+}
+
+/// S_GUILD_EMBLEM_IMG_DATA (0x00D5) — Chunks do PNG do emblema
+#[derive(Debug, Clone)]
+pub struct GuildEmblemImgData {
+    pub guild_id: u32,
+    pub chunk_index: u16,
+    pub total_chunks: u16,
+    pub data: Vec<u8>,
+}
+
+impl GuildEmblemImgData {
+    pub fn new(guild_id: u32, chunk_index: u16, total_chunks: u16, data: Vec<u8>) -> Self {
+        Self {
+            guild_id,
+            chunk_index,
+            total_chunks,
+            data,
+        }
+    }
+}
+
+impl Serialise for GuildEmblemImgData {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GUILD_EMBLEM_IMG_DATA, buf);
+        to_le_bytes!(len, buf, self.guild_id);
+        to_le_bytes!(len, buf, self.chunk_index);
+        to_le_bytes!(len, buf, self.total_chunks);
+        to_le_bytes!(len, buf, self.data.len() as u16);
+        copy_bytes!(len, buf, self.data);
+        len
+    }
+}
+
+/// S_USER_GUILD_DONATION (0x0158) — Doações de Legião
+#[derive(Debug, Clone)]
+pub struct UserGuildDonation {
+    pub player_id: u32,
+    pub daily_donated: u64,
+    pub daily_limit: u64,
+    pub total_donated: u64,
+    pub last_donation_timestamp: u32,
+}
+
+impl UserGuildDonation {
+    pub fn new(
+        player_id: u32,
+        daily_donated: u64,
+        daily_limit: u64,
+        total_donated: u64,
+        last_donation_timestamp: u32,
+    ) -> Self {
+        Self {
+            player_id,
+            daily_donated,
+            daily_limit,
+            total_donated,
+            last_donation_timestamp,
+        }
+    }
+}
+
+impl Serialise for UserGuildDonation {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(USER_GUILD_DONATION, buf);
+        to_le_bytes!(len, buf, self.player_id);
+        to_le_bytes!(len, buf, self.daily_donated);
+        to_le_bytes!(len, buf, self.daily_limit);
+        to_le_bytes!(len, buf, self.total_donated);
+        to_le_bytes!(len, buf, self.last_donation_timestamp);
+        len
+    }
+}
+
+/// S_USER_GUILD_COIN (0x0165) — Saldo de moedas de Legião
+#[derive(Debug, Clone)]
+pub struct UserGuildCoin {
+    pub player_id: u32,
+    pub coin_amount: u64,
+}
+
+impl UserGuildCoin {
+    pub fn new(player_id: u32, coin_amount: u64) -> Self {
+        Self {
+            player_id,
+            coin_amount,
+        }
+    }
+}
+
+impl Serialise for UserGuildCoin {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(USER_GUILD_COIN, buf);
+        to_le_bytes!(len, buf, self.player_id);
+        to_le_bytes!(len, buf, self.coin_amount);
+        len
+    }
+}
+
+/// S_GUILD_OPENED_BUFF_TREE_INFO (0x0166) — Buffs ativos da árvore de Legião
+#[derive(Debug, Clone)]
+pub struct GuildBuffEntry {
+    pub buff_id: u32,
+    pub remaining_ms: u32,
+    pub level: u32,
+}
+
+#[derive(Debug, Clone)]
+pub struct GuildOpenedBuffTreeInfo {
+    pub guild_id: u32,
+    pub buffs: Vec<GuildBuffEntry>,
+}
+
+impl GuildOpenedBuffTreeInfo {
+    pub fn new(guild_id: u32, buffs: Vec<GuildBuffEntry>) -> Self {
+        Self { guild_id, buffs }
+    }
+}
+
+impl Serialise for GuildOpenedBuffTreeInfo {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GUILD_OPENED_BUFF_TREE_INFO, buf);
+        to_le_bytes!(len, buf, self.guild_id);
+        to_le_bytes!(len, buf, self.buffs.len() as u8);
+        for buff in &self.buffs {
+            to_le_bytes!(len, buf, buff.buff_id);
+            to_le_bytes!(len, buf, buff.remaining_ms);
+            to_le_bytes!(len, buf, buff.level);
+        }
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
@@ -3437,6 +3726,42 @@ mod testes_de_inventario {
         assert_eq!(u16::from_le_bytes(buf[5..7].try_into().unwrap()), 1); // 1 letter
         assert_eq!(u32::from_le_bytes(buf[7..11].try_into().unwrap()), 1); // letter_id
         assert_eq!(u32::from_le_bytes(buf[11..15].try_into().unwrap()), 100); // sender_id
+    }
+
+    #[test]
+    fn test_guild_packets_serialise() {
+        let g_info = GuildInfo::new(
+            1,
+            "Pantheon".into(),
+            3,
+            0,
+            15000,
+            2500,
+            5,
+            30,
+            1001,
+            "Notice".into(),
+            100000,
+        );
+        let mut buf = [0u8; 128];
+        let n = g_info.serialise(&mut buf);
+        assert!(n > 5 + 4);
+
+        let g_member = GuildMemberInfo::new(
+            1,
+            1001,
+            1,
+            "Ares".into(),
+            1,
+            50,
+            0,
+            1,
+            0,
+            5000,
+            110010000,
+        );
+        let n_m = g_member.serialise(&mut buf);
+        assert!(n_m > 5 + 8);
     }
 
     #[test]
