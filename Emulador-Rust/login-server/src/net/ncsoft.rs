@@ -1,3 +1,47 @@
+//! # O que o cliente faz nesta porta, medido de dentro dele
+//!
+//! Instrumentando o `version.dll` com hooks de `recv`/`WSARecv` (25/08/2026), da para ver a
+//! sequencia exata do lado do cliente:
+//!
+//! ```text
+//! connect(Port=2106)
+//! recv(pediu=2)   -> 2      <- le o cabecalho de tamanho
+//! recv(pediu=192) -> 192    <- le o corpo do SM_INIT
+//! recv(pediu=2)   -> 2      <- e assim por diante, para os quatro pacotes
+//! recv(pediu=48)  -> 48
+//! recv(pediu=2)   -> 2
+//! recv(pediu=72)  -> 72
+//! recv(pediu=2)   -> 2
+//! recv(pediu=48)  -> 48
+//! recv(pediu=2)   -> FALHOU WSA=10035   <- e fica em laco pedindo mais
+//! ```
+//!
+//! O cliente **le tudo**, com o enquadramento correto: pede 2 bytes, descobre o tamanho, pede o
+//! restante. `10035` e `WSAEWOULDBLOCK` -- nao ha mais dado --, nao erro. A conexao fica saudavel.
+//!
+//! ## CORRECAO de uma afirmacao anterior
+//!
+//! Este arquivo dizia, com base na janela de recepcao do TCP, que o cliente "nao le um unico
+//! byte". **Isso estava errado.** A janela nao se recuperava porque o Windows nao emite window
+//! update quando a aplicacao le rapido e nada mais chega -- sinal ambiguo, que foi lido como
+//! prova. A medicao de dentro do processo desmente.
+//!
+//! ## O que sobra
+//!
+//! O cliente le, nao se da por satisfeito e espera mais. Nunca envia: zero `send`/`WSASend` no
+//! socket, com os guards de socket NOPpados. E o hook de `SubmitCredentials`
+//! (`game.dll+0x1419C0`) nunca dispara -- o clique no login nao chega a submeter credenciais.
+//!
+//! Testado e descartado:
+//!
+//! * **cadeia proativa** -- com so o `SM_INIT`, o comportamento e identico (le, espera, nao
+//!   envia). Nao e excesso de pacote inesperado.
+//! * **estado `AUTHED_READY`** -- o patch `0x14BB6F8 = 3` aplica e nao muda nada.
+//! * **porta e protocolo** -- na 13001, com o protocolo HQ, o cliente tambem le e espera.
+//!
+//! Os layouts abaixo seguem `CONTEXT.md` e `PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md`. Nenhum
+//! foi confirmado por reacao do cliente, porque ele nao reage a nenhum deles.
+
 use crate::crypto::{LoginCryptEngine, RsaManager};
 use crate::db::AuthDb;
 use std::sync::Arc;
@@ -53,6 +97,245 @@ enum ConnectionState {
     AuthedLogin,
 }
 
+/// Le um override numerico do ambiente. Aceita `0x` na frente. Sem a variavel, devolve o padrao.
+///
+/// Existe para bisseccionar contra o cliente sem recompilar: a documentacao do projeto discorda
+/// de si mesma em alguns campos, e a unica forma de saber qual valor vale e medir.
+fn env_num(nome: &str, padrao: u64) -> u64 {
+    let Ok(bruto) = std::env::var(nome) else {
+        return padrao;
+    };
+    let t = bruto.trim();
+    let r = t
+        .strip_prefix("0x")
+        .or_else(|| t.strip_prefix("0X"))
+        .map(|h| u64::from_str_radix(h, 16))
+        .unwrap_or_else(|| t.parse());
+    match r {
+        Ok(v) => {
+            println!("INFO: [LoginServer-NCSoft] {nome}={t} (padrao {padrao:#x})");
+            v
+        }
+        Err(_) => padrao,
+    }
+}
+
+/// Byte de `0xA8` do `SM_INIT`. `CONTEXT.md` diz `0x03`, `07-MAPEAMENTO-OFFSETS.md` diz `0xFD`.
+fn init_flag() -> u8 {
+    env_num("AION_INIT_FLAG", INIT_FLAG_PADRAO as u64) as u8
+}
+
+/// Offset da chave. `CONTEXT.md` diz `0x94`, `07-MAPEAMENTO-OFFSETS.md` diz `0x95`.
+fn init_key_offset() -> usize {
+    env_num("AION_INIT_KEY_OFFSET", INIT_KEY_OFFSET as u64) as usize
+}
+
+/// Bytes de sobra no fim do `SM_SERVER_LIST`. Nenhum documento os especifica.
+fn server_list_trailer() -> usize {
+    env_num("AION_SL_TRAILER", 15) as usize
+}
+
+/// Offset da chave de sessao Blowfish dentro do payload do `SM_INIT`.
+pub const INIT_KEY_OFFSET: usize = 0x94;
+/// Offset do byte de flag que liga o fluxo de RSA e GameGuard.
+pub const INIT_FLAG_OFFSET: usize = 0xA8;
+/// Valor padrao desse byte, segundo o CONTEXT.md.
+pub const INIT_FLAG_PADRAO: u8 = 0x03;
+/// Tamanho do payload do `SM_INIT`, antes de cifrar.
+pub const INIT_PAYLOAD_LEN: usize = 192;
+
+/// Monta o payload do `SM_INIT` no layout do cliente Classic EU 4.5.
+///
+/// Os offsets aqui **nao** sao os do padrao Java 2.4: naquele a chave de sessao mora em
+/// `0x99..0xA9`. O cliente 4.5 le 5 bytes antes, e com o layout 2.4 ele recebe lixo no lugar da
+/// chave -- nao consegue decifrar nada do que vem depois.
+///
+/// Conferido na engenharia reversa do `game.dll` (CONTEXT.md secao 2):
+///
+/// ```text
+/// game.dll:0x84222D   movups xmm0, [r8 + rdi + 0x94]    -> chave em 0x94 (148..164)
+/// game.dll:0x84231B   lea eax,[rcx-3]; cmp al,1; ja ..  -> byte 0xA8 (168) precisa ser 0x03
+/// game.dll:0x842329   mov [rbx+0x78], al                -> 169 = major, 170 = minor
+/// ```
+///
+/// Layout:
+///
+/// ```text
+/// [0x00]        opcode 0x00
+/// [0x01..0x05]  session_id (u32 LE)
+/// [0x05..0x09]  0x0000C621 (revisao do protocolo)
+/// [0x09..0x89]  scrambled_modulus (128 bytes do modulo RSA)
+/// [0x89..0x94]  zeros (11 bytes)
+/// [0x94..0xA4]  blowfish_key (16 bytes, a chave de sessao)
+/// [0xA4..0xA8]  zeros (4 bytes)
+/// [0xA8..0xAC]  0x00050403 -> flag 0x03 em 168, major 0x04 em 169, minor 0x05 em 170
+/// [0xAC..0xB0]  0x00200000
+/// [0xB0..0xC0]  zeros, completando 192 bytes
+/// ```
+pub fn build_sm_init_payload(
+    session_id: u32,
+    scrambled_modulus: &[u8; 128],
+    blowfish_key: &[u8; 16],
+) -> Vec<u8> {
+    build_sm_init_payload_com(session_id, scrambled_modulus, blowfish_key, INIT_KEY_OFFSET, INIT_FLAG_PADRAO)
+}
+
+/// Igual, com o offset da chave e o byte de flag explicitos -- ver [`init_key_offset`].
+pub fn build_sm_init_payload_com(
+    session_id: u32,
+    scrambled_modulus: &[u8; 128],
+    blowfish_key: &[u8; 16],
+    key_offset: usize,
+    flag: u8,
+) -> Vec<u8> {
+    let mut p = vec![0u8; INIT_PAYLOAD_LEN];
+    p[0] = 0x00; // opcode SM_INIT
+    p[1..5].copy_from_slice(&session_id.to_le_bytes());
+    p[5..9].copy_from_slice(&0x0000_C621u32.to_le_bytes());
+    p[9..137].copy_from_slice(scrambled_modulus);
+    // p[137..148] fica em zero (11 bytes)
+    p[key_offset..key_offset + 16].copy_from_slice(blowfish_key);
+    p[INIT_FLAG_OFFSET] = flag;
+    p[INIT_FLAG_OFFSET + 1] = 0x04; // major
+    p[INIT_FLAG_OFFSET + 2] = 0x05; // minor
+    p[172..176].copy_from_slice(&2_097_152u32.to_le_bytes());
+    p
+}
+
+/// Offset das flags da conta (ativo / maior de idade / termos aceitos).
+pub const LOGIN_OK_FLAGS: usize = 0x10;
+/// Flags de uma conta em ordem.
+///
+/// O `CONTEXT.md` diz `0x3F`, mas medido contra o cliente esse valor produz "Your account has
+/// been blocked". O bit 4 e justamente o que a rotina `game.dll:0x717BE2` testa
+/// (`test bl, 0x10`): ligado, marca a conta como bloqueada. `0x2F` e `0x3F` sem esse bit.
+///
+/// Com flags zeradas o cliente respondia `Authorization Error (-101)`, entao os outros bits
+/// sao necessarios -- nao da para simplesmente zerar o campo.
+pub const LOGIN_OK_FLAGS_ATIVA: u32 = 0x0000_002F;
+/// Offset da assinatura Classic dentro do payload do `SM_LOGIN_OK`.
+pub const LOGIN_OK_ASSINATURA: usize = 0x20;
+/// Offset do campo que diz que os termos de uso foram aceitos.
+pub const LOGIN_OK_TOS: usize = 0x30;
+/// Tamanho do payload do `SM_LOGIN_OK`, antes de cifrar.
+pub const LOGIN_OK_PAYLOAD_LEN: usize = 68;
+
+/// Monta o payload do `SM_LOGIN_OK`.
+///
+/// Tres bytes aqui sao conferidos pelo cliente, e sem eles ele descarta o pacote em silencio --
+/// nao ha erro, nao ha desconexao, ele simplesmente para de responder. Os offsets vem da
+/// engenharia reversa do `game.dll` registrada no CONTEXT.md secao 2:
+///
+/// ```text
+/// game.dll:0x717B40   cmp [rbp+67h], 0xFF   -> [0x20] precisa ser 0xFF
+/// game.dll:0x717B40   cmp [rbp+68h], 0xFE   -> [0x21] precisa ser 0xFE
+/// game.dll:0x717BE2   test bl, 0x10         -> [0x30] (TOS aceito) precisa ser 1
+/// ```
+///
+/// E o layout de Docs-Refs/PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md poe as flags da conta
+/// em `0x10..0x1F`, com valor `0x0000003F`. O `1002` que se escrevia em `[17..21]` caia dentro
+/// dessa regiao -- apagava o campo de autorizacao, e o cliente respondia `Authorization Error
+/// (-101)`.
+///
+/// O que estava aqui antes era um bloco de 47 bytes colado de outro lugar -- com um trecho ASCII
+/// no meio (`NTdEMjRBOjY`) que nao pertence a este pacote -- e ele cobria justamente esses tres
+/// offsets com zero.
+pub fn build_login_ok_payload(account_id: u32, login_ok: u32) -> Vec<u8> {
+    let mut p = vec![0u8; LOGIN_OK_PAYLOAD_LEN];
+    p[0] = 0x03; // opcode SM_LOGIN_OK
+    p[1..5].copy_from_slice(&account_id.to_le_bytes());
+    p[5..9].copy_from_slice(&login_ok.to_le_bytes());
+    // p[9..0x10] fica em zero
+
+    // Flags da conta: ativo, maior de idade, termos aceitos. O `1002` que ficava em [17..21]
+    // caia dentro desta regiao e apagava justamente o campo que o cliente usa para autorizar.
+    p[LOGIN_OK_FLAGS..LOGIN_OK_FLAGS + 4].copy_from_slice(&LOGIN_OK_FLAGS_ATIVA.to_le_bytes());
+
+    // Assinatura Classic. Sem ela o cliente trata a sessao como nao-Classic e para aqui.
+    p[LOGIN_OK_ASSINATURA] = 0xFF;
+    p[LOGIN_OK_ASSINATURA + 1] = 0xFE;
+    // Termos de uso aceitos -- senao o cliente espera uma tela de aceite que nunca mandamos.
+    p[LOGIN_OK_TOS] = 0x01;
+
+    p
+}
+
+/// Tamanho de uma entrada de servidor no `SM_SERVER_LIST` do protocolo NCSoft.
+pub const SERVER_ENTRY_LEN_NC: usize = 21;
+/// `ServerBits` com o bit 10 ligado, que marca a sessao como Classic.
+pub const SERVER_BITS_CLASSIC: u32 = 0x0000_0401;
+/// Bracket / CountryCode do Classic EU. O cliente e lancado com `-cc:2`.
+pub const BRACKET_CLASSIC_EU: u8 = 2;
+
+/// Monta o payload do `SM_SERVER_LIST`.
+///
+/// Layout da entrada, de Docs-Refs/PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md:
+///
+/// ```text
+/// [0x00]       u8   id do servidor
+/// [0x01..0x05] 4 B  ip em bytes binarios
+/// [0x05..0x09] u32  porta
+/// [0x09]       u8   limite de idade (0 = livre)
+/// [0x0A]       u8   pvp (1 = ligado)
+/// [0x0B..0x0D] u16  jogadores online
+/// [0x0D..0x0F] u16  maximo de jogadores
+/// [0x0F]       u8   status (1 = online)
+/// [0x10..0x14] u32  ServerBits -- bit 10 ligado marca Classic
+/// [0x14]       u8   bracket / country code
+/// ```
+///
+/// Tres coisas estavam erradas aqui: `ServerBits` e `bracket` vinham trocados de posicao, o
+/// `ServerBits` ia com `4` em vez de `0x401`, e o bracket ia com `0` em vez de `2`. Com o bit 10
+/// desligado o cliente nao reconhece o servidor como Classic.
+///
+/// A contagem de personagens vem depois da lista: `u16` com o total de servidores, seguido
+/// direto por um byte por servidor (CONTEXT.md, `game.dll:0x843077`).
+pub fn build_server_list_payload(
+    announce_ip: &str,
+    announce_port: u16,
+    server_id: u8,
+    char_count: u8,
+) -> Vec<u8> {
+    build_server_list_payload_com(announce_ip, announce_port, server_id, char_count, 15)
+}
+
+/// Igual, com o tamanho do rodape explicito -- ver [`server_list_trailer`].
+pub fn build_server_list_payload_com(
+    announce_ip: &str,
+    announce_port: u16,
+    server_id: u8,
+    char_count: u8,
+    trailer: usize,
+) -> Vec<u8> {
+    let octetos: Vec<u8> = announce_ip.split('.').filter_map(|o| o.parse().ok()).collect();
+    let ip: [u8; 4] = octetos.try_into().unwrap_or([127, 0, 0, 1]);
+
+    let mut raw = Vec::new();
+    raw.push(0x04); // opcode SM_SERVER_LIST
+    raw.push(1); // um servidor na lista
+    raw.push(server_id); // ultimo servidor usado
+
+    let base = raw.len();
+    raw.push(server_id);
+    raw.extend_from_slice(&ip);
+    raw.extend_from_slice(&(announce_port as u32).to_le_bytes());
+    raw.push(0); // limite de idade: livre
+    raw.push(1); // pvp ligado
+    raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online
+    raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo
+    raw.push(1); // online
+    raw.extend_from_slice(&SERVER_BITS_CLASSIC.to_le_bytes());
+    raw.push(BRACKET_CLASSIC_EU);
+    debug_assert_eq!(raw.len() - base, SERVER_ENTRY_LEN_NC);
+
+    // Contagem de personagens: total de servidores e um byte por servidor.
+    raw.extend_from_slice(&1u16.to_le_bytes());
+    raw.push(char_count);
+
+    raw.resize(raw.len() + trailer, 0);
+    raw
+}
+
 async fn handle_ncsoft_client(
     mut socket: TcpStream,
     addr: std::net::SocketAddr,
@@ -83,29 +366,14 @@ async fn handle_ncsoft_client(
 
     let scrambled_modulus = rsa_manager.get_scrambled_modulus();
 
-    // =========================================================================
-    // 1. Construct SM_INIT (Java 2.4 Classic EU standard format)
-    // =========================================================================
-    // Payload layout:
-    // [0x00]        0x00 (Opcode SM_INIT)
-    // [0x01..0x05]  session_id (u32 LE)
-    // [0x05..0x09]  0x0000C621 (Protocol revision u32 LE)
-    // [0x09..0x89]  scrambled_modulus (128 bytes RSA modulus)
-    // [0x89..0x99]  zeros (16 bytes = 4 * writeD(0))
-    // [0x99..0xA9]  blowfish_key (16 bytes session key)
-    // [0xA9..0xAD]  197635 (0x00030403 u32 LE) -> Flag: 0x03, Ver: 4.3
-    // [0xAD..0xB1]  2097152 (0x00200000 u32 LE)
-    // [0xB1..0xC0]  zeros (15 bytes padding to 192 bytes)
-    // =========================================================================
-    let mut raw_init = vec![0u8; 192];
-    raw_init[0] = 0x00; // Opcode SM_INIT
-    raw_init[1..5].copy_from_slice(&session_id.to_le_bytes());
-    raw_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes());
-    raw_init[9..137].copy_from_slice(scrambled_modulus);
-    // raw_init[137..153] is 16 bytes zeros
-    raw_init[153..169].copy_from_slice(&blowfish_key);
-    raw_init[169..173].copy_from_slice(&197635u32.to_le_bytes());
-    raw_init[173..177].copy_from_slice(&2097152u32.to_le_bytes());
+    // 1. SM_INIT -- layout e offsets documentados em `build_sm_init_payload`.
+    let raw_init = build_sm_init_payload_com(
+        session_id,
+        scrambled_modulus,
+        &blowfish_key,
+        init_key_offset(),
+        init_flag(),
+    );
 
     let encrypted_init = crypt_engine.encrypt_init(&raw_init, blowfish_key);
     let mut init_pkt = Vec::with_capacity(encrypted_init.len() + 2);
@@ -160,19 +428,7 @@ async fn handle_ncsoft_client(
         login_ok: u32,
         username: &str,
     ) -> Result<(), std::io::Error> {
-        let mut raw = vec![0u8; 68];
-        raw[0] = 0x03; // Opcode SM_LOGIN_OK
-        raw[1..5].copy_from_slice(&account_id.to_le_bytes());
-        raw[5..9].copy_from_slice(&login_ok.to_le_bytes());
-        // raw[9..17] is 2 * writeD(0) (8 bytes zeros)
-        raw[17..21].copy_from_slice(&1002u32.to_le_bytes());
-        // Hex bytes: E4C85FEB000000000000000000000000000000000000000000000000000000004E5464454D6A52424F6A59ACC02BB3314F446C (47 bytes)
-        let magic_hex: [u8; 47] = [
-            0xE4, 0xC8, 0x5F, 0xEB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x4E, 0x54, 0x64, 0x45, 0x4D, 0x6A, 0x52, 0x42, 0x4F, 0x6A, 0x59, 0xAC, 0xC0, 0x2B, 0xB3,
-        ];
-        raw[21..68].copy_from_slice(&magic_hex);
+        let raw = build_login_ok_payload(account_id, login_ok);
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
@@ -197,47 +453,13 @@ async fn handle_ncsoft_client(
         default_server_id: u8,
         char_count: u8,
     ) -> Result<(), std::io::Error> {
-        let mut raw = Vec::new();
-        raw.push(0x04); // Opcode SM_SERVER_LIST
-        raw.push(1);    // 1 Server in list
-        raw.push(default_server_id); // Last server ID
-
-        let ip_parts: Vec<u8> = announce_ip
-            .split('.')
-            .filter_map(|s| s.parse::<u8>().ok())
-            .collect();
-        let ip_arr: [u8; 4] = if ip_parts.len() == 4 {
-            [ip_parts[0], ip_parts[1], ip_parts[2], ip_parts[3]]
-        } else {
-            [127, 0, 0, 1]
-        };
-
-        // Server 1 entry
-        raw.push(default_server_id); // Server ID (1)
-        raw.extend_from_slice(&ip_arr); // Server IP (4 bytes)
-        raw.extend_from_slice(&(announce_port as u32).to_le_bytes()); // Port (4 bytes)
-        raw.push(0); // Age limit = 0
-        raw.push(1); // PvP = 1
-        raw.extend_from_slice(&0u16.to_le_bytes()); // Current players = 0
-        raw.extend_from_slice(&1000u16.to_le_bytes()); // Max players = 1000
-        raw.push(1); // Server Status Up = 1
-        raw.push(0); // Brackets = 0
-        raw.extend_from_slice(&4u32.to_le_bytes()); // ServerBits: 4 (Classic)
-
-        // Character count section
-        let max_id = default_server_id as u16;
-        raw.extend_from_slice(&(max_id + 1).to_le_bytes());
-        raw.push(0x01);
-
-        for i in 1..=max_id {
-            if i == (default_server_id as u16) {
-                raw.push(char_count);
-            } else {
-                raw.push(0);
-            }
-        }
-        // 15 bytes Classic NA/EU padding
-        raw.extend_from_slice(&[0u8; 15]);
+        let raw = build_server_list_payload_com(
+            announce_ip,
+            announce_port,
+            default_server_id,
+            char_count,
+            server_list_trailer(),
+        );
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
@@ -289,7 +511,74 @@ async fn handle_ncsoft_client(
     let play_ok2: u32 = rand::random();
 
     // =========================================================================
-    // 2. Packet Reception Loop
+    // 2. Cadeia de handshake proativo
+    // =========================================================================
+    // O cliente Gameforge Classic EU nao manda nada depois do SM_INIT: ele espera o servidor
+    // empurrar o resto da cadeia. Entrar direto no laco de leitura aqui trava os dois lados -- o
+    // servidor esperando um CM_AUTH_GG que nunca vem, o cliente esperando o SM_AUTH_GG -- e a tela
+    // de login fica inerte, sem devolver um unico byte.
+    //
+    // Medido: com o laco de leitura logo depois do SM_INIT, a conexao fica aberta e o cliente
+    // manda 0 bytes. Ver CONTEXT.md secao 4B e o item 13 do changelog.
+    if let Ok(Some(a)) = db.get_or_create_account(&current_username, auto_create) {
+        account_id = a.id as u32;
+    }
+    let char_count = db.get_character_count(&current_username);
+
+    // A cadeia proativa vem do CONTEXT.md e nunca foi validada contra o cliente. Medido com a
+    // instrumentacao da version.dll: o cliente le os quatro pacotes, nao se da por satisfeito e
+    // fica chamando `recv` em laco (WSAEWOULDBLOCK), sem nunca enviar nada. Uma explicacao e que
+    // ele descarte AUTH_GG/LOGIN_OK/SERVER_LIST por serem respostas a pedidos que ele nao fez.
+    //
+    // `AION_SEM_PROATIVO=1` manda so o SM_INIT e espera, para separar as duas hipoteses.
+    let proativo = env_num("AION_SEM_PROATIVO", 0) == 0;
+
+    if proativo {
+    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
+        return;
+    }
+    if let Err(e) = send_login_ok(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        account_id,
+        login_ok,
+        &current_username,
+    )
+    .await
+    {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_LOGIN_OK: {}", session_id, e);
+        return;
+    }
+    if let Err(e) = send_server_list(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        &announce_ip,
+        announce_port,
+        default_server_id,
+        char_count,
+    )
+    .await
+    {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_SERVER_LIST: {}", session_id, e);
+        return;
+    }
+    state = ConnectionState::AuthedLogin;
+    println!(
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Cadeia proativa entregue (conta '{}', id {}, {} personagens)",
+        session_id, current_username, account_id, char_count
+    );
+    } else {
+        println!(
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] AION_SEM_PROATIVO: so o SM_INIT foi enviado, aguardando o cliente",
+            session_id
+        );
+    }
+
+    // =========================================================================
+    // 3. Packet Reception Loop
     // =========================================================================
     let mut header_buf = [0u8; 2];
     loop {
@@ -505,4 +794,368 @@ fn extract_string_from_payload(payload: &[u8]) -> Option<String> {
         }
     }
     None
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::crypto::login_crypt::STATIC_BLOWFISH_KEY;
+    use crate::crypto::BlowfishCipher;
+
+    /// Inverso do `enc_xor_pass` que o `encrypt_init` aplica.
+    ///
+    /// E o que o cliente faz para recuperar o payload: a chave corrente fica gravada em
+    /// `len - 8`, e dali se anda de tras para frente desfazendo `cipher = plain ^ (key + plain)`.
+    fn dec_xor_pass(data: &mut [u8]) {
+        let total = data.len();
+        let blocos = (total - 8) / 4;
+        let mut curr_key = u32::from_le_bytes(data[total - 8..total - 4].try_into().unwrap());
+
+        for i in (1..blocos).rev() {
+            let p = i * 4;
+            let cifrado = u32::from_le_bytes(data[p..p + 4].try_into().unwrap());
+            let plain = cifrado ^ curr_key;
+            curr_key = curr_key.wrapping_sub(plain);
+            data[p..p + 4].copy_from_slice(&plain.to_le_bytes());
+        }
+    }
+
+    /// Faz o que o cliente faz com o SM_INIT que chega do servidor: decifra com a chave estatica
+    /// e desfaz o xor pass.
+    fn como_o_cliente_decifra(cifrado: &[u8]) -> Vec<u8> {
+        let mut buf = cifrado.to_vec();
+        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut buf);
+        dec_xor_pass(&mut buf);
+        buf
+    }
+
+    fn modulo_falso() -> [u8; 128] {
+        let mut m = [0u8; 128];
+        for (i, b) in m.iter_mut().enumerate() {
+            *b = (i as u8) ^ 0x5A;
+        }
+        m
+    }
+
+    fn chave_falsa() -> [u8; 16] {
+        [
+            0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE,
+            0xFF, 0x01,
+        ]
+    }
+
+    #[test]
+    fn payload_do_sm_init_segue_o_layout_4_5() {
+        let p = build_sm_init_payload(0xDEAD_BEEF, &modulo_falso(), &chave_falsa());
+
+        assert_eq!(p.len(), 192, "o payload precisa fechar em 192 bytes");
+        assert_eq!(p[0], 0x00, "opcode SM_INIT");
+        assert_eq!(u32::from_le_bytes(p[1..5].try_into().unwrap()), 0xDEAD_BEEF);
+        assert_eq!(&p[9..137], &modulo_falso()[..], "modulo RSA");
+
+        // O que o `game.dll` le, conferido em CONTEXT.md secao 2.
+        assert_eq!(&p[0x94..0x94 + 16], &chave_falsa()[..], "chave em 0x94 (game.dll:0x84222D)");
+        assert_eq!(p[0xA8], 0x03, "flag RSA/GameGuard em 0xA8 (game.dll:0x84231B)");
+        assert_eq!(p[0xA9], 0x04, "major em 169 (game.dll:0x842329)");
+        assert_eq!(p[0xAA], 0x05, "minor em 170");
+    }
+
+    #[test]
+    fn o_layout_2_4_nao_entregaria_a_chave_no_lugar_certo() {
+        // Guarda de regressao: o layout anterior punha a chave em 153..169, cinco bytes depois.
+        // Se alguem reverter para ele, este teste quebra em vez de o cliente travar em silencio.
+        let mut antigo = vec![0u8; 192];
+        antigo[153..169].copy_from_slice(&chave_falsa());
+
+        assert_ne!(
+            &antigo[0x94..0x94 + 16],
+            &chave_falsa()[..],
+            "com o layout 2.4 o cliente le lixo no lugar da chave"
+        );
+        assert_ne!(antigo[0xA8], 0x03, "e a flag de 0xA8 tambem nao esta la");
+    }
+
+    #[test]
+    fn o_cliente_recupera_a_chave_de_sessao_do_sm_init() {
+        // Este e o teste que importa: percorre o caminho inteiro que o cliente percorre.
+        // Se a chave estiver no offset errado, ou o xor pass/Blowfish estiverem trocados, o valor
+        // recuperado em 0x94 nao bate -- e e exatamente ai que o cliente real desiste.
+        let chave = chave_falsa();
+        let payload = build_sm_init_payload(0x0123_4567, &modulo_falso(), &chave);
+
+        let mut engine = LoginCryptEngine::new();
+        let cifrado = engine.encrypt_init(&payload, chave);
+        assert_eq!(cifrado.len(), 192, "o SM_INIT cifrado tem 192 bytes (194 no wire)");
+        assert_ne!(&cifrado[..16], &payload[..16], "tem que sair cifrado mesmo");
+
+        let recuperado = como_o_cliente_decifra(&cifrado);
+
+        assert_eq!(
+            &recuperado[0x94..0x94 + 16],
+            &chave[..],
+            "o cliente precisa achar a chave de sessao em 0x94"
+        );
+        assert_eq!(recuperado[0xA8], 0x03, "flag em 0xA8 depois de decifrar");
+        assert_eq!(recuperado[0xA9], 0x04);
+        assert_eq!(recuperado[0xAA], 0x05);
+        assert_eq!(&recuperado[9..137], &modulo_falso()[..], "modulo RSA intacto");
+    }
+
+    #[test]
+    fn o_engine_passa_a_usar_a_chave_de_sessao_depois_do_init() {
+        // Depois do SM_INIT o servidor cifra com a chave de sessao, nao com a estatica. Se ele
+        // continuasse na estatica, o cliente decifraria lixo em tudo que vem depois.
+        let chave = chave_falsa();
+        let mut engine = LoginCryptEngine::new();
+        let _ = engine.encrypt_init(&build_sm_init_payload(1, &modulo_falso(), &chave), chave);
+
+        let mut raw = vec![0u8; 40];
+        raw[0] = 0x0B; // SM_AUTH_GG
+        let cifrado = engine.encrypt_packet(&raw);
+
+        // Com a chave de sessao: decifra e o checksum fecha.
+        let mut com_sessao = cifrado.clone();
+        BlowfishCipher::new(&chave).decipher(&mut com_sessao);
+        assert!(
+            LoginCryptEngine::verify_checksum(&com_sessao),
+            "o pacote seguinte tem que abrir com a chave de sessao"
+        );
+        assert_eq!(com_sessao[0], 0x0B, "e o opcode tem que reaparecer");
+
+        // Com a estatica: nao fecha.
+        let mut com_estatica = cifrado;
+        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut com_estatica);
+        assert!(
+            !LoginCryptEngine::verify_checksum(&com_estatica),
+            "se abrisse com a estatica, a troca de chave nao teria acontecido"
+        );
+    }
+
+    // =====================================================================================
+    // Prova contra a rede: os bytes abaixo foram capturados no loopback (24/08/2026), emitidos
+    // pelo nosso proprio login-server para o cliente Aion Classic EU real. Sao os 4 pacotes da
+    // cadeia, exatamente como sairam.
+    //
+    // O teste faz o que o cliente faz: decifra o SM_INIT com a chave estatica, pega a chave de
+    // sessao em 0x94 e com ELA abre os tres seguintes. Se o offset estiver errado, a chave sai
+    // errada e o checksum dos tres nao fecha -- nao ha como esse teste passar por acidente.
+    // =====================================================================================
+
+    /// SM_INIT, 194 bytes no wire.
+    const REDE_P1: &str = concat!(
+        "c200cbd1939851a54414810fd80a6aeec54324c108e6bb9c2c37627d50de939f0c3424f1c26c6dbe2af89104cb5201e0",
+        "f2872594b4079782ec41e2b20079bdd029814b4dc4c73bb1fd0efa981955e9f2ef0139da324fedbccbca379b751c13a8",
+        "eb7576dc2573809cf3b6d12d8723b1bf6711251994059fdad8a52cedc78a55919bd07edf034552408cfe5d1b31a9336b",
+        "475a8caf9ad5bdf4e9ec3114b2a7ecb2e4ff4dc23479b9a9fe58e6032f1dc7141fe625d08aa25cec4b5858dfe9e43130",
+        "9d9a",
+    );
+    /// SM_AUTH_GG, 50 bytes no wire.
+    const REDE_P2: &str = concat!(
+        "3200aa370638e14c4028a5b559eb733ac71ca5b559eb733ac71ca5b559eb733ac71ca5b559eb733ac71cad044c9833ac",
+        "318c",
+    );
+    /// SM_LOGIN_OK, 74 bytes no wire.
+    const REDE_P3: &str = concat!(
+        "4a00c2da1c4a94ef33208053f9ade082ea70af7891301521b0268583493749d42c3ca5b559eb733ac71ca5b559eb733a",
+        "c71ceded062587a82d2759c866c705291fc1ec2f62ccb1e4c52a",
+    );
+    /// SM_SERVER_LIST, 50 bytes no wire.
+    const REDE_P4: &str = concat!(
+        "32002345e1e4e60fb03ea2d4e63aa7a0187d356e311459d677e9b5d03171b5f2680aa5b559eb733ac71c44169432592c",
+        "e4d7",
+    );
+
+    fn de_hex(h: &str) -> Vec<u8> {
+        (0..h.len())
+            .step_by(2)
+            .map(|i| u8::from_str_radix(&h[i..i + 2], 16).unwrap())
+            .collect()
+    }
+
+    /// Separa `[u16 tamanho][corpo]` e confere que o tamanho declarado bate com o quadro.
+    fn corpo_do_quadro(wire: &[u8]) -> Vec<u8> {
+        let tam = u16::from_le_bytes([wire[0], wire[1]]) as usize;
+        assert_eq!(tam, wire.len(), "o tamanho declarado tem que bater com o quadro");
+        wire[2..tam].to_vec()
+    }
+
+    #[test]
+    fn a_cadeia_que_o_servidor_pos_na_rede_abre_do_lado_do_cliente() {
+        let p1 = de_hex(REDE_P1);
+        let mut init = corpo_do_quadro(&p1);
+        assert_eq!(init.len(), 192);
+
+        // Passo 1: o cliente abre o SM_INIT com a chave estatica.
+        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut init);
+        dec_xor_pass(&mut init);
+
+        assert_eq!(init[0], 0x00, "opcode SM_INIT");
+        assert_eq!(init[0xA8], 0x03, "flag em 0xA8 (game.dll:0x84231B)");
+        assert_eq!(init[0xA9], 0x04, "major 4");
+        assert_eq!(init[0xAA], 0x05, "minor 5");
+
+        // Passo 2: a chave de sessao sai de 0x94.
+        let mut chave = [0u8; 16];
+        chave.copy_from_slice(&init[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16]);
+        assert_ne!(chave, [0u8; 16], "a chave nao pode sair zerada");
+
+        // Passo 3: com ela, os tres pacotes seguintes tem que abrir e fechar o checksum.
+        let cifra = BlowfishCipher::new(&chave);
+        for (hex, opcode_esperado, nome) in [
+            (REDE_P2, 0x0Bu8, "SM_AUTH_GG"),
+            (REDE_P3, 0x03, "SM_LOGIN_OK"),
+            (REDE_P4, 0x04, "SM_SERVER_LIST"),
+        ] {
+            let wire = de_hex(hex);
+            let mut corpo = corpo_do_quadro(&wire);
+            cifra.decipher(&mut corpo);
+
+            assert!(
+                LoginCryptEngine::verify_checksum(&corpo),
+                "{nome}: checksum nao fecha -- a chave lida em 0x94 esta errada"
+            );
+            assert_eq!(corpo[0], opcode_esperado, "{nome}: opcode");
+        }
+    }
+
+    #[test]
+    fn com_a_chave_no_offset_antigo_a_cadeia_nao_abre() {
+        // Guarda de regressao contra o layout 2.4: lendo a chave em 153 -- onde ela ficava antes --
+        // o checksum do pacote seguinte nao fecha. E o que o cliente real enfrentava.
+        let p1 = de_hex(REDE_P1);
+        let mut init = corpo_do_quadro(&p1);
+        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut init);
+        dec_xor_pass(&mut init);
+
+        let mut chave_errada = [0u8; 16];
+        chave_errada.copy_from_slice(&init[153..169]);
+        assert_ne!(
+            chave_errada,
+            init[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16],
+            "os dois offsets tem que dar chaves diferentes"
+        );
+
+        let wire = de_hex(REDE_P2);
+        let mut corpo = corpo_do_quadro(&wire);
+        BlowfishCipher::new(&chave_errada).decipher(&mut corpo);
+        assert!(
+            !LoginCryptEngine::verify_checksum(&corpo),
+            "com a chave do offset antigo o pacote nao pode abrir"
+        );
+    }
+
+    #[test]
+    fn login_ok_traz_a_assinatura_classic_e_o_tos() {
+        // Os tres bytes que o cliente confere. Sem eles ele descarta o pacote sem dar erro --
+        // foi esse o sintoma: quatro pacotes enviados, zero bytes de volta, com os patches do
+        // version.dll todos aplicados e o socket conectado.
+        let p = build_login_ok_payload(1, 0x026E_DF39);
+
+        assert_eq!(p.len(), LOGIN_OK_PAYLOAD_LEN);
+        assert_eq!(p[0], 0x03, "opcode SM_LOGIN_OK");
+        assert_eq!(p[0x20], 0xFF, "assinatura Classic (game.dll:0x717B40)");
+        assert_eq!(p[0x21], 0xFE, "assinatura Classic (game.dll:0x717B40)");
+        assert_eq!(p[0x30], 0x01, "TOS aceito (game.dll:0x717BE2)");
+    }
+
+    #[test]
+    fn login_ok_carrega_conta_e_chave() {
+        let p = build_login_ok_payload(0x1234_5678, 0x026E_DF39);
+
+        assert_eq!(u32::from_le_bytes(p[1..5].try_into().unwrap()), 0x1234_5678);
+        assert_eq!(u32::from_le_bytes(p[5..9].try_into().unwrap()), 0x026E_DF39);
+        assert_eq!(
+            u32::from_le_bytes(p[LOGIN_OK_FLAGS..LOGIN_OK_FLAGS + 4].try_into().unwrap()),
+            LOGIN_OK_FLAGS_ATIVA,
+            "flags da conta"
+        );
+    }
+
+    #[test]
+    fn login_ok_nao_tem_mais_o_bloco_colado() {
+        // Guarda de regressao: o payload antigo trazia 47 bytes de outro pacote, com um trecho
+        // ASCII no meio. Se alguem colar aquilo de volta, os offsets 0x20/0x21/0x30 voltam a ser
+        // zero e o cliente volta a emudecer.
+        let p = build_login_ok_payload(1, 1);
+        assert!(
+            !p.windows(4).any(|j| j == b"NTdE"),
+            "o bloco colado nao pode voltar"
+        );
+        // Fora dos campos conhecidos, o resto e zero.
+        for i in [9usize, 13, 24, 40, 60, 67] {
+            assert_eq!(p[i], 0, "byte {i} devia ser zero");
+        }
+    }
+
+    #[test]
+    fn a_entrada_de_servidor_segue_o_layout_documentado() {
+        let p = build_server_list_payload("127.0.0.1", 7777, 1, 0);
+        let e = &p[3..3 + SERVER_ENTRY_LEN_NC];
+
+        assert_eq!(e.len(), 21, "a entrada tem 21 bytes");
+        assert_eq!(e[0x00], 1, "id do servidor");
+        assert_eq!(&e[0x01..0x05], &[127, 0, 0, 1], "ip binario");
+        assert_eq!(u32::from_le_bytes(e[0x05..0x09].try_into().unwrap()), 7777, "porta");
+        assert_eq!(e[0x09], 0, "limite de idade");
+        assert_eq!(e[0x0A], 1, "pvp");
+        assert_eq!(u16::from_le_bytes(e[0x0D..0x0F].try_into().unwrap()), 1000, "maximo");
+        assert_eq!(e[0x0F], 1, "online");
+        assert_eq!(
+            u32::from_le_bytes(e[0x10..0x14].try_into().unwrap()),
+            SERVER_BITS_CLASSIC,
+            "ServerBits em 0x10, com o bit 10 ligado"
+        );
+        assert_eq!(e[0x14], BRACKET_CLASSIC_EU, "bracket em 0x14");
+    }
+
+    #[test]
+    fn o_bit_10_do_server_bits_marca_classic() {
+        // Sem ele o cliente nao reconhece a sessao como Classic. Ia `4` antes -- bit 2.
+        assert_eq!(SERVER_BITS_CLASSIC & 0x400, 0x400, "bit 10 ligado");
+        assert_ne!(SERVER_BITS_CLASSIC, 4, "o valor antigo era 4");
+    }
+
+    #[test]
+    fn server_bits_e_bracket_nao_estao_trocados() {
+        // Guarda de regressao: os dois vinham em ordem invertida, o que punha o bracket no meio
+        // do ServerBits e o primeiro byte do ServerBits no lugar do bracket.
+        let p = build_server_list_payload("192.168.1.50", 7777, 23, 3);
+        let e = &p[3..3 + SERVER_ENTRY_LEN_NC];
+
+        assert_ne!(e[0x10], BRACKET_CLASSIC_EU, "0x10 e o ServerBits, nao o bracket");
+        assert_eq!(e[0x10], 0x01, "primeiro byte de 0x00000401 em LE");
+        assert_eq!(e[0x14], 2);
+    }
+
+    #[test]
+    fn a_contagem_de_personagens_vem_depois_da_lista() {
+        // CONTEXT.md, game.dll:0x843077: short(totalServers) seguido direto por 1 byte por
+        // servidor. Antes ia um u16 com o id+1 e um 0x01 solto no meio.
+        let p = build_server_list_payload("127.0.0.1", 7777, 1, 4);
+        let depois = 3 + SERVER_ENTRY_LEN_NC;
+
+        assert_eq!(
+            u16::from_le_bytes(p[depois..depois + 2].try_into().unwrap()),
+            1,
+            "um servidor na lista"
+        );
+        assert_eq!(p[depois + 2], 4, "a contagem de personagens vem logo em seguida");
+    }
+
+    #[test]
+    fn ip_invalido_cai_no_loopback() {
+        let p = build_server_list_payload("nao-e-um-ip", 7777, 1, 0);
+        assert_eq!(&p[4..8], &[127, 0, 0, 1]);
+    }
+
+    #[test]
+    fn o_bit_de_bloqueio_fica_desligado() {
+        // Medido contra o cliente: com o bit 4 ligado ele responde "Your account has been
+        // blocked". E o bit que `game.dll:0x717BE2` testa com `test bl, 0x10`.
+        assert_eq!(LOGIN_OK_FLAGS_ATIVA & 0x10, 0, "bit 4 tem que estar desligado");
+        assert_ne!(LOGIN_OK_FLAGS_ATIVA, 0, "mas o campo nao pode ir zerado -- isso da -101");
+
+        let p = build_login_ok_payload(1, 1);
+        assert_eq!(p[LOGIN_OK_FLAGS] & 0x10, 0);
+    }
 }

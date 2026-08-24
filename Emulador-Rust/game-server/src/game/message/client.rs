@@ -81,6 +81,66 @@ macro_rules! define_messages {
     };
 }
 
+// Os numeros abaixo saem de duas fontes: a tabela extraida do `Game.dll` 4.5 e tres capturas do
+// servidor oficial da Gameforge (21/08, 23/08 e 24/08 de 2026). Onde as duas discordam, vale a
+// captura -- a tabela erra o pareamento nome/numero em pontos conhecidos.
+//
+// COMO SE DESCOBRE O NUMERO DE UM OPCODE, E O ERRO QUE INVALIDA A ANALISE
+// -----------------------------------------------------------------------
+// Correlacionar o pedido com a resposta do servidor so vale quando a resposta E resposta. Boa
+// parte dos opcodes de servidor e broadcast e vem depois de qualquer coisa.
+//
+// O teste que separa os dois: para cada opcode de servidor, olhar a distribuicao do pedido de
+// cliente imediatamente anterior, nas tres capturas. Se UM opcode de cliente domina >= 70% das
+// ocorrencias, e par pedido/resposta e serve de ancora. Distribuicao espalhada = broadcast.
+//
+// Rodar as duas direcoes nao e zelo excessivo, e o que impede errar: `S_CHANGE_ITEM_DESC` (304
+// ocorrencias) parecia confirmar USE_EQUIPMENT_ITEM = 0x033 na direcao pedido -> resposta, e na
+// inversa era dominada por 0x02E (152x). Broadcast. Idem `S_BUDDY_LIST` com 0x046, que deu empate
+// triplo. Conferir tambem se o payload cabe na struct: `UseEquipmentItem` e `[u8; 9]` e o 0x033
+// tem 24 e 56 bytes -- nao cabia.
+//
+// JA TESTADOS E REJEITADOS -- nao retentar sem prova nova:
+//   0x033 para USE_EQUIPMENT_ITEM     0x046 para QUERY_BUDDY
+//
+// PARES CONFIRMADOS pelo teste das duas direcoes (>= 70% nas tres capturas):
+//
+//   | pedido  | resposta                | dominancia | nome aqui                  |
+//   |---------|-------------------------|------------|----------------------------|
+//   | `0x8B`  | S_SA_ACCOUNT_ITEM_NOTI  | 100% 10/10 | SA_ACCOUNT_ITEM_QUERY      |
+//   | `0x03`  | S_ASK_QUIT_RESULT       | 100%       | ASK_QUIT                   |
+//   | `0x12`  | S_SYNC_TIME             |  81%       | SYNC_TIME                  |
+//   | `0x5E`  | S_CHARACTER_LIST        |  75%       | SESSION_KEY_ECHO           |
+//   | `0xBE`  | S_CHANGE_CHANNEL        |  70%       | ROUTE_INFO                 |
+//   | `0xA8`  | S_0x102                 |  77%       | QUERY_BLOCK                |
+//   | `0xC5`  | S_0x19D / S_0x0A3       |  87% / 77% | REQUEST_SERIAL_KILLER_LIST |
+//   | `0x21`  | S_0x0CB                 |  75%       | USE_SKILL                  |
+//   | `0xAA`  | S_LOAD_CLIENT_SETTINGS  |  83%       | CUR_STATUS (ver abaixo)    |
+//
+// SOBRE O 0xAA: o numero esta certo, o nome e que engana. `CurStatus` e struct unitaria (o pedido
+// chega com 0 bytes, como na captura) e o handler ja devolve o blob zlib de configuracoes de UI --
+// ou seja, ja E o pedido de settings do cliente. Quem esta morto e SAVE_CLIENT_SETTINGS no 0x00A,
+// que nunca aparece em captura nenhuma. Nao "corrigir" o 0xAA.
+//
+// OS QUE AINDA FALTAM
+// -------------------
+// Continuam com numero suspeito, sem prova: SAVE_CLIENT_SETTINGS (0x0A), CHAT_MESSAGE_PUBLIC
+// (0x1B), CHANGE_TARGET (0x1F), USE_EQUIPMENT_ITEM (0x26), ACTION (0x2B), ALIVE (0x2C),
+// DIALOG_SELECT (0x36), ASK_LOG (0x3E), QUERY_BUDDY (0x6E), LOOT (0x9A), LOOT_ITEM (0x9B) e
+// _D8 (0xD8). SHOW_DIALOG (0x34) saiu dessa lista: aparece na captura de 24/08, com 28 e 42 bytes.
+//
+// Do outro lado, estes pedidos do cliente NAO tem handler e comandam resposta com dominancia alta
+// -- sao os alvos com melhor razao entre esforco e retorno:
+//
+//   | pedido  | bytes | resposta                        | dominancia |
+//   |---------|-------|---------------------------------|------------|
+//   | `0xFFFE`|  16   | S_0x045, S_0x014, S_0x0FD       | 78/75/100% |
+//   | `0x114` |   7   | S_0x13C                         |  94%       |
+//   | `0x06F` |   0   | S_0x07F                         |  80%       |
+//   | `0xFFEB`|  19   | S_0x018                         |  80%       |
+//
+// (`0xFFFE` e `0xFFEB` sao o que a desofuscacao devolve; 383 e poucas ocorrencias. Cair em valor
+// negativo significa que o pedido chega com opcode cifrado baixo -- ver `decrypt_client_opcode`.)
 define_messages!(
     (VERSION, Version, 0x00),
     (ASK_QUIT, AskQuit, 0x03),
@@ -101,17 +161,16 @@ define_messages!(
     (CHARACTER_LIST, CharacterList, 0x96),
     (LOOT, Loot, 0x9A),
     (LOOT_ITEM, LootItem, 0x9B),
-    (RECIPE_LIST, RecipeList, 0x9E),
+    (RECIPE_LIST, RecipeList, 0xB6),
     (RECONNECT_AUTH, ReconnectAuth, 0xB8),
     (INSTANCE_DUNGEON_COOLTIMES, InstanceDungeonCooltimes, 0xC1),
     (REQUEST_GUILD_HISTORY, RequestGuildHistory, 0xC5),
     (_D8, _00D8, 0xD8),
-    (_8B, _008B, 0x8B),
     (CREATE_CHARACTER, CreateCharacter, 0x5F),
     (CUR_STATUS, CurStatus, 0xAA),
     (QUERY_BLOCK, QueryBlock, 0xA8),
-    (SIGN_CLIENT, SignClient, 0xAE),
-    (SA_ACCOUNT_ITEM_QUERY, SaAccountItemQuery, 0xBB),
+    (SIGN_CLIENT, SignClient, 0x86),
+    (SA_ACCOUNT_ITEM_QUERY, SaAccountItemQuery, 0x8B),
     (ROUTE_INFO, RouteInfo, 0xBE),
     (SECOND_PASSWORD, SecondPassword, 0xD2),
     (READY_ENTER_WORLD_ACK, ReadyEnterWorldAck, 0xE2),
@@ -125,7 +184,7 @@ define_messages!(
     (WIND_PATH, WindPath, 0x46),
     (PATH_FLY, PathFly, 0x31),
     (BUY_SELL, BuySell, 0x33),
-    (MAIL_READ, MailRead, 0x86),
+    (MAIL_READ, MailRead, 0x87),
     (MAIL_POSTMAN, MailPostman, 0xA2),
     (GUILD_USER_BUY_BUFF, GuildUserBuyBuff, 0xC6),
     (GUILD_MANAGE, GuildManage, 0xC7),
@@ -363,6 +422,17 @@ impl Deserialise for SecondPassword {
     }
 }
 
+/// Opcode `0x8B`. Sem resposta a este opcode a tela de personagem trava: nao da para entrar no
+/// jogo, criar personagem, nem voltar para a lista de servidores. Os botoes simplesmente nao
+/// reagem.
+///
+/// O numero saiu das capturas, nao da tabela do `Game.dll` -- que chama `0x8B` de
+/// `C_CHANGE_TITLE` e erra em pontos conhecidos. Nas duas capturas, todas as 9 ocorrencias de
+/// `S_SA_ACCOUNT_ITEM_NOTI` vem imediatamente depois de um `C 0x8B`, e o pedido chega sem
+/// payload -- o que casa com esta struct unitaria.
+///
+/// Antes ficavam dois handlers identicos: este, mapeado no `0xBB` (numero que nao aparece em
+/// captura nenhuma, logo nunca disparava), e um `_008B` sem nome no numero certo.
 #[derive(Debug, Clone)]
 pub struct SaAccountItemQuery;
 
@@ -1182,38 +1252,6 @@ impl Deserialise for DeleteCharacter {
         let _play_ok = if buf.len() >= 4 { consume_le_bytes!(len, buf, u32) } else { 0 };
         let character_id = if buf.len() >= 8 { consume_le_bytes!(len, buf, u32) } else { 0 };
         Self { character_id }
-    }
-}
-
-/// Sem resposta a este opcode a tela de personagem trava: nao da para entrar no jogo, criar
-/// personagem, nem voltar para a lista de servidores. Os botoes simplesmente nao reagem.
-///
-/// Foi medido rodando sem replay nenhum: dos opcodes que ficaram sem resposta, este e o unico que
-/// bloqueia. O `0x88` e o `0x5F` tambem ficam sem resposta, e o `0x88` nunca teve uma no replay de
-/// login -- ainda assim aquela sessao entrava no mundo.
-///
-/// A resposta do servidor oficial e `S_SA_ACCOUNT_ITEM_NOTI` com quatro bytes zero, identica nas
-/// duas capturas -- a mesma que o `SaAccountItemQuery` (0xBB) ja devolvia.
-///
-/// Sem nome porque a tabela do `Game.dll` chama `0x8B` de `C_CHANGE_TITLE`, e ela erra em pontos
-/// conhecidos; o que responder aqui veio da captura, nao dela.
-#[derive(Debug, Clone)]
-pub struct _008B;
-impl _008B {
-    pub fn handle(
-        &self,
-        _: &Sender<ClientUpdate>,
-        _: &mut Account,
-    ) -> Vec<s::Message> {
-        vec![s::Message::SaAccountItemNoti(s::SaAccountItemNoti::new())]
-    }
-}
-impl Deserialise for _008B {
-    fn deserialise(_: &[u8]) -> Self
-    where
-        Self: Sized,
-    {
-        Self
     }
 }
 
@@ -2470,5 +2508,146 @@ impl Deserialise for ChatMessageWhisper {
             String::new()
         };
         Self { target_name, message }
+    }
+}
+
+#[cfg(test)]
+mod testes_de_opcode {
+    use super::*;
+    use commons::game::{encrypt, encrypt_client_opcode, gen_xor_key};
+
+    /// Monta um pacote de cliente como o cliente o manda: opcode cifrado, byte de servidor,
+    /// checksum e payload, tudo cifrado a partir do offset do opcode.
+    fn pacote_do_cliente(opcode: u16, payload: &[u8], chave: &mut [u8; 8]) -> Vec<u8> {
+        let cifrado = encrypt_client_opcode(opcode);
+        let mut buf = Vec::new();
+        buf.extend_from_slice(&cifrado.to_le_bytes());
+        buf.push(0x6F); // byte de servidor
+        buf.extend_from_slice(&(!cifrado).to_le_bytes());
+        buf.extend_from_slice(payload);
+        encrypt(chave, &mut buf);
+        buf
+    }
+
+    fn chave_nova() -> [u8; 8] {
+        gen_xor_key(0x1234_5678).to_le_bytes()
+    }
+
+    /// Os tres opcodes renumerados a partir das capturas precisam cair no handler certo.
+    ///
+    /// Se alguem trocar um numero por engano, o pacote passa a cair no ramo "not implemented" e
+    /// este teste quebra -- que e exatamente o sintoma que os 16 opcodes errados produziam.
+    #[test]
+    fn opcodes_renumerados_caem_no_handler_certo() {
+        let casos: [(u16, &[u8], fn(&Message) -> bool); 3] = [
+            (0x8B, &[], |m| matches!(m, Message::SaAccountItemQuery(_))),
+            (0xB6, &[], |m| matches!(m, Message::RecipeList(_))),
+            (0x86, &[0u8; 10], |m| matches!(m, Message::SignClient(_))),
+        ];
+
+        for (opcode, payload, e_o_esperado) in casos {
+            let mut chave_envio = chave_nova();
+            let mut buf = pacote_do_cliente(opcode, payload, &mut chave_envio);
+
+            let mut chave_leitura = chave_nova();
+            let (msg, lido) = Message::deserialise(&mut buf, &mut chave_leitura)
+                .unwrap_or_else(|op| panic!("opcode 0x{opcode:02X} caiu como nao implementado (0x{op:02X})"));
+
+            assert_eq!(lido, opcode, "opcode desofuscado nao confere");
+            assert!(e_o_esperado(&msg), "0x{opcode:02X} caiu no handler errado: {msg:?}");
+        }
+    }
+
+    /// Os numeros antigos nao podem continuar respondendo: eram justamente os que nunca chegavam.
+    #[test]
+    fn opcodes_antigos_nao_tem_mais_handler() {
+        for antigo in [0xBBu16, 0x9E, 0xAE] {
+            let mut chave_envio = chave_nova();
+            let mut buf = pacote_do_cliente(antigo, &[], &mut chave_envio);
+
+            let mut chave_leitura = chave_nova();
+            assert!(
+                Message::deserialise(&mut buf, &mut chave_leitura).is_err(),
+                "0x{antigo:02X} ainda tem handler"
+            );
+        }
+    }
+
+    // ==============================================================================    // Prova contra o cliente oficial. Quadros capturados em 24/08/2026 numa sessao real contra
+    // o servidor da Gameforge -- estes bytes sairam do `Aion.bin`, nao de um teste.
+    //
+    // O teste acima cifra o proprio pacote e confere que ele volta; este exige que o caminho de
+    // desserializacao aceite o que o cliente de verdade manda, com a chave derivada do S_KEY.
+    // ==============================================================================
+    /// Seed do S_KEY da mesma sessao. O quadro do servidor viaja em claro e carrega este valor.
+    const SEED_OFICIAL: u32 = 0x73CB_9F92;
+
+    /// C_VERSION, 23 bytes no wire.
+    const CLIENTE_1: &str = "1700a8d4be626ba0807e14869e2ceff5db3a227c65ad42";
+    /// C_SYNC_TIME, 20 bytes.
+    const CLIENTE_2: &str = "14008ff399575e590fd887f1d436c98aa4456834";
+    /// C_SYNC_TIME de novo -- so abre se a chave tiver avancado pelos dois anteriores.
+    const CLIENTE_3: &str = "1400611d77b9b04eb563cbbcf7d156e8c726e5b9";
+
+    fn de_hex(h: &str) -> Vec<u8> {
+        (0..h.len())
+            .step_by(2)
+            .map(|i| u8::from_str_radix(&h[i..i + 2], 16).unwrap())
+            .collect()
+    }
+
+    #[test]
+    fn desserializa_pacotes_reais_do_cliente_oficial() {
+        let mut chave = gen_xor_key(SEED_OFICIAL).to_le_bytes();
+
+        let casos: [(&str, u16, fn(&Message) -> bool); 3] = [
+            (CLIENTE_1, 0x000, |m| matches!(m, Message::Version(_))),
+            (CLIENTE_2, 0x012, |m| matches!(m, Message::SyncTime(_))),
+            (CLIENTE_3, 0x012, |m| matches!(m, Message::SyncTime(_))),
+        ];
+
+        for (hex, opcode_esperado, e_o_esperado) in casos {
+            let quadro = de_hex(hex);
+            let mut corpo = quadro[2..].to_vec();
+
+            let (msg, opcode) = Message::deserialise(&mut corpo, &mut chave).unwrap_or_else(|op| {
+                panic!("pacote real do cliente recusado (opcode 0x{op:03X})")
+            });
+
+            assert_eq!(opcode, opcode_esperado, "opcode desofuscado");
+            assert!(e_o_esperado(&msg), "caiu no handler errado: {msg:?}");
+        }
+    }
+
+    #[test]
+    fn com_a_chave_errada_o_pacote_real_e_recusado() {
+        // Guarda: o checksum do cabecalho e a unica defesa contra chave dessincronizada. Se ele
+        // parasse de ser conferido, um pacote decifrado errado viraria opcode aleatorio.
+        let mut chave = gen_xor_key(SEED_OFICIAL ^ 1).to_le_bytes();
+        let quadro = de_hex(CLIENTE_1);
+        let mut corpo = quadro[2..].to_vec();
+
+        assert!(
+            Message::deserialise(&mut corpo, &mut chave).is_err(),
+            "com a chave errada o checksum nao pode fechar"
+        );
+    }
+
+    #[test]
+    fn a_chave_do_cliente_avanca_pelo_tamanho_de_cada_pacote() {
+        // Se a chave nao avancasse, o segundo pacote da sessao real nao abriria.
+        let mut chave = gen_xor_key(SEED_OFICIAL).to_le_bytes();
+        let inicial = chave;
+
+        let quadro = de_hex(CLIENTE_1);
+        let mut corpo = quadro[2..].to_vec();
+        let _ = Message::deserialise(&mut corpo, &mut chave).expect("primeiro pacote");
+
+        assert_ne!(chave, inicial, "a chave tem que avancar");
+        assert_eq!(
+            u64::from_le_bytes(chave),
+            u64::from_le_bytes(inicial) + (quadro.len() - 2) as u64,
+            "avanca exatamente pelo tamanho do corpo decifrado"
+        );
     }
 }

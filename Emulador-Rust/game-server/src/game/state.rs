@@ -266,12 +266,37 @@ impl State {
 
     /// Nome de conta desta sessao.
     ///
-    /// Sai do token que o STS gravou. Sem token -- clientes de bancada que pulam o STS -- vale um
-    /// sintetico pelo id do cliente, para a sessao nao morrer por causa disso.
+    /// A via boa e o par `(account_id, session_key)` que o cliente apresentou no `C_HQ_LOGIN`:
+    /// o login server o gravou na tabela `sessions` antes de entregar a chave, entao so casa se
+    /// a sessao existir de fato e nao tiver expirado.
+    ///
+    /// Se nao casar, ainda tenta o token do STS -- e depois cai num nome sintetico pelo id do
+    /// cliente, para clientes de bancada que pulam o login inteiro nao morrerem por causa disso.
     fn username_do_update(&self, update: &ClientUpdate) -> String {
+        let sintetico = || format!("client_{}", update.client_id());
+
+        if update.session_key() != 0 {
+            match self.db.resolver_sessao(update.account_id(), update.session_key()) {
+                Ok(Some(name)) => {
+                    println!(
+                        "INFO: sessao validada (account_id={}, session_key=0x{:08X}) -> '{name}'",
+                        update.account_id(),
+                        update.session_key()
+                    );
+                    return name;
+                }
+                Ok(None) => eprintln!(
+                    "WARN: sessao nao confere (account_id={}, session_key=0x{:08X}); tentando o token do STS",
+                    update.account_id(),
+                    update.session_key()
+                ),
+                Err(e) => eprintln!("ERROR: resolver_sessao: {e}"),
+            }
+        }
+
         let token = update.session_token();
         if token.is_empty() {
-            return format!("client_{}", update.client_id());
+            return sintetico();
         }
         match self.db.lookup_session(token) {
             Ok(Some(name)) => {
@@ -280,11 +305,11 @@ impl State {
             }
             Ok(None) => {
                 eprintln!("WARN: session token not found in DB, using synthetic username");
-                format!("client_{}", update.client_id())
+                sintetico()
             }
             Err(e) => {
                 eprintln!("ERROR: lookup_session: {e}");
-                format!("client_{}", update.client_id())
+                sintetico()
             }
         }
     }
@@ -742,7 +767,7 @@ impl State {
                 }
 
                 let lista = lista_personagens::ListaPersonagens::new(
-                    update.chave_de_sessao(),
+                    update.account_id(),
                     personagens,
                 );
 
@@ -750,7 +775,7 @@ impl State {
                 // (contagem zero, 11 bytes de payload) e so depois a lista de verdade. Mandando so
                 // a segunda, o cliente fecha a conexao.
                 let vazia = lista_personagens::ListaPersonagens::new(
-                    update.chave_de_sessao(),
+                    update.account_id(),
                     Vec::new(),
                 );
 
@@ -935,9 +960,20 @@ impl State {
                         bruto(cap::CENA_DO_MUNDO_OPCODE, cap::CENA_DO_MUNDO.to_vec()),
                         // Vida e mana do personagem. Na captura sao dois pares de u32 -- valor
                         // atual e maximo -- e o formato do POC e o mesmo.
+                        //
+                        // A mana ia faltando: so o HP era enviado, e o cliente entrava no mundo
+                        // com a barra de mana zerada.
                         ServerUpdate::new(s::Message::HitPoint(s::HitPoint::new(
                             new_character.stats.hp.current() as u32,
                             new_character.stats.hp.max() as u32,
+                        ))),
+                        ServerUpdate::new(s::Message::ManaPoint(s::ManaPoint::new(
+                            new_character.stats.mp.current() as u32,
+                            new_character.stats.mp.max() as u32,
+                        ))),
+                        // Pontos divinos. Um u16 so -- o maximo e do cliente.
+                        ServerUpdate::new(s::Message::Dp(s::Dp::new(
+                            new_character.stats.dp.current(),
                         ))),
                     ],
                 );
@@ -1094,7 +1130,7 @@ impl State {
                         "INFO: AION_BURST: mandando os {} pacotes capturados da janela de entrada",
                         self.burst.len()
                     );
-                    let chave = update.chave_de_sessao();
+                    let chave = update.account_id();
                     let id = update.character_id();
                     let lote: Vec<_> = self
                         .burst
@@ -1396,65 +1432,149 @@ impl State {
                         .map(ServerUpdate::new),
                     );
             }
-            c::Message::ChatMessagePublic(chat) => {
-                let Some(character) = self.characters.get_mut(&update.character_id()) else {
+            c::Message::ChatMessagePublic(msg) => {
+                let char_id = update.character_id();
+                if !self.check_flood(char_id) {
+                    println!("WARN: Player {} dropped for chat flood", char_id);
                     return;
-                };
-                let text = chat.message.trim();
-                println!("[CHAT:{}] {}", character.name(), text);
+                }
 
-                if let Some(cmd) = crate::game::social::GmCommand::parse(text) {
-                    match cmd {
-                        crate::game::social::GmCommand::Goto { destination } => {
-                            if let Some((map_id, x, y, z)) = crate::game::social::resolve_goto_location(&destination) {
-                                println!("INFO: Teleporting {} via .goto {} to map {} ({:.1}, {:.1}, {:.1})", character.name(), destination, map_id, x, y, z);
-                                character.set_location(Coord::new(x, y, z));
-                                character.set_spawn_map_id(map_id);
-                                let char_id = character.id();
-                                let loc = *character.location();
-                                messages.push_direct(
-                                    update.client_id(),
-                                    ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
-                                        1,
-                                        map_id,
-                                        0,
-                                        x,
-                                        y,
-                                        z,
-                                        0,
-                                    ))),
-                                );
-                                self.povoa_cena(char_id, update.client_id(), loc, messages);
+                let (char_name, loc, access_level) = match self.characters.get(&char_id) {
+                    Some(c) => (c.name().to_string(), *c.location(), 100),
+                    None => return,
+                };
+
+                // GM Command Check
+                if let Some(cmd) = crate::game::social::GmCommand::parse(&msg.message) {
+                    if access_level >= 100 {
+                        match cmd {
+                            crate::game::social::GmCommand::Teleport { map_id, x, y, z } => {
+                                if let Some(character) = self.characters.get_mut(&char_id) {
+                                    character.set_location(Coord::new(x, y, z));
+                                    character.set_spawn_map_id(map_id);
+                                    let char_loc = *character.location();
+                                    messages.push_direct(
+                                        update.client_id(),
+                                        ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
+                                            1,
+                                            map_id,
+                                            0,
+                                            x,
+                                            y,
+                                            z,
+                                            0,
+                                        ))),
+                                    );
+                                    self.povoa_cena(char_id, update.client_id(), char_loc, messages);
+                                }
+                            }
+                            crate::game::social::GmCommand::Goto { destination } => {
+                                if let Some((map_id, x, y, z)) = crate::game::social::resolve_goto_location(&destination) {
+                                    if let Some(character) = self.characters.get_mut(&char_id) {
+                                        character.set_location(Coord::new(x, y, z));
+                                        character.set_spawn_map_id(map_id);
+                                        let char_loc = *character.location();
+                                        messages.push_direct(
+                                            update.client_id(),
+                                            ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
+                                                1,
+                                                map_id,
+                                                0,
+                                                x,
+                                                y,
+                                                z,
+                                                0,
+                                            ))),
+                                        );
+                                        self.povoa_cena(char_id, update.client_id(), char_loc, messages);
+                                    }
+                                }
+                            }
+                            crate::game::social::GmCommand::SetLevel { level } => {
+                                if let Some(character) = self.characters.get_mut(&char_id) {
+                                    character.stats.level = level;
+                                }
+                            }
+                            _ => {
+                                println!("INFO: GM command executed: {:?}", cmd);
                             }
                         }
-                        crate::game::social::GmCommand::SetLevel { level } => {
-                            character.stats.level = level;
-                            println!("INFO: SetLevel {} for {}", level, character.name());
+                        return;
+                    }
+                }
+
+                let timestamp = std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap_or_default()
+                    .as_secs() as u32;
+
+                let chat_packet = s::ChatMessage::new(
+                    char_id,
+                    char_name,
+                    msg.chat_type,
+                    msg.message.clone(),
+                    timestamp,
+                );
+
+                match msg.chat_type {
+                    0 => {
+                        // Normal (50m)
+                        for other in self.characters.values() {
+                            if loc.distance(&other.location()) <= 50.0 {
+                                messages.push_direct(
+                                    other.client_id(),
+                                    ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                                );
+                            }
                         }
-                        crate::game::social::GmCommand::Teleport { map_id, x, y, z } => {
-                            println!("INFO: Teleporting {} to map {} ({:.1}, {:.1}, {:.1})", character.name(), map_id, x, y, z);
-                            character.set_location(Coord::new(x, y, z));
-                            character.set_spawn_map_id(map_id);
-                            let char_id = character.id();
-                            let loc = *character.location();
+                    }
+                    1 => {
+                        // Shout (500m)
+                        for other in self.characters.values() {
+                            if loc.distance(&other.location()) <= 500.0 {
+                                messages.push_direct(
+                                    other.client_id(),
+                                    ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                                );
+                            }
+                        }
+                    }
+                    3 => {
+                        // Group
+                        if let Some(gid) = self.party_service.group_of(char_id) {
+                            if let Some(party) = self.party_service.groups.get(&gid) {
+                                for &member_id in &party.members {
+                                    if let Some(member) = self.characters.get(&member_id) {
+                                        messages.push_direct(
+                                            member.client_id(),
+                                            ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    5 => {
+                        // Legion
+                        if let Some(guild) = self.guild_manager.get_guild_for_player(char_id) {
+                            for member in &guild.members {
+                                if let Some(online_char) = self.characters.get(&member.player_id) {
+                                    messages.push_direct(
+                                        online_char.client_id(),
+                                        ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                                    );
+                                }
+                            }
+                        }
+                    }
+                    _ => {
+                        // World / Trade / Others -> Broadcast
+                        for other in self.characters.values() {
                             messages.push_direct(
-                                update.client_id(),
-                                ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
-                                    1,
-                                    map_id,
-                                    0,
-                                    x,
-                                    y,
-                                    z,
-                                    0,
-                                ))),
+                                other.client_id(),
+                                ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
                             );
-                            self.povoa_cena(char_id, update.client_id(), loc, messages);
                         }
-                        crate::game::social::GmCommand::Spawn { npc_id } => {
-                            println!("INFO: GM Spawn NPC {} near {}", npc_id, character.name());
-                        }
-                        _ => (),
                     }
                 }
             }
@@ -1549,7 +1669,42 @@ impl State {
                             }
                         }
                     }
-                    _ => {
+                    10 | _ => {
+                        let loc_id = if sel.dialog_id == 10 { sel.last_page } else { sel.dialog_id };
+                        if let Some(loc) = self.teleport_service.locations.get(&loc_id).cloned() {
+                            let race = self.characters.get(&char_id).map(|c| c.race()).unwrap_or(0);
+                            let level = self.characters.get(&char_id).map(|c| c.stats.level as u8).unwrap_or(1);
+                            if let Ok((loc_ref, _rem)) = self.teleport_service.validate_and_teleport(loc.loc_id, level, race, 1000000) {
+                                if let Some(character) = self.characters.get_mut(&char_id) {
+                                    character.set_location(Coord::new(loc_ref.x, loc_ref.y, loc_ref.z));
+                                    character.set_spawn_map_id(loc_ref.map_id);
+                                    character.set_heading(loc_ref.heading);
+                                }
+                                self.npcs_em_cena.remove(&char_id);
+                                self.mundo_enviado.remove(&char_id);
+                                messages.push_direct(
+                                    update.client_id(),
+                                    ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
+                                        0,
+                                        loc_ref.map_id,
+                                        0,
+                                        loc_ref.x,
+                                        loc_ref.y,
+                                        loc_ref.z,
+                                        loc_ref.heading,
+                                    ))),
+                                );
+                                messages.push_direct(
+                                    update.client_id(),
+                                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
+                                        sel.target_id,
+                                        0,
+                                        0,
+                                    ))),
+                                );
+                                return;
+                            }
+                        }
                         messages.push_direct(
                             update.client_id(),
                             ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
@@ -2107,53 +2262,6 @@ impl State {
                         update.client_id(),
                         ServerUpdate::new(s::Message::MessageCode(s::MessageCode::new(900010))),
                     );
-                }
-            }
-            c::Message::ShowDialog(show_dlg) => {
-                messages.push_direct(
-                    update.client_id(),
-                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
-                        show_dlg.target_id,
-                        10, // Teleport dialog
-                        0,
-                    ))),
-                );
-            }
-            c::Message::DialogSelect(dialog_select) => {
-                let char_id = update.character_id();
-                println!("INFO: Player {} DialogSelect (target: {}, dialog_id: {}, last_page: {})", char_id, dialog_select.target_id, dialog_select.dialog_id, dialog_select.last_page);
-                
-                let loc_id = if dialog_select.dialog_id == 10 { dialog_select.last_page } else { dialog_select.dialog_id };
-                if let Some(loc) = self.teleport_service.locations.get(&loc_id).cloned() {
-                    let race = self.characters.get(&char_id).map(|c| c.race()).unwrap_or(0);
-                    let level = self.characters.get(&char_id).map(|c| c.stats.level as u8).unwrap_or(1);
-                    if let Ok((loc_ref, _rem)) = self.teleport_service.validate_and_teleport(loc.loc_id, level, race, 1000000) {
-                        if let Some(character) = self.characters.get_mut(&char_id) {
-                            character.set_location(Coord::new(loc_ref.x, loc_ref.y, loc_ref.z));
-                        }
-                        self.npcs_em_cena.remove(&char_id);
-                        self.mundo_enviado.remove(&char_id);
-                        messages.push_direct(
-                            update.client_id(),
-                            ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
-                                0,
-                                loc_ref.map_id,
-                                0,
-                                loc_ref.x,
-                                loc_ref.y,
-                                loc_ref.z,
-                                loc_ref.heading,
-                            ))),
-                        );
-                        messages.push_direct(
-                            update.client_id(),
-                            ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
-                                dialog_select.target_id,
-                                0,
-                                0,
-                            ))),
-                        );
-                    }
                 }
             }
             _ => (),
