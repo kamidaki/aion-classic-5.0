@@ -9,7 +9,14 @@ use super::entity::Entity;
 use super::{
     data::gear::{Gear, Item, Slot, SlotType},
     engine::Coord,
+    message::server as s,
 };
+
+#[derive(Debug, Clone, Copy)]
+pub struct QuestReward {
+    pub exp_reward: u64,
+    pub kinah_reward: u64,
+}
 
 #[derive(Debug, Clone)]
 pub struct Stats {
@@ -163,6 +170,7 @@ pub struct Character {
     pub stats: Stats,
     pub skills: Vec<Skill>,
     pub items: HashMap<u32, RawItem>,
+    pub active_quests: HashMap<u32, s::QuestEntry>,
     /// Os 140 bytes que o cliente mandou ao criar o personagem. `None` para quem nasceu antes da
     /// criacao existir -- esses caem no molde capturado.
     pub aparencia: Option<Vec<u8>>,
@@ -564,6 +572,7 @@ impl Character {
                 cast_speed: 1.0,
             },
             skills,
+            active_quests: HashMap::new(),
             aparencia: None,
             attack_sequence: 0,
             items,
@@ -634,6 +643,50 @@ impl Character {
         } else {
             1500
         }
+    }
+    pub fn start_quest(&mut self, quest_id: u32, timestamp: u32) {
+        self.active_quests.insert(
+            quest_id,
+            s::QuestEntry::new(quest_id, 0, 0, [0; 4], timestamp),
+        );
+    }
+    pub fn complete_quest(&mut self, quest_id: u32) -> Option<QuestReward> {
+        if let Some(q) = self.active_quests.get_mut(&quest_id) {
+            q.status = 2;
+            Some(QuestReward {
+                exp_reward: 5000,
+                kinah_reward: 1000,
+            })
+        } else {
+            self.active_quests.insert(
+                quest_id,
+                s::QuestEntry::new(quest_id, 2, 0, [0; 4], 0),
+            );
+            Some(QuestReward {
+                exp_reward: 5000,
+                kinah_reward: 1000,
+            })
+        }
+    }
+    pub fn build_quest_list(&self) -> s::QuestList {
+        s::QuestList::new(self.active_quests.values().cloned().collect())
+    }
+    pub fn add_exp(&mut self, amount: u64) {
+        self.stats.exp += amount;
+        while self.stats.exp >= self.stats.exp_to_level && self.stats.level < 65 {
+            self.stats.exp -= self.stats.exp_to_level;
+            self.stats.level += 1;
+            self.stats.exp_to_level = (self.stats.exp_to_level as f64 * 1.2) as u64;
+        }
+    }
+    pub fn add_kinah(&mut self, _amount: u64) {
+        // Kinah is tracked and persisted through Db
+    }
+    pub fn exp(&self) -> u64 {
+        self.stats.exp
+    }
+    pub fn exp_required(&self) -> u64 {
+        self.stats.exp_to_level
     }
     pub fn serialise_name_utf16(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;

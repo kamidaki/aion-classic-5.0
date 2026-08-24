@@ -940,6 +940,10 @@ impl State {
                         1700000000,
                     ))),
                 );
+                messages.push_direct(
+                    update.client_id(),
+                    ServerUpdate::new(s::Message::QuestList(new_character.build_quest_list())),
+                );
 
                 // Os NPCs do mundo, so os que estao perto. Ficavam atras do portao dos pacotes
                 // 2.5 junto com o resto, e por isso nem o unico mob escrito a mao aparecia.
@@ -1361,8 +1365,26 @@ impl State {
                 }
             }
             c::Message::ShowDialog(dialog) => {
-                println!("INFO: Player {} opened dialog with target {} (dialog_id: {})", update.character_id(), dialog.target_id, dialog.dialog_id);
-                let dialog_id = if dialog.dialog_id == 0 { 10 } else { dialog.dialog_id };
+                let char_id = update.character_id();
+                let dialog_id = if let Some(entity) = self.entities.iter().find(|e| e.id() == dialog.target_id) {
+                    if let Some(def) = self.game_data.npcs.get(&entity.npc_id()) {
+                        if def.name.to_lowercase().contains("teleport") || def.name.to_lowercase().contains("flight") {
+                            10
+                        } else if def.name.to_lowercase().contains("merchant") || def.name.to_lowercase().contains("trader") {
+                            2
+                        } else {
+                            18 // Quest dialog default
+                        }
+                    } else {
+                        18
+                    }
+                } else if dialog.dialog_id != 0 {
+                    dialog.dialog_id
+                } else {
+                    18
+                };
+
+                println!("INFO: Player {} opened dialog with target {} (dialog_id: {})", char_id, dialog.target_id, dialog_id);
                 messages.push_direct(
                     update.client_id(),
                     ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
@@ -1373,24 +1395,76 @@ impl State {
                 );
             }
             c::Message::DialogSelect(sel) => {
-                println!("INFO: Player {} selected dialog option {} for target {} (quest: {})", update.character_id(), sel.dialog_id, sel.target_id, sel.quest_id);
-                messages.push_direct(
-                    update.client_id(),
-                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
-                        sel.target_id,
-                        sel.dialog_id,
-                        sel.quest_id,
-                    ))),
-                );
-            }
-            c::Message::MoveNew(ref move_new) => {
-                if let Some(character) = self.characters.get_mut(&update.character_id()) {
-                    character.set_location(move_new.location());
-                    let s_move = move_new.calculate(character.id());
-                    messages.push_others(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::MoveNew(s_move)),
-                    );
+                let char_id = update.character_id();
+                let now_ts = std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap_or_default()
+                    .as_secs() as u32;
+
+                println!("INFO: Player {} selected dialog option {} for target {} (quest: {})", char_id, sel.dialog_id, sel.target_id, sel.quest_id);
+                match sel.dialog_id {
+                    10003 => {
+                        // Aceitar quest
+                        let quest_id = if sel.quest_id != 0 { sel.quest_id } else { 1001 };
+                        if let Some(character) = self.characters.get_mut(&char_id) {
+                            character.start_quest(quest_id, now_ts);
+                            let _ = self.db.save_quest(char_id, quest_id, 0, 0, [0; 4], now_ts);
+                            messages.push_direct(
+                                update.client_id(),
+                                ServerUpdate::new(s::Message::QuestList(character.build_quest_list())),
+                            );
+                            messages.push_direct(
+                                update.client_id(),
+                                ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
+                                    sel.target_id,
+                                    0,
+                                    0,
+                                ))),
+                            );
+                        }
+                    }
+                    10004 => {
+                        // Completar quest
+                        let quest_id = if sel.quest_id != 0 { sel.quest_id } else { 1001 };
+                        if let Some(character) = self.characters.get_mut(&char_id) {
+                            if let Some(reward) = character.complete_quest(quest_id) {
+                                character.add_exp(reward.exp_reward);
+                                character.add_kinah(reward.kinah_reward);
+                                let _ = self.db.save_quest(char_id, quest_id, 2, 0, [0; 4], now_ts);
+                                let _ = self.db.alterar_kinah(char_id, reward.kinah_reward as i64);
+
+                                messages.push_direct(
+                                    update.client_id(),
+                                    ServerUpdate::new(s::Message::ExpUpdate(s::ExpUpdate::new(
+                                        character.exp(),
+                                        character.exp_required(),
+                                    ))),
+                                );
+                                messages.push_direct(
+                                    update.client_id(),
+                                    ServerUpdate::new(s::Message::QuestList(character.build_quest_list())),
+                                );
+                                messages.push_direct(
+                                    update.client_id(),
+                                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
+                                        sel.target_id,
+                                        0,
+                                        0,
+                                    ))),
+                                );
+                            }
+                        }
+                    }
+                    _ => {
+                        messages.push_direct(
+                            update.client_id(),
+                            ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
+                                sel.target_id,
+                                sel.dialog_id,
+                                sel.quest_id,
+                            ))),
+                        );
+                    }
                 }
             }
             c::Message::WindPath(wind_path) => {

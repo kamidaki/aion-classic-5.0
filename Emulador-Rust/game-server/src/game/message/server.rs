@@ -30,6 +30,7 @@ const HIT_POINT: u16 = 0x0003;
 const HIT_POINT_MP: u16 = 0x0004;
 const HIT_POINT_OTHER: u16 = 0x0005;
 const HIT_POINT_DP: u16 = 0x0006;
+const EXP_UPDATE: u16 = 0x0008;
 const ENTER_WORLD_CHECK: u16 = 0x000D;
 const PUT_NPC: u16 = 0x000E;
 const REQUEST_TELEPORT: u16 = 0x0014;
@@ -55,6 +56,7 @@ const MOVE_NEW: u16 = 0x0037;
 const DIALOG_WINDOW: u16 = 0x003C;
 const WEATHER: u16 = 0x0042;
 const INVISIBLE_LEVEL: u16 = 0x0043;
+const QUEST_LIST: u16 = 0x0047;
 const KEY: u16 = 0x0047;
 const ASK_QUIT_RESULT: u16 = 0x0061;
 const LOAD_ITEM_COOLTIME: u16 = 0x0066;
@@ -165,6 +167,8 @@ pub enum Message {
     SkillPenaltyStatusOther(SkillPenaltyStatusOther),
     HitPointMp(HitPointMp),
     HitPointDp(HitPointDp),
+    ExpUpdate(ExpUpdate),
+    QuestList(QuestList),
 }
 
 impl Serialise for Message {
@@ -241,6 +245,8 @@ impl Serialise for Message {
             Message::SkillPenaltyStatusOther(msg) => msg.serialise(&mut buf[2..]),
             Message::HitPointMp(msg) => msg.serialise(&mut buf[2..]),
             Message::HitPointDp(msg) => msg.serialise(&mut buf[2..]),
+            Message::ExpUpdate(msg) => msg.serialise(&mut buf[2..]),
+            Message::QuestList(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -2979,6 +2985,81 @@ impl Serialise for WindPathResult {
     }
 }
 
+/// SM_STATUPDATE_EXP (0x08) — Atualização de EXP do jogador
+#[derive(Debug, Clone)]
+pub struct ExpUpdate {
+    pub exp: u64,
+    pub exp_required: u64,
+}
+
+impl ExpUpdate {
+    pub fn new(exp: u64, exp_required: u64) -> Self {
+        Self { exp, exp_required }
+    }
+}
+
+impl Serialise for ExpUpdate {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(EXP_UPDATE, buf);
+        to_le_bytes!(len, buf, self.exp);
+        to_le_bytes!(len, buf, self.exp_required);
+        len
+    }
+}
+
+/// SM_QUEST_LIST (0x47) — Lista de missões ativas/concluídas do personagem
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct QuestEntry {
+    pub quest_id: u32,
+    pub status: u8,
+    pub flags: u32,
+    pub vars: [u32; 4],
+    pub start_timestamp: u32,
+}
+
+impl QuestEntry {
+    pub fn new(quest_id: u32, status: u8, flags: u32, vars: [u32; 4], start_timestamp: u32) -> Self {
+        Self {
+            quest_id,
+            status,
+            flags,
+            vars,
+            start_timestamp,
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct QuestList {
+    pub quests: Vec<QuestEntry>,
+}
+
+impl QuestList {
+    pub fn new(quests: Vec<QuestEntry>) -> Self {
+        Self { quests }
+    }
+}
+
+impl Serialise for QuestList {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(QUEST_LIST, buf);
+        let count = self.quests.len() as u16;
+        to_le_bytes!(len, buf, count);
+        for q in &self.quests {
+            to_le_bytes!(len, buf, q.quest_id);
+            to_le_bytes!(len, buf, q.status);
+            to_le_bytes!(len, buf, q.flags);
+            for v in &q.vars {
+                to_le_bytes!(len, buf, *v);
+            }
+            to_le_bytes!(len, buf, q.start_timestamp);
+        }
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
@@ -3050,6 +3131,31 @@ mod testes_de_inventario {
         assert_eq!(n, 5 + 8);
         assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 2000);
         assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 4000);
+    }
+
+    #[test]
+    fn test_exp_update_serialise() {
+        let exp = ExpUpdate::new(125000, 250000);
+        let mut buf = [0u8; 32];
+        let n = exp.serialise(&mut buf);
+        assert_eq!(n, 5 + 8 + 8);
+        assert_eq!(u64::from_le_bytes(buf[5..13].try_into().unwrap()), 125000);
+        assert_eq!(u64::from_le_bytes(buf[13..21].try_into().unwrap()), 250000);
+    }
+
+    #[test]
+    fn test_quest_list_serialise() {
+        let q = QuestEntry::new(1001, 0, 1, [2, 0, 0, 0], 1600000000);
+        let ql = QuestList::new(vec![q]);
+        let mut buf = [0u8; 64];
+        let n = ql.serialise(&mut buf);
+        assert_eq!(n, 5 + 2 + (4 + 1 + 4 + 16 + 4));
+        assert_eq!(u16::from_le_bytes(buf[5..7].try_into().unwrap()), 1); // 1 quest
+        assert_eq!(u32::from_le_bytes(buf[7..11].try_into().unwrap()), 1001);
+        assert_eq!(buf[11], 0); // status
+        assert_eq!(u32::from_le_bytes(buf[12..16].try_into().unwrap()), 1); // flags
+        assert_eq!(u32::from_le_bytes(buf[16..20].try_into().unwrap()), 2); // var 0
+        assert_eq!(u32::from_le_bytes(buf[32..36].try_into().unwrap()), 1600000000); // start_ts
     }
 
     #[test]

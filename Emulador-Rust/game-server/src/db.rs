@@ -570,6 +570,24 @@ impl Db {
         Ok(())
     }
 
+    /// Salva estado da quest usando tipos numéricos
+    pub fn save_quest(
+        &self,
+        character_id: u32,
+        quest_id: u32,
+        status: u8,
+        flags: u32,
+        vars: [u32; 4],
+        _start_ts: u32,
+    ) -> Result<()> {
+        let status_str = match status {
+            0 => "START",
+            1 => "COMPLETE",
+            _ => "REWARD",
+        };
+        self.salvar_quest(character_id, quest_id, status_str, vars[0], flags)
+    }
+
     /// Retorna todas as missões ativas ou concluídas do personagem
     pub fn quests_do_personagem(&self, character_id: u32) -> Result<Vec<QuestPersistida>> {
         let mut stmt = self.conn.prepare(

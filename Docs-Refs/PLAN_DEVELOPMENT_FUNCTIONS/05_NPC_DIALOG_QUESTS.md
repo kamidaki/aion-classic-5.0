@@ -1,6 +1,6 @@
-﻿# PLAN-05: NPC Dialog e Quests (SM_DIALOG_WINDOW 0x3C, CM_SHOW_DIALOG 0x34, SM_QUEST_LIST 0x47)
+# PLAN-05: NPC Dialog e Quests (SM_DIALOG_WINDOW 0x3C, CM_SHOW_DIALOG 0x34, SM_QUEST_LIST 0x47)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** ALTA — missões são o loop principal do tutorial.
 
 ---
