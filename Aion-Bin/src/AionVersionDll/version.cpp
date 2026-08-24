@@ -129,7 +129,7 @@ static LPWSTR WINAPI zzGetCommandLineW() {
 
 static decltype(CreateWindowExA)* real_CreateWindowExA = CreateWindowExA;
 static HWND WINAPI zzCreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {
-    if (lpClassName && (strcmp(lpClassName, "AION") == 0 || strcmp(lpClassName, "CryGame") == 0)) {
+    if (lpClassName && ((ULONG_PTR)lpClassName > 0xFFFF) && (strcmp(lpClassName, "AION") == 0 || strcmp(lpClassName, "CryGame") == 0)) {
         if ((dwStyle & WS_CAPTION) && !(dwStyle & WS_MAXIMIZE) && !(dwStyle & WS_MINIMIZE)) {
             RECT rect = {0, 0, nWidth, nHeight};
             AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
@@ -143,7 +143,7 @@ static HWND WINAPI zzCreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR
 
 static decltype(CreateWindowExW)* real_CreateWindowExW = CreateWindowExW;
 static HWND WINAPI zzCreateWindowExW(DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {
-    if (lpClassName && (wcscmp(lpClassName, L"AION") == 0 || wcscmp(lpClassName, L"CryGame") == 0)) {
+    if (lpClassName && ((ULONG_PTR)lpClassName > 0xFFFF) && (wcscmp(lpClassName, L"AION") == 0 || wcscmp(lpClassName, L"CryGame") == 0)) {
         if ((dwStyle & WS_CAPTION) && !(dwStyle & WS_MAXIMIZE) && !(dwStyle & WS_MINIMIZE)) {
             RECT rect = {0, 0, nWidth, nHeight};
             AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
