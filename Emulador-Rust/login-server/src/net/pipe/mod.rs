@@ -152,10 +152,14 @@ fn handle_rpc_method(
             serde_json::to_string(&resp).unwrap()
         }
         "ClientLibrary.queryGameAccountNumericId" => {
+            // Retornar 0 aqui e OBRIGATORIO para o cliente exibir o formulario de login in-game.
+            // Um ID != 0 sinaliza ao Aion.bin que ha uma conta vinculada pelo launcher Gameforge,
+            // o que faz ele pular o formulario e tentar autenticacao automatica via HQ/STS --
+            // rota que nao usamos. Com 0, o cliente exibe o formulario e aguarda o jogador digitar.
             let resp = RpcResponse {
                 id,
                 jsonrpc: "2.0",
-                result: 10000001,
+                result: 0i64,
             };
             serde_json::to_string(&resp).unwrap()
         }
