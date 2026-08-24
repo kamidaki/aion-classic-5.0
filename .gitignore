@@ -16,11 +16,8 @@ __pycache__/
 log/
 logs/
 *.log
-*.pcap
-*.pcapng
 *.WebView2/
 **/*.WebView2/
-
 
 # Arquivos de trabalho e bancos de dados locais de teste
 *.db-shm
@@ -37,16 +34,7 @@ logs/
 .project
 .settings/
 
-# Dados pesados externos de referência e cliente
-JAVA EMU - 4.8 RETAIL/
-**/JAVA EMU - 4.8 RETAIL/
-Docs-Refs/JAVA EMU - 4.8 RETAIL/
-JAVA EMU - 2.4 CLASSIC EU/
-**/JAVA EMU - 2.4 CLASSIC EU/
-Docs-Refs/JAVA EMU - 2.4 CLASSIC EU/
-reference/
-**/reference/
-Docs-Refs/reference/
+# Cliente binário pesado
 Cliente/
 dist/
 dist/*.zip
