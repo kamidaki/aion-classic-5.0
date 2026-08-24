@@ -35,7 +35,13 @@ logs/
 *.db-shm
 *.db-wal
 *.db
+!Produto Final/data/Banco de Dados/
+!Produto Final/data/Banco de Dados/*.db
 !Produto Final/data/*.db
+!Produto Final/config/*.json
+!Produto Final/*.bat
+!Produto Final/Client Patch/*.bat
+!Cliente/GFAion/aionclassic/Start_Client_Classic_EU.bat
 
 # IDEs e Editores
 .idea/
@@ -47,7 +53,8 @@ logs/
 .settings/
 
 # Cliente binário pesado
-Cliente/
+Cliente/*
+!Cliente/GFAion/aionclassic/Start_Client_Classic_EU.bat
 dist/
 dist/*.zip
 replay.bin
