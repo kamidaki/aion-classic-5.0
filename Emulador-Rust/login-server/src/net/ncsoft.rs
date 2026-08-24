@@ -1,3 +1,30 @@
+//! # ATENCAO: o cliente Gameforge nao le esta porta
+//!
+//! Medido em 25/08/2026 contra o cliente real, pela janela de recepcao do TCP: em **9 de 9**
+//! conexoes o cliente recebeu os 368 bytes da cadeia (194 + 50 + 74 + 50), a janela caiu
+//! exatamente 368 bytes e **nunca se recuperou**. Ou seja, os dados ficaram parados no buffer do
+//! socket: o cliente conecta, nao le um unico byte e fecha.
+//!
+//! O metodo se valida contra a captura do servidor oficial, onde 1,2 MB passaram por uma janela
+//! de 128 KB -- o que so acontece se a aplicacao estiver consumindo.
+//!
+//! ## O que isso invalida
+//!
+//! A escada de mensagens que aparecia ao mexer no `SM_LOGIN_OK` -- `Authorization Error (-101)`,
+//! depois `Your account has been blocked`, depois nenhuma -- foi atribuida ao conteudo desses
+//! pacotes. **Essa atribuicao esta errada**: o cliente nao os leu. A correlacao era coincidencia,
+//! e a origem daquelas mensagens continua desconhecida.
+//!
+//! Os layouts abaixo seguem `CONTEXT.md` e `Docs-Refs/PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md`,
+//! e nesse sentido estao corretos. Mas **nenhum deles foi confirmado contra o cliente**, e nao ha
+//! como confirmar enquanto ele nao ler a porta.
+//!
+//! ## Consequencia pratica
+//!
+//! Mexer em byte de pacote daqui nao muda o comportamento do cliente. O bloqueio e antes: ele
+//! abre o socket e nunca chega ao estado em que o atende. Quem manda nesse estado e a
+//! autenticacao pelo named pipe (`net::pipe`), nao esta porta.
+
 use crate::crypto::{LoginCryptEngine, RsaManager};
 use crate::db::AuthDb;
 use std::sync::Arc;
