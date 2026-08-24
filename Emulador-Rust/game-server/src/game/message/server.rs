@@ -72,6 +72,7 @@ const DELETE_CHARACTER: u16 = 0x00C9;
 const LOOT_ITEMLIST: u16 = 0x00CD;
 const LOOT: u16 = 0xCC;
 const RECIPE_LIST: u16 = 0x00CE;
+const SKILL_PENALTY_STATUS_OTHER: u16 = 0x00D8;
 const CUR_STATUS: u16 = 0x00E3;
 const CHANGE_CHANNEL: u16 = 0x00E5;
 const SIGN_CLIENT: u16 = 0x00E6;
@@ -159,6 +160,7 @@ pub enum Message {
     RequestTeleport(RequestTeleport),
     WindStateInfo(WindStateInfo),
     WindPathResult(WindPathResult),
+    SkillPenaltyStatusOther(SkillPenaltyStatusOther),
 }
 
 impl Serialise for Message {
@@ -232,6 +234,7 @@ impl Serialise for Message {
             Message::RequestTeleport(msg) => msg.serialise(&mut buf[2..]),
             Message::WindStateInfo(msg) => msg.serialise(&mut buf[2..]),
             Message::WindPathResult(msg) => msg.serialise(&mut buf[2..]),
+            Message::SkillPenaltyStatusOther(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -1781,106 +1784,103 @@ impl Serialise for MessageCode {
         len
     }
 }
-#[derive(Debug, Clone)]
-pub struct AbnormalStatus {
-    raw: [u8; 10],
+/// Efeito de status anormal (buff/debuff)
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct AbnormalEffect {
+    pub skill_id: u32,
+    pub remaining_ms: u32,
+    pub stack: u8,
 }
-impl AbnormalStatus {
-    pub fn new() -> Self {
-        Self { raw: [0u8; 10] }
+
+impl AbnormalEffect {
+    pub fn new(skill_id: u32, remaining_ms: u32, stack: u8) -> Self {
+        Self {
+            skill_id,
+            remaining_ms,
+            stack,
+        }
     }
 }
+
+impl Serialise for AbnormalEffect {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        to_le_bytes!(len, buf, self.skill_id);
+        to_le_bytes!(len, buf, self.remaining_ms);
+        to_le_bytes!(len, buf, self.stack);
+        len
+    }
+}
+
+/// S_ABNORMAL_STATUS (0x031) — buffs/debuffs no jogador LOCAL
+#[derive(Debug, Clone)]
+pub struct AbnormalStatus {
+    pub entity_id: u32,
+    pub effects: Vec<AbnormalEffect>,
+}
+
+impl AbnormalStatus {
+    pub fn new() -> Self {
+        Self {
+            entity_id: 0,
+            effects: Vec::new(),
+        }
+    }
+
+    pub fn with_effects(entity_id: u32, effects: Vec<AbnormalEffect>) -> Self {
+        Self { entity_id, effects }
+    }
+}
+
 impl Serialise for AbnormalStatus {
     fn serialise(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;
         len += add_prelude(ABNORMAL_STATUS, buf);
-
-        buf[len..len + self.raw.len()].copy_from_slice(&self.raw);
-        len += self.raw.len();
-
-        len
-    }
-}
-
-#[repr(u8)]
-#[derive(Debug, Clone, Copy)]
-enum EntityType {
-    Npc = 1,
-    Character = 2,
-}
-
-#[derive(Debug, Clone)]
-struct Effect {
-    skill_id: u16,
-    unknown1: u8,
-    unknown2: u8,
-    unknown3: u32,
-}
-
-impl Effect {
-    pub fn new() -> Self {
-        Self {
-            skill_id: 555,
-            unknown1: 9,
-            unknown2: 1,
-            unknown3: 0x07D0,
+        to_le_bytes!(len, buf, self.entity_id);
+        to_le_bytes!(len, buf, self.effects.len() as u32);
+        for eff in &self.effects {
+            len += eff.serialise(&mut buf[len..]);
         }
-    }
-}
-
-impl Serialise for Effect {
-    fn serialise(&self, buf: &mut [u8]) -> usize {
-        let mut len = 0;
-        to_le_bytes!(len, buf, self.skill_id);
-        to_le_bytes!(len, buf, self.unknown1);
-        to_le_bytes!(len, buf, self.unknown2);
-        to_le_bytes!(len, buf, self.unknown3);
         len
     }
 }
 
+/// S_ABNORMAL_STATUS_OTHER (0x032) — buffs/debuffs em OUTROS
 #[derive(Debug, Clone)]
 pub struct AbnormalStatusOther {
-    entity_id: u32,
-    entity_type: EntityType,
-    effects: Vec<Effect>,
+    pub entity_id: u32,
+    pub effects: Vec<AbnormalEffect>,
 }
+
 impl AbnormalStatusOther {
     pub fn new(entity_id: u32) -> Self {
         Self {
             entity_id,
-            entity_type: EntityType::Npc,
-            effects: vec![Effect::new()],
+            effects: Vec::new(),
         }
     }
+
+    pub fn with_effects(entity_id: u32, effects: Vec<AbnormalEffect>) -> Self {
+        Self { entity_id, effects }
+    }
+
     pub fn dead(entity_id: u32) -> Self {
         Self {
             entity_id,
-            entity_type: EntityType::Npc,
-            effects: vec![],
+            effects: Vec::new(),
         }
     }
 }
+
 impl Serialise for AbnormalStatusOther {
     fn serialise(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;
         len += add_prelude(ABNORMAL_STATUS_OTHER, buf);
-
         to_le_bytes!(len, buf, self.entity_id);
-        to_le_bytes!(len, buf, self.entity_type as u8);
-        copy_bytes!(
-            len,
-            buf,
-            [
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00,
-            ]
-        );
-        to_le_bytes!(len, buf, self.effects.len() as u16);
-        for effect in &self.effects {
-            len += effect.serialise(&mut buf[len..])
+        to_le_bytes!(len, buf, self.effects.len() as u32);
+        for eff in &self.effects {
+            len += eff.serialise(&mut buf[len..]);
         }
-
         len
     }
 }
@@ -2541,77 +2541,99 @@ impl Serialise for UseSkill {
     }
 }
 
-/// If the attack is a dash we have extra fields
-#[derive(Debug, Clone)]
-pub struct SkillSucceded {
-    character_id: u32,
-    target_id: u32,
-    skill_id: u16,
-    skill_level: u16,
-    /// This is deciseconds, 500 = 50 seconds
-    skill_cooldown: u32,
-    /// Supplied if we dash to a target
-    coords: Option<Coord>,
-    target_hp_percent: u8,
-    character_hp_percent: u8,
-    hits: Vec<Hit>,
+/// Efeito aplicado por habilidade (dano, cura, debuff)
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct SkillEffect {
+    pub target_id: u32,
+    pub damage: i32,     // negativo = dano, positivo = cura
+    pub damage_type: u8, // 0=físico, 1=mágico, 2=true
+    pub is_critical: u8,
 }
-impl SkillSucceded {
-    pub fn new(
-        character_id: u32,
-        target_id: u32,
-        skill_id: u16,
-        skill_level: u16,
-        skill_cooldown: u32,
-        hits: Vec<Hit>,
-    ) -> Self {
+
+impl SkillEffect {
+    pub fn new(target_id: u32, damage: i32, damage_type: u8, is_critical: u8) -> Self {
         Self {
             target_id,
-            character_id,
-            skill_id,
-            skill_level,
-            skill_cooldown,
-            target_hp_percent: 0,
-            character_hp_percent: 0,
-            hits,
-            coords: None,
+            damage,
+            damage_type,
+            is_critical,
         }
     }
 }
+
+/// S_SKILL_SUCCEDED (0x02B) — servidor confirma execução de habilidade
+#[derive(Debug, Clone)]
+pub struct SkillSucceded {
+    pub caster_id: u32,
+    pub target_id: u32,
+    pub skill_id: u32,
+    pub skill_level: u8,
+    pub effects: Vec<SkillEffect>,
+}
+
+impl SkillSucceded {
+    pub fn new(
+        caster_id: u32,
+        target_id: u32,
+        skill_id: u32,
+        skill_level: u8,
+        effects: Vec<SkillEffect>,
+    ) -> Self {
+        Self {
+            caster_id,
+            target_id,
+            skill_id,
+            skill_level,
+            effects,
+        }
+    }
+}
+
 impl Serialise for SkillSucceded {
     fn serialise(&self, buf: &mut [u8]) -> usize {
-        let mut ptr = 0;
-        ptr += add_prelude(SKILL_SUCCEDED, buf);
-
-        to_le_bytes!(ptr, buf, self.character_id);
-        to_le_bytes!(ptr, buf, 0u8);
-        to_le_bytes!(ptr, buf, self.target_id);
-        to_le_bytes!(ptr, buf, self.skill_id);
-        to_le_bytes!(ptr, buf, self.skill_level as u8);
-        to_le_bytes!(ptr, buf, self.skill_cooldown);
-        copy_bytes!(
-            ptr,
-            buf,
-            [0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00]
-        );
-        to_le_bytes!(ptr, buf, self.target_id);
-        to_le_bytes!(ptr, buf, 0u8);
-        to_le_bytes!(ptr, buf, self.target_hp_percent);
-        to_le_bytes!(ptr, buf, self.character_hp_percent);
-        copy_bytes!(
-            ptr,
-            buf,
-            [
-                0x00, // Attack type in the combat log
-                0x30, 0x00, 0x00, 0x00,
-            ]
-        );
-        to_le_bytes!(ptr, buf, self.hits.len() as u16);
-        for hit in &self.hits {
-            ptr += hit.serialise(&mut buf[ptr..]);
+        let mut len = 0;
+        len += add_prelude(SKILL_SUCCEDED, buf);
+        to_le_bytes!(len, buf, self.caster_id);
+        to_le_bytes!(len, buf, self.target_id);
+        to_le_bytes!(len, buf, self.skill_id);
+        to_le_bytes!(len, buf, self.skill_level);
+        to_le_bytes!(len, buf, self.effects.len() as u32);
+        for eff in &self.effects {
+            to_le_bytes!(len, buf, eff.target_id);
+            to_le_bytes!(len, buf, eff.damage);
+            to_le_bytes!(len, buf, eff.damage_type);
+            to_le_bytes!(len, buf, eff.is_critical);
         }
+        len
+    }
+}
 
-        ptr
+/// S_SKILL_PENALTY_STATUS_OTHER (0x0D8) — penalidade e cooldown de habilidade
+#[derive(Debug, Clone)]
+pub struct SkillPenaltyStatusOther {
+    pub entity_id: u32,
+    pub skill_id: u32,
+    pub cooldown_ms: u32,
+}
+
+impl SkillPenaltyStatusOther {
+    pub fn new(entity_id: u32, skill_id: u32, cooldown_ms: u32) -> Self {
+        Self {
+            entity_id,
+            skill_id,
+            cooldown_ms,
+        }
+    }
+}
+
+impl Serialise for SkillPenaltyStatusOther {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(SKILL_PENALTY_STATUS_OTHER, buf);
+        to_le_bytes!(len, buf, self.entity_id);
+        to_le_bytes!(len, buf, self.skill_id);
+        to_le_bytes!(len, buf, self.cooldown_ms);
+        len
     }
 }
 
@@ -2892,6 +2914,49 @@ impl Serialise for WindPathResult {
 mod testes_de_inventario {
     use super::*;
     use crate::data_loader::Slot;
+
+    #[test]
+    fn test_skill_succeded_serialise() {
+        let eff = SkillEffect::new(200, -250, 0, 1);
+        let ss = SkillSucceded::new(100, 200, 1001, 1, vec![eff]);
+        let mut buf = [0u8; 64];
+        let n = ss.serialise(&mut buf);
+        assert_eq!(n, 5 + 4 + 4 + 4 + 1 + 4 + (4 + 4 + 1 + 1), "5 prelude + 27 payload");
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 100);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 200);
+        assert_eq!(u32::from_le_bytes(buf[13..17].try_into().unwrap()), 1001);
+        assert_eq!(buf[17], 1);
+        assert_eq!(u32::from_le_bytes(buf[18..22].try_into().unwrap()), 1); // 1 effect
+        assert_eq!(u32::from_le_bytes(buf[22..26].try_into().unwrap()), 200);
+        assert_eq!(i32::from_le_bytes(buf[26..30].try_into().unwrap()), -250);
+        assert_eq!(buf[30], 0); // damage_type
+        assert_eq!(buf[31], 1); // is_critical
+    }
+
+    #[test]
+    fn test_abnormal_status_serialise() {
+        let eff = AbnormalEffect::new(1001, 30000, 1);
+        let ab = AbnormalStatus::with_effects(12345, vec![eff]);
+        let mut buf = [0u8; 64];
+        let n = ab.serialise(&mut buf);
+        assert_eq!(n, 5 + 4 + 4 + (4 + 4 + 1), "5 prelude + 17 payload");
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 12345);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 1); // 1 effect
+        assert_eq!(u32::from_le_bytes(buf[13..17].try_into().unwrap()), 1001);
+        assert_eq!(u32::from_le_bytes(buf[17..21].try_into().unwrap()), 30000);
+        assert_eq!(buf[21], 1);
+    }
+
+    #[test]
+    fn test_skill_penalty_status_other_serialise() {
+        let sp = SkillPenaltyStatusOther::new(12345, 1001, 3000);
+        let mut buf = [0u8; 64];
+        let n = sp.serialise(&mut buf);
+        assert_eq!(n, 5 + 4 + 4 + 4, "5 prelude + 12 payload");
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 12345);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 1001);
+        assert_eq!(u32::from_le_bytes(buf[13..17].try_into().unwrap()), 3000);
+    }
 
     #[test]
     fn test_wind_state_info_serialise_13_bytes() {

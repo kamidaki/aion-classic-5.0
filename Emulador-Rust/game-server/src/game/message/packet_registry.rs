@@ -87,6 +87,7 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x8B, name: "S_SA_ACCOUNT_ITEM_NOTI", direction: PacketDirection::ServerToClient, description: "Destrava essencial do lobby de personagens" },
         PacketDefinition { opcode: 0xA2, name: "SM_WIND_PATH_RESULT", direction: PacketDirection::ServerToClient, description: "Rota pré-calculada de voo em corrente de vento" },
         PacketDefinition { opcode: 0xA3, name: "SM_WIND_STATE_INFO", direction: PacketDirection::ServerToClient, description: "Confirmação de estado em corrente de vento" },
+        PacketDefinition { opcode: 0xD8, name: "SM_SKILL_PENALTY_STATUS_OTHER", direction: PacketDirection::ServerToClient, description: "Penalidade e cooldown de habilidade" },
     ];
 
     pub fn find_client_packet(opcode: u16) -> Option<&'static PacketDefinition> {

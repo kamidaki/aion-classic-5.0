@@ -1,6 +1,6 @@
-﻿# PLAN-03: Combate — Skills (C_USE_SKILL 0x021, S_SKILL_SUCCEDED 0x02B, S_ABNORMAL_STATUS 0x031/0x032)
+# PLAN-03: Combate — Skills (C_USE_SKILL 0x021, S_SKILL_SUCCEDED 0x02B, S_ABNORMAL_STATUS 0x031/0x032)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** ALTA — 311 pacotes de skill capturados, incluindo 3 categorias distintas.
 
 ---

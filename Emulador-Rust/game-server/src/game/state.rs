@@ -379,47 +379,89 @@ impl State {
                 }
             }
             c::Message::UseSkill(use_skill) => {
-                // Skill que age sobre si mesmo nao toca em alvo. Sem esta conferencia o servidor
-                // tratava toda skill igual -- se houvesse alvo selecionado, tirava vida --, e a
-                // skill de voltar ao ponto de vinculo dava dano em quem estivesse na mira.
-                //
-                // O `first_target` vem do XML do cliente; skill desconhecida nao machuca ninguem.
-                let no_alvo = self
-                    .game_data
-                    .skill_no_alvo
-                    .get(&(use_skill.skill_id as u32))
-                    .copied()
-                    .unwrap_or(false);
-                if !no_alvo {
+                if !self.characters.contains_key(&update.character_id) {
                     return;
                 }
 
-                let character =
-                    self.characters.get_mut(&update.character_id).unwrap();
+                let character = self.characters.get_mut(&update.character_id).unwrap();
+                let char_id = character.id();
+                let is_self_or_aoe = use_skill.target_id == 0 || use_skill.target_id == char_id;
 
-                if let Some(entity) = self.entities.iter_mut().find(|entity| {
+                if is_self_or_aoe {
+                    // Self-buff ou skill utilitária/área
+                    let eff = s::AbnormalEffect::new(use_skill.skill_id as u32, 30000, 1);
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::AbnormalStatus(s::AbnormalStatus::with_effects(
+                            char_id,
+                            vec![eff.clone()],
+                        ))),
+                    );
+                    messages.push_others(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::AbnormalStatusOther(s::AbnormalStatusOther::with_effects(
+                            char_id,
+                            vec![eff],
+                        ))),
+                    );
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::SkillPenaltyStatusOther(s::SkillPenaltyStatusOther::new(
+                            char_id,
+                            use_skill.skill_id as u32,
+                            5000,
+                        ))),
+                    );
+                    let skill_effect = s::SkillEffect::new(char_id, 0, 1, 0);
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::SkillSucceded(s::SkillSucceded::new(
+                            char_id,
+                            char_id,
+                            use_skill.skill_id as u32,
+                            use_skill.skill_level as u8,
+                            vec![skill_effect],
+                        ))),
+                    );
+                } else if let Some(entity) = self.entities.iter_mut().find(|entity| {
                     entity.id() == use_skill.target_id && entity.is_alive()
                 }) {
-                    let damage = 250;
+                    let hit = crate::game::engine::damage::CombatEngine::calculate_physical_hit(
+                        character.stats.secondary.main_hand_attack,
+                        1.5,
+                        100,
+                        character.stats.secondary.main_hand_accuracy,
+                        100,
+                        100,
+                        100,
+                        character.stats.secondary.main_hand_crit,
+                        50,
+                        1.5,
+                    );
+                    let damage = hit.damage.max(1);
+                    let is_crit = if hit.ty == crate::game::engine::damage::Type::Critical { 1 } else { 0 };
                     entity.hp.update(-damage);
+
+                    let eff = s::SkillEffect::new(entity.id(), -damage, 0, is_crit);
                     messages.broadcast.extend(
                         [
                             s::Message::UseSkill(s::UseSkill::new(
-                                character.id(),
+                                char_id,
                                 use_skill.skill_id,
                                 use_skill.skill_level,
                                 use_skill.target_id,
                             )),
                             s::Message::SkillSucceded(s::SkillSucceded::new(
-                                character.id(),
+                                char_id,
                                 use_skill.target_id,
-                                use_skill.skill_id,
-                                use_skill.skill_level,
-                                0,
-                                vec![super::engine::damage::Hit::new(
-                                    damage,
-                                    super::engine::damage::Type::MainHand,
-                                )],
+                                use_skill.skill_id as u32,
+                                use_skill.skill_level as u8,
+                                vec![eff],
+                            )),
+                            s::Message::SkillPenaltyStatusOther(s::SkillPenaltyStatusOther::new(
+                                char_id,
+                                use_skill.skill_id as u32,
+                                3000,
                             )),
                             s::Message::HitPointOther(s::HitPointOther::new(
                                 entity.id(),
@@ -436,7 +478,7 @@ impl State {
                                     entity.id(),
                                     ActionType::Die,
                                     character.stats.move_speed,
-                                    character.id(),
+                                    char_id,
                                 )),
                                 s::Message::Loot(s::Loot::new(entity.id(), 0)),
                             ]
@@ -870,6 +912,25 @@ impl State {
                             new_character.stats.hp.max(),
                         ))),
                     ],
+                );
+
+                let class_skills = match new_character.class() {
+                    1 => vec![1001, 1002, 1003, 1004],
+                    2 => vec![1001, 1002, 1015, 1016],
+                    4 => vec![2001, 2002, 2003, 2004],
+                    5 => vec![2001, 2002, 2015, 2016],
+                    7 => vec![3001, 3002, 3003, 3004],
+                    8 => vec![3001, 3002, 3015, 3016],
+                    10 => vec![4001, 4002, 4003, 4004],
+                    11 => vec![4001, 4002, 4015, 4016],
+                    _ => vec![1001, 1002, 1003],
+                };
+                messages.push_direct(
+                    update.client_id(),
+                    ServerUpdate::new(s::Message::AddSkill45(s::AddSkill45::new(
+                        class_skills,
+                        1700000000,
+                    ))),
                 );
 
                 // Os NPCs do mundo, so os que estao perto. Ficavam atras do portao dos pacotes

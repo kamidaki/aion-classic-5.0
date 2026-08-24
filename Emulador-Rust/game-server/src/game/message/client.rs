@@ -1593,7 +1593,12 @@ pub struct UseSkill {
     pub skill_id: u16,
     pub skill_level: u16,
     pub target_id: u32,
-    unknown: Vec<u8>,
+    pub cast_type: u8,
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub heading: u8,
+    pub unknown: Vec<u8>,
 }
 impl UseSkill {
     pub fn handle(
@@ -1613,15 +1618,25 @@ impl Deserialise for UseSkill {
     {
         let mut ptr = 0;
 
-        let id = consume_le_bytes!(ptr, buf, u16);
-        let level = consume_le_bytes!(ptr, buf, u16);
-        let target_id = consume_le_bytes!(ptr, buf, u32);
-        let unknown = buf[ptr..].to_vec();
+        let skill_id = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) } else { 0 };
+        let skill_level = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u16) } else { 1 };
+        let target_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let cast_type = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        let x = if buf.len() >= 13 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+        let y = if buf.len() >= 17 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+        let z = if buf.len() >= 21 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+        let heading = if buf.len() >= 22 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        let unknown = if buf.len() > ptr { buf[ptr..].to_vec() } else { Vec::new() };
 
         Self {
-            skill_id: id,
-            skill_level: level,
+            skill_id,
+            skill_level,
             target_id,
+            cast_type,
+            x,
+            y,
+            z,
+            heading,
             unknown,
         }
     }

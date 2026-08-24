@@ -619,6 +619,14 @@ impl Character {
     pub fn location(&self) -> &Coord {
         &self.location
     }
+    pub fn class(&self) -> u32 {
+        if let Some(ref ap) = self.aparencia {
+            if ap.len() >= 64 {
+                return u32::from_le_bytes(ap[60..64].try_into().unwrap_or([11, 0, 0, 0]));
+            }
+        }
+        11
+    }
     pub fn serialise_name_utf16(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;
         self.name.encode_utf16().for_each(|c| {
