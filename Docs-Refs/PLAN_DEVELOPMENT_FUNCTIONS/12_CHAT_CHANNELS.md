@@ -1,6 +1,6 @@
-﻿# PLAN-12: Chat Channels — SM_MESSAGE 0x18, Whisper, Canais Regionais, Anti-Flood
+# PLAN-12: Chat Channels — SM_MESSAGE 0x18, Whisper, Canais Regionais, Anti-Flood
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** MÉDIA — base do sistema de comunicação do jogo.
 
 ---

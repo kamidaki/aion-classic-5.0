@@ -154,15 +154,105 @@ warning: variant `HideDashboard` is never constructed
   |     ^^^^^^^^^^^^^
 
 warning: `auto-start` (bin "auto-start") generated 2 warnings
+error[E0433]: cannot find `PositionSelf` in `s`
+    --> game-server\src\game\state.rs:1977:83
+     |
+1977 | ...                   ServerUpdate::new(s::Message::PositionSelf(s::PositionSelf::new(
+     |                                                                     ^^^^^^^^^^^^ could not find `PositionSelf` in `s`
+
+error[E0433]: cannot find `PositionSelf` in `s`
+    --> game-server\src\game\state.rs:1991:87
+     |
+1991 | ...                   ServerUpdate::new(s::Message::PositionSelf(s::PositionSelf::new(
+     |                                                                     ^^^^^^^^^^^^ could not find `PositionSelf` in `s`
+
+error[E0599]: no method named `set_map_id` found for mutable reference `&mut Character` in the current scope
+    --> game-server\src\game\state.rs:1973:47
+     |
+1973 | ...                   character.set_map_id(map_id);
+     |                                 ^^^^^^^^^^
+     |
+help: there is a method `set_id` with a similar name
+     |
+1973 -                                     character.set_map_id(map_id);
+1973 +                                     character.set_id(map_id);
+     |
+
+error[E0599]: no variant or associated item named `PositionSelf` found for enum `server::Message` in the current scope
+    --> game-server\src\game\state.rs:1977:67
+     |
+1977 | ...                   ServerUpdate::new(s::Message::PositionSelf(s::PositionSelf::new(
+     |                                                     ^^^^^^^^^^^^ variant or associated item not found in `server::Message`
+     |
+    ::: game-server\src\game\message\server.rs:117:1
+     |
+ 117 | pub enum Message {
+     | ---------------- variant or associated item `PositionSelf` not found for this enum
+
+error[E0599]: no method named `set_map_id` found for mutable reference `&mut Character` in the current scope
+    --> game-server\src\game\state.rs:1987:51
+     |
+1987 | ...                   character.set_map_id(map_id);
+     |                                 ^^^^^^^^^^
+     |
+help: there is a method `set_id` with a similar name
+     |
+1987 -                                         character.set_map_id(map_id);
+1987 +                                         character.set_id(map_id);
+     |
+
+error[E0599]: no variant or associated item named `PositionSelf` found for enum `server::Message` in the current scope
+    --> game-server\src\game\state.rs:1991:71
+     |
+1991 | ...                   ServerUpdate::new(s::Message::PositionSelf(s::PositionSelf::new(
+     |                                                     ^^^^^^^^^^^^ variant or associated item not found in `server::Message`
+     |
+    ::: game-server\src\game\message\server.rs:117:1
+     |
+ 117 | pub enum Message {
+     | ---------------- variant or associated item `PositionSelf` not found for this enum
+
+error[E0308]: mismatched types
+    --> game-server\src\game\state.rs:2000:61
+     |
+2000 | ...                   character.stats.level = level as u8;
+     |                       ---------------------   ^^^^^^^^^^^ expected `u16`, found `u8`
+     |                       |
+     |                       expected due to the type of this binding
+
+error[E0609]: no field `channel_type` on type `&ChatMessagePublic`
+    --> game-server\src\game\state.rs:2019:25
+     |
+2019 |                     msg.channel_type,
+     |                         ^^^^^^^^^^^^ unknown field
+     |
+help: a field with a similar name exists
+     |
+2019 -                     msg.channel_type,
+2019 +                     msg.chat_type,
+     |
+
+error[E0609]: no field `channel_type` on type `&ChatMessagePublic`
+    --> game-server\src\game\state.rs:2024:27
+     |
+2024 |                 match msg.channel_type {
+     |                           ^^^^^^^^^^^^ unknown field
+     |
+help: a field with a similar name exists
+     |
+2024 -                 match msg.channel_type {
+2024 +                 match msg.chat_type {
+     |
+
 warning: value assigned to `len` is never read
     --> game-server\src\game\mod.rs:103:9
      |
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1178:48
+    ::: game-server\src\game\message\client.rs:1183:48
      |
-1178 |         let character_id = if buf.len() >= 8 { consume_le_bytes!(len, buf, u32) } else { 0 };
+1183 |         let character_id = if buf.len() >= 8 { consume_le_bytes!(len, buf, u32) } else { 0 };
      |                                                -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -175,9 +265,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1838:46
+    ::: game-server\src\game\message\client.rs:1843:46
      |
-1838 |         let equip_slot = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+1843 |         let equip_slot = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                              -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -189,9 +279,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1935:45
+    ::: game-server\src\game\message\client.rs:1940:45
      |
-1935 |         let dialog_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+1940 |         let dialog_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                             -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -203,9 +293,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1959:45
+    ::: game-server\src\game\message\client.rs:1964:45
      |
-1959 |         let quest_id = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+1964 |         let quest_id = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                             -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -217,9 +307,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1982:42
+    ::: game-server\src\game\message\client.rs:1987:42
      |
-1982 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 1 };
+1987 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 1 };
      |                                          ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -231,9 +321,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2016:45
+    ::: game-server\src\game\message\client.rs:2021:45
      |
-2016 |         let progress = if buf.len() >= 24 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+2021 |         let progress = if buf.len() >= 24 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
      |                                             -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -245,9 +335,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2052:43
+    ::: game-server\src\game\message\client.rs:2057:43
      |
-2052 |         let action = if buf.len() >= 17 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+2057 |         let action = if buf.len() >= 17 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
      |                                           ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -259,9 +349,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2081:42
+    ::: game-server\src\game\message\client.rs:2086:42
      |
-2081 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+2086 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
      |                                          ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -273,9 +363,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2150:54
+    ::: game-server\src\game\message\client.rs:2155:54
      |
-2150 |         let kinah_amount = if buf.len() >= ptr + 8 { consume_le_bytes!(ptr, buf, u64) } else { 0 };
+2155 |         let kinah_amount = if buf.len() >= ptr + 8 { consume_le_bytes!(ptr, buf, u64) } else { 0 };
      |                                                      -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -287,9 +377,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2180:40
+    ::: game-server\src\game\message\client.rs:2185:40
      |
-2180 |         let page = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) } else { 0 };
+2185 |         let page = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) } else { 0 };
      |                                        -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -301,9 +391,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2201:43
+    ::: game-server\src\game\message\client.rs:2206:43
      |
-2201 |         let buff_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+2206 |         let buff_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                           -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -315,9 +405,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2224:45
+    ::: game-server\src\game\message\client.rs:2229:45
      |
-2224 |         let target_id = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+2229 |         let target_id = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                             -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -329,9 +419,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2247:42
+    ::: game-server\src\game\message\client.rs:2252:42
      |
-2247 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+2252 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
      |                                          ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -343,18 +433,74 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2312:43
+    ::: game-server\src\game\message\client.rs:2317:43
      |
-2312 |         let action = if buf.len() > ptr { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+2317 |         let action = if buf.len() > ptr { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+     |                                           ------------------------------- in this macro invocation
+     |
+     = help: maybe it is overwritten before being read?
+     = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `ptr` is never read
+    --> game-server\src\game\mod.rs:103:9
+     |
+ 103 |         $ptr += size;
+     |         ^^^^^^^^^^^^
+     |
+    ::: game-server\src\game\message\client.rs:2344:51
+     |
+2344 |         let price_per_unit = if buf.len() >= 20 { consume_le_bytes!(ptr, buf, u64) } else { 0 };
+     |                                                   -------------------------------- in this macro invocation
+     |
+     = help: maybe it is overwritten before being read?
+     = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `ptr` is never read
+    --> game-server\src\game\mod.rs:103:9
+     |
+ 103 |         $ptr += size;
+     |         ^^^^^^^^^^^^
+     |
+    ::: game-server\src\game\message\client.rs:2374:40
+     |
+2374 |         let page = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+     |                                        -------------------------------- in this macro invocation
+     |
+     = help: maybe it is overwritten before being read?
+     = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `ptr` is never read
+    --> game-server\src\game\mod.rs:103:9
+     |
+ 103 |         $ptr += size;
+     |         ^^^^^^^^^^^^
+     |
+    ::: game-server\src\game\message\client.rs:2401:44
+     |
+2401 |         let quantity = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 1 };
+     |                                            -------------------------------- in this macro invocation
+     |
+     = help: maybe it is overwritten before being read?
+     = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `ptr` is never read
+    --> game-server\src\game\mod.rs:103:9
+     |
+ 103 |         $ptr += size;
+     |         ^^^^^^^^^^^^
+     |
+    ::: game-server\src\game\message\client.rs:2424:43
+     |
+2424 |         let quality = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
      |                                           ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
      = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
 
 warning: variable does not need to be mutable
-   --> game-server\src\game\message\server.rs:325:13
+   --> game-server\src\game\message\server.rs:343:13
     |
-325 |         let mut len = add_prelude(self.opcode, buf);
+343 |         let mut len = add_prelude(self.opcode, buf);
     |             ----^^^
     |             |
     |             help: remove this `mut`
@@ -369,2016 +515,7 @@ warning: unused variable: `target_id`
     |
     = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
 
-warning: field `id` is never read
-  --> game-server\src\data_loader.rs:17:9
-   |
-16 | pub struct NpcDef {
-   |            ------ field in this struct
-17 |     pub id: u32,
-   |         ^^
-   |
-   = note: `NpcDef` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
-
-warning: fields `id` and `name` are never read
-  --> game-server\src\data_loader.rs:46:9
-   |
-45 | pub struct ItemDef {
-   |            ------- fields in this struct
-46 |     pub id: u32,
-   |         ^^
-47 |     pub name: String,
-   |         ^^^^
-   |
-   = note: `ItemDef` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `mapa` is never read
-  --> game-server\src\data_loader.rs:72:9
-   |
-71 | pub struct Spawn {
-   |            ----- field in this struct
-72 |     pub mapa: u32,
-   |         ^^^^
-   |
-   = note: `Spawn` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `account_id` is never read
-  --> game-server\src\db.rs:26:9
-   |
-24 | pub struct PersistedCharacter {
-   |            ------------------ field in this struct
-25 |     pub id: u32,
-26 |     pub account_id: i64,
-   |         ^^^^^^^^^^
-
-warning: struct `QuestPersistida` is never constructed
-  --> game-server\src\db.rs:44:12
-   |
-44 | pub struct QuestPersistida {
-   |            ^^^^^^^^^^^^^^^
-
-warning: methods `quests_do_personagem`, `cartas_do_personagem`, `criar_guild`, `adicionar_membro_guild`, `remover_membro_guild`, and `guild_do_jogador` are never used
-   --> game-server\src\db.rs:631:12
-    |
- 51 | impl Db {
-    | ------- methods in this implementation
-...
-631 |     pub fn quests_do_personagem(&self, character_id: u32) -> Result<Vec<QuestPersistida>> {
-    |            ^^^^^^^^^^^^^^^^^^^^
-...
-679 |     pub fn cartas_do_personagem(&self, recipient_id: u32) -> Result<Vec<crate::game::mail::Letter>> {
-    |            ^^^^^^^^^^^^^^^^^^^^
-...
-734 |     pub fn criar_guild(&self, name: &str, race: u8, leader_id: u32) -> Result<u32> {
-    |            ^^^^^^^^^^^
-...
-744 |     pub fn adicionar_membro_guild(&self, guild_id: u32, player_id: u32, rank_index: u8) -> Result<()> {
-    |            ^^^^^^^^^^^^^^^^^^^^^^
-...
-752 |     pub fn remover_membro_guild(&self, guild_id: u32, player_id: u32) -> Result<bool> {
-    |            ^^^^^^^^^^^^^^^^^^^^
-...
-760 |     pub fn guild_do_jogador(&self, player_id: u32) -> Result<Option<crate::game::guild::Guild>> {
-    |            ^^^^^^^^^^^^^^^^
-
-warning: field `0` is never read
- --> game-server\src\error.rs:5:22
-  |
-5 |     SetStreamTimeout(std::io::Error),
-  |     ---------------- ^^^^^^^^^^^^^^
-  |     |
-  |     field in this variant
-  |
-  = note: `Error` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
-help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
-  |
-5 -     SetStreamTimeout(std::io::Error),
-5 +     SetStreamTimeout(()),
-  |
-
-warning: field `0` is never read
- --> game-server\src\error.rs:6:14
-  |
-6 |     PeerAddr(std::io::Error),
-  |     -------- ^^^^^^^^^^^^^^
-  |     |
-  |     field in this variant
-  |
-  = note: `Error` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
-help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
-  |
-6 -     PeerAddr(std::io::Error),
-6 +     PeerAddr(()),
-  |
-
-warning: associated function `new` is never used
-   --> game-server\src\game\mod.rs:148:12
-    |
-132 | impl ClientUpdate {
-    | ----------------- associated function in this implementation
-...
-148 |     pub fn new(client_id: u16, character_id: u32, message: c::Message) -> Self {
-    |            ^^^
-
-warning: method `extend_others` is never used
-   --> game-server\src\game\mod.rs:230:12
-    |
-186 | impl Messages {
-    | ------------- method in this implementation
-...
-230 |     pub fn extend_others(
-    |            ^^^^^^^^^^^^^
-
-warning: enum `AdminLevel` is never used
- --> game-server\src\game\admin.rs:6:10
-  |
-6 | pub enum AdminLevel {
-  |          ^^^^^^^^^^
-
-warning: struct `Punishment` is never constructed
-  --> game-server\src\game\admin.rs:15:12
-   |
-15 | pub struct Punishment {
-   |            ^^^^^^^^^^
-
-warning: associated items `new`, `apply_mute`, `apply_jail`, `apply_ban`, `is_active_mute`, and `is_active_jail` are never used
-  --> game-server\src\game\admin.rs:26:12
-   |
-25 | impl Punishment {
-   | --------------- associated items in this implementation
-26 |     pub fn new(account_id: u32, player_id: u32) -> Self {
-   |            ^^^
-...
-38 |     pub fn apply_mute(&mut self, duration_ticks: u64, current_tick: u64) {
-   |            ^^^^^^^^^^
-...
-43 |     pub fn apply_jail(&mut self, duration_ticks: u64, current_tick: u64) {
-   |            ^^^^^^^^^^
-...
-48 |     pub fn apply_ban(&mut self) {
-   |            ^^^^^^^^^
-...
-52 |     pub fn is_active_mute(&self, current_tick: u64) -> bool {
-   |            ^^^^^^^^^^^^^^
-...
-56 |     pub fn is_active_jail(&self, current_tick: u64) -> bool {
-   |            ^^^^^^^^^^^^^^
-
-warning: struct `AntiHackEngine` is never constructed
-  --> game-server\src\game\admin.rs:62:12
-   |
-62 | pub struct AntiHackEngine {
-   |            ^^^^^^^^^^^^^^
-
-warning: associated items `new`, `validate_attack_speed`, `validate_movement`, and `validate_packet_rate` are never used
-   --> game-server\src\game\admin.rs:68:12
-    |
- 67 | impl AntiHackEngine {
-    | ------------------- associated items in this implementation
- 68 |     pub fn new() -> Self {
-    |            ^^^
-...
- 75 |     pub fn validate_attack_speed(&mut self, current_time_ms: u64, weapon_attack_speed_ms: u64) -> bool {
-    |            ^^^^^^^^^^^^^^^^^^^^^
-...
- 92 |     pub fn validate_movement(old_pos: &Coord, new_pos: &Coord, elapsed_secs: f32, max_speed_m_s: f32) -> bool {
-    |            ^^^^^^^^^^^^^^^^^
-...
-102 |     pub fn validate_packet_rate(packets_in_second: u32) -> bool {
-    |            ^^^^^^^^^^^^^^^^^^^^
-
-warning: enum `ArenaType` is never used
- --> game-server\src\game\arena.rs:6:10
-  |
-6 | pub enum ArenaType {
-  |          ^^^^^^^^^
-
-warning: methods `required_players` and `max_rounds` are never used
-  --> game-server\src\game\arena.rs:15:12
-   |
-14 | impl ArenaType {
-   | -------------- methods in this implementation
-15 |     pub fn required_players(&self) -> usize {
-   |            ^^^^^^^^^^^^^^^^
-...
-25 |     pub fn max_rounds(&self) -> u8 {
-   |            ^^^^^^^^^^
-
-warning: struct `AutoGroupQueue` is never constructed
-  --> game-server\src\game\arena.rs:34:12
-   |
-34 | pub struct AutoGroupQueue {
-   |            ^^^^^^^^^^^^^^
-
-warning: associated items `new`, `register`, `unregister`, and `try_match` are never used
-  --> game-server\src\game\arena.rs:39:12
-   |
-38 | impl AutoGroupQueue {
-   | ------------------- associated items in this implementation
-39 |     pub fn new() -> Self {
-   |            ^^^
-...
-43 |     pub fn register(&mut self, player_id: u32, arena_type: ArenaType, level: u16) -> bool {
-   |            ^^^^^^^^
-...
-52 |     pub fn unregister(&mut self, player_id: u32) -> bool {
-   |            ^^^^^^^^^^
-...
-61 |     pub fn try_match(&mut self, arena_type: ArenaType) -> Option<Vec<u32>> {
-   |            ^^^^^^^^^
-
-warning: struct `ArenaMatch` is never constructed
-  --> game-server\src\game\arena.rs:87:12
-   |
-87 | pub struct ArenaMatch {
-   |            ^^^^^^^^^^
-
-warning: associated items `new`, `record_kill`, `record_surkana`, `get_winner`, and `calculate_reward` are never used
-   --> game-server\src\game\arena.rs:97:12
-    |
- 96 | impl ArenaMatch {
-    | --------------- associated items in this implementation
- 97 |     pub fn new(match_id: u32, arena_type: ArenaType, players: &[u32], start_tick: u64, round_duration_ticks: u64) -> Self {
-    |            ^^^
-...
-113 |     pub fn record_kill(&mut self, killer_id: u32, victim_id: u32) {
-    |            ^^^^^^^^^^^
-...
-122 |     pub fn record_surkana(&mut self, player_id: u32) {
-    |            ^^^^^^^^^^^^^^
-...
-128 |     pub fn get_winner(&self) -> Option<u32> {
-    |            ^^^^^^^^^^
-...
-132 |     pub fn calculate_reward(&self, player_id: u32) -> (u32, u32) {
-    |            ^^^^^^^^^^^^^^^^
-
-warning: enum `BrokerRace` is never used
- --> game-server\src\game\broker.rs:5:10
-  |
-5 | pub enum BrokerRace {
-  |          ^^^^^^^^^^
-
-warning: struct `BrokerItem` is never constructed
-  --> game-server\src\game\broker.rs:11:12
-   |
-11 | pub struct BrokerItem {
-   |            ^^^^^^^^^^
-
-warning: associated items `new` and `is_expired` are never used
-  --> game-server\src\game\broker.rs:25:12
-   |
-24 | impl BrokerItem {
-   | --------------- associated items in this implementation
-25 |     pub fn new(
-   |            ^^^
-...
-53 |     pub fn is_expired(&self, current_time_sec: u64) -> bool {
-   |            ^^^^^^^^^^
-
-warning: struct `BrokerService` is never constructed
-  --> game-server\src\game\broker.rs:60:12
-   |
-60 | pub struct BrokerService {
-   |            ^^^^^^^^^^^^^
-
-warning: multiple associated items are never used
-   --> game-server\src\game\broker.rs:66:15
-    |
- 65 | impl BrokerService {
-    | ------------------ associated items in this implementation
- 66 |     pub const REGISTRATION_FEE_PERCENT: f64 = 0.02; // 2% taxa de registro
-    |               ^^^^^^^^^^^^^^^^^^^^^^^^
- 67 |     pub const SALES_FEE_PERCENT: f64 = 0.02; // 2% taxa de venda
-    |               ^^^^^^^^^^^^^^^^^
- 68 |
- 69 |     pub fn new() -> Self {
-    |            ^^^
-...
- 76 |     pub fn register_item(
-    |            ^^^^^^^^^^^^^
-...
-104 |     pub fn search_items(
-    |            ^^^^^^^^^^^^
-...
-123 |     pub fn buy_item(
-    |            ^^^^^^^^
-...
-152 |     pub fn cancel_listing(&mut self, broker_item_id: u32, seller_id: u32) -> Result<(u32, u32), &'static str> {
-    |            ^^^^^^^^^^^^^^
-...
-165 |     pub fn settle_seller_proceeds(&mut self, seller_id: u32) -> u64 {
-    |            ^^^^^^^^^^^^^^^^^^^^^^
-
-warning: method `level` is never used
-  --> game-server\src\game\character.rs:40:12
-   |
-39 | impl Stats {
-   | ---------- method in this implementation
-40 |     pub fn level(&self) -> u16 {
-   |            ^^^^^
-
-warning: fields `guild_id` and `attack_sequence` are never read
-   --> game-server\src\game\character.rs:176:9
-    |
-162 | pub struct Character {
-    |            --------- fields in this struct
-...
-176 |     pub guild_id: Option<u32>,
-    |         ^^^^^^^^
-...
-180 |     attack_sequence: u8,
-    |     ^^^^^^^^^^^^^^^
-    |
-    = note: `Character` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: methods `set_id`, `set_heading`, `attack`, `regenerate`, and `drain_flight_points` are never used
-   --> game-server\src\game\character.rs:607:12
-    |
-182 | impl Character {
-    | -------------- methods in this implementation
-...
-607 |     pub fn set_id(&mut self, id: u32) {
-    |            ^^^^^^
-...
-628 |     pub fn set_heading(&mut self, heading: u8) {
-    |            ^^^^^^^^^^^
-...
-777 |     pub fn attack(&mut self, entity: &mut Entity) -> Vec<Hit> {
-    |            ^^^^^^
-...
-795 |     pub fn regenerate(&mut self, seated: bool, in_combat: bool) -> (bool, bool) {
-    |            ^^^^^^^^^^
-...
-832 |     pub fn drain_flight_points(&mut self, amount: u32) -> bool {
-    |            ^^^^^^^^^^^^^^^^^^^
-
-warning: enum `CraftProfession` is never used
- --> game-server\src\game\craft.rs:7:10
-  |
-7 | pub enum CraftProfession {
-  |          ^^^^^^^^^^^^^^^
-
-warning: enum `GatherResult` is never used
-  --> game-server\src\game\craft.rs:20:10
-   |
-20 | pub enum GatherResult {
-   |          ^^^^^^^^^^^^
-
-warning: struct `Gatherable` is never constructed
-  --> game-server\src\game\craft.rs:27:12
-   |
-27 | pub struct Gatherable {
-   |            ^^^^^^^^^^
-
-warning: associated items `new`, `can_gather`, and `harvest` are never used
-  --> game-server\src\game\craft.rs:38:12
-   |
-37 | impl Gatherable {
-   | --------------- associated items in this implementation
-38 |     pub fn new(
-   |            ^^^
-...
-58 |     pub fn can_gather(&self, player_skill: u16, player_pos: &Coord, is_flying: bool) -> bool {
-   |            ^^^^^^^^^^
-...
-70 |     pub fn harvest(&mut self) -> Option<(u32, u32)> {
-   |            ^^^^^^^
-
-warning: struct `CraftRecipe` is never constructed
-  --> game-server\src\game\craft.rs:81:12
-   |
-81 | pub struct CraftRecipe {
-   |            ^^^^^^^^^^^
-
-warning: associated items `new`, `can_craft`, and `execute_craft` are never used
-   --> game-server\src\game\craft.rs:93:12
-    |
- 92 | impl CraftRecipe {
-    | ---------------- associated items in this implementation
- 93 |     pub fn new(
-    |            ^^^
-...
-115 |     pub fn can_craft(&self, player_skill: u16, inventory: &HashMap<u32, u64>) -> bool {
-    |            ^^^^^^^^^
-...
-130 |     pub fn execute_craft(&self, roll_proc: f32) -> (u32, u32) {
-    |            ^^^^^^^^^^^^^
-
-warning: enum `CronAction` is never used
- --> game-server\src\game\cron_events.rs:6:10
-  |
-6 | pub enum CronAction {
-  |          ^^^^^^^^^^
-
-warning: struct `CronTask` is never constructed
-  --> game-server\src\game\cron_events.rs:15:12
-   |
-15 | pub struct CronTask {
-   |            ^^^^^^^^
-
-warning: struct `CronScheduler` is never constructed
-  --> game-server\src\game\cron_events.rs:24:12
-   |
-24 | pub struct CronScheduler {
-   |            ^^^^^^^^^^^^^
-
-warning: associated items `new`, `schedule_task`, and `tick` are never used
-  --> game-server\src\game\cron_events.rs:30:12
-   |
-29 | impl CronScheduler {
-   | ------------------ associated items in this implementation
-30 |     pub fn new() -> Self {
-   |            ^^^
-...
-37 |     pub fn schedule_task(&mut self, name: &str, interval_ticks: u64, action: CronAction, start_tick: u64) -> u32 {
-   |            ^^^^^^^^^^^^^
-...
-52 |     pub fn tick(&mut self, current_tick: u64) -> Vec<CronAction> {
-   |            ^^^^
-
-warning: struct `OutpostBase` is never constructed
-  --> game-server\src\game\cron_events.rs:67:12
-   |
-67 | pub struct OutpostBase {
-   |            ^^^^^^^^^^^
-
-warning: associated items `new` and `capture` are never used
-  --> game-server\src\game\cron_events.rs:75:12
-   |
-74 | impl OutpostBase {
-   | ---------------- associated items in this implementation
-75 |     pub fn new(base_id: u32, name: &str) -> Self {
-   |            ^^^
-...
-84 |     pub fn capture(&mut self, winning_race: u8) {
-   |            ^^^^^^^
-
-warning: struct `WorldRaidBoss` is never constructed
-  --> game-server\src\game\cron_events.rs:91:12
-   |
-91 | pub struct WorldRaidBoss {
-   |            ^^^^^^^^^^^^^
-
-warning: associated items `new`, `spawn`, `despawn`, and `take_damage` are never used
-   --> game-server\src\game\cron_events.rs:102:12
-    |
-101 | impl WorldRaidBoss {
-    | ------------------ associated items in this implementation
-102 |     pub fn new(boss_id: u32, name: &str, map_id: u32, location: Coord, max_hp: i64) -> Self {
-    |            ^^^
-...
-114 |     pub fn spawn(&mut self) {
-    |            ^^^^^
-...
-119 |     pub fn despawn(&mut self) {
-    |            ^^^^^^^
-...
-123 |     pub fn take_damage(&mut self, dmg: i64) -> bool {
-    |            ^^^^^^^^^^^
-
-warning: constant `POSICAO_INVISIVEL` is never used
-  --> game-server\src\game\data\item.rs:66:11
-   |
-66 | pub const POSICAO_INVISIVEL: u16 = 0xFFFF;
-   |           ^^^^^^^^^^^^^^^^^
-
-warning: method `tamanho` is never used
-  --> game-server\src\game\data\item.rs:99:12
-   |
-82 | impl ItemInventario {
-   | ------------------- method in this implementation
-...
-99 |     pub fn tamanho(&self) -> usize {
-   |            ^^^^^^^
-
-warning: variants `SpringOutlaw`, `LakeSpirit`, and `TahabataPyrelord` are never constructed
- --> game-server\src\game\data\npc.rs:4:5
-  |
-3 | pub enum Id {
-  |          -- variants in this enum
-4 |     SpringOutlaw = 210484,
-  |     ^^^^^^^^^^^^
-5 |     LakeSpirit = 210660,
-  |     ^^^^^^^^^^
-6 |     TahabataPyrelord = 217166,
-  |     ^^^^^^^^^^^^^^^^
-  |
-  = note: `Id` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: variant `DeadNoLoot` is never constructed
-  --> game-server\src\game\data\npc.rs:14:5
-   |
-12 | pub enum State {
-   |          ----- variant in this enum
-13 |     Alive = 0x41,
-14 |     DeadNoLoot = 0x07,
-   |     ^^^^^^^^^^
-   |
-   = note: `State` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: variant `SprigOutlaw` is never constructed
-  --> game-server\src\game\data\npc.rs:20:5
-   |
-19 | pub enum Name {
-   |          ---- variant in this enum
-20 |     SprigOutlaw = 300623,
-   |     ^^^^^^^^^^^
-   |
-   = note: `Name` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: variants `Attackable`, `Peace`, `Invulernable`, `Friend`, and `Support` are never constructed
-  --> game-server\src\game\data\npc.rs:27:5
-   |
-26 | pub enum Type {
-   |          ---- variants in this enum
-27 |     Attackable = 0,
-   |     ^^^^^^^^^^
-28 |     Peace = 2,
-   |     ^^^^^
-29 |     Aggressive = 8,
-30 |     Invulernable = 10,
-   |     ^^^^^^^^^^^^
-31 |     Friend = 38,
-   |     ^^^^^^
-32 |     Support = 54,
-   |     ^^^^^^^
-   |
-   = note: `Type` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: struct `NpcShopItem` is never constructed
-  --> game-server\src\game\data\npc.rs:36:12
-   |
-36 | pub struct NpcShopItem {
-   |            ^^^^^^^^^^^
-
-warning: struct `NpcTemplate` is never constructed
-  --> game-server\src\game\data\npc.rs:44:12
-   |
-44 | pub struct NpcTemplate {
-   |            ^^^^^^^^^^^
-
-warning: variant `Stigma` is never constructed
- --> game-server\src\game\data\skill.rs:7:5
-  |
-5 | pub enum SkillType {
-  |          --------- variant in this enum
-6 |     Normal = 0,
-7 |     Stigma = 1,
-  |     ^^^^^^
-  |
-  = note: `SkillType` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: enum `GodstoneEffect` is never used
- --> game-server\src\game\enchant.rs:4:10
-  |
-4 | pub enum GodstoneEffect {
-  |          ^^^^^^^^^^^^^^
-
-warning: struct `GodstoneTemplate` is never constructed
-  --> game-server\src\game\enchant.rs:16:12
-   |
-16 | pub struct GodstoneTemplate {
-   |            ^^^^^^^^^^^^^^^^
-
-warning: struct `FusedWeapon` is never constructed
-  --> game-server\src\game\enchant.rs:25:12
-   |
-25 | pub struct FusedWeapon {
-   |            ^^^^^^^^^^^
-
-warning: struct `EnchantService` is never constructed
-  --> game-server\src\game\enchant.rs:33:12
-   |
-33 | pub struct EnchantService {
-   |            ^^^^^^^^^^^^^^
-
-warning: associated items `new`, `fuse_weapons`, and `calculate_enchant_chance` are never used
-   --> game-server\src\game\enchant.rs:38:12
-    |
- 37 | impl EnchantService {
-    | ------------------- associated items in this implementation
- 38 |     pub fn new() -> Self {
-    |            ^^^
-...
- 81 |     pub fn fuse_weapons(
-    |            ^^^^^^^^^^^^
-...
-101 |     pub fn calculate_enchant_chance(stone_level: u8, item_level: u8, current_enchant: u8) -> f32 {
-    |            ^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: associated constants `STOP`, `DIRECT`, `NPC_DIRECT`, `NPC_RUN_FAST`, and `NPC_WALK_SLOW` are never used
-  --> game-server\src\game\engine\mod.rs:77:15
-   |
-76 | impl MoveType {
-   | ------------- associated constants in this implementation
-77 |     pub const STOP: MoveType = MoveType(0x00);
-   |               ^^^^
-...
-83 |     pub const DIRECT: MoveType = MoveType(0x20);
-   |               ^^^^^^
-84 |
-85 |     pub const NPC_DIRECT: MoveType = MoveType(0xE0);
-   |               ^^^^^^^^^^
-86 |     pub const NPC_RUN_FAST: MoveType = MoveType(0xE2);
-   |               ^^^^^^^^^^^^
-87 |     pub const NPC_WALK_SLOW: MoveType = MoveType(0xE4);
-   |               ^^^^^^^^^^^^^
-
-warning: trait `GeoService` is never used
-   --> game-server\src\game\engine\mod.rs:127:11
-    |
-127 | pub trait GeoService: Send + Sync {
-    |           ^^^^^^^^^^
-
-warning: struct `DefaultGeoEngine` is never constructed
-   --> game-server\src\game\engine\mod.rs:149:12
-    |
-149 | pub struct DefaultGeoEngine;
-    |            ^^^^^^^^^^^^^^^^
-
-warning: variants `Resist`, `Heal`, and `OffHand` are never constructed
-  --> game-server\src\game\engine\damage.rs:11:5
-   |
- 5 | pub enum Type {
-   |          ---- variants in this enum
-...
-11 |     Resist = 0x05,
-   |     ^^^^^^
-12 |     Heal = 0x06,
-   |     ^^^^
-13 |     MainHand = 0x0A,
-14 |     OffHand = 0x0B,
-   |     ^^^^^^^
-   |
-   = note: `Type` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: associated function `calculate_magical_hit` is never used
-  --> game-server\src\game\engine\damage.rs:89:12
-   |
-43 | impl CombatEngine {
-   | ----------------- associated function in this implementation
-...
-89 |     pub fn calculate_magical_hit(
-   |            ^^^^^^^^^^^^^^^^^^^^^
-
-warning: struct `ChainTracker` is never constructed
-   --> game-server\src\game\engine\damage.rs:112:12
-    |
-112 | pub struct ChainTracker {
-    |            ^^^^^^^^^^^^
-
-warning: methods `register_trigger`, `is_active`, and `reset` are never used
-   --> game-server\src\game\engine\damage.rs:119:12
-    |
-118 | impl ChainTracker {
-    | ----------------- methods in this implementation
-119 |     pub fn register_trigger(&mut self, next_skill_id: u32, next_step: u8, duration_ticks: u64, current_tick: u64) {
-    |            ^^^^^^^^^^^^^^^^
-...
-125 |     pub fn is_active(&self, skill_id: u32, current_tick: u64) -> bool {
-    |            ^^^^^^^^^
-...
-133 |     pub fn reset(&mut self) {
-    |            ^^^^^
-
-warning: variants `Patrol`, `Aggro`, `Combat`, and `Return` are never constructed
-  --> game-server\src\game\entity.rs:17:5
-   |
-15 | pub enum AiState {
-   |          ------- variants in this enum
-16 |     Idle,
-17 |     Patrol,
-   |     ^^^^^^
-18 |     Aggro,
-   |     ^^^^^
-19 |     Combat,
-   |     ^^^^^^
-20 |     Return,
-   |     ^^^^^^
-   |
-   = note: `AiState` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `item_id`, `count`, and `chance_percent` are never read
-  --> game-server\src\game\entity.rs:26:9
-   |
-25 | pub struct DropItem {
-   |            -------- fields in this struct
-26 |     pub item_id: u32,
-   |         ^^^^^^^
-27 |     pub count: u32,
-   |         ^^^^^
-28 |     pub chance_percent: f32,
-   |         ^^^^^^^^^^^^^^
-   |
-   = note: `DropItem` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `spawn_location`, `max_hp`, `leash_range`, `aggro_range`, and `drop_table` are never read
-  --> game-server\src\game\entity.rs:36:5
-   |
-32 | pub struct Entity {
-   |            ------ fields in this struct
-...
-36 |     spawn_location: Coord,
-   |     ^^^^^^^^^^^^^^
-...
-41 |     pub max_hp: i32,
-   |         ^^^^^^
-...
-46 |     pub leash_range: f32,
-   |         ^^^^^^^^^^^
-47 |     pub aggro_range: f32,
-   |         ^^^^^^^^^^^
-48 |     pub hate_table: HashMap<u32, u32>,
-49 |     pub drop_table: Vec<DropItem>,
-   |         ^^^^^^^^^^
-   |
-   = note: `Entity` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
-
-warning: methods `add_hate`, `tick_ai`, `set_taget`, and `generate_loot` are never used
-   --> game-server\src\game\entity.rs:101:12
-    |
- 52 | impl Entity {
-    | ----------- methods in this implementation
-...
-101 |     pub fn add_hate(&mut self, character_id: u32, amount: u32) {
-    |            ^^^^^^^^
-...
-111 |     pub fn tick_ai(&mut self, characters: &mut HashMap<u32, Character>) -> Option<Vec<Hit>> {
-    |            ^^^^^^^
-...
-172 |     pub fn set_taget(&mut self, target_id: u32) -> s::NpcChangedTarget {
-    |            ^^^^^^^^^
-...
-191 |     pub fn generate_loot(&self) -> Vec<(u32, u32)> {
-    |            ^^^^^^^^^^^^^
-
-warning: struct `Kisk` is never constructed
- --> game-server\src\game\environment.rs:6:12
-  |
-6 | pub struct Kisk {
-  |            ^^^^
-
-warning: associated items `new`, `is_active`, `bind_player`, and `use_resurrection` are never used
-  --> game-server\src\game\environment.rs:19:12
-   |
-18 | impl Kisk {
-   | --------- associated items in this implementation
-19 |     pub fn new(kisk_id: u32, owner_id: u32, location: Coord, max_res: u16, duration_ticks: u64, current_tick: u64) -> Self {
-   |            ^^^
-...
-33 |     pub fn is_active(&self, current_tick: u64) -> bool {
-   |            ^^^^^^^^^
-...
-37 |     pub fn bind_player(&mut self, player_id: u32, max_bound: usize) -> bool {
-   |            ^^^^^^^^^^^
-...
-46 |     pub fn use_resurrection(&mut self, player_id: u32, current_tick: u64) -> Option<Coord> {
-   |            ^^^^^^^^^^^^^^^^
-
-warning: struct `StaticDoor` is never constructed
-  --> game-server\src\game\environment.rs:57:12
-   |
-57 | pub struct StaticDoor {
-   |            ^^^^^^^^^^
-
-warning: associated items `new` and `try_toggle` are never used
-  --> game-server\src\game\environment.rs:66:12
-   |
-65 | impl StaticDoor {
-   | --------------- associated items in this implementation
-66 |     pub fn new(door_id: u32, map_id: u32, location: Coord, required_key_id: Option<u32>) -> Self {
-   |            ^^^
-...
-76 |     pub fn try_toggle(&mut self, player_keys: &[u32]) -> bool {
-   |            ^^^^^^^^^^
-
-warning: fields `stream_id` and `map_id` are never read
-  --> game-server\src\game\environment.rs:90:9
-   |
-89 | pub struct Windstream {
-   |            ---------- fields in this struct
-90 |     pub stream_id: u32,
-   |         ^^^^^^^^^
-91 |     pub map_id: u32,
-   |         ^^^^^^
-   |
-   = note: `Windstream` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: method `get_waypoint` is never used
-   --> game-server\src\game\environment.rs:104:12
-    |
- 95 | impl Windstream {
-    | --------------- method in this implementation
-...
-104 |     pub fn get_waypoint(&self, step: usize) -> Option<Coord> {
-    |            ^^^^^^^^^^^^
-
-warning: method `get_stream` is never used
-   --> game-server\src\game\environment.rs:153:12
-    |
-120 | impl WindstreamService {
-    | ---------------------- method in this implementation
-...
-153 |     pub fn get_stream(&self, stream_id: u32) -> Option<&Windstream> {
-    |            ^^^^^^^^^^
-
-warning: enum `WeatherCondition` is never used
-   --> game-server\src\game\environment.rs:165:10
-    |
-165 | pub enum WeatherCondition {
-    |          ^^^^^^^^^^^^^^^^
-
-warning: struct `WeatherService` is never constructed
-   --> game-server\src\game\environment.rs:174:12
-    |
-174 | pub struct WeatherService;
-    |            ^^^^^^^^^^^^^^
-
-warning: associated function `get_weather` is never used
-   --> game-server\src\game\environment.rs:177:12
-    |
-176 | impl WeatherService {
-    | ------------------- associated function in this implementation
-177 |     pub fn get_weather(map_id: u32, tick: u64) -> WeatherCondition {
-    |            ^^^^^^^^^^^
-
-warning: associated items `new`, `add_member`, and `remove_member` are never used
-  --> game-server\src\game\guild.rs:41:12
-   |
-40 | impl Guild {
-   | ---------- associated items in this implementation
-41 |     pub fn new(id: u32, name: String, race: u8, leader_id: u32) -> Self {
-   |            ^^^
-...
-58 |     pub fn add_member(&mut self, member: GuildMember) {
-   |            ^^^^^^^^^^
-...
-63 |     pub fn remove_member(&mut self, player_id: u32) -> bool {
-   |            ^^^^^^^^^^^^^
-
-warning: field `next_guild_id` is never read
-  --> game-server\src\game\guild.rs:95:5
-   |
-92 | pub struct GuildManager {
-   |            ------------ field in this struct
-...
-95 |     next_guild_id: u32,
-   |     ^^^^^^^^^^^^^
-   |
-   = note: `GuildManager` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
-
-warning: methods `create_guild` and `get_guild_mut_for_player` are never used
-   --> game-server\src\game\guild.rs:107:12
-    |
- 98 | impl GuildManager {
-    | ----------------- methods in this implementation
-...
-107 |     pub fn create_guild(&mut self, name: String, race: u8, leader_id: u32, leader_name: String, class_id: u8, level: u8) -> u32 {
-    |            ^^^^^^^^^^^^
-...
-136 |     pub fn get_guild_mut_for_player(&mut self, player_id: u32) -> Option<&mut Guild> {
-    |            ^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: enum `HouseType` is never used
- --> game-server\src\game\housing.rs:4:10
-  |
-4 | pub enum HouseType {
-  |          ^^^^^^^^^
-
-warning: struct `FurniturePlacement` is never constructed
-  --> game-server\src\game\housing.rs:13:12
-   |
-13 | pub struct FurniturePlacement {
-   |            ^^^^^^^^^^^^^^^^^^
-
-warning: struct `House` is never constructed
-  --> game-server\src\game\housing.rs:23:12
-   |
-23 | pub struct House {
-   |            ^^^^^
-
-warning: associated items `new`, `assign_owner`, `revoke_owner`, `place_furniture`, and `remove_furniture` are never used
-  --> game-server\src\game\housing.rs:35:12
-   |
-34 | impl House {
-   | ---------- associated items in this implementation
-35 |     pub fn new(house_id: u32, house_type: HouseType, address: u32, map_id: u32) -> Self {
-   |            ^^^
-...
-48 |     pub fn assign_owner(&mut self, owner_id: u32, current_tick: u64, rent_duration_ticks: u64) {
-   |            ^^^^^^^^^^^^
-...
-53 |     pub fn revoke_owner(&mut self) {
-   |            ^^^^^^^^^^^^
-...
-59 |     pub fn place_furniture(&mut self, item_id: u32, x: f32, y: f32, z: f32, rotation: f32) -> u32 {
-   |            ^^^^^^^^^^^^^^^
-...
-75 |     pub fn remove_furniture(&mut self, placement_id: u32) -> bool {
-   |            ^^^^^^^^^^^^^^^^
-
-warning: struct `HousingBid` is never constructed
-  --> game-server\src\game\housing.rs:86:12
-   |
-86 | pub struct HousingBid {
-   |            ^^^^^^^^^^
-
-warning: associated items `new`, `place_bid`, and `resolve_auction` are never used
-   --> game-server\src\game\housing.rs:95:12
-    |
- 94 | impl HousingBid {
-    | --------------- associated items in this implementation
- 95 |     pub fn new(house_id: u32, starting_bid: u64, end_tick: u64) -> Self {
-    |            ^^^
-...
-105 |     pub fn place_bid(&mut self, player_id: u32, bid_amount: u64) -> bool {
-    |            ^^^^^^^^^
-...
-116 |     pub fn resolve_auction(&self, current_tick: u64) -> Option<u32> {
-    |            ^^^^^^^^^^^^^^^
-
-warning: struct `WorldMapInstance` is never constructed
- --> game-server\src\game\instance.rs:7:12
-  |
-7 | pub struct WorldMapInstance {
-  |            ^^^^^^^^^^^^^^^^
-
-warning: methods `is_expired` and `is_empty` are never used
-  --> game-server\src\game\instance.rs:17:12
-   |
-16 | impl WorldMapInstance {
-   | --------------------- methods in this implementation
-17 |     pub fn is_expired(&self, current_tick: u64) -> bool {
-   |            ^^^^^^^^^^
-...
-21 |     pub fn is_empty(&self) -> bool {
-   |            ^^^^^^^^
-
-warning: struct `InstanceManager` is never constructed
-  --> game-server\src\game\instance.rs:27:12
-   |
-27 | pub struct InstanceManager {
-   |            ^^^^^^^^^^^^^^^
-
-warning: associated items `new`, `create_instance`, `add_player`, `remove_player`, `cleanup`, and `instance_count` are never used
-   --> game-server\src\game\instance.rs:33:12
-    |
- 32 | impl InstanceManager {
-    | -------------------- associated items in this implementation
- 33 |     pub fn new() -> Self {
-    |            ^^^
-...
- 40 |     pub fn create_instance(
-    |            ^^^^^^^^^^^^^^^
-...
- 63 |     pub fn add_player(&mut self, instance_id: u32, player_id: u32) -> bool {
-    |            ^^^^^^^^^^
-...
- 74 |     pub fn remove_player(&mut self, instance_id: u32, player_id: u32) -> bool {
-    |            ^^^^^^^^^^^^^
-...
- 87 |     pub fn cleanup(&mut self, current_tick: u64) -> usize {
-    |            ^^^^^^^
-...
-102 |     pub fn instance_count(&self) -> usize {
-    |            ^^^^^^^^^^^^^^
-
-warning: enum `SiegeState` is never used
-   --> game-server\src\game\instance.rs:108:10
-    |
-108 | pub enum SiegeState {
-    |          ^^^^^^^^^^
-
-warning: struct `SiegeLocation` is never constructed
-   --> game-server\src\game\instance.rs:114:12
-    |
-114 | pub struct SiegeLocation {
-    |            ^^^^^^^^^^^^^
-
-warning: associated items `new`, `start_siege`, and `resolve_siege` are never used
-   --> game-server\src\game\instance.rs:123:12
-    |
-122 | impl SiegeLocation {
-    | ------------------ associated items in this implementation
-123 |     pub fn new(id: u32, name: &str) -> Self {
-    |            ^^^
-...
-133 |     pub fn start_siege(&mut self) {
-    |            ^^^^^^^^^^^
-...
-138 |     pub fn resolve_siege(&mut self, winning_legion_id: Option<u32>) {
-    |            ^^^^^^^^^^^^^
-
-warning: struct `Rift` is never constructed
-   --> game-server\src\game\instance.rs:145:12
-    |
-145 | pub struct Rift {
-    |            ^^^^
-
-warning: associated items `new` and `try_teleport` are never used
-   --> game-server\src\game\instance.rs:159:12
-    |
-158 | impl Rift {
-    | --------- associated items in this implementation
-159 |     pub fn new(
-    |            ^^^
-...
-183 |     pub fn try_teleport(&mut self, player_level: u16) -> Option<Coord> {
-    |            ^^^^^^^^^^^^
-
-warning: variants `System` and `Blackcloud` are never constructed
- --> game-server\src\game\mail.rs:8:5
-  |
-5 | pub enum LetterType {
-  |          ---------- variants in this enum
-...
-8 |     System,
-  |     ^^^^^^
-9 |     Blackcloud,
-  |     ^^^^^^^^^^
-  |
-  = note: `LetterType` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `recipient_id`, `message`, and `is_express` are never read
-  --> game-server\src\game\mail.rs:16:9
-   |
-13 | pub struct Letter {
-   |            ------ fields in this struct
-...
-16 |     pub recipient_id: u32,
-   |         ^^^^^^^^^^^^
-17 |     pub title: String,
-18 |     pub message: String,
-   |         ^^^^^^^
-...
-23 |     pub is_express: bool,
-   |         ^^^^^^^^^^
-   |
-   = note: `Letter` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: associated items `REGULAR_COST`, `EXPRESS_COST`, and `unread_count` are never used
-   --> game-server\src\game\mail.rs:70:15
-    |
- 68 | impl Mailbox {
-    | ------------ associated items in this implementation
- 69 |     pub const MAX_LETTERS: usize = 100;
- 70 |     pub const REGULAR_COST: u64 = 10;
-    |               ^^^^^^^^^^^^
- 71 |     pub const EXPRESS_COST: u64 = 500;
-    |               ^^^^^^^^^^^^
-...
-141 |     pub fn unread_count(&self) -> usize {
-    |            ^^^^^^^^^^^^
-
-warning: constant `ID_CAPTURADO` is never used
-   --> game-server\src\game\message\capturado.rs:131:11
-    |
-131 | pub const ID_CAPTURADO: u32 = 0x2E46_27F1;
-    |           ^^^^^^^^^^^^
-
-warning: fields `unknown` and `sequence` are never read
-   --> game-server\src\game\message\client.rs:238:5
-    |
-231 | pub struct SyncTime {
-    |            -------- fields in this struct
-...
-238 |     unknown: [u8; 4],
-    |     ^^^^^^^
-239 |     /// The
-240 |     sequence: u32,
-    |     ^^^^^^^^
-    |
-    = note: `SyncTime` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `time` is never read
-    --> game-server\src\game\message\client.rs:1285:9
-     |
-1284 |     Continue {
-     |     -------- field in this variant
-1285 |         time: u32,
-     |         ^^^^
-     |
-     = note: `MoveData` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `time` is never read
-    --> game-server\src\game\message\client.rs:1289:9
-     |
-1287 |     Turn {
-     |     ---- field in this variant
-1288 |         delta: Coord,
-1289 |         time: u32,
-     |         ^^^^
-     |
-     = note: `MoveData` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `unknown` and `time` are never read
-    --> game-server\src\game\message\client.rs:1297:9
-     |
-1295 |     GlideTurn {
-     |     --------- fields in this variant
-1296 |         delta: Coord,
-1297 |         unknown: u8,
-     |         ^^^^^^^
-1298 |         time: u32,
-     |         ^^^^
-     |
-     = note: `MoveData` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `unknown` and `time` are never read
-    --> game-server\src\game\message\client.rs:1301:9
-     |
-1300 |     GlideContinue {
-     |     ------------- fields in this variant
-1301 |         unknown: u8,
-     |         ^^^^^^^
-1302 |         time: u32,
-     |         ^^^^
-     |
-     = note: `MoveData` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: variant `Direct` is never constructed
-    --> game-server\src\game\message\client.rs:1291:5
-     |
-1282 | enum MoveData {
-     |      -------- variant in this enum
-...
-1291 |     Direct {
-     |     ^^^^^^
-     |
-     = note: `MoveData` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: struct `RequestSerialKillerList` is never constructed
-    --> game-server\src\game\message\client.rs:1417:12
-     |
-1417 | pub struct RequestSerialKillerList;
-     |            ^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: method `handle` is never used
-    --> game-server\src\game\message\client.rs:1419:12
-     |
-1418 | impl RequestSerialKillerList {
-     | ---------------------------- method in this implementation
-1419 |     pub fn handle(
-     |            ^^^^^^
-
-warning: field `unknown` is never read
-    --> game-server\src\game\message\client.rs:1456:5
-     |
-1455 | pub struct SignClient {
-     |            ---------- field in this struct
-1456 |     unknown: [u8; 10],
-     |     ^^^^^^^
-     |
-     = note: `SignClient` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `ty` and `raw` are never read
-    --> game-server\src\game\message\client.rs:1483:5
-     |
-1482 | pub struct SaveClientSettings {
-     |            ------------------ fields in this struct
-1483 |     ty: u8,
-     |     ^^
-1484 |     raw: Vec<u8>,
-     |     ^^^
-     |
-     = note: `SaveClientSettings` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `unknown` is never read
-    --> game-server\src\game\message\client.rs:1532:5
-     |
-1531 | pub struct ReadyEnterWorldAck {
-     |            ------------------ field in this struct
-1532 |     unknown: [u8; 4],
-     |     ^^^^^^^
-     |
-     = note: `ReadyEnterWorldAck` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `cast_type`, `x`, `y`, `z`, `heading`, and `unknown` are never read
-    --> game-server\src\game\message\client.rs:1604:9
-     |
-1600 | pub struct UseSkill {
-     |            -------- fields in this struct
-...
-1604 |     pub cast_type: u8,
-     |         ^^^^^^^^^
-1605 |     pub x: f32,
-     |         ^
-1606 |     pub y: f32,
-     |         ^
-1607 |     pub z: f32,
-     |         ^
-1608 |     pub heading: u8,
-     |         ^^^^^^^
-1609 |     pub unknown: Vec<u8>,
-     |         ^^^^^^^
-     |
-     = note: `UseSkill` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `raw` is never read
-    --> game-server\src\game\message\client.rs:1656:5
-     |
-1654 | pub struct Action {
-     |            ------ field in this struct
-1655 |     pub ty: ActionType,
-1656 |     raw: Vec<u8>,
-     |     ^^^
-     |
-     = note: `Action` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `index` is never read
-    --> game-server\src\game\message\client.rs:1730:9
-     |
-1728 | pub struct LootItem {
-     |            -------- field in this struct
-1729 |     pub entity_id: u32,
-1730 |     pub index: u32,
-     |         ^^^^^
-     |
-     = note: `LootItem` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `sequence` is never read
-    --> game-server\src\game\message\client.rs:1789:5
-     |
-1787 | pub struct Attack {
-     |            ------ field in this struct
-1788 |     pub target_id: u32,
-1789 |     sequence: u8,
-     |     ^^^^^^^^
-     |
-     = note: `Attack` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `chat_type` is never read
-    --> game-server\src\game\message\client.rs:1893:9
-     |
-1892 | pub struct ChatMessagePublic {
-     |            ----------------- field in this struct
-1893 |     pub chat_type: u8,
-     |         ^^^^^^^^^
-     |
-     = note: `ChatMessagePublic` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: field `last_page` is never read
-    --> game-server\src\game\message\client.rs:1944:9
-     |
-1941 | pub struct DialogSelect {
-     |            ------------ field in this struct
-...
-1944 |     pub last_page: u32,
-     |         ^^^^^^^^^
-     |
-     = note: `DialogSelect` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `entity_id`, `windstream_id`, and `progress` are never read
-    --> game-server\src\game\message\client.rs:1993:9
-     |
-1992 | pub struct PathFly {
-     |            ------- fields in this struct
-1993 |     pub entity_id: u32,
-     |         ^^^^^^^^^
-1994 |     pub windstream_id: u32,
-     |         ^^^^^^^^^^^^^
-...
-1998 |     pub progress: f32,
-     |         ^^^^^^^^
-     |
-     = note: `PathFly` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: constant `CABECALHO_LEN` is never used
-  --> game-server\src\game\message\lista_personagens.rs:45:7
-   |
-45 | const CABECALHO_LEN: usize = 11;
-   |       ^^^^^^^^^^^^^
-
-warning: method `tamanho` is never used
-   --> game-server\src\game\message\lista_personagens.rs:102:12
-    |
- 93 | impl ListaPersonagens {
-    | --------------------- method in this implementation
-...
-102 |     pub fn tamanho(&self) -> usize {
-    |            ^^^^^^^
-
-warning: enum `PacketDirection` is never used
- --> game-server\src\game\message\packet_registry.rs:4:10
-  |
-4 | pub enum PacketDirection {
-  |          ^^^^^^^^^^^^^^^
-
-warning: struct `PacketDefinition` is never constructed
-  --> game-server\src\game\message\packet_registry.rs:10:12
-   |
-10 | pub struct PacketDefinition {
-   |            ^^^^^^^^^^^^^^^^
-
-warning: struct `PacketRegistry` is never constructed
-  --> game-server\src\game\message\packet_registry.rs:17:12
-   |
-17 | pub struct PacketRegistry;
-   |            ^^^^^^^^^^^^^^
-
-warning: associated items `CLIENT_PACKETS`, `SERVER_PACKETS`, `find_client_packet`, and `find_server_packet` are never used
-   --> game-server\src\game\message\packet_registry.rs:21:15
-    |
- 19 | impl PacketRegistry {
-    | ------------------- associated items in this implementation
- 20 |     /// Lista de todos os opcodes CM (Cliente -> Servidor) mapeados
- 21 |     pub const CLIENT_PACKETS: &'static [PacketDefinition] = &[
-    |               ^^^^^^^^^^^^^^
-...
- 65 |     pub const SERVER_PACKETS: &'static [PacketDefinition] = &[
-    |               ^^^^^^^^^^^^^^
-...
-116 |     pub fn find_client_packet(opcode: u16) -> Option<&'static PacketDefinition> {
-    |            ^^^^^^^^^^^^^^^^^^
-...
-120 |     pub fn find_server_packet(opcode: u16) -> Option<&'static PacketDefinition> {
-    |            ^^^^^^^^^^^^^^^^^^
-
-warning: constant `PARTY_MATCH` is never used
-  --> game-server\src\game\message\server.rs:78:7
-   |
-78 | const PARTY_MATCH: u16 = 0x00A5;
-   |       ^^^^^^^^^^^
-
-warning: multiple variants are never constructed
-   --> game-server\src\game\message\server.rs:118:5
-    |
-111 | pub enum Message {
-    |          ------- variants in this enum
-...
-118 |     ReconnectKey(ReconnectKey),
-    |     ^^^^^^^^^^^^
-...
-127 |     NpcChangedTarget(NpcChangedTarget),
-    |     ^^^^^^^^^^^^^^^^
-...
-134 |     CharacterList(CharacterList),
-    |     ^^^^^^^^^^^^^
-...
-156 |     MessageCode(MessageCode),
-    |     ^^^^^^^^^^^
-...
-162 |     SignClient(SignClient),
-    |     ^^^^^^^^^^
-...
-165 |     ResultPassport(ResultPassport),
-    |     ^^^^^^^^^^^^^^
-...
-168 |     CustomAnim(CustomAnim),
-    |     ^^^^^^^^^^
-169 |     Title(Title),
-    |     ^^^^^
-...
-181 |     HitPointMp(HitPointMp),
-    |     ^^^^^^^^^^
-182 |     HitPointDp(HitPointDp),
-    |     ^^^^^^^^^^
-...
-195 |     AllianceInfo(AllianceInfo),
-    |     ^^^^^^^^^^^^
-196 |     AllianceMemberInfo(AllianceMemberInfo),
-    |     ^^^^^^^^^^^^^^^^^^
-    |
-    = note: `Message` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: associated function `new` is never used
-   --> game-server\src\game\message\server.rs:638:12
-    |
-637 | impl CharacterList {
-    | ------------------ associated function in this implementation
-638 |     pub fn new(
-    |            ^^^
-
-warning: associated function `with_type` is never used
-   --> game-server\src\game\message\server.rs:996:12
-    |
-989 | impl EnterWorldCheck {
-    | -------------------- associated function in this implementation
-...
-996 |     pub fn with_type(check_type: u8) -> Self {
-    |            ^^^^^^^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:1768:12
-     |
-1767 | impl _0151 {
-     | ---------- associated function in this implementation
-1768 |     pub fn new() -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:1839:12
-     |
-1838 | impl MessageCode {
-     | ---------------- associated function in this implementation
-1839 |     pub fn new(message_id: u32) -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:1895:12
-     |
-1894 | impl AbnormalStatus {
-     | ------------------- associated function in this implementation
-1895 |     pub fn new() -> Self {
-     |            ^^^
-
-warning: associated functions `new` and `dead` are never used
-    --> game-server\src\game\message\server.rs:1928:12
-     |
-1927 | impl AbnormalStatusOther {
-     | ------------------------ associated functions in this implementation
-1928 |     pub fn new(entity_id: u32) -> Self {
-     |            ^^^
-...
-1939 |     pub fn dead(entity_id: u32) -> Self {
-     |            ^^^^
-
-warning: associated function `start` is never used
-    --> game-server\src\game\message\server.rs:1985:12
-     |
-1984 | impl InvincibleTime {
-     | ------------------- associated function in this implementation
-1985 |     pub fn start() -> Self {
-     |            ^^^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2045:12
-     |
-2044 | impl WorldSceneStatus {
-     | --------------------- associated function in this implementation
-2045 |     pub fn new() -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2080:12
-     |
-2079 | impl ResultPassport {
-     | ------------------- associated function in this implementation
-2080 |     pub fn new(character_id: u32) -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2134:12
-     |
-2133 | impl SignClient {
-     | --------------- associated function in this implementation
-2134 |     pub fn new() -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2164:12
-     |
-2163 | impl Title {
-     | ---------- associated function in this implementation
-2164 |     pub fn new() -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2206:12
-     |
-2205 | impl CustomAnim {
-     | --------------- associated function in this implementation
-2206 |     pub fn new() -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2553:12
-     |
-2552 | impl NpcChangedTarget {
-     | --------------------- associated function in this implementation
-2553 |     pub fn new(target_id: u32, npc_id: u32) -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2743:12
-     |
-2742 | impl HitPointMp {
-     | --------------- associated function in this implementation
-2743 |     pub fn new(mp_current: u32, mp_max: u32) -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2766:12
-     |
-2765 | impl HitPointDp {
-     | --------------- associated function in this implementation
-2766 |     pub fn new(dp_current: u32, dp_max: u32) -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:2832:12
-     |
-2831 | impl ReconnectKey {
-     | ----------------- associated function in this implementation
-2832 |     pub fn new() -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:3617:12
-     |
-3616 | impl AllianceInfo {
-     | ----------------- associated function in this implementation
-3617 |     pub fn new(alliance_id: u32, name: String, leader_id: u32, member_count: u8) -> Self {
-     |            ^^^
-
-warning: associated function `new` is never used
-    --> game-server\src\game\message\server.rs:3658:12
-     |
-3657 | impl AllianceMemberInfo {
-     | ----------------------- associated function in this implementation
-3658 |     pub fn new(
-     |            ^^^
-
-warning: enum `PetFunction` is never used
- --> game-server\src\game\pet.rs:7:10
-  |
-7 | pub enum PetFunction {
-  |          ^^^^^^^^^^^
-
-warning: struct `Pet` is never constructed
-  --> game-server\src\game\pet.rs:16:12
-   |
-16 | pub struct Pet {
-   |            ^^^
-
-warning: associated items `new`, `store_in_bag`, `take_from_bag`, and `feed` are never used
-  --> game-server\src\game\pet.rs:28:12
-   |
-27 | impl Pet {
-   | -------- associated items in this implementation
-28 |     pub fn new(pet_id: u32, owner_id: u32, name: &str, bag_slots: u8, functions: Vec<PetFunction>) -> Self {
-   |            ^^^
-...
-41 |     pub fn store_in_bag(&mut self, slot: u8, item_id: u32) -> bool {
-   |            ^^^^^^^^^^^^
-...
-50 |     pub fn take_from_bag(&mut self, slot: u8) -> Option<u32> {
-   |            ^^^^^^^^^^^^^
-...
-54 |     pub fn feed(&mut self, food_quality: u8) -> bool {
-   |            ^^^^
-
-warning: enum `SummonType` is never used
-  --> game-server\src\game\pet.rs:66:10
-   |
-66 | pub enum SummonType {
-   |          ^^^^^^^^^^
-
-warning: enum `SummonMode` is never used
-  --> game-server\src\game\pet.rs:76:10
-   |
-76 | pub enum SummonMode {
-   |          ^^^^^^^^^^
-
-warning: struct `Summon` is never constructed
-  --> game-server\src\game\pet.rs:84:12
-   |
-84 | pub struct Summon {
-   |            ^^^^^^
-
-warning: associated items `new`, `order_attack`, `order_follow`, and `order_stay` are never used
-   --> game-server\src\game\pet.rs:96:12
-    |
- 95 | impl Summon {
-    | ----------- associated items in this implementation
- 96 |     pub fn new(summon_id: u32, master_id: u32, spirit_type: SummonType, location: Coord) -> Self {
-    |            ^^^
-...
-117 |     pub fn order_attack(&mut self, target_id: u32) {
-    |            ^^^^^^^^^^^^
-...
-122 |     pub fn order_follow(&mut self) {
-    |            ^^^^^^^^^^^^
-...
-127 |     pub fn order_stay(&mut self) {
-    |            ^^^^^^^^^^
-
-warning: struct `Trap` is never constructed
-   --> game-server\src\game\pet.rs:134:12
-    |
-134 | pub struct Trap {
-    |            ^^^^
-
-warning: associated items `new` and `check_trigger` are never used
-   --> game-server\src\game\pet.rs:145:12
-    |
-144 | impl Trap {
-    | --------- associated items in this implementation
-145 |     pub fn new(trap_id: u32, owner_id: u32, location: Coord, damage: i32, effect_id: u32) -> Self {
-    |            ^^^
-...
-157 |     pub fn check_trigger(&mut self, enemy_pos: &Coord) -> Option<(i32, u32)> {
-    |            ^^^^^^^^^^^^^
-
-warning: field `pin_enabled` is never read
-  --> game-server\src\game\session.rs:11:5
-   |
- 8 | pub struct Account {
-   |            ------- field in this struct
-...
-11 |     pin_enabled: bool,
-   |     ^^^^^^^^^^^
-
-warning: method `pin_enabled` is never used
-  --> game-server\src\game\session.rs:46:12
-   |
-23 | impl Account {
-   | ------------ method in this implementation
-...
-46 |     pub fn pin_enabled(&self) -> bool {
-   |            ^^^^^^^^^^^
-
-warning: enum `ChatChannel` is never used
- --> game-server\src\game\social.rs:5:10
-  |
-5 | pub enum ChatChannel {
-  |          ^^^^^^^^^^^
-
-warning: enum `AbyssRank` is never used
-  --> game-server\src\game\social.rs:95:10
-   |
-95 | pub enum AbyssRank {
-   |          ^^^^^^^^^
-
-warning: associated items `ap_threshold`, `from_ap`, `calculate_pvp_ap_gain`, and `calculate_pvp_ap_loss` are never used
-   --> game-server\src\game\social.rs:117:12
-    |
-116 | impl AbyssRank {
-    | -------------- associated items in this implementation
-117 |     pub fn ap_threshold(&self) -> u32 {
-    |            ^^^^^^^^^^^^
-...
-132 |     pub fn from_ap(ap: u32) -> Self {
-    |            ^^^^^^^
-...
-156 |     pub fn calculate_pvp_ap_gain(killer_rank: AbyssRank, victim_rank: AbyssRank, level_diff: i16) -> u32 {
-    |            ^^^^^^^^^^^^^^^^^^^^^
-...
-173 |     pub fn calculate_pvp_ap_loss(victim_rank: AbyssRank) -> u32 {
-    |            ^^^^^^^^^^^^^^^^^^^^^
-
-warning: variants `FreeForAll`, `LeaderOnly`, and `DiceRoll` are never constructed
-   --> game-server\src\game\social.rs:180:5
-    |
-179 | pub enum LootRule {
-    |          -------- variants in this enum
-180 |     FreeForAll,
-    |     ^^^^^^^^^^
-181 |     RoundRobin,
-182 |     LeaderOnly,
-    |     ^^^^^^^^^^
-183 |     DiceRoll,
-    |     ^^^^^^^^
-    |
-    = note: `LootRule` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: fields `id` and `loot_rule` are never read
-   --> game-server\src\game\social.rs:188:9
-    |
-187 | pub struct Party {
-    |            ----- fields in this struct
-188 |     pub id: u32,
-    |         ^^
-...
-191 |     pub loot_rule: LootRule,
-    |         ^^^^^^^^^
-    |
-    = note: `Party` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
-
-warning: enum `DuelState` is never used
-   --> game-server\src\game\social.rs:278:10
-    |
-278 | pub enum DuelState {
-    |          ^^^^^^^^^
-
-warning: struct `Duel` is never constructed
-   --> game-server\src\game\social.rs:286:12
-    |
-286 | pub struct Duel {
-    |            ^^^^
-
-warning: associated items `new`, `is_in_duel_arena`, `start`, and `check_hp_resolution` are never used
-   --> game-server\src\game\social.rs:295:12
-    |
-294 | impl Duel {
-    | --------- associated items in this implementation
-295 |     pub fn new(p1: u32, p2: u32, center: Coord) -> Self {
-    |            ^^^
-...
-305 |     pub fn is_in_duel_arena(&self, pos: &Coord) -> bool {
-    |            ^^^^^^^^^^^^^^^^
-...
-309 |     pub fn start(&mut self) {
-    |            ^^^^^
-...
-313 |     pub fn check_hp_resolution(&mut self, p1_hp: i32, p2_hp: i32) -> Option<u32> {
-    |            ^^^^^^^^^^^^^^^^^^^
-
-warning: enum `StigmaType` is never used
- --> game-server\src\game\stigma.rs:4:10
-  |
-4 | pub enum StigmaType {
-  |          ^^^^^^^^^^
-
-warning: struct `StigmaTemplate` is never constructed
-  --> game-server\src\game\stigma.rs:10:12
-   |
-10 | pub struct StigmaTemplate {
-   |            ^^^^^^^^^^^^^^
-
-warning: struct `StigmaService` is never constructed
-  --> game-server\src\game\stigma.rs:20:12
-   |
-20 | pub struct StigmaService {
-   |            ^^^^^^^^^^^^^
-
-warning: associated items `new`, `get_max_regular_slots`, `get_max_advanced_slots`, and `can_equip` are never used
-  --> game-server\src\game\stigma.rs:25:12
-   |
-24 | impl StigmaService {
-   | ------------------ associated items in this implementation
-25 |     pub fn new() -> Self {
-   |            ^^^
-...
-58 |     pub fn get_max_regular_slots(level: u8) -> usize {
-   |            ^^^^^^^^^^^^^^^^^^^^^
-...
-77 |     pub fn get_max_advanced_slots(level: u8) -> usize {
-   |            ^^^^^^^^^^^^^^^^^^^^^^
-...
-95 |     pub fn can_equip(
-   |            ^^^^^^^^^
-
-warning: enum `TeleportType` is never used
- --> game-server\src\game\teleport.rs:4:10
-  |
-4 | pub enum TeleportType {
-  |          ^^^^^^^^^^^^
-
-warning: struct `TeleportLocation` is never constructed
-  --> game-server\src\game\teleport.rs:12:12
-   |
-12 | pub struct TeleportLocation {
-   |            ^^^^^^^^^^^^^^^^
-
-warning: struct `TeleportService` is never constructed
-  --> game-server\src\game\teleport.rs:25:12
-   |
-25 | pub struct TeleportService {
-   |            ^^^^^^^^^^^^^^^
-
-warning: associated items `new`, `create_teleport_packet`, and `validate_and_teleport` are never used
-   --> game-server\src\game\teleport.rs:30:12
-    |
- 29 | impl TeleportService {
-    | -------------------- associated items in this implementation
- 30 |     pub fn new() -> Self {
-    |            ^^^
-...
-148 |     pub fn create_teleport_packet(
-    |            ^^^^^^^^^^^^^^^^^^^^^^
-...
-163 |     pub fn validate_and_teleport(
-    |            ^^^^^^^^^^^^^^^^^^^^^
-
-warning: struct `SimulatedItem` is never constructed
- --> game-server\src\game\tester.rs:4:12
-  |
-4 | pub struct SimulatedItem {
-  |            ^^^^^^^^^^^^^
-
-warning: struct `SimulatedCharacter` is never constructed
-  --> game-server\src\game\tester.rs:12:12
-   |
-12 | pub struct SimulatedCharacter {
-   |            ^^^^^^^^^^^^^^^^^^
-
-warning: multiple associated items are never used
-   --> game-server\src\game\tester.rs:35:12
-    |
- 34 | impl SimulatedCharacter {
-    | ----------------------- associated items in this implementation
- 35 |     pub fn new(char_id: u32, name: &str, class_id: u8, level: u8, map_id: u32) -> Self {
-    |            ^^^
-...
- 59 |     pub fn move_to(&mut self, new_x: f32, new_y: f32, new_z: f32, heading: u8) {
-    |            ^^^^^^^
-...
- 66 |     pub fn jump_and_glide(&mut self) {
-    |            ^^^^^^^^^^^^^^
-...
- 70 |     pub fn select_target(&mut self, target_id: u32) {
-    |            ^^^^^^^^^^^^^
-...
- 74 |     pub fn clear_target(&mut self) {
-    |            ^^^^^^^^^^^^
-...
- 78 |     pub fn cast_skill(
-    |            ^^^^^^^^^^
-...
-104 |     pub fn physical_attack(&self, target_id: u32) -> u32 {
-    |            ^^^^^^^^^^^^^^^
-...
-109 |     pub fn take_damage(&mut self, amount: u32) -> bool {
-    |            ^^^^^^^^^^^
-...
-119 |     pub fn heal(&mut self, amount: u32) {
-    |            ^^^^
-...
-123 |     pub fn add_item(&mut self, item_id: u32, count: u32) {
-    |            ^^^^^^^^
-...
-137 |     pub fn remove_item(&mut self, item_id: u32, count: u32) -> bool {
-    |            ^^^^^^^^^^^
-...
-150 |     pub fn equip_item(&mut self, item_id: u32) -> Result<(), &'static str> {
-    |            ^^^^^^^^^^
-...
-156 |     pub fn use_potion(&mut self, potion_id: u32, hp_heal: u32, mp_heal: u32) -> Result<(), &'static str> {
-    |            ^^^^^^^^^^
-...
-165 |     pub fn execute_gm_command(&mut self, command: &str) -> String {
-    |            ^^^^^^^^^^^^^^^^^^
-
-warning: struct `GameplayTestRunner` is never constructed
-   --> game-server\src\game\tester.rs:227:12
-    |
-227 | pub struct GameplayTestRunner;
-    |            ^^^^^^^^^^^^^^^^^^
-
-warning: associated function `run_all_gameplay_scenarios` is never used
-   --> game-server\src\game\tester.rs:230:12
-    |
-229 | impl GameplayTestRunner {
-    | ----------------------- associated function in this implementation
-230 |     pub fn run_all_gameplay_scenarios() -> Vec<(&'static str, bool, String)> {
-    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: struct `TitleTemplate` is never constructed
- --> game-server\src\game\title.rs:4:12
-  |
-4 | pub struct TitleTemplate {
-  |            ^^^^^^^^^^^^^
-
-warning: struct `TitleService` is never constructed
-  --> game-server\src\game\title.rs:17:12
-   |
-17 | pub struct TitleService {
-   |            ^^^^^^^^^^^^
-
-warning: associated items `new` and `get_title` are never used
-  --> game-server\src\game\title.rs:22:12
-   |
-21 | impl TitleService {
-   | ----------------- associated items in this implementation
-22 |     pub fn new() -> Self {
-   |            ^^^
-...
-73 |     pub fn get_title(&self, id: u16) -> Option<&TitleTemplate> {
-   |            ^^^^^^^^^
-
-warning: struct `TradeItem` is never constructed
- --> game-server\src\game\trade.rs:5:12
-  |
-5 | pub struct TradeItem {
-  |            ^^^^^^^^^
-
-warning: enum `TradeState` is never used
-  --> game-server\src\game\trade.rs:12:10
-   |
-12 | pub enum TradeState {
-   |          ^^^^^^^^^^
-
-warning: struct `P2PTradeSession` is never constructed
-  --> game-server\src\game\trade.rs:20:12
-   |
-20 | pub struct P2PTradeSession {
-   |            ^^^^^^^^^^^^^^^
-
-warning: multiple associated items are never used
-   --> game-server\src\game\trade.rs:32:12
-    |
- 31 | impl P2PTradeSession {
-    | -------------------- associated items in this implementation
- 32 |     pub fn new(player_a: u32, player_b: u32) -> Self {
-    |            ^^^
-...
- 45 |     pub fn add_item_a(&mut self, item_id: u32, count: u32) -> Result<(), &'static str> {
-    |            ^^^^^^^^^^
-...
- 53 |     pub fn add_item_b(&mut self, item_id: u32, count: u32) -> Result<(), &'static str> {
-    |            ^^^^^^^^^^
-...
- 61 |     pub fn set_kinah_a(&mut self, kinah: u64) -> Result<(), &'static str> {
-    |            ^^^^^^^^^^^
-...
- 69 |     pub fn set_kinah_b(&mut self, kinah: u64) -> Result<(), &'static str> {
-    |            ^^^^^^^^^^^
-...
- 77 |     pub fn lock_a(&mut self) {
-    |            ^^^^^^
-...
- 81 |     pub fn lock_b(&mut self) {
-    |            ^^^^^^
-...
- 85 |     pub fn confirm_a(&mut self) -> bool {
-    |            ^^^^^^^^^
-...
- 94 |     pub fn confirm_b(&mut self) -> bool {
-    |            ^^^^^^^^^
-...
-103 |     pub fn is_both_confirmed(&self) -> bool {
-    |            ^^^^^^^^^^^^^^^^^
-
-warning: struct `TradeService` is never constructed
-   --> game-server\src\game\trade.rs:110:12
-    |
-110 | pub struct TradeService {
-    |            ^^^^^^^^^^^^
-
-warning: associated items `new`, `buy_from_npc`, `sell_to_npc`, and `start_p2p_trade` are never used
-   --> game-server\src\game\trade.rs:117:12
-    |
-116 | impl TradeService {
-    | ----------------- associated items in this implementation
-117 |     pub fn new() -> Self {
-    |            ^^^
-...
-130 |     pub fn buy_from_npc(
-    |            ^^^^^^^^^^^^
-...
-150 |     pub fn sell_to_npc(
-    |            ^^^^^^^^^^^
-...
-167 |     pub fn start_p2p_trade(&mut self, player_a: u32, player_b: u32) {
-    |            ^^^^^^^^^^^^^^^
-
-warning: struct `DaevaPass` is never constructed
- --> game-server\src\game\web_services.rs:6:12
-  |
-6 | pub struct DaevaPass {
-  |            ^^^^^^^^^
-
-warning: associated items `POINTS_PER_LEVEL`, `new`, `add_points`, and `claim_reward` are never used
-  --> game-server\src\game\web_services.rs:17:15
-   |
-16 | impl DaevaPass {
-   | -------------- associated items in this implementation
-17 |     pub const POINTS_PER_LEVEL: u32 = 100;
-   |               ^^^^^^^^^^^^^^^^
-18 |
-19 |     pub fn new(season_id: u32, is_premium: bool) -> Self {
-   |            ^^^
-...
-31 |     pub fn add_points(&mut self, amount: u32) -> u8 {
-   |            ^^^^^^^^^^
-...
-39 |     pub fn claim_reward(&mut self, level: u8, premium: bool) -> Option<u32> {
-   |            ^^^^^^^^^^^^
-
-warning: struct `Wardrobe` is never constructed
-  --> game-server\src\game\web_services.rs:61:12
-   |
-61 | pub struct Wardrobe {
-   |            ^^^^^^^^
-
-warning: associated items `new`, `register_skin`, `apply_skin`, and `remove_skin` are never used
-  --> game-server\src\game\web_services.rs:68:12
-   |
-67 | impl Wardrobe {
-   | ------------- associated items in this implementation
-68 |     pub fn new(character_id: u32) -> Self {
-   |            ^^^
-...
-76 |     pub fn register_skin(&mut self, item_id: u32) -> bool {
-   |            ^^^^^^^^^^^^^
-...
-85 |     pub fn apply_skin(&mut self, slot: u8, item_id: u32) -> bool {
-   |            ^^^^^^^^^^
-...
-94 |     pub fn remove_skin(&mut self, slot: u8) -> bool {
-   |            ^^^^^^^^^^^
-
-warning: struct `AtreianPassport` is never constructed
-   --> game-server\src\game\web_services.rs:100:12
-    |
-100 | pub struct AtreianPassport {
-    |            ^^^^^^^^^^^^^^^
-
-warning: associated items `new`, `record_login`, and `claim_day` are never used
-   --> game-server\src\game\web_services.rs:107:12
-    |
-106 | impl AtreianPassport {
-    | -------------------- associated items in this implementation
-107 |     pub fn new(cycle_month: u8) -> Self {
-    |            ^^^
-...
-115 |     pub fn record_login(&mut self) {
-    |            ^^^^^^^^^^^^
-...
-121 |     pub fn claim_day(&mut self, day: u8) -> Option<u32> {
-    |            ^^^^^^^^^
-
-warning: `game-server` (bin "game-server") generated 207 warnings (run `cargo fix --bin "game-server" -p game-server` to apply 2 suggestions)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.69s
+Some errors have detailed explanations: E0308, E0433, E0599, E0609.
+For more information about an error, try `rustc --explain E0308`.
+warning: `game-server` (bin "game-server") generated 20 warnings
+error: could not compile `game-server` (bin "game-server") due to 9 previous errors; 20 warnings emitted

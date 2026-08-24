@@ -136,6 +136,7 @@ define_messages!(
     (GLOBAL_TRADE_SALESLOG, GlobalTradeSaleslog, 0x0101),
     (GLOBAL_TRADE_BUY, GlobalTradeBuy, 0x0102),
     (GLOBAL_TRADE_AVG_PRICE, GlobalTradeAvgPrice, 0x0103),
+    (CHAT_MESSAGE_WHISPER, ChatMessageWhisper, 0x1C),
 );
 
 /// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
@@ -2425,5 +2426,49 @@ impl Deserialise for GlobalTradeAvgPrice {
             item_template_id,
             quality,
         }
+    }
+}
+
+/// Cliente envia whisper privado (Opcode 0x1C).
+#[derive(Debug, Clone)]
+pub struct ChatMessageWhisper {
+    pub target_name: String,
+    pub message: String,
+}
+
+impl ChatMessageWhisper {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::ChatMessageWhisper(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for ChatMessageWhisper {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let target_len = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) as usize } else { 0 };
+        let target_name = if buf.len() >= ptr + target_len {
+            let u16_slice: Vec<u16> = buf[ptr..ptr + target_len]
+                .chunks_exact(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .take_while(|&c| c != 0)
+                .collect();
+            ptr += target_len;
+            String::from_utf16_lossy(&u16_slice)
+        } else {
+            String::new()
+        };
+        let msg_len = if buf.len() >= ptr + 2 { consume_le_bytes!(ptr, buf, u16) as usize } else { 0 };
+        let message = if buf.len() >= ptr + msg_len {
+            let u16_slice: Vec<u16> = buf[ptr..ptr + msg_len]
+                .chunks_exact(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .take_while(|&c| c != 0)
+                .collect();
+            String::from_utf16_lossy(&u16_slice)
+        } else {
+            String::new()
+        };
+        Self { target_name, message }
     }
 }

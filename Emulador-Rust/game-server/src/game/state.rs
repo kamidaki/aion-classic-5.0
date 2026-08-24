@@ -123,6 +123,7 @@ pub struct State {
     pub attack_timers: HashMap<u32, (u32, Instant)>,
     pub guild_manager: crate::game::guild::GuildManager,
     pub party_service: crate::game::social::PartyService,
+    pub chat_timestamps: HashMap<u32, Vec<Instant>>,
     db: Db,
     game_data: Arc<GameData>,
 }
@@ -188,9 +189,22 @@ impl State {
             attack_timers: HashMap::new(),
             guild_manager: crate::game::guild::GuildManager::new(),
             party_service: crate::game::social::PartyService::new(),
+            chat_timestamps: HashMap::new(),
             db,
             game_data,
         }
+    }
+
+    /// Check anti-flood: at most 5 messages per 5 seconds
+    pub fn check_flood(&mut self, char_id: u32) -> bool {
+        let now = Instant::now();
+        let timestamps = self.chat_timestamps.entry(char_id).or_default();
+        timestamps.retain(|&t| now.duration_since(t) < Duration::from_secs(5));
+        if timestamps.len() >= 5 {
+            return false;
+        }
+        timestamps.push(now);
+        true
     }
 
     /// Save all in-memory character state to the database.
@@ -1936,6 +1950,162 @@ impl State {
             c::Message::GlobalTradeAvgPrice(avg_req) => {
                 let avg = self.db.preco_medio_item(avg_req.item_template_id).unwrap_or(0);
                 println!("INFO: Player {} queried avg price for template {}: {}", update.character_id(), avg_req.item_template_id, avg);
+            }
+            c::Message::ChatMessagePublic(msg) => {
+                let char_id = update.character_id();
+                if !self.check_flood(char_id) {
+                    println!("WARN: Player {} dropped for chat flood", char_id);
+                    return;
+                }
+
+                let (char_name, loc, access_level) = match self.characters.get(&char_id) {
+                    Some(c) => (c.name().to_string(), c.location(), 100),
+                    None => return,
+                };
+
+                // GM Command Check
+                if let Some(cmd) = crate::game::social::GmCommand::parse(&msg.message) {
+                    if access_level >= 100 {
+                        match cmd {
+                            crate::game::social::GmCommand::Teleport { map_id: _, x, y, z } => {
+                                if let Some(character) = self.characters.get_mut(&char_id) {
+                                    character.set_location(Coord::new(x, y, z));
+                                }
+                            }
+                            crate::game::social::GmCommand::Goto { destination } => {
+                                if let Some((_map_id, x, y, z)) = crate::game::social::resolve_goto_location(&destination) {
+                                    if let Some(character) = self.characters.get_mut(&char_id) {
+                                        character.set_location(Coord::new(x, y, z));
+                                    }
+                                }
+                            }
+                            crate::game::social::GmCommand::SetLevel { level } => {
+                                if let Some(character) = self.characters.get_mut(&char_id) {
+                                    character.stats.level = level;
+                                }
+                            }
+                            _ => {
+                                println!("INFO: GM command executed: {:?}", cmd);
+                            }
+                        }
+                        return;
+                    }
+                }
+
+                let timestamp = std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap_or_default()
+                    .as_secs() as u32;
+
+                let chat_packet = s::ChatMessage::new(
+                    char_id,
+                    char_name,
+                    msg.chat_type,
+                    msg.message.clone(),
+                    timestamp,
+                );
+
+                match msg.chat_type {
+                    0 => {
+                        // Normal (50m)
+                        for other in self.characters.values() {
+                            if loc.distance(&other.location()) <= 50.0 {
+                                messages.push_direct(
+                                    other.client_id(),
+                                    ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                                );
+                            }
+                        }
+                    }
+                    1 => {
+                        // Shout (500m)
+                        for other in self.characters.values() {
+                            if loc.distance(&other.location()) <= 500.0 {
+                                messages.push_direct(
+                                    other.client_id(),
+                                    ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                                );
+                            }
+                        }
+                    }
+                    3 => {
+                        // Group
+                        if let Some(gid) = self.party_service.group_of(char_id) {
+                            if let Some(party) = self.party_service.groups.get(&gid) {
+                                for &member_id in &party.members {
+                                    if let Some(member) = self.characters.get(&member_id) {
+                                        messages.push_direct(
+                                            member.client_id(),
+                                            ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    5 => {
+                        // Legion
+                        if let Some(guild) = self.guild_manager.get_guild_for_player(char_id) {
+                            for member in &guild.members {
+                                if let Some(online_char) = self.characters.get(&member.player_id) {
+                                    messages.push_direct(
+                                        online_char.client_id(),
+                                        ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                                    );
+                                }
+                            }
+                        }
+                    }
+                    _ => {
+                        // World / Trade / Others -> Broadcast
+                        for other in self.characters.values() {
+                            messages.push_direct(
+                                other.client_id(),
+                                ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
+                            );
+                        }
+                    }
+                }
+            }
+            c::Message::ChatMessageWhisper(msg) => {
+                let char_id = update.character_id();
+                if !self.check_flood(char_id) {
+                    return;
+                }
+
+                let sender_name = match self.characters.get(&char_id) {
+                    Some(c) => c.name().to_string(),
+                    None => return,
+                };
+
+                let timestamp = std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap_or_default()
+                    .as_secs() as u32;
+
+                let target_cid = self.characters.values().find(|c| c.name().eq_ignore_ascii_case(&msg.target_name)).map(|c| c.client_id());
+                if let Some(target_client_id) = target_cid {
+                    let whisper = s::ChatMessage::new(
+                        char_id,
+                        sender_name.clone(),
+                        2, // Whisper
+                        msg.message.clone(),
+                        timestamp,
+                    );
+                    messages.push_direct(
+                        target_client_id,
+                        ServerUpdate::new(s::Message::ChatMessage(whisper.clone())),
+                    );
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::ChatMessage(whisper)),
+                    );
+                } else {
+                    messages.push_direct(
+                        update.client_id(),
+                        ServerUpdate::new(s::Message::MessageCode(s::MessageCode::new(900010))),
+                    );
+                }
             }
             _ => (),
         }

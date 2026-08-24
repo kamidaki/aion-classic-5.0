@@ -36,6 +36,7 @@ const PUT_NPC: u16 = 0x000E;
 const REQUEST_TELEPORT: u16 = 0x0014;
 const REMOVE_OBJECT: u16 = 0x0016;
 const WORLD: u16 = 0x000F;
+const CHAT_MESSAGE: u16 = 0x0018;
 const MESSAGE_CODE: u16 = 0x0019;
 const LOAD_INVENTORY: u16 = 0x001A;
 const CHANGE_ITEM_DESC: u16 = 0x001D;
@@ -158,6 +159,7 @@ pub enum Message {
     LootItemlist(LootItemlist),
     WorldSceneStatus(WorldSceneStatus),
     GamepassInfo(GamepassInfo),
+    ChatMessage(ChatMessage),
     MessageCode(MessageCode),
     _0102(_0102),
     AbnormalStatus(AbnormalStatus),
@@ -254,6 +256,7 @@ impl Serialise for Message {
             Message::LootItemlist(msg) => msg.serialise(&mut buf[2..]),
             Message::WorldInfo(msg) => msg.serialise(&mut buf[2..]),
             Message::GamepassInfo(msg) => msg.serialise(&mut buf[2..]),
+            Message::ChatMessage(msg) => msg.serialise(&mut buf[2..]),
             Message::MessageCode(msg) => msg.serialise(&mut buf[2..]),
             Message::_0151(msg) => msg.serialise(&mut buf[2..]),
             Message::AbnormalStatusOther(msg) => msg.serialise(&mut buf[2..]),
@@ -1839,6 +1842,45 @@ impl Serialise for GamepassInfo {
         buf[len..len + self.raw.len()].copy_from_slice(&self.raw);
         len += self.raw.len();
 
+        len
+    }
+}
+
+/// S_MESSAGE (0x0018) — Entrega de mensagem de chat
+#[derive(Debug, Clone)]
+pub struct ChatMessage {
+    pub sender_id: u32,
+    pub sender_name: String,
+    pub channel_type: u8,
+    pub message: String,
+    pub timestamp: u32,
+}
+
+impl ChatMessage {
+    pub fn new(sender_id: u32, sender_name: String, channel_type: u8, message: String, timestamp: u32) -> Self {
+        Self {
+            sender_id,
+            sender_name,
+            channel_type,
+            message,
+            timestamp,
+        }
+    }
+}
+
+impl Serialise for ChatMessage {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(CHAT_MESSAGE, buf);
+        to_le_bytes!(len, buf, self.sender_id);
+        let name_utf16: Vec<u8> = self.sender_name.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+        to_le_bytes!(len, buf, name_utf16.len() as u16);
+        copy_bytes!(len, buf, name_utf16);
+        to_le_bytes!(len, buf, self.channel_type);
+        let msg_utf16: Vec<u8> = self.message.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+        to_le_bytes!(len, buf, msg_utf16.len() as u16);
+        copy_bytes!(len, buf, msg_utf16);
+        to_le_bytes!(len, buf, self.timestamp);
         len
     }
 }
@@ -4128,6 +4170,10 @@ mod testes_de_inventario {
         }]);
         let n_gtl = gtl.serialise(&mut buf);
         assert!(n_gtl > 5 + 8);
+
+        let chat = ChatMessage::new(1001, "Alice".into(), 0, "Hello World!".into(), 1700000000);
+        let n_chat = chat.serialise(&mut buf);
+        assert!(n_chat > 5 + 4);
     }
 
     #[test]
