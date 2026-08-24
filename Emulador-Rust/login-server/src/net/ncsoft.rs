@@ -53,10 +53,50 @@ enum ConnectionState {
     AuthedLogin,
 }
 
+/// Le um override numerico do ambiente. Aceita `0x` na frente. Sem a variavel, devolve o padrao.
+///
+/// Existe para bisseccionar contra o cliente sem recompilar: a documentacao do projeto discorda
+/// de si mesma em alguns campos, e a unica forma de saber qual valor vale e medir.
+fn env_num(nome: &str, padrao: u64) -> u64 {
+    let Ok(bruto) = std::env::var(nome) else {
+        return padrao;
+    };
+    let t = bruto.trim();
+    let r = t
+        .strip_prefix("0x")
+        .or_else(|| t.strip_prefix("0X"))
+        .map(|h| u64::from_str_radix(h, 16))
+        .unwrap_or_else(|| t.parse());
+    match r {
+        Ok(v) => {
+            println!("INFO: [LoginServer-NCSoft] {nome}={t} (padrao {padrao:#x})");
+            v
+        }
+        Err(_) => padrao,
+    }
+}
+
+/// Byte de `0xA8` do `SM_INIT`. `CONTEXT.md` diz `0x03`, `07-MAPEAMENTO-OFFSETS.md` diz `0xFD`.
+fn init_flag() -> u8 {
+    env_num("AION_INIT_FLAG", INIT_FLAG_PADRAO as u64) as u8
+}
+
+/// Offset da chave. `CONTEXT.md` diz `0x94`, `07-MAPEAMENTO-OFFSETS.md` diz `0x95`.
+fn init_key_offset() -> usize {
+    env_num("AION_INIT_KEY_OFFSET", INIT_KEY_OFFSET as u64) as usize
+}
+
+/// Bytes de sobra no fim do `SM_SERVER_LIST`. Nenhum documento os especifica.
+fn server_list_trailer() -> usize {
+    env_num("AION_SL_TRAILER", 15) as usize
+}
+
 /// Offset da chave de sessao Blowfish dentro do payload do `SM_INIT`.
 pub const INIT_KEY_OFFSET: usize = 0x94;
 /// Offset do byte de flag que liga o fluxo de RSA e GameGuard.
 pub const INIT_FLAG_OFFSET: usize = 0xA8;
+/// Valor padrao desse byte, segundo o CONTEXT.md.
+pub const INIT_FLAG_PADRAO: u8 = 0x03;
 /// Tamanho do payload do `SM_INIT`, antes de cifrar.
 pub const INIT_PAYLOAD_LEN: usize = 192;
 
@@ -93,15 +133,27 @@ pub fn build_sm_init_payload(
     scrambled_modulus: &[u8; 128],
     blowfish_key: &[u8; 16],
 ) -> Vec<u8> {
+    build_sm_init_payload_com(session_id, scrambled_modulus, blowfish_key, INIT_KEY_OFFSET, INIT_FLAG_PADRAO)
+}
+
+/// Igual, com o offset da chave e o byte de flag explicitos -- ver [`init_key_offset`].
+pub fn build_sm_init_payload_com(
+    session_id: u32,
+    scrambled_modulus: &[u8; 128],
+    blowfish_key: &[u8; 16],
+    key_offset: usize,
+    flag: u8,
+) -> Vec<u8> {
     let mut p = vec![0u8; INIT_PAYLOAD_LEN];
     p[0] = 0x00; // opcode SM_INIT
     p[1..5].copy_from_slice(&session_id.to_le_bytes());
     p[5..9].copy_from_slice(&0x0000_C621u32.to_le_bytes());
     p[9..137].copy_from_slice(scrambled_modulus);
     // p[137..148] fica em zero (11 bytes)
-    p[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16].copy_from_slice(blowfish_key);
-    // p[164..168] fica em zero (4 bytes)
-    p[INIT_FLAG_OFFSET..INIT_FLAG_OFFSET + 4].copy_from_slice(&0x0005_0403u32.to_le_bytes());
+    p[key_offset..key_offset + 16].copy_from_slice(blowfish_key);
+    p[INIT_FLAG_OFFSET] = flag;
+    p[INIT_FLAG_OFFSET + 1] = 0x04; // major
+    p[INIT_FLAG_OFFSET + 2] = 0x05; // minor
     p[172..176].copy_from_slice(&2_097_152u32.to_le_bytes());
     p
 }
@@ -200,6 +252,17 @@ pub fn build_server_list_payload(
     server_id: u8,
     char_count: u8,
 ) -> Vec<u8> {
+    build_server_list_payload_com(announce_ip, announce_port, server_id, char_count, 15)
+}
+
+/// Igual, com o tamanho do rodape explicito -- ver [`server_list_trailer`].
+pub fn build_server_list_payload_com(
+    announce_ip: &str,
+    announce_port: u16,
+    server_id: u8,
+    char_count: u8,
+    trailer: usize,
+) -> Vec<u8> {
     let octetos: Vec<u8> = announce_ip.split('.').filter_map(|o| o.parse().ok()).collect();
     let ip: [u8; 4] = octetos.try_into().unwrap_or([127, 0, 0, 1]);
 
@@ -225,7 +288,7 @@ pub fn build_server_list_payload(
     raw.extend_from_slice(&1u16.to_le_bytes());
     raw.push(char_count);
 
-    raw.extend_from_slice(&[0u8; 15]);
+    raw.resize(raw.len() + trailer, 0);
     raw
 }
 
@@ -260,7 +323,13 @@ async fn handle_ncsoft_client(
     let scrambled_modulus = rsa_manager.get_scrambled_modulus();
 
     // 1. SM_INIT -- layout e offsets documentados em `build_sm_init_payload`.
-    let raw_init = build_sm_init_payload(session_id, scrambled_modulus, &blowfish_key);
+    let raw_init = build_sm_init_payload_com(
+        session_id,
+        scrambled_modulus,
+        &blowfish_key,
+        init_key_offset(),
+        init_flag(),
+    );
 
     let encrypted_init = crypt_engine.encrypt_init(&raw_init, blowfish_key);
     let mut init_pkt = Vec::with_capacity(encrypted_init.len() + 2);
@@ -340,7 +409,13 @@ async fn handle_ncsoft_client(
         default_server_id: u8,
         char_count: u8,
     ) -> Result<(), std::io::Error> {
-        let raw = build_server_list_payload(announce_ip, announce_port, default_server_id, char_count);
+        let raw = build_server_list_payload_com(
+            announce_ip,
+            announce_port,
+            default_server_id,
+            char_count,
+            server_list_trailer(),
+        );
 
         let enc = crypt_engine.encrypt_packet(&raw);
         let mut pkt = Vec::with_capacity(enc.len() + 2);
