@@ -153,16 +153,149 @@ CREATE TABLE IF NOT EXISTS sessions (
     expires_at INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE TABLE IF NOT EXISTS players (
+CREATE TABLE IF NOT EXISTS characters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     account_name TEXT NOT NULL,
-    name TEXT UNIQUE NOT NULL
+    name TEXT UNIQUE NOT NULL,
+    race INTEGER NOT NULL DEFAULT 0,
+    class_id INTEGER NOT NULL DEFAULT 1,
+    gender INTEGER NOT NULL DEFAULT 0,
+    level INTEGER NOT NULL DEFAULT 1,
+    exp INTEGER NOT NULL DEFAULT 0,
+    hp INTEGER NOT NULL DEFAULT 1000,
+    mp INTEGER NOT NULL DEFAULT 1000,
+    dp INTEGER NOT NULL DEFAULT 0,
+    title_id INTEGER NOT NULL DEFAULT 0,
+    map_id INTEGER NOT NULL DEFAULT 110070000,
+    x REAL NOT NULL DEFAULT 457.0,
+    y REAL NOT NULL DEFAULT 251.0,
+    z REAL NOT NULL DEFAULT 127.04,
+    heading INTEGER NOT NULL DEFAULT 0,
+    kinah INTEGER NOT NULL DEFAULT 0,
+    appearance_data BLOB,
+    created_at INTEGER NOT NULL DEFAULT 0,
+    last_online INTEGER NOT NULL DEFAULT 0,
+    deleted_at INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS character_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    character_id INTEGER NOT NULL,
+    item_unique_id INTEGER NOT NULL,
+    item_template_id INTEGER NOT NULL,
+    item_count INTEGER NOT NULL DEFAULT 1,
+    item_location INTEGER NOT NULL DEFAULT 0,
+    item_slot INTEGER NOT NULL DEFAULT 0,
+    enchant_level INTEGER NOT NULL DEFAULT 0,
+    fusion_item_id INTEGER NOT NULL DEFAULT 0,
+    manastone_count INTEGER NOT NULL DEFAULT 0,
+    godstone_id INTEGER NOT NULL DEFAULT 0,
+    dye_color INTEGER NOT NULL DEFAULT 0,
+    is_equipped INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS character_skills (
+    character_id INTEGER NOT NULL,
+    skill_id INTEGER NOT NULL,
+    skill_level INTEGER NOT NULL DEFAULT 1,
+    skill_type INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (character_id, skill_id)
+);
+
+CREATE TABLE IF NOT EXISTS player_quests (
+    player_id INTEGER NOT NULL,
+    quest_id INTEGER NOT NULL,
+    status INTEGER NOT NULL,
+    step INTEGER NOT NULL DEFAULT 0,
+    var1 INTEGER NOT NULL DEFAULT 0,
+    var2 INTEGER NOT NULL DEFAULT 0,
+    var3 INTEGER NOT NULL DEFAULT 0,
+    var4 INTEGER NOT NULL DEFAULT 0,
+    complete_count INTEGER NOT NULL DEFAULT 0,
+    updated_at INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (player_id, quest_id)
+);
+
+CREATE TABLE IF NOT EXISTS character_mail (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    recipient_id INTEGER NOT NULL,
+    sender_name TEXT NOT NULL,
+    title TEXT NOT NULL,
+    message TEXT NOT NULL,
+    attached_item_id INTEGER NOT NULL DEFAULT 0,
+    attached_item_count INTEGER NOT NULL DEFAULT 0,
+    attached_kinah INTEGER NOT NULL DEFAULT 0,
+    express INTEGER NOT NULL DEFAULT 0,
+    is_read INTEGER NOT NULL DEFAULT 0,
+    received_at INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS guilds (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE NOT NULL,
+    level INTEGER NOT NULL DEFAULT 1,
+    leader_id INTEGER NOT NULL,
+    contribution_points INTEGER NOT NULL DEFAULT 0,
+    coins INTEGER NOT NULL DEFAULT 0,
+    emblem_id INTEGER NOT NULL DEFAULT 0,
+    buff_tree_level INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS guild_members (
+    guild_id INTEGER NOT NULL,
+    player_id INTEGER NOT NULL,
+    rank INTEGER NOT NULL DEFAULT 0,
+    joined_at INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (guild_id, player_id)
+);
+
+CREATE TABLE IF NOT EXISTS character_buddies (
+    character_id INTEGER NOT NULL,
+    buddy_id INTEGER NOT NULL,
+    note TEXT NOT NULL DEFAULT '',
+    PRIMARY KEY (character_id, buddy_id)
+);
+
+CREATE TABLE IF NOT EXISTS broker_listings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    seller_id INTEGER NOT NULL,
+    item_unique_id INTEGER NOT NULL,
+    item_template_id INTEGER NOT NULL,
+    item_count INTEGER NOT NULL,
+    price_per_unit INTEGER NOT NULL,
+    total_price INTEGER NOT NULL,
+    is_sold INTEGER NOT NULL DEFAULT 0,
+    is_settled INTEGER NOT NULL DEFAULT 0,
+    registered_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS broker_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    seller_id INTEGER NOT NULL,
+    item_template_id INTEGER NOT NULL,
+    item_count INTEGER NOT NULL,
+    price_per_unit INTEGER NOT NULL,
+    sold_at INTEGER NOT NULL
 );
 ```
 
 ---
 
-## 9. Changelog de Correções e Evoluções (Sucessos)
+## 9. Estrutura de Pastas e Material de Referência (`Docs-Refs/`)
+
+* **`Docs-Refs/Wireshark_Collects_Classic4.5_OficialServer/`**: Capturas binárias reais do tráfego do servidor oficial Gameforge Classic 4.5 (`2026-08-23.pcapng`, `2026-08-23_ultimacoleta.pcapng`, `ROTEIRO-CONTA-NOVA.txt`, `Some informations about packets.txt`).
+* **`Docs-Refs/PLAN_DEVELOPMENT_FUNCTIONS/`**: 16 especificações detalhadas e cirúrgicas baseadas em wire capture oficial (PLAN-00 a PLAN-15, 100% implementados).
+* **`Docs-Refs/PLANO-DESENVOLVIMENTO/`**: 22 documentos de visão arquitetural, subsistemas e engenharia reversa de pacotes.
+* **`Docs-Refs/PLANO-LOGINSERVER/`**: 20 documentos de auditoria, análise dos protocolos STS/NCSoft/HQ e arquitetura do login server.
+* **`Docs-Refs/JAVA EMU - 2.4 CLASSIC EU/`**: Base de referência Java para pacotes de versão Classic EU 2.4.
+* **`Docs-Refs/JAVA EMU - 4.8 RETAIL/`**: Base de referência Java para sistemas 4.x Retail (geodata, templates XML, packet handlers).
+* **`Docs-Refs/reference/`**: Repositório Aion-Lightning, ferramentas PacketSamurai e POC .NET.
+
+---
+
+## 10. Changelog de Correções e Evoluções (Sucessos)
 
 ### 12. Overhaul do Dashboard: Gráfico Day-Trade, Mobile iOS, Gaveta Lateral e Daemons Silenciosos
 * **Como era antes**: O dashboard possuía margens laterais vazias, botões com emojis unicode, falta de tela cheia nativa e daemons de background exibiam caixas modais `MessageBoxW` invasivas caso houvesse processo órfão anterior.
@@ -179,3 +312,12 @@ CREATE TABLE IF NOT EXISTS players (
   1. Offset da chave Blowfish alinhado rigorosamente no offset `0x94` (índice 148..164) conforme verificado no `game.dll:0x84222D`.
   2. Flag de controle `0xA8` (índice 168) definida como `0x03` conforme `game.dll:0x84231B`.
   3. Cadeia de handshake configurada para empurrar proativamente `SM_AUTH_GG`, `SM_LOGIN_OK` e `SM_SERVER_LIST`, garantindo ativação imediata da interface sem congelamentos.
+
+### 14. Implementação Completa do Plano de Funções do Jogo (PLAN-01 a PLAN-15)
+* **Como era antes**: O emulador possuía stubs para diversos opcodes e respostas incompletas nos fluxos de combate, inventário, skills, teleporte, missões, legião, trade broker e criação de personagem.
+* **Como foi corrigido**:
+  1. **PLAN-01 a PLAN-04**: Entrada no mundo fiel à captura, spawn Kaisinel/Asmodae, movimentação, windstreams, skills com abnormal status e auto-ataque com swing timer e aggro de NPC.
+  2. **PLAN-05 a PLAN-08**: Diálogos de NPC, quests, loja com buyback, inventário com cálculo de atributos e sistema de correio com 4 variantes de anexo.
+  3. **PLAN-09 a PLAN-12**: Legião com envio de emblemas particionado em 51 chunks, party/aliança/amigos, Trade Broker Global com histórico e chat com canais regionais, whispers, anti-flood e comandos GM.
+  4. **PLAN-13 a PLAN-15**: Schema SQLite v2 completo com migração automática, criação de personagem com kits e skills por classe, e teleporte de mundo com coordenadas reais e limpeza de cena.
+  5. **176 testes passando com 100% de cobertura nos protocolos e cenários de jogo**.
