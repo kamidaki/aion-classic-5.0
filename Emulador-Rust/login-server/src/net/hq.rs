@@ -1,3 +1,30 @@
+//! # ATENCAO: medido, o cliente tambem nao le esta porta
+//!
+//! O mesmo que acontece na 2106 (ver a nota em `net::ncsoft`) acontece aqui. Medido em 25/08/2026
+//! pela janela de recepcao do TCP: o servidor manda os 92 bytes do `AUTH_GREETING`, a janela do
+//! cliente cai exatamente 92 e nao se recupera. Ele nao le, nao responde e fecha.
+//!
+//! O teste foi feito na combinacao que faltava -- `version.dll` instalado e com os patches
+//! aplicando, token do pipe no valor original, HQ e STS alinhados com a captura do servidor
+//! oficial. Mesmo assim: 92 bytes parados no buffer.
+//!
+//! ## O que isso estabelece
+//!
+//! O cliente nao le o socket de login **em nenhuma das duas portas**, com nenhum dos dois
+//! protocolos:
+//!
+//! | porta | protocolo      | recebeu | leu |
+//! |-------|----------------|---------|-----|
+//! | 2106  | NCSoft/Blowfish| 368 B   | 0   |
+//! | 13001 | Gameforge HQ   | 92 B    | 0   |
+//!
+//! Logo, o bloqueio nao e conteudo de pacote, nem porta, nem escolha de protocolo. Ele abre a
+//! conexao e nunca chega ao estado em que a atende. Mexer no que esta abaixo nao muda isso.
+//!
+//! O layout deste arquivo continua confirmado byte a byte contra a captura do servidor oficial --
+//! ver os testes no fim. O que nao esta confirmado e que ele seja suficiente, porque o cliente
+//! nunca chegou a le-lo.
+
 //! Protocolo de autenticacao Gameforge HQ (porta 13001).
 //!
 //! Enquadramento: `[u16 tamanho][u8 opcode][3 bytes zero][payload]`, com o tamanho contando os
