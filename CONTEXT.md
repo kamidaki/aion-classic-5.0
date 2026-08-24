@@ -379,5 +379,6 @@ O emulador unifica todas as propriedades dos arquivos Java em um único arquivo 
 | `gameserver.name` | `server_name` | `"Brasil em Chamas"` | Nome oficial de exibição do servidor no lobby. |
 | `gameserver.name.characterpattern` | `gameplay.character_name_pattern` | `"^[a-zA-Z0-9]{2,16}$"` | Expressão regular (Regex) para validação do nome do personagem. |
 | `gameserver.character.reentry.time` | `gameplay.character_reentry_time_secs` | `20` | Tempo de espera (cooldown em segundos) para troca de personagem. |
-| `gameserver.gc.enable` | `gameplay.gc_enable` | `true` | Execução periódica de rotinas de limpeza e consolidação de memória. |
-| `gameserver.gc.optimization.time` | `gameplay.gc_optimization_mins` | `5` | Intervalo em minutos para otimização de memória. |
+
+> [!NOTE]
+> **Zero Garbage Collection (Zero GC)**: Propriedades de Garbage Collection do Java (`gc_enable`, `gc_optimization_mins`) são desnecessárias e foram eliminadas no Rust, uma vez que o emulador utiliza gerenciamento determinístico de memória nativo via RAII, lifetimes e drop semantics, garantindo 0ms de pausas e consumo estável de memória.

@@ -125,9 +125,7 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
       "starting_level": 1,
       "start_class_max_level": 10,
       "character_name_pattern": "^[a-zA-Z0-9]{2,16}$",
-      "character_reentry_time_secs": 20,
-      "gc_enable": true,
-      "gc_optimization_mins": 5
+      "character_reentry_time_secs": 20
     },
     "data_path": "data/client",
     "database": {

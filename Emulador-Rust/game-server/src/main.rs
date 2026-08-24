@@ -240,10 +240,6 @@ pub struct GameplayConfig {
     pub character_name_pattern: String,
     #[serde(default = "default_20")]
     pub character_reentry_time_secs: u32,
-    #[serde(default = "default_true")]
-    pub gc_enable: bool,
-    #[serde(default = "default_5")]
-    pub gc_optimization_mins: u32,
 }
 
 fn default_country_code() -> u8 {
@@ -264,9 +260,6 @@ fn default_1() -> u8 {
 fn default_10_u8() -> u8 {
     10
 }
-fn default_5() -> u32 {
-    5
-}
 fn default_name_pattern() -> String {
     "^[a-zA-Z0-9]{2,16}$".to_string()
 }
@@ -284,8 +277,6 @@ impl Default for GameplayConfig {
             start_class_max_level: default_10_u8(),
             character_name_pattern: default_name_pattern(),
             character_reentry_time_secs: default_20(),
-            gc_enable: true,
-            gc_optimization_mins: default_5(),
         }
     }
 }
