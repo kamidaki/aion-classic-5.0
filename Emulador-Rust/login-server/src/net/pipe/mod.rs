@@ -93,8 +93,16 @@ fn handle_rpc_method(
             };
             serde_json::to_string(&resp).unwrap()
         }
+        // O cliente monta a credencial que manda no HQ (porta 13001) a partir desta resposta: na
+        // captura do servidor oficial o pacote 0x01 carrega `base64("<guid>:<guid>")`, dois GUIDs.
+        // Devolver aqui um blob de 700 caracteres -- como se fazia antes -- faz o cliente receber
+        // a saudacao do HQ, desistir de montar a credencial e desconectar, exibindo
+        // "Everything is OK. (0)" antes de fechar.
+        //
+        // O primeiro GUID identifica a conta e e estavel entre sessoes (confirmado: as duas
+        // capturas da mesma conta repetem o mesmo valor). Por isso e constante aqui.
         "ClientLibrary.queryAuthorizationCode" => {
-            let token = "KwfobiQm1RjVyDpaBPeU3j04a632BamHjvQOx5GHCrSMClictcZSGEIPsRnDkh55Lh2L2IK5hLbq2VejEESJoJ0avallkElflKzr8lCn48AnemMhrV8H5NgqJTqUQnRd1G7kOZJedjanqmIY5Md3Bm5mbkfIUUT5i5Zf8ghhiGJuJLF19mEIiMDTI7kqTyvzkKog3MYuaYeC8AyodHTQXjRD9VWtTh9xCIaaiX5satDdEM91SfGA2hN8C4CeOfdvoVPlvPn3RnFCRWIhrxVse9BkhhE0TdzY5ba3iZBwKMJL8VFbJhNKDgMNIYY8mQmQPTdq7zhWmoUDgTXzOQm3iIcWEMdCqXQlNd2tO71idBAdkQIhblxd1tAS1FH7biGcudAX4OZiOeRfYyHnYIJUDmDd8Lt79WhXjXPO5iynzXQqanEFYu88wnAUay1sN7FaJY2lOAMPgG8BX4Dy5ZLnzvl0K6qRxMWkbiJIcFdfQO5G5hLC72H8n0p1laH2uxZt";
+            let token = "3C23F526-D59E-4D52-BC82-42BE869ABAA0";
             let _ = db.register_token(token, default_user);
             let resp = RpcResponse {
                 id,
