@@ -1,7 +1,15 @@
+use base64::Engine;
 use parking_lot::Mutex;
 use rusqlite::{params, Connection, Result};
+use sha1::{Digest, Sha1};
 use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH};
+
+pub fn encode_password(password: &str) -> String {
+    let mut hasher = Sha1::new();
+    hasher.update(password.as_bytes());
+    base64::engine::general_purpose::STANDARD.encode(hasher.finalize())
+}
 
 pub struct AuthDb {
     conn: Arc<Mutex<Connection>>,
@@ -98,15 +106,17 @@ impl AuthDb {
                  x REAL NOT NULL DEFAULT 457.0,
                  y REAL NOT NULL DEFAULT 251.0,
                  z REAL NOT NULL DEFAULT 127.04,
-                 hp INTEGER NOT NULL DEFAULT 1000,
-                 mp INTEGER NOT NULL DEFAULT 1000,
-                 aparencia BLOB,
-                 updated_at INTEGER NOT NULL DEFAULT 0
+                 heading INTEGER NOT NULL DEFAULT 0,
+                 world_id INTEGER NOT NULL DEFAULT 110070000,
+                 gender INTEGER NOT NULL DEFAULT 0,
+                 race INTEGER NOT NULL DEFAULT 0,
+                 player_class INTEGER NOT NULL DEFAULT 0,
+                 creation_date INTEGER NOT NULL DEFAULT 0,
+                 deleted INTEGER NOT NULL DEFAULT 0
              );
              CREATE INDEX IF NOT EXISTS idx_characters_account ON characters(account_id);",
         )?;
 
-        // Migracao automatica: migra dados de accounts legado para account_data e remove accounts
         let _ = conn.execute(
             "INSERT OR IGNORE INTO account_data (name, password, access_level, membership, created_at, updated_at)
              SELECT COALESCE(NULLIF(name, ''), username), password_hash, access_level, membership, created_at, updated_at FROM accounts WHERE name IS NOT NULL OR username IS NOT NULL",
@@ -127,26 +137,61 @@ impl AuthDb {
         })
     }
 
-    pub fn get_or_create_account(&self, name: &str, auto_create: bool) -> Result<Option<Account>> {
+    pub fn authenticate_or_create_account(
+        &self,
+        name: &str,
+        password: &str,
+        auto_create: bool,
+    ) -> Result<Option<Account>> {
+        let trimmed_name = name.trim();
+        if trimmed_name.is_empty() {
+            return Ok(None);
+        }
+
         let conn = self.conn.lock();
-        let mut stmt = conn.prepare("SELECT id, name, access_level, membership FROM account_data WHERE name = ?1 COLLATE NOCASE")?;
-        let mut rows = stmt.query(params![name])?;
+        let mut stmt = conn.prepare("SELECT id, name, password, access_level, membership FROM account_data WHERE name = ?1 COLLATE NOCASE")?;
+        let mut rows = stmt.query(params![trimmed_name])?;
 
         if let Some(row) = rows.next()? {
-            Ok(Some(Account {
-                id: row.get(0)?,
-                name: row.get(1)?,
-                access_level: row.get(2)?,
-                membership: row.get(3)?,
-            }))
+            let id: i64 = row.get(0)?;
+            let acc_name: String = row.get(1)?;
+            let db_pass: String = row.get(2)?;
+            let access_level: i32 = row.get(3)?;
+            let membership: i32 = row.get(4)?;
+
+            let pass_hash = encode_password(password);
+            // Valida contra o hash SHA-1 Base64 ou contra senha legada em texto puro
+            if db_pass == pass_hash || db_pass == password || db_pass.is_empty() {
+                // Se a senha estava em texto puro no DB, migra para o hash SHA-1 Base64 oficial
+                if db_pass == password && db_pass != pass_hash && !password.is_empty() {
+                    drop(rows);
+                    drop(stmt);
+                    let _ = conn.execute("UPDATE account_data SET password = ?1 WHERE id = ?2", params![pass_hash, id]);
+                }
+                println!("INFO: [AuthDb] Conta '{}' (ID: {}) autenticada com sucesso", acc_name, id);
+                Ok(Some(Account {
+                    id,
+                    name: acc_name,
+                    access_level,
+                    membership,
+                }))
+            } else {
+                println!("WARN: [AuthDb] Senha incorreta para conta '{}'", trimmed_name);
+                Ok(None)
+            }
         } else if auto_create {
             drop(rows);
             drop(stmt);
             let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
+            let pass_hash = if !password.is_empty() {
+                encode_password(password)
+            } else {
+                encode_password(trimmed_name)
+            };
             conn.execute(
                 "INSERT INTO account_data (name, password, access_level, membership, created_at, updated_at)
-                 VALUES (?1, ?1, 0, 0, ?2, ?2)",
-                params![name, now],
+                 VALUES (?1, ?2, 0, 0, ?3, ?3)",
+                params![trimmed_name, pass_hash, now],
             )?;
             let id = conn.last_insert_rowid();
 
@@ -155,15 +200,21 @@ impl AuthDb {
                 params![id, now],
             );
 
+            println!("INFO: [AuthDb] Nova conta auto-criada com sucesso: '{}' (ID: {}) com senha criptografada em SHA-1 Base64", trimmed_name, id);
+
             Ok(Some(Account {
                 id,
-                name: name.to_string(),
+                name: trimmed_name.to_string(),
                 access_level: 0,
                 membership: 0,
             }))
         } else {
             Ok(None)
         }
+    }
+
+    pub fn get_or_create_account(&self, name: &str, auto_create: bool) -> Result<Option<Account>> {
+        self.authenticate_or_create_account(name, "", auto_create)
     }
 
     pub fn get_character_count(&self, account_name: &str) -> u8 {

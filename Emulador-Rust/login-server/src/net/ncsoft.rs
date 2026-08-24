@@ -522,25 +522,22 @@ async fn handle_ncsoft_client(
     }
 
     let mut state = ConnectionState::Connected;
-    let mut current_username = if !default_user.is_empty() {
-        default_user.clone()
-    } else {
-        "fly".to_string()
-    };
-    let mut account_id = 1u32;
+    let mut current_username = String::new();
+    let mut account_id = 0u32;
     let login_ok: u32 = 0x026edf39;
     let play_ok1: u32 = 0x026edf39;
     let play_ok2: u32 = rand::random();
 
-    if let Ok(Some(a)) = db.get_or_create_account(&current_username, auto_create) {
-        account_id = a.id as u32;
+    // =========================================================================
+    // 2. Envia SM_AUTH_GG (necessario para inicializar o formulario de login no cliente)
+    // =========================================================================
+    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
+    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
+        return;
     }
-
-    // =========================================================================
-    // 2. Aguarda requisicao do cliente (CM_AUTH_GG / CM_LOGIN)
-    // =========================================================================
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT enviado. Aguardando autenticacao do cliente...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT e SM_AUTH_GG enviados. Aguardando digitacao de login e senha pelo jogador...",
         session_id
     );
 
@@ -625,33 +622,33 @@ async fn handle_ncsoft_client(
                     session_id, opcode, active_buf.len(), payload.len()
                 );
 
-                let mut resolved_user = None;
+                let mut resolved_creds = None;
                 // Scan for 128-byte RSA block at common offsets
                 for &offset in &[1, 4, 5, 8, 12, 0] {
                     if active_buf.len() >= offset + 128 {
                         if let Some((user, pass)) = rsa_manager.decrypt_credentials(&active_buf[offset..offset + 128]) {
                             if !user.is_empty() && user.chars().all(|c| c.is_ascii_graphic() || c == ' ') {
                                 println!(
-                                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials at offset {}: User='{}', Pass='{}'",
-                                    session_id, offset, user, pass
+                                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials at offset {}: User='{}'",
+                                    session_id, offset, user
                                 );
-                                resolved_user = Some(user);
+                                resolved_creds = Some((user, pass));
                                 break;
                             }
                         }
                     }
                 }
 
-                if resolved_user.is_none() && decrypted {
+                if resolved_creds.is_none() && decrypted {
                     for &offset in &[1, 4, 5, 8, 12, 0] {
                         if payload.len() >= offset + 128 {
                             if let Some((user, pass)) = rsa_manager.decrypt_credentials(&payload[offset..offset + 128]) {
                                 if !user.is_empty() && user.chars().all(|c| c.is_ascii_graphic() || c == ' ') {
                                     println!(
-                                        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials in raw payload at offset {}: User='{}', Pass='{}'",
-                                        session_id, offset, user, pass
+                                        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Decrypted RSA Credentials in raw payload at offset {}: User='{}'",
+                                        session_id, offset, user
                                     );
-                                    resolved_user = Some(user);
+                                    resolved_creds = Some((user, pass));
                                     break;
                                 }
                             }
@@ -659,17 +656,44 @@ async fn handle_ncsoft_client(
                     }
                 }
 
-                if let Some(user) = resolved_user {
-                    current_username = user;
-                } else if let Some(user) = extract_string_from_payload(active_buf) {
-                    current_username = user;
-                }
-
-                let acc = db.get_or_create_account(&current_username, auto_create);
-                account_id = match acc {
-                    Ok(Some(a)) => (a.id as u32).max(1),
-                    _ => 1,
+                let (user, pass) = match resolved_creds {
+                    Some(cp) => cp,
+                    None => {
+                        if let Some(user) = extract_string_from_payload(active_buf) {
+                            (user, String::new())
+                        } else {
+                            eprintln!("WARN: [LoginServer-NCSoft] [SESSION-{:08X}] Falha ao decifrar credenciais do CM_LOGIN", session_id);
+                            continue;
+                        }
+                    }
                 };
+
+                current_username = user;
+
+                let acc = match db.authenticate_or_create_account(&current_username, &pass, auto_create) {
+                    Ok(Some(a)) => a,
+                    Ok(None) => {
+                        eprintln!(
+                            "WARN: [LoginServer-NCSoft] [SESSION-{:08X}] Credenciais invalidas para conta '{}'",
+                            session_id, current_username
+                        );
+                        let mut fail_raw = vec![0u8; 5];
+                        fail_raw[0] = 0x01; // Opcode SM_LOGIN_FAIL
+                        fail_raw[1..5].copy_from_slice(&2u32.to_le_bytes()); // 2 = Invalid Password
+                        let enc = crypt_engine.encrypt_packet(&fail_raw);
+                        let mut pkt = Vec::with_capacity(enc.len() + 2);
+                        pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+                        pkt.extend_from_slice(&enc);
+                        let _ = socket.write_all(&pkt).await;
+                        continue;
+                    }
+                    Err(e) => {
+                        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Erro no banco de dados: {}", session_id, e);
+                        continue;
+                    }
+                };
+
+                account_id = acc.id as u32;
 
                 println!(
                     "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Authenticated Account: '{}' (ID: {}, Auto-Created: {})",
