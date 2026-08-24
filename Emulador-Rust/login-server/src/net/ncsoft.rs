@@ -512,14 +512,21 @@ async fn handle_ncsoft_client(
     let play_ok2: u32 = rand::random();
 
     // =========================================================================
-    // 2. Loop de recepcao de pacotes do cliente (Padrao Oficial & Java 2.4/4.8)
+    // 2. Handshake GameGuard Inicial (SM_AUTH_GG)
     // =========================================================================
-    // Apos o SM_INIT, o servidor aguarda a submissao de pacotes pelo cliente:
-    // - CM_AUTH_GG (0x07): responde com SM_AUTH_GG (0x0B)
-    // - CM_LOGIN / CM_NP_LOGIN (0x0B / 0x12 / 0x00): decifra RSA, obtem credenciais reais (ex: 'fly'),
-    //   consulta/cria conta no banco, envia SM_LOGIN_OK (0x03) e SM_SERVER_LIST (0x04)
-    // - CM_SERVER_LIST (0x05): envia SM_SERVER_LIST (0x04)
-    // - CM_PLAY (0x02): registra sessao no banco e envia SM_PLAY_OK (0x07)
+    // O cliente NCSoft / Gameforge Classic EU 4.5 exige receber o SM_AUTH_GG (Opcode 0x0B)
+    // apos o SM_INIT para transicionar o estado interno de seguranca e habilitar o formulario
+    // de login na tela. Sem o SM_AUTH_GG, o cliente ignora o clique no botao "OK" e nao envia o CM_LOGIN.
+    tokio::time::sleep(tokio::time::Duration::from_millis(60)).await;
+    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Falha ao enviar SM_AUTH_GG inicial: {}", session_id, e);
+        return;
+    }
+    state = ConnectionState::AuthedGg;
+    println!(
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG inicial entregue. Formulario in-game ativo, aguardando credenciais (CM_LOGIN)...",
+        session_id
+    );
 
     // =========================================================================
     // 3. Packet Reception Loop
@@ -595,11 +602,11 @@ async fn handle_ncsoft_client(
                     session_id
                 );
             }
-            0x0B | 0x12 | 0x00 => {
-                // CM_LOGIN (Opcode 0x0B) / CM_NP_LOGIN (Opcode 0x12)
+            0x0B | 0x12 | 0x00 | _ if active_buf.len() >= 128 || payload.len() >= 128 => {
+                // CM_LOGIN (Opcode 0x0B) / CM_NP_LOGIN (Opcode 0x12) ou payload RSA de 128+ bytes
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X}, {} bytes)",
-                    session_id, opcode, active_buf.len()
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X}, ActiveLen: {} bytes, RawLen: {} bytes)",
+                    session_id, opcode, active_buf.len(), payload.len()
                 );
 
                 let mut resolved_user = None;
