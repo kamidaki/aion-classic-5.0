@@ -712,11 +712,11 @@ async fn handle_ncsoft_client(
                     account_id,
                     login_ok,
                     &current_username,
-                    false, // Exige aceite manual dos Termos de Uso (TOS) na tela do cliente
+                    true, // Pula/Bypassa a tela de Termos de Uso (TOS) no cliente
                 )
                 .await;
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Termos de Uso (TOS) apresentados na tela. Aguardando aceite do jogador (CM_SERVER_LIST)...",
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Termos de Uso (TOS) ignorados (bypassed). Conexao autorizada.",
                     session_id
                 );
             }
