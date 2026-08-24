@@ -100,10 +100,10 @@
     "processor_threshold_spawn": 50,
 
     "//_display_unknown_packets": "Se true, exibe no console avisos sobre pacotes/opcodes nao implementados",
-    "display_unknown_packets": false,
+    "display_unknown_packets": true,
 
     "//_display_packets": "Se true, exibe dump detalhado de todos os pacotes trafegados na sessao",
-    "display_packets": false,
+    "display_packets": true,
 
     "flood_protection": {
       "//_enabled": "Habilita protecao contra flood e ataques DoS de conexoes de rede",

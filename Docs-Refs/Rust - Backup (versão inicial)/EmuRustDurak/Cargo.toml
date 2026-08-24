@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "launcher",
+    "auth-server",
+    "sts-server",
+    "game-server",
+	"krypt",
+	"pak",
+	"bxml",
+]
+exclude = ["data", "pcap-parser"]

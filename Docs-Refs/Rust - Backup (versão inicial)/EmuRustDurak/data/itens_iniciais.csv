@@ -1,0 +1,218 @@
+# Kit inicial por classe -- classe,item_id,quantidade
+#
+# CONFERIDO CONTRA O SERVIDOR OFICIAL em 22/08/2026. A captura
+# build/capture/elyos-2026-08-22.pcapng gravou a criacao de tres personagens elyos -- assassino,
+# templario e ranger -- e o S_LOAD_INVENTORY que o servidor oficial mandou logo depois. As linhas
+# dessas tres classes sao aquele inventario, item a item.
+#
+# A versao anterior deste arquivo vinha do player_initial_data.xml do Aion-Lightning e estava
+# errada: era de uma versao antiga do jogo, e dava espada de treino, uma peca de armadura e
+# pocoes. O kit real da 4.5 tem 21 itens -- conjunto de armadura completo, quatro joias e sete
+# consumiveis -- e o personagem nasce vestido.
+#
+# A classe e a especifica, nao a base: assassino e ranger sao os dois SCOUT e recebem armaduras
+# diferentes (110301463 contra 110301464).
+#
+# As cinco classes que a captura nao cobre tem a ARMADURA derivada do catalogo do cliente, onde o
+# nome do item traz a classe -- `rb_torso_n_l1_wizard_1a`, `ch_glove_n_l1_chanter_1a`. Essa parte
+# e tao solida quanto a capturada. A ARMA delas esta marcada com (?) e e inferencia: o catalogo
+# nao tem flag de classe nas armas de nivel 1, entao nao da para derivar. Se estiver errada, o
+# sintoma e visivel e inofensivo -- o personagem nasce com uma arma que nao consegue equipar.
+#
+# Kinah vem com quantidade zero porque e o que o servidor oficial manda. Nao e engano nosso.
+#
+# O ranger recebe o arco DUAS VEZES -- dois objetos distintos do mesmo item, nao uma pilha de dois
+# (arco nao empilha). Os tres kits capturados tem 21 objetos cada. As outras classes recebem armas
+# diferentes entre si: o assassino leva adaga e espada, o templario espada e escudo.
+#
+# O bloco de item composto que abre o registro do arco NAO vem da fusao: os dois arcos ja chegam
+# com ele na criacao, antes de o jogador fundir qualquer coisa. E propriedade da arma de duas maos.
+
+# --- o que todo mundo recebe, igual nas tres classes capturadas ---
+# gold, arcanium, colar, brinco, anel, cinto, e os sete consumiveis
+# (pergaminhos de velocidade, comida, e primeiros socorros)
+
+# ================= ASSASSIN (4) -- capturado =================
+ASSASSIN,182400001,0
+ASSASSIN,182500000,0
+ASSASSIN,100201355,1
+ASSASSIN,100001520,1
+ASSASSIN,110301463,1
+ASSASSIN,113301414,1
+ASSASSIN,112301341,1
+ASSASSIN,111301393,1
+ASSASSIN,114301453,1
+ASSASSIN,125003447,1
+ASSASSIN,121001324,1
+ASSASSIN,120015074,1
+ASSASSIN,122001596,1
+ASSASSIN,123001243,1
+ASSASSIN,164000221,10
+ASSASSIN,164000224,10
+ASSASSIN,164000227,10
+ASSASSIN,164000259,10
+ASSASSIN,160003577,10
+ASSASSIN,160003578,10
+ASSASSIN,169300007,30
+
+# ================= KNIGHT (2), o templario -- capturado =================
+KNIGHT,182400001,0
+KNIGHT,182500000,0
+KNIGHT,100001519,1
+KNIGHT,115001470,1
+KNIGHT,110601374,1
+KNIGHT,113601332,1
+KNIGHT,112601323,1
+KNIGHT,111601344,1
+KNIGHT,114601333,1
+KNIGHT,125003443,1
+KNIGHT,121001324,1
+KNIGHT,120015074,1
+KNIGHT,122001596,1
+KNIGHT,123001243,1
+KNIGHT,164000221,10
+KNIGHT,164000224,10
+KNIGHT,164000227,10
+KNIGHT,164000259,10
+KNIGHT,160003577,10
+KNIGHT,160003578,10
+KNIGHT,169300007,30
+
+# ================= RANGER (5) -- capturado =================
+RANGER,182400001,0
+RANGER,182500000,0
+RANGER,101701219,1
+RANGER,101701219,1
+RANGER,110301464,1
+RANGER,113301415,1
+RANGER,112301342,1
+RANGER,111301394,1
+RANGER,114301454,1
+RANGER,125003448,1
+RANGER,121001324,1
+RANGER,120015074,1
+RANGER,122001596,1
+RANGER,123001243,1
+RANGER,164000221,10
+RANGER,164000224,10
+RANGER,164000227,10
+RANGER,164000259,10
+RANGER,160003577,10
+RANGER,160003578,10
+RANGER,169300007,30
+
+# ================= BATTLEMASTER (1), o gladiador =================
+# Armadura derivada do catalogo (lt_*_battlemaster). Arma inferida (?): lanca.
+BATTLEMASTER,182400001,0
+BATTLEMASTER,182500000,0
+BATTLEMASTER,101301127,1
+BATTLEMASTER,110301466,1
+BATTLEMASTER,113301417,1
+BATTLEMASTER,112301344,1
+BATTLEMASTER,111301396,1
+BATTLEMASTER,114301456,1
+BATTLEMASTER,125003453,1
+BATTLEMASTER,121001324,1
+BATTLEMASTER,120015074,1
+BATTLEMASTER,122001596,1
+BATTLEMASTER,123001243,1
+BATTLEMASTER,164000221,10
+BATTLEMASTER,164000224,10
+BATTLEMASTER,164000227,10
+BATTLEMASTER,164000259,10
+BATTLEMASTER,160003577,10
+BATTLEMASTER,160003578,10
+BATTLEMASTER,169300007,30
+
+# ================= WIZARD (7), o feiticeiro =================
+# Armadura derivada do catalogo (rb_*_wizard). Arma inferida (?): orbe.
+WIZARD,182400001,0
+WIZARD,182500000,0
+WIZARD,100501181,1
+WIZARD,110101547,1
+WIZARD,113101433,1
+WIZARD,112101374,1
+WIZARD,111101415,1
+WIZARD,114101463,1
+WIZARD,125003449,1
+WIZARD,121001324,1
+WIZARD,120015074,1
+WIZARD,122001596,1
+WIZARD,123001243,1
+WIZARD,164000221,10
+WIZARD,164000224,10
+WIZARD,164000227,10
+WIZARD,164000259,10
+WIZARD,160003577,10
+WIZARD,160003578,10
+WIZARD,169300007,30
+
+# ================= ELEMENTALLIST (8), o espiritualista =================
+# Armadura derivada do catalogo (rb_*_elementallist). Arma inferida (?): grimorio.
+ELEMENTALLIST,182400001,0
+ELEMENTALLIST,182500000,0
+ELEMENTALLIST,100601234,1
+ELEMENTALLIST,110101548,1
+ELEMENTALLIST,113101434,1
+ELEMENTALLIST,112101375,1
+ELEMENTALLIST,111101416,1
+ELEMENTALLIST,114101464,1
+ELEMENTALLIST,125003450,1
+ELEMENTALLIST,121001324,1
+ELEMENTALLIST,120015074,1
+ELEMENTALLIST,122001596,1
+ELEMENTALLIST,123001243,1
+ELEMENTALLIST,164000221,10
+ELEMENTALLIST,164000224,10
+ELEMENTALLIST,164000227,10
+ELEMENTALLIST,164000259,10
+ELEMENTALLIST,160003577,10
+ELEMENTALLIST,160003578,10
+ELEMENTALLIST,169300007,30
+
+# ================= CLERIC (10) =================
+# Armadura derivada do catalogo (ch_*_priest). Arma inferida (?): maca.
+CLERIC,182400001,0
+CLERIC,182500000,0
+CLERIC,100101171,1
+CLERIC,115001470,1
+CLERIC,110551028,1
+CLERIC,113501388,1
+CLERIC,112501318,1
+CLERIC,111501369,1
+CLERIC,114501393,1
+CLERIC,125003446,1
+CLERIC,121001324,1
+CLERIC,120015074,1
+CLERIC,122001596,1
+CLERIC,123001243,1
+CLERIC,164000221,10
+CLERIC,164000224,10
+CLERIC,164000227,10
+CLERIC,164000259,10
+CLERIC,160003577,10
+CLERIC,160003578,10
+CLERIC,169300007,30
+
+# ================= CHANTER (11) =================
+# Armadura derivada do catalogo (ch_*_chanter). Arma inferida (?): cajado.
+CHANTER,182400001,0
+CHANTER,182500000,0
+CHANTER,101501210,1
+CHANTER,110551027,1
+CHANTER,113501387,1
+CHANTER,112501317,1
+CHANTER,111501368,1
+CHANTER,114501392,1
+CHANTER,125003445,1
+CHANTER,121001324,1
+CHANTER,120015074,1
+CHANTER,122001596,1
+CHANTER,123001243,1
+CHANTER,164000221,10
+CHANTER,164000224,10
+CHANTER,164000227,10
+CHANTER,164000259,10
+CHANTER,160003577,10
+CHANTER,160003578,10
+CHANTER,169300007,30

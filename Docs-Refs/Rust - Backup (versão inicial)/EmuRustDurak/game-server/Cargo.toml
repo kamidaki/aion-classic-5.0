@@ -1,0 +1,10 @@
+[package]
+name = "game-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+crossbeam-channel = { version = "0.5.13", default-features = false, features = ["std"] }
+krypt = { version = "0.1.0", path = "../krypt" }
+rusqlite = { version = "0.32", features = ["bundled"] }
+quick-xml = "0.37"
