@@ -27,7 +27,9 @@ const LENGTH_LEN: usize = 2;
 const VERSION_CHECK: u16 = 0x0000;
 const STATUS: u16 = 0x0001;
 const HIT_POINT: u16 = 0x0003;
+const MANA_POINT: u16 = 0x0004;
 const HIT_POINT_OTHER: u16 = 0x0005;
+const DP: u16 = 0x0006;
 const ENTER_WORLD_CHECK: u16 = 0x000D;
 const PUT_NPC: u16 = 0x000E;
 const REMOVE_OBJECT: u16 = 0x0016;
@@ -90,6 +92,8 @@ const _0151: u16 = 0x0151;
 pub enum Message {
     VersionCheck(VersionCheck),
     HitPoint(HitPoint),
+    ManaPoint(ManaPoint),
+    Dp(Dp),
     HitPointOther(HitPointOther),
     Status(Status),
     World(World),
@@ -219,6 +223,8 @@ impl Serialise for Message {
             Message::ReconnectKey(msg) => msg.serialise(&mut buf[2..]),
             Message::HitPointOther(msg) => msg.serialise(&mut buf[2..]),
             Message::HitPoint(msg) => msg.serialise(&mut buf[2..]),
+            Message::ManaPoint(msg) => msg.serialise(&mut buf[2..]),
+            Message::Dp(msg) => msg.serialise(&mut buf[2..]),
             Message::Bruto(msg) => msg.serialise(&mut buf[2..]),
             Message::ListaPersonagens45(msg) => msg.serialise(&mut buf[2..]),
             Message::DeleteCharacter(msg) => msg.serialise(&mut buf[2..]),
@@ -2600,6 +2606,60 @@ impl Serialise for HitPoint {
     }
 }
 
+/// `SM_STATUPDATE_MP` (opcode 4). Mana atual e maxima do personagem local.
+///
+/// Mesmo formato do [`HitPoint`] -- dois `i32`, atual e maximo -- confirmado na captura do
+/// servidor oficial de 24/08/2026: os pacotes de 8 bytes trazem 300/300, 370/370, 440/440 e
+/// 510/510 conforme o personagem sobe de nivel.
+///
+/// O `HitPoint` ja era enviado na entrada no mundo e este nao, embora o comentario ali dissesse
+/// "vida e mana": o cliente ficava com a barra de mana zerada.
+#[derive(Debug, Clone)]
+pub struct ManaPoint {
+    mp_current: i32,
+    mp_max: i32,
+}
+impl ManaPoint {
+    pub fn new(mp_current: i32, mp_max: i32) -> Self {
+        Self { mp_current, mp_max }
+    }
+}
+impl Serialise for ManaPoint {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(MANA_POINT, buf);
+
+        to_le_bytes!(len, buf, self.mp_current);
+        to_le_bytes!(len, buf, self.mp_max);
+
+        len
+    }
+}
+
+/// `SM_STATUPDATE_DP` (opcode 6). Pontos divinos, um `u16` unico.
+///
+/// Na captura os valores sobem de 51 em 51 -- 51, 102, 153, 204, 255, 306 -- durante o combate.
+/// Sao 2 bytes de payload, sem par de atual/maximo: o maximo e do cliente.
+#[derive(Debug, Clone)]
+pub struct Dp {
+    dp: u16,
+}
+impl Dp {
+    pub fn new(dp: u16) -> Self {
+        Self { dp }
+    }
+}
+impl Serialise for Dp {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(DP, buf);
+
+        to_le_bytes!(len, buf, self.dp);
+
+        len
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct HitPointOther {
     entity_id: u32,
@@ -2764,5 +2824,78 @@ mod testes_de_inventario {
         assert_eq!(n, 5 + 9, "nove bytes de payload, como na captura");
         assert_eq!(buf[5], 0, "nao e a primeira leva");
         assert_eq!(u16::from_le_bytes(buf[12..14].try_into().unwrap()), 0);
+    }
+}
+
+#[cfg(test)]
+mod testes_de_stats {
+    use super::*;
+    use commons::game::decrypt_server_opcode;
+
+    /// Separa o cabecalho que o `add_prelude` escreve: opcode cifrado, byte de servidor e
+    /// checksum. Devolve `(opcode_real, payload)`.
+    fn abre(serialisado: &[u8], tamanho: usize) -> (u16, Vec<u8>) {
+        let cifrado = u16::from_le_bytes([serialisado[0], serialisado[1]]);
+        let checksum = u16::from_le_bytes([serialisado[3], serialisado[4]]);
+        assert_eq!(checksum, !cifrado, "checksum do cabecalho");
+        assert_eq!(serialisado[2], SERVER_BYTE, "byte de servidor");
+        (decrypt_server_opcode(cifrado), serialisado[5..tamanho].to_vec())
+    }
+
+    #[test]
+    fn mana_point_bate_com_a_captura() {
+        // Bytes do servidor oficial (24/08/2026): S 0x004 com 8 bytes de payload.
+        // 300/300 no primeiro pacote, 510/510 depois de subir de nivel.
+        for (atual, maximo, esperado) in [
+            (300i32, 300i32, "2c0100002c010000"),
+            (370, 370, "7201000072010000"),
+            (510, 510, "fe010000fe010000"),
+        ] {
+            let mut buf = [0u8; 64];
+            let len = ManaPoint::new(atual, maximo).serialise(&mut buf);
+
+            let (opcode, payload) = abre(&buf, len);
+            assert_eq!(opcode, 4, "SM_STATUPDATE_MP e o opcode 4");
+            assert_eq!(payload.len(), 8, "o payload da captura tem 8 bytes");
+            assert_eq!(
+                payload.iter().map(|b| format!("{b:02x}")).collect::<String>(),
+                esperado
+            );
+        }
+    }
+
+    #[test]
+    fn dp_bate_com_a_captura() {
+        // S 0x006 na captura: 2 bytes, subindo de 51 em 51 durante o combate.
+        for (valor, esperado) in [(51u16, "3300"), (102, "6600"), (306, "3201")] {
+            let mut buf = [0u8; 64];
+            let len = Dp::new(valor).serialise(&mut buf);
+
+            let (opcode, payload) = abre(&buf, len);
+            assert_eq!(opcode, 6, "SM_STATUPDATE_DP e o opcode 6");
+            assert_eq!(payload.len(), 2, "o payload da captura tem 2 bytes");
+            assert_eq!(
+                payload.iter().map(|b| format!("{b:02x}")).collect::<String>(),
+                esperado
+            );
+        }
+    }
+
+    #[test]
+    fn mana_point_tem_o_mesmo_formato_do_hit_point() {
+        // O irmao ja implementado. Se os dois divergirem, um dos dois esta errado -- na captura
+        // os dois pacotes tem exatamente o mesmo tamanho e o mesmo par de u32.
+        let mut buf_hp = [0u8; 64];
+        let len_hp = HitPoint::new(1625, 1625).serialise(&mut buf_hp);
+        let mut buf_mp = [0u8; 64];
+        let len_mp = ManaPoint::new(1625, 1625).serialise(&mut buf_mp);
+
+        assert_eq!(len_hp, len_mp, "mesmo tamanho total");
+        assert_eq!(
+            &buf_hp[5..len_hp],
+            &buf_mp[5..len_mp],
+            "mesmo payload para os mesmos valores"
+        );
+        assert_ne!(&buf_hp[..2], &buf_mp[..2], "mas opcodes diferentes");
     }
 }

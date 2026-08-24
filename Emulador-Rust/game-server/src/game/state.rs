@@ -870,9 +870,20 @@ impl State {
                         bruto(cap::CENA_DO_MUNDO_OPCODE, cap::CENA_DO_MUNDO.to_vec()),
                         // Vida e mana do personagem. Na captura sao dois pares de u32 -- valor
                         // atual e maximo -- e o formato do POC e o mesmo.
+                        //
+                        // A mana ia faltando: so o HP era enviado, e o cliente entrava no mundo
+                        // com a barra de mana zerada.
                         ServerUpdate::new(s::Message::HitPoint(s::HitPoint::new(
                             new_character.stats.hp.current(),
                             new_character.stats.hp.max(),
+                        ))),
+                        ServerUpdate::new(s::Message::ManaPoint(s::ManaPoint::new(
+                            new_character.stats.mp.current() as i32,
+                            new_character.stats.mp.max() as i32,
+                        ))),
+                        // Pontos divinos. Um u16 so -- o maximo e do cliente.
+                        ServerUpdate::new(s::Message::Dp(s::Dp::new(
+                            new_character.stats.dp.current(),
                         ))),
                     ],
                 );
