@@ -229,6 +229,17 @@ impl AuthDb {
         count as u8
     }
 
+    pub fn get_latest_session_account(&self) -> Option<String> {
+        let conn = self.conn.lock();
+        let mut stmt = match conn.prepare(
+            "SELECT COALESCE(NULLIF(account_name, ''), NULLIF(username, '')) FROM sessions WHERE (account_name IS NOT NULL AND account_name != '') OR (username IS NOT NULL AND username != '') ORDER BY created_at DESC LIMIT 1"
+        ) {
+            Ok(s) => s,
+            Err(_) => return None,
+        };
+        stmt.query_row([], |row| row.get(0)).ok()
+    }
+
     pub fn issue_session(&self, account_id: u32, account_name: &str, session_key: u32) -> Result<String> {
         let token = format!("{:08x}{:08x}", rand::random::<u32>(), rand::random::<u32>());
         let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
