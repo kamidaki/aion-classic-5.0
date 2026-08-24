@@ -1,103 +1,239 @@
 {
   "############################################################": "LOGIN-SERVER CONFIGURATION",
   "login-server": {
+    "//_enabled": "Habilita (true) ou desabilita (false) a inicializacao do Login-Server",
     "enabled": true,
+
+    "//_bind_address": "Endereco IP de escuta (127.0.0.1 para local/loopback, 0.0.0.0 para acesso externo/rede)",
     "bind_address": "127.0.0.1",
+
+    "//_client_port": "Porta TCP oficial de autenticacao onde o cliente Aion se conecta (padrao oficial: 2106)",
     "client_port": 2106,
+
+    "//_hq_port": "Porta TCP para autenticacao secundaria HQ Gameforge (padrao: 13001)",
     "hq_port": 13001,
+
+    "//_sts_port": "Porta TCP do protocolo STS - Session Token Service (padrao: 6600)",
     "sts_port": 6600,
+
+    "//_gameserver_port": "Porta TCP interna privada para comunicacao e registro do GameServer (padrao: 9014)",
     "gameserver_port": 9014,
+
+    "//_gameserver_password": "Senha interna obrigatoria para autorizar o GameServer a se registrar no LoginServer",
     "gameserver_password": "Sabrewolf100!",
+
+    "//_announce_game_server_ip": "IP do GameServer entregue ao cliente na lista de servidores (SM_SERVER_LIST)",
     "announce_game_server_ip": "127.0.0.1",
+
+    "//_announce_game_server_port": "Porta do GameServer entregue ao cliente na lista de servidores (padrao: 7777)",
     "announce_game_server_port": 7777,
+
+    "//_default_server_id": "ID unico do servidor exibido por padrao na lista de mundos (padrao: 1)",
     "default_server_id": 1,
+
+    "//_auto_create_accounts": "Se true, auto-cria a conta no banco de dados no primeiro login do jogador",
     "auto_create_accounts": true,
+
     "security": {
+      "//_enable_rate_limit": "Ativa protecao contra tentativas repetidas de forca bruta no login",
       "enable_rate_limit": true,
+      "//_max_attempts_per_minute": "Numero maximo de tentativas de login por minuto antes de bloqueio temporario",
       "max_attempts_per_minute": 15,
+      "//_temp_ban_minutes": "Tempo em minutos que o IP do atacante ficara temporariamente bloqueado",
       "temp_ban_minutes": 10
     },
+
     "database": {
+      "//_path": "Caminho relativo para o arquivo SQLite de contas e sessoes do Login-Server",
       "path": "data/Banco de Dados/login.db"
     }
   },
+
   "############################################################": "GAME-SERVER CONFIGURATION",
   "game-server": {
+    "//_enabled": "Habilita (true) ou desabilita (false) a inicializacao do Game-Server",
     "enabled": true,
+
+    "//_bind_address": "Endereco IP de escuta do mundo do jogo (127.0.0.1 ou 0.0.0.0)",
     "bind_address": "127.0.0.1",
+
+    "//_port": "Porta TCP principal do mundo do jogo (combate, inventario, movimentacao) (padrao: 7777)",
     "port": 7777,
+
+    "//_server_id": "Identificador unico deste GameServer perante o LoginServer e ChatServer",
     "server_id": 1,
+
+    "//_server_name": "Nome exibido na tela de selecao de servidores in-game",
     "server_name": "Brasil em Chamas (São Paulo)",
+
+    "//_login_server_address": "Endereco IP e porta interna do LoginServer para autenticacao inter-servidores (9014)",
     "login_server_address": "127.0.0.1:9014",
+
+    "//_gameserver_password": "Senha de seguranca correspondente a configurada no LoginServer",
     "gameserver_password": "Sabrewolf100!",
+
+    "//_chat_server_address": "Endereco IP e porta interna do ChatServer para sincronizacao de canais (9021)",
     "chat_server_address": "127.0.0.1:9021",
+
+    "//_chat_password": "Senha de seguranca correspondente a configurada no ChatServer",
     "chat_password": "Sabrewolf100!",
+
+    "//_tick_rate_tps": "Taxa de atualizacao do loop de mundo em TPS (Ticks Per Second, cravado em 20.0 TPS)",
     "tick_rate_tps": 20,
+
+    "//_max_players": "Capacidade maxima de jogadores conectados simultaneamente no servidor",
     "max_players": 100,
+
+    "//_nio_threads": "Numero de threads dedicadas exclusivamente para I/O assincrono de rede",
     "nio_threads": 2,
+
+    "//_processor_threads_min": "Quantidade minima de threads no pool de processamento de pacotes do cliente",
     "processor_threads_min": 2,
+
+    "//_processor_threads_max": "Quantidade maxima de threads no pool de processamento de pacotes",
     "processor_threads_max": 8,
+
+    "//_processor_threshold_kill": "Tempo ocioso para desalocar worker threads excedentes",
     "processor_threshold_kill": 3,
+
+    "//_processor_threshold_spawn": "Limite de pacotes acumulados na fila para disparar criacao de nova worker thread",
     "processor_threshold_spawn": 50,
+
+    "//_display_unknown_packets": "Se true, exibe no console avisos sobre pacotes/opcodes nao implementados",
     "display_unknown_packets": false,
+
+    "//_display_packets": "Se true, exibe dump detalhado de todos os pacotes trafegados na sessao",
     "display_packets": false,
+
     "flood_protection": {
+      "//_enabled": "Habilita protecao contra flood e ataques DoS de conexoes de rede",
       "enabled": false,
+      "//_tick_ms": "Intervalo de medicao em milissegundos para protecao de flood",
       "tick_ms": 1000,
+      "//_short_warn": "Limite de pacotes no periodo curto para emitir aviso",
       "short_warn": 10,
+      "//_short_reject": "Limite de pacotes no periodo curto para rejeitar conexao",
       "short_reject": 20,
+      "//_long_warn": "Limite de pacotes no periodo longo para emitir aviso",
       "long_warn": 30,
+      "//_long_reject": "Limite de pacotes no periodo longo para rejeitar conexao",
       "long_reject": 60
     },
+
     "gameplay": {
+      "//_country_code": "Codigo de pais da regiao do cliente (0: KR, 1: NA, 2: EU Classic, 7: RUS)",
       "country_code": 2,
+
+      "//_chat_server_enable": "Habilita a integracao e troca de mensagens com o Chat-Server",
       "chat_server_enable": true,
+
+      "//_display_revision": "Exibe a versao/revisao do servidor na Mensagem do Dia (MOTD) ao logar",
       "display_revision": false,
+
+      "//_character_limit_count": "Limite maximo de personagens que uma conta pode criar neste servidor (max: 8)",
       "character_limit_count": 8,
+
+      "//_character_creation_mode": "Modo de faccao (0: somente 1 faccao por conta, 1: Elyos e Asmodians permitidos na mesma conta)",
       "character_creation_mode": 1,
+
+      "//_players_max_level": "Nivel maximo (Level Cap) alcancavel pelos jogadores (padrao Classic: 55)",
       "players_max_level": 55,
+
+      "//_starting_level": "Nivel inicial com o qual novos personagens sao criados no mundo (padrao: 1)",
       "starting_level": 1,
+
+      "//_start_class_max_level": "Nivel maximo da classe basica antes da missao de ascensao a Daeva (padrao: 10)",
       "start_class_max_level": 10,
+
+      "//_character_name_pattern": "Expressao regular (Regex) para validar caracteres e tamanho permitidos no nome do personagem",
       "character_name_pattern": "^[a-zA-Z0-9]{2,16}$",
+
+      "//_character_reentry_time_secs": "Tempo de espera (cooldown em segundos) para desconectar e trocar de personagem",
       "character_reentry_time_secs": 20
     },
+
+    "//_data_path": "Caminho da pasta com os arquivos XML/dados extraidos do cliente (spawns, itens, NPCs)",
     "data_path": "data/client",
+
     "database": {
+      "//_path": "Caminho relativo para o arquivo SQLite de personagens, itens e quests do Game-Server",
       "path": "data/Banco de Dados/game.db"
     }
   },
+
   "############################################################": "CHAT-SERVER CONFIGURATION",
   "chat-server": {
+    "//_enabled": "Habilita (true) ou desabilita (false) a inicializacao do Chat-Server",
     "enabled": true,
+
+    "//_bind_address": "Endereco IP de escuta dos canais de chat",
     "bind_address": "127.0.0.1",
+
+    "//_port": "Porta TCP publica para canais de conversa (geral, whisper, shout, legiao) (padrao: 10241)",
     "port": 10241,
+
+    "//_internal_port": "Porta TCP interna privada para autenticacao com o GameServer (padrao: 9021)",
     "internal_port": 9021,
+
+    "//_chat_password": "Senha interna de autenticacao correspondente ao GameServer",
     "chat_password": "Sabrewolf100!",
+
+    "//_max_channels": "Numero maximo de canais de chat dinâmicos simultaneos",
     "max_channels": 500,
+
+    "//_anti_flood_messages_per_sec": "Numero maximo de mensagens por segundo por jogador antes do anti-flood silenciar",
     "anti_flood_messages_per_sec": 5,
+
     "database": {
+      "//_path": "Caminho relativo para o arquivo SQLite de canais e moderacao do Chat-Server",
       "path": "data/Banco de Dados/chat.db"
     }
   },
+
   "############################################################": "LAUNCHER & SUPERVISOR CONFIGURATION",
   "launcher": {
+    "//_autoStartLoginServer": "Inicia o Login-Server automaticamente ao abrir o Auto-Start",
     "autoStartLoginServer": true,
+
+    "//_autoStartGameServer": "Inicia o Game-Server automaticamente ao abrir o Auto-Start",
     "autoStartGameServer": true,
+
+    "//_autoStartChatServer": "Inicia o Chat-Server automaticamente ao abrir o Auto-Start",
     "autoStartChatServer": true,
+
+    "//_restartOnCrash": "Detecta encerramento inesperado de qualquer daemon e reinicia automaticamente em background",
     "restartOnCrash": true,
+
+    "//_crashRestartDelayMs": "Tempo de espera em milissegundos antes de reiniciar o processo que sofreu crash",
     "crashRestartDelayMs": 5000,
+
     "gui": {
+      "//_theme": "Tema visual da interface gráfica desktop (dark / light)",
       "theme": "dark",
+
+      "//_window_width": "Largura inicial da janela do painel desktop em pixels",
       "window_width": 1150,
+
+      "//_window_height": "Altura inicial da janela do painel desktop em pixels",
       "window_height": 760,
+
+      "//_http_port": "Porta HTTP do servidor web embutido para acesso ao Painel Mobile via LAN",
       "http_port": 18080
     }
   },
+
   "############################################################": "LOGGING & RETENTION (10 DAYS MAX)",
   "logging": {
+    "//_retentionDays": "Numero maximo de dias de retencao dos logs antigos antes da exclusao automatica",
     "retentionDays": 10,
+
+    "//_loginServerPath": "Pasta onde sao salvos os arquivos de log diarios do Login-Server",
     "loginServerPath": "logs/login-server",
+
+    "//_gameServerPath": "Pasta onde sao salvos os arquivos de log diarios do Game-Server",
     "gameServerPath": "logs/game-server",
+
+    "//_chatServerPath": "Pasta onde sao salvos os arquivos de log diarios do Chat-Server",
     "chatServerPath": "logs/chat-server"
   }
 }
