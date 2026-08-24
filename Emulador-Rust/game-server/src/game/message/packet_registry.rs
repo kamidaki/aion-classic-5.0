@@ -47,6 +47,7 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x30, name: "CM_MOVE", direction: PacketDirection::ClientToServer, description: "Vetor de deslocamento contínuo" },
         PacketDefinition { opcode: 0x31, name: "CM_PATH_FLY", direction: PacketDirection::ClientToServer, description: "Progresso de voo em corrente de vento" },
         PacketDefinition { opcode: 0x34, name: "CM_SHOW_DIALOG", direction: PacketDirection::ClientToServer, description: "Abertura de diálogo com NPC" },
+        PacketDefinition { opcode: 0x33, name: "CM_BUY_SELL", direction: PacketDirection::ClientToServer, description: "Compra e venda em loja de NPC" },
         PacketDefinition { opcode: 0x36, name: "CM_DIALOG_SELECT", direction: PacketDirection::ClientToServer, description: "Seleção de opção em diálogo HTML" },
         PacketDefinition { opcode: 0x46, name: "CM_WINDSTREAM", direction: PacketDirection::ClientToServer, description: "Navegação em rota de fluxo de vento" },
         PacketDefinition { opcode: 0x60, name: "CM_CRAFT", direction: PacketDirection::ClientToServer, description: "Fabricação de item por receita de artesanato" },
@@ -87,7 +88,9 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x8B, name: "S_SA_ACCOUNT_ITEM_NOTI", direction: PacketDirection::ServerToClient, description: "Destrava essencial do lobby de personagens" },
         PacketDefinition { opcode: 0xA2, name: "SM_WIND_PATH_RESULT", direction: PacketDirection::ServerToClient, description: "Rota pré-calculada de voo em corrente de vento" },
         PacketDefinition { opcode: 0xA3, name: "SM_WIND_STATE_INFO", direction: PacketDirection::ServerToClient, description: "Confirmação de estado em corrente de vento" },
+        PacketDefinition { opcode: 0xA6, name: "SM_USER_SELL_HISTORY_LIST", direction: PacketDirection::ServerToClient, description: "Histórico de itens vendidos recentemente (Buyback)" },
         PacketDefinition { opcode: 0xD8, name: "SM_SKILL_PENALTY_STATUS_OTHER", direction: PacketDirection::ServerToClient, description: "Penalidade e cooldown de habilidade" },
+        PacketDefinition { opcode: 0xFD, name: "SM_STORE_SALE_INFO", direction: PacketDirection::ServerToClient, description: "Confirmação e resultado de compra/venda em loja" },
     ];
 
     pub fn find_client_packet(opcode: u16) -> Option<&'static PacketDefinition> {

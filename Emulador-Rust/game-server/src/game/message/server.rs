@@ -67,6 +67,7 @@ const ALIVE: u16 = 0x008D;
 const CUSTOM_ANIM: u16 = 0x0093;
 const WIND_PATH_RESULT: u16 = 0x00A2;
 const WIND_STATE_INFO: u16 = 0x00A3;
+const USER_SELL_HISTORY_LIST: u16 = 0x00A6;
 const TITLE: u16 = 0x00AF;
 const SECOND_PASSWORD: u16 = 0x00B0;
 const L2AUTH_LOGIN_CHECK: u16 = 0x00C6;
@@ -82,6 +83,7 @@ const CHANGE_CHANNEL: u16 = 0x00E5;
 const SIGN_CLIENT: u16 = 0x00E6;
 const BUILDER_LEVEL: u16 = 0x00EE;
 const WORLD_INFO: u16 = 0x00EC;
+const STORE_SALE_INFO: u16 = 0x00FD;
 const INVINCIBLE_TIME: u16 = 0x00FE;
 const RECONNECT_KEY: u16 = 0x00FF;
 const _0102: u16 = 0x0102;
@@ -169,6 +171,8 @@ pub enum Message {
     HitPointDp(HitPointDp),
     ExpUpdate(ExpUpdate),
     QuestList(QuestList),
+    UserSellHistoryList(UserSellHistoryList),
+    StoreSaleInfo(StoreSaleInfo),
 }
 
 impl Serialise for Message {
@@ -247,6 +251,8 @@ impl Serialise for Message {
             Message::HitPointDp(msg) => msg.serialise(&mut buf[2..]),
             Message::ExpUpdate(msg) => msg.serialise(&mut buf[2..]),
             Message::QuestList(msg) => msg.serialise(&mut buf[2..]),
+            Message::UserSellHistoryList(msg) => msg.serialise(&mut buf[2..]),
+            Message::StoreSaleInfo(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -3060,6 +3066,107 @@ impl Serialise for QuestList {
     }
 }
 
+/// SM_STORE_SALE_INFO (0xFD) — Confirmação e resultado de compra/venda em loja NPC
+#[derive(Debug, Clone)]
+pub struct StoreSaleInfo {
+    pub result: u8,
+    pub item_unique_id: u32,
+    pub item_template_id: u32,
+    pub quantity: u32,
+    pub price_paid: u64,
+    pub kinah_current: u64,
+}
+
+impl StoreSaleInfo {
+    pub fn new(
+        result: u8,
+        item_unique_id: u32,
+        item_template_id: u32,
+        quantity: u32,
+        price_paid: u64,
+        kinah_current: u64,
+    ) -> Self {
+        Self {
+            result,
+            item_unique_id,
+            item_template_id,
+            quantity,
+            price_paid,
+            kinah_current,
+        }
+    }
+}
+
+impl Serialise for StoreSaleInfo {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(STORE_SALE_INFO, buf);
+        to_le_bytes!(len, buf, self.result);
+        to_le_bytes!(len, buf, self.item_unique_id);
+        to_le_bytes!(len, buf, self.item_template_id);
+        to_le_bytes!(len, buf, self.quantity);
+        to_le_bytes!(len, buf, self.price_paid);
+        to_le_bytes!(len, buf, self.kinah_current);
+        len
+    }
+}
+
+/// SM_USER_SELL_HISTORY_LIST (0xA6) — Lista de Buyback
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct SellHistoryEntry {
+    pub item_unique_id: u32,
+    pub item_template_id: u32,
+    pub quantity: u32,
+    pub buyback_price: u64,
+    pub sell_timestamp: u64,
+}
+
+impl SellHistoryEntry {
+    pub fn new(
+        item_unique_id: u32,
+        item_template_id: u32,
+        quantity: u32,
+        buyback_price: u64,
+        sell_timestamp: u64,
+    ) -> Self {
+        Self {
+            item_unique_id,
+            item_template_id,
+            quantity,
+            buyback_price,
+            sell_timestamp,
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct UserSellHistoryList {
+    pub entries: Vec<SellHistoryEntry>,
+}
+
+impl UserSellHistoryList {
+    pub fn new(entries: Vec<SellHistoryEntry>) -> Self {
+        Self { entries }
+    }
+}
+
+impl Serialise for UserSellHistoryList {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(USER_SELL_HISTORY_LIST, buf);
+        let count = self.entries.len().min(20) as u8;
+        to_le_bytes!(len, buf, count);
+        for entry in self.entries.iter().take(20) {
+            to_le_bytes!(len, buf, entry.item_unique_id);
+            to_le_bytes!(len, buf, entry.item_template_id);
+            to_le_bytes!(len, buf, entry.quantity);
+            to_le_bytes!(len, buf, entry.buyback_price);
+            to_le_bytes!(len, buf, entry.sell_timestamp);
+        }
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
@@ -3156,6 +3263,35 @@ mod testes_de_inventario {
         assert_eq!(u32::from_le_bytes(buf[12..16].try_into().unwrap()), 1); // flags
         assert_eq!(u32::from_le_bytes(buf[16..20].try_into().unwrap()), 2); // var 0
         assert_eq!(u32::from_le_bytes(buf[32..36].try_into().unwrap()), 1600000000); // start_ts
+    }
+
+    #[test]
+    fn test_store_sale_info_serialise() {
+        let ssi = StoreSaleInfo::new(0, 100, 100001, 5, 2500, 7500);
+        let mut buf = [0u8; 64];
+        let n = ssi.serialise(&mut buf);
+        assert_eq!(n, 5 + 1 + 4 + 4 + 4 + 8 + 8);
+        assert_eq!(buf[5], 0); // result
+        assert_eq!(u32::from_le_bytes(buf[6..10].try_into().unwrap()), 100);
+        assert_eq!(u32::from_le_bytes(buf[10..14].try_into().unwrap()), 100001);
+        assert_eq!(u32::from_le_bytes(buf[14..18].try_into().unwrap()), 5);
+        assert_eq!(u64::from_le_bytes(buf[18..26].try_into().unwrap()), 2500);
+        assert_eq!(u64::from_le_bytes(buf[26..34].try_into().unwrap()), 7500);
+    }
+
+    #[test]
+    fn test_user_sell_history_list_serialise() {
+        let entry = SellHistoryEntry::new(100, 100001, 2, 1000, 1600000000);
+        let hist = UserSellHistoryList::new(vec![entry]);
+        let mut buf = [0u8; 64];
+        let n = hist.serialise(&mut buf);
+        assert_eq!(n, 5 + 1 + (4 + 4 + 4 + 8 + 8));
+        assert_eq!(buf[5], 1); // count = 1
+        assert_eq!(u32::from_le_bytes(buf[6..10].try_into().unwrap()), 100);
+        assert_eq!(u32::from_le_bytes(buf[10..14].try_into().unwrap()), 100001);
+        assert_eq!(u32::from_le_bytes(buf[14..18].try_into().unwrap()), 2);
+        assert_eq!(u64::from_le_bytes(buf[18..26].try_into().unwrap()), 1000);
+        assert_eq!(u64::from_le_bytes(buf[26..34].try_into().unwrap()), 1600000000);
     }
 
     #[test]

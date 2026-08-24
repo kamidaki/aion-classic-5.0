@@ -124,6 +124,7 @@ define_messages!(
     (DELETE_CHARACTER, DeleteCharacter, 0x05),
     (WIND_PATH, WindPath, 0x46),
     (PATH_FLY, PathFly, 0x31),
+    (BUY_SELL, BuySell, 0x33),
 );
 
 /// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
@@ -2011,6 +2012,41 @@ impl Deserialise for PathFly {
             y,
             z,
             progress,
+        }
+    }
+}
+
+/// Cliente solicita compra ou venda em loja de NPC (Opcode 0x33).
+#[derive(Debug, Clone)]
+pub struct BuySell {
+    pub npc_object_id: u32,
+    pub item_unique_id: u32,
+    pub item_template_id: u32,
+    pub quantity: u32,
+    pub action: u8, // 0=comprar, 1=vender
+}
+
+impl BuySell {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::BuySell(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for BuySell {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let npc_object_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let item_unique_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let item_template_id = if buf.len() >= 12 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let quantity = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, u32) } else { 1 };
+        let action = if buf.len() >= 17 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        Self {
+            npc_object_id,
+            item_unique_id,
+            item_template_id,
+            quantity,
+            action,
         }
     }
 }

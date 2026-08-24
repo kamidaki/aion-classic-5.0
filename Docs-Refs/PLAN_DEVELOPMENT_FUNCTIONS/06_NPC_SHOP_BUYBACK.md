@@ -1,6 +1,6 @@
-﻿# PLAN-06: Loja NPC e Buyback (C_BUY_SELL 0x033, S_STORE_SALE_INFO 0x0FD, S_USER_SELL_HISTORY_LIST 0x0A6)
+# PLAN-06: Loja NPC e Buyback (C_BUY_SELL 0x033, S_STORE_SALE_INFO 0x0FD, S_USER_SELL_HISTORY_LIST 0x0A6)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** MÉDIA-ALTA — 35 pacotes capturados: compra, venda e buyback.
 
 ---

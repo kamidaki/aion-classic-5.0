@@ -21,7 +21,6 @@ pub enum Name {
     StarvedMosbear = 300703,
 }
 
-// TODO: Verify this
 #[repr(u8)]
 #[derive(Debug, Clone, Copy)]
 pub enum Type {
@@ -31,4 +30,19 @@ pub enum Type {
     Invulernable = 10,
     Friend = 38,
     Support = 54,
+}
+
+#[derive(Debug, Clone)]
+pub struct NpcShopItem {
+    pub item_template_id: u32,
+    pub infinite_stock: bool,
+    pub stock: u32,
+    pub buy_price: u64,
+}
+
+#[derive(Debug, Clone)]
+pub struct NpcTemplate {
+    pub npc_id: u32,
+    pub dialog_id: u32,
+    pub shop_items: Vec<NpcShopItem>,
 }

@@ -1467,6 +1467,85 @@ impl State {
                     }
                 }
             }
+            c::Message::BuySell(buy_sell) => {
+                let char_id = update.character_id();
+                println!(
+                    "INFO: Player {} BuySell (npc: {}, action: {}, item_unique: {}, item_template: {}, qty: {})",
+                    char_id,
+                    buy_sell.npc_object_id,
+                    buy_sell.action,
+                    buy_sell.item_unique_id,
+                    buy_sell.item_template_id,
+                    buy_sell.quantity
+                );
+
+                if let Some(character) = self.characters.get_mut(&char_id) {
+                    let client_id = update.client_id();
+                    match buy_sell.action {
+                        0 => {
+                            // Compra: verificar kinah
+                            let current_kinah = self.db.obter_kinah(char_id).unwrap_or(0);
+                            let unit_price = 1000u64;
+                            let total_price = unit_price * buy_sell.quantity.max(1) as u64;
+
+                            if current_kinah < total_price {
+                                messages.push_direct(
+                                    client_id,
+                                    ServerUpdate::new(s::Message::StoreSaleInfo(s::StoreSaleInfo::new(
+                                        1, // kinah insuficiente
+                                        0,
+                                        buy_sell.item_template_id,
+                                        buy_sell.quantity,
+                                        0,
+                                        current_kinah,
+                                    ))),
+                                );
+                            } else {
+                                let _ = self.db.alterar_kinah(char_id, -(total_price as i64));
+                                let new_kinah = self.db.obter_kinah(char_id).unwrap_or(0);
+                                let unique_id = character.add_item(buy_sell.item_template_id, buy_sell.quantity);
+                                let _ = self.db.adicionar_item(char_id, buy_sell.item_template_id, buy_sell.quantity as u64, 0);
+
+                                messages.push_direct(
+                                    client_id,
+                                    ServerUpdate::new(s::Message::StoreSaleInfo(s::StoreSaleInfo::new(
+                                        0, // sucesso
+                                        unique_id,
+                                        buy_sell.item_template_id,
+                                        buy_sell.quantity,
+                                        total_price,
+                                        new_kinah,
+                                    ))),
+                                );
+                            }
+                        }
+                        1 => {
+                            // Venda: dar kinah e registrar no histórico de buyback
+                            let sell_price = character.sell_item(buy_sell.item_unique_id, buy_sell.quantity);
+                            let _ = self.db.alterar_kinah(char_id, sell_price as i64);
+                            let _ = self.db.remover_item(char_id, buy_sell.item_template_id, buy_sell.quantity as u64);
+                            let new_kinah = self.db.obter_kinah(char_id).unwrap_or(0);
+
+                            messages.push_direct(
+                                client_id,
+                                ServerUpdate::new(s::Message::StoreSaleInfo(s::StoreSaleInfo::new(
+                                    0, // sucesso
+                                    buy_sell.item_unique_id,
+                                    buy_sell.item_template_id,
+                                    buy_sell.quantity,
+                                    sell_price,
+                                    new_kinah,
+                                ))),
+                            );
+                            messages.push_direct(
+                                client_id,
+                                ServerUpdate::new(s::Message::UserSellHistoryList(character.build_buyback_list())),
+                            );
+                        }
+                        _ => {}
+                    }
+                }
+            }
             c::Message::WindPath(wind_path) => {
                 println!(
                     "INFO: Player {} WindPath request (stream_id: {}, action: {})",

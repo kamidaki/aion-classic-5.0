@@ -171,6 +171,7 @@ pub struct Character {
     pub skills: Vec<Skill>,
     pub items: HashMap<u32, RawItem>,
     pub active_quests: HashMap<u32, s::QuestEntry>,
+    pub buyback_history: Vec<s::SellHistoryEntry>,
     /// Os 140 bytes que o cliente mandou ao criar o personagem. `None` para quem nasceu antes da
     /// criacao existir -- esses caem no molde capturado.
     pub aparencia: Option<Vec<u8>>,
@@ -573,6 +574,7 @@ impl Character {
             },
             skills,
             active_quests: HashMap::new(),
+            buyback_history: Vec::new(),
             aparencia: None,
             attack_sequence: 0,
             items,
@@ -681,6 +683,34 @@ impl Character {
     }
     pub fn add_kinah(&mut self, _amount: u64) {
         // Kinah is tracked and persisted through Db
+    }
+    pub fn add_item(&mut self, item_id: u32, _quantity: u32) -> u32 {
+        let unique_id = 0xC000_0000 | (self.items.len() as u32 + 1);
+        self.items.insert(
+            unique_id,
+            RawItem::new(unique_id, item_id, 0, self.items.len() as u16, vec![0; 32]),
+        );
+        unique_id
+    }
+    pub fn sell_item(&mut self, item_unique_id: u32, quantity: u32) -> u64 {
+        let item_id = self.items.remove(&item_unique_id).map(|i| i.id).unwrap_or(item_unique_id);
+        let sell_price = 500 * quantity as u64;
+        let now_ts = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap_or_default()
+            .as_secs();
+
+        self.buyback_history.insert(
+            0,
+            s::SellHistoryEntry::new(item_unique_id, item_id, quantity, sell_price, now_ts),
+        );
+        if self.buyback_history.len() > 20 {
+            self.buyback_history.truncate(20);
+        }
+        sell_price
+    }
+    pub fn build_buyback_list(&self) -> s::UserSellHistoryList {
+        s::UserSellHistoryList::new(self.buyback_history.clone())
     }
     pub fn exp(&self) -> u64 {
         self.stats.exp
