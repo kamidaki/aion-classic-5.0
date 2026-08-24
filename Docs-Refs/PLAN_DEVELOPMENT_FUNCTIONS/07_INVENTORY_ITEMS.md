@@ -1,6 +1,6 @@
-﻿# PLAN-07: Inventário e Equipamentos (SM_INVENTORY_INFO 0x1A, C_EQUIP_ITEM 0x26, SM_UPDATE_PLAYER_APPEARANCE 0x24)
+# PLAN-07: Inventário e Equipamentos (SM_INVENTORY_INFO 0x1A, C_EQUIP_ITEM 0x26, SM_UPDATE_PLAYER_APPEARANCE 0x24)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** ALTA — equipamentos afetam aparência e stats diretamente.
 
 ---

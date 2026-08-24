@@ -42,8 +42,9 @@ const CHANGE_ITEM_DESC: u16 = 0x001D;
 const LOAD_CLIENT_SETTINGS: u16 = 0x001E;
 const PUT_USER: u16 = 0x0020;
 const USE_SKILL: u16 = 0x0021;
-const TIME: u16 = 0x0026;
+const UPDATE_PLAYER_APPEARANCE: u16 = 0x0024;
 const ACTION: u16 = 0x0025;
+const TIME: u16 = 0x0026;
 const SYNC_TIME: u16 = 0x0027;
 const NPC_CHANGED_TARGET: u16 = 0x0028;
 const TARGET_INFO: u16 = 0x0029;
@@ -173,6 +174,7 @@ pub enum Message {
     QuestList(QuestList),
     UserSellHistoryList(UserSellHistoryList),
     StoreSaleInfo(StoreSaleInfo),
+    UpdatePlayerAppearance(UpdatePlayerAppearance),
 }
 
 impl Serialise for Message {
@@ -253,6 +255,7 @@ impl Serialise for Message {
             Message::QuestList(msg) => msg.serialise(&mut buf[2..]),
             Message::UserSellHistoryList(msg) => msg.serialise(&mut buf[2..]),
             Message::StoreSaleInfo(msg) => msg.serialise(&mut buf[2..]),
+            Message::UpdatePlayerAppearance(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -1532,6 +1535,9 @@ pub struct LoadInventory {
     items: Vec<RawItem>,
 }
 impl LoadInventory {
+    pub fn new(items: Vec<RawItem>) -> Self {
+        Self { items, first: true }
+    }
     pub fn start(items: Vec<RawItem>) -> Self {
         Self { items, first: true }
     }
@@ -3167,6 +3173,31 @@ impl Serialise for UserSellHistoryList {
     }
 }
 
+/// SM_UPDATE_PLAYER_APPEARANCE (0x24) — Visual dos 16 slots de equipamento
+#[derive(Debug, Clone)]
+pub struct UpdatePlayerAppearance {
+    pub player_id: u32,
+    pub items: [u32; 16],
+}
+
+impl UpdatePlayerAppearance {
+    pub fn new(player_id: u32, items: [u32; 16]) -> Self {
+        Self { player_id, items }
+    }
+}
+
+impl Serialise for UpdatePlayerAppearance {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(UPDATE_PLAYER_APPEARANCE, buf);
+        to_le_bytes!(len, buf, self.player_id);
+        for item in &self.items {
+            to_le_bytes!(len, buf, *item);
+        }
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
@@ -3292,6 +3323,20 @@ mod testes_de_inventario {
         assert_eq!(u32::from_le_bytes(buf[14..18].try_into().unwrap()), 2);
         assert_eq!(u64::from_le_bytes(buf[18..26].try_into().unwrap()), 1000);
         assert_eq!(u64::from_le_bytes(buf[26..34].try_into().unwrap()), 1600000000);
+    }
+
+    #[test]
+    fn test_update_player_appearance_serialise() {
+        let mut items = [0u32; 16];
+        items[0] = 100000768; // MainHand
+        items[3] = 110300873; // Chest
+        let app = UpdatePlayerAppearance::new(12345, items);
+        let mut buf = [0u8; 128];
+        let n = app.serialise(&mut buf);
+        assert_eq!(n, 5 + 4 + 16 * 4);
+        assert_eq!(u32::from_le_bytes(buf[5..9].try_into().unwrap()), 12345);
+        assert_eq!(u32::from_le_bytes(buf[9..13].try_into().unwrap()), 100000768);
+        assert_eq!(u32::from_le_bytes(buf[21..25].try_into().unwrap()), 110300873);
     }
 
     #[test]

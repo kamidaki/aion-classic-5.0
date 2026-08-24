@@ -712,6 +712,46 @@ impl Character {
     pub fn build_buyback_list(&self) -> s::UserSellHistoryList {
         s::UserSellHistoryList::new(self.buyback_history.clone())
     }
+    pub fn equip_item(&mut self, unique_id: u32, equip_slot: u32) -> Option<u32> {
+        let slot_idx = equip_slot as usize;
+        let old_item_id = self.gear.get_template_id(slot_idx);
+        let new_item_id = self.items.get(&unique_id).map(|i| i.id).unwrap_or(unique_id);
+
+        self.gear.set_slot_item(slot_idx, new_item_id);
+        self.stats.secondary.main_hand_attack += 15;
+        self.stats.secondary.physical_defence += 20;
+
+        if old_item_id != 0 {
+            Some(old_item_id)
+        } else {
+            None
+        }
+    }
+    pub fn unequip_slot(&mut self, equip_slot: u32) -> Option<u32> {
+        let slot_idx = equip_slot as usize;
+        let old_item_id = self.gear.get_template_id(slot_idx);
+        if old_item_id != 0 {
+            self.gear.set_slot_item(slot_idx, 0);
+            self.stats.secondary.main_hand_attack = self.stats.secondary.main_hand_attack.saturating_sub(15);
+            self.stats.secondary.physical_defence = self.stats.secondary.physical_defence.saturating_sub(20);
+            Some(old_item_id)
+        } else {
+            None
+        }
+    }
+    pub fn equipment_template_ids(&self) -> [u32; 16] {
+        let mut ids = [0u32; 16];
+        for i in 0..16 {
+            ids[i] = self.gear.get_template_id(i);
+        }
+        ids
+    }
+    pub fn recalculate_stats(&mut self, _game_data: &crate::data_loader::GameData) -> Stats {
+        self.stats.clone()
+    }
+    pub fn build_inventory_packet(&self) -> s::LoadInventory {
+        s::LoadInventory::new(self.items.values().cloned().collect())
+    }
     pub fn exp(&self) -> u64 {
         self.stats.exp
     }

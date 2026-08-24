@@ -1546,6 +1546,48 @@ impl State {
                     }
                 }
             }
+            c::Message::UseEquipmentItem(equip) => {
+                let char_id = update.character_id();
+                println!(
+                    "INFO: Player {} UseEquipmentItem (unique_id: {}, action: {}, slot: {})",
+                    char_id,
+                    equip.item_unique_id,
+                    equip.equip_action,
+                    equip.equip_slot
+                );
+
+                if let Some(character) = self.characters.get_mut(&char_id) {
+                    let client_id = update.client_id();
+                    match equip.equip_action {
+                        0 => {
+                            let _ = character.equip_item(equip.item_unique_id, equip.equip_slot);
+                        }
+                        1 => {
+                            let _ = character.unequip_slot(equip.equip_slot);
+                        }
+                        _ => {}
+                    }
+
+                    let _new_stats = character.recalculate_stats(&self.game_data);
+                    messages.push_direct(
+                        client_id,
+                        ServerUpdate::new(s::Message::Status(s::Status::new(character, 0))),
+                    );
+
+                    messages.push_others(
+                        client_id,
+                        ServerUpdate::new(s::Message::UpdatePlayerAppearance(s::UpdatePlayerAppearance::new(
+                            char_id,
+                            character.equipment_template_ids(),
+                        ))),
+                    );
+
+                    messages.push_direct(
+                        client_id,
+                        ServerUpdate::new(s::Message::LoadInventory(character.build_inventory_packet())),
+                    );
+                }
+            }
             c::Message::WindPath(wind_path) => {
                 println!(
                     "INFO: Player {} WindPath request (stream_id: {}, action: {})",

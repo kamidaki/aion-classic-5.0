@@ -61,6 +61,25 @@ impl Gear {
         self.inner[slot as usize] = Some(item);
     }
 
+    pub fn get_template_id(&self, slot: usize) -> u32 {
+        if slot < self.inner.len() {
+            if let Some(ref item) = self.inner[slot] {
+                return item.id;
+            }
+        }
+        0
+    }
+
+    pub fn set_slot_item(&mut self, slot: usize, item_id: u32) {
+        if slot < self.inner.len() {
+            if item_id == 0 {
+                self.inner[slot] = None;
+            } else {
+                self.inner[slot] = Some(Item::new(item_id, SlotType::Visible));
+            }
+        }
+    }
+
     pub fn serialiase_put_user(&self, buf: &mut [u8]) -> usize {
         let mut len = 2;
         let mut mask = 0;

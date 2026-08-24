@@ -1813,25 +1813,27 @@ impl Deserialise for Attack {
 }
 #[derive(Debug, Clone)]
 pub struct UseEquipmentItem {
-    unknown: [u8; 9],
+    pub item_unique_id: u32,
+    pub equip_action: u8,
+    pub equip_slot: u32,
 }
 impl UseEquipmentItem {
-    pub fn handle(
-        &self,
-        _: &Sender<ClientUpdate>,
-        _: &mut Account,
-    ) -> Vec<s::Message> {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::UseEquipmentItem(self))).unwrap();
         vec![]
     }
 }
 impl Deserialise for UseEquipmentItem {
-    fn deserialise(buf: &[u8]) -> Self
-    where
-        Self: Sized,
-    {
-        let unknown = buf.try_into().unwrap();
-
-        Self { unknown }
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let item_unique_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let equip_action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        let equip_slot = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        Self {
+            item_unique_id,
+            equip_action,
+            equip_slot,
+        }
     }
 }
 #[derive(Debug, Clone)]
