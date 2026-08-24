@@ -53,6 +53,59 @@ enum ConnectionState {
     AuthedLogin,
 }
 
+/// Offset da chave de sessao Blowfish dentro do payload do `SM_INIT`.
+pub const INIT_KEY_OFFSET: usize = 0x94;
+/// Offset do byte de flag que liga o fluxo de RSA e GameGuard.
+pub const INIT_FLAG_OFFSET: usize = 0xA8;
+/// Tamanho do payload do `SM_INIT`, antes de cifrar.
+pub const INIT_PAYLOAD_LEN: usize = 192;
+
+/// Monta o payload do `SM_INIT` no layout do cliente Classic EU 4.5.
+///
+/// Os offsets aqui **nao** sao os do padrao Java 2.4: naquele a chave de sessao mora em
+/// `0x99..0xA9`. O cliente 4.5 le 5 bytes antes, e com o layout 2.4 ele recebe lixo no lugar da
+/// chave -- nao consegue decifrar nada do que vem depois.
+///
+/// Conferido na engenharia reversa do `game.dll` (CONTEXT.md secao 2):
+///
+/// ```text
+/// game.dll:0x84222D   movups xmm0, [r8 + rdi + 0x94]    -> chave em 0x94 (148..164)
+/// game.dll:0x84231B   lea eax,[rcx-3]; cmp al,1; ja ..  -> byte 0xA8 (168) precisa ser 0x03
+/// game.dll:0x842329   mov [rbx+0x78], al                -> 169 = major, 170 = minor
+/// ```
+///
+/// Layout:
+///
+/// ```text
+/// [0x00]        opcode 0x00
+/// [0x01..0x05]  session_id (u32 LE)
+/// [0x05..0x09]  0x0000C621 (revisao do protocolo)
+/// [0x09..0x89]  scrambled_modulus (128 bytes do modulo RSA)
+/// [0x89..0x94]  zeros (11 bytes)
+/// [0x94..0xA4]  blowfish_key (16 bytes, a chave de sessao)
+/// [0xA4..0xA8]  zeros (4 bytes)
+/// [0xA8..0xAC]  0x00050403 -> flag 0x03 em 168, major 0x04 em 169, minor 0x05 em 170
+/// [0xAC..0xB0]  0x00200000
+/// [0xB0..0xC0]  zeros, completando 192 bytes
+/// ```
+pub fn build_sm_init_payload(
+    session_id: u32,
+    scrambled_modulus: &[u8; 128],
+    blowfish_key: &[u8; 16],
+) -> Vec<u8> {
+    let mut p = vec![0u8; INIT_PAYLOAD_LEN];
+    p[0] = 0x00; // opcode SM_INIT
+    p[1..5].copy_from_slice(&session_id.to_le_bytes());
+    p[5..9].copy_from_slice(&0x0000_C621u32.to_le_bytes());
+    p[9..137].copy_from_slice(scrambled_modulus);
+    // p[137..148] fica em zero (11 bytes)
+    p[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16].copy_from_slice(blowfish_key);
+    // p[164..168] fica em zero (4 bytes)
+    p[INIT_FLAG_OFFSET..INIT_FLAG_OFFSET + 4].copy_from_slice(&0x0005_0403u32.to_le_bytes());
+    p[172..176].copy_from_slice(&2_097_152u32.to_le_bytes());
+    p
+}
+
 async fn handle_ncsoft_client(
     mut socket: TcpStream,
     addr: std::net::SocketAddr,
@@ -83,29 +136,8 @@ async fn handle_ncsoft_client(
 
     let scrambled_modulus = rsa_manager.get_scrambled_modulus();
 
-    // =========================================================================
-    // 1. Construct SM_INIT (Java 2.4 Classic EU standard format)
-    // =========================================================================
-    // Payload layout:
-    // [0x00]        0x00 (Opcode SM_INIT)
-    // [0x01..0x05]  session_id (u32 LE)
-    // [0x05..0x09]  0x0000C621 (Protocol revision u32 LE)
-    // [0x09..0x89]  scrambled_modulus (128 bytes RSA modulus)
-    // [0x89..0x99]  zeros (16 bytes = 4 * writeD(0))
-    // [0x99..0xA9]  blowfish_key (16 bytes session key)
-    // [0xA9..0xAD]  197635 (0x00030403 u32 LE) -> Flag: 0x03, Ver: 4.3
-    // [0xAD..0xB1]  2097152 (0x00200000 u32 LE)
-    // [0xB1..0xC0]  zeros (15 bytes padding to 192 bytes)
-    // =========================================================================
-    let mut raw_init = vec![0u8; 192];
-    raw_init[0] = 0x00; // Opcode SM_INIT
-    raw_init[1..5].copy_from_slice(&session_id.to_le_bytes());
-    raw_init[5..9].copy_from_slice(&0x0000C621u32.to_le_bytes());
-    raw_init[9..137].copy_from_slice(scrambled_modulus);
-    // raw_init[137..153] is 16 bytes zeros
-    raw_init[153..169].copy_from_slice(&blowfish_key);
-    raw_init[169..173].copy_from_slice(&197635u32.to_le_bytes());
-    raw_init[173..177].copy_from_slice(&2097152u32.to_le_bytes());
+    // 1. SM_INIT -- layout e offsets documentados em `build_sm_init_payload`.
+    let raw_init = build_sm_init_payload(session_id, scrambled_modulus, &blowfish_key);
 
     let encrypted_init = crypt_engine.encrypt_init(&raw_init, blowfish_key);
     let mut init_pkt = Vec::with_capacity(encrypted_init.len() + 2);
@@ -289,7 +321,59 @@ async fn handle_ncsoft_client(
     let play_ok2: u32 = rand::random();
 
     // =========================================================================
-    // 2. Packet Reception Loop
+    // 2. Cadeia de handshake proativo
+    // =========================================================================
+    // O cliente Gameforge Classic EU nao manda nada depois do SM_INIT: ele espera o servidor
+    // empurrar o resto da cadeia. Entrar direto no laco de leitura aqui trava os dois lados -- o
+    // servidor esperando um CM_AUTH_GG que nunca vem, o cliente esperando o SM_AUTH_GG -- e a tela
+    // de login fica inerte, sem devolver um unico byte.
+    //
+    // Medido: com o laco de leitura logo depois do SM_INIT, a conexao fica aberta e o cliente
+    // manda 0 bytes. Ver CONTEXT.md secao 4B e o item 13 do changelog.
+    if let Ok(Some(a)) = db.get_or_create_account(&current_username, auto_create) {
+        account_id = a.id as u32;
+    }
+    let char_count = db.get_character_count(&current_username);
+
+    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
+        return;
+    }
+    if let Err(e) = send_login_ok(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        account_id,
+        login_ok,
+        &current_username,
+    )
+    .await
+    {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_LOGIN_OK: {}", session_id, e);
+        return;
+    }
+    if let Err(e) = send_server_list(
+        &mut socket,
+        &crypt_engine,
+        session_id,
+        &announce_ip,
+        announce_port,
+        default_server_id,
+        char_count,
+    )
+    .await
+    {
+        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_SERVER_LIST: {}", session_id, e);
+        return;
+    }
+    state = ConnectionState::AuthedLogin;
+    println!(
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Cadeia proativa entregue (conta '{}', id {}, {} personagens)",
+        session_id, current_username, account_id, char_count
+    );
+
+    // =========================================================================
+    // 3. Packet Reception Loop
     // =========================================================================
     let mut header_buf = [0u8; 2];
     loop {
@@ -505,4 +589,253 @@ fn extract_string_from_payload(payload: &[u8]) -> Option<String> {
         }
     }
     None
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::crypto::login_crypt::STATIC_BLOWFISH_KEY;
+    use crate::crypto::BlowfishCipher;
+
+    /// Inverso do `enc_xor_pass` que o `encrypt_init` aplica.
+    ///
+    /// E o que o cliente faz para recuperar o payload: a chave corrente fica gravada em
+    /// `len - 8`, e dali se anda de tras para frente desfazendo `cipher = plain ^ (key + plain)`.
+    fn dec_xor_pass(data: &mut [u8]) {
+        let total = data.len();
+        let blocos = (total - 8) / 4;
+        let mut curr_key = u32::from_le_bytes(data[total - 8..total - 4].try_into().unwrap());
+
+        for i in (1..blocos).rev() {
+            let p = i * 4;
+            let cifrado = u32::from_le_bytes(data[p..p + 4].try_into().unwrap());
+            let plain = cifrado ^ curr_key;
+            curr_key = curr_key.wrapping_sub(plain);
+            data[p..p + 4].copy_from_slice(&plain.to_le_bytes());
+        }
+    }
+
+    /// Faz o que o cliente faz com o SM_INIT que chega do servidor: decifra com a chave estatica
+    /// e desfaz o xor pass.
+    fn como_o_cliente_decifra(cifrado: &[u8]) -> Vec<u8> {
+        let mut buf = cifrado.to_vec();
+        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut buf);
+        dec_xor_pass(&mut buf);
+        buf
+    }
+
+    fn modulo_falso() -> [u8; 128] {
+        let mut m = [0u8; 128];
+        for (i, b) in m.iter_mut().enumerate() {
+            *b = (i as u8) ^ 0x5A;
+        }
+        m
+    }
+
+    fn chave_falsa() -> [u8; 16] {
+        [
+            0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE,
+            0xFF, 0x01,
+        ]
+    }
+
+    #[test]
+    fn payload_do_sm_init_segue_o_layout_4_5() {
+        let p = build_sm_init_payload(0xDEAD_BEEF, &modulo_falso(), &chave_falsa());
+
+        assert_eq!(p.len(), 192, "o payload precisa fechar em 192 bytes");
+        assert_eq!(p[0], 0x00, "opcode SM_INIT");
+        assert_eq!(u32::from_le_bytes(p[1..5].try_into().unwrap()), 0xDEAD_BEEF);
+        assert_eq!(&p[9..137], &modulo_falso()[..], "modulo RSA");
+
+        // O que o `game.dll` le, conferido em CONTEXT.md secao 2.
+        assert_eq!(&p[0x94..0x94 + 16], &chave_falsa()[..], "chave em 0x94 (game.dll:0x84222D)");
+        assert_eq!(p[0xA8], 0x03, "flag RSA/GameGuard em 0xA8 (game.dll:0x84231B)");
+        assert_eq!(p[0xA9], 0x04, "major em 169 (game.dll:0x842329)");
+        assert_eq!(p[0xAA], 0x05, "minor em 170");
+    }
+
+    #[test]
+    fn o_layout_2_4_nao_entregaria_a_chave_no_lugar_certo() {
+        // Guarda de regressao: o layout anterior punha a chave em 153..169, cinco bytes depois.
+        // Se alguem reverter para ele, este teste quebra em vez de o cliente travar em silencio.
+        let mut antigo = vec![0u8; 192];
+        antigo[153..169].copy_from_slice(&chave_falsa());
+
+        assert_ne!(
+            &antigo[0x94..0x94 + 16],
+            &chave_falsa()[..],
+            "com o layout 2.4 o cliente le lixo no lugar da chave"
+        );
+        assert_ne!(antigo[0xA8], 0x03, "e a flag de 0xA8 tambem nao esta la");
+    }
+
+    #[test]
+    fn o_cliente_recupera_a_chave_de_sessao_do_sm_init() {
+        // Este e o teste que importa: percorre o caminho inteiro que o cliente percorre.
+        // Se a chave estiver no offset errado, ou o xor pass/Blowfish estiverem trocados, o valor
+        // recuperado em 0x94 nao bate -- e e exatamente ai que o cliente real desiste.
+        let chave = chave_falsa();
+        let payload = build_sm_init_payload(0x0123_4567, &modulo_falso(), &chave);
+
+        let mut engine = LoginCryptEngine::new();
+        let cifrado = engine.encrypt_init(&payload, chave);
+        assert_eq!(cifrado.len(), 192, "o SM_INIT cifrado tem 192 bytes (194 no wire)");
+        assert_ne!(&cifrado[..16], &payload[..16], "tem que sair cifrado mesmo");
+
+        let recuperado = como_o_cliente_decifra(&cifrado);
+
+        assert_eq!(
+            &recuperado[0x94..0x94 + 16],
+            &chave[..],
+            "o cliente precisa achar a chave de sessao em 0x94"
+        );
+        assert_eq!(recuperado[0xA8], 0x03, "flag em 0xA8 depois de decifrar");
+        assert_eq!(recuperado[0xA9], 0x04);
+        assert_eq!(recuperado[0xAA], 0x05);
+        assert_eq!(&recuperado[9..137], &modulo_falso()[..], "modulo RSA intacto");
+    }
+
+    #[test]
+    fn o_engine_passa_a_usar_a_chave_de_sessao_depois_do_init() {
+        // Depois do SM_INIT o servidor cifra com a chave de sessao, nao com a estatica. Se ele
+        // continuasse na estatica, o cliente decifraria lixo em tudo que vem depois.
+        let chave = chave_falsa();
+        let mut engine = LoginCryptEngine::new();
+        let _ = engine.encrypt_init(&build_sm_init_payload(1, &modulo_falso(), &chave), chave);
+
+        let mut raw = vec![0u8; 40];
+        raw[0] = 0x0B; // SM_AUTH_GG
+        let cifrado = engine.encrypt_packet(&raw);
+
+        // Com a chave de sessao: decifra e o checksum fecha.
+        let mut com_sessao = cifrado.clone();
+        BlowfishCipher::new(&chave).decipher(&mut com_sessao);
+        assert!(
+            LoginCryptEngine::verify_checksum(&com_sessao),
+            "o pacote seguinte tem que abrir com a chave de sessao"
+        );
+        assert_eq!(com_sessao[0], 0x0B, "e o opcode tem que reaparecer");
+
+        // Com a estatica: nao fecha.
+        let mut com_estatica = cifrado;
+        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut com_estatica);
+        assert!(
+            !LoginCryptEngine::verify_checksum(&com_estatica),
+            "se abrisse com a estatica, a troca de chave nao teria acontecido"
+        );
+    }
+
+    // =====================================================================================
+    // Prova contra a rede: os bytes abaixo foram capturados no loopback (24/08/2026), emitidos
+    // pelo nosso proprio login-server para o cliente Aion Classic EU real. Sao os 4 pacotes da
+    // cadeia, exatamente como sairam.
+    //
+    // O teste faz o que o cliente faz: decifra o SM_INIT com a chave estatica, pega a chave de
+    // sessao em 0x94 e com ELA abre os tres seguintes. Se o offset estiver errado, a chave sai
+    // errada e o checksum dos tres nao fecha -- nao ha como esse teste passar por acidente.
+    // =====================================================================================
+
+    /// SM_INIT, 194 bytes no wire.
+    const REDE_P1: &str = concat!(
+        "c200cbd1939851a54414810fd80a6aeec54324c108e6bb9c2c37627d50de939f0c3424f1c26c6dbe2af89104cb5201e0",
+        "f2872594b4079782ec41e2b20079bdd029814b4dc4c73bb1fd0efa981955e9f2ef0139da324fedbccbca379b751c13a8",
+        "eb7576dc2573809cf3b6d12d8723b1bf6711251994059fdad8a52cedc78a55919bd07edf034552408cfe5d1b31a9336b",
+        "475a8caf9ad5bdf4e9ec3114b2a7ecb2e4ff4dc23479b9a9fe58e6032f1dc7141fe625d08aa25cec4b5858dfe9e43130",
+        "9d9a",
+    );
+    /// SM_AUTH_GG, 50 bytes no wire.
+    const REDE_P2: &str = concat!(
+        "3200aa370638e14c4028a5b559eb733ac71ca5b559eb733ac71ca5b559eb733ac71ca5b559eb733ac71cad044c9833ac",
+        "318c",
+    );
+    /// SM_LOGIN_OK, 74 bytes no wire.
+    const REDE_P3: &str = concat!(
+        "4a00c2da1c4a94ef33208053f9ade082ea70af7891301521b0268583493749d42c3ca5b559eb733ac71ca5b559eb733a",
+        "c71ceded062587a82d2759c866c705291fc1ec2f62ccb1e4c52a",
+    );
+    /// SM_SERVER_LIST, 50 bytes no wire.
+    const REDE_P4: &str = concat!(
+        "32002345e1e4e60fb03ea2d4e63aa7a0187d356e311459d677e9b5d03171b5f2680aa5b559eb733ac71c44169432592c",
+        "e4d7",
+    );
+
+    fn de_hex(h: &str) -> Vec<u8> {
+        (0..h.len())
+            .step_by(2)
+            .map(|i| u8::from_str_radix(&h[i..i + 2], 16).unwrap())
+            .collect()
+    }
+
+    /// Separa `[u16 tamanho][corpo]` e confere que o tamanho declarado bate com o quadro.
+    fn corpo_do_quadro(wire: &[u8]) -> Vec<u8> {
+        let tam = u16::from_le_bytes([wire[0], wire[1]]) as usize;
+        assert_eq!(tam, wire.len(), "o tamanho declarado tem que bater com o quadro");
+        wire[2..tam].to_vec()
+    }
+
+    #[test]
+    fn a_cadeia_que_o_servidor_pos_na_rede_abre_do_lado_do_cliente() {
+        let p1 = de_hex(REDE_P1);
+        let mut init = corpo_do_quadro(&p1);
+        assert_eq!(init.len(), 192);
+
+        // Passo 1: o cliente abre o SM_INIT com a chave estatica.
+        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut init);
+        dec_xor_pass(&mut init);
+
+        assert_eq!(init[0], 0x00, "opcode SM_INIT");
+        assert_eq!(init[0xA8], 0x03, "flag em 0xA8 (game.dll:0x84231B)");
+        assert_eq!(init[0xA9], 0x04, "major 4");
+        assert_eq!(init[0xAA], 0x05, "minor 5");
+
+        // Passo 2: a chave de sessao sai de 0x94.
+        let mut chave = [0u8; 16];
+        chave.copy_from_slice(&init[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16]);
+        assert_ne!(chave, [0u8; 16], "a chave nao pode sair zerada");
+
+        // Passo 3: com ela, os tres pacotes seguintes tem que abrir e fechar o checksum.
+        let cifra = BlowfishCipher::new(&chave);
+        for (hex, opcode_esperado, nome) in [
+            (REDE_P2, 0x0Bu8, "SM_AUTH_GG"),
+            (REDE_P3, 0x03, "SM_LOGIN_OK"),
+            (REDE_P4, 0x04, "SM_SERVER_LIST"),
+        ] {
+            let wire = de_hex(hex);
+            let mut corpo = corpo_do_quadro(&wire);
+            cifra.decipher(&mut corpo);
+
+            assert!(
+                LoginCryptEngine::verify_checksum(&corpo),
+                "{nome}: checksum nao fecha -- a chave lida em 0x94 esta errada"
+            );
+            assert_eq!(corpo[0], opcode_esperado, "{nome}: opcode");
+        }
+    }
+
+    #[test]
+    fn com_a_chave_no_offset_antigo_a_cadeia_nao_abre() {
+        // Guarda de regressao contra o layout 2.4: lendo a chave em 153 -- onde ela ficava antes --
+        // o checksum do pacote seguinte nao fecha. E o que o cliente real enfrentava.
+        let p1 = de_hex(REDE_P1);
+        let mut init = corpo_do_quadro(&p1);
+        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut init);
+        dec_xor_pass(&mut init);
+
+        let mut chave_errada = [0u8; 16];
+        chave_errada.copy_from_slice(&init[153..169]);
+        assert_ne!(
+            chave_errada,
+            init[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16],
+            "os dois offsets tem que dar chaves diferentes"
+        );
+
+        let wire = de_hex(REDE_P2);
+        let mut corpo = corpo_do_quadro(&wire);
+        BlowfishCipher::new(&chave_errada).decipher(&mut corpo);
+        assert!(
+            !LoginCryptEngine::verify_checksum(&corpo),
+            "com a chave do offset antigo o pacote nao pode abrir"
+        );
+    }
 }
