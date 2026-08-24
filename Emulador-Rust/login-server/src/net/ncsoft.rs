@@ -204,7 +204,17 @@ pub fn build_sm_init_payload_com(
 
 /// Offset das flags da conta (ativo / maior de idade / termos aceitos).
 pub const LOGIN_OK_FLAGS: usize = 0x10;
-/// Flags de uma conta em ordem.
+/// Flags de uma conta em ordem. Ajustavel por `AION_LOGIN_FLAGS` para bissecionar sem recompilar.
+///
+/// Medido contra o cliente, cada valor leva a um ramo diferente da maquina de autenticacao:
+///
+/// | flags  | o cliente responde                      |
+/// |--------|-----------------------------------------|
+/// | `0x00` | `Authorization Error (-101)`             |
+/// | `0x3F` | `Your account has been blocked`          |
+/// | `0x2F` | `Telephone authentication in progress`   |
+///
+/// Falta achar o valor que significa autenticado sem segundo fator.
 ///
 /// O `CONTEXT.md` diz `0x3F`, mas medido contra o cliente esse valor produz "Your account has
 /// been blocked". O bit 4 e justamente o que a rotina `game.dll:0x717BE2` testa
@@ -249,7 +259,8 @@ pub fn build_login_ok_payload(account_id: u32, login_ok: u32) -> Vec<u8> {
 
     // Flags da conta: ativo, maior de idade, termos aceitos. O `1002` que ficava em [17..21]
     // caia dentro desta regiao e apagava justamente o campo que o cliente usa para autorizar.
-    p[LOGIN_OK_FLAGS..LOGIN_OK_FLAGS + 4].copy_from_slice(&LOGIN_OK_FLAGS_ATIVA.to_le_bytes());
+    let flags = env_num("AION_LOGIN_FLAGS", LOGIN_OK_FLAGS_ATIVA as u64) as u32;
+    p[LOGIN_OK_FLAGS..LOGIN_OK_FLAGS + 4].copy_from_slice(&flags.to_le_bytes());
 
     // Assinatura Classic. Sem ela o cliente trata a sessao como nao-Classic e para aqui.
     p[LOGIN_OK_ASSINATURA] = 0xFF;

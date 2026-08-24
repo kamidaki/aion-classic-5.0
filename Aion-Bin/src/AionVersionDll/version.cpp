@@ -292,7 +292,10 @@ static void FixClientStartupWithHighCoreCountCpus() {
 }
 
 // =====================================================================================
-// Instrumentacao de socket.
+// Instrumentacao de LEITURA de socket.
+//
+// `connect`, `send` e `WSASend` ja sao enganchados no ip_fix.cpp -- enganchar de novo aqui
+// duplicava o hook. Aqui ficam so os que faltavam: recv, WSARecv e closesocket.
 //
 // Existe para responder UMA pergunta: o cliente le o socket de login?
 //
@@ -317,29 +320,14 @@ static void SockLog(const char* fmt, ...) {
     fclose(f);
 }
 
-typedef int (WSAAPI* Fn_connect)(SOCKET, const struct sockaddr*, int);
 typedef int (WSAAPI* Fn_recv)(SOCKET, char*, int, int);
-typedef int (WSAAPI* Fn_send)(SOCKET, const char*, int, int);
 typedef int (WSAAPI* Fn_WSARecv)(SOCKET, LPWSABUF, DWORD, LPDWORD, LPDWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
-typedef int (WSAAPI* Fn_WSASend)(SOCKET, LPWSABUF, DWORD, LPDWORD, DWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
 typedef int (WSAAPI* Fn_closesocket)(SOCKET);
 
-static Fn_connect     real_connect     = connect;
 static Fn_recv        real_recv        = recv;
-static Fn_send        real_send        = send;
 static Fn_WSARecv     real_WSARecv     = WSARecv;
-static Fn_WSASend     real_WSASend     = WSASend;
 static Fn_closesocket real_closesocket = closesocket;
 
-static int WSAAPI hooked_connect(SOCKET s, const struct sockaddr* name, int namelen) {
-    if (name && name->sa_family == AF_INET) {
-        const sockaddr_in* a = (const sockaddr_in*)name;
-        unsigned char* ip = (unsigned char*)&a->sin_addr;
-        SockLog("[version.dll] connect(socket=%llu, IP=%u.%u.%u.%u, Port=%u)\n",
-                (unsigned long long)s, ip[0], ip[1], ip[2], ip[3], ntohs(a->sin_port));
-    }
-    return real_connect(s, name, namelen);
-}
 
 static int WSAAPI hooked_recv(SOCKET s, char* buf, int len, int flags) {
     int r = real_recv(s, buf, len, flags);
@@ -375,25 +363,7 @@ static int WSAAPI hooked_WSARecv(SOCKET s, LPWSABUF bufs, DWORD count, LPDWORD r
     return r;
 }
 
-static int WSAAPI hooked_send(SOCKET s, const char* buf, int len, int flags) {
-    SockLog("[version.dll] send(socket=%llu, len=%d, primeiro=0x%02X)\n",
-            (unsigned long long)s, len, len > 0 ? (unsigned char)buf[0] : 0);
-    return real_send(s, buf, len, flags);
-}
 
-static int WSAAPI hooked_WSASend(SOCKET s, LPWSABUF bufs, DWORD count, LPDWORD sent,
-                                 DWORD flags, LPWSAOVERLAPPED ov,
-                                 LPWSAOVERLAPPED_COMPLETION_ROUTINE cr) {
-    unsigned long total = 0;
-    unsigned char primeiro = 0;
-    if (bufs && count > 0) {
-        for (DWORD i = 0; i < count; i++) total += bufs[i].len;
-        if (bufs[0].len > 0 && bufs[0].buf) primeiro = (unsigned char)bufs[0].buf[0];
-    }
-    SockLog("[version.dll] WSASend(socket=%llu, len=%lu, opcode=0x%02X)\n",
-            (unsigned long long)s, total, primeiro);
-    return real_WSASend(s, bufs, count, sent, flags, ov, cr);
-}
 
 static int WSAAPI hooked_closesocket(SOCKET s) {
     SockLog("[version.dll] closesocket(socket=%llu)\n", (unsigned long long)s);
@@ -401,11 +371,8 @@ static int WSAAPI hooked_closesocket(SOCKET s) {
 }
 
 static void InstallSocketInstrumentation() {
-    DetourAttach(&(PVOID&)real_connect, hooked_connect);
     DetourAttach(&(PVOID&)real_recv, hooked_recv);
-    DetourAttach(&(PVOID&)real_send, hooked_send);
     DetourAttach(&(PVOID&)real_WSARecv, hooked_WSARecv);
-    DetourAttach(&(PVOID&)real_WSASend, hooked_WSASend);
     DetourAttach(&(PVOID&)real_closesocket, hooked_closesocket);
 }
 

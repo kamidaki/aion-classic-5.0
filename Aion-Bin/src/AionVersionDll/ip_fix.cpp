@@ -13,8 +13,19 @@ static int WSAAPI zzconnect(_In_ SOCKET s, _In_reads_bytes_(namelen) const struc
         strcpy_s(ipBuf, inet_ntoa(sin.sin_addr));
         u_short port = ntohs(sin.sin_port);
 
-        // If client connects to loopback and port is not GameServer(7777) or ChatServer(10241), ensure port 2106
-        if ((strcmp(ipBuf, "127.0.0.1") == 0 || strcmp(ipBuf, "0.0.0.0") == 0) && port != 7777 && port != 10241 && port != 2106) {
+        // Portas do emulador que NAO podem ser desviadas.
+        //
+        // A regra abaixo forcava para 2106 toda conexao de loopback que nao fosse 7777 ou 10241.
+        // Com isso a 6600 caia na rede: o cliente tentava abrir o STS e ia parar no login server.
+        //
+        // Isso importa porque, na captura do servidor oficial, o cliente **so responde ao HQ
+        // depois que o STS termina** -- ele recebe o AUTH_GREETING na 13001, abre a 6600 0,18s
+        // depois, faz ~3s de handshake e so entao manda as credenciais na 13001. Sem STS ele fica
+        // esperando para sempre, que e exatamente o travamento observado.
+        const bool porta_do_emulador =
+            port == 7777 || port == 10241 || port == 2106 || port == 6600 || port == 13001;
+
+        if ((strcmp(ipBuf, "127.0.0.1") == 0 || strcmp(ipBuf, "0.0.0.0") == 0) && !porta_do_emulador) {
             port = 2106;
             sin.sin_port = htons(2106);
         }
