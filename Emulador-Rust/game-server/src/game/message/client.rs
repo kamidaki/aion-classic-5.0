@@ -2033,4 +2033,84 @@ mod testes_de_opcode {
             );
         }
     }
+
+    // =====================================================================================
+    // Prova contra o cliente oficial. Quadros capturados em 24/08/2026 numa sessao real contra
+    // o servidor da Gameforge -- estes bytes sairam do `Aion.bin`, nao de um teste.
+    //
+    // O teste acima cifra o proprio pacote e confere que ele volta; este exige que o caminho de
+    // desserializacao aceite o que o cliente de verdade manda, com a chave derivada do S_KEY.
+    // =====================================================================================
+
+    /// Seed do S_KEY da mesma sessao. O quadro do servidor viaja em claro e carrega este valor.
+    const SEED_OFICIAL: u32 = 0x73CB_9F92;
+
+    /// C_VERSION, 23 bytes no wire.
+    const CLIENTE_1: &str = "1700a8d4be626ba0807e14869e2ceff5db3a227c65ad42";
+    /// C_SYNC_TIME, 20 bytes.
+    const CLIENTE_2: &str = "14008ff399575e590fd887f1d436c98aa4456834";
+    /// C_SYNC_TIME de novo -- so abre se a chave tiver avancado pelos dois anteriores.
+    const CLIENTE_3: &str = "1400611d77b9b04eb563cbbcf7d156e8c726e5b9";
+
+    fn de_hex(h: &str) -> Vec<u8> {
+        (0..h.len())
+            .step_by(2)
+            .map(|i| u8::from_str_radix(&h[i..i + 2], 16).unwrap())
+            .collect()
+    }
+
+    #[test]
+    fn desserializa_pacotes_reais_do_cliente_oficial() {
+        let mut chave = gen_xor_key(SEED_OFICIAL).to_le_bytes();
+
+        let casos: [(&str, u16, fn(&Message) -> bool); 3] = [
+            (CLIENTE_1, 0x000, |m| matches!(m, Message::Version(_))),
+            (CLIENTE_2, 0x012, |m| matches!(m, Message::SyncTime(_))),
+            (CLIENTE_3, 0x012, |m| matches!(m, Message::SyncTime(_))),
+        ];
+
+        for (hex, opcode_esperado, e_o_esperado) in casos {
+            let quadro = de_hex(hex);
+            let mut corpo = quadro[2..].to_vec();
+
+            let (msg, opcode) = Message::deserialise(&mut corpo, &mut chave).unwrap_or_else(|op| {
+                panic!("pacote real do cliente recusado (opcode 0x{op:03X})")
+            });
+
+            assert_eq!(opcode, opcode_esperado, "opcode desofuscado");
+            assert!(e_o_esperado(&msg), "caiu no handler errado: {msg:?}");
+        }
+    }
+
+    #[test]
+    fn com_a_chave_errada_o_pacote_real_e_recusado() {
+        // Guarda: o checksum do cabecalho e a unica defesa contra chave dessincronizada. Se ele
+        // parasse de ser conferido, um pacote decifrado errado viraria opcode aleatorio.
+        let mut chave = gen_xor_key(SEED_OFICIAL ^ 1).to_le_bytes();
+        let quadro = de_hex(CLIENTE_1);
+        let mut corpo = quadro[2..].to_vec();
+
+        assert!(
+            Message::deserialise(&mut corpo, &mut chave).is_err(),
+            "com a chave errada o checksum nao pode fechar"
+        );
+    }
+
+    #[test]
+    fn a_chave_do_cliente_avanca_pelo_tamanho_de_cada_pacote() {
+        // Se a chave nao avancasse, o segundo pacote da sessao real nao abriria.
+        let mut chave = gen_xor_key(SEED_OFICIAL).to_le_bytes();
+        let inicial = chave;
+
+        let quadro = de_hex(CLIENTE_1);
+        let mut corpo = quadro[2..].to_vec();
+        let _ = Message::deserialise(&mut corpo, &mut chave).expect("primeiro pacote");
+
+        assert_ne!(chave, inicial, "a chave tem que avancar");
+        assert_eq!(
+            u64::from_le_bytes(chave),
+            u64::from_le_bytes(inicial) + (quadro.len() - 2) as u64,
+            "avanca exatamente pelo tamanho do corpo decifrado"
+        );
+    }
 }
