@@ -12,10 +12,10 @@ O emulador **EmuRust** segue a mesma filosofia e arquitetura dos emuladores priv
 * **Sem dependências externas**: O acesso ao jogo ocorre **exclusivamente com usuário e senha**. Nenhuma autenticação por Launcher proprietário, OAuth, 2FA, SMS ou código de telefone é necessária.
 * **Métodos opcionais ignorados**: Todos os fluxos alternativos ou opcionais presentes nos binários do cliente (`Aion.bin` / `game.dll`) são ignorados pelo servidor, exatamente como operam os emuladores de referência.
 
-### B. Modos de Inicialização do Cliente (`Start_Client_Classic_EU.bat`)
+### B. Modos de Inicialização do Cliente (`Start_Classic.bat`)
 O cliente do jogo é inicializado através do arquivo `.bat` apontando para a porta de login padrão `2106`:
 ```bat
-start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu
+start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2
 ```
 
 | Modo de Abertura | Comportamento do Cliente | Fluxo no Emulador |

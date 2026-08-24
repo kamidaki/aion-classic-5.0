@@ -25,7 +25,7 @@ Itens Auditados para Remoção Segura:
 6. Arquivos `.log` temporários dispersos na raiz do workspace.
 
 Itens que Devem Ser PRESERVADOS Intactos:
-* `Cliente/GFAion/aionclassic/Start_Client_Classic_EU.bat` (Entry point único do jogador).
+* `Cliente/GFAion/aionclassic/Start_Classic.bat` (Entry point único do jogador).
 * `data/client/` (Templates de NPCs, Itens, Skills, Spawns).
 * `Emulador-Rust/aion.db` (Banco de dados SQLite compartilhado).
 * `Docs-Refs/PLANO-LOGINSERVER/` (Memória técnica permanente do projeto).

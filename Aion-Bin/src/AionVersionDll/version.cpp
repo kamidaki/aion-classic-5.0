@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <string>
+#include <algorithm>
 #include "exports.h"
 #include "detours.h"
 
@@ -96,6 +98,89 @@ void InstallIpFix();
 void InstallShaderFix();
 void Install64BitStackFix();
 
+// Hook functions for command line injection and resolution border adjustments
+static decltype(GetCommandLineA)* real_GetCommandLineA = GetCommandLineA;
+static LPSTR WINAPI zzGetCommandLineA() {
+    static std::string s_hookedCmdA;
+    if (s_hookedCmdA.empty()) {
+        LPSTR cmd = real_GetCommandLineA();
+        s_hookedCmdA = cmd ? cmd : "";
+        if (s_hookedCmdA.find("-classic") == std::string::npos) {
+            s_hookedCmdA += " -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu";
+        }
+        VersionLog("[CMDLINE] Hooked GetCommandLineA: %s", s_hookedCmdA.c_str());
+    }
+    return const_cast<LPSTR>(s_hookedCmdA.c_str());
+}
+
+static decltype(GetCommandLineW)* real_GetCommandLineW = GetCommandLineW;
+static LPWSTR WINAPI zzGetCommandLineW() {
+    static std::wstring s_hookedCmdW;
+    if (s_hookedCmdW.empty()) {
+        LPWSTR cmd = real_GetCommandLineW();
+        s_hookedCmdW = cmd ? cmd : L"";
+        if (s_hookedCmdW.find(L"-classic") == std::wstring::npos) {
+            s_hookedCmdW += L" -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu";
+        }
+        VersionLog("[CMDLINE] Hooked GetCommandLineW: %ls", s_hookedCmdW.c_str());
+    }
+    return const_cast<LPWSTR>(s_hookedCmdW.c_str());
+}
+
+static decltype(CreateWindowExA)* real_CreateWindowExA = CreateWindowExA;
+static HWND WINAPI zzCreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {
+    if (lpClassName && (strcmp(lpClassName, "AION") == 0 || strcmp(lpClassName, "CryGame") == 0)) {
+        if ((dwStyle & WS_CAPTION) && !(dwStyle & WS_MAXIMIZE) && !(dwStyle & WS_MINIMIZE)) {
+            RECT rect = {0, 0, nWidth, nHeight};
+            AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
+            nWidth = rect.right - rect.left;
+            nHeight = rect.bottom - rect.top;
+            VersionLog("[GRAPHICS] CreateWindowExA adjusted window size to %dx%d", nWidth, nHeight);
+        }
+    }
+    return real_CreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+}
+
+static decltype(CreateWindowExW)* real_CreateWindowExW = CreateWindowExW;
+static HWND WINAPI zzCreateWindowExW(DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {
+    if (lpClassName && (wcscmp(lpClassName, L"AION") == 0 || wcscmp(lpClassName, L"CryGame") == 0)) {
+        if ((dwStyle & WS_CAPTION) && !(dwStyle & WS_MAXIMIZE) && !(dwStyle & WS_MINIMIZE)) {
+            RECT rect = {0, 0, nWidth, nHeight};
+            AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
+            nWidth = rect.right - rect.left;
+            nHeight = rect.bottom - rect.top;
+            VersionLog("[GRAPHICS] CreateWindowExW adjusted window size to %dx%d", nWidth, nHeight);
+        }
+    }
+    return real_CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+}
+
+static decltype(SetWindowPos)* real_SetWindowPos = SetWindowPos;
+static BOOL WINAPI zzSetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int cx, int cy, UINT uFlags) {
+    char className[256];
+    if (!(uFlags & SWP_NOSIZE) && GetClassNameA(hWnd, className, sizeof(className)) && 
+        (strcmp(className, "AION") == 0 || strcmp(className, "CryGame") == 0)) {
+        
+        DWORD style = GetWindowLongA(hWnd, GWL_STYLE);
+        if ((style & WS_CAPTION) && !(style & WS_MAXIMIZE) && !(style & WS_MINIMIZE)) {
+            if ((cx == 1024 && cy == 768) || (cx == 1280 && (cy == 720 || cy == 800 || cy == 1024)) ||
+                (cx == 1366 && cy == 768) || (cx == 1440 && cy == 900) || (cx == 1600 && (cy == 900 || cy == 1200)) ||
+                (cx == 1680 && cy == 1050) || (cx == 1920 && (cy == 1080 || cy == 1200)) ||
+                (cx == 2560 && (cy == 1080 || cy == 1440 || cy == 1600)) || (cx == 3440 && cy == 1440) ||
+                (cx == 3840 && cy == 2160)) {
+                
+                RECT rect = {0, 0, cx, cy};
+                DWORD exStyle = GetWindowLongA(hWnd, GWL_EXSTYLE);
+                AdjustWindowRectEx(&rect, style, FALSE, exStyle);
+                cx = rect.right - rect.left;
+                cy = rect.bottom - rect.top;
+                VersionLog("[GRAPHICS] SetWindowPos adjusted window size to %dx%d (client: %dx%d)", cx, cy, rect.right, rect.bottom);
+            }
+        }
+    }
+    return real_SetWindowPos(hWnd, hWndInsertAfter, X, Y, cx, cy, uFlags);
+}
+
 static decltype(SetWindowLongA)* real_SetWindowLongA = SetWindowLongA;
 static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong) {
     if (!s_gfxEnabled) {
@@ -167,6 +252,7 @@ static void FixClientStartupWithHighCoreCountCpus() {
 }
 
 static void InstallPatch() {
+    SetProcessDPIAware();
     PreloadDXVK();
 
     DetourTransactionBegin();
@@ -178,6 +264,11 @@ static void InstallPatch() {
     Install64BitStackFix();
     VersionLog("[INIT] 64-bit Stack Fix installed.");
 #endif
+    DetourAttach(&(PVOID&)real_GetCommandLineA, zzGetCommandLineA);
+    DetourAttach(&(PVOID&)real_GetCommandLineW, zzGetCommandLineW);
+    DetourAttach(&(PVOID&)real_CreateWindowExA, zzCreateWindowExA);
+    DetourAttach(&(PVOID&)real_CreateWindowExW, zzCreateWindowExW);
+    DetourAttach(&(PVOID&)real_SetWindowPos, zzSetWindowPos);
     DetourTransactionCommit();
 
     FixClientStartupWithHighCoreCountCpus();

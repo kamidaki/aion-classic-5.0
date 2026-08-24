@@ -28,7 +28,7 @@ Configurar o `login-server` e os scripts de inicialização do client para atend
 ## ARQUIVOS ENVOLVIDOS
 * `Cliente/GFAion/aionclassic/bin64/Aion.bin`
 * `Cliente/GFAion/aionclassic/bin64/game.dll`
-* `Cliente/GFAion/aionclassic/Start_Client_Classic_EU.bat`
+* `Cliente/GFAion/aionclassic/Start_Classic.bat`
 * `docs/reverse/game-dll-x64-findings.md`
 * `docs/protocol/auth-server.md`
 
@@ -37,7 +37,7 @@ Configurar o `login-server` e os scripts de inicialização do client para atend
 * Configuração do IP do game server como IP de LAN (`192.168.3.184`).
 
 ## TESTES
-* Teste de inicialização do client via `Start_Client_Classic_EU.bat`.
+* Teste de inicialização do client via `Start_Classic.bat`.
 * Inspeção dos logs em `AIONLOG/log.txt` para validar ausência de erros de carregamento de DLLs.
 
 ## VALIDAÇÃO
@@ -48,7 +48,7 @@ Configurar o `login-server` e os scripts de inicialização do client para atend
 * Mitigação: Isolamento dos parsers em módulos versionados.
 
 ## DEPENDÊNCIAS
-* `Aion.bin`, `game.dll`, `Start_Client_Classic_EU.bat`.
+* `Aion.bin`, `game.dll`, `Start_Classic.bat`.
 
 ## TO-DO
 - [x] Mapear endereços e instruções do `game.dll`.

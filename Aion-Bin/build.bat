@@ -54,12 +54,12 @@ if exist "src\Release\version.dll" (
 
 if exist "lib\dxvk\x64\d3d9.dll" (
     copy /y "lib\dxvk\x64\d3d9.dll" "%CLIENT_DIR%\bin64\d3d9.dll"
-    echo   [OK] bin64\d3d9.dll (DXVK Sarek Vulkan) instalado com sucesso!
+    echo   [OK] bin64\d3d9.dll ^(DXVK Sarek Vulkan^) instalado com sucesso!
 )
 
 if exist "lib\dxvk\x32\d3d9.dll" (
     copy /y "lib\dxvk\x32\d3d9.dll" "%CLIENT_DIR%\bin32\d3d9.dll"
-    echo   [OK] bin32\d3d9.dll (DXVK Sarek Vulkan) instalado com sucesso!
+    echo   [OK] bin32\d3d9.dll ^(DXVK Sarek Vulkan^) instalado com sucesso!
 )
 
 echo =========================================================================

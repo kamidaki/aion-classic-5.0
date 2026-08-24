@@ -47,7 +47,7 @@ Seguindo o padrao consolidado dos emuladores privados consagrados de Aion (Java 
 * **Metodos opcionais desconsiderados**: Todos os metodos alternativos presentes nos binarios do cliente sao ignorados pelo emulador, mantendo o processo limpo, direto e compativel.
 
 ### 2. Inicializacao do Cliente via `.bat` na Porta `2106`
-O jogo deve ser executado atraves do script [Start_Client_Classic_EU.bat](file:///d:/AION%20RUST/AionEMU/AionEMU/Cliente/GFAion/aionclassic/Start_Client_Classic_EU.bat):
+O jogo deve ser executado atraves do script [Start_Classic.bat](file:///d:/AION%20RUST/AionEMU/AionEMU/Cliente/GFAion/aionclassic/Start_Classic.bat):
 
 | Modo | Comando no `.bat` | Comportamento |
 |---|---|---|
@@ -198,7 +198,7 @@ Assim como na arquitetura dos emuladores Java de referencia, o **EmuRust** opera
 3. No painel, clique em **INICIAR TODOS** (ou use a tecla de atalho).
 4. Inicie o jogo pelo script:
    ```text
-   Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat
+   Cliente\GFAion\aionclassic\Start_Classic.bat
    ```
 
 ---

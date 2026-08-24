@@ -26,7 +26,7 @@ A suíte de testes é dividida em 4 níveis:
      * Porta Chat 10241 (valida `CM_CHAT_INI` e `CM_PLAYER_AUTH`).
 4. **Nível 4: Validação com Client Real**:
    * Execução dos 3 servidores pelo `Auto-Start EmuRust.exe`.
-   * Inicialização do client com `Start_Client_Classic_EU.bat`.
+   * Inicialização do client com `Start_Classic.bat`.
    * Validação visual na tela da passagem do login para seleção de personagem e entrada no mundo.
 
 ## SOLUÇÃO
@@ -35,7 +35,7 @@ Executar a suíte de testes completa a cada build e documentar os relatórios de
 ## ARQUIVOS ENVOLVIDOS
 * `Emulador-Rust/tests/`
 * `verify_integration.py`
-* `Cliente/GFAion/aionclassic/Start_Client_Classic_EU.bat`
+* `Cliente/GFAion/aionclassic/Start_Classic.bat`
 * `deploy/Auto-Start EmuRust.exe`
 
 ## IMPLEMENTAÇÃO

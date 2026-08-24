@@ -10,7 +10,7 @@ O **EmuRust** segue a arquitetura oficial e dos emuladores consagrados (Java 4.8
 
 * **Autenticação Pura**: O acesso ocorre **unicamente via Login e Senha**. Métodos adicionais (Launcher proprietário, 2FA, OAuth, SMS/códigos de telefone) são dispensados e ignorados.
 * **Porta de Conexão**: O cliente conecta-se sempre na porta de login padrão **`2106`**.
-* **Inicialização via Script `.bat`** (`Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat`):
+* **Inicialização via Script `.bat`** (`Cliente\GFAion\aionclassic\Start_Classic.bat`):
   * **Sem parâmetros de credenciais**: Abre a tela tradicional de login in-game. O jogador digita usuário e senha na interface do jogo.
   * **Com parâmetros de credenciais** (`-account:user -password:pass`): Pula a tela de login in-game e avança imediatamente para os Termos de Serviço / Seleção de Servidores.
 
