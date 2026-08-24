@@ -1,9 +1,10 @@
 pub mod api;
+pub mod constantes;
 pub mod protocol;
 
 use api::StsSession;
 use crate::db::AuthDb;
-use protocol::StsFrame;
+use protocol::{encode_reply, StsRequest};
 use std::sync::Arc;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpListener;
@@ -32,24 +33,19 @@ pub async fn run_sts_server(bind_addr: &str, db: Arc<AuthDb>, dev_user: String) 
                             Ok(n) => {
                                 read_buf.extend_from_slice(&buf[..n]);
 
-                                while let Some((frame, consumed)) = StsFrame::parse(&read_buf) {
-                                    // Parse HTTP Path
-                                    let header_str = String::from_utf8_lossy(&read_buf[..consumed]);
-                                    let path = if let Some(line) = header_str.lines().next() {
-                                        let parts: Vec<&str> = line.split_whitespace().collect();
-                                        if parts.len() >= 2 { parts[1] } else { "/Sts/Ping" }
-                                    } else {
-                                        "/Sts/Ping"
-                                    };
-
-                                    let (reply_xml, seq) = session.handle_request(path, &frame.body);
-                                    let reply_frame = StsFrame {
-                                        body: reply_xml.into_bytes(),
-                                    };
-                                    let resp_bytes = reply_frame.encode(seq);
-                                    if let Err(e) = socket.write_all(&resp_bytes).await {
-                                        eprintln!("ERROR: [LoginServer-STS] Write error: {}", e);
-                                        break;
+                                while let Some((req, consumed)) = StsRequest::parse(&read_buf) {
+                                    // Nem toda rota tem resposta: o servidor oficial fica calado
+                                    // no /Sts/Connect.
+                                    if let Some((corpo, seq)) = session.handle_request(&req) {
+                                        let resp = encode_reply(&corpo, seq);
+                                        if let Err(e) = socket.write_all(&resp).await {
+                                            eprintln!("ERROR: [LoginServer-STS] Write error: {}", e);
+                                            break;
+                                        }
+                                        println!(
+                                            "INFO: [LoginServer-STS] -> {} ({} bytes, s={}R)",
+                                            req.path, corpo.len(), seq
+                                        );
                                     }
 
                                     read_buf.drain(..consumed);
