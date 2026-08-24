@@ -30,6 +30,8 @@ pub struct PersistedCharacter {
     pub x: f32,
     pub y: f32,
     pub z: f32,
+    pub map_id: u32,
+    pub heading: u8,
     pub hp: i32,
     pub mp: u32,
     /// Bloco de 140 bytes que o cliente mandou ao criar o personagem: nome, genero, raca,
@@ -77,6 +79,8 @@ impl Db {
                 x REAL NOT NULL,
                 y REAL NOT NULL,
                 z REAL NOT NULL,
+                map_id INTEGER NOT NULL DEFAULT 110070000,
+                heading INTEGER NOT NULL DEFAULT 0,
                 hp INTEGER NOT NULL DEFAULT 100,
                 mp INTEGER NOT NULL DEFAULT 100,
                 aparencia BLOB,
@@ -115,6 +119,8 @@ impl Db {
         // Compatibilidade com colunas legadas se existirem
         let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN aparencia BLOB", []);
         let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN kit_inicial INTEGER NOT NULL DEFAULT 0", []);
+        let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN map_id INTEGER NOT NULL DEFAULT 110070000", []);
+        let _ = self.conn.execute("ALTER TABLE characters ADD COLUMN heading INTEGER NOT NULL DEFAULT 0", []);
         let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN name TEXT", []);
         let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN username TEXT", []);
         let _ = self.conn.execute("ALTER TABLE accounts ADD COLUMN password_hash TEXT NOT NULL DEFAULT ''", []);
@@ -164,7 +170,7 @@ impl Db {
         )?;
 
         let mut stmt = self.conn.prepare(
-            "SELECT id, account_id, name, level, exp, x, y, z, hp, mp, aparencia
+            "SELECT id, account_id, name, level, exp, x, y, z, map_id, heading, hp, mp, aparencia
              FROM characters WHERE account_id = ?1 ORDER BY id",
         )?;
         let linhas = stmt.query_map(params![account_id], |row| {
@@ -177,9 +183,11 @@ impl Db {
                 x: row.get(5)?,
                 y: row.get(6)?,
                 z: row.get(7)?,
-                hp: row.get::<_, i64>(8)? as i32,
-                mp: row.get::<_, i64>(9)? as u32,
-                aparencia: row.get(10)?,
+                map_id: row.get::<_, i64>(8)? as u32,
+                heading: row.get::<_, i64>(9)? as u8,
+                hp: row.get::<_, i64>(10)? as i32,
+                mp: row.get::<_, i64>(11)? as u32,
+                aparencia: row.get(12)?,
             })
         })?;
 
@@ -214,9 +222,18 @@ impl Db {
         let ponto = mundo::ponto_de_entrada(raca);
 
         self.conn.execute(
-            "INSERT INTO characters(account_id, name, level, exp, x, y, z, hp, mp, aparencia)
-             VALUES (?1, ?2, 1, 0, ?3, ?4, ?5, 100, 100, ?6)",
-            params![account_id, nome, ponto.x, ponto.y, ponto.z, aparencia],
+            "INSERT INTO characters(account_id, name, level, exp, x, y, z, map_id, heading, hp, mp, aparencia)
+             VALUES (?1, ?2, 1, 0, ?3, ?4, ?5, ?6, ?7, 100, 100, ?8)",
+            params![
+                account_id,
+                nome,
+                ponto.x,
+                ponto.y,
+                ponto.z,
+                ponto.mapa as i64,
+                ponto.direcao as i64,
+                aparencia
+            ],
         )?;
         let id = self.conn.last_insert_rowid();
 
@@ -229,6 +246,8 @@ impl Db {
             x: ponto.x,
             y: ponto.y,
             z: ponto.z,
+            map_id: ponto.mapa,
+            heading: ponto.direcao,
             hp: 100,
             mp: 100,
             aparencia: Some(aparencia.to_vec()),
@@ -281,7 +300,7 @@ impl Db {
         let existing: Option<PersistedCharacter> = self
             .conn
             .query_row(
-                "SELECT id, account_id, name, level, exp, x, y, z, hp, mp, aparencia
+                "SELECT id, account_id, name, level, exp, x, y, z, map_id, heading, hp, mp, aparencia
                  FROM characters WHERE account_id = ?1 LIMIT 1",
                 params![account_id],
                 |row| {
@@ -294,9 +313,11 @@ impl Db {
                         x: row.get(5)?,
                         y: row.get(6)?,
                         z: row.get(7)?,
-                        hp: row.get::<_, i64>(8)? as i32,
-                        mp: row.get::<_, i64>(9)? as u32,
-                        aparencia: row.get(10)?,
+                        map_id: row.get::<_, i64>(8)? as u32,
+                        heading: row.get::<_, i64>(9)? as u8,
+                        hp: row.get::<_, i64>(10)? as i32,
+                        mp: row.get::<_, i64>(11)? as u32,
+                        aparencia: row.get(12)?,
                     })
                 },
             )
@@ -307,8 +328,8 @@ impl Db {
         }
 
         self.conn.execute(
-            "INSERT INTO characters(account_id, name, level, exp, x, y, z, hp, mp)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+            "INSERT INTO characters(account_id, name, level, exp, x, y, z, map_id, heading, hp, mp)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
             params![
                 account_id,
                 "Azphelumbra",
@@ -317,6 +338,8 @@ impl Db {
                 mundo::X,
                 mundo::Y,
                 mundo::Z,
+                mundo::MAPA as i64,
+                mundo::DIRECAO as i64,
                 1148_i64,
                 1080_i64,
             ],
@@ -332,6 +355,8 @@ impl Db {
             x: mundo::X,
             y: mundo::Y,
             z: mundo::Z,
+            map_id: mundo::MAPA,
+            heading: mundo::DIRECAO,
             hp: 1148,
             mp: 1080,
             // O personagem fixo nao veio de uma criacao, entao nao tem bloco: cai no molde.
@@ -498,6 +523,8 @@ impl Db {
         x: f32,
         y: f32,
         z: f32,
+        map_id: u32,
+        heading: u8,
         level: u16,
         exp: u64,
         hp: i32,
@@ -505,13 +532,15 @@ impl Db {
     ) -> Result<()> {
         self.conn.execute(
             "UPDATE characters
-             SET x=?1, y=?2, z=?3, level=?4, exp=?5, hp=?6, mp=?7,
+             SET x=?1, y=?2, z=?3, map_id=?4, heading=?5, level=?6, exp=?7, hp=?8, mp=?9,
                  updated_at=strftime('%s','now')
-             WHERE id=?8",
+             WHERE id=?10",
             params![
                 x,
                 y,
                 z,
+                map_id as i64,
+                heading as i64,
                 level as i64,
                 exp as i64,
                 hp as i64,
@@ -582,7 +611,7 @@ mod tests {
         assert_eq!(a.id, b.id, "second call must return same character id");
         assert_eq!(a.account_id, b.account_id);
 
-        db.save_character(a.id, 100.0, 200.0, 300.0, 20, 999_999, 500, 250)
+        db.save_character(a.id, 100.0, 200.0, 300.0, 110010000, 45, 20, 999_999, 500, 250)
             .unwrap();
 
         let c = db.load_or_create_character("alice").unwrap();
@@ -592,6 +621,8 @@ mod tests {
         assert_eq!(c.x, 100.0);
         assert_eq!(c.y, 200.0);
         assert_eq!(c.z, 300.0);
+        assert_eq!(c.map_id, 110010000);
+        assert_eq!(c.heading, 45);
         assert_eq!(c.hp, 500);
         assert_eq!(c.mp, 250);
     }

@@ -30,6 +30,7 @@ const HIT_POINT: u16 = 0x0003;
 const HIT_POINT_OTHER: u16 = 0x0005;
 const ENTER_WORLD_CHECK: u16 = 0x000D;
 const PUT_NPC: u16 = 0x000E;
+const REQUEST_TELEPORT: u16 = 0x0014;
 const REMOVE_OBJECT: u16 = 0x0016;
 const WORLD: u16 = 0x000F;
 const MESSAGE_CODE: u16 = 0x0019;
@@ -153,6 +154,7 @@ pub enum Message {
     ListaPersonagens45(ListaPersonagens45),
     DeleteCharacter(DeleteCharacter),
     DialogWindow(DialogWindow),
+    RequestTeleport(RequestTeleport),
 }
 
 impl Serialise for Message {
@@ -223,6 +225,7 @@ impl Serialise for Message {
             Message::ListaPersonagens45(msg) => msg.serialise(&mut buf[2..]),
             Message::DeleteCharacter(msg) => msg.serialise(&mut buf[2..]),
             Message::DialogWindow(msg) => msg.serialise(&mut buf[2..]),
+            Message::RequestTeleport(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -915,14 +918,28 @@ impl Serialise for SecondPassword {
     }
 }
 
-/// Acknowledges a C_ENTER_WORLD
+/// Acknowledges a C_ENTER_WORLD (Opcode 0x000D).
+///
+/// check_type:
+/// - 0x00: entrada normal no mundo
+/// - 0x01: retorno de dungeon / instância
 #[derive(Debug, Clone)]
 pub struct EnterWorldCheck {
-    raw: [u8; 3],
+    pub check_type: u8,
+    pub raw: [u8; 2],
 }
 impl EnterWorldCheck {
     pub fn new() -> Self {
-        Self { raw: [0u8; 3] }
+        Self {
+            check_type: 0x00,
+            raw: [0u8; 2],
+        }
+    }
+    pub fn with_type(check_type: u8) -> Self {
+        Self {
+            check_type,
+            raw: [0u8; 2],
+        }
     }
 }
 impl Serialise for EnterWorldCheck {
@@ -930,6 +947,7 @@ impl Serialise for EnterWorldCheck {
         let mut len = 0;
         len += add_prelude(ENTER_WORLD_CHECK, buf);
 
+        to_le_bytes!(len, buf, self.check_type);
         buf[len..len + self.raw.len()].copy_from_slice(&self.raw);
         len += self.raw.len();
 
@@ -1941,12 +1959,23 @@ impl Serialise for InvisibleLevel {
 }
 #[derive(Debug, Clone)]
 pub struct WorldSceneStatus {
-    raw: [u8; 9],
+    pub scene_id: u32,
+    pub status: u8,
+    pub raw: [u8; 4],
 }
 impl WorldSceneStatus {
     pub fn new() -> Self {
         Self {
-            raw: [0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
+            scene_id: 0,
+            status: 1,
+            raw: [0x00, 0x00, 0x00, 0x00],
+        }
+    }
+    pub fn scene(scene_id: u32, status: u8) -> Self {
+        Self {
+            scene_id,
+            status,
+            raw: [0x00, 0x00, 0x00, 0x00],
         }
     }
 }
@@ -1955,6 +1984,8 @@ impl Serialise for WorldSceneStatus {
         let mut len = 0;
         len += add_prelude(WORLD_SCENE_STATUS, buf);
 
+        to_le_bytes!(len, buf, self.status);
+        to_le_bytes!(len, buf, self.scene_id);
         buf[len..len + self.raw.len()].copy_from_slice(&self.raw);
         len += self.raw.len();
 
@@ -2703,10 +2734,85 @@ impl Serialise for DialogWindow {
     }
 }
 
+/// Teleporte e posicionamento no mundo (Opcode 0x0014, 22 bytes de payload).
+///
+/// Layout oficial capturado:
+/// - [u8 tipo]         — 0x00=portal NPC, 0x01=zona, 0x02=instância
+/// - [u32 map_id]      — ex: 110070000 (Kaisinel Academy), 120070000 (Asmodae Intro)
+/// - [u32 instance_id] — ex: 0 (mundo aberto)
+/// - [f32 x]
+/// - [f32 y]
+/// - [f32 z]
+/// - [u8 heading]      — direção do personagem (0–120)
+#[derive(Debug, Clone)]
+pub struct RequestTeleport {
+    pub tipo: u8,
+    pub map_id: u32,
+    pub instance_id: u32,
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub heading: u8,
+}
+
+impl RequestTeleport {
+    pub fn new(
+        tipo: u8,
+        map_id: u32,
+        instance_id: u32,
+        x: f32,
+        y: f32,
+        z: f32,
+        heading: u8,
+    ) -> Self {
+        Self {
+            tipo,
+            map_id,
+            instance_id,
+            x,
+            y,
+            z,
+            heading,
+        }
+    }
+}
+
+impl Serialise for RequestTeleport {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(REQUEST_TELEPORT, buf);
+
+        to_le_bytes!(len, buf, self.tipo);
+        to_le_bytes!(len, buf, self.map_id);
+        to_le_bytes!(len, buf, self.instance_id);
+        to_le_bytes!(len, buf, self.x);
+        to_le_bytes!(len, buf, self.y);
+        to_le_bytes!(len, buf, self.z);
+        to_le_bytes!(len, buf, self.heading);
+
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
     use crate::data_loader::Slot;
+
+    #[test]
+    fn test_request_teleport_serialise_22_bytes() {
+        let tp = RequestTeleport::new(1, 110070000, 0, 457.0, 251.0, 127.04, 0);
+        let mut buf = [0u8; 64];
+        let n = tp.serialise(&mut buf);
+        assert_eq!(n, 5 + 22, "5 bytes prelude + 22 bytes payload");
+        assert_eq!(buf[5], 1, "tipo = 1");
+        assert_eq!(u32::from_le_bytes(buf[6..10].try_into().unwrap()), 110070000);
+        assert_eq!(u32::from_le_bytes(buf[10..14].try_into().unwrap()), 0);
+        assert_eq!(f32::from_le_bytes(buf[14..18].try_into().unwrap()), 457.0);
+        assert_eq!(f32::from_le_bytes(buf[18..22].try_into().unwrap()), 251.0);
+        assert_eq!(f32::from_le_bytes(buf[22..26].try_into().unwrap()), 127.04);
+        assert_eq!(buf[26], 0, "heading = 0");
+    }
 
     #[test]
     fn test_dialog_window_serialise() {

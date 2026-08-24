@@ -65,6 +65,7 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x0E, name: "SM_NPC_INFO", direction: PacketDirection::ServerToClient, description: "Spawn de monstro ou NPC no cliente" },
         PacketDefinition { opcode: 0x0F, name: "SM_PLAYER_SPAWN", direction: PacketDirection::ServerToClient, description: "Posicionamento do jogador no mundo" },
         PacketDefinition { opcode: 0x11, name: "SM_GATHERABLE_INFO", direction: PacketDirection::ServerToClient, description: "Spawn de objeto de coleta" },
+        PacketDefinition { opcode: 0x14, name: "SM_REQUEST_TELEPORT", direction: PacketDirection::ServerToClient, description: "Teleporte e posicionamento no mundo (22 bytes)" },
         PacketDefinition { opcode: 0x15, name: "SM_POSITION_SELF", direction: PacketDirection::ServerToClient, description: "Correção forçada de coordenadas (Rollback)" },
         PacketDefinition { opcode: 0x16, name: "SM_DELETE", direction: PacketDirection::ServerToClient, description: "Remoção de objeto que saiu da visão" },
         PacketDefinition { opcode: 0x18, name: "SM_MESSAGE", direction: PacketDirection::ServerToClient, description: "Entrega de texto nos canais de chat" },

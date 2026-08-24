@@ -198,6 +198,8 @@ impl State {
             loc.x(),
             loc.y(),
             loc.z(),
+            c.spawn_map_id(),
+            c.heading(),
             c.stats.level,
             c.stats.exp,
             c.stats.hp.current(),
@@ -786,6 +788,8 @@ impl State {
                 // S_INVISIBLE_LEVEL sozinhos deixam o personagem piscando.
                 use super::message::capturado as cap;
                 let id = new_character.id();
+                let spawn_map_id = new_character.spawn_map_id();
+                let heading = new_character.heading();
                 // O nome tambem: sem escrever por cima, todo mundo entra no mundo como `Kimmie`,
                 // que e quem estava logada na captura de onde o PUT_USER saiu.
                 let nome_no_mundo = new_character.name().clone();
@@ -800,6 +804,20 @@ impl State {
                 messages.extend_direct(
                     update.client_id(),
                     [
+                        ServerUpdate::new(s::Message::WorldSceneStatus(
+                            s::WorldSceneStatus::scene(0, 1),
+                        )),
+                        ServerUpdate::new(s::Message::RequestTeleport(
+                            s::RequestTeleport::new(
+                                1,
+                                spawn_map_id,
+                                0,
+                                aqui_x,
+                                aqui_y,
+                                aqui_z,
+                                heading,
+                            ),
+                        )),
                         bruto(cap::INVENCIVEL_ANTES_OPCODE, cap::INVENCIVEL_ANTES.to_vec()),
                         bruto(cap::ZONA_OPCODE, cap::ZONA.to_vec()),
                         bruto(cap::PUT_USER_OPCODE, {
@@ -1222,8 +1240,21 @@ impl State {
                             if let Some((map_id, x, y, z)) = crate::game::social::resolve_goto_location(&destination) {
                                 println!("INFO: Teleporting {} via .goto {} to map {} ({:.1}, {:.1}, {:.1})", character.name(), destination, map_id, x, y, z);
                                 character.set_location(Coord::new(x, y, z));
+                                character.set_spawn_map_id(map_id);
                                 let char_id = character.id();
                                 let loc = *character.location();
+                                messages.push_direct(
+                                    update.client_id(),
+                                    ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
+                                        1,
+                                        map_id,
+                                        0,
+                                        x,
+                                        y,
+                                        z,
+                                        0,
+                                    ))),
+                                );
                                 self.povoa_cena(char_id, update.client_id(), loc, messages);
                             }
                         }
@@ -1234,8 +1265,21 @@ impl State {
                         crate::game::social::GmCommand::Teleport { map_id, x, y, z } => {
                             println!("INFO: Teleporting {} to map {} ({:.1}, {:.1}, {:.1})", character.name(), map_id, x, y, z);
                             character.set_location(Coord::new(x, y, z));
+                            character.set_spawn_map_id(map_id);
                             let char_id = character.id();
                             let loc = *character.location();
+                            messages.push_direct(
+                                update.client_id(),
+                                ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
+                                    1,
+                                    map_id,
+                                    0,
+                                    x,
+                                    y,
+                                    z,
+                                    0,
+                                ))),
+                            );
                             self.povoa_cena(char_id, update.client_id(), loc, messages);
                         }
                         crate::game::social::GmCommand::Spawn { npc_id } => {

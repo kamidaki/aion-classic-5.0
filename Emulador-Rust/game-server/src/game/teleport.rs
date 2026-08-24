@@ -110,7 +110,54 @@ impl TeleportService {
             },
         );
 
+        // 6. Kaisinel Academy (Elyos Intro/Tutorial)
+        locations.insert(
+            101,
+            TeleportLocation {
+                loc_id: 101,
+                map_id: 110070000,
+                x: 457.0,
+                y: 251.0,
+                z: 127.04,
+                heading: 0,
+                price: 0,
+                required_level: 1,
+                required_race: Some(0),
+            },
+        );
+
+        // 7. Asmodae Intro (Asmodian Intro/Tutorial)
+        locations.insert(
+            102,
+            TeleportLocation {
+                loc_id: 102,
+                map_id: 120070000,
+                x: 457.0,
+                y: 251.0,
+                z: 127.04,
+                heading: 0,
+                price: 0,
+                required_level: 1,
+                required_race: Some(1),
+            },
+        );
+
         Self { locations }
+    }
+
+    pub fn create_teleport_packet(
+        loc: &TeleportLocation,
+        instance_id: u32,
+    ) -> crate::game::message::server::RequestTeleport {
+        crate::game::message::server::RequestTeleport::new(
+            1, // zone teleport
+            loc.map_id,
+            instance_id,
+            loc.x,
+            loc.y,
+            loc.z,
+            loc.heading,
+        )
     }
 
     pub fn validate_and_teleport(

@@ -1,0 +1,33 @@
+🔍 O que cada uma das suas ações destravou na captura:
+✉️ Sistema de Correio / Email (36 pacotes)
+Opcodes capturados: C_MAIL_READ (0x086), C_MAIL_POSTMAN (0x0a2), S_MAIL (0x0a0 - 25x).
+O que foi aprendido: Ter testado as 4 variantes (express com item, com Kinah, sem anexo e carta vazia) nos permite mapear os campos exatos do cabeçalho de correio na 4.5: tipo de entrega (normal vs expressa com NPC mensageiro), flags de anexo e formato do kinah anexado.
+🛡️ Legião / Guild (2.565 pacotes)
+Opcodes capturados:
+Cliente: C_REQUEST_GUILD_HISTORY (57x), C_GUILD_USER_BUY_BUFF (10x), C_GUILD (5x), C_GUILD_REQUEST_OPEN_BUFF.
+Servidor: S_GUILD_INFO (0x06d), S_GUILD_MEMBER_INFO (0x09c), S_ADD_GUILD_MEMBER, S_USER_GUILD_DONATION (0x158), S_USER_GUILD_DONATION_LIST (0x159), S_USER_GUILD_COIN (0x165), S_GUILD_DONATION (0x157), S_GUILD_EMBLEM_IMG_DATA (0x0d5 - 51x), S_GUILD_OPENED_BUFF_TREE_INFO, S_GUILD_CRAFT.
+O que foi aprendido: Temos o ciclo de vida completo de uma legião: criação, doação de kinah/itens, moedas de legião, histórico, download do emblema em chunks de 51 pacotes e a árvore de buffs de legião da 4.5.
+👥 Social: Grupo, Trade, Aliança e Amigos
+Opcodes capturados: C_PARTY (0x060), C_PARTY_BY_NAME (0x061), C_ADD_BUDDY (0x06f), S_BUDDY_LIST (0x083), S_ALLIANCE_INFO (0x0f5), S_ALLIANCE_MEMBER_INFO (0x0f6), S_PARTY_MATCH (0x0a5).
+O que foi aprendido: Os convites recusados e aliança aceita/abandonada registraram os códigos de recusa e cancelamento do servidor (S_MESSAGE_CODE), além dos pacotes de membros e lista de amigos.
+🛒 Loja NPC e Desfazer Venda (Buyback) (35 pacotes)
+Opcodes capturados: C_BUY_SELL (0x033), S_STORE_SALE_INFO (0x0fd), S_USER_SELL_HISTORY_LIST (0x0a6).
+O que foi aprendido: O pacote S_USER_SELL_HISTORY_LIST gravou a estrutura oficial da aba de recompra / desfazer venda (itens vendidos recentemente que podem ser recuperados).
+🏛️ Trade Broker e Broker Global (56 pacotes)
+Opcodes capturados: C_GLOBAL_TRADE_SALESLOG (0x101), C_GLOBAL_TRADE_AVG_PRICE (0x103), S_GLOBAL_TRADE_LIST (0x13c), S_GLOBAL_TRADE_SALESLOG (0x141), S_GLOBAL_TRADE_COMMIT (0x13f), S_GLOBAL_TRADE_HISTORY (0x145), S_GLOBAL_TRADE_STATE (0x144).
+O que foi aprendido: As consultas de preços médios, histórico de vendas e listagem do corretor global da versão 4.5.
+🌪️ Correntes de Vento (Windstream) e Voo (89 pacotes)
+Opcodes capturados: C_WIND_PATH (0x046), C_PATH_FLY (0x031), S_WIND_STATE_INFO (0x0a3), S_WIND_PATH_RESULT (0x0a2).
+O que foi aprendido: A sincronização de entrada, rota pré-definida e saída de correntes de vento.
+⚡ Skills (Alvo, Buff próprio e Área) (311 pacotes)
+Opcodes capturados: C_USE_SKILL (0x021), S_SKILL_SUCCEDED (0x02b), S_SKILL_PENALTY_STATUS_OTHER (0x0d8), S_ABNORMAL_STATUS (0x031), S_ABNORMAL_STATUS_OTHER (0x032).
+O que foi aprendido: As 3 categorias de uso de skill com seus respectivos tempos de animação, consumo e efeitos de status.
+🗺️ Spawn Inicial, Cutscene e Teleporte de Zona
+Opcodes capturados: S_REQUEST_TELEPORT (0x014), S_WORLD_SCENE_STATUS (0x08b), S_ENTER_WORLD_CHECK (0x00d).
+
+Descoberta do Teleporte: Decodificamos a estrutura exata de 22 bytes do S_REQUEST_TELEPORT: $$\text{[u8 tipo][u32 map_id][u32 instance_id][f32 X][f32 Y][f32 Z][u8 heading]}$$
+
+Teleporte #1: Kaisinel Academy (110070000) $\rightarrow$ $(457.0, 251.0, 127.04)$
+Teleporte #2 e #3: Sanctum (110010000) $\rightarrow$ $(1352.14, 1514.12, 569.04)$
+Teleporte #4 e #5: Pandaemonium (120010000) $\rightarrow$ $(1649.59, 1399.40, 194.40)$
+Isso explica perfeitamente por que o personagem nasce em uma coordenada preliminar (ou cena introdutória) e o servidor emite o S_REQUEST_TELEPORT ao interagir com o NPC ou atravessar o limite do tutorial!

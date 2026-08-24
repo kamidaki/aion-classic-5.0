@@ -1,6 +1,6 @@
-﻿# PLAN-01: Entrada no Mundo — Spawn Inicial, Cutscene e S_REQUEST_TELEPORT
+# PLAN-01: Entrada no Mundo — Spawn Inicial, Cutscene e S_REQUEST_TELEPORT
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** CRÍTICA — sem isso o personagem não entra no mundo corretamente.
 
 ---

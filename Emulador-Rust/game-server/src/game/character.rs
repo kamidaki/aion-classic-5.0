@@ -157,6 +157,8 @@ pub struct Character {
     client_id: u16,
     name: String,
     location: Coord,
+    pub spawn_map_id: u32,
+    pub heading: u8,
     pub gear: Gear,
     pub stats: Stats,
     pub skills: Vec<Skill>,
@@ -497,6 +499,8 @@ impl Character {
             client_id,
             id,
             location,
+            spawn_map_id: 110_070_000,
+            heading: 0,
             gear,
             name: "Azphelumbra".into(),
             stats: Stats {
@@ -574,6 +578,8 @@ impl Character {
     ) -> Self {
         let mut c = Self::new(p.id, client_id, Coord::new(p.x, p.y, p.z));
         c.name = p.name.clone();
+        c.spawn_map_id = p.map_id;
+        c.heading = p.heading;
         c.stats.level = p.level;
         c.stats.exp = p.exp;
         c.stats.hp.current = p.hp;
@@ -594,6 +600,18 @@ impl Character {
     }
     pub fn name(&self) -> &String {
         &self.name
+    }
+    pub fn spawn_map_id(&self) -> u32 {
+        self.spawn_map_id
+    }
+    pub fn set_spawn_map_id(&mut self, map_id: u32) {
+        self.spawn_map_id = map_id;
+    }
+    pub fn heading(&self) -> u8 {
+        self.heading
+    }
+    pub fn set_heading(&mut self, heading: u8) {
+        self.heading = heading;
     }
     pub fn set_location(&mut self, coord: Coord) {
         self.location = coord;

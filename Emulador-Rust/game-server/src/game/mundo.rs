@@ -23,33 +23,22 @@ pub struct PontoDeEntrada {
     pub direcao: u8,
 }
 
-/// Onde nasce um personagem **elyos**.
-///
-/// Da captura de 22/08/2026, que gravou a criacao de tres personagens elyos no servidor oficial:
-/// assassino, templario e ranger nasceram todos aqui. O `S_WORLD` e o registro de personagem
-/// concordam, que e o que o cliente exige.
-///
-/// Antes disto todo personagem nascia em Pandaemonium, a capital **asmodiana**, porque era de la
-/// que vinha a unica captura que existia. Um personagem elyos mandado para a capital inimiga e
-/// errado de um jeito visivel: o jogador via "Pandaemonium" no lugar de "Sanctum".
+/// Onde nasce um personagem **elyos** (Kaisinel Academy - Tutorial).
 pub const ELYOS: PontoDeEntrada = PontoDeEntrada {
-    mapa: 110_030_000,
-    x: 1314.705078125,
-    y: 1513.3416748046875,
-    z: 568.1068115234375,
+    mapa: 110_070_000,
+    x: 457.0,
+    y: 251.0,
+    z: 127.04,
     direcao: 0,
 };
 
-/// Onde nasce um personagem **asmodiano**.
-///
-/// Da captura de 21/08/2026 -- a Kimmie, que tinha cinco minutos de criada quando a sessao
-/// comecou, entao a posicao dela e o ponto de nascimento e nao um lugar qualquer.
+/// Onde nasce um personagem **asmodiano** (Asmodae Intro Zone - Tutorial).
 pub const ASMODIANO: PontoDeEntrada = PontoDeEntrada {
-    mapa: MAPA,
-    x: X,
-    y: Y,
-    z: Z,
-    direcao: DIRECAO,
+    mapa: 120_070_000,
+    x: 457.0,
+    y: 251.0,
+    z: 127.04,
+    direcao: 0,
 };
 
 /// O ponto de entrada da raca. `0` e elyos, `1` e asmodiano -- o campo esta no offset 60 do
@@ -61,18 +50,13 @@ pub fn ponto_de_entrada(raca: u32) -> PontoDeEntrada {
     }
 }
 
-/// Pandaemonium, onde nasce personagem novo na 4.5 -- o mapa foi refeito nesta versao.
-///
-/// O nome sai do `world_maps.xml` da base Java (`server/AL-Game/data/static_data/`), e a escolha
-/// sai da captura: a Kimmie tinha sido criada cinco minutos antes da sessao -- data de criacao
-/// 07:35, ultimo login 07:40 -- entao a posicao dela e o ponto de nascimento, nao um lugar
-/// qualquer onde ela estivesse.
-pub const MAPA: u32 = 120_010_000;
+/// Zona de introdução tutorial 4.5.
+pub const MAPA: u32 = 120_070_000;
 
-/// Posicao exata da captura -- os literais reproduzem os mesmos bits dos floats capturados.
-pub const X: f32 = 1295.823974609375;
-pub const Y: f32 = 1416.31103515625;
-pub const Z: f32 = 208.125;
+/// Posicao exata da captura de spawn inicial.
+pub const X: f32 = 457.0;
+pub const Y: f32 = 251.0;
+pub const Z: f32 = 127.04;
 
 /// Para onde o personagem esta virado. 1 byte no `S_WORLD`, u32 no registro da lista.
-pub const DIRECAO: u8 = 109;
+pub const DIRECAO: u8 = 0;

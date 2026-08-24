@@ -1,4 +1,4 @@
-﻿# PLAN_DEVELOPMENT_FUNCTIONS — Índice Mestre
+# PLAN_DEVELOPMENT_FUNCTIONS — Índice Mestre
 
 > **Plano cirúrgico de implementação baseado em capturas Wireshark do servidor oficial Gameforge Classic 4.5**
 > Cada arquivo é uma unidade de execução autônoma. Executar **em ordem numérica**. Marcar como `[x]` ao concluir e fazer commit ao terminar cada MD.
@@ -18,7 +18,7 @@
 
 | # | Arquivo | Domínio | Status |
 |---|---------|---------|--------|
-| 01 | 01_ENTRADA_MUNDO_SPAWN.md | Spawn, Cutscene, S_REQUEST_TELEPORT | `[ ]` |
+| 01 | 01_ENTRADA_MUNDO_SPAWN.md | Spawn, Cutscene, S_REQUEST_TELEPORT | `[x]` |
 | 02 | 02_MOVEMENT_WINDSTREAM.md | C_MOVE, S_MOVE, Windstream (0x046/0x0a2/0x0a3) | `[ ]` |
 | 03 | 03_COMBAT_SKILLS.md | C_USE_SKILL, S_SKILL_SUCCEDED, S_ABNORMAL_STATUS | `[ ]` |
 | 04 | 04_COMBAT_AUTOATTACK.md | C_ATTACK, S_ATTACK_STATUS, SM_CASTSPELL_RESULT | `[ ]` |
