@@ -248,7 +248,8 @@ fn main() {
     let config = load_config();
 
     let db = Db::open(&config.database.database_path).expect("failed to open SQLite db");
-    println!("INFO: Opened DB at {}", config.database.database_path);
+    db.migrate().expect("failed to migrate SQLite schema");
+    println!("INFO: Opened and migrated DB at {}", config.database.database_path);
 
     let data_dir = find_data_dir(&config.world.data_dir);
     println!("INFO: Loading game data from {}", data_dir.display());

@@ -1,6 +1,6 @@
-﻿# PLAN-13: Banco de Dados SQLite — Schema Completo e Migrações
+# PLAN-13: Banco de Dados SQLite — Schema Completo e Migrações
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** FUNDAÇÃO — todos os outros planos dependem de um schema correto.
 
 ---

@@ -175,6 +175,13 @@ impl Db {
                 type INTEGER NOT NULL
             );
             CREATE INDEX IF NOT EXISTS idx_broker_history_player ON broker_history(player_id);
+            CREATE TABLE IF NOT EXISTS character_skills (
+                character_id INTEGER NOT NULL REFERENCES characters(id),
+                skill_id INTEGER NOT NULL,
+                skill_level INTEGER NOT NULL DEFAULT 1,
+                PRIMARY KEY (character_id, skill_id)
+            );
+            CREATE INDEX IF NOT EXISTS idx_skills_character ON character_skills(character_id);
             ",
         )?;
 
@@ -610,6 +617,49 @@ impl Db {
                 id as i64
             ],
         )?;
+        Ok(())
+    }
+
+    /// Salva as skills ativas do personagem
+    pub fn salvar_skills(&self, char_id: u32, skills: &[(u32, u8)]) -> Result<()> {
+        let mut stmt = self.conn.prepare(
+            "INSERT INTO character_skills (character_id, skill_id, skill_level)
+             VALUES (?1, ?2, ?3)
+             ON CONFLICT(character_id, skill_id) DO UPDATE SET skill_level = excluded.skill_level"
+        )?;
+        for &(skill_id, skill_level) in skills {
+            stmt.execute(params![char_id as i64, skill_id as i64, skill_level as i64])?;
+        }
+        Ok(())
+    }
+
+    /// Carrega as skills do personagem
+    pub fn carregar_skills(&self, char_id: u32) -> Result<Vec<(u32, u8)>> {
+        let mut stmt = self.conn.prepare(
+            "SELECT skill_id, skill_level FROM character_skills WHERE character_id = ?1"
+        )?;
+        let rows = stmt.query_map(params![char_id as i64], |row| {
+            let sid: i64 = row.get(0)?;
+            let lvl: i64 = row.get(1)?;
+            Ok((sid as u32, lvl as u8))
+        })?;
+        let mut res = Vec::new();
+        for r in rows {
+            res.push(r?);
+        }
+        Ok(res)
+    }
+
+    /// Executa migração e validações de integridade do banco SQLite
+    pub fn migrate(&self) -> Result<()> {
+        self.conn.execute_batch("
+            PRAGMA journal_mode = WAL;
+            PRAGMA busy_timeout = 5000;
+            PRAGMA synchronous = NORMAL;
+            PRAGMA foreign_keys = ON;
+        ")?;
+        self.init_schema()?;
+        self.conn.execute_batch("PRAGMA user_version = 2;")?;
         Ok(())
     }
 
@@ -1287,5 +1337,18 @@ mod tests {
 
         let avg = db.preco_medio_item(182000001).unwrap();
         assert_eq!(avg, 50000);
+    }
+
+    #[test]
+    fn skills_salvar_e_carregar_e_migrate() {
+        let db = in_memory();
+        db.migrate().unwrap();
+        let hero = db.load_or_create_character("heroi").unwrap();
+        let skills = vec![(1001, 1), (1002, 2), (2001, 5)];
+        db.salvar_skills(hero.id, &skills).unwrap();
+        let loaded = db.carregar_skills(hero.id).unwrap();
+        assert_eq!(loaded.len(), 3);
+        assert_eq!(loaded[0], (1001, 1));
+        assert_eq!(loaded[2], (2001, 5));
     }
 }
