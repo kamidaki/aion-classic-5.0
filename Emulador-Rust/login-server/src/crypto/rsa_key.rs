@@ -103,3 +103,134 @@ impl RsaManager {
         enc
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    /// Desfaz o [`RsaManager::scramble_modulus`].
+    ///
+    /// E o que o cliente faz com os 128 bytes que vem no `SM_INIT` para recuperar o modulo RSA de
+    /// verdade, sem o qual ele nao consegue cifrar as credenciais. Cada passo do embaralhamento e
+    /// um XOR ou uma troca, entao o inverso e a mesma sequencia ao contrario.
+    fn desembaralha_modulo(embaralhado: &[u8; 128]) -> [u8; 128] {
+        let mut m = *embaralhado;
+
+        for i in 0..0x40 {
+            m[0x40 + i] ^= m[i];
+        }
+        for i in 0..4 {
+            m[0x0d + i] ^= m[0x34 + i];
+        }
+        for i in 0..0x40 {
+            m[i] ^= m[0x40 + i];
+        }
+        for i in 0..4 {
+            m.swap(i, 0x4d + i);
+        }
+
+        m
+    }
+
+    /// Monta o bloco de 128 bytes que o cliente cifra: usuario em [64..96], senha em [96..128].
+    fn bloco_de_credenciais(usuario: &str, senha: &str) -> [u8; 128] {
+        let mut b = [0u8; 128];
+        b[64..64 + usuario.len()].copy_from_slice(usuario.as_bytes());
+        b[96..96 + senha.len()].copy_from_slice(senha.as_bytes());
+        b
+    }
+
+    /// Cifra como o cliente cifra: RSA cru, `c = m^65537 mod n`, sem padding.
+    fn cifra_como_o_cliente(bloco: &[u8; 128], modulo: &[u8; 128]) -> Vec<u8> {
+        let n = BigUint::from_bytes_be(modulo);
+        let e = BigUint::from(65_537u32);
+        let c = BigUint::from_bytes_be(bloco).modpow(&e, &n);
+
+        let bytes = c.to_bytes_be();
+        let mut saida = vec![0u8; 128];
+        let inicio = 128 - bytes.len().min(128);
+        saida[inicio..].copy_from_slice(&bytes[bytes.len() - (128 - inicio)..]);
+        saida
+    }
+
+    #[test]
+    fn o_embaralhamento_do_modulo_e_reversivel() {
+        // Se nao fosse, o cliente nao teria como recuperar o modulo e nunca conseguiria cifrar as
+        // credenciais -- o login pararia no CM_LOGIN sem nenhuma mensagem de erro.
+        let mut original = [0u8; 128];
+        for (i, b) in original.iter_mut().enumerate() {
+            *b = (i as u8).wrapping_mul(7) ^ 0x3C;
+        }
+
+        let embaralhado = RsaManager::scramble_modulus(&original);
+        assert_ne!(embaralhado, original, "o embaralhamento tem que mudar os bytes");
+        assert_eq!(desembaralha_modulo(&embaralhado), original);
+    }
+
+    #[test]
+    fn o_cliente_recupera_o_modulo_que_veio_no_sm_init() {
+        // O modulo desembaralhado precisa ser o `n` real da chave do servidor: e com ele que o
+        // cliente cifra. Confere-se pelo expoente -- se `n` estivesse errado, o modpow devolveria
+        // um valor que o servidor nao consegue abrir, e o teste seguinte falharia.
+        let rsa = RsaManager::new();
+        let recuperado = desembaralha_modulo(rsa.get_scrambled_modulus());
+
+        assert_eq!(recuperado.len(), 128, "modulo de 1024 bits");
+        assert_ne!(recuperado, [0u8; 128]);
+        assert_ne!(
+            &recuperado[..],
+            &rsa.get_scrambled_modulus()[..],
+            "o que viaja na rede e a forma embaralhada"
+        );
+    }
+
+    #[test]
+    fn credenciais_cifradas_pelo_cliente_abrem_no_servidor() {
+        // O caminho inteiro do CM_LOGIN, ponta a ponta:
+        //   servidor gera a chave -> embaralha o modulo -> manda no SM_INIT
+        //   cliente desembaralha -> cifra usuario e senha -> manda o CM_LOGIN
+        //   servidor decifra com a chave privada
+        let rsa = RsaManager::new();
+
+        let modulo = desembaralha_modulo(rsa.get_scrambled_modulus());
+        let bloco = bloco_de_credenciais("jogador1", "senha123");
+        let cifrado = cifra_como_o_cliente(&bloco, &modulo);
+
+        assert_eq!(cifrado.len(), 128);
+        assert_ne!(&cifrado[64..96], &bloco[64..96], "tem que sair cifrado mesmo");
+
+        let (usuario, senha) = rsa
+            .decrypt_credentials(&cifrado)
+            .expect("o servidor precisa abrir as credenciais");
+        assert_eq!(usuario, "jogador1");
+        assert_eq!(senha, "senha123");
+    }
+
+    #[test]
+    fn credenciais_com_o_modulo_errado_nao_abrem() {
+        // Guarda: se o cliente usasse o modulo embaralhado sem desfazer o embaralhamento -- ou se
+        // o embaralhamento mudasse -- o servidor nao poderia recuperar nada.
+        let rsa = RsaManager::new();
+        let bloco = bloco_de_credenciais("jogador1", "senha123");
+
+        // Cifra com a forma embaralhada, que nao e o `n` da chave.
+        let cifrado = cifra_como_o_cliente(&bloco, rsa.get_scrambled_modulus());
+
+        match rsa.decrypt_credentials(&cifrado) {
+            None => {}
+            Some((usuario, _)) => assert_ne!(
+                usuario, "jogador1",
+                "com o modulo errado nao pode sair a credencial certa"
+            ),
+        }
+    }
+
+    #[test]
+    fn usuario_vazio_e_recusado() {
+        let rsa = RsaManager::new();
+        let modulo = desembaralha_modulo(rsa.get_scrambled_modulus());
+        let cifrado = cifra_como_o_cliente(&bloco_de_credenciais("", ""), &modulo);
+
+        assert_eq!(rsa.decrypt_credentials(&cifrado), None);
+    }
+}
