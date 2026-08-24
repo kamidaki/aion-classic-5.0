@@ -8,11 +8,11 @@
 
 O emulador **EmuRust** segue a mesma filosofia e arquitetura dos emuladores privados consagrados de Aion (Java 4.8 Retail e Java 2.4 Classic Gameforge):
 
-### 📌 A. Autenticação Exclusiva por "Login & Senha"
+### A. Autenticação Exclusiva por "Login & Senha"
 * **Sem dependências externas**: O acesso ao jogo ocorre **exclusivamente com usuário e senha**. Nenhuma autenticação por Launcher proprietário, OAuth, 2FA, SMS ou código de telefone é necessária.
 * **Métodos opcionais ignorados**: Todos os fluxos alternativos ou opcionais presentes nos binários do cliente (`Aion.bin` / `game.dll`) são ignorados pelo servidor, exatamente como operam os emuladores de referência.
 
-### 📌 B. Modos de Inicialização do Cliente (`Start_Client_Classic_EU.bat`)
+### B. Modos de Inicialização do Cliente (`Start_Client_Classic_EU.bat`)
 O cliente do jogo é inicializado através do arquivo `.bat` apontando para a porta de login padrão `2106`:
 ```bat
 start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu
@@ -20,8 +20,8 @@ start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -noweb -classic -n
 
 | Modo de Abertura | Comportamento do Cliente | Fluxo no Emulador |
 |---|---|---|
-| **Sem credenciais no `.bat`** | Abre a **tela de login tradicional in-game** com campos de usuário e senha. | O jogador digita usuário e senha ➔ O cliente envia `CM_LOGIN` (0x0B/0x12) criptografado com RSA ➔ Login Server autentica / auto-cria conta no SQLite ➔ Envia `SM_LOGIN_OK` (0x03) com flags `0x3F` e `TOS=1` ➔ Abre tela de Seleção de Servidor. |
-| **Com credenciais no `.bat`**<br/>(`-account:user -password:pass`) | O cliente extrai os parâmetros, **pula o formulário in-game** e prossegue imediatamente. | Login Server valida as credenciais ➔ Responde com `SM_LOGIN_OK` ➔ O cliente abre diretamente na tela de Termos de Serviço / Seleção de Servidores. |
+| **Sem credenciais no `.bat`** | Abre a **tela de login tradicional in-game** com campos de usuário e senha. | O jogador digita usuário e senha -> O cliente envia `CM_LOGIN` (0x0B/0x12) criptografado com RSA -> Login Server autentica / auto-cria conta no SQLite -> Envia `SM_LOGIN_OK` (0x03) com flags `0x3F` e `TOS=1` -> Abre tela de Seleção de Servidor. |
+| **Com credenciais no `.bat`**<br/>(`-account:user -password:pass`) | O cliente extrai os parâmetros, **pula o formulário in-game** e prossegue imediatamente. | Login Server valida as credenciais -> Responde com `SM_LOGIN_OK` -> O cliente abre diretamente na tela de Termos de Serviço / Seleção de Servidores. |
 
 Ambos os modos são 100% suportados e funcionais.
 
@@ -74,44 +74,44 @@ Ambos os modos são 100% suportados e funcionais.
 
 | Opcode | Direção | Nome do Pacote | Tamanho Wire | Estrutura e Offsets Principais |
 |---|---|---|---|---|
-| **`0x00`** | S ➔ C | `SM_INIT` | 194 bytes | `[0x00]` Opcode, `[0x01..0x05]` SessionId, `[0x05..0x09]` Protocol 0xC621, `[0x09..0x89]` RSA Scrambled Modulus (128B), `[0x94..0xA4]` Blowfish Key (16B), `[0xA8]` Flag 0x03, `[0xA9..0xAB]` Version 4.5. |
-| **`0x0B`** | S ➔ C | `SM_AUTH_GG` | 58 bytes | `[0x00]` Opcode, `[0x01..0x05]` SessionId, payload de verificação GameGuard criptografado. |
-| **`0x03`** | S ➔ C | `SM_LOGIN_OK` | 78 bytes | `[0x00]` Opcode, `[0x01..0x05]` AccountId, `[0x05..0x09]` SessionKey1, `[0x10..0x20]` Flags `0x3F` (4x u32), `[0x20..0x22]` Assinatura `0xFF 0xFE`, `[0x30]` TOS=1. |
-| **`0x04`** | S ➔ C | `SM_SERVER_LIST` | Dinâmico | `[0x00]` Opcode, `[0x01]` ServerCount, `[0x02]` LastServer, Entradas de 21B (IP, Porta, Status, ServerBits `0x401`, Bracket `2`), seguido por `u16(totalServers)` e contagens de chars. |
-| **`0x0B` / `0x12`** | C ➔ S | `CM_LOGIN` / `CM_NP_LOGIN` | 128+ bytes | Bloco RSA de 128 bytes contendo credenciais decifradas (`username` e `password`). |
-| **`0x02`** | C ➔ S | `CM_PLAY` | 6 bytes | `[0x00]` Opcode, `[0x01..0x05]` AccountId, `[0x05]` ServerId solicitado. |
-| **`0x07`** | S ➔ C | `SM_PLAY_OK` | 26 bytes | `[0x00]` Opcode, `[0x01..0x05]` PlayOk1, `[0x05..0x09]` PlayOk2, `[0x09]` ServerId. |
+| **`0x00`** | S -> C | `SM_INIT` | 194 bytes | `[0x00]` Opcode, `[0x01..0x05]` SessionId, `[0x05..0x09]` Protocol 0xC621, `[0x09..0x89]` RSA Scrambled Modulus (128B), `[0x94..0xA4]` Blowfish Key (16B), `[0xA8]` Flag 0x03, `[0xA9..0xAB]` Version 4.5. |
+| **`0x0B`** | S -> C | `SM_AUTH_GG` | 58 bytes | `[0x00]` Opcode, `[0x01..0x05]` SessionId, payload de verificação GameGuard criptografado. |
+| **`0x03`** | S -> C | `SM_LOGIN_OK` | 78 bytes | `[0x00]` Opcode, `[0x01..0x05]` AccountId, `[0x05..0x09]` SessionKey1, `[0x10..0x20]` Flags `0x3F` (4x u32), `[0x20..0x22]` Assinatura `0xFF 0xFE`, `[0x30]` TOS=1. |
+| **`0x04`** | S -> C | `SM_SERVER_LIST` | Dinâmico | `[0x00]` Opcode, `[0x01]` ServerCount, `[0x02]` LastServer, Entradas de 21B (IP, Porta, Status, ServerBits `0x401`, Bracket `2`), seguido por `u16(totalServers)` e contagens de chars. |
+| **`0x0B` / `0x12`** | C -> S | `CM_LOGIN` / `CM_NP_LOGIN` | 128+ bytes | Bloco RSA de 128 bytes contendo credenciais decifradas (`username` e `password`). |
+| **`0x02`** | C -> S | `CM_PLAY` | 6 bytes | `[0x00]` Opcode, `[0x01..0x05]` AccountId, `[0x05]` ServerId solicitado. |
+| **`0x07`** | S -> C | `SM_PLAY_OK` | 26 bytes | `[0x00]` Opcode, `[0x01..0x05]` PlayOk1, `[0x05..0x09]` PlayOk2, `[0x09]` ServerId. |
 
 ### B. Game Server — Protocolo de Jogo (Porta 7777)
 
 | Opcode | Direção | Nome do Pacote | Módulo / PLAN | Estrutura / Campos Principais |
 |---|---|---|---|---|
-| **`0x01`** | S ➔ C | `SM_CHARACTER_LIST` | PLAN-13 / PLAN-14 | Lista de personagens, raça, classe, nível, modelo 3D, itens visuais, coordenadas. |
-| **`0x03`** | S ➔ C | `SM_CREATE_CHARACTER` | PLAN-14 | Confirma criação de personagem com kit e atributos iniciais. |
-| **`0x05`** | C ➔ S | `CM_DELETE_CHARACTER` | PLAN-13 | Solicita exclusão com tempo de espera regulamentar. |
-| **`0x1F`** | S ➔ C | `SM_ENTER_WORLD_CHECK` | PLAN-01 | Autoriza carregamento do mapa e entrada do jogador. |
-| **`0x18`** | S ➔ C | `SM_PLAYER_SPAWN` | PLAN-01 | Spawna o jogador em coordenadas exatas de Kaisinel / Pandaemonium. |
-| **`0x19`** | S ➔ C | `SM_NPC_INFO` | PLAN-01 | Envia dados, templates e posições dos 1.054 NPCs oficiais extraídos do wire. |
-| **`0x14` / `0x15`** | C ➔ S / S ➔ C | `CM_MOVE` / `SM_PLAYER_MOVE` | PLAN-02 | Coordenadas X, Y, Z, Heading, tipo de movimento (correr, andar, pular). |
-| **`0x31`** | C ➔ S / S ➔ C | `CM_PATH_FLY` / `SM_FLY_PATH` | PLAN-02 | Rota de voo automático de transporte entre postos. |
-| **`0x2A` / `0x2B`** | S ➔ C | `SM_WIND_STATE` / `SM_WIND_PATH_RESULT` | PLAN-02 | Estado de windstream (corrente de vento) e impulso de planagem. |
-| **`0x1E` / `0x1D`** | C ➔ S / S ➔ C | `CM_ATTACK` / `SM_ATTACK_STATUS` | PLAN-04 | Auto-ataque físico, swing timer, cálculo de dano e resposta de aggro de NPC. |
-| **`0x20` / `0x22`** | C ➔ S / S ➔ C | `CM_CAST_SPELL` / `SM_SKILL_RESULT` | PLAN-03 | Execução de habilidades físicas/mágicas, custos de MP/DP e cooldowns. |
-| **`0x23`** | S ➔ C | `SM_ABNORMAL_STATUS` | PLAN-03 | Efeitos de buff/debuff com duração e multiplicadores de atributo. |
-| **`0x02` / `0x04`** | S ➔ C | `SM_STATUPDATE_HP` / `SM_STATUPDATE_MP` | PLAN-06 | Atualização instantânea de vida e mana com valores atuais e máximos. |
-| **`0x06`** | S ➔ C | `SM_STATUPDATE_DP` | PLAN-06 | Atualização de Divine Points (DP) em formato de 2 bytes (`u16`). |
-| **`0x0B`** | S ➔ C | `SM_EXP_UPDATE` | PLAN-06 | Atualização de experiência acumulada e necessária para o próximo nível. |
-| **`0x17`** | S ➔ C | `SM_INVENTORY_INFO` | PLAN-06 | Inventário completo, slots equipados, manastones e cálculo de atributos. |
-| **`0x33` / `0x35`** | C ➔ S / S ➔ C | `CM_BUY_SELL` / `SM_STORE_SALE_INFO` | PLAN-07 | Compra e venda em NPCs com suporte a recompra (buyback) e Kinah. |
-| **`0x34` / `0x36`** | C ➔ S / S ➔ C | `CM_SHOW_DIALOG` / `CM_DIALOG_SELECT` | PLAN-05 | Janelas de diálogo interativo com NPCs (Missões, Lojas, Teleporte). |
-| **`0x37`** | S ➔ C | `SM_QUEST_LIST` | PLAN-05 | Lista de missões ativas, completadas, etapas e recompensas. |
-| **`0x60` / `0x61`** | C ➔ S / S ➔ C | `CM_PARTY` / `CM_PARTY_BY_NAME` | PLAN-10 | Sistema de grupos, convites, liderança e distribuição de itens. |
-| **`0x6F`** | C ➔ S / S ➔ C | `CM_ADD_BUDDY` / `SM_BUDDY_LIST` | PLAN-10 | Lista de amigos, status online/offline e notas personalizadas. |
-| **`0xC6` / `0xC7`** | C ➔ S / S ➔ C | `CM_GUILD_BUY_BUFF` / `CM_GUILD_MANAGE` | PLAN-09 | Legião/Guilda, membros, árvore de buffs e envio de emblema em 51 chunks. |
-| **`0x87` / `0xA2`** | C ➔ S / S ➔ C | `CM_MAIL_READ` / `CM_MAIL_POSTMAN` | PLAN-08 | Caixa de correio com 4 variantes de anexo (Kinah, Itens, Express). |
-| **`0x0100` / `0x0101`** | C ➔ S / S ➔ C | `CM_BROKER_REGISTER` / `CM_BROKER_SALESLOG` | PLAN-11 | Trade Broker Global, registro de anúncios, histórico de vendas e preço médio. |
-| **`0x1B` / `0x1C`** | C ➔ S / S ➔ C | `CM_CHAT_PUBLIC` / `CM_CHAT_WHISPER` | PLAN-12 | Chat geral, shout, grupo, legião, sussurros privados, anti-flood e comandos GM. |
-| **`0x38`** | S ➔ C | `SM_REQUEST_TELEPORT` | PLAN-15 | Teleporte oficial de 22 bytes (`map_id`, X, Y, Z, Heading) com limpeza de cena. |
+| **`0x01`** | S -> C | `SM_CHARACTER_LIST` | PLAN-13 / PLAN-14 | Lista de personagens, raça, classe, nível, modelo 3D, itens visuais, coordenadas. |
+| **`0x03`** | S -> C | `SM_CREATE_CHARACTER` | PLAN-14 | Confirma criação de personagem com kit e atributos iniciais. |
+| **`0x05`** | C -> S | `CM_DELETE_CHARACTER` | PLAN-13 | Solicita exclusão com tempo de espera regulamentar. |
+| **`0x1F`** | S -> C | `SM_ENTER_WORLD_CHECK` | PLAN-01 | Autoriza carregamento do mapa e entrada do jogador. |
+| **`0x18`** | S -> C | `SM_PLAYER_SPAWN` | PLAN-01 | Spawna o jogador em coordenadas exatas de Kaisinel / Pandaemonium. |
+| **`0x19`** | S -> C | `SM_NPC_INFO` | PLAN-01 | Envia dados, templates e posições dos 1.054 NPCs oficiais extraídos do wire. |
+| **`0x14` / `0x15`** | C -> S / S -> C | `CM_MOVE` / `SM_PLAYER_MOVE` | PLAN-02 | Coordenadas X, Y, Z, Heading, tipo de movimento (correr, andar, pular). |
+| **`0x31`** | C -> S / S -> C | `CM_PATH_FLY` / `SM_FLY_PATH` | PLAN-02 | Rota de voo automático de transporte entre postos. |
+| **`0x2A` / `0x2B`** | S -> C | `SM_WIND_STATE` / `SM_WIND_PATH_RESULT` | PLAN-02 | Estado de windstream (corrente de vento) e impulso de planagem. |
+| **`0x1E` / `0x1D`** | C -> S / S -> C | `CM_ATTACK` / `SM_ATTACK_STATUS` | PLAN-04 | Auto-ataque físico, swing timer, cálculo de dano e resposta de aggro de NPC. |
+| **`0x20` / `0x22`** | C -> S / S -> C | `CM_CAST_SPELL` / `SM_SKILL_RESULT` | PLAN-03 | Execução de habilidades físicas/mágicas, custos de MP/DP e cooldowns. |
+| **`0x23`** | S -> C | `SM_ABNORMAL_STATUS` | PLAN-03 | Efeitos de buff/debuff com duração e multiplicadores de atributo. |
+| **`0x02` / `0x04`** | S -> C | `SM_STATUPDATE_HP` / `SM_STATUPDATE_MP` | PLAN-06 | Atualização instantânea de vida e mana com valores atuais e máximos. |
+| **`0x06`** | S -> C | `SM_STATUPDATE_DP` | PLAN-06 | Atualização de Divine Points (DP) em formato de 2 bytes (`u16`). |
+| **`0x0B`** | S -> C | `SM_EXP_UPDATE` | PLAN-06 | Atualização de experiência acumulada e necessária para o próximo nível. |
+| **`0x17`** | S -> C | `SM_INVENTORY_INFO` | PLAN-06 | Inventário completo, slots equipados, manastones e cálculo de atributos. |
+| **`0x33` / `0x35`** | C -> S / S -> C | `CM_BUY_SELL` / `SM_STORE_SALE_INFO` | PLAN-07 | Compra e venda em NPCs com suporte a recompra (buyback) e Kinah. |
+| **`0x34` / `0x36`** | C -> S / S -> C | `CM_SHOW_DIALOG` / `CM_DIALOG_SELECT` | PLAN-05 | Janelas de diálogo interativo com NPCs (Missões, Lojas, Teleporte). |
+| **`0x37`** | S -> C | `SM_QUEST_LIST` | PLAN-05 | Lista de missões ativas, completadas, etapas e recompensas. |
+| **`0x60` / `0x61`** | C -> S / S -> C | `CM_PARTY` / `CM_PARTY_BY_NAME` | PLAN-10 | Sistema de grupos, convites, liderança e distribuição de itens. |
+| **`0x6F`** | C -> S / S -> C | `CM_ADD_BUDDY` / `SM_BUDDY_LIST` | PLAN-10 | Lista de amigos, status online/offline e notas personalizadas. |
+| **`0xC6` / `0xC7`** | C -> S / S -> C | `CM_GUILD_BUY_BUFF` / `CM_GUILD_MANAGE` | PLAN-09 | Legião/Guilda, membros, árvore de buffs e envio de emblema em 51 chunks. |
+| **`0x87` / `0xA2`** | C -> S / S -> C | `CM_MAIL_READ` / `CM_MAIL_POSTMAN` | PLAN-08 | Caixa de correio com 4 variantes de anexo (Kinah, Itens, Express). |
+| **`0x0100` / `0x0101`** | C -> S / S -> C | `CM_BROKER_REGISTER` / `CM_BROKER_SALESLOG` | PLAN-11 | Trade Broker Global, registro de anúncios, histórico de vendas e preço médio. |
+| **`0x1B` / `0x1C`** | C -> S / S -> C | `CM_CHAT_PUBLIC` / `CM_CHAT_WHISPER` | PLAN-12 | Chat geral, shout, grupo, legião, sussurros privados, anti-flood e comandos GM. |
+| **`0x38`** | S -> C | `SM_REQUEST_TELEPORT` | PLAN-15 | Teleporte oficial de 22 bytes (`map_id`, X, Y, Z, Heading) com limpeza de cena. |
 
 ---
 

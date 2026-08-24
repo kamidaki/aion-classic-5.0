@@ -8,18 +8,56 @@
 #include "detours.h"
 
 // =========================================================================
-//  IP Spoofing & Network Hook for Aion Classic Client
+//  IP Spoofing & Dynamic Network Hook for Aion Classic Client
 // =========================================================================
-//  Allows connecting to unofficial/private game servers by spoofing the
-//  game server IP as an official one ("70.5.0.18") during client validation,
-//  while allowing real TCP connections to the targeted server IP and port.
+//  Allows connecting to unofficial/private game servers by:
+//  1. Spoofing the game server IP as official ("70.5.0.18") during internal
+//     client validation (lstrcpynA).
+//  2. Transparently redirecting any hardcoded official IPs to the private
+//     emulator IP configured in the command line (-ip:<addr>).
+//  3. Logging all TCP network operations with high precision.
 // =========================================================================
 
-static constexpr char officialIp[] = "70.5.0.18";
+static constexpr char kDefaultOfficialIp[] = "70.5.0.18";
+
+// Lista de IPs oficiais históricos e Gameforge para reconhecimento automático
+static const char* const kOfficialIps[] = {
+    "70.5.0.18",      // Official NCSoft Auth / Game server IP
+    "79.110.83.80",   // Official Gameforge Classic EU Login
+    "79.110.83.60",   // Official Gameforge Classic EU Auth
+    "79.110.83.18",   // Official Gameforge Classic EU Game
+    "79.110.83.10",   // Official Gameforge Classic EU Portal
+    "79.110.83.75",   // Official Gameforge Classic EU Secondary
+};
+
 static std::list<std::string> possibleConnectIps = {};
 
 static bool contains(const std::list<std::string>& list, const char* element) {
     return !list.empty() && std::find(list.begin(), list.end(), element) != list.end();
+}
+
+static bool isOfficialIp(const char* ip) {
+    if (!ip) return false;
+    for (const char* off : kOfficialIps) {
+        if (_stricmp(ip, off) == 0) return true;
+    }
+    return false;
+}
+
+static std::string GetTargetEmulatorIp() {
+    LPCSTR cmd = GetCommandLineA();
+    if (cmd) {
+        const char* p = strstr(cmd, "-ip:");
+        if (p) {
+            p += 4;
+            std::string ip;
+            while (*p && *p != ' ' && *p != '\t' && *p != '\r' && *p != '\n' && *p != '"') {
+                ip.push_back(*p++);
+            }
+            if (!ip.empty()) return ip;
+        }
+    }
+    return "127.0.0.1";
 }
 
 static decltype(inet_ntoa)* real_inet_ntoa = inet_ntoa;
@@ -37,23 +75,39 @@ static decltype(lstrcpynA)* real_lstrcpynA = lstrcpynA;
 /// Spoofs the IP copy when the client validates the server list entry against official network bounds
 static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ LPCSTR lpString2, _In_ int iMaxLength) {
     if (iMaxLength == 256 && lpString2 && contains(possibleConnectIps, lpString2)) {
-        VersionLog("[NET] lstrcpynA: spoofing server IP '%s' -> '%s' (validation bypass)", lpString2, officialIp);
+        VersionLog("[NET] lstrcpynA: spoofing server IP '%s' -> '%s' (validation bypass)", lpString2, kDefaultOfficialIp);
         possibleConnectIps.clear();
-        return real_lstrcpynA(lpString1, officialIp, iMaxLength);
+        return real_lstrcpynA(lpString1, kDefaultOfficialIp, iMaxLength);
     }
     return real_lstrcpynA(lpString1, lpString2, iMaxLength);
 }
 
 static decltype(connect)* real_connect = connect;
-/// Standard TCP connect hook with full telemetry
+/// Standard TCP connect hook with dynamic official IP redirection and full telemetry
 static int WSAAPI zzconnect(_In_ SOCKET s, _In_reads_bytes_(namelen) const struct sockaddr FAR* name, _In_ int namelen) {
     possibleConnectIps.clear();
     char ipStr[64] = {0};
     u_short port = 0;
-    if (name && namelen >= sizeof(sockaddr_in) && name->sa_family == AF_INET) {
+    struct sockaddr_in redirectedSin;
+
+    if (name && namelen >= (int)sizeof(sockaddr_in) && name->sa_family == AF_INET) {
         const sockaddr_in* sin = (const sockaddr_in*)name;
         strcpy_s(ipStr, inet_ntoa(sin->sin_addr));
         port = ntohs(sin->sin_port);
+
+        // Se o cliente tentar conectar a qualquer IP oficial conhecido (ex: fallback hardcoded),
+        // redireciona de forma transparente para o IP do emulador privado informado no .bat
+        if (isOfficialIp(ipStr)) {
+            std::string targetIp = GetTargetEmulatorIp();
+            VersionLog("[NET] connect() redirecting official IP '%s' -> private emulator IP '%s' (Port %u)",
+                ipStr, targetIp.c_str(), port);
+
+            memcpy(&redirectedSin, name, sizeof(sockaddr_in));
+            redirectedSin.sin_addr.s_addr = inet_addr(targetIp.c_str());
+            name = (const struct sockaddr*)&redirectedSin;
+            strcpy_s(ipStr, targetIp.c_str());
+        }
+
         VersionLog("[NET] connect() initiating: socket=%llu, Dest IP=%s, Port=%u",
             (unsigned long long)s, ipStr, port);
     } else {
