@@ -125,6 +125,8 @@ define_messages!(
     (WIND_PATH, WindPath, 0x46),
     (PATH_FLY, PathFly, 0x31),
     (BUY_SELL, BuySell, 0x33),
+    (MAIL_READ, MailRead, 0x86),
+    (MAIL_POSTMAN, MailPostman, 0xA2),
 );
 
 /// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
@@ -2049,6 +2051,107 @@ impl Deserialise for BuySell {
             item_template_id,
             quantity,
             action,
+        }
+    }
+}
+
+/// Cliente lê/interage com carta do correio (Opcode 0x86).
+#[derive(Debug, Clone)]
+pub struct MailRead {
+    pub letter_id: u32,
+    pub action: u8,
+}
+
+impl MailRead {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::MailRead(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for MailRead {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let letter_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        Self { letter_id, action }
+    }
+}
+
+/// Cliente envia carta pelo correio (Opcode 0xA2).
+#[derive(Debug, Clone)]
+pub struct MailPostman {
+    pub recipient_name: String,
+    pub title: String,
+    pub body: String,
+    pub letter_type: u8,
+    pub item_unique_id: u32,
+    pub item_quantity: u32,
+    pub kinah_amount: u64,
+}
+
+impl MailPostman {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::MailPostman(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for MailPostman {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let rname_len = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) as usize } else { 0 };
+        let recipient_name = if buf.len() >= ptr + rname_len {
+            let u16_slice: Vec<u16> = buf[ptr..ptr + rname_len]
+                .chunks_exact(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .take_while(|&c| c != 0)
+                .collect();
+            ptr += rname_len;
+            String::from_utf16_lossy(&u16_slice)
+        } else {
+            String::new()
+        };
+
+        let title_len = if buf.len() >= ptr + 2 { consume_le_bytes!(ptr, buf, u16) as usize } else { 0 };
+        let title = if buf.len() >= ptr + title_len {
+            let u16_slice: Vec<u16> = buf[ptr..ptr + title_len]
+                .chunks_exact(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .take_while(|&c| c != 0)
+                .collect();
+            ptr += title_len;
+            String::from_utf16_lossy(&u16_slice)
+        } else {
+            String::new()
+        };
+
+        let body_len = if buf.len() >= ptr + 2 { consume_le_bytes!(ptr, buf, u16) as usize } else { 0 };
+        let body = if buf.len() >= ptr + body_len {
+            let u16_slice: Vec<u16> = buf[ptr..ptr + body_len]
+                .chunks_exact(2)
+                .map(|c| u16::from_le_bytes([c[0], c[1]]))
+                .take_while(|&c| c != 0)
+                .collect();
+            ptr += body_len;
+            String::from_utf16_lossy(&u16_slice)
+        } else {
+            String::new()
+        };
+
+        let letter_type = if buf.len() > ptr { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        let item_unique_id = if buf.len() >= ptr + 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let item_quantity = if buf.len() >= ptr + 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let kinah_amount = if buf.len() >= ptr + 8 { consume_le_bytes!(ptr, buf, u64) } else { 0 };
+
+        Self {
+            recipient_name,
+            title,
+            body,
+            letter_type,
+            item_unique_id,
+            item_quantity,
+            kinah_amount,
         }
     }
 }

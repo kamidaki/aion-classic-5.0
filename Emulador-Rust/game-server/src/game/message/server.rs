@@ -66,6 +66,7 @@ const SA_ACCOUNT_ITEM_NOTI: u16 = 0x0088;
 const WORLD_SCENE_STATUS: u16 = 0x008B;
 const ALIVE: u16 = 0x008D;
 const CUSTOM_ANIM: u16 = 0x0093;
+const MAIL: u16 = 0x00A0;
 const WIND_PATH_RESULT: u16 = 0x00A2;
 const WIND_STATE_INFO: u16 = 0x00A3;
 const USER_SELL_HISTORY_LIST: u16 = 0x00A6;
@@ -175,6 +176,7 @@ pub enum Message {
     UserSellHistoryList(UserSellHistoryList),
     StoreSaleInfo(StoreSaleInfo),
     UpdatePlayerAppearance(UpdatePlayerAppearance),
+    Mail(Mail),
 }
 
 impl Serialise for Message {
@@ -256,6 +258,7 @@ impl Serialise for Message {
             Message::UserSellHistoryList(msg) => msg.serialise(&mut buf[2..]),
             Message::StoreSaleInfo(msg) => msg.serialise(&mut buf[2..]),
             Message::UpdatePlayerAppearance(msg) => msg.serialise(&mut buf[2..]),
+            Message::Mail(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -3198,6 +3201,93 @@ impl Serialise for UpdatePlayerAppearance {
     }
 }
 
+/// S_MAIL (0x0A0) — Lista de cartas no correio
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct MailLetterSummary {
+    pub letter_id: u32,
+    pub sender_id: u32,
+    pub sender_name: String,
+    pub title: String,
+    pub letter_type: u8,
+    pub is_read: u8,
+    pub has_attachment: u8, // bitmask: 0x01=item, 0x02=kinah
+    pub item_template_id: u32,
+    pub item_quantity: u32,
+    pub kinah_amount: u64,
+    pub timestamp: u64,
+}
+
+impl MailLetterSummary {
+    pub fn new(
+        letter_id: u32,
+        sender_id: u32,
+        sender_name: String,
+        title: String,
+        letter_type: u8,
+        is_read: u8,
+        has_attachment: u8,
+        item_template_id: u32,
+        item_quantity: u32,
+        kinah_amount: u64,
+        timestamp: u64,
+    ) -> Self {
+        Self {
+            letter_id,
+            sender_id,
+            sender_name,
+            title,
+            letter_type,
+            is_read,
+            has_attachment,
+            item_template_id,
+            item_quantity,
+            kinah_amount,
+            timestamp,
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct Mail {
+    pub letters: Vec<MailLetterSummary>,
+}
+
+impl Mail {
+    pub fn new(letters: Vec<MailLetterSummary>) -> Self {
+        Self { letters }
+    }
+}
+
+impl Serialise for Mail {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(MAIL, buf);
+        to_le_bytes!(len, buf, self.letters.len() as u16);
+        for letter in &self.letters {
+            to_le_bytes!(len, buf, letter.letter_id);
+            to_le_bytes!(len, buf, letter.sender_id);
+            let name_utf16: Vec<u8> = letter.sender_name.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+            to_le_bytes!(len, buf, name_utf16.len() as u16);
+            copy_bytes!(len, buf, name_utf16);
+            let title_utf16: Vec<u8> = letter.title.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+            to_le_bytes!(len, buf, title_utf16.len() as u16);
+            copy_bytes!(len, buf, title_utf16);
+            to_le_bytes!(len, buf, letter.letter_type);
+            to_le_bytes!(len, buf, letter.is_read);
+            to_le_bytes!(len, buf, letter.has_attachment);
+            if letter.has_attachment & 0x01 != 0 {
+                to_le_bytes!(len, buf, letter.item_template_id);
+                to_le_bytes!(len, buf, letter.item_quantity);
+            }
+            if letter.has_attachment & 0x02 != 0 {
+                to_le_bytes!(len, buf, letter.kinah_amount);
+            }
+            to_le_bytes!(len, buf, letter.timestamp);
+        }
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
@@ -3323,6 +3413,30 @@ mod testes_de_inventario {
         assert_eq!(u32::from_le_bytes(buf[14..18].try_into().unwrap()), 2);
         assert_eq!(u64::from_le_bytes(buf[18..26].try_into().unwrap()), 1000);
         assert_eq!(u64::from_le_bytes(buf[26..34].try_into().unwrap()), 1600000000);
+    }
+
+    #[test]
+    fn test_mail_serialise() {
+        let l = MailLetterSummary::new(
+            1,
+            100,
+            "Shugo".into(),
+            "Welcome".into(),
+            0,
+            0,
+            3,
+            100000768,
+            1,
+            5000,
+            1600000000,
+        );
+        let m = Mail::new(vec![l]);
+        let mut buf = [0u8; 128];
+        let n = m.serialise(&mut buf);
+        assert!(n > 5 + 2);
+        assert_eq!(u16::from_le_bytes(buf[5..7].try_into().unwrap()), 1); // 1 letter
+        assert_eq!(u32::from_le_bytes(buf[7..11].try_into().unwrap()), 1); // letter_id
+        assert_eq!(u32::from_le_bytes(buf[11..15].try_into().unwrap()), 100); // sender_id
     }
 
     #[test]

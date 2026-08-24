@@ -141,6 +141,39 @@ impl Mailbox {
     pub fn unread_count(&self) -> usize {
         self.letters.values().filter(|l| !l.is_read).count()
     }
+
+    pub fn build_mail_packet(&self) -> crate::game::message::server::Mail {
+        let mut summaries = Vec::new();
+        for letter in self.letters.values() {
+            let mut has_attachment = 0u8;
+            if letter.attached_item_id != 0 && letter.attached_item_count > 0 {
+                has_attachment |= 0x01;
+            }
+            if letter.attached_kinah > 0 {
+                has_attachment |= 0x02;
+            }
+            let letter_type_u8 = match letter.letter_type {
+                LetterType::Regular => 0,
+                LetterType::Express => 1,
+                LetterType::System => 2,
+                LetterType::Blackcloud => 3,
+            };
+            summaries.push(crate::game::message::server::MailLetterSummary::new(
+                letter.id,
+                0,
+                letter.sender_name.clone(),
+                letter.title.clone(),
+                letter_type_u8,
+                letter.is_read as u8,
+                has_attachment,
+                letter.attached_item_id,
+                letter.attached_item_count,
+                letter.attached_kinah,
+                letter.timestamp_sec,
+            ));
+        }
+        crate::game::message::server::Mail::new(summaries)
+    }
 }
 
 #[cfg(test)]

@@ -172,6 +172,7 @@ pub struct Character {
     pub items: HashMap<u32, RawItem>,
     pub active_quests: HashMap<u32, s::QuestEntry>,
     pub buyback_history: Vec<s::SellHistoryEntry>,
+    pub mailbox: crate::game::mail::Mailbox,
     /// Os 140 bytes que o cliente mandou ao criar o personagem. `None` para quem nasceu antes da
     /// criacao existir -- esses caem no molde capturado.
     pub aparencia: Option<Vec<u8>>,
@@ -575,6 +576,7 @@ impl Character {
             skills,
             active_quests: HashMap::new(),
             buyback_history: Vec::new(),
+            mailbox: crate::game::mail::Mailbox::new(),
             aparencia: None,
             attack_sequence: 0,
             items,
@@ -751,6 +753,9 @@ impl Character {
     }
     pub fn build_inventory_packet(&self) -> s::LoadInventory {
         s::LoadInventory::new(self.items.values().cloned().collect())
+    }
+    pub fn build_mail_packet(&self) -> s::Mail {
+        self.mailbox.build_mail_packet()
     }
     pub fn exp(&self) -> u64 {
         self.stats.exp

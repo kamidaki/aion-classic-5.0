@@ -113,6 +113,21 @@ impl Db {
                 PRIMARY KEY(character_id, quest_id)
             );
             CREATE INDEX IF NOT EXISTS idx_quests_character ON player_quests(character_id);
+            CREATE TABLE IF NOT EXISTS character_mail (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                recipient_id INTEGER NOT NULL REFERENCES characters(id),
+                sender_id INTEGER NOT NULL DEFAULT 0,
+                sender_name TEXT NOT NULL DEFAULT 'System',
+                title TEXT NOT NULL DEFAULT '',
+                body TEXT NOT NULL DEFAULT '',
+                letter_type INTEGER NOT NULL DEFAULT 0,
+                is_read INTEGER NOT NULL DEFAULT 0,
+                item_template_id INTEGER NOT NULL DEFAULT 0,
+                item_quantity INTEGER NOT NULL DEFAULT 0,
+                kinah_amount INTEGER NOT NULL DEFAULT 0,
+                timestamp INTEGER NOT NULL DEFAULT 0
+            );
+            CREATE INDEX IF NOT EXISTS idx_mail_recipient ON character_mail(recipient_id);
             ",
         )?;
 
@@ -603,6 +618,94 @@ impl Db {
         })?;
         rows.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
     }
+
+    pub fn salvar_carta(
+        &self,
+        recipient_id: u32,
+        sender_name: &str,
+        title: &str,
+        body: &str,
+        letter_type: u8,
+        item_template_id: u32,
+        item_quantity: u32,
+        kinah_amount: u64,
+    ) -> Result<u32> {
+        let ts = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .map(|d| d.as_secs())
+            .unwrap_or(0);
+        self.conn.execute(
+            "INSERT INTO character_mail (recipient_id, sender_name, title, body, letter_type, item_template_id, item_quantity, kinah_amount, timestamp)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+            params![
+                recipient_id as i64,
+                sender_name,
+                title,
+                body,
+                letter_type as i64,
+                item_template_id as i64,
+                item_quantity as i64,
+                kinah_amount as i64,
+                ts as i64,
+            ],
+        )?;
+        Ok(self.conn.last_insert_rowid() as u32)
+    }
+
+    pub fn cartas_do_personagem(&self, recipient_id: u32) -> Result<Vec<crate::game::mail::Letter>> {
+        let mut stmt = self.conn.prepare(
+            "SELECT id, sender_name, recipient_id, title, body, item_template_id, item_quantity, kinah_amount, letter_type, is_read, timestamp
+             FROM character_mail WHERE recipient_id = ?1 ORDER BY id ASC",
+        )?;
+        let rows = stmt.query_map(params![recipient_id as i64], |row| {
+            let ltype_num: u8 = row.get::<_, i64>(8)? as u8;
+            let ltype = match ltype_num {
+                1 => crate::game::mail::LetterType::Express,
+                2 => crate::game::mail::LetterType::System,
+                3 => crate::game::mail::LetterType::Blackcloud,
+                _ => crate::game::mail::LetterType::Regular,
+            };
+            Ok(crate::game::mail::Letter {
+                id: row.get::<_, i64>(0)? as u32,
+                sender_name: row.get(1)?,
+                recipient_id: row.get::<_, i64>(2)? as u32,
+                title: row.get(3)?,
+                message: row.get(4)?,
+                attached_item_id: row.get::<_, i64>(5)? as u32,
+                attached_item_count: row.get::<_, i64>(6)? as u32,
+                attached_kinah: row.get::<_, i64>(7)? as u64,
+                letter_type: ltype,
+                is_read: row.get::<_, i64>(9)? != 0,
+                is_express: ltype_num == 1,
+                timestamp_sec: row.get::<_, i64>(10)? as u64,
+            })
+        })?;
+        rows.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
+    }
+
+    pub fn marcar_carta_lida(&self, letter_id: u32) -> Result<bool> {
+        let n = self.conn.execute(
+            "UPDATE character_mail SET is_read = 1 WHERE id = ?1",
+            params![letter_id as i64],
+        )?;
+        Ok(n > 0)
+    }
+
+    pub fn deletar_carta(&self, letter_id: u32) -> Result<bool> {
+        let n = self.conn.execute(
+            "DELETE FROM character_mail WHERE id = ?1 AND kinah_amount = 0 AND item_template_id = 0",
+            params![letter_id as i64],
+        )?;
+        Ok(n > 0)
+    }
+
+    pub fn extrair_anexos_carta(&self, letter_id: u32) -> Result<bool> {
+        let n = self.conn.execute(
+            "UPDATE character_mail SET kinah_amount = 0, item_template_id = 0, item_quantity = 0 WHERE id = ?1",
+            params![letter_id as i64],
+        )?;
+        Ok(n > 0)
+    }
 }
 
 #[cfg(test)]
@@ -739,5 +842,48 @@ mod tests {
         assert_eq!(quests_up.len(), 1);
         assert_eq!(quests_up[0].status, "REWARDABLE");
         assert_eq!(quests_up[0].quest_vars, 3);
+    }
+
+    #[test]
+    fn mail_salvar_ler_extrair_e_deletar() {
+        let db = in_memory();
+        let c = db.load_or_create_character("alice").unwrap();
+
+        let letter_id = db
+            .salvar_carta(
+                c.id,
+                "Shugo",
+                "Bem-vindo",
+                "Segue seu presente",
+                1,
+                10000001,
+                1,
+                5000,
+            )
+            .unwrap();
+
+        let cartas = db.cartas_do_personagem(c.id).unwrap();
+        assert_eq!(cartas.len(), 1);
+        assert_eq!(cartas[0].id, letter_id);
+        assert_eq!(cartas[0].sender_name, "Shugo");
+        assert_eq!(cartas[0].attached_kinah, 5000);
+        assert_eq!(cartas[0].attached_item_id, 10000001);
+        assert!(!cartas[0].is_read);
+
+        // Marca lida
+        assert!(db.marcar_carta_lida(letter_id).unwrap());
+        let cartas = db.cartas_do_personagem(c.id).unwrap();
+        assert!(cartas[0].is_read);
+
+        // Nao pode deletar com anexo
+        assert!(!db.deletar_carta(letter_id).unwrap());
+
+        // Extrai anexo
+        assert!(db.extrair_anexos_carta(letter_id).unwrap());
+
+        // Agora pode deletar
+        assert!(db.deletar_carta(letter_id).unwrap());
+        let cartas = db.cartas_do_personagem(c.id).unwrap();
+        assert!(cartas.is_empty());
     }
 }

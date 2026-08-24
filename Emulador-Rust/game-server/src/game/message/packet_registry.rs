@@ -52,6 +52,8 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x46, name: "CM_WINDSTREAM", direction: PacketDirection::ClientToServer, description: "Navegação em rota de fluxo de vento" },
         PacketDefinition { opcode: 0x60, name: "CM_CRAFT", direction: PacketDirection::ClientToServer, description: "Fabricação de item por receita de artesanato" },
         PacketDefinition { opcode: 0x75, name: "CM_REGISTER_AUTOGROUP", direction: PacketDirection::ClientToServer, description: "Entrada na fila de matchmaking de arena" },
+        PacketDefinition { opcode: 0x86, name: "CM_MAIL_READ", direction: PacketDirection::ClientToServer, description: "Leitura ou interação com carta no correio" },
+        PacketDefinition { opcode: 0xA2, name: "CM_MAIL_POSTMAN", direction: PacketDirection::ClientToServer, description: "Envio de carta pelo correio ou mensageiro" },
     ];
 
     /// Lista de todos os opcodes SM (Servidor -> Cliente) mapeados
@@ -86,6 +88,7 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0x43, name: "SM_WEATHER", direction: PacketDirection::ServerToClient, description: "Sincronização de clima e efeitos visuais" },
         PacketDefinition { opcode: 0x47, name: "SM_QUEST_LIST", direction: PacketDirection::ServerToClient, description: "Lista de missões ativas e completadas" },
         PacketDefinition { opcode: 0x8B, name: "S_SA_ACCOUNT_ITEM_NOTI", direction: PacketDirection::ServerToClient, description: "Destrava essencial do lobby de personagens" },
+        PacketDefinition { opcode: 0xA0, name: "SM_MAIL", direction: PacketDirection::ServerToClient, description: "Lista de cartas e mensagens da caixa de correio" },
         PacketDefinition { opcode: 0xA2, name: "SM_WIND_PATH_RESULT", direction: PacketDirection::ServerToClient, description: "Rota pré-calculada de voo em corrente de vento" },
         PacketDefinition { opcode: 0xA3, name: "SM_WIND_STATE_INFO", direction: PacketDirection::ServerToClient, description: "Confirmação de estado em corrente de vento" },
         PacketDefinition { opcode: 0xA6, name: "SM_USER_SELL_HISTORY_LIST", direction: PacketDirection::ServerToClient, description: "Histórico de itens vendidos recentemente (Buyback)" },

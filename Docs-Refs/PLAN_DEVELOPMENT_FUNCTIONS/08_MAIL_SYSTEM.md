@@ -1,6 +1,6 @@
-﻿# PLAN-08: Sistema de Correio (C_MAIL_READ 0x086, C_MAIL_POSTMAN 0x0A2, S_MAIL 0x0A0)
+# PLAN-08: Sistema de Correio (C_MAIL_READ 0x086, C_MAIL_POSTMAN 0x0A2, S_MAIL 0x0A0)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** MÉDIA — 36 pacotes capturados cobrindo 4 variantes de carta.
 
 ---
