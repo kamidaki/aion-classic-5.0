@@ -360,7 +360,7 @@ async fn handle_ncsoft_client(
     default_server_id: u8,
     db: Arc<AuthDb>,
     auto_create: bool,
-    default_user: String,
+    _default_user: String,
     security: Arc<crate::security::SecurityManager>,
 ) {
     if !security.check_connection(addr.ip()) {
@@ -522,70 +522,27 @@ async fn handle_ncsoft_client(
     }
 
     let mut state = ConnectionState::Connected;
-    let mut current_username = if !default_user.is_empty() {
-        default_user.clone()
-    } else if let Some(latest) = db.get_latest_session_account() {
-        latest
-    } else {
-        "fly".to_string()
-    };
-
-    let mut account_id = 1u32;
+    // Credenciais so sao preenchidas quando o cliente envia CM_LOGIN (opcode 0x0B)
+    // com as credenciais RSA-criptografadas. Nunca ha fallback, nunca ha usuario assumido.
+    let mut current_username = String::new();
+    let mut account_id = 0u32;
     let login_ok: u32 = 0x026edf39;
     let play_ok1: u32 = 0x026edf39;
     let play_ok2: u32 = rand::random();
 
-    if let Ok(Some(a)) = db.authenticate_or_create_account(&current_username, "", auto_create) {
-        account_id = a.id as u32;
-    }
-    let char_count = db.get_character_count(&current_username);
-
     // =========================================================================
-    // 2. Sequencia Completa de Autenticacao NCSoft / Gameforge Classic 4.5
+    // 2. SM_AUTH_GG -- o unico pacote enviado antes de receber credenciais.
+    //    O cliente exibe o formulario de login in-game e aguarda o jogador
+    //    digitar usuario+senha e clicar em OK. Somente entao ele envia CM_LOGIN.
     // =========================================================================
     tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
     if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
         eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_AUTH_GG: {}", session_id, e);
         return;
     }
-
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-    if let Err(e) = send_login_ok(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        account_id,
-        login_ok,
-        &current_username,
-        false, // Exige aceite manual dos Termos de Uso (TOS) na tela do cliente
-    )
-    .await
-    {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_LOGIN_OK: {}", session_id, e);
-        return;
-    }
-
-    tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
-    if let Err(e) = send_server_list(
-        &mut socket,
-        &crypt_engine,
-        session_id,
-        &announce_ip,
-        announce_port,
-        default_server_id,
-        char_count,
-        &db,
-    )
-    .await
-    {
-        eprintln!("ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] SM_SERVER_LIST: {}", session_id, e);
-        return;
-    }
-
-    state = ConnectionState::AuthedLogin;
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] Handshake concluido com sucesso (Conta: '{}', ID: {}, Chars: {}). Termos de Uso apresentados na tela.",
-        session_id, current_username, account_id, char_count
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT + SM_AUTH_GG enviados. Aguardando CM_LOGIN com credenciais do jogador...",
+        session_id
     );
 
     // =========================================================================
