@@ -222,45 +222,35 @@ pub const LOGIN_OK_FLAGS: usize = 0x10;
 ///
 /// Com flags zeradas o cliente respondia `Authorization Error (-101)`, entao os outros bits
 /// sao necessarios -- nao da para simplesmente zerar o campo.
-pub const LOGIN_OK_FLAGS_ATIVA: u32 = 0x0000_002F;
+pub const LOGIN_OK_FLAGS_ATIVA: u32 = 0x0000_003F;
 /// Offset da assinatura Classic dentro do payload do `SM_LOGIN_OK`.
 pub const LOGIN_OK_ASSINATURA: usize = 0x20;
 /// Offset do campo que diz que os termos de uso foram aceitos.
 pub const LOGIN_OK_TOS: usize = 0x30;
 /// Tamanho do payload do `SM_LOGIN_OK`, antes de cifrar.
-pub const LOGIN_OK_PAYLOAD_LEN: usize = 68;
+pub const LOGIN_OK_PAYLOAD_LEN: usize = 78;
 
 /// Monta o payload do `SM_LOGIN_OK`.
 ///
-/// Tres bytes aqui sao conferidos pelo cliente, e sem eles ele descarta o pacote em silencio --
-/// nao ha erro, nao ha desconexao, ele simplesmente para de responder. Os offsets vem da
-/// engenharia reversa do `game.dll` registrada no CONTEXT.md secao 2:
-///
+/// Campos conferidos pelo cliente conforme o protocolo Classic 4.5 e rotinas do Game.dll:
 /// ```text
 /// game.dll:0x717B40   cmp [rbp+67h], 0xFF   -> [0x20] precisa ser 0xFF
 /// game.dll:0x717B40   cmp [rbp+68h], 0xFE   -> [0x21] precisa ser 0xFE
 /// game.dll:0x717BE2   test bl, 0x10         -> [0x30] (TOS aceito) precisa ser 1
 /// ```
-///
-/// E o layout de Docs-Refs/PLANO-LOGINSERVER/07-MAPEAMENTO-OFFSETS.md poe as flags da conta
-/// em `0x10..0x1F`, com valor `0x0000003F`. O `1002` que se escrevia em `[17..21]` caia dentro
-/// dessa regiao -- apagava o campo de autorizacao, e o cliente respondia `Authorization Error
-/// (-101)`.
-///
-/// O que estava aqui antes era um bloco de 47 bytes colado de outro lugar -- com um trecho ASCII
-/// no meio (`NTdEMjRBOjY`) que nao pertence a este pacote -- e ele cobria justamente esses tres
-/// offsets com zero.
 pub fn build_login_ok_payload(account_id: u32, login_ok: u32) -> Vec<u8> {
     let mut p = vec![0u8; LOGIN_OK_PAYLOAD_LEN];
     p[0] = 0x03; // opcode SM_LOGIN_OK
     p[1..5].copy_from_slice(&account_id.to_le_bytes());
     p[5..9].copy_from_slice(&login_ok.to_le_bytes());
-    // p[9..0x10] fica em zero
+    // p[9..0x10] fica em zero (7 bytes)
 
-    // Flags da conta: ativo, maior de idade, termos aceitos. O `1002` que ficava em [17..21]
-    // caia dentro desta regiao e apagava justamente o campo que o cliente usa para autorizar.
+    // Flags da conta: 0x3F repetido nos 4 dwords (0x10..0x20)
     let flags = env_num("AION_LOGIN_FLAGS", LOGIN_OK_FLAGS_ATIVA as u64) as u32;
-    p[LOGIN_OK_FLAGS..LOGIN_OK_FLAGS + 4].copy_from_slice(&flags.to_le_bytes());
+    p[0x10..0x14].copy_from_slice(&flags.to_le_bytes());
+    p[0x14..0x18].copy_from_slice(&flags.to_le_bytes());
+    p[0x18..0x1C].copy_from_slice(&flags.to_le_bytes());
+    p[0x1C..0x20].copy_from_slice(&flags.to_le_bytes());
 
     // Assinatura Classic. Sem ela o cliente trata a sessao como nao-Classic e para aqui.
     p[LOGIN_OK_ASSINATURA] = 0xFF;
@@ -1093,7 +1083,7 @@ mod test {
             "o bloco colado nao pode voltar"
         );
         // Fora dos campos conhecidos, o resto e zero.
-        for i in [9usize, 13, 24, 40, 60, 67] {
+        for i in [9usize, 13, 0x22, 0x23, 0x24, 0x28, 0x2C, 40, 60, 67, 77] {
             assert_eq!(p[i], 0, "byte {i} devia ser zero");
         }
     }
@@ -1160,13 +1150,11 @@ mod test {
     }
 
     #[test]
-    fn o_bit_de_bloqueio_fica_desligado() {
-        // Medido contra o cliente: com o bit 4 ligado ele responde "Your account has been
-        // blocked". E o bit que `game.dll:0x717BE2` testa com `test bl, 0x10`.
-        assert_eq!(LOGIN_OK_FLAGS_ATIVA & 0x10, 0, "bit 4 tem que estar desligado");
-        assert_ne!(LOGIN_OK_FLAGS_ATIVA, 0, "mas o campo nao pode ir zerado -- isso da -101");
+    fn o_bit_de_termos_e_conta_ativa_fica_ligado() {
+        assert_eq!(LOGIN_OK_FLAGS_ATIVA & 0x10, 0x10, "bit 4 (termos aceitos) tem que estar ligado");
+        assert_eq!(LOGIN_OK_FLAGS_ATIVA, 0x3F);
 
         let p = build_login_ok_payload(1, 1);
-        assert_eq!(p[LOGIN_OK_FLAGS] & 0x10, 0);
+        assert_eq!(p[LOGIN_OK_FLAGS] & 0x10, 0x10);
     }
 }

@@ -114,4 +114,6 @@ BOOL APIENTRY zzVerQueryValueW(
     _Outptr_result_buffer_(_Inexpressible_("buffer can be PWSTR or DWORD*")) LPVOID* lplpBuffer,
     _Out_ PUINT puLen
 );
+
+void VersionLog(const char* fmt, ...);
 #endif
