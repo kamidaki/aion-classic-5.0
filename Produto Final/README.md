@@ -1,10 +1,22 @@
 # Aion Classic EU — Pacote de Produção (Deploy)
 
-Ambiente de produção e execução do **EmuRust**, o emulador em Rust de alta performance para o Aion Classic EU (cliente x64).
+Ambiente de produção e execução do **EmuRust**, o emulador de alta performance em Rust para o **Aion Classic EU 4.5** (cliente 64-bit).
 
 ---
 
-## Como Iniciar o Emulador
+## 1. Regras Obrigatórias de Login e Execução
+
+O **EmuRust** segue a arquitetura oficial e dos emuladores consagrados (Java 4.8 Retail / Java 2.4 Classic Gameforge):
+
+* **Autenticação Pura**: O acesso ocorre **unicamente via Login e Senha**. Métodos adicionais (Launcher proprietário, 2FA, OAuth, SMS/códigos de telefone) são dispensados e ignorados.
+* **Porta de Conexão**: O cliente conecta-se sempre na porta de login padrão **`2106`**.
+* **Inicialização via Script `.bat`** (`Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat`):
+  * **Sem parâmetros de credenciais**: Abre a tela tradicional de login in-game. O jogador digita usuário e senha na interface do jogo.
+  * **Com parâmetros de credenciais** (`-account:user -password:pass`): Pula a tela de login in-game e avança imediatamente para os Termos de Serviço / Seleção de Servidores.
+
+---
+
+## 2. Como Iniciar o Emulador
 
 Basta executar com **2 cliques**:
 
@@ -16,7 +28,20 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
 
 ---
 
-## Recursos do Dashboard (Gerenciador Central)
+## 3. Mapeamento de Portas e Serviços
+
+| Porta | Protocolo | Serviço | Descrição |
+|---|---|---|---|
+| **`2106`** | TCP | Login Server (NCSoft) | Porta principal de autenticação e handshake do cliente com RSA/Blowfish. |
+| **`13001`** | TCP | Login Server (HQ Auth) | Protocolo de autenticação secundária Gameforge HQ. |
+| **`6600`** | TCP | Login Server (STS) | Handshake STS para compatibilidade com o cliente oficial. |
+| **`7777`** | TCP | Game Server | Conexão do mundo de jogo, combate, inventário, movimentação e spawns (20.0 TPS). |
+| **`10241`** | TCP | Chat Server | Canais regionais, sussurros, anúncios de legião e anti-flood. |
+| **`18080`** | HTTP | Painel Mobile LAN | Interface web responsiva para monitoramento e controle via celular/tablet. |
+
+---
+
+## 4. Recursos do Dashboard (Gerenciador Central)
 
 * **Telemetria Day-Trade em Tempo Real**:
   * Gráfico multicurva interativo com linhas individuais para **Login-Server**, **Game-Server**, **Chat-Server**, **Launcher** e **Consumo Total**.
@@ -40,7 +65,7 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
 
 ---
 
-## Configuração Central (`config/launcher.json`)
+## 5. Configuração Central (`config/launcher.json`)
 
 ```json
 {
@@ -56,11 +81,6 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
     "auto_create_accounts": true,
     "development_mode": true,
     "default_dev_username": "teste",
-    "security": {
-      "enable_rate_limit": true,
-      "max_attempts_per_minute": 15,
-      "temp_ban_minutes": 15
-    },
     "database": {
       "path": "aion.db"
     }
@@ -89,39 +109,15 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
     "database": {
       "path": "aion.db"
     }
-  },
-
-  "launcher": {
-    "autoStartLoginServer": true,
-    "autoStartGameServer": true,
-    "autoStartChatServer": true,
-    "restartOnCrash": true,
-    "crashRestartDelayMs": 2000,
-    "gui": {
-      "theme": "dark",
-      "window_width": 1150,
-      "window_height": 760,
-      "http_port": 18080
-    }
-  },
-
-  "logging": {
-    "retentionDays": 10,
-    "loginServerPath": "logs/login-server",
-    "gameServerPath": "logs/game-server",
-    "chatServerPath": "logs/chat-server"
   }
 }
 ```
 
 ---
 
-## Como Iniciar o Cliente do Jogo
+## 6. Banco de Dados SQLite (`aion.db`)
 
-1. Certifique-se de que os servidores estão com status `ONLINE` no **Auto-Start EmuRust**.
-2. Execute:
-   ```text
-   Cliente\GFAion\aionclassic\Start_Client_Classic_EU.bat
-   ```
-3. Digite qualquer usuário e senha na tela de login e clique em **OK**.
-4. O emulador autenticará a conta automaticamente e carregará a tela de seleção de mundos.
+O banco opera em modo **WAL (Write-Ahead Logging)** com migrações automáticas estruturadas para:
+* **Contas & Sessões**: `accounts`, `sessions`.
+* **Personagens & Atributos**: `characters`, `character_items`, `character_skills`.
+* **Sistemas de Jogo**: `player_quests`, `character_mail`, `guilds`, `guild_members`, `character_buddies`, `broker_listings`, `broker_history`.
