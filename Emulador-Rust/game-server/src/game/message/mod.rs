@@ -14,6 +14,16 @@ use crate::game::{session::Account, Serialise};
 
 use super::{ClientUpdate, ServerUpdate};
 
+use std::sync::atomic::{AtomicBool, Ordering};
+
+pub static DISPLAY_UNKNOWN_PACKETS: AtomicBool = AtomicBool::new(false);
+pub static DISPLAY_PACKETS: AtomicBool = AtomicBool::new(false);
+
+pub fn set_packet_logging_flags(display_packets: bool, display_unknown: bool) {
+    DISPLAY_PACKETS.store(display_packets, Ordering::Relaxed);
+    DISPLAY_UNKNOWN_PACKETS.store(display_unknown, Ordering::Relaxed);
+}
+
 /// Opcodes que sao acao do jogador, e por isso nunca podem ser atendidos pelo replay: a resposta
 /// gravada fala de outro movimento, outro alvo, outro momento. Servir isso a um cliente ao vivo
 /// para o personagem no meio do passo -- foi o que aconteceu com o C_MOVE_NEW.
@@ -68,14 +78,18 @@ impl ClientMessages {
 
             match client::Message::deserialise(&mut buffer[2..len], key) {
                 Ok((message, opcode)) => {
-                    println!("INFO: [GameServer] <- Client Packet 0x{:04X} [{:?}]", opcode, message);
+                    if DISPLAY_PACKETS.load(Ordering::Relaxed) {
+                        println!("INFO: [GameServer] <- Client Packet 0x{:04X} [{:?}]", opcode, message);
+                    }
                     messages.push(message);
                     if no_mundo && !ACAO_AO_VIVO.contains(&opcode) {
                         sem_implementacao.push(opcode);
                     }
                 }
                 Err(opcode) => {
-                    println!("DEBUG: [GameServer] <- Client Packet 0x{:04X} (passthrough)", opcode);
+                    if DISPLAY_UNKNOWN_PACKETS.load(Ordering::Relaxed) {
+                        println!("DEBUG: [GameServer] <- Client Packet 0x{:04X} (unknown/passthrough)", opcode);
+                    }
                     sem_implementacao.push(opcode);
                 }
             }

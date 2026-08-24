@@ -51,6 +51,8 @@ pub struct GameServerConfig {
     pub security: SecurityConfig,
     #[serde(default)]
     pub inter_server: InterServerConfig,
+    #[serde(default)]
+    pub gameplay: GameplayConfig,
 }
 
 impl Default for GameServerConfig {
@@ -62,6 +64,7 @@ impl Default for GameServerConfig {
             world: WorldConfig::default(),
             security: SecurityConfig::default(),
             inter_server: InterServerConfig::default(),
+            gameplay: GameplayConfig::default(),
         }
     }
 }
@@ -108,6 +111,24 @@ pub struct NetworkConfig {
     pub bind_address: String,
     #[serde(default = "default_port")]
     pub port: u16,
+    #[serde(default = "default_max_players")]
+    pub max_players: u32,
+    #[serde(default = "default_nio_threads")]
+    pub nio_threads: u32,
+    #[serde(default = "default_processor_threads_min")]
+    pub processor_threads_min: u32,
+    #[serde(default = "default_processor_threads_max")]
+    pub processor_threads_max: u32,
+    #[serde(default = "default_threshold_kill")]
+    pub processor_threshold_kill: u32,
+    #[serde(default = "default_threshold_spawn")]
+    pub processor_threshold_spawn: u32,
+    #[serde(default = "default_false")]
+    pub display_unknown_packets: bool,
+    #[serde(default = "default_false")]
+    pub display_packets: bool,
+    #[serde(default)]
+    pub flood_protection: FloodProtectionConfig,
 }
 
 impl Default for NetworkConfig {
@@ -115,6 +136,15 @@ impl Default for NetworkConfig {
         Self {
             bind_address: default_bind_address(),
             port: default_port(),
+            max_players: default_max_players(),
+            nio_threads: default_nio_threads(),
+            processor_threads_min: default_processor_threads_min(),
+            processor_threads_max: default_processor_threads_max(),
+            processor_threshold_kill: default_threshold_kill(),
+            processor_threshold_spawn: default_threshold_spawn(),
+            display_unknown_packets: false,
+            display_packets: false,
+            flood_protection: FloodProtectionConfig::default(),
         }
     }
 }
@@ -124,6 +154,140 @@ fn default_bind_address() -> String {
 }
 fn default_port() -> u16 {
     7777
+}
+fn default_nio_threads() -> u32 {
+    4
+}
+fn default_processor_threads_min() -> u32 {
+    4
+}
+fn default_processor_threads_max() -> u32 {
+    16
+}
+fn default_threshold_kill() -> u32 {
+    3
+}
+fn default_threshold_spawn() -> u32 {
+    50
+}
+fn default_false() -> bool {
+    false
+}
+fn default_1000() -> u32 {
+    1000
+}
+fn default_10() -> u32 {
+    10
+}
+fn default_20() -> u32 {
+    20
+}
+fn default_30() -> u32 {
+    30
+}
+fn default_60() -> u32 {
+    60
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct FloodProtectionConfig {
+    #[serde(default = "default_false")]
+    pub enabled: bool,
+    #[serde(default = "default_1000")]
+    pub tick_ms: u32,
+    #[serde(default = "default_10")]
+    pub short_warn: u32,
+    #[serde(default = "default_20")]
+    pub short_reject: u32,
+    #[serde(default = "default_30")]
+    pub long_warn: u32,
+    #[serde(default = "default_60")]
+    pub long_reject: u32,
+}
+
+impl Default for FloodProtectionConfig {
+    fn default() -> Self {
+        Self {
+            enabled: false,
+            tick_ms: 1000,
+            short_warn: 10,
+            short_reject: 20,
+            long_warn: 30,
+            long_reject: 60,
+        }
+    }
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct GameplayConfig {
+    #[serde(default = "default_country_code")]
+    pub country_code: u8,
+    #[serde(default = "default_true")]
+    pub chat_server_enable: bool,
+    #[serde(default = "default_false")]
+    pub display_revision: bool,
+    #[serde(default = "default_char_limit")]
+    pub character_limit_count: u8,
+    #[serde(default = "default_char_creation_mode")]
+    pub character_creation_mode: u8,
+    #[serde(default = "default_max_level")]
+    pub players_max_level: u8,
+    #[serde(default = "default_1")]
+    pub starting_level: u8,
+    #[serde(default = "default_10_u8")]
+    pub start_class_max_level: u8,
+    #[serde(default = "default_name_pattern")]
+    pub character_name_pattern: String,
+    #[serde(default = "default_20")]
+    pub character_reentry_time_secs: u32,
+    #[serde(default = "default_true")]
+    pub gc_enable: bool,
+    #[serde(default = "default_5")]
+    pub gc_optimization_mins: u32,
+}
+
+fn default_country_code() -> u8 {
+    2
+}
+fn default_char_limit() -> u8 {
+    8
+}
+fn default_char_creation_mode() -> u8 {
+    1
+}
+fn default_max_level() -> u8 {
+    55
+}
+fn default_1() -> u8 {
+    1
+}
+fn default_10_u8() -> u8 {
+    10
+}
+fn default_5() -> u32 {
+    5
+}
+fn default_name_pattern() -> String {
+    "^[a-zA-Z0-9]{2,16}$".to_string()
+}
+
+impl Default for GameplayConfig {
+    fn default() -> Self {
+        Self {
+            country_code: default_country_code(),
+            chat_server_enable: true,
+            display_revision: false,
+            character_limit_count: default_char_limit(),
+            character_creation_mode: default_char_creation_mode(),
+            players_max_level: default_max_level(),
+            starting_level: default_1(),
+            start_class_max_level: default_10_u8(),
+            character_name_pattern: default_name_pattern(),
+            character_reentry_time_secs: default_20(),
+            gc_enable: true,
+            gc_optimization_mins: default_5(),
+        }
+    }
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -263,7 +427,30 @@ fn load_config() -> GameServerConfig {
                     }
                     if let Some(max_p) = gs_val.get("max_players").and_then(|v| v.as_u64()) {
                         cfg.server.max_players = max_p as u32;
+                        cfg.network.max_players = max_p as u32;
                     }
+                    if let Some(nio) = gs_val.get("nio_threads").and_then(|v| v.as_u64()) {
+                        cfg.network.nio_threads = nio as u32;
+                    }
+                    if let Some(p_min) = gs_val.get("processor_threads_min").and_then(|v| v.as_u64()) {
+                        cfg.network.processor_threads_min = p_min as u32;
+                    }
+                    if let Some(p_max) = gs_val.get("processor_threads_max").and_then(|v| v.as_u64()) {
+                        cfg.network.processor_threads_max = p_max as u32;
+                    }
+                    if let Some(t_kill) = gs_val.get("processor_threshold_kill").and_then(|v| v.as_u64()) {
+                        cfg.network.processor_threshold_kill = t_kill as u32;
+                    }
+                    if let Some(t_spawn) = gs_val.get("processor_threshold_spawn").and_then(|v| v.as_u64()) {
+                        cfg.network.processor_threshold_spawn = t_spawn as u32;
+                    }
+                    if let Some(u_pkt) = gs_val.get("display_unknown_packets").and_then(|v| v.as_bool()) {
+                        cfg.network.display_unknown_packets = u_pkt;
+                    }
+                    if let Some(d_pkt) = gs_val.get("display_packets").and_then(|v| v.as_bool()) {
+                        cfg.network.display_packets = d_pkt;
+                    }
+
                     if let Some(la) = gs_val.get("login_server_address").and_then(|v| v.as_str()) {
                         cfg.inter_server.login_server_address = la.to_string();
                     }
@@ -281,6 +468,34 @@ fn load_config() -> GameServerConfig {
                     }
                     if let Some(d_path) = gs_val.get("data_path").and_then(|v| v.as_str()) {
                         cfg.world.data_dir = d_path.to_string();
+                    }
+
+                    // Gameplay configs
+                    if let Some(gp) = gs_val.get("gameplay") {
+                        if let Some(cc) = gp.get("country_code").and_then(|v| v.as_u64()) {
+                            cfg.gameplay.country_code = cc as u8;
+                        }
+                        if let Some(cs_en) = gp.get("chat_server_enable").and_then(|v| v.as_bool()) {
+                            cfg.gameplay.chat_server_enable = cs_en;
+                        }
+                        if let Some(rev) = gp.get("display_revision").and_then(|v| v.as_bool()) {
+                            cfg.gameplay.display_revision = rev;
+                        }
+                        if let Some(cl) = gp.get("character_limit_count").and_then(|v| v.as_u64()) {
+                            cfg.gameplay.character_limit_count = cl as u8;
+                        }
+                        if let Some(cm) = gp.get("character_creation_mode").and_then(|v| v.as_u64()) {
+                            cfg.gameplay.character_creation_mode = cm as u8;
+                        }
+                        if let Some(lvl) = gp.get("players_max_level").and_then(|v| v.as_u64()) {
+                            cfg.gameplay.players_max_level = lvl as u8;
+                        }
+                        if let Some(pat) = gp.get("character_name_pattern").and_then(|v| v.as_str()) {
+                            cfg.gameplay.character_name_pattern = pat.to_string();
+                        }
+                        if let Some(rt) = gp.get("character_reentry_time_secs").and_then(|v| v.as_u64()) {
+                            cfg.gameplay.character_reentry_time_secs = rt as u32;
+                        }
                     }
 
                     return cfg;
@@ -312,6 +527,7 @@ fn load_config() -> GameServerConfig {
         world: WorldConfig::default(),
         security: SecurityConfig::default(),
         inter_server: InterServerConfig::default(),
+        gameplay: GameplayConfig::default(),
     }
 }
 
@@ -360,6 +576,31 @@ fn main() {
 
     println!("INFO: Starting Game Server");
     let config = load_config();
+
+    // Configura flags de log de pacotes
+    game::message::set_packet_logging_flags(
+        config.network.display_packets,
+        config.network.display_unknown_packets,
+    );
+
+    println!(
+        "INFO: Network Config -> Threads: NIO={}, Processor Min/Max={}/{}, Threshold Spawn/Kill={}/{}, Display Unknown Packets: {}",
+        config.network.nio_threads,
+        config.network.processor_threads_min,
+        config.network.processor_threads_max,
+        config.network.processor_threshold_spawn,
+        config.network.processor_threshold_kill,
+        config.network.display_unknown_packets,
+    );
+    println!(
+        "INFO: Gameplay Config -> CountryCode={}, MaxPlayers={}, CharLimit={}, CreationMode={}, MaxLevel={}, ReentryTime={}s",
+        config.gameplay.country_code,
+        config.server.max_players,
+        config.gameplay.character_limit_count,
+        config.gameplay.character_creation_mode,
+        config.gameplay.players_max_level,
+        config.gameplay.character_reentry_time_secs,
+    );
 
     // Inicia conectores inter-servidores (Java Architecture)
     login_connector::start_login_connector(login_connector::LoginConnectorConfig {

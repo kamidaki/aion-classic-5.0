@@ -36,6 +36,35 @@
     "chat_password": "Sabrewolf100!",
     "tick_rate_tps": 20,
     "max_players": 1000,
+    "nio_threads": 4,
+    "processor_threads_min": 4,
+    "processor_threads_max": 16,
+    "processor_threshold_kill": 3,
+    "processor_threshold_spawn": 50,
+    "display_unknown_packets": false,
+    "display_packets": false,
+    "flood_protection": {
+      "enabled": false,
+      "tick_ms": 1000,
+      "short_warn": 10,
+      "short_reject": 20,
+      "long_warn": 30,
+      "long_reject": 60
+    },
+    "gameplay": {
+      "country_code": 2,
+      "chat_server_enable": true,
+      "display_revision": false,
+      "character_limit_count": 8,
+      "character_creation_mode": 1,
+      "players_max_level": 55,
+      "starting_level": 1,
+      "start_class_max_level": 10,
+      "character_name_pattern": "^[a-zA-Z0-9]{2,16}$",
+      "character_reentry_time_secs": 20,
+      "gc_enable": true,
+      "gc_optimization_mins": 5
+    },
     "data_path": "data/client",
     "database": {
       "path": "data/Banco de Dados/game.db"

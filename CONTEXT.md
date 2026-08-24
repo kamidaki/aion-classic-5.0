@@ -337,3 +337,47 @@ O emulador **EmuRust** implementa a mesma arquitetura de segurança de rede inte
 1. **Rejeição Automática**: Se um Game Server ou Chat Server tentar se conectar com senha incorreta ou ID não registrado, a conexão é **imediatamente rejeitada com código 1 (`REJECTED`)** e o socket é encerrado.
 2. **Sincronização em Tempo Real**: O Login Server atualiza dinamicamente a contagem de jogadores online no `SM_SERVER_LIST` conforme o Game Server envia os relatórios periódicos de status.
 3. **Resiliência e Reconexão Automática**: O Game Server monitora a saúde das conexões com o Login Server e Chat Server, efetuando reconexão automática em caso de reinício de qualquer serviço.
+
+---
+
+## 9. Parâmetros de Configuração Avançados (Mapeamento Java `network.properties` & `gameserver.properties`)
+
+O emulador unifica todas as propriedades dos arquivos Java em um único arquivo de configuração JSON centralizado ([launcher.json](file:///d:/AION%20RUST/AionEMU/AionEMU/Produto%20Final/config/launcher.json)):
+
+### A. Mapeamento `network.properties`
+
+| Parâmetro Java (`network.properties`) | Equivalente `launcher.json` | Padrão | Descrição |
+|---|---|---|---|
+| `gameserver.network.client.port` | `port` | `7777` | Porta TCP do Game Server para conexão dos clientes. |
+| `gameserver.network.client.host` | `bind_address` | `"127.0.0.1"` | Interface de escuta TCP (`0.0.0.0` para WAN ou `127.0.0.1` para local). |
+| `gameserver.network.client.maxplayers` | `max_players` | `1000` | Limite máximo de jogadores conectados simultaneamente. |
+| `gameserver.network.login.address` | `login_server_address` | `"127.0.0.1:9014"` | Endereço interno do Login Server. |
+| `gameserver.network.login.gsid` | `server_id` | `1` | ID único de registro deste Game Server no Login Server. |
+| `gameserver.network.login.password` | `gameserver_password` | `"Sabrewolf100!"` | Senha de autenticação do Game Server no Login Server. |
+| `gameserver.network.chat.address` | `chat_server_address` | `"127.0.0.1:9021"` | Endereço interno do Chat Server. |
+| `gameserver.network.chat.password` | `chat_password` | `"Sabrewolf100!"` | Senha de autenticação no Chat Server. |
+| `gameserver.network.nio.threads` | `nio_threads` | `4` | Quantidade de threads assíncronas dedicadas para I/O de rede. |
+| `gameserver.network.packet.processor.threads.min` | `processor_threads_min` | `4` | Threads mínimas no pool de processamento de pacotes do cliente. |
+| `gameserver.network.packet.processor.threads.max` | `processor_threads_max` | `16` | Threads máximas no pool de processamento de pacotes. |
+| `gameserver.network.packet.processor.threshold.kill` | `processor_threshold_kill` | `3` | Limiar de inatividade para redução do pool de processamento. |
+| `gameserver.network.packet.processor.threshold.spawn` | `processor_threshold_spawn` | `50` | Limiar de pacotes enfileirados para criação de nova thread de processamento. |
+| `gameserver.network.display.unknownpackets` | `display_unknown_packets` | `false` | Exibe ou oculta logs de pacotes e opcodes não tratados. |
+| `gameserver.network.display.packets` | `display_packets` | `false` | Exibe ou oculta dumps detalhados de cada pacote processado. |
+| `gameserver.network.flood.*` | `flood_protection` | `enabled: false` | Proteção contra flood e spam de conexões TCP. |
+
+### B. Mapeamento `gameserver.properties`
+
+| Parâmetro Java (`gameserver.properties`) | Equivalente `launcher.json` | Padrão | Descrição |
+|---|---|---|---|
+| `gameserver.country.code` | `gameplay.country_code` | `2` | Código de país da região (0: KR, 1: NA, 2: EU Classic, 7: RUS). |
+| `gameserver.chatserver.enable` | `gameplay.chat_server_enable` | `true` | Habilita a sincronização com o Chat Server. |
+| `gameserver.character.limit.count` | `gameplay.character_limit_count` | `8` | Quantidade máxima de personagens permitidos por conta. |
+| `gameserver.character.creation.mode` | `gameplay.character_creation_mode` | `1` | Modo de facção (0: única facção por conta, 1: Elyos e Asmodians permitidos). |
+| `gameserver.players.max.level` | `gameplay.players_max_level` | `55` | Nível máximo permitido para os personagens. |
+| `gameserver.starting.level` | `gameplay.starting_level` | `1` | Nível inicial de novos personagens criados. |
+| `gameserver.startClass.maxLevel` | `gameplay.start_class_max_level` | `10` | Nível máximo da classe inicial antes da ascensão para Daeva. |
+| `gameserver.name` | `server_name` | `"Brasil em Chamas"` | Nome oficial de exibição do servidor no lobby. |
+| `gameserver.name.characterpattern` | `gameplay.character_name_pattern` | `"^[a-zA-Z0-9]{2,16}$"` | Expressão regular (Regex) para validação do nome do personagem. |
+| `gameserver.character.reentry.time` | `gameplay.character_reentry_time_secs` | `20` | Tempo de espera (cooldown em segundos) para troca de personagem. |
+| `gameserver.gc.enable` | `gameplay.gc_enable` | `true` | Execução periódica de rotinas de limpeza e consolidação de memória. |
+| `gameserver.gc.optimization.time` | `gameplay.gc_optimization_mins` | `5` | Intervalo em minutos para otimização de memória. |
