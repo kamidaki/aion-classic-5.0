@@ -32,4 +32,4 @@
 | 12 | 12_CHAT_CHANNELS.md | SM_MESSAGE, whisper, canais regionais, anti-flood | `[x]` |
 | 13 | 13_DATABASE_SCHEMA.md | SQLite: players expandido, quests, mail, legion, inventory | `[x]` |
 | 14 | 14_CHARACTER_CREATION.md | CM_CREATE_CHARACTER completo, kit inicial, skills iniciais | `[x]` |
-| 15 | 15_WORLD_TELEPORT.md | S_REQUEST_TELEPORT (22 bytes), troca de mapa, instâncias | `[ ]` |
+| 15 | 15_WORLD_TELEPORT.md | S_REQUEST_TELEPORT (22 bytes), troca de mapa, instâncias | `[x]` |

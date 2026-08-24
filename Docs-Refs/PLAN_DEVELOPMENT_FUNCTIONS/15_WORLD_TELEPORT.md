@@ -1,6 +1,6 @@
-﻿# PLAN-15: Teleporte de Mundo — S_REQUEST_TELEPORT Wire, Troca de Mapa, Instâncias
+# PLAN-15: Teleporte de Mundo — S_REQUEST_TELEPORT Wire, Troca de Mapa, Instâncias
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** ALTA — troca de mapa via NPC teleportador é funcionalidade central.
 
 ---

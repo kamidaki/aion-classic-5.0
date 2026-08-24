@@ -642,6 +642,14 @@ impl Character {
         }
         11
     }
+    pub fn race(&self) -> u8 {
+        if let Some(ref ap) = self.aparencia {
+            if ap.len() >= 60 {
+                return u32::from_le_bytes(ap[56..60].try_into().unwrap_or([1, 0, 0, 0])) as u8;
+            }
+        }
+        1
+    }
     pub fn attack_speed_ms(&self) -> u64 {
         let spd = self.stats.attack_speed;
         if spd > 0 {

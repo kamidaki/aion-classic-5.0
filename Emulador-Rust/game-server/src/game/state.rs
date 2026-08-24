@@ -124,6 +124,7 @@ pub struct State {
     pub guild_manager: crate::game::guild::GuildManager,
     pub party_service: crate::game::social::PartyService,
     pub chat_timestamps: HashMap<u32, Vec<Instant>>,
+    pub teleport_service: crate::game::teleport::TeleportService,
     db: Db,
     game_data: Arc<GameData>,
 }
@@ -190,6 +191,7 @@ impl State {
             guild_manager: crate::game::guild::GuildManager::new(),
             party_service: crate::game::social::PartyService::new(),
             chat_timestamps: HashMap::new(),
+            teleport_service: crate::game::teleport::TeleportService::new(),
             db,
             game_data,
         }
@@ -2105,6 +2107,53 @@ impl State {
                         update.client_id(),
                         ServerUpdate::new(s::Message::MessageCode(s::MessageCode::new(900010))),
                     );
+                }
+            }
+            c::Message::ShowDialog(show_dlg) => {
+                messages.push_direct(
+                    update.client_id(),
+                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
+                        show_dlg.target_id,
+                        10, // Teleport dialog
+                        0,
+                    ))),
+                );
+            }
+            c::Message::DialogSelect(dialog_select) => {
+                let char_id = update.character_id();
+                println!("INFO: Player {} DialogSelect (target: {}, dialog_id: {}, last_page: {})", char_id, dialog_select.target_id, dialog_select.dialog_id, dialog_select.last_page);
+                
+                let loc_id = if dialog_select.dialog_id == 10 { dialog_select.last_page } else { dialog_select.dialog_id };
+                if let Some(loc) = self.teleport_service.locations.get(&loc_id).cloned() {
+                    let race = self.characters.get(&char_id).map(|c| c.race()).unwrap_or(0);
+                    let level = self.characters.get(&char_id).map(|c| c.stats.level as u8).unwrap_or(1);
+                    if let Ok((loc_ref, _rem)) = self.teleport_service.validate_and_teleport(loc.loc_id, level, race, 1000000) {
+                        if let Some(character) = self.characters.get_mut(&char_id) {
+                            character.set_location(Coord::new(loc_ref.x, loc_ref.y, loc_ref.z));
+                        }
+                        self.npcs_em_cena.remove(&char_id);
+                        self.mundo_enviado.remove(&char_id);
+                        messages.push_direct(
+                            update.client_id(),
+                            ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
+                                0,
+                                loc_ref.map_id,
+                                0,
+                                loc_ref.x,
+                                loc_ref.y,
+                                loc_ref.z,
+                                loc_ref.heading,
+                            ))),
+                        );
+                        messages.push_direct(
+                            update.client_id(),
+                            ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
+                                dialog_select.target_id,
+                                0,
+                                0,
+                            ))),
+                        );
+                    }
                 }
             }
             _ => (),

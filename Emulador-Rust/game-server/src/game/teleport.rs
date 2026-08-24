@@ -30,34 +30,62 @@ impl TeleportService {
     pub fn new() -> Self {
         let mut locations = HashMap::new();
 
-        // 1. Sanctum Teleport Locations
+        // 1. Sanctum Teleport Locations (Wire captured: 1352.14, 1514.12, 569.04, heading 90)
         locations.insert(
             1,
             TeleportLocation {
                 loc_id: 1,
                 map_id: 110010000, // Sanctum
-                x: 1322.0,
-                y: 1511.0,
-                z: 568.0,
-                heading: 0,
+                x: 1352.14,
+                y: 1514.12,
+                z: 569.04,
+                heading: 90,
                 price: 120,
                 required_level: 10,
                 required_race: Some(0),
             },
         );
+        locations.insert(
+            100001,
+            TeleportLocation {
+                loc_id: 100001,
+                map_id: 110010000,
+                x: 1352.14,
+                y: 1514.12,
+                z: 569.04,
+                heading: 90,
+                price: 0,
+                required_level: 1,
+                required_race: Some(0),
+            },
+        );
 
-        // 2. Pandaemonium Teleport Locations
+        // 2. Pandaemonium Teleport Locations (Wire captured: 1649.59, 1399.40, 194.40, heading 0)
         locations.insert(
             2,
             TeleportLocation {
                 loc_id: 2,
                 map_id: 120010000, // Pandaemonium
-                x: 1679.0,
-                y: 1399.0,
-                z: 206.0,
+                x: 1649.59,
+                y: 1399.40,
+                z: 194.40,
                 heading: 0,
                 price: 120,
                 required_level: 10,
+                required_race: Some(1),
+            },
+        );
+        locations.insert(
+            200001,
+            TeleportLocation {
+                loc_id: 200001,
+                map_id: 120010000,
+                x: 1649.59,
+                y: 1399.40,
+                z: 194.40,
+                heading: 0,
+                price: 0,
+                required_level: 1,
                 required_race: Some(1),
             },
         );
