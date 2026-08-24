@@ -1,0 +1,108 @@
+ROTEIRO DA CAPTURA - CONTA NOVA + ACOES ISOLADAS
+=================================================
+
+Esta captura resolve DOIS buracos de uma vez. Vale mais que as duas anteriores
+juntas, e depois do dia 26 nao da mais para grava-la.
+
+  BURACO 1 - conta nova de verdade.
+      As capturas de 21/08 e 23/08 sao da MESMA conta (id 40820537, mesmo GUID).
+      Abyss, ranking, passe de batalha e conquistas so existem hoje na forma
+      PREENCHIDA. A forma VAZIA - a que um servidor novo precisa mandar - sai
+      sozinha, so por voce logar com uma conta que nunca jogou.
+
+  BURACO 2 - 13 opcodes de cliente com numero errado.
+      Chat, trocar de alvo, equipar, lootar e falar com NPC. A captura de 21/08
+      TEM todas essas acoes, mas elas aconteceram misturadas com andar - e andar
+      gera pacote o tempo todo. Foi o ruido que impediu de separar.
+
+      O que resolve nao e fazer mais coisa. E fazer MENOS, com silencio em volta.
+
+
+A REGRA QUE FAZ ESTA CAPTURA PRESTAR
+-------------------------------------
+
+  >>> 10 SEGUNDOS PARADO ANTES E DEPOIS DE CADA ACAO. <<<
+
+  Parado = nao andar, nao correr, nao girar o personagem, nao pular.
+  Mexer a camera com o mouse pode. Andar um passo que seja, nao.
+
+  Conte ate 10 devagar. Tempo parado nao atrapalha NADA - o que atrapalha e
+  movimento colado na acao.
+
+  Faca UMA acao de cada categoria. Uma linha de chat basta, nao tres.
+
+
+ANTES DE EU COMECAR A GRAVAR
+-----------------------------
+
+  [ ]  Conta Gameforge nova criada, e que NUNCA entrou no jogo
+  [ ]  Launcher FECHADO
+  [ ]  Cliente FECHADO
+
+  Quando os tres estiverem prontos, me avise. Eu comeco a gravacao e aviso.
+  So abra o launcher DEPOIS que eu disser que esta gravando - o primeiro pacote
+  da sessao carrega a semente que decifra ela inteira.
+
+
+PARTE 1 - LOGIN E CRIACAO  (a conta nova se resolve sozinha aqui)
+------------------------------------------------------------------
+
+  [ ]  1. Logar com a conta nova
+
+  [ ]  2. Criar o personagem:
+
+              RACA:   ELYOS          (o molde de S_PUT_USER que temos e asmodiano)
+              CLASSE: GLADIADOR ou TEMPLARIO
+
+         A classe importa por dois motivos: nao e feiticeiro (a regra de quais
+         skills um personagem ja tem so foi conferida contra feiticeiro), e ja
+         nasce com arma de duas maos na bolsa - o unico dos 32 blocos de
+         equipamento da captura antiga que nao fecha.
+
+  [ ]  3. Entrar no mundo
+
+  [ ]  4. PARAR. 30 segundos sem tocar em nada.
+         E aqui que saem os pacotes de conta vazia. Nao ande.
+
+
+PARTE 2 - AS ACOES ISOLADAS  (10s parado antes e depois de CADA uma)
+---------------------------------------------------------------------
+
+  [ ]  5. CHAT: digitar uma linha qualquer e dar Enter
+              (so uma linha. sem comando ainda)
+
+  [ ]  6. CHAT DE COMANDO: digitar /dance e dar Enter
+
+  [ ]  7. ALVO: clicar num monstro para seleciona-lo
+              NAO atacar. So selecionar. Depois solte o alvo (Esc)
+
+  [ ]  8. EQUIPAR: equipar a arma de duas maos
+
+  [ ]  9. DESEQUIPAR: tirar a arma
+
+  [ ] 10. AMIGOS: abrir a lista de amigos e fechar
+
+  [ ] 11. OPCOES: abrir opcoes, mudar UMA configuracao qualquer,
+              confirmar e fechar
+
+  [ ] 12. NPC - ABRIR: falar com um NPC (so abrir a janela de dialogo)
+
+  [ ] 13. NPC - ESCOLHER: clicar numa opcao do dialogo. Depois fechar
+
+  [ ] 14. MATAR: atacar um monstro ate morrer
+              (aqui pode mover o que precisar - esta acao nao precisa de silencio)
+
+  [ ] 15. PARAR 10s. Depois ABRIR O LOOT do corpo
+
+  [ ] 16. PARAR 10s. Depois PEGAR o item do loot
+
+  [ ] 17. BOLSA e FICHA: abrir a bolsa (I), fechar, abrir a ficha (P), fechar
+
+
+QUANDO TERMINAR
+---------------
+
+  Volte aqui e diga "acabei".
+
+  NAO FECHE O CLIENTE ainda. Eu paro a gravacao e confiro se ela presta antes -
+  se algo deu errado da para regravar na hora, e depois do dia 26 nao da mais.

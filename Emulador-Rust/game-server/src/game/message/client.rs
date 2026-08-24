@@ -81,32 +81,66 @@ macro_rules! define_messages {
     };
 }
 
-// Os numeros abaixo saem de duas fontes: a tabela extraida do `Game.dll` 4.5 e as duas capturas
-// do servidor oficial da Gameforge (21/08 e 23/08 de 2026). Onde as duas discordam, vale a
+// Os numeros abaixo saem de duas fontes: a tabela extraida do `Game.dll` 4.5 e tres capturas do
+// servidor oficial da Gameforge (21/08, 23/08 e 24/08 de 2026). Onde as duas discordam, vale a
 // captura -- a tabela erra o pareamento nome/numero em pontos conhecidos.
 //
-// Cruzando as capturas com o roteiro do que o jogador fez, 16 opcodes deste bloco nunca
-// apareceram em captura nenhuma, embora o jogador tenha feito as acoes correspondentes (chat,
-// troca de alvo, loot, equipar, falar com NPC). Ou seja, o numero esta errado neles. Tres ja
-// foram corrigidos, cada um com duas provas independentes -- a resposta do servidor que se segue
-// e o tamanho do payload batendo com a struct:
+// COMO SE DESCOBRE O NUMERO DE UM OPCODE, E O ERRO QUE INVALIDA A ANALISE
+// -----------------------------------------------------------------------
+// Correlacionar o pedido com a resposta do servidor so vale quando a resposta E resposta. Boa
+// parte dos opcodes de servidor e broadcast e vem depois de qualquer coisa.
 //
-// | Opcode  | Era    | Prova                                                              |
-// |---------|--------|--------------------------------------------------------------------|
-// | `0x8B`  | `0xBB` | 9/9 `S_SA_ACCOUNT_ITEM_NOTI` logo depois; pedido sem payload        |
-// | `0xB6`  | `0x9E` | `S_RECIPE_LIST` logo depois nas duas capturas; pedido sem payload   |
-// | `0x86`  | `0xAE` | `S_SIGN_CLIENT` logo depois; 10 bytes, o tamanho do `[u8; 10]`      |
+// O teste que separa os dois: para cada opcode de servidor, olhar a distribuicao do pedido de
+// cliente imediatamente anterior, nas tres capturas. Se UM opcode de cliente domina >= 70% das
+// ocorrencias, e par pedido/resposta e serve de ancora. Distribuicao espalhada = broadcast.
 //
-// Continuam com numero suspeito, sem prova suficiente para mexer:
-// `SAVE_CLIENT_SETTINGS` (0x0A), `CHAT_MESSAGE_PUBLIC` (0x1B), `CHANGE_TARGET` (0x1F),
-// `USE_EQUIPMENT_ITEM` (0x26), `ACTION` (0x2B), `ALIVE` (0x2C), `SHOW_DIALOG` (0x34),
-// `DIALOG_SELECT` (0x36), `ASK_LOG` (0x3E), `QUERY_BUDDY` (0x6E), `LOOT` (0x9A),
-// `LOOT_ITEM` (0x9B) e `_D8` (0xD8).
+// Rodar as duas direcoes nao e zelo excessivo, e o que impede errar: `S_CHANGE_ITEM_DESC` (304
+// ocorrencias) parecia confirmar USE_EQUIPMENT_ITEM = 0x033 na direcao pedido -> resposta, e na
+// inversa era dominada por 0x02E (152x). Broadcast. Idem `S_BUDDY_LIST` com 0x046, que deu empate
+// triplo. Conferir tambem se o payload cabe na struct: `UseEquipmentItem` e `[u8; 9]` e o 0x033
+// tem 24 e 56 bytes -- nao cabia.
 //
-// Pistas ja levantadas para eles: `S_DIALOG_WINDOW` vem 86 vezes logo depois do opcode que a
-// desofuscacao devolve como `0xFFFE`, e `S_LOAD_CLIENT_SETTINGS` vem depois de `C 0xAA` -- que
-// hoje esta ocupado por `CUR_STATUS`. Mexer neles sem resolver o conflito trocaria um erro por
-// outro.
+// JA TESTADOS E REJEITADOS -- nao retentar sem prova nova:
+//   0x033 para USE_EQUIPMENT_ITEM     0x046 para QUERY_BUDDY
+//
+// PARES CONFIRMADOS pelo teste das duas direcoes (>= 70% nas tres capturas):
+//
+//   | pedido  | resposta                | dominancia | nome aqui                  |
+//   |---------|-------------------------|------------|----------------------------|
+//   | `0x8B`  | S_SA_ACCOUNT_ITEM_NOTI  | 100% 10/10 | SA_ACCOUNT_ITEM_QUERY      |
+//   | `0x03`  | S_ASK_QUIT_RESULT       | 100%       | ASK_QUIT                   |
+//   | `0x12`  | S_SYNC_TIME             |  81%       | SYNC_TIME                  |
+//   | `0x5E`  | S_CHARACTER_LIST        |  75%       | SESSION_KEY_ECHO           |
+//   | `0xBE`  | S_CHANGE_CHANNEL        |  70%       | ROUTE_INFO                 |
+//   | `0xA8`  | S_0x102                 |  77%       | QUERY_BLOCK                |
+//   | `0xC5`  | S_0x19D / S_0x0A3       |  87% / 77% | REQUEST_SERIAL_KILLER_LIST |
+//   | `0x21`  | S_0x0CB                 |  75%       | USE_SKILL                  |
+//   | `0xAA`  | S_LOAD_CLIENT_SETTINGS  |  83%       | CUR_STATUS (ver abaixo)    |
+//
+// SOBRE O 0xAA: o numero esta certo, o nome e que engana. `CurStatus` e struct unitaria (o pedido
+// chega com 0 bytes, como na captura) e o handler ja devolve o blob zlib de configuracoes de UI --
+// ou seja, ja E o pedido de settings do cliente. Quem esta morto e SAVE_CLIENT_SETTINGS no 0x00A,
+// que nunca aparece em captura nenhuma. Nao "corrigir" o 0xAA.
+//
+// OS QUE AINDA FALTAM
+// -------------------
+// Continuam com numero suspeito, sem prova: SAVE_CLIENT_SETTINGS (0x0A), CHAT_MESSAGE_PUBLIC
+// (0x1B), CHANGE_TARGET (0x1F), USE_EQUIPMENT_ITEM (0x26), ACTION (0x2B), ALIVE (0x2C),
+// DIALOG_SELECT (0x36), ASK_LOG (0x3E), QUERY_BUDDY (0x6E), LOOT (0x9A), LOOT_ITEM (0x9B) e
+// _D8 (0xD8). SHOW_DIALOG (0x34) saiu dessa lista: aparece na captura de 24/08, com 28 e 42 bytes.
+//
+// Do outro lado, estes pedidos do cliente NAO tem handler e comandam resposta com dominancia alta
+// -- sao os alvos com melhor razao entre esforco e retorno:
+//
+//   | pedido  | bytes | resposta                        | dominancia |
+//   |---------|-------|---------------------------------|------------|
+//   | `0xFFFE`|  16   | S_0x045, S_0x014, S_0x0FD       | 78/75/100% |
+//   | `0x114` |   7   | S_0x13C                         |  94%       |
+//   | `0x06F` |   0   | S_0x07F                         |  80%       |
+//   | `0xFFEB`|  19   | S_0x018                         |  80%       |
+//
+// (`0xFFFE` e `0xFFEB` sao o que a desofuscacao devolve; 383 e poucas ocorrencias. Cair em valor
+// negativo significa que o pedido chega com opcode cifrado baixo -- ver `decrypt_client_opcode`.)
 define_messages!(
     (VERSION, Version, 0x00),
     (ASK_QUIT, AskQuit, 0x03),
