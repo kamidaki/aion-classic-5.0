@@ -252,8 +252,8 @@ pub fn build_login_ok_payload(account_id: u32, login_ok: u32) -> Vec<u8> {
 pub const SERVER_ENTRY_LEN_NC: usize = 21;
 /// `ServerBits` com o bit 10 ligado, que marca a sessao como Classic.
 pub const SERVER_BITS_CLASSIC: u32 = 0x0000_0401;
-/// Bracket / CountryCode do Classic EU. O cliente e lancado com `-cc:2`.
-pub const BRACKET_CLASSIC_EU: u8 = 2;
+/// Bracket / CountryCode do Classic EU (0 para aceitar todos os brackets / 2 para Classic EU).
+pub const BRACKET_CLASSIC_EU: u8 = 0;
 
 /// Monta o payload do `SM_SERVER_LIST`.
 pub fn build_server_list_payload(
@@ -273,10 +273,19 @@ pub fn build_server_list_payload(
     // Entrada do servidor (21 bytes exatos conforme AL-Login Classic)
     write_server_entry(&mut raw, server_id, &ip, announce_port, BRACKET_CLASSIC_EU, SERVER_BITS_CLASSIC);
 
-    // Contagem de personagens conforme AL-Login Classic (game.dll:0x843077):
-    // u16 com maxId, seguido de 1 byte por servidor.
-    raw.extend_from_slice(&(server_id as u16).to_le_bytes());
-    raw.push(char_count);
+    // Contagem de personagens conforme AL-Login Classic:
+    // writeH(maxId + 1), writeC(0x01), seguido de 1 byte por servidor + 15 bytes trailer
+    let max_id = server_id as u16;
+    raw.extend_from_slice(&(max_id + 1).to_le_bytes());
+    raw.push(0x01); // flag ativa lista de servidores
+    for i in 1..=max_id {
+        if i == max_id {
+            raw.push(char_count);
+        } else {
+            raw.push(0);
+        }
+    }
+    raw.extend_from_slice(&[0u8; 15]); // 15 bytes trailer Classic
 
     raw
 }
@@ -309,14 +318,16 @@ pub fn build_server_list_payload_from_db(
         write_server_entry(&mut raw, s.id, &ip, s.port, BRACKET_CLASSIC_EU, SERVER_BITS_CLASSIC);
     }
 
-    raw.extend_from_slice(&max_id.to_le_bytes());
+    raw.extend_from_slice(&(max_id + 1).to_le_bytes());
+    raw.push(0x01);
     for i in 1..=max_id {
-        if i == 1 {
+        if i == servers[0].id as u16 {
             raw.push(char_count);
         } else {
             raw.push(0);
         }
     }
+    raw.extend_from_slice(&[0u8; 15]);
 
     raw
 }
@@ -340,8 +351,8 @@ fn write_server_entry(raw: &mut Vec<u8>, server_id: u8, ip: &[u8; 4], port: u16,
     raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online
     raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo
     raw.push(1); // status: online
-    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401)
-    raw.push(bracket); // bracket / country code (2 = EU para -cc:2)
+    raw.push(bracket); // bracket / country code (offset 16)
+    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401) (offset 17..21)
 }
 
 async fn handle_ncsoft_client(
@@ -1110,12 +1121,12 @@ mod test {
         assert_eq!(u16::from_le_bytes(e[0x0B..0x0D].try_into().unwrap()), 0, "jogadores online");
         assert_eq!(u16::from_le_bytes(e[0x0D..0x0F].try_into().unwrap()), 1000, "maximo");
         assert_eq!(e[0x0F], 1, "online");
+        assert_eq!(e[0x10], BRACKET_CLASSIC_EU, "bracket em 0x10");
         assert_eq!(
-            u32::from_le_bytes(e[0x10..0x14].try_into().unwrap()),
+            u32::from_le_bytes(e[0x11..0x15].try_into().unwrap()),
             SERVER_BITS_CLASSIC,
-            "ServerBits em 0x10..0x14, com o bit 10 ligado"
+            "ServerBits em 0x11..0x15, com o bit 10 ligado"
         );
-        assert_eq!(e[0x14], BRACKET_CLASSIC_EU, "bracket em 0x14");
     }
 
     #[test]
@@ -1129,8 +1140,8 @@ mod test {
         let p = build_server_list_payload("192.168.1.50", 7777, 23, 3);
         let e = &p[3..3 + SERVER_ENTRY_LEN_NC];
 
-        assert_eq!(e[0x10], 0x01, "primeiro byte de 0x00000401 em LE em 0x10");
-        assert_eq!(e[0x14], BRACKET_CLASSIC_EU, "0x14 e o bracket");
+        assert_eq!(e[0x10], BRACKET_CLASSIC_EU, "0x10 e o bracket");
+        assert_eq!(e[0x11], 0x01, "primeiro byte de 0x00000401 em LE em 0x11");
     }
 
     #[test]
@@ -1140,10 +1151,11 @@ mod test {
 
         assert_eq!(
             u16::from_le_bytes(p[depois..depois + 2].try_into().unwrap()),
-            1,
-            "maxId = 1"
+            2,
+            "maxId + 1 = 2"
         );
-        assert_eq!(p[depois + 2], 4, "a contagem de personagens vem logo em seguida");
+        assert_eq!(p[depois + 2], 0x01, "flag de selecao ativa");
+        assert_eq!(p[depois + 3], 4, "a contagem de personagens vem logo em seguida");
     }
 
     #[test]
