@@ -1885,6 +1885,58 @@ impl State {
                 let buddies = self.db.amigos_do_personagem(char_id).unwrap_or_default();
                 messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::BuddyList(s::BuddyList::from_entries(buddies))));
             }
+            c::Message::GlobalTradeRegister(reg) => {
+                let char_id = update.character_id();
+                let char_name = self.characters.get(&char_id).map(|c| c.name().to_string()).unwrap_or_else(|| "Player".into());
+                let expiry = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs() + (8 * 86400);
+                if let Ok(lid) = self.db.salvar_anuncio_broker(
+                    char_id,
+                    &char_name,
+                    reg.item_template_id,
+                    reg.quantity,
+                    reg.price_per_unit,
+                    expiry,
+                    0,
+                    0,
+                ) {
+                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeCommit(s::GlobalTradeCommit::new(0, lid, 0))));
+                } else {
+                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeCommit(s::GlobalTradeCommit::new(1, 0, 0))));
+                }
+            }
+            c::Message::GlobalTradeSaleslog(log_req) => {
+                let logs = self.db.historico_vendas_item(log_req.item_template_id, log_req.quality).unwrap_or_default();
+                messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeSaleslog(s::GlobalTradeSaleslog::new(logs))));
+            }
+            c::Message::GlobalTradeBuy(buy_req) => {
+                let char_id = update.character_id();
+                if let Ok(Some((seller_id, _seller_name, item_template_id, quantity, price_per_unit))) = self.db.comprar_anuncio_broker(buy_req.listing_id) {
+                    let total_price = price_per_unit * (quantity as u64);
+                    let _ = self.db.salvar_historico_broker(
+                        char_id,
+                        item_template_id,
+                        quantity,
+                        total_price,
+                        std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs(),
+                        1,
+                    );
+                    let _ = self.db.salvar_historico_broker(
+                        seller_id,
+                        item_template_id,
+                        quantity,
+                        total_price,
+                        std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs(),
+                        0,
+                    );
+                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeCommit(s::GlobalTradeCommit::new(0, buy_req.listing_id, total_price))));
+                } else {
+                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeCommit(s::GlobalTradeCommit::new(1, buy_req.listing_id, 0))));
+                }
+            }
+            c::Message::GlobalTradeAvgPrice(avg_req) => {
+                let avg = self.db.preco_medio_item(avg_req.item_template_id).unwrap_or(0);
+                println!("INFO: Player {} queried avg price for template {}: {}", update.character_id(), avg_req.item_template_id, avg);
+            }
             _ => (),
         }
     }

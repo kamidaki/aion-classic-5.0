@@ -80,6 +80,11 @@ const USER_SELL_HISTORY_LIST: u16 = 0x00A6;
 const TITLE: u16 = 0x00AF;
 const ALLIANCE_INFO: u16 = 0x00F5;
 const ALLIANCE_MEMBER_INFO: u16 = 0x00F6;
+const GLOBAL_TRADE_LIST: u16 = 0x013C;
+const GLOBAL_TRADE_COMMIT: u16 = 0x013F;
+const GLOBAL_TRADE_SALESLOG: u16 = 0x0141;
+const GLOBAL_TRADE_STATE: u16 = 0x0144;
+const GLOBAL_TRADE_HISTORY: u16 = 0x0145;
 const SECOND_PASSWORD: u16 = 0x00B0;
 const L2AUTH_LOGIN_CHECK: u16 = 0x00C6;
 const CHARACTER_LIST: u16 = 0x00C7;
@@ -194,6 +199,11 @@ pub enum Message {
     GuildOpenedBuffTreeInfo(GuildOpenedBuffTreeInfo),
     AllianceInfo(AllianceInfo),
     AllianceMemberInfo(AllianceMemberInfo),
+    GlobalTradeList(GlobalTradeList),
+    GlobalTradeCommit(GlobalTradeCommit),
+    GlobalTradeSaleslog(GlobalTradeSaleslog),
+    GlobalTradeState(GlobalTradeState),
+    GlobalTradeHistory(GlobalTradeHistory),
 }
 
 impl Serialise for Message {
@@ -284,6 +294,11 @@ impl Serialise for Message {
             Message::GuildOpenedBuffTreeInfo(msg) => msg.serialise(&mut buf[2..]),
             Message::AllianceInfo(msg) => msg.serialise(&mut buf[2..]),
             Message::AllianceMemberInfo(msg) => msg.serialise(&mut buf[2..]),
+            Message::GlobalTradeList(msg) => msg.serialise(&mut buf[2..]),
+            Message::GlobalTradeCommit(msg) => msg.serialise(&mut buf[2..]),
+            Message::GlobalTradeSaleslog(msg) => msg.serialise(&mut buf[2..]),
+            Message::GlobalTradeState(msg) => msg.serialise(&mut buf[2..]),
+            Message::GlobalTradeHistory(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -3705,6 +3720,196 @@ impl Serialise for AllianceMemberInfo {
     }
 }
 
+/// S_GLOBAL_TRADE_LIST (0x013C) — Catálogo do Broker
+#[derive(Debug, Clone)]
+pub struct GlobalTradeListingEntry {
+    pub listing_id: u32,
+    pub item_template_id: u32,
+    pub quantity: u32,
+    pub price_per_unit: u64,
+    pub seller_name: String,
+    pub expiry_timestamp: u64,
+    pub quality: u8,
+    pub enhance_level: u8,
+}
+
+#[derive(Debug, Clone)]
+pub struct GlobalTradeList {
+    pub total_count: u32,
+    pub page_size: u8,
+    pub page: u32,
+    pub entries: Vec<GlobalTradeListingEntry>,
+}
+
+impl GlobalTradeList {
+    pub fn new(total_count: u32, page_size: u8, page: u32, entries: Vec<GlobalTradeListingEntry>) -> Self {
+        Self {
+            total_count,
+            page_size,
+            page,
+            entries,
+        }
+    }
+}
+
+impl Serialise for GlobalTradeList {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GLOBAL_TRADE_LIST, buf);
+        to_le_bytes!(len, buf, self.total_count);
+        to_le_bytes!(len, buf, self.page_size);
+        to_le_bytes!(len, buf, self.page);
+        for e in &self.entries {
+            to_le_bytes!(len, buf, e.listing_id);
+            to_le_bytes!(len, buf, e.item_template_id);
+            to_le_bytes!(len, buf, e.quantity);
+            to_le_bytes!(len, buf, e.price_per_unit);
+            let name_utf16: Vec<u8> = e.seller_name.encode_utf16().flat_map(|c| c.to_le_bytes()).collect();
+            to_le_bytes!(len, buf, name_utf16.len() as u16);
+            copy_bytes!(len, buf, name_utf16);
+            to_le_bytes!(len, buf, e.expiry_timestamp);
+            to_le_bytes!(len, buf, e.quality);
+            to_le_bytes!(len, buf, e.enhance_level);
+        }
+        len
+    }
+}
+
+/// S_GLOBAL_TRADE_SALESLOG (0x0141) — Histórico de vendas do item
+#[derive(Debug, Clone)]
+pub struct GlobalTradeSaleslogEntry {
+    pub item_template_id: u32,
+    pub quantity: u32,
+    pub price: u64,
+    pub timestamp: u64,
+    pub quality: u8,
+}
+
+#[derive(Debug, Clone)]
+pub struct GlobalTradeSaleslog {
+    pub entries: Vec<GlobalTradeSaleslogEntry>,
+}
+
+impl GlobalTradeSaleslog {
+    pub fn new(entries: Vec<GlobalTradeSaleslogEntry>) -> Self {
+        Self { entries }
+    }
+}
+
+impl Serialise for GlobalTradeSaleslog {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GLOBAL_TRADE_SALESLOG, buf);
+        to_le_bytes!(len, buf, self.entries.len() as u16);
+        for e in &self.entries {
+            to_le_bytes!(len, buf, e.item_template_id);
+            to_le_bytes!(len, buf, e.quantity);
+            to_le_bytes!(len, buf, e.price);
+            to_le_bytes!(len, buf, e.timestamp);
+            to_le_bytes!(len, buf, e.quality);
+        }
+        len
+    }
+}
+
+/// S_GLOBAL_TRADE_COMMIT (0x013F) — Confirmação de ação no broker
+#[derive(Debug, Clone)]
+pub struct GlobalTradeCommit {
+    pub result: u8,
+    pub listing_id: u32,
+    pub kinah_received: u64,
+}
+
+impl GlobalTradeCommit {
+    pub fn new(result: u8, listing_id: u32, kinah_received: u64) -> Self {
+        Self {
+            result,
+            listing_id,
+            kinah_received,
+        }
+    }
+}
+
+impl Serialise for GlobalTradeCommit {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GLOBAL_TRADE_COMMIT, buf);
+        to_le_bytes!(len, buf, self.result);
+        to_le_bytes!(len, buf, self.listing_id);
+        to_le_bytes!(len, buf, self.kinah_received);
+        len
+    }
+}
+
+/// S_GLOBAL_TRADE_STATE (0x0144) — Estado do jogador no broker
+#[derive(Debug, Clone)]
+pub struct GlobalTradeState {
+    pub broker_fee_percent: u8,
+    pub kinah_pending: u64,
+    pub active_listings: u8,
+    pub max_listings: u8,
+}
+
+impl GlobalTradeState {
+    pub fn new(broker_fee_percent: u8, kinah_pending: u64, active_listings: u8, max_listings: u8) -> Self {
+        Self {
+            broker_fee_percent,
+            kinah_pending,
+            active_listings,
+            max_listings,
+        }
+    }
+}
+
+impl Serialise for GlobalTradeState {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GLOBAL_TRADE_STATE, buf);
+        to_le_bytes!(len, buf, self.broker_fee_percent);
+        to_le_bytes!(len, buf, self.kinah_pending);
+        to_le_bytes!(len, buf, self.active_listings);
+        to_le_bytes!(len, buf, self.max_listings);
+        len
+    }
+}
+
+/// S_GLOBAL_TRADE_HISTORY (0x0145) — Histórico de transações pessoais
+#[derive(Debug, Clone)]
+pub struct GlobalTradeHistoryEntry {
+    pub item_template_id: u32,
+    pub quantity: u32,
+    pub price: u64,
+    pub timestamp: u64,
+    pub trade_type: u8,
+}
+
+#[derive(Debug, Clone)]
+pub struct GlobalTradeHistory {
+    pub entries: Vec<GlobalTradeHistoryEntry>,
+}
+
+impl GlobalTradeHistory {
+    pub fn new(entries: Vec<GlobalTradeHistoryEntry>) -> Self {
+        Self { entries }
+    }
+}
+
+impl Serialise for GlobalTradeHistory {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(GLOBAL_TRADE_HISTORY, buf);
+        to_le_bytes!(len, buf, self.entries.len() as u16);
+        for e in &self.entries {
+            to_le_bytes!(len, buf, e.item_template_id);
+            to_le_bytes!(len, buf, e.quantity);
+            to_le_bytes!(len, buf, e.price);
+            to_le_bytes!(len, buf, e.timestamp);
+            to_le_bytes!(len, buf, e.trade_type);
+        }
+        len
+    }
+}
+
 #[cfg(test)]
 mod testes_de_inventario {
     use super::*;
@@ -3910,6 +4115,19 @@ mod testes_de_inventario {
         let ai = AllianceInfo::new(1, "LegionAlliance".into(), 1001, 12);
         let n_ai = ai.serialise(&mut buf);
         assert!(n_ai > 5 + 4);
+
+        let gtl = GlobalTradeList::new(1, 20, 0, vec![GlobalTradeListingEntry {
+            listing_id: 101,
+            item_template_id: 182000001,
+            quantity: 5,
+            price_per_unit: 10000,
+            seller_name: "Trader".into(),
+            expiry_timestamp: 1700000000,
+            quality: 2,
+            enhance_level: 0,
+        }]);
+        let n_gtl = gtl.serialise(&mut buf);
+        assert!(n_gtl > 5 + 8);
     }
 
     #[test]

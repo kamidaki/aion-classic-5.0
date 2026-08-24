@@ -59,6 +59,10 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0xC5, name: "CM_REQUEST_GUILD_HISTORY", direction: PacketDirection::ClientToServer, description: "Histórico de eventos e registros da legião" },
         PacketDefinition { opcode: 0xC6, name: "CM_GUILD_USER_BUY_BUFF", direction: PacketDirection::ClientToServer, description: "Compra ou ativação de buff da legião" },
         PacketDefinition { opcode: 0xC7, name: "CM_GUILD", direction: PacketDirection::ClientToServer, description: "Operações gerais de gerenciamento da legião" },
+        PacketDefinition { opcode: 0x0100, name: "CM_GLOBAL_TRADE_REGISTER", direction: PacketDirection::ClientToServer, description: "Registro de item para venda no broker" },
+        PacketDefinition { opcode: 0x0101, name: "CM_GLOBAL_TRADE_SALESLOG", direction: PacketDirection::ClientToServer, description: "Consulta de histórico de vendas do broker" },
+        PacketDefinition { opcode: 0x0102, name: "CM_GLOBAL_TRADE_BUY", direction: PacketDirection::ClientToServer, description: "Compra de item anunciado no broker" },
+        PacketDefinition { opcode: 0x0103, name: "CM_GLOBAL_TRADE_AVG_PRICE", direction: PacketDirection::ClientToServer, description: "Consulta de preço médio no broker" },
     ];
 
     /// Lista de todos os opcodes SM (Servidor -> Cliente) mapeados
@@ -106,6 +110,11 @@ impl PacketRegistry {
         PacketDefinition { opcode: 0xF5, name: "SM_ALLIANCE_INFO", direction: PacketDirection::ServerToClient, description: "Informações da aliança de múltiplos grupos" },
         PacketDefinition { opcode: 0xF6, name: "SM_ALLIANCE_MEMBER_INFO", direction: PacketDirection::ServerToClient, description: "Status de membro participante da aliança" },
         PacketDefinition { opcode: 0xFD, name: "SM_STORE_SALE_INFO", direction: PacketDirection::ServerToClient, description: "Confirmação e resultado de compra/venda em loja" },
+        PacketDefinition { opcode: 0x013C, name: "SM_GLOBAL_TRADE_LIST", direction: PacketDirection::ServerToClient, description: "Catálogo de ofertas disponíveis no broker" },
+        PacketDefinition { opcode: 0x013F, name: "SM_GLOBAL_TRADE_COMMIT", direction: PacketDirection::ServerToClient, description: "Confirmação de transação no broker" },
+        PacketDefinition { opcode: 0x0141, name: "SM_GLOBAL_TRADE_SALESLOG", direction: PacketDirection::ServerToClient, description: "Histórico de preços e vendas recentes no broker" },
+        PacketDefinition { opcode: 0x0144, name: "SM_GLOBAL_TRADE_STATE", direction: PacketDirection::ServerToClient, description: "Estado geral de transações do jogador no broker" },
+        PacketDefinition { opcode: 0x0145, name: "SM_GLOBAL_TRADE_HISTORY", direction: PacketDirection::ServerToClient, description: "Histórico de compras e vendas pessoais no broker" },
         PacketDefinition { opcode: 0x0157, name: "SM_GUILD_DONATION", direction: PacketDirection::ServerToClient, description: "Informações de doação da legião" },
         PacketDefinition { opcode: 0x0158, name: "SM_USER_GUILD_DONATION", direction: PacketDirection::ServerToClient, description: "Estado de doações diárias do jogador" },
         PacketDefinition { opcode: 0x0159, name: "SM_USER_GUILD_DONATION_LIST", direction: PacketDirection::ServerToClient, description: "Lista de doações efetuadas" },

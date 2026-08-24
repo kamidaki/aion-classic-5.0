@@ -54,27 +54,6 @@ warning: associated function `sm_channel_message` is never used
 100 |     pub fn sm_channel_message(channel_id: u32, sender_name: &str, message: &str) -> Vec<u8> {
     |            ^^^^^^^^^^^^^^^^^^
 
-warning: `chat-server` (bin "chat-server" test) generated 5 warnings
-warning: field `name` is never read
-   --> auto-start\src\supervisor.rs:140:5
-    |
-139 | struct ManagedServer {
-    |        ------------- field in this struct
-140 |     name: String,
-    |     ^^^^
-    |
-    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
-
-warning: variant `HideDashboard` is never constructed
- --> auto-start\src\webview.rs:9:5
-  |
-7 | pub enum UserEvent {
-  |          --------- variant in this enum
-8 |     ShowDashboard,
-9 |     HideDashboard,
-  |     ^^^^^^^^^^^^^
-
-   Compiling game-server v0.1.0 (D:\AION RUST\AionEMU\AionEMU\Emulador-Rust\game-server)
 warning: unused variable: `sts_handle`
   --> login-server\src\main.rs:57:9
    |
@@ -152,6 +131,28 @@ warning: associated function `sanitize_username` is never used
 68 |     pub fn sanitize_username(name: &str) -> String {
    |            ^^^^^^^^^^^^^^^^^
 
+warning: `chat-server` (bin "chat-server" test) generated 5 warnings
+warning: `login-server` (bin "login-server" test) generated 9 warnings (run `cargo fix --bin "login-server" -p login-server --tests` to apply 3 suggestions)
+   Compiling game-server v0.1.0 (D:\AION RUST\AionEMU\AionEMU\Emulador-Rust\game-server)
+warning: field `name` is never read
+   --> auto-start\src\supervisor.rs:140:5
+    |
+139 | struct ManagedServer {
+    |        ------------- field in this struct
+140 |     name: String,
+    |     ^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: variant `HideDashboard` is never constructed
+ --> auto-start\src\webview.rs:9:5
+  |
+7 | pub enum UserEvent {
+  |          --------- variant in this enum
+8 |     ShowDashboard,
+9 |     HideDashboard,
+  |     ^^^^^^^^^^^^^
+
 warning: value assigned to `tmp` is never read
    --> commons\src\game.rs:193:23
     |
@@ -192,24 +193,17 @@ warning: function `server_encrypt` is never used
     |        ^^^^^^^^^^^^^^
 
 warning: `auto-start` (bin "auto-start" test) generated 2 warnings
-warning: `login-server` (bin "login-server" test) generated 9 warnings (run `cargo fix --bin "login-server" -p login-server --tests` to apply 3 suggestions)
 warning: `commons` (lib test) generated 5 warnings (run `cargo fix --lib -p commons --tests` to apply 1 suggestion)
-error[E0061]: this function takes 0 arguments but 1 argument was supplied
-    --> game-server\src\game\message\server.rs:3905:18
+error[E0616]: field `name` of struct `character::Character` is private
+    --> game-server\src\game\state.rs:1890:73
      |
-3905 |         let bl = BuddyList::new(vec![b]);
-     |                  ^^^^^^^^^^^^^^ ------- unexpected argument of type `Vec<server::BuddyEntry>`
+1890 |                 let char_name = self.characters.get(&char_id).map(|c| c.name.clone()).unwrap_or_else(|| "Player".into());
+     |                                                                         ^^^^ private field
      |
-note: associated function defined here
-    --> game-server\src\game\message\server.rs:1526:12
+help: a method `name` also exists, call it with parentheses
      |
-1526 |     pub fn new() -> Self {
-     |            ^^^
-help: remove the extra argument
-     |
-3905 -         let bl = BuddyList::new(vec![b]);
-3905 +         let bl = BuddyList::new();
-     |
+1890 |                 let char_name = self.characters.get(&char_id).map(|c| c.name().clone()).unwrap_or_else(|| "Player".into());
+     |                                                                             ++
 
 warning: unused variable: `g_id`
    --> game-server\src\game\guild.rs:149:13
@@ -225,9 +219,9 @@ warning: value assigned to `len` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1178:48
+    ::: game-server\src\game\message\client.rs:1182:48
      |
-1178 |         let character_id = if buf.len() >= 8 { consume_le_bytes!(len, buf, u32) } else { 0 };
+1182 |         let character_id = if buf.len() >= 8 { consume_le_bytes!(len, buf, u32) } else { 0 };
      |                                                -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -240,9 +234,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1838:46
+    ::: game-server\src\game\message\client.rs:1842:46
      |
-1838 |         let equip_slot = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+1842 |         let equip_slot = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                              -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -254,9 +248,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1935:45
+    ::: game-server\src\game\message\client.rs:1939:45
      |
-1935 |         let dialog_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+1939 |         let dialog_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                             -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -268,9 +262,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1959:45
+    ::: game-server\src\game\message\client.rs:1963:45
      |
-1959 |         let quest_id = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+1963 |         let quest_id = if buf.len() >= 16 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                             -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -282,9 +276,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:1982:42
+    ::: game-server\src\game\message\client.rs:1986:42
      |
-1982 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 1 };
+1986 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 1 };
      |                                          ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -296,9 +290,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2016:45
+    ::: game-server\src\game\message\client.rs:2020:45
      |
-2016 |         let progress = if buf.len() >= 24 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
+2020 |         let progress = if buf.len() >= 24 { consume_le_bytes!(ptr, buf, f32) } else { 0.0 };
      |                                             -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -310,9 +304,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2052:43
+    ::: game-server\src\game\message\client.rs:2056:43
      |
-2052 |         let action = if buf.len() >= 17 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+2056 |         let action = if buf.len() >= 17 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
      |                                           ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -324,9 +318,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2081:42
+    ::: game-server\src\game\message\client.rs:2085:42
      |
-2081 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+2085 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
      |                                          ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -338,9 +332,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2150:54
+    ::: game-server\src\game\message\client.rs:2154:54
      |
-2150 |         let kinah_amount = if buf.len() >= ptr + 8 { consume_le_bytes!(ptr, buf, u64) } else { 0 };
+2154 |         let kinah_amount = if buf.len() >= ptr + 8 { consume_le_bytes!(ptr, buf, u64) } else { 0 };
      |                                                      -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -352,9 +346,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2180:40
+    ::: game-server\src\game\message\client.rs:2184:40
      |
-2180 |         let page = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) } else { 0 };
+2184 |         let page = if buf.len() >= 2 { consume_le_bytes!(ptr, buf, u16) } else { 0 };
      |                                        -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -366,9 +360,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2201:43
+    ::: game-server\src\game\message\client.rs:2205:43
      |
-2201 |         let buff_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+2205 |         let buff_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                           -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -380,9 +374,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2224:45
+    ::: game-server\src\game\message\client.rs:2228:45
      |
-2224 |         let target_id = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+2228 |         let target_id = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
      |                                             -------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -394,9 +388,9 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2247:42
+    ::: game-server\src\game\message\client.rs:2251:42
      |
-2247 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+2251 |         let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
      |                                          ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
@@ -408,18 +402,74 @@ warning: value assigned to `ptr` is never read
  103 |         $ptr += size;
      |         ^^^^^^^^^^^^
      |
-    ::: game-server\src\game\message\client.rs:2312:43
+    ::: game-server\src\game\message\client.rs:2316:43
      |
-2312 |         let action = if buf.len() > ptr { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+2316 |         let action = if buf.len() > ptr { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+     |                                           ------------------------------- in this macro invocation
+     |
+     = help: maybe it is overwritten before being read?
+     = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `ptr` is never read
+    --> game-server\src\game\mod.rs:103:9
+     |
+ 103 |         $ptr += size;
+     |         ^^^^^^^^^^^^
+     |
+    ::: game-server\src\game\message\client.rs:2343:51
+     |
+2343 |         let price_per_unit = if buf.len() >= 20 { consume_le_bytes!(ptr, buf, u64) } else { 0 };
+     |                                                   -------------------------------- in this macro invocation
+     |
+     = help: maybe it is overwritten before being read?
+     = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `ptr` is never read
+    --> game-server\src\game\mod.rs:103:9
+     |
+ 103 |         $ptr += size;
+     |         ^^^^^^^^^^^^
+     |
+    ::: game-server\src\game\message\client.rs:2373:40
+     |
+2373 |         let page = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+     |                                        -------------------------------- in this macro invocation
+     |
+     = help: maybe it is overwritten before being read?
+     = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `ptr` is never read
+    --> game-server\src\game\mod.rs:103:9
+     |
+ 103 |         $ptr += size;
+     |         ^^^^^^^^^^^^
+     |
+    ::: game-server\src\game\message\client.rs:2400:44
+     |
+2400 |         let quantity = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 1 };
+     |                                            -------------------------------- in this macro invocation
+     |
+     = help: maybe it is overwritten before being read?
+     = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: value assigned to `ptr` is never read
+    --> game-server\src\game\mod.rs:103:9
+     |
+ 103 |         $ptr += size;
+     |         ^^^^^^^^^^^^
+     |
+    ::: game-server\src\game\message\client.rs:2423:43
+     |
+2423 |         let quality = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
      |                                           ------------------------------- in this macro invocation
      |
      = help: maybe it is overwritten before being read?
      = note: this warning originates in the macro `consume_le_bytes` (in Nightly builds, run with -Z macro-backtrace for more info)
 
 warning: variable does not need to be mutable
-   --> game-server\src\game\message\server.rs:325:13
+   --> game-server\src\game\message\server.rs:340:13
     |
-325 |         let mut len = add_prelude(self.opcode, buf);
+340 |         let mut len = add_prelude(self.opcode, buf);
     |             ----^^^
     |             |
     |             help: remove this `mut`
@@ -432,6 +482,6 @@ warning: unused variable: `target_id`
 104 |     pub fn physical_attack(&self, target_id: u32) -> u32 {
     |                                   ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_target_id`
 
-For more information about this error, try `rustc --explain E0061`.
-warning: `game-server` (bin "game-server" test) generated 17 warnings
-error: could not compile `game-server` (bin "game-server" test) due to 1 previous error; 17 warnings emitted
+For more information about this error, try `rustc --explain E0616`.
+warning: `game-server` (bin "game-server" test) generated 21 warnings
+error: could not compile `game-server` (bin "game-server" test) due to 1 previous error; 21 warnings emitted

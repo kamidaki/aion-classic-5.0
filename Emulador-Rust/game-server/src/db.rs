@@ -152,6 +152,29 @@ impl Db {
                 PRIMARY KEY (player_id, buddy_id)
             );
             CREATE INDEX IF NOT EXISTS idx_buddies_player ON character_buddies(player_id);
+            CREATE TABLE IF NOT EXISTS broker_listings (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                seller_id INTEGER NOT NULL,
+                seller_name TEXT NOT NULL,
+                item_template_id INTEGER NOT NULL,
+                quantity INTEGER NOT NULL,
+                price_per_unit INTEGER NOT NULL,
+                expiry_ts INTEGER NOT NULL,
+                quality INTEGER NOT NULL DEFAULT 0,
+                enhance_level INTEGER NOT NULL DEFAULT 0,
+                is_sold INTEGER NOT NULL DEFAULT 0
+            );
+            CREATE INDEX IF NOT EXISTS idx_broker_active ON broker_listings(is_sold, expiry_ts);
+            CREATE TABLE IF NOT EXISTS broker_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                player_id INTEGER NOT NULL,
+                item_template_id INTEGER NOT NULL,
+                quantity INTEGER NOT NULL,
+                price INTEGER NOT NULL,
+                timestamp INTEGER NOT NULL,
+                type INTEGER NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS idx_broker_history_player ON broker_history(player_id);
             ",
         )?;
 
@@ -877,6 +900,149 @@ impl Db {
             Ok(None)
         }
     }
+
+    pub fn salvar_anuncio_broker(
+        &self,
+        seller_id: u32,
+        seller_name: &str,
+        item_template_id: u32,
+        quantity: u32,
+        price_per_unit: u64,
+        expiry_ts: u64,
+        quality: u8,
+        enhance_level: u8,
+    ) -> Result<u32> {
+        self.conn.execute(
+            "INSERT INTO broker_listings (seller_id, seller_name, item_template_id, quantity, price_per_unit, expiry_ts, quality, enhance_level, is_sold)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, 0)",
+            params![
+                seller_id as i64,
+                seller_name,
+                item_template_id as i64,
+                quantity as i64,
+                price_per_unit as i64,
+                expiry_ts as i64,
+                quality as i64,
+                enhance_level as i64,
+            ],
+        )?;
+        Ok(self.conn.last_insert_rowid() as u32)
+    }
+
+    pub fn listar_anuncios_broker(
+        &self,
+        page: u32,
+        page_size: u8,
+    ) -> Result<(u32, Vec<crate::game::message::server::GlobalTradeListingEntry>)> {
+        let total: i64 = self.conn.query_row(
+            "SELECT COUNT(*) FROM broker_listings WHERE is_sold = 0",
+            [],
+            |r| r.get(0),
+        )?;
+
+        let offset = (page as i64) * (page_size as i64);
+        let mut stmt = self.conn.prepare(
+            "SELECT id, item_template_id, quantity, price_per_unit, seller_name, expiry_ts, quality, enhance_level
+             FROM broker_listings
+             WHERE is_sold = 0
+             ORDER BY id DESC
+             LIMIT ?1 OFFSET ?2",
+        )?;
+        let rows = stmt.query_map(params![page_size as i64, offset], |row| {
+            Ok(crate::game::message::server::GlobalTradeListingEntry {
+                listing_id: row.get::<_, i64>(0)? as u32,
+                item_template_id: row.get::<_, i64>(1)? as u32,
+                quantity: row.get::<_, i64>(2)? as u32,
+                price_per_unit: row.get::<_, i64>(3)? as u64,
+                seller_name: row.get(4)?,
+                expiry_timestamp: row.get::<_, i64>(5)? as u64,
+                quality: row.get::<_, i64>(6)? as u8,
+                enhance_level: row.get::<_, i64>(7)? as u8,
+            })
+        })?;
+        let entries = rows.collect::<std::result::Result<Vec<_>, _>>()?;
+        Ok((total as u32, entries))
+    }
+
+    pub fn comprar_anuncio_broker(&self, listing_id: u32) -> Result<Option<(u32, String, u32, u32, u64)>> {
+        let mut stmt = self.conn.prepare(
+            "SELECT seller_id, seller_name, item_template_id, quantity, price_per_unit
+             FROM broker_listings WHERE id = ?1 AND is_sold = 0",
+        )?;
+        let mut rows = stmt.query_map(params![listing_id as i64], |row| {
+            Ok((
+                row.get::<_, i64>(0)? as u32,
+                row.get::<_, String>(1)?,
+                row.get::<_, i64>(2)? as u32,
+                row.get::<_, i64>(3)? as u32,
+                row.get::<_, i64>(4)? as u64,
+            ))
+        })?;
+        if let Some(r) = rows.next() {
+            let res = r?;
+            self.conn.execute("UPDATE broker_listings SET is_sold = 1 WHERE id = ?1", params![listing_id as i64])?;
+            Ok(Some(res))
+        } else {
+            Ok(None)
+        }
+    }
+
+    pub fn salvar_historico_broker(
+        &self,
+        player_id: u32,
+        item_template_id: u32,
+        quantity: u32,
+        price: u64,
+        timestamp: u64,
+        trade_type: u8,
+    ) -> Result<()> {
+        self.conn.execute(
+            "INSERT INTO broker_history (player_id, item_template_id, quantity, price, timestamp, type)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+            params![
+                player_id as i64,
+                item_template_id as i64,
+                quantity as i64,
+                price as i64,
+                timestamp as i64,
+                trade_type as i64,
+            ],
+        )?;
+        Ok(())
+    }
+
+    pub fn historico_vendas_item(
+        &self,
+        item_template_id: u32,
+        quality: u8,
+    ) -> Result<Vec<crate::game::message::server::GlobalTradeSaleslogEntry>> {
+        let mut stmt = self.conn.prepare(
+            "SELECT item_template_id, quantity, price, timestamp
+             FROM broker_history
+             WHERE item_template_id = ?1
+             ORDER BY timestamp DESC
+             LIMIT 50",
+        )?;
+        let rows = stmt.query_map(params![item_template_id as i64], |row| {
+            Ok(crate::game::message::server::GlobalTradeSaleslogEntry {
+                item_template_id: row.get::<_, i64>(0)? as u32,
+                quantity: row.get::<_, i64>(1)? as u32,
+                price: row.get::<_, i64>(2)? as u64,
+                timestamp: row.get::<_, i64>(3)? as u64,
+                quality,
+            })
+        })?;
+        rows.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
+    }
+
+    pub fn preco_medio_item(&self, item_template_id: u32) -> Result<u64> {
+        let avg: Option<f64> = self.conn.query_row(
+            "SELECT AVG(price) FROM broker_history WHERE item_template_id = ?1",
+            params![item_template_id as i64],
+            |r| r.get(0),
+        )?;
+        Ok(avg.unwrap_or(0.0) as u64)
+    }
 }
 
 #[cfg(test)]
@@ -1094,5 +1260,32 @@ mod tests {
         assert!(db.remover_amigo(alice.id, bob.id).unwrap());
         let amigos2 = db.amigos_do_personagem(alice.id).unwrap();
         assert!(amigos2.is_empty());
+    }
+
+    #[test]
+    fn broker_salvar_listar_comprar_e_historico() {
+        let db = in_memory();
+        let seller = db.load_or_create_character("vendedor").unwrap();
+        let buyer = db.load_or_create_character("comprador").unwrap();
+
+        let lid = db.salvar_anuncio_broker(seller.id, &seller.name, 182000001, 10, 5000, 1700000000, 2, 0).unwrap();
+        let (total, list) = db.listar_anuncios_broker(0, 20).unwrap();
+        assert_eq!(total, 1);
+        assert_eq!(list[0].listing_id, lid);
+
+        let buy = db.comprar_anuncio_broker(lid).unwrap().unwrap();
+        assert_eq!(buy.0, seller.id);
+        assert_eq!(buy.2, 182000001);
+
+        let (total_after, _) = db.listar_anuncios_broker(0, 20).unwrap();
+        assert_eq!(total_after, 0);
+
+        db.salvar_historico_broker(buyer.id, 182000001, 10, 50000, 1699999999, 1).unwrap();
+        let logs = db.historico_vendas_item(182000001, 2).unwrap();
+        assert_eq!(logs.len(), 1);
+        assert_eq!(logs[0].price, 50000);
+
+        let avg = db.preco_medio_item(182000001).unwrap();
+        assert_eq!(avg, 50000);
     }
 }

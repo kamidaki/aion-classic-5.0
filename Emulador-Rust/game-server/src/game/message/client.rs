@@ -132,6 +132,10 @@ define_messages!(
     (PARTY, Party, 0x60),
     (PARTY_BY_NAME, PartyByName, 0x61),
     (ADD_BUDDY, AddBuddy, 0x6F),
+    (GLOBAL_TRADE_REGISTER, GlobalTradeRegister, 0x0100),
+    (GLOBAL_TRADE_SALESLOG, GlobalTradeSaleslog, 0x0101),
+    (GLOBAL_TRADE_BUY, GlobalTradeBuy, 0x0102),
+    (GLOBAL_TRADE_AVG_PRICE, GlobalTradeAvgPrice, 0x0103),
 );
 
 /// O cliente devolve a chave de sessao que recebeu do auth server, logo apos o
@@ -2311,5 +2315,115 @@ impl Deserialise for AddBuddy {
         };
         let action = if buf.len() > ptr { consume_le_bytes!(ptr, buf, u8) } else { 0 };
         Self { name, action }
+    }
+}
+
+/// Cliente registra item no broker (Opcode 0x0100).
+#[derive(Debug, Clone)]
+pub struct GlobalTradeRegister {
+    pub item_unique_id: u32,
+    pub item_template_id: u32,
+    pub quantity: u32,
+    pub price_per_unit: u64,
+}
+
+impl GlobalTradeRegister {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::GlobalTradeRegister(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for GlobalTradeRegister {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let item_unique_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let item_template_id = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let quantity = if buf.len() >= 12 { consume_le_bytes!(ptr, buf, u32) } else { 1 };
+        let price_per_unit = if buf.len() >= 20 { consume_le_bytes!(ptr, buf, u64) } else { 0 };
+        Self {
+            item_unique_id,
+            item_template_id,
+            quantity,
+            price_per_unit,
+        }
+    }
+}
+
+/// Cliente consulta histórico de vendas do broker (Opcode 0x0101).
+#[derive(Debug, Clone)]
+pub struct GlobalTradeSaleslog {
+    pub item_template_id: u32,
+    pub quality: u8,
+    pub page: u32,
+}
+
+impl GlobalTradeSaleslog {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::GlobalTradeSaleslog(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for GlobalTradeSaleslog {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let item_template_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let quality = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        let page = if buf.len() >= 9 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        Self {
+            item_template_id,
+            quality,
+            page,
+        }
+    }
+}
+
+/// Cliente compra item no broker (Opcode 0x0102).
+#[derive(Debug, Clone)]
+pub struct GlobalTradeBuy {
+    pub listing_id: u32,
+    pub quantity: u32,
+}
+
+impl GlobalTradeBuy {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::GlobalTradeBuy(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for GlobalTradeBuy {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let listing_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let quantity = if buf.len() >= 8 { consume_le_bytes!(ptr, buf, u32) } else { 1 };
+        Self { listing_id, quantity }
+    }
+}
+
+/// Cliente consulta preço médio no broker (Opcode 0x0103).
+#[derive(Debug, Clone)]
+pub struct GlobalTradeAvgPrice {
+    pub item_template_id: u32,
+    pub quality: u8,
+}
+
+impl GlobalTradeAvgPrice {
+    pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        tx.send(session.send(Message::GlobalTradeAvgPrice(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for GlobalTradeAvgPrice {
+    fn deserialise(buf: &[u8]) -> Self {
+        let mut ptr = 0;
+        let item_template_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
+        let quality = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 0 };
+        Self {
+            item_template_id,
+            quality,
+        }
     }
 }

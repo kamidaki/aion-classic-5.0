@@ -1,6 +1,6 @@
-﻿# PLAN-11: Trade Broker Global (S_GLOBAL_TRADE_LIST 0x13C, S_GLOBAL_TRADE_SALESLOG 0x141, etc.)
+# PLAN-11: Trade Broker Global (S_GLOBAL_TRADE_LIST 0x13C, S_GLOBAL_TRADE_SALESLOG 0x141, etc.)
 
-**Status:** `[ ]`  
+**Status:** `[x]`  
 **Prioridade:** MÉDIA — 56 pacotes capturados: listagem, histórico, commit, estado.
 
 ---
