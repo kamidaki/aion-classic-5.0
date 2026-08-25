@@ -74,6 +74,45 @@ use error::Error;
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize, Clone)]
+pub struct RatesConfig {
+    #[serde(default = "default_rate")]
+    pub xp: f32,
+    #[serde(default = "default_rate")]
+    pub quest_xp: f32,
+    #[serde(default = "default_rate")]
+    pub drop: f32,
+    #[serde(default = "default_rate")]
+    pub kinah: f32,
+    #[serde(default = "default_rate")]
+    pub ap_player: f32,
+    #[serde(default = "default_rate")]
+    pub ap_npc: f32,
+    #[serde(default = "default_rate")]
+    pub craft_xp: f32,
+    #[serde(default = "default_rate")]
+    pub gather_xp: f32,
+}
+
+fn default_rate() -> f32 {
+    1.0
+}
+
+impl Default for RatesConfig {
+    fn default() -> Self {
+        Self {
+            xp: 1.0,
+            quest_xp: 1.0,
+            drop: 1.0,
+            kinah: 1.0,
+            ap_player: 1.0,
+            ap_npc: 1.0,
+            craft_xp: 1.0,
+            gather_xp: 1.0,
+        }
+    }
+}
+
+#[derive(Debug, Deserialize, Clone)]
 pub struct GameServerConfig {
     #[serde(default)]
     pub network: NetworkConfig,
@@ -89,6 +128,8 @@ pub struct GameServerConfig {
     pub inter_server: InterServerConfig,
     #[serde(default)]
     pub gameplay: GameplayConfig,
+    #[serde(default)]
+    pub rates: RatesConfig,
 }
 
 impl Default for GameServerConfig {
@@ -101,6 +142,7 @@ impl Default for GameServerConfig {
             security: SecurityConfig::default(),
             inter_server: InterServerConfig::default(),
             gameplay: GameplayConfig::default(),
+            rates: RatesConfig::default(),
         }
     }
 }
@@ -426,7 +468,69 @@ fn default_true() -> bool {
 }
 
 fn load_config() -> GameServerConfig {
-    // 1. Prioriza config/launcher.json
+    let mut cfg = GameServerConfig::default();
+
+    // 1. Prioriza config/gameserver.properties
+    let properties_candidates = [
+        "config/gameserver.properties",
+        "../Produto Final/config/gameserver.properties",
+        "../../Produto Final/config/gameserver.properties",
+        "gameserver.properties",
+    ];
+
+    for prop_path in properties_candidates {
+        if std::path::Path::new(prop_path).exists() {
+            if let Ok(props) = commons::Properties::load_from_file(prop_path) {
+                println!("INFO: Loaded Game config from {prop_path} (.properties)");
+                cfg.network.bind_address = props.get_string("gameserver.network.bind.address", &cfg.network.bind_address);
+                cfg.network.port = props.get_u16("gameserver.network.port", cfg.network.port);
+                cfg.server.server_id = props.get_u8("gameserver.server.id", cfg.server.server_id);
+                cfg.server.server_name = props.get_string("gameserver.server.name", &cfg.server.server_name);
+                let max_p = props.get_u32("gameserver.server.max.players", cfg.server.max_players);
+                cfg.server.max_players = max_p;
+                cfg.network.max_players = max_p;
+                cfg.network.nio_threads = props.get_u32("gameserver.network.nio.threads", cfg.network.nio_threads);
+                cfg.network.processor_threads_min = props.get_u32("gameserver.network.processor.threads.min", cfg.network.processor_threads_min);
+                cfg.network.processor_threads_max = props.get_u32("gameserver.network.processor.threads.max", cfg.network.processor_threads_max);
+                cfg.network.processor_threshold_kill = props.get_u32("gameserver.network.processor.threshold.kill", cfg.network.processor_threshold_kill);
+                cfg.network.processor_threshold_spawn = props.get_u32("gameserver.network.processor.threshold.spawn", cfg.network.processor_threshold_spawn);
+                cfg.network.display_unknown_packets = props.get_bool("gameserver.network.display.unknown.packets", cfg.network.display_unknown_packets);
+                cfg.network.display_packets = props.get_bool("gameserver.network.display.packets", cfg.network.display_packets);
+
+                cfg.inter_server.login_server_address = props.get_string("gameserver.login.address", &cfg.inter_server.login_server_address);
+                cfg.inter_server.gameserver_password = props.get_string("gameserver.login.password", &cfg.inter_server.gameserver_password);
+                cfg.inter_server.chat_server_address = props.get_string("gameserver.chat.address", &cfg.inter_server.chat_server_address);
+                cfg.inter_server.chat_password = props.get_string("gameserver.chat.password", &cfg.inter_server.chat_password);
+
+                cfg.database.database_path = props.get_string("gameserver.database.path", &cfg.database.database_path);
+                cfg.world.data_dir = props.get_string("gameserver.data.dir", &cfg.world.data_dir);
+                cfg.world.spawns_file = props.get_string("gameserver.spawns.file", &cfg.world.spawns_file);
+                cfg.world.initial_kit_file = props.get_string("gameserver.initial.kit.file", &cfg.world.initial_kit_file);
+
+                cfg.gameplay.country_code = props.get_u8("gameserver.country.code", cfg.gameplay.country_code);
+                cfg.gameplay.chat_server_enable = props.get_bool("gameserver.chat.enable", cfg.gameplay.chat_server_enable);
+                cfg.gameplay.display_revision = props.get_bool("gameserver.display.revision", cfg.gameplay.display_revision);
+                cfg.gameplay.character_limit_count = props.get_u8("gameserver.character.limit.count", cfg.gameplay.character_limit_count);
+                cfg.gameplay.character_creation_mode = props.get_u8("gameserver.character.creation.mode", cfg.gameplay.character_creation_mode);
+                cfg.gameplay.players_max_level = props.get_u8("gameserver.players.max.level", cfg.gameplay.players_max_level);
+                cfg.gameplay.character_name_pattern = props.get_string("gameserver.character.name.pattern", &cfg.gameplay.character_name_pattern);
+                cfg.gameplay.character_reentry_time_secs = props.get_u32("gameserver.character.reentry.time.secs", cfg.gameplay.character_reentry_time_secs);
+
+                cfg.rates.xp = props.get_f32("gameserver.rate.xp", cfg.rates.xp);
+                cfg.rates.quest_xp = props.get_f32("gameserver.rate.quest.xp", cfg.rates.quest_xp);
+                cfg.rates.drop = props.get_f32("gameserver.rate.drop", cfg.rates.drop);
+                cfg.rates.kinah = props.get_f32("gameserver.rate.kinah", cfg.rates.kinah);
+                cfg.rates.ap_player = props.get_f32("gameserver.rate.ap.player", cfg.rates.ap_player);
+                cfg.rates.ap_npc = props.get_f32("gameserver.rate.ap.npc", cfg.rates.ap_npc);
+                cfg.rates.craft_xp = props.get_f32("gameserver.rate.craft.xp", cfg.rates.craft_xp);
+                cfg.rates.gather_xp = props.get_f32("gameserver.rate.gather.xp", cfg.rates.gather_xp);
+
+                return cfg;
+            }
+        }
+    }
+
+    // 2. Fallback para config/launcher.json
     let launcher_candidates = [
         "config/launcher.json",
         "../Produto Final/config/launcher.json",
@@ -438,7 +542,6 @@ fn load_config() -> GameServerConfig {
             if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
                 if let Some(gs_val) = json.get("game-server") {
                     println!("INFO: Loaded Game config from {path} (JSON)");
-                    let mut cfg = GameServerConfig::default();
 
                     if let Some(b) = gs_val.get("bind_address").and_then(|v| v.as_str()) {
                         cfg.network.bind_address = b.to_string();
@@ -539,23 +642,15 @@ fn load_config() -> GameServerConfig {
 
     for path in toml_candidates {
         if let Ok(content) = std::fs::read_to_string(path) {
-            if let Ok(cfg) = toml::from_str::<GameServerConfig>(&content) {
+            if let Ok(c) = toml::from_str::<GameServerConfig>(&content) {
                 println!("INFO: Loaded Game config from {path}");
-                return cfg;
+                return c;
             }
         }
     }
 
     println!("INFO: Using default Game config");
-    GameServerConfig {
-        network: NetworkConfig::default(),
-        server: ServerInfoConfig::default(),
-        database: DatabaseConfig::default(),
-        world: WorldConfig::default(),
-        security: SecurityConfig::default(),
-        inter_server: InterServerConfig::default(),
-        gameplay: GameplayConfig::default(),
-    }
+    cfg
 }
 
 fn find_data_dir(configured: &str) -> PathBuf {

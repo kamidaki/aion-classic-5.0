@@ -11,3 +11,4 @@ pub mod utils;
 pub use crypto::game;
 pub use crypto::sts;
 pub use utils::single_instance;
+pub use utils::properties::Properties;

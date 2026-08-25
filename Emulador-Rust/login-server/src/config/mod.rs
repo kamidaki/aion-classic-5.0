@@ -105,6 +105,40 @@ impl Default for LoginServerConfig {
 }
 
 pub fn load_config(path: &str) -> LoginServerConfig {
+    let mut config = LoginServerConfig::default();
+
+    // 1. Prioriza loginserver.properties
+    let properties_candidates = [
+        "config/loginserver.properties",
+        "../Produto Final/config/loginserver.properties",
+        "../../Produto Final/config/loginserver.properties",
+        "loginserver.properties",
+    ];
+
+    for prop_path in properties_candidates {
+        if Path::new(prop_path).exists() {
+            if let Ok(props) = commons::Properties::load_from_file(prop_path) {
+                println!("INFO: Loaded Login config from {prop_path} (.properties)");
+                config.bind_address = props.get_string("loginserver.network.bind.address", &config.bind_address);
+                config.client_port = props.get_u16("loginserver.network.client.port", config.client_port);
+                config.hq_port = props.get_u16("loginserver.network.hq.port", config.hq_port);
+                config.sts_port = props.get_u16("loginserver.network.sts.port", config.sts_port);
+                config.gameserver_port = props.get_u16("loginserver.network.gameserver.port", config.gameserver_port);
+                config.gameserver_password = props.get_string("loginserver.network.gameserver.password", &config.gameserver_password);
+                config.announce_game_server_ip = props.get_string("loginserver.network.announce.gameserver.ip", &config.announce_game_server_ip);
+                config.announce_game_server_port = props.get_u16("loginserver.network.announce.gameserver.port", config.announce_game_server_port);
+                config.default_server_id = props.get_u8("loginserver.network.default.server.id", config.default_server_id);
+                config.auto_create_accounts = props.get_bool("loginserver.auto.create.accounts", config.auto_create_accounts);
+                config.database.path = props.get_string("loginserver.database.path", &config.database.path);
+                config.security.enable_rate_limit = props.get_bool("loginserver.security.rate.limit.enable", config.security.enable_rate_limit);
+                config.security.max_attempts_per_minute = props.get_u32("loginserver.security.max.attempts.per.minute", config.security.max_attempts_per_minute);
+                config.security.temp_ban_minutes = props.get_u32("loginserver.security.temp.ban.minutes", config.security.temp_ban_minutes);
+                return config;
+            }
+        }
+    }
+
+    // 2. Fallback para launcher.json se fornecido
     if Path::new(path).exists() {
         if let Ok(content) = fs::read_to_string(path) {
             if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
@@ -116,5 +150,6 @@ pub fn load_config(path: &str) -> LoginServerConfig {
             }
         }
     }
-    LoginServerConfig::default()
+
+    config
 }

@@ -59,6 +59,32 @@ impl Default for ChatServerConfig {
 }
 
 pub fn load_config(path: &str) -> ChatServerConfig {
+    let mut config = ChatServerConfig::default();
+
+    // 1. Prioriza chatserver.properties
+    let properties_candidates = [
+        "config/chatserver.properties",
+        "../Produto Final/config/chatserver.properties",
+        "../../Produto Final/config/chatserver.properties",
+        "chatserver.properties",
+    ];
+
+    for prop_path in properties_candidates {
+        if Path::new(prop_path).exists() {
+            if let Ok(props) = commons::Properties::load_from_file(prop_path) {
+                println!("INFO: Loaded Chat config from {prop_path} (.properties)");
+                config.bind_address = props.get_string("chatserver.network.bind.address", &config.bind_address);
+                config.port = props.get_u16("chatserver.network.port", config.port);
+                config.internal_port = props.get_u16("chatserver.network.internal.port", config.internal_port);
+                config.chat_password = props.get_string("chatserver.network.password", &config.chat_password);
+                config.max_channels = props.get_u32("chatserver.max.channels", config.max_channels);
+                config.anti_flood_messages_per_sec = props.get_u32("chatserver.anti.flood.messages.per.sec", config.anti_flood_messages_per_sec);
+                return config;
+            }
+        }
+    }
+
+    // 2. Fallback para launcher.json se fornecido
     if Path::new(path).exists() {
         if let Ok(content) = fs::read_to_string(path) {
             if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
@@ -70,5 +96,6 @@ pub fn load_config(path: &str) -> ChatServerConfig {
             }
         }
     }
-    ChatServerConfig::default()
+
+    config
 }
