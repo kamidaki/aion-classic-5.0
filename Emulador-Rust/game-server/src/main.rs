@@ -23,6 +23,7 @@ pub mod db;
 mod error;
 mod game;
 mod login_connector;
+pub mod network;
 
 use crossbeam_channel::Sender;
 use data_loader::GameData;
