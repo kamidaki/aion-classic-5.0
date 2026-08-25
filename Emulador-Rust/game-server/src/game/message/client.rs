@@ -1555,14 +1555,20 @@ pub struct SignClient {
     unknown: [u8; 10],
 }
 impl SignClient {
+    /// Responder aqui e obrigatorio: sem resposta o cliente reenvia o pedido sem parar e o
+    /// personagem fica plantado no lugar.
+    ///
+    /// Medido na captura do servidor oficial (`conta-nova-2026-08-24.pcapng`, 21.964 pacotes):
+    /// `C 0x0086` aparece exatamente 2 vezes (#259 e #14960) e `S 0x00E6` de 68 bytes aparece
+    /// exatamente 2 vezes (#265 e #14969), uma depois de cada pedido -- sem sobra de nenhum dos
+    /// dois lados. Com a resposta comentada, uma sessao nossa mandou `0x0086` 89 vezes e o
+    /// `0x0030` (mover) so 4; no oficial o mover e 39,8% de tudo que o cliente manda.
     pub fn handle(
         &self,
         _: &Sender<ClientUpdate>,
         _: &mut Account,
     ) -> Vec<s::Message> {
-        vec![
-        //s::Message::SignClient(s::SignClient::new())
-        ]
+        vec![s::Message::SignClient(s::SignClient::new())]
     }
 }
 impl Deserialise for SignClient {
@@ -2065,10 +2071,17 @@ impl Deserialise for DialogSelect {
 pub struct WindPath {
     pub windstream_id: u32,
     pub action: u8, // 1=entrar, 2=sair
+    /// `false` quando o pacote veio sem payload -- nesse caso nao ha pedido a atender.
+    pub pedido: bool,
 }
 
 impl WindPath {
     pub fn handle(self, tx: &Sender<ClientUpdate>, session: &mut Account) -> Vec<s::Message> {
+        if !self.pedido {
+            // Corpo vazio: o servidor oficial cala. Encaminhar isto ao mundo e o que gerava a
+            // resposta de voo fora de hora, no meio do carregamento.
+            return vec![];
+        }
         tx.send(session.send(Message::WindPath(self))).unwrap();
         vec![]
     }
@@ -2077,11 +2090,19 @@ impl WindPath {
 impl Deserialise for WindPath {
     fn deserialise(buf: &[u8]) -> Self {
         let mut ptr = 0;
-        let windstream_id = if buf.len() >= 4 { consume_le_bytes!(ptr, buf, u32) } else { 0 };
-        let action = if buf.len() >= 5 { consume_le_bytes!(ptr, buf, u8) } else { 1 };
+        // Sem os 5 bytes de payload nao existe pedido: nao se inventa `windstream_id` nem
+        // `action`. O 0x46 vazio aparece na captura oficial (pacotes #138 e #1425) e o servidor
+        // real nao responde nada nas duas vezes; inventar `action = 1` fazia o nosso responder
+        // com pacotes de corrente de vento no meio da entrada no mundo, e o cliente congelava.
+        if buf.len() < 5 {
+            return Self { windstream_id: 0, action: 0, pedido: false };
+        }
+        let windstream_id = consume_le_bytes!(ptr, buf, u32);
+        let action = consume_le_bytes!(ptr, buf, u8);
         Self {
             windstream_id,
             action,
+            pedido: true,
         }
     }
 }
@@ -2570,6 +2591,30 @@ impl Deserialise for ChatMessageWhisper {
 #[cfg(test)]
 mod testes_de_opcode {
     use super::*;
+
+    /// O 0x46 de corpo vazio nao e pedido de voo.
+    ///
+    /// Na captura oficial ele aparece assim duas vezes (pacotes #138 e #1425) e o servidor real
+    /// nao responde nada. O parser inventava `action = 1` (entrar), o servidor devolvia os
+    /// pacotes de corrente de vento no meio da entrada no mundo, e o cliente travava.
+    #[test]
+    fn wind_path_vazio_nao_e_pedido() {
+        let vazio = WindPath::deserialise(&[]);
+        assert!(!vazio.pedido, "corpo vazio nao pode virar pedido de voo");
+        assert_eq!(vazio.action, 0, "sem payload nao se inventa acao");
+
+        let curto = WindPath::deserialise(&[0x01, 0x00, 0x00, 0x00]);
+        assert!(!curto.pedido, "payload incompleto nao pode virar pedido");
+    }
+
+    /// Com os 5 bytes de payload o pedido e real e os campos saem do fio.
+    #[test]
+    fn wind_path_com_payload_le_os_campos() {
+        let p = WindPath::deserialise(&[0x2A, 0x00, 0x00, 0x00, 0x02]);
+        assert!(p.pedido);
+        assert_eq!(p.windstream_id, 42);
+        assert_eq!(p.action, 2, "2 = sair da corrente");
+    }
     use commons::game::{encrypt, encrypt_client_opcode, gen_xor_key};
 
     /// Monta um pacote de cliente como o cliente o manda: opcode cifrado, byte de servidor,
