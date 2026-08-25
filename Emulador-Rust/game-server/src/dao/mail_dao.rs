@@ -36,7 +36,7 @@ impl MailDao {
         Ok(conn.last_insert_rowid() as u32)
     }
 
-    pub fn cartas_do_personagem(conn: &Connection, recipient_id: u32) -> Result<Vec<crate::game::mail::Letter>> {
+    pub fn cartas_do_personagem(conn: &Connection, recipient_id: u32) -> Result<Vec<crate::mail::Letter>> {
         let mut stmt = conn.prepare(
             "SELECT id, sender_name, recipient_id, title, body, item_template_id, item_quantity, kinah_amount, letter_type, is_read, timestamp
              FROM character_mail WHERE recipient_id = ?1 ORDER BY id ASC",
@@ -44,12 +44,12 @@ impl MailDao {
         let rows = stmt.query_map(params![recipient_id as i64], |row| {
             let ltype_num: u8 = row.get::<_, i64>(8)? as u8;
             let ltype = match ltype_num {
-                1 => crate::game::mail::LetterType::Express,
-                2 => crate::game::mail::LetterType::System,
-                3 => crate::game::mail::LetterType::Blackcloud,
-                _ => crate::game::mail::LetterType::Regular,
+                1 => crate::mail::LetterType::Express,
+                2 => crate::mail::LetterType::System,
+                3 => crate::mail::LetterType::Blackcloud,
+                _ => crate::mail::LetterType::Regular,
             };
-            Ok(crate::game::mail::Letter {
+            Ok(crate::mail::Letter {
                 id: row.get::<_, i64>(0)? as u32,
                 sender_name: row.get(1)?,
                 recipient_id: row.get::<_, i64>(2)? as u32,

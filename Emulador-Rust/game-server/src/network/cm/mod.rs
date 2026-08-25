@@ -18,7 +18,7 @@ pub use social::*;
 pub use quest::*;
 pub use system::*;
 
-use crate::game::message::client::Message as LegacyMessage;
+use crate::message::client::Message as LegacyMessage;
 
 /// Enum unificado de todas as mensagens recebidas do cliente (CM)
 pub type ClientMessage = LegacyMessage;

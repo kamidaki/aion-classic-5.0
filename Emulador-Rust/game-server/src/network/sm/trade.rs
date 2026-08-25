@@ -1,6 +1,6 @@
 //! Pacotes Server de Comércio e Broker (SM)
 
-pub use crate::game::message::server::StoreSaleInfo;
-pub use crate::game::message::server::GlobalTradeListingEntry;
-pub use crate::game::message::server::GlobalTradeSaleslogEntry;
-pub use crate::game::message::server::GlobalTradeHistoryEntry;
+pub use crate::message::server::StoreSaleInfo;
+pub use crate::message::server::GlobalTradeListingEntry;
+pub use crate::message::server::GlobalTradeSaleslogEntry;
+pub use crate::message::server::GlobalTradeHistoryEntry;

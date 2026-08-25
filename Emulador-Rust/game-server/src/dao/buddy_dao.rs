@@ -19,7 +19,7 @@ impl BuddyDao {
         Ok(n > 0)
     }
 
-    pub fn amigos_do_personagem(conn: &Connection, player_id: u32) -> Result<Vec<crate::game::message::server::BuddyEntry>> {
+    pub fn amigos_do_personagem(conn: &Connection, player_id: u32) -> Result<Vec<crate::message::server::BuddyEntry>> {
         let mut stmt = conn.prepare(
             "SELECT c.id, c.name, c.level, c.map_id
              FROM character_buddies b
@@ -27,7 +27,7 @@ impl BuddyDao {
              WHERE b.player_id = ?1",
         )?;
         let rows = stmt.query_map(params![player_id as i64], |row| {
-            Ok(crate::game::message::server::BuddyEntry {
+            Ok(crate::message::server::BuddyEntry {
                 player_id: row.get::<_, i64>(0)? as u32,
                 name: row.get(1)?,
                 is_online: true,

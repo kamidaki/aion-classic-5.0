@@ -9,11 +9,11 @@ use std::sync::Arc;
 use crate::dao::Db;
 use crate::data_loader::GameData;
 use crate::dataholders::DataManager;
-use crate::game::character::Character;
-use crate::game::entity::Entity;
-use crate::game::message::lista_personagens;
-use crate::game::message::{client as c, server as s};
-use crate::game::{ClientUpdate, Messages, ServerUpdate};
+use crate::character::Character;
+use crate::entity::Entity;
+use crate::message::lista_personagens;
+use crate::message::{client as c, server as s};
+use crate::{ClientUpdate, Messages, ServerUpdate};
 use super::spatial_service::SpatialService;
 
 pub const CLASSE_DO_MOLDE: u32 = 11;
@@ -121,7 +121,7 @@ impl PlayerService {
 
         // Busca o ponto de spawn e itens iniciais diretamente do PlayerInitialDataHolder (XML)
         let spawn_loc = data_manager.player_initial_data.get_spawn_location(raca as u8);
-        let ponto = crate::game::mundo::PontoDeEntrada {
+        let ponto = crate::mundo::PontoDeEntrada {
             mapa: spawn_loc.map_id,
             x: spawn_loc.x,
             y: spawn_loc.y,
@@ -202,10 +202,10 @@ impl PlayerService {
         characters: &HashMap<u32, Character>,
         entities: &[Entity],
         put_npc: &HashMap<u32, Vec<u8>>,
-        npcs_em_cena: &mut HashMap<u32, (HashSet<u32>, crate::game::engine::Coord)>,
+        npcs_em_cena: &mut HashMap<u32, (HashSet<u32>, crate::engine::Coord)>,
         messages: &mut Messages,
     ) {
-        use crate::game::message::capturado as cap;
+        use crate::message::capturado as cap;
 
         let Some(new_character) = characters.get(&character_id) else {
             println!("WARNING: LevelReady para personagem {character_id} que nao esta no estado; ignorando");
@@ -321,12 +321,12 @@ impl PlayerService {
         db: &Db,
         data_manager: &DataManager,
         game_data: &Arc<GameData>,
-        guild_manager: &crate::game::guild::GuildManager,
+        guild_manager: &crate::guild::GuildManager,
         mundo_enviado: &mut HashSet<u32>,
         burst: &[(u16, Vec<u8>)],
         messages: &mut Messages,
     ) {
-        use crate::game::message::capturado as cap;
+        use crate::message::capturado as cap;
 
         let Some(character) = characters.get_mut(&character_id) else {
             println!("WARNING: CurStatus para personagem {character_id} que nao esta no estado; ignorando");
@@ -350,8 +350,8 @@ impl PlayerService {
             .aparencia
             .as_ref()
             .and_then(|b| {
-                let off = crate::game::message::molde::campo::RACA
-                    - crate::game::message::molde::campo::NOME;
+                let off = crate::message::molde::campo::RACA
+                    - crate::message::molde::campo::NOME;
                 b.get(off..off + 4)
             })
             .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
@@ -360,8 +360,8 @@ impl PlayerService {
             .aparencia
             .as_ref()
             .and_then(|b| {
-                let off = crate::game::message::molde::campo::CLASSE
-                    - crate::game::message::molde::campo::NOME;
+                let off = crate::message::molde::campo::CLASSE
+                    - crate::message::molde::campo::NOME;
                 b.get(off..off + 4)
             })
             .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
@@ -378,7 +378,7 @@ impl PlayerService {
             let lote: Vec<_> = burst
                 .iter()
                 .map(|p| {
-                    ServerUpdate::new(crate::game::message::replay::para_esta_sessao(
+                    ServerUpdate::new(crate::message::replay::para_esta_sessao(
                         p, chave, id,
                     ))
                 })
@@ -387,7 +387,7 @@ impl PlayerService {
         } else {
             messages.extend_direct(
                 client_id,
-                crate::game::message::entrada::antes_do_mundo(character_id)
+                crate::message::entrada::antes_do_mundo(character_id)
                     .into_iter()
                     .map(bruto_de_entrada)
                     .collect::<Vec<_>>(),
@@ -420,11 +420,11 @@ impl PlayerService {
             match db.itens_do_personagem(id_na_bolsa) {
                 _ if modo_da_bolsa == "off" => {}
                 Ok(itens) if !itens.is_empty() => {
-                    let bolsa: Vec<crate::game::data::item::ItemInventario> = itens
+                    let bolsa: Vec<crate::data::item::ItemInventario> = itens
                         .into_iter()
                         .map(|i| {
                             let def = game_data.items.get(&i.item_id).map(|d| d);
-                            crate::game::data::item::ItemInventario::novo(
+                            crate::data::item::ItemInventario::novo(
                                 i.obj_id,
                                 i.item_id,
                                 i.quantidade,
@@ -456,7 +456,7 @@ impl PlayerService {
 
         // Ponto de entrada dinâmico lido do XML
         let spawn_loc = data_manager.player_initial_data.get_spawn_location(raca_na_bolsa as u8);
-        let ponto = crate::game::mundo::PontoDeEntrada {
+        let ponto = crate::mundo::PontoDeEntrada {
             mapa: spawn_loc.map_id,
             x: spawn_loc.x,
             y: spawn_loc.y,
@@ -474,8 +474,8 @@ impl PlayerService {
                             .aparencia
                             .as_ref()
                             .and_then(|b| {
-                                let off = crate::game::message::molde::campo::CLASSE
-                                    - crate::game::message::molde::campo::NOME;
+                                let off = crate::message::molde::campo::CLASSE
+                                    - crate::message::molde::campo::NOME;
                                 b.get(off..off + 4)
                             })
                             .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
@@ -539,7 +539,7 @@ impl PlayerService {
         if !medindo {
             messages.extend_direct(
                 client_id,
-                crate::game::message::entrada::depois_do_mundo(character_id, game_time)
+                crate::message::entrada::depois_do_mundo(character_id, game_time)
                     .into_iter()
                     .map(bruto_de_entrada)
                     .collect::<Vec<_>>(),

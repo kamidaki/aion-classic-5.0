@@ -28,13 +28,13 @@ impl CharacterDao {
         username: &str,
         nome: &str,
         aparencia: &[u8],
-        ponto_opt: Option<crate::game::mundo::PontoDeEntrada>,
+        ponto_opt: Option<crate::mundo::PontoDeEntrada>,
         itens: &[(u32, u32)],
     ) -> Result<PersistedCharacter> {
         use crate::dao::account_dao::AccountDao;
         use crate::dao::inventory_dao::InventoryDao;
         use crate::dao::skill_dao::SkillDao;
-        use crate::game::mundo;
+        use crate::mundo;
 
         let account_id = AccountDao::ensure_account(conn, username)?;
 

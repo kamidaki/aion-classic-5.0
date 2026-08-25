@@ -3,11 +3,11 @@
 use std::collections::HashMap;
 use std::time::{Duration, Instant};
 
-use crate::game::character::Character;
-use crate::game::data::ActionType;
-use crate::game::entity::Entity;
-use crate::game::message::{client as c, server as s};
-use crate::game::{Messages, ServerUpdate};
+use crate::character::Character;
+use crate::data::ActionType;
+use crate::entity::Entity;
+use crate::message::{client as c, server as s};
+use crate::{Messages, ServerUpdate};
 
 pub struct CombatService;
 
@@ -34,7 +34,7 @@ impl CombatService {
             return;
         };
 
-        let hit = crate::game::engine::damage::CombatEngine::calculate_physical_hit(
+        let hit = crate::engine::damage::CombatEngine::calculate_physical_hit(
             character.stats.secondary.main_hand_attack,
             1.0,
             100,
@@ -47,7 +47,7 @@ impl CombatService {
             1.5,
         );
         let damage = hit.damage.max(1);
-        let is_crit = if hit.ty == crate::game::engine::damage::Type::Critical { 1 } else { 0 };
+        let is_crit = if hit.ty == crate::engine::damage::Type::Critical { 1 } else { 0 };
         entity.hp.update(-damage);
 
         let s_hit_point_other = s::HitPointOther::new(

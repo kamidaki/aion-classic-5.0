@@ -1,8 +1,8 @@
 //! EnvironmentService - Gerenciamento de Rotas de Corrente de Vento e Clima (Padrão Java AION)
 
-use crate::game::environment::WindstreamService;
-use crate::game::message::{client as c, server as s};
-use crate::game::{Messages, ServerUpdate};
+use crate::environment::WindstreamService;
+use crate::message::{client as c, server as s};
+use crate::{Messages, ServerUpdate};
 
 pub struct EnvironmentService;
 

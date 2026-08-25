@@ -2,11 +2,11 @@
 
 use std::collections::HashMap;
 
-use crate::game::character::Character;
-use crate::game::data::ActionType;
-use crate::game::entity::Entity;
-use crate::game::message::{client as c, server as s};
-use crate::game::{ClientUpdate, Messages, ServerUpdate};
+use crate::character::Character;
+use crate::data::ActionType;
+use crate::entity::Entity;
+use crate::message::{client as c, server as s};
+use crate::{ClientUpdate, Messages, ServerUpdate};
 
 pub struct SkillService;
 
@@ -63,7 +63,7 @@ impl SkillService {
             .iter_mut()
             .find(|e| e.id() == use_skill.target_id && e.is_alive())
         {
-            let hit = crate::game::engine::damage::CombatEngine::calculate_physical_hit(
+            let hit = crate::engine::damage::CombatEngine::calculate_physical_hit(
                 character.stats.secondary.main_hand_attack,
                 1.5,
                 100,
@@ -76,7 +76,7 @@ impl SkillService {
                 1.5,
             );
             let damage = hit.damage.max(1);
-            let is_crit = if hit.ty == crate::game::engine::damage::Type::Critical { 1 } else { 0 };
+            let is_crit = if hit.ty == crate::engine::damage::Type::Critical { 1 } else { 0 };
             entity.hp.update(-damage);
 
             let eff = s::SkillEffect::new(entity.id(), -damage, 0, is_crit);

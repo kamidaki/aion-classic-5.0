@@ -3,12 +3,12 @@
 use std::collections::HashMap;
 use std::time::{Duration, Instant};
 
-use crate::game::character::Character;
-use crate::game::engine::Coord;
-use crate::game::guild::GuildManager;
-use crate::game::message::{client as c, server as s};
-use crate::game::social::{resolve_goto_location, GmCommand, PartyService};
-use crate::game::{Messages, ServerUpdate};
+use crate::character::Character;
+use crate::engine::Coord;
+use crate::guild::GuildManager;
+use crate::message::{client as c, server as s};
+use crate::social::{resolve_goto_location, GmCommand, PartyService};
+use crate::{Messages, ServerUpdate};
 
 pub struct ChatService;
 

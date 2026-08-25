@@ -35,7 +35,7 @@ impl BrokerDao {
         conn: &Connection,
         page: u32,
         page_size: u8,
-    ) -> Result<(u32, Vec<crate::game::message::server::GlobalTradeListingEntry>)> {
+    ) -> Result<(u32, Vec<crate::message::server::GlobalTradeListingEntry>)> {
         let total: i64 = conn.query_row(
             "SELECT COUNT(*) FROM broker_listings WHERE is_sold = 0",
             [],
@@ -51,7 +51,7 @@ impl BrokerDao {
              LIMIT ?1 OFFSET ?2",
         )?;
         let rows = stmt.query_map(params![page_size as i64, offset], |row| {
-            Ok(crate::game::message::server::GlobalTradeListingEntry {
+            Ok(crate::message::server::GlobalTradeListingEntry {
                 listing_id: row.get::<_, i64>(0)? as u32,
                 item_template_id: row.get::<_, i64>(1)? as u32,
                 quantity: row.get::<_, i64>(2)? as u32,
@@ -117,7 +117,7 @@ impl BrokerDao {
         conn: &Connection,
         item_template_id: u32,
         quality: u8,
-    ) -> Result<Vec<crate::game::message::server::GlobalTradeSaleslogEntry>> {
+    ) -> Result<Vec<crate::message::server::GlobalTradeSaleslogEntry>> {
         let mut stmt = conn.prepare(
             "SELECT item_template_id, quantity, price, timestamp
              FROM broker_history
@@ -126,7 +126,7 @@ impl BrokerDao {
              LIMIT 50",
         )?;
         let rows = stmt.query_map(params![item_template_id as i64], |row| {
-            Ok(crate::game::message::server::GlobalTradeSaleslogEntry {
+            Ok(crate::message::server::GlobalTradeSaleslogEntry {
                 item_template_id: row.get::<_, i64>(0)? as u32,
                 quantity: row.get::<_, i64>(1)? as u32,
                 price: row.get::<_, i64>(2)? as u64,

@@ -86,7 +86,7 @@ impl Db {
         username: &str,
         nome: &str,
         aparencia: &[u8],
-        ponto: Option<crate::game::mundo::PontoDeEntrada>,
+        ponto: Option<crate::mundo::PontoDeEntrada>,
         itens: &[(u32, u32)],
     ) -> Result<PersistedCharacter> {
         CharacterDao::criar_personagem_com_xml(&self.conn, username, nome, aparencia, ponto, itens)
@@ -229,7 +229,7 @@ impl Db {
         MailDao::salvar_carta(&self.conn, recipient_id, sender_name, title, body, letter_type, item_template_id, item_quantity, kinah_amount)
     }
 
-    pub fn cartas_do_personagem(&self, recipient_id: u32) -> Result<Vec<crate::game::mail::Letter>> {
+    pub fn cartas_do_personagem(&self, recipient_id: u32) -> Result<Vec<crate::mail::Letter>> {
         MailDao::cartas_do_personagem(&self.conn, recipient_id)
     }
 
@@ -258,7 +258,7 @@ impl Db {
         GuildDao::remover_membro_guild(&self.conn, guild_id, player_id)
     }
 
-    pub fn guild_do_jogador(&self, player_id: u32) -> Result<Option<crate::game::guild::Guild>> {
+    pub fn guild_do_jogador(&self, player_id: u32) -> Result<Option<crate::guild::Guild>> {
         GuildDao::guild_do_jogador(&self.conn, player_id)
     }
 
@@ -271,7 +271,7 @@ impl Db {
         BuddyDao::remover_amigo(&self.conn, player_id, buddy_id)
     }
 
-    pub fn amigos_do_personagem(&self, player_id: u32) -> Result<Vec<crate::game::message::server::BuddyEntry>> {
+    pub fn amigos_do_personagem(&self, player_id: u32) -> Result<Vec<crate::message::server::BuddyEntry>> {
         BuddyDao::amigos_do_personagem(&self.conn, player_id)
     }
 
@@ -294,7 +294,7 @@ impl Db {
         &self,
         page: u32,
         page_size: u8,
-    ) -> Result<(u32, Vec<crate::game::message::server::GlobalTradeListingEntry>)> {
+    ) -> Result<(u32, Vec<crate::message::server::GlobalTradeListingEntry>)> {
         BrokerDao::listar_anuncios_broker(&self.conn, page, page_size)
     }
 
@@ -318,7 +318,7 @@ impl Db {
         &self,
         item_template_id: u32,
         quality: u8,
-    ) -> Result<Vec<crate::game::message::server::GlobalTradeSaleslogEntry>> {
+    ) -> Result<Vec<crate::message::server::GlobalTradeSaleslogEntry>> {
         BrokerDao::historico_vendas_item(&self.conn, item_template_id, quality)
     }
 

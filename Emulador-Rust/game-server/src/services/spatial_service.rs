@@ -1,11 +1,11 @@
 //! SpatialService - Streaming de Entidades e Broadcast de Movimento (Padrão Java AION)
 
 use std::collections::{HashMap, HashSet};
-use crate::game::character::Character;
-use crate::game::engine::Coord;
-use crate::game::entity::Entity;
-use crate::game::message::{client as c, server as s};
-use crate::game::{Messages, ServerUpdate};
+use crate::character::Character;
+use crate::engine::Coord;
+use crate::entity::Entity;
+use crate::message::{client as c, server as s};
+use crate::{Messages, ServerUpdate};
 
 pub const VISAO_PADRAO: f32 = 100.0;
 pub const PASSO_DO_STREAM: f32 = 20.0;
@@ -125,7 +125,7 @@ impl SpatialService {
             };
             let msg = match put_npc.get(id) {
                 Some(p) => s::Message::Bruto(s::Bruto::new(
-                    crate::game::message::capturado::PUT_NPC_OPCODE,
+                    crate::message::capturado::PUT_NPC_OPCODE,
                     p.clone(),
                 )),
                 None => s::Message::PutNpc(s::PutNpc::new(entity)),

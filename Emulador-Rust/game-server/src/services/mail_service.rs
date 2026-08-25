@@ -3,10 +3,10 @@
 use std::collections::HashMap;
 
 use crate::dao::Db;
-use crate::game::character::Character;
-use crate::game::mail::{Letter, LetterType};
-use crate::game::message::{client as c, server as s};
-use crate::game::{Messages, ServerUpdate};
+use crate::character::Character;
+use crate::mail::{Letter, LetterType};
+use crate::message::{client as c, server as s};
+use crate::{Messages, ServerUpdate};
 
 pub struct MailService;
 

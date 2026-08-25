@@ -29,7 +29,7 @@ impl GuildDao {
         Ok(n > 0)
     }
 
-    pub fn guild_do_jogador(conn: &Connection, player_id: u32) -> Result<Option<crate::game::guild::Guild>> {
+    pub fn guild_do_jogador(conn: &Connection, player_id: u32) -> Result<Option<crate::guild::Guild>> {
         let mut stmt = conn.prepare(
             "SELECT g.id, g.name, g.rank, g.race, g.exp, g.leader_id, g.notice, g.kinah
              FROM guilds g
@@ -37,7 +37,7 @@ impl GuildDao {
              WHERE gm.player_id = ?1",
         )?;
         let mut rows = stmt.query_map(params![player_id as i64], |row| {
-            Ok(crate::game::guild::Guild {
+            Ok(crate::guild::Guild {
                 id: row.get::<_, i64>(0)? as u32,
                 name: row.get(1)?,
                 rank: row.get::<_, i64>(2)? as u8,
@@ -62,7 +62,7 @@ impl GuildDao {
                  WHERE gm.guild_id = ?1",
             )?;
             let mrows = mstmt.query_map(params![guild.id as i64], |mrow| {
-                Ok(crate::game::guild::GuildMember {
+                Ok(crate::guild::GuildMember {
                     player_id: mrow.get::<_, i64>(0)? as u32,
                     name: mrow.get(1)?,
                     guild_rank_index: mrow.get::<_, i64>(2)? as u8,

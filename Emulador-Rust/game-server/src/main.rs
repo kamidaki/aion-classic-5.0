@@ -16,23 +16,53 @@
 //! 3. The server then responds with a payload about the client version, looks
 //! like OS version info from `GetVersionExA` and `GetACP` for the ANSI format
 
+pub mod admin;
+pub mod ai;
+pub mod arena;
+pub mod broker;
+pub mod character;
 mod chat_connector;
+pub mod controller;
+pub mod craft;
+pub mod cron_events;
 pub mod dao;
+pub mod data;
 pub mod dataholders;
-mod data_loader;
+pub mod data_loader;
 pub mod db;
+pub mod enchant;
+pub mod engine;
+pub mod engine_loop;
+pub mod entity;
+pub mod environment;
 mod error;
-mod game;
+pub mod geoengine;
+pub mod guild;
+pub mod housing;
+pub mod instance;
 mod login_connector;
+pub mod mail;
+pub mod message;
+pub mod mundo;
 pub mod network;
+pub mod pet;
 pub mod services;
-pub use game::controller;
-pub use game::ai;
+pub mod session;
+pub mod social;
+pub mod state;
+pub mod stigma;
+pub mod teleport;
+pub mod tester;
+pub mod title;
+pub mod trade;
+pub mod web_services;
+pub mod world;
 
 use crossbeam_channel::Sender;
 use data_loader::GameData;
 use db::Db;
-use game::{ClientUpdate, Connection, ServerUpdate};
+pub use engine_loop::{ClientUpdate, Connection, Deserialise, Messages, Serialise, ServerUpdate, TICK_RATE, game_update};
+use state::State;
 use std::collections::HashMap;
 use std::net::{TcpListener, TcpStream};
 use std::path::PathBuf;
@@ -575,7 +605,7 @@ fn main() {
     let config = load_config();
 
     // Configura flags de log de pacotes
-    game::message::set_packet_logging_flags(
+    message::set_packet_logging_flags(
         config.network.display_packets,
         config.network.display_unknown_packets,
     );
@@ -641,7 +671,7 @@ fn main() {
 
     let connections = clients.clone();
     let gd = game_data.clone();
-    spawn(move || game::game_update(connections, server_rx, db, gd));
+    spawn(move || engine_loop::game_update(connections, server_rx, db, gd));
 
     while let Ok((stream, peer)) = listener.accept() {
         println!("INFO: TCP accept from {peer}");

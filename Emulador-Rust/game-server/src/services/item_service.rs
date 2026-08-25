@@ -5,11 +5,11 @@ use std::sync::Arc;
 
 use crate::dao::Db;
 use crate::data_loader::GameData;
-use crate::game::character::Character;
-use crate::game::data::gear::LootItem;
-use crate::game::data::ActionType;
-use crate::game::message::{client as c, server as s};
-use crate::game::{Messages, ServerUpdate};
+use crate::character::Character;
+use crate::data::gear::LootItem;
+use crate::data::ActionType;
+use crate::message::{client as c, server as s};
+use crate::{Messages, ServerUpdate};
 
 pub struct ItemService;
 

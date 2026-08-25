@@ -5,12 +5,12 @@ use std::sync::Arc;
 
 use crate::dao::Db;
 use crate::data_loader::GameData;
-use crate::game::character::Character;
-use crate::game::engine::Coord;
-use crate::game::entity::Entity;
-use crate::game::message::{client as c, server as s};
-use crate::game::teleport::TeleportService;
-use crate::game::{Messages, ServerUpdate};
+use crate::character::Character;
+use crate::engine::Coord;
+use crate::entity::Entity;
+use crate::message::{client as c, server as s};
+use crate::teleport::TeleportService;
+use crate::{Messages, ServerUpdate};
 
 pub struct DialogService;
 

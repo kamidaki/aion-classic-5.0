@@ -23,9 +23,9 @@ pub use chat_service::ChatService;
 pub use environment_service::EnvironmentService;
 
 // Re-exportações dos serviços especialistas
-pub use crate::game::teleport::TeleportService;
-pub use crate::game::title::TitleService;
-pub use crate::game::trade::TradeService;
-pub use crate::game::social::PartyService;
-pub use crate::game::guild::GuildManager;
-pub use crate::game::environment::WindstreamService;
+pub use crate::teleport::TeleportService;
+pub use crate::title::TitleService;
+pub use crate::trade::TradeService;
+pub use crate::social::PartyService;
+pub use crate::guild::GuildManager;
+pub use crate::environment::WindstreamService;
