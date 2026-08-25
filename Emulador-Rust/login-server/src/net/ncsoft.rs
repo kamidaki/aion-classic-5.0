@@ -140,7 +140,7 @@ pub const INIT_KEY_OFFSET: usize = 0x95;
 /// Offset do byte de flag que liga o fluxo de RSA e GameGuard.
 pub const INIT_FLAG_OFFSET: usize = 0xA8;
 /// Valor padrao desse byte, segundo o CONTEXT.md.
-pub const INIT_FLAG_PADRAO: u8 = 0xFD;
+pub const INIT_FLAG_PADRAO: u8 = 0x03;
 /// Tamanho do payload do `SM_INIT`, antes de cifrar.
 pub const INIT_PAYLOAD_LEN: usize = 192;
 
@@ -851,7 +851,7 @@ mod test {
 
         // O que o `game.dll` le, conferido em CONTEXT.md secao 2.
         assert_eq!(&p[0x95..0x95 + 16], &chave_falsa()[..], "chave em 0x95 (game.dll:0x84222D)");
-        assert_eq!(p[0xA8], 0xFD, "flag RSA/GameGuard em 0xA8 (game.dll:0x84231B)");
+        assert_eq!(p[0xA8], 0x03, "flag RSA/GameGuard em 0xA8 (game.dll:0x84231B)");
         assert_eq!(p[0xA9], 0x04, "major em 169 (game.dll:0x842329)");
         assert_eq!(p[0xAA], 0x05, "minor em 170");
     }
@@ -891,7 +891,7 @@ mod test {
             &chave[..],
             "o cliente precisa achar a chave de sessao em 0x95"
         );
-        assert_eq!(recuperado[0xA8], 0xFD, "flag em 0xA8 depois de decifrar");
+        assert_eq!(recuperado[0xA8], 0x03, "flag em 0xA8 depois de decifrar");
         assert_eq!(recuperado[0xA9], 0x04);
         assert_eq!(recuperado[0xAA], 0x05);
         assert_eq!(&recuperado[9..137], &modulo_falso()[..], "modulo RSA intacto");
