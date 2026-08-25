@@ -180,4 +180,42 @@ mod tests {
         let mut watcher = CacheWatcher::new();
         assert!(!watcher.has_changes());
     }
+
+    #[test]
+    fn test_classic_4_5_classes_and_chainblade() {
+        // Revenant Chainblade
+        let mut chainblade = ItemTemplate::new(102400001, "revenant_blade".to_string());
+        chainblade.weapon_type = Some(WeaponType::Blade2H);
+        chainblade.slot = ItemSlot::MAIN_HAND;
+        chainblade.restrictions.class_mask = PlayerClassMask::THUNDERER;
+        chainblade.restrictions.min_level = 10;
+
+        assert!(chainblade.is_two_handed());
+        assert!(chainblade.can_be_equipped_by(13, 10)); // Thunderer/Revenant
+        assert!(!chainblade.can_be_equipped_by(0, 10)); // Warrior cannot equip
+
+        // Lumines / Martial Artist
+        let mut lumines_item = ItemTemplate::new(110301338, "lumines_armor".to_string());
+        lumines_item.restrictions.class_mask = PlayerClassMask::MARTIAL_ARTIST;
+        lumines_item.restrictions.min_level = 1;
+        assert!(lumines_item.can_be_equipped_by(14, 1)); // Martial Artist / Lumines
+        assert!(!lumines_item.can_be_equipped_by(6, 1));  // Mage cannot equip
+    }
+
+    #[test]
+    fn test_class_progression_and_starting_classes() {
+        assert!(PlayerClassMask::is_starting_class(0));  // Warrior
+        assert!(PlayerClassMask::is_starting_class(3));  // Scout
+        assert!(PlayerClassMask::is_starting_class(6));  // Mage
+        assert!(PlayerClassMask::is_starting_class(9));  // Priest
+        assert!(PlayerClassMask::is_starting_class(12)); // Monk (Telos)
+        assert!(PlayerClassMask::is_starting_class(14)); // Martial Artist (Lumines)
+
+        assert!(!PlayerClassMask::is_starting_class(1));  // Gladiator
+        assert!(!PlayerClassMask::is_starting_class(13)); // Thunderer/Revenant
+        assert!(!PlayerClassMask::is_starting_class(15)); // Battle Master/Brawler
+
+        assert_eq!(PlayerClassMask::get_starting_class_for(13), 12); // Thunderer -> Monk
+        assert_eq!(PlayerClassMask::get_starting_class_for(15), 14); // Battle Master -> Martial Artist
+    }
 }

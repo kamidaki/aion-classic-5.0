@@ -7,14 +7,17 @@ pub enum WeaponType {
     Sword1H,
     Mace,
     // Armas Clássicas de 2 Mãos
-    Sword2H,   // Greatsword
+    Sword2H,    // Greatsword
     Polearm,
     Bow,
     Staff,
     Orb,
-    Book,      // Spellbook
-    // Ferramenta de Coleta
-    Tool,
+    Book,       // Spellbook
+    Blade2H,    // Chainblade / Blade de 2 mãos (Revenant / Executor / Thunderer)
+    // Ferramentas de Coleta
+    ToolHoe,
+    ToolPick,
+    ToolRod,
 }
 
 impl WeaponType {
@@ -27,6 +30,9 @@ impl WeaponType {
                 | Self::Staff
                 | Self::Orb
                 | Self::Book
+                | Self::Blade2H
+                | Self::ToolPick
+                | Self::ToolRod
         )
     }
 
@@ -41,7 +47,10 @@ impl WeaponType {
             "2h_staff" | "staff" => Some(Self::Staff),
             "2h_orb" | "orb" => Some(Self::Orb),
             "2h_book" | "book" | "spellbook" => Some(Self::Book),
-            "1h_tool" | "tool" => Some(Self::Tool),
+            "2h_blade" | "blade_2h" | "blade" | "chainblade" => Some(Self::Blade2H),
+            "1h_toolhoe" | "toolhoe" | "1h_tool" | "tool" => Some(Self::ToolHoe),
+            "2h_toolpick" | "toolpick" => Some(Self::ToolPick),
+            "2h_toolrod" | "toolrod" => Some(Self::ToolRod),
             _ => None,
         }
     }

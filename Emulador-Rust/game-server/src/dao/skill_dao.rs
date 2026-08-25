@@ -6,10 +6,12 @@ impl SkillDao {
     /// Skills iniciais de nível 1 por classe
     pub fn initial_skills_for_class(class_id: u32) -> Vec<(u32, u8)> {
         match class_id {
-            1 | 2 => vec![(1, 1), (2, 1), (3, 1), (10, 1)],
+            0 | 1 | 2 => vec![(1, 1), (2, 1), (3, 1), (10, 1)],
             3 | 4 | 5 => vec![(20, 1), (21, 1), (22, 1), (25, 1)],
             6 | 7 | 8 => vec![(30, 1), (31, 1), (32, 1), (35, 1)],
             9 | 10 | 11 => vec![(40, 1), (41, 1), (42, 1), (45, 1)],
+            12 | 13 => vec![(50, 1), (51, 1), (52, 1), (55, 1)], // Monk / Thunderer
+            14 | 15 => vec![(60, 1), (61, 1), (62, 1), (65, 1)], // Martial Artist / Battle Master
             _ => vec![(1, 1), (2, 1)],
         }
     }

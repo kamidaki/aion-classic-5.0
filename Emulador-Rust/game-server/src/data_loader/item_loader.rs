@@ -256,7 +256,7 @@ fn build_item_template(id: u32, fields: &HashMap<String, String>, strings: &Stri
         pvp_defend_ratio: fields.get("pvp_defend_ratio").and_then(|v| v.parse().ok()).unwrap_or(0.0),
     };
 
-    // Máscara de classes clássicas do Aion Classic (0..11)
+    // Máscara de classes do Aion Classic (0..15)
     let mut class_mask_val = 0u32;
     if fields.get("warrior").map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::WARRIOR.0; }
     if fields.get("fighter").map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::GLADIATOR.0; }
@@ -270,6 +270,10 @@ fn build_item_template(id: u32, fields: &HashMap<String, String>, strings: &Stri
     if fields.get("priest").map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::PRIEST.0; }
     if fields.get("cleric").map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::CLERIC.0; }
     if fields.get("chanter").map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::CHANTER.0; }
+    if fields.get("monk").or_else(|| fields.get("soldier")).map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::MONK.0; }
+    if fields.get("thunderer").or_else(|| fields.get("revenant")).or_else(|| fields.get("executor")).map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::THUNDERER.0; }
+    if fields.get("martial_artist").or_else(|| fields.get("lumines")).or_else(|| fields.get("luminess")).or_else(|| fields.get("painter")).map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::MARTIAL_ARTIST.0; }
+    if fields.get("battle_master").or_else(|| fields.get("brawler")).or_else(|| fields.get("phoenix")).or_else(|| fields.get("vanguard")).map(|v| v == "1").unwrap_or(false) { class_mask_val |= PlayerClassMask::BATTLE_MASTER.0; }
 
     let restrictions = ItemRestrictions {
         min_level: level,

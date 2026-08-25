@@ -110,10 +110,12 @@ impl CharacterDao {
 
     pub fn base_stats_for_class(classe: u32) -> (u32, u32) {
         match classe {
-            0 | 1 | 2 => (1278, 577),  // Warrior, Gladiator, Templar
-            3 | 4 | 5 => (1043, 674),  // Scout, Assassin, Ranger
-            6 | 7 | 8 => (872, 1349),  // Mage, Sorcerer, Spiritmaster
+            0 | 1 | 2 => (1278, 577),    // Warrior, Gladiator, Templar
+            3 | 4 | 5 => (1043, 674),    // Scout, Assassin, Ranger
+            6 | 7 | 8 => (872, 1349),    // Mage, Sorcerer, Spiritmaster
             9 | 10 | 11 => (1134, 1146), // Priest, Cleric, Chanter
+            12 | 13 => (1150, 800),      // Monk, Thunderer (Revenant / Executor)
+            14 | 15 => (1200, 750),      // Martial Artist (Lumines), Battle Master (Brawler / Phoenix)
             _ => (1000, 1000),
         }
     }

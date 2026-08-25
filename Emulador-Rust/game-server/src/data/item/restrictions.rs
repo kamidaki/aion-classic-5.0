@@ -1,17 +1,17 @@
 //! Restrições de uso de itens no Aion Classic (4.5 / 2.8).
-//! Contém exclusivamente as 12 classes clássicas oficiais do jogo (0..11).
+//! Contém todas as 16 classes oficiais do Aion Classic (0..15).
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub struct PlayerClassMask(pub u32);
 
 impl PlayerClassMask {
-    // Classes Base
+    // Classes Base Tradicionais
     pub const WARRIOR: Self = Self(1 << 0);
     pub const SCOUT: Self = Self(1 << 3);
     pub const MAGE: Self = Self(1 << 6);
     pub const PRIEST: Self = Self(1 << 9);
 
-    // Classes Especializadas Clássicas
+    // Classes Especializadas Tradicionais
     pub const GLADIATOR: Self = Self(1 << 1);
     pub const TEMPLAR: Self = Self(1 << 2);
     pub const ASSASSIN: Self = Self(1 << 4);
@@ -21,8 +21,14 @@ impl PlayerClassMask {
     pub const CLERIC: Self = Self(1 << 10);
     pub const CHANTER: Self = Self(1 << 11);
 
-    // Máscara total de classes clássicas (0..11)
-    pub const ALL: Self = Self(0x0FFF);
+    // Novas Classes Clássicas (Telos / Classic 2.5 / 2.8 / 4.5)
+    pub const MONK: Self = Self(1 << 12);           // Soldier / Monk (Base de Telos)
+    pub const THUNDERER: Self = Self(1 << 13);      // Revenant / Executor (Chainblade)
+    pub const MARTIAL_ARTIST: Self = Self(1 << 14); // Lumines / Luminess / Painter (Base)
+    pub const BATTLE_MASTER: Self = Self(1 << 15);  // Brawler / Phoenix / Vanguard (Especializada)
+
+    // Máscara total de classes (0..15)
+    pub const ALL: Self = Self(0xFFFF);
 
     #[inline]
     pub fn allows(&self, class_id: u8) -> bool {
@@ -42,7 +48,71 @@ impl PlayerClassMask {
             9 => self.0 & (Self::PRIEST.0 | Self::CLERIC.0 | Self::CHANTER.0) != 0,
             10 => self.0 & Self::CLERIC.0 != 0,
             11 => self.0 & Self::CHANTER.0 != 0,
+            12 => self.0 & (Self::MONK.0 | Self::THUNDERER.0) != 0,
+            13 => self.0 & Self::THUNDERER.0 != 0,
+            14 => self.0 & (Self::MARTIAL_ARTIST.0 | Self::BATTLE_MASTER.0) != 0,
+            15 => self.0 & Self::BATTLE_MASTER.0 != 0,
             _ => false,
+        }
+    }
+
+    pub fn is_starting_class(class_id: u8) -> bool {
+        matches!(class_id, 0 | 3 | 6 | 9 | 12 | 14)
+    }
+
+    pub fn get_starting_class_for(class_id: u8) -> u8 {
+        match class_id {
+            1 | 2 => 0,   // Gladiator / Templar -> Warrior
+            4 | 5 => 3,   // Assassin / Ranger -> Scout
+            7 | 8 => 6,   // Sorcerer / Spiritmaster -> Mage
+            10 | 11 => 9, // Cleric / Chanter -> Priest
+            13 => 12,     // Thunderer (Revenant) -> Monk
+            15 => 14,     // Battle Master (Brawler / Phoenix) -> Martial Artist (Lumines)
+            _ => class_id,
+        }
+    }
+
+    pub fn class_code_name(class_id: u8) -> &'static str {
+        match class_id {
+            0 => "WARRIOR",
+            1 => "GLADIATOR",
+            2 => "TEMPLAR",
+            3 => "SCOUT",
+            4 => "ASSASSIN",
+            5 => "RANGER",
+            6 => "MAGE",
+            7 => "SORCERER",
+            8 => "SPIRIT_MASTER",
+            9 => "PRIEST",
+            10 => "CLERIC",
+            11 => "CHANTER",
+            12 => "MONK",
+            13 => "THUNDERER",
+            14 => "MARTIAL_ARTIST",
+            15 => "BATTLE_MASTER",
+            _ => "WARRIOR",
+        }
+    }
+
+    pub fn class_display_name(class_id: u8) -> &'static str {
+        match class_id {
+            0 => "Warrior",
+            1 => "Gladiator",
+            2 => "Templar",
+            3 => "Scout",
+            4 => "Assassin",
+            5 => "Ranger",
+            6 => "Mage",
+            7 => "Sorcerer",
+            8 => "Spiritmaster",
+            9 => "Priest",
+            10 => "Cleric",
+            11 => "Chanter",
+            12 => "Monk (Soldier)",
+            13 => "Revenant (Thunderer / Executor)",
+            14 => "Lumines (Martial Artist / Painter)",
+            15 => "Brawler (Battle Master / Phoenix)",
+            _ => "Warrior",
         }
     }
 }

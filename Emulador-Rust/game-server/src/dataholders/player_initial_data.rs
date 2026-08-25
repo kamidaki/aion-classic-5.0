@@ -32,8 +32,34 @@ impl PlayerInitialDataHolder {
 
     /// Retorna o ponto de spawn inicial da raça conforme carregado do XML
     pub fn get_spawn_location(&self, race: u8) -> SpawnLocation {
+        self.get_spawn_location_for_class(race, 0)
+    }
+
+    /// Retorna o ponto de spawn inicial considerando a raça e a classe (Telos para Monk/Revenant/Lumines)
+    pub fn get_spawn_location_for_class(&self, race: u8, class_id: u8) -> SpawnLocation {
+        if class_id == 12 || class_id == 13 {
+            // Telos Spawns para Monk / Soldier / Revenant / Executor
+            if race == 1 {
+                return self.asmodian_telos_spawn.unwrap_or(SpawnLocation {
+                    map_id: 220080000,
+                    x: 1400.3100,
+                    y: 220.5531,
+                    z: 228.3999,
+                    heading: 116,
+                });
+            } else {
+                return self.elyos_telos_spawn.unwrap_or(SpawnLocation {
+                    map_id: 210070000,
+                    x: 1400.3100,
+                    y: 220.5531,
+                    z: 228.3999,
+                    heading: 116,
+                });
+            }
+        }
+
         if race == 1 {
-            // Asmodian
+            // Asmodian Ishalgen
             self.asmodian_spawn.unwrap_or(SpawnLocation {
                 map_id: 220010000,
                 x: 582.3742,
@@ -42,7 +68,7 @@ impl PlayerInitialDataHolder {
                 heading: 66,
             })
         } else {
-            // Elyos (0 ou default)
+            // Elyos Poeta (0 ou default)
             self.elyos_spawn.unwrap_or(SpawnLocation {
                 map_id: 210010000,
                 x: 1207.7640,
@@ -70,6 +96,10 @@ impl PlayerInitialDataHolder {
             "SPIRIT_MASTER" | "ELEMENTALLIST" => &["SPIRIT_MASTER", "ELEMENTALLIST", "MAGE"],
             "CLERIC" | "PRIEST" => &["CLERIC", "PRIEST"],
             "CHANTER" => &["CHANTER", "PRIEST"],
+            "MONK" | "SOLDIER" => &["MONK", "SOLDIER", "REVENANT"],
+            "THUNDERER" | "REVENANT" | "EXECUTOR" => &["THUNDERER", "REVENANT", "MONK", "EXECUTOR"],
+            "MARTIAL_ARTIST" | "LUMINES" | "LUMINESS" | "PAINTER" | "ARTIST" => &["MARTIAL_ARTIST", "LUMINES", "LUMINESS", "BRAWLER"],
+            "BATTLE_MASTER" | "BRAWLER" | "PHOENIX" | "VANGUARD" => &["BATTLE_MASTER", "BRAWLER", "PHOENIX", "REVENANT"],
             _ => &["WARRIOR"],
         };
 
