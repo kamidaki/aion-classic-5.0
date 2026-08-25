@@ -18,6 +18,7 @@
 
 mod chat_connector;
 pub mod dao;
+pub mod dataholders;
 mod data_loader;
 pub mod db;
 mod error;
