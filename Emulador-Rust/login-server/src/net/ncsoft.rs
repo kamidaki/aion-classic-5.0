@@ -136,7 +136,7 @@ fn server_list_trailer() -> usize {
 }
 
 /// Offset da chave de sessao Blowfish dentro do payload do `SM_INIT`.
-pub const INIT_KEY_OFFSET: usize = 0x95;
+pub const INIT_KEY_OFFSET: usize = 0x94;
 /// Offset do byte de flag que liga o fluxo de RSA e GameGuard.
 pub const INIT_FLAG_OFFSET: usize = 0xA8;
 /// Valor padrao desse byte, segundo o CONTEXT.md.
@@ -850,7 +850,7 @@ mod test {
         assert_eq!(&p[9..137], &modulo_falso()[..], "modulo RSA");
 
         // O que o `game.dll` le, conferido em CONTEXT.md secao 2.
-        assert_eq!(&p[0x95..0x95 + 16], &chave_falsa()[..], "chave em 0x95 (game.dll:0x84222D)");
+        assert_eq!(&p[0x94..0x94 + 16], &chave_falsa()[..], "chave in 0x94 (game.dll:0x84222D)");
         assert_eq!(p[0xA8], 0x03, "flag RSA/GameGuard em 0xA8 (game.dll:0x84231B)");
         assert_eq!(p[0xA9], 0x04, "major em 169 (game.dll:0x842329)");
         assert_eq!(p[0xAA], 0x05, "minor em 170");
@@ -887,9 +887,9 @@ mod test {
         let recuperado = como_o_cliente_decifra(&cifrado);
 
         assert_eq!(
-            &recuperado[0x95..0x95 + 16],
+            &recuperado[0x94..0x94 + 16],
             &chave[..],
-            "o cliente precisa achar a chave de sessao em 0x95"
+            "o cliente precisa achar a chave de sessao em 0x94"
         );
         assert_eq!(recuperado[0xA8], 0x03, "flag em 0xA8 depois de decifrar");
         assert_eq!(recuperado[0xA9], 0x04);
