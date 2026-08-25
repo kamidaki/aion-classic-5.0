@@ -147,6 +147,7 @@ mod tests {
                 enable_doors: true,
                 enable_materials: true,
                 debug_mode: false,
+                ..Default::default()
             };
             let engine = GeoEngine::new(config);
             assert!(engine.initialize().is_ok());

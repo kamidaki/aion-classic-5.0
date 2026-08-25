@@ -130,6 +130,8 @@ pub struct GameServerConfig {
     pub gameplay: GameplayConfig,
     #[serde(default)]
     pub rates: RatesConfig,
+    #[serde(default)]
+    pub geodata: crate::geoengine::GeoConfig,
 }
 
 impl Default for GameServerConfig {
@@ -143,6 +145,7 @@ impl Default for GameServerConfig {
             inter_server: InterServerConfig::default(),
             gameplay: GameplayConfig::default(),
             rates: RatesConfig::default(),
+            geodata: crate::geoengine::GeoConfig::default(),
         }
     }
 }
@@ -453,12 +456,15 @@ fn default_vision_radius() -> f32 {
 pub struct SecurityConfig {
     #[serde(default = "default_true")]
     pub require_valid_session: bool,
+    #[serde(default)]
+    pub flood_protection: FloodProtectionConfig,
 }
 
 impl Default for SecurityConfig {
     fn default() -> Self {
         Self {
             require_valid_session: true,
+            flood_protection: FloodProtectionConfig::default(),
         }
     }
 }
@@ -513,6 +519,8 @@ fn load_config() -> GameServerConfig {
                 cfg.gameplay.character_limit_count = props.get_u8("gameserver.character.limit.count", cfg.gameplay.character_limit_count);
                 cfg.gameplay.character_creation_mode = props.get_u8("gameserver.character.creation.mode", cfg.gameplay.character_creation_mode);
                 cfg.gameplay.players_max_level = props.get_u8("gameserver.players.max.level", cfg.gameplay.players_max_level);
+                cfg.gameplay.starting_level = props.get_u8("gameserver.starting.level", cfg.gameplay.starting_level);
+                cfg.gameplay.start_class_max_level = props.get_u8("gameserver.startClass.maxLevel", cfg.gameplay.start_class_max_level);
                 cfg.gameplay.character_name_pattern = props.get_string("gameserver.character.name.pattern", &cfg.gameplay.character_name_pattern);
                 cfg.gameplay.character_reentry_time_secs = props.get_u32("gameserver.character.reentry.time.secs", cfg.gameplay.character_reentry_time_secs);
 
@@ -524,6 +532,21 @@ fn load_config() -> GameServerConfig {
                 cfg.rates.ap_npc = props.get_f32("gameserver.rate.ap.npc", cfg.rates.ap_npc);
                 cfg.rates.craft_xp = props.get_f32("gameserver.rate.craft.xp", cfg.rates.craft_xp);
                 cfg.rates.gather_xp = props.get_f32("gameserver.rate.gather.xp", cfg.rates.gather_xp);
+
+                cfg.geodata.enable_collision = props.get_bool("gameserver.geodata.enable", cfg.geodata.enable_collision);
+                let geo_p = props.get_string("gameserver.geodata.path", &cfg.geodata.geo_dir.to_string_lossy());
+                cfg.geodata.geo_dir = std::path::PathBuf::from(geo_p);
+                cfg.geodata.enable_doors = props.get_bool("gameserver.geodata.doors.enable", cfg.geodata.enable_doors);
+                cfg.geodata.enable_materials = props.get_bool("gameserver.geodata.materials.enable", cfg.geodata.enable_materials);
+                cfg.geodata.enable_falldamage = props.get_bool("gameserver.geodata.falldamage.enable", cfg.geodata.enable_falldamage);
+                cfg.geodata.enable_speedvalidation = props.get_bool("gameserver.geodata.speedvalidation.enable", cfg.geodata.enable_speedvalidation);
+
+                cfg.security.flood_protection.enabled = props.get_bool("gameserver.flood.protection.enable", cfg.security.flood_protection.enabled);
+                cfg.security.flood_protection.tick_ms = props.get_u32("gameserver.flood.tick.ms", cfg.security.flood_protection.tick_ms);
+                cfg.security.flood_protection.short_warn = props.get_u32("gameserver.flood.short.warn", cfg.security.flood_protection.short_warn);
+                cfg.security.flood_protection.short_reject = props.get_u32("gameserver.flood.short.reject", cfg.security.flood_protection.short_reject);
+                cfg.security.flood_protection.long_warn = props.get_u32("gameserver.flood.long.warn", cfg.security.flood_protection.long_warn);
+                cfg.security.flood_protection.long_reject = props.get_u32("gameserver.flood.long.reject", cfg.security.flood_protection.long_reject);
 
                 return cfg;
             }
@@ -742,6 +765,17 @@ fn main() {
     let db = Db::open(&config.database.database_path).expect("failed to open SQLite db");
     db.migrate().expect("failed to migrate SQLite schema");
     println!("INFO: Opened and migrated DB at {}", config.database.database_path);
+
+    // Inicializa GeoEngine e WorldService com as configurações do gameserver.properties
+    let geo_engine = Arc::new(geoengine::GeoEngine::new(config.geodata.clone()));
+    if config.geodata.enable_collision {
+        if let Err(e) = geo_engine.initialize() {
+            println!("WARN: GeoEngine initialization: {e:?}");
+        } else {
+            println!("INFO: GeoEngine initialized successfully from {:?}", config.geodata.geo_dir);
+        }
+    }
+    let _world_service = Arc::new(world::WorldService::new(geo_engine.clone()));
 
     let data_dir = find_data_dir(&config.world.data_dir);
     println!("INFO: Loading game data from {}", data_dir.display());

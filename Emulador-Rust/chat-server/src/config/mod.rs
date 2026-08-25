@@ -20,6 +20,8 @@ pub struct ChatServerConfig {
     pub max_channels: u32,
     #[serde(default = "default_anti_flood")]
     pub anti_flood_messages_per_sec: u32,
+    #[serde(default = "default_db_path")]
+    pub database_path: String,
 }
 
 fn default_enabled() -> bool {
@@ -43,6 +45,9 @@ fn default_max_channels() -> u32 {
 fn default_anti_flood() -> u32 {
     5
 }
+fn default_db_path() -> String {
+    "data/Banco de Dados/chat.db".to_string()
+}
 
 impl Default for ChatServerConfig {
     fn default() -> Self {
@@ -54,6 +59,7 @@ impl Default for ChatServerConfig {
             chat_password: default_chat_password(),
             max_channels: default_max_channels(),
             anti_flood_messages_per_sec: default_anti_flood(),
+            database_path: default_db_path(),
         }
     }
 }
@@ -79,6 +85,7 @@ pub fn load_config(path: &str) -> ChatServerConfig {
                 config.chat_password = props.get_string("chatserver.network.password", &config.chat_password);
                 config.max_channels = props.get_u32("chatserver.max.channels", config.max_channels);
                 config.anti_flood_messages_per_sec = props.get_u32("chatserver.anti.flood.messages.per.sec", config.anti_flood_messages_per_sec);
+                config.database_path = props.get_string("chatserver.database.path", &config.database_path);
                 return config;
             }
         }
