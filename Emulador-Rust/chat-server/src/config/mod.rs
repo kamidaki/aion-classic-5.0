@@ -1,3 +1,5 @@
+//! Configuration module for Chat Server.
+
 use serde::Deserialize;
 use std::fs;
 use std::path::Path;

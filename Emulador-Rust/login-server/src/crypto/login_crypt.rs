@@ -71,43 +71,6 @@ impl LoginCryptEngine {
         buffer
     }
 
-    /// Replica exatamente o Java CryptEngine.encXORPass(data, offset, length, key).
-    ///
-    /// Java usa indices absolutos no buffer completo (que inclui o header de 2 bytes).
-    /// O parametro `header_offset` simula esse offset: o XOR comeca em `header_offset + 4`
-    /// e o stop e `length - 8` (onde length e o tamanho da regiao cifrada = 192).
-    ///
-    /// Java:
-    ///   stop = length - 8  = 192 - 8 = 184  (indice absoluto no buffer Java)
-    ///   pos  = 4 + offset  = 4 + 2   = 6    (indice absoluto no buffer Java)
-    ///   loop: while pos < stop → processa [6, 10, 14, ..., 180] no buffer Java
-    ///         → [4, 8, 12, ..., 178] no payload (subtraindo offset=2)
-    ///   ecx escrito em pos=184 (absoluto) → payload[182..186]
-    fn enc_xor_pass_with_offset(data: &mut [u8], key: u32, header_offset: usize) {
-        // Simula: stop = length - 8, com length=192 (tamanho da regiao cifrada)
-        // e pos_inicial = 4 + header_offset
-        // Todos os indices sao relativos ao payload (data[]).
-        // Convertendo: pos_payload = pos_absoluto - header_offset
-        //   pos_inicial_payload = (4 + header_offset) - header_offset = 4
-        //   stop_absoluto = 192 - 8 = 184
-        //   stop_payload  = 184 - header_offset = 184 - 2 = 182
-
-        let stop_payload = (192usize - 8).saturating_sub(header_offset); // 182
-        let mut curr_key = key;
-        let mut pos = 4usize; // inicio no payload
-
-        while pos < stop_payload {
-            let plain = u32::from_le_bytes(data[pos..pos + 4].try_into().unwrap());
-            curr_key = curr_key.wrapping_add(plain);
-            let cipher_val = plain ^ curr_key;
-            data[pos..pos + 4].copy_from_slice(&cipher_val.to_le_bytes());
-            pos += 4;
-        }
-
-        // Escreve a seed final: em pos_absoluto=184 → payload[184-2=182]
-        let key_pos_payload = 184usize.saturating_sub(header_offset); // 182
-        data[key_pos_payload..key_pos_payload + 4].copy_from_slice(&curr_key.to_le_bytes());
-    }
 
     pub fn encrypt_packet(&self, raw: &[u8]) -> Vec<u8> {
         let length = raw.len();
@@ -162,35 +125,19 @@ impl LoginCryptEngine {
     }
 
     fn enc_xor_pass(data: &mut [u8], key: u32) {
-        // Java LoginConnection.encrypt() chama:
-        //   cryptEngine.encrypt(buf.array(), offset=2, length=177)
-        //
-        // Dentro de CryptEngine.encrypt(data, offset=2, length=177):
-        //   length = 177+4+4 = 185 → pad → 192
-        //   encXORPass(data, offset=2, length=192, randomKey)
-        //
-        // encXORPass(data, offset=2, length=192, key):
-        //   stop = length - 8 = 192 - 8 = 184   (posicao absoluta no array)
-        //   pos  = 4 + offset = 4 + 2   = 6     (posicao absoluta no array)
-        //   loop while pos < 184:
-        //     processa posicoes absolutas: 6, 10, 14, ..., 182
-        //     = posicoes no payload (abs - offset=2): 4, 8, 12, ..., 180
-        //   pos apos loop = 186 (absoluto) = payload[184..188]
-        //   ecx escrito em pos (payload[184..188])
-
-        let payload_stop: usize = 182;
+        let total = data.len();
+        let blocos = (total - 8) / 4;
         let mut curr_key = key;
-        let mut pos = 4usize;
 
-        while pos < payload_stop {
-            let plain = u32::from_le_bytes(data[pos..pos + 4].try_into().unwrap());
+        for i in 1..blocos {
+            let p = i * 4;
+            let plain = u32::from_le_bytes(data[p..p + 4].try_into().unwrap());
             curr_key = curr_key.wrapping_add(plain);
             let cipher = plain ^ curr_key;
-            data[pos..pos + 4].copy_from_slice(&cipher.to_le_bytes());
-            pos += 4;
+            data[p..p + 4].copy_from_slice(&cipher.to_le_bytes());
         }
 
-        data[pos..pos + 4].copy_from_slice(&curr_key.to_le_bytes());
+        data[total - 8..total - 4].copy_from_slice(&curr_key.to_le_bytes());
     }
 
     pub fn scramble_modulus(modulus: &[u8]) -> [u8; 128] {

@@ -1,22 +1,21 @@
+//! Configuration module for Aion Classic Login Server.
+//!
+//! Submodules:
+//! - [`security_config`] — Rate-limiting & brute force protection settings
+//! - [`database_config`] — SQLite database connection settings
+//! - [`network_config`] — Ports & binding IPs for NCSoft, HQ, STS and Inter-Server
+
+pub mod security_config;
+pub mod database_config;
+pub mod network_config;
+
+pub use security_config::SecurityConfig;
+pub use database_config::DatabaseConfig;
+pub use network_config::NetworkConfig;
+
 use serde::Deserialize;
 use std::fs;
 use std::path::Path;
-
-#[derive(Debug, Deserialize, Clone)]
-pub struct SecurityConfig {
-    #[serde(default = "default_true")]
-    pub enable_rate_limit: bool,
-    #[serde(default = "default_max_attempts")]
-    pub max_attempts_per_minute: u32,
-    #[serde(default = "default_ban_minutes")]
-    pub temp_ban_minutes: u32,
-}
-
-#[derive(Debug, Deserialize, Clone)]
-pub struct DatabaseConfig {
-    #[serde(default = "default_db_path")]
-    pub path: String,
-}
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct LoginServerConfig {
@@ -82,33 +81,6 @@ fn default_server_id() -> u8 {
 }
 fn default_dev_user() -> String {
     String::new()
-}
-fn default_max_attempts() -> u32 {
-    15
-}
-fn default_ban_minutes() -> u32 {
-    15
-}
-fn default_db_path() -> String {
-    "data/Banco de Dados/login.db".to_string()
-}
-
-impl Default for SecurityConfig {
-    fn default() -> Self {
-        Self {
-            enable_rate_limit: true,
-            max_attempts_per_minute: default_max_attempts(),
-            temp_ban_minutes: default_ban_minutes(),
-        }
-    }
-}
-
-impl Default for DatabaseConfig {
-    fn default() -> Self {
-        Self {
-            path: default_db_path(),
-        }
-    }
 }
 
 impl Default for LoginServerConfig {

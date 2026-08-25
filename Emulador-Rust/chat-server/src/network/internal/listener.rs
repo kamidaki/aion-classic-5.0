@@ -47,7 +47,7 @@ async fn handle_gameserver_client(
     mut socket: TcpStream,
     peer_addr: SocketAddr,
     cfg: ChatServerConfig,
-    _channel_mgr: Arc<ChannelManager>,
+    channel_mgr: Arc<ChannelManager>,
 ) {
     println!(
         "INFO: [ChatServer-InternalGS] Incoming inter-server connection from GameServer at {}",
@@ -77,11 +77,6 @@ async fn handle_gameserver_client(
         return;
     }
 
-    // CM_CS_AUTH parser:
-    // [0] = 0x01
-    // [1] = server_id: u8
-    // [2..4] = password_len: u16
-    // [4..4+len] = password string
     if payload.len() < 4 {
         eprintln!("WARN: [ChatServer-InternalGS] Malformed CM_CS_AUTH payload from {}", peer_addr);
         return;
@@ -97,13 +92,11 @@ async fn handle_gameserver_client(
 
     let password = String::from_utf8_lossy(&payload[4..4 + pass_len]).to_string();
 
-    // Validação de senha: bate com launcher.json
     if password != cfg.chat_password {
         eprintln!(
             "ERROR: [ChatServer-InternalGS] GameServer #{} from {} REJECTED: Invalid password (Got: '{}', Expected: '{}')",
             server_id, peer_addr, password, cfg.chat_password
         );
-        // Envia SM_CS_AUTH_RESPONSE (Status 1 = REJECTED)
         let resp = [0x04, 0x00, 0x01, 0x01];
         let _ = socket.write_all(&resp).await;
         return;
@@ -114,39 +107,42 @@ async fn handle_gameserver_client(
         server_id
     );
 
-    // Envia SM_CS_AUTH_RESPONSE (Status 0 = AUTHED)
     let resp = [0x04, 0x00, 0x01, 0x00];
     if socket.write_all(&resp).await.is_err() {
         return;
     }
 
-    // Loop de controle
+    // Process incoming inter-server packets loop
     loop {
-        if socket.read_exact(&mut header).await.is_err() {
+        let mut hdr = [0u8; 2];
+        if socket.read_exact(&mut hdr).await.is_err() {
             break;
         }
-        let pkt_len = u16::from_le_bytes(header) as usize;
-        if pkt_len < 2 || pkt_len > 4096 {
+        let pkt_len = u16::from_le_bytes(hdr) as usize;
+        if pkt_len < 3 || pkt_len > 4096 {
             break;
         }
-        let mut body = vec![0u8; pkt_len - 2];
-        if socket.read_exact(&mut body).await.is_err() {
+        let mut p = vec![0u8; pkt_len - 2];
+        if socket.read_exact(&mut p).await.is_err() {
             break;
         }
-
-        let op = body[0];
+        let op = p[0];
         match op {
-            0x02 => {
-                // Heartbeat / Ping
-                let pong = [0x04, 0x00, 0x02, 0x00];
+            // Inter-server ping
+            0x00 => {
+                let pong = [0x03, 0x00, 0x00];
                 let _ = socket.write_all(&pong).await;
+            }
+            // Inter-server broadcast from GameServer (e.g. GM Announcement / World Chat)
+            0x02 => {
+                if p.len() >= 9 {
+                    let sender_id = u32::from_le_bytes(p[1..5].try_into().unwrap());
+                    let channel_id = u32::from_le_bytes(p[5..9].try_into().unwrap());
+                    let text = String::from_utf8_lossy(&p[9..]).to_string();
+                    let _ = channel_mgr.broadcast(sender_id, "GameServer".to_string(), channel_id, text);
+                }
             }
             _ => {}
         }
     }
-
-    println!(
-        "WARN: [ChatServer-InternalGS] GameServer #{} disconnected from ChatServer.",
-        server_id
-    );
 }

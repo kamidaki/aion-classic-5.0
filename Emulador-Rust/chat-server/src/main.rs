@@ -1,10 +1,11 @@
-mod channels;
-mod config;
-mod internal_gs;
-mod protocol;
+pub mod channels;
+pub mod config;
+pub mod network;
+pub mod protocol;
 
 use channels::ChannelManager;
 use config::load_config;
+use network::internal::start_internal_gs_listener;
 use protocol::{ChatClientPacket, ChatServerPackets};
 use std::sync::Arc;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
@@ -23,7 +24,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     println!("INFO: [ChatServer] Starting Aion Classic Dedicated Chat Server...");
-
 
     let cfg_path = "config/launcher.json";
     let cfg = load_config(cfg_path);
@@ -51,10 +51,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cfg_internal = cfg.clone();
     let mgr_internal = Arc::clone(&channel_manager);
     tokio::spawn(async move {
-        internal_gs::start_internal_gs_listener(cfg_internal, mgr_internal).await;
+        start_internal_gs_listener(cfg_internal, mgr_internal).await;
     });
 
-    println!("INFO: [ChatServer] Initialized channel manager with {} default channels", 4);
+    println!("INFO: [ChatServer] Initialized channel manager with 4 default channels");
     println!("INFO: [ChatServer] Ready to accept client and inter-server connections (Internal Port: {}).", cfg.internal_port);
 
     loop {

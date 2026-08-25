@@ -1,26 +1,19 @@
-use base64::Engine;
-use parking_lot::Mutex;
-use rusqlite::{params, Connection, Result};
-use sha1::{Digest, Sha1};
-use std::sync::Arc;
-use std::time::{SystemTime, UNIX_EPOCH};
+//! Data Access Object (DAO) layer for Login Server.
 
-pub fn encode_password(password: &str) -> String {
-    let mut hasher = Sha1::new();
-    hasher.update(password.as_bytes());
-    base64::engine::general_purpose::STANDARD.encode(hasher.finalize())
-}
+pub mod account_dao;
+pub mod gameserver_dao;
+pub mod session_dao;
+
+pub use account_dao::{Account, AccountDao, encode_password};
+pub use gameserver_dao::{GameServerDao, GameServerRecord};
+pub use session_dao::SessionDao;
+
+use parking_lot::Mutex;
+use rusqlite::{Connection, Result};
+use std::sync::Arc;
 
 pub struct AuthDb {
     conn: Arc<Mutex<Connection>>,
-}
-
-#[derive(Debug, Clone)]
-pub struct Account {
-    pub id: i64,
-    pub name: String,
-    pub access_level: i32,
-    pub membership: i32,
 }
 
 impl AuthDb {
@@ -143,74 +136,8 @@ impl AuthDb {
         password: &str,
         auto_create: bool,
     ) -> Result<Option<Account>> {
-        let trimmed_name = name.trim();
-        if trimmed_name.is_empty() {
-            return Ok(None);
-        }
-
         let conn = self.conn.lock();
-        let mut stmt = conn.prepare("SELECT id, name, password, access_level, membership FROM account_data WHERE name = ?1 COLLATE NOCASE")?;
-        let mut rows = stmt.query(params![trimmed_name])?;
-
-        if let Some(row) = rows.next()? {
-            let id: i64 = row.get(0)?;
-            let acc_name: String = row.get(1)?;
-            let db_pass: String = row.get(2)?;
-            let access_level: i32 = row.get(3)?;
-            let membership: i32 = row.get(4)?;
-
-            let pass_hash = encode_password(password);
-            // Valida contra o hash SHA-1 Base64 ou contra senha legada em texto puro
-            if db_pass == pass_hash || db_pass == password || db_pass.is_empty() {
-                // Se a senha estava em texto puro no DB, migra para o hash SHA-1 Base64 oficial
-                if db_pass == password && db_pass != pass_hash && !password.is_empty() {
-                    drop(rows);
-                    drop(stmt);
-                    let _ = conn.execute("UPDATE account_data SET password = ?1 WHERE id = ?2", params![pass_hash, id]);
-                }
-                println!("INFO: [AuthDb] Conta '{}' (ID: {}) autenticada com sucesso", acc_name, id);
-                Ok(Some(Account {
-                    id,
-                    name: acc_name,
-                    access_level,
-                    membership,
-                }))
-            } else {
-                println!("WARN: [AuthDb] Senha incorreta para conta '{}'", trimmed_name);
-                Ok(None)
-            }
-        } else if auto_create {
-            drop(rows);
-            drop(stmt);
-            let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
-            let pass_hash = if !password.is_empty() {
-                encode_password(password)
-            } else {
-                encode_password(trimmed_name)
-            };
-            conn.execute(
-                "INSERT INTO account_data (name, password, access_level, membership, created_at, updated_at)
-                 VALUES (?1, ?2, 0, 0, ?3, ?3)",
-                params![trimmed_name, pass_hash, now],
-            )?;
-            let id = conn.last_insert_rowid();
-
-            let _ = conn.execute(
-                "INSERT OR REPLACE INTO account_time (account_id, last_active) VALUES (?1, ?2)",
-                params![id, now],
-            );
-
-            println!("INFO: [AuthDb] Nova conta auto-criada com sucesso: '{}' (ID: {}) com senha criptografada em SHA-1 Base64", trimmed_name, id);
-
-            Ok(Some(Account {
-                id,
-                name: trimmed_name.to_string(),
-                access_level: 0,
-                membership: 0,
-            }))
-        } else {
-            Ok(None)
-        }
+        AccountDao::authenticate_or_create(&conn, name, password, auto_create)
     }
 
     pub fn get_or_create_account(&self, name: &str, auto_create: bool) -> Result<Option<Account>> {
@@ -219,67 +146,21 @@ impl AuthDb {
 
     pub fn get_character_count(&self, account_name: &str) -> u8 {
         let conn = self.conn.lock();
-        let mut stmt = match conn.prepare(
-            "SELECT COUNT(*) FROM characters WHERE account_id = (SELECT id FROM account_data WHERE name = ?1 COLLATE NOCASE)"
-        ) {
-            Ok(s) => s,
-            Err(_) => return 0,
-        };
-        let count: i64 = stmt.query_row(params![account_name], |row| row.get(0)).unwrap_or(0);
-        count as u8
+        AccountDao::get_character_count(&conn, account_name)
     }
 
-
     pub fn issue_session(&self, account_id: u32, account_name: &str, session_key: u32) -> Result<String> {
-        let token = format!("{:08x}{:08x}", rand::random::<u32>(), rand::random::<u32>());
-        let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
-        let expires = now + 600; // 10 minutes
-
         let conn = self.conn.lock();
-        conn.execute(
-            "INSERT OR REPLACE INTO sessions (token, account_name, username, account_id, session_key, issued_at, created_at, expires_at)
-             VALUES (?1, ?2, ?2, ?3, ?4, ?5, ?5, ?6)",
-            params![token, account_name, account_id as i64, session_key as i64, now, expires],
-        )?;
-
-        Ok(token)
+        SessionDao::issue_session(&conn, account_id, account_name, session_key)
     }
 
     pub fn register_token(&self, token: &str, account_name: &str) -> Result<()> {
-        let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
-        let expires = now + 600;
         let conn = self.conn.lock();
-        conn.execute(
-            "INSERT OR REPLACE INTO sessions (token, account_name, username, issued_at, created_at, expires_at)
-             VALUES (?1, ?2, ?2, ?3, ?3, ?4)",
-            params![token, account_name, now, expires],
-        )?;
-        Ok(())
+        SessionDao::register_token(&conn, token, account_name)
     }
 
     pub fn get_game_servers(&self) -> Result<Vec<GameServerRecord>> {
         let conn = self.conn.lock();
-        let mut stmt = conn.prepare("SELECT id, mask, password FROM gameservers ORDER BY id")?;
-        let rows = stmt.query_map([], |row| {
-            Ok(GameServerRecord {
-                id: row.get::<_, i64>(0)? as u8,
-                mask: row.get(1)?,
-                password: row.get(2)?,
-                port: 7777,
-            })
-        })?;
-        let mut servers = Vec::new();
-        for r in rows {
-            servers.push(r?);
-        }
-        Ok(servers)
+        GameServerDao::get_all(&conn)
     }
-}
-
-#[derive(Debug, Clone)]
-pub struct GameServerRecord {
-    pub id: u8,
-    pub mask: String,
-    pub password: String,
-    pub port: u16,
 }
