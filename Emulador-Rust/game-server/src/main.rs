@@ -24,6 +24,7 @@ mod error;
 mod game;
 mod login_connector;
 pub mod network;
+pub use game::controller;
 
 use crossbeam_channel::Sender;
 use data_loader::GameData;

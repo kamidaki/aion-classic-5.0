@@ -10,6 +10,7 @@ pub mod admin;
 pub mod arena;
 pub mod broker;
 mod character;
+pub mod controller;
 pub mod craft;
 pub mod cron_events;
 pub mod data;
