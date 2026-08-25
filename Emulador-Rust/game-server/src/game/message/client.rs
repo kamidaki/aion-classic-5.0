@@ -175,6 +175,7 @@ define_messages!(
     (SECOND_PASSWORD, SecondPassword, 0xD2),
     (READY_ENTER_WORLD_ACK, ReadyEnterWorldAck, 0xE2),
     (HQ_LOGIN, HqLogin, 0xF0),
+    (L2AUTH_LOGIN, L2AuthLogin, 0x5D),
     (SESSION_KEY_ECHO, SessionKeyEcho, 0x5E),
     (MACHINE_INFO, MachineInfo, 0xD6),
     (CHAT_MESSAGE_PUBLIC, ChatMessagePublic, 0x1B),
@@ -503,11 +504,66 @@ impl Deserialise for HqLogin {
         // unknown
         len += 8;
 
-        let authn_token = std::str::from_utf8(&buf[len..]).unwrap().into();
+        let authn_token = std::str::from_utf8(&buf[len..]).unwrap_or("").into();
         Self {
             id,
             key,
             authn_token,
+        }
+    }
+}
+
+/// Autenticacao nativa NCSoft (Opcode 0x5D - C_L2AUTH_LOGIN / CM_AUTH_CLIENT)
+#[derive(Debug, Clone)]
+pub struct L2AuthLogin {
+    pub play_ok2: u32,
+    pub play_ok1: u32,
+    pub account_id: u32,
+    pub login_ok: u32,
+}
+
+impl L2AuthLogin {
+    pub fn handle(
+        &self,
+        tx: &Sender<ClientUpdate>,
+        session: &mut Account,
+    ) -> Vec<s::Message> {
+        session.auth_server.id = self.account_id;
+        session.auth_server.key = self.play_ok2;
+        println!(
+            "INFO: [GameServer] <- [L2AuthLogin/0x5D] Autenticado: account_id={}, play_ok2=0x{:08X}, play_ok1=0x{:08X}",
+            self.account_id, self.play_ok2, self.play_ok1
+        );
+
+        // Envia a lista de personagens para o client exibir a tela de selecao de personagens
+        tx.send(session.send(Message::CharacterList(CharacterList))).unwrap();
+
+        vec![
+            s::Message::ReplyNpLoginGamesvr(s::ReplyNpLoginGamesvr::new()),
+            s::Message::ReplyNpLoginGamesvr(s::ReplyNpLoginGamesvr::new()),
+            s::Message::NpShopGoodsCount(s::NpShopGoodsCount::new()),
+            s::Message::ReadyEnterWorld(s::ReadyEnterWorld::new()),
+            s::Message::L2AuthLoginCheck(s::L2AuthLoginCheck::new()),
+            s::Message::BuilderLevel(s::BuilderLevel::new()),
+        ]
+    }
+}
+
+impl Deserialise for L2AuthLogin {
+    fn deserialise(buf: &[u8]) -> Self
+    where
+        Self: Sized,
+    {
+        let play_ok2 = if buf.len() >= 4 { u32::from_le_bytes(buf[0..4].try_into().unwrap()) } else { 0 };
+        let play_ok1 = if buf.len() >= 8 { u32::from_le_bytes(buf[4..8].try_into().unwrap()) } else { 0 };
+        let account_id = if buf.len() >= 12 { u32::from_le_bytes(buf[8..12].try_into().unwrap()) } else { 0 };
+        let login_ok = if buf.len() >= 16 { u32::from_le_bytes(buf[12..16].try_into().unwrap()) } else { 0 };
+
+        Self {
+            play_ok2,
+            play_ok1,
+            account_id,
+            login_ok,
         }
     }
 }
