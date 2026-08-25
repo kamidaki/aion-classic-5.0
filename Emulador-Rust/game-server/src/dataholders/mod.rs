@@ -164,10 +164,10 @@ mod tests {
 
         let count = holder.load_from_file(&temp_file).unwrap();
         assert_eq!(count, 3);
-        assert_eq!(holder.elyos_spawn.map_id, 210010000);
-        assert_eq!(holder.elyos_spawn.heading, 59);
-        assert_eq!(holder.asmodian_spawn.map_id, 220010000);
-        assert_eq!(holder.asmodian_spawn.heading, 66);
+        assert_eq!(holder.elyos_spawn.unwrap().map_id, 210010000);
+        assert_eq!(holder.elyos_spawn.unwrap().heading, 59);
+        assert_eq!(holder.asmodian_spawn.unwrap().map_id, 220010000);
+        assert_eq!(holder.asmodian_spawn.unwrap().heading, 66);
 
         let items = holder.get_initial_items("ASSASSIN");
         assert_eq!(items.len(), 3);

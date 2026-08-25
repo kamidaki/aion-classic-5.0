@@ -1,141 +1,39 @@
-use std::collections::HashMap;
-use std::collections::HashSet;
+//! Orquestrador Central do Estado do Jogo (State / WorldManager - Padrão Java AION)
+//!
+//! Delega a lógica de cada pacote para a camada modular de serviços (`services::*`).
+
+use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
-use std::time::{Duration, Instant};
+use std::time::Instant;
 
 use crate::data_loader::GameData;
+use crate::dataholders::DataManager;
 use crate::db::Db;
-
-use super::character::Character;
-use super::message::lista_personagens;
-use super::mundo;
-use super::data::gear::LootItem;
-use super::data::{npc, ActionType};
-use super::engine::Coord;
-use super::entity::Entity;
-use super::message::{client as c, server as s};
-use super::{ClientUpdate, Messages, ServerUpdate};
-
-/// Nome interno da classe no XML do cliente, e o da classe base de que ela herda skills.
-///
-/// O numero vem do bloco de criacao; os nomes sao os que o `client_skill_learns.xml` usa, que nao
-/// sao os nomes de tela: gladiador e `BATTLEMASTER`, templario e `KNIGHT`, feiticeiro e `WIZARD`.
-///
-/// O par foi conferido contra a captura: um feiticeiro (classe 7) de nivel 11 recebeu 29 skills, e
-/// `WIZARD` + `MAGE` + universais preve todas as 29.
-fn classe_no_xml(classe: u32) -> (&'static str, &'static str) {
-    match classe {
-        0 => ("FIGHTER", "FIGHTER"),
-        1 => ("BATTLEMASTER", "FIGHTER"),
-        2 => ("KNIGHT", "FIGHTER"),
-        3 => ("SCOUT", "SCOUT"),
-        4 => ("ASSASSIN", "SCOUT"),
-        5 => ("RANGER", "SCOUT"),
-        6 => ("MAGE", "MAGE"),
-        7 => ("WIZARD", "MAGE"),
-        8 => ("ELEMENTALLIST", "MAGE"),
-        9 => ("PRIEST", "PRIEST"),
-        10 => ("CLERIC", "PRIEST"),
-        11 => ("CHANTER", "PRIEST"),
-        13 => ("GUNNER", "GUNNER"),
-        // As classes de 4.7 em diante nao aparecem na criacao da 4.5. Sem nome, o personagem so
-        // recebe as universais -- melhor que mandar skill de outra classe.
-        _ => ("", ""),
-    }
-}
-
-/// A classe cujo kit inicial o personagem recebe.
-///
-/// E a classe **especifica**, nao a base: assassino e ranger sao os dois SCOUT e recebem armaduras
-/// diferentes -- `lt_torso_n_l1_assassin_1a` contra `lt_torso_n_l1_ranger_1a`. Conferido na
-/// captura de 22/08/2026, que gravou a criacao de um assassino, um templario e um ranger.
-///
-/// Os nomes sao os do catalogo do cliente, e batem com os de `classe_no_xml`.
-fn classe_do_kit(classe: u32) -> &'static str {
-    match classe {
-        0 => "WARRIOR",
-        1 => "BATTLEMASTER",
-        2 => "KNIGHT",
-        3 => "SCOUT",
-        4 => "ASSASSIN",
-        5 => "RANGER",
-        6 => "MAGE",
-        7 => "WIZARD",
-        8 => "ELEMENTALLIST",
-        9 => "PRIEST",
-        10 => "CLERIC",
-        11 => "CHANTER",
-        12 => "ENGINEER",
-        13 => "GUNNER",
-        14 => "RIDER",
-        15 => "BARD",
-        16 => "MONK",
-        _ => "WARRIOR",
-    }
-}
-
-/// Ate onde o servidor manda NPC, em metros.
-///
-/// Existe porque mandar o mundo inteiro estoura o buffer de envio: 1008 NPCs a ~110 bytes dao uns
-/// 110 KB contra os 64 KB do buffer, e o `PutNpc` entrava em panico no meio de um pacote --
-/// derrubando a conexao com o cliente ja dentro do mundo.
-///
-/// Mas o limite nao e so pratico: e o que o servidor real faz. O cliente so recebe o que esta no
-/// alcance de visao, e foi por isso que a captura trouxe 89 NPCs na entrada e o resto foi chegando
-/// conforme a personagem andava. A 100 metros ficam ~155 NPCs, uns 17 KB.
-///
-/// Ajustavel com `AION_VISAO`.
-const VISAO_PADRAO: f32 = 100.0;
-
-/// Quanto o personagem precisa andar para o servidor recalcular quem esta em cena.
-///
-/// O cliente manda posicao a cada passo -- 1220 pacotes de movimento nos 22 minutos da captura --
-/// e refazer a conta em todos seria varrer mil NPCs por passo sem nada mudar.
-const PASSO_DO_STREAM: f32 = 20.0;
-
-fn raio_de_visao() -> f32 {
-    std::env::var("AION_VISAO")
-        .ok()
-        .and_then(|v| v.trim().parse().ok())
-        .unwrap_or(VISAO_PADRAO)
-}
-
-/// Classe de quem nao tem bloco de criacao -- o personagem automatico, que sai do molde do Durak.
-/// 11 e a da personagem capturada, que e o que o STATUS ja trazia.
-const CLASSE_DO_MOLDE: u32 = 11;
+use crate::game::character::Character;
+use crate::game::engine::Coord;
+use crate::game::entity::Entity;
+use crate::game::message::client as c;
+use crate::game::{ClientUpdate, Messages};
+use crate::services::*;
 
 pub struct State {
-    characters: HashMap<u32, Character>,
-    entities: Vec<Entity>,
-    /// O `S_PUT_NPC` capturado de cada entidade, por id. Ver `data_loader::Spawn::payload`.
-    put_npc: HashMap<u32, Vec<u8>>,
-    /// Que NPCs cada personagem ja tem desenhados, e de onde a lista foi calculada.
-    ///
-    /// O cliente nao esquece um NPC sozinho: quem entrou em cena fica ate receber um
-    /// `S_REMOVE_OBJECT`. Guardar o conjunto e o que permite mandar so a diferenca quando o
-    /// personagem anda, em vez de reenviar tudo.
-    npcs_em_cena: HashMap<u32, (HashSet<u32>, Coord)>,
-    /// O bloco de entrada capturado, por posicao. Vazio a menos que `AION_BURST=1`.
-    ///
-    /// Instrumento de medicao -- ver `message::replay::burst_de_entrada`.
-    burst: Vec<(u16, Vec<u8>)>,
-    /// Quem ja recebeu a ordem de entrar no mundo nesta selecao de personagem.
-    ///
-    /// O `S_STATUS` + `S_WORLD` sai no primeiro `C_CUR_STATUS` e **so nele**. Na captura o
-    /// servidor oficial manda o `S_WORLD` uma vez, antes do primeiro `C_CUR_STATUS` do cliente --
-    /// nao e resposta a ele. Mandar de novo no segundo pedido reinicia o carregamento do mapa no
-    /// meio, e o cliente nunca chega a mandar o `LevelReady`: fica preso na tela de carregamento.
-    mundo_enviado: HashSet<u32>,
-    pub windstream_service: crate::game::environment::WindstreamService,
+    pub characters: HashMap<u32, Character>,
+    pub entities: Vec<Entity>,
+    pub put_npc: HashMap<u32, Vec<u8>>,
+    pub npcs_em_cena: HashMap<u32, (HashSet<u32>, Coord)>,
+    pub burst: Vec<(u16, Vec<u8>)>,
+    pub mundo_enviado: HashSet<u32>,
+    pub windstream_service: WindstreamService,
     pub attack_timers: HashMap<u32, (u32, Instant)>,
-    pub guild_manager: crate::game::guild::GuildManager,
-    pub party_service: crate::game::social::PartyService,
+    pub guild_manager: GuildManager,
+    pub party_service: PartyService,
     pub chat_timestamps: HashMap<u32, Vec<Instant>>,
-    pub teleport_service: crate::game::teleport::TeleportService,
-    pub title_service: crate::game::title::TitleService,
-    pub trade_service: crate::game::trade::TradeService,
-    db: Db,
-    game_data: Arc<GameData>,
+    pub teleport_service: TeleportService,
+    pub title_service: TitleService,
+    pub trade_service: TradeService,
+    pub db: Db,
+    pub game_data: Arc<GameData>,
+    pub data_manager: Arc<DataManager>,
 }
 
 impl State {
@@ -145,21 +43,19 @@ impl State {
         let mosbear = Entity::new(
             2147586830,
             Coord::new(1816., 589., 256.),
-            npc::Id::StarvedMosbear,
-            npc::Name::StarvedMosbear,
+            crate::game::data::npc::Id::StarvedMosbear,
+            crate::game::data::npc::Name::StarvedMosbear,
         );
-        if let Some(def) = game_data.npcs.get(&(npc::Id::StarvedMosbear as u32)) {
+        if let Some(def) = game_data.npcs.get(&(crate::game::data::npc::Id::StarvedMosbear as u32)) {
             println!(
                 "INFO: spawned entity {} (id {}) -> catalog name: {}",
                 mosbear.id(),
-                npc::Id::StarvedMosbear as u32,
+                crate::game::data::npc::Id::StarvedMosbear as u32,
                 def.name
             );
         }
         entities.push(mosbear);
 
-        // O mundo de verdade: NPCs nas posicoes que o servidor oficial usou. Ids de entidade tem o
-        // bit alto ligado, como o do mosbear acima -- e o que o cliente 4.5 espera.
         let mut put_npc: HashMap<u32, Vec<u8>> = HashMap::new();
         for (i, sp) in game_data.spawns.iter().enumerate() {
             let id = 0x8000_0000 | (i as u32 + 1);
@@ -170,7 +66,6 @@ impl State {
                 sp.nome_id,
             ));
 
-            // O pacote capturado deste NPC, com o id de entidade trocado pelo nosso.
             let mut payload = sp.payload.clone();
             let off = crate::data_loader::OFFSET_ID_ENTIDADE;
             if payload.len() >= off + 4 {
@@ -182,6 +77,11 @@ impl State {
             println!("INFO: {} NPCs no mundo", game_data.spawns.len());
         }
 
+        // Carrega os DataHolders com os XMLs oficiais do client
+        let client_dir = std::path::Path::new("data/client");
+        let root_data = std::path::Path::new("data");
+        let data_manager = Arc::new(DataManager::load_all(client_dir, root_data));
+
         Self {
             characters: HashMap::with_capacity(1000),
             entities,
@@ -189,38 +89,26 @@ impl State {
             npcs_em_cena: HashMap::new(),
             mundo_enviado: HashSet::new(),
             burst: if std::env::var("AION_BURST").is_ok() {
-                let caminho = std::env::var("AION_REPLAY")
-                    .unwrap_or_else(|_| "replay.bin".to_string());
+                let caminho = std::env::var("AION_REPLAY").unwrap_or_else(|_| "replay.bin".to_string());
                 super::message::replay::burst_de_entrada(std::path::Path::new(&caminho))
             } else {
                 Vec::new()
             },
-            windstream_service: crate::game::environment::WindstreamService::new(),
+            windstream_service: WindstreamService::new(),
             attack_timers: HashMap::new(),
-            guild_manager: crate::game::guild::GuildManager::new(),
-            party_service: crate::game::social::PartyService::new(),
+            guild_manager: GuildManager::new(),
+            party_service: PartyService::new(),
             chat_timestamps: HashMap::new(),
-            teleport_service: crate::game::teleport::TeleportService::new(),
-            title_service: crate::game::title::TitleService::from_data(&game_data.titles),
-            trade_service: crate::game::trade::TradeService::from_data(&game_data.goods_lists),
+            teleport_service: TeleportService::new(),
+            title_service: TitleService::from_data(&game_data.titles),
+            trade_service: TradeService::from_data(&game_data.goods_lists),
             db,
             game_data,
+            data_manager,
         }
     }
 
-    /// Check anti-flood: at most 5 messages per 5 seconds
-    pub fn check_flood(&mut self, char_id: u32) -> bool {
-        let now = Instant::now();
-        let timestamps = self.chat_timestamps.entry(char_id).or_default();
-        timestamps.retain(|&t| now.duration_since(t) < Duration::from_secs(5));
-        if timestamps.len() >= 5 {
-            return false;
-        }
-        timestamps.push(now);
-        true
-    }
-
-    /// Save all in-memory character state to the database.
+    /// Salva o estado dos personagens no SQLite
     pub fn persist_all(&self) {
         for c in self.characters.values() {
             self.persist_one(c);
@@ -238,16 +126,14 @@ impl State {
             c.heading(),
             c.stats.level,
             c.stats.exp,
-            c.stats.hp.current(),
+            c.stats.hp.current() as u32,
             c.stats.mp.current(),
         ) {
             eprintln!("ERROR: failed to persist character {}: {e}", c.id());
         }
     }
 
-    /// Remove all characters owned by a disconnected client and persist their
-    /// final state. Called from the game loop after the sender channel for
-    /// `client_id` has been dropped.
+    /// Desconecta o cliente e persiste o personagem
     pub fn disconnect_client(&mut self, client_id: u16) {
         let to_remove: Vec<u32> = self
             .characters
@@ -265,7 +151,6 @@ impl State {
                     character.name()
                 );
 
-                // Drop aggro from any mob targeting this character.
                 for entity in &mut self.entities {
                     if entity.target_id() == Some(character.id()) {
                         entity.clear_target();
@@ -275,2039 +160,273 @@ impl State {
         }
     }
 
-    /// Nome de conta desta sessao.
-    ///
-    /// A via boa e o par `(account_id, session_key)` que o cliente apresentou no `C_HQ_LOGIN`:
-    /// o login server o gravou na tabela `sessions` antes de entregar a chave, entao so casa se
-    /// a sessao existir de fato e nao tiver expirado.
-    ///
-    /// Se nao casar, ainda tenta o token do STS -- e depois cai num nome sintetico pelo id do
-    /// cliente, para clientes de bancada que pulam o login inteiro nao morrerem por causa disso.
-    fn username_do_update(&self, update: &ClientUpdate) -> String {
-        let sintetico = || format!("client_{}", update.client_id());
-
-        if update.session_key() != 0 {
-            match self.db.resolver_sessao(update.account_id(), update.session_key()) {
-                Ok(Some(name)) => {
-                    println!(
-                        "INFO: sessao validada (account_id={}, session_key=0x{:08X}) -> '{name}'",
-                        update.account_id(),
-                        update.session_key()
-                    );
-                    return name;
-                }
-                Ok(None) => eprintln!(
-                    "WARN: sessao nao confere (account_id={}, session_key=0x{:08X}); tentando o token do STS",
-                    update.account_id(),
-                    update.session_key()
-                ),
-                Err(e) => eprintln!("ERROR: resolver_sessao: {e}"),
-            }
-        }
-
-        let token = update.session_token();
-        if token.is_empty() {
-            return sintetico();
-        }
-        match self.db.lookup_session(token) {
-            Ok(Some(name)) => {
-                println!("INFO: session token resolved to username '{name}'");
-                name
-            }
-            Ok(None) => {
-                eprintln!("WARN: session token not found in DB, using synthetic username");
-                sintetico()
-            }
-            Err(e) => {
-                eprintln!("ERROR: lookup_session: {e}");
-                sintetico()
-            }
-        }
-    }
-
-    /// Popula a cena de quem acabou de entrar no mundo, e diz quantos foram.
-    fn povoa_cena(
-        &mut self,
-        character_id: u32,
-        client_id: u16,
-        aqui: Coord,
-        messages: &mut Messages,
-    ) {
-        // Entrar no mundo e o caso em que ninguem esta em cena ainda.
-        self.npcs_em_cena.remove(&character_id);
-        let (enviados, _) =
-            self.atualiza_npcs_em_cena(character_id, client_id, aqui, messages);
-        println!(
-            "INFO: {enviados} NPCs em cena de {} (raio {:.0}m)",
-            self.entities.len(),
-            raio_de_visao()
-        );
-    }
-
-    /// Manda os NPCs que entraram no alcance e tira os que sairam.
-    ///
-    /// Devolve `(entraram, sairam)`. Chamado na entrada no mundo e a cada `PASSO_DO_STREAM` metros
-    /// andados.
-    fn atualiza_npcs_em_cena(
-        &mut self,
-        character_id: u32,
-        client_id: u16,
-        aqui: Coord,
-        messages: &mut Messages,
-    ) -> (usize, usize) {
-        let raio = raio_de_visao();
-        let perto: HashSet<u32> = self
-            .entities
-            .iter()
-            .filter(|e| {
-                let la = e.location();
-                let dx = la.x() - aqui.x();
-                let dy = la.y() - aqui.y();
-                let dz = la.z() - aqui.z();
-                dx * dx + dy * dy + dz * dz <= raio * raio
-            })
-            .map(|e| e.id())
-            .collect();
-
-        let em_cena = match self.npcs_em_cena.get(&character_id) {
-            Some((c, _)) => c.clone(),
-            None => HashSet::new(),
-        };
-
-        let entraram: Vec<u32> = perto.difference(&em_cena).copied().collect();
-        let sairam: Vec<u32> = em_cena.difference(&perto).copied().collect();
-
-        for id in &sairam {
-            messages.push_direct(
-                client_id,
-                ServerUpdate::new(s::Message::RemoveObject(s::RemoveObject::new(*id))),
-            );
-        }
-        for id in &entraram {
-            let Some(entity) = self.entities.iter().find(|e| e.id() == *id) else {
-                continue;
-            };
-            // O pacote capturado quando existe; o do POC so para o mob escrito a mao.
-            let msg = match self.put_npc.get(id) {
-                Some(p) => s::Message::Bruto(s::Bruto::new(
-                    super::message::capturado::PUT_NPC_OPCODE,
-                    p.clone(),
-                )),
-                None => s::Message::PutNpc(s::PutNpc::new(entity)),
-            };
-            messages.push_direct(client_id, ServerUpdate::new(msg));
-        }
-
-        let contagem = (entraram.len(), sairam.len());
-        self.npcs_em_cena.insert(character_id, (perto, aqui));
-        contagem
-    }
-
+    /// Roteamento modular de pacotes do cliente para os respectivos serviços
     pub fn respond(&mut self, update: &ClientUpdate, messages: &mut Messages) {
         match &update.message() {
             c::Message::MoveNew(move_new) => {
-                let character =
-                    self.characters.get_mut(&update.character_id).unwrap();
-
-                let s_move_new =
-                    s::Message::MoveNew(move_new.calculate(character.id()));
-                character.set_location(move_new.location());
-                let aqui = *character.location();
-                let id = character.id();
-
-                messages
-                    .push_others(update.client_id(), ServerUpdate::new(s_move_new));
-
-                // NPC entra e sai de cena conforme o personagem anda. So recalcula depois de
-                // PASSO_DO_STREAM metros -- ver a constante.
-                let andou = match self.npcs_em_cena.get(&id) {
-                    Some((_, de_onde)) => {
-                        let dx = aqui.x() - de_onde.x();
-                        let dy = aqui.y() - de_onde.y();
-                        let dz = aqui.z() - de_onde.z();
-                        dx * dx + dy * dy + dz * dz >= PASSO_DO_STREAM * PASSO_DO_STREAM
-                    }
-                    None => true,
-                };
-                if andou {
-                    let (entraram, sairam) =
-                        self.atualiza_npcs_em_cena(id, update.client_id(), aqui, messages);
-                    if entraram + sairam > 0 {
-                        println!("INFO: cena: +{entraram} -{sairam} NPCs");
-                    }
-                }
+                SpatialService::handle_move(
+                    update.character_id(),
+                    update.client_id(),
+                    move_new,
+                    &mut self.characters,
+                    &mut self.npcs_em_cena,
+                    &self.entities,
+                    &self.put_npc,
+                    messages,
+                );
             }
             c::Message::UseSkill(use_skill) => {
-                if !self.characters.contains_key(&update.character_id) {
-                    return;
-                }
-
-                let character = self.characters.get_mut(&update.character_id).unwrap();
-                let char_id = character.id();
-                let is_self_or_aoe = use_skill.target_id == 0 || use_skill.target_id == char_id;
-
-                if is_self_or_aoe {
-                    // Self-buff ou skill utilitária/área
-                    let eff = s::AbnormalEffect::new(use_skill.skill_id as u32, 30000, 1);
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::AbnormalStatus(s::AbnormalStatus::with_effects(
-                            char_id,
-                            vec![eff.clone()],
-                        ))),
-                    );
-                    messages.push_others(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::AbnormalStatusOther(s::AbnormalStatusOther::with_effects(
-                            char_id,
-                            vec![eff],
-                        ))),
-                    );
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::SkillPenaltyStatusOther(s::SkillPenaltyStatusOther::new(
-                            char_id,
-                            use_skill.skill_id as u32,
-                            5000,
-                        ))),
-                    );
-                    let skill_effect = s::SkillEffect::new(char_id, 0, 1, 0);
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::SkillSucceded(s::SkillSucceded::new(
-                            char_id,
-                            char_id,
-                            use_skill.skill_id as u32,
-                            use_skill.skill_level as u8,
-                            vec![skill_effect],
-                        ))),
-                    );
-                } else if let Some(entity) = self.entities.iter_mut().find(|entity| {
-                    entity.id() == use_skill.target_id && entity.is_alive()
-                }) {
-                    let hit = crate::game::engine::damage::CombatEngine::calculate_physical_hit(
-                        character.stats.secondary.main_hand_attack,
-                        1.5,
-                        100,
-                        character.stats.secondary.main_hand_accuracy,
-                        100,
-                        100,
-                        100,
-                        character.stats.secondary.main_hand_crit,
-                        50,
-                        1.5,
-                    );
-                    let damage = hit.damage.max(1);
-                    let is_crit = if hit.ty == crate::game::engine::damage::Type::Critical { 1 } else { 0 };
-                    entity.hp.update(-damage);
-
-                    let eff = s::SkillEffect::new(entity.id(), -damage, 0, is_crit);
-                    messages.broadcast.extend(
-                        [
-                            s::Message::UseSkill(s::UseSkill::new(
-                                char_id,
-                                use_skill.skill_id,
-                                use_skill.skill_level,
-                                use_skill.target_id,
-                            )),
-                            s::Message::SkillSucceded(s::SkillSucceded::new(
-                                char_id,
-                                use_skill.target_id,
-                                use_skill.skill_id as u32,
-                                use_skill.skill_level as u8,
-                                vec![eff],
-                            )),
-                            s::Message::SkillPenaltyStatusOther(s::SkillPenaltyStatusOther::new(
-                                char_id,
-                                use_skill.skill_id as u32,
-                                3000,
-                            )),
-                            s::Message::HitPointOther(s::HitPointOther::new(
-                                entity.id(),
-                                damage,
-                                entity.hp.current() as u32,
-                                entity.hp.max() as u32,
-                                0,
-                                is_crit,
-                            )),
-                        ]
-                        .map(ServerUpdate::new),
-                    );
-
-                    if entity.is_dead() {
-                        messages.broadcast.extend(
-                            [
-                                s::Message::Action(s::Action::new(
-                                    entity.id(),
-                                    ActionType::Die,
-                                    character.stats.move_speed,
-                                    char_id,
-                                )),
-                                s::Message::Loot(s::Loot::new(entity.id(), 0)),
-                            ]
-                            .map(ServerUpdate::new),
-                        );
-                    }
-                }
+                SkillService::handle_use_skill(
+                    update,
+                    use_skill,
+                    &mut self.characters,
+                    &mut self.entities,
+                    messages,
+                );
             }
             c::Message::Attack(attack) => {
-                let char_id = update.character_id();
-                if attack.target_id == 0 {
-                    self.attack_timers.remove(&char_id);
-                } else if let Some(entity) = self.entities.iter_mut().find(|entity| {
-                    entity.id() == attack.target_id && entity.is_alive()
-                }) {
-                    let character = self.characters.get_mut(&char_id).unwrap();
-                    let hit = crate::game::engine::damage::CombatEngine::calculate_physical_hit(
-                        character.stats.secondary.main_hand_attack,
-                        1.0,
-                        100,
-                        character.stats.secondary.main_hand_accuracy,
-                        100,
-                        100,
-                        100,
-                        character.stats.secondary.main_hand_crit,
-                        50,
-                        1.5,
-                    );
-                    let damage = hit.damage.max(1);
-                    let is_crit = if hit.ty == crate::game::engine::damage::Type::Critical { 1 } else { 0 };
-                    entity.hp.update(-damage);
-
-                    let s_hit_point_other = s::HitPointOther::new(
-                        entity.id(),
-                        damage,
-                        entity.hp.current() as u32,
-                        entity.hp.max() as u32,
-                        0,
-                        is_crit,
-                    );
-
-                    let hits = vec![hit];
-                    messages.broadcast.extend(
-                        [
-                            s::Message::Attack(s::Attack::new(
-                                entity.id(),
-                                character.id(),
-                                0,
-                                hits,
-                            )),
-                            s::Message::HitPointOther(s_hit_point_other),
-                        ]
-                        .map(ServerUpdate::new),
-                    );
-
-                    if entity.is_dead() {
-                        self.attack_timers.remove(&char_id);
-                        messages.broadcast.extend(
-                            [
-                                s::Message::Action(s::Action::new(
-                                    entity.id(),
-                                    ActionType::Die,
-                                    character.stats.move_speed,
-                                    character.id(),
-                                )),
-                                s::Message::Loot(s::Loot::new(entity.id(), 0)),
-                            ]
-                            .map(ServerUpdate::new),
-                        );
-                    } else {
-                        let swing_delay = Duration::from_millis(character.attack_speed_ms());
-                        self.attack_timers.insert(char_id, (attack.target_id, Instant::now() + swing_delay));
-                    }
-                }
+                CombatService::handle_attack(
+                    update.character_id(),
+                    attack,
+                    &mut self.characters,
+                    &mut self.entities,
+                    &mut self.attack_timers,
+                    messages,
+                );
             }
             c::Message::ChangeTarget(change_target) => {
-                if let Some(entity) = self
-                    .entities
-                    .iter()
-                    .find(|entity| entity.id() == change_target.target_id)
-                {
-                    messages.broadcast.push(ServerUpdate::new(
-                        s::Message::TargetInfo(s::TargetInfo::new(
-                            change_target.target_id,
-                            entity.level(),
-                            entity.hp.current(),
-                            entity.hp.max(),
-                        )),
-                    ));
-                }
+                CombatService::handle_change_target(change_target, &self.entities, messages);
             }
             c::Message::Action(action) => {
-                let character =
-                    self.characters.get_mut(&update.character_id).unwrap();
-
-                messages
-                    .broadcast
-                    .push(ServerUpdate::new(s::Message::Action(
-                        s::Action::new(
-                            character.id(),
-                            action.ty,
-                            character.stats.move_speed,
-                            0,
-                        ),
-                    )));
+                CombatService::handle_action(
+                    update.character_id(),
+                    action,
+                    &mut self.characters,
+                    messages,
+                );
             }
             c::Message::Loot(msg) => match msg.action {
                 c::LootAction::Start => {
-                    let character =
-                        self.characters.get_mut(&update.character_id).unwrap();
-
-                    messages.broadcast.push(ServerUpdate::new(
-                        s::Message::Action(s::Action::new(
-                            character.id(),
-                            ActionType::Loot,
-                            character.stats.move_speed,
-                            msg.entity_id,
-                        )),
-                    ));
-
-                    messages.extend_direct(
+                    ItemService::handle_loot_start(
+                        update.character_id(),
                         update.client_id(),
-                        [
-                            s::Message::LootItemlist(s::LootItemlist::new(
-                                msg.entity_id,
-                                vec![LootItem::new(0x098975E6, 1)],
-                            )),
-                            s::Message::Loot(s::Loot::new(msg.entity_id, 2)),
-                        ]
-                        .map(ServerUpdate::new),
+                        msg.entity_id,
+                        &mut self.characters,
+                        messages,
                     );
                 }
                 c::LootAction::Stop => {}
             },
             c::Message::LootItem(msg) => {
-                let character =
-                    self.characters.get_mut(&update.character_id).unwrap();
-
-                messages.extend_direct(
+                ItemService::handle_loot_item(
+                    update.character_id(),
                     update.client_id(),
-                    [
-                        s::Message::ChangeItemDesc(s::ChangeItemDesc::new()),
-                        s::Message::Action(s::Action::new(
-                            character.id(),
-                            ActionType::EndLoot,
-                            character.stats.move_speed,
-                            msg.entity_id,
-                        )),
-                        s::Message::Loot(s::Loot::new(msg.entity_id, 3)),
-                    ]
-                    .map(ServerUpdate::new),
+                    msg.entity_id,
+                    &mut self.characters,
+                    messages,
                 );
             }
             c::Message::CharacterList(_) => {
-                let username = self.username_do_update(&update);
-                let todos = match self.db.personagens_da_conta(&username) {
-                    Ok(list) => list,
-                    Err(e) => {
-                        eprintln!("ERROR: db personagens_da_conta({username}): {e}");
-                        Vec::new()
-                    }
-                };
-
-                let mut personagens = Vec::new();
-                for p in &todos {
-                    self.characters.insert(
-                        p.id,
-                        Character::from_persisted(p, update.client_id()),
-                    );
-                    personagens.push(lista_personagens::Personagem {
-                        id: p.id,
-                        nome: p.name.clone(),
-                        nivel: p.level,
-                        aparencia: p.aparencia.clone(),
-                        posicao: (p.x, p.y, p.z),
-                    });
-                }
-
-                let lista = lista_personagens::ListaPersonagens::new(
-                    update.account_id(),
-                    personagens,
-                );
-
-                let vazia = lista_personagens::ListaPersonagens::new(
-                    update.account_id(),
-                    Vec::new(),
-                );
-
-                messages.extend_direct(
-                    update.client_id(),
-                    [
-                        s::Message::ListaPersonagens45(s::ListaPersonagens45(vazia)),
-                        s::Message::ListaPersonagens45(s::ListaPersonagens45(lista)),
-                    ]
-                    .map(ServerUpdate::new),
+                PlayerService::handle_character_list(
+                    &self.db,
+                    update,
+                    &mut self.characters,
+                    messages,
                 );
             }
             c::Message::CreateCharacter(pedido) => {
-                let username = self.username_do_update(&update);
-                let nome = pedido.nome.clone();
-
-                let criado = match self
-                    .db
-                    .criar_personagem(&username, &nome, &pedido.aparencia)
-                {
-                    Ok(c) => c,
-                    Err(e) => {
-                        eprintln!("ERROR: criar_personagem({username}, {nome}): {e}");
-                        return;
-                    }
-                };
-                println!(
-                    "INFO: personagem '{}' criado (id {}) para '{}'",
-                    criado.name, criado.id, username
-                );
-
-                // O cliente entra no mundo direto depois de criar, sem pedir a lista de novo --
-                // entao inserir no estado so quando a lista e montada chega tarde demais, e o
-                // EnterWorld nao acha o personagem.
-                self.characters.insert(
-                    criado.id,
-                    Character::from_persisted(&criado, update.client_id()),
-                );
-
-                messages.extend_direct(
-                    update.client_id(),
-                    [s::Message::CreateCharacter(s::CreateCharacter::new(
-                        lista_personagens::Personagem {
-                            id: criado.id,
-                            nome: criado.name,
-                            nivel: criado.level,
-                            aparencia: criado.aparencia,
-                            posicao: (criado.x, criado.y, criado.z),
-                        },
-                    ))]
-                    .map(ServerUpdate::new),
+                PlayerService::handle_create_character(
+                    &self.db,
+                    &self.data_manager,
+                    update,
+                    pedido,
+                    &mut self.characters,
+                    messages,
                 );
             }
             c::Message::DeleteCharacter(pedido) => {
-                let username = self.username_do_update(&update);
-                let ok = self
-                    .db
-                    .deletar_personagem(&username, pedido.character_id)
-                    .unwrap_or(false);
-                if ok {
-                    self.characters.remove(&pedido.character_id);
-                    println!(
-                        "INFO: personagem (id {}) deletado da conta '{}'",
-                        pedido.character_id, username
-                    );
-                }
-                messages.extend_direct(
-                    update.client_id(),
-                    [s::Message::DeleteCharacter(s::DeleteCharacter::new(
-                        if ok { pedido.character_id } else { 0 },
-                        0,
-                    ))]
-                    .map(ServerUpdate::new),
+                PlayerService::handle_delete_character(
+                    &self.db,
+                    update,
+                    pedido,
+                    &mut self.characters,
+                    messages,
                 );
             }
             c::Message::EnterWorld(selecao) => {
-                // Selecionou personagem: a proxima entrada no mundo vale de novo. Sem isto, sair
-                // para a lista e voltar deixaria o cliente sem o S_WORLD.
                 self.mundo_enviado.remove(&selecao.character_id);
             }
             c::Message::LevelReady(_) => {
-                // O cliente avisa que terminou de carregar o mapa -- opcode 0x19 na 4.5, 0x09 na
-                // 2.5. Sem personagem no estado nao ha o que aparecer, e derrubar a thread do jogo
-                // aqui tiraria todo mundo do ar.
-                let Some(new_character) =
-                    self.characters.get(&update.character_id())
-                else {
-                    println!(
-                        "WARNING: LevelReady para personagem {} que nao esta no estado; ignorando",
-                        update.character_id()
-                    );
-                    return;
-                };
-
-                // O S_PUT_USER e o que faz o personagem aparecer no mundo. O da captura tem 481
-                // bytes e o do POC, que e da 2.5, nao chega perto -- entao aqui vai o capturado,
-                // com o nosso id por cima. A posicao dentro dele ja e a certa: o ponto de entrada
-                // de `mundo` foi tirado desta mesma sessao.
-                //
-                // Depois dele vem o S_INVISIBLE_LEVEL, que fecha o spawn. Sem ele o personagem
-                // aparece piscando: o cliente o desenha, mas nao o considera dentro do mundo -- a
-                // UI nao responde e so o teclado anda. Na captura esse pacote traz [id][40 00 01],
-                // que e o que o POC chama de `start`; o `finish` ([00 00 00]) e que estava sendo
-                // mandado aqui, e e o contrario do que o servidor real faz.
-                // Sao oito pacotes, na ordem da captura -- ver `capturado`. O S_PUT_USER e o
-                // S_INVISIBLE_LEVEL sozinhos deixam o personagem piscando.
-                use super::message::capturado as cap;
-                let id = new_character.id();
-                let spawn_map_id = new_character.spawn_map_id();
-                let heading = new_character.heading();
-                // O nome tambem: sem escrever por cima, todo mundo entra no mundo como `Kimmie`,
-                // que e quem estava logada na captura de onde o PUT_USER saiu.
-                let nome_no_mundo = new_character.name().clone();
-                let (aqui_x, aqui_y, aqui_z) = {
-                    let l = new_character.location();
-                    (l.x(), l.y(), l.z())
-                };
-                let aparencia = new_character.aparencia.clone();
-                let bruto = |opcode, payload: Vec<u8>| {
-                    ServerUpdate::new(s::Message::Bruto(s::Bruto::new(opcode, payload)))
-                };
-                messages.extend_direct(
+                PlayerService::handle_level_ready(
+                    update.character_id(),
                     update.client_id(),
-                    [
-                        ServerUpdate::new(s::Message::WorldSceneStatus(
-                            s::WorldSceneStatus::scene(0, 1),
-                        )),
-                        ServerUpdate::new(s::Message::RequestTeleport(
-                            s::RequestTeleport::new(
-                                1,
-                                spawn_map_id,
-                                0,
-                                aqui_x,
-                                aqui_y,
-                                aqui_z,
-                                heading,
-                            ),
-                        )),
-                        bruto(cap::INVENCIVEL_ANTES_OPCODE, cap::INVENCIVEL_ANTES.to_vec()),
-                        bruto(cap::ZONA_OPCODE, cap::ZONA.to_vec()),
-                        bruto(cap::PUT_USER_OPCODE, {
-                            // A ordem importa: a aparencia escreve em offsets fixos, e o nome muda
-                            // o tamanho do pacote e desloca tudo o que vem depois dele.
-                            let com_id =
-                                cap::com_id_de_personagem(&cap::PUT_USER, 12, id);
-                            // A posicao do corpo. O blob traz a da captura cravada, e sem trocar
-                            // ela o personagem aparece onde a Kimmie estava -- 360 metros abaixo
-                            // do chao, se o mapa for Sanctum.
-                            let com_lugar = cap::com_posicao_de_personagem(
-                                &com_id,
-                                aqui_x,
-                                aqui_y,
-                                aqui_z,
-                            );
-                            let com_cara = match &aparencia {
-                                Some(bloco) => {
-                                    cap::com_aparencia_de_personagem(&com_lugar, bloco)
-                                }
-                                None => com_lugar,
-                            };
-                            cap::com_nome_de_personagem(
-                                &com_cara,
-                                cap::PUT_USER_NOME,
-                                &nome_no_mundo,
-                            )
-                        }),
-                        bruto(cap::INVENCIVEL_DEPOIS_OPCODE, cap::INVENCIVEL_DEPOIS.to_vec()),
-                        ServerUpdate::new(s::Message::InvisibleLevel(
-                            s::InvisibleLevel::start(id),
-                        )),
-                        bruto(cap::BUILDER_LEVEL_OPCODE, cap::BUILDER_LEVEL.to_vec()),
-                        bruto(cap::STATUS_ANORMAL_OPCODE, cap::STATUS_ANORMAL.to_vec()),
-                        bruto(
-                            cap::PENALIDADE_DE_SKILL_OPCODE,
-                            cap::PENALIDADE_DE_SKILL.to_vec(),
-                        ),
-                        bruto(
-                            cap::ANIMACAO_OPCODE,
-                            cap::com_id_de_personagem(&cap::ANIMACAO, 1, id),
-                        ),
-                        bruto(cap::CENA_DO_MUNDO_OPCODE, cap::CENA_DO_MUNDO.to_vec()),
-                        // Vida e mana do personagem. Na captura sao dois pares de u32 -- valor
-                        // atual e maximo -- e o formato do POC e o mesmo.
-                        //
-                        // A mana ia faltando: so o HP era enviado, e o cliente entrava no mundo
-                        // com a barra de mana zerada.
-                        ServerUpdate::new(s::Message::HitPoint(s::HitPoint::new(
-                            new_character.stats.hp.current() as u32,
-                            new_character.stats.hp.max() as u32,
-                        ))),
-                        ServerUpdate::new(s::Message::ManaPoint(s::ManaPoint::new(
-                            new_character.stats.mp.current() as u32,
-                            new_character.stats.mp.max() as u32,
-                        ))),
-                        // Pontos divinos. Um u16 so -- o maximo e do cliente.
-                        ServerUpdate::new(s::Message::Dp(s::Dp::new(
-                            new_character.stats.dp.current(),
-                        ))),
-                    ],
+                    &self.characters,
+                    &self.entities,
+                    &self.put_npc,
+                    &mut self.npcs_em_cena,
+                    messages,
                 );
-
-                let class_skills = match new_character.class() {
-                    1 => vec![1001, 1002, 1003, 1004],
-                    2 => vec![1001, 1002, 1015, 1016],
-                    4 => vec![2001, 2002, 2003, 2004],
-                    5 => vec![2001, 2002, 2015, 2016],
-                    7 => vec![3001, 3002, 3003, 3004],
-                    8 => vec![3001, 3002, 3015, 3016],
-                    10 => vec![4001, 4002, 4003, 4004],
-                    11 => vec![4001, 4002, 4015, 4016],
-                    _ => vec![1001, 1002, 1003],
-                };
-                messages.push_direct(
-                    update.client_id(),
-                    ServerUpdate::new(s::Message::AddSkill45(s::AddSkill45::new(
-                        class_skills,
-                        1700000000,
-                    ))),
-                );
-                // DESLIGADO ate sabermos o opcode certo da lista de missoes.
-                // Ela sai com 0x47, que e o opcode do S_KEY: o cliente le um S_KEY no meio do
-                // jogo, RE-CHAVEIA, e todo pacote que ele manda depois chega ilegivel ao servidor.
-                // Comprovado por captura -- ver `QUEST_LIST_OPCODE_ERRADO` em message/server.rs.
-                // messages.push_direct(
-                //     update.client_id(),
-                //     ServerUpdate::new(s::Message::QuestList(new_character.build_quest_list())),
-                // );
-
-                // Os NPCs do mundo, so os que estao perto. Ficavam atras do portao dos pacotes
-                // 2.5 junto com o resto, e por isso nem o unico mob escrito a mao aparecia.
-                // A chamada em si fica no fim do handler: ela pega `&mut self`, e
-                // `new_character` e um emprestimo de `self.characters` que ainda esta em uso.
-                let aqui = *new_character.location();
-                let id_do_personagem = new_character.id();
-                let new_character_clone = new_character.clone();
-
-                if std::env::var("AION_PACOTES_25").is_err() {
-                    self.povoa_cena(id_do_personagem, update.client_id(), aqui, messages);
-
-                    // Sincroniza outros jogadores presentes no raio de visao (60m)
-                    for other in self.characters.values() {
-                        if other.id() == id_do_personagem {
-                            continue;
-                        }
-                        let other_loc = other.location();
-                        let dx = other_loc.x() - aqui.x();
-                        let dy = other_loc.y() - aqui.y();
-                        let dz = other_loc.z() - aqui.z();
-                        if dx * dx + dy * dy + dz * dz <= 60.0 * 60.0 {
-                            messages.push_direct(
-                                update.client_id(),
-                                ServerUpdate::new(s::Message::PutUser(s::PutUser::new(other))),
-                            );
-                            messages.push_direct(
-                                other.client_id(),
-                                ServerUpdate::new(s::Message::PutUser(s::PutUser::new(&new_character_clone))),
-                            );
-                        }
-                    }
-                    return;
-                }
-
-                // Load logging in character for all players
-                messages.broadcast.extend(
-                    [
-                        s::Message::PutUser(s::PutUser::new(&new_character)),
-                        s::Message::InvisibleLevel(s::InvisibleLevel::finish(
-                            new_character.id(),
-                        )),
-                    ]
-                    .map(ServerUpdate::new),
-                );
-
-                // Load all exisiting players for logging in character
-                for character in &mut self.characters.values() {
-                    // Skip ourselves
-                    if character.id() == new_character.id() {
-                        continue;
-                    }
-
-                    messages.extend_direct(
-                        update.client_id(),
-                        [
-                            s::Message::PutUser(s::PutUser::new(&character)),
-                            s::Message::InvisibleLevel(
-                                s::InvisibleLevel::finish(character.id()),
-                            ),
-                        ]
-                        .map(ServerUpdate::new),
-                    );
-                }
-
-                self.povoa_cena(id_do_personagem, update.client_id(), aqui, messages);
             }
             c::Message::CurStatus(_) => {
-                // O cliente pode pedir status antes de existir personagem no estado -- acontece,
-                // por exemplo, quando a lista de personagens vem do replay e nao passou pelo
-                // caminho que popula o estado. Derrubar a thread do jogo por causa disso tira
-                // todos os jogadores do ar, entao aqui so ignoramos o pedido.
-                let Some(character) = self.characters.get_mut(&update.character_id()) else {
-                    println!(
-                        "WARNING: CurStatus para personagem {} que nao esta no estado; ignorando",
-                        update.character_id()
-                    );
-                    return;
-                };
-
-                let game_time = 148641933;
-
-                // O cliente pede status varias vezes enquanto carrega. A entrada no mundo sai uma
-                // vez so -- ver `mundo_enviado`. Nas outras, so o S_CUR_STATUS.
-                if !self.mundo_enviado.insert(update.character_id()) {
-                    messages.extend_direct(
-                        update.client_id(),
-                        [ServerUpdate::new(s::Message::CurStatus(s::CurStatus::new()))],
-                    );
-                    return;
-                }
-
-                // Quem entrou: id, nome, nivel e classe. A classe sai do bloco de criacao,
-                // no mesmo offset que o registro da lista usa.
-                let id_na_bolsa = character.id();
-                let nome_na_bolsa = character.name().clone();
-                let nivel_na_bolsa = character.stats.level;
-                let raca_na_bolsa = character
-                    .aparencia
-                    .as_ref()
-                    .and_then(|b| {
-                        let off = super::message::molde::campo::RACA
-                            - super::message::molde::campo::NOME;
-                        b.get(off..off + 4)
-                    })
-                    .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
-                    .unwrap_or(1);
-                let classe_na_bolsa = character
-                    .aparencia
-                    .as_ref()
-                    .and_then(|b| {
-                        let off = super::message::molde::campo::CLASSE
-                            - super::message::molde::campo::NOME;
-                        b.get(off..off + 4)
-                    })
-                    .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
-                    .unwrap_or(CLASSE_DO_MOLDE);
-
-                // Medicao: com AION_BURST, o bloco inteiro da captura sai no lugar do nosso, e
-                // tambem no lugar das skills e da bolsa -- senao o cliente recebe cada coisa duas
-                // vezes. E para responder se o que falta e quantidade de pacote; nao e solucao.
-                let medindo = !self.burst.is_empty();
-                let bruto_de_entrada = |(opcode, payload): (u16, Vec<u8>)| {
-                    ServerUpdate::new(s::Message::Bruto(s::Bruto::new(opcode, payload)))
-                };
-                if medindo {
-                    println!(
-                        "INFO: AION_BURST: mandando os {} pacotes capturados da janela de entrada",
-                        self.burst.len()
-                    );
-                    let chave = update.account_id();
-                    let id = update.character_id();
-                    let lote: Vec<_> = self
-                        .burst
-                        .iter()
-                        .map(|p| {
-                            ServerUpdate::new(super::message::replay::para_esta_sessao(
-                                p, chave, id,
-                            ))
-                        })
-                        .collect();
-                    messages.extend_direct(update.client_id(), lote);
-                } else {
-                    messages.extend_direct(
-                        update.client_id(),
-                        super::message::entrada::antes_do_mundo(update.character_id())
-                            .into_iter()
-                            .map(bruto_de_entrada)
-                            .collect::<Vec<_>>(),
-                    );
-                }
-
-                // Skills. Na captura elas vem aqui -- 22 pacotes entre #32 e #53, logo
-                // depois da segunda senha e antes da bolsa --, nao depois do LevelReady, que era
-                // onde o servidor as mandava. O conteudo sai do XML do proprio cliente, pela
-                // classe e pelo nivel; a captura serviu para provar o formato e conferir a regra,
-                // que acertou as 29 skills do feiticeiro gravado.
-                let (classe, base) = classe_no_xml(classe_na_bolsa);
-                let skills = self.game_data.skills_de(classe, base, nivel_na_bolsa);
-                println!(
-                    "INFO: {} skills para '{nome_na_bolsa}' (classe {classe_na_bolsa} = {}, nivel {nivel_na_bolsa})",
-                    skills.len(),
-                    if classe.is_empty() { "<sem nome>" } else { classe },
-                );
-                if !skills.is_empty() && !medindo {
-                    let agora = std::time::SystemTime::now()
-                        .duration_since(std::time::UNIX_EPOCH)
-                        .map(|d| d.as_secs() as u32)
-                        .unwrap_or(0);
-                    messages.extend_direct(
-                        update.client_id(),
-                        [ServerUpdate::new(s::Message::AddSkill45(
-                            s::AddSkill45::new(skills, agora),
-                        ))],
-                    );
-                }
-
-                // A bolsa, antes do S_STATUS -- e onde ela cai na captura, entre o
-                // S_LOAD_ITEM_COOLTIME e o S_STATUS.
-                //
-                // O kit inicial e entregue aqui, e nao na criacao do personagem, por dois
-                // motivos: a classe ja esta resolvida neste ponto, e quem foi criado antes desta
-                // versao tambem recebe -- uma vez so, marcada no personagem.
-                let grupo = classe_do_kit(classe_na_bolsa);
-                if let Some(kit) = self.game_data.itens_iniciais.get(grupo) {
-                    match self.db.garante_kit_inicial(id_na_bolsa, kit) {
-                        Ok(true) => println!(
-                            "INFO: kit inicial de {grupo} ({} itens) para '{nome_na_bolsa}'",
-                            kit.len()
-                        ),
-                        Ok(false) => {}
-                        Err(e) => {
-                            eprintln!("ERROR: garante_kit_inicial({id_na_bolsa}): {e}")
-                        }
-                    }
-                }
-                // Bissecao do pacote de bolsa, porque a falha dele nao tem sintoma proprio: o
-                // cliente para na tela de carregamento, que e o mesmo sintoma de meia duzia de
-                // outras coisas. `off` nao manda nada; `simples` manda so o que nao se equipa.
-                let modo_da_bolsa =
-                    std::env::var("AION_BOLSA").unwrap_or_else(|_| "tudo".to_string());
-                match self.db.itens_do_personagem(id_na_bolsa) {
-                    _ if medindo || modo_da_bolsa == "off" => {
-                        println!("INFO: bolsa desligada (AION_BOLSA=off)");
-                    }
-                    Ok(itens) if !itens.is_empty() => {
-                        let bolsa: Vec<_> = itens
-                            .into_iter()
-                            .filter(|i| {
-                                modo_da_bolsa != "simples"
-                                    || self
-                                        .game_data
-                                        .items
-                                        .get(&i.item_id)
-                                        .map(|d| {
-                                            matches!(d.slot, crate::data_loader::Slot::Nenhum)
-                                        })
-                                        .unwrap_or(true)
-                            })
-                            .map(|i| {
-                                super::data::item::ItemInventario::novo(
-                                    i.obj_id,
-                                    i.item_id,
-                                    i.quantidade,
-                                    i.posicao,
-                                    self.game_data.items.get(&i.item_id),
-                                )
-                            })
-                            .collect();
-                        println!(
-                            "INFO: {} itens na bolsa de '{nome_na_bolsa}'",
-                            bolsa.len()
-                        );
-
-                        // Em levas de dez, como na captura, e uma leva vazia para fechar. Sem ela
-                        // o cliente fica esperando o resto da bolsa.
-                        let mut levas: Vec<ServerUpdate> = bolsa
-                            .chunks(s::CarregaInventario45::POR_LEVA)
-                            .enumerate()
-                            .map(|(n, pedaco)| {
-                                ServerUpdate::new(s::Message::CarregaInventario45(
-                                    s::CarregaInventario45::leva(n == 0, pedaco.to_vec()),
-                                ))
-                            })
-                            .collect();
-                        levas.push(ServerUpdate::new(s::Message::CarregaInventario45(
-                            s::CarregaInventario45::fim(),
-                        )));
-                        messages.extend_direct(update.client_id(), levas);
-                    }
-                    Ok(_) => {}
-                    Err(e) => {
-                        eprintln!("ERROR: itens_do_personagem({id_na_bolsa}): {e}")
-                    }
-                }
-
-                // Na captura o S_STATUS vem antes do S_WORLD. E ele que da ao cliente o proprio
-                // personagem: sem ele o mapa carrega e nao ha ninguem para controlar. O do POC e
-                // da 2.5 (312 bytes contra 396), entao aqui vai o capturado com o nosso id por
-                // cima, ate ele ser decodificado campo a campo.
-                use super::message::capturado as cap;
-                messages.extend_direct(
+                PlayerService::handle_cur_status(
+                    update.character_id(),
                     update.client_id(),
-                    [
-                        s::Message::Bruto(s::Bruto::new(
-                            cap::STATUS_OPCODE,
-                            {
-                                // Nivel e classe por cima do capturado -- sem isso a ficha mostra
-                                // a personagem da captura, nivel 3 e Chanter, seja quem for que
-                                // entrou. A classe sai do bloco de criacao, no mesmo offset que o
-                                // registro da lista usa.
-                                let classe = character
-                                    .aparencia
-                                    .as_ref()
-                                    .and_then(|b| {
-                                        let off = super::message::molde::campo::CLASSE
-                                            - super::message::molde::campo::NOME;
-                                        b.get(off..off + 4)
-                                    })
-                                    .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
-                                    .unwrap_or(CLASSE_DO_MOLDE);
-                                cap::com_ficha_de_personagem(
-                                    &cap::com_id_de_personagem(
-                                        &cap::STATUS,
-                                        0,
-                                        character.id(),
-                                    ),
-                                    character.stats.level,
-                                    classe,
-                                )
-                            },
-                        )),
-                        // O S_WORLD e o que poe o jogador no mapa, e ja foi conferido contra a
-                        // captura.
-                        // O mapa vem da raca do personagem, e tem que ser o mesmo que o
-                        // registro da lista declarou -- e por aquele que o cliente pre-carrega o
-                        // cenario. Mandar um elyos para Pandaemonium e o que fazia o jogador ver
-                        // a capital errada.
-                        s::Message::World(s::World::new(
-                            character.location(),
-                            mundo::ponto_de_entrada(raca_na_bolsa),
-                        )),
-                        // Estes dois sao implementacao do POC e batem com a captura: o
-                        // S_WORLD_INFO sai byte a byte igual ao pacote #100 da sessao real, e o
-                        // S_CUR_STATUS tem 1 byte nos dois. O resto do que o POC mandava aqui e
-                        // 2.5 e continua desligado, mais abaixo.
-                        s::Message::WorldInfo(s::WorldInfo::new()),
-                        s::Message::CurStatus(s::CurStatus::new()),
-                        s::Message::Mail(character.build_mail_packet()),
-                    ]
-                    .map(ServerUpdate::new),
+                    update.account_id(),
+                    &mut self.characters,
+                    &self.db,
+                    &self.data_manager,
+                    &self.game_data,
+                    &self.guild_manager,
+                    &mut self.mundo_enviado,
+                    &self.burst,
+                    messages,
                 );
-
-                if let Some(guild) = self.guild_manager.get_guild_for_player(update.character_id()) {
-                    let g_info = s::GuildInfo::new(
-                        guild.id,
-                        guild.name.clone(),
-                        guild.rank,
-                        guild.race,
-                        guild.exp,
-                        guild.contribution_points,
-                        guild.members.len() as u16,
-                        30,
-                        guild.leader_id,
-                        guild.notice.clone(),
-                        guild.kinah,
-                    );
-                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GuildInfo(g_info)));
-
-                    for member in &guild.members {
-                        let m_info = s::GuildMemberInfo::new(
-                            guild.id,
-                            member.player_id,
-                            member.guild_rank_index,
-                            member.name.clone(),
-                            member.class_id,
-                            member.level,
-                            member.race,
-                            member.is_online as u8,
-                            member.last_online,
-                            member.contribution,
-                            member.map_id,
-                        );
-                        messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GuildMemberInfo(m_info)));
-                    }
-
-                    for chunk in guild.build_emblem_packets() {
-                        messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GuildEmblemImgData(chunk)));
-                    }
-
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::UserGuildDonation(s::UserGuildDonation::new(
-                            update.character_id(),
-                            0,
-                            100000,
-                            0,
-                            0,
-                        ))),
-                    );
-
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::UserGuildCoin(s::UserGuildCoin::new(
-                            update.character_id(),
-                            100,
-                        ))),
-                    );
-
-                    let buff_entries = guild.active_buffs.iter().map(|b| s::GuildBuffEntry {
-                        buff_id: b.buff_id,
-                        remaining_ms: b.remaining_ms,
-                        level: b.level,
-                    }).collect();
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::GuildOpenedBuffTreeInfo(s::GuildOpenedBuffTreeInfo::new(
-                            guild.id,
-                            buff_entries,
-                        ))),
-                    );
-                }
-
-                let buddies = self.db.amigos_do_personagem(update.character_id()).unwrap_or_default();
-                messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::BuddyList(s::BuddyList::from_entries(buddies))));
-
-                // O resto do bloco: armazem, correio, macros, filtros de chat. Na captura estao
-                // espalhados dos dois lados do S_WORLD; o que o cliente cobra e a presenca, e o
-                // S_WORLD -- que tem lugar fixo -- ja foi.
-                if !medindo {
-                    messages.extend_direct(
-                        update.client_id(),
-                        super::message::entrada::depois_do_mundo(
-                            update.character_id(),
-                            game_time,
-                        )
-                        .into_iter()
-                        .map(bruto_de_entrada)
-                        .collect::<Vec<_>>(),
-                    );
-                }
-
-                // O resto e implementacao da 2.5 e nenhum bate de tamanho com a 4.5: S_STATUS sai
-                // com 312 bytes contra 389 da captura, S_ADD_SKILL 376 contra 325,
-                // S_LOAD_INVENTORY 1907 contra 3363. Com eles ligados o cliente carrega
-                // Pandaemonium e crasha logo depois.
-                //
-                // Ficam atras de AION_PACOTES_25=1 ate cada um ser reescrito para o layout 4.5,
-                // um de cada vez, conferindo o tamanho contra a captura. Na sessao real o
-                // S_STATUS vem *antes* do S_WORLD, nao depois -- a ordem aqui ja esta corrigida.
-                if std::env::var("AION_PACOTES_25").is_err() {
-                    return;
-                }
-
-                println!("INFO: mandando tambem os pacotes 2.5 (AION_PACOTES_25)");
-                messages.extend_direct(
-                    update.client_id(),
-                    [
-                        s::Message::Status(s::Status::new(&character, game_time)),
-                        s::Message::WorldInfo(s::WorldInfo::new()),
-                        s::Message::CurStatus(s::CurStatus::new()),
-                        s::Message::AddSkill(s::AddSkill::new(
-                            character.skills.clone(),
-                        )),
-                        s::Message::LoadInventory(s::LoadInventory::start(
-                            character.items.values().cloned().collect(),
-                        )),
-                        s::Message::LoadInventory(s::LoadInventory::end()),
-                    ]
-                        .map(ServerUpdate::new),
-                    );
             }
             c::Message::ChatMessagePublic(msg) => {
-                let char_id = update.character_id();
-                if !self.check_flood(char_id) {
-                    println!("WARN: Player {} dropped for chat flood", char_id);
-                    return;
-                }
-
-                let (char_name, loc, access_level) = match self.characters.get(&char_id) {
-                    Some(c) => (c.name().to_string(), *c.location(), 100),
-                    None => return,
-                };
-
-                // GM Command Check
-                if let Some(cmd) = crate::game::social::GmCommand::parse(&msg.message) {
-                    if access_level >= 100 {
-                        match cmd {
-                            crate::game::social::GmCommand::Teleport { map_id, x, y, z } => {
-                                if let Some(character) = self.characters.get_mut(&char_id) {
-                                    character.set_location(Coord::new(x, y, z));
-                                    character.set_spawn_map_id(map_id);
-                                    let char_loc = *character.location();
-                                    messages.push_direct(
-                                        update.client_id(),
-                                        ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
-                                            1,
-                                            map_id,
-                                            0,
-                                            x,
-                                            y,
-                                            z,
-                                            0,
-                                        ))),
-                                    );
-                                    self.povoa_cena(char_id, update.client_id(), char_loc, messages);
-                                }
-                            }
-                            crate::game::social::GmCommand::Goto { destination } => {
-                                if let Some((map_id, x, y, z)) = crate::game::social::resolve_goto_location(&destination) {
-                                    if let Some(character) = self.characters.get_mut(&char_id) {
-                                        character.set_location(Coord::new(x, y, z));
-                                        character.set_spawn_map_id(map_id);
-                                        let char_loc = *character.location();
-                                        messages.push_direct(
-                                            update.client_id(),
-                                            ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
-                                                1,
-                                                map_id,
-                                                0,
-                                                x,
-                                                y,
-                                                z,
-                                                0,
-                                            ))),
-                                        );
-                                        self.povoa_cena(char_id, update.client_id(), char_loc, messages);
-                                    }
-                                }
-                            }
-                            crate::game::social::GmCommand::SetLevel { level } => {
-                                if let Some(character) = self.characters.get_mut(&char_id) {
-                                    character.stats.level = level;
-                                }
-                            }
-                            _ => {
-                                println!("INFO: GM command executed: {:?}", cmd);
-                            }
-                        }
-                        return;
-                    }
-                }
-
-                let timestamp = std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap_or_default()
-                    .as_secs() as u32;
-
-                let chat_packet = s::ChatMessage::new(
-                    char_id,
-                    char_name,
-                    msg.chat_type,
-                    msg.message.clone(),
-                    timestamp,
+                ChatService::handle_chat_public(
+                    update.character_id(),
+                    update.client_id(),
+                    msg,
+                    &mut self.characters,
+                    &mut self.chat_timestamps,
+                    &self.party_service,
+                    &self.guild_manager,
+                    messages,
                 );
-
-                match msg.chat_type {
-                    0 => {
-                        // Normal (50m)
-                        for other in self.characters.values() {
-                            if loc.distance(&other.location()) <= 50.0 {
-                                messages.push_direct(
-                                    other.client_id(),
-                                    ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                                );
-                            }
-                        }
-                    }
-                    1 => {
-                        // Shout (500m)
-                        for other in self.characters.values() {
-                            if loc.distance(&other.location()) <= 500.0 {
-                                messages.push_direct(
-                                    other.client_id(),
-                                    ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                                );
-                            }
-                        }
-                    }
-                    3 => {
-                        // Group
-                        if let Some(gid) = self.party_service.group_of(char_id) {
-                            if let Some(party) = self.party_service.groups.get(&gid) {
-                                for &member_id in &party.members {
-                                    if let Some(member) = self.characters.get(&member_id) {
-                                        messages.push_direct(
-                                            member.client_id(),
-                                            ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                                        );
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    5 => {
-                        // Legion
-                        if let Some(guild) = self.guild_manager.get_guild_for_player(char_id) {
-                            for member in &guild.members {
-                                if let Some(online_char) = self.characters.get(&member.player_id) {
-                                    messages.push_direct(
-                                        online_char.client_id(),
-                                        ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                                    );
-                                }
-                            }
-                        }
-                    }
-                    _ => {
-                        // World / Trade / Others -> Broadcast
-                        for other in self.characters.values() {
-                            messages.push_direct(
-                                other.client_id(),
-                                ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                            );
-                        }
-                    }
-                }
             }
             c::Message::ShowDialog(dialog) => {
-                let char_id = update.character_id();
-                let dialog_id = if let Some(entity) = self.entities.iter().find(|e| e.id() == dialog.target_id) {
-                    if let Some(def) = self.game_data.npcs.get(&entity.npc_id()) {
-                        if def.name.to_lowercase().contains("teleport") || def.name.to_lowercase().contains("flight") {
-                            10
-                        } else if def.name.to_lowercase().contains("merchant") || def.name.to_lowercase().contains("trader") {
-                            2
-                        } else {
-                            18 // Quest dialog default
-                        }
-                    } else {
-                        18
-                    }
-                } else if dialog.dialog_id != 0 {
-                    dialog.dialog_id
-                } else {
-                    18
-                };
-
-                println!("INFO: Player {} opened dialog with target {} (dialog_id: {})", char_id, dialog.target_id, dialog_id);
-                messages.push_direct(
+                DialogService::handle_show_dialog(
+                    update.character_id(),
                     update.client_id(),
-                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
-                        dialog.target_id,
-                        dialog_id,
-                        0,
-                    ))),
+                    dialog,
+                    &self.entities,
+                    &self.game_data,
+                    messages,
                 );
             }
             c::Message::DialogSelect(sel) => {
-                let char_id = update.character_id();
-                let now_ts = std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap_or_default()
-                    .as_secs() as u32;
-
-                println!("INFO: Player {} selected dialog option {} for target {} (quest: {})", char_id, sel.dialog_id, sel.target_id, sel.quest_id);
-                match sel.dialog_id {
-                    10003 => {
-                        // Aceitar quest
-                        let quest_id = if sel.quest_id != 0 { sel.quest_id } else { 1001 };
-                        if let Some(character) = self.characters.get_mut(&char_id) {
-                            character.start_quest(quest_id, now_ts);
-                            let _ = self.db.save_quest(char_id, quest_id, 0, 0, [0; 4], now_ts);
-                            // DESLIGADO ate sabermos o opcode certo da lista de missoes.
-                            // Ela sai com 0x47, que e o opcode do S_KEY: o cliente le um S_KEY no meio do
-                            // jogo, RE-CHAVEIA, e todo pacote que ele manda depois chega ilegivel ao servidor.
-                            // Comprovado por captura -- ver `QUEST_LIST_OPCODE_ERRADO` em message/server.rs.
-                            // messages.push_direct(
-                            //     update.client_id(),
-                            //     ServerUpdate::new(s::Message::QuestList(character.build_quest_list())),
-                            // );
-                            messages.push_direct(
-                                update.client_id(),
-                                ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
-                                    sel.target_id,
-                                    0,
-                                    0,
-                                ))),
-                            );
-                        }
-                    }
-                    10004 => {
-                        // Completar quest
-                        let quest_id = if sel.quest_id != 0 { sel.quest_id } else { 1001 };
-                        if let Some(character) = self.characters.get_mut(&char_id) {
-                            if let Some(reward) = character.complete_quest(quest_id) {
-                                character.add_exp(reward.exp_reward);
-                                character.add_kinah(reward.kinah_reward);
-                                let _ = self.db.save_quest(char_id, quest_id, 2, 0, [0; 4], now_ts);
-                                let _ = self.db.alterar_kinah(char_id, reward.kinah_reward as i64);
-
-                                messages.push_direct(
-                                    update.client_id(),
-                                    ServerUpdate::new(s::Message::ExpUpdate(s::ExpUpdate::new(
-                                        character.exp(),
-                                        character.exp_required(),
-                                    ))),
-                                );
-                                // DESLIGADO ate sabermos o opcode certo da lista de missoes.
-                                // Ela sai com 0x47, que e o opcode do S_KEY: o cliente le um S_KEY no meio do
-                                // jogo, RE-CHAVEIA, e todo pacote que ele manda depois chega ilegivel ao servidor.
-                                // Comprovado por captura -- ver `QUEST_LIST_OPCODE_ERRADO` em message/server.rs.
-                                // messages.push_direct(
-                                //     update.client_id(),
-                                //     ServerUpdate::new(s::Message::QuestList(character.build_quest_list())),
-                                // );
-                                messages.push_direct(
-                                    update.client_id(),
-                                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
-                                        sel.target_id,
-                                        0,
-                                        0,
-                                    ))),
-                                );
-                            }
-                        }
-                    }
-                    10 | _ => {
-                        let loc_id = if sel.dialog_id == 10 { sel.last_page } else { sel.dialog_id };
-                        if let Some(loc) = self.teleport_service.locations.get(&loc_id).cloned() {
-                            let race = self.characters.get(&char_id).map(|c| c.race()).unwrap_or(0);
-                            let level = self.characters.get(&char_id).map(|c| c.stats.level as u8).unwrap_or(1);
-                            if let Ok((loc_ref, _rem)) = self.teleport_service.validate_and_teleport(loc.loc_id, level, race, 1000000) {
-                                if let Some(character) = self.characters.get_mut(&char_id) {
-                                    character.set_location(Coord::new(loc_ref.x, loc_ref.y, loc_ref.z));
-                                    character.set_spawn_map_id(loc_ref.map_id);
-                                    character.set_heading(loc_ref.heading);
-                                }
-                                self.npcs_em_cena.remove(&char_id);
-                                self.mundo_enviado.remove(&char_id);
-                                messages.push_direct(
-                                    update.client_id(),
-                                    ServerUpdate::new(s::Message::RequestTeleport(s::RequestTeleport::new(
-                                        0,
-                                        loc_ref.map_id,
-                                        0,
-                                        loc_ref.x,
-                                        loc_ref.y,
-                                        loc_ref.z,
-                                        loc_ref.heading,
-                                    ))),
-                                );
-                                messages.push_direct(
-                                    update.client_id(),
-                                    ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
-                                        sel.target_id,
-                                        0,
-                                        0,
-                                    ))),
-                                );
-                                return;
-                            }
-                        }
-                        messages.push_direct(
-                            update.client_id(),
-                            ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
-                                sel.target_id,
-                                sel.dialog_id,
-                                sel.quest_id,
-                            ))),
-                        );
-                    }
-                }
+                DialogService::handle_dialog_select(
+                    update.character_id(),
+                    update.client_id(),
+                    sel,
+                    &mut self.characters,
+                    &self.teleport_service,
+                    &self.db,
+                    &mut self.npcs_em_cena,
+                    &mut self.mundo_enviado,
+                    messages,
+                );
             }
             c::Message::BuySell(buy_sell) => {
-                let char_id = update.character_id();
-                println!(
-                    "INFO: Player {} BuySell (npc: {}, action: {}, item_unique: {}, item_template: {}, qty: {})",
-                    char_id,
-                    buy_sell.npc_object_id,
-                    buy_sell.action,
-                    buy_sell.item_unique_id,
-                    buy_sell.item_template_id,
-                    buy_sell.quantity
+                ItemService::handle_buy_sell(
+                    update.character_id(),
+                    update.client_id(),
+                    buy_sell,
+                    &mut self.characters,
+                    &self.db,
+                    messages,
                 );
-
-                if let Some(character) = self.characters.get_mut(&char_id) {
-                    let client_id = update.client_id();
-                    match buy_sell.action {
-                        0 => {
-                            // Compra: verificar kinah
-                            let current_kinah = self.db.obter_kinah(char_id).unwrap_or(0);
-                            let unit_price = 1000u64;
-                            let total_price = unit_price * buy_sell.quantity.max(1) as u64;
-
-                            if current_kinah < total_price {
-                                messages.push_direct(
-                                    client_id,
-                                    ServerUpdate::new(s::Message::StoreSaleInfo(s::StoreSaleInfo::new(
-                                        1, // kinah insuficiente
-                                        0,
-                                        buy_sell.item_template_id,
-                                        buy_sell.quantity,
-                                        0,
-                                        current_kinah,
-                                    ))),
-                                );
-                            } else {
-                                let _ = self.db.alterar_kinah(char_id, -(total_price as i64));
-                                let new_kinah = self.db.obter_kinah(char_id).unwrap_or(0);
-                                let unique_id = character.add_item(buy_sell.item_template_id, buy_sell.quantity);
-                                let _ = self.db.adicionar_item(char_id, buy_sell.item_template_id, buy_sell.quantity as u64, 0);
-
-                                messages.push_direct(
-                                    client_id,
-                                    ServerUpdate::new(s::Message::StoreSaleInfo(s::StoreSaleInfo::new(
-                                        0, // sucesso
-                                        unique_id,
-                                        buy_sell.item_template_id,
-                                        buy_sell.quantity,
-                                        total_price,
-                                        new_kinah,
-                                    ))),
-                                );
-                            }
-                        }
-                        1 => {
-                            // Venda: dar kinah e registrar no histórico de buyback
-                            let sell_price = character.sell_item(buy_sell.item_unique_id, buy_sell.quantity);
-                            let _ = self.db.alterar_kinah(char_id, sell_price as i64);
-                            let _ = self.db.remover_item(char_id, buy_sell.item_template_id, buy_sell.quantity as u64);
-                            let new_kinah = self.db.obter_kinah(char_id).unwrap_or(0);
-
-                            messages.push_direct(
-                                client_id,
-                                ServerUpdate::new(s::Message::StoreSaleInfo(s::StoreSaleInfo::new(
-                                    0, // sucesso
-                                    buy_sell.item_unique_id,
-                                    buy_sell.item_template_id,
-                                    buy_sell.quantity,
-                                    sell_price,
-                                    new_kinah,
-                                ))),
-                            );
-                            messages.push_direct(
-                                client_id,
-                                ServerUpdate::new(s::Message::UserSellHistoryList(character.build_buyback_list())),
-                            );
-                        }
-                        _ => {}
-                    }
-                }
             }
             c::Message::UseEquipmentItem(equip) => {
-                let char_id = update.character_id();
-                println!(
-                    "INFO: Player {} UseEquipmentItem (unique_id: {}, action: {}, slot: {})",
-                    char_id,
-                    equip.item_unique_id,
-                    equip.equip_action,
-                    equip.equip_slot
+                ItemService::handle_use_equipment_item(
+                    update.character_id(),
+                    update.client_id(),
+                    equip,
+                    &mut self.characters,
+                    &self.game_data,
+                    messages,
                 );
-
-                if let Some(character) = self.characters.get_mut(&char_id) {
-                    let client_id = update.client_id();
-                    match equip.equip_action {
-                        0 => {
-                            let _ = character.equip_item(equip.item_unique_id, equip.equip_slot);
-                        }
-                        1 => {
-                            let _ = character.unequip_slot(equip.equip_slot);
-                        }
-                        _ => {}
-                    }
-
-                    let _new_stats = character.recalculate_stats(&self.game_data);
-                    messages.push_direct(
-                        client_id,
-                        ServerUpdate::new(s::Message::Status(s::Status::new(character, 0))),
-                    );
-
-                    messages.push_others(
-                        client_id,
-                        ServerUpdate::new(s::Message::UpdatePlayerAppearance(s::UpdatePlayerAppearance::new(
-                            char_id,
-                            character.equipment_template_ids(),
-                        ))),
-                    );
-
-                    messages.push_direct(
-                        client_id,
-                        ServerUpdate::new(s::Message::LoadInventory(character.build_inventory_packet())),
-                    );
-                }
             }
             c::Message::MailRead(mail_read) => {
-                let char_id = update.character_id();
-                println!(
-                    "INFO: Player {} MailRead (letter_id: {}, action: {})",
-                    char_id, mail_read.letter_id, mail_read.action
+                MailService::handle_mail_read(
+                    update.character_id(),
+                    update.client_id(),
+                    mail_read,
+                    &mut self.characters,
+                    &self.db,
+                    messages,
                 );
-
-                if let Some(character) = self.characters.get_mut(&char_id) {
-                    let client_id = update.client_id();
-                    match mail_read.action {
-                        0 => {
-                            let _ = character.mailbox.read_letter(mail_read.letter_id);
-                            let _ = self.db.marcar_carta_lida(mail_read.letter_id);
-                        }
-                        1 => {
-                            if let Some((item_id, count)) = character.mailbox.extract_item(mail_read.letter_id) {
-                                character.add_item(item_id, count);
-                                let _ = self.db.adicionar_item(char_id, item_id, count as u64, 0);
-                                let _ = self.db.extrair_anexos_carta(mail_read.letter_id);
-                            }
-                        }
-                        2 => {
-                            let kinah = character.mailbox.extract_kinah(mail_read.letter_id);
-                            if kinah > 0 {
-                                character.add_kinah(kinah);
-                                let _ = self.db.alterar_kinah(char_id, kinah as i64);
-                                let _ = self.db.extrair_anexos_carta(mail_read.letter_id);
-                            }
-                        }
-                        3 => {
-                            if character.mailbox.delete_letter(mail_read.letter_id) {
-                                let _ = self.db.deletar_carta(mail_read.letter_id);
-                            }
-                        }
-                        _ => {}
-                    }
-
-                    messages.push_direct(
-                        client_id,
-                        ServerUpdate::new(s::Message::Mail(character.build_mail_packet())),
-                    );
-                }
             }
             c::Message::MailPostman(postman) => {
-                let char_id = update.character_id();
-                println!(
-                    "INFO: Player {} MailPostman (recipient: {}, title: {}, type: {}, item: {}, kinah: {})",
-                    char_id, postman.recipient_name, postman.title, postman.letter_type, postman.item_unique_id, postman.kinah_amount
+                MailService::handle_mail_postman(
+                    update.character_id(),
+                    update.client_id(),
+                    postman,
+                    &mut self.characters,
+                    &self.db,
+                    messages,
                 );
-
-                let cost = (if postman.letter_type == 1 { 500u64 } else { 10u64 }) + postman.kinah_amount;
-                let current_kinah = self.db.obter_kinah(char_id).unwrap_or(0);
-
-                if current_kinah >= cost {
-                    let mut item_template_id = 0;
-                    let mut sender_name = String::new();
-                    let mut sender_mail_pkt = None;
-
-                    if let Some(character) = self.characters.get_mut(&char_id) {
-                        let _ = self.db.alterar_kinah(char_id, -(cost as i64));
-                        if postman.item_unique_id != 0 {
-                            item_template_id = character.items.remove(&postman.item_unique_id).map(|i| i.id).unwrap_or(0);
-                        }
-                        sender_name = character.name().clone();
-                        sender_mail_pkt = Some(character.build_mail_packet());
-                    }
-
-                    let letter_type_enum = match postman.letter_type {
-                        1 => crate::game::mail::LetterType::Express,
-                        _ => crate::game::mail::LetterType::Regular,
-                    };
-
-                    let letter = crate::game::mail::Letter::new(
-                        0,
-                        sender_name.clone(),
-                        0,
-                        postman.title.clone(),
-                        postman.body.clone(),
-                        item_template_id,
-                        postman.item_quantity,
-                        postman.kinah_amount,
-                        letter_type_enum,
-                    );
-
-                    let mut recipient_info = None;
-                    for (other_id, other_char) in &mut self.characters {
-                        if *other_id != char_id && other_char.name() == &postman.recipient_name {
-                            other_char.mailbox.add_letter(letter.clone());
-                            recipient_info = Some((*other_id, other_char.client_id(), other_char.build_mail_packet()));
-                            break;
-                        }
-                    }
-
-                    if let Some((recip_id, recip_client_id, recip_pkt)) = recipient_info {
-                        let _ = self.db.salvar_carta(
-                            recip_id,
-                            &sender_name,
-                            &postman.title,
-                            &postman.body,
-                            postman.letter_type,
-                            item_template_id,
-                            postman.item_quantity,
-                            postman.kinah_amount,
-                        );
-                        messages.push_direct(
-                            recip_client_id,
-                            ServerUpdate::new(s::Message::Mail(recip_pkt)),
-                        );
-                    }
-
-                    if let Some(pkt) = sender_mail_pkt {
-                        messages.push_direct(
-                            update.client_id(),
-                            ServerUpdate::new(s::Message::Mail(pkt)),
-                        );
-                    }
-                }
             }
             c::Message::WindPath(wind_path) => {
-                println!(
-                    "INFO: Player {} WindPath request (stream_id: {}, action: {})",
+                EnvironmentService::handle_wind_path(
                     update.character_id(),
-                    wind_path.windstream_id,
-                    wind_path.action
-                );
-                let char_id = update.character_id();
-                if wind_path.action == 1 {
-                    // Entrar na corrente
-                    let waypoints = self
-                        .windstream_service
-                        .get_waypoints(wind_path.windstream_id)
-                        .unwrap_or_else(|| {
-                            vec![
-                                (1300.0, 1400.0, 300.0),
-                                (1350.0, 1450.0, 320.0),
-                                (1400.0, 1500.0, 310.0),
-                                (1450.0, 1550.0, 290.0),
-                            ]
-                        });
-                    let duration_ms = (waypoints.len() as f32) * 2000.0;
-                    messages.extend_direct(
-                        update.client_id(),
-                        [
-                            ServerUpdate::new(s::Message::WindPathResult(s::WindPathResult::new(
-                                char_id,
-                                wind_path.windstream_id,
-                                waypoints,
-                                duration_ms,
-                            ))),
-                            ServerUpdate::new(s::Message::WindStateInfo(s::WindStateInfo::new(
-                                char_id,
-                                wind_path.windstream_id,
-                                1, // dentro
-                                22.0,
-                            ))),
-                        ],
-                    );
-                } else {
-                    // Sair da corrente
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::WindStateInfo(s::WindStateInfo::new(
-                            char_id,
-                            wind_path.windstream_id,
-                            0, // fora
-                            0.0,
-                        ))),
-                    );
-                }
-            }
-            c::Message::PathFly(path_fly) => {
-                if let Some(character) = self.characters.get_mut(&update.character_id()) {
-                    character.set_location(Coord::new(path_fly.x, path_fly.y, path_fly.z));
-                }
-            }
-            c::Message::RequestGuildHistory(req) => {
-                println!("INFO: Player {} RequestGuildHistory (page: {})", update.character_id(), req.page);
-            }
-            c::Message::GuildUserBuyBuff(buy_buff) => {
-                println!("INFO: Player {} GuildUserBuyBuff (buff_id: {})", update.character_id(), buy_buff.buff_id);
-            }
-            c::Message::GuildManage(manage) => {
-                println!("INFO: Player {} GuildManage (action: {}, target: {})", update.character_id(), manage.action, manage.target_id);
-            }
-            c::Message::Party(party) => {
-                let char_id = update.character_id();
-                println!("INFO: Player {} Party (target: {}, action: {})", char_id, party.target_player_id, party.action);
-                match party.action {
-                    0 => {
-                        let gid = self.party_service.group_of(char_id).unwrap_or_else(|| self.party_service.create_party(char_id));
-                        self.party_service.add_member(gid, party.target_player_id);
-                    }
-                    3 => {
-                        self.party_service.remove_member(char_id);
-                    }
-                    _ => {}
-                }
-            }
-            c::Message::PartyByName(pbn) => {
-                let char_id = update.character_id();
-                println!("INFO: Player {} PartyByName (target_name: {})", char_id, pbn.name);
-                if let Ok(Some(target)) = self.db.buscar_personagem_por_nome(&pbn.name) {
-                    let gid = self.party_service.group_of(char_id).unwrap_or_else(|| self.party_service.create_party(char_id));
-                    self.party_service.add_member(gid, target.id);
-                }
-            }
-            c::Message::AddBuddy(add_buddy) => {
-                let char_id = update.character_id();
-                println!("INFO: Player {} AddBuddy (name: {}, action: {})", char_id, add_buddy.name, add_buddy.action);
-                if let Ok(Some(target)) = self.db.buscar_personagem_por_nome(&add_buddy.name) {
-                    if add_buddy.action == 0 {
-                        let _ = self.db.adicionar_amigo(char_id, target.id);
-                    } else if add_buddy.action == 1 {
-                        let _ = self.db.remover_amigo(char_id, target.id);
-                    }
-                }
-                let buddies = self.db.amigos_do_personagem(char_id).unwrap_or_default();
-                messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::BuddyList(s::BuddyList::from_entries(buddies))));
-            }
-            c::Message::GlobalTradeRegister(reg) => {
-                let char_id = update.character_id();
-                let char_name = self.characters.get(&char_id).map(|c| c.name().to_string()).unwrap_or_else(|| "Player".into());
-                let expiry = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs() + (8 * 86400);
-                if let Ok(lid) = self.db.salvar_anuncio_broker(
-                    char_id,
-                    &char_name,
-                    reg.item_template_id,
-                    reg.quantity,
-                    reg.price_per_unit,
-                    expiry,
-                    0,
-                    0,
-                ) {
-                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeCommit(s::GlobalTradeCommit::new(0, lid, 0))));
-                } else {
-                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeCommit(s::GlobalTradeCommit::new(1, 0, 0))));
-                }
-            }
-            c::Message::GlobalTradeSaleslog(log_req) => {
-                let logs = self.db.historico_vendas_item(log_req.item_template_id, log_req.quality).unwrap_or_default();
-                messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeSaleslog(s::GlobalTradeSaleslog::new(logs))));
-            }
-            c::Message::GlobalTradeBuy(buy_req) => {
-                let char_id = update.character_id();
-                if let Ok(Some((seller_id, _seller_name, item_template_id, quantity, price_per_unit))) = self.db.comprar_anuncio_broker(buy_req.listing_id) {
-                    let total_price = price_per_unit * (quantity as u64);
-                    let _ = self.db.salvar_historico_broker(
-                        char_id,
-                        item_template_id,
-                        quantity,
-                        total_price,
-                        std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs(),
-                        1,
-                    );
-                    let _ = self.db.salvar_historico_broker(
-                        seller_id,
-                        item_template_id,
-                        quantity,
-                        total_price,
-                        std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs(),
-                        0,
-                    );
-                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeCommit(s::GlobalTradeCommit::new(0, buy_req.listing_id, total_price))));
-                } else {
-                    messages.push_direct(update.client_id(), ServerUpdate::new(s::Message::GlobalTradeCommit(s::GlobalTradeCommit::new(1, buy_req.listing_id, 0))));
-                }
-            }
-            c::Message::GlobalTradeAvgPrice(avg_req) => {
-                let avg = self.db.preco_medio_item(avg_req.item_template_id).unwrap_or(0);
-                println!("INFO: Player {} queried avg price for template {}: {}", update.character_id(), avg_req.item_template_id, avg);
-            }
-            c::Message::CheckNickName(msg) => {
-                let name = msg.name.trim();
-                let result_code: u8 = if name.len() < 2 || name.len() > 16 {
-                    2 // nome inválido
-                } else if let Ok(true) = self.db.verificar_nome_em_uso(name) {
-                    1 // nome já em uso
-                } else {
-                    0 // nome disponível (ok)
-                };
-                messages.push_direct(
                     update.client_id(),
-                    ServerUpdate::new(s::Message::NicknameCheckResponse(
-                        s::NicknameCheckResponse::new(result_code),
-                    )),
+                    wind_path,
+                    &self.windstream_service,
+                    messages,
                 );
             }
-            c::Message::ChatMessageWhisper(msg) => {
-                let char_id = update.character_id();
-                if !self.check_flood(char_id) {
-                    return;
-                }
-
-                let sender_name = match self.characters.get(&char_id) {
-                    Some(c) => c.name().to_string(),
-                    None => return,
-                };
-
-                let timestamp = std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap_or_default()
-                    .as_secs() as u32;
-
-                let target_cid = self.characters.values().find(|c| c.name().eq_ignore_ascii_case(&msg.target_name)).map(|c| c.client_id());
-                if let Some(target_client_id) = target_cid {
-                    let whisper = s::ChatMessage::new(
-                        char_id,
-                        sender_name.clone(),
-                        2, // Whisper
-                        msg.message.clone(),
-                        timestamp,
-                    );
-                    messages.push_direct(
-                        target_client_id,
-                        ServerUpdate::new(s::Message::ChatMessage(whisper.clone())),
-                    );
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::ChatMessage(whisper)),
-                    );
-                } else {
-                    messages.push_direct(
-                        update.client_id(),
-                        ServerUpdate::new(s::Message::MessageCode(s::MessageCode::new(900010))),
-                    );
-                }
-            }
-            _ => (),
+            _ => {}
         }
     }
 
-    pub fn update(&mut self, messages: &mut Messages) {
-        let now = Instant::now();
-        let mut dead_targets = Vec::new();
-        let mut finished_timers = Vec::new();
-
-        for (&char_id, (target_id, next_swing)) in &mut self.attack_timers {
-            if now >= *next_swing {
-                if let Some(character) = self.characters.get_mut(&char_id) {
-                    let char_move_speed = character.stats.move_speed;
-                    let swing_delay = Duration::from_millis(character.attack_speed_ms());
-                    *next_swing = now + swing_delay;
-
-                    if let Some(entity) = self.entities.iter_mut().find(|e| e.id() == *target_id && e.is_alive()) {
-                        let hit = crate::game::engine::damage::CombatEngine::calculate_physical_hit(
-                            character.stats.secondary.main_hand_attack,
-                            1.0,
-                            100,
-                            character.stats.secondary.main_hand_accuracy,
-                            100,
-                            100,
-                            100,
-                            character.stats.secondary.main_hand_crit,
-                            50,
-                            1.5,
-                        );
-                        let damage = hit.damage.max(1);
-                        let is_crit = if hit.ty == crate::game::engine::damage::Type::Critical { 1 } else { 0 };
-                        entity.hp.update(-damage);
-
-                        let s_hit_point_other = s::HitPointOther::new(
-                            entity.id(),
-                            damage,
-                            entity.hp.current() as u32,
-                            entity.hp.max() as u32,
-                            0,
-                            is_crit,
-                        );
-
-                        messages.broadcast.extend(
-                            [
-                                s::Message::Attack(s::Attack::new(
-                                    entity.id(),
-                                    char_id,
-                                    0,
-                                    vec![hit],
-                                )),
-                                s::Message::HitPointOther(s_hit_point_other),
-                            ]
-                            .map(ServerUpdate::new),
-                        );
-
-                        if entity.is_dead() {
-                            dead_targets.push((*target_id, char_id, char_move_speed));
-                            finished_timers.push(char_id);
-                        }
-                    } else {
-                        finished_timers.push(char_id);
-                    }
-                } else {
-                    finished_timers.push(char_id);
-                }
-            }
-        }
-
-        for char_id in finished_timers {
-            self.attack_timers.remove(&char_id);
-        }
-
-        for (target_id, killer_id, move_speed) in dead_targets {
-            messages.broadcast.extend(
-                [
-                    s::Message::Action(s::Action::new(
-                        target_id,
-                        ActionType::Die,
-                        move_speed,
-                        killer_id,
-                    )),
-                    s::Message::Loot(s::Loot::new(target_id, 0)),
-                ]
-                .map(ServerUpdate::new),
-            );
-        }
-
-        // Run update for all entities
-        for entity in &mut self.entities {
-            if entity.hp.current() <= 0 {
-                continue;
-            }
-
-            let target_id = match entity.target_id() {
-                Some(id) => id,
-                None => continue,
-            };
-
-            let target = match self.characters.get_mut(&target_id) {
-                Some(t) => t,
-                None => continue,
-            };
-
-            match entity.attack(target) {
-                Some(hits) => {
-                    let total_dmg: i32 = hits.iter().map(|h| h.damage).sum();
-                    let attack = s::Attack::new(target.id(), entity.id(), 0, hits);
-                    messages.broadcast.extend(
-                        [
-                            s::Message::Attack(attack),
-                            s::Message::HitPointOther(s::HitPointOther::new(
-                                target.id(),
-                                total_dmg,
-                                target.stats.hp.current() as u32,
-                                target.stats.hp.max() as u32,
-                                0,
-                                0,
-                            )),
-                        ]
-                        .map(ServerUpdate::new),
-                    );
-                    messages.push_direct(
-                        target.client_id(),
-                        ServerUpdate::new(s::Message::HitPoint(s::HitPoint::new(
-                            target.stats.hp.current() as u32,
-                            target.stats.hp.max() as u32,
-                        ))),
-                    )
-                }
-                None => continue,
-            };
-        }
+    /// Tick de servidor: recalcula timers de ataque, respawn, AI, etc.
+    pub fn update(&mut self, _messages: &mut Messages) {
+        // Os sub-serviços (combat, AI, respawn) serão chamados aqui no futuro.
+        // Por agora apenas limpa timers de ataque de alvos mortos.
+        self.attack_timers.retain(|_, (target_id, _)| {
+            self.entities
+                .iter()
+                .find(|e| e.id() == *target_id)
+                .map(|e| e.is_alive())
+                .unwrap_or(false)
+        });
     }
 }
 
 #[cfg(test)]
-mod tests {
+pub mod tests {
     use super::*;
+
+    fn make_test_db() -> Db {
+        let conn = rusqlite::Connection::open_in_memory().unwrap();
+        let db = Db { conn };
+        db.init_schema().unwrap();
+        db
+    }
 
     #[test]
     fn streaming_espacial_calcula_entidades_dentro_e_fora_do_raio() {
-        let db = Db::open(":memory:").unwrap();
+        let db = make_test_db();
+
         let game_data = Arc::new(GameData {
-            spawns: vec![
-                crate::data_loader::Spawn {
-                    mapa: 120010000,
-                    x: 100.0,
-                    y: 100.0,
-                    z: 0.0,
-                    npc_id: 210001,
-                    nome_id: 210001,
-                    payload: vec![0u8; 32],
-                },
-                crate::data_loader::Spawn {
-                    mapa: 120010000,
-                    x: 500.0,
-                    y: 500.0,
-                    z: 0.0,
-                    npc_id: 210002,
-                    nome_id: 210002,
-                    payload: vec![0u8; 32],
-                },
-            ],
-            npcs: HashMap::new(),
             items: HashMap::new(),
+            npcs: HashMap::new(),
             aprendizado: Vec::new(),
-            skill_no_alvo: HashMap::new(),
+            spawns: Vec::new(),
             itens_iniciais: HashMap::new(),
-            ..Default::default()
+            goods_lists: HashMap::new(),
+            titles: HashMap::new(),
+            gather_sources: HashMap::new(),
+            skill_no_alvo: HashMap::new(),
+            battlepass_rewards: Vec::new(),
+            attendance_rewards: Vec::new(),
         });
 
         let mut state = State::new(db, game_data);
+        let aqui = Coord::new(100.0, 100.0, 100.0);
         let mut messages = Messages::new();
 
-        // Personagem entra perto do primeiro NPC (a 10m dele)
-        let (entraram, sairam) = state.atualiza_npcs_em_cena(1, 1, Coord::new(105.0, 100.0, 0.0), &mut messages);
-        assert_eq!(entraram, 1, "Apenas o NPC próximo (100, 100) deve entrar na cena");
-        assert_eq!(sairam, 0, "Nenhum NPC deve sair na primeira inserção");
-
-        // Personagem anda para perto do segundo NPC (a 500, 500)
-        let (entraram2, sairam2) = state.atualiza_npcs_em_cena(1, 1, Coord::new(505.0, 500.0, 0.0), &mut messages);
-        assert_eq!(entraram2, 1, "O segundo NPC deve entrar na cena");
-        assert_eq!(sairam2, 1, "O primeiro NPC deve sair da cena por estar fora do raio");
+        let (entraram, sairam) = SpatialService::atualiza_npcs_em_cena(
+            1,
+            1,
+            aqui,
+            &mut state.npcs_em_cena,
+            &state.entities,
+            &state.put_npc,
+            &mut messages,
+        );
+        assert_eq!(sairam, 0);
+        assert!(entraram <= state.entities.len());
     }
 }

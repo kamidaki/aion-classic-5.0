@@ -8,7 +8,7 @@
 	<asmodian_telos_location map_id="220080000" x="1400.3100" y="220.5531" z="228.3999" heading="116"/>
 	<elyos_telos_location map_id="210070000" x="1400.3100" y="220.5531" z="228.3999" heading="116"/>
 
-	<!-- ================= ASSASSIN (4) -- capturado ================= -->
+	<!-- ================= ASSASSIN (4) ================= -->
 	<player_data class="ASSASSIN">
 		<items>
 			<item id="182400001" count="0"/>
@@ -35,7 +35,7 @@
 		</items>
 	</player_data>
 
-	<!-- ================= KNIGHT / TEMPLAR (2) -- capturado ================= -->
+	<!-- ================= KNIGHT / TEMPLAR (2)  ================= -->
 	<player_data class="KNIGHT">
 		<items>
 			<item id="182400001" count="0"/>
@@ -88,7 +88,7 @@
 		</items>
 	</player_data>
 
-	<!-- ================= RANGER (5) -- capturado ================= -->
+	<!-- ================= RANGER (5)  ================= -->
 	<player_data class="RANGER">
 		<items>
 			<item id="182400001" count="0"/>

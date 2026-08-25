@@ -64,12 +64,8 @@ impl Db {
     }
 
     // --- Métodos de Personagem ---
-    pub fn base_stats_for_class(class_id: u32) -> (i32, u32) {
+    pub fn base_stats_for_class(class_id: u32) -> (u32, u32) {
         CharacterDao::base_stats_for_class(class_id)
-    }
-
-    pub fn kit_for_class(class_id: u32) -> Vec<(u32, u32)> {
-        InventoryDao::kit_for_class(class_id)
     }
 
     pub fn initial_skills_for_class(class_id: u32) -> Vec<(u32, u8)> {
@@ -83,6 +79,17 @@ impl Db {
         aparencia: &[u8],
     ) -> Result<PersistedCharacter> {
         CharacterDao::criar_personagem(&self.conn, username, nome, aparencia)
+    }
+
+    pub fn criar_personagem_com_xml(
+        &self,
+        username: &str,
+        nome: &str,
+        aparencia: &[u8],
+        ponto: Option<crate::game::mundo::PontoDeEntrada>,
+        itens: &[(u32, u32)],
+    ) -> Result<PersistedCharacter> {
+        CharacterDao::criar_personagem_com_xml(&self.conn, username, nome, aparencia, ponto, itens)
     }
 
     pub fn personagens_da_conta(&self, username: &str) -> Result<Vec<PersistedCharacter>> {
@@ -115,7 +122,7 @@ impl Db {
         heading: u8,
         level: u16,
         exp: u64,
-        hp: i32,
+        hp: u32,
         mp: u32,
     ) -> Result<()> {
         CharacterDao::save_character(&self.conn, id, x, y, z, map_id, heading, level, exp, hp, mp)
@@ -398,14 +405,15 @@ mod tests {
         aparencia[56..60].copy_from_slice(&0u32.to_le_bytes()); // Elyos
         aparencia[60..64].copy_from_slice(&1u32.to_le_bytes()); // Gladiator (Warrior)
 
-        let criado = db.criar_personagem("conta_teste", "Guerreiro", &aparencia).unwrap();
+        let itens_iniciais = vec![(182400001, 0), (101301127, 1)];
+        let criado = db.criar_personagem_com_xml("conta_teste", "Guerreiro", &aparencia, None, &itens_iniciais).unwrap();
         assert_eq!(criado.level, 1);
         assert_eq!(criado.hp, 1278);
         assert_eq!(criado.mp, 577);
-        assert_eq!(criado.map_id, 110070000);
+        assert_eq!(criado.map_id, 210010000); // Elyos (Poeta Classic 2.8) - lido do player_initial_data.xml
 
         let itens = db.itens_do_personagem(criado.id).unwrap();
-        assert_eq!(itens.len(), 20);
+        assert_eq!(itens.len(), 2);
 
         let skills = db.carregar_skills(criado.id).unwrap();
         assert_eq!(skills.len(), 4);

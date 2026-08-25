@@ -182,7 +182,7 @@ pub fn escreve_registro(registro: &mut [u8], personagem: &Personagem) {
             b.get(off..off + 4)
         })
         .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
-        .unwrap_or(1);
+        .unwrap_or(1); // 1 = Asmodiano (padrao, conforme molde capturado)
     escreve_ponto_de_entrada(registro, personagem.posicao, raca);
 }
 
@@ -442,11 +442,21 @@ mod test {
 
     /// O mapa que a lista declara e o que o cliente pre-carrega. Se ele discordar do que o
     /// `S_WORLD` mandar depois, o cliente entra num mundo que nao carregou.
+    /// Este teste usa um personagem Elyos (raca=0) para garantir o mapa correto.
     #[test]
     fn a_lista_declara_o_mesmo_ponto_de_entrada_do_s_world() {
         use crate::game::mundo;
 
-        let lista = ListaPersonagens::new(0, vec![personagem(1, "Durak", 60)]);
+        // Constroi aparencia com raca=0 (Elyos) no offset correto (RACA - NOME)
+        let mut aparencia = vec![0u8; campo::APARENCIA_LEN];
+        let raca_elyos: u32 = 0;
+        aparencia[campo::RACA - campo::NOME..campo::RACA - campo::NOME + 4]
+            .copy_from_slice(&raca_elyos.to_le_bytes());
+
+        let mut p = personagem(1, "Durak", 60);
+        p.aparencia = Some(aparencia);
+
+        let lista = ListaPersonagens::new(0, vec![p]);
         let mut buf = vec![0u8; 4096];
         lista.serialise_payload(&mut buf);
 

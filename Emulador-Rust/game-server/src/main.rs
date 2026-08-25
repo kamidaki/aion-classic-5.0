@@ -25,6 +25,7 @@ mod error;
 mod game;
 mod login_connector;
 pub mod network;
+pub mod services;
 pub use game::controller;
 pub use game::ai;
 

@@ -10,7 +10,7 @@ pub mod admin;
 pub mod ai;
 pub mod arena;
 pub mod broker;
-mod character;
+pub mod character;
 pub mod controller;
 pub mod craft;
 pub mod cron_events;
@@ -29,7 +29,7 @@ pub mod pet;
 mod session;
 pub mod social;
 pub mod stigma;
-mod state;
+pub mod state;
 pub mod teleport;
 pub mod tester;
 pub mod title;
@@ -41,7 +41,7 @@ use commons::game::{gen_xor_key, gen_xor_seed};
 use message::{client as c, server as s, ClientMessages};
 use session::Account;
 
-use self::state::State;
+pub use self::state::State;
 
 const TICK_RATE: f32 = 144.;
 
@@ -185,13 +185,13 @@ impl ClientUpdate {
 /// (which drops + reallocates the inner Vecs), we track which keys received
 /// messages in a separate `dirty_*` list and `clear()` only those Vecs after
 /// the send pass, retaining their capacity for the next tick.
-struct Messages {
+pub struct Messages {
     /// Only send to the requesting client
-    direct: HashMap<u16, Vec<ServerUpdate>>,
-    dirty_direct: Vec<u16>,
+    pub direct: HashMap<u16, Vec<ServerUpdate>>,
+    pub dirty_direct: Vec<u16>,
     /// Only send to other clients
-    others: HashMap<u16, Vec<ServerUpdate>>,
-    dirty_others: Vec<u16>,
+    pub others: HashMap<u16, Vec<ServerUpdate>>,
+    pub dirty_others: Vec<u16>,
     /// Send to all clients
     pub broadcast: Vec<ServerUpdate>,
 }

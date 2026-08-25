@@ -597,10 +597,10 @@ impl Character {
         c.heading = p.heading;
         c.stats.level = p.level;
         c.stats.exp = p.exp;
-        c.stats.hp.current = p.hp;
+        c.stats.hp.current = p.hp as i32;
         // keep hp.max from defaults; persisted hp may be lower
         c.stats.mp.current = p.mp;
-        c.aparencia = p.aparencia.clone();
+        c.aparencia = if p.aparencia.is_empty() { None } else { Some(p.aparencia.clone()) };
         c
     }
 
