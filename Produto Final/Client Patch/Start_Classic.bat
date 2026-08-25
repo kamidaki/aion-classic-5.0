@@ -1,17 +1,15 @@
 @echo off
-setlocal
 
 set "ENABLE_DXVK=1"
-
 REM =========================================================================================
 REM  Aion Classic EU - Script de Inicializacao Simplificado (Start_Classic.bat)
 REM =========================================================================================
 REM
 REM  PARAMETROS MANDATORIOS DE REDE:
-REM  -ip:127.0.0.1   => IP de destino da conexao de Login (Porta 2106).
-REM  -port:2106      => Porta TCP oficial do Login Server.
-REM  -lang:ENG       => Idioma do cliente (Ingles).
-REM  -cc:2           => Country Code / Bracket para a regiao Classic EU.
+REM  -ip:127.0.0.1   - IP de destino da conexao de Login (Porta 2106).
+REM  -port:2106      - Porta TCP oficial do Login Server.
+REM  -lang:ENG       - Idioma do cliente (Ingles).
+REM  -cc:2           - Country Code / Bracket para a regiao Classic EU.
 REM
 REM  -----------------------------------------------------------------------------------------
 REM  PARAMETROS AUXILIARES (OCULTOS / BYPASSADOS VIA VERSION.DLL):
