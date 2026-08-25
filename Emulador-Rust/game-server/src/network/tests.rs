@@ -3,13 +3,13 @@
 #[cfg(test)]
 pub mod tests {
     use std::time::Instant;
+    use crate::network::aion::clientpackets::*;
+    use crate::network::aion::serverpackets::*;
     use crate::network::aion_connection::{AionConnection, ConnectionState};
     use crate::network::banned_mac_manager::BannedMacManager;
-    use crate::network::cm::*;
     use crate::network::opcodes::*;
     use crate::network::packet_flood_filter::PacketFloodFilter;
     use crate::network::packet_handler::AionPacketHandler;
-    use crate::network::sm::*;
     use crate::network::system_message_id::SystemMessageId;
 
     #[test]
@@ -70,5 +70,27 @@ pub mod tests {
     fn test_system_message_ids() {
         assert_eq!(SystemMessageId::WelcomeToAion.id(), 1300000);
         assert_eq!(SystemMessageId::InstanceEntryDenied.id(), 1400360);
+    }
+
+    #[test]
+    fn test_individual_packet_modules() {
+        // Testa a instanciação direta de pacotes individuais (1 arquivo por pacote)
+        let cm_atk = CmAttack {
+            target_id: 100,
+            attack_type: 1,
+            time: 50,
+        };
+        assert_eq!(cm_atk.target_id, 100);
+
+        let sm_hp = SmHitPoint {
+            cur_hp: 5000,
+            max_hp: 5000,
+        };
+        assert_eq!(sm_hp.cur_hp, 5000);
+
+        let sm_key = SmKey {
+            session_key: [1, 2, 3, 4, 5, 6, 7, 8],
+        };
+        assert_eq!(sm_key.session_key[0], 1);
     }
 }
