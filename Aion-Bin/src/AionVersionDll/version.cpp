@@ -106,7 +106,7 @@ static LPSTR WINAPI zzGetCommandLineA() {
         LPSTR cmd = real_GetCommandLineA();
         s_hookedCmdA = cmd ? cmd : "";
         if (s_hookedCmdA.find("-classic") == std::string::npos) {
-            s_hookedCmdA += " -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu";
+            s_hookedCmdA += " -loginex -np:127.0.0.1 -dwsm -pwd16 -npsa -probability -nospamcheck -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu";
         }
         VersionLog("[CMDLINE] Hooked GetCommandLineA: %s", s_hookedCmdA.c_str());
     }
@@ -120,7 +120,7 @@ static LPWSTR WINAPI zzGetCommandLineW() {
         LPWSTR cmd = real_GetCommandLineW();
         s_hookedCmdW = cmd ? cmd : L"";
         if (s_hookedCmdW.find(L"-classic") == std::wstring::npos) {
-            s_hookedCmdW += L" -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu";
+            s_hookedCmdW += L" -loginex -np:127.0.0.1 -dwsm -pwd16 -npsa -probability -nospamcheck -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu";
         }
         VersionLog("[CMDLINE] Hooked GetCommandLineW: %ls", s_hookedCmdW.c_str());
     }
