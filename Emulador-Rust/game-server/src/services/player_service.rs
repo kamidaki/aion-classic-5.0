@@ -562,11 +562,6 @@ pub fn classe_id_para_nome(classe: u32) -> &'static str {
         9 => "PRIEST",
         10 => "CLERIC",
         11 => "CHANTER",
-        12 => "ENGINEER",
-        13 => "GUNNER",
-        14 => "RIDER",
-        15 => "BARD",
-        16 => "MONK",
         _ => "WARRIOR",
     }
 }
@@ -585,7 +580,6 @@ pub fn classe_no_xml(classe: u32) -> (&'static str, &'static str) {
         9 => ("PRIEST", "PRIEST"),
         10 => ("CLERIC", "PRIEST"),
         11 => ("CHANTER", "PRIEST"),
-        13 => ("GUNNER", "GUNNER"),
         _ => ("", ""),
     }
 }

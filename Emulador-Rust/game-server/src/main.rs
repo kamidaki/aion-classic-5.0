@@ -46,6 +46,7 @@ pub mod message;
 pub mod mundo;
 pub mod network;
 pub mod pet;
+pub mod restrictions;
 pub mod services;
 pub mod session;
 pub mod social;

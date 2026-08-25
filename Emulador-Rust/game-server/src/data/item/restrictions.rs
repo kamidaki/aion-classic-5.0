@@ -1,26 +1,28 @@
-//! Restrições de uso de itens (Classes, Raça, Gênero, Nível).
+//! Restrições de uso de itens no Aion Classic (4.5 / 2.8).
+//! Contém exclusivamente as 12 classes clássicas oficiais do jogo (0..11).
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub struct PlayerClassMask(pub u32);
 
 impl PlayerClassMask {
+    // Classes Base
     pub const WARRIOR: Self = Self(1 << 0);
+    pub const SCOUT: Self = Self(1 << 3);
+    pub const MAGE: Self = Self(1 << 6);
+    pub const PRIEST: Self = Self(1 << 9);
+
+    // Classes Especializadas Clássicas
     pub const GLADIATOR: Self = Self(1 << 1);
     pub const TEMPLAR: Self = Self(1 << 2);
-    pub const SCOUT: Self = Self(1 << 3);
     pub const ASSASSIN: Self = Self(1 << 4);
     pub const RANGER: Self = Self(1 << 5);
-    pub const MAGE: Self = Self(1 << 6);
     pub const SORCERER: Self = Self(1 << 7);
     pub const SPIRITMASTER: Self = Self(1 << 8);
-    pub const PRIEST: Self = Self(1 << 9);
     pub const CLERIC: Self = Self(1 << 10);
     pub const CHANTER: Self = Self(1 << 11);
-    pub const GUNNER: Self = Self(1 << 12);
-    pub const AETHERTECH: Self = Self(1 << 13);
-    pub const SONGWEAVER: Self = Self(1 << 14);
 
-    pub const ALL: Self = Self(0xFFFF);
+    // Máscara total de classes clássicas (0..11)
+    pub const ALL: Self = Self(0x0FFF);
 
     #[inline]
     pub fn allows(&self, class_id: u8) -> bool {
@@ -40,10 +42,7 @@ impl PlayerClassMask {
             9 => self.0 & (Self::PRIEST.0 | Self::CLERIC.0 | Self::CHANTER.0) != 0,
             10 => self.0 & Self::CLERIC.0 != 0,
             11 => self.0 & Self::CHANTER.0 != 0,
-            12 => self.0 & Self::GUNNER.0 != 0,
-            13 => self.0 & Self::AETHERTECH.0 != 0,
-            14 => self.0 & Self::SONGWEAVER.0 != 0,
-            _ => true,
+            _ => false,
         }
     }
 }

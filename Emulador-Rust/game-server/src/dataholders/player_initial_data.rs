@@ -70,10 +70,6 @@ impl PlayerInitialDataHolder {
             "SPIRIT_MASTER" | "ELEMENTALLIST" => &["SPIRIT_MASTER", "ELEMENTALLIST", "MAGE"],
             "CLERIC" | "PRIEST" => &["CLERIC", "PRIEST"],
             "CHANTER" => &["CHANTER", "PRIEST"],
-            "BRAWLER" | "REVENANT" | "MONK" => &["BRAWLER", "REVENANT", "MONK"],
-            "GUNSLINGER" | "GUNNER" | "ENGINEER" => &["GUNSLINGER", "GUNNER", "ENGINEER"],
-            "AETHERTECH" | "RIDER" => &["AETHERTECH", "RIDER", "ENGINEER"],
-            "SONGWEAVER" | "BARD" | "ARTIST" => &["SONGWEAVER", "BARD", "ARTIST"],
             _ => &["WARRIOR"],
         };
 
