@@ -186,18 +186,12 @@ impl LoginCryptEngine {
         //   stop = length - 8 = 192 - 8 = 184   (posicao absoluta no array)
         //   pos  = 4 + offset = 4 + 2   = 6     (posicao absoluta no array)
         //   loop while pos < 184:
-        //     processa posicoes absolutas: 6, 10, 14, ..., 180
-        //     = posicoes no payload (abs - offset=2): 4, 8, 12, ..., 178
-        //   ecx escrito em pos=184 (absoluto) = payload[182..186]
-        //
-        // No Rust, data[] e o payload sem o header de 2 bytes.
-        // Posicoes no payload equivalem a posicoes absolutas Java - 2.
-        //   payload_stop  = 184 - 2 = 182
-        //   payload_start = 6   - 2 = 4
-        //   key escrita em payload[182..186]
+        //     processa posicoes absolutas: 6, 10, 14, ..., 182
+        //     = posicoes no payload (abs - offset=2): 4, 8, 12, ..., 180
+        //   pos apos loop = 186 (absoluto) = payload[184..188]
+        //   ecx escrito em pos (payload[184..188])
 
-        let payload_stop: usize = 182;   // = stop_absoluto(184) - offset(2)
-        let payload_key: usize  = 182;   // = pos_ecx_absoluto(184) - offset(2)
+        let payload_stop: usize = 182;
         let mut curr_key = key;
         let mut pos = 4usize;
 
@@ -209,7 +203,7 @@ impl LoginCryptEngine {
             pos += 4;
         }
 
-        data[payload_key..payload_key + 4].copy_from_slice(&curr_key.to_le_bytes());
+        data[pos..pos + 4].copy_from_slice(&curr_key.to_le_bytes());
     }
 
     pub fn scramble_modulus(modulus: &[u8]) -> [u8; 128] {
