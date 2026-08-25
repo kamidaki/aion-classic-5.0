@@ -59,6 +59,12 @@ Ao iniciar, o painel do gerenciador abrirá automaticamente na janela nativa emb
 * **Experiência Mobile iOS-Like**:
   * Acesso remoto via navegador pelo celular no mesmo Wi-Fi (`http://<LAN-IP>:18080`).
   * Barra de navegação inferior estilo vidro fosco (`Status`, `Gráfico`, `Logs`, `Menu`) e Botão de Ação Flutuante (FAB).
+* **Database Studio & Workbench Multi-Bancos**:
+  * Navegação hierárquica em árvore por banco de dados na barra lateral esquerda com controle de acordeão (Expandir / Recolher tudo):
+    * 📁 **Login Server (`login.db`)** — 11 tabelas
+    * 📁 **Game Server (`game.db`)** — 74 tabelas
+    * 📁 **Chat Server (`chat.db`)** — 1 tabela
+    * **Total de 86 tabelas** navegáveis com busca global instantânea, visualização Grid, paginação, filtros, inserção/edição/deleção inline e console SQL em tempo real.
 * **Central de Logs Unificada**:
   * Monitoramento consolidado de todos os servidores + logs internos do supervisor.
   * Filtros por serviço, busca em tempo real, auto-scroll e limpeza de console.

@@ -80,15 +80,25 @@ Abaixo esta o status detalhado de implementacao de cada modulo do emulador, base
 - [x] **14. [OK] Banco de Dados SQLite v2 com Migracoes**: Schema relacional completo com modo WAL, integridade referencial e migracoes automaticas entre versoes.
 - [x] **15. [OK] Sistema de Teleporte e Portais de Mundo**: Validacao de raca, nivel e custo com `teleport_service`, despacho do pacote oficial `SM_REQUEST_TELEPORT` de 22 bytes e limpeza de cena espacial.
 
-### Modulos em Desenvolvimento e Proximas Etapas
+### Modulos em Desenvolvimento e Proximas Etapas (Consulte [Plano de Jogo](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/00_INDICE_E_ARQUITETURA_GERAL.md))
 
-- [ ] **16. [..] IA Avancada de Monstros e Pathfinding GeoEngine**: Integracao de malhas de navegacao (NavMesh), IA comportamental complexa de chefes de raid e habilidades de area.
-- [ ] **17. [..] Instancias, Masmorras Privadas e Portais de Raide**: Salas instanciadas com controle de tempo de reentrada (cooldown de instancia) e checkpoints.
-- [ ] **18. [..] Coleta, Artesanato e Extracao de Materiais**: Sistema de Crafting (Armorsmithing, Weaponsmithing, Alchemy, Cooking) com chance de critico (Proc).
-- [ ] **19. [..] Pets, Minions, Summons de Spiritmaster e Armadilhas**: Controle de comandos de summons (Attack, Stay, Follow), bolsas de pets e deteccao de traps.
-- [ ] **20. [..] Housing, Mansoes e Decoracao de Interiores**: Casas em Oriel e Pernon, manutencao semanal e posicionamento de moveis.
-- [ ] **21. [..] Batalhas de Fortaleza Abyss (Siege Warfare) e Ranks PvP**: Cronogramas de Fortress Siege, pontuacao Abyss Points (AP), transformacao em Governador/General e reliquias.
-- [ ] **22. [..] Daeva Pass, Wardrobe e Atreian Passport**: Interfaces web integradas com recompensas diarias de login e skins de vestuario.
+Para o detalhamento completo de cada etapa, arquitetura, estruturas e opcodes, consulte os **16 documentos técnicos em `Docs-Refs/Plano-De-Jogo/`**:
+- [00_INDICE_E_ARQUITETURA_GERAL.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/00_INDICE_E_ARQUITETURA_GERAL.md)
+- [01_DIAGNOSTICO_E_SOLUCAO_BUGS_CRITICOS_ATUAIS.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/01_DIAGNOSTICO_E_SOLUCAO_BUGS_CRITICOS_ATUAIS.md)
+- [02_NETWORK_PROTOCOLOS_CM_SM.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/02_NETWORK_PROTOCOLOS_CM_SM.md)
+- [03_WORLD_GRID_E_INSTANCE_ENGINE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/03_WORLD_GRID_E_INSTANCE_ENGINE.md)
+- [04_GEOENGINE_E_COLISAO_ALTURA.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/04_GEOENGINE_E_COLISAO_ALTURA.md)
+- [05_MODELS_E_ENTIDADES_DO_JOGO.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/05_MODELS_E_ENTIDADES_DO_JOGO.md)
+- [06_CONTROLLERS_E_ACOES.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/06_CONTROLLERS_E_ACOES.md)
+- [07_AI_ENGINE_E_COMPORTAMENTOS.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/07_AI_ENGINE_E_COMPORTAMENTOS.md)
+- [08_SKILL_ENGINE_E_COMBATE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/08_SKILL_ENGINE_E_COMBATE.md)
+- [09_SPAWN_ENGINE_E_POVOAMENTO.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/09_SPAWN_ENGINE_E_POVOAMENTO.md)
+- [10_SERVICES_SISTEMAS_DO_JOGO.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/10_SERVICES_SISTEMAS_DO_JOGO.md)
+- [11_QUEST_ENGINE_MISSOES_CLASSIC.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/11_QUEST_ENGINE_MISSOES_CLASSIC.md)
+- [12_DATAHOLDERS_E_CACHE_CLIENT_XML.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/12_DATAHOLDERS_E_CACHE_CLIENT_XML.md)
+- [13_TASK_MANAGER_E_TIMERS.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/13_TASK_MANAGER_E_TIMERS.md)
+- [14_DAO_E_PERSISTENCIA_SQLITE.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/14_DAO_E_PERSISTENCIA_SQLITE.md)
+- [15_EXCLUSIVOS_CLASSIC_2.8_E_WEBSHOP.md](file:///d:/AION%20RUST/AionEMU/AionEMU/Docs-Refs/Plano-De-Jogo/15_EXCLUSIVOS_CLASSIC_2.8_E_WEBSHOP.md)
 
 ---
 
