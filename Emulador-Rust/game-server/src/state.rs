@@ -31,6 +31,7 @@ pub struct State {
     pub teleport_service: TeleportService,
     pub title_service: TitleService,
     pub trade_service: TradeService,
+    pub restrictions: crate::restrictions::RestrictionsManager,
     pub db: Db,
     pub game_data: Arc<GameData>,
     pub data_manager: Arc<DataManager>,
@@ -102,6 +103,7 @@ impl State {
             teleport_service: TeleportService::new(),
             title_service: TitleService::from_data(&game_data.titles),
             trade_service: TradeService::from_data(&game_data.goods_lists),
+            restrictions: crate::restrictions::RestrictionsManager::new(),
             db,
             game_data,
             data_manager,
@@ -181,6 +183,7 @@ impl State {
                     use_skill,
                     &mut self.characters,
                     &mut self.entities,
+                    &self.restrictions,
                     messages,
                 );
             }
@@ -191,6 +194,7 @@ impl State {
                     &mut self.characters,
                     &mut self.entities,
                     &mut self.attack_timers,
+                    &self.restrictions,
                     messages,
                 );
             }
@@ -291,6 +295,7 @@ impl State {
                     &mut self.chat_timestamps,
                     &self.party_service,
                     &self.guild_manager,
+                    &self.restrictions,
                     messages,
                 );
             }

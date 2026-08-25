@@ -118,6 +118,9 @@ impl Hp {
     pub fn current(&self) -> i32 {
         self.current
     }
+    pub fn is_dead(&self) -> bool {
+        self.current <= 0
+    }
     pub fn percent(&self) -> u8 {
         ((self.current as f32 / self.max as f32) * 100.) as u8
     }
@@ -660,6 +663,45 @@ impl Character {
             }
         }
         0
+    }
+
+    pub fn to_player_state(&self) -> crate::restrictions::PlayerState {
+        use crate::restrictions::{AbnormalState, CreatureState, PlayerMode, PlayerState};
+        PlayerState {
+            object_id: self.id(),
+            name: self.name().clone(),
+            race: self.race(),
+            level: self.stats.level as u8,
+            is_online: true,
+            is_dead: self.stats.hp.is_dead(),
+            state: if self.stats.hp.is_dead() {
+                CreatureState::Dead
+            } else {
+                CreatureState::Normal
+            },
+            mode: PlayerMode::Normal,
+            abnormal_state: AbnormalState::NONE,
+            is_casting: false,
+            is_in_combat: false,
+            is_trading: false,
+            is_gagged: false,
+            is_in_prison: false,
+            is_transformed: false,
+            is_avatar_transformed: false,
+            is_protection_active: false,
+            is_arrow_equipped: true,
+            is_bow_equipped: false,
+            is_under_stance: false,
+            current_zone: String::new(),
+            is_in_fortress_zone: false,
+            is_in_item_use_zone: false,
+            group_id: None,
+            is_group_leader: false,
+            group_member_count: 0,
+            alliance_id: None,
+            is_alliance_leader: false,
+            alliance_member_count: 0,
+        }
     }
     pub fn attack_speed_ms(&self) -> u64 {
         let spd = self.stats.attack_speed;

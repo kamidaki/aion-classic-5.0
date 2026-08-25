@@ -17,6 +17,7 @@ impl SkillService {
         use_skill: &c::UseSkill,
         characters: &mut HashMap<u32, Character>,
         entities: &mut [Entity],
+        restrictions: &crate::restrictions::RestrictionsManager,
         messages: &mut Messages,
     ) {
         let char_id = update.character_id();
@@ -25,6 +26,24 @@ impl SkillService {
         };
 
         let is_self_or_aoe = use_skill.target_id == 0 || use_skill.target_id == char_id;
+
+        // Validação estrita pelo subsistema de restrições
+        let player_state = character.to_player_state();
+        let skill_info = crate::restrictions::SkillInfo {
+            skill_id: use_skill.skill_id as u32,
+            skill_type: crate::restrictions::SkillType::Physical,
+            has_evade_effect: false,
+            has_resurrect_effect: false,
+            is_hide_skill: false,
+            is_recall_instant: false,
+            is_disabled: false,
+            is_enemy_target: !is_self_or_aoe,
+        };
+
+        if let Err(restriction_err) = restrictions.can_use_skill(&player_state, &skill_info) {
+            println!("WARN: [SkillService] Skill {} restricted for player {}: {:?}", use_skill.skill_id, char_id, restriction_err);
+            return;
+        }
 
         if is_self_or_aoe {
             // Self-buff ou skill utilitária/área

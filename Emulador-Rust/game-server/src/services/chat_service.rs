@@ -34,6 +34,7 @@ impl ChatService {
         chat_timestamps: &mut HashMap<u32, Vec<Instant>>,
         party_service: &PartyService,
         guild_manager: &GuildManager,
+        restrictions: &crate::restrictions::RestrictionsManager,
         messages: &mut Messages,
     ) {
         if !Self::check_flood(character_id, chat_timestamps) {
@@ -41,10 +42,20 @@ impl ChatService {
             return;
         }
 
-        let (char_name, loc, access_level) = match characters.get(&character_id) {
-            Some(c) => (c.name().to_string(), *c.location(), 100),
-            None => return,
+        let Some(character) = characters.get(&character_id) else {
+            return;
         };
+
+        // Validação estrita pelo subsistema de restrições (Gag / Prison)
+        let player_state = character.to_player_state();
+        if let Err(restriction_err) = restrictions.can_chat(&player_state) {
+            println!("WARN: [ChatService] Chat restricted for player {character_id}: {:?}", restriction_err);
+            return;
+        }
+
+        let char_name = character.name().to_string();
+        let loc = *character.location();
+        let access_level = 100;
 
         // Verificação e execução de comandos GM
         if let Some(cmd) = GmCommand::parse(&msg.message) {

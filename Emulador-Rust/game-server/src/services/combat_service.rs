@@ -19,6 +19,7 @@ impl CombatService {
         characters: &mut HashMap<u32, Character>,
         entities: &mut [Entity],
         attack_timers: &mut HashMap<u32, (u32, Instant)>,
+        restrictions: &crate::restrictions::RestrictionsManager,
         messages: &mut Messages,
     ) {
         if attack.target_id == 0 {
@@ -33,6 +34,36 @@ impl CombatService {
         let Some(character) = characters.get_mut(&character_id) else {
             return;
         };
+
+        // Validação estrita pelo subsistema de restrições
+        let player_state = character.to_player_state();
+        let target_state = crate::restrictions::TargetState {
+            object_id: entity.id(),
+            name: String::new(),
+            race: 0,
+            is_player: false,
+            is_dead: !entity.is_alive(),
+            state: if entity.is_alive() {
+                crate::restrictions::CreatureState::Normal
+            } else {
+                crate::restrictions::CreatureState::Dead
+            },
+            mode: crate::restrictions::PlayerMode::Normal,
+            is_in_combat: true,
+            is_protection_active: false,
+            is_transformed: false,
+            is_avatar_transformed: false,
+            is_trading: false,
+            group_id: None,
+            is_group_leader: false,
+            alliance_id: None,
+        };
+
+        if let Err(restriction_err) = restrictions.can_attack(&player_state, Some(&target_state)) {
+            println!("WARN: [CombatService] Attack restricted for player {character_id}: {:?}", restriction_err);
+            attack_timers.remove(&character_id);
+            return;
+        }
 
         let hit = crate::engine::damage::CombatEngine::calculate_physical_hit(
             character.stats.secondary.main_hand_attack,
