@@ -767,7 +767,7 @@ async fn handle_ncsoft_client(
                     account_id,
                     login_ok,
                     &current_username,
-                    false, // Exige aceite manual dos Termos de Uso (TOS) na tela do cliente
+                    true, // TOS ja aceito
                 )
                 .await;
                 println!(
