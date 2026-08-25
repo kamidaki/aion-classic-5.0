@@ -32,6 +32,7 @@ pub struct State {
     pub title_service: TitleService,
     pub trade_service: TradeService,
     pub restrictions: crate::restrictions::RestrictionsManager,
+    pub spawn_engine: crate::spawnengine::SpawnEngine,
     pub db: Db,
     pub game_data: Arc<GameData>,
     pub data_manager: Arc<DataManager>,
@@ -40,6 +41,7 @@ pub struct State {
 impl State {
     pub fn new(db: Db, game_data: Arc<GameData>) -> Self {
         let mut entities = Vec::with_capacity(1000);
+        let mut put_npc: HashMap<u32, Vec<u8>> = HashMap::new();
 
         let mosbear = Entity::new(
             2147586830,
@@ -57,25 +59,36 @@ impl State {
         }
         entities.push(mosbear);
 
-        let mut put_npc: HashMap<u32, Vec<u8>> = HashMap::new();
-        for (i, sp) in game_data.spawns.iter().enumerate() {
-            let id = 0x8000_0000 | (i as u32 + 1);
-            entities.push(Entity::novo(
-                id,
-                Coord::new(sp.x, sp.y, sp.z),
-                sp.npc_id,
-                sp.nome_id,
-            ));
-
-            let mut payload = sp.payload.clone();
-            let off = crate::data_loader::OFFSET_ID_ENTIDADE;
-            if payload.len() >= off + 4 {
-                payload[off..off + 4].copy_from_slice(&id.to_le_bytes());
-                put_npc.insert(id, payload);
+        // Inicializa o SpawnEngine e carrega todos os spawns oficiais
+        let mut spawn_engine = crate::spawnengine::SpawnEngine::new();
+        let spawn_csv = std::path::Path::new("data/spawns.csv");
+        if spawn_csv.exists() {
+            if let Ok(count) = spawn_engine.load_from_csv(spawn_csv) {
+                println!("INFO: [SpawnEngine] {} templates de spawn carregados do CSV", count);
             }
         }
-        if !game_data.spawns.is_empty() {
-            println!("INFO: {} NPCs no mundo", game_data.spawns.len());
+        spawn_engine.spawn_all(&mut entities, &mut put_npc);
+
+        if !game_data.spawns.is_empty() && entities.len() <= 1 {
+            for (i, sp) in game_data.spawns.iter().enumerate() {
+                let id = 0x8000_0000 | (i as u32 + 1);
+                entities.push(Entity::novo(
+                    id,
+                    Coord::new(sp.x, sp.y, sp.z),
+                    sp.npc_id,
+                    sp.nome_id,
+                ));
+
+                let mut payload = sp.payload.clone();
+                let off = crate::data_loader::OFFSET_ID_ENTIDADE;
+                if payload.len() >= off + 4 {
+                    payload[off..off + 4].copy_from_slice(&id.to_le_bytes());
+                    put_npc.insert(id, payload);
+                }
+            }
+        }
+        if !entities.is_empty() {
+            println!("INFO: {} NPCs instanciados pelo SpawnEngine no mundo", entities.len());
         }
 
         // Carrega os DataHolders com os XMLs oficiais do client
@@ -104,6 +117,7 @@ impl State {
             title_service: TitleService::from_data(&game_data.titles),
             trade_service: TradeService::from_data(&game_data.goods_lists),
             restrictions: crate::restrictions::RestrictionsManager::new(),
+            spawn_engine,
             db,
             game_data,
             data_manager,
@@ -195,6 +209,7 @@ impl State {
                     &mut self.entities,
                     &mut self.attack_timers,
                     &self.restrictions,
+                    &mut self.spawn_engine,
                     messages,
                 );
             }
@@ -377,8 +392,10 @@ impl State {
 
     /// Tick de servidor: recalcula timers de ataque, respawn, AI, etc.
     pub fn update(&mut self, _messages: &mut Messages) {
-        // Os sub-serviços (combat, AI, respawn) serão chamados aqui no futuro.
-        // Por agora apenas limpa timers de ataque de alvos mortos.
+        // Atualiza SpawnEngine (respawns, patrulhas walker, ciclo temporário, expiração de rifts)
+        self.spawn_engine.tick(Instant::now(), &mut self.entities, &mut self.put_npc);
+
+        // Limpa timers de ataque de alvos mortos
         self.attack_timers.retain(|_, (target_id, _)| {
             self.entities
                 .iter()

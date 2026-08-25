@@ -20,6 +20,7 @@ impl CombatService {
         entities: &mut [Entity],
         attack_timers: &mut HashMap<u32, (u32, Instant)>,
         restrictions: &crate::restrictions::RestrictionsManager,
+        spawn_engine: &mut crate::spawnengine::SpawnEngine,
         messages: &mut Messages,
     ) {
         if attack.target_id == 0 {
@@ -100,6 +101,8 @@ impl CombatService {
         );
 
         if entity.is_dead() {
+            // Agenda automaticamente o respawn no motor de spawn oficial
+            spawn_engine.schedule_respawn(entity.id(), 60);
             attack_timers.remove(&character_id);
             messages.broadcast.extend(
                 [

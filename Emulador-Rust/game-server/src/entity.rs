@@ -89,7 +89,7 @@ pub struct DropItem {
     pub chance_percent: f32,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Entity {
     id: u32,
     target_id: Option<u32>,
@@ -308,6 +308,9 @@ impl Entity {
     pub fn location(&self) -> &Coord {
         &self.location
     }
+    pub fn set_location(&mut self, location: Coord) {
+        self.location = location;
+    }
     pub fn npc_id(&self) -> u32 {
         self.npc_id
     }
@@ -316,6 +319,9 @@ impl Entity {
     }
     pub fn level(&self) -> u16 {
         self.level
+    }
+    pub fn set_level(&mut self, level: u16) {
+        self.level = level;
     }
 }
 

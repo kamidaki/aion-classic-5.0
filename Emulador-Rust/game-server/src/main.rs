@@ -50,6 +50,7 @@ pub mod restrictions;
 pub mod services;
 pub mod session;
 pub mod social;
+pub mod spawnengine;
 pub mod state;
 pub mod stigma;
 pub mod teleport;
