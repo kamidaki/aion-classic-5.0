@@ -47,6 +47,7 @@ pub mod model;
 pub mod mundo;
 pub mod network;
 pub mod pet;
+pub mod questengine;
 pub mod restrictions;
 pub mod services;
 pub mod session;
