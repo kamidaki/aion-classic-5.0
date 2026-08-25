@@ -145,6 +145,13 @@ impl Mp {
     pub fn current(&self) -> u32 {
         self.current
     }
+    pub fn update(&mut self, x: i32) {
+        if x < 0 {
+            self.current = self.current.saturating_sub((-x) as u32);
+        } else {
+            self.current = (self.current + x as u32).min(self.max);
+        }
+    }
 }
 #[derive(Debug, Clone)]
 pub struct Dp {
@@ -158,6 +165,14 @@ impl Dp {
 
     pub fn current(&self) -> u16 {
         self.current
+    }
+
+    pub fn update(&mut self, x: i32) {
+        if x < 0 {
+            self.current = self.current.saturating_sub((-x) as u16);
+        } else {
+            self.current = (self.current + x as u16).min(self.max);
+        }
     }
 }
 

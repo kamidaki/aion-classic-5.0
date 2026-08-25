@@ -33,6 +33,7 @@ pub struct State {
     pub trade_service: TradeService,
     pub restrictions: crate::restrictions::RestrictionsManager,
     pub spawn_engine: crate::spawnengine::SpawnEngine,
+    pub skill_engine: crate::skillengine::SkillEngine,
     pub db: Db,
     pub game_data: Arc<GameData>,
     pub data_manager: Arc<DataManager>,
@@ -118,6 +119,7 @@ impl State {
             trade_service: TradeService::from_data(&game_data.goods_lists),
             restrictions: crate::restrictions::RestrictionsManager::new(),
             spawn_engine,
+            skill_engine: crate::skillengine::SkillEngine::new(),
             db,
             game_data,
             data_manager,
@@ -198,6 +200,7 @@ impl State {
                     &mut self.characters,
                     &mut self.entities,
                     &self.restrictions,
+                    &mut self.skill_engine,
                     messages,
                 );
             }
@@ -390,10 +393,15 @@ impl State {
         }
     }
 
-    /// Tick de servidor: recalcula timers de ataque, respawn, AI, etc.
+    /// Tick de servidor: recalcula timers de ataque, respawn, AI, skills e efeitos
     pub fn update(&mut self, _messages: &mut Messages) {
+        let now = Instant::now();
+
         // Atualiza SpawnEngine (respawns, patrulhas walker, ciclo temporário, expiração de rifts)
-        self.spawn_engine.tick(Instant::now(), &mut self.entities, &mut self.put_npc);
+        self.spawn_engine.tick(now, &mut self.entities, &mut self.put_npc);
+
+        // Atualiza SkillEngine (efeitos contínuos, DoTs, HoTs, correntes e timers de CC)
+        self.skill_engine.tick(now, &mut self.characters, &mut self.entities);
 
         // Limpa timers de ataque de alvos mortos
         self.attack_timers.retain(|_, (target_id, _)| {
