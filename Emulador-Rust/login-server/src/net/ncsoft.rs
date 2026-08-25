@@ -180,25 +180,58 @@ pub fn build_sm_init_payload(
     build_sm_init_payload_com(session_id, scrambled_modulus, blowfish_key, INIT_KEY_OFFSET, INIT_FLAG_PADRAO)
 }
 
-/// Igual, com o offset da chave e o byte de flag explicitos -- ver [`init_key_offset`].
+///// Monta o payload bruto do SM_INIT exatamente como o Java EMU faz em SM_INIT.writeImpl():
+///
+/// writeC(0x00)          → 1 byte  opcode
+/// writeD(sessionId)     → 4 bytes
+/// writeD(0x0000C621)    → 4 bytes (revisao do protocolo)
+/// writeB(publicRsaKey)  → 128 bytes (modulo RSA embaralhado)
+/// writeD(0x00)          → 4 bytes zero
+/// writeD(0x00)          → 4 bytes zero
+/// writeD(0x00)          → 4 bytes zero
+/// writeD(0x00)          → 4 bytes zero  (total: 16 bytes zeros apos RSA)
+/// writeB(blowfishKey)   → 16 bytes
+/// writeD(197635)        → 4 bytes = 0x00030403
+/// writeD(2097152)       → 4 bytes = 0x00200000
+///
+/// Total antes de padding: 1+4+4+128+16+16+4+4 = 177 bytes
+/// Apos padding para multiplo de 8 (com +4 do Java encrypt): 192 bytes cifrados
 pub fn build_sm_init_payload_com(
     session_id: u32,
     scrambled_modulus: &[u8; 128],
     blowfish_key: &[u8; 16],
-    key_offset: usize,
-    flag: u8,
+    _key_offset: usize,  // ignorado — posicao e fixa pelo protocolo Java
+    _flag: u8,           // ignorado — o byte 0x03 esta em 0x00030403
 ) -> Vec<u8> {
-    let mut p = vec![0u8; INIT_PAYLOAD_LEN];
-    p[0] = 0x00; // opcode SM_INIT
+    // Usamos 192 bytes (tamanho final apos padding da cifragem)
+    let mut p = vec![0u8; 192];
+
+    // [0] opcode
+    p[0] = 0x00;
+
+    // [1..5] session_id
     p[1..5].copy_from_slice(&session_id.to_le_bytes());
+
+    // [5..9] revisao do protocolo
     p[5..9].copy_from_slice(&0x0000_C621u32.to_le_bytes());
+
+    // [9..137] modulo RSA embaralhado (128 bytes)
     p[9..137].copy_from_slice(scrambled_modulus);
-    // p[137..148] fica em zero (11 bytes)
-    p[key_offset..key_offset + 16].copy_from_slice(blowfish_key);
-    p[INIT_FLAG_OFFSET] = flag;
-    p[INIT_FLAG_OFFSET + 1] = 0x04; // major
-    p[INIT_FLAG_OFFSET + 2] = 0x05; // minor
-    p[172..176].copy_from_slice(&2_097_152u32.to_le_bytes());
+
+    // [137..153] 4 × writeD(0) = 16 bytes zeros
+    // ja sao zeros por default
+
+    // [153..169] blowfish session key (16 bytes)
+    p[153..169].copy_from_slice(blowfish_key);
+
+    // [169..173] writeD(197635) = 0x00030403  (flag 0x03, major 0x04, minor 0x03)
+    p[169..173].copy_from_slice(&197635u32.to_le_bytes());
+
+    // [173..177] writeD(2097152) = 0x00200000
+    p[173..177].copy_from_slice(&2_097_152u32.to_le_bytes());
+
+    // [177..192] zeros (padding)
+
     p
 }
 
