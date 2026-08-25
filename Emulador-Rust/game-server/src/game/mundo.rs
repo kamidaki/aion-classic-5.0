@@ -24,20 +24,37 @@ pub struct PontoDeEntrada {
 }
 
 /// Onde nasce um personagem **elyos** (Kaisinel Academy - Tutorial).
+///
+/// Medido na captura do servidor oficial (`conta-nova-2026-08-24.pcapng`): o primeiro pacote de
+/// movimento do personagem (`C 0x0030`, pacote #258) sai de `x=1312.34 y=1510.76 z=568.26`, e os
+/// seguintes mostram ele andando a partir dali (#437 em 1316.96, #439 em 1321.62...).
+///
+/// Os valores anteriores eram `457 / 251 / 127.04`, com um comentario dizendo "posicao exata da
+/// captura de spawn inicial". **Nao eram**: essa combinacao nao aparece em nenhum dos 21.964
+/// pacotes da captura. Com `z=127` num terreno que esta em `z=568`, o personagem nascia 440
+/// metros abaixo do chao -- dentro da geometria.
 pub const ELYOS: PontoDeEntrada = PontoDeEntrada {
     mapa: 110_070_000,
-    x: 457.0,
-    y: 251.0,
-    z: 127.04,
+    x: 1312.34,
+    y: 1510.76,
+    z: 568.26,
     direcao: 0,
 };
 
 /// Onde nasce um personagem **asmodiano** (Asmodae Intro Zone - Tutorial).
+///
+/// **NAO VERIFICADO.** A unica captura que temos e de conta elyos, entao nao ha medicao do spawn
+/// asmodiano. O que se sabe e que copiar as coordenadas elyos para ca esta errado -- era o que
+/// havia antes, e mapas diferentes nao compartilham ponto de entrada.
+///
+/// Enquanto nao houver captura asmodiana, aqui ficam as coordenadas elyos como PLACEHOLDER
+/// declarado, e nao como fato medido: e melhor que o valor antigo (que enterrava o personagem em
+/// qualquer um dos dois mapas), mas continua sendo palpite para o lado asmodiano.
 pub const ASMODIANO: PontoDeEntrada = PontoDeEntrada {
     mapa: 120_070_000,
-    x: 457.0,
-    y: 251.0,
-    z: 127.04,
+    x: 1312.34,
+    y: 1510.76,
+    z: 568.26,
     direcao: 0,
 };
 
@@ -53,10 +70,10 @@ pub fn ponto_de_entrada(raca: u32) -> PontoDeEntrada {
 /// Zona de introdução tutorial 4.5.
 pub const MAPA: u32 = 120_070_000;
 
-/// Posicao exata da captura de spawn inicial.
-pub const X: f32 = 457.0;
-pub const Y: f32 = 251.0;
-pub const Z: f32 = 127.04;
+/// Posicao de spawn medida na captura oficial -- ver [`ELYOS`] para a evidencia.
+pub const X: f32 = 1312.34;
+pub const Y: f32 = 1510.76;
+pub const Z: f32 = 568.26;
 
 /// Para onde o personagem esta virado. 1 byte no `S_WORLD`, u32 no registro da lista.
 pub const DIRECAO: u8 = 0;

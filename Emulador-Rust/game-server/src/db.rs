@@ -190,9 +190,9 @@ impl Db {
                 account_id INTEGER NOT NULL,
                 account_name TEXT NOT NULL DEFAULT '',
                 exp INTEGER NOT NULL DEFAULT 0,
-                x REAL NOT NULL DEFAULT 457.0,
-                y REAL NOT NULL DEFAULT 251.0,
-                z REAL NOT NULL DEFAULT 127.04,
+                x REAL NOT NULL DEFAULT 1312.34,
+                y REAL NOT NULL DEFAULT 1510.76,
+                z REAL NOT NULL DEFAULT 568.26,
                 heading INTEGER NOT NULL DEFAULT 0,
                 world_id INTEGER NOT NULL DEFAULT 110070000,
                 gender INTEGER NOT NULL DEFAULT 0,
@@ -281,9 +281,9 @@ impl Db {
             CREATE TABLE IF NOT EXISTS player_bind_point (
                 player_id INTEGER PRIMARY KEY,
                 map_id INTEGER NOT NULL DEFAULT 110070000,
-                x REAL NOT NULL DEFAULT 457.0,
-                y REAL NOT NULL DEFAULT 251.0,
-                z REAL NOT NULL DEFAULT 127.04,
+                x REAL NOT NULL DEFAULT 1312.34,
+                y REAL NOT NULL DEFAULT 1510.76,
+                z REAL NOT NULL DEFAULT 568.26,
                 heading INTEGER NOT NULL DEFAULT 0
             );
             ",
