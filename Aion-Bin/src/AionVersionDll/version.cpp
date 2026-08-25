@@ -251,75 +251,6 @@ static void FixClientStartupWithHighCoreCountCpus() {
     }
 }
 
-// =========================================================================
-//  ApplyGameDllPatches: patches obrigatorios no game.dll para que o botao
-//  de login funcione e os pacotes sejam enviados pelo socket.
-//
-//  Todos estes enderecos sao relativos ao modulo game.dll (x64).
-//  Mapeamento confirmado por engenharia reversa (ver CONTEXT.md secao 3):
-//
-//  0x15A125: JNE condicional do botao de login (UI Login Submit Handler).
-//            Sem NOP aqui, clicar em OK nao dispara o envio de credenciais.
-//
-//  0x843E42, 0x843E4B: Socket Guard JEs — guardas que descartam o envio
-//            de pacotes TCP quando certas condicoes internas nao sao
-//            satisfeitas (ex: sessao externa nao validada pelo Launcher).
-//            Com NOPs aqui, o WSASend flui normalmente para o servidor.
-//
-//  0x845207: Guarda adicional no caminho de envio do CM_LOGIN criptografado.
-//
-//  0x88F26C: Guarda no caminho de envio do socket da sessao de autenticacao.
-//
-//  0x12247E: Guarda no path de SubmitCredentials (game.dll+0x1419C0).
-// =========================================================================
-static void ApplyGameDllPatches() {
-    HMODULE hGame = GetModuleHandleW(L"game");
-    if (!hGame) {
-        VersionLog("[PATCH] game.dll not loaded yet, skipping game patches.");
-        return;
-    }
-
-    // Cada patch: (offset_no_modulo, tamanho_em_bytes_para_nop)
-    struct PatchEntry {
-        uintptr_t offset;
-        size_t    size;
-        const char* name;
-    };
-
-    static const PatchEntry patches[] = {
-        { 0x15A125, 6, "LoginButton-JNE"        },  // Unlock login button submit
-        { 0x843E42, 2, "SocketGuard-JE-1"       },  // Socket send guard 1
-        { 0x843E4B, 2, "SocketGuard-JE-2"       },  // Socket send guard 2
-        { 0x845207, 2, "CM_LOGIN-SendGuard"      },  // CM_LOGIN send path guard
-        { 0x88F26C, 2, "AuthSession-SendGuard"   },  // Auth session send guard
-        { 0x12247E, 2, "SubmitCredentials-Guard" },  // SubmitCredentials path guard
-    };
-
-    uintptr_t base = (uintptr_t)hGame;
-
-    for (const auto& p : patches) {
-        void*  addr     = reinterpret_cast<void*>(base + p.offset);
-        DWORD  oldProt  = 0;
-
-        if (!VirtualProtect(addr, p.size, PAGE_EXECUTE_READWRITE, &oldProt)) {
-            VersionLog("[PATCH] FAILED VirtualProtect for %s at 0x%llX (err=%u)",
-                p.name, (unsigned long long)(base + p.offset), GetLastError());
-            continue;
-        }
-
-        memset(addr, 0x90, p.size);  // NOP sled
-
-        DWORD dummy = 0;
-        VirtualProtect(addr, p.size, oldProt, &dummy);
-
-        VersionLog("[PATCH] Applied NOP(%zu) at game.dll+0x%llX (%s)",
-            p.size, (unsigned long long)p.offset, p.name);
-    }
-
-    FlushInstructionCache(GetCurrentProcess(), nullptr, 0);
-    VersionLog("[PATCH] Game.dll login patches applied successfully.");
-}
-
 static void InstallPatch() {
     SetProcessDPIAware();
     PreloadDXVK();
@@ -341,25 +272,6 @@ static void InstallPatch() {
     DetourTransactionCommit();
 
     FixClientStartupWithHighCoreCountCpus();
-
-    // Patcheia o game.dll em thread separada para aguardar o carregamento completo
-    // do modulo antes de aplicar os patches de assembly.
-    CreateThread(nullptr, 0, [](LPVOID) -> DWORD {
-        // Aguarda ate que game.dll seja carregado (pode demorar alguns segundos apos init)
-        HMODULE hGame = nullptr;
-        for (int i = 0; i < 60; i++) {
-            hGame = GetModuleHandleW(L"game");
-            if (hGame) break;
-            Sleep(500);
-        }
-        if (hGame) {
-            Sleep(2000); // aguarda inicializacao completa do modulo
-            ApplyGameDllPatches();
-        } else {
-            VersionLog("[PATCH] game.dll never loaded after 30s — patches skipped.");
-        }
-        return 0;
-    }, nullptr, 0, nullptr);
 }
 
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {

@@ -522,8 +522,6 @@ async fn handle_ncsoft_client(
     }
 
     let mut state = ConnectionState::Connected;
-    // Credenciais so sao preenchidas quando o cliente envia CM_LOGIN (opcode 0x0B)
-    // com as credenciais RSA-criptografadas. Nunca ha fallback, nunca ha usuario assumido.
     let mut current_username = String::new();
     let mut account_id = 0u32;
     let login_ok: u32 = 0x026edf39;
@@ -531,12 +529,33 @@ async fn handle_ncsoft_client(
     let play_ok2: u32 = rand::random();
 
     // =========================================================================
-    // 2. SM_AUTH_GG -- O cliente exibe o formulario de login in-game e aguarda 
-    //    o jogador digitar usuario+senha e clicar em OK. Somente entao ele envia
-    //    CM_AUTH_GG e depois CM_LOGIN. Nao enviamos proativamente para nao travar.
+    // 2. SM_AUTH_GG — enviado proativamente logo apos o SM_INIT.
+    //
+    //    O version_hook.log prova: apos receber o SM_INIT, o cliente faz mais
+    //    recv() esperando novos pacotes do servidor ANTES de renderizar o
+    //    formulario de login. Ele NAO envia nada ao servidor neste momento.
+    //
+    //    Sequencia correta (medida de dentro do processo via hooks):
+    //      S → C: SM_INIT      (194 bytes)
+    //      S → C: SM_AUTH_GG   (50 bytes) ← servidor envia proativamente
+    //      C → S: CM_AUTH_GG   (opcode 0x07) — cliente responde apos renderizar o form
+    //      C → S: CM_LOGIN     (opcode 0x0B, RSA 128 bytes) — usuario clica OK
+    //      S → C: SM_LOGIN_OK
+    //      C → S: CM_SERVER_LIST
+    //      S → C: SM_SERVER_LIST
+    //      C → S: CM_PLAY
+    //      S → C: SM_PLAY_OK
     // =========================================================================
+    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
+        eprintln!(
+            "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_AUTH_GG: {}",
+            session_id, e
+        );
+        return;
+    }
+    state = ConnectionState::AuthedGg;
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT enviado. Aguardando pacote do cliente...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT + SM_AUTH_GG enviados. Aguardando interacao do cliente (CM_AUTH_GG / CM_LOGIN)...",
         session_id
     );
 
@@ -599,13 +618,13 @@ async fn handle_ncsoft_client(
 
         match opcode {
             0x07 => {
-                // CM_AUTH_GG
+                // CM_AUTH_GG — confirmacao do cliente apos receber o SM_AUTH_GG
+                // que enviamos proativamente. Apenas logamos e atualizamos o estado.
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_AUTH_GG] GameGuard handshake request",
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_AUTH_GG] Cliente confirmou GameGuard. Aguardando CM_LOGIN...",
                     session_id
                 );
                 state = ConnectionState::AuthedGg;
-                let _ = send_auth_gg(&mut socket, &crypt_engine, session_id).await;
             }
             0x08 => {
                 // CM_UPDATE_SESSION
