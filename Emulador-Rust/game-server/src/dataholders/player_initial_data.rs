@@ -18,10 +18,10 @@ impl Default for SpawnLocation {
     fn default() -> Self {
         Self {
             map_id: 210010000,
-            x: 1212.9423,
-            y: 1044.8516,
-            z: 140.75568,
-            heading: 32,
+            x: 1207.7640,
+            y: 1044.5725,
+            z: 140.14894,
+            heading: 59,
         }
     }
 }
@@ -38,17 +38,17 @@ impl PlayerInitialDataHolder {
         Self {
             elyos_spawn: SpawnLocation {
                 map_id: 210010000,
-                x: 1212.9423,
-                y: 1044.8516,
-                z: 140.75568,
-                heading: 32,
+                x: 1207.7640,
+                y: 1044.5725,
+                z: 140.14894,
+                heading: 59,
             },
             asmodian_spawn: SpawnLocation {
                 map_id: 220010000,
-                x: 571.0388,
-                y: 2787.3420,
-                z: 299.8750,
-                heading: 32,
+                x: 582.3742,
+                y: 2790.7642,
+                z: 299.3282,
+                heading: 66,
             },
             class_items: HashMap::new(),
         }
@@ -69,14 +69,15 @@ impl PlayerInitialDataHolder {
         if let Some(items) = self.class_items.get(&key) {
             items.clone()
         } else {
-            // Tenta mapear classes derivadas para a classe base
+            // Mapeamentos de aliases e classes derivadas
             let base = match key.as_str() {
-                "GLADIATOR" | "TEMPLAR" => "WARRIOR",
+                "GLADIATOR" | "BATTLEMASTER" | "TEMPLAR" | "KNIGHT" => "WARRIOR",
                 "ASSASSIN" | "RANGER" => "SCOUT",
-                "SORCERER" | "SPIRIT_MASTER" => "MAGE",
+                "SORCERER" | "WIZARD" | "SPIRIT_MASTER" | "ELEMENTALLIST" => "MAGE",
                 "CLERIC" | "CHANTER" => "PRIEST",
-                "GUNSLINGER" | "AETHERTECH" => "ENGINEER",
-                "SONGWEAVER" => "ARTIST",
+                "GUNSLINGER" | "GUNNER" | "AETHERTECH" | "RIDER" => "ENGINEER",
+                "SONGWEAVER" | "BARD" => "ARTIST",
+                "BRAWLER" | "REVENANT" => "MONK",
                 _ => "WARRIOR",
             };
             self.class_items.get(base).cloned().unwrap_or_default()
@@ -98,31 +99,43 @@ impl PlayerInitialDataHolder {
                     let tag = String::from_utf8_lossy(tag_name.as_ref()).to_string();
 
                     if tag == "asmodian_spawn_location" {
-                        let mut loc = SpawnLocation::default();
+                        let mut loc = SpawnLocation {
+                            map_id: 220010000,
+                            x: 582.3742,
+                            y: 2790.7642,
+                            z: 299.3282,
+                            heading: 66,
+                        };
                         for attr in e.attributes().flatten() {
                             let key = String::from_utf8_lossy(attr.key.as_ref()).to_string();
                             let val = String::from_utf8_lossy(&attr.value).to_string();
                             match key.as_str() {
                                 "map_id" => loc.map_id = val.parse().unwrap_or(220010000),
-                                "x" => loc.x = val.parse().unwrap_or(0.0),
-                                "y" => loc.y = val.parse().unwrap_or(0.0),
-                                "z" => loc.z = val.parse().unwrap_or(0.0),
-                                "heading" => loc.heading = val.parse().unwrap_or(0),
+                                "x" => loc.x = val.parse().unwrap_or(582.3742),
+                                "y" => loc.y = val.parse().unwrap_or(2790.7642),
+                                "z" => loc.z = val.parse().unwrap_or(299.3282),
+                                "h" | "heading" => loc.heading = val.parse().unwrap_or(66),
                                 _ => {}
                             }
                         }
                         self.asmodian_spawn = loc;
                     } else if tag == "elyos_spawn_location" {
-                        let mut loc = SpawnLocation::default();
+                        let mut loc = SpawnLocation {
+                            map_id: 210010000,
+                            x: 1207.7640,
+                            y: 1044.5725,
+                            z: 140.14894,
+                            heading: 59,
+                        };
                         for attr in e.attributes().flatten() {
                             let key = String::from_utf8_lossy(attr.key.as_ref()).to_string();
                             let val = String::from_utf8_lossy(&attr.value).to_string();
                             match key.as_str() {
                                 "map_id" => loc.map_id = val.parse().unwrap_or(210010000),
-                                "x" => loc.x = val.parse().unwrap_or(0.0),
-                                "y" => loc.y = val.parse().unwrap_or(0.0),
-                                "z" => loc.z = val.parse().unwrap_or(0.0),
-                                "heading" => loc.heading = val.parse().unwrap_or(0),
+                                "x" => loc.x = val.parse().unwrap_or(1207.7640),
+                                "y" => loc.y = val.parse().unwrap_or(1044.5725),
+                                "z" => loc.z = val.parse().unwrap_or(140.14894),
+                                "h" | "heading" => loc.heading = val.parse().unwrap_or(59),
                                 _ => {}
                             }
                         }

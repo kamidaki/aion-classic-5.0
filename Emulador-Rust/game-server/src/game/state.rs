@@ -53,17 +53,24 @@ fn classe_no_xml(classe: u32) -> (&'static str, &'static str) {
 /// Os nomes sao os do catalogo do cliente, e batem com os de `classe_no_xml`.
 fn classe_do_kit(classe: u32) -> &'static str {
     match classe {
+        0 => "WARRIOR",
         1 => "BATTLEMASTER",
         2 => "KNIGHT",
+        3 => "SCOUT",
         4 => "ASSASSIN",
         5 => "RANGER",
+        6 => "MAGE",
         7 => "WIZARD",
         8 => "ELEMENTALLIST",
+        9 => "PRIEST",
         10 => "CLERIC",
         11 => "CHANTER",
-        // As classes base (0, 3, 6, 9) nao aparecem na criacao da 4.5 -- o jogador escolhe a
-        // classe final direto. As de 4.7 em diante nao existem aqui.
-        _ => "",
+        12 => "ENGINEER",
+        13 => "GUNNER",
+        14 => "RIDER",
+        15 => "BARD",
+        16 => "MONK",
+        _ => "WARRIOR",
     }
 }
 

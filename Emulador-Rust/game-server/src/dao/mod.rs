@@ -405,7 +405,7 @@ mod tests {
         assert_eq!(criado.map_id, 110070000);
 
         let itens = db.itens_do_personagem(criado.id).unwrap();
-        assert_eq!(itens.len(), 5);
+        assert_eq!(itens.len(), 20);
 
         let skills = db.carregar_skills(criado.id).unwrap();
         assert_eq!(skills.len(), 4);
