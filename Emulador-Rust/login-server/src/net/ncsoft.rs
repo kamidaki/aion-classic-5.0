@@ -380,13 +380,13 @@ fn write_server_entry(raw: &mut Vec<u8>, server_id: u8, ip: &[u8; 4], port: u16,
     raw.push(server_id);
     raw.extend_from_slice(ip);
     raw.extend_from_slice(&(port as u32).to_le_bytes());
-    raw.push(0); // limite de idade: livre
-    raw.push(1); // pvp ligado
-    raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online
-    raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo
-    raw.push(1); // status: online
-    raw.push(bracket); // bracket / country code (offset 16)
-    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401) (offset 17..21)
+    raw.push(0); // limite de idade: livre (offset 9)
+    raw.push(1); // pvp ligado (offset 10)
+    raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online (offset 11..13)
+    raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo (offset 13..15)
+    raw.push(1); // status: online (offset 15)
+    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401) (offset 0x10..0x13 / 16..20)
+    raw.push(bracket); // bracket / country code (offset 0x14 / 20)
 }
 
 async fn handle_ncsoft_client(
