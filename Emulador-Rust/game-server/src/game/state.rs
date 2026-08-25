@@ -685,85 +685,28 @@ impl State {
                 );
             }
             c::Message::CharacterList(_) => {
-                // Resolve the real username via the session token STS
-                // persisted when issuing RequestGameToken. Fall back to a
-                // synthetic username keyed by client_id so bench clients that
-                // skip STS still work.
                 let username = self.username_do_update(&update);
-                let persisted = match self
-                    .db
-                    .load_or_create_character(&username)
-                {
-                    Ok(p) => p,
+                let todos = match self.db.personagens_da_conta(&username) {
+                    Ok(list) => list,
                     Err(e) => {
-                        eprintln!(
-                            "ERROR: db load_or_create_character({username}): {e}"
-                        );
-                        return;
-                    }
-                };
-                let character =
-                    Character::from_persisted(&persisted, update.client_id());
-
-                // Layout 4.5. A implementacao antiga (s::CharacterList) e da 2.5 e faz o cliente
-                // 4.5 crashar -- ver game::message::lista_personagens.
-                // AION_PERSONAGEM_CAPTURADO=1 manda os valores exatos do personagem da captura.
-                // E teste de bisseccao: com esses valores o pacote sai byte a byte igual ao
-                // capturado, entao se o cliente aceitar com eles e recusar com os nossos, o
-                // problema esta no dado (id, nivel, nome) e nao no formato.
-                let usar_capturado = std::env::var("AION_PERSONAGEM_CAPTURADO").is_ok();
-                let personagem = if usar_capturado {
-                    println!("INFO: usando o personagem da captura (teste de bisseccao)");
-                    lista_personagens::Personagem {
-                        id: 0x2E0F_3384,
-                        nome: "Durak".to_string(),
-                        nivel: 60,
-                        aparencia: None,
-                        posicao: (mundo::X, mundo::Y, mundo::Z),
-                    }
-                } else {
-                    lista_personagens::Personagem {
-                        id: character.id(),
-                        nome: character.name().clone(),
-                        nivel: character.stats.level,
-                        aparencia: persisted.aparencia.clone(),
-                        posicao: {
-                            let l = character.location();
-                            (l.x(), l.y(), l.z())
-                        },
+                        eprintln!("ERROR: db personagens_da_conta({username}): {e}");
+                        Vec::new()
                     }
                 };
 
-                // A conta pode ter mais de um personagem desde que dá para criar. O primeiro vem do
-                // `load_or_create_character` acima -- e o que entra no estado do jogo -- e os
-                // demais saem do banco.
-                let mut personagens = vec![personagem];
-                if !usar_capturado {
-                    match self.db.personagens_da_conta(&username) {
-                        Ok(todos) => {
-                            for p in todos {
-                                if p.id == character.id() {
-                                    continue;
-                                }
-                                // Sem isso o personagem aparece na lista mas nao da para entrar
-                                // com ele: o EnterWorld procura no estado e nao acha.
-                                self.characters.insert(
-                                    p.id,
-                                    Character::from_persisted(&p, update.client_id()),
-                                );
-                                personagens.push(lista_personagens::Personagem {
-                                    id: p.id,
-                                    nome: p.name,
-                                    nivel: p.level,
-                                    aparencia: p.aparencia,
-                                    posicao: (p.x, p.y, p.z),
-                                });
-                            }
-                        }
-                        Err(e) => {
-                            eprintln!("ERROR: personagens_da_conta({username}): {e}")
-                        }
-                    }
+                let mut personagens = Vec::new();
+                for p in &todos {
+                    self.characters.insert(
+                        p.id,
+                        Character::from_persisted(p, update.client_id()),
+                    );
+                    personagens.push(lista_personagens::Personagem {
+                        id: p.id,
+                        nome: p.name.clone(),
+                        nivel: p.level,
+                        aparencia: p.aparencia.clone(),
+                        posicao: (p.x, p.y, p.z),
+                    });
                 }
 
                 let lista = lista_personagens::ListaPersonagens::new(
@@ -771,9 +714,6 @@ impl State {
                     personagens,
                 );
 
-                // Sao dois pacotes, nao um. Na captura o servidor manda primeiro uma lista vazia
-                // (contagem zero, 11 bytes de payload) e so depois a lista de verdade. Mandando so
-                // a segunda, o cliente fecha a conexao.
                 let vazia = lista_personagens::ListaPersonagens::new(
                     update.account_id(),
                     Vec::new(),
@@ -787,7 +727,6 @@ impl State {
                     ]
                     .map(ServerUpdate::new),
                 );
-                self.characters.insert(character.id(), character);
             }
             c::Message::CreateCharacter(pedido) => {
                 let username = self.username_do_update(&update);

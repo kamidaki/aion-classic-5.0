@@ -513,7 +513,7 @@ impl Character {
             spawn_map_id: 110_070_000,
             heading: 0,
             gear,
-            name: "Azphelumbra".into(),
+            name: String::new(),
             stats: Stats {
                 level: 14,
                 exp: 226334,

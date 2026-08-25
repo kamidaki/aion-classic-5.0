@@ -628,21 +628,22 @@ impl Db {
         Ok(rows > 0)
     }
 
-    pub fn load_or_create_character(
+    pub fn get_first_character(
         &self,
         username: &str,
-    ) -> Result<PersistedCharacter> {
-        use crate::game::mundo;
-
+    ) -> Result<Option<PersistedCharacter>> {
         self.conn.execute(
             "INSERT OR IGNORE INTO account_data(name, password, access_level, membership, created_at) VALUES (?1, ?1, 0, 0, strftime('%s','now'))",
             params![username],
         )?;
-        let account_id: i64 = self.conn.query_row(
+        let account_id: i64 = match self.conn.query_row(
             "SELECT id FROM account_data WHERE name = ?1 COLLATE NOCASE",
             params![username],
             |row| row.get(0),
-        )?;
+        ) {
+            Ok(id) => id,
+            Err(_) => return Ok(None),
+        };
 
         let existing: Option<PersistedCharacter> = self
             .conn
@@ -670,45 +671,7 @@ impl Db {
             )
             .ok();
 
-        if let Some(c) = existing {
-            return Ok(c);
-        }
-
-        self.conn.execute(
-            "INSERT INTO characters(account_id, name, level, exp, x, y, z, map_id, heading, hp, mp)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
-            params![
-                account_id,
-                "Azphelumbra",
-                14_i64,
-                226_334_i64,
-                mundo::X,
-                mundo::Y,
-                mundo::Z,
-                mundo::MAPA as i64,
-                mundo::DIRECAO as i64,
-                1148_i64,
-                1080_i64,
-            ],
-        )?;
-        let id = self.conn.last_insert_rowid() as u32;
-
-        Ok(PersistedCharacter {
-            id,
-            account_id,
-            name: "Azphelumbra".into(),
-            level: 14,
-            exp: 226_334,
-            x: mundo::X,
-            y: mundo::Y,
-            z: mundo::Z,
-            map_id: mundo::MAPA,
-            heading: mundo::DIRECAO,
-            hp: 1148,
-            mp: 1080,
-            // O personagem fixo nao veio de uma criacao, entao nao tem bloco: cai no molde.
-            aparencia: None,
-        })
+        Ok(existing)
     }
 
     /// Entrega o kit inicial a um personagem que ainda nao o recebeu.
@@ -1461,22 +1424,22 @@ mod tests {
     }
 
     #[test]
-    fn load_or_create_is_idempotent_and_persists_updates() {
+    fn criar_personagem_and_persists_updates() {
         let db = in_memory();
 
-        let a = db.load_or_create_character("alice").unwrap();
-        assert_eq!(a.name, "Azphelumbra");
-        assert_eq!(a.level, 14);
+        let a = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        assert_eq!(a.name, "AliceChar");
+        assert_eq!(a.level, 1);
         assert_eq!(a.x, crate::game::mundo::X, "personagem novo nasce no ponto de entrada");
 
-        let b = db.load_or_create_character("alice").unwrap();
-        assert_eq!(a.id, b.id, "second call must return same character id");
-        assert_eq!(a.account_id, b.account_id);
+        let chars = db.personagens_da_conta("alice").unwrap();
+        assert_eq!(chars.len(), 1);
+        assert_eq!(a.id, chars[0].id);
 
         db.save_character(a.id, 100.0, 200.0, 300.0, 110010000, 45, 20, 999_999, 500, 250)
             .unwrap();
 
-        let c = db.load_or_create_character("alice").unwrap();
+        let c = db.personagens_da_conta("alice").unwrap().pop().unwrap();
         assert_eq!(c.id, a.id);
         assert_eq!(c.level, 20);
         assert_eq!(c.exp, 999_999);
@@ -1492,7 +1455,7 @@ mod tests {
     #[test]
     fn kit_inicial_e_entregue_uma_vez_so() {
         let db = in_memory();
-        let c = db.load_or_create_character("alice").unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
 
         let kit = [(182_400_001u32, 1000u32), (100_000_094, 1), (160_000_001, 12)];
         assert!(db.garante_kit_inicial(c.id, &kit).unwrap(), "primeira vez entrega");
@@ -1519,8 +1482,8 @@ mod tests {
     #[test]
     fn different_usernames_get_different_accounts_and_characters() {
         let db = in_memory();
-        let a = db.load_or_create_character("alice").unwrap();
-        let b = db.load_or_create_character("bob").unwrap();
+        let a = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        let b = db.criar_personagem("bob", "BobChar", &None).unwrap();
         assert_ne!(a.account_id, b.account_id);
         assert_ne!(a.id, b.id);
     }
@@ -1528,7 +1491,7 @@ mod tests {
     #[test]
     fn deletar_personagem_remove_registro_e_itens() {
         let db = in_memory();
-        let c = db.load_or_create_character("alice").unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
         let kit = [(182_400_001u32, 1000u32)];
         db.garante_kit_inicial(c.id, &kit).unwrap();
 
@@ -1542,7 +1505,7 @@ mod tests {
     #[test]
     fn item_adicionar_remover_e_kinah_saldo() {
         let db = in_memory();
-        let c = db.load_or_create_character("alice").unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
 
         // Adiciona 500 kinah
         assert!(db.alterar_kinah(c.id, 500).unwrap());
@@ -1567,7 +1530,7 @@ mod tests {
     #[test]
     fn quest_salvar_e_carregar_progresso() {
         let db = in_memory();
-        let c = db.load_or_create_character("alice").unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
 
         // Inicia quest 1001
         db.salvar_quest(c.id, 1001, "IN_PROGRESS", 1, 0).unwrap();
@@ -1588,7 +1551,7 @@ mod tests {
     #[test]
     fn mail_salvar_ler_extrair_e_deletar() {
         let db = in_memory();
-        let c = db.load_or_create_character("alice").unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
 
         let letter_id = db
             .salvar_carta(
@@ -1631,8 +1594,8 @@ mod tests {
     #[test]
     fn guild_criar_adicionar_e_carregar() {
         let db = in_memory();
-        let leader = db.load_or_create_character("alice").unwrap();
-        let member = db.load_or_create_character("bob").unwrap();
+        let leader = db.criar_personagem("alice", "AliceLeader", &None).unwrap();
+        let member = db.criar_personagem("bob", "BobMember", &None).unwrap();
 
         let gid = db.criar_guild("Olympus", 0, leader.id).unwrap();
         db.adicionar_membro_guild(gid, member.id, 5).unwrap();
@@ -1653,8 +1616,8 @@ mod tests {
     #[test]
     fn buddy_adicionar_remover_e_listar() {
         let db = in_memory();
-        let alice = db.load_or_create_character("alice").unwrap();
-        let bob = db.load_or_create_character("bob").unwrap();
+        let alice = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        let bob = db.criar_personagem("bob", "BobChar", &None).unwrap();
 
         db.adicionar_amigo(alice.id, bob.id).unwrap();
         let amigos = db.amigos_do_personagem(alice.id).unwrap();
@@ -1669,8 +1632,8 @@ mod tests {
     #[test]
     fn broker_salvar_listar_comprar_e_historico() {
         let db = in_memory();
-        let seller = db.load_or_create_character("vendedor").unwrap();
-        let buyer = db.load_or_create_character("comprador").unwrap();
+        let seller = db.criar_personagem("vendedor", "VendedorChar", &None).unwrap();
+        let buyer = db.criar_personagem("comprador", "CompradorChar", &None).unwrap();
 
         let lid = db.salvar_anuncio_broker(seller.id, &seller.name, 182000001, 10, 5000, 1700000000, 2, 0).unwrap();
         let (total, list) = db.listar_anuncios_broker(0, 20).unwrap();
@@ -1697,7 +1660,7 @@ mod tests {
     fn skills_salvar_e_carregar_e_migrate() {
         let db = in_memory();
         db.migrate().unwrap();
-        let hero = db.load_or_create_character("heroi").unwrap();
+        let hero = db.criar_personagem("heroi", "HeroiChar", &None).unwrap();
         let skills = vec![(1001, 1), (1002, 2), (2001, 5)];
         db.salvar_skills(hero.id, &skills).unwrap();
         let loaded = db.carregar_skills(hero.id).unwrap();
