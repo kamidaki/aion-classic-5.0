@@ -1,8 +1,8 @@
-//! IA de Monstros e Combate Ativo (MonsterAI)
+//! IA de Monstros e Combate Ativo (MonsterAI - Padrão Java Aion Classic 2.8 / 4.5)
 
-use super::abstract_ai::{AbstractAI, BaseAI};
-use super::event::AIEvent;
-use super::state::{AIState, AISubState};
+use crate::ai::abstract_ai::{AbstractAI, BaseAI};
+use crate::ai::event::AIEventType;
+use crate::ai::state::{AIState, AISubState};
 
 #[derive(Debug, Clone)]
 pub struct MonsterAI {
@@ -55,27 +55,21 @@ impl AbstractAI for MonsterAI {
         self.base.sub_state = sub_state;
     }
 
-    fn handle_event(&mut self, event: AIEvent) {
+    fn handle_event(&mut self, event: AIEventType) {
         match event {
-            AIEvent::Attacked { attacker_id, damage } => {
-                self.on_target_damaged(attacker_id, damage);
+            AIEventType::Attacked => {
+                self.base.state = AIState::Attacking;
             }
-            AIEvent::TargetLost => {
-                if let Some(target) = self.base.target_id {
-                    self.base.hate_table.remove_target(target);
-                }
-                self.base.target_id = self.base.hate_table.get_highest_target();
-                if self.base.target_id.is_none() {
-                    self.base.state = AIState::Returning;
-                }
+            AIEventType::TargetTooFar | AIEventType::NotAtHome => {
+                self.base.state = AIState::Returning;
             }
-            AIEvent::Die => {
+            AIEventType::Died => {
                 self.base.state = AIState::Dead;
                 self.base.hate_table.clear();
                 self.base.target_id = None;
             }
-            AIEvent::Evade => {
-                self.base.state = AIState::Evading;
+            AIEventType::BackHome => {
+                self.base.state = AIState::Idle;
             }
             _ => {}
         }

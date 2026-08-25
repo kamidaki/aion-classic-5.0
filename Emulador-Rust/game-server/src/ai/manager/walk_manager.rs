@@ -1,4 +1,4 @@
-//! Gerenciador de Rotas de Patrulha (WalkManager)
+//! Gerenciador de Rotas de Patrulha (WalkManager - Padrão Java Aion Classic 2.8 / 4.5)
 
 #[derive(Debug, Clone)]
 pub struct WalkManager {

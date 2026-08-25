@@ -1,9 +1,9 @@
-//! IA de Guardas de Cidade e Fortalezas (GuardAI)
+//! IA de Guardas de Cidade e Fortalezas (GuardAI - Padrão Java Aion Classic 2.8 / 4.5)
 
-use super::abstract_ai::AbstractAI;
-use super::event::AIEvent;
-use super::monster_ai::MonsterAI;
-use super::state::{AIState, AISubState};
+use crate::ai::abstract_ai::AbstractAI;
+use crate::ai::event::AIEventType;
+use crate::ai::monster_ai::MonsterAI;
+use crate::ai::state::{AIState, AISubState};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Faction {
@@ -60,7 +60,7 @@ impl AbstractAI for GuardAI {
         self.monster_ai.set_sub_state(sub_state);
     }
 
-    fn handle_event(&mut self, event: AIEvent) {
+    fn handle_event(&mut self, event: AIEventType) {
         self.monster_ai.handle_event(event);
     }
 

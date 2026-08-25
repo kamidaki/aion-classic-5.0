@@ -1,15 +1,15 @@
-//! Estrutura Base de IA Comportamental (AbstractAI)
+//! Estrutura Base de IA Comportamental (AbstractAI / BaseAI - Padrão Java Aion Classic 2.8 / 4.5)
 
-use super::state::{AIState, AISubState};
-use super::event::AIEvent;
-use super::hate_table::HateTable;
+use crate::ai::event::AIEventType;
+use crate::ai::hate_table::HateTable;
+use crate::ai::state::{AIState, AISubState};
 
-pub trait AbstractAI {
+pub trait AbstractAI: Send + Sync {
     fn get_state(&self) -> AIState;
     fn set_state(&mut self, state: AIState);
     fn get_sub_state(&self) -> AISubState;
     fn set_sub_state(&mut self, sub_state: AISubState);
-    fn handle_event(&mut self, event: AIEvent);
+    fn handle_event(&mut self, event: AIEventType);
     fn think(&mut self, dt: f32);
 }
 

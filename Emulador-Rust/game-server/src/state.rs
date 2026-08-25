@@ -34,6 +34,7 @@ pub struct State {
     pub restrictions: crate::restrictions::RestrictionsManager,
     pub spawn_engine: crate::spawnengine::SpawnEngine,
     pub skill_engine: crate::skillengine::SkillEngine,
+    pub ai_engine: crate::ai::AIEngine,
     pub db: Db,
     pub game_data: Arc<GameData>,
     pub data_manager: Arc<DataManager>,
@@ -97,6 +98,12 @@ impl State {
         let root_data = std::path::Path::new("data");
         let data_manager = Arc::new(DataManager::load_all(client_dir, root_data));
 
+        // Inicializa o Motor de IA e registra todas as entidades ativas
+        let mut ai_engine = crate::ai::AIEngine::new();
+        for entity in &entities {
+            ai_engine.register_ai(entity.id(), crate::ai::AIName::Monster);
+        }
+
         Self {
             characters: HashMap::with_capacity(1000),
             entities,
@@ -120,6 +127,7 @@ impl State {
             restrictions: crate::restrictions::RestrictionsManager::new(),
             spawn_engine,
             skill_engine: crate::skillengine::SkillEngine::new(),
+            ai_engine,
             db,
             game_data,
             data_manager,
@@ -402,6 +410,9 @@ impl State {
 
         // Atualiza SkillEngine (efeitos contínuos, DoTs, HoTs, correntes e timers de CC)
         self.skill_engine.tick(now, &mut self.characters, &mut self.entities);
+
+        // Atualiza AI Engine (ciclo de decisão, auto-aggro, perseguição, habilidades de monstros)
+        self.ai_engine.tick(now, &mut self.entities, &mut self.characters, _messages);
 
         // Limpa timers de ataque de alvos mortos
         self.attack_timers.retain(|_, (target_id, _)| {

@@ -1,8 +1,8 @@
-//! IA de Armadilhas (TrapAI)
+//! IA de Armadilhas (TrapAI - Padrão Java Aion Classic 2.8 / 4.5)
 
-use super::abstract_ai::{AbstractAI, BaseAI};
-use super::event::AIEvent;
-use super::state::{AIState, AISubState};
+use crate::ai::abstract_ai::{AbstractAI, BaseAI};
+use crate::ai::event::AIEventType;
+use crate::ai::state::{AIState, AISubState};
 
 #[derive(Debug, Clone)]
 pub struct TrapAI {
@@ -58,8 +58,8 @@ impl AbstractAI for TrapAI {
         self.base.sub_state = sub_state;
     }
 
-    fn handle_event(&mut self, event: AIEvent) {
-        if let AIEvent::Die = event {
+    fn handle_event(&mut self, event: AIEventType) {
+        if let AIEventType::Died = event {
             self.base.state = AIState::Dead;
         }
     }

@@ -1,9 +1,9 @@
-//! IA de Monstros Agressivos com Auto-Aggro (AggressiveNpcAI)
+//! IA de Monstros Agressivos com Auto-Aggro (AggressiveNpcAI - Padrão Java Aion Classic 2.8 / 4.5)
 
-use super::abstract_ai::AbstractAI;
-use super::event::AIEvent;
-use super::monster_ai::MonsterAI;
-use super::state::{AIState, AISubState};
+use crate::ai::abstract_ai::AbstractAI;
+use crate::ai::event::AIEventType;
+use crate::ai::monster_ai::MonsterAI;
+use crate::ai::state::{AIState, AISubState};
 
 #[derive(Debug, Clone)]
 pub struct AggressiveNpcAI {
@@ -49,13 +49,8 @@ impl AbstractAI for AggressiveNpcAI {
         self.monster_ai.set_sub_state(sub_state);
     }
 
-    fn handle_event(&mut self, event: AIEvent) {
-        match event {
-            AIEvent::SeePlayer { player_id, distance } => {
-                self.check_see_player(player_id, distance);
-            }
-            _ => self.monster_ai.handle_event(event),
-        }
+    fn handle_event(&mut self, event: AIEventType) {
+        self.monster_ai.handle_event(event);
     }
 
     fn think(&mut self, dt: f32) {

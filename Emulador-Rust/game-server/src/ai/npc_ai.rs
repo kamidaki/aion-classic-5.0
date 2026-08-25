@@ -1,8 +1,8 @@
-//! IA de NPCs Pacíficos e Interativos (NpcAI)
+//! IA de NPCs Pacíficos e Interativos (NpcAI - Padrão Java Aion Classic 2.8 / 4.5)
 
-use super::abstract_ai::{AbstractAI, BaseAI};
-use super::event::AIEvent;
-use super::state::{AIState, AISubState};
+use crate::ai::abstract_ai::{AbstractAI, BaseAI};
+use crate::ai::event::AIEventType;
+use crate::ai::state::{AIState, AISubState};
 
 #[derive(Debug, Clone)]
 pub struct NpcAI {
@@ -25,11 +25,13 @@ impl NpcAI {
     pub fn open_dialog(&mut self, player_id: u32) {
         self.is_dialog_open = true;
         self.active_interactor = Some(player_id);
+        self.base.state = AIState::Talking;
     }
 
     pub fn close_dialog(&mut self) {
         self.is_dialog_open = false;
         self.active_interactor = None;
+        self.base.state = AIState::Idle;
     }
 }
 
@@ -50,15 +52,14 @@ impl AbstractAI for NpcAI {
         self.base.sub_state = sub_state;
     }
 
-    fn handle_event(&mut self, event: AIEvent) {
+    fn handle_event(&mut self, event: AIEventType) {
         match event {
-            AIEvent::Spawn => self.base.state = AIState::Idle,
-            AIEvent::Die => self.base.state = AIState::Dead,
+            AIEventType::Spawn => self.base.state = AIState::Idle,
+            AIEventType::Died => self.base.state = AIState::Dead,
+            AIEventType::Talk => self.base.state = AIState::Talking,
             _ => {}
         }
     }
 
-    fn think(&mut self, _dt: f32) {
-        // NPCs pacíficos mantêm estado Idle
-    }
+    fn think(&mut self, _dt: f32) {}
 }

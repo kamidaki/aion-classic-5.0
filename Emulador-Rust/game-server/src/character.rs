@@ -125,7 +125,7 @@ impl Hp {
         ((self.current as f32 / self.max as f32) * 100.) as u8
     }
     pub fn update(&mut self, x: i32) {
-        self.current += x;
+        self.current = (self.current + x).clamp(0, self.max);
     }
 }
 
