@@ -1,0 +1,33 @@
+//! Atributos e Estatísticas de Personagens e NPCs (StatEnum - Padrão Java Aion Classic 2.8 / 4.5)
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum StatEnum {
+    MaxHp,
+    MaxMp,
+    MaxDp,
+    HpRegen,
+    MpRegen,
+    MainHandAttack,
+    OffHandAttack,
+    PhysicalDef,
+    MagicResist,
+    MainHandAccuracy,
+    MainHandCritRate,
+    Evasion,
+    Block,
+    Parry,
+    MagicBoost,
+    MagicalAccuracy,
+    MagicalCritRate,
+    SpellResist,
+    StrikeResist,
+    StrikeFortitude,
+    SpellFortitude,
+    FlyTime,
+    Speed,
+    FlySpeed,
+    AttackSpeed,
+    CastSpeed,
+    PvPDamageRatio,
+    PvPDefendRatio,
+}

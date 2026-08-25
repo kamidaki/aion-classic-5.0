@@ -43,6 +43,7 @@ pub mod instance;
 mod login_connector;
 pub mod mail;
 pub mod message;
+pub mod model;
 pub mod mundo;
 pub mod network;
 pub mod pet;
