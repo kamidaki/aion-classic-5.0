@@ -236,6 +236,12 @@ pub fn build_sm_init_payload_com(
 
     // [177..192] zeros (padding)
 
+    // Ultimo pacote da caca a tela de cyber cafe. Ja foram eliminados por medicao o `SM_LOGIN_OK`
+    // (todo byte variado, e o tamanho tambem), o `SM_AUTH_GG` (35 bytes virados) e os quatro
+    // metodos do pipe. Aqui so ha 31 bytes desconhecidos e seguros de mexer -- `[137..153]` e
+    // `[177..192]`; o resto e modulo RSA e chave Blowfish, e virar qualquer um dos dois derruba o
+    // handshake antes de o cliente desenhar tela nenhuma.
+
     p
 }
 
@@ -260,8 +266,15 @@ pub fn build_login_ok_payload(account_id: u32, login_ok: u32, tos_accepted: bool
     p[5..9].copy_from_slice(&login_ok.to_le_bytes());
     // p[9..17] fica em zero (2 * u32 = 8 bytes zeros)
 
-    // Flags da conta: bit 4 (0x10) e a flag de conta ativa (sempre 0x3F para passar na checagem test bl, 0x10 do client)
-    let flags: u32 = 0x0000_003F;
+    // Quatro u32 seguidos com o mesmo valor. NAO sao o mesmo campo repetido: sao quatro campos
+    // distintos que receberam o mesmo chute -- zerar os tres ultimos faz o cliente exibir
+    // "Waiting... The server is full", entao eles significam alguma coisa.
+    //
+    // Ja foram DESCARTADOS como causa da tela de cyber cafe: os quatro foram testados nos dois
+    // estados (0x3F e 0) em tres combinacoes e a mensagem nao mudou em nenhuma. O resto do
+    // `SM_LOGIN_OK` tambem foi descartado, virando todos os bytes restantes e ate mandando o
+    // pacote com 160 bytes em vez de 78.
+    let flags: u32 = LOGIN_OK_FLAGS_ATIVA;
     p[17..21].copy_from_slice(&flags.to_le_bytes());
     p[21..25].copy_from_slice(&flags.to_le_bytes());
     p[25..29].copy_from_slice(&flags.to_le_bytes());
@@ -278,6 +291,7 @@ pub fn build_login_ok_payload(account_id: u32, login_ok: u32, tos_accepted: bool
     let tos_val: u32 = if tos_accepted { 1 } else { 0 };
     p[49..53].copy_from_slice(&tos_val.to_le_bytes());
     // p[53..78] fica em zero (25 bytes zeros)
+
 
     p
 }
@@ -466,8 +480,9 @@ async fn handle_ncsoft_client(
         pkt.extend_from_slice(&enc);
         socket.write_all(&pkt).await?;
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG (50 bytes wire size)",
-            session_id
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_AUTH_GG ({} bytes wire size)",
+            session_id,
+            pkt.len()
         );
         Ok(())
     }
@@ -491,8 +506,11 @@ async fn handle_ncsoft_client(
 
         socket.write_all(&pkt).await?;
         println!(
-            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK (74 bytes wire size, Account: '{}', ID: {}, TOS: {})",
-            session_id, username, account_id, if tos_accepted { "Accepted" } else { "Manual Accept Required" }
+            // O tamanho sai de `pkt`, nao cravado: estava escrito "74 bytes" fixo, e continuou
+            // dizendo 74 enquanto o pacote ia com 160. Log que mente sobre o que foi para o fio
+            // custa uma rodada de teste inteira.
+            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> Sent SM_LOGIN_OK ({} bytes wire size, Account: '{}', ID: {}, TOS: {})",
+            session_id, pkt.len(), username, account_id, if tos_accepted { "Accepted" } else { "Manual Accept Required" }
         );
         Ok(())
     }
@@ -622,11 +640,6 @@ async fn handle_ncsoft_client(
             break;
         }
 
-        let raw_hex: String = payload.iter().take(16).map(|b| format!("{:02X} ", b)).collect();
-        println!(
-            "DEBUG: [LoginServer-NCSoft] [SESSION-{:08X}] <- Received {} bytes (Raw: {}...)",
-            session_id, pkt_len, raw_hex.trim()
-        );
 
         // Decrypt with Blowfish session key
         let mut dec_payload = payload.clone();
@@ -673,8 +686,100 @@ async fn handle_ncsoft_client(
                     session_id
                 );
             }
-            0x0B | 0x12 | 0x00 | _ if active_buf.len() >= 128 || payload.len() >= 128 => {
-                // CM_LOGIN (Opcode 0x0B) / CM_NP_LOGIN (Opcode 0x12) ou payload RSA de 128+ bytes
+            0x12 => {
+                // CM_NP_LOGIN -- login automatico pelo SDK, NAO tem credencial RSA dentro.
+                //
+                // Antes isto caia no braco do CM_LOGIN abaixo, que procura um bloco RSA, nao acha,
+                // e cai no `extract_string_from_payload`. Essa varredura pega a primeira string
+                // alfanumerica terminada em zero a partir do offset 1 -- e no layout do 0x12 isso
+                // e o `shanda` do offset 21, que e a tag do publisher, nao a conta. Resultado:
+                // "conta shanda, senha errada" e o `SM_LOGIN_FAIL` razao 2 que o jogador ve como
+                // "ID or Password does not match (2)", sem nunca ter digitado nada.
+                let np = parse_np_login(active_buf);
+                match &np {
+                    Some(np) => println!(
+                        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_NP_LOGIN] publisher='{}' conta='{}' ticket='{}' id_externo={}",
+                        session_id, np.publisher, np.conta, np.ticket, np.id_externo
+                    ),
+                    None => println!(
+                        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_NP_LOGIN] layout nao reconhecido ({} bytes)",
+                        session_id, active_buf.len()
+                    ),
+                }
+
+                let tem_ticket = np
+                    .as_ref()
+                    .map(|n| !n.ticket.is_empty() || !n.conta.is_empty())
+                    .unwrap_or(false);
+
+                if !tem_ticket {
+                    // Ticket vazio = o cliente nao tem sessao Gameforge nenhuma. Nao ha o que
+                    // autenticar, e o que se quer e que ele desista e mostre o formulario nativo.
+                    //
+                    // MEDIDO: nao responder deixa o cliente PENDURADO -- ele espera a resposta e
+                    // fica na tela de fundo, sem formulario e sem mensagem. Recusar e o unico
+                    // caminho que leva ao formulario. `AION_NP_LOGIN` continua permitindo varrer
+                    // outros codigos (`fail:<n>`) ou voltar ao silencio (`ignorar`) sem recompilar.
+                    let estrategia =
+                        std::env::var("AION_NP_LOGIN").unwrap_or_else(|_| "fail:2".into());
+                    println!(
+                        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] [CM_NP_LOGIN] ticket vazio -- estrategia AION_NP_LOGIN='{}'",
+                        session_id, estrategia
+                    );
+                    if let Some(razao) = estrategia.strip_prefix("fail:") {
+                        let razao: u32 = razao.trim().parse().unwrap_or(2);
+                        let mut fail_raw = vec![0u8; 5];
+                        fail_raw[0] = 0x01; // SM_LOGIN_FAIL
+                        fail_raw[1..5].copy_from_slice(&razao.to_le_bytes());
+                        let enc = crypt_engine.encrypt_packet(&fail_raw);
+                        let mut pkt = Vec::with_capacity(enc.len() + 2);
+                        pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+                        pkt.extend_from_slice(&enc);
+                        let _ = socket.write_all(&pkt).await;
+                        println!(
+                            "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> SM_LOGIN_FAIL razao={}",
+                            session_id, razao
+                        );
+                    }
+                    // `ignorar`: nao responde nada e segue esperando o CM_LOGIN do formulario.
+                    continue;
+                }
+
+                // Ticket presente. A autenticacao por token ainda NAO existe -- nao ha o que
+                // conferir contra o ticket, entao aceitar seria autenticar sem verificar nada.
+                //
+                // O que nao se pode fazer aqui e o que este ramo fazia antes: apenas registrar e
+                // seguir sem responder. O cliente fica esperando resposta e trava na tela de
+                // fundo, sem formulario e sem mensagem -- foi assim que uma sessao de teste ficou
+                // presa. Enquanto o token nao for validado de verdade, recusar e mandar o jogador
+                // para o formulario e o comportamento honesto.
+                current_username = np
+                    .as_ref()
+                    .map(|n| {
+                        if n.conta.is_empty() {
+                            n.ticket.clone()
+                        } else {
+                            n.conta.clone()
+                        }
+                    })
+                    .unwrap_or_default();
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] [CM_NP_LOGIN] ticket presente (conta='{}'), \
+                     mas autenticacao por token nao esta implementada -- recusando para cair no formulario",
+                    session_id, current_username
+                );
+                let mut fail_raw = vec![0u8; 5];
+                fail_raw[0] = 0x01; // SM_LOGIN_FAIL
+                fail_raw[1..5].copy_from_slice(&2u32.to_le_bytes());
+                let enc = crypt_engine.encrypt_packet(&fail_raw);
+                let mut pkt = Vec::with_capacity(enc.len() + 2);
+                pkt.extend_from_slice(&((enc.len() + 2) as u16).to_le_bytes());
+                pkt.extend_from_slice(&enc);
+                let _ = socket.write_all(&pkt).await;
+                continue;
+            }
+            0x0B | 0x00 | _ if active_buf.len() >= 128 || payload.len() >= 128 => {
+                // CM_LOGIN (Opcode 0x0B) ou payload RSA de 128+ bytes
                 println!(
                     "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_LOGIN] (Opcode 0x{:02X}, ActiveLen: {} bytes, RawLen: {} bytes)",
                     session_id, opcode, active_buf.len(), payload.len()
@@ -831,6 +936,76 @@ async fn handle_ncsoft_client(
     }
 }
 
+/// O que o `CM_NP_LOGIN` (opcode `0x12`) carrega de fato.
+pub struct NpLogin {
+    /// Tag do publisher -- `shanda` no cliente Classic EU. Nao e a conta, e foi confundida com
+    /// ela porque e a primeira string do pacote.
+    pub publisher: String,
+    pub conta: String,
+    pub ticket: String,
+    pub id_externo: i64,
+}
+
+/// Le o `CM_NP_LOGIN`, medido contra o pacote real do cliente 4.5 (368 bytes de corpo):
+///
+/// ```text
+/// off  0      opcode 0x12
+/// off  1-4    session_id em LE  (bate com o da sessao -- ancora que se verifica sozinha)
+/// off  5-20   16 bytes zerados
+/// off  21     publisher, terminado em zero  ("shanda")
+/// off  28     blob base64, terminado em zero
+/// ```
+///
+/// O blob tem tres camadas: base64 -> `sdSessionId=locale=..&auth_data=<hex>;sdAppId=..;` -> o
+/// hex vira o JSON com os campos de autenticacao. No cliente offline os tres vem vazios
+/// (`auth_ticket:""`, `external_account_id:0`), que e o jeito de dizer "nao ha conta vinculada".
+fn parse_np_login(corpo: &[u8]) -> Option<NpLogin> {
+    use base64::Engine;
+
+    /// String terminada em zero comecando em `inicio`; devolve o texto e onde ele acabou.
+    fn c_string(dados: &[u8], inicio: usize) -> Option<(String, usize)> {
+        let resto = dados.get(inicio..)?;
+        let fim = resto.iter().position(|&b| b == 0).unwrap_or(resto.len());
+        let s = std::str::from_utf8(&resto[..fim]).ok()?;
+        Some((s.to_string(), inicio + fim + 1))
+    }
+
+    let (publisher, apos) = c_string(corpo, 21)?;
+    let (blob, _) = c_string(corpo, apos)?;
+
+    let mut conta = String::new();
+    let mut ticket = String::new();
+    let mut id_externo = 0i64;
+
+    if let Ok(camada1) = base64::engine::general_purpose::STANDARD.decode(blob.trim()) {
+        let camada1 = String::from_utf8_lossy(&camada1);
+        if let Some(hex) = camada1.split("auth_data=").nth(1) {
+            let hex: String = hex
+                .chars()
+                .take_while(|c| c.is_ascii_hexdigit())
+                .collect();
+            let bytes: Vec<u8> = hex
+                .as_bytes()
+                .chunks(2)
+                .filter(|p| p.len() == 2)
+                .filter_map(|p| u8::from_str_radix(std::str::from_utf8(p).ok()?, 16).ok())
+                .collect();
+            if let Ok(json) = serde_json::from_slice::<serde_json::Value>(&bytes) {
+                conta = json["account_display_name"].as_str().unwrap_or("").to_string();
+                ticket = json["auth_ticket"].as_str().unwrap_or("").to_string();
+                id_externo = json["external_account_id"].as_i64().unwrap_or(0);
+            }
+        }
+    }
+
+    Some(NpLogin {
+        publisher,
+        conta,
+        ticket,
+        id_externo,
+    })
+}
+
 fn extract_string_from_payload(payload: &[u8]) -> Option<String> {
     for start in 1..payload.len().saturating_sub(3) {
         let slice = &payload[start..];
@@ -854,6 +1029,72 @@ fn extract_string_from_payload(payload: &[u8]) -> Option<String> {
 #[cfg(test)]
 mod test {
     use super::*;
+
+    /// Bytes reais do `CM_NP_LOGIN` do cliente Classic 4.5, copiados do corpo ja decifrado de
+    /// uma sessao de verdade (368 bytes). O `session_id` embutido (`40 BA 36 A6` = A636BA40) bate
+    /// com o da sessao que o produziu -- e por isso que se sabe que a decifragem estava certa.
+    const NP_LOGIN_REAL: [u8; 368] = [
+            0x12, 0x40, 0xBA, 0x36, 0xA6, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x73, 0x68, 0x61,
+            0x6E, 0x64, 0x61, 0x00, 0x63, 0x32, 0x52, 0x54, 0x5A, 0x58, 0x4E, 0x7A,
+            0x61, 0x57, 0x39, 0x75, 0x53, 0x57, 0x51, 0x39, 0x62, 0x47, 0x39, 0x6A,
+            0x59, 0x57, 0x78, 0x6C, 0x50, 0x57, 0x56, 0x75, 0x58, 0x30, 0x64, 0x43,
+            0x4A, 0x6D, 0x46, 0x31, 0x64, 0x47, 0x68, 0x66, 0x5A, 0x47, 0x46, 0x30,
+            0x59, 0x54, 0x30, 0x33, 0x59, 0x6A, 0x49, 0x79, 0x4E, 0x6A, 0x45, 0x32,
+            0x4D, 0x7A, 0x59, 0x7A, 0x4E, 0x6D, 0x59, 0x33, 0x4E, 0x54, 0x5A, 0x6C,
+            0x4E, 0x7A, 0x51, 0x31, 0x5A, 0x6A, 0x59, 0x30, 0x4E, 0x6A, 0x6B, 0x33,
+            0x4D, 0x7A, 0x63, 0x77, 0x4E, 0x6D, 0x4D, 0x32, 0x4D, 0x54, 0x63, 0x35,
+            0x4E, 0x57, 0x59, 0x32, 0x5A, 0x54, 0x59, 0x78, 0x4E, 0x6D, 0x51, 0x32,
+            0x4E, 0x54, 0x49, 0x79, 0x4D, 0x32, 0x45, 0x79, 0x4D, 0x6A, 0x49, 0x79,
+            0x4D, 0x6D, 0x4D, 0x79, 0x4D, 0x6A, 0x59, 0x78, 0x4E, 0x7A, 0x55, 0x33,
+            0x4E, 0x44, 0x59, 0x34, 0x4E, 0x57, 0x59, 0x33, 0x4E, 0x44, 0x59, 0x35,
+            0x4E, 0x6A, 0x4D, 0x32, 0x59, 0x6A, 0x59, 0x31, 0x4E, 0x7A, 0x51, 0x79,
+            0x4D, 0x6A, 0x4E, 0x68, 0x4D, 0x6A, 0x49, 0x79, 0x4D, 0x6A, 0x4A, 0x6A,
+            0x4D, 0x6A, 0x49, 0x32, 0x4D, 0x54, 0x63, 0x31, 0x4E, 0x7A, 0x51, 0x32,
+            0x4F, 0x44, 0x56, 0x6D, 0x4E, 0x7A, 0x51, 0x33, 0x4F, 0x54, 0x63, 0x77,
+            0x4E, 0x6A, 0x55, 0x79, 0x4D, 0x6A, 0x4E, 0x68, 0x4D, 0x6A, 0x49, 0x32,
+            0x4E, 0x7A, 0x59, 0x32, 0x4D, 0x6A, 0x49, 0x79, 0x59, 0x7A, 0x49, 0x79,
+            0x4E, 0x6A, 0x55, 0x33, 0x4F, 0x44, 0x63, 0x30, 0x4E, 0x6A, 0x55, 0x33,
+            0x4D, 0x6A, 0x5A, 0x6C, 0x4E, 0x6A, 0x45, 0x32, 0x59, 0x7A, 0x56, 0x6D,
+            0x4E, 0x6A, 0x45, 0x32, 0x4D, 0x7A, 0x59, 0x7A, 0x4E, 0x6D, 0x59, 0x33,
+            0x4E, 0x54, 0x5A, 0x6C, 0x4E, 0x7A, 0x51, 0x31, 0x5A, 0x6A, 0x59, 0x35,
+            0x4E, 0x6A, 0x51, 0x79, 0x4D, 0x6A, 0x4E, 0x68, 0x4D, 0x7A, 0x41, 0x33,
+            0x5A, 0x44, 0x74, 0x7A, 0x5A, 0x45, 0x46, 0x77, 0x63, 0x45, 0x6C, 0x6B,
+            0x50, 0x54, 0x63, 0x34, 0x4F, 0x33, 0x4E, 0x6B, 0x51, 0x58, 0x4A, 0x6C,
+            0x59, 0x55, 0x6C, 0x6B, 0x50, 0x54, 0x41, 0x37, 0x00, 0x20, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0xDB, 0x46, 0xB8, 0xC7, 0x26, 0x5D, 0xB6, 0xBE,
+            0x0B, 0xFC, 0xC4, 0x56, 0x39, 0x24, 0x0A, 0x5E, 0x00, 0x00, 0x00, 0x00,
+            0x32, 0x9B, 0x33, 0x3E, 0x00, 0x00, 0x00, 0x00,
+    ];
+
+    #[test]
+    fn np_login_le_o_pacote_real_do_cliente() {
+        let np = parse_np_login(&NP_LOGIN_REAL).expect("layout deve ser reconhecido");
+
+        // A tag do publisher e o que a varredura antiga confundia com o nome da conta.
+        assert_eq!(np.publisher, "shanda");
+
+        // Cliente sem sessao Gameforge: os tres campos de autenticacao vem vazios. E isso que
+        // distingue "nao ha conta vinculada" de "ha conta e a senha esta errada".
+        assert_eq!(np.conta, "");
+        assert_eq!(np.ticket, "");
+        assert_eq!(np.id_externo, 0);
+    }
+
+    #[test]
+    fn np_login_nao_confunde_publisher_com_conta() {
+        // A regressao que este teste tranca: `extract_string_from_payload` varre o payload atras
+        // da primeira string alfanumerica e devolve `shanda`, que ia parar no banco como nome de
+        // conta e gerava "ID or Password does not match (2)" sem o jogador digitar nada.
+        assert_eq!(
+            extract_string_from_payload(&NP_LOGIN_REAL).as_deref(),
+            Some("shanda"),
+            "a varredura antiga realmente devolve o publisher -- por isso o 0x12 precisa de parser proprio"
+        );
+        let np = parse_np_login(&NP_LOGIN_REAL).unwrap();
+        assert_ne!(np.conta, np.publisher);
+    }
+
     use crate::crypto::login_crypt::STATIC_BLOWFISH_KEY;
     use crate::crypto::BlowfishCipher;
 
