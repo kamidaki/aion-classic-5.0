@@ -529,33 +529,24 @@ async fn handle_ncsoft_client(
     let play_ok2: u32 = rand::random();
 
     // =========================================================================
-    // 2. SM_AUTH_GG — enviado proativamente logo apos o SM_INIT.
+    // Protocolo correto confirmado pelo Java EMU (AL-Login/CM_AUTH_GG.java):
     //
-    //    O version_hook.log prova: apos receber o SM_INIT, o cliente faz mais
-    //    recv() esperando novos pacotes do servidor ANTES de renderizar o
-    //    formulario de login. Ele NAO envia nada ao servidor neste momento.
+    //   S → C: SM_INIT      (194 bytes) — servidor envia e AGUARDA o cliente
+    //   [cliente renderiza widget de login, usuario preenche e clica OK]
+    //   C → S: CM_AUTH_GG   (opcode 0x07) — cliente envia sessionId + dados GG
+    //   S → C: SM_AUTH_GG   (opcode 0x0B) — servidor responde ao CM_AUTH_GG
+    //   C → S: CM_LOGIN     (opcode 0x0B) — cliente envia credenciais RSA
+    //   S → C: SM_LOGIN_OK  (opcode 0x03)
+    //   C → S: CM_SERVER_LIST (opcode 0x05)
+    //   S → C: SM_SERVER_LIST (opcode 0x04)
+    //   C → S: CM_PLAY      (opcode 0x02)
+    //   S → C: SM_PLAY_OK   (opcode 0x07)
     //
-    //    Sequencia correta (medida de dentro do processo via hooks):
-    //      S → C: SM_INIT      (194 bytes)
-    //      S → C: SM_AUTH_GG   (50 bytes) ← servidor envia proativamente
-    //      C → S: CM_AUTH_GG   (opcode 0x07) — cliente responde apos renderizar o form
-    //      C → S: CM_LOGIN     (opcode 0x0B, RSA 128 bytes) — usuario clica OK
-    //      S → C: SM_LOGIN_OK
-    //      C → S: CM_SERVER_LIST
-    //      S → C: SM_SERVER_LIST
-    //      C → S: CM_PLAY
-    //      S → C: SM_PLAY_OK
+    // SM_AUTH_GG NAO e enviado proativamente pelo servidor.
+    // Ele e enviado APENAS em resposta ao CM_AUTH_GG recebido do cliente.
     // =========================================================================
-    if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
-        eprintln!(
-            "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_AUTH_GG: {}",
-            session_id, e
-        );
-        return;
-    }
-    state = ConnectionState::AuthedGg;
     println!(
-        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT + SM_AUTH_GG enviados. Aguardando interacao do cliente (CM_AUTH_GG / CM_LOGIN)...",
+        "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] SM_INIT enviado. Aguardando CM_AUTH_GG do cliente...",
         session_id
     );
 
@@ -618,13 +609,25 @@ async fn handle_ncsoft_client(
 
         match opcode {
             0x07 => {
-                // CM_AUTH_GG — confirmacao do cliente apos receber o SM_AUTH_GG
-                // que enviamos proativamente. Apenas logamos e atualizamos o estado.
+                // CM_AUTH_GG (opcode 0x07) — cliente envia sessionId + dados GG
+                // Java EMU (CM_AUTH_GG.java runImpl): valida sessionId e responde com SM_AUTH_GG
                 println!(
-                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_AUTH_GG] Cliente confirmou GameGuard. Aguardando CM_LOGIN...",
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] <- [CM_AUTH_GG] GameGuard request recebido. Respondendo com SM_AUTH_GG...",
                     session_id
                 );
                 state = ConnectionState::AuthedGg;
+                // Responde com SM_AUTH_GG exatamente como o Java EMU faz
+                if let Err(e) = send_auth_gg(&mut socket, &crypt_engine, session_id).await {
+                    eprintln!(
+                        "ERROR: [LoginServer-NCSoft] [SESSION-{:08X}] Failed to send SM_AUTH_GG: {}",
+                        session_id, e
+                    );
+                    break;
+                }
+                println!(
+                    "INFO: [LoginServer-NCSoft] [SESSION-{:08X}] -> SM_AUTH_GG enviado. Aguardando CM_LOGIN...",
+                    session_id
+                );
             }
             0x08 => {
                 // CM_UPDATE_SESSION
