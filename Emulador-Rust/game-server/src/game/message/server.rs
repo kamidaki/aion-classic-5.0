@@ -58,7 +58,19 @@ const MOVE_NEW: u16 = 0x0037;
 const DIALOG_WINDOW: u16 = 0x003C;
 const WEATHER: u16 = 0x0042;
 const INVISIBLE_LEVEL: u16 = 0x0043;
-const QUEST_LIST: u16 = 0x0047;
+/// **NAO USAR ATE DESCOBRIR O VALOR CERTO.** `0x0047` e o opcode do [`KEY`] (S_KEY), logo abaixo,
+/// e mandar a lista de missoes com ele fazia o cliente ler um S_KEY no meio do jogo e RE-CHAVEAR.
+/// Dai em diante ele cifrava com uma chave que o servidor nao tinha, e todo pacote de cliente
+/// chegava como lixo -- a sessao morria sempre no mesmo ponto, logo apos a entrada no mundo.
+///
+/// Medido na captura do servidor oficial (`conta-nova-2026-08-24.pcapng`): o `0x47` aparece **uma
+/// unica vez** em 21.964 pacotes, que e o S_KEY inicial. O servidor real nunca o repete. Na nossa
+/// captura ele aparecia duas vezes -- o inicial e este --, e o primeiro pacote de cliente ilegivel
+/// vinha logo depois.
+///
+/// O opcode correto da lista de missoes ainda nao foi determinado; ate la o envio fica desligado
+/// em `game::state`, porque nao mandar a lista custa menos que derrubar a sessao.
+const QUEST_LIST_OPCODE_ERRADO: u16 = 0x0047;
 const KEY: u16 = 0x0047;
 const ASK_QUIT_RESULT: u16 = 0x0061;
 const LOAD_ITEM_COOLTIME: u16 = 0x0066;
@@ -3167,7 +3179,7 @@ impl QuestList {
 impl Serialise for QuestList {
     fn serialise(&self, buf: &mut [u8]) -> usize {
         let mut len = 0;
-        len += add_prelude(QUEST_LIST, buf);
+        len += add_prelude(QUEST_LIST_OPCODE_ERRADO, buf);
         let count = self.quests.len() as u16;
         to_le_bytes!(len, buf, count);
         for q in &self.quests {

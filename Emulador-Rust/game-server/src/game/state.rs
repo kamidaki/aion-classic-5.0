@@ -996,10 +996,14 @@ impl State {
                         1700000000,
                     ))),
                 );
-                messages.push_direct(
-                    update.client_id(),
-                    ServerUpdate::new(s::Message::QuestList(new_character.build_quest_list())),
-                );
+                // DESLIGADO ate sabermos o opcode certo da lista de missoes.
+                // Ela sai com 0x47, que e o opcode do S_KEY: o cliente le um S_KEY no meio do
+                // jogo, RE-CHAVEIA, e todo pacote que ele manda depois chega ilegivel ao servidor.
+                // Comprovado por captura -- ver `QUEST_LIST_OPCODE_ERRADO` em message/server.rs.
+                // messages.push_direct(
+                //     update.client_id(),
+                //     ServerUpdate::new(s::Message::QuestList(new_character.build_quest_list())),
+                // );
 
                 // Os NPCs do mundo, so os que estao perto. Ficavam atras do portao dos pacotes
                 // 2.5 junto com o resto, e por isso nem o unico mob escrito a mao aparecia.
@@ -1623,10 +1627,14 @@ impl State {
                         if let Some(character) = self.characters.get_mut(&char_id) {
                             character.start_quest(quest_id, now_ts);
                             let _ = self.db.save_quest(char_id, quest_id, 0, 0, [0; 4], now_ts);
-                            messages.push_direct(
-                                update.client_id(),
-                                ServerUpdate::new(s::Message::QuestList(character.build_quest_list())),
-                            );
+                            // DESLIGADO ate sabermos o opcode certo da lista de missoes.
+                            // Ela sai com 0x47, que e o opcode do S_KEY: o cliente le um S_KEY no meio do
+                            // jogo, RE-CHAVEIA, e todo pacote que ele manda depois chega ilegivel ao servidor.
+                            // Comprovado por captura -- ver `QUEST_LIST_OPCODE_ERRADO` em message/server.rs.
+                            // messages.push_direct(
+                            //     update.client_id(),
+                            //     ServerUpdate::new(s::Message::QuestList(character.build_quest_list())),
+                            // );
                             messages.push_direct(
                                 update.client_id(),
                                 ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
@@ -1654,10 +1662,14 @@ impl State {
                                         character.exp_required(),
                                     ))),
                                 );
-                                messages.push_direct(
-                                    update.client_id(),
-                                    ServerUpdate::new(s::Message::QuestList(character.build_quest_list())),
-                                );
+                                // DESLIGADO ate sabermos o opcode certo da lista de missoes.
+                                // Ela sai com 0x47, que e o opcode do S_KEY: o cliente le um S_KEY no meio do
+                                // jogo, RE-CHAVEIA, e todo pacote que ele manda depois chega ilegivel ao servidor.
+                                // Comprovado por captura -- ver `QUEST_LIST_OPCODE_ERRADO` em message/server.rs.
+                                // messages.push_direct(
+                                //     update.client_id(),
+                                //     ServerUpdate::new(s::Message::QuestList(character.build_quest_list())),
+                                // );
                                 messages.push_direct(
                                     update.client_id(),
                                     ServerUpdate::new(s::Message::DialogWindow(s::DialogWindow::new(
