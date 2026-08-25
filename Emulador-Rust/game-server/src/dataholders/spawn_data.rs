@@ -1,9 +1,7 @@
 //! SpawnsDataHolder - Carregamento e indexação de todos os spawns de monstros e NPCs de todos os mapas
 
-use quick_xml::events::Event;
-use quick_xml::Reader;
 use std::collections::HashMap;
-use std::fs::{self, File};
+use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::Path;
 
@@ -42,127 +40,7 @@ impl SpawnsDataHolder {
         self.spawns_by_map.keys().copied().collect()
     }
 
-    /// Carrega recursivamente todos os arquivos XML de spawns de uma pasta (ex: data/static_data/spawns)
-    pub fn load_from_directory(&mut self, dir_path: &Path) -> Result<usize, String> {
-        if !dir_path.exists() {
-            return Err(format!("Spawns directory {} does not exist", dir_path.display()));
-        }
-
-        self.load_directory_recursive(dir_path);
-        Ok(self.total_spawns)
-    }
-
-    fn load_directory_recursive(&mut self, dir_path: &Path) {
-        if let Ok(entries) = fs::read_dir(dir_path) {
-            for entry in entries.flatten() {
-                let path = entry.path();
-                if path.is_dir() {
-                    self.load_directory_recursive(&path);
-                } else if path.is_file() && path.extension().and_then(|s| s.to_str()) == Some("xml") {
-                    let _ = self.load_from_xml(&path);
-                }
-            }
-        }
-    }
-
-    /// Carrega um arquivo XML de spawns com streaming SAX ultra-rápido
-    pub fn load_from_xml(&mut self, file_path: &Path) -> Result<usize, String> {
-        let mut reader = match Reader::from_file(file_path) {
-            Ok(r) => r,
-            Err(e) => return Err(e.to_string()),
-        };
-        reader.config_mut().trim_text(true);
-
-        let mut buf = Vec::with_capacity(4096);
-        let mut current_map_id = 0u32;
-        let mut current_npc_id = 0u32;
-        let mut current_respawn_time = 295u32;
-        let mut spawns_added = 0usize;
-
-        loop {
-            match reader.read_event_into(&mut buf) {
-                Ok(Event::Start(e)) => {
-                    let tag_name = e.name();
-                    let tag = String::from_utf8_lossy(tag_name.as_ref()).to_string();
-
-                    if tag == "spawn_map" {
-                        for attr in e.attributes().flatten() {
-                            let key = String::from_utf8_lossy(attr.key.as_ref()).to_string();
-                            let val = String::from_utf8_lossy(&attr.value).to_string();
-                            if key == "map_id" {
-                                current_map_id = val.parse().unwrap_or(0);
-                            }
-                        }
-                    } else if tag == "spawn" {
-                        for attr in e.attributes().flatten() {
-                            let key = String::from_utf8_lossy(attr.key.as_ref()).to_string();
-                            let val = String::from_utf8_lossy(&attr.value).to_string();
-                            if key == "npc_id" {
-                                current_npc_id = val.parse().unwrap_or(0);
-                            } else if key == "respawn_time" {
-                                current_respawn_time = val.parse().unwrap_or(295);
-                            }
-                        }
-                    }
-                }
-                Ok(Event::Empty(e)) => {
-                    let tag_name = e.name();
-                    let tag = String::from_utf8_lossy(tag_name.as_ref()).to_string();
-
-                    if tag == "spot" && current_map_id > 0 && current_npc_id > 0 {
-                        let mut x = 0.0f32;
-                        let mut y = 0.0f32;
-                        let mut z = 0.0f32;
-                        let mut heading = 0u8;
-
-                        for attr in e.attributes().flatten() {
-                            let key = String::from_utf8_lossy(attr.key.as_ref()).to_string();
-                            let val = String::from_utf8_lossy(&attr.value).to_string();
-                            match key.as_str() {
-                                "x" => x = val.parse().unwrap_or(0.0),
-                                "y" => y = val.parse().unwrap_or(0.0),
-                                "z" => z = val.parse().unwrap_or(0.0),
-                                "h" | "heading" => heading = val.parse().unwrap_or(0),
-                                _ => {}
-                            }
-                        }
-
-                        let spawn = Spawn {
-                            mapa: current_map_id,
-                            npc_id: current_npc_id,
-                            nome_id: 0,
-                            x,
-                            y,
-                            z,
-                            heading,
-                            respawn_time: current_respawn_time,
-                            payload: Vec::new(),
-                        };
-
-                        self.spawns_by_map.entry(current_map_id).or_default().push(spawn);
-                        self.total_spawns += 1;
-                        spawns_added += 1;
-                    }
-                }
-                Ok(Event::End(e)) => {
-                    let tag = String::from_utf8_lossy(e.name().as_ref()).to_string();
-                    if tag == "spawn" {
-                        current_npc_id = 0;
-                    } else if tag == "spawn_map" {
-                        current_map_id = 0;
-                    }
-                }
-                Ok(Event::Eof) => break,
-                Err(e) => return Err(e.to_string()),
-                _ => {}
-            }
-            buf.clear();
-        }
-
-        Ok(spawns_added)
-    }
-
-    /// Suporte complementar para leitura de CSV caso necessário
+    /// Carrega os spawns e posicionamentos de NPCs a partir de `data/spawns.csv`
     pub fn load_from_csv(&mut self, path: &Path) -> Result<usize, String> {
         let file = File::open(path).map_err(|e| e.to_string())?;
         let reader = BufReader::new(file);

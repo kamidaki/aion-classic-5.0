@@ -1,6 +1,6 @@
 //! Camada Central de Carregamento de Dados e DataHolders (DataManager) - Padrão Java AION
 //!
-//! Realiza a leitura e indexação direta dos XMLs oficiais do cliente e XMLs de static_data.
+//! Realiza a leitura e indexação direta dos XMLs oficiais do cliente (sem emuladores intermediários).
 
 pub mod item_data;
 pub mod npc_data;
@@ -20,7 +20,7 @@ pub use item_data::{ItemDataHolder, ItemDef, Slot};
 pub use npc_data::{NpcDataHolder, NpcDef};
 pub use spawn_data::{SpawnsDataHolder, Spawn};
 pub use skill_data::{SkillDataHolder, SkillLearn};
-pub use world_data::{WorldMapsDataHolder, WorldMapTemplate};
+pub use world_data::{WorldMapsDataHolder, WorldMapTemplate, SubzoneDef, MapPoint};
 pub use goods_data::{GoodsListDataHolder, GoodsListDef};
 pub use title_data::{TitleDataHolder, TitleDef};
 pub use gather_data::{GatherableDataHolder, GatherDef};
@@ -98,18 +98,10 @@ impl DataManager {
             dm.initial_items = dm.player_initial_data.class_items.clone();
         }
 
-        // 4. Spawns (XMLs de todos os mapas em static_data/spawns)
-        let spawns_dir = root_data_dir.join("static_data").join("spawns");
-        if spawns_dir.exists() {
-            if let Ok(count) = dm.spawns_data.load_from_directory(&spawns_dir) {
-                println!("INFO: [SpawnsDataHolder] Carregados {count} spawns XML de {} mapas em {}", dm.spawns_data.spawns_by_map.len(), spawns_dir.display());
-            }
-        } else {
-            // Fallback para spawns.csv se existir
-            let spawns_csv = root_data_dir.join("spawns.csv");
-            if let Ok(count) = dm.spawns_data.load_from_csv(&spawns_csv) {
-                println!("INFO: [SpawnsDataHolder] Fallback CSV: Carregados {count} spawns de {} mapas", dm.spawns_data.spawns_by_map.len());
-            }
+        // 4. Spawns (de todos os mapas via spawns.csv)
+        let spawns_csv = root_data_dir.join("spawns.csv");
+        if let Ok(count) = dm.spawns_data.load_from_csv(&spawns_csv) {
+            println!("INFO: [SpawnsDataHolder] Carregados {count} spawns de {} mapas em {}", dm.spawns_data.spawns_by_map.len(), spawns_csv.display());
         }
 
         // 5. Skills & Learn Tree (XMLs oficiais do cliente)
@@ -118,13 +110,13 @@ impl DataManager {
         let _ = dm.skills_data.load_skills_catalog(&skills_path);
         let _ = dm.skills_data.load_learn_tree(&learns_path);
 
-        // 6. World Maps & Zones (todos os 135 arquivos do cliente)
+        // 6. World Maps & Zones (direto de zonemap.xml e todos os 135 arquivos client_world_*.xml)
         let world_dir = client_dir.join("world");
         if let Ok(count) = dm.world_data.load_from_directory(&world_dir) {
-            println!("INFO: [WorldMapsDataHolder] Catalogados {count} mapas e instâncias");
+            println!("INFO: [WorldMapsDataHolder] Catalogados {count} mapas e instâncias do client em {}", world_dir.display());
         }
 
-        // 7. Goods Lists (Lojas de NPCs)
+        // 7. Goods Lists (Lojas de NPCs do cliente)
         let goods_path = client_dir.join("goods").join("client_npc_goodslist.xml");
         let _ = dm.goods_data.load_from_file(&goods_path);
 
@@ -154,60 +146,33 @@ mod tests {
     fn test_player_initial_data_parsing() {
         let xml = r#"<?xml version="1.0" encoding="UTF-8"?>
 <player_initial_data>
-    <asmodian_spawn_location map_id="220010000" heading="32" x="571.0388" y="2787.3420" z="299.8750"/>
-    <elyos_spawn_location map_id="210010000" heading="32" x="1212.9423" y="1044.8516" z="140.75568"/>
-    <player_data class="WARRIOR">
+    <asmodian_spawn_location map_id="220010000" x="582.3742" y="2790.7642" z="299.3282" heading="66"/>
+    <elyos_spawn_location map_id="210010000" x="1207.7640" y="1044.5725" z="140.14894" heading="59"/>
+    <player_data class="ASSASSIN">
         <items>
-            <item id="182400001" count="1000"/>
-            <item id="100000094" count="1"/>
-            <item id="110500003" count="1"/>
+            <item id="182400001" count="0"/>
+            <item id="100201355" count="1"/>
+            <item id="110301463" count="1"/>
         </items>
     </player_data>
 </player_initial_data>"#;
 
         let mut holder = PlayerInitialDataHolder::new();
         let temp_dir = std::env::temp_dir();
-        let temp_file = temp_dir.join("test_player_init.xml");
+        let temp_file = temp_dir.join("test_player_init_classic.xml");
         std::fs::write(&temp_file, xml).unwrap();
 
         let count = holder.load_from_file(&temp_file).unwrap();
         assert_eq!(count, 3);
         assert_eq!(holder.elyos_spawn.map_id, 210010000);
+        assert_eq!(holder.elyos_spawn.heading, 59);
         assert_eq!(holder.asmodian_spawn.map_id, 220010000);
+        assert_eq!(holder.asmodian_spawn.heading, 66);
 
-        let items = holder.get_initial_items("WARRIOR");
+        let items = holder.get_initial_items("ASSASSIN");
         assert_eq!(items.len(), 3);
-        assert_eq!(items[0], (182400001, 1000));
-        assert_eq!(items[1], (100000094, 1));
-    }
-
-    #[test]
-    fn test_spawn_data_xml_parsing() {
-        let xml = r#"<?xml version="1.0" encoding="utf-8"?>
-<spawns>
-    <spawn_map map_id="210010000">
-        <spawn npc_id="210119" respawn_time="28">
-            <spot x="429.73" y="1796.03" z="125.125" h="25"/>
-            <spot x="439.533" y="1776.26" z="122.381" h="40"/>
-        </spawn>
-        <spawn npc_id="203083" respawn_time="295">
-            <spot x="425.428" y="1739.61" z="119.926" h="15"/>
-        </spawn>
-    </spawn_map>
-</spawns>"#;
-
-        let mut holder = SpawnsDataHolder::new();
-        let temp_dir = std::env::temp_dir();
-        let temp_file = temp_dir.join("test_spawns.xml");
-        std::fs::write(&temp_file, xml).unwrap();
-
-        let count = holder.load_from_xml(&temp_file).unwrap();
-        assert_eq!(count, 3);
-        let spawns = holder.get_spawns_for_map(210010000);
-        assert!(spawns.is_some());
-        assert_eq!(spawns.unwrap().len(), 3);
-        assert_eq!(spawns.unwrap()[0].npc_id, 210119);
-        assert_eq!(spawns.unwrap()[2].npc_id, 203083);
+        assert_eq!(items[0], (182400001, 0));
+        assert_eq!(items[1], (100201355, 1));
     }
 
     #[test]

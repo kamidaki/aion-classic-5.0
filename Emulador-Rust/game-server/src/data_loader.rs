@@ -353,79 +353,32 @@ impl GameData {
         );
     }
 
-    /// Le a tabela de spawns de todos os mapas (prioriza os XMLs em static_data/spawns)
+    /// Le a tabela de spawns de todos os mapas de `data/spawns.csv`
     pub fn carrega_spawns(&mut self, caminho: &Path) {
-        // 1. Tenta carregar todos os XMLs de mapas em static_data/spawns
-        let spawns_dir = if let Some(parent) = caminho.parent() {
-            parent.join("static_data").join("spawns")
-        } else {
-            PathBuf::from("data/static_data/spawns")
-        };
-
-        if spawns_dir.exists() {
-            let mut holder = crate::dataholders::SpawnsDataHolder::new();
-            if let Ok(total) = holder.load_from_directory(&spawns_dir) {
-                println!(
-                    "INFO: [SpawnsDataHolder] Carregados {total} spawns XML de {} mapas em {}",
-                    holder.spawns_by_map.len(),
-                    spawns_dir.display()
-                );
-                for (_mapa, lista) in holder.spawns_by_map {
-                    for s in lista {
-                        self.spawns.push(Spawn {
-                            mapa: s.mapa,
-                            npc_id: s.npc_id,
-                            nome_id: s.nome_id,
-                            x: s.x,
-                            y: s.y,
-                            z: s.z,
-                            payload: s.payload,
-                        });
-                    }
+        let mut holder = crate::dataholders::SpawnsDataHolder::new();
+        if let Ok(total) = holder.load_from_csv(caminho) {
+            println!(
+                "INFO: [SpawnsDataHolder] Carregados {total} spawns de {} mapas de {}",
+                holder.spawns_by_map.len(),
+                caminho.display()
+            );
+            for (_mapa, lista) in holder.spawns_by_map {
+                for s in lista {
+                    self.spawns.push(Spawn {
+                        mapa: s.mapa,
+                        npc_id: s.npc_id,
+                        nome_id: s.nome_id,
+                        x: s.x,
+                        y: s.y,
+                        z: s.z,
+                        payload: s.payload,
+                    });
                 }
-                return;
             }
+            return;
         }
 
-        // 2. Fallback para CSV caso XMLs nao estejam presentes
-        let texto = match std::fs::read_to_string(caminho) {
-            Ok(t) => t,
-            Err(e) => {
-                eprintln!("WARN: sem tabela de spawns ({}): {e}", caminho.display());
-                return;
-            }
-        };
-
-        for linha in texto.lines() {
-            let linha = linha.trim();
-            if linha.is_empty() || linha.starts_with('#') {
-                continue;
-            }
-            let campos: Vec<&str> = linha.split(',').collect();
-            if campos.len() != 7 {
-                continue;
-            }
-            let Some(payload) = hex_para_bytes(campos[6]) else {
-                continue;
-            };
-            let ler_u32 = |i: usize| campos[i].parse::<u32>().ok();
-            let ler_f32 = |i: usize| campos[i].parse::<f32>().ok();
-            if let (Some(mapa), Some(npc_id), Some(nome_id), Some(x), Some(y), Some(z)) = (
-                ler_u32(0),
-                ler_u32(1),
-                ler_u32(2),
-                ler_f32(3),
-                ler_f32(4),
-                ler_f32(5),
-            ) {
-                self.spawns.push(Spawn { mapa, npc_id, nome_id, x, y, z, payload });
-            }
-        }
-        println!(
-            "INFO: loaded {} NPC spawns from {}",
-            self.spawns.len(),
-            caminho.display()
-        );
+        eprintln!("WARN: sem tabela de spawns ({}): arquivo nao encontrado ou invalido", caminho.display());
     }
 }
 
