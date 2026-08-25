@@ -57,6 +57,8 @@ Cliente/*
 !Cliente/GFAion/aionclassic/Start_Client_Classic_EU.bat
 dist/
 dist/*.zip
+*.7z
+*.zip
 replay.bin
 myls.properties
 **/client_raw/

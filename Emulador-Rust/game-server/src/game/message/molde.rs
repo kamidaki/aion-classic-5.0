@@ -50,6 +50,19 @@ pub mod campo {
     pub const NIVEL: usize = 168;
 }
 
+/// Gera um bloco de 140 bytes de aparência válido caso o personagem não tenha customização salva.
+pub fn aparencia_padrao(raca: u32, classe: u32, genero: u32) -> [u8; campo::APARENCIA_LEN] {
+    let mut bloco = [0u8; campo::APARENCIA_LEN];
+    bloco.copy_from_slice(&REGISTRO_MOLDE[campo::NOME..campo::REDUNDANCIA]);
+    bloco[campo::GENERO - campo::NOME..campo::GENERO - campo::NOME + 4]
+        .copy_from_slice(&genero.to_le_bytes());
+    bloco[campo::RACA - campo::NOME..campo::RACA - campo::NOME + 4]
+        .copy_from_slice(&raca.to_le_bytes());
+    bloco[campo::CLASSE - campo::NOME..campo::CLASSE - campo::NOME + 4]
+        .copy_from_slice(&classe.to_le_bytes());
+    bloco
+}
+
 /// Registro capturado com os campos conhecidos zerados.
 pub const REGISTRO_MOLDE: [u8; REGISTRO_LEN] = [
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

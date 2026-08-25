@@ -197,6 +197,90 @@ impl Rift {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum DungeonType {
+    Solo,
+    Group6,
+    Alliance12,
+    Raid24,
+    DredgionPvPvE,
+}
+
+#[derive(Debug, Clone)]
+pub struct DungeonGate {
+    pub gate_id: u32,
+    pub name: String,
+    pub is_open: bool,
+    pub key_item_id: Option<u32>,
+}
+
+impl DungeonGate {
+    pub fn new(gate_id: u32, name: &str, key_item_id: Option<u32>) -> Self {
+        Self {
+            gate_id,
+            name: name.to_string(),
+            is_open: false,
+            key_item_id,
+        }
+    }
+
+    pub fn try_unlock(&mut self, player_items: &[u32]) -> bool {
+        if let Some(key) = self.key_item_id {
+            if player_items.contains(&key) {
+                self.is_open = true;
+                true
+            } else {
+                false
+            }
+        } else {
+            self.is_open = true;
+            true
+        }
+    }
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct InstanceScore {
+    pub points: i32,
+    pub monsters_killed: u32,
+    pub bosses_killed: u32,
+    pub deaths: u32,
+}
+
+impl InstanceScore {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn add_kill(&mut self, is_boss: bool, pts: i32) {
+        if is_boss {
+            self.bosses_killed += 1;
+        } else {
+            self.monsters_killed += 1;
+        }
+        self.points = self.points.saturating_add(pts);
+    }
+
+    pub fn record_death(&mut self) {
+        self.deaths += 1;
+        self.points = self.points.saturating_sub(200);
+    }
+
+    pub fn get_rank(&self) -> char {
+        if self.points >= 15_000 {
+            'S'
+        } else if self.points >= 10_000 {
+            'A'
+        } else if self.points >= 6_000 {
+            'B'
+        } else if self.points >= 3_000 {
+            'C'
+        } else {
+            'F'
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -263,5 +347,23 @@ mod tests {
 
         // Player level 28 (rift closed)
         assert_eq!(rift.try_teleport(28), None);
+    }
+
+    #[test]
+    fn test_dungeon_scoring_and_gates() {
+        let mut gate = DungeonGate::new(1, "Boss Room Gate", Some(185000001));
+        assert!(!gate.is_open);
+        assert!(!gate.try_unlock(&[185000002, 185000003]));
+        assert!(gate.try_unlock(&[185000001]));
+        assert!(gate.is_open);
+
+        let mut score = InstanceScore::new();
+        score.add_kill(false, 500);
+        score.add_kill(true, 15_000);
+        assert_eq!(score.get_rank(), 'S');
+
+        score.record_death();
+        score.record_death();
+        assert_eq!(score.points, 15_100);
     }
 }

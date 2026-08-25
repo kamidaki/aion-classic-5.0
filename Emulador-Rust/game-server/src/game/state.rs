@@ -125,6 +125,8 @@ pub struct State {
     pub party_service: crate::game::social::PartyService,
     pub chat_timestamps: HashMap<u32, Vec<Instant>>,
     pub teleport_service: crate::game::teleport::TeleportService,
+    pub title_service: crate::game::title::TitleService,
+    pub trade_service: crate::game::trade::TradeService,
     db: Db,
     game_data: Arc<GameData>,
 }
@@ -192,6 +194,8 @@ impl State {
             party_service: crate::game::social::PartyService::new(),
             chat_timestamps: HashMap::new(),
             teleport_service: crate::game::teleport::TeleportService::new(),
+            title_service: crate::game::title::TitleService::from_data(&game_data.titles),
+            trade_service: crate::game::trade::TradeService::from_data(&game_data.goods_lists),
             db,
             game_data,
         }
@@ -2059,121 +2063,21 @@ impl State {
                 let avg = self.db.preco_medio_item(avg_req.item_template_id).unwrap_or(0);
                 println!("INFO: Player {} queried avg price for template {}: {}", update.character_id(), avg_req.item_template_id, avg);
             }
-            c::Message::ChatMessagePublic(msg) => {
-                let char_id = update.character_id();
-                if !self.check_flood(char_id) {
-                    println!("WARN: Player {} dropped for chat flood", char_id);
-                    return;
-                }
-
-                let (char_name, loc, access_level) = match self.characters.get(&char_id) {
-                    Some(c) => (c.name().to_string(), c.location(), 100),
-                    None => return,
+            c::Message::CheckNickName(msg) => {
+                let name = msg.name.trim();
+                let result_code: u8 = if name.len() < 2 || name.len() > 16 {
+                    2 // nome inválido
+                } else if let Ok(true) = self.db.verificar_nome_em_uso(name) {
+                    1 // nome já em uso
+                } else {
+                    0 // nome disponível (ok)
                 };
-
-                // GM Command Check
-                if let Some(cmd) = crate::game::social::GmCommand::parse(&msg.message) {
-                    if access_level >= 100 {
-                        match cmd {
-                            crate::game::social::GmCommand::Teleport { map_id: _, x, y, z } => {
-                                if let Some(character) = self.characters.get_mut(&char_id) {
-                                    character.set_location(Coord::new(x, y, z));
-                                }
-                            }
-                            crate::game::social::GmCommand::Goto { destination } => {
-                                if let Some((_map_id, x, y, z)) = crate::game::social::resolve_goto_location(&destination) {
-                                    if let Some(character) = self.characters.get_mut(&char_id) {
-                                        character.set_location(Coord::new(x, y, z));
-                                    }
-                                }
-                            }
-                            crate::game::social::GmCommand::SetLevel { level } => {
-                                if let Some(character) = self.characters.get_mut(&char_id) {
-                                    character.stats.level = level;
-                                }
-                            }
-                            _ => {
-                                println!("INFO: GM command executed: {:?}", cmd);
-                            }
-                        }
-                        return;
-                    }
-                }
-
-                let timestamp = std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap_or_default()
-                    .as_secs() as u32;
-
-                let chat_packet = s::ChatMessage::new(
-                    char_id,
-                    char_name,
-                    msg.chat_type,
-                    msg.message.clone(),
-                    timestamp,
+                messages.push_direct(
+                    update.client_id(),
+                    ServerUpdate::new(s::Message::NicknameCheckResponse(
+                        s::NicknameCheckResponse::new(result_code),
+                    )),
                 );
-
-                match msg.chat_type {
-                    0 => {
-                        // Normal (50m)
-                        for other in self.characters.values() {
-                            if loc.distance(&other.location()) <= 50.0 {
-                                messages.push_direct(
-                                    other.client_id(),
-                                    ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                                );
-                            }
-                        }
-                    }
-                    1 => {
-                        // Shout (500m)
-                        for other in self.characters.values() {
-                            if loc.distance(&other.location()) <= 500.0 {
-                                messages.push_direct(
-                                    other.client_id(),
-                                    ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                                );
-                            }
-                        }
-                    }
-                    3 => {
-                        // Group
-                        if let Some(gid) = self.party_service.group_of(char_id) {
-                            if let Some(party) = self.party_service.groups.get(&gid) {
-                                for &member_id in &party.members {
-                                    if let Some(member) = self.characters.get(&member_id) {
-                                        messages.push_direct(
-                                            member.client_id(),
-                                            ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                                        );
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    5 => {
-                        // Legion
-                        if let Some(guild) = self.guild_manager.get_guild_for_player(char_id) {
-                            for member in &guild.members {
-                                if let Some(online_char) = self.characters.get(&member.player_id) {
-                                    messages.push_direct(
-                                        online_char.client_id(),
-                                        ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                                    );
-                                }
-                            }
-                        }
-                    }
-                    _ => {
-                        // World / Trade / Others -> Broadcast
-                        for other in self.characters.values() {
-                            messages.push_direct(
-                                other.client_id(),
-                                ServerUpdate::new(s::Message::ChatMessage(chat_packet.clone())),
-                            );
-                        }
-                    }
-                }
             }
             c::Message::ChatMessageWhisper(msg) => {
                 let char_id = update.character_id();
@@ -2383,6 +2287,7 @@ mod tests {
             aprendizado: Vec::new(),
             skill_no_alvo: HashMap::new(),
             itens_iniciais: HashMap::new(),
+            ..Default::default()
         });
 
         let mut state = State::new(db, game_data);

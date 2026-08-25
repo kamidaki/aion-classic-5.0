@@ -553,9 +553,12 @@ impl Db {
         let ponto = mundo::ponto_de_entrada(raca);
         let (base_hp, base_mp) = Self::base_stats_for_class(classe);
 
+        let tem_aparencia = !aparencia.is_empty();
+        let kit_inicial_flag = if tem_aparencia { 1 } else { 0 };
+
         self.conn.execute(
             "INSERT INTO characters(account_id, name, level, exp, x, y, z, map_id, heading, hp, mp, aparencia, kit_inicial)
-             VALUES (?1, ?2, 1, 0, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, 1)",
+             VALUES (?1, ?2, 1, 0, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
             params![
                 account_id,
                 nome,
@@ -566,23 +569,26 @@ impl Db {
                 ponto.direcao as i64,
                 base_hp as i64,
                 base_mp as i64,
-                aparencia
+                aparencia,
+                kit_inicial_flag
             ],
         )?;
         let id = self.conn.last_insert_rowid() as u32;
 
-        // Inserir kit inicial de itens
-        let kit = Self::kit_for_class(classe);
-        for (pos, (item_id, qtd)) in kit.iter().enumerate() {
-            let _ = self.conn.execute(
-                "INSERT INTO character_items(character_id, item_id, quantidade, posicao) VALUES (?1, ?2, ?3, ?4)",
-                params![id as i64, *item_id as i64, *qtd as i64, pos as i64],
-            );
-        }
+        if tem_aparencia {
+            // Inserir kit inicial de itens
+            let kit = Self::kit_for_class(classe);
+            for (pos, (item_id, qtd)) in kit.iter().enumerate() {
+                let _ = self.conn.execute(
+                    "INSERT INTO character_items(character_id, item_id, quantidade, posicao) VALUES (?1, ?2, ?3, ?4)",
+                    params![id as i64, *item_id as i64, *qtd as i64, pos as i64],
+                );
+            }
 
-        // Inserir skills iniciais
-        let skills = Self::initial_skills_for_class(classe);
-        let _ = self.salvar_skills(id, &skills);
+            // Inserir skills iniciais
+            let skills = Self::initial_skills_for_class(classe);
+            let _ = self.salvar_skills(id, &skills);
+        }
 
         Ok(PersistedCharacter {
             id,
@@ -601,6 +607,16 @@ impl Db {
         })
     }
 
+    /// Verifica se já existe algum personagem criado com este nome (case-insensitive)
+    pub fn verificar_nome_em_uso(&self, name: &str) -> Result<bool> {
+        let count: i64 = self.conn.query_row(
+            "SELECT COUNT(1) FROM characters WHERE name = ?1 COLLATE NOCASE",
+            params![name],
+            |row| row.get(0),
+        )?;
+        Ok(count > 0)
+    }
+
     /// Deleta um personagem pertencente ao usuário especificado e remove seus itens associados.
     pub fn deletar_personagem(&self, username: &str, character_id: u32) -> Result<bool> {
         let account_id: Option<i64> = self
@@ -615,10 +631,14 @@ impl Db {
             return Ok(false);
         };
 
-        self.conn.execute(
-            "DELETE FROM character_items WHERE character_id = ?1",
-            params![character_id],
-        )?;
+        let _ = self.conn.execute("DELETE FROM character_items WHERE character_id = ?1", params![character_id]);
+        let _ = self.conn.execute("DELETE FROM character_skills WHERE character_id = ?1", params![character_id]);
+        let _ = self.conn.execute("DELETE FROM character_quests WHERE character_id = ?1", params![character_id]);
+        let _ = self.conn.execute("DELETE FROM character_mail WHERE character_id = ?1", params![character_id]);
+        let _ = self.conn.execute("DELETE FROM guild_members WHERE player_id = ?1", params![character_id]);
+        let _ = self.conn.execute("DELETE FROM buddies WHERE player_id = ?1 OR friend_id = ?1", params![character_id]);
+        let _ = self.conn.execute("DELETE FROM broker_listings WHERE seller_id = ?1", params![character_id]);
+        let _ = self.conn.execute("DELETE FROM broker_history WHERE player_id = ?1", params![character_id]);
 
         let rows = self.conn.execute(
             "DELETE FROM characters WHERE id = ?1 AND account_id = ?2",
@@ -1334,6 +1354,92 @@ impl Db {
         )?;
         Ok(avg.unwrap_or(0.0) as u64)
     }
+
+    pub fn salvar_quests(&self, character_id: u32, quests: &[QuestPersistida]) -> Result<()> {
+        let mut tx = self.conn.unchecked_transaction()?;
+        for q in quests {
+            tx.execute(
+                "INSERT INTO player_quests (character_id, quest_id, status, quest_vars, complete_count)
+                 VALUES (?1, ?2, ?3, ?4, ?5)
+                 ON CONFLICT(character_id, quest_id) DO UPDATE SET
+                    status = excluded.status,
+                    quest_vars = excluded.quest_vars,
+                    complete_count = excluded.complete_count",
+                params![
+                    character_id as i64,
+                    q.quest_id as i64,
+                    &q.status,
+                    q.quest_vars as i64,
+                    q.complete_count as i64,
+                ],
+            )?;
+        }
+        tx.commit()
+    }
+
+    pub fn carregar_quests(&self, character_id: u32) -> Result<Vec<QuestPersistida>> {
+        let mut stmt = self.conn.prepare(
+            "SELECT quest_id, status, quest_vars, complete_count
+             FROM player_quests
+             WHERE character_id = ?1",
+        )?;
+        let rows = stmt.query_map(params![character_id as i64], |row| {
+            Ok(QuestPersistida {
+                quest_id: row.get::<_, i64>(0)? as u32,
+                status: row.get(1)?,
+                quest_vars: row.get::<_, i64>(2)? as u32,
+                complete_count: row.get::<_, i64>(3)? as u32,
+            })
+        })?;
+        rows.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
+    }
+
+    pub fn transferir_item_entre_personagens(
+        &mut self,
+        remetente_id: u32,
+        destinatario_id: u32,
+        item_id: u32,
+        quantidade: u32,
+    ) -> Result<bool> {
+        let tx = self.conn.transaction()?;
+
+        let qtd_remetente: Option<i64> = tx
+            .query_row(
+                "SELECT quantidade FROM character_items WHERE character_id = ?1 AND item_id = ?2",
+                params![remetente_id as i64, item_id as i64],
+                |r| r.get(0),
+            )
+            .optional()?;
+
+        let Some(qtd_atual) = qtd_remetente else {
+            return Ok(false);
+        };
+
+        if (qtd_atual as u32) < quantidade {
+            return Ok(false);
+        }
+
+        if qtd_atual as u32 == quantidade {
+            tx.execute(
+                "DELETE FROM character_items WHERE character_id = ?1 AND item_id = ?2",
+                params![remetente_id as i64, item_id as i64],
+            )?;
+        } else {
+            tx.execute(
+                "UPDATE character_items SET quantidade = quantidade - ?1 WHERE character_id = ?2 AND item_id = ?3",
+                params![quantidade as i64, remetente_id as i64, item_id as i64],
+            )?;
+        }
+
+        tx.execute(
+            "INSERT INTO character_items (character_id, item_id, quantidade, posicao)
+             VALUES (?1, ?2, ?3, 0)",
+            params![destinatario_id as i64, item_id as i64, quantidade as i64],
+        )?;
+
+        tx.commit()?;
+        Ok(true)
+    }
 }
 
 #[cfg(test)]
@@ -1427,7 +1533,7 @@ mod tests {
     fn criar_personagem_and_persists_updates() {
         let db = in_memory();
 
-        let a = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        let a = db.criar_personagem("alice", "AliceChar", &[]).unwrap();
         assert_eq!(a.name, "AliceChar");
         assert_eq!(a.level, 1);
         assert_eq!(a.x, crate::game::mundo::X, "personagem novo nasce no ponto de entrada");
@@ -1455,7 +1561,7 @@ mod tests {
     #[test]
     fn kit_inicial_e_entregue_uma_vez_so() {
         let db = in_memory();
-        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &[]).unwrap();
 
         let kit = [(182_400_001u32, 1000u32), (100_000_094, 1), (160_000_001, 12)];
         assert!(db.garante_kit_inicial(c.id, &kit).unwrap(), "primeira vez entrega");
@@ -1482,8 +1588,8 @@ mod tests {
     #[test]
     fn different_usernames_get_different_accounts_and_characters() {
         let db = in_memory();
-        let a = db.criar_personagem("alice", "AliceChar", &None).unwrap();
-        let b = db.criar_personagem("bob", "BobChar", &None).unwrap();
+        let a = db.criar_personagem("alice", "AliceChar", &[]).unwrap();
+        let b = db.criar_personagem("bob", "BobChar", &[]).unwrap();
         assert_ne!(a.account_id, b.account_id);
         assert_ne!(a.id, b.id);
     }
@@ -1491,7 +1597,7 @@ mod tests {
     #[test]
     fn deletar_personagem_remove_registro_e_itens() {
         let db = in_memory();
-        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &[]).unwrap();
         let kit = [(182_400_001u32, 1000u32)];
         db.garante_kit_inicial(c.id, &kit).unwrap();
 
@@ -1505,7 +1611,7 @@ mod tests {
     #[test]
     fn item_adicionar_remover_e_kinah_saldo() {
         let db = in_memory();
-        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &[]).unwrap();
 
         // Adiciona 500 kinah
         assert!(db.alterar_kinah(c.id, 500).unwrap());
@@ -1530,7 +1636,7 @@ mod tests {
     #[test]
     fn quest_salvar_e_carregar_progresso() {
         let db = in_memory();
-        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &[]).unwrap();
 
         // Inicia quest 1001
         db.salvar_quest(c.id, 1001, "IN_PROGRESS", 1, 0).unwrap();
@@ -1551,7 +1657,7 @@ mod tests {
     #[test]
     fn mail_salvar_ler_extrair_e_deletar() {
         let db = in_memory();
-        let c = db.criar_personagem("alice", "AliceChar", &None).unwrap();
+        let c = db.criar_personagem("alice", "AliceChar", &[]).unwrap();
 
         let letter_id = db
             .salvar_carta(
@@ -1594,8 +1700,8 @@ mod tests {
     #[test]
     fn guild_criar_adicionar_e_carregar() {
         let db = in_memory();
-        let leader = db.criar_personagem("alice", "AliceLeader", &None).unwrap();
-        let member = db.criar_personagem("bob", "BobMember", &None).unwrap();
+        let leader = db.criar_personagem("alice", "AliceLeader", &[]).unwrap();
+        let member = db.criar_personagem("bob", "BobMember", &[]).unwrap();
 
         let gid = db.criar_guild("Olympus", 0, leader.id).unwrap();
         db.adicionar_membro_guild(gid, member.id, 5).unwrap();
@@ -1616,8 +1722,8 @@ mod tests {
     #[test]
     fn buddy_adicionar_remover_e_listar() {
         let db = in_memory();
-        let alice = db.criar_personagem("alice", "AliceChar", &None).unwrap();
-        let bob = db.criar_personagem("bob", "BobChar", &None).unwrap();
+        let alice = db.criar_personagem("alice", "AliceChar", &[]).unwrap();
+        let bob = db.criar_personagem("bob", "BobChar", &[]).unwrap();
 
         db.adicionar_amigo(alice.id, bob.id).unwrap();
         let amigos = db.amigos_do_personagem(alice.id).unwrap();
@@ -1632,8 +1738,8 @@ mod tests {
     #[test]
     fn broker_salvar_listar_comprar_e_historico() {
         let db = in_memory();
-        let seller = db.criar_personagem("vendedor", "VendedorChar", &None).unwrap();
-        let buyer = db.criar_personagem("comprador", "CompradorChar", &None).unwrap();
+        let seller = db.criar_personagem("vendedor", "VendedorChar", &[]).unwrap();
+        let buyer = db.criar_personagem("comprador", "CompradorChar", &[]).unwrap();
 
         let lid = db.salvar_anuncio_broker(seller.id, &seller.name, 182000001, 10, 5000, 1700000000, 2, 0).unwrap();
         let (total, list) = db.listar_anuncios_broker(0, 20).unwrap();
@@ -1660,7 +1766,7 @@ mod tests {
     fn skills_salvar_e_carregar_e_migrate() {
         let db = in_memory();
         db.migrate().unwrap();
-        let hero = db.criar_personagem("heroi", "HeroiChar", &None).unwrap();
+        let hero = db.criar_personagem("heroi", "HeroiChar", &[]).unwrap();
         let skills = vec![(1001, 1), (1002, 2), (2001, 5)];
         db.salvar_skills(hero.id, &skills).unwrap();
         let loaded = db.carregar_skills(hero.id).unwrap();
@@ -1687,5 +1793,61 @@ mod tests {
 
         let skills = db.carregar_skills(criado.id).unwrap();
         assert_eq!(skills.len(), 4); // 4 warrior skills
+    }
+
+    #[test]
+    fn test_quest_persistence_save_load() {
+        let db = in_memory();
+        let mut aparencia = vec![0u8; 140];
+        let p = db.criar_personagem("teste_q", "QuestHero", &aparencia).unwrap();
+
+        let quests = vec![
+            QuestPersistida {
+                quest_id: 1001,
+                status: "IN_PROGRESS".to_string(),
+                quest_vars: 3,
+                complete_count: 0,
+            },
+            QuestPersistida {
+                quest_id: 1002,
+                status: "COMPLETE".to_string(),
+                quest_vars: 0,
+                complete_count: 1,
+            },
+        ];
+
+        db.salvar_quests(p.id, &quests).expect("deve salvar quests");
+        let carregadas = db.carregar_quests(p.id).expect("deve carregar quests");
+        assert_eq!(carregadas.len(), 2);
+        assert!(carregadas.iter().any(|q| q.quest_id == 1001 && q.quest_vars == 3));
+        assert!(carregadas.iter().any(|q| q.quest_id == 1002 && q.status == "COMPLETE"));
+    }
+
+    #[test]
+    fn test_atomic_item_transfer_between_characters() {
+        let mut db = in_memory();
+        let mut aparencia = vec![0u8; 140];
+        let p1 = db.criar_personagem("c1", "Sender", &aparencia).unwrap();
+        let p2 = db.criar_personagem("c2", "Receiver", &aparencia).unwrap();
+
+        // Inserir 50 poções no remetente (item 160000001)
+        db.conn.execute(
+            "INSERT INTO character_items (character_id, item_id, quantidade, posicao) VALUES (?1, 160000001, 50, 0)",
+            params![p1.id as i64],
+        ).unwrap();
+
+        // Transferir 20 poções para o destinatário de forma atômica
+        let sucesso = db.transferir_item_entre_personagens(p1.id, p2.id, 160000001, 20).unwrap();
+        assert!(sucesso);
+
+        // Remetente deve ter 30
+        let itens_p1 = db.itens_do_personagem(p1.id).unwrap();
+        let pocao_p1 = itens_p1.iter().find(|i| i.item_id == 160000001).unwrap();
+        assert_eq!(pocao_p1.quantidade, 30);
+
+        // Destinatário deve ter 20
+        let itens_p2 = db.itens_do_personagem(p2.id).unwrap();
+        let pocao_p2 = itens_p2.iter().find(|i| i.item_id == 160000001).unwrap();
+        assert_eq!(pocao_p2.quantidade, 20);
     }
 }

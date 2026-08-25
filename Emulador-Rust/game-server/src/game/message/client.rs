@@ -187,6 +187,9 @@ define_messages!(
     (BUY_SELL, BuySell, 0x33),
     (MAIL_READ, MailRead, 0x87),
     (MAIL_POSTMAN, MailPostman, 0xA2),
+    (CHECK_NICKNAME, CheckNickName, 0x28),
+    (QUIT, Quit, 0x48),
+    (RECONNECT, Reconnect, 0x4A),
     (GUILD_USER_BUY_BUFF, GuildUserBuyBuff, 0xC6),
     (GUILD_MANAGE, GuildManage, 0xC7),
     (PARTY, Party, 0x60),
@@ -1197,6 +1200,73 @@ impl Deserialise for AskQuit {
         Self: Sized,
     {
         Self
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct Quit;
+
+impl Quit {
+    pub fn handle(
+        &self,
+        _: &Sender<ClientUpdate>,
+        _: &mut Account,
+    ) -> Vec<s::Message> {
+        vec![s::Message::AskQuitResult(s::AskQuitResult::new())]
+    }
+}
+
+impl Deserialise for Quit {
+    fn deserialise(_: &[u8]) -> Self {
+        Self
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct Reconnect;
+
+impl Reconnect {
+    pub fn handle(
+        &self,
+        _: &Sender<ClientUpdate>,
+        _: &mut Account,
+    ) -> Vec<s::Message> {
+        vec![s::Message::ReconnectKey(s::ReconnectKey::new())]
+    }
+}
+
+impl Deserialise for Reconnect {
+    fn deserialise(_: &[u8]) -> Self {
+        Self
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct CheckNickName {
+    pub name: String,
+}
+
+impl CheckNickName {
+    pub fn handle(
+        self,
+        tx: &Sender<ClientUpdate>,
+        session: &mut Account,
+    ) -> Vec<s::Message> {
+        tx.send(session.send(Message::CheckNickName(self))).unwrap();
+        vec![]
+    }
+}
+
+impl Deserialise for CheckNickName {
+    fn deserialise(buf: &[u8]) -> Self {
+        let u16_chars: Vec<u16> = buf
+            .chunks_exact(2)
+            .map(|c| u16::from_le_bytes([c[0], c[1]]))
+            .skip_while(|&c| c < 32 && c != 0)
+            .take_while(|&c| c != 0)
+            .collect();
+        let name = String::from_utf16_lossy(&u16_chars).trim().to_string();
+        Self { name }
     }
 }
 

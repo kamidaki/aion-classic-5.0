@@ -48,7 +48,8 @@ const ACTION: u16 = 0x0025;
 const TIME: u16 = 0x0026;
 const SYNC_TIME: u16 = 0x0027;
 const NPC_CHANGED_TARGET: u16 = 0x0028;
-const TARGET_INFO: u16 = 0x0029;
+const NICKNAME_CHECK_RESPONSE: u16 = 0x0029;
+const TARGET_INFO: u16 = 0x002A;
 const SKILL_SUCCEDED: u16 = 0x002B;
 const ADD_SKILL: u16 = 0x002C;
 const ABNORMAL_STATUS: u16 = 0x0031;
@@ -220,6 +221,7 @@ pub enum Message {
     GlobalTradeSaleslog(GlobalTradeSaleslog),
     GlobalTradeState(GlobalTradeState),
     GlobalTradeHistory(GlobalTradeHistory),
+    NicknameCheckResponse(NicknameCheckResponse),
 }
 
 impl Serialise for Message {
@@ -318,6 +320,7 @@ impl Serialise for Message {
             Message::GlobalTradeSaleslog(msg) => msg.serialise(&mut buf[2..]),
             Message::GlobalTradeState(msg) => msg.serialise(&mut buf[2..]),
             Message::GlobalTradeHistory(msg) => msg.serialise(&mut buf[2..]),
+            Message::NicknameCheckResponse(msg) => msg.serialise(&mut buf[2..]),
         };
 
         len += LENGTH_LEN;
@@ -920,11 +923,14 @@ pub struct BuilderLevel {
 }
 impl BuilderLevel {
     pub fn new() -> Self {
+        Self::vip()
+    }
+    pub fn vip() -> Self {
         Self {
             raw: [
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x7F, 0x00, 0x00, 0x00,
+                0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             ],
         }
     }
@@ -2392,6 +2398,74 @@ impl Serialise for AskQuitResult {
     }
 }
 
+/// SM_RECONNECT_KEY (0x00FF / 0x004B) — Token para reconexão/retorno ao lobby
+#[derive(Debug, Clone)]
+pub struct ReconnectKey {
+    pub key: u32,
+}
+
+impl ReconnectKey {
+    pub fn new() -> Self {
+        Self { key: 0x1234_5678 }
+    }
+    pub fn with_key(key: u32) -> Self {
+        Self { key }
+    }
+}
+
+impl Serialise for ReconnectKey {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(RECONNECT_KEY, buf);
+        to_le_bytes!(len, buf, self.key);
+        len
+    }
+}
+
+/// SM_NICKNAME_CHECK_RESPONSE (0x0029) — Resposta para verificação de nome
+#[derive(Debug, Clone)]
+pub struct NicknameCheckResponse {
+    pub result: u8,
+    pub error_code: u16,
+}
+
+impl NicknameCheckResponse {
+    pub fn new(result: u8) -> Self {
+        Self {
+            result,
+            error_code: 0,
+        }
+    }
+    pub fn ok() -> Self {
+        Self {
+            result: 0,
+            error_code: 0,
+        }
+    }
+    pub fn already_used() -> Self {
+        Self {
+            result: 1,
+            error_code: 0,
+        }
+    }
+    pub fn invalid() -> Self {
+        Self {
+            result: 2,
+            error_code: 0,
+        }
+    }
+}
+
+impl Serialise for NicknameCheckResponse {
+    fn serialise(&self, buf: &mut [u8]) -> usize {
+        let mut len = 0;
+        len += add_prelude(NICKNAME_CHECK_RESPONSE, buf);
+        to_le_bytes!(len, buf, self.result);
+        to_le_bytes!(len, buf, self.error_code);
+        len
+    }
+}
+
 /// 4 bytes - ID of entity doing action
 /// 1 byte - Action ID
 /// 1 byte - 0x01
@@ -2894,30 +2968,6 @@ impl Serialise for HitPointOther {
         to_le_bytes!(len, buf, self.hp_max);
         to_le_bytes!(len, buf, self.damage_type);
         to_le_bytes!(len, buf, self.is_critical);
-        len
-    }
-}
-
-/// TODO: Create real authentication
-#[derive(Debug, Clone)]
-pub struct ReconnectKey {
-    key: [u8; 4],
-}
-impl ReconnectKey {
-    pub fn new() -> Self {
-        Self { key: [0u8; 4] }
-    }
-}
-impl Serialise for ReconnectKey {
-    fn serialise(&self, buf: &mut [u8]) -> usize {
-        let mut len = 0;
-        len += add_prelude(RECONNECT_KEY, buf);
-
-        buf[len] = 0;
-        len += 1;
-        buf[len..len + self.key.len()].copy_from_slice(&self.key);
-        len += self.key.len();
-
         len
     }
 }
@@ -4383,5 +4433,56 @@ mod testes_de_stats {
             "mesmo payload para os mesmos valores"
         );
         assert_ne!(&buf_hp[..2], &buf_mp[..2], "mas opcodes diferentes");
+    }
+
+    #[test]
+    fn test_nickname_check_response_serialise() {
+        let resp_ok = NicknameCheckResponse::ok();
+        let mut buf = [0u8; 32];
+        let n = resp_ok.serialise(&mut buf);
+        assert_eq!(n, 5 + 3, "5 prelude + 3 payload (1 u8 + 1 u16)");
+        assert_eq!(buf[5], 0, "result 0 = ok / available");
+        assert_eq!(u16::from_le_bytes(buf[6..8].try_into().unwrap()), 0);
+
+        let resp_used = NicknameCheckResponse::already_used();
+        let _ = resp_used.serialise(&mut buf);
+        assert_eq!(buf[5], 1, "result 1 = already in use");
+    }
+
+    #[test]
+    fn test_builder_level_siel_aura_vip() {
+        let bl = BuilderLevel::vip();
+        let mut buf = [0u8; 64];
+        let n = bl.serialise(&mut buf);
+        assert_eq!(n, 5 + 29, "5 prelude + 29 bytes payload");
+        assert_eq!(buf[5], 1, "is_gm = 1");
+        assert_eq!(buf[12], 1, "membership = 1 (Siel Aura active)");
+        assert_eq!(
+            u32::from_le_bytes(buf[18..22].try_into().unwrap()),
+            0x7FFFFFFF,
+            "expire_time = 0x7FFFFFFF (Permanent)"
+        );
+        assert_eq!(
+            u32::from_le_bytes(buf[26..30].try_into().unwrap()),
+            8,
+            "gold pack = 8"
+        );
+        assert_eq!(
+            u32::from_le_bytes(buf[30..34].try_into().unwrap()),
+            0,
+            "account status = 0 (VIP)"
+        );
+    }
+
+    #[test]
+    fn test_reconnect_key_serialise() {
+        let rk = ReconnectKey::with_key(0xABCD1234);
+        let mut buf = [0u8; 32];
+        let n = rk.serialise(&mut buf);
+        assert_eq!(n, 5 + 4, "5 prelude + 4 bytes payload");
+        assert_eq!(
+            u32::from_le_bytes(buf[5..9].try_into().unwrap()),
+            0xABCD1234
+        );
     }
 }

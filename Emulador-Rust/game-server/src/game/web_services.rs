@@ -128,6 +128,50 @@ impl AtreianPassport {
     }
 }
 
+#[derive(Debug, Clone)]
+pub struct ShopItem {
+    pub item_id: u32,
+    pub price_toll: u32,
+    pub category: &'static str,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct BlackCloudShop {
+    pub items: HashMap<u32, ShopItem>,
+}
+
+impl BlackCloudShop {
+    pub fn new() -> Self {
+        let mut items = HashMap::new();
+        items.insert(
+            187000100,
+            ShopItem {
+                item_id: 187000100,
+                price_toll: 500,
+                category: "Popular",
+            },
+        );
+        items.insert(
+            187000101,
+            ShopItem {
+                item_id: 187000101,
+                price_toll: 1200,
+                category: "Cosmetics",
+            },
+        );
+        Self { items }
+    }
+
+    pub fn buy_item(&self, player_toll: u32, item_id: u32) -> Result<(u32, u32), &'static str> {
+        let item = self.items.get(&item_id).ok_or("Item nao encontrado na loja")?;
+        if player_toll < item.price_toll {
+            return Err("Toll / Quna insuficiente");
+        }
+        let remaining_toll = player_toll - item.price_toll;
+        Ok((item.price_toll, remaining_toll))
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -190,5 +234,16 @@ mod tests {
         passport.record_login();
         assert_eq!(passport.login_days, 2);
         assert_eq!(passport.claim_day(2), Some(186000002));
+    }
+
+    #[test]
+    fn test_black_cloud_shop_purchases() {
+        let shop = BlackCloudShop::new();
+        let (cost, rem) = shop.buy_item(2000, 187000100).expect("deve comprar");
+        assert_eq!(cost, 500);
+        assert_eq!(rem, 1500);
+
+        // Insufficient toll
+        assert!(shop.buy_item(100, 187000101).is_err());
     }
 }

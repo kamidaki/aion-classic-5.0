@@ -111,6 +111,8 @@ pub struct TradeService {
     pub active_p2p_trades: HashMap<u32, P2PTradeSession>,
     /// Preco base de compra e venda em NPCs: (preco_compra, preco_venda)
     pub npc_item_prices: HashMap<u32, (u64, u64)>,
+    /// Catálogo de mercadorias vendidas por lista de NPC
+    pub goods_lists: HashMap<u32, Vec<String>>,
 }
 
 impl TradeService {
@@ -124,7 +126,16 @@ impl TradeService {
         Self {
             active_p2p_trades: HashMap::new(),
             npc_item_prices,
+            goods_lists: HashMap::new(),
         }
+    }
+
+    pub fn from_data(data_goods: &HashMap<u32, crate::data_loader::GoodsListDef>) -> Self {
+        let mut s = Self::new();
+        for (id, def) in data_goods {
+            s.goods_lists.insert(*id, def.items.clone());
+        }
+        s
     }
 
     pub fn buy_from_npc(

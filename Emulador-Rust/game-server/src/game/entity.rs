@@ -21,6 +21,67 @@ pub enum AiState {
     Dead,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum BossPhase {
+    Phase1_Normal,
+    Phase2_Adds,
+    Phase3_AoECast,
+    Phase4_Enrage,
+}
+
+#[derive(Debug, Clone)]
+pub struct BossAiController {
+    pub current_phase: BossPhase,
+    pub adds_spawned: bool,
+    pub aoe_casted: bool,
+    pub is_enraged: bool,
+    pub damage_multiplier: f32,
+    pub attack_speed_multiplier: f32,
+}
+
+impl Default for BossAiController {
+    fn default() -> Self {
+        Self {
+            current_phase: BossPhase::Phase1_Normal,
+            adds_spawned: false,
+            aoe_casted: false,
+            is_enraged: false,
+            damage_multiplier: 1.0,
+            attack_speed_multiplier: 1.0,
+        }
+    }
+}
+
+impl BossAiController {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn update_phase(&mut self, current_hp: i32, max_hp: i32) -> Option<BossPhase> {
+        let hp_percent = (current_hp as f32 / max_hp.max(1) as f32) * 100.0;
+        let old_phase = self.current_phase;
+
+        if hp_percent <= 25.0 {
+            self.current_phase = BossPhase::Phase4_Enrage;
+            self.is_enraged = true;
+            self.damage_multiplier = 2.0; // 100% de aumento de dano
+            self.attack_speed_multiplier = 1.5; // 50% de velocidade adicional
+        } else if hp_percent <= 50.0 {
+            self.current_phase = BossPhase::Phase3_AoECast;
+        } else if hp_percent <= 75.0 {
+            self.current_phase = BossPhase::Phase2_Adds;
+        } else {
+            self.current_phase = BossPhase::Phase1_Normal;
+        }
+
+        if self.current_phase != old_phase {
+            Some(self.current_phase)
+        } else {
+            None
+        }
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct DropItem {
     pub item_id: u32,
@@ -47,6 +108,7 @@ pub struct Entity {
     pub aggro_range: f32,
     pub hate_table: HashMap<u32, u32>,
     pub drop_table: Vec<DropItem>,
+    pub boss_ai: Option<BossAiController>,
 }
 
 impl Entity {
@@ -86,6 +148,7 @@ impl Entity {
                 DropItem { item_id: 182400001, count: 150, chance_percent: 100.0 }, // Kinah
                 DropItem { item_id: 160000001, count: 2, chance_percent: 50.0 },    // Potion
             ],
+            boss_ai: None,
         }
     }
 
@@ -97,6 +160,23 @@ impl Entity {
         self.hp.current() > 0 && self.state != AiState::Dead
     }
 
+    /// Retorna o alvo com maior nível de ódio acumulado
+    pub fn get_top_threat(&self) -> Option<u32> {
+        self.hate_table
+            .iter()
+            .max_by_key(|&(_, hate)| hate)
+            .map(|(&id, _)| id)
+    }
+
+    /// Força o alvo para um jogador específico inserindo ódio superior (Taunt)
+    pub fn taunt(&mut self, character_id: u32, bonus_hate: u32) {
+        let max_current_hate = self.hate_table.values().copied().max().unwrap_or(0);
+        let entry = self.hate_table.entry(character_id).or_insert(0);
+        *entry = max_current_hate.saturating_add(bonus_hate);
+        self.target_id = Some(character_id);
+        self.state = AiState::Combat;
+    }
+
     /// Adiciona ódio (hate) à tabela de aggro
     pub fn add_hate(&mut self, character_id: u32, amount: u32) {
         let entry = self.hate_table.entry(character_id).or_insert(0);
@@ -104,6 +184,8 @@ impl Entity {
         if self.target_id.is_none() || self.state == AiState::Idle {
             self.target_id = Some(character_id);
             self.state = AiState::Combat;
+        } else {
+            self.target_id = self.get_top_threat();
         }
     }
 
@@ -112,6 +194,11 @@ impl Entity {
         if self.is_dead() {
             self.state = AiState::Dead;
             return None;
+        }
+
+        // Atualiza fases de boss caso configurado
+        if let Some(ref mut boss) = self.boss_ai {
+            boss.update_phase(self.hp.current(), self.max_hp);
         }
 
         // 1. Validação de Leash / Evasão
@@ -141,8 +228,10 @@ impl Entity {
             if let Some(target) = characters.get_mut(&target_id) {
                 if target.stats.hp.current() <= 0 {
                     self.hate_table.remove(&target_id);
-                    self.target_id = None;
-                    self.state = AiState::Idle;
+                    self.target_id = self.get_top_threat();
+                    if self.target_id.is_none() {
+                        self.state = AiState::Idle;
+                    }
                     return None;
                 }
                 return self.attack(target);
@@ -165,7 +254,13 @@ impl Entity {
             return None;
         }
 
-        self.attack_cooldown = self.attack_speed;
+        let speed = if let Some(ref boss) = self.boss_ai {
+            self.attack_speed / boss.attack_speed_multiplier
+        } else {
+            self.attack_speed
+        };
+
+        self.attack_cooldown = speed;
         Some(self.calculate_damage(character))
     }
 
@@ -180,7 +275,13 @@ impl Entity {
     }
 
     fn calculate_damage(&mut self, character: &mut Character) -> Vec<Hit> {
-        let dmg = 128;
+        let base_dmg = 128;
+        let dmg = if let Some(ref boss) = self.boss_ai {
+            (base_dmg as f32 * boss.damage_multiplier) as i32
+        } else {
+            base_dmg
+        };
+
         let hits = vec![Hit::new(dmg, Type::MainHand)];
         character.stats.hp.update(-dmg);
         self.attack_sequence = self.attack_sequence.wrapping_add(1);
@@ -261,5 +362,36 @@ mod tests {
         let loot = entity.generate_loot();
         assert!(!loot.is_empty(), "Monstro deve gerar tabela de loot");
         assert!(loot.iter().any(|(id, _)| *id == 182400001), "Kinah garantida no loot");
+    }
+
+    #[test]
+    fn test_hate_table_taunt_and_threat_modifiers() {
+        let mut entity = Entity::novo(1001, Coord::new(100.0, 100.0, 0.0), 210001, 210001);
+        entity.add_hate(10, 500); // Jogador 10 causou 500 de dano
+        entity.add_hate(20, 300); // Jogador 20 causou 300 de dano
+        assert_eq!(entity.get_top_threat(), Some(10));
+
+        // Templário (Jogador 20) usa Taunt (+5000)
+        entity.taunt(20, 5000);
+        assert_eq!(entity.get_top_threat(), Some(20));
+        assert_eq!(entity.target_id, Some(20));
+    }
+
+    #[test]
+    fn test_boss_phase_transitions_and_enrage() {
+        let mut boss = BossAiController::new();
+        assert_eq!(boss.current_phase, BossPhase::Phase1_Normal);
+
+        // HP cai para 70% -> Fase 2 (Adds)
+        assert_eq!(boss.update_phase(700, 1000), Some(BossPhase::Phase2_Adds));
+
+        // HP cai para 40% -> Fase 3 (AoE)
+        assert_eq!(boss.update_phase(400, 1000), Some(BossPhase::Phase3_AoECast));
+
+        // HP cai para 20% -> Fase 4 (Enrage com dano 2x e speed 1.5x)
+        assert_eq!(boss.update_phase(200, 1000), Some(BossPhase::Phase4_Enrage));
+        assert!(boss.is_enraged);
+        assert_eq!(boss.damage_multiplier, 2.0);
+        assert_eq!(boss.attack_speed_multiplier, 1.5);
     }
 }

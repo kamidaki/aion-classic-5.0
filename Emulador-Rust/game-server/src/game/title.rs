@@ -3,7 +3,7 @@ use std::collections::HashMap;
 #[derive(Debug, Clone)]
 pub struct TitleTemplate {
     pub id: u16,
-    pub name: &'static str,
+    pub name: String,
     pub hp_bonus: i32,
     pub mp_bonus: i32,
     pub speed_percent: f32,
@@ -26,7 +26,7 @@ impl TitleService {
             1,
             TitleTemplate {
                 id: 1,
-                name: "Poeta's Protector",
+                name: "Poeta's Protector".to_string(),
                 hp_bonus: 20,
                 mp_bonus: 20,
                 speed_percent: 0.03,
@@ -41,7 +41,7 @@ impl TitleService {
             2,
             TitleTemplate {
                 id: 2,
-                name: "Treehugger",
+                name: "Treehugger".to_string(),
                 hp_bonus: 40,
                 mp_bonus: 0,
                 speed_percent: 0.04,
@@ -56,7 +56,7 @@ impl TitleService {
             50,
             TitleTemplate {
                 id: 50,
-                name: "Aion's Chosen",
+                name: "Aion's Chosen".to_string(),
                 hp_bonus: 250,
                 mp_bonus: 250,
                 speed_percent: 0.05,
@@ -67,6 +67,27 @@ impl TitleService {
             },
         );
 
+        Self { titles }
+    }
+
+    pub fn from_data(data_titles: &HashMap<u16, crate::data_loader::TitleDef>) -> Self {
+        let mut titles = HashMap::new();
+        for (id, def) in data_titles {
+            titles.insert(
+                *id,
+                TitleTemplate {
+                    id: *id,
+                    name: def.name.clone(),
+                    hp_bonus: def.bonus_hp,
+                    mp_bonus: def.bonus_mp,
+                    speed_percent: def.bonus_speed,
+                    flight_speed_percent: def.bonus_fly_speed,
+                    physical_attack: def.bonus_p_atk,
+                    magic_boost: def.bonus_m_atk,
+                    physical_crit: def.bonus_p_crit,
+                },
+            );
+        }
         Self { titles }
     }
 
