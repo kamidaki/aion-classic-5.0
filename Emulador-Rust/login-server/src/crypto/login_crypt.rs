@@ -33,30 +33,38 @@ impl LoginCryptEngine {
     }
 
     pub fn encrypt_init(&mut self, raw: &[u8], new_blowfish_key: [u8; 16]) -> Vec<u8> {
-        // Replica exatamente o Java CryptEngine.encrypt() para o PRIMEIRO pacote:
+        // O Java AionServerPacket.write() faz:
+        //   buf.putShort(0)    → 2 bytes zeros no inicio do buffer
+        //   writeImpl(con)     → opcode + dados
+        //   buf.flip()
+        //   buf.putShort(0)    → sobrescreve os 2 bytes com zeros novamente
+        //   b = buf.slice()    → slice começa nesses 2 bytes zeros
+        //   encrypt(b)         → cifra com offset=0 no slice (= os 2 zeros + opcode + dados)
         //
-        //   int length = buf.limit() - 2;   // tamanho do payload (sem os 2 bytes de header)
-        //   final int offset = 2;            // posicao do payload no buffer completo
-        //   length += 4;                     // +4 (checksum region)
-        //   length += 4;                     // +4 extra para o primeiro pacote
-        //   length += 8 - length % 8;        // alinhamento
-        //   → length = 192 (payload de 177 bytes → 177+4+4 = 185 → arredonda para 192)
+        // Portanto o buffer de 192 bytes que vai para Blowfish/XOR contem:
+        //   [0..2]   = 2 bytes zeros (o putShort(0) extra)
+        //   [2..3]   = opcode (0x00)
+        //   [3..7]   = sessionId
+        //   [7..11]  = protocolo 0x0000C621
+        //   [11..139]= RSA modulus (128 bytes)
+        //   [139..155]= 4×zeros (16 bytes)
+        //   [155..171]= blowfish key (16 bytes)
+        //   [171..175]= 197635 = 0x00030403
+        //   [175..179]= 2097152 = 0x00200000
+        //   [179..192]= zeros (padding)
         //
-        //   encXORPass(data, offset=2, length=192, randomKey)
-        //   cipher.cipher(data, offset=2, length=192)
-        //   cipher.updateKey(session_key)
-        //
-        // O buffer Java tem: [0..2] = header de tamanho, [2..194] = payload de 192 bytes.
-        // O nosso buffer tem apenas os 192 bytes do payload (sem header).
-        // Para replicar o XOR do Java, precisamos simular o offset=2.
+        // O XOR (encXORPass) inicia em pos=4 do slice e para em pos=184, escreve key em 184.
 
         let mut buffer = vec![0u8; 192];
-        let copy_len = raw.len().min(192);
-        buffer[..copy_len].copy_from_slice(&raw[..copy_len]);
+
+        // [0..2] = 2 bytes zeros (putShort extra do Java)
+        // [2..] = conteudo do raw (opcode + dados)
+        let content_start = 2usize;
+        let copy_len = raw.len().min(192 - content_start);
+        buffer[content_start..content_start + copy_len].copy_from_slice(&raw[..copy_len]);
 
         let xor_seed: u32 = rand::thread_rng().gen();
-        // enc_xor_pass com offset=2 (simula o buffer Java que inclui o header de 2 bytes)
-        Self::enc_xor_pass_with_offset(&mut buffer, xor_seed, 2);
+        Self::enc_xor_pass(&mut buffer, xor_seed);
 
         // Cifra os 192 bytes com a static key
         self.cipher.cipher(&mut buffer);
