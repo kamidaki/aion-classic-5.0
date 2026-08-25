@@ -24,8 +24,11 @@ impl LoginCryptEngine {
     }
 
     pub fn update_key(&mut self, new_key: [u8; 16]) {
+        // Java CryptEngine.updateKey(): apenas guarda a nova chave e reinicializa
+        // o cipher Blowfish com ela para cifrar os proximos pacotes.
+        // Isso e equivalente a criar um novo BlowfishCipher com a nova chave.
         self.current_key = new_key;
-        self.cipher.update_key(&new_key);
+        self.cipher = BlowfishCipher::new(&new_key);
         self.updated_key = true;
     }
 
@@ -37,9 +40,10 @@ impl LoginCryptEngine {
 
         let xor_seed: u32 = rand::thread_rng().gen();
         Self::enc_xor_pass(&mut buffer, xor_seed);
+        // Cifra com a static key (cipher ainda esta com STATIC_BLOWFISH_KEY)
         self.cipher.cipher(&mut buffer);
 
-        // Update to session key
+        // Depois de cifrar o SM_INIT, atualiza para a session key para proximos pacotes
         self.update_key(new_blowfish_key);
 
         buffer
