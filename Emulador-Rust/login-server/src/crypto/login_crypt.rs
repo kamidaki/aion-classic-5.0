@@ -33,43 +33,39 @@ impl LoginCryptEngine {
     }
 
     pub fn encrypt_init(&mut self, raw: &[u8], new_blowfish_key: [u8; 16]) -> Vec<u8> {
-        // O Java AionServerPacket.write() faz:
-        //   buf.putShort(0)    → 2 bytes zeros no inicio do buffer
-        //   writeImpl(con)     → opcode + dados
-        //   buf.flip()
-        //   buf.putShort(0)    → sobrescreve os 2 bytes com zeros novamente
-        //   b = buf.slice()    → slice começa nesses 2 bytes zeros
-        //   encrypt(b)         → cifra com offset=0 no slice (= os 2 zeros + opcode + dados)
+        // Java CryptEngine.encrypt() para o PRIMEIRO pacote (updatedKey=false):
         //
-        // Portanto o buffer de 192 bytes que vai para Blowfish/XOR contem:
-        //   [0..2]   = 2 bytes zeros (o putShort(0) extra)
-        //   [2..3]   = opcode (0x00)
-        //   [3..7]   = sessionId
-        //   [7..11]  = protocolo 0x0000C621
-        //   [11..139]= RSA modulus (128 bytes)
-        //   [139..155]= 4×zeros (16 bytes)
-        //   [155..171]= blowfish key (16 bytes)
-        //   [171..175]= 197635 = 0x00030403
-        //   [175..179]= 2097152 = 0x00200000
-        //   [179..192]= zeros (padding)
+        //   AionServerPacket.write():
+        //     buf.putShort(0)       [0..2] header placeholder
+        //     writeImpl(con)        [2..] conteudo: opcode + dados (177 bytes)
+        //     buf.flip()            limit=179, pos=0
+        //     buf.putShort(0)       sobrescreve [0..2]
+        //     b = buf.slice()       slice começa em pos=2 → b[0..177] = conteudo
+        //     con.encrypt(b)        chama crypt.encrypt(b.array(), b.arrayOffset()+b.pos(), b.limit()-b.pos())
+        //                           = crypt.encrypt(data, offset=0, length=177)
         //
-        // O XOR (encXORPass) inicia em pos=4 do slice e para em pos=184, escreve key em 184.
+        //   CryptEngine.encrypt(data, offset=0, length=177):
+        //     length += 4    → 181
+        //     length += 4    → 185   (primeiro pacote)
+        //     length += 8 - 185%8 = 7 → 192
+        //     encXORPass(data, offset=0, length=192, random):
+        //       stop = 192 - 8 = 184
+        //       pos  = 4 + 0  = 4
+        //       loop while pos < 184: XOR data[4, 8, ..., 180]
+        //       ecx escrito em data[184..188]
+        //     cipher.cipher(data, 0, 192)   → cifra data[0..192]
+        //     cipher.updateKey(sessionKey)  → troca key
+        //
+        // O Rust recebe o raw (177 bytes = conteudo do writeImpl), zero-pad para 192,
+        // aplica enc_xor_pass e Blowfish. Sem prefixo extra.
 
         let mut buffer = vec![0u8; 192];
-
-        // [0..2] = 2 bytes zeros (putShort extra do Java)
-        // [2..] = conteudo do raw (opcode + dados)
-        let content_start = 2usize;
-        let copy_len = raw.len().min(192 - content_start);
-        buffer[content_start..content_start + copy_len].copy_from_slice(&raw[..copy_len]);
+        let copy_len = raw.len().min(192);
+        buffer[..copy_len].copy_from_slice(&raw[..copy_len]);
 
         let xor_seed: u32 = rand::thread_rng().gen();
         Self::enc_xor_pass(&mut buffer, xor_seed);
-
-        // Cifra os 192 bytes com a static key
         self.cipher.cipher(&mut buffer);
-
-        // Troca para a session key (para os proximos pacotes)
         self.update_key(new_blowfish_key);
 
         buffer
@@ -179,20 +175,41 @@ impl LoginCryptEngine {
     }
 
     fn enc_xor_pass(data: &mut [u8], key: u32) {
-        let total_len = data.len();
-        let ecx = (total_len - 8) / 4;
-        let mut curr_key = key;
+        // Java LoginConnection.encrypt() chama:
+        //   cryptEngine.encrypt(buf.array(), offset=2, length=177)
+        //
+        // Dentro de CryptEngine.encrypt(data, offset=2, length=177):
+        //   length = 177+4+4 = 185 → pad → 192
+        //   encXORPass(data, offset=2, length=192, randomKey)
+        //
+        // encXORPass(data, offset=2, length=192, key):
+        //   stop = length - 8 = 192 - 8 = 184   (posicao absoluta no array)
+        //   pos  = 4 + offset = 4 + 2   = 6     (posicao absoluta no array)
+        //   loop while pos < 184:
+        //     processa posicoes absolutas: 6, 10, 14, ..., 180
+        //     = posicoes no payload (abs - offset=2): 4, 8, 12, ..., 178
+        //   ecx escrito em pos=184 (absoluto) = payload[182..186]
+        //
+        // No Rust, data[] e o payload sem o header de 2 bytes.
+        // Posicoes no payload equivalem a posicoes absolutas Java - 2.
+        //   payload_stop  = 184 - 2 = 182
+        //   payload_start = 6   - 2 = 4
+        //   key escrita em payload[182..186]
 
-        for i in 1..ecx {
-            let p = i * 4;
-            let plain = u32::from_le_bytes(data[p..p + 4].try_into().unwrap());
+        let payload_stop: usize = 182;   // = stop_absoluto(184) - offset(2)
+        let payload_key: usize  = 182;   // = pos_ecx_absoluto(184) - offset(2)
+        let mut curr_key = key;
+        let mut pos = 4usize;
+
+        while pos < payload_stop {
+            let plain = u32::from_le_bytes(data[pos..pos + 4].try_into().unwrap());
             curr_key = curr_key.wrapping_add(plain);
             let cipher = plain ^ curr_key;
-            data[p..p + 4].copy_from_slice(&cipher.to_le_bytes());
+            data[pos..pos + 4].copy_from_slice(&cipher.to_le_bytes());
+            pos += 4;
         }
 
-        let key_offset = total_len - 8;
-        data[key_offset..key_offset + 4].copy_from_slice(&curr_key.to_le_bytes());
+        data[payload_key..payload_key + 4].copy_from_slice(&curr_key.to_le_bytes());
     }
 
     pub fn scramble_modulus(modulus: &[u8]) -> [u8; 128] {
