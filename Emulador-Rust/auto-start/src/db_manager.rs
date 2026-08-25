@@ -2,9 +2,7 @@ use rusqlite::{types::ValueRef, Connection};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::collections::HashMap;
-use std::path::Path;
-use std::sync::Arc;
-use parking_lot::Mutex;
+use std::path::{Path, PathBuf};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ColumnInfo {
@@ -18,13 +16,25 @@ pub struct ColumnInfo {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TableSchema {
+    pub db_id: String,
     pub name: String,
     pub row_count: i64,
     pub columns: Vec<ColumnInfo>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DatabaseGroup {
+    pub id: String,
+    pub name: String,
+    pub filename: String,
+    pub table_count: usize,
+    pub total_rows: i64,
+    pub tables: Vec<TableSchema>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TableDataResult {
+    pub db_id: String,
     pub table: String,
     pub columns: Vec<ColumnInfo>,
     pub pk_columns: Vec<String>,
@@ -47,69 +57,105 @@ pub struct QueryResult {
 
 #[derive(Clone)]
 pub struct DbManager {
-    db_path: String,
-    conn: Arc<Mutex<Option<Connection>>>,
+    base_dir: PathBuf,
 }
 
 impl DbManager {
     pub fn new<P: AsRef<Path>>(path: P) -> Self {
-        let db_path = path.as_ref().to_string_lossy().to_string();
-        let conn = match Connection::open(&db_path) {
-            Ok(c) => {
-                let _ = c.execute_batch(
-                    "PRAGMA journal_mode = WAL;
-                     PRAGMA busy_timeout = 5000;
-                     PRAGMA synchronous = NORMAL;",
-                );
-                Some(c)
-            }
-            Err(e) => {
-                eprintln!("WARN: [DbManager] Failed to open database at {}: {}", db_path, e);
-                None
-            }
+        let base_path = path.as_ref();
+        let base_dir = if base_path.is_file() {
+            base_path.parent().unwrap_or(Path::new(".")).to_path_buf()
+        } else {
+            base_path.to_path_buf()
         };
 
-        Self {
-            db_path,
-            conn: Arc::new(Mutex::new(conn)),
-        }
+        Self { base_dir }
     }
 
-    fn get_conn(&self) -> Result<parking_lot::MutexGuard<'_, Option<Connection>>, String> {
-        let mut guard = self.conn.lock();
-        if guard.is_none() {
-            if let Ok(c) = Connection::open(&self.db_path) {
-                let _ = c.execute_batch(
-                    "PRAGMA journal_mode = WAL;
-                     PRAGMA busy_timeout = 5000;
-                     PRAGMA synchronous = NORMAL;",
-                );
-                let _ = c.execute("ATTACH DATABASE 'data/Banco de Dados/login.db' AS login_db", []);
-                let _ = c.execute("ATTACH DATABASE 'data/Banco de Dados/game.db' AS game_db", []);
-                let _ = c.execute("ATTACH DATABASE 'data/Banco de Dados/chat.db' AS chat_db", []);
-                let _ = c.execute("ATTACH DATABASE 'login.db' AS login_db", []);
-                let _ = c.execute("ATTACH DATABASE 'game.db' AS game_db", []);
-                let _ = c.execute("ATTACH DATABASE 'chat.db' AS chat_db", []);
-                *guard = Some(c);
-            } else {
-                return Err(format!("Não foi possível abrir o banco de dados '{}'", self.db_path));
+    fn resolve_db_path(&self, db_id: &str) -> PathBuf {
+        let filename = match db_id.to_lowercase().as_str() {
+            "login" | "login_db" | "login.db" => "login.db",
+            "game" | "game_db" | "game.db" => "game.db",
+            "chat" | "chat_db" | "chat.db" => "chat.db",
+            _ => "login.db",
+        };
+
+        let candidates = [
+            self.base_dir.join(filename),
+            PathBuf::from("data/Banco de Dados").join(filename),
+            PathBuf::from("../Produto Final/data/Banco de Dados").join(filename),
+            PathBuf::from("Produto Final/data/Banco de Dados").join(filename),
+            PathBuf::from("data").join(filename),
+            PathBuf::from(filename),
+        ];
+
+        for c in &candidates {
+            if c.exists() {
+                return c.clone();
             }
         }
-        Ok(guard)
+
+        candidates[0].clone()
     }
 
-    pub fn get_all_tables_schema(&self) -> Result<Vec<TableSchema>, String> {
-        let guard = self.get_conn()?;
-        let conn = guard.as_ref().unwrap();
+    pub fn get_conn_for(&self, db_id: &str) -> Result<Connection, String> {
+        let path = self.resolve_db_path(db_id);
+        if let Some(parent) = path.parent() {
+            let _ = std::fs::create_dir_all(parent);
+        }
 
-        let mut table_names: Vec<String> = Vec::new();
-        for db_prefix in &["", "login_db.", "game_db.", "chat_db."] {
-            let sql = if db_prefix.is_empty() {
-                "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC".to_string()
-            } else {
-                format!("SELECT name FROM {}sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC", db_prefix)
+        let conn = Connection::open(&path)
+            .map_err(|e| format!("Erro ao abrir banco de dados '{}': {}", path.display(), e))?;
+
+        let _ = conn.execute_batch(
+            "PRAGMA journal_mode = WAL;
+             PRAGMA busy_timeout = 5000;
+             PRAGMA synchronous = NORMAL;
+             PRAGMA foreign_keys = OFF;",
+        );
+
+        Ok(conn)
+    }
+
+    fn find_db_for_table(&self, table: &str) -> String {
+        for db_id in &["login", "game", "chat"] {
+            if let Ok(conn) = self.get_conn_for(db_id) {
+                let exists: bool = conn
+                    .query_row(
+                        "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name = ?1",
+                        [table],
+                        |r| r.get::<_, i64>(0),
+                    )
+                    .map(|c| c > 0)
+                    .unwrap_or(false);
+
+                if exists {
+                    return db_id.to_string();
+                }
+            }
+        }
+        "login".to_string()
+    }
+
+    pub fn get_all_databases_schema(&self) -> Result<Vec<DatabaseGroup>, String> {
+        let targets = [
+            ("login", "Login Server (login.db)", "login.db"),
+            ("game", "Game Server (game.db)", "game.db"),
+            ("chat", "Chat Server (chat.db)", "chat.db"),
+        ];
+
+        let mut groups = Vec::new();
+
+        for (id, display_name, filename) in targets {
+            let conn = match self.get_conn_for(id) {
+                Ok(c) => c,
+                Err(_) => continue,
             };
-            if let Ok(mut stmt) = conn.prepare(&sql) {
+
+            let mut table_names: Vec<String> = Vec::new();
+            if let Ok(mut stmt) = conn.prepare(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC",
+            ) {
                 if let Ok(rows) = stmt.query_map([], |row| row.get::<_, String>(0)) {
                     for r in rows.flatten() {
                         if !table_names.contains(&r) {
@@ -118,45 +164,64 @@ impl DbManager {
                     }
                 }
             }
-        }
 
-        let mut schemas = Vec::new();
-        for table in table_names {
-            let row_count: i64 = conn
-                .query_row(&format!("SELECT COUNT(*) FROM \"{}\"", table), [], |r| r.get(0))
-                .unwrap_or(0);
+            let mut tables = Vec::new();
+            let mut total_rows = 0i64;
 
-            let mut col_stmt = conn
-                .prepare(&format!("PRAGMA table_info(\"{}\")", table))
-                .map_err(|e| e.to_string())?;
-
-            let columns: Vec<ColumnInfo> = col_stmt
-                .query_map([], |row| {
-                    Ok(ColumnInfo {
-                        cid: row.get(0)?,
-                        name: row.get(1)?,
-                        type_name: row.get(2)?,
-                        notnull: row.get::<_, i64>(3)? != 0,
-                        dflt_value: row.get(4)?,
-                        pk: row.get::<_, i64>(5)? != 0,
+            for table in table_names {
+                let row_count: i64 = conn
+                    .query_row(&format!("SELECT COUNT(*) FROM \"{}\"", table), [], |r| {
+                        r.get(0)
                     })
-                })
-                .map_err(|e| e.to_string())?
-                .filter_map(|r| r.ok())
-                .collect();
+                    .unwrap_or(0);
 
-            schemas.push(TableSchema {
-                name: table,
-                row_count,
-                columns,
+                total_rows += row_count;
+
+                let columns: Vec<ColumnInfo> = if let Ok(mut col_stmt) =
+                    conn.prepare(&format!("PRAGMA table_info(\"{}\")", table))
+                {
+                    col_stmt
+                        .query_map([], |row| {
+                            Ok(ColumnInfo {
+                                cid: row.get(0)?,
+                                name: row.get(1)?,
+                                type_name: row.get(2)?,
+                                notnull: row.get::<_, i64>(3)? != 0,
+                                dflt_value: row.get(4)?,
+                                pk: row.get::<_, i64>(5)? != 0,
+                            })
+                        })
+                        .ok()
+                        .map(|iter| iter.filter_map(|r| r.ok()).collect())
+                        .unwrap_or_default()
+                } else {
+                    Vec::new()
+                };
+
+                tables.push(TableSchema {
+                    db_id: id.to_string(),
+                    name: table,
+                    row_count,
+                    columns,
+                });
+            }
+
+            groups.push(DatabaseGroup {
+                id: id.to_string(),
+                name: display_name.to_string(),
+                filename: filename.to_string(),
+                table_count: tables.len(),
+                total_rows,
+                tables,
             });
         }
 
-        Ok(schemas)
+        Ok(groups)
     }
 
     pub fn get_table_data(
         &self,
+        db_id: Option<&str>,
         table: &str,
         page: usize,
         limit: usize,
@@ -164,8 +229,12 @@ impl DbManager {
         sort_col: Option<&str>,
         sort_order: Option<&str>,
     ) -> Result<TableDataResult, String> {
-        let guard = self.get_conn()?;
-        let conn = guard.as_ref().unwrap();
+        let active_db = db_id
+            .filter(|s| !s.trim().is_empty())
+            .map(|s| s.to_string())
+            .unwrap_or_else(|| self.find_db_for_table(table));
+
+        let conn = self.get_conn_for(&active_db)?;
 
         // Validate table exists
         let exists: bool = conn
@@ -178,10 +247,13 @@ impl DbManager {
             .unwrap_or(false);
 
         if !exists {
-            return Err(format!("Tabela '{}' não encontrada no banco de dados.", table));
+            return Err(format!(
+                "Tabela '{}' não encontrada no banco de dados '{}'.",
+                table, active_db
+            ));
         }
 
-        // Get table info
+        // Get table columns
         let mut col_stmt = conn
             .prepare(&format!("PRAGMA table_info(\"{}\")", table))
             .map_err(|e| e.to_string())?;
@@ -214,7 +286,10 @@ impl DbManager {
             let trimmed = s.trim();
             if !trimmed.is_empty() {
                 search_param = format!("%{}%", trimmed);
-                let text_cols: Vec<String> = columns.iter().map(|c| format!("CAST(\"{}\" AS TEXT) LIKE ?1", c.name)).collect();
+                let text_cols: Vec<String> = columns
+                    .iter()
+                    .map(|c| format!("CAST(\"{}\" AS TEXT) LIKE ?1", c.name))
+                    .collect();
                 if !text_cols.is_empty() {
                     where_clause = format!("WHERE {}", text_cols.join(" OR "));
                     true
@@ -228,10 +303,11 @@ impl DbManager {
             false
         };
 
-        // Total rows count with search filter
+        // Total rows count
         let count_sql = format!("SELECT COUNT(*) FROM \"{}\" {}", table, where_clause);
         let total_rows: i64 = if has_search {
-            conn.query_row(&count_sql, [&search_param], |r| r.get(0)).unwrap_or(0)
+            conn.query_row(&count_sql, [&search_param], |r| r.get(0))
+                .unwrap_or(0)
         } else {
             conn.query_row(&count_sql, [], |r| r.get(0)).unwrap_or(0)
         };
@@ -260,7 +336,9 @@ impl DbManager {
 
         let mut stmt = conn.prepare(&select_sql).map_err(|e| e.to_string())?;
         let col_count = stmt.column_count();
-        let col_names: Vec<String> = (0..col_count).map(|i| stmt.column_name(i).unwrap().to_string()).collect();
+        let col_names: Vec<String> = (0..col_count)
+            .map(|i| stmt.column_name(i).unwrap().to_string())
+            .collect();
 
         let row_mapper = |row: &rusqlite::Row| -> rusqlite::Result<HashMap<String, Value>> {
             let mut map = HashMap::new();
@@ -293,6 +371,7 @@ impl DbManager {
         };
 
         Ok(TableDataResult {
+            db_id: active_db,
             table: table.to_string(),
             columns,
             pk_columns,
@@ -304,9 +383,18 @@ impl DbManager {
         })
     }
 
-    pub fn insert_row(&self, table: &str, data: &HashMap<String, Value>) -> Result<i64, String> {
-        let guard = self.get_conn()?;
-        let conn = guard.as_ref().unwrap();
+    pub fn insert_row(
+        &self,
+        db_id: Option<&str>,
+        table: &str,
+        data: &HashMap<String, Value>,
+    ) -> Result<i64, String> {
+        let active_db = db_id
+            .filter(|s| !s.trim().is_empty())
+            .map(|s| s.to_string())
+            .unwrap_or_else(|| self.find_db_for_table(table));
+
+        let conn = self.get_conn_for(&active_db)?;
 
         if data.is_empty() {
             return Err("Nenhum dado fornecido para inserção.".to_string());
@@ -351,12 +439,17 @@ impl DbManager {
 
     pub fn update_row(
         &self,
+        db_id: Option<&str>,
         table: &str,
         pk: &HashMap<String, Value>,
         updates: &HashMap<String, Value>,
     ) -> Result<usize, String> {
-        let guard = self.get_conn()?;
-        let conn = guard.as_ref().unwrap();
+        let active_db = db_id
+            .filter(|s| !s.trim().is_empty())
+            .map(|s| s.to_string())
+            .unwrap_or_else(|| self.find_db_for_table(table));
+
+        let conn = self.get_conn_for(&active_db)?;
 
         if updates.is_empty() {
             return Err("Nenhum campo informado para atualização.".to_string());
@@ -396,9 +489,18 @@ impl DbManager {
         Ok(rows_affected)
     }
 
-    pub fn delete_row(&self, table: &str, pk: &HashMap<String, Value>) -> Result<usize, String> {
-        let guard = self.get_conn()?;
-        let conn = guard.as_ref().unwrap();
+    pub fn delete_row(
+        &self,
+        db_id: Option<&str>,
+        table: &str,
+        pk: &HashMap<String, Value>,
+    ) -> Result<usize, String> {
+        let active_db = db_id
+            .filter(|s| !s.trim().is_empty())
+            .map(|s| s.to_string())
+            .unwrap_or_else(|| self.find_db_for_table(table));
+
+        let conn = self.get_conn_for(&active_db)?;
 
         if pk.is_empty() {
             return Err("Chave primária não informada para exclusão.".to_string());
@@ -422,9 +524,13 @@ impl DbManager {
         Ok(rows_affected)
     }
 
-    pub fn truncate_table(&self, table: &str) -> Result<(), String> {
-        let guard = self.get_conn()?;
-        let conn = guard.as_ref().unwrap();
+    pub fn truncate_table(&self, db_id: Option<&str>, table: &str) -> Result<(), String> {
+        let active_db = db_id
+            .filter(|s| !s.trim().is_empty())
+            .map(|s| s.to_string())
+            .unwrap_or_else(|| self.find_db_for_table(table));
+
+        let conn = self.get_conn_for(&active_db)?;
 
         let _ = conn.execute(&format!("DELETE FROM \"{}\"", table), []);
         let _ = conn.execute("DELETE FROM sqlite_sequence WHERE name = ?1", [table]);
@@ -434,143 +540,85 @@ impl DbManager {
     }
 
     pub fn clean_all_tables(&self) -> Result<Vec<String>, String> {
-        let guard = self.get_conn()?;
-        let conn = guard.as_ref().unwrap();
-
-        let mut stmt = conn
-            .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
-            .map_err(|e| e.to_string())?;
-
-        let tables: Vec<String> = stmt
-            .query_map([], |r| r.get(0))
-            .map_err(|e| e.to_string())?
-            .filter_map(|r| r.ok())
-            .collect();
-
-        for t in &tables {
-            let _ = conn.execute(&format!("DELETE FROM \"{}\"", t), []);
+        let mut cleaned = Vec::new();
+        for db_id in &["login", "game", "chat"] {
+            if let Ok(conn) = self.get_conn_for(db_id) {
+                if let Ok(mut stmt) = conn.prepare(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'",
+                ) {
+                    if let Ok(rows) = stmt.query_map([], |r| r.get::<_, String>(0)) {
+                        for t in rows.flatten() {
+                            let _ = conn.execute(&format!("DELETE FROM \"{}\"", t), []);
+                            cleaned.push(format!("{}/{}", db_id, t));
+                        }
+                    }
+                }
+                let _ = conn.execute("DELETE FROM sqlite_sequence", []);
+                let _ = conn.execute("VACUUM", []);
+            }
         }
-        let _ = conn.execute("DELETE FROM sqlite_sequence", []);
-        let _ = conn.execute("VACUUM", []);
-
-        Ok(tables)
+        Ok(cleaned)
     }
 
-    pub fn execute_raw_sql(&self, sql: &str) -> QueryResult {
+    pub fn execute_query(&self, db_id: Option<&str>, sql: &str) -> Result<QueryResult, String> {
+        let active_db = db_id.unwrap_or("game");
+        let conn = self.get_conn_for(active_db)?;
+
         let start = std::time::Instant::now();
         let trimmed = sql.trim();
-        if trimmed.is_empty() {
-            return QueryResult {
-                is_select: false,
-                columns: vec![],
-                rows: vec![],
-                affected_rows: 0,
-                execution_time_ms: 0.0,
-                error: Some("Consulta SQL em branco.".to_string()),
-            };
-        }
-
         let is_select = trimmed.to_uppercase().starts_with("SELECT")
             || trimmed.to_uppercase().starts_with("PRAGMA")
             || trimmed.to_uppercase().starts_with("EXPLAIN");
 
-        let guard = match self.get_conn() {
-            Ok(g) => g,
-            Err(e) => {
-                return QueryResult {
-                    is_select,
-                    columns: vec![],
-                    rows: vec![],
-                    affected_rows: 0,
-                    execution_time_ms: start.elapsed().as_secs_f64() * 1000.0,
-                    error: Some(e),
-                };
-            }
-        };
-        let conn = guard.as_ref().unwrap();
-
         if is_select {
-            match conn.prepare(trimmed) {
-                Ok(mut stmt) => {
-                    let col_count = stmt.column_count();
-                    let columns: Vec<String> = (0..col_count).map(|i| stmt.column_name(i).unwrap().to_string()).collect();
+            let mut stmt = conn.prepare(trimmed).map_err(|e| e.to_string())?;
+            let col_count = stmt.column_count();
+            let columns: Vec<String> = (0..col_count)
+                .map(|i| stmt.column_name(i).unwrap().to_string())
+                .collect();
 
-                    let rows_res: Result<Vec<Vec<Value>>, _> = stmt
-                        .query_map([], |row| {
-                            let mut row_vals = Vec::new();
-                            for idx in 0..col_count {
-                                let val_ref = row.get_ref(idx)?;
-                                let json_val = match val_ref {
-                                    ValueRef::Null => Value::Null,
-                                    ValueRef::Integer(i) => json!(i),
-                                    ValueRef::Real(r) => json!(r),
-                                    ValueRef::Text(t) => json!(String::from_utf8_lossy(t)),
-                                    ValueRef::Blob(b) => json!(format!("[BLOB {}B]", b.len())),
-                                };
-                                row_vals.push(json_val);
-                            }
-                            Ok(row_vals)
-                        })
-                        .map(|iter| iter.filter_map(|r| r.ok()).collect());
-
-                    let elapsed = start.elapsed().as_secs_f64() * 1000.0;
-                    match rows_res {
-                        Ok(rows) => {
-                            let count = rows.len();
-                            QueryResult {
-                                is_select: true,
-                                columns,
-                                rows,
-                                affected_rows: count,
-                                execution_time_ms: elapsed,
-                                error: None,
-                            }
-                        }
-                        Err(e) => QueryResult {
-                            is_select: true,
-                            columns,
-                            rows: vec![],
-                            affected_rows: 0,
-                            execution_time_ms: elapsed,
-                            error: Some(e.to_string()),
-                        },
+            let rows_result: rusqlite::Result<Vec<Vec<Value>>> = stmt
+                .query_map([], |row| {
+                    let mut row_vals = Vec::new();
+                    for idx in 0..col_count {
+                        let val_ref = row.get_ref(idx)?;
+                        let val = match val_ref {
+                            ValueRef::Null => Value::Null,
+                            ValueRef::Integer(i) => json!(i),
+                            ValueRef::Real(r) => json!(r),
+                            ValueRef::Text(t) => json!(String::from_utf8_lossy(t)),
+                            ValueRef::Blob(b) => json!(format!("[BLOB {} bytes]", b.len())),
+                        };
+                        row_vals.push(val);
                     }
-                }
-                Err(e) => QueryResult {
-                    is_select: true,
-                    columns: vec![],
-                    rows: vec![],
-                    affected_rows: 0,
-                    execution_time_ms: start.elapsed().as_secs_f64() * 1000.0,
-                    error: Some(e.to_string()),
-                },
-            }
+                    Ok(row_vals)
+                })
+                .map_err(|e| e.to_string())?
+                .collect();
+
+            let elapsed = start.elapsed().as_secs_f64() * 1000.0;
+            let rows = rows_result.map_err(|e| e.to_string())?;
+
+            Ok(QueryResult {
+                is_select: true,
+                columns,
+                rows,
+                affected_rows: 0,
+                execution_time_ms: elapsed,
+                error: None,
+            })
         } else {
-            match conn.execute_batch(trimmed) {
-                Ok(_) => {
-                    let elapsed = start.elapsed().as_secs_f64() * 1000.0;
-                    let changes = conn.changes();
-                    QueryResult {
-                        is_select: false,
-                        columns: vec![],
-                        rows: vec![],
-                        affected_rows: changes as usize,
-                        execution_time_ms: elapsed,
-                        error: None,
-                    }
-                }
-                Err(e) => {
-                    let elapsed = start.elapsed().as_secs_f64() * 1000.0;
-                    QueryResult {
-                        is_select: false,
-                        columns: vec![],
-                        rows: vec![],
-                        affected_rows: 0,
-                        execution_time_ms: elapsed,
-                        error: Some(e.to_string()),
-                    }
-                }
-            }
+            let affected = conn.execute_batch(trimmed).map_err(|e| e.to_string())?;
+            let elapsed = start.elapsed().as_secs_f64() * 1000.0;
+
+            Ok(QueryResult {
+                is_select: false,
+                columns: Vec::new(),
+                rows: Vec::new(),
+                affected_rows: 1,
+                execution_time_ms: elapsed,
+                error: None,
+            })
         }
     }
 

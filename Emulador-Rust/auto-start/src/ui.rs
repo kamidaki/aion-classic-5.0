@@ -872,7 +872,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
 
         .db-sidebar {
-            width: 260px;
+            width: 290px;
             background: #070b14;
             border-right: 1px solid var(--border-glass);
             display: flex;
@@ -899,34 +899,116 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             align-items: center;
         }
 
+        .db-sidebar-tools {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .db-btn-micro {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.65rem;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .db-btn-micro:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
         .db-table-search {
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--border-glass);
             border-radius: 5px;
-            padding: 4px 8px;
-            font-size: 0.72rem;
+            padding: 5px 9px;
+            font-size: 0.75rem;
             color: #fff;
             outline: none;
             width: 100%;
+            transition: border-color 0.2s;
+        }
+        .db-table-search:focus {
+            border-color: var(--accent-login);
         }
 
         .db-tables-list {
             flex: 1;
             overflow-y: auto;
-            padding: 6px;
+            padding: 8px 6px;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 8px;
+        }
+
+        /* Database Accordion Group */
+        .db-group {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.45);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        .db-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(15, 23, 42, 0.75);
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .db-group-header:hover {
+            background: rgba(30, 41, 59, 0.9);
+        }
+        .db-group.open .db-group-header {
+            border-bottom-color: rgba(255, 255, 255, 0.06);
+        }
+        .db-group-title {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .db-group-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .db-group-chevron {
+            font-size: 0.65rem;
+            color: #64748b;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        .db-group.open .db-group-chevron {
+            transform: rotate(90deg);
+        }
+        .db-group-content {
+            display: none;
+            padding: 4px;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .db-group.open .db-group-content {
+            display: flex;
         }
 
         .db-table-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 7px 10px;
+            padding: 6px 8px 6px 12px;
             border-radius: 6px;
             color: #cbd5e1;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             cursor: pointer;
             transition: all 0.2s;
             border: 1px solid transparent;
@@ -943,8 +1025,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
 
         .db-table-badge {
-            font-size: 0.65rem;
-            padding: 1px 6px;
+            font-size: 0.62rem;
+            padding: 1px 5px;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.08);
             color: #94a3b8;
@@ -1605,14 +1687,17 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             </div>
 
             <div class="db-body">
-                <!-- Left Sidebar: Tables Explorer -->
+                <!-- Left Sidebar: Tables Explorer (Separated by Database) -->
                 <div class="db-sidebar">
                     <div class="db-sidebar-header">
                         <div class="db-sidebar-title">
-                            <span>Tabelas</span>
-                            <span id="db-tables-count" style="color:var(--accent-login);">0</span>
+                            <span>Bancos & Tabelas</span>
+                            <div class="db-sidebar-tools">
+                                <button class="db-btn-micro" onclick="expandAllDbGroups(true)" title="Expandir Todos os Bancos">Expandir</button>
+                                <button class="db-btn-micro" onclick="expandAllDbGroups(false)" title="Recolher Todos os Bancos">Recolher</button>
+                            </div>
                         </div>
-                        <input type="text" class="db-table-search" id="db-filter-table-input" placeholder="Filtrar tabelas..." onkeyup="filterTablesList()">
+                        <input type="text" class="db-table-search" id="db-filter-table-input" placeholder="Buscar em todos os bancos..." onkeyup="filterTablesList()">
                     </div>
                     <div class="db-tables-list" id="db-tables-container"></div>
                 </div>
@@ -2102,7 +2187,9 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         // ==========================================
         // DATABASE STUDIO & WORKBENCH LOGIC (SVG)
         // ==========================================
-        let dbSchemas = [];
+        let dbDatabases = [];
+        let dbGroupCollapsed = { 'login': false, 'game': false, 'chat': false };
+        let currentDbId = 'login';
         let currentDbTable = null;
         let currentDbPage = 1;
         let currentDbLimit = 50;
@@ -2127,19 +2214,25 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 const res = await fetch('/api/db/schema');
                 const data = await res.json();
                 if (data.status === 'ok') {
-                    dbSchemas = data.tables || [];
-                    document.getElementById('db-total-tables-pill').innerText = `${dbSchemas.length} Tabelas`;
-                    document.getElementById('db-tables-count').innerText = dbSchemas.length;
+                    dbDatabases = data.databases || [];
+                    const totalTables = data.total_tables || dbDatabases.reduce((acc, d) => acc + (d.table_count || 0), 0);
                     
-                    const totalRows = dbSchemas.reduce((acc, t) => acc + (t.row_count || 0), 0);
+                    document.getElementById('db-total-tables-pill').innerText = `${totalTables} Tabelas`;
+                    document.getElementById('db-tables-count').innerText = `${totalTables}`;
+                    
                     const dbTablesEl = document.getElementById('val-db-tables');
-                    if (dbTablesEl) dbTablesEl.innerText = `${dbSchemas.length} Tabelas`;
+                    if (dbTablesEl) dbTablesEl.innerText = `${totalTables} Tabelas`;
 
                     renderTablesList();
 
                     if (!preserveSelection || !currentDbTable) {
-                        if (dbSchemas.length > 0) {
-                            selectDbTable(dbSchemas[0].name);
+                        let selected = false;
+                        for (const db of dbDatabases) {
+                            if (db.tables && db.tables.length > 0) {
+                                selectDbTable(db.id, db.tables[0].name);
+                                selected = true;
+                                break;
+                            }
                         }
                     } else {
                         loadTableData();
@@ -2150,31 +2243,81 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             }
         }
 
+        function toggleDbGroup(dbId) {
+            dbGroupCollapsed[dbId] = !dbGroupCollapsed[dbId];
+            renderTablesList();
+        }
+
+        function expandAllDbGroups(expand) {
+            dbDatabases.forEach(db => {
+                dbGroupCollapsed[db.id] = !expand;
+            });
+            renderTablesList();
+        }
+
         function renderTablesList() {
-            const filter = (document.getElementById('db-filter-table-input')?.value || '').toLowerCase();
+            const filter = (document.getElementById('db-filter-table-input')?.value || '').toLowerCase().trim();
             const container = document.getElementById('db-tables-container');
             if (!container) return;
 
-            container.innerHTML = dbSchemas
-                .filter(t => !filter || t.name.toLowerCase().includes(filter))
-                .map(t => {
-                    const activeClass = (currentDbTable === t.name) ? 'active' : '';
-                    return `<div class="db-table-item ${activeClass}" onclick="selectDbTable('${t.name}')">
-                        <span style="display:flex; align-items:center; gap:6px;">
-                            <span class="btn-svg" style="color:var(--accent-login);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span>
-                            ${t.name}
+            const groupColors = {
+                'login': 'var(--accent-login)',
+                'game': 'var(--accent-game)',
+                'chat': 'var(--accent-chat)'
+            };
+
+            let html = '';
+
+            dbDatabases.forEach(db => {
+                const color = groupColors[db.id] || 'var(--accent-login)';
+                const matchingTables = (db.tables || []).filter(t => !filter || t.name.toLowerCase().includes(filter));
+                
+                if (filter && matchingTables.length === 0) return;
+
+                const isCollapsed = filter ? false : !!dbGroupCollapsed[db.id];
+                const openClass = isCollapsed ? '' : 'open';
+
+                let tablesHtml = matchingTables.map(t => {
+                    const activeClass = (currentDbId === db.id && currentDbTable === t.name) ? 'active' : '';
+                    return `<div class="db-table-item ${activeClass}" onclick="selectDbTable('${db.id}', '${t.name}')">
+                        <span style="display:flex; align-items:center; gap:6px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                            <span class="btn-svg" style="color:${color};"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span>
+                            <span style="overflow:hidden; text-overflow:ellipsis;">${t.name}</span>
                         </span>
                         <span class="db-table-badge">${t.row_count}</span>
                     </div>`;
-                })
-                .join('');
+                }).join('');
+
+                if (matchingTables.length === 0) {
+                    tablesHtml = `<div style="padding:6px 12px; font-size:0.7rem; color:#64748b;">Nenhuma tabela encontrada</div>`;
+                }
+
+                html += `<div class="db-group ${openClass}">
+                    <div class="db-group-header" onclick="toggleDbGroup('${db.id}')">
+                        <div class="db-group-title">
+                            <span class="btn-svg" style="color:${color};"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+                            <span>${db.name}</span>
+                        </div>
+                        <div class="db-group-meta">
+                            <span class="db-table-badge" style="background:rgba(255,255,255,0.06); color:${color}; font-weight:700;">${db.table_count}</span>
+                            <span class="db-group-chevron">▶</span>
+                        </div>
+                    </div>
+                    <div class="db-group-content">
+                        ${tablesHtml}
+                    </div>
+                </div>`;
+            });
+
+            container.innerHTML = html || `<div style="text-align:center; padding:20px; font-size:0.75rem; color:#64748b;">Nenhuma tabela correspondente ao filtro.</div>`;
         }
 
         function filterTablesList() {
             renderTablesList();
         }
 
-        function selectDbTable(tableName) {
+        function selectDbTable(dbId, tableName) {
+            currentDbId = dbId;
             currentDbTable = tableName;
             currentDbPage = 1;
             currentDbSearch = "";
@@ -2193,7 +2336,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             if (resetPage) currentDbPage = 1;
 
             try {
-                let url = `/api/db/table/${encodeURIComponent(currentDbTable)}/rows?page=${currentDbPage}&limit=${currentDbLimit}`;
+                let url = `/api/db/table/${encodeURIComponent(currentDbTable)}/rows?db=${encodeURIComponent(currentDbId)}&page=${currentDbPage}&limit=${currentDbLimit}`;
                 if (currentDbSearch) url += `&search=${encodeURIComponent(currentDbSearch)}`;
                 if (currentDbSortCol) url += `&sort=${encodeURIComponent(currentDbSortCol)}&order=${currentDbSortOrder}`;
 
@@ -2313,7 +2456,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
         function renderSchemaTab() {
             if (!currentDbTable) return;
-            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            const dbGroup = dbDatabases.find(d => d.id === currentDbId);
+            const schema = dbGroup?.tables.find(s => s.name === currentDbTable);
             const tbody = document.getElementById('db-schema-table-body');
             if (!schema || !tbody) return;
 
@@ -2334,9 +2478,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             if (!currentDbTable) return;
             isInsertingRow = true;
             editingRowPk = null;
-            document.getElementById('db-row-modal-title').innerText = `Novo Registro em '${currentDbTable}'`;
+            document.getElementById('db-row-modal-title').innerText = `Novo Registro em '${currentDbTable}' (${currentDbId}.db)`;
 
-            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            const dbGroup = dbDatabases.find(d => d.id === currentDbId);
+            const schema = dbGroup?.tables.find(s => s.name === currentDbTable);
             if (!schema) return;
 
             const form = document.getElementById('db-row-form-fields');
@@ -2358,7 +2503,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         function openEditRowModal(encodedRowJson) {
             if (!currentDbTable) return;
             const row = JSON.parse(decodeURIComponent(encodedRowJson));
-            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            const dbGroup = dbDatabases.find(d => d.id === currentDbId);
+            const schema = dbGroup?.tables.find(s => s.name === currentDbTable);
             if (!schema) return;
 
             isInsertingRow = false;
@@ -2367,12 +2513,11 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 editingRowPk[c.name] = row[c.name];
             });
 
-            document.getElementById('db-row-modal-title').innerText = `Editar Registro em '${currentDbTable}'`;
+            document.getElementById('db-row-modal-title').innerText = `Editar Registro em '${currentDbTable}' (${currentDbId}.db)`;
 
             const form = document.getElementById('db-row-form-fields');
             form.innerHTML = schema.columns.map(col => {
                 const val = row[col.name] !== null && row[col.name] !== undefined ? row[col.name] : '';
-                const isPk = col.pk;
                 return `<div class="db-form-field">
                     <div class="db-form-label">
                         <span>${col.name} ${col.pk ? '<span class="db-pk-tag">PK</span>' : ''}</span>
@@ -2391,7 +2536,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
         async function saveRowData() {
             if (!currentDbTable) return;
-            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            const dbGroup = dbDatabases.find(d => d.id === currentDbId);
+            const schema = dbGroup?.tables.find(s => s.name === currentDbTable);
             if (!schema) return;
 
             const rowData = {};
@@ -2418,7 +2564,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
             try {
                 if (isInsertingRow) {
-                    const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row`, {
+                    const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row?db=${encodeURIComponent(currentDbId)}`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(rowData)
@@ -2434,7 +2580,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ pk: editingRowPk, updates: rowData })
+                        body: JSON.stringify({ db: currentDbId, pk: editingRowPk, updates: rowData })
                     });
                     const json = await res.json();
                     if (json.status === 'ok') {
@@ -2452,7 +2598,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         async function deleteRow(encodedRowJson) {
             if (!currentDbTable) return;
             const row = JSON.parse(decodeURIComponent(encodedRowJson));
-            const schema = dbSchemas.find(s => s.name === currentDbTable);
+            const dbGroup = dbDatabases.find(d => d.id === currentDbId);
+            const schema = dbGroup?.tables.find(s => s.name === currentDbTable);
             if (!schema) return;
 
             const pk = {};
@@ -2460,7 +2607,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 pk[c.name] = row[c.name];
             });
 
-            if (!confirm(`Tem certeza que deseja excluir o registro selecionado de '${currentDbTable}'?`)) {
+            if (!confirm(`Tem certeza que deseja excluir o registro selecionado de '${currentDbTable}' (${currentDbId}.db)?`)) {
                 return;
             }
 
@@ -2468,7 +2615,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/row`, {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ pk })
+                    body: JSON.stringify({ db: currentDbId, pk })
                 });
                 const json = await res.json();
                 if (json.status === 'ok') {
@@ -2483,12 +2630,12 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
         async function truncateCurrentTable() {
             if (!currentDbTable) return;
-            if (!confirm(`ATENÇÃO: Tem certeza que deseja limpar TODOS os registros da tabela '${currentDbTable}'?`)) {
+            if (!confirm(`ATENÇÃO: Tem certeza que deseja limpar TODOS os registros da tabela '${currentDbTable}' em '${currentDbId}.db'?`)) {
                 return;
             }
 
             try {
-                const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/truncate`, {
+                const res = await fetch(`/api/db/table/${encodeURIComponent(currentDbTable)}/truncate?db=${encodeURIComponent(currentDbId)}`, {
                     method: 'POST'
                 });
                 const json = await res.json();
@@ -2544,7 +2691,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 const res = await fetch('/api/db/query', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ sql })
+                    body: JSON.stringify({ db: currentDbId, sql })
                 });
                 const data = await res.json();
 
@@ -2561,7 +2708,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         banner.style.display = 'block';
                         banner.style.background = 'rgba(16, 185, 129, 0.2)';
                         banner.style.color = '#a7f3d0';
-                        banner.innerText = `Sucesso: ${r.affected_rows} linhas retornadas em ${r.execution_time_ms.toFixed(1)}ms`;
+                        banner.innerText = `Sucesso: ${r.affected_rows} linhas retornadas em ${r.execution_time_ms.toFixed(1)}ms (${currentDbId}.db)`;
 
                         thead.innerHTML = `<tr>${r.columns.map(c => `<th>${c}</th>`).join('')}</tr>`;
                         tbody.innerHTML = r.rows.map(row => {
@@ -2571,7 +2718,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         banner.style.display = 'block';
                         banner.style.background = 'rgba(16, 185, 129, 0.2)';
                         banner.style.color = '#a7f3d0';
-                        banner.innerText = `Comando executado com sucesso: ${r.affected_rows} linha(s) afetada(s) em ${r.execution_time_ms.toFixed(1)}ms`;
+                        banner.innerText = `Comando executado com sucesso: ${r.affected_rows} linha(s) afetada(s) em ${r.execution_time_ms.toFixed(1)}ms (${currentDbId}.db)`;
                         thead.innerHTML = '';
                         tbody.innerHTML = '';
                         loadDbSchema(true);

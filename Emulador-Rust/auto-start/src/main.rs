@@ -244,8 +244,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::get())
             .and(db_filter.clone())
             .map(|db: DbManager| {
-                match db.get_all_tables_schema() {
-                    Ok(schemas) => warp::reply::json(&serde_json::json!({ "status": "ok", "tables": schemas })),
+                match db.get_all_databases_schema() {
+                    Ok(databases) => {
+                        let total_tables: usize = databases.iter().map(|d| d.table_count).sum();
+                        warp::reply::json(&serde_json::json!({
+                            "status": "ok",
+                            "databases": databases,
+                            "total_tables": total_tables
+                        }))
+                    }
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
@@ -256,13 +263,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::query::<std::collections::HashMap<String, String>>())
             .and(db_filter.clone())
             .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManager| {
+                let db_id = params.get("db").map(|s| s.as_str());
                 let page = params.get("page").and_then(|p| p.parse::<usize>().ok()).unwrap_or(1);
                 let limit = params.get("limit").and_then(|l| l.parse::<usize>().ok()).unwrap_or(50);
                 let search = params.get("search").map(|s| s.as_str());
                 let sort_col = params.get("sort").map(|s| s.as_str());
                 let sort_order = params.get("order").map(|s| s.as_str());
 
-                match db.get_table_data(&table, page, limit, search, sort_col, sort_order) {
+                match db.get_table_data(db_id, &table, page, limit, search, sort_col, sort_order) {
                     Ok(data) => warp::reply::json(&serde_json::json!({ "status": "ok", "data": data })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
@@ -271,10 +279,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // POST /api/db/table/:table/row (Insert)
         let db_insert_route = warp::path!("api" / "db" / "table" / String / "row")
             .and(warp::post())
+            .and(warp::query::<std::collections::HashMap<String, String>>())
             .and(warp::body::json::<std::collections::HashMap<String, serde_json::Value>>())
             .and(db_filter.clone())
-            .map(|table: String, body: std::collections::HashMap<String, serde_json::Value>, db: DbManager| {
-                match db.insert_row(&table, &body) {
+            .map(|table: String, params: std::collections::HashMap<String, String>, body: std::collections::HashMap<String, serde_json::Value>, db: DbManager| {
+                let db_id = params.get("db").map(|s| s.as_str());
+                match db.insert_row(db_id, &table, &body) {
                     Ok(id) => warp::reply::json(&serde_json::json!({ "status": "ok", "inserted_id": id })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
@@ -283,6 +293,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // PUT /api/db/table/:table/row (Update)
         #[derive(serde::Deserialize)]
         struct UpdateRowPayload {
+            db: Option<String>,
             pk: std::collections::HashMap<String, serde_json::Value>,
             updates: std::collections::HashMap<String, serde_json::Value>,
         }
@@ -291,7 +302,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::body::json::<UpdateRowPayload>())
             .and(db_filter.clone())
             .map(|table: String, payload: UpdateRowPayload, db: DbManager| {
-                match db.update_row(&table, &payload.pk, &payload.updates) {
+                match db.update_row(payload.db.as_deref(), &table, &payload.pk, &payload.updates) {
                     Ok(count) => warp::reply::json(&serde_json::json!({ "status": "ok", "rows_affected": count })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
@@ -300,6 +311,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // DELETE /api/db/table/:table/row (Delete)
         #[derive(serde::Deserialize)]
         struct DeleteRowPayload {
+            db: Option<String>,
             pk: std::collections::HashMap<String, serde_json::Value>,
         }
         let db_delete_route = warp::path!("api" / "db" / "table" / String / "row")
@@ -307,7 +319,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::body::json::<DeleteRowPayload>())
             .and(db_filter.clone())
             .map(|table: String, payload: DeleteRowPayload, db: DbManager| {
-                match db.delete_row(&table, &payload.pk) {
+                match db.delete_row(payload.db.as_deref(), &table, &payload.pk) {
                     Ok(count) => warp::reply::json(&serde_json::json!({ "status": "ok", "rows_affected": count })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
@@ -316,9 +328,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // POST /api/db/table/:table/truncate (Truncate single table)
         let db_truncate_table_route = warp::path!("api" / "db" / "table" / String / "truncate")
             .and(warp::post())
+            .and(warp::query::<std::collections::HashMap<String, String>>())
             .and(db_filter.clone())
-            .map(|table: String, db: DbManager| {
-                match db.truncate_table(&table) {
+            .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManager| {
+                let db_id = params.get("db").map(|s| s.as_str());
+                match db.truncate_table(db_id, &table) {
                     Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Tabela '{}' limpa com sucesso.", table) })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
@@ -338,6 +352,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // POST /api/db/query (Custom SQL Query)
         #[derive(serde::Deserialize)]
         struct RawSqlPayload {
+            db: Option<String>,
             sql: String,
         }
         let db_query_route = warp::path!("api" / "db" / "query")
@@ -345,8 +360,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::body::json::<RawSqlPayload>())
             .and(db_filter.clone())
             .map(|payload: RawSqlPayload, db: DbManager| {
-                let res = db.execute_raw_sql(&payload.sql);
-                warp::reply::json(&serde_json::json!({ "status": "ok", "result": res }))
+                match db.execute_query(payload.db.as_deref(), &payload.sql) {
+                    Ok(res) => warp::reply::json(&serde_json::json!({ "status": "ok", "result": res })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
             });
 
         let routes = index_route
