@@ -10,7 +10,7 @@
 use quick_xml::events::Event;
 use quick_xml::Reader;
 use std::collections::HashMap;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 #[derive(Debug, Clone)]
 pub struct NpcDef {
@@ -300,6 +300,26 @@ impl GameData {
     /// repositorio -- por isso a tabela virou arquivo nosso, com os ids ja conferidos contra o
     /// catalogo 4.5.
     pub fn carrega_itens_iniciais(&mut self, caminho: &Path) {
+        // Tenta carregar do XML oficial se existir no diretorio
+        let xml_path = if let Some(parent) = caminho.parent() {
+            parent.join("player_initial_data.xml")
+        } else {
+            PathBuf::from("data/player_initial_data.xml")
+        };
+
+        if xml_path.exists() {
+            let mut init_holder = crate::dataholders::PlayerInitialDataHolder::new();
+            if let Ok(count) = init_holder.load_from_file(&xml_path) {
+                println!(
+                    "INFO: [player_initial_data.xml] carregadas {count} definicoes de itens iniciais de {}",
+                    xml_path.display()
+                );
+                self.itens_iniciais = init_holder.class_items;
+                return;
+            }
+        }
+
+        // Fallback para CSV
         let texto = match std::fs::read_to_string(caminho) {
             Ok(t) => t,
             Err(e) => {
@@ -333,12 +353,41 @@ impl GameData {
         );
     }
 
-    /// Le a tabela de spawns gerada por `tools/extrai_spawns.py`.
-    ///
-    /// Fica fora do `load` porque nao vem do XML do cliente: posicionamento de NPC nao esta em
-    /// catalogo nenhum -- mora nos arquivos de nivel e no servidor -- e a unica fonte que temos
-    /// para a 4.5 e a captura.
+    /// Le a tabela de spawns de todos os mapas (prioriza os XMLs em static_data/spawns)
     pub fn carrega_spawns(&mut self, caminho: &Path) {
+        // 1. Tenta carregar todos os XMLs de mapas em static_data/spawns
+        let spawns_dir = if let Some(parent) = caminho.parent() {
+            parent.join("static_data").join("spawns")
+        } else {
+            PathBuf::from("data/static_data/spawns")
+        };
+
+        if spawns_dir.exists() {
+            let mut holder = crate::dataholders::SpawnsDataHolder::new();
+            if let Ok(total) = holder.load_from_directory(&spawns_dir) {
+                println!(
+                    "INFO: [SpawnsDataHolder] Carregados {total} spawns XML de {} mapas em {}",
+                    holder.spawns_by_map.len(),
+                    spawns_dir.display()
+                );
+                for (_mapa, lista) in holder.spawns_by_map {
+                    for s in lista {
+                        self.spawns.push(Spawn {
+                            mapa: s.mapa,
+                            npc_id: s.npc_id,
+                            nome_id: s.nome_id,
+                            x: s.x,
+                            y: s.y,
+                            z: s.z,
+                            payload: s.payload,
+                        });
+                    }
+                }
+                return;
+            }
+        }
+
+        // 2. Fallback para CSV caso XMLs nao estejam presentes
         let texto = match std::fs::read_to_string(caminho) {
             Ok(t) => t,
             Err(e) => {
