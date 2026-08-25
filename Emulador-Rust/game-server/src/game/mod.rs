@@ -7,6 +7,7 @@ use std::{
 };
 
 pub mod admin;
+pub mod ai;
 pub mod arena;
 pub mod broker;
 mod character;
