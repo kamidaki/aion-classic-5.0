@@ -200,37 +200,42 @@ pub fn build_sm_init_payload_com(
     session_id: u32,
     scrambled_modulus: &[u8; 128],
     blowfish_key: &[u8; 16],
-    _key_offset: usize,  // ignorado — posicao e fixa pelo protocolo Java
-    _flag: u8,           // ignorado — o byte 0x03 esta em 0x00030403
+    key_offset: usize,
+    flag: u8,
 ) -> Vec<u8> {
-    // Usamos 192 bytes (tamanho final apos padding da cifragem)
     let mut p = vec![0u8; 192];
 
-    // [0] opcode
+    // [0] opcode SM_INIT
     p[0] = 0x00;
 
     // [1..5] session_id
     p[1..5].copy_from_slice(&session_id.to_le_bytes());
 
-    // [5..9] revisao do protocolo
+    // [5..9] revisao do protocolo (0x0000C621)
     p[5..9].copy_from_slice(&0x0000_C621u32.to_le_bytes());
 
     // [9..137] modulo RSA embaralhado (128 bytes)
     p[9..137].copy_from_slice(scrambled_modulus);
 
-    // [137..153] 4 × writeD(0) = 16 bytes zeros
-    // ja sao zeros por default
+    // [137..148] zeros (11 bytes)
 
-    // [153..169] blowfish session key (16 bytes)
-    p[153..169].copy_from_slice(blowfish_key);
+    // [148..164] (0x94..0xA4) blowfish session key (16 bytes)
+    let k_off = if key_offset == 0 { 0x94 } else { key_offset };
+    p[k_off..k_off + 16].copy_from_slice(blowfish_key);
 
-    // [169..173] writeD(197635) = 0x00030403  (flag 0x03, major 0x04, minor 0x03)
-    p[169..173].copy_from_slice(&197635u32.to_le_bytes());
+    // [164..168] zeros (4 bytes)
 
-    // [173..177] writeD(2097152) = 0x00200000
-    p[173..177].copy_from_slice(&2_097_152u32.to_le_bytes());
+    // [168..171] (0xA8..0xAB) flag e versao
+    let f = if flag == 0 { 0x03 } else { flag };
+    p[0xA8] = f;       // 168: flag 0x03
+    p[0xA9] = 0x04;    // 169: major 4
+    p[0xAA] = 0x05;    // 170: minor 5
+    p[0xAB] = 0x00;    // 171: zero
 
-    // [177..192] zeros (padding)
+    // [172..176] (0xAC..0xB0) 2097152 (0x00200000)
+    p[172..176].copy_from_slice(&2_097_152u32.to_le_bytes());
+
+    // [176..192] zeros (padding)
 
     p
 }
