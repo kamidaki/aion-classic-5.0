@@ -642,6 +642,9 @@ impl Character {
         }
         11
     }
+    pub fn class_id(&self) -> u8 {
+        self.class() as u8
+    }
     pub fn race(&self) -> u8 {
         if let Some(ref ap) = self.aparencia {
             if ap.len() >= 60 {
@@ -649,6 +652,14 @@ impl Character {
             }
         }
         1
+    }
+    pub fn gender(&self) -> u8 {
+        if let Some(ref ap) = self.aparencia {
+            if ap.len() >= 56 {
+                return u32::from_le_bytes(ap[52..56].try_into().unwrap_or([0, 0, 0, 0])) as u8;
+            }
+        }
+        0
     }
     pub fn attack_speed_ms(&self) -> u64 {
         let spd = self.stats.attack_speed;

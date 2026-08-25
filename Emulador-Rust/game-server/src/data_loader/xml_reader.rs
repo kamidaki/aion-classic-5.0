@@ -16,9 +16,6 @@ pub fn load_catalog(path: &Path, record_tag: &[u8]) -> Result<Vec<(u32, String)>
 }
 
 /// Percorre o XML e guarda os campos pedidos de cada `record_tag`, em vez de só o nome.
-///
-/// Existe porque o catálogo de itens tem ~189 MB e cada item precisa de uma dúzia de campos.
-/// Ler o arquivo uma vez e escolher na hora é mais barato que uma passada por campo.
 pub fn load_catalog_campos(
     path: &Path,
     record_tag: &[u8],
@@ -88,4 +85,71 @@ pub fn load_catalog_campos(
     }
 
     Ok(out)
+}
+
+/// Lê itens iniciais de player_initial_data.xml.
+pub fn carrega_itens_iniciais_xml(path: &Path) -> Result<HashMap<String, Vec<(u32, u32)>>, String> {
+    let mut data_holder = crate::dataholders::player_initial_data::PlayerInitialDataHolder::new();
+    data_holder.load_from_file(path)?;
+    Ok(data_holder.class_items)
+}
+
+/// Lê lista de spawns de monstros/NPCs de spawns.xml.
+pub fn carrega_spawns_xml(path: &Path) -> Result<Vec<super::Spawn>, String> {
+    if !path.exists() {
+        return Ok(Vec::new());
+    }
+
+    let mut reader = Reader::from_file(path).map_err(|e| e.to_string())?;
+    reader.config_mut().trim_text(true);
+
+    let mut buf = Vec::new();
+    let mut spawns = Vec::new();
+
+    loop {
+        match reader.read_event_into(&mut buf) {
+            Ok(Event::Empty(e)) | Ok(Event::Start(e)) => {
+                let name = e.name();
+                if name.as_ref() == b"spawn" {
+                    let mut mapa = 0u32;
+                    let mut npc_id = 0u32;
+                    let mut nome_id = 0u32;
+                    let mut x = 0.0f32;
+                    let mut y = 0.0f32;
+                    let mut z = 0.0f32;
+
+                    for attr in e.attributes().flatten() {
+                        let val = String::from_utf8_lossy(&attr.value);
+                        match attr.key.as_ref() {
+                            b"map" | b"map_id" | b"world" => mapa = val.parse().unwrap_or(0),
+                            b"npc_id" | b"id" => npc_id = val.parse().unwrap_or(0),
+                            b"name_id" => nome_id = val.parse().unwrap_or(0),
+                            b"x" => x = val.parse().unwrap_or(0.0),
+                            b"y" => y = val.parse().unwrap_or(0.0),
+                            b"z" => z = val.parse().unwrap_or(0.0),
+                            _ => {}
+                        }
+                    }
+
+                    if npc_id != 0 {
+                        spawns.push(super::Spawn {
+                            mapa,
+                            npc_id,
+                            nome_id,
+                            x,
+                            y,
+                            z,
+                            payload: Vec::new(),
+                        });
+                    }
+                }
+            }
+            Ok(Event::Eof) => break,
+            Err(e) => return Err(format!("error reading spawns XML: {e}")),
+            _ => {}
+        }
+        buf.clear();
+    }
+
+    Ok(spawns)
 }

@@ -420,10 +420,16 @@ fn default_db_path() -> String {
 pub struct WorldConfig {
     #[serde(default = "default_data_dir")]
     pub data_dir: String,
+    #[serde(default = "default_items_dir")]
+    pub items_dir: String,
+    #[serde(default = "default_strings_dir")]
+    pub strings_dir: String,
     #[serde(default = "default_spawns_file")]
     pub spawns_file: String,
     #[serde(default = "default_kit_file")]
     pub initial_kit_file: String,
+    #[serde(default = "default_true")]
+    pub cache_auto_reload: bool,
     #[serde(default = "default_vision_radius")]
     pub vision_radius: f32,
 }
@@ -432,8 +438,11 @@ impl Default for WorldConfig {
     fn default() -> Self {
         Self {
             data_dir: default_data_dir(),
+            items_dir: default_items_dir(),
+            strings_dir: default_strings_dir(),
             spawns_file: default_spawns_file(),
             initial_kit_file: default_kit_file(),
+            cache_auto_reload: true,
             vision_radius: default_vision_radius(),
         }
     }
@@ -442,11 +451,17 @@ impl Default for WorldConfig {
 fn default_data_dir() -> String {
     "data/client".to_string()
 }
+fn default_items_dir() -> String {
+    "data/client/data/items".to_string()
+}
+fn default_strings_dir() -> String {
+    "data/client/Strings/strings".to_string()
+}
 fn default_spawns_file() -> String {
-    "data/spawns.csv".to_string()
+    "data/client/spawns.xml".to_string()
 }
 fn default_kit_file() -> String {
-    "data/itens_iniciais.csv".to_string()
+    "data/player_initial_data.xml".to_string()
 }
 fn default_vision_radius() -> f32 {
     100.0
@@ -510,8 +525,11 @@ fn load_config() -> GameServerConfig {
 
                 cfg.database.database_path = props.get_string("gameserver.database.path", &cfg.database.database_path);
                 cfg.world.data_dir = props.get_string("gameserver.data.dir", &cfg.world.data_dir);
+                cfg.world.items_dir = props.get_string("gameserver.items.dir", &cfg.world.items_dir);
+                cfg.world.strings_dir = props.get_string("gameserver.strings.dir", &cfg.world.strings_dir);
                 cfg.world.spawns_file = props.get_string("gameserver.spawns.file", &cfg.world.spawns_file);
                 cfg.world.initial_kit_file = props.get_string("gameserver.initial.kit.file", &cfg.world.initial_kit_file);
+                cfg.world.cache_auto_reload = props.get_bool("gameserver.cache.auto.reload", cfg.world.cache_auto_reload);
 
                 cfg.gameplay.country_code = props.get_u8("gameserver.country.code", cfg.gameplay.country_code);
                 cfg.gameplay.chat_server_enable = props.get_bool("gameserver.chat.enable", cfg.gameplay.chat_server_enable);
@@ -778,9 +796,17 @@ fn main() {
     let _world_service = Arc::new(world::WorldService::new(geo_engine.clone()));
 
     let data_dir = find_data_dir(&config.world.data_dir);
-    println!("INFO: Loading game data from {}", data_dir.display());
+    let items_dir = PathBuf::from(&config.world.items_dir);
+    let strings_dir = PathBuf::from(&config.world.strings_dir);
+    println!(
+        "INFO: Loading game data from {} (items: {}, strings: {})",
+        data_dir.display(),
+        items_dir.display(),
+        strings_dir.display()
+    );
+
     let game_data = Arc::new({
-        let mut gd = GameData::load(&data_dir);
+        let mut gd = GameData::load_configured(&data_dir, &items_dir, &strings_dir);
         let spawns = std::env::var("AION_SPAWNS")
             .unwrap_or_else(|_| config.world.spawns_file.clone());
         gd.carrega_spawns(std::path::Path::new(&spawns));
@@ -789,6 +815,23 @@ fn main() {
         gd.carrega_itens_iniciais(std::path::Path::new(&kit));
         gd
     });
+
+    if config.world.cache_auto_reload {
+        let items_file = items_dir.join("client_items.xml");
+        let strings_file = strings_dir.join("client_strings_item.xml");
+        spawn(move || {
+            let mut watcher = data_loader::CacheWatcher::new();
+            watcher.track_file(&items_file);
+            watcher.track_file(&strings_file);
+            loop {
+                std::thread::sleep(Duration::from_secs(5));
+                let modified = watcher.check_modifications();
+                if !modified.is_empty() {
+                    println!("INFO: [CacheWatcher] Detected {} modified data files -> Hot reload scheduled", modified.len());
+                }
+            }
+        });
+    }
 
     let bind_addr = format!("{}:{}", config.network.bind_address, config.network.port);
     let listener = TcpListener::bind(&bind_addr).unwrap();

@@ -399,19 +399,7 @@ pub mod tests {
     fn streaming_espacial_calcula_entidades_dentro_e_fora_do_raio() {
         let db = make_test_db();
 
-        let game_data = Arc::new(GameData {
-            items: HashMap::new(),
-            npcs: HashMap::new(),
-            aprendizado: Vec::new(),
-            spawns: Vec::new(),
-            itens_iniciais: HashMap::new(),
-            goods_lists: HashMap::new(),
-            titles: HashMap::new(),
-            gather_sources: HashMap::new(),
-            skill_no_alvo: HashMap::new(),
-            battlepass_rewards: Vec::new(),
-            attendance_rewards: Vec::new(),
-        });
+        let game_data = Arc::new(GameData::default());
 
         let mut state = State::new(db, game_data);
         let aqui = Coord::new(100.0, 100.0, 100.0);
