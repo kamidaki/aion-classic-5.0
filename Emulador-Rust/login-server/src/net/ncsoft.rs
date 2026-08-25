@@ -200,8 +200,8 @@ pub fn build_sm_init_payload_com(
     session_id: u32,
     scrambled_modulus: &[u8; 128],
     blowfish_key: &[u8; 16],
-    key_offset: usize,
-    flag: u8,
+    _key_offset: usize,
+    _flag: u8,
 ) -> Vec<u8> {
     let mut p = vec![0u8; 192];
 
@@ -217,25 +217,24 @@ pub fn build_sm_init_payload_com(
     // [9..137] modulo RSA embaralhado (128 bytes)
     p[9..137].copy_from_slice(scrambled_modulus);
 
-    // [137..148] zeros (11 bytes)
+    // [137..153] 16 bytes zeros (4 * writeD(0))
 
-    // [148..164] (0x94..0xA4) blowfish session key (16 bytes)
-    let k_off = if key_offset == 0 { 0x94 } else { key_offset };
-    p[k_off..k_off + 16].copy_from_slice(blowfish_key);
+    // [153..169] blowfish session key (16 bytes) — lido por game.dll em [r8 + rdi + 0x94] onde r8=5 => offset 153 (0x99)
+    p[153..169].copy_from_slice(blowfish_key);
 
-    // [164..168] zeros (4 bytes)
+    // [169..173] flag 0x03, major 0x04, minor 0x05, 0x00 (writeD(197635) / classic tags)
+    p[169] = 0x03;
+    p[170] = 0x04;
+    p[171] = 0x05;
+    p[172] = 0x00;
 
-    // [168..171] (0xA8..0xAB) flag e versao
-    let f = if flag == 0 { 0x03 } else { flag };
-    p[0xA8] = f;       // 168: flag 0x03
-    p[0xA9] = 0x04;    // 169: major 4
-    p[0xAA] = 0x05;    // 170: minor 5
-    p[0xAB] = 0x00;    // 171: zero
+    // [173..177] flag 0x03, major 0x04, minor 0x05, 0x00 para cobrir [rdx + 0xA8] com rdx=rdi+5
+    p[173] = 0x03;
+    p[174] = 0x04;
+    p[175] = 0x05;
+    p[176] = 0x00;
 
-    // [172..176] (0xAC..0xB0) 2097152 (0x00200000)
-    p[172..176].copy_from_slice(&2_097_152u32.to_le_bytes());
-
-    // [176..192] zeros (padding)
+    // [177..192] zeros (padding)
 
     p
 }
