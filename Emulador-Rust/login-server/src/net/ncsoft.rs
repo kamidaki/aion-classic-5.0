@@ -135,10 +135,10 @@ fn server_list_trailer() -> usize {
     env_num("AION_SL_TRAILER", 15) as usize
 }
 
-/// Offset da chave de sessao Blowfish dentro do payload do `SM_INIT`.
-pub const INIT_KEY_OFFSET: usize = 0x94;
-/// Offset do byte de flag que liga o fluxo de RSA e GameGuard.
-pub const INIT_FLAG_OFFSET: usize = 0xA8;
+/// Offset da chave de sessao Blowfish dentro do payload do `SM_INIT` (153).
+pub const INIT_KEY_OFFSET: usize = 0x99;
+/// Offset do byte de flag que liga o fluxo de RSA e GameGuard (169).
+pub const INIT_FLAG_OFFSET: usize = 0xA9;
 /// Valor padrao desse byte, segundo o CONTEXT.md.
 pub const INIT_FLAG_PADRAO: u8 = 0x03;
 /// Tamanho do payload do `SM_INIT`, antes de cifrar.
@@ -146,17 +146,19 @@ pub const INIT_PAYLOAD_LEN: usize = 192;
 
 /// Monta o payload do `SM_INIT` no layout do cliente Classic EU 4.5.
 ///
-/// Os offsets aqui **nao** sao os do padrao Java 2.4: naquele a chave de sessao mora em
-/// `0x99..0xA9`. O cliente 4.5 le 5 bytes antes, e com o layout 2.4 ele recebe lixo no lugar da
-/// chave -- nao consegue decifrar nada do que vem depois.
-///
-/// Conferido na engenharia reversa do `game.dll` (CONTEXT.md secao 2):
+/// A engenharia reversa do `game.dll` aponta a chave em `[r8 + rdi + 0x94]` (0x84222D). O
+/// CONTEXT.md le esse `0x94` como indice absoluto e conclui 148; a medicao registrada na
+/// `2f3749e5` achou `r8 = 5` no ponto da chamada, o que poe a chave em 153 -- o mesmo lugar do
+/// Java EMU. **Este arquivo segue os 153**, porque e o unico dos dois que o cliente aceita:
 ///
 /// ```text
-/// game.dll:0x84222D   movups xmm0, [r8 + rdi + 0x94]    -> chave em 0x94 (148..164)
-/// game.dll:0x84231B   lea eax,[rcx-3]; cmp al,1; ja ..  -> byte 0xA8 (168) precisa ser 0x03
-/// game.dll:0x842329   mov [rbx+0x78], al                -> 169 = major, 170 = minor
+/// 25/08/2026, chave em 148: sessao 69AEBA01 -> primeiro pacote do cliente decifra como 0x58 ...
+/// 25/08/2026, chave em 148: sessao 06014E31 -> primeiro pacote do cliente decifra como 0xBF ...
 /// ```
+///
+/// Nos dois casos era CM_AUTH_GG (`0x07` seguido do session_id em LE) cifrado com outra chave.
+/// Com 153 a cadeia inteira abre -- veja `pacotes-cliente.log`, onde os pacotes seguintes fecham
+/// o checksum com a chave que o servidor gerou.
 ///
 /// Layout:
 ///
@@ -165,12 +167,11 @@ pub const INIT_PAYLOAD_LEN: usize = 192;
 /// [0x01..0x05]  session_id (u32 LE)
 /// [0x05..0x09]  0x0000C621 (revisao do protocolo)
 /// [0x09..0x89]  scrambled_modulus (128 bytes do modulo RSA)
-/// [0x89..0x94]  zeros (11 bytes)
-/// [0x94..0xA4]  blowfish_key (16 bytes, a chave de sessao)
-/// [0xA4..0xA8]  zeros (4 bytes)
-/// [0xA8..0xAC]  0x00050403 -> flag 0x03 em 168, major 0x04 em 169, minor 0x05 em 170
-/// [0xAC..0xB0]  0x00200000
-/// [0xB0..0xC0]  zeros, completando 192 bytes
+/// [0x89..0x99]  zeros (16 bytes, os quatro writeD(0) do Java EMU)
+/// [0x99..0xA9]  blowfish_key (16 bytes, a chave de sessao)
+/// [0xA9..0xAD]  flag 0x03 em 169, major 0x04 em 170, minor 0x05 em 171
+/// [0xAD..0xB1]  a mesma tag de novo, cobrindo o `[rdx + 0xA8]` lido com `rdx = rdi + 5`
+/// [0xB1..0xC0]  zeros, completando 192 bytes
 /// ```
 pub fn build_sm_init_payload(
     session_id: u32,
@@ -217,18 +218,36 @@ pub fn build_sm_init_payload_com(
     // [9..137] modulo RSA embaralhado (128 bytes)
     p[9..137].copy_from_slice(scrambled_modulus);
 
-    // [0x94..0x94+16] (148..164) blowfish session key (16 bytes)
+    // [137..153] 16 bytes zerados (os quatro writeD(0) do Java EMU)
+
+    // [153..169] chave de sessao Blowfish (16 bytes).
+    //
+    // O `game.dll` le em `[r8 + rdi + 0x94]` (0x84222D). O CONTEXT.md concluiu dai o indice 148;
+    // a engenharia reversa registrada na `2f3749e5` mediu `r8 = 5` no ponto da chamada, o que da
+    // 153 (0x99) -- e e onde o Java EMU tambem poe a chave. Quem desempata e o cliente: com 148
+    // ele cifra o primeiro pacote com outra chave e o servidor le lixo no lugar do CM_AUTH_GG
+    // (medido em 25/08/2026 nas sessoes 69AEBA01 e 06014E31).
     let ko = if key_offset > 0 && key_offset + 16 <= 192 { key_offset } else { INIT_KEY_OFFSET };
     p[ko..ko + 16].copy_from_slice(blowfish_key);
 
-    // [0xA8..0xAC] (168..172) flag 0x03, major 0x04, minor 0x05, 0x00
-    p[0xA8] = flag;
-    p[0xA9] = 0x04;
-    p[0xAA] = 0x05;
-    p[0xAB] = 0x00;
+    // [169..173] e [173..177] flag, major 0x04, minor 0x05, 0x00.
+    //
+    // O bloco sai duplicado de proposito: cobre `[rdx + 0xA8]` tanto com `rdx = rdi` quanto com
+    // `rdx = rdi + 5`. No lugar do segundo bloco o Java EMU escreve writeD(0x00200000); aqui ele
+    // perde para a copia da tag de versao, que e o que o cliente 4.5 aceitou na pratica.
+    for base in [INIT_FLAG_OFFSET, INIT_FLAG_OFFSET + 4] {
+        p[base] = flag;
+        p[base + 1] = 0x04;
+        p[base + 2] = 0x05;
+        p[base + 3] = 0x00;
+    }
 
-    // [0xAC..0xB0] (172..176) 0x00200000
-    p[0xAC..0xB0].copy_from_slice(&0x0020_0000u32.to_le_bytes());
+    // Escrever a flag em 168 (0xA8) invadiria o ultimo byte da chave. Foi exatamente isso que
+    // tornou inconclusiva a bisseccao por `AION_INIT_KEY_OFFSET=153` antes deste layout voltar.
+    debug_assert!(
+        ko + 16 <= INIT_FLAG_OFFSET,
+        "a chave de sessao invade o bloco de flags"
+    );
 
     p
 }
@@ -387,8 +406,11 @@ fn write_server_entry(raw: &mut Vec<u8>, server_id: u8, ip: &[u8; 4], port: u16,
     raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online (offset 11..13)
     raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo (offset 13..15)
     raw.push(1); // status: online (offset 15)
-    raw.push(bracket); // bracket / country code (offset 0x10 / 16)
-    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401) (offset 0x11..0x15 / 17..21)
+    // ServerBits primeiro, bracket depois. O merge de 25/08/2026 inverteu os dois e o cliente
+    // passou a desenhar a lista de mundos vazia -- o tamanho da entrada nao muda (21 bytes), so a
+    // ordem, entao nada quebra do lado do servidor e o sintoma aparece so na tela.
+    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401) (offset 0x10..0x14 / 16..20)
+    raw.push(bracket); // bracket / country code (offset 0x14 / 20)
 }
 
 async fn handle_ncsoft_client(
@@ -1137,33 +1159,46 @@ mod test {
         assert_eq!(u32::from_le_bytes(p[1..5].try_into().unwrap()), 0xDEAD_BEEF);
         assert_eq!(&p[9..137], &modulo_falso()[..], "modulo RSA");
 
-        // O que o `game.dll` le, conferido em CONTEXT.md secao 2.
-        assert_eq!(&p[0x94..0x94 + 16], &chave_falsa()[..], "chave in 0x94 (game.dll:0x84222D)");
-        assert_eq!(p[0xA8], 0x03, "flag RSA/GameGuard em 0xA8 (game.dll:0x84231B)");
-        assert_eq!(p[0xA9], 0x04, "major em 169 (game.dll:0x842329)");
-        assert_eq!(p[0xAA], 0x05, "minor em 170");
+        // O que o `game.dll` le -- offsets em INIT_KEY_OFFSET / INIT_FLAG_OFFSET.
+        assert_eq!(
+            &p[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16],
+            &chave_falsa()[..],
+            "chave de sessao em 153 (game.dll:0x84222D com r8=5)"
+        );
+        assert_eq!(p[INIT_FLAG_OFFSET], 0x03, "flag RSA/GameGuard em 169");
+        assert_eq!(p[INIT_FLAG_OFFSET + 1], 0x04, "major");
+        assert_eq!(p[INIT_FLAG_OFFSET + 2], 0x05, "minor");
+
+        // A tag sai duplicada, cobrindo o `[rdx + 0xA8]` lido com `rdx = rdi + 5`.
+        assert_eq!(p[INIT_FLAG_OFFSET + 4], 0x03, "segunda copia da flag");
+        assert_eq!(p[INIT_FLAG_OFFSET + 5], 0x04);
+        assert_eq!(p[INIT_FLAG_OFFSET + 6], 0x05);
     }
 
     #[test]
-    fn o_layout_2_4_nao_entregaria_a_chave_no_lugar_certo() {
-        // Guarda de regressao: o layout anterior punha a chave em 153..169, cinco bytes depois.
-        // Se alguem reverter para ele, este teste quebra em vez de o cliente travar em silencio.
-        let mut antigo = vec![0u8; 192];
-        antigo[153..169].copy_from_slice(&chave_falsa());
-
-        assert_ne!(
-            &antigo[0x95..0x95 + 16],
-            &chave_falsa()[..],
-            "com o layout 2.4 o cliente le lixo no lugar da chave"
+    fn o_bloco_de_flags_nao_pisa_no_ultimo_byte_da_chave() {
+        // Guarda contra o bug que travou o login em 25/08/2026: com a chave em 153..169 e a flag
+        // escrita em 168 (0xA8), o ultimo byte da chave virava 0x03 e o cliente cifrava o
+        // CM_AUTH_GG com uma chave que o servidor nao tinha.
+        assert!(
+            INIT_KEY_OFFSET + 16 <= INIT_FLAG_OFFSET,
+            "a chave ({INIT_KEY_OFFSET}..{}) invade o bloco de flags em {INIT_FLAG_OFFSET}",
+            INIT_KEY_OFFSET + 16
         );
-        assert_ne!(antigo[0xA8], 0x03, "e a flag de 0xA8 tambem nao esta la");
+
+        let p = build_sm_init_payload(0xDEAD_BEEF, &modulo_falso(), &chave_falsa());
+        assert_eq!(
+            &p[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16],
+            &chave_falsa()[..],
+            "a chave tem que sair inteira, byte a byte"
+        );
     }
 
     #[test]
     fn o_cliente_recupera_a_chave_de_sessao_do_sm_init() {
         // Este e o teste que importa: percorre o caminho inteiro que o cliente percorre.
         // Se a chave estiver no offset errado, ou o xor pass/Blowfish estiverem trocados, o valor
-        // recuperado em 0x94 nao bate -- e e exatamente ai que o cliente real desiste.
+        // recuperado em 153 nao bate -- e e exatamente ai que o cliente real desiste.
         let chave = chave_falsa();
         let payload = build_sm_init_payload(0x0123_4567, &modulo_falso(), &chave);
 
@@ -1175,13 +1210,13 @@ mod test {
         let recuperado = como_o_cliente_decifra(&cifrado);
 
         assert_eq!(
-            &recuperado[0x94..0x94 + 16],
+            &recuperado[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16],
             &chave[..],
-            "o cliente precisa achar a chave de sessao em 0x94"
+            "o cliente precisa achar a chave de sessao em 153"
         );
-        assert_eq!(recuperado[0xA8], 0x03, "flag em 0xA8 depois de decifrar");
-        assert_eq!(recuperado[0xA9], 0x04);
-        assert_eq!(recuperado[0xAA], 0x05);
+        assert_eq!(recuperado[INIT_FLAG_OFFSET], 0x03, "flag em 169 depois de decifrar");
+        assert_eq!(recuperado[INIT_FLAG_OFFSET + 1], 0x04);
+        assert_eq!(recuperado[INIT_FLAG_OFFSET + 2], 0x05);
         assert_eq!(&recuperado[9..137], &modulo_falso()[..], "modulo RSA intacto");
     }
 
@@ -1220,9 +1255,10 @@ mod test {
     // pelo nosso proprio login-server para o cliente Aion Classic EU real. Sao os 4 pacotes da
     // cadeia, exatamente como sairam.
     //
-    // O teste faz o que o cliente faz: decifra o SM_INIT com a chave estatica, pega a chave de
-    // sessao em 0x94 e com ELA abre os tres seguintes. Se o offset estiver errado, a chave sai
-    // errada e o checksum dos tres nao fecha -- nao ha como esse teste passar por acidente.
+    // ATENCAO: hoje o `REDE_P1` **nao** volta a texto claro com `chave estatica + dec_xor_pass`
+    // -- o byte 0 sai diferente de 0x00. Enquanto isso nao for esclarecido, qualquer teste que
+    // afirme algo negativo sobre esses bytes passa por acidente, porque lixo reprova qualquer
+    // chave. Ficam aqui como material de investigacao, nao como prova.
     // =====================================================================================
 
     /// SM_INIT, 194 bytes no wire.
@@ -1264,7 +1300,11 @@ mod test {
     }
 
     #[test]
-    fn a_cadeia_que_o_servidor_pos_na_rede_abre_do_lado_do_cliente() {
+    fn a_cadeia_que_o_nosso_codigo_produz_abre_com_a_chave_do_sm_init() {
+        // ATENCAO: este teste é um round-trip do nosso proprio codigo -- cifra com o nosso engine
+        // e decifra com o nosso engine. Ele pega chave no offset errado e xor pass trocado, mas
+        // **nao** prova nada sobre o cliente real. A prova contra o cliente esta no
+        // `pacotes-cliente.log` e na medicao anotada em `build_sm_init_payload`.
         let chave = chave_falsa();
         let payload = build_sm_init_payload(0x0123_4567, &modulo_falso(), &chave);
 
@@ -1273,14 +1313,14 @@ mod test {
         let init = como_o_cliente_decifra(&cifrado);
 
         assert_eq!(init[0], 0x00, "opcode SM_INIT");
-        assert_eq!(init[0xA8], 0x03, "flag em 0xA8 (game.dll:0x84231B)");
-        assert_eq!(init[0xA9], 0x04, "major 4");
-        assert_eq!(init[0xAA], 0x05, "minor 5");
+        assert_eq!(init[INIT_FLAG_OFFSET], 0x03, "flag em 169");
+        assert_eq!(init[INIT_FLAG_OFFSET + 1], 0x04, "major 4");
+        assert_eq!(init[INIT_FLAG_OFFSET + 2], 0x05, "minor 5");
 
-        // Passo 2: a chave de sessao sai de 0x94.
+        // Passo 2: a chave de sessao sai de 153.
         let mut recuperada = [0u8; 16];
-        recuperada.copy_from_slice(&init[0x94..0x94 + 16]);
-        assert_eq!(recuperada, chave, "a chave de sessao deve ser recuperada de 0x94");
+        recuperada.copy_from_slice(&init[INIT_KEY_OFFSET..INIT_KEY_OFFSET + 16]);
+        assert_eq!(recuperada, chave, "a chave de sessao deve ser recuperada de 153");
 
         // Passo 3: com ela, os tres pacotes seguintes tem que abrir e fechar o checksum.
         let mut raw_gg = vec![0u8; 40];
@@ -1303,37 +1343,12 @@ mod test {
 
             assert!(
                 LoginCryptEngine::verify_checksum(&corpo),
-                "{nome}: checksum nao fecha -- a chave lida em 0x94 esta errada"
+                "{nome}: checksum nao fecha -- a chave lida em 153 esta errada"
             );
             assert_eq!(corpo[0], opcode_esperado, "{nome}: opcode");
         }
     }
 
-    #[test]
-    fn com_a_chave_no_offset_antigo_a_cadeia_nao_abre() {
-        // Guarda de regressao contra o layout 2.4: lendo a chave em 153 -- onde ela ficava antes --
-        // o checksum do pacote seguinte nao fecha. E o que o cliente real enfrentava.
-        let p1 = de_hex(REDE_P1);
-        let mut init = corpo_do_quadro(&p1);
-        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut init);
-        dec_xor_pass(&mut init);
-
-        let mut chave_errada = [0u8; 16];
-        chave_errada.copy_from_slice(&init[153..169]);
-        assert_ne!(
-            chave_errada,
-            init[0x94..0x94 + 16],
-            "os dois offsets tem que dar chaves diferentes"
-        );
-
-        let wire = de_hex(REDE_P2);
-        let mut corpo = corpo_do_quadro(&wire);
-        BlowfishCipher::new(&chave_errada).decipher(&mut corpo);
-        assert!(
-            !LoginCryptEngine::verify_checksum(&corpo),
-            "com a chave do offset antigo o pacote nao pode abrir"
-        );
-    }
 
     #[test]
     fn login_ok_traz_a_assinatura_classic_e_o_tos() {
@@ -1391,12 +1406,12 @@ mod test {
         assert_eq!(u16::from_le_bytes(e[0x0B..0x0D].try_into().unwrap()), 0, "jogadores online");
         assert_eq!(u16::from_le_bytes(e[0x0D..0x0F].try_into().unwrap()), 1000, "maximo");
         assert_eq!(e[0x0F], 1, "online");
-        assert_eq!(e[0x10], BRACKET_CLASSIC_EU, "bracket em 0x10");
         assert_eq!(
-            u32::from_le_bytes(e[0x11..0x15].try_into().unwrap()),
+            u32::from_le_bytes(e[0x10..0x14].try_into().unwrap()),
             SERVER_BITS_CLASSIC,
-            "ServerBits em 0x11..0x15, com o bit 10 ligado"
+            "ServerBits em 0x10..0x14, com o bit 10 ligado"
         );
+        assert_eq!(e[0x14], BRACKET_CLASSIC_EU, "bracket em 0x14");
     }
 
     #[test]
@@ -1410,8 +1425,14 @@ mod test {
         let p = build_server_list_payload("192.168.1.50", 7777, 23, 3);
         let e = &p[3..3 + SERVER_ENTRY_LEN_NC];
 
-        assert_eq!(e[0x10], BRACKET_CLASSIC_EU, "0x10 e o bracket");
-        assert_eq!(e[0x11], 0x01, "primeiro byte de 0x00000401 em LE em 0x11");
+        // A entrada tem 21 bytes nas duas ordens possiveis, entao trocar ServerBits e bracket nao
+        // quebra nenhum tamanho -- o unico sintoma e a lista de mundos sair vazia no cliente.
+        assert_eq!(
+            u32::from_le_bytes(e[0x10..0x14].try_into().unwrap()),
+            SERVER_BITS_CLASSIC,
+            "0x10..0x14 e o ServerBits"
+        );
+        assert_eq!(e[0x14], BRACKET_CLASSIC_EU, "0x14 e o bracket");
     }
 
     #[test]
