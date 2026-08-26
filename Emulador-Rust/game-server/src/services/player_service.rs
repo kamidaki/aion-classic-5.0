@@ -315,6 +315,47 @@ impl PlayerService {
     }
 
     /// Processa o pacote `C_CUR_STATUS` e envia status, skills, mundo e inventário
+    /// Distancia a partir da qual vale mexer no z de quem entra no mundo.
+    ///
+    /// Parar numa ladeira ja da alguns metros de desencontro entre o pe do personagem e a amostra
+    /// do heightmap; corrigir isso empurraria o personagem um pouco a cada login.
+    const TOLERANCIA_DE_CHAO: f32 = 5.0;
+
+    /// Onde o personagem deveria estar, se o z gravado nao bater com o chao.
+    ///
+    /// Devolve `None` quando nao ha o que corrigir -- e esse e o caso normal. Corrige so quando a
+    /// diferenca passa de [`Self::TOLERANCIA_DE_CHAO`].
+    ///
+    /// Ate 26/08/2026 a GeoEngine era construida, carregava os 20.511 modelos de `meshs.geo` e
+    /// nunca era consultada: nenhum `.geo` de mapa chegava a ser aberto, e o servidor aceitava
+    /// qualquer z que o cliente mandasse. Foi assim que uma queda infinita virou `z = -42990`
+    /// gravado no banco.
+    fn ancora_no_chao(
+        geo: &crate::geoengine::GeoEngine,
+        mapa: u32,
+        loc: &crate::engine::Coord,
+    ) -> Option<crate::engine::Coord> {
+        if mapa == 0 {
+            return None;
+        }
+        let mapa_geo = match geo.load_world(mapa) {
+            Ok(m) => m,
+            Err(e) => {
+                println!("WARN: [GeoEngine] mapa {mapa} sem geodata utilizavel ({e}); entrando sem ancorar");
+                return None;
+            }
+        };
+        // `lado == 1` e o stub que o loader monta quando o arquivo nao traz terreno -- Kaisinel
+        // Academy e Reshanta sao assim. Ali `get_z` nao tem o que responder.
+        if !mapa_geo.terrain.as_ref().is_some_and(|t| t.width_samples > 1) {
+            return None;
+        }
+
+        let chao = geo.get_z(mapa, loc.x(), loc.y(), Some(loc.z()));
+        ((loc.z() - chao).abs() > Self::TOLERANCIA_DE_CHAO)
+            .then(|| crate::engine::Coord::new(loc.x(), loc.y(), chao))
+    }
+
     pub fn handle_cur_status(
         character_id: u32,
         client_id: u16,
@@ -326,6 +367,7 @@ impl PlayerService {
         guild_manager: &crate::guild::GuildManager,
         mundo_enviado: &mut HashSet<u32>,
         burst: &[(u16, Vec<u8>)],
+        geo: &crate::geoengine::GeoEngine,
         messages: &mut Messages,
     ) {
         use crate::message::capturado as cap;
@@ -454,6 +496,30 @@ impl PlayerService {
                 }
                 _ => {}
             }
+        }
+
+        // Ancora o personagem no chao do mapa em que ele entra.
+        //
+        // Ate 26/08/2026 a GeoEngine era construida, carregava os 20.511 modelos de `meshs.geo` e
+        // nunca era consultada: nenhum `.geo` de mapa chegava a ser aberto e o servidor aceitava
+        // qualquer z que o cliente mandasse. Foi assim que uma queda infinita virou z = -42990
+        // gravado no banco.
+        //
+        // A correcao so vale para diferenca grande. Parar numa ladeira ja da alguns metros de
+        // desencontro entre o pe do personagem e a amostra do heightmap, e corrigir isso empurraria
+        // o personagem um pouco a cada login.
+        let mapa_do_personagem = character.spawn_map_id();
+        if let Some(no_chao) = Self::ancora_no_chao(geo, mapa_do_personagem, character.location()) {
+            println!(
+                "INFO: [GeoEngine] personagem {} entrou no mapa {} em z={:.2}; o chao em ({:.2}, {:.2})                  esta em {:.2} -- ancorando",
+                character_id,
+                mapa_do_personagem,
+                character.location().z(),
+                no_chao.x(),
+                no_chao.y(),
+                no_chao.z()
+            );
+            character.set_location(no_chao);
         }
 
         // Ponto de entrada dinâmico lido do XML. O mapa, porem, vem do personagem: o do XML so
@@ -595,5 +661,79 @@ pub fn classe_no_xml(classe: u32) -> (&'static str, &'static str) {
         14 => ("MARTIAL_ARTIST", "MARTIAL_ARTIST"),
         15 => ("BATTLE_MASTER", "MARTIAL_ARTIST"),
         _ => ("", ""),
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::PlayerService;
+    use crate::engine::Coord;
+    use crate::geoengine::{GeoConfig, GeoEngine};
+    use std::path::PathBuf;
+
+    /// Carrega a GeoEngine com o geodata de verdade. `None` quando os arquivos nao estao no lugar
+    /// -- eles nao sao versionados junto do codigo.
+    fn geo_de_verdade() -> Option<GeoEngine> {
+        let geo_dir = PathBuf::from("../../Produto Final/data/Geo");
+        if !geo_dir.join("210010000.geo").exists() {
+            eprintln!("pulando: geodata ausente em {}", geo_dir.display());
+            return None;
+        }
+        let eng = GeoEngine::new(GeoConfig { geo_dir, ..Default::default() });
+        eng.initialize().ok()?;
+        Some(eng)
+    }
+
+    /// O caso que corrompeu o banco em 25/08/2026: o personagem caiu ate `z = -42990` e o servidor
+    /// gravou isso. Entrando de novo, tem que voltar para o chao em vez de continuar caindo.
+    #[test]
+    fn quem_entra_enterrado_no_vazio_volta_para_o_chao() {
+        let Some(geo) = geo_de_verdade() else { return };
+
+        // Ponto de Poeta onde o cliente ficou parado, com o z trocado por lixo de queda.
+        let caindo = Coord::new(1219.8331, 1340.1206, -42990.65);
+        let corrigido = PlayerService::ancora_no_chao(&geo, 210_010_000, &caindo)
+            .expect("z de queda tem que ser corrigido");
+
+        assert_eq!(corrigido.x(), caindo.x(), "so o z muda");
+        assert_eq!(corrigido.y(), caindo.y(), "so o z muda");
+        assert!(
+            corrigido.z() > 100.0 && corrigido.z() < 400.0,
+            "o chao de Poeta ali fica na casa dos 200m, veio {}",
+            corrigido.z()
+        );
+    }
+
+    /// Quem esta de pe nao pode ser empurrado. Se este teste virar `Some`, todo login mexe um
+    /// pouco no personagem.
+    #[test]
+    fn quem_entra_de_pe_nao_e_movido() {
+        let Some(geo) = geo_de_verdade() else { return };
+
+        let de_pe = Coord::new(1219.8331, 1340.1206, 232.6073);
+        assert!(
+            PlayerService::ancora_no_chao(&geo, 210_010_000, &de_pe).is_none(),
+            "posicao valida nao pode ser corrigida"
+        );
+    }
+
+    /// Mapa cujo `.geo` nao traz heightmap -- Kaisinel Academy e um. Sem terreno nao ha resposta
+    /// para dar, e chutar uma poria o personagem em lugar pior do que o gravado.
+    #[test]
+    fn mapa_sem_heightmap_nao_ancora() {
+        let Some(geo) = geo_de_verdade() else { return };
+
+        let qualquer = Coord::new(457.0, 251.0, -9999.0);
+        assert!(
+            PlayerService::ancora_no_chao(&geo, 110_070_000, &qualquer).is_none(),
+            "mapa sem terreno nao pode ancorar"
+        );
+    }
+
+    /// Personagem sem mapa gravado.
+    #[test]
+    fn mapa_zero_nao_ancora() {
+        let Some(geo) = geo_de_verdade() else { return };
+        assert!(PlayerService::ancora_no_chao(&geo, 0, &Coord::new(0.0, 0.0, -1000.0)).is_none());
     }
 }

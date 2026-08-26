@@ -39,10 +39,13 @@ pub struct State {
     pub db: Db,
     pub game_data: Arc<GameData>,
     pub data_manager: Arc<DataManager>,
+    /// A mesma instancia que o `main` inicializa -- os 20.511 modelos de `meshs.geo` ficam
+    /// carregados uma vez so. Os mapas entram sob demanda, no primeiro personagem que pisa neles.
+    pub geo: Arc<crate::geoengine::GeoEngine>,
 }
 
 impl State {
-    pub fn new(db: Db, game_data: Arc<GameData>) -> Self {
+    pub fn new(db: Db, game_data: Arc<GameData>, geo: Arc<crate::geoengine::GeoEngine>) -> Self {
         let mut entities = Vec::with_capacity(1000);
         let mut put_npc: HashMap<u32, Vec<u8>> = HashMap::new();
 
@@ -133,6 +136,7 @@ impl State {
             db,
             game_data,
             data_manager,
+            geo,
         }
     }
 
@@ -311,6 +315,7 @@ impl State {
                     &self.guild_manager,
                     &mut self.mundo_enviado,
                     &self.burst,
+                    &self.geo,
                     messages,
                 );
             }
@@ -444,7 +449,9 @@ pub mod tests {
 
         let game_data = Arc::new(GameData::default());
 
-        let mut state = State::new(db, game_data);
+        // GeoEngine vazia: o teste nao mede terreno, e sem `initialize()` nao ha I/O de disco.
+        let geo = std::sync::Arc::new(crate::geoengine::GeoEngine::new(Default::default()));
+        let mut state = State::new(db, game_data, geo);
         let aqui = Coord::new(100.0, 100.0, 100.0);
         let mut messages = Messages::new();
 

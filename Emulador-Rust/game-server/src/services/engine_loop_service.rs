@@ -229,9 +229,10 @@ pub fn game_update(
     server_rx: Receiver<ClientUpdate>,
     db: crate::db::Db,
     game_data: Arc<crate::data_loader::GameData>,
+    geo: Arc<crate::geoengine::GeoEngine>,
 ) {
     let mut disconnected_clients = Vec::with_capacity(100);
-    let mut state = State::new(db, game_data);
+    let mut state = State::new(db, game_data, geo);
     let mut messages = Messages::new();
 
     // Per-client outbox: all categories (broadcast + direct + others) are

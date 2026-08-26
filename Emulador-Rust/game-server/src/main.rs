@@ -801,6 +801,7 @@ fn main() {
         }
     }
     let _world_service = Arc::new(world::WorldService::new(geo_engine.clone()));
+    let geo_para_o_loop = geo_engine.clone();
 
     let data_dir = find_data_dir(&config.world.data_dir);
     let items_dir = PathBuf::from(&config.world.items_dir);
@@ -850,7 +851,7 @@ fn main() {
 
     let connections = clients.clone();
     let gd = game_data.clone();
-    spawn(move || engine_loop::game_update(connections, server_rx, db, gd));
+    spawn(move || engine_loop::game_update(connections, server_rx, db, gd, geo_para_o_loop));
 
     while let Ok((stream, peer)) = listener.accept() {
         println!("INFO: TCP accept from {peer}");
