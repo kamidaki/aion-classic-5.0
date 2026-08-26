@@ -315,26 +315,44 @@ impl PlayerService {
     }
 
     /// Processa o pacote `C_CUR_STATUS` e envia status, skills, mundo e inventário
-    /// Quanto o personagem pode estar **abaixo** do chao antes de valer a pena erguer.
+    /// A partir de quantos metros abaixo do chao vale concluir que o personagem caiu para fora do
+    /// mundo.
     ///
-    /// A folga existe porque o heightmap e uma grade de 2m com interpolacao bilinear: em ladeira
-    /// forte o valor interpolado erra na casa do metro, e corrigir isso empurraria o personagem um
-    /// pouco a cada login.
+    /// **Nao e tolerancia de precisao -- e deteccao de queda.** A distincao custou duas tentativas
+    /// erradas antes de eu medir a distribuicao do erro do heightmap contra 57.029 NPCs de 12
+    /// mapas abertos, em `(nossa_geo - chao_real)`:
     ///
-    /// Um metro e pouco de proposito. Abaixo do chao o personagem esta **dentro** do mundo, e numa
-    /// encosta isso e uma parede invisivel: medido em 26/08/2026, o Karate parou 3,17m abaixo da
-    /// superficie em Poeta (z=232.61, chao=235.77) e nao conseguia mais andar -- o terreno 4m a
-    /// frente estava 12m acima dele. A tolerancia simetrica de 5m que existia antes deixava esse
-    /// caso passar batido.
-    const TOLERANCIA_ABAIXO_DO_CHAO: f32 = 1.0;
+    /// ```text
+    /// p50 = -0.00     p90 =   0.30     p99 = 136.87     max = 526.50
+    /// p80 =  0.14     p95 =   0.56     p99.9 = 276.05
+    /// ```
+    ///
+    /// A distribuicao e bimodal: 96,5% dos pontos acertam por centimetros e ~3,2% erram por
+    /// dezenas ou centenas de metros -- sao NPCs legitimamente abaixo da superficie (porao, gruta,
+    /// estrutura cavada no morro). Limiar nenhum separa as duas populacoes:
+    ///
+    /// ```text
+    ///  1m -> 1967 falsos positivos      10m -> 1806      30m -> 1669
+    /// ```
+    ///
+    /// Ou seja, tentar ancorar "quem esta um pouco enterrado" nao da: com 1m a ancora disparava em
+    /// ~3,4% dos logins e o cliente devolvia o personagem para baixo em dois pacotes -- medido em
+    /// 26/08/2026 com o Karate, que eu tinha diagnosticado como enterrado e estava de pe.
+    ///
+    /// O que sobra, e que vale, e o caso extremo: o personagem que atravessou o cenario e caiu sem
+    /// fundo. Aquele registrou `z = -42990` no banco, 43 mil metros abaixo -- duas ordens de
+    /// grandeza fora do pior erro observado (526m). Mil metros deixa ~2x de margem sobre o maximo
+    /// medido e da zero falso positivo nas 57.029 amostras.
+    const QUEDA_PARA_FORA_DO_MUNDO: f32 = 1000.0;
 
-    /// Onde o personagem deveria estar, se o z gravado o deixar enterrado.
+    /// Onde o personagem deveria estar, se o z gravado for de queda para fora do mundo.
     ///
-    /// Devolve `None` quando nao ha o que corrigir -- e esse e o caso normal.
+    /// Devolve `None` em praticamente todo login -- inclusive para quem esta alguns metros
+    /// desencontrado do nosso heightmap, que e caso comum e nao e problema: o cliente tem a
+    /// geometria dele e resolve sozinho, para cima (colisao) ou para baixo (gravidade).
     ///
-    /// So corrige para **cima**. Quem esta acima do chao nao precisa de ajuda: cai e pousa, que e
-    /// o comportamento certo e nao custa nada. Quem esta abaixo esta dentro da geometria, e dali
-    /// nao sai sozinho.
+    /// So age no caso que o cliente **nao** resolve: o personagem que atravessou o cenario e nao
+    /// tem fundo nenhum embaixo. Ver [`Self::QUEDA_PARA_FORA_DO_MUNDO`].
     ///
     /// **Limitacao conhecida:** `GeoMap::get_z` descarta contato de raio abaixo da superficie do
     /// terreno, entao nao sabe representar tunel nem caverna. Num mapa desses -- Silentera, por
@@ -367,7 +385,7 @@ impl PlayerService {
         }
 
         let chao = geo.get_z(mapa, loc.x(), loc.y(), Some(loc.z()));
-        (chao - loc.z() > Self::TOLERANCIA_ABAIXO_DO_CHAO)
+        (chao - loc.z() > Self::QUEDA_PARA_FORA_DO_MUNDO)
             .then(|| crate::engine::Coord::new(loc.x(), loc.y(), chao))
     }
 
@@ -526,7 +544,7 @@ impl PlayerService {
         let mapa_do_personagem = character.spawn_map_id();
         if let Some(no_chao) = Self::ancora_no_chao(geo, mapa_do_personagem, character.location()) {
             println!(
-                "INFO: [GeoEngine] personagem {} entrou no mapa {} em z={:.2}; o chao em ({:.2}, {:.2})                  esta em {:.2} -- ancorando",
+                "INFO: [GeoEngine] personagem {} entrou no mapa {} em z={:.2} -- queda para fora do                  mundo; o chao em ({:.2}, {:.2}) esta em {:.2}, resgatando",
                 character_id,
                 mapa_do_personagem,
                 character.location().z(),
@@ -733,27 +751,22 @@ mod test {
         );
     }
 
-    /// A parede invisivel de 26/08/2026.
+    /// Alguns metros de desencontro com o heightmap **nao** e problema para resolver aqui.
     ///
-    /// O Karate parou 3,17m abaixo da superficie numa encosta de Poeta e nao conseguia mais andar:
-    /// o terreno 4m a frente estava 12m acima dele. O servidor nao rejeitava nada -- zero
-    /// `MoveBack` -- e os pacotes dele diziam `MoveType(8) / Continue` sempre na mesma coordenada.
-    /// Ele estava dentro do morro.
+    /// O Karate parou em z=232.61 numa encosta de Poeta, onde a nossa geodata le 235.78. Eu li os
+    /// 3,17m como "enterrado" e mandei erguer; o cliente devolveu ele para baixo em dois pacotes,
+    /// porque 232.61 e o chao de verdade ali -- o ponto caiu na cauda do nosso heightmap.
     ///
-    /// A tolerancia simetrica de 5m que existia antes deixava passar. Este teste existe para nao
-    /// deixar ela voltar.
+    /// A distribuicao do erro sobre 57.029 NPCs mostra que nao da para separar: com limiar de 1m
+    /// sao 1967 falsos positivos, com 10m sao 1806. Ver [`PlayerService::QUEDA_PARA_FORA_DO_MUNDO`].
     #[test]
-    fn quem_entra_enterrado_numa_encosta_e_erguido() {
+    fn alguns_metros_abaixo_do_heightmap_nao_e_corrigido() {
         let Some(geo) = geo_de_verdade() else { return };
 
-        let dentro_do_morro = Coord::new(1219.8328, 1340.1224, 232.60533);
-        let corrigido = PlayerService::ancora_no_chao(&geo, 210_010_000, &dentro_do_morro)
-            .expect("3,17m abaixo do chao tem que ser corrigido");
-
+        let na_encosta = Coord::new(1219.8328, 1340.1224, 232.60533);
         assert!(
-            (corrigido.z() - 235.775).abs() < 0.5,
-            "tem que subir para a superficie (~235.78), veio {}",
-            corrigido.z()
+            PlayerService::ancora_no_chao(&geo, 210_010_000, &na_encosta).is_none(),
+            "3,17m de desencontro e ruido do heightmap, nao queda -- o cliente resolve sozinho"
         );
     }
 
