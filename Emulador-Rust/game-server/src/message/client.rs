@@ -181,7 +181,12 @@ define_messages!(
     (CHAT_MESSAGE_PUBLIC, ChatMessagePublic, 0x1B),
     (SHOW_DIALOG, ShowDialog, 0x34),
     (DIALOG_SELECT, DialogSelect, 0x36),
-    (DELETE_CHARACTER, DeleteCharacter, 0x05),
+    // 0x68, nao 0x05. Medido em 26/08/2026 em duas sessoes: o corpo do `0x0068` traz o `play_ok2`
+    // da sessao seguido do id do personagem, que e o layout do `CM_DELETE_CHARACTER`. Com 0x05 o
+    // que caia aqui era outro pacote, o `character_id` saia 0 e o servidor respondia com o `0x10`
+    // de erro -- que o cliente desenha como "You cannot delete a character that has any Goods
+    // Awaiting Collection".
+    (DELETE_CHARACTER, DeleteCharacter, 0x68),
     (WIND_PATH, WindPath, 0x46),
     (PATH_FLY, PathFly, 0x31),
     (BUY_SELL, BuySell, 0x33),
@@ -2736,6 +2741,36 @@ mod testes_de_opcode {
 
             assert_eq!(lido, opcode, "opcode desofuscado nao confere");
             assert!(e_o_esperado(&msg), "0x{opcode:02X} caiu no handler errado: {msg:?}");
+        }
+    }
+
+    /// O pedido de apagar personagem chega no `0x68`, com `play_ok2` e o id.
+    ///
+    /// Os dois corpos abaixo foram medidos em 26/08/2026, em sessoes diferentes da conta `durak`,
+    /// apertando apagar no personagem 3. O primeiro `u32` muda a cada sessao -- e o `play_ok2`,
+    /// que confere com o `L2AuthLogin` de cada uma -- e o segundo e sempre o id do personagem.
+    ///
+    /// Antes disso o `DELETE_CHARACTER` estava mapeado em `0x05`. O que caia la era outro pacote,
+    /// o `character_id` saia 0, e o servidor respondia com o `0x10` de erro -- que o cliente
+    /// desenha como "You cannot delete a character that has any Goods Awaiting Collection".
+    #[test]
+    fn o_pedido_de_apagar_traz_play_ok2_e_o_id_do_personagem() {
+        assert_eq!(DELETE_CHARACTER, 0x68, "o opcode medido no cliente");
+
+        for (corpo, play_ok2) in [
+            ([0x73u8, 0x42, 0xC5, 0xDC, 0x03, 0x00, 0x00, 0x00], 0xDCC5_4273u32),
+            ([0x40, 0xB1, 0x51, 0x69, 0x03, 0x00, 0x00, 0x00], 0x6951_B140),
+        ] {
+            assert_eq!(
+                u32::from_le_bytes(corpo[..4].try_into().unwrap()),
+                play_ok2,
+                "o primeiro u32 e o play_ok2 da sessao"
+            );
+            assert_eq!(
+                DeleteCharacter::deserialise(&corpo).character_id,
+                3,
+                "e o segundo e o id do personagem"
+            );
         }
     }
 

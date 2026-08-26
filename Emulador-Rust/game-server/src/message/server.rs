@@ -1217,7 +1217,7 @@ impl Serialise for CreateCharacter {
     }
 }
 
-/// Resposta ao pedido de deleção de personagem (cliente 0x05 / SM_DELETE_CHARACTER 0x00C9)
+/// Resposta ao pedido de deleção de personagem (cliente 0x68 / SM_DELETE_CHARACTER 0x00C9)
 #[derive(Debug, Clone)]
 pub struct DeleteCharacter {
     pub character_id: u32,
