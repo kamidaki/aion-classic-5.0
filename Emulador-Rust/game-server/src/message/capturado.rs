@@ -334,30 +334,54 @@ pub fn com_nome_de_personagem(payload: &[u8], offset: usize, nome: &str) -> Vec<
 /// 327 (contra 72/76/80/84 no registro), os 52 bytes de rosto em 331 (contra 88) e a altura em 383
 /// da 0.65, que e o valor documentado dela.
 ///
-/// Identidade fica no cabecalho: a redundancia `100000 + raca * 2 + genero` em 16, e a classe como
-/// **um byte** em 42. A redundancia seleciona o mesh do corpo e por isso fica sem escrever -- ver
-/// [`com_aparencia_de_personagem`]. Nas 12 amostras da captura a classe varia (7, 19, 4) e a redundancia nao,
-/// porque todos os jogadores eram da mesma raca e genero.
+/// Identidade fica no cabecalho, em cinco campos -- [`put_user::TEMPLATE_ID`],
+/// [`put_user::MODELO`], [`put_user::RACA`], [`put_user::CLASSE`] e [`put_user::GENERO`].
 ///
-/// Raca e genero ficam entre os offsets 36, 41, 43 e 44: sao os unicos que **nao variam** entre os
-/// 14 jogadores da captura, e todos eles eram da mesma raca e do mesmo genero. Uma captura so nao
-/// separa qual e qual, entao os dois saem por variavel de ambiente:
+/// Por muito tempo so a classe era escrita. A captura sozinha nao resolvia o resto: raca e genero
+/// eram candidatos entre os offsets 36, 41, 43 e 44 -- os unicos que **nao variam** entre os 14
+/// jogadores dela -- e nao variam justamente porque todos eram da mesma raca e do mesmo genero.
+/// Uma captura de uma faccao so nao separa qual byte e qual.
+///
+/// Quem separou foi o `SM_PLAYER_INFO.java` do 4.8 Retail, alinhado com os bytes:
 ///
 /// ```text
-/// AION_PUT_USER_RACA=41     AION_PUT_USER_GENERO=43
+/// writeD(pcd.getTemplateId())  // 0xA3 female asmodian, 0xA2 male asmodian,
+///                              // 0xA1 female elyos, 0xA0 male elyos
+/// writeD(...getModelId())      // "Regular state: player model id"
+/// writeC(enemy ? 0x00 : 0x26)
+/// writeC(raceId); writeC(classId); writeC(genderId);
 /// ```
 ///
-/// Aceitam lista separada por virgula. Sem elas, nada e escrito -- que era o comportamento antes
-/// de existirem.
+/// O `0x26` da captura esta no offset 40, e ancora os tres bytes seguintes: 41 raca, 42 classe,
+/// 43 genero. Os dois `writeD` antes dele sao os offsets 16 e 20, ambos `0x000186A3` = 100003 na
+/// captura -- asmodiana feminina, que e a Kimmie.
 pub mod put_user {
-    /// `100000 + raca * 2 + genero`, u32.
-    pub const REDUNDANCIA: usize = 16;
+    /// `templateId`, u32: `100000 + raca * 2 + genero`. E ele que escolhe o **corpo**.
+    ///
+    /// O nome saiu do `SM_PLAYER_INFO.java` do 4.8 Retail, que documenta o byte baixo:
+    /// `0xA3 female asmodian, 0xA2 male asmodian, 0xA1 female elyos, 0xA0 male elyos`. Na captura
+    /// vale `0x000186A3` = 100003 -- asmodiana feminina, que e a Kimmie.
+    pub const TEMPLATE_ID: usize = 16;
+    /// `modelId` do transform, u32. Em estado normal repete o [`TEMPLATE_ID`].
+    ///
+    /// Escrever um sem o outro e o que deixava o personagem sem cabeca: o corpo virava elyos e o
+    /// modelo continuava asmodiano.
+    pub const MODELO: usize = 20;
+    /// Raca, um byte. 0 elyos, 1 asmodiano.
+    pub const RACA: usize = 41;
     /// Classe, um byte.
     pub const CLASSE: usize = 42;
+    /// Genero, um byte. 0 masculino, 1 feminino.
+    pub const GENERO: usize = 43;
     /// Inicio do bloco de cores + rosto + altura, 72 bytes.
     pub const CORES: usize = 315;
     /// Tamanho desse bloco: da cor da pele ate o fim da altura.
     pub const CORES_LEN: usize = 72;
+
+    /// `templateId` a partir de raca e genero.
+    pub fn template_id(raca: u32, genero: u32) -> u32 {
+        100_000 + raca * 2 + genero
+    }
 }
 
 /// Escreve a aparencia escolhida pelo jogador por cima do [`PUT_USER`] capturado.
@@ -412,33 +436,28 @@ pub fn com_aparencia_de_personagem(payload: &[u8], bloco: &[u8]) -> Vec<u8> {
     let raca = u32_em(campo::RACA);
     let classe = u32_em(campo::CLASSE);
 
+    // Identidade: os cinco campos que decidem corpo, raca, classe e genero.
+    //
+    // Mapeados com o `SM_PLAYER_INFO.java` do 4.8 Retail ao lado dos bytes da captura:
+    //
+    // ```text
+    // 16..20  A3 86 01 00  templateId = 100003   -> corpo (0xA3 = asmodiana feminina)
+    // 20..24  A3 86 01 00  modelId    = 100003   -> repete o templateId em estado normal
+    // 40      26                                 -> writeC(0x26), marcador de "nao inimigo"
+    // 41      01           raca                  -> 1 asmodiano
+    // 42      0B           classe                -> 11
+    // 43      01           genero                -> 1 feminino
+    // ```
+    //
+    // Antes daqui so a classe era escrita. O `templateId` ficava atras de `AION_PUT_USER_COM_RED`
+    // e, ligado sozinho, deixava o personagem sem cabeca -- o corpo virava elyos e o `modelId` do
+    // offset 20 continuava asmodiano. Os cinco campos so fazem sentido juntos.
+    let template = put_user::template_id(raca, genero);
+    saida[put_user::TEMPLATE_ID..put_user::TEMPLATE_ID + 4].copy_from_slice(&template.to_le_bytes());
+    saida[put_user::MODELO..put_user::MODELO + 4].copy_from_slice(&template.to_le_bytes());
+    saida[put_user::RACA] = raca as u8;
     saida[put_user::CLASSE] = classe as u8;
-
-    // A redundancia NAO e escrita, e a bisseccao mostrou por que. Com ela ligada e um personagem
-    // elyos, o modelo no mundo entra sem cabeca; desligando so ela, com todo o resto igual, a
-    // cabeca volta. Ela seleciona o mesh do corpo, e o `PUT_USER` capturado e de uma personagem
-    // asmodiana: trocar so este campo pede um corpo elyos e o resto do pacote nao acompanha.
-    //
-    // Enquanto o pacote for um molde remendado, a raca no mundo e a da captura. Sai daqui quando o
-    // `S_PUT_USER` for construido campo a campo -- e ai este campo volta, junto com os outros.
-    //
-    // `AION_PUT_USER_COM_RED=1` religa, para quando alguem for atras do resto do mesh.
-    if std::env::var("AION_PUT_USER_COM_RED").is_ok() {
-        println!("INFO: AION_PUT_USER_COM_RED -- escrevendo a redundancia (modelo pode quebrar)");
-        saida[put_user::REDUNDANCIA..put_user::REDUNDANCIA + 4]
-            .copy_from_slice(&(100_000 + raca * 2 + genero).to_le_bytes());
-    }
-
-    for off in offsets_de("AION_PUT_USER_RACA") {
-        if off < saida.len() {
-            saida[off] = raca as u8;
-        }
-    }
-    for off in offsets_de("AION_PUT_USER_GENERO") {
-        if off < saida.len() {
-            saida[off] = genero as u8;
-        }
-    }
+    saida[put_user::GENERO] = genero as u8;
 
     // Cores, rosto e altura: um pedaco continuo, identico ao do registro.
     //
@@ -497,21 +516,6 @@ pub fn com_ficha_de_personagem(payload: &[u8], nivel: u16, classe: u32) -> Vec<u
     saida
 }
 
-/// Le uma lista de offsets de uma variavel de ambiente, ex. `"41"` ou `"41,44"`.
-fn offsets_de(variavel: &str) -> Vec<usize> {
-    let Ok(bruto) = std::env::var(variavel) else {
-        return Vec::new();
-    };
-    let lista: Vec<usize> = bruto
-        .split(',')
-        .filter_map(|t| t.trim().parse().ok())
-        .collect();
-    if !lista.is_empty() {
-        println!("INFO: {variavel}={lista:?}");
-    }
-    lista
-}
-
 /// Troca a chave de sessao da captura pela da sessao atual, onde quer que ela apareca.
 pub fn com_chave_de_sessao(payload: &[u8], chave: u32) -> Vec<u8> {
     let de = CHAVE_CAPTURADA.to_le_bytes();
@@ -554,6 +558,97 @@ mod testes_de_posicao {
         for off in PUT_USER_POSICAO {
             let z = f32::from_le_bytes(nosso[off + 8..off + 12].try_into().unwrap());
             assert_eq!(z, 568.1, "offset {off} continuou com a altura da captura");
+        }
+    }
+}
+
+#[cfg(test)]
+mod testes_de_identidade {
+    use super::*;
+    use crate::message::molde::campo;
+
+    /// Monta um bloco de aparencia com raca, genero e classe dados, e as cores copiadas de volta
+    /// do proprio `PUT_USER` -- assim o unico que muda entre um caso e outro e a identidade.
+    fn bloco_com(raca: u32, genero: u32, classe: u32) -> Vec<u8> {
+        let mut bloco = vec![0u8; campo::APARENCIA_LEN];
+        let no_bloco = |off: usize| off - campo::NOME;
+        for (off, valor) in [
+            (campo::GENERO, genero),
+            (campo::RACA, raca),
+            (campo::CLASSE, classe),
+        ] {
+            let i = no_bloco(off);
+            bloco[i..i + 4].copy_from_slice(&valor.to_le_bytes());
+        }
+        let de = no_bloco(campo::COR_PELE);
+        bloco[de..de + put_user::CORES_LEN]
+            .copy_from_slice(&PUT_USER[put_user::CORES..put_user::CORES + put_user::CORES_LEN]);
+        bloco
+    }
+
+    /// A prova de que os cinco offsets estao certos: devolver a Kimmie os dados dela mesma tem que
+    /// reproduzir o pacote capturado byte a byte.
+    ///
+    /// Qualquer offset errado escreve num lugar que a captura tem outro valor, e a igualdade cai.
+    /// Nao ha como este teste passar por acidente.
+    #[test]
+    fn os_dados_da_propria_kimmie_reproduzem_o_pacote_capturado() {
+        // Raca 1 (asmodiano), genero 1 (feminino), classe 11 -- lidos da captura.
+        let bloco = bloco_com(1, 1, 11);
+        let saida = com_aparencia_de_personagem(&PUT_USER, &bloco);
+
+        assert_eq!(
+            saida,
+            PUT_USER.to_vec(),
+            "com os dados da captura o pacote tem que sair identico ao capturado"
+        );
+    }
+
+    /// Um elyos masculino troca os cinco campos de identidade -- e **so** eles.
+    ///
+    /// O `templateId` cai de 100003 para 100000, que e o `0xA0` documentado no
+    /// `SM_PLAYER_INFO.java` como "male elyos". Antes desta correcao so a classe mudava, e o
+    /// personagem entrava no mundo com o corpo da asmodiana da captura.
+    #[test]
+    fn elyos_masculino_troca_corpo_raca_e_genero() {
+        let saida = com_aparencia_de_personagem(&PUT_USER, &bloco_com(0, 0, 2));
+
+        let u32_em = |o: usize| u32::from_le_bytes(saida[o..o + 4].try_into().unwrap());
+        assert_eq!(u32_em(put_user::TEMPLATE_ID), 100_000, "corpo de elyos masculino");
+        assert_eq!(u32_em(put_user::MODELO), 100_000, "o modelo acompanha o corpo");
+        assert_eq!(saida[put_user::RACA], 0, "raca elyos");
+        assert_eq!(saida[put_user::CLASSE], 2, "classe");
+        assert_eq!(saida[put_user::GENERO], 0, "genero masculino");
+
+        // O 0x26 do `writeC(enemy ? 0x00 : 0x26)` ancora esses tres bytes: se ele se mexeu, os
+        // offsets escorregaram.
+        assert_eq!(saida[40], 0x26, "o marcador de nao-inimigo nao pode ter sido tocado");
+
+        // Nada fora dos cinco campos pode ter mudado.
+        let mut esperado = PUT_USER.to_vec();
+        esperado[put_user::TEMPLATE_ID..put_user::TEMPLATE_ID + 4]
+            .copy_from_slice(&100_000u32.to_le_bytes());
+        esperado[put_user::MODELO..put_user::MODELO + 4].copy_from_slice(&100_000u32.to_le_bytes());
+        esperado[put_user::RACA] = 0;
+        esperado[put_user::CLASSE] = 2;
+        esperado[put_user::GENERO] = 0;
+        assert_eq!(saida, esperado, "so os cinco campos de identidade podem ter mudado");
+    }
+
+    /// O `templateId` segue a tabela do `SM_PLAYER_INFO.java`, byte baixo incluso.
+    #[test]
+    fn template_id_seque_a_tabela_do_java() {
+        assert_eq!(put_user::template_id(0, 0), 100_000, "male elyos = 0xA0");
+        assert_eq!(put_user::template_id(0, 1), 100_001, "female elyos = 0xA1");
+        assert_eq!(put_user::template_id(1, 0), 100_002, "male asmodian = 0xA2");
+        assert_eq!(put_user::template_id(1, 1), 100_003, "female asmodian = 0xA3");
+
+        for (raca, genero, byte_baixo) in [(0, 0, 0xA0u8), (0, 1, 0xA1), (1, 0, 0xA2), (1, 1, 0xA3)] {
+            assert_eq!(
+                put_user::template_id(raca, genero).to_le_bytes()[0],
+                byte_baixo,
+                "o byte baixo documentado no Java"
+            );
         }
     }
 }
