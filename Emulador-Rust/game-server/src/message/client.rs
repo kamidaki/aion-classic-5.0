@@ -1370,13 +1370,23 @@ impl DeleteCharacter {
 }
 
 impl Deserialise for DeleteCharacter {
+    /// Layout do `CM_DELETE_CHARACTER.java` (2.8 Classic): `readD()` playOk2, `readD()` chaOid.
+    ///
+    /// O corpo cru vai para o log porque em 26/08/2026 uma tentativa de apagar personagem chegou
+    /// com `character_id = 0`, e sem os bytes nao da para saber se o cliente mandou zero ou se o
+    /// corpo veio curto. Apagar personagem e raro, entao a linha nao faz volume.
     fn deserialise(buf: &[u8]) -> Self
     where
         Self: Sized,
     {
         let mut len = 0;
-        let _play_ok = if buf.len() >= 4 { consume_le_bytes!(len, buf, u32) } else { 0 };
+        let play_ok = if buf.len() >= 4 { consume_le_bytes!(len, buf, u32) } else { 0 };
         let character_id = if buf.len() >= 8 { consume_le_bytes!(len, buf, u32) } else { 0 };
+        println!(
+            "INFO: [DeleteCharacter] corpo de {} bytes: {:02X?} -> play_ok=0x{play_ok:08X} character_id={character_id}",
+            buf.len(),
+            buf
+        );
         Self { character_id }
     }
 }
