@@ -15,13 +15,31 @@ impl GeoMap {
     pub fn new(world_id: u32) -> Self {
         Self {
             world_id,
-            map_size: 3072.0, // Default Aion map size
+            map_size: 3072.0, // reserva: `set_terrain` corrige pelo tamanho do heightmap
             terrain: None,
             root_node: Node::new(format!("World_{}", world_id)),
         }
     }
 
+    /// O tamanho do mapa sai do proprio heightmap: **dois metros por amostra**.
+    ///
+    /// Ficava fixo em 3072, que e o valor certo para os mapas de 1536 amostras -- a maioria -- e
+    /// errado para todos os outros. Medido contra as posicoes de NPC dos XMLs de spawn do Java EMU:
+    ///
+    /// ```text
+    /// 210070000 Telos Elyos      1024 amostras   ms=2048: 88,5%   ms=3072:  1,2%
+    /// 220080000 Telos Asmodians  1024 amostras   ms=2048: 88,5%   ms=3072:  1,2%
+    /// 600010000 Silentera        768 amostras    ms=1536: 41,2%   ms=3072:  1,4%
+    /// ```
+    ///
+    /// (Silentera fica baixo porque e mapa de caverna, com boa parte dos NPCs em tunel e nao no
+    /// terreno -- mas 41% contra 1,4% e a mesma resposta.)
+    ///
+    /// Para os mapas de 1536 nada muda: 1536 * 2 = 3072.
     pub fn set_terrain(&mut self, terrain: Terrain) {
+        if terrain.width_samples > 1 {
+            self.map_size = (terrain.width_samples * 2) as f32;
+        }
         self.terrain = Some(terrain);
     }
 

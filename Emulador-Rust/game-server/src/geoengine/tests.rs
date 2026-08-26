@@ -231,3 +231,61 @@ fn heightmap_bate_com_o_chao_dos_npcs_de_poeta() {
          o heightmap provavelmente voltou a ser lido com x e y trocados"
     );
 }
+
+/// O `map_size` de um mapa que nao tem 1536 amostras.
+///
+/// Guarda de regressao do valor fixo em 3072: Telos tem 1024 amostras e mede 2048. Com 3072 o
+/// heightmap e amostrado a dois tercos da posicao certa e praticamente nenhum NPC bate com o chao
+/// (1,2% contra 88,5%).
+///
+/// Pula sozinho se os dados de referencia nao estiverem no lugar.
+#[test]
+fn map_size_sai_do_heightmap_e_nao_de_uma_constante() {
+    use std::path::PathBuf;
+
+    let geo_dir = PathBuf::from("../../Produto Final/data/Geo");
+    let xml_path = PathBuf::from(
+        "../../Docs-Refs/JAVA EMU - 2.4 CLASSIC EU/AL-Game/data/static_data/spawns/Npcs/210070000_Telos_Elyos.xml",
+    );
+    if !geo_dir.join("210070000.geo").exists() || !xml_path.exists() {
+        eprintln!("pulando: dados de referencia ausentes");
+        return;
+    }
+
+    let eng = crate::geoengine::GeoEngine::new(crate::geoengine::GeoConfig {
+        geo_dir,
+        ..Default::default()
+    });
+    eng.initialize().unwrap();
+    let mapa = eng.load_world(210_070_000).unwrap();
+    let terreno = mapa.terrain.as_ref().expect("Telos tem heightmap");
+
+    assert_eq!(terreno.width_samples, 1024, "Telos tem 1024 amostras");
+    assert_eq!(mapa.map_size, 2048.0, "1024 amostras a 2m cada = 2048");
+
+    let xml = std::fs::read_to_string(&xml_path).unwrap();
+    let mut pontos = Vec::new();
+    for linha in xml.lines() {
+        let Some(i) = linha.find("<spot x=\"") else { continue };
+        let campos: Vec<f32> = linha[i + 9..]
+            .split('"')
+            .filter_map(|s| s.trim_end_matches(" y=").trim_end_matches(" z=").trim_end_matches(" h=").parse().ok())
+            .collect();
+        if campos.len() >= 3 {
+            pontos.push((campos[0], campos[1], campos[2]));
+        }
+    }
+    assert!(pontos.len() > 700, "o XML de Telos tem ~742 spots, li {}", pontos.len());
+
+    let dentro = pontos
+        .iter()
+        .filter(|(x, y, z)| terreno.get_height(*x, *y, mapa.map_size).map_or(false, |h| (z - h).abs() < 1.0))
+        .count();
+
+    // Com map_size 2048: 88,5%. Com 3072: 1,2%.
+    assert!(
+        dentro * 10 >= pontos.len() * 8,
+        "so {dentro} de {} NPCs de Telos caem dentro de 1m -- o map_size provavelmente voltou a ser fixo",
+        pontos.len()
+    );
+}
