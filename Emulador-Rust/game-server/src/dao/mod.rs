@@ -397,6 +397,31 @@ mod tests {
     }
 
     #[test]
+    fn personagem_com_aparencia_null_nao_derruba_a_lista() {
+        // Regressao de 25/08/2026: personagens criados antes da coluna `aparencia` existir ficam
+        // com NULL nela (o ALTER TABLE nao preenche linhas antigas). Lendo isso como `Vec<u8>` a
+        // query inteira falhava e a conta aparecia sem personagem nenhum na tela de selecao --
+        // inclusive os personagens que tinham aparencia gravada.
+        let db = in_memory();
+        db.migrate().unwrap();
+
+        let aparencia = vec![7u8; 140];
+        db.criar_personagem("conta_null", "ComAparencia", &aparencia).unwrap();
+        let sem = db.criar_personagem("conta_null", "SemAparencia", &aparencia).unwrap();
+
+        db.conn
+            .execute("UPDATE characters SET aparencia = NULL WHERE id = ?1", [sem.id as i64])
+            .unwrap();
+
+        let lista = db.personagens_da_conta("conta_null").unwrap();
+        let nomes: Vec<&str> = lista.iter().map(|p| p.name.as_str()).collect();
+
+        assert_eq!(nomes, ["ComAparencia", "SemAparencia"], "os dois tem que voltar");
+        assert_eq!(lista[0].aparencia, aparencia, "quem tem aparencia mantem os bytes");
+        assert!(lista[1].aparencia.is_empty(), "NULL vira vazio, nao erro");
+    }
+
+    #[test]
     fn skills_salvar_e_carregar_e_migrate() {
         let db = in_memory();
         db.migrate().unwrap();

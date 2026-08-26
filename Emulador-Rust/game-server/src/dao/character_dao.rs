@@ -15,6 +15,10 @@ pub struct PersistedCharacter {
     pub heading: u8,
     pub hp: u32,
     pub mp: u32,
+    /// Bloco de aparencia de 140 bytes. Fica vazio para personagens criados antes da coluna
+    /// existir: o `ALTER TABLE ... ADD COLUMN aparencia BLOB` deixa `NULL` nas linhas antigas, e
+    /// ler isso como `Vec<u8>` derrubava a lista inteira (25/08/2026, conta durak, personagem
+    /// "Azphelumbra"). Quem monta o pacote ja trata vazio como "sem aparencia".
     pub aparencia: Vec<u8>,
     pub kit_inicial: u8,
 }
@@ -172,7 +176,7 @@ impl CharacterDao {
                 heading: row.get::<_, i64>(9)? as u8,
                 hp: row.get::<_, i64>(10)? as u32,
                 mp: row.get::<_, i64>(11)? as u32,
-                aparencia: row.get(12)?,
+                aparencia: row.get::<_, Option<Vec<u8>>>(12)?.unwrap_or_default(),
                 kit_inicial: row.get::<_, i64>(13)? as u8,
             })
         })?;
@@ -240,7 +244,7 @@ impl CharacterDao {
                     heading: row.get::<_, i64>(9)? as u8,
                     hp: row.get::<_, i64>(10)? as u32,
                     mp: row.get::<_, i64>(11)? as u32,
-                    aparencia: row.get(12)?,
+                    aparencia: row.get::<_, Option<Vec<u8>>>(12)?.unwrap_or_default(),
                     kit_inicial: row.get::<_, i64>(13)? as u8,
                 })
             })
@@ -271,7 +275,7 @@ impl CharacterDao {
                     heading: row.get::<_, i64>(9)? as u8,
                     hp: row.get::<_, i64>(10)? as u32,
                     mp: row.get::<_, i64>(11)? as u32,
-                    aparencia: row.get(12)?,
+                    aparencia: row.get::<_, Option<Vec<u8>>>(12)?.unwrap_or_default(),
                     kit_inicial: row.get::<_, i64>(13)? as u8,
                 })
             })
