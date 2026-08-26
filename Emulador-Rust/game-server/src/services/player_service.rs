@@ -79,6 +79,7 @@ impl PlayerService {
                 nivel: p.level,
                 aparencia: if p.aparencia.is_empty() { None } else { Some(p.aparencia.clone()) },
                 posicao: (p.x, p.y, p.z),
+                mapa: p.map_id,
             });
         }
 
@@ -162,6 +163,7 @@ impl PlayerService {
                     nivel: criado.level,
                     aparencia: if criado.aparencia.is_empty() { None } else { Some(criado.aparencia) },
                     posicao: (criado.x, criado.y, criado.z),
+                    mapa: criado.map_id,
                 },
             ))]
             .map(ServerUpdate::new),
@@ -454,10 +456,14 @@ impl PlayerService {
             }
         }
 
-        // Ponto de entrada dinâmico lido do XML
+        // Ponto de entrada dinâmico lido do XML. O mapa, porem, vem do personagem: o do XML so
+        // vale para quem ainda nao tem mapa gravado. Mandar o mapa inicial da raca junto com a
+        // posicao gravada joga quem deslogou noutro mapa direto no vazio -- ver
+        // `lista_personagens::escreve_ponto_de_entrada`.
         let spawn_loc = data_manager.player_initial_data.get_spawn_location(raca_na_bolsa as u8);
+        let mapa_do_personagem = character.spawn_map_id();
         let ponto = crate::mundo::PontoDeEntrada {
-            mapa: spawn_loc.map_id,
+            mapa: if mapa_do_personagem != 0 { mapa_do_personagem } else { spawn_loc.map_id },
             x: spawn_loc.x,
             y: spawn_loc.y,
             z: spawn_loc.z,

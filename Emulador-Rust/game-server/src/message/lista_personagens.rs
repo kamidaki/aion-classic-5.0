@@ -82,6 +82,9 @@ pub struct Personagem {
     /// que o cliente pre-carrega o cenario, e se os dois discordarem ele desenha o personagem num
     /// lugar e o servidor o coloca noutro -- os NPCs aparecem longe, ou nao aparecem.
     pub posicao: (f32, f32, f32),
+    /// Em que mapa a `posicao` foi medida. Zero quando o personagem ainda nao tem mapa gravado --
+    /// so ai vale o mapa da raca.
+    pub mapa: u32,
 }
 
 #[derive(Debug, Clone)]
@@ -183,7 +186,7 @@ pub fn escreve_registro(registro: &mut [u8], personagem: &Personagem) {
         })
         .map(|v| u32::from_le_bytes(v.try_into().unwrap()))
         .unwrap_or(1); // 1 = Asmodiano (padrao, conforme molde capturado)
-    escreve_ponto_de_entrada(registro, personagem.posicao, raca);
+    escreve_ponto_de_entrada(registro, personagem.posicao, raca, personagem.mapa);
 }
 
 /// Quanto do registro o `S_CREATE_CHARACTER` leva.
@@ -206,13 +209,27 @@ pub const REGISTRO_CRIACAO_LEN: usize = 744;
 /// cenario pre-carregado no ponto de entrada e o corpo noutro ponto -- e os NPCs, que o servidor
 /// manda em volta da posicao de verdade, apareciam a mais de cem metros.
 ///
-/// O mapa vem da **raca**, nao de uma constante: elyos e asmodiano nascem em capitais diferentes,
-/// e o banco ainda nao guarda mapa. Ver [`crate::mundo::ponto_de_entrada`].
-fn escreve_ponto_de_entrada(registro: &mut [u8], (x, y, z): (f32, f32, f32), raca: u32) {
+/// O mapa vem do **personagem**, com o da raca so como reserva.
+///
+/// Mandar o mapa da raca junto com a posicao gravada joga o personagem no vazio sempre que os dois
+/// discordam: a posicao e valida no mapa onde ele deslogou, e no mapa inicial da raca ela cai em
+/// qualquer lugar. Medido em 25/08/2026 -- o Azphelumbra, gravado em Pandaemonium (120010000) na
+/// posicao 1679/1399/269, entrou em Ishalgen (220010000) com essas mesmas coordenadas e comecou a
+/// cair; o servidor gravou z = -42990.
+///
+/// Zero em `mapa` significa personagem sem mapa gravado, e ai o da raca e o certo.
+/// Ver [`crate::mundo::ponto_de_entrada`].
+fn escreve_ponto_de_entrada(
+    registro: &mut [u8],
+    (x, y, z): (f32, f32, f32),
+    raca: u32,
+    mapa: u32,
+) {
     use crate::mundo;
 
     let ponto = mundo::ponto_de_entrada(raca);
-    registro[campo::MAPA..campo::MAPA + 4].copy_from_slice(&ponto.mapa.to_le_bytes());
+    let mapa = if mapa != 0 { mapa } else { ponto.mapa };
+    registro[campo::MAPA..campo::MAPA + 4].copy_from_slice(&mapa.to_le_bytes());
 
     let posicao = campo::POSICAO;
     registro[posicao..posicao + 4].copy_from_slice(&x.to_le_bytes());
@@ -279,6 +296,7 @@ mod test {
             nivel,
             aparencia: None,
             posicao: (crate::mundo::X, crate::mundo::Y, crate::mundo::Z),
+            mapa: 0,
         }
     }
 
@@ -311,6 +329,7 @@ mod test {
                 nivel: 1,
                 aparencia: Some(bloco),
                 posicao: (crate::mundo::X, crate::mundo::Y, crate::mundo::Z),
+                mapa: 0,
             },
         );
 
@@ -435,9 +454,56 @@ mod test {
             &mut esperado[CABECALHO_LEN..CABECALHO_LEN + REGISTRO_LEN],
             (crate::mundo::X, crate::mundo::Y, crate::mundo::Z),
             1,
+            0,
         );
 
         assert_eq!(&buf[..escritos], &esperado[..]);
+    }
+
+    /// A lista declara o mapa **onde o personagem esta**, nao o inicial da raca.
+    ///
+    /// Regressao de 25/08/2026: com o mapa vindo da raca, quem deslogou noutro mapa voltava com a
+    /// posicao gravada aplicada ao mapa inicial -- o Azphelumbra, gravado em Pandaemonium
+    /// (120010000) em 1679/1399/269, entrou em Ishalgen (220010000) nessas coordenadas e caiu ate
+    /// o servidor gravar z = -42990.
+    #[test]
+    fn a_lista_declara_o_mapa_do_personagem_e_nao_o_da_raca() {
+        use crate::mundo;
+
+        // Personagem asmodiano (raca 1) gravado numa capital que nao e a inicial da raca dele.
+        let mut aparencia = vec![0u8; campo::APARENCIA_LEN];
+        let raca_asmo: u32 = 1;
+        aparencia[campo::RACA - campo::NOME..campo::RACA - campo::NOME + 4]
+            .copy_from_slice(&raca_asmo.to_le_bytes());
+
+        let mut p = personagem(1, "Azphelumbra", 14);
+        p.aparencia = Some(aparencia.clone());
+        p.mapa = 120_010_000;
+
+        let mut registro = [0u8; REGISTRO_LEN];
+        escreve_registro(&mut registro, &p);
+        let mapa_declarado =
+            u32::from_le_bytes(registro[campo::MAPA..campo::MAPA + 4].try_into().unwrap());
+
+        assert_eq!(mapa_declarado, 120_010_000, "tem que sair o mapa gravado");
+        assert_ne!(
+            mapa_declarado,
+            mundo::ponto_de_entrada(raca_asmo).mapa,
+            "o mapa inicial da raca nao pode ganhar de um mapa gravado"
+        );
+
+        // Sem mapa gravado -- personagem novo -- ai sim vale o da raca.
+        let mut sem_mapa = personagem(2, "Novato", 1);
+        sem_mapa.aparencia = Some(aparencia);
+        sem_mapa.mapa = 0;
+
+        let mut registro2 = [0u8; REGISTRO_LEN];
+        escreve_registro(&mut registro2, &sem_mapa);
+        assert_eq!(
+            u32::from_le_bytes(registro2[campo::MAPA..campo::MAPA + 4].try_into().unwrap()),
+            mundo::ponto_de_entrada(raca_asmo).mapa,
+            "sem mapa gravado, o da raca e o certo"
+        );
     }
 
     /// O mapa que a lista declara e o que o cliente pre-carrega. Se ele discordar do que o
