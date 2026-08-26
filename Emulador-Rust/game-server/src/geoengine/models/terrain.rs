@@ -33,7 +33,9 @@ impl Terrain {
         if self.width_samples == 0 {
             return false;
         }
-        let index = (grid_y * self.width_samples + grid_x) as u32;
+        // Mesma ordem do heightmap (ver `get_height`). NAO foi medido em separado: os buracos
+        // sao poucos (48 em Poeta) e nenhuma das posicoes de referencia cai em cima de um.
+        let index = (grid_x * self.width_samples + grid_y) as u32;
         self.cutouts.contains(&index)
     }
 
@@ -68,10 +70,16 @@ impl Terrain {
         let frac_x = norm_x - (x0 as f32);
         let frac_y = norm_y - (y0 as f32);
 
-        let idx00 = y0 * self.width_samples + x0;
-        let idx10 = y0 * self.width_samples + x1;
-        let idx01 = y1 * self.width_samples + x0;
-        let idx11 = y1 * self.width_samples + x1;
+        // O array do `.geo` e indexado por **x primeiro**: `data[x * lado + y]`.
+        //
+        // Medido contra as 992 posicoes de NPC do `210010000_Poeta.xml` (spawn oficial do Java
+        // EMU, NPC parado no chao). Com `y * lado + x` a mediana do erro de altura e 24,5m e so
+        // 18 dos 992 caem dentro de 1m; com `x * lado + y` a mediana e 0,10m e 912 dos 992 caem
+        // dentro de 1m. Os ~80 restantes sao NPC em plataforma, ponte ou interior.
+        let idx00 = x0 * self.width_samples + y0;
+        let idx10 = x1 * self.width_samples + y0;
+        let idx01 = x0 * self.width_samples + y1;
+        let idx11 = x1 * self.width_samples + y1;
 
         if idx11 >= self.data.len() {
             return None;

@@ -165,3 +165,69 @@ mod tests {
         }
     }
 }
+
+/// O heightmap do `.geo` bate com o chao onde o jogo poe os NPCs.
+///
+/// Guarda de regressao da inversao de eixos do heightmap: o array e `data[x * lado + y]`, e por
+/// muito tempo foi lido como `data[y * lado + x]`. Nada quebrava de forma visivel no servidor --
+/// `get_z` devolvia um numero plausivel -- e o efeito so aparecia no cliente, com o personagem
+/// caindo pelo cenario ou nascendo dentro dele.
+///
+/// A referencia sao as 992 posicoes de NPC do `210010000_Poeta.xml` (spawn oficial do Java EMU).
+/// NPC de mundo aberto fica parado no chao, entao a altura dele **e** a altura do terreno. Os
+/// outliers aceitos sao os que ficam em plataforma, ponte ou interior.
+///
+/// Pula sozinho se os dados nao estiverem no lugar -- eles nao sao versionados junto do codigo.
+#[test]
+fn heightmap_bate_com_o_chao_dos_npcs_de_poeta() {
+    use std::path::PathBuf;
+
+    let geo_dir = PathBuf::from("../../Produto Final/data/Geo");
+    let xml_path = PathBuf::from(
+        "../../Docs-Refs/JAVA EMU - 2.4 CLASSIC EU/AL-Game/data/static_data/spawns/Npcs/210010000_Poeta.xml",
+    );
+    if !geo_dir.join("210010000.geo").exists() || !xml_path.exists() {
+        eprintln!("pulando: dados de referencia ausentes ({}, {})", geo_dir.display(), xml_path.display());
+        return;
+    }
+
+    let eng = crate::geoengine::GeoEngine::new(crate::geoengine::GeoConfig {
+        geo_dir,
+        ..Default::default()
+    });
+    eng.initialize().unwrap();
+    let mapa = eng.load_world(210_010_000).unwrap();
+    let terreno = mapa.terrain.as_ref().expect("Poeta tem terreno");
+
+    let xml = std::fs::read_to_string(&xml_path).unwrap();
+    let mut pontos = Vec::new();
+    for linha in xml.lines() {
+        let Some(i) = linha.find("<spot x=\"") else { continue };
+        let campos: Vec<f32> = linha[i + 9..]
+            .split('"')
+            .filter_map(|s| s.trim_end_matches(" y=").trim_end_matches(" z=").trim_end_matches(" h=").parse().ok())
+            .collect();
+        if campos.len() >= 3 {
+            pontos.push((campos[0], campos[1], campos[2]));
+        }
+    }
+    assert!(pontos.len() > 900, "o XML de Poeta tem ~992 spots, li {}", pontos.len());
+
+    let mut dentro_de_1m = 0;
+    let mut medidos = 0;
+    for (x, y, z) in &pontos {
+        if let Some(h) = terreno.get_height(*x, *y, mapa.map_size) {
+            medidos += 1;
+            if (z - h).abs() < 1.0 {
+                dentro_de_1m += 1;
+            }
+        }
+    }
+
+    // Com a indexacao certa: 912 de 992. Com os eixos trocados: 18.
+    assert!(
+        dentro_de_1m * 10 >= medidos * 8,
+        "so {dentro_de_1m} de {medidos} NPCs caem dentro de 1m do terreno -- \
+         o heightmap provavelmente voltou a ser lido com x e y trocados"
+    );
+}
