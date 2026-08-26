@@ -315,16 +315,31 @@ impl PlayerService {
     }
 
     /// Processa o pacote `C_CUR_STATUS` e envia status, skills, mundo e inventário
-    /// Distancia a partir da qual vale mexer no z de quem entra no mundo.
+    /// Quanto o personagem pode estar **abaixo** do chao antes de valer a pena erguer.
     ///
-    /// Parar numa ladeira ja da alguns metros de desencontro entre o pe do personagem e a amostra
-    /// do heightmap; corrigir isso empurraria o personagem um pouco a cada login.
-    const TOLERANCIA_DE_CHAO: f32 = 5.0;
+    /// A folga existe porque o heightmap e uma grade de 2m com interpolacao bilinear: em ladeira
+    /// forte o valor interpolado erra na casa do metro, e corrigir isso empurraria o personagem um
+    /// pouco a cada login.
+    ///
+    /// Um metro e pouco de proposito. Abaixo do chao o personagem esta **dentro** do mundo, e numa
+    /// encosta isso e uma parede invisivel: medido em 26/08/2026, o Karate parou 3,17m abaixo da
+    /// superficie em Poeta (z=232.61, chao=235.77) e nao conseguia mais andar -- o terreno 4m a
+    /// frente estava 12m acima dele. A tolerancia simetrica de 5m que existia antes deixava esse
+    /// caso passar batido.
+    const TOLERANCIA_ABAIXO_DO_CHAO: f32 = 1.0;
 
-    /// Onde o personagem deveria estar, se o z gravado nao bater com o chao.
+    /// Onde o personagem deveria estar, se o z gravado o deixar enterrado.
     ///
-    /// Devolve `None` quando nao ha o que corrigir -- e esse e o caso normal. Corrige so quando a
-    /// diferenca passa de [`Self::TOLERANCIA_DE_CHAO`].
+    /// Devolve `None` quando nao ha o que corrigir -- e esse e o caso normal.
+    ///
+    /// So corrige para **cima**. Quem esta acima do chao nao precisa de ajuda: cai e pousa, que e
+    /// o comportamento certo e nao custa nada. Quem esta abaixo esta dentro da geometria, e dali
+    /// nao sai sozinho.
+    ///
+    /// **Limitacao conhecida:** `GeoMap::get_z` descarta contato de raio abaixo da superficie do
+    /// terreno, entao nao sabe representar tunel nem caverna. Num mapa desses -- Silentera, por
+    /// exemplo -- quem logar dentro de um tunel seria erguido para a superficie. Nenhum mapa em uso
+    /// hoje tem esse caso, e a linha de log deixa visivel se acontecer.
     ///
     /// Ate 26/08/2026 a GeoEngine era construida, carregava os 20.511 modelos de `meshs.geo` e
     /// nunca era consultada: nenhum `.geo` de mapa chegava a ser aberto, e o servidor aceitava
@@ -352,7 +367,7 @@ impl PlayerService {
         }
 
         let chao = geo.get_z(mapa, loc.x(), loc.y(), Some(loc.z()));
-        ((loc.z() - chao).abs() > Self::TOLERANCIA_DE_CHAO)
+        (chao - loc.z() > Self::TOLERANCIA_ABAIXO_DO_CHAO)
             .then(|| crate::engine::Coord::new(loc.x(), loc.y(), chao))
     }
 
@@ -710,10 +725,48 @@ mod test {
     fn quem_entra_de_pe_nao_e_movido() {
         let Some(geo) = geo_de_verdade() else { return };
 
-        let de_pe = Coord::new(1219.8331, 1340.1206, 232.6073);
+        // Spawn oficial de Poeta do `player_initial_data.xml`: o chao ali esta a 2cm do z do XML.
+        let de_pe = Coord::new(1207.7640, 1044.5725, 140.14894);
         assert!(
             PlayerService::ancora_no_chao(&geo, 210_010_000, &de_pe).is_none(),
             "posicao valida nao pode ser corrigida"
+        );
+    }
+
+    /// A parede invisivel de 26/08/2026.
+    ///
+    /// O Karate parou 3,17m abaixo da superficie numa encosta de Poeta e nao conseguia mais andar:
+    /// o terreno 4m a frente estava 12m acima dele. O servidor nao rejeitava nada -- zero
+    /// `MoveBack` -- e os pacotes dele diziam `MoveType(8) / Continue` sempre na mesma coordenada.
+    /// Ele estava dentro do morro.
+    ///
+    /// A tolerancia simetrica de 5m que existia antes deixava passar. Este teste existe para nao
+    /// deixar ela voltar.
+    #[test]
+    fn quem_entra_enterrado_numa_encosta_e_erguido() {
+        let Some(geo) = geo_de_verdade() else { return };
+
+        let dentro_do_morro = Coord::new(1219.8328, 1340.1224, 232.60533);
+        let corrigido = PlayerService::ancora_no_chao(&geo, 210_010_000, &dentro_do_morro)
+            .expect("3,17m abaixo do chao tem que ser corrigido");
+
+        assert!(
+            (corrigido.z() - 235.775).abs() < 0.5,
+            "tem que subir para a superficie (~235.78), veio {}",
+            corrigido.z()
+        );
+    }
+
+    /// Acima do chao ninguem precisa de ajuda: a gravidade do cliente resolve, e mexer nisso
+    /// teleportaria para baixo quem estivesse voando ou numa plataforma.
+    #[test]
+    fn quem_entra_acima_do_chao_nao_e_puxado_para_baixo() {
+        let Some(geo) = geo_de_verdade() else { return };
+
+        let no_ar = Coord::new(1207.7640, 1044.5725, 140.14894 + 60.0);
+        assert!(
+            PlayerService::ancora_no_chao(&geo, 210_010_000, &no_ar).is_none(),
+            "quem esta no ar cai sozinho; o servidor nao puxa"
         );
     }
 
