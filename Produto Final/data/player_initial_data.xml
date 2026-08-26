@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player_initial_data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="player_initial_data.xsd">
+	<!-- Ishalgen - Poeta Spawn Locations (Oficiais Classic 2.8 / 4.5) -->
+	<asmodian_spawn_location map_id="220010000" x="582.3742" y="2790.7642" z="299.3282" heading="66"/>
+	<elyos_spawn_location map_id="210010000" x="1207.7640" y="1044.5725" z="140.14894" heading="59"/>
+	
+	<!-- Telos Spawn Locations -->
+	<asmodian_telos_location map_id="220080000" x="1400.3100" y="220.5531" z="228.3999" heading="116"/>
+	<elyos_telos_location map_id="210070000" x="1400.3100" y="220.5531" z="228.3999" heading="116"/>
+
+	<!-- ================= ASSASSIN (4) ================= -->
+	<player_data class="ASSASSIN">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100201355" count="1"/>
+			<item id="100001520" count="1"/>
+			<item id="110301463" count="1"/>
+			<item id="113301414" count="1"/>
+			<item id="112301341" count="1"/>
+			<item id="111301393" count="1"/>
+			<item id="114301453" count="1"/>
+			<item id="125003447" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= KNIGHT / TEMPLAR (2)  ================= -->
+	<player_data class="KNIGHT">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100001519" count="1"/>
+			<item id="115001470" count="1"/>
+			<item id="110601374" count="1"/>
+			<item id="113601332" count="1"/>
+			<item id="112601323" count="1"/>
+			<item id="111601344" count="1"/>
+			<item id="114601333" count="1"/>
+			<item id="125003443" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="TEMPLAR">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100001519" count="1"/>
+			<item id="115001470" count="1"/>
+			<item id="110601374" count="1"/>
+			<item id="113601332" count="1"/>
+			<item id="112601323" count="1"/>
+			<item id="111601344" count="1"/>
+			<item id="114601333" count="1"/>
+			<item id="125003443" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= RANGER (5)  ================= -->
+	<player_data class="RANGER">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="101701219" count="1"/>
+			<item id="101701219" count="1"/>
+			<item id="110301464" count="1"/>
+			<item id="113301415" count="1"/>
+			<item id="112301342" count="1"/>
+			<item id="111301394" count="1"/>
+			<item id="114301454" count="1"/>
+			<item id="125003448" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= BATTLEMASTER / GLADIATOR (1) ================= -->
+	<player_data class="BATTLEMASTER">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="101301127" count="1"/>
+			<item id="110301466" count="1"/>
+			<item id="113301417" count="1"/>
+			<item id="112301344" count="1"/>
+			<item id="111301396" count="1"/>
+			<item id="114301456" count="1"/>
+			<item id="125003453" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="GLADIATOR">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="101301127" count="1"/>
+			<item id="110301466" count="1"/>
+			<item id="113301417" count="1"/>
+			<item id="112301344" count="1"/>
+			<item id="111301396" count="1"/>
+			<item id="114301456" count="1"/>
+			<item id="125003453" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= WIZARD / SORCERER (7) ================= -->
+	<player_data class="WIZARD">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100501181" count="1"/>
+			<item id="110101547" count="1"/>
+			<item id="113101433" count="1"/>
+			<item id="112101374" count="1"/>
+			<item id="111101415" count="1"/>
+			<item id="114101463" count="1"/>
+			<item id="125003449" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="SORCERER">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100501181" count="1"/>
+			<item id="110101547" count="1"/>
+			<item id="113101433" count="1"/>
+			<item id="112101374" count="1"/>
+			<item id="111101415" count="1"/>
+			<item id="114101463" count="1"/>
+			<item id="125003449" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= ELEMENTALLIST / SPIRIT_MASTER (8) ================= -->
+	<player_data class="ELEMENTALLIST">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100601234" count="1"/>
+			<item id="110101548" count="1"/>
+			<item id="113101434" count="1"/>
+			<item id="112101375" count="1"/>
+			<item id="111101416" count="1"/>
+			<item id="114101464" count="1"/>
+			<item id="125003450" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="SPIRIT_MASTER">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100601234" count="1"/>
+			<item id="110101548" count="1"/>
+			<item id="113101434" count="1"/>
+			<item id="112101375" count="1"/>
+			<item id="111101416" count="1"/>
+			<item id="114101464" count="1"/>
+			<item id="125003450" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= CLERIC (10) ================= -->
+	<player_data class="CLERIC">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100101171" count="1"/>
+			<item id="115001470" count="1"/>
+			<item id="110551028" count="1"/>
+			<item id="113501388" count="1"/>
+			<item id="112501318" count="1"/>
+			<item id="111501369" count="1"/>
+			<item id="114501393" count="1"/>
+			<item id="125003446" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= CHANTER (11) ================= -->
+	<player_data class="CHANTER">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="101501210" count="1"/>
+			<item id="110551027" count="1"/>
+			<item id="113501387" count="1"/>
+			<item id="112501317" count="1"/>
+			<item id="111501368" count="1"/>
+			<item id="114501392" count="1"/>
+			<item id="125003445" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= MONK / BRAWLER / REVENANT ================= -->
+	<player_data class="MONK">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="102400013" count="1"/>
+			<item id="110301338" count="1"/>
+			<item id="111301283" count="1"/>
+			<item id="113301306" count="1"/>
+			<item id="114301341" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="BRAWLER">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="102400013" count="1"/>
+			<item id="110301338" count="1"/>
+			<item id="111301283" count="1"/>
+			<item id="113301306" count="1"/>
+			<item id="114301341" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="REVENANT">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="102400013" count="1"/>
+			<item id="110301338" count="1"/>
+			<item id="111301283" count="1"/>
+			<item id="113301306" count="1"/>
+			<item id="114301341" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<!-- ================= CLASSES BASE ================= -->
+	<player_data class="WARRIOR">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="101301127" count="1"/>
+			<item id="110301466" count="1"/>
+			<item id="113301417" count="1"/>
+			<item id="112301344" count="1"/>
+			<item id="111301396" count="1"/>
+			<item id="114301456" count="1"/>
+			<item id="125003453" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="SCOUT">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100201355" count="1"/>
+			<item id="100001520" count="1"/>
+			<item id="110301463" count="1"/>
+			<item id="113301414" count="1"/>
+			<item id="112301341" count="1"/>
+			<item id="111301393" count="1"/>
+			<item id="114301453" count="1"/>
+			<item id="125003447" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="MAGE">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100501181" count="1"/>
+			<item id="110101547" count="1"/>
+			<item id="113101433" count="1"/>
+			<item id="112101374" count="1"/>
+			<item id="111101415" count="1"/>
+			<item id="114101463" count="1"/>
+			<item id="125003449" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+
+	<player_data class="PRIEST">
+		<items>
+			<item id="182400001" count="0"/>
+			<item id="182500000" count="0"/>
+			<item id="100101171" count="1"/>
+			<item id="115001470" count="1"/>
+			<item id="110551028" count="1"/>
+			<item id="113501388" count="1"/>
+			<item id="112501318" count="1"/>
+			<item id="111501369" count="1"/>
+			<item id="114501393" count="1"/>
+			<item id="125003446" count="1"/>
+			<item id="121001324" count="1"/>
+			<item id="120015074" count="1"/>
+			<item id="122001596" count="1"/>
+			<item id="123001243" count="1"/>
+			<item id="164000221" count="10"/>
+			<item id="164000224" count="10"/>
+			<item id="164000227" count="10"/>
+			<item id="164000259" count="10"/>
+			<item id="160003577" count="10"/>
+			<item id="160003578" count="10"/>
+			<item id="169300007" count="30"/>
+		</items>
+	</player_data>
+</player_initial_data>

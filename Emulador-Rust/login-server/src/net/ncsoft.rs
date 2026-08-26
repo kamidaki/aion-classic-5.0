@@ -200,8 +200,8 @@ pub fn build_sm_init_payload_com(
     session_id: u32,
     scrambled_modulus: &[u8; 128],
     blowfish_key: &[u8; 16],
-    _key_offset: usize,
-    _flag: u8,
+    key_offset: usize,
+    flag: u8,
 ) -> Vec<u8> {
     let mut p = vec![0u8; 192];
 
@@ -217,30 +217,18 @@ pub fn build_sm_init_payload_com(
     // [9..137] modulo RSA embaralhado (128 bytes)
     p[9..137].copy_from_slice(scrambled_modulus);
 
-    // [137..153] 16 bytes zeros (4 * writeD(0))
+    // [0x94..0x94+16] (148..164) blowfish session key (16 bytes)
+    let ko = if key_offset > 0 && key_offset + 16 <= 192 { key_offset } else { INIT_KEY_OFFSET };
+    p[ko..ko + 16].copy_from_slice(blowfish_key);
 
-    // [153..169] blowfish session key (16 bytes) — lido por game.dll em [r8 + rdi + 0x94] onde r8=5 => offset 153 (0x99)
-    p[153..169].copy_from_slice(blowfish_key);
+    // [0xA8..0xAC] (168..172) flag 0x03, major 0x04, minor 0x05, 0x00
+    p[0xA8] = flag;
+    p[0xA9] = 0x04;
+    p[0xAA] = 0x05;
+    p[0xAB] = 0x00;
 
-    // [169..173] flag 0x03, major 0x04, minor 0x05, 0x00 (writeD(197635) / classic tags)
-    p[169] = 0x03;
-    p[170] = 0x04;
-    p[171] = 0x05;
-    p[172] = 0x00;
-
-    // [173..177] flag 0x03, major 0x04, minor 0x05, 0x00 para cobrir [rdx + 0xA8] com rdx=rdi+5
-    p[173] = 0x03;
-    p[174] = 0x04;
-    p[175] = 0x05;
-    p[176] = 0x00;
-
-    // [177..192] zeros (padding)
-
-    // Ultimo pacote da caca a tela de cyber cafe. Ja foram eliminados por medicao o `SM_LOGIN_OK`
-    // (todo byte variado, e o tamanho tambem), o `SM_AUTH_GG` (35 bytes virados) e os quatro
-    // metodos do pipe. Aqui so ha 31 bytes desconhecidos e seguros de mexer -- `[137..153]` e
-    // `[177..192]`; o resto e modulo RSA e chave Blowfish, e virar qualquer um dos dois derruba o
-    // handshake antes de o cliente desenhar tela nenhuma.
+    // [0xAC..0xB0] (172..176) 0x00200000
+    p[0xAC..0xB0].copy_from_slice(&0x0020_0000u32.to_le_bytes());
 
     p
 }
@@ -399,8 +387,8 @@ fn write_server_entry(raw: &mut Vec<u8>, server_id: u8, ip: &[u8; 4], port: u16,
     raw.extend_from_slice(&0u16.to_le_bytes()); // jogadores online (offset 11..13)
     raw.extend_from_slice(&1000u16.to_le_bytes()); // maximo (offset 13..15)
     raw.push(1); // status: online (offset 15)
-    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401) (offset 0x10..0x13 / 16..20)
-    raw.push(bracket); // bracket / country code (offset 0x14 / 20)
+    raw.push(bracket); // bracket / country code (offset 0x10 / 16)
+    raw.extend_from_slice(&server_bits.to_le_bytes()); // ServerBits (0x0000_0401) (offset 0x11..0x15 / 17..21)
 }
 
 async fn handle_ncsoft_client(
@@ -1277,33 +1265,40 @@ mod test {
 
     #[test]
     fn a_cadeia_que_o_servidor_pos_na_rede_abre_do_lado_do_cliente() {
-        let p1 = de_hex(REDE_P1);
-        let mut init = corpo_do_quadro(&p1);
-        assert_eq!(init.len(), 192);
+        let chave = chave_falsa();
+        let payload = build_sm_init_payload(0x0123_4567, &modulo_falso(), &chave);
 
-        // Passo 1: o cliente abre o SM_INIT com a chave estatica.
-        BlowfishCipher::new(&STATIC_BLOWFISH_KEY).decipher(&mut init);
-        dec_xor_pass(&mut init);
+        let mut engine = LoginCryptEngine::new();
+        let cifrado = engine.encrypt_init(&payload, chave);
+        let init = como_o_cliente_decifra(&cifrado);
 
         assert_eq!(init[0], 0x00, "opcode SM_INIT");
         assert_eq!(init[0xA8], 0x03, "flag em 0xA8 (game.dll:0x84231B)");
         assert_eq!(init[0xA9], 0x04, "major 4");
         assert_eq!(init[0xAA], 0x05, "minor 5");
 
-        // Passo 2: a chave de sessao sai de 0x94 (para este pacote de captura historico).
-        let mut chave = [0u8; 16];
-        chave.copy_from_slice(&init[0x94..0x94 + 16]);
-        assert_ne!(chave, [0u8; 16], "a chave nao pode sair zerada");
+        // Passo 2: a chave de sessao sai de 0x94.
+        let mut recuperada = [0u8; 16];
+        recuperada.copy_from_slice(&init[0x94..0x94 + 16]);
+        assert_eq!(recuperada, chave, "a chave de sessao deve ser recuperada de 0x94");
 
         // Passo 3: com ela, os tres pacotes seguintes tem que abrir e fechar o checksum.
-        let cifra = BlowfishCipher::new(&chave);
-        for (hex, opcode_esperado, nome) in [
-            (REDE_P2, 0x0Bu8, "SM_AUTH_GG"),
-            (REDE_P3, 0x03, "SM_LOGIN_OK"),
-            (REDE_P4, 0x04, "SM_SERVER_LIST"),
+        let mut raw_gg = vec![0u8; 40];
+        raw_gg[0] = 0x0B;
+        let enc_gg = engine.encrypt_packet(&raw_gg);
+
+        let raw_login_ok = build_login_ok_payload(1, 0x026E_DF39, true);
+        let enc_login_ok = engine.encrypt_packet(&raw_login_ok);
+
+        let raw_server_list = build_server_list_payload("127.0.0.1", 7777, 1, 0);
+        let enc_server_list = engine.encrypt_packet(&raw_server_list);
+
+        let cifra = BlowfishCipher::new(&recuperada);
+        for (mut corpo, opcode_esperado, nome) in [
+            (enc_gg, 0x0Bu8, "SM_AUTH_GG"),
+            (enc_login_ok, 0x03, "SM_LOGIN_OK"),
+            (enc_server_list, 0x04, "SM_SERVER_LIST"),
         ] {
-            let wire = de_hex(hex);
-            let mut corpo = corpo_do_quadro(&wire);
             cifra.decipher(&mut corpo);
 
             assert!(

@@ -1,0 +1,82 @@
+//! Camada Central de Serviços do Servidor de Jogo (Padrão Java AION - com.aionemu.gameserver.services)
+//!
+//! Cada serviço gerencia um subsistema específico e isolado, recebendo dados e orquestrando o estado do jogo.
+
+pub mod admin_service;
+pub mod arena_service;
+pub mod broker_service;
+pub mod character_service;
+pub mod chat_connector_service;
+pub mod chat_service;
+pub mod combat_service;
+pub mod craft_service;
+pub mod cron_events_service;
+pub mod db_service;
+pub mod dialog_service;
+pub mod enchant_service;
+pub mod engine_loop_service;
+pub mod entity_service;
+pub mod environment_service;
+pub mod error_service;
+pub mod guild_service;
+pub mod housing_service;
+pub mod item;
+pub mod item_service;
+pub mod login_connector_service;
+pub mod mail_service;
+pub mod mail_service_legacy;
+pub mod mundo_service;
+pub mod pet_service;
+pub mod player_service;
+pub mod session_service;
+pub mod skill_service;
+pub mod social_service;
+pub mod spatial_service;
+pub mod state_service;
+pub mod stigma_service;
+pub mod teleport_service;
+pub mod tester_service;
+pub mod title_service;
+pub mod trade_service;
+pub mod web_services;
+
+pub use admin_service::*;
+pub use arena_service::*;
+pub use broker_service::*;
+pub use character_service::*;
+pub use chat_connector_service::*;
+pub use chat_service::*;
+pub use combat_service::*;
+pub use craft_service::*;
+pub use cron_events_service::*;
+pub use db_service::*;
+pub use dialog_service::*;
+pub use enchant_service::*;
+pub use engine_loop_service::*;
+pub use entity_service::*;
+pub use environment_service::*;
+pub use error_service::*;
+pub use guild_service::*;
+pub use housing_service::*;
+pub use item::*;
+pub use item_service::*;
+pub use login_connector_service::*;
+pub use mail_service::*;
+pub use mail_service_legacy::*;
+pub mod mail {
+    pub use super::mail_service_legacy::*;
+}
+pub use mundo_service::*;
+pub use pet_service::*;
+pub use player_service::*;
+pub use session_service::*;
+pub use skill_service::*;
+pub use social_service::*;
+pub use spatial_service::*;
+pub use state_service::*;
+pub use stigma_service::*;
+pub use teleport_service::*;
+pub use tester_service::*;
+pub use title_service::*;
+pub use trade_service::*;
+pub use web_services::*;

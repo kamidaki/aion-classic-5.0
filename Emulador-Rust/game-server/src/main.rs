@@ -16,17 +16,60 @@
 //! 3. The server then responds with a payload about the client version, looks
 //! like OS version info from `GetVersionExA` and `GetACP` for the ANSI format
 
-mod chat_connector;
-mod data_loader;
-mod db;
-mod error;
-mod game;
-mod login_connector;
+pub mod ai;
+pub mod controller;
+pub mod dao;
+pub mod data;
+pub mod data_loader;
+pub mod dataholders;
+pub mod engine;
+pub mod geoengine;
+pub mod instance;
+pub mod message;
+pub mod model;
+pub mod network;
+pub mod questengine;
+pub mod restrictions;
+pub mod services;
+pub mod shutdown;
+pub mod skillengine;
+pub mod spawnengine;
+pub mod world;
+
+pub use services::admin_service as admin;
+pub use services::arena_service as arena;
+pub use services::broker_service as broker;
+pub use services::character_service as character;
+pub use services::chat_connector_service as chat_connector;
+pub use services::craft_service as craft;
+pub use services::cron_events_service as cron_events;
+pub use services::db_service as db;
+pub use services::enchant_service as enchant;
+pub use services::engine_loop_service as engine_loop;
+pub use services::entity_service as entity;
+pub use services::environment_service as environment;
+pub use services::error_service as error;
+pub use services::guild_service as guild;
+pub use services::housing_service as housing;
+pub use services::login_connector_service as login_connector;
+pub use services::mail_service_legacy as mail;
+pub use services::mundo_service as mundo;
+pub use services::pet_service as pet;
+pub use services::session_service as session;
+pub use services::social_service as social;
+pub use services::state_service as state;
+pub use services::stigma_service as stigma;
+pub use services::teleport_service as teleport;
+pub use services::tester_service as tester;
+pub use services::title_service as title;
+pub use services::trade_service as trade;
+pub use services::web_services as web_services;
 
 use crossbeam_channel::Sender;
 use data_loader::GameData;
 use db::Db;
-use game::{ClientUpdate, Connection, ServerUpdate};
+pub use engine_loop::{ClientUpdate, Connection, Deserialise, Messages, Serialise, ServerUpdate, TICK_RATE, game_update};
+use state::State;
 use std::collections::HashMap;
 use std::net::{TcpListener, TcpStream};
 use std::path::PathBuf;
@@ -36,6 +79,45 @@ use std::time::Duration;
 
 use error::Error;
 use serde::Deserialize;
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct RatesConfig {
+    #[serde(default = "default_rate")]
+    pub xp: f32,
+    #[serde(default = "default_rate")]
+    pub quest_xp: f32,
+    #[serde(default = "default_rate")]
+    pub drop: f32,
+    #[serde(default = "default_rate")]
+    pub kinah: f32,
+    #[serde(default = "default_rate")]
+    pub ap_player: f32,
+    #[serde(default = "default_rate")]
+    pub ap_npc: f32,
+    #[serde(default = "default_rate")]
+    pub craft_xp: f32,
+    #[serde(default = "default_rate")]
+    pub gather_xp: f32,
+}
+
+fn default_rate() -> f32 {
+    1.0
+}
+
+impl Default for RatesConfig {
+    fn default() -> Self {
+        Self {
+            xp: 1.0,
+            quest_xp: 1.0,
+            drop: 1.0,
+            kinah: 1.0,
+            ap_player: 1.0,
+            ap_npc: 1.0,
+            craft_xp: 1.0,
+            gather_xp: 1.0,
+        }
+    }
+}
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct GameServerConfig {
@@ -53,6 +135,10 @@ pub struct GameServerConfig {
     pub inter_server: InterServerConfig,
     #[serde(default)]
     pub gameplay: GameplayConfig,
+    #[serde(default)]
+    pub rates: RatesConfig,
+    #[serde(default)]
+    pub geodata: crate::geoengine::GeoConfig,
 }
 
 impl Default for GameServerConfig {
@@ -65,6 +151,8 @@ impl Default for GameServerConfig {
             security: SecurityConfig::default(),
             inter_server: InterServerConfig::default(),
             gameplay: GameplayConfig::default(),
+            rates: RatesConfig::default(),
+            geodata: crate::geoengine::GeoConfig::default(),
         }
     }
 }
@@ -339,10 +427,16 @@ fn default_db_path() -> String {
 pub struct WorldConfig {
     #[serde(default = "default_data_dir")]
     pub data_dir: String,
+    #[serde(default = "default_items_dir")]
+    pub items_dir: String,
+    #[serde(default = "default_strings_dir")]
+    pub strings_dir: String,
     #[serde(default = "default_spawns_file")]
     pub spawns_file: String,
     #[serde(default = "default_kit_file")]
     pub initial_kit_file: String,
+    #[serde(default = "default_true")]
+    pub cache_auto_reload: bool,
     #[serde(default = "default_vision_radius")]
     pub vision_radius: f32,
 }
@@ -351,8 +445,11 @@ impl Default for WorldConfig {
     fn default() -> Self {
         Self {
             data_dir: default_data_dir(),
+            items_dir: default_items_dir(),
+            strings_dir: default_strings_dir(),
             spawns_file: default_spawns_file(),
             initial_kit_file: default_kit_file(),
+            cache_auto_reload: true,
             vision_radius: default_vision_radius(),
         }
     }
@@ -361,11 +458,17 @@ impl Default for WorldConfig {
 fn default_data_dir() -> String {
     "data/client".to_string()
 }
+fn default_items_dir() -> String {
+    "data/client/data/items".to_string()
+}
+fn default_strings_dir() -> String {
+    "data/client/Strings/strings".to_string()
+}
 fn default_spawns_file() -> String {
-    "data/spawns.csv".to_string()
+    "data/client/spawns.xml".to_string()
 }
 fn default_kit_file() -> String {
-    "data/itens_iniciais.csv".to_string()
+    "data/player_initial_data.xml".to_string()
 }
 fn default_vision_radius() -> f32 {
     100.0
@@ -375,12 +478,15 @@ fn default_vision_radius() -> f32 {
 pub struct SecurityConfig {
     #[serde(default = "default_true")]
     pub require_valid_session: bool,
+    #[serde(default)]
+    pub flood_protection: FloodProtectionConfig,
 }
 
 impl Default for SecurityConfig {
     fn default() -> Self {
         Self {
             require_valid_session: true,
+            flood_protection: FloodProtectionConfig::default(),
         }
     }
 }
@@ -390,7 +496,89 @@ fn default_true() -> bool {
 }
 
 fn load_config() -> GameServerConfig {
-    // 1. Prioriza config/launcher.json
+    let mut cfg = GameServerConfig::default();
+
+    // 1. Prioriza config/gameserver.properties
+    let properties_candidates = [
+        "config/gameserver.properties",
+        "../Produto Final/config/gameserver.properties",
+        "../../Produto Final/config/gameserver.properties",
+        "gameserver.properties",
+    ];
+
+    for prop_path in properties_candidates {
+        if std::path::Path::new(prop_path).exists() {
+            if let Ok(props) = commons::Properties::load_from_file(prop_path) {
+                println!("INFO: Loaded Game config from {prop_path} (.properties)");
+                cfg.network.bind_address = props.get_string("gameserver.network.bind.address", &cfg.network.bind_address);
+                cfg.network.port = props.get_u16("gameserver.network.port", cfg.network.port);
+                cfg.server.server_id = props.get_u8("gameserver.server.id", cfg.server.server_id);
+                cfg.server.server_name = props.get_string("gameserver.server.name", &cfg.server.server_name);
+                let max_p = props.get_u32("gameserver.server.max.players", cfg.server.max_players);
+                cfg.server.max_players = max_p;
+                cfg.network.max_players = max_p;
+                cfg.network.nio_threads = props.get_u32("gameserver.network.nio.threads", cfg.network.nio_threads);
+                cfg.network.processor_threads_min = props.get_u32("gameserver.network.processor.threads.min", cfg.network.processor_threads_min);
+                cfg.network.processor_threads_max = props.get_u32("gameserver.network.processor.threads.max", cfg.network.processor_threads_max);
+                cfg.network.processor_threshold_kill = props.get_u32("gameserver.network.processor.threshold.kill", cfg.network.processor_threshold_kill);
+                cfg.network.processor_threshold_spawn = props.get_u32("gameserver.network.processor.threshold.spawn", cfg.network.processor_threshold_spawn);
+                cfg.network.display_unknown_packets = props.get_bool("gameserver.network.display.unknown.packets", cfg.network.display_unknown_packets);
+                cfg.network.display_packets = props.get_bool("gameserver.network.display.packets", cfg.network.display_packets);
+
+                cfg.inter_server.login_server_address = props.get_string("gameserver.login.address", &cfg.inter_server.login_server_address);
+                cfg.inter_server.gameserver_password = props.get_string("gameserver.login.password", &cfg.inter_server.gameserver_password);
+                cfg.inter_server.chat_server_address = props.get_string("gameserver.chat.address", &cfg.inter_server.chat_server_address);
+                cfg.inter_server.chat_password = props.get_string("gameserver.chat.password", &cfg.inter_server.chat_password);
+
+                cfg.database.database_path = props.get_string("gameserver.database.path", &cfg.database.database_path);
+                cfg.world.data_dir = props.get_string("gameserver.data.dir", &cfg.world.data_dir);
+                cfg.world.items_dir = props.get_string("gameserver.items.dir", &cfg.world.items_dir);
+                cfg.world.strings_dir = props.get_string("gameserver.strings.dir", &cfg.world.strings_dir);
+                cfg.world.spawns_file = props.get_string("gameserver.spawns.file", &cfg.world.spawns_file);
+                cfg.world.initial_kit_file = props.get_string("gameserver.initial.kit.file", &cfg.world.initial_kit_file);
+                cfg.world.cache_auto_reload = props.get_bool("gameserver.cache.auto.reload", cfg.world.cache_auto_reload);
+
+                cfg.gameplay.country_code = props.get_u8("gameserver.country.code", cfg.gameplay.country_code);
+                cfg.gameplay.chat_server_enable = props.get_bool("gameserver.chat.enable", cfg.gameplay.chat_server_enable);
+                cfg.gameplay.display_revision = props.get_bool("gameserver.display.revision", cfg.gameplay.display_revision);
+                cfg.gameplay.character_limit_count = props.get_u8("gameserver.character.limit.count", cfg.gameplay.character_limit_count);
+                cfg.gameplay.character_creation_mode = props.get_u8("gameserver.character.creation.mode", cfg.gameplay.character_creation_mode);
+                cfg.gameplay.players_max_level = props.get_u8("gameserver.players.max.level", cfg.gameplay.players_max_level);
+                cfg.gameplay.starting_level = props.get_u8("gameserver.starting.level", cfg.gameplay.starting_level);
+                cfg.gameplay.start_class_max_level = props.get_u8("gameserver.startClass.maxLevel", cfg.gameplay.start_class_max_level);
+                cfg.gameplay.character_name_pattern = props.get_string("gameserver.character.name.pattern", &cfg.gameplay.character_name_pattern);
+                cfg.gameplay.character_reentry_time_secs = props.get_u32("gameserver.character.reentry.time.secs", cfg.gameplay.character_reentry_time_secs);
+
+                cfg.rates.xp = props.get_f32("gameserver.rate.xp", cfg.rates.xp);
+                cfg.rates.quest_xp = props.get_f32("gameserver.rate.quest.xp", cfg.rates.quest_xp);
+                cfg.rates.drop = props.get_f32("gameserver.rate.drop", cfg.rates.drop);
+                cfg.rates.kinah = props.get_f32("gameserver.rate.kinah", cfg.rates.kinah);
+                cfg.rates.ap_player = props.get_f32("gameserver.rate.ap.player", cfg.rates.ap_player);
+                cfg.rates.ap_npc = props.get_f32("gameserver.rate.ap.npc", cfg.rates.ap_npc);
+                cfg.rates.craft_xp = props.get_f32("gameserver.rate.craft.xp", cfg.rates.craft_xp);
+                cfg.rates.gather_xp = props.get_f32("gameserver.rate.gather.xp", cfg.rates.gather_xp);
+
+                cfg.geodata.enable_collision = props.get_bool("gameserver.geodata.enable", cfg.geodata.enable_collision);
+                let geo_p = props.get_string("gameserver.geodata.path", &cfg.geodata.geo_dir.to_string_lossy());
+                cfg.geodata.geo_dir = std::path::PathBuf::from(geo_p);
+                cfg.geodata.enable_doors = props.get_bool("gameserver.geodata.doors.enable", cfg.geodata.enable_doors);
+                cfg.geodata.enable_materials = props.get_bool("gameserver.geodata.materials.enable", cfg.geodata.enable_materials);
+                cfg.geodata.enable_falldamage = props.get_bool("gameserver.geodata.falldamage.enable", cfg.geodata.enable_falldamage);
+                cfg.geodata.enable_speedvalidation = props.get_bool("gameserver.geodata.speedvalidation.enable", cfg.geodata.enable_speedvalidation);
+
+                cfg.security.flood_protection.enabled = props.get_bool("gameserver.flood.protection.enable", cfg.security.flood_protection.enabled);
+                cfg.security.flood_protection.tick_ms = props.get_u32("gameserver.flood.tick.ms", cfg.security.flood_protection.tick_ms);
+                cfg.security.flood_protection.short_warn = props.get_u32("gameserver.flood.short.warn", cfg.security.flood_protection.short_warn);
+                cfg.security.flood_protection.short_reject = props.get_u32("gameserver.flood.short.reject", cfg.security.flood_protection.short_reject);
+                cfg.security.flood_protection.long_warn = props.get_u32("gameserver.flood.long.warn", cfg.security.flood_protection.long_warn);
+                cfg.security.flood_protection.long_reject = props.get_u32("gameserver.flood.long.reject", cfg.security.flood_protection.long_reject);
+
+                return cfg;
+            }
+        }
+    }
+
+    // 2. Fallback para config/launcher.json
     let launcher_candidates = [
         "config/launcher.json",
         "../Produto Final/config/launcher.json",
@@ -402,7 +590,6 @@ fn load_config() -> GameServerConfig {
             if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
                 if let Some(gs_val) = json.get("game-server") {
                     println!("INFO: Loaded Game config from {path} (JSON)");
-                    let mut cfg = GameServerConfig::default();
 
                     if let Some(b) = gs_val.get("bind_address").and_then(|v| v.as_str()) {
                         cfg.network.bind_address = b.to_string();
@@ -503,23 +690,15 @@ fn load_config() -> GameServerConfig {
 
     for path in toml_candidates {
         if let Ok(content) = std::fs::read_to_string(path) {
-            if let Ok(cfg) = toml::from_str::<GameServerConfig>(&content) {
+            if let Ok(c) = toml::from_str::<GameServerConfig>(&content) {
                 println!("INFO: Loaded Game config from {path}");
-                return cfg;
+                return c;
             }
         }
     }
 
     println!("INFO: Using default Game config");
-    GameServerConfig {
-        network: NetworkConfig::default(),
-        server: ServerInfoConfig::default(),
-        database: DatabaseConfig::default(),
-        world: WorldConfig::default(),
-        security: SecurityConfig::default(),
-        inter_server: InterServerConfig::default(),
-        gameplay: GameplayConfig::default(),
-    }
+    cfg
 }
 
 fn find_data_dir(configured: &str) -> PathBuf {
@@ -569,7 +748,7 @@ fn main() {
     let config = load_config();
 
     // Configura flags de log de pacotes
-    game::message::set_packet_logging_flags(
+    message::set_packet_logging_flags(
         config.network.display_packets,
         config.network.display_unknown_packets,
     );
@@ -612,10 +791,29 @@ fn main() {
     db.migrate().expect("failed to migrate SQLite schema");
     println!("INFO: Opened and migrated DB at {}", config.database.database_path);
 
+    // Inicializa GeoEngine e WorldService com as configurações do gameserver.properties
+    let geo_engine = Arc::new(geoengine::GeoEngine::new(config.geodata.clone()));
+    if config.geodata.enable_collision {
+        if let Err(e) = geo_engine.initialize() {
+            println!("WARN: GeoEngine initialization: {e:?}");
+        } else {
+            println!("INFO: GeoEngine initialized successfully from {:?}", config.geodata.geo_dir);
+        }
+    }
+    let _world_service = Arc::new(world::WorldService::new(geo_engine.clone()));
+
     let data_dir = find_data_dir(&config.world.data_dir);
-    println!("INFO: Loading game data from {}", data_dir.display());
+    let items_dir = PathBuf::from(&config.world.items_dir);
+    let strings_dir = PathBuf::from(&config.world.strings_dir);
+    println!(
+        "INFO: Loading game data from {} (items: {}, strings: {})",
+        data_dir.display(),
+        items_dir.display(),
+        strings_dir.display()
+    );
+
     let game_data = Arc::new({
-        let mut gd = GameData::load(&data_dir);
+        let mut gd = GameData::load_configured(&data_dir, &items_dir, &strings_dir);
         let spawns = std::env::var("AION_SPAWNS")
             .unwrap_or_else(|_| config.world.spawns_file.clone());
         gd.carrega_spawns(std::path::Path::new(&spawns));
@@ -624,6 +822,23 @@ fn main() {
         gd.carrega_itens_iniciais(std::path::Path::new(&kit));
         gd
     });
+
+    if config.world.cache_auto_reload {
+        let items_file = items_dir.join("client_items.xml");
+        let strings_file = strings_dir.join("client_strings_item.xml");
+        spawn(move || {
+            let mut watcher = data_loader::CacheWatcher::new();
+            watcher.track_file(&items_file);
+            watcher.track_file(&strings_file);
+            loop {
+                std::thread::sleep(Duration::from_secs(5));
+                let modified = watcher.check_modifications();
+                if !modified.is_empty() {
+                    println!("INFO: [CacheWatcher] Detected {} modified data files -> Hot reload scheduled", modified.len());
+                }
+            }
+        });
+    }
 
     let bind_addr = format!("{}:{}", config.network.bind_address, config.network.port);
     let listener = TcpListener::bind(&bind_addr).unwrap();
@@ -635,7 +850,7 @@ fn main() {
 
     let connections = clients.clone();
     let gd = game_data.clone();
-    spawn(move || game::game_update(connections, server_rx, db, gd));
+    spawn(move || engine_loop::game_update(connections, server_rx, db, gd));
 
     while let Ok((stream, peer)) = listener.accept() {
         println!("INFO: TCP accept from {peer}");
