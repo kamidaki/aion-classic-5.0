@@ -136,13 +136,7 @@ fn resolve_java_binary(candidate: &str) -> String {
         return candidate.to_string();
     }
 
-    if let Ok(java_home) = std::env::var("JAVA_HOME") {
-        let p = PathBuf::from(java_home).join("bin").join("java.exe");
-        if p.exists() {
-            return p.to_string_lossy().to_string();
-        }
-    }
-
+    // Prioritize official JDK 8 paths required by Aion Classic emulator
     let defaults = [
         r"C:\Program Files\Java\jdk1.8.0_431\bin\java.exe",
         r"C:\Program Files\Java\jdk-1.8\bin\java.exe",
@@ -152,6 +146,13 @@ fn resolve_java_binary(candidate: &str) -> String {
     for d in &defaults {
         if std::path::Path::new(d).exists() {
             return d.to_string();
+        }
+    }
+
+    if let Ok(java_home) = std::env::var("JAVA_HOME") {
+        let p = PathBuf::from(java_home).join("bin").join("java.exe");
+        if p.exists() {
+            return p.to_string_lossy().to_string();
         }
     }
 
@@ -440,6 +441,27 @@ impl Supervisor {
         let _ = self.stop_server("game").await;
         let _ = self.stop_server("login").await;
         let _ = self.stop_server("chat").await;
+    }
+
+    pub async fn start_all_servers_sequentially(&self) {
+        self.log_center.push("launcher", "[Launcher] Iniciando sequencia: ChatServer -> (5s) -> LoginServer -> (5s) -> GameServer.");
+        
+        self.log_center.push("launcher", "[Launcher] [1/3] Iniciando ChatServer...");
+        let _ = self.start_server("chat").await;
+
+        self.log_center.push("launcher", "[Launcher] Aguardando 5 segundos antes de inicializar o LoginServer...");
+        tokio::time::sleep(Duration::from_secs(5)).await;
+
+        self.log_center.push("launcher", "[Launcher] [2/3] Iniciando LoginServer...");
+        let _ = self.start_server("login").await;
+
+        self.log_center.push("launcher", "[Launcher] Aguardando 5 segundos antes de inicializar o GameServer...");
+        tokio::time::sleep(Duration::from_secs(5)).await;
+
+        self.log_center.push("launcher", "[Launcher] [3/3] Iniciando GameServer...");
+        let _ = self.start_server("game").await;
+
+        self.log_center.push("launcher", "[Launcher] Sequencia de servidores inicializada com sucesso.");
     }
 
     pub fn spawn_crash_monitor(&self) {

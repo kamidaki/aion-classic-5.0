@@ -2,7 +2,7 @@
   "launcher": {
     "start_with_windows": false,
     "auto_start_servers_on_launch": true,
-    "start_sequence_delay_seconds": 3,
+    "start_sequence_delay_seconds": 5,
     "clean_archived_logs_days": 7
   },
   "paths": {

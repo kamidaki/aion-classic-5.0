@@ -29,9 +29,19 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            user-select: none;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+        }
+
+        button, .tab-btn, .header, .drawer-header, .stat-pill, .status-badge, .filter-btn, .metric-box {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .log-console, .log-line, .log-msg, .log-time, .log-tag, pre, code, .search-box, input, textarea {
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            cursor: text !important;
         }
 
         html, body {
@@ -1966,6 +1976,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     <button class="filter-btn" data-srv="login" onclick="setFilter('srv', 'login', this)">Login</button>
                     <button class="filter-btn" data-srv="game" onclick="setFilter('srv', 'game', this)">Game</button>
                     <button class="filter-btn" data-srv="chat" onclick="setFilter('srv', 'chat', this)">Chat</button>
+                    <button class="filter-btn" id="copy-logs-btn" style="margin-left: auto; border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; display: inline-flex; align-items: center; gap: 5px;" onclick="copyVisibleLogs()">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        Copiar Logs
+                    </button>
                 </div>
 
                 <div class="log-controls-row">
@@ -2924,6 +2938,51 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
         function setServerFilter(srv) {
             setFilter('srv', srv, null);
+        }
+
+        function copyVisibleLogs() {
+            const consoleBox = document.getElementById('log-console');
+            if (!consoleBox) return;
+            const text = consoleBox.innerText || consoleBox.textContent || '';
+            if (!text.trim()) {
+                return;
+            }
+            const btn = document.getElementById('copy-logs-btn');
+            const onDone = () => {
+                if (btn) {
+                    const originalHtml = btn.innerHTML;
+                    btn.innerHTML = '<span>Copiado!</span>';
+                    btn.style.color = '#34d399';
+                    btn.style.borderColor = '#34d399';
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.style.color = '#38bdf8';
+                        btn.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+                    }, 2000);
+                }
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(onDone).catch(() => {
+                    fallbackCopyText(text, onDone);
+                });
+            } else {
+                fallbackCopyText(text, onDone);
+            }
+        }
+
+        function fallbackCopyText(text, cb) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.top = '-9999px';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try {
+                document.execCommand('copy');
+                if (cb) cb();
+            } catch (e) {}
+            document.body.removeChild(ta);
         }
 
         // ==========================================

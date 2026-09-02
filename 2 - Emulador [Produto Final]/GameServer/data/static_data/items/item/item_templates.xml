@@ -394749,7 +394749,7 @@
 	</item_template>
 	<item_template id="182400001" name="Kinah" level="1" mask="12350" category="NONE" max_stack_count="0" item_type="NORMAL" quality="COMMON" price="0" race="PC_ALL" restrict="1,1,1,1,1,1,1,1,1,1,1,1,1,1" desc="701677" bonus_apply="INVENTORY">
 	</item_template>
-	<item_template id="182400004" name="noweapon" desc="0" level="1" mask="124" attack_type="PHYSICAL" max_stack_count="1" item_type="NORMAL" quality="COMMON" price="5" race="PC_ALL" restrict="1,1,1,1,1,1,1,1,1,1,1,1,1,1" bonus_apply="EQUIP" slot="1" equipment_type="WEAPON" weapon_type="NOWEAPON" category="NOWEAPON">
+	<item_template id="182400004" name="noweapon" desc="0" level="1" mask="124" attack_type="PHYSICAL" max_stack_count="1" item_type="NORMAL" quality="COMMON" price="5" race="PC_ALL" restrict="1,1,1,1,1,1,1,1,1,1,1,1,1,1" bonus_apply="EQUIP" slot="1" equipment_type="WEAPON" weapon_type="NOWEAPON" category="NONE">
 		<weapon_stats min_damage="16" max_damage="20" attack_speed="1500" attack_range="1500" hit_count="1" physical_critical="0" physical_accuracy="0" parry="0" magical_accuracy="0" boost_magical_skill="0" />
 	</item_template>
 	<item_template id="182499000" name="Quna" level="1" mask="12350" category="NONE" max_stack_count="0" item_type="NORMAL" quality="COMMON" price="0" race="PC_ALL" restrict="1,1,1,1,1,1,1,1,1,1,1,1,1,1" desc="780556" bonus_apply="INVENTORY">

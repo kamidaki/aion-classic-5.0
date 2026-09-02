@@ -770,46 +770,4 @@ public class MySQL5PlayerDAO extends PlayerDAO
 			}
 		});
 	}
-
-	@Override
-	public void deletePlayer(final int playerId) {
-		Connection con = null;
-		try {
-			con = DatabaseFactory.getConnection();
-			PreparedStatement statement = con.prepareStatement("DELETE FROM players WHERE id = ?");
-			statement.setInt(1, playerId);
-			statement.execute();
-			statement.close();
-		}
-		catch (Exception e) {
-			log.error("Error deleting player " + playerId, e);
-		}
-		finally {
-			DatabaseFactory.close(con);
-		}
-	}
-
-	@Override
-	public List<Integer> getPlayerOidsOnAccount(final int accountId) {
-		final List<Integer> result = new ArrayList<Integer>();
-		Connection con = null;
-		try {
-			con = DatabaseFactory.getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT id FROM players WHERE account_id = ?");
-			statement.setInt(1, accountId);
-			ResultSet resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				result.add(resultSet.getInt("id"));
-			}
-			resultSet.close();
-			statement.close();
-		}
-		catch (Exception e) {
-			log.error("Error getting player ids for account " + accountId, e);
-		}
-		finally {
-			DatabaseFactory.close(con);
-		}
-		return result;
-	}
 }

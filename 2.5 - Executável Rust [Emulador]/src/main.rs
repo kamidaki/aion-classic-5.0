@@ -108,20 +108,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         sup_clone.spawn_crash_monitor();
         sup_clone.spawn_metrics_sampler();
 
-        // Auto-start servers sequentially if enabled in config
+        // Auto-start servers sequentially if enabled in config (Chat -> 5s -> Login -> 5s -> Game)
         if cfg_clone.launcher.auto_start_servers_on_launch {
-            let delay = Duration::from_secs(cfg_clone.launcher.start_sequence_delay_seconds);
-            if cfg_clone.servers.get("chat").map(|s| s.enabled).unwrap_or(true) {
-                let _ = sup_clone.start_server("chat").await;
-                tokio::time::sleep(delay).await;
-            }
-            if cfg_clone.servers.get("login").map(|s| s.enabled).unwrap_or(true) {
-                let _ = sup_clone.start_server("login").await;
-                tokio::time::sleep(delay).await;
-            }
-            if cfg_clone.servers.get("game").map(|s| s.enabled).unwrap_or(true) {
-                let _ = sup_clone.start_server("game").await;
-            }
+            let s = sup_clone.clone();
+            tokio::spawn(async move {
+                tokio::time::sleep(Duration::from_millis(1500)).await;
+                s.start_all_servers_sequentially().await;
+            });
         }
 
         // Periodic tray tooltip updater (1s interval)
@@ -186,10 +179,33 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::post())
             .and(sup_filter.clone())
             .and_then(|server: String, action: String, sup: Supervisor| async move {
-                let res = match action.as_str() {
-                    "start" => sup.start_server(&server).await,
-                    "stop" => sup.stop_server(&server).await,
-                    "restart" => sup.restart_server(&server).await,
+                let res = match (server.as_str(), action.as_str()) {
+                    ("all", "start") => {
+                        let s = sup.clone();
+                        tokio::spawn(async move {
+                            s.start_all_servers_sequentially().await;
+                        });
+                        Ok(())
+                    }
+                    ("all", "stop") => {
+                        let s = sup.clone();
+                        tokio::spawn(async move {
+                            s.graceful_shutdown().await;
+                        });
+                        Ok(())
+                    }
+                    ("all", "restart") => {
+                        let s = sup.clone();
+                        tokio::spawn(async move {
+                            s.graceful_shutdown().await;
+                            tokio::time::sleep(Duration::from_secs(5)).await;
+                            s.start_all_servers_sequentially().await;
+                        });
+                        Ok(())
+                    }
+                    (srv, "start") => sup.start_server(srv).await,
+                    (srv, "stop") => sup.stop_server(srv).await,
+                    (srv, "restart") => sup.restart_server(srv).await,
                     _ => Err("Invalid action".to_string()),
                 };
 
@@ -382,8 +398,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         warp::serve(routes).run(([127, 0, 0, 1], port)).await;
     });
 
-    // 6. Run WebView loop on main thread
+    // 6. Wait until local web server is bound and accepting connections
     let dashboard_url = format!("http://127.0.0.1:{}/", cfg.gui.http_port);
+    let target_addr = format!("127.0.0.1:{}", cfg.gui.http_port);
+    for _ in 0..100 {
+        if std::net::TcpStream::connect(&target_addr).is_ok() {
+            break;
+        }
+        std::thread::sleep(Duration::from_millis(50));
+    }
+
     let is_shutting_down_wv = is_shutting_down.clone();
     let sup_for_wv = supervisor.clone();
 

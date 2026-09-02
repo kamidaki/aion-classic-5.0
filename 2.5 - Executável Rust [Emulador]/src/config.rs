@@ -98,7 +98,7 @@ pub struct RootConfig {
 
 fn default_true() -> bool { true }
 fn default_false() -> bool { false }
-fn default_seq_delay() -> u64 { 3 }
+fn default_seq_delay() -> u64 { 5 }
 fn default_clean_days() -> u32 { 7 }
 fn default_base_dir() -> String { ".".to_string() }
 fn default_chat_dir() -> String { "ChatServer".to_string() }
