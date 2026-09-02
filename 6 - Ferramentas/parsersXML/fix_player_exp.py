@@ -1,13 +1,17 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 import xml.etree.ElementTree as ET
 import backup_manager
 
 # Read client pcexp_table.xml if exists, or use client data
-client_exp_path = r"D:\AION CLASSIC 5.0 - EMULADOR\Cliente Classic 4.5\Data\Dump\PC\pcexp_table.xml"
+client_exp_path = os.path.join(PROJECT_ROOT, "Cliente Classic 4.5\Data\Dump\PC\pcexp_table.xml")
 
 for base_dir in [
-    r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data",
-    r"D:\AION CLASSIC 5.0 - EMULADOR\2 - Emulador [Produto Final]\GameServer\data\static_data"
+    os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data"),
+    os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 ]:
     exp_file = os.path.join(base_dir, "player_experience_table.xml")
     backup_manager.backup_file_before_modification(exp_file)

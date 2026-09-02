@@ -1,7 +1,11 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 import xml.etree.ElementTree as ET
 
-player_stats_dir = r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data\stats\player"
+player_stats_dir = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data", "stats\player")
 
 for f in os.listdir(player_stats_dir):
     if not f.endswith(".xml"): continue

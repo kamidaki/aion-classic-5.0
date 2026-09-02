@@ -1,3 +1,7 @@
+import os
+import sys
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
 import struct
 import os
 
@@ -12,7 +16,7 @@ def decrypt_game_packet(data, key):
 import pcapng
 from scapy.all import rdpcap, TCP, Raw
 
-pcap_path = r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\2 - Wireshark - Oficial Classic 5.0\03_Tutorial\Elyos\01_Soul_Reaper\03_Tutorial_Elyos_01_Soul_Reaper_2026-08-27_12-59-34_00001_20260827125934.pcapng"
+pcap_path = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "2 - Wireshark - Oficial Classic 5.0", "03_Tutorial\Elyos\01_Soul_Reaper\03_Tutorial_Elyos_01_Soul_Reaper_2026-08-27_12-59-34_00001_20260827125934.pcapng")
 
 packets = rdpcap(pcap_path)
 print(f"Total raw packets: {len(packets)}")

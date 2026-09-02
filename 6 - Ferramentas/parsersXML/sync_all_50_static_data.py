@@ -1,5 +1,9 @@
 import os
 import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
+import sys
 import xml.etree.ElementTree as ET
 import re
 
@@ -10,12 +14,12 @@ if TOOLS_DIR not in sys.path:
 import aion_bxml
 import backup_manager
 
-SERVER_BASE_DIR = r"D:\AION CLASSIC 5.0 - EMULADOR\Produto Final\data\server\data"
+SERVER_BASE_DIR = os.path.join(PROJECT_ROOT, "Produto Final\data\server\data")
 TARGET_DIRS = [
-    r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data",
-    r"D:\AION CLASSIC 5.0 - EMULADOR\2 - Emulador [Produto Final]\GameServer\data\static_data"
+    os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data"),
+    os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 ]
-STRINGS_DIR = r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\Strings\strings"
+STRINGS_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "4 - Client 5.0 - Dados Extraidos", "Strings", "strings")
 
 NAME_TO_ID = {}
 NAME_TO_BODY = {}

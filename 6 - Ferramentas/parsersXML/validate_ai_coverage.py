@@ -1,9 +1,13 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 import re
 import xml.etree.ElementTree as ET
 
 # Directories
-BASE_GS = r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer"
+BASE_GS = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer")
 AI_DIR = os.path.join(BASE_GS, r"data\scripts\system\handlers\ai")
 NPC_TEMPLATES_XML = os.path.join(BASE_GS, r"data\static_data\npcs\npc_templates.xml")
 

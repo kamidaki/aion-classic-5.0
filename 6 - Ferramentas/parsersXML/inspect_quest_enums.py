@@ -1,8 +1,12 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 import re
 import xml.etree.ElementTree as ET
 
-BASE = r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data"
+BASE = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data")
 
 # Let's inspect quest_data.xml for all category values
 qd = os.path.join(BASE, "quest_data", "quest_data.xml")

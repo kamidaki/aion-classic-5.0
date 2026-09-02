@@ -1,4 +1,8 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 import xml.etree.ElementTree as ET
 
 VALID_13_CLASSES = [
@@ -20,8 +24,8 @@ VALID_13_CLASSES = [
 import backup_manager
 
 for base_dir in [
-    r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data",
-    r"D:\AION CLASSIC 5.0 - EMULADOR\2 - Emulador [Produto Final]\GameServer\data\static_data"
+    os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data"),
+    os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 ]:
     path = os.path.join(base_dir, "player_initial_data.xml")
     backup_manager.backup_file_before_modification(path)

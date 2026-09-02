@@ -1,5 +1,9 @@
+import os
+import sys
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
 """
-Script para extrair todos os arquivos .PAK em D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data,
+Script para extrair todos os arquivos .PAK em 5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data,
 garantindo a integridade dos dados (CRC32 exato e tamanho exato),
 preservando a codificacao e formato original dos arquivos (.xml, .bxml, .dds, .cgf, etc.)
 e, apos confirmacao de 100% de sucesso em todos os PAKs, excluir os arquivos .PAK.
@@ -113,7 +117,7 @@ def le_entrada(d, e):
     return saida
 
 def main():
-    base_dir = r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data"
+    base_dir = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "4 - Client 5.0 - Dados Extraidos", "data")
     print("=" * 80)
     print(f"INICIANDO EXTRACAO E AUDITORIA COMPLETA DE PAKS EM: {base_dir}")
     print("=" * 80)

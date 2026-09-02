@@ -1,6 +1,10 @@
 import os
+import sys
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
+import os
 
-BASE_DIR = r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\2 - Wireshark - Oficial Classic 5.0"
+BASE_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "2 - Wireshark - Oficial Classic 5.0")
 
 classes = [
     "01_Soul_Reaper",

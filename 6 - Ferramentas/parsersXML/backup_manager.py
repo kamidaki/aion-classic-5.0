@@ -1,6 +1,6 @@
 r"""
 Módulo Central de Gerenciamento de Backups e Rollback para a Suíte de Parsers XML 5.0
-Localização: D:\AION CLASSIC 5.0 - EMULADOR\6 - Ferramentas\parsersXML\backup_manager.py
+Localização: 6 - Ferramentas\parsersXML\backup_manager.py
 
 Garante que NENHUM arquivo estático (static_data) seja alterado por qualquer parser
 sem antes criar um backup completo e cronológico, estruturado com data e hora:

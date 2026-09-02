@@ -1,6 +1,10 @@
+import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
 import xml.etree.ElementTree as ET
 
-path = r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data\player_initial_data.xml"
+path = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data", "player_initial_data.xml")
 tree = ET.parse(path)
 root = tree.getroot()
 

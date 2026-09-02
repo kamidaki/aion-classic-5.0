@@ -1,3 +1,7 @@
+import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
 """
 Parser 5.0 para Itens (tools/parsersXML/parse_items.py)
 Analisa e sincroniza todos os itens do cliente 5.0 com server/data/items/ e cosmetic_items/
@@ -261,7 +265,7 @@ def parse_items():
     common_bxml.log_step("Itens (item_templates)", orig_count, added_count, updated_count, final_count)
 
     # Sincroniza diretamente com o PRODUTO FINAL
-    produto_final_xml = os.path.join(r"D:\AION CLASSIC 5.0 - EMULADOR\2 - Emulador [Produto Final]\GameServer\data\static_data\items\item\item_templates.xml")
+    produto_final_xml = os.path.join(os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data", "items\item\item_templates.xml"))
     if os.path.exists(os.path.dirname(produto_final_xml)):
         source_xml = os.path.join(common_bxml.SERVER_DATA_DIR, server_path)
         shutil.copy2(source_xml, produto_final_xml)

@@ -1,4 +1,8 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 
 LEGACY_FILES = [
     "battle-master-templates.xml",
@@ -14,8 +18,8 @@ LEGACY_FILES = [
 ]
 
 for base_dir in [
-    r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data\stats\player",
-    r"D:\AION CLASSIC 5.0 - EMULADOR\2 - Emulador [Produto Final]\GameServer\data\static_data\stats\player"
+    os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data", "stats\player"),
+    os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data", "stats\player")
 ]:
     for f in LEGACY_FILES:
         fp = os.path.join(base_dir, f)

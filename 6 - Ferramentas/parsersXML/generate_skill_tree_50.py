@@ -1,8 +1,8 @@
 """
 Gerador Canônico Oficial de Árvores de Habilidades (skill_tree.xml) — Aion Classic 5.0
 Lê os dados originais do cliente 5.0 em:
-  - D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data\skills\client_skills.xml
-  - D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data\skills\client_skill_learns.xml
+  - 5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data\skills\client_skills.xml
+  - 5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data\skills\client_skill_learns.xml
 E gera a árvore de habilidades 100% canônica cobrindo todas as 13 classes do Aion 5.0:
 GLADIATOR, TEMPLAR, ASSASSIN, RANGER, SORCERER, SPIRIT_MASTER, CLERIC, CHANTER,
 REVENANT, BRAWLER, LUMINESS, PHOENIX, SOUL_REAPER e ALL.

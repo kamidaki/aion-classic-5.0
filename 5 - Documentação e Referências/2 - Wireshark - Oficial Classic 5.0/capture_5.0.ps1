@@ -306,7 +306,7 @@ Write-Host ""
 Write-Host "Dica de Analise: Para decodificar e listar os opcodes desta captura:" -ForegroundColor White
 if ($generatedFiles -and $generatedFiles.Count -gt 0) {
     $latest = $generatedFiles[0].FullName
-    Write-Host "  python ""D:\AION CLASSIC 5.0 - EMULADOR\6 - Ferramentas\aion_pcap.py"" ""$latest"" --opcodes" -ForegroundColor Yellow
+    Write-Host "  python ""6 - Ferramentas\aion_pcap.py"" ""$latest"" --opcodes" -ForegroundColor Yellow
 }
 
 Write-Host ""

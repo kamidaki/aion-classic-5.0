@@ -1,3 +1,7 @@
+import os
+import sys
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
 #!/usr/bin/env python3
 """
 Aion Client 4.5 NPC Spawn Generator & Localized Name Resolver
@@ -203,7 +207,7 @@ def main():
     print("Aion Client 4.5 NPC Spawn Generation & String Resolution Pipeline")
     print("=" * 70)
 
-    base_dir = r"D:\AION CLASSIC 5.0 - EMULADOR"
+    base_dir = PROJECT_ROOT
     strings_dir = os.path.join(base_dir, "Produto Final", "data", "client", "Strings", "strings")
     npcs_xml_path = os.path.join(base_dir, "Produto Final", "data", "client", "data", "npcs", "client_npcs.xml")
     java_spawns_dir = os.path.join(base_dir, "Docs-Refs", "JAVA EMU - 2.8 CLASSIC CHS", "GameServer", "data", "static_data", "spawns")

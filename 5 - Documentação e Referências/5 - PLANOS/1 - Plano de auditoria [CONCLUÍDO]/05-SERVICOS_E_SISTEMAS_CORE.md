@@ -4,7 +4,7 @@
 
 ### 1.1 Limpeza de Código Morto
 - **Remoção de Arquivos Residuais**:
-  - Excluir `D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\src\com\aionemu\gameserver\services\ClassChangeService.java.bak`.
+  - Excluir `1 - Código Fonte [Emulador]\GameServer\src\com\aionemu\gameserver\services\ClassChangeService.java.bak`.
 - **Eliminação de Soluções Temporárias (Workarounds)**:
   - Verificar métodos com `// TODO workaround` ou fallbacks fictícios que ignoram templates XML.
 

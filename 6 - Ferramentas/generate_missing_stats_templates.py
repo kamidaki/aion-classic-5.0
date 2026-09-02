@@ -1,6 +1,10 @@
 import os
+import sys
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
+import os
 
-output_dir = r"D:\AION CLASSIC 5.0 - EMULADOR\Produto Final\data\server\data\stats\player"
+output_dir = os.path.join(PROJECT_ROOT, "Produto Final\data\server\data\stats\player")
 
 # 1. REAPER (Levels 1 to 10)
 # Base: power=105, health=100, agility=115, accuracy=110, knowledge=110, will=95

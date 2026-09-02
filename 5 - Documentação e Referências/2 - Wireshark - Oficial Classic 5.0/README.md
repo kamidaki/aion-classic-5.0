@@ -75,12 +75,12 @@ Para inspecionar, decodificar a cifra dinâmica e listar todos os opcodes captur
 
 ### Censo de Opcodes:
 ```powershell
-python "D:\AION CLASSIC 5.0 - EMULADOR\6 - Ferramentas\aion_pcap.py" "01_Login_World\Elyos\<arquivo>.pcapng" "D:\AION CLASSIC 5.0 - EMULADOR" --opcodes
+python "6 - Ferramentas\aion_pcap.py" "01_Login_World\Elyos\<arquivo>.pcapng" "." --opcodes
 ```
 
 ### Correlação Pedido / Resposta (Lift):
 ```powershell
-python "D:\AION CLASSIC 5.0 - EMULADOR\6 - Ferramentas\aion_pcap.py" "01_Login_World\Elyos\<arquivo>.pcapng" "D:\AION CLASSIC 5.0 - EMULADOR" --correlacao
+python "6 - Ferramentas\aion_pcap.py" "01_Login_World\Elyos\<arquivo>.pcapng" "." --correlacao
 ```
 
 ---

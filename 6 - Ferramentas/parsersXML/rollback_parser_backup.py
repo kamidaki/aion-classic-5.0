@@ -1,6 +1,6 @@
 r"""
 Script Utilitário de Rollback de Backups de Parsers XML 5.0
-Localização: D:\AION CLASSIC 5.0 - EMULADOR\6 - Ferramentas\parsersXML\rollback_parser_backup.py
+Localização: 6 - Ferramentas\parsersXML\rollback_parser_backup.py
 
 Uso:
   python rollback_parser_backup.py --list              # Lista todos os backups em ordem cronológica

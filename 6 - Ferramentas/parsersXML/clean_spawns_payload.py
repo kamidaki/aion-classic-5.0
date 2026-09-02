@@ -1,4 +1,8 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 import xml.etree.ElementTree as ET
 import backup_manager
 
@@ -27,8 +31,8 @@ def clean_spawns(spawns_dir):
                 print(f"Error parsing {fp}: {e}")
     print(f"Cleaned {cleaned_files} files in {spawns_dir}, removed {total_removed} payload attributes.")
 
-base_spawns = r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data\spawns"
-prod_spawns = r"D:\AION CLASSIC 5.0 - EMULADOR\2 - Emulador [Produto Final]\GameServer\data\static_data\spawns"
+base_spawns = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data", "spawns")
+prod_spawns = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data", "spawns")
 
 clean_spawns(base_spawns)
 clean_spawns(prod_spawns)

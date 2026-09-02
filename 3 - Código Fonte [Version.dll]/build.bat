@@ -8,7 +8,13 @@ echo =========================================================================
 
 set "VS_VCVARS=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
 set "SLN_PATH=src\AionVersionDll.sln"
-set "CLIENT_DIR=D:\GameForge\aionclassic"
+if not defined CLIENT_DIR (
+    if exist "..\..\GameForge\aionclassic" (
+        set "CLIENT_DIR=..\..\GameForge\aionclassic"
+    ) else (
+        set "CLIENT_DIR="
+    )
+)
 set "PATCH_DIR=..\4 - Patch para o Client 5.0"
 
 if not exist "%VS_VCVARS%" (

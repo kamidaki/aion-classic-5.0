@@ -1,8 +1,12 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 import xml.etree.ElementTree as ET
 
-BASE_GS = r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer"
-PROD_GS = r"D:\AION CLASSIC 5.0 - EMULADOR\2 - Emulador [Produto Final]\GameServer"
+BASE_GS = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer")
+PROD_GS = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer")
 
 EXPANSION = {
     "WARRIOR": ["GLADIATOR", "TEMPLAR"],

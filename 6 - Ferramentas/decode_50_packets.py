@@ -1,4 +1,8 @@
 import os
+import sys
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
+import os
 import pyshark
 import struct
 import blowfish
@@ -105,9 +109,9 @@ def decrypt_gameserver_stream(packets):
 
 def run_analysis():
     pcap_files = [
-        r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\2 - Wireshark - Oficial Classic 5.0\01_Login_World\Elyos\01_Login_World_Elyos_2026-08-27_10-03-03_00001_20260827100304.pcapng",
-        r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\2 - Wireshark - Oficial Classic 5.0\01_Login_World\Asmodians\01_Login_World_Asmodians_2026-08-27_10-08-12_00001_20260827100812.pcapng",
-        r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\2 - Wireshark - Oficial Classic 5.0\02_Character_Creation\Elyos\02_Character_Creation_Elyos_2026-08-27_10-10-24_00001_20260827101024.pcapng"
+        os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "2 - Wireshark - Oficial Classic 5.0", "01_Login_World\Elyos\01_Login_World_Elyos_2026-08-27_10-03-03_00001_20260827100304.pcapng"),
+        os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "2 - Wireshark - Oficial Classic 5.0", "01_Login_World\Asmodians\01_Login_World_Asmodians_2026-08-27_10-08-12_00001_20260827100812.pcapng"),
+        os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "2 - Wireshark - Oficial Classic 5.0", "02_Character_Creation\Elyos\02_Character_Creation_Elyos_2026-08-27_10-10-24_00001_20260827101024.pcapng")
     ]
     
     for filepath in pcap_files:

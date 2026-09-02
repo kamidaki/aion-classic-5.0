@@ -1,8 +1,12 @@
 import os
+import sys
+PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(PARSERS_DIR))
+import os
 import re
 import xml.etree.ElementTree as ET
 
-ai_dir = r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\scripts\system\handlers\ai"
+ai_dir = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "scripts", "system\handlers\ai")
 existing_ais = set()
 existing_files = set()
 
@@ -19,7 +23,7 @@ for root, dirs, files in os.walk(ai_dir):
 
 print(f"Total existing @AIName registered: {len(existing_ais)//2}")
 
-npc_xml = r"D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data\npcs\npc_templates.xml"
+npc_xml = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data", "npcs\npc_templates.xml")
 tree = ET.parse(npc_xml)
 root = tree.getroot()
 

@@ -14,7 +14,7 @@
 
 ## 2. Publicação e Distribuição em `PRODUTO FINAL`
 - O destino final mandatado para a distribuição é:
-  - `D:\AION CLASSIC 5.0 - EMULADOR\2 - Emulador [Produto Final]`
+  - `2 - Emulador [Produto Final]`
 - Atualizar exclusivamente as JARs e arquivos alterados:
   - `PRODUTO FINAL/LoginServer/login-server.jar` (e libs alteradas, se houver)
   - `PRODUTO FINAL/GameServer/game-server.jar` (e data/libs alteradas)

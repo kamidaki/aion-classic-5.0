@@ -4,11 +4,11 @@
 Conforme mandatado no `CONTEXT.md`:
 - **Proibição Absoluta de Bypass no Java**: Nenhum dado estático ausente pode ser substituído por valores mágicos ou lógica hardcoded.
 - **Fonte da Verdade Oficial 5.0**:
-  - `D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data`
+  - `5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos\data`
 - **Ferramentas Oficiais de Extração e Sincronização**:
-  - `D:\AION CLASSIC 5.0 - EMULADOR\6 - Ferramentas\parsersXML`
+  - `6 - Ferramentas\parsersXML`
 - **Destino dos Dados Estáticos do GameServer**:
-  - `D:\AION CLASSIC 5.0 - EMULADOR\1 - Código Fonte [Emulador]\GameServer\data\static_data`
+  - `1 - Código Fonte [Emulador]\GameServer\data\static_data`
 
 ---
 

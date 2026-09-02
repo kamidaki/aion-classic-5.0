@@ -1,3 +1,7 @@
+import os
+import sys
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
 #!/usr/bin/env python3
 """
 Aion Client 4.5 Geodata Compiler
@@ -444,7 +448,7 @@ def main():
     print("Aion Client 4.5 Server Geodata Generation Pipeline")
     print("=" * 70)
 
-    base_dir = r"D:\AION CLASSIC 5.0 - EMULADOR"
+    base_dir = PROJECT_ROOT
     client_levels = os.path.join(base_dir, "Produto Final", "data", "client", "levels")
     zonemap_xml = os.path.join(base_dir, "Produto Final", "data", "client", "data", "world", "zonemap.xml")
     output_geodata_dir = os.path.join(base_dir, "Produto Final", "data", "server", "data", "geodata")
