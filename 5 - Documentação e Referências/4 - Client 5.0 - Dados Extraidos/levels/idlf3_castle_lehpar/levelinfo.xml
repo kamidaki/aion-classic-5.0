@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="512" HeightmapYSize="512" LightMapPath="Levels\idlf3_castle_lehpar\" Name="Levels\idlf3_castle_lehpar" Version="{182A50CF-781C-4642-9AF2-90F15DA51D3A}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

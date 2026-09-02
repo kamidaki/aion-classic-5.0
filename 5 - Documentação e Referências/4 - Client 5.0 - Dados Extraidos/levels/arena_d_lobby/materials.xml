@@ -1,0 +1,28 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\Arena_D_Lobby.xml" Name="Arena_D_Lobby">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{BA9B3C65-A392-409D-81D3-8CDCA218AE21}" MtlFlags="16" Name="bu_d_odwater0" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_OpacityShift" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/structures/buildings/city/bu_d_odwater.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams shiftspeedx="0" shiftspeedy="-0.015" tex_ambient="0.25"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

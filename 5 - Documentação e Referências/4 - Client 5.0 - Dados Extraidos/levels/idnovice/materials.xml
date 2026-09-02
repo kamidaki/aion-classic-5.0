@@ -1,0 +1,9 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\IDNovice_WaterVolume.xml" Name="IDNovice_WaterVolume">
+		<Material AlphaTest="0" GenMask="0" Id="{B31B182B-96B4-41A4-810D-B8956716A7EB}" MtlFlags="0" Name="WaterVolume_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.02" bumpamounty="0.02" opacity="0.69" reflamount="0.79" reflectamount="1" refrtillingamount="10" textilex="20" textiley="20"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

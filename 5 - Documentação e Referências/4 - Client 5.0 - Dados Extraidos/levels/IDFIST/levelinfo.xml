@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="256" HeightmapYSize="256" LightMapPath="Levels\IDFIST\" Name="Levels\IDFIST" Version="{E4658F54-22D7-4AA3-9B55-C50367BF9C0E}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

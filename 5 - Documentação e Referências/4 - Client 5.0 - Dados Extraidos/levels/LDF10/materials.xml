@@ -1,0 +1,16 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\DF2_WaterVolume.xml" Name="DF2_WaterVolume"/>
+	<Library File="Editor\Materials\Dc1_Watervolume.xml" Name="Dc1_Watervolume">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.40000001,0.86274511,0.95686275" Emissive="0,0,0" GenMask="0" Id="{476F3F49-FE2B-40F9-88BD-FF942C93A42E}" MtlFlags="16" Name="Dc1_mainwater_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0.53725493,0.97647059" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="1" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="20" textiley="20"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\LDF10_WaterVolume.xml" Name="LDF10_WaterVolume">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.36078432,0.22745098,0.094117649" Emissive="0,0,0" GenMask="0" Id="{00AF1F38-3949-4352-865B-CF9A028BE852}" MtlFlags="16" Name="Subzone_D" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.05" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.2" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="30" textiley="30"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

@@ -1,0 +1,9 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\DF2_WaterVolume.xml" Name="DF2_WaterVolume">
+		<Material AlphaTest="0" GenMask="0" Id="{F0730B3F-4683-4F3D-A8EA-DBB2BBBA4B8A}" MtlFlags="0" Name="Subzone_4_02" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="7" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="7" textiley="7"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

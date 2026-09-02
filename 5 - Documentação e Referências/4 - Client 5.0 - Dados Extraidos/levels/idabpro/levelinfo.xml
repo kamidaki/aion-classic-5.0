@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="256" HeightmapYSize="256" LightMapPath="Levels\IDAbPro\" Name="Levels\idabpro" Version="{9A5D4FB3-67DD-4940-9657-26237BA5860A}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

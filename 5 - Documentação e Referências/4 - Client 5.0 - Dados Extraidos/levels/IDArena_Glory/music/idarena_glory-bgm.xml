@@ -1,0 +1,93 @@
+<MusicThemeLibrary Name="IDArena_glory-bgm">
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{E832FE50-E57C-46EF-8F14-C52BA2DCDA34}" Name="BGM_Mute">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern0" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{8B69DC20-C4F3-450F-874D-277F115AF4F2}" Name="IDArena_glory_Triangle">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\IDArena_team-04.ogg" LayeringVolume="255" Name="Pattern1" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{4EAB2527-DEE9-40EC-9397-491F8A0C4971}" Name="IDArena_glory_Pillar">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\IDArena_team-03.ogg" LayeringVolume="255" Name="Pattern2" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{9B6F7160-7D7C-469A-9895-72CC912CAE96}" Name="IDArena_glory_Flying">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\IDArena_team-01.ogg" LayeringVolume="255" Name="Pattern3" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{D7A599C3-8D87-4936-9333-0DABB3D123D3}" Name="IDArena_glory_Swamp">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\IDArena_team-02.ogg" LayeringVolume="255" Name="Pattern4" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{40BBD71F-543C-44C8-9520-C8D941AFD3B9}" Name="IDArena_glory_Monster">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\IDArena_team-05.ogg" LayeringVolume="255" Name="Pattern5" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{CD6CE8C2-E2CA-4C31-B227-8E57E79B7CD4}" Name="IDArena_glory_Maze">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="Sounds\music\IDArena_team-06.ogg" LayeringVolume="255" Name="Pattern6" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+</MusicThemeLibrary>

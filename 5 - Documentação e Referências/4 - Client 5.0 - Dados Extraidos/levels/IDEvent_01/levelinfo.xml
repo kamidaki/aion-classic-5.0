@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="512" HeightmapYSize="512" LightMapPath="Levels\IDEvent_01\" Name="Levels\IDEvent_01" Version="{A934E81B-6D91-4E68-AB82-395E8FFB15EA}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

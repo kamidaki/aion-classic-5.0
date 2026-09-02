@@ -1,0 +1,768 @@
+<Mission CGFCount="14" Description="" MusicScript="" Name="Mission0" PlayerEquipPack="" Script="" Time="09:00">
+	<EquipPacks></EquipPacks>
+	<Environment>
+		<Fog Color="128,128,128" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+		<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+		<EnvState AmbientAmplify="1.0" EnvColor="73,152,182" OutdoorAmbientColor="82,80,105" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="121,149,189" SunHeightScale="1.0" WindForce="0.3"/>
+		<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+		<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+		<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+		<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+		<Misc VegetationShadowColorMin="0.8"/>
+		<Lighting LightingCount="1"/>
+		<Lighting_000 Algorithm="3" Ambient="0" CurrentHour="6" HemiSamplQuality="5" Lighting="1" lightmap_name="LIGHTMAP" ObjShadows="1" ShadowBlur="1" ShadowIntensity="50" Shadows="1" SkyColor="8421504" SunColor="16777215" SunHeight="10" SunMultiplier="1" SunRotation="0" SunVector="0,0.99498743,-0.1"/>
+	</Environment>
+	<EnvSetManager EnvSetSize="1">
+		<EnvSet000>
+			<Environment>
+				<Fog Color="128,128,128" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+				<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+				<EnvState AmbientAmplify="1.0" EnvColor="73,152,182" OutdoorAmbientColor="82,80,105" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="121,149,189" SunHeightScale="1.0" WindForce="0.3"/>
+				<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+				<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+				<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+				<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+				<Misc VegetationShadowColorMin="0.8"/>
+			</Environment>
+		</EnvSet000>
+	</EnvSetManager>
+	<Weapons>
+		<Used></Used>
+		<Ammo></Ammo>
+	</Weapons>
+	<LevelOption>
+		<Initialize Render_Beaches="0.000000" Render_Fog="1" Render_Ocean="0.000000" Render_SkyBox="1" Render_SkyCloud="1.000000" Render_Sun="0.000000" Render_Terrain="0.000000"/>
+		<Fly Fly_Whole_Level="0" FRZ_NEGX="50" FRZ_NEGY="50" FRZ_X="50" FRZ_Y="50" MaxHeight="300"/>
+		<Ride Ride_Whole_Level="0"/>
+		<BindArea IsPossible="0"/>
+		<ReCall IsPossible="1"/>
+		<Glide IsPossible="1"/>
+		<LightMap LightMapLevelName="DC1Space"/>
+	</LevelOption>
+	<WeatherSystem></WeatherSystem>
+	<ServerZoneList></ServerZoneList>
+	<TimeEnvSystem>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="0" env_color="136,163,223" env_heathaze="0.0" env_windforce="0.0" fog_color="000,051,098" fog_end="512" fog_start="32" fullscreenfx="" GammaDestMax="255" GammaDestMin="0" GammaInterpolate="1" GammaSrcMax="255" GammaSrcMin="0" name="subzone_startarea" parteffect="" particlefx="" PhotoColor="0,0,0" PhotocolorInterpolate="0" SelectiveDest="0,0,0" SelectiveInterpolate="0" SelectiveSrc="0,0,0" sky_box_name="LDF5b.TimeEnv.ldf5b_Night" sky_lens_check="1" sky_lens_name="CryLight" sky_sun_check="0" sky_sun_direction="180" sky_sun_height="35" skydome_name="skydome_idldf1_gate.skydome_idldf1_gate.skydome_idldf1_gate" time_hour="6" time_min="0" time_name="Night" view_dist="2048" zonename="Subzone_Startarea"/>
+	</TimeEnvSystem>
+	<TimeEnvZoneList>
+		<timeenv_zone name="Subzone_Startarea" priority="1">
+			<points_info bottom="186.593384" top="286.593384" type="polygon">
+				<points points_size="4">
+					<data x="496.381256" y="17.766258"/>
+					<data x="498.783569" y="492.620148"/>
+					<data x="8.222870" y="500.573212"/>
+					<data x="7.145538" y="13.156609"/>
+				</points>
+			</points_info>
+		</timeenv_zone>
+	</TimeEnvZoneList>
+	<TimeofDayEnvSystem>
+		<TimeofDayGroup vartype="0" zonename="Subzone_Startarea">
+			<time_name type="arr_string">
+				<keyvalue></keyvalue>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="123,138,175,0"/>
+			</fog_color>
+			<view_dist ratio="16,4000" type="gridwindow">
+				<keyvalue key0="0.37248999,0" key1="0.37248999,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.0099999998" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.50083202" key2="0,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-1,1" type="gridwindow">
+				<keyvalue key0="0.55000001,0" key1="0.55000001,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.55664098,0" key1="0.55664098,0.71333301" key2="0.55714297,0.74916703" key3="0.55664098,0.82999998" key4="0.55664098,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.60000002,0" key1="0.60000002,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.439394" key2="0,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,3072" type="gridwindow">
+				<keyvalue key0="0.71158898,0" key1="0.71428603,0.12666699" key2="0.728571,0.287523" key3="0.71428603,0.66907799" key4="0.71158898,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,0.87884301" key2="0.2,1"/>
+			</LayerFogOpacity>
+			<fog_start ratio="1,100" type="gridwindow">
+				<keyvalue key0="0.242424,0" key1="0.242424,1"/>
+			</fog_start>
+			<fog_end ratio="30,1500" type="gridwindow">
+				<keyvalue key0="0.18367299,0" key1="0.18367299,1"/>
+			</fog_end>
+			<env_color type="colorbar">
+				<keyvalue key0="53,96,138,0"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="52,53,92,0"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.44999999,0" key1="0.44999999,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,2" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.373536,LDF5b.TimeEnv.ldf5b_Night"/>
+			</sky_box_name>
+			<skydome_name type="arr_string">
+				<keyvalue key0="0.406250,skydome_idldf1_gate.skydome_idldf1_gate.skydome_idldf1_gate"/>
+			</skydome_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.23999999,0" key1="0.23999999,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="0,90" type="gridwindow">
+				<keyvalue key0="0.38888901,0" key1="0.38888901,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.97142899,0.97829998" key2="0,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.37,0" key1="0.37,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.014286,0.18839" key2="0,0.87765503" key3="0,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.158144" key2="0,0.87884301" key3="0,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.042856999,0.088359997" key2="0.028571,0.191164" key3="0,0.87522602" key4="0.02,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.809659" key2="0,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.830782" key2="0,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,20" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</ZenithShift>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="45,68,94,0"/>
+			</ZenithColor>
+			<SunWavelength_r ratio="0,1000" type="gridwindow">
+				<keyvalue key0="0.833,0" key1="0.83399999,0.125833" key2="0.833,0.24583299" key3="0.83399999,0.255833" key4="0.83399999,0.70416701" key5="0.833,0.83333302" key6="0.833,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.52600002,0" key1="0.526667,0.12666699" key2="0.52600002,0.24583299" key3="0.52600002,0.253333" key4="0.526667,0.49833301" key5="0.52600002,0.70583302" key6="0.52600002,0.836667" key7="0.52600002,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.42333299,0" key1="0.41428599,0.087585002" key2="0.42333299,0.125" key3="0.42333299,0.24583299" key4="0.42333299,0.253333" key5="0.42333299,0.5" key6="0.42333299,0.70583302" key7="0.42333299,0.83749998" key8="0.42333299,1"/>
+			</SunWavelength_b>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.039999999,0" key1="0.039999999,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.059999999,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="22,122,130,0"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="98,156,240,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,30" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="29,130,176,0"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="0,0,0,0" key1="0,0,0,0.26612899" key2="0,0,0,0.51612902" key3="0,0,0,0.75187302" key4="2,4,15,0.90083301"/>
+			</HorizonColor>
+			<HorizonRange ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRange>
+			<HorizonOpacity ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonOpacity>
+			<HorizonRatio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRatio>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,-0.0075759999"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="0.98571402,0.50134403" key2="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.50268799" key2="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.5" key2="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+	</TimeofDayEnvSystem>
+	<FxArtifactSystem></FxArtifactSystem>
+	<CommonShapeList>
+		<music_zones>
+			<music_zone name="Mute" npc="-1" priority="16" theme="Mute">
+				<points_info bottom="0.100000" top="1000.099976" type="polygon">
+					<points points_size="4">
+						<data x="-56.000000" y="-56.000000"/>
+						<data x="570.000000" y="-52.000000"/>
+						<data x="562.000000" y="569.000000"/>
+						<data x="-49.000000" y="570.000000"/>
+					</points>
+				</points_info>
+			</music_zone>
+			<music_zone name="LDF1_01" npc="-1" priority="1" theme="LDF1_01">
+				<points_info bottom="0.100000" top="1000.099976" type="polygon">
+					<points points_size="4">
+						<data x="-19.000000" y="-11.000000"/>
+						<data x="-20.000000" y="539.000000"/>
+						<data x="529.000000" y="541.000000"/>
+						<data x="529.000000" y="-18.000000"/>
+					</points>
+				</points_info>
+			</music_zone>
+		</music_zones>
+		<sub_zones>
+			<subzone name="SZ_DC1Space" priority="16" string="STR_ZONE_NAME_DC1Space">
+				<points_info bottom="184.100006" top="284.100006" type="polygon">
+					<points points_size="4">
+						<data x="56.103760" y="87.082626"/>
+						<data x="56.103760" y="455.082642"/>
+						<data x="440.103760" y="455.082642"/>
+						<data x="440.103760" y="87.082626"/>
+					</points>
+				</points_info>
+			</subzone>
+		</sub_zones>
+		<attribute_zones></attribute_zones>
+		<npcpath_boids></npcpath_boids>
+		<flying_zones></flying_zones>
+		<beach_zones></beach_zones>
+	</CommonShapeList>
+	<EntityDescriptions></EntityDescriptions>
+	<Objects>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1566557697" EntityId="38" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield7" Pos="138,388,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Object AreaId="-1" FadeInZone="0" GroupId="0" Name="AreaSphereMain1" Pos="394.10376,124.08263,209" Radius="50" Type="AreaSphere"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_DC1Space_to_DC1a_Teleport_01" npc="DC1Space_to_DC1a_Teleport_01" Pos="130,131,197" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1895757830" EntityId="1" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_17" Pos="383.91208,415.70557,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="842851592" EntityId="17" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_31" Pos="138.02074,388.03027,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="1127372556" EntityId="30" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="RA_All" Pos="250,259,391" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0">
+				<EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000">
+					<fReflectionsPan x="0" y="0" z="0"/>
+					<fReverbPan x="0" y="0" z="0"/>
+				</EaxReverbProperties>
+				<Sound1 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="80" sndSound="Sounds\ambient\ambient_drone_low_loop_01.ogg"/>
+				<Sound2 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="40" sndSound="Sounds\ambient\ambient_space_fantasy_2.ogg"/>
+				<Sound3 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound4 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound5 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound6 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound7 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="699960332" EntityId="3" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_19" Pos="414.01907,405.12646,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-926269682" EntityId="60" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield29" Pos="374,385,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="945437711" EntityId="43" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield12" Pos="127,107,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-496964591" EntityId="13" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_27" Pos="137.13908,405.12646,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="2080010516" EntityId="39" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield8" Pos="97,117,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="LocationLocation7" Pos="115.40015,395.53424,197.10001" Type="Location"/>
+		<Object Ignore_heightcheck="0" Name="StartPointMain11" Pos="114.71219,400.67297,197.28778" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="642042147" EntityId="5" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_20" Pos="373.54587,385.82178,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="93701928" EntityId="6" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_21" Pos="401.16049,416.31018,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-2017690582" EntityId="15" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_29" Pos="124.2805,416.31018,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="LocationLocation3" Pos="397.40015,133.53423,197.10001" Type="Location"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-995162066" EntityId="62" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield31" Pos="385,415,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="873317935" EntityId="52" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield21" Pos="401,149,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1622020044" EntityId="27" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_40" Pos="110.69164,106.0614,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1673290296" EntityId="34" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield3" Pos="94,401,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointMain6" Pos="111.71219,398.67297,197.28778" Type="StartPoint"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_DCShip_Muninn_E" npc="DCShip_Muninn_E" Pos="123,131,197" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_DCShip_Muninn_E3" npc="DCShip_Muninn_E" Pos="407,400,197" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointMain4" Pos="394.71219,402.67297,197.28778" Type="StartPoint"/>
+		<Object Ignore_heightcheck="0" Name="StartPointMain7" Pos="398.71219,400.67297,197.28778" Type="StartPoint"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_DC1Space_to_DC1a_Teleport_4" npc="DC1Space_to_DC1a_Teleport_01" Pos="414,131,197" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1286729633" EntityId="61" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield30" Pos="372,401,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1158810208" EntityId="44" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield13" Pos="138,136,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointMain8" Pos="396.71219,135.67296,197.28778" Type="StartPoint"/>
+		<Object Ignore_heightcheck="0" Name="LocationLocation2" Pos="401.07535,129.90334,197.10001" Type="Location"/>
+		<Object AreaId="0" Closed="1" DisplayFilled="0" GroupId="0" Height="500" Name="LDF1_01_Ambient_All" Pos="41,482,-54.899994" Type="Shape" VerticalFadeInOut="0" Width="0">
+			<Points>
+				<Point Pos="41,482,-54.899994"/>
+				<Point Pos="482,482,-54.899994"/>
+				<Point Pos="482,54,-54.899994"/>
+				<Point Pos="41,54,-54.899994"/>
+			</Points>
+			<Entities>
+				<Entity Name="RA_All"/>
+			</Entities>
+		</Object>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1078580637" EntityId="31" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield" Pos="107,415,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointMain10" Pos="394.71219,131.67296,197.28778" Type="StartPoint"/>
+		<Object Ignore_heightcheck="0" Name="LocationLocation6" Pos="113.79037,391.93134,197.10001" Type="Location"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-319860889" EntityId="20" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_33" Pos="107.03209,147.85693,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1593293718" EntityId="55" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield24" Pos="404,375,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1283595666" EntityId="46" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield15" Pos="125,148,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1982099598" EntityId="51" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield20" Pos="371,134,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_DC1Space_to_DC1a_Teleport_3" npc="DC1Space_to_DC1a_Teleport_01" Pos="414,400,197" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1662278005" EntityId="9" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_24" Pos="387.57162,373.91003,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,115.5" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1370210697" EntityId="102" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Vanq_Stage_01" Pos="393.60281,127.53979,197.19583" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.ST_stage_50m" Scale="1.05" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1971938441" EntityId="4" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_02" Pos="403.12503,107.57605,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="LocationLocation1" Pos="395.79037,129.93132,197.10001" Type="Location"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="2143357306" EntityId="56" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield25" Pos="416,388,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Object AffectedBySun="0" AmbientColor="0.25,0.25,0.25" AreaId="0" Closed="1" DisplayFilled="0" DoubleSide="1" DynAmbientColor="0,0,0" GroupId="0" Height="200" HideEntitiesDist="0" HideEntitiesThroughPortals="0" Name="OccluderAreaoc_area1" Pos="253.89711,9.5409088,94.562553" SkyOnly="0" Type="OccluderArea" UseInIndoors="0" VerticalFadeInOut="0" ViewDistRatio="100" Width="0">
+			<Points>
+				<Point Pos="253.89711,9.5409088,94.562553"/>
+				<Point Pos="253.89711,9.5409088,294.56256"/>
+				<Point Pos="255.66507,502.38702,294.56256"/>
+				<Point Pos="255.66507,502.38702,94.562553"/>
+			</Points>
+		</Object>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,115.5" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="941679482" EntityId="19" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Vanq_Stage_3" Pos="116.72282,395.38843,197.19583" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.ST_stage_50m" Scale="1.05" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1690536575" EntityId="59" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield28" Pos="402,416,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-883268222" EntityId="8" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_23" Pos="414.90073,388.03027,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1301182342" EntityId="58" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield27" Pos="415,405,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="721665931" EntityId="45" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield14" Pos="111,106,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1693977717" EntityId="16" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_30" Pos="94.313828,401.32068,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="89141388" EntityId="90" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_14" Pos="371.19382,133.47205,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-376870003" EntityId="35" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield4" Pos="110,374,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="962822040" EntityId="95" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_16" Pos="387.57162,106.0614,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-480860776" EntityId="33" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield2" Pos="137,404,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1088494234" EntityId="18" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_32" Pos="110.69164,373.91003,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="515289755" EntityId="2" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_18" Pos="403.12503,375.42468,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-127877987" EntityId="54" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield23" Pos="415,121,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointMain5" Pos="114.71219,130.67296,198.28778" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1881352541" EntityId="7" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_22" Pos="371.19382,401.32068,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1572077732" EntityId="23" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_36" Pos="96.665878,117.97314,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1856848294" EntityId="57" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield26" Pos="388,374,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_DCShip_Muninn_E4" npc="DCShip_Muninn_E" Pos="407,131,197" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="117185963" EntityId="37" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield6" Pos="126,375,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-300425557" EntityId="53" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield22" Pos="387,107,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_DC1Space_to_DC1a_Teleport_2" npc="DC1Space_to_DC1a_Teleport_01" Pos="133,394,197" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object AffectedBySun="0" AmbientColor="0.25,0.25,0.25" Angles="0,-0,89.999992" AreaId="0" Closed="1" DisplayFilled="0" DoubleSide="1" DynAmbientColor="0,0,0" GroupId="0" Height="200" HideEntitiesDist="0" HideEntitiesThroughPortals="0" Name="OccluderAreaoc_area2" Pos="508.05948,263.09821,94.562553" SkyOnly="0" Type="OccluderArea" UseInIndoors="0" VerticalFadeInOut="0" ViewDistRatio="100" Width="0">
+			<Points>
+				<Point Pos="508.05948,263.09821,94.562553"/>
+				<Point Pos="508.05948,263.09821,294.56256"/>
+				<Point Pos="6.0532227,261.38852,294.56256"/>
+				<Point Pos="6.0532227,261.38852,94.562553"/>
+			</Points>
+		</Object>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1086709071" EntityId="21" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_34" Pos="126.24504,107.57605,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="880223921" EntityId="47" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield16" Pos="414,137,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,115.5" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-15211085" EntityId="10" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Vanq_Stage_2" Pos="393.60281,395.38843,197.19583" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.ST_stage_50m" Scale="1.05" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="550151093" EntityId="49" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield18" Pos="373,118,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="40574647" EntityId="40" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield9" Pos="95,133,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1832766647" EntityId="296" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_15" Pos="414.90073,120.18164,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1627087033" EntityId="22" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_35" Pos="137.13908,137.27783,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="Bugs" EntityGUID="1114573757" EntityId="63" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="1" Layer="Sky_Star" LodRatio="100" Name="Star4" Pos="394.31128,397.55792,516.25513" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties Animation="" AnimationSpeed="1" bActivateOnStart="1" bFollowPlayer="0" bNoInclination="0" bNoLanding="1" CollisionWithTerrain="1" FactorOrigin="1" flockTime_FShowTime="" flockWeather_FHideWeather="" flockWeather_FShowWeather="" FollowDistance="100" HeightMax="0" HeightMin="0" nBehaviour="0" nNumBugs="70" object_Character="" object_Model1="Objects\Misc\boids\spore\star_boid_01a_a.cgf" object_Model2="Objects\Misc\boids\spore\star_boid_01a_d.cgf" object_Model3="Objects\Misc\boids\spore\star_boid_02b_c.cgf" object_Model4="Objects\Misc\boids\spore\star_boid_01a_a.cgf" object_Model5="Objects\Misc\boids\spore\star_boid_01a_b.cgf" object_TexName="" Radius="500" RandomMovement="0" Scale="3" SpeedMax="0" SpeedMin="0" TexBehavior="0" TexRadius="0.2" TexRandomColor="0" TexRandomLife="0" VisibilityDist="1500"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1415983683" EntityId="32" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield1" Pos="124,416,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="Bugs" EntityGUID="1332168896" EntityId="29" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="1" Layer="Sky_Star" LodRatio="100" Name="Star3" Pos="117.3149,397.55792,516.25513" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties Animation="" AnimationSpeed="1" bActivateOnStart="1" bFollowPlayer="0" bNoInclination="0" bNoLanding="1" CollisionWithTerrain="1" FactorOrigin="1" flockTime_FShowTime="" flockWeather_FHideWeather="" flockWeather_FShowWeather="" FollowDistance="100" HeightMax="0" HeightMin="0" nBehaviour="0" nNumBugs="70" object_Character="" object_Model1="Objects\Misc\boids\spore\star_boid_01a_a.cgf" object_Model2="Objects\Misc\boids\spore\star_boid_01a_d.cgf" object_Model3="Objects\Misc\boids\spore\star_boid_02b_c.cgf" object_Model4="Objects\Misc\boids\spore\star_boid_01a_a.cgf" object_Model5="Objects\Misc\boids\spore\star_boid_01a_b.cgf" object_TexName="" Radius="500" RandomMovement="0" Scale="3" SpeedMax="0" SpeedMin="0" TexBehavior="0" TexRadius="0.2" TexRandomColor="0" TexRandomLife="0" VisibilityDist="1500"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-843379516" EntityId="12" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_26" Pos="126.24504,375.42468,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="619171013" EntityId="297" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_13" Pos="401.16049,148.46155,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-2017114678" EntityId="36" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield5" Pos="96,385,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="LocationLocation8" Pos="111.79037,130.93134,197.10001" Type="Location"/>
+		<Object Ignore_heightcheck="0" Name="StartPointMain9" Pos="113.71219,132.67296,198.28778" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1591699507" EntityId="48" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield17" Pos="403,108,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-651040049" EntityId="298" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_04" Pos="373.54587,117.97314,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="2118846165" EntityId="299" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_01" Pos="383.91208,147.85693,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="LocationLocation4" Pos="394.79037,397.93134,197.10001" Type="Location"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="920223190" EntityId="42" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield11" Pos="108,147,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="Bugs" EntityGUID="1769973977" EntityId="954" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="1" Layer="Sky_Star" LodRatio="100" Name="Star1" Pos="117.3149,127.09061,516.25513" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties Animation="" AnimationSpeed="1" bActivateOnStart="1" bFollowPlayer="0" bNoInclination="0" bNoLanding="1" CollisionWithTerrain="1" FactorOrigin="1" flockTime_FShowTime="" flockWeather_FHideWeather="" flockWeather_FShowWeather="" FollowDistance="100" HeightMax="0" HeightMin="0" nBehaviour="0" nNumBugs="70" object_Character="" object_Model1="Objects\Misc\boids\spore\star_boid_01a_a.cgf" object_Model2="Objects\Misc\boids\spore\star_boid_01a_d.cgf" object_Model3="Objects\Misc\boids\spore\star_boid_02b_c.cgf" object_Model4="Objects\Misc\boids\spore\star_boid_01a_a.cgf" object_Model5="Objects\Misc\boids\spore\star_boid_01a_b.cgf" object_TexName="" Radius="500" RandomMovement="0" Scale="3" SpeedMax="0" SpeedMin="0" TexBehavior="0" TexRadius="0.2" TexRandomColor="0" TexRandomLife="0" VisibilityDist="1500"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1765105884" EntityId="50" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield19" Pos="384,148,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_01.ogg"/>
+		</Entity>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_DCShip_Muninn_E2" npc="DCShip_Muninn_E" Pos="126,394,197" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="Bugs" EntityGUID="445202398" EntityId="64" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="1" Layer="Sky_Star" LodRatio="100" Name="Star5" Pos="394.31128,127.09061,516.25513" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties Animation="" AnimationSpeed="1" bActivateOnStart="1" bFollowPlayer="0" bNoInclination="0" bNoLanding="1" CollisionWithTerrain="1" FactorOrigin="1" flockTime_FShowTime="" flockWeather_FHideWeather="" flockWeather_FShowWeather="" FollowDistance="100" HeightMax="0" HeightMin="0" nBehaviour="0" nNumBugs="70" object_Character="" object_Model1="Objects\Misc\boids\spore\star_boid_01a_a.cgf" object_Model2="Objects\Misc\boids\spore\star_boid_01a_d.cgf" object_Model3="Objects\Misc\boids\spore\star_boid_02b_c.cgf" object_Model4="Objects\Misc\boids\spore\star_boid_01a_a.cgf" object_Model5="Objects\Misc\boids\spore\star_boid_01a_b.cgf" object_TexName="" Radius="500" RandomMovement="0" Scale="3" SpeedMax="0" SpeedMin="0" TexBehavior="0" TexRadius="0.2" TexRandomColor="0" TexRandomLife="0" VisibilityDist="1500"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,115.5" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="516442080" EntityId="28" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Vanq_Stage_4" Pos="116.72282,127.53979,197.19583" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.ST_stage_50m" Scale="1.05" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-118953500" EntityId="11" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_25" Pos="107.03209,415.70557,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1557902617" EntityId="24" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_37" Pos="124.2805,148.46155,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-705695507" EntityId="300" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_03" Pos="414.01907,137.27783,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="LocationLocation5" Pos="396.40015,401.53424,197.10001" Type="Location"/>
+		<Object Ignore_heightcheck="0" Name="LocationLocation9" Pos="113.40015,134.53424,197.10001" Type="Location"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-620270094" EntityId="26" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_39" Pos="138.02074,120.18164,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1654104563" EntityId="25" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_38" Pos="94.313828,133.47205,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-247367428" EntityId="41" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="LDF1_01_Ambient" LodRatio="100" Name="Spot_forcefield10" Pos="139,120,199" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="5" InnerRadius="7" iVolume="50" OuterRadius="24" sndSource="Sounds\ambient\spot_magic_glow_a_loop_02.ogg"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,115.49999" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1185022" EntityId="14" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="start" LodRatio="100" Name="Particle_Stage06_Buff_28" Pos="96.665878,385.82178,196.71094" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="30">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_idarena.stage10.buff" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+	</Objects>
+</Mission>

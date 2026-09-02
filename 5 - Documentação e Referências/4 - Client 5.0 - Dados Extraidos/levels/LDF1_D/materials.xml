@@ -1,0 +1,10 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\LF1_WaterVolume.xml" Name="LF1_WaterVolume">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.80392158,0.9254902,0.79215688" Emissive="0,0,0" GenMask="0" Id="{1B8D62FF-6275-4A23-BADF-8B3205B37E19}" MtlFlags="16" Name="Subzone_3" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.84" reflamount="0.29" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="8" textiley="6"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF2_WaterVolume.xml" Name="DF2_WaterVolume"/>
+</MaterialsLibrary>

@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="256" HeightmapYSize="256" LightMapPath="Levels\LC1Space\" Name="Levels\LC1Space" Version="{F1AD739A-4FAE-41F5-95FB-C90A840C82B9}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

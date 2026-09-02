@@ -1,0 +1,103 @@
+<MusicThemeLibrary Name="IDElim-BGM">
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{BF9CC5DB-AD50-4E5B-954E-72343304C17D}" Name="ELIM">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_brigh-1.ogg" LayeringVolume="255" Name="Pattern5" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_brigh-2.ogg" LayeringVolume="255" Name="Pattern6" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_brigh-3.ogg" LayeringVolume="255" Name="Pattern7" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_brigh-4.ogg" LayeringVolume="255" Name="Pattern8" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_brigh-5.ogg" LayeringVolume="255" Name="Pattern9" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_brigh-6.ogg" LayeringVolume="255" Name="Pattern10" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{BD5DF603-5526-4364-A6B8-91F7723450A2}" Name="CAVE">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_cave-1.ogg" LayeringVolume="255" Name="Pattern2" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_cave-2.ogg" LayeringVolume="255" Name="Pattern3" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_cave-3.ogg" LayeringVolume="255" Name="Pattern4" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{006D10E8-BC8A-4FBD-BBC6-6C82A358F3E2}" Name="BOSS">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\IDElim_boss.ogg" LayeringVolume="255" Name="Pattern1" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{7454A446-9579-433B-BDAE-1A741F59DAB7}" Name="MUTE">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlayEnvType="0" PlayOccupationType="0" PlayRaceType="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern0" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+</MusicThemeLibrary>

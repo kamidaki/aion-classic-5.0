@@ -1,0 +1,28 @@
+<MusicThemeLibrary Name="idab1_dreadgion-BGM">
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{3EE60D66-6FE9-4B46-9B7E-3C52130F84FA}" Name="dreadgion">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\Dreadgion.ogg" LayeringVolume="255" Name="Pattern1" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+	<Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{58871717-58D9-4FA5-B6D7-F2182B2F9072}" Name="mute">
+		<Moods>
+			<Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0">
+				<PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100">
+					<MainLayer>
+						<Pattern Filename="sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern0" Probability="0"/>
+					</MainLayer>
+					<RhythmicLayer></RhythmicLayer>
+					<IncidentalLayer></IncidentalLayer>
+				</PatternSet>
+			</Mood>
+		</Moods>
+	</Theme>
+</MusicThemeLibrary>

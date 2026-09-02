@@ -1,0 +1,28 @@
+<MusicThemeLibrary Name="IDAbProD1-BGM" >
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{2B43F28E-B39A-46E0-8A16-97E6B96A56D8}" Name="IDAbProD1" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\IDAbProD1-BGM.ogg" LayeringVolume="255" Name="Pattern0" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{6EF8D944-09F2-4492-A25D-E782720E665B}" Name="BGM_Mute" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern1" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+</MusicThemeLibrary>

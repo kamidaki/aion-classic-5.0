@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="1024" HeightmapYSize="1024" LightMapPath="Levels\IDPogusgame\" Name="Levels\IDPogusgame" Version="{00F537EB-44BF-437E-A87D-3472F67E158E}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

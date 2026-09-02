@@ -1,0 +1,55 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\Login.xml" Name="Login">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{581764E5-D520-4B3A-B015-59771DC869D2}" MtlFlags="16" Name="bu_l_cloud_01a0" Opacity="0.5" Reflectance="0" Saturation="0" Shader="aion_bg_opacityshift" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/light/structures/buildings/city/bu_l_cloud_01a_002.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams shiftspeedx="0.01" shiftspeedy="0" tex_ambient="0.25"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{AEF59ECB-A17B-4B40-82AE-EC41D4A52CF5}" MtlFlags="16" Name="bu_l_cloud_02b0" Opacity="0.3" Reflectance="0" Saturation="0" Shader="aion_bg_opacityshift" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/light/structures/buildings/city/bu_l_cloud_01a_002.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams shiftspeedx="0.01" shiftspeedy="0" tex_ambient="0.25"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.76078433,0.96862745,0.98823529" Emissive="0,0,0" GenMask="0" Id="{6396C449-7547-4C8D-A3F2-B0B88334807D}" MtlFlags="16" Name="login_watervolume" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="1.18" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="3.02" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="12" textiley="12"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

@@ -1,0 +1,39 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\DF2A_watervolume.xml" Name="DF2A_watervolume">
+		<Material AlphaTest="0" GenMask="0" Id="{CC7FE27B-0CBD-4CBE-88C0-E24D9F5F378B}" MtlFlags="0" Name="watervolum01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="19.82" bumpamountx="0.05" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.4" reflamount="0.86" reflectamount="1" refrbumpamount="0.05" refrtillingamount="1.53" textilex="8.29" textiley="7.79"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF2_WaterVolume.xml" Name="DF2_WaterVolume">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.66666669,0.90980393,0.87058824" Emissive="0,0,0" GenMask="0" Id="{78329A82-1EA6-4405-945E-455DCB30041A}" MtlFlags="16" Name="Subzone_2_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.35" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="20" textiley="20"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.65490198,0.64705884,0.78823531" Emissive="0,0,0" GenMask="0" Id="{8D7C48D4-2687-4571-AFE4-B2DFFAC93B73}" MtlFlags="16" Name="Subzone_2_02" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.35" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="30" textiley="30"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.46666667,0.48235294,0.17647059" Emissive="0,0,0" GenMask="0" Id="{713F7C9D-435E-4047-90DB-83C685F19251}" MtlFlags="16" Name="Subzone_2_03" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="3" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="1" textilex="10" textiley="10"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{51C1B761-35D9-4AB1-A73E-C825FF824433}" MtlFlags="0" Name="Subzone_2_04" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="25" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="12" textiley="12"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.73725492,0.9137255,0.81176472" Emissive="0,0,0" GenMask="0" Id="{F5FA7F14-A038-4976-B764-5E29B25CCB80}" MtlFlags="16" Name="Subzone_2_05" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="0.5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.15" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="8" textiley="8"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{C8E9D6A8-E16B-42BA-B18E-F2594972BCF9}" MtlFlags="0" Name="Subzone_4_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="3" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="5" textiley="4"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.60392159,0.38431373,0.16078432" Emissive="0,0,0" GenMask="0" Id="{A0045E2D-B699-4A07-BB82-FB5865382A69}" MtlFlags="16" Name="Subzone_4_03" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="10" textiley="10"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

@@ -1,0 +1,11 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\DF2A_watervolume.xml" Name="DF2A_watervolume"/>
+	<Library File="Editor\Materials\DF2_WaterVolume.xml" Name="DF2_WaterVolume"/>
+	<Library File="Editor\Materials\idcatacombs.xml" Name="idcatacombs">
+		<Material AlphaTest="0" GenMask="0" Id="{E6534AF6-45ED-4184-9AFA-684339FF04FA}" MtlFlags="0" Name="idcatacombs_water" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.8" bumpamounty="1" opacity="0.9" reflamount="0.6" reflectamount="1" refrtillingamount="2" textilex="8" textiley="8"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

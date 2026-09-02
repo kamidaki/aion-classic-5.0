@@ -1,0 +1,907 @@
+<LevelData>
+	<LevelInfo HeightmapUnitSize="2" HeightmapXSize="1536" HeightmapYSize="1536" Name="ldf3_01" WaterLevel="16"/>
+	<SurfaceTypes>
+		<SurfaceType Bumpmap="" DetailScaleX="0.15" DetailScaleY="0.15" DetailTexture="Levels\LDF3_01\Detail\DF3_snow_1.dds" Material="mat_snow" Name="Default" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="1">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.1" DetailScaleY="0.1" DetailTexture="Levels\LDF3_01\Detail\DF3_volcano_1.dds" Material="mat_stone_tough" Name="DF3_volcano_1" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\DF3_dirt_1.dds" Material="mat_dirt" Name="DF3_dirt_1" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="1">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.13" DetailScaleY="0.13" DetailTexture="Levels\LDF3_01\Detail\df3_dirt_5.dds" Material="mat_dirt" Name="DF3_dirt_5" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="1">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.016" DetailScaleY="0.008" DetailTexture="Levels\LDF3_01\Detail\df3_cliff_05.dds" Material="mat_stone_tough" Name="DF3_cliff_x05" Offset_U="0" Offset_V="0" ProjAxis="X" ProjectAxis="0" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.016" DetailScaleY="0.008" DetailTexture="Levels\LDF3_01\Detail\df3_cliff_05.dds" Material="mat_stone_tough" Name="DF3_cliff_y05" Offset_U="0" Offset_V="0" ProjAxis="Y" ProjectAxis="1" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.1" DetailScaleY="0.1" DetailTexture="Levels\LDF3_01\Detail\DF3_volcano_2.dds" Material="mat_stone_tough" Name="DF3_volcano_2" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.1" DetailScaleY="0.1" DetailTexture="Levels\LDF3_01\Detail\DF3_volcano_4.dds" Material="mat_stone_tough" Name="DF3_volcano_4" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="1">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.15" DetailScaleY="0.15" DetailTexture="Levels\LDF3_01\Detail\DF3_volcano_5.dds" Material="mat_dirt" Name="DF3_volcano_5" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\DF3_dirt_2.dds" Material="mat_dirt" Name="DF3_dirt_2" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.1" DetailScaleY="0.1" DetailTexture="Levels\LDF3_01\Detail\DF3_dirt_3.dds" Material="mat_sand" Name="DF3_dirt_3" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="1">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.1" DetailScaleY="0.1" DetailTexture="Levels\LDF3_01\Detail\DF3_dirt_4.dds" Material="mat_dirt" Name="DF3_dirt_4" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.011" DetailScaleY="0.009" DetailTexture="Levels\LDF3_01\Detail\DF3_cliff_02.dds" Material="mat_stone_tough" Name="DF3_cliff_x02" Offset_U="0" Offset_V="0" ProjAxis="X" ProjectAxis="0" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.011" DetailScaleY="0.009" DetailTexture="Levels\LDF3_01\Detail\DF3_cliff_02.dds" Material="mat_stone_tough" Name="DF3_cliff_y02" Offset_U="0" Offset_V="0" ProjAxis="Y" ProjectAxis="1" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\df3_snow_7.dds" Material="mat_snow" Name="DF3_snow_7" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.08" DetailScaleY="0.08" DetailTexture="Levels\LDF3_01\Detail\df3_snow_9.dds" Material="mat_snow" Name="DF3_snow_9" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.1" DetailScaleY="0.1" DetailTexture="Levels\LDF3_01\Detail\df3_snow_6.dds" Material="mat_stone_tough" Name="DF3_snow_6" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\DF3_road_3.dds" Material="mat_sand" Name="DF3_road_3" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\df3_dirt_6.dds" Material="mat_dirt" Name="DF3_dirt_6" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\DF3_road_2.dds" Material="mat_snow" Name="DF3_road_2" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\DF3_road_1.dds" Material="mat_stone_marble" Name="DF3_road_1" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="1">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.1" DetailScaleY="0.1" DetailTexture="Levels\LDF3_01\Detail\DF3_coral_1.dds" Material="mat_snow" Name="DF3_coral_1" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.016" DetailScaleY="0.008" DetailTexture="Levels\LDF3_01\Detail\DF3_cliff_04.dds" Material="mat_stone_tough" Name="DF3_cliff_x04" Offset_U="0" Offset_V="0" ProjAxis="X" ProjectAxis="0" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.014" DetailScaleY="0.007" DetailTexture="Levels\LDF3_01\Detail\DF3_cliff_04.dds" Material="mat_stone_tough" Name="DF3_cliff_y04" Offset_U="0" Offset_V="0" ProjAxis="Y" ProjectAxis="1" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.1" DetailScaleY="0.1" DetailTexture="Levels\LDF3_01\Detail\df3_rock_2.dds" Material="mat_stone_tough" Name="DF3_rock_2" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.08" DetailScaleY="0.08" DetailTexture="Levels\LDF3_01\Detail\df3_snow_8.dds" Material="mat_snow" Name="DF3_snow_8" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.11" DetailScaleY="0.11" DetailTexture="Levels\LDF3_01\Detail\DF3_volcano_6.dds" Material="mat_dirt" Name="DF3_volcano_6" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.016" DetailScaleY="0.008" DetailTexture="Levels\LDF3_01\Detail\DF3_cliff_01.dds" Material="mat_stone_tough" Name="DF3_cliff_x01" Offset_U="0" Offset_V="0" ProjAxis="X" ProjectAxis="0" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.016" DetailScaleY="0.008" DetailTexture="Levels\LDF3_01\Detail\DF3_cliff_01.dds" Material="mat_stone_tough" Name="DF3_cliff_y01" Offset_U="0" Offset_V="0" ProjAxis="Y" ProjectAxis="1" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\df3_grass_2.dds" Material="mat_grass" Name="DF3_grass_2" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.12" DetailScaleY="0.12" DetailTexture="Levels\LDF3_01\Detail\df3_grass_1.dds" Material="mat_grass" Name="DF3_grass_1" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+	</SurfaceTypes>
+	<Vegetation>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="22.587158,5.6837277,24.458321" BoxMin="-0.7921257,-8.975647,-0.28939867" Brightness="-1.5" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_01a.cgf" GUID="{3F511BE0-792E-4EBF-8F2E-A02D401B0789}" Hidden="0" Hideable="0" Inclination="0" Index="2" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.4" SizeVar="0.4" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="22.587158,5.6837277,24.458321" BoxMin="-0.7921257,-8.975647,-0.28939867" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\etc\na_d_bokstree_ type2_01a.cgf" GUID="{3FA949A8-7149-438C-ACF4-0902460B2214}" Hidden="0" Hideable="0" Inclination="0" Index="163" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\etc\na_d_bokstree_ type2_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.5" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.5445535,4.9285474,24.547585" BoxMin="-17.651493,-6.429564,-0.36601782" Brightness="-1.5" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_02b.cgf" GUID="{04186FE2-1873-412E-A0AA-2A6EEE5BBDE3}" Hidden="0" Hideable="0" Inclination="0" Index="0" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.4" SizeVar="0.4" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.5445535,4.9285474,24.547585" BoxMin="-17.651493,-6.429564,-0.36601782" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="3" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\etc\na_d_bokstree_ type2_02b.cgf" GUID="{83DD418B-1466-4712-A9FE-0557EB6529E0}" Hidden="0" Hideable="0" Inclination="0" Index="124" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\etc\na_d_bokstree_ type2_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="15.867094,2.0853302,17.93351" BoxMin="-0.5411427,-10.976811,-0.34167767" Brightness="-1.5" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_03c.cgf" GUID="{0669B979-EBF5-483A-B2DF-6DA18EDA89E1}" Hidden="0" Hideable="0" Inclination="0" Index="1" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.4" SizeVar="0.4" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="15.867094,2.0853302,17.93351" BoxMin="-0.5411427,-10.976811,-0.34167767" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="3" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\etc\na_d_bokstree_ type2_03c.cgf" GUID="{47F04861-A3A7-4F28-BD9C-51182911E92C}" Hidden="0" Hideable="0" Inclination="0" Index="127" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\etc\na_d_bokstree_ type2_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="16.19492,5.9406857,22.184971" BoxMin="-7.0194497,-7.0236802,-0.40506095" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="3" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\etc\na_d_bokstree_ type2_04d.cgf" GUID="{6AFD649B-617B-4BD0-8F9D-2DBEDD2F1E1B}" Hidden="0" Hideable="0" Inclination="0" Index="166" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\etc\na_d_bokstree_ type2_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.5" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="17.623383,6.9883552,23.845602" BoxMin="-3.0095224,-6.40944,-0.40810141" Brightness="-1.5" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_05e.cgf" GUID="{2F3A9977-002B-47D0-B467-5B2674882E80}" Hidden="0" Hideable="0" Inclination="0" Index="4" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.4" SizeVar="0.4" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="17.623383,6.9883552,23.845602" BoxMin="-3.0095224,-6.40944,-0.40810141" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="3" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\etc\na_d_bokstree_ type2_05e.cgf" GUID="{6BEEC6AB-BCAE-442E-AD20-2BA2EFF3B690}" Hidden="0" Hideable="0" Inclination="0" Index="126" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\etc\na_d_bokstree_ type2_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="22.230026,5.6876292,21.046539" BoxMin="-0.79620117,-9.4407225,-0.23309487" Brightness="-1.5" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_06f.cgf" GUID="{92DA6A9C-C3D1-45CA-A8BE-F6A9403A40B0}" Hidden="0" Hideable="0" Inclination="0" Index="3" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\etc\na_d_bokstree_ type2_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.4" SizeVar="0.4" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="22.230026,5.6876292,21.046539" BoxMin="-0.79620117,-9.4407225,-0.23309487" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="3" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\etc\na_d_bokstree_ type2_06f.cgf" GUID="{A52F84FF-7DCA-4877-A517-F4812EA130FB}" Hidden="0" Hideable="0" Inclination="0" Index="125" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\etc\na_d_bokstree_ type2_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.2382714,0.95756048,1.606586" BoxMin="-0.88677287,-1.0983653,-0.44386184" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\aquatic\na_d_aquatic_04_1d.cgf" GUID="{59DFD450-1BA7-480D-9816-FC03789E18C6}" Hidden="0" Hideable="0" Inclination="0" Index="199" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\aquatic\na_d_aquatic_04_1d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.7" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.5791078,1.515231,1.7505684" BoxMin="-1.5221722,-1.1853142,-0.40283492" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\aquatic\na_d_aquatic_04_2d.cgf" GUID="{55784EAB-7C0D-43C4-BC36-CCEF1DAA5924}" Hidden="0" Hideable="0" Inclination="0" Index="198" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\aquatic\na_d_aquatic_04_2d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.7" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.4546798,1.3334606,1.2150196" BoxMin="-1.1922565,-1.2336624,-0.20139837" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\aquatic\na_d_aquatic_05e.cgf" GUID="{2859BE8E-A0F7-4EE9-8CA2-33754ADEDFE0}" Hidden="0" Hideable="0" Inclination="0" Index="153" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\aquatic\na_d_aquatic_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.2" SizeVar="0.4" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.50372142,0.38580492,0.77409756" BoxMin="-0.52082419,-0.34285113,-0.05579849" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="5" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\cactus\na_d_cactsmall_01a.cgf" GUID="{0D10F923-DF69-4D5B-9AFA-FD5959C66690}" Hidden="0" Hideable="0" Inclination="0" Index="195" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\cactus\na_d_cactsmall_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.59965277,0.85719669,0.52776814" BoxMin="-0.63520455,-0.73069882,-0.061441012" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="5" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\cactus\na_d_cactsmall_02b.cgf" GUID="{3E9DC0F1-5DA3-4A16-96EE-4872863CA8CA}" Hidden="0" Hideable="0" Inclination="0" Index="196" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\cactus\na_d_cactsmall_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.32940254,0.3415142,0.63397527" BoxMin="-0.36627868,-0.31254029,-0.10688628" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="5" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\cactus\na_d_cactsmall_03c.cgf" GUID="{F5DDBF60-85D9-44BF-8A4B-EC23F5BE475C}" Hidden="0" Hideable="0" Inclination="0" Index="197" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\cactus\na_d_cactsmall_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.3876826,0.83795857,2.5237832" BoxMin="-0.32664901,-0.76033986,1.6964109e-09" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\etc\na_d_antennapla_01a.cgf" GUID="{F3FEBDDE-D171-4141-9EE0-141E4733B782}" Hidden="0" Hideable="0" Inclination="0" Index="200" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\etc\na_d_antennapla_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.0604069,1.2138541,3.3181157" BoxMin="-1.3622742,-1.3248522,-0.003179779" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\etc\na_d_antennapla_02b.cgf" GUID="{E65EFCDF-1546-44FB-A053-028DA1F4F06E}" Hidden="0" Hideable="0" Inclination="0" Index="201" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\etc\na_d_antennapla_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.127769,0.28211761,3.6631885" BoxMin="-0.75744033,-1.366847,-3.510549e-08" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\etc\na_d_antennapla_03c.cgf" GUID="{5A26C5A3-9223-4ABB-86A7-5A2CFBA78D00}" Hidden="0" Hideable="0" Inclination="0" Index="202" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\etc\na_d_antennapla_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="0.90180832,1.6923798,3.0457416" BoxMin="-0.98882961,-0.72783047,-0.038501967" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.Plants" Density="5" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_coralplant_01a.cgf" GUID="{8502D269-0E4D-4CDC-933A-611715803CD6}" Hidden="0" Hideable="0" Inclination="0" Index="209" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_coralplant_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.69810873,0.72808009,1.997066" BoxMin="-0.69810867,-0.72808027,-0.49521413" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_A , B.plants" Density="1" ElevationMax="600" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\etc\na_d_crefyplants_01a.cgf" GUID="{4F1714EF-2754-4979-B13D-B6ED9E494AC2}" Hidden="0" Hideable="0" Inclination="0" Index="133" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\etc\na_d_crefyplants_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.81794912,0.70578873,2.680367" BoxMin="-0.84060645,-0.74763095,-0.38825265" Brightness="-1.65" CalcLighting="1" CastShadow="0" Category="SubZone_A , B.plants" Density="1" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\etc\na_d_crefyplants_02b.cgf" GUID="{7EC51720-525B-4D53-A7B4-834B67487B93}" Hidden="0" Hideable="0" Inclination="0" Index="134" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\etc\na_d_crefyplants_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.5621459,1.0645452,2.9207485" BoxMin="-1.0121742,-1.0321412,-0.38825247" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_A , B.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\etc\na_d_crefyplants_03c.cgf" GUID="{57FCF4DD-ABF3-4663-8350-FFBC86D10117}" Hidden="0" Hideable="0" Inclination="0" Index="135" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\etc\na_d_crefyplants_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0.4" BoxMax="0.57747841,0.6606307,1.4586242" BoxMin="-0.83483982,-0.70385891,-0.034659088" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.Plants" Density="5" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_eyelash_02b.cgf" GUID="{59B6F6FB-DBE8-430D-9F9A-EBF6B7BD156E}" Hidden="0" Hideable="0" Inclination="0" Index="210" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_eyelash_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.5" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.64927542,0.70311004,2.0431211" BoxMin="-0.80598813,-0.76641357,-0.07522314" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.tree" Density="10" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_jookbuin_01a.cgf" GUID="{75203BC0-DFFA-4259-A221-C850615F5B99}" Hidden="0" Hideable="0" Inclination="0" Index="211" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_jookbuin_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="0.8" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="0.29376602,0.39745522,1.0213952" BoxMin="-0.35557386,-0.28181764,-0.052689228" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.Plants" Density="10" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_kelpplant_01a.cgf" GUID="{9511F6A1-B484-4CEB-A6F3-26A39CA5986E}" Hidden="0" Hideable="0" Inclination="0" Index="212" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_kelpplant_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="2" SlopeMax="70" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0.247059,0.247059,0.247059" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="0.77611226,1.3246026,5.0210967" BoxMin="-2.1590097,-1.3246028,-0.84635848" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.Plants" Density="7" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_kelpplant_02b.cgf" GUID="{4EC57841-0128-420A-B3CC-F2A4CF500DAF}" Hidden="0" Hideable="0" Inclination="0" Index="213" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_kelpplant_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="1" SlopeMax="70" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0.247059,0.247059,0.247059" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="3.0135434,1.7003912,4.9394236" BoxMin="-0.90619963,-1.811286,-0.93503082" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.Plants" Density="7" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_kelpplant_03c.cgf" GUID="{466F0572-6DCA-4FEB-A077-C57732D4168A}" Hidden="0" Hideable="0" Inclination="0" Index="214" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_kelpplant_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="1" SlopeMax="70" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0.372549,0.372549,0.372549" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.8266346,1.2334188,4.836493" BoxMin="-3.2903948,-2.3297155,-1.0385445" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.Plants" Density="7" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_kelpplant_04d.cgf" GUID="{A7F3DD3F-C562-4156-9A58-910D5BEDECB5}" Hidden="0" Hideable="0" Inclination="0" Index="215" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_kelpplant_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="1" SlopeMax="70" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0.152941,0.345098,0.184314" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="4.1843915,3.9053524,6.2069921" BoxMin="-4.0725098,-3.1220772,-1.1560917" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.Plants" Density="7" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_kelpplant_05e.cgf" GUID="{7136AB10-4AC0-41B2-A532-EC72E1892B3F}" Hidden="0" Hideable="0" Inclination="0" Index="216" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_kelpplant_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.3" SlopeMax="70" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.0036473,0.75954258,1.3479905" BoxMin="-0.95680255,-0.99065357,-0.32239613" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.Plants" Density="10" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_luminesmold_03c.cgf" GUID="{55009AD3-B893-4B11-BE62-8B9EA755EEDD}" Hidden="0" Hideable="0" Inclination="0" Index="217" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_luminesmold_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2.5" SizeVar="1.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.1722254,1.1722254,2.1298733" BoxMin="-1.2665517,-1.1722254,-0.14076942" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.tree" Density="10" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_octopuspiant_01a.cgf" GUID="{2FC6732F-BC7A-4001-94F6-5E615F389509}" Hidden="0" Hideable="0" Inclination="0" Index="218" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_octopuspiant_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="0.8" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="0.93962806,0.70751524,2.5237691" BoxMin="-0.93962783,-1.1850011,-0.13901992" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E_Flying.tree" Density="10" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\etc\na_d_octopuspiant_02b.cgf" GUID="{0213FCE8-0B8E-4CA4-A49B-009B97866D3A}" Hidden="0" Hideable="0" Inclination="0" Index="219" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\etc\na_d_octopuspiant_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="0.8" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.3482522,1.7329203,1.6284231" BoxMin="-1.63086,-1.718928,-0.2767019" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants2" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowgrass_05e.cgf" GUID="{EBF66DEF-56BF-447B-BA4E-F514FF5FC845}" Hidden="0" Hideable="0" Inclination="0" Index="159" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowgrass_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.1994534,2.56792,1.2882162" BoxMin="-2.2024539,-2.5750508,-0.37897715" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_07g.cgf" GUID="{04F399FB-B08F-41F5-A414-E507FCF15DF6}" Hidden="0" Hideable="0" Inclination="0" Index="154" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_07g.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.1994534,2.56792,1.2882162" BoxMin="-2.2024539,-2.5750508,-0.37897715" Brightness="-1.4" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_03c.cgf" GUID="{9AAAE6B7-5D7C-4F99-B50F-5B1E30AF8C3F}" Hidden="0" Hideable="0" Inclination="0" Index="37" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.1994534,2.56792,1.2882162" BoxMin="-2.2024539,-2.5750508,-0.37897715" Brightness="-1" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_03c.cgf" GUID="{4455636D-799F-4C4C-894C-3C88825F330D}" Hidden="0" Hideable="0" Inclination="0" Index="5" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.8919686,1.4064807,1.5642945" BoxMin="-1.776986,-1.6168852,-0.53892618" Brightness="-1.5" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_04d.cgf" GUID="{774BF454-583F-4C7E-A835-F730F82E1758}" Hidden="0" Hideable="0" Inclination="0" Index="38" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.2177873,2.035692,1.8388933" BoxMin="-2.217787,-2.0356922,-0.40712282" Brightness="-1.61" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="7" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_05e.cgf" GUID="{19B6B3A9-5562-47EB-ADA8-79E0F1BE34CA}" Hidden="0" Hideable="0" Inclination="0" Index="47" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.6" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.2177873,2.035692,1.8388933" BoxMin="-2.217787,-2.0356922,-0.40712282" Brightness="-1" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_05e.cgf" GUID="{72F20143-082B-407D-840A-4EF34DDF8BEA}" Hidden="0" Hideable="0" Inclination="0" Index="6" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.2177873,2.035692,1.8388933" BoxMin="-2.217787,-2.0356922,-0.40712282" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_05e.cgf" GUID="{0398F713-5175-4D77-9CE7-70550D79D069}" Hidden="0" Hideable="0" Inclination="0" Index="155" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.1" SizeVar="0.3" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0.32549,0.32549,0.32549" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.2177873,2.035692,1.8388933" BoxMin="-2.217787,-2.0356922,-0.40712282" Brightness="1.1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants" Density="7" ElevationMax="1800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_05e.cgf" GUID="{C09F15FE-8BED-4F16-A220-F03E4AC3AD15}" Hidden="0" Hideable="0" Inclination="0" Index="94" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowgrass_bru_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.3492581,1.4107198,1.5354159" BoxMin="-1.3492581,-1.4107199,-0.47877097" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowplants_01a.cgf" GUID="{DD17FC00-0C06-4F67-8493-955B2376AF2A}" Hidden="0" Hideable="0" Inclination="0" Index="7" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowplants_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.3492581,1.4107198,1.5354159" BoxMin="-1.3492581,-1.4107199,-0.47877097" Brightness="1.1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants2" Density="8" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowplants_01a.cgf" GUID="{E8C549D8-AD0D-428D-B0FC-5906CF1E7612}" Hidden="0" Hideable="0" Inclination="0" Index="92" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowplants_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.3897532,1.3581603,1.5581646" BoxMin="-1.3897531,-1.3581603,-0.45602217" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowplants_02b.cgf" GUID="{8D4C17B5-3C88-4AF5-AEB6-E9CD4323F737}" Hidden="0" Hideable="0" Inclination="0" Index="203" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowplants_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.2" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.3897532,1.3581603,1.5581646" BoxMin="-1.3897531,-1.3581603,-0.45602217" Brightness="1.1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants2" Density="8" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowplants_02b.cgf" GUID="{554B432A-E86A-4A1D-8B23-882B362D7C16}" Hidden="0" Hideable="0" Inclination="0" Index="88" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowplants_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.8" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.8381484,1.2675637,1.4394391" BoxMin="-1.8233905,-1.5028453,-0.25444499" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowreed_07g.cgf" GUID="{4BB032CE-9525-448F-B194-993A1EA8EA63}" Hidden="0" Hideable="0" Inclination="0" Index="184" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowreed_07g.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.5" SizeVar="0.8" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.8381484,1.2675637,1.4394391" BoxMin="-1.8233905,-1.5028453,-0.25444499" Brightness="1.1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants2" Density="3" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowreed_07g.cgf" GUID="{D0AB6836-10C8-4F02-AC3F-33792B983431}" Hidden="0" Hideable="0" Inclination="0" Index="89" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowreed_07g.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.6" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.8386914,1.4047097,2.356879" BoxMin="-1.5064534,-1.3803264,-0.16139081" Brightness="1.1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants2" Density="3" ElevationMax="1800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowreed_09i.cgf" GUID="{EBFB430B-BAF6-42A7-A979-D17FEE69E2AB}" Hidden="0" Hideable="0" Inclination="0" Index="95" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowreed_09i.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.5" SizeVar="2" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.2753402,1.5269581,1.4833453" BoxMin="-1.2779893,-1.2530038,-0.41250029" Brightness="1.1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants2" Density="3" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowreed_11k.cgf" GUID="{5B83639F-CE14-4587-A660-6DA4B05F4E22}" Hidden="0" Hideable="0" Inclination="0" Index="93" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowreed_11k.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.1939309,3.1655405,8.392067" BoxMin="-2.6546321,-2.2918813,-0.65499145" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants" Density="1" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowshrub_04d.cgf" GUID="{62BD5604-7AE0-4EBC-816F-7B00E76DDDB2}" Hidden="0" Hideable="0" Inclination="0" Index="117" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowshrub_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.1939309,3.1655405,8.392067" BoxMin="-2.6546321,-2.2918813,-0.65499145" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowshrub_04d.cgf" GUID="{050CA6D0-C91F-4139-9690-C3F8683715BB}" Hidden="0" Hideable="0" Inclination="0" Index="8" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowshrub_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.1939309,3.1655405,8.392067" BoxMin="-2.6546321,-2.2918813,-0.65499145" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowshrub_04d.cgf" GUID="{3D24DB22-9E3A-437E-960A-0F12CD762316}" Hidden="0" Hideable="0" Inclination="0" Index="186" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowshrub_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.6337945,3.8620555,9.1466236" BoxMin="-3.375874,-3.5992281,-0.95145512" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowshrub_05e.cgf" GUID="{0D0FB9FB-AD22-4858-BB99-FB31894E8390}" Hidden="0" Hideable="0" Inclination="0" Index="144" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowshrub_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.3" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.6337945,3.8620555,9.1466236" BoxMin="-3.375874,-3.5992281,-0.95145512" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowshrub_05e.cgf" GUID="{FDC3DE33-487B-46D8-AE4D-889A960682D2}" Hidden="0" Hideable="0" Inclination="0" Index="9" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowshrub_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="3.6337945,3.8620555,9.1466236" BoxMin="-3.375874,-3.5992281,-0.95145512" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowshrub_05e.cgf" GUID="{57712B06-4AB7-4CCA-ABC2-2EC4997DA801}" Hidden="0" Hideable="0" Inclination="0" Index="187" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowshrub_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="3.8145225,3.6646681,2.4699259" BoxMin="-3.2315397,-3.7133915,-0.81684613" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\na_d_snowshrub_06f.cgf" GUID="{7154F755-2B0C-45CB-808C-71AA27087179}" Hidden="0" Hideable="0" Inclination="0" Index="118" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\na_d_snowshrub_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.5" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.2427847,1.1323724,0.64755303" BoxMin="-1.5455874,-1.3110745,-0.11712219" Brightness="1.1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants" Density="5" ElevationMax="1800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowsmplants_04d.cgf" GUID="{20BD689E-3A59-4593-BE80-3EDB9A68C2ED}" Hidden="0" Hideable="0" Inclination="0" Index="96" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowsmplants_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.522339,1.9369644,1.2745017" BoxMin="-1.2157646,-1.653059,-0.36882639" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="900" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_snowweed_15o.cgf" GUID="{388C48C4-7DB1-4D95-BB51-FD773969673A}" Hidden="0" Hideable="0" Inclination="0" Index="204" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_snowweed_15o.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="0.2" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.4841511,2.373718,1.9427221" BoxMin="-2.4841514,-2.3737173,-0.39045545" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\plants\grass\Na_D_thicket_08h.cgf" GUID="{8BDBF3B9-BAAF-4B7B-85B5-E14D2BCACCDC}" Hidden="0" Hideable="0" Inclination="0" Index="183" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\plants\grass\Na_D_thicket_08h.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.5" SizeVar="0.8" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.5946405,1.5516837,1.9194586" BoxMin="-1.5946401,-1.5516837,-0.28098407" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_A , B.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_thorn_05e.cgf" GUID="{1888BC9B-B171-418F-80E3-4C432D272065}" Hidden="0" Hideable="0" Inclination="0" Index="137" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_thorn_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.5946405,1.5516837,1.9194583" BoxMin="-1.5946404,-1.5516837,-0.28098404" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_thorn_06f.cgf" GUID="{56A5DAB0-CD68-4EF6-B7A5-184997E3FD92}" Hidden="0" Hideable="0" Inclination="0" Index="149" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_thorn_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.5178201,1.4041322,1.4845126" BoxMin="-1.6119695,-1.4300958,-0.11274438" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_weed_10j.cgf" GUID="{A0D878F7-D90E-431D-B44D-E541F7D23DAA}" Hidden="0" Hideable="0" Inclination="0" Index="146" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_weed_10j.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.2" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.5178201,1.4041322,1.4845126" BoxMin="-1.6119695,-1.4300958,-0.11274438" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_A , B.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\plants\grass\na_d_weed_10j.cgf" GUID="{E6D452E7-6F9E-4952-9ECD-82F1C74BB55E}" Hidden="0" Hideable="0" Inclination="0" Index="136" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\plants\grass\na_d_weed_10j.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="8.6244373,7.0418634,15.981904" BoxMin="-7.6393576,-10.203005,0" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_drysandtreed_02b.cgf" GUID="{F71BF508-C9F6-4CF7-8E22-4F4530124E4B}" Hidden="0" Hideable="0" Inclination="0" Index="158" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_drysandtreed_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="9.0961304,8.2109499,19.873753" BoxMin="-11.293589,-8.2109509,-0.19489868" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_drysandtreed_03c.cgf" GUID="{23258650-DE4C-4E04-B46B-2804E03D105D}" Hidden="0" Hideable="0" Inclination="0" Index="140" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_drysandtreed_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.3" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="5.1541529,5.4228067,7.4511967" BoxMin="-4.7100272,-4.5214801,-0.20255423" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_drytree_02b.cgf" GUID="{B7AF059D-E140-402E-BAFD-3EBF36C35C4C}" Hidden="0" Hideable="0" Inclination="0" Index="150" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_drytree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.8072128,1.7290293,4.5255656" BoxMin="-5.435534,-1.725395,-0.21240562" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\dryness\Na_D_oaks_01a.cgf" GUID="{3362095C-A615-4F53-8B55-B88C5B3A0EED}" Hidden="0" Hideable="0" Inclination="0" Index="161" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\dryness\Na_D_oaks_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.3789026,1.7497,4.2567387" BoxMin="-5.2828236,-1.7253947,-0.1438961" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\dryness\Na_D_oaks_02b.cgf" GUID="{CAF5EAA6-8C29-4AF3-888A-F703EB710BA1}" Hidden="0" Hideable="0" Inclination="0" Index="162" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\dryness\Na_D_oaks_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.4742062,1.7497,4.2302537" BoxMin="-3.3142722,-1.1327111,-0.17363311" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\dryness\Na_D_oaks_03c.cgf" GUID="{0C420A5D-8767-44AB-A140-8BB9A064A356}" Hidden="0" Hideable="0" Inclination="0" Index="160" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\dryness\Na_D_oaks_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="4.5380716,2.1233356,5.7837405" BoxMin="-3.5281453,-4.2770963,-0.79292268" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\dryness\na_d_snowbaretree_06f.cgf" GUID="{6B4ACE35-9BE1-4634-B7E5-73A5DA2942B0}" Hidden="0" Hideable="0" Inclination="0" Index="169" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\dryness\na_d_snowbaretree_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.4035069,1.7375494,8.6744976" BoxMin="-1.1737922,-1.2098758,-0.0098547954" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdeathtree_01a.cgf" GUID="{2D49F521-B98B-43F0-9ABD-2D1F02BD15FD}" Hidden="0" Hideable="0" Inclination="0" Index="11" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdeathtree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="0.7" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.660462,1.1407292,8.1826429" BoxMin="-1.520647,-1.8239377,-0.038743645" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdeathtree_02b.cgf" GUID="{3FF330D9-1AA5-481E-854F-9DE61ABD4BDE}" Hidden="0" Hideable="0" Inclination="0" Index="12" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdeathtree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="0.7" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.7764506,1.3729092,6.836411" BoxMin="-1.6114115,-1.43099,-0.020899119" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdeathtree_03c.cgf" GUID="{A0B5AC90-7292-4FAD-B903-0B604FDFA3BD}" Hidden="0" Hideable="0" Inclination="0" Index="13" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdeathtree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="2" SizeVar="0.7" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="4.5827861,3.5989494,8.289814" BoxMin="-4.7074575,-5.6911402,-0.10305847" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="7" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdrysandtree_01a.cgf" GUID="{5C78D90A-BE5A-4FB9-BD9F-4875E48A0536}" Hidden="0" Hideable="0" Inclination="0" Index="108" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdrysandtree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.5" SizeVar="0.3" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.7545257,3.1283112,6.9653673" BoxMin="-3.8622289,-3.1283112,-0.050389402" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="7" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdrysandtree_02b.cgf" GUID="{8C519521-80AC-4790-88B5-B90CABA136BA}" Hidden="0" Hideable="0" Inclination="0" Index="109" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdrysandtree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.5" SizeVar="0.3" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="6.497025,4.5145164,8.269908" BoxMin="-1.9658988,-3.3829527,-0.064438477" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="7" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdrysandtree_03c.cgf" GUID="{C7919965-829A-4DAE-9314-7918496DA146}" Hidden="0" Hideable="0" Inclination="0" Index="110" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_snowdrysandtree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.5" SizeVar="0.3" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="10.225919,7.5363922,11.735946" BoxMin="-8.1806078,-7.168591,-0.65583724" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_snowepiphyllum_01a.cgf" GUID="{B830B927-DB95-4FCB-9EEB-6D4C5492058D}" Hidden="0" Hideable="0" Inclination="0" Index="142" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_snowepiphyllum_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="10.031503,7.2307291,12.25658" BoxMin="-10.058811,-7.4807882,-1.0533175" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\dryness\na_d_snowepiphyllum_04d.cgf" GUID="{0A8B448B-40D3-44F5-88B0-892C8DE1DB74}" Hidden="0" Hideable="0" Inclination="0" Index="143" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\dryness\na_d_snowepiphyllum_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.084995,4.0882511,4.5552192" BoxMin="-2.0138793,-0.59090519,-0.75186902" Brightness="1.55" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\dryness\Na_D_snowscotchpine_01a.cgf" GUID="{61851E41-3625-49C8-B719-D098E7FA89A6}" Hidden="0" Hideable="0" Inclination="0" Index="177" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\dryness\Na_D_snowscotchpine_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="6.4766741,2.6733546,3.6433916" BoxMin="-0.42539382,-3.54321,-2.8673775" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\dryness\Na_D_snowscotchpine_03c.cgf" GUID="{ECDCB525-4785-476A-989E-423FEC13AA42}" Hidden="0" Hideable="0" Inclination="0" Index="178" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\dryness\Na_D_snowscotchpine_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="5.567492,1.2870599,5.3975363" BoxMin="-0.64682722,-3.0870035,-0.52053624" Brightness="1.17" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\dryness\Na_D_snowscotchpine_04d.cgf" GUID="{ACCF30D8-7AE5-425A-A5A4-5FC090778B43}" Hidden="0" Hideable="0" Inclination="0" Index="179" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\dryness\Na_D_snowscotchpine_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="11.675816,14.925312,27.74789" BoxMin="-10.842613,-8.3296242,-1.7734387" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="5" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\etc\na_d_bigicetree_02b.cgf" GUID="{B4BDAB78-ACB7-4302-A645-6A2F258792C1}" Hidden="0" Hideable="0" Inclination="0" Index="32" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\etc\na_d_bigicetree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="14.21012,13.632017,26.39393" BoxMin="-10.530563,-5.8213181,-2.0461919" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="5" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\etc\na_d_bigicetree_03c.cgf" GUID="{240D0DCF-10F3-48B2-BC70-A895017B2D7F}" Hidden="0" Hideable="0" Inclination="0" Index="74" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\etc\na_d_bigicetree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="5.7756047,3.8162999,11.087199" BoxMin="-4.1747479,-8.375349,-0.46861869" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\etc\na_d_lifeendtree_01a.cgf" GUID="{640234C8-00EC-4A8C-AA6D-AFD4C79E9D94}" Hidden="0" Hideable="0" Inclination="0" Index="27" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\etc\na_d_lifeendtree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.87" SizeVar="0.3" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.490191,2.4357638,8.3807411" BoxMin="-2.2652526,-3.6255593,-0.38791823" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="5" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\etc\na_d_lifeendtree_02b.cgf" GUID="{6BDE5E92-D914-4847-9FC0-1983943EA5D9}" Hidden="0" Hideable="0" Inclination="0" Index="98" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\etc\na_d_lifeendtree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.87" SizeVar="0.3" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="6.7472553,1.8699343,10.165787" BoxMin="-7.5911217,-10.949695,-0.39375305" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\etc\na_d_lifeendtree_03c.cgf" GUID="{25A7742F-E030-4048-BEC1-ACEAD3C94807}" Hidden="0" Hideable="0" Inclination="0" Index="26" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\etc\na_d_lifeendtree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.87" SizeVar="0.3" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="5.4783154,5.0378017,12.023643" BoxMin="-4.4322195,-7.130868,-0.49958611" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\etc\na_d_lifeendtree_04d.cgf" GUID="{EE62568E-5A47-4125-A996-17FD4689AB41}" Hidden="0" Hideable="0" Inclination="0" Index="28" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\etc\na_d_lifeendtree_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.87" SizeVar="0.3" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="10.007533,10.055288,32.399925" BoxMin="-12.207358,-9.728034,-0.11451263" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\etc\na_d_luminoustree_01a.cgf" GUID="{D1514C6C-C4F0-4B55-B7FB-F0072F850C21}" Hidden="0" Hideable="0" Inclination="0" Index="152" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\etc\na_d_luminoustree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.4" SizeVar="0.1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="3.2715721,3.4437358,16.756573" BoxMin="-3.7666681,-3.5531285,-0.94931448" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Lod Tree" Density="5" ElevationMax="1000" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\etc\na_d_snowlodtree_06f.cgf" GUID="{23FBC8BE-8BC2-4D3F-A877-109C30F41FAF}" Hidden="0" Hideable="0" Inclination="0" Index="90" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\etc\na_d_snowlodtree_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.0108016,1.9347677,3.0743952" BoxMin="-1.9185638,-1.9848781,-1.2743222" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Lod Tree" Density="30" ElevationMax="1000" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\etc\na_d_snowlodtree_10j.cgf" GUID="{FAC5A969-77FF-40DB-A506-8A4ED1D5468E}" Hidden="0" Hideable="0" Inclination="0" Index="91" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\etc\na_d_snowlodtree_10j.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.8388443,1.9674423,7.3626928" BoxMin="-1.8388443,-1.9674423,-0.64855957" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\etc\na_d_veintree_03c.cgf" GUID="{E725D347-4FB7-4570-BAFB-AEB80347068B}" Hidden="0" Hideable="0" Inclination="0" Index="151" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\etc\na_d_veintree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="3.1793325,2.9698217,2.7557144" BoxMin="-2.4585085,-2.1471536,-0.93113339" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants" Density="8" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_draftplants_01a.cgf" GUID="{E50EC0C4-EAA8-4E98-9830-E8C00D6F11C0}" Hidden="0" Hideable="0" Inclination="0" Index="101" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_draftplants_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.4" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.2646241,2.1454573,4.6807909" BoxMin="-2.3045611,-1.969439,-0.61822098" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Plants" Density="5" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_draftplants_02b.cgf" GUID="{B36B52D9-64C3-448A-BBBB-A0EB3B3DE539}" Hidden="0" Hideable="0" Inclination="0" Index="102" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_draftplants_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.4" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.3802212,1.1629661,1.664678" BoxMin="-1.2383283,-1.1628581,-0.89940125" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_draftplants_03c.cgf" GUID="{3BDD53AA-8BCC-41EB-A969-70F49722E005}" Hidden="0" Hideable="0" Inclination="0" Index="72" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_draftplants_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.6" SizeVar="0.3" SlopeMax="30" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.9638751,6.0573316,32.421246" BoxMin="-6.6055179,-3.5548186,-0.4645336" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="7" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_icesapspinetree_01a.cgf" GUID="{EE85D3A4-72F1-4257-AF70-F61A659092AC}" Hidden="0" Hideable="0" Inclination="0" Index="29" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_icesapspinetree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.3" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="38.586929,39.393066,73.660316" BoxMin="-34.878639,-44.260391,-2.3463159" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="5" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_plateautree_01a.cgf" GUID="{76F9A8DA-0525-4B3A-823A-7642C88646E0}" Hidden="0" Hideable="0" Inclination="0" Index="104" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_plateautree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.3" SizeVar="0" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="35.820339,39.431202,68.706154" BoxMin="-38.820778,-33.251877,-2.3250999" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="10" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_plateautree_02b.cgf" GUID="{2071BA42-BD17-490C-93B0-AF1436AE6D81}" Hidden="0" Hideable="0" Inclination="0" Index="105" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_plateautree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.3" SizeVar="0" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="12.503249,29.150322,49.859711" BoxMin="-50.633617,-30.971872,-2.4022851" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="10" ElevationMax="2550" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_plateautree_03c.cgf" GUID="{26F5E889-3904-487E-9E80-D1DB4C7F78E1}" Hidden="0" Hideable="0" Inclination="0" Index="106" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_plateautree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.3" SizeVar="0" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.5133934,2.6574557,14.594447" BoxMin="-2.7932694,-2.9789951,-0.15393974" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_01a.cgf" GUID="{822503C8-88F9-4D72-BA69-A20BE8F01AE8}" Hidden="0" Hideable="0" Inclination="0" Index="14" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.9104307,1.7643554,14.47613" BoxMin="-2.0888801,-2.121768,-0.17576402" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_02b.cgf" GUID="{5565902E-658B-496A-AEC7-2D63DB9672FB}" Hidden="0" Hideable="0" Inclination="0" Index="10" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.5119278,2.7018733,15.185758" BoxMin="-2.7311008,-2.9582016,-0.20312156" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_03c.cgf" GUID="{6FCC2999-C24B-4ED9-B9BA-8CD7AE811A22}" Hidden="0" Hideable="0" Inclination="0" Index="42" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.9595885,2.5992565,13.381542" BoxMin="-2.4985466,-2.389014,-0.14300627" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_04d.cgf" GUID="{88800ACA-E872-4422-9A47-5733F23D443A}" Hidden="0" Hideable="0" Inclination="0" Index="33" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.363199,3.3562527,13.94289" BoxMin="-3.6002371,-4.0426068,-0.1654911" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_05e.cgf" GUID="{9CFE1BEC-A60F-42CB-9454-301CE7F5C680}" Hidden="0" Hideable="0" Inclination="0" Index="15" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.1045105,3.4555809,12.086431" BoxMin="-3.4180357,-3.3764062,-0.21144719" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_06f.cgf" GUID="{1416EECC-93AA-4E93-B4CD-1271462B81B9}" Hidden="0" Hideable="0" Inclination="0" Index="16" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.1364152,3.3811646,8.7232943" BoxMin="-3.082216,-3.1119826,-0.26580393" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_08h.cgf" GUID="{9999502B-C195-440C-8BDC-3CFF081D8DF1}" Hidden="0" Hideable="0" Inclination="0" Index="17" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconifer_08h.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="5.6633983,5.0587955,12.176685" BoxMin="-5.3994336,-4.7110596,-0.19799744" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconiferb_01a.cgf" GUID="{DCF4479C-6CE7-4188-A921-D4F028467FBE}" Hidden="0" Hideable="0" Inclination="0" Index="18" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconiferb_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="7.7879229,6.8226395,12.176685" BoxMin="-7.3914151,-6.5826025,-0.63608366" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconiferb_02b.cgf" GUID="{CFDB7BBD-AE2C-4BF9-B23B-E68724DAE857}" Hidden="0" Hideable="0" Inclination="0" Index="19" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconiferb_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.7082248,3.8220897,12.176685" BoxMin="-3.5446689,-3.5198402,-0.19799744" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowconiferb_03c.cgf" GUID="{0F4DC29F-47EE-4E4F-9183-03B4A04CB853}" Hidden="0" Hideable="0" Inclination="0" Index="20" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowconiferb_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="13.706413,40.922787,41.825283" BoxMin="-33.54306,-16.244484,-1.5684963" Brightness="-1.7" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\na_d_snowfetree_01a.cgf" GUID="{4878CD5C-C02B-45CD-9CE2-7CF76DA8E439}" Hidden="0" Hideable="0" Inclination="0" Index="185" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\na_d_snowfetree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="13.706413,40.922787,41.825283" BoxMin="-33.54306,-16.244484,-1.5684963" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowfetree_01a.cgf" GUID="{30048971-CAA0-436D-8C8F-0E499C073AC0}" Hidden="0" Hideable="0" Inclination="0" Index="156" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowfetree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.3" SizeVar="0.1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.3237982,3.1888115,9.275466" BoxMin="-3.3615091,-3.0822945,-0.20055096" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\na_d_snowfirtree_01a.cgf" GUID="{160F0A8A-D1F8-4684-B125-EE78E94671B7}" Hidden="0" Hideable="0" Inclination="0" Index="48" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\na_d_snowfirtree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.1287177,3.6242483,8.7870045" BoxMin="-2.9015648,-2.664058,-0.07078293" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\na_d_snowfirtree_02b.cgf" GUID="{FB6A50EC-1A2E-4ABB-BB34-1575BC3CDDB2}" Hidden="0" Hideable="0" Inclination="0" Index="49" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\na_d_snowfirtree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.1583931,4.0518756,9.5243244" BoxMin="-3.0988193,-2.8953719,-0.15795189" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\na_d_snowfirtree_03c.cgf" GUID="{40F1B17D-737E-4F8D-9B15-4DB3DFA4CEC4}" Hidden="0" Hideable="0" Inclination="0" Index="50" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\na_d_snowfirtree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.6935468,3.0854461,9.674161" BoxMin="-2.3766305,-2.2144959,-0.23333782" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowfirtree_04d.cgf" GUID="{55B9C13C-6B68-4F19-8333-850FD696B775}" Hidden="0" Hideable="0" Inclination="0" Index="41" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowfirtree_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.6149983,3.7239709,8.1674595" BoxMin="-1.4639628,-1.9872477,-0.19038974" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowroadtree_01a.cgf" GUID="{2A39C2EA-1CEA-44D2-8B8A-EE90C81B8F7C}" Hidden="0" Hideable="0" Inclination="0" Index="21" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowroadtree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.6149983,3.7239709,8.1674595" BoxMin="-1.4639628,-1.9872477,-0.19038974" Brightness="1.2" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="10" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowroadtree_01a.cgf" GUID="{99C6115C-85CE-457B-B2CC-3A003A753FC7}" Hidden="0" Hideable="0" Inclination="0" Index="83" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowroadtree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.6233191,2.2942898,8.4971676" BoxMin="-1.926445,-1.8944998,-0.31013092" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="2" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowroadtree_02b.cgf" GUID="{93BA0FF7-90D4-449A-942F-C33904892E67}" Hidden="0" Hideable="0" Inclination="0" Index="22" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowroadtree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.6233191,2.2942898,8.4971676" BoxMin="-1.926445,-1.8944998,-0.31013092" Brightness="1.2" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="5" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowroadtree_02b.cgf" GUID="{EEBE5FAC-63F1-48BE-8B67-153DCEFB5C54}" Hidden="0" Hideable="0" Inclination="0" Index="84" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowroadtree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.6364942,2.9193377,8.7528524" BoxMin="-3.6202753,-1.8656269,-0.32608649" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowroadtree_03c.cgf" GUID="{C6BB6E09-ED03-453C-9C61-A5D446CA20BD}" Hidden="0" Hideable="0" Inclination="0" Index="40" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowroadtree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.6364942,2.9193377,8.7528524" BoxMin="-3.6202753,-1.8656269,-0.32608649" Brightness="1.2" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="5" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowroadtree_03c.cgf" GUID="{2FFAB2AB-285C-43E2-A91F-1A3A02483A58}" Hidden="0" Hideable="0" Inclination="0" Index="85" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowroadtree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.9547808,3.0075595,8.3459444" BoxMin="-2.4322464,-2.5204678,-0.24452811" Brightness="1.2" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="3" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowroadtree_04d.cgf" GUID="{2C5F4F22-58D3-44A7-A40F-6F9DB6447C60}" Hidden="0" Hideable="0" Inclination="0" Index="86" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowroadtree_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.5555661,2.0412626,7.2962732" BoxMin="-2.3467612,-3.1820443,-0.30200133" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowroadtree_05e.cgf" GUID="{20CF5526-072A-44E3-86CA-1CBBAE69BCA3}" Hidden="0" Hideable="0" Inclination="0" Index="44" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowroadtree_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.5555661,2.0412626,7.2962732" BoxMin="-2.3467612,-3.1820443,-0.30200133" Brightness="1.2" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="5" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowroadtree_05e.cgf" GUID="{3F6FC399-EEE2-4A40-892E-F9993023C75D}" Hidden="0" Hideable="0" Inclination="0" Index="87" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowroadtree_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.7" SizeVar="0.5" SlopeMax="55" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.1541674,3.2607052,8.1032562" BoxMin="-3.1541674,-3.2607055,-0.1201436" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="5" ElevationMax="520" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowsconifer_01a.cgf" GUID="{50D00286-38F1-49B6-8298-81E08C92BC3A}" Hidden="0" Hideable="0" Inclination="0" Index="128" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowsconifer_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.7069623,1.9927123,7.800633" BoxMin="-2.2703726,-1.9927125,-0.13463807" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="1" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowsconifer_02b.cgf" GUID="{44CD5589-6DC5-4B32-8DC2-B50F1FF56CE8}" Hidden="0" Hideable="0" Inclination="0" Index="129" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowsconifer_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.3819075,1.6420771,5.3520732" BoxMin="-1.3343258,-1.6420774,-0.09089943" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="3" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowsconifer_03c.cgf" GUID="{61E74220-96A5-41AD-B6C4-69CD42868EA9}" Hidden="0" Hideable="0" Inclination="0" Index="130" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowsconifer_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.4029397,1.4515826,8.4739332" BoxMin="-1.6348388,-1.514732,-0.51413518" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowsconifer_04d.cgf" GUID="{4D5B39D7-990B-4B6F-A69F-C4FC86CEC659}" Hidden="0" Hideable="0" Inclination="0" Index="23" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowsconifer_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.258505,1.3657392,8.1850548" BoxMin="-1.3606559,-1.2823461,-0.11331007" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowsconifer_05e.cgf" GUID="{D1C14DA9-0671-44DA-A859-BC279BD6EBF9}" Hidden="0" Hideable="0" Inclination="0" Index="24" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowsconifer_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.2403381,1.5396205,7.5107183" BoxMin="-1.4586661,-1.3461912,-0.48628944" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="4" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\dark\natural\trees\greens\na_d_snowsconifer_06f.cgf" GUID="{5B88748D-9967-4137-9BC7-01CAEC974EBB}" Hidden="0" Hideable="0" Inclination="0" Index="25" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\dark\natural\trees\greens\na_d_snowsconifer_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.5" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="13.655441,16.278366,51.590385" BoxMin="-12.682968,-12.080584,-0.22473092" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowskinnytree_01a.cgf" GUID="{4653A6DC-F6E5-4D80-82D5-D5B9E81D1E82}" Hidden="0" Hideable="0" Inclination="0" Index="119" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowskinnytree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.3" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="15.343537,15.747598,54.831341" BoxMin="-14.457088,-18.632729,-0.33500227" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\na_d_snowskinnytree_02b.cgf" GUID="{171CFD26-17E3-4117-8C09-B1073486BB0B}" Hidden="0" Hideable="0" Inclination="0" Index="30" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\na_d_snowskinnytree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.3" SizeVar="0.25" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="15.174932,13.315854,50.718479" BoxMin="-17.736528,-16.311317,-0.25385821" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_D.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\na_d_snowskinnytree_03c.cgf" GUID="{A5C4233A-5018-4267-B624-8D0E09AEC64F}" Hidden="0" Hideable="0" Inclination="0" Index="31" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\na_d_snowskinnytree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.3" SizeVar="0.25" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.8429949,4.2273569,7.7634826" BoxMin="-3.7893665,-4.2273569,-0.23684463" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="1" ElevationMax="255" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowvinetree_03c.cgf" GUID="{322A5C2E-9845-47B0-9BCD-07C4F82F3893}" Hidden="0" Hideable="0" Inclination="0" Index="122" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowvinetree_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="6.3642163,6.8003812,29.908226" BoxMin="-5.0020447,-7.1133184,-0.14001739" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\na_d_snowytree_01a.cgf" GUID="{9F6905C2-A568-4AA5-B107-0A8A5D305635}" Hidden="0" Hideable="0" Inclination="0" Index="123" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\na_d_snowytree_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="10.948784,9.4345274,22.995312" BoxMin="-15.696328,-20.156178,-0.6295532" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\Na_D_twig_01a.cgf" GUID="{156E5115-72FE-47FF-B9B1-37054EA7A052}" Hidden="0" Hideable="0" Inclination="0" Index="180" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\Na_D_twig_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="15.194992,2.9046204,29.54917" BoxMin="-17.716467,-29.530741,-0.99142212" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\dark\natural\trees\greens\Na_D_twig_02b.cgf" GUID="{7EDE40CA-473D-442A-A565-03FFD356D1F7}" Hidden="0" Hideable="0" Inclination="0" Index="181" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\dark\natural\trees\greens\Na_D_twig_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="6.3642163,6.7500577,25.660423" BoxMin="-5.0020447,-7.1636419,-0.14001739" Brightness="1.5" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\Na_D_whiteytree_br_01a.cgf" GUID="{28AFA5B9-6A73-4D40-9C4D-8406E90DBE79}" Hidden="0" Hideable="0" Inclination="0" Index="172" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\Na_D_whiteytree_br_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.2" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="7.3908553,8.5643673,29.586161" BoxMin="-9.1387939,-8.0485401,-0.11536817" Brightness="1.5" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\Na_D_whiteytree_br_02b.cgf" GUID="{F8FA2B3E-C64F-4984-8A89-5C52E8FE0B8C}" Hidden="0" Hideable="0" Inclination="0" Index="173" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\Na_D_whiteytree_br_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.2" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="7.8530984,8.1752996,25.445522" BoxMin="-7.5495915,-8.894906,-0.14065796" Brightness="1.5" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\Na_D_whiteytree_br_03c.cgf" GUID="{404D50A9-37DC-4C93-B785-EDC094C6DE65}" Hidden="0" Hideable="0" Inclination="0" Index="174" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\Na_D_whiteytree_br_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.2" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="3.3498437,4.8383908,5.7041497" BoxMin="-3.3498437,-4.8383908,-1.820119" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_E.Tree" Density="5" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\na_d_whiteytree_br_04d.cgf" GUID="{D1B7F950-2186-4979-80AE-7B6298EDA438}" Hidden="0" Hideable="0" Inclination="0" Index="115" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\na_d_whiteytree_br_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.3498437,4.8383908,5.7041497" BoxMin="-3.3498437,-4.8383908,-1.820119" Brightness="1.5" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\dark\natural\trees\greens\Na_D_whiteytree_br_04d.cgf" GUID="{07999654-D8EE-4423-B0A3-B816B1269724}" Hidden="0" Hideable="0" Inclination="0" Index="175" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\dark\natural\trees\greens\Na_D_whiteytree_br_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="2.5445497,4.9285455,24.547583" BoxMin="-17.651497,-6.4295659,-0.52668148" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\light\natural\etc\na_l_bokstree_ type2_02b.cgf" GUID="{B584E05E-E570-47B0-9E90-0C012B508D24}" Hidden="0" Hideable="0" Inclination="0" Index="138" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\light\natural\etc\na_l_bokstree_ type2_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.6" SizeVar="0.2" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="17.623602,6.9883537,23.8456" BoxMin="-3.0093026,-6.409441,-0.30779403" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\light\natural\etc\na_l_bokstree_ type2_05e.cgf" GUID="{B63D1934-737E-419D-9CA0-88B9C74E82C6}" Hidden="0" Hideable="0" Inclination="0" Index="139" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\light\natural\etc\na_l_bokstree_ type2_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.6" SizeVar="0.1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.80935568,0.60174024,2.7117312" BoxMin="-0.80935502,-0.6017403,-0.31116363" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="5" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\light\natural\plants\etc\Na_L_fence_01a.cgf" GUID="{8A4D648F-3729-40AA-A76B-6684412E4171}" Hidden="0" Hideable="0" Inclination="0" Index="191" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\light\natural\plants\etc\Na_L_fence_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.6" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.43691352,0.444951,1.7403365" BoxMin="-0.43691269,-0.44495112,-0.21526416" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="1" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\light\natural\plants\etc\Na_L_fence_02b.cgf" GUID="{9A3BA6F1-6EE2-43E4-9F35-538FFA8A38AA}" Hidden="0" Hideable="0" Inclination="0" Index="192" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\light\natural\plants\etc\Na_L_fence_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.6" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.60455877,0.44463363,2.0763364" BoxMin="-0.60455823,-0.44463369,-0.25957027" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="5" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\light\natural\plants\etc\Na_L_fence_03c.cgf" GUID="{F13CF6AB-7A38-4E77-8C3C-355AEC1166BD}" Hidden="0" Hideable="0" Inclination="0" Index="193" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\light\natural\plants\etc\Na_L_fence_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.6" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="0.97445697,0.47576049,1.5391515" BoxMin="-0.97445714,-0.47576055,-0.19650912" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="5" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\light\natural\plants\etc\Na_L_fence_04d.cgf" GUID="{84B594C0-0BAF-4658-9823-340798BB5A95}" Hidden="0" Hideable="0" Inclination="0" Index="194" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\light\natural\plants\etc\Na_L_fence_04d.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.6" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.238652,1.230885,1.4681612" BoxMin="-1.0608824,-1.0251743,-0.26216096" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="5" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\light\natural\plants\grass\Na_L_thorn_01a.cgf" GUID="{DDE18940-0C8A-41E8-BB9D-59E6AE67D707}" Hidden="0" Hideable="0" Inclination="0" Index="189" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\light\natural\plants\grass\Na_L_thorn_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.8" SizeVar="0.6" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.238652,1.2308853,1.4685397" BoxMin="-1.0608823,-1.0251747,-0.26178217" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Plants" Density="5" ElevationMax="800" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="levels\common\light\natural\plants\grass\Na_L_thorn_02b.cgf" GUID="{07789A9E-7ABD-427D-B7CF-B099122DC55C}" Hidden="0" Hideable="0" Inclination="0" Index="190" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="levels\common\light\natural\plants\grass\Na_L_thorn_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.8" SizeVar="0.6" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="5.0453763,2.4518731,5.2740979" BoxMin="-1.0337014,-3.8745375,-0.74085814" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.tree" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\light\natural\trees\dryness\Na_L_baretree_05e.cgf" GUID="{F43A5709-3457-479A-8954-F4C31C1EED8D}" Hidden="0" Hideable="0" Inclination="0" Index="157" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\light\natural\trees\dryness\Na_L_baretree_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.1395993,2.8317308,8.2245693" BoxMin="-5.8969064,-3.8703234,-0.27295825" Brightness="1" CalcLighting="1" CastShadow="0" Category="SubZone_G.Tree" Density="1" ElevationMax="700" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\common\light\natural\trees\dryness\Na_L_timber_03c.cgf" GUID="{501A6324-DE41-4C84-B089-4177DBEA818F}" Hidden="0" Hideable="0" Inclination="0" Index="171" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\common\light\natural\trees\dryness\Na_L_timber_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="4.024394,1.5351295,1.9900318" BoxMin="-4.6526508,-1.5351297,-0.080505349" Brightness="1" CalcLighting="1" CastShadow="0" Category="subzone_C.plants" Density="1" ElevationMax="500" ElevationMin="16" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" FadeSize="1" FileName="LEVELS\Common\light\natural\trees\etc\na_l_piecetree_02b.cgf" GUID="{CE647211-921F-42D6-9CBE-3DEC339812D5}" Hidden="0" Hideable="0" Inclination="0" Index="145" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PlaceOnBrush="0" PrecalcShadow="0" Prefab="LEVELS\Common\light\natural\trees\etc\na_l_piecetree_02b.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<LM_Params uvGutterSize="3" uvStretch="16.67" uvTolerance="0"/>
+			<LMInst_Params uvRenderWidth="0"/>
+		</Object>
+	</Vegetation>
+	<MaterialsLibrary>
+		<Library Name="Level"/>
+	</MaterialsLibrary>
+	<ParticlesLibrary>
+		<Library Name="weather_snow"/>
+		<Library Name="env_lf_smoke"/>
+		<Library Name="env_df_fire"/>
+		<Library Name="env_lf_fire"/>
+		<Library Name="fire_evocarea"/>
+		<Library Name="env_lf_airstream"/>
+		<Library Name="env_lf_dust"/>
+		<Library Name="fld_lf_smoke"/>
+		<Library Name="env_lf_lay"/>
+		<Library Name="fld_lf_fire"/>
+		<Library Name="env_df_nature"/>
+		<Library Name="env_item"/>
+		<Library Name="env_effect"/>
+		<Library Name="sys_bindpoint"/>
+		<Library Name="env_ab_hop"/>
+		<Library Name="env_BG_cloud"/>
+	</ParticlesLibrary>
+	<MusicLibrary>
+		<Library File="LDF3_01-BGM.xml" Name="LDF3_01-BGM"/>
+	</MusicLibrary>
+	<Missions>
+		<Mission CGFCount="1480" File="Mission_Mission0.xml" Name="Mission0">
+			<LevelOption>
+				<Initialize Render_Beaches="1" Render_Fog="1" Render_Ocean="1" Render_SkyBox="1" Render_SkyCloud="1.000000" Render_Sun="1" Render_Terrain="1"/>
+				<Fly Fly_Whole_Level="1" FRZ_NEGX="50" FRZ_NEGY="50" FRZ_X="50" FRZ_Y="50" MaxHeight="1000"/>
+				<Ride Ride_Whole_Level="0"/>
+				<BindArea IsPossible="1"/>
+				<ReCall IsPossible="1"/>
+				<Glide IsPossible="1"/>
+				<LightMap LightMapLevelName="LDF3_01"/>
+			</LevelOption>
+		</Mission>
+	</Missions>
+</LevelData>

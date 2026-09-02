@@ -1,0 +1,784 @@
+<Mission CGFCount="11" Description="" MusicScript="" Name="Mission0" PlayerEquipPack="" Script="" Time="09:00">
+	<EquipPacks></EquipPacks>
+	<Environment>
+		<Fog Color="99,119,211" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="1500"/>
+		<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+		<EnvState AmbientAmplify="1.0" EnvColor="254,236,199" OutdoorAmbientColor="153,174,200" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="190,184,171" SunHeightScale="1.0" WindForce="0.3"/>
+		<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.19" ZenithColor="67,132,180" ZenithShift="0.6"/>
+		<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="255,255,255" SunColorMultiplier="5" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+		<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="24,43,48" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+		<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+		<Misc VegetationShadowColorMin="0.8"/>
+		<Lighting LightingCount="1"/>
+		<Lighting_000 Algorithm="3" Ambient="0" CurrentHour="6" HemiSamplQuality="5" Lighting="1" lightmap_name="LIGHTMAP" ObjShadows="1" ShadowBlur="1" ShadowIntensity="50" Shadows="1" SkyColor="8421504" SunColor="16777215" SunHeight="10" SunMultiplier="1" SunRotation="0" SunVector="0,0.99498743,-0.1"/>
+	</Environment>
+	<EnvSetManager EnvSetSize="1">
+		<EnvSet000>
+			<Environment>
+				<Fog Color="99,119,211" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="1500"/>
+				<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+				<EnvState AmbientAmplify="1.0" EnvColor="254,236,199" OutdoorAmbientColor="153,174,200" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="190,184,171" SunHeightScale="1.0" WindForce="0.3"/>
+				<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.19" ZenithColor="67,132,180" ZenithShift="0.6"/>
+				<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="255,255,255" SunColorMultiplier="5" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+				<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="24,43,48" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+				<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+				<Misc VegetationShadowColorMin="0.8"/>
+			</Environment>
+		</EnvSet000>
+	</EnvSetManager>
+	<Weapons>
+		<Used></Used>
+		<Ammo></Ammo>
+	</Weapons>
+	<LevelOption>
+		<Initialize Render_Beaches="1" Render_Fog="1" Render_Ocean="1" Render_SkyBox="1" Render_SkyCloud="1" Render_Sun="1" Render_Terrain="1"/>
+		<Fly Fly_Whole_Level="1.000000" FRZ_NEGX="50" FRZ_NEGY="50" FRZ_X="50" FRZ_Y="50" MaxHeight="300"/>
+		<Ride Ride_Whole_Level="2.000000"/>
+		<BindArea IsPossible="1"/>
+		<ReCall IsPossible="1"/>
+		<Glide IsPossible="1"/>
+		<LightMap LightMapLevelName="System_Basic"/>
+	</LevelOption>
+	<WeatherSystem></WeatherSystem>
+	<ServerZoneList></ServerZoneList>
+	<TimeEnvSystem>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="" env_color="165,165,165" env_heathaze="" env_windforce="" fog_color="128,128,128" fog_end="1300" fog_start="32" fullscreenfx="" GammaDestMax="" GammaDestMin="" GammaInterpolate="" GammaSrcMax="" GammaSrcMin="" name="Dawn" parteffect="" particlefx="" PhotoColor="" PhotocolorInterpolate="" SelectiveDest="" SelectiveInterpolate="" SelectiveSrc="" sky_box_name="LF1.TimeEnv.LF1_Dawn" sky_lens_check="1" sky_lens_name="Sun_Evening" sky_sun_check="1" sky_sun_direction="180" sky_sun_height="45" skydome_name="" time_hour="4" time_min="0" time_name="Dawn" view_dist="2048" zonename=""/>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="" env_color="230,230,230" env_heathaze="" env_windforce="" fog_color="128,128,128" fog_end="1400" fog_start="32" fullscreenfx="" GammaDestMax="" GammaDestMin="" GammaInterpolate="" GammaSrcMax="" GammaSrcMin="" name="Daylight" parteffect="" particlefx="" PhotoColor="" PhotocolorInterpolate="" SelectiveDest="" SelectiveInterpolate="" SelectiveSrc="" sky_box_name="LF1.TimeEnv.LF1_Daylight" sky_lens_check="1" sky_lens_name="Sun_Evening" sky_sun_check="1" sky_sun_direction="180" sky_sun_height="45" skydome_name="" time_hour="9" time_min="0" time_name="Daylight" view_dist="2048" zonename=""/>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="" env_color="175,175,175" env_heathaze="" env_windforce="" fog_color="128,128,128" fog_end="1400" fog_start="32" fullscreenfx="" GammaDestMax="" GammaDestMin="" GammaInterpolate="" GammaSrcMax="" GammaSrcMin="" name="Dusk" parteffect="" particlefx="" PhotoColor="" PhotocolorInterpolate="" SelectiveDest="" SelectiveInterpolate="" SelectiveSrc="" sky_box_name="LF1.TimeEnv.LF1_Dusk" sky_lens_check="1" sky_lens_name="Sun_Evening" sky_sun_check="1" sky_sun_direction="180" sky_sun_height="45" skydome_name="" time_hour="17" time_min="0" time_name="Dusk" view_dist="2048" zonename=""/>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="" env_color="150,150,150" env_heathaze="" env_windforce="" fog_color="128,128,128" fog_end="1300" fog_start="32" fullscreenfx="" GammaDestMax="" GammaDestMin="" GammaInterpolate="" GammaSrcMax="" GammaSrcMin="" name="Night" parteffect="" particlefx="" PhotoColor="" PhotocolorInterpolate="" SelectiveDest="" SelectiveInterpolate="" SelectiveSrc="" sky_box_name="LF1.TimeEnv.LF1_Night" sky_lens_check="0" sky_lens_name="CryLight_DayRain" sky_sun_check="0" sky_sun_direction="180" sky_sun_height="45" skydome_name="" time_hour="22" time_min="0" time_name="Night" view_dist="2048" zonename=""/>
+		<TimeEnvOption cloud2d="LF1.TimeEnv.LF1_Daylight" cloud3d="LF1.Weather.Cloud3D" cutscenetype="0" env_color="148,148,148" env_heathaze="" env_windforce="0.1" fog_color="171,204,250" fog_end="800" fog_start="4" fullscreenfx="" GammaDestMax="" GammaDestMin="" GammaInterpolate="" GammaSrcMax="" GammaSrcMin="" name="LakeClione_Daylight" parteffect="" particlefx="" PhotoColor="" PhotocolorInterpolate="" SelectiveDest="" SelectiveInterpolate="" SelectiveSrc="" sky_box_name="LF1.TimeEnv.LF1_Daylight" sky_lens_check="1" sky_lens_name="Sun_Evening" sky_sun_check="1" sky_sun_direction="180" sky_sun_height="45" skydome_name="skydome_GAb1_01.skydome_GAb1_01" time_hour="9" time_min="0" time_name="Daylight" view_dist="2048" zonename="TimeEnvzone_1"/>
+	</TimeEnvSystem>
+	<TimeEnvZoneList>
+		<timeenv_zone name="TimeEnvzone_1" priority="16">
+			<points_info bottom="156.100006" top="556.099976" type="polygon">
+				<points points_size="4">
+					<data x="-3.500000" y="-4.000000"/>
+					<data x="-2.638763" y="520.556580"/>
+					<data x="516.793701" y="516.603516"/>
+					<data x="515.476013" y="-6.782013"/>
+				</points>
+			</points_info>
+		</timeenv_zone>
+	</TimeEnvZoneList>
+	<TimeofDayEnvSystem>
+		<TimeofDayGroup vartype="0" zonename="default">
+			<time_name type="arr_string">
+				<keyvalue key0="0.000000,Night" key1="0.209651,Daylight" key2="0.875208,Night"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="2,65,111,0" key1="0,80,138,0.135417" key2="199,205,248,0.23333301" key3="149,234,255,0.34026" key4="113,202,255,0.49671799" key5="149,234,255,0.67554098" key6="231,168,160,0.74209601" key7="231,160,199,0.83028299" key8="0,80,138,0.872917"/>
+			</fog_color>
+			<view_dist ratio="0,4000" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.0099999998" type="gridwindow">
+				<keyvalue key0="0.0099999998,0" key1="0.0099999998,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-0.1,0.1" type="gridwindow">
+				<keyvalue key0="0.55000001,0" key1="0.55000001,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.019531,0" key1="0.019531,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.60000002,0" key1="0.60000002,0.169717" key2="0.5,0.28846201" key3="0.2,0.375" key4="0.18571401,0.66821003" key5="0.40000001,0.70833302" key6="0.40000001,0.83493602" key7="0.58571398,0.875" key8="0.60000002,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,5000" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</LayerFogOpacity>
+			<fog_start ratio="1,1000" type="gridwindow">
+				<keyvalue key0="0.299299,0" key1="0.299299,1"/>
+			</fog_start>
+			<fog_end ratio="1,2048" type="gridwindow">
+				<keyvalue key0="0.488031,0" key1="0.728571,0.50109398" key2="0.488031,1"/>
+			</fog_end>
+			<env_color type="colorbar">
+				<keyvalue key0="121,142,155,0" key1="121,142,155,0.168053" key2="157,157,140,0.21131399" key3="157,157,140,0.70715499" key4="171,153,126,0.74708802" key5="171,148,126,0.83361101" key6="121,142,155,0.87354398"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="57,77,81,0" key1="57,77,81,0.166389" key2="79,79,91,0.206944" key3="79,79,91,0.70555598" key4="71,71,98,0.75374401" key5="71,71,99,0.83499998" key6="57,77,81,0.87520802"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.44999999,0" key1="0.44999999,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.000000,LC1.TimeEnv.Night" key1="0.208333,LC1.TimeEnv.Dawn" key2="0.416667,LC1.TimeEnv.Daylight" key3="0.708333,LC1.TimeEnv.Dusk" key4="0.875000,LC1.TimeEnv.Night"/>
+			</sky_box_name>
+			<skydome_name type="arr_string">
+				<keyvalue></keyvalue>
+			</skydome_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="-50,128" type="gridwindow">
+				<keyvalue key0="0.58988798,0" key1="0.58988798,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.25714299,0.50328201" key2="1,0.95967698" key3="0,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.34999999,0" key1="0.35714301,0.169753" key2="0.5,0.211022" key3="0.5,0.79704303" key4="0.35714301,0.83796299" key5="0.34999999,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.028571,0.171149" key2="0.18571401,0.25" key3="0.2,0.50138903" key4="0.214286,0.79444402" key5="0,0.875" key6="0,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.158144" key2="0.18571401,0.25555599" key3="0.2,0.50480801" key4="0.214286,0.79444402" key5="0.028571,0.87980801" key6="0,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.057142999,0.18125001" key2="0.085713997,0.237179" key3="0.17142899,0.29647401" key4="0.92857099,0.50051999" key5="0.32857099,0.758735" key6="0.057142999,0.87083298" key7="0.059999999,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.166667,0" key1="0.166667,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.028571,0.246795" key2="0.271429,0.50134403" key3="0.028571,0.75026" key4="0,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,20" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</ZenithShift>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="12,49,71,0" key1="12,49,71,0.145833" key2="50,69,99,0.26121801" key3="34,200,255,0.38301301" key4="21,156,255,0.50328201" key5="34,199,254,0.68219602" key6="101,44,252,0.74542397" key7="69,60,251,0.83028299" key8="12,49,71,0.87916702"/>
+			</ZenithColor>
+			<SunWavelength_r ratio="0,1000" type="gridwindow">
+				<keyvalue key0="0.72799999,0" key1="0.72799999,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.40066701,0" key1="0.40066701,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.352,0" key1="0.352,1"/>
+			</SunWavelength_b>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.039999999,0" key1="0.039999999,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.059999999,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="51,90,102,0" key1="64,101,157,0.043561" key2="0,140,187,0.51859999" key3="51,90,102,0.92518902"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="113,179,227,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,30" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="40,56,113,0" key1="51,70,126,0.30603999" key2="32,197,251,0.51641101" key3="220,104,54,0.80000001"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="7,19,29,0" key1="7,19,29,0.12660301" key2="0,0,0,0.26612899" key3="0,0,0,0.51612902"/>
+			</HorizonColor>
+			<HorizonRange ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRange>
+			<HorizonOpacity ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonOpacity>
+			<HorizonRatio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRatio>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,-0.0075759999"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="0.98571402,0.50134403" key2="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.50268799" key2="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.5" key2="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+		<TimeofDayGroup vartype="0" zonename="TimeEnvzone_1">
+			<time_name type="arr_string">
+				<keyvalue key0="0.247059,Daylight" key1="0.844344,Night"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="84,125,188,0" key1="84,125,188,0.084112003" key2="214,210,249,0.294817" key3="203,235,254,0.49957499" key4="197,211,233,0.70858097" key5="207,156,122,0.74766397" key6="230,171,132,0.83236402" key7="84,125,188,0.87255698"/>
+			</fog_color>
+			<view_dist ratio="0,4000" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.0099999998" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-1,1" type="gridwindow">
+				<keyvalue key0="0.50400001,0" key1="0.52857101,0.97710699" key2="0.55000001,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.29296899,0" key1="0.29296899,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.69999999,0" key1="0.71428603,0.090135999" key2="0.71428603,0.164116" key3="0.51428598,0.29591799" key4="0.25714299,0.367347" key5="0.25714299,0.83588398" key6="0.342857,0.87510598" key7="0.69999999,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.439394" key2="0,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,3072" type="gridwindow">
+				<keyvalue key0="0.91145802,0" key1="0.97142899,0.29244301" key2="0.91145802,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.342857,0.085432999" key2="0.31428599,0.29846901" key3="0.40000001,1"/>
+			</LayerFogOpacity>
+			<fog_start ratio="1,1000" type="gridwindow">
+				<keyvalue key0="0.011011,0" key1="0.011011,1"/>
+			</fog_start>
+			<fog_end ratio="64,2048" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.014286,0.29244301" key2="0.157143,0.501643" key3="0,1"/>
+			</fog_end>
+			<env_color type="colorbar">
+				<keyvalue key0="89,136,187,0" key1="89,136,187,0.166667" key2="148,148,148,0.207957" key3="148,148,148,0.49909601" key4="148,148,148,0.71247703" key5="182,140,95,0.75290698" key6="182,140,95,0.83430201" key7="89,136,187,0.87425703"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="46,65,92,0" key1="46,60,92,0.170543" key2="85,85,85,0.20814499" key3="85,85,85,0.50090402" key4="85,85,85,0.84162903" key5="46,60,92,0.87425703"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.44999999,0" key1="0.44999999,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.17142899,0.50127399" key2="0,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.202519,LF1.TimeEnv.LF1_Dawn" key1="0.312984,LF1.TimeEnv.LF1_Daylight" key2="0.748062,LF1.TimeEnv.LF1_Dusk" key3="0.843670,LF1.TimeEnv.LF1_Night"/>
+			</sky_box_name>
+			<skydome_name type="arr_string">
+				<keyvalue key0="0.501225,Default_Skydome.default"/>
+			</skydome_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="-50,128" type="gridwindow">
+				<keyvalue key0="0.50561798,0" key1="0.50561798,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.371429,0.498366" key2="1,0.972812" key3="0,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.34999999,0" key1="0.342857,0.167375" key2="0.5,0.20918401" key3="0.5,0.79099399" key4="0.342857,0.83347499" key5="0.34999999,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.014286,0.18839" key2="0.2,0.24557801" key3="0.40000001,0.5" key4="0.35714301,0.83132499" key5="0,0.87765503" key6="0,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.158144" key2="0.071428999,0.225381" key3="0.18571401,0.5" key4="0.1,0.83333302" key5="0.042856999,0.89889598" key6="0,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.042856999,0.088359997" key2="0.028571,0.191164" key3="0.54285699,0.249053" key4="0.87142903,0.50050801" key5="0.228571,0.70862901" key6="0.2,0.83248699" key7="0,0.89469701" key8="0.02,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.157143,0.082386002" key2="0.271429,0.5" key3="0,0.809659" key4="0,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.285714,0.24974" key2="0.60000002,0.50050801" key3="0.285714,0.77461898" key4="0,0.830782" key5="0,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,20" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.98571402,0.50083297" key2="0.1,1"/>
+			</ZenithShift>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="2,39,49,0" key1="0,0,0,0.16003799" key2="13,55,255,0.50083297" key3="13,55,200,0.71220899" key4="185,119,74,0.75" key5="221,109,43,0.83430201" key6="1,10,65,0.87596899"/>
+			</ZenithColor>
+			<SunWavelength_r ratio="0,1000" type="gridwindow">
+				<keyvalue key0="0.72799999,0" key1="0.72799999,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.40066701,0" key1="0.38571399,0.244624" key2="0.40066701,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.352,0" key1="0.352,1"/>
+			</SunWavelength_b>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.039999999,0" key1="0.039999999,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.059999999,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="51,90,102,0" key1="44,69,107,0.093099996" key2="20,128,133,0.51369101" key3="98,34,13,0.81380099"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="113,179,227,0" key1="97,154,241,0.51150101" key2="237,117,103,0.81160998"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,30" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="31,141,184,0" key1="11,31,100,0.084337004" key2="31,141,184,0.50821501" key3="189,99,17,0.81380099"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="0,0,0,0" key1="0,0,0,0.26612899" key2="0,0,0,0.51612902"/>
+			</HorizonColor>
+			<HorizonRange ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRange>
+			<HorizonOpacity ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonOpacity>
+			<HorizonRatio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRatio>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,-0.0075759999"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="0.98571402,0.50134403" key2="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.50268799" key2="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.5" key2="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+	</TimeofDayEnvSystem>
+	<FxArtifactSystem></FxArtifactSystem>
+	<CommonShapeList>
+		<music_zones></music_zones>
+		<sub_zones>
+			<subzone name="LDF4b_SZ_Tower_M_1" priority="5" string="STR_LDF4b_SZ_Tower_M_1">
+				<points_info bottom="226.629425" top="396.629425" type="polygon">
+					<points points_size="36">
+						<data x="102.839256" y="224.292755"/>
+						<data x="103.298882" y="220.107819"/>
+						<data x="104.402733" y="215.787048"/>
+						<data x="106.310997" y="211.654205"/>
+						<data x="108.672905" y="208.589905"/>
+						<data x="111.711113" y="205.423462"/>
+						<data x="115.313499" y="202.779968"/>
+						<data x="119.284355" y="200.931519"/>
+						<data x="123.844749" y="199.716400"/>
+						<data x="127.803703" y="199.396576"/>
+						<data x="132.348358" y="199.830933"/>
+						<data x="136.490417" y="200.952362"/>
+						<data x="140.785095" y="203.082428"/>
+						<data x="143.941315" y="205.327301"/>
+						<data x="147.056305" y="208.390869"/>
+						<data x="149.614746" y="212.052338"/>
+						<data x="151.394775" y="215.946381"/>
+						<data x="152.490112" y="220.293365"/>
+						<data x="152.768219" y="224.582825"/>
+						<data x="152.573120" y="228.880951"/>
+						<data x="151.307404" y="233.218719"/>
+						<data x="149.570313" y="237.171875"/>
+						<data x="147.199066" y="240.356781"/>
+						<data x="143.879272" y="243.753357"/>
+						<data x="140.533264" y="246.183716"/>
+						<data x="136.577942" y="248.039734"/>
+						<data x="132.290894" y="249.160339"/>
+						<data x="127.872032" y="249.325531"/>
+						<data x="123.170586" y="249.094635"/>
+						<data x="118.923820" y="247.883087"/>
+						<data x="115.081261" y="246.060120"/>
+						<data x="111.615471" y="243.553070"/>
+						<data x="108.680046" y="240.677582"/>
+						<data x="106.145561" y="236.984863"/>
+						<data x="104.375237" y="233.172668"/>
+						<data x="103.385368" y="229.297943"/>
+					</points>
+				</points_info>
+			</subzone>
+		</sub_zones>
+		<attribute_zones></attribute_zones>
+		<npcpath_boids></npcpath_boids>
+		<flying_zones>
+			<flying_zone ai_pattern="false" always_enabled="true" name="Test_Flyingzone_1">
+				<points_info bottom="235.100006" top="335.100006" type="polygon">
+					<points points_size="4">
+						<data x="96.000000" y="250.000000"/>
+						<data x="96.000000" y="289.000000"/>
+						<data x="136.000000" y="290.000000"/>
+						<data x="136.000000" y="250.000000"/>
+					</points>
+				</points_info>
+			</flying_zone>
+			<dynamic_flying_zone ai_pattern="false" always_enabled="true" name="Test_Flyingzone_4">
+				<points_info bottom="235.000000" top="335.000000" type="polygon">
+					<points points_size="4">
+						<data x="133.000000" y="251.000000"/>
+						<data x="133.000000" y="290.000000"/>
+						<data x="173.000000" y="291.000000"/>
+						<data x="173.000000" y="251.000000"/>
+					</points>
+				</points_info>
+			</dynamic_flying_zone>
+			<no_flying_zone ai_pattern="false" always_enabled="true" name="Test_Flyingzone_2">
+				<points_info bottom="235.000000" top="335.000000" type="polygon">
+					<points points_size="4">
+						<data x="96.000000" y="285.000000"/>
+						<data x="96.000000" y="331.000000"/>
+						<data x="136.000000" y="332.000000"/>
+						<data x="136.000000" y="285.000000"/>
+					</points>
+				</points_info>
+			</no_flying_zone>
+			<dynamic_no_flying_zone ai_pattern="false" always_enabled="true" name="Test_Flyingzone_3">
+				<points_info bottom="235.000000" top="335.000000" type="polygon">
+					<points points_size="4">
+						<data x="133.000000" y="286.000000"/>
+						<data x="133.000000" y="332.000000"/>
+						<data x="173.000000" y="332.000000"/>
+						<data x="173.000000" y="286.000000"/>
+					</points>
+				</points_info>
+			</dynamic_no_flying_zone>
+		</flying_zones>
+		<beach_zones></beach_zones>
+	</CommonShapeList>
+	<EntityDescriptions></EntityDescriptions>
+	<Objects>
+		<Object Ignore_heightcheck="0" Name="StartPointMain3" Pos="265.0314,230.96201,240.10001" Type="StartPoint"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_23" npc="Test_Quest_NPC_05" Pos="277.50241,273.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,0,-119.99998" dir="150" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Pr_5" npc="LDF4b_4411_Guard_Dr_Pr" Pos="123.99677,238.06082,238.37943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_System_Basic_7" npc="SYSTEM_ingame_D_goldbar_Seller" Pos="344.99902,260.60901,237.35614" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object AreaId="-1" FadeInZone="0" GroupId="0" Height="1" Length="4" Name="AreaBoxLDF4b_Island_World1" Pos="121.56503,240.14764,321.03424" Type="AreaBox" Width="4"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_4" npc="Test_Quest_NPC_04" Pos="249.61562,240.468,232.02065" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_2" npc="Test_Quest_NPC_05" Pos="256.50241,283.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_24" npc="Test_Quest_NPC_05" Pos="277.50241,293.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_13" npc="Test_Quest_NPC_05" Pos="267.50241,273.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_15" npc="Test_Quest_NPC_05" Pos="267.50241,343.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,105" dir="15" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_C2_Elementalking_Crystal_Named_60_Af1" npc="LDF4b_C2_Elementalking_Crystal_Named_60_Af" Pos="78.530273,105.03394,253.35953" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Fi_1" npc="LDF4b_4411_Guard_Dr_Fi" Pos="112.69925,224.79276,233.62943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,119.99999" dir="30" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Fi_6" npc="LDF4b_4411_Guard_Dr_Fi" Pos="130.99631,238.1554,238.37943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_Placeable_OBJ_LINK_Noshow_NPC_125" npc="" Pos="128.69687,235.508,239.09436" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="602121241" EntityId="349" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Test_2" LodRatio="100" Name="Placeable_effect_2_9" Pos="127.67194,235.6846,244.28421" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="objects\npc\level_object\LDF4B_fobj\top_effect_02b.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-87.999985" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="-1079759334" EntityId="672" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Test_2" LodRatio="100" Name="PlaceableObject62" Pos="127.49905,224.85516,314.08722" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="objects\npc\level_object\LDF4B_fobj\TiamatWatchtower_fire_m.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Group="-1" Ignore_heightcheck="0" Name="SeedPointLDF4b_Tower_Seedpoint12" Pos="126.94925,225.04276,238.62943" Type="SeedPoint"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_12" npc="Test_Quest_NPC_05" Pos="267.50241,303.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_Placeable_OBJ_LINK_Noshow_NPC_128" npc="" Pos="126.2515,214.2052,239.09036" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_T4_Fungy_Crystal_Named_60_Ans_13" npc="LDF4b_T4_Fungy_Crystal_Named_60_An" Pos="86.989723,137.4187,263.08234" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_FOBJ_Q9648a_3" npc="Test_FOBJ_Q9648a" Pos="240,260,231" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_8" npc="Test_Quest_NPC_05" Pos="256.50241,323.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_3" npc="Test_Quest_NPC_03" Pos="243.5824,240.46811,232.03189" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="-2116910549" EntityId="350" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Test_2" LodRatio="100" Name="Placeable_effect_2_10" Pos="127.772,214.00488,244.28421" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="objects\npc\level_object\LDF4B_fobj\top_effect_02b.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,91" dir="1" Ignore_heightcheck="0" iidle_range="0" Name="SP_BLDF4b_bossHexad_65_AI_spy" npc="BLDF4b_bossHexad_65_AI_spy" Pos="225.375,161.25,252.875" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_18" npc="Test_Quest_NPC_05" Pos="267.50241,363.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_31" npc="Test_Quest_NPC_05" Pos="245.50241,353.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_BlackMerchant_1" npc="LDF4b_DarkShugo_Product_C" Pos="69.696228,158.89313,265.48291" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Rebecca_4" npc="Rebecca_4" Pos="242,256,238" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF3_01_G1_RhinoceD_58_An_2" npc="LDF3_01_G1_RhinoceD_58_An" Pos="344,112,231" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_7" npc="Test_Quest_NPC_07" Pos="249.57968,234.51303,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Rebecca_2" npc="Rebecca_2" Pos="138,408,237" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_FOBJ_Q9648a_1" npc="Test_FOBJ_Q9648a" Pos="236,261,230" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Pr_2" npc="LDF4b_4411_Guard_Dr_Pr" Pos="139.06897,219.56763,238.37943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_25" npc="Test_Quest_NPC_05" Pos="277.50241,343.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF3_01_G1_RhinoceD_58_An_1" npc="LDF3_01_G1_RhinoceD_58_An" Pos="353,118,230" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_9" npc="Test_Quest_NPC_09" Pos="237.53008,234.5652,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_System_Basic_4" npc="SYSTEM_ingame_L_goldbar_Seller" Pos="340.85483,260.60901,237.35614" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_4" npc="Test_Quest_NPC_05" Pos="256.50241,303.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_System_Basic_2" npc="SYSTEM_ingame_L_qina_Seller" Pos="340.85483,247.39859,232.21037" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_MistOn_Tower_4" npc="LDF4b_MistOn_Tower_M_01" Pos="124.56488,224.66498,241.68512" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,59.999992" dir="330" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Fi_5" npc="LDF4b_4411_Guard_Dr_Fi" Pos="131.10883,211.85391,238.37943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_WindBox_Setting_Tower_MistOff" npc="LDF4b_WindBox_Setting_Tower_M_01" Pos="128.47537,224.65866,241.01022" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_T1_Cyclops_58_An_83" npc="LDF4b_Island_T1_Cyclops_65_An" Pos="85.254997,158.98999,266.87744" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_8" npc="Test_Quest_NPC_08" Pos="243.50363,234.5652,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Group="-1" Ignore_heightcheck="0" Name="SeedPointLDF4b_Tower_Seedpoint14" Pos="141.44925,225.04276,310.12943" Type="SeedPoint"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_3" npc="Test_Quest_NPC_05" Pos="256.50241,293.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-62.999996" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="-467322781" EntityId="1883" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Test_2" LodRatio="100" Name="top_effect_bottom34" Pos="127.50085,235.67911,237.59329" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="objects\npc\level_object\LDF4B_fobj\top_effect_bottom.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_35" npc="Test_Quest_NPC_05" Pos="245.50241,333.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Fi_4" npc="LDF4b_4411_Guard_Dr_Fi" Pos="136.13306,219.8494,310.25482" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4401_Guard_Wi_9" npc="LDF4b_4411_Guard_Dr_Wi" Pos="127.44925,217.79709,238.12943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_30" npc="Test_Quest_NPC_05" Pos="277.50241,313.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_28" npc="Test_Quest_NPC_05" Pos="277.50241,363.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_7" npc="Test_Quest_NPC_05" Pos="256.50241,343.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Rebecca_1" npc="Rebecca" Pos="323,420,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_10" npc="Test_Quest_NPC_10" Pos="231.58501,234.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_21" npc="Test_Quest_NPC_05" Pos="277.50241,323.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_4411_Guard_Seeker" npc="LDF4b_4411_Guard_Dr_Seeker" Pos="121.20755,224.9957,312.12943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_17" npc="Test_Quest_NPC_05" Pos="267.50241,353.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_9" npc="Test_Quest_NPC_05" Pos="256.50241,313.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_32" npc="Test_Quest_NPC_05" Pos="245.50241,323.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Fi_3" npc="LDF4b_4411_Guard_Dr_Fi" Pos="119.02719,229.80753,309.7916" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_11" npc="Test_Quest_NPC_05" Pos="267.50241,323.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4401_Guard_Wi_10" npc="LDF4b_4411_Guard_Dr_Wi" Pos="115.19925,230.48795,233.62943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-62.999996" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="544630663" EntityId="1884" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Test_2" LodRatio="100" Name="top_effect_bottom35" Pos="127.51596,214.03854,237.59329" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="objects\npc\level_object\LDF4B_fobj\top_effect_bottom.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_BlackMerchant_2" npc="LDF4b_DarkShugo_Product_C" Pos="91.988098,123.62018,283.48291" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_29" npc="Test_Quest_NPC_05" Pos="277.50241,333.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_1" npc="Test_Quest_NPC_05" Pos="256.50241,273.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_Placeable_OBJ_LINK_Noshow_NPC_127" npc="" Pos="127.36026,215.36267,237.81564" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_5" npc="Test_Quest_NPC_05" Pos="255.50241,240.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_4411_Guard_As_1" npc="LDF4b_4411_Guard_Dr_As" Pos="106.61502,224.29276,233.62943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_10" npc="Test_Quest_NPC_05" Pos="256.50241,363.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Rebecca_5" npc="Rebecca_5" Pos="347,133,239" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4401_Guard_Wi_3" npc="LDF4b_4411_Guard_Dr_Wi" Pos="127.44925,231.98068,238.12943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_Placeable_OBJ_LINK_Noshow_NPC_129" npc="" Pos="128.52689,214.18091,239.09436" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_14" npc="Test_Quest_NPC_05" Pos="267.50241,293.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_System_Basic_5" npc="SYSTEM_ingame_D_qina_Seller" Pos="344.99902,247.39859,232.21037" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_2" npc="Test_Quest_NPC_02" Pos="237.55746,240.61392,232.00365" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1779920982" EntityId="1927" EnvSkyBoxObject="" EnvTimeShow="night" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Test_2" LodRatio="100" Name="DeferredLight68281" Pos="127.23526,225.31055,246.87851" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="20">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.882353,0.482353,0.603922" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4401_Guard_Wi_15" npc="LDF4b_4411_Guard_Dr_Wi" Pos="119.07367,219.92758,310.18213" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointMain2" Pos="271.3287,228.66299,240.10001" Type="StartPoint"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_System_Basic_9" npc="SYSTEM_ingame_D_costume_Seller" Pos="344.99902,254.06909,234.76639" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_Placeable_OBJ_LINK_Noshow_NPC_126" npc="" Pos="127.37479,213.10229,237.81104" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_26" npc="Test_Quest_NPC_05" Pos="277.50241,283.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_33" npc="Test_Quest_NPC_05" Pos="245.50241,343.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointMain1" Pos="266.7522,224.30701,240.10001" Type="StartPoint"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_WindBox_Setting_Tower_MistOn" npc="LDF4b_WindBox_Setting_Tower_M_01" Pos="128.39127,224.88962,242.92224" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_Placeable_OBJ_LINK_Noshow_NPC_123" npc="" Pos="127.53024,236.68976,237.81564" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_Placeable_OBJ_LINK_Noshow_NPC_122" npc="" Pos="127.54477,234.42938,237.81104" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_System_Basic_8" npc="SYSTEM_ingame_L_costume_Seller" Pos="340.85483,254.06909,235.41843" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_BlackMerchant_3" npc="LDF4b_DarkShugo_Product_C" Pos="88.777374,195.11969,258.48291" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_MistOff_Tower_4" npc="LDF4b_Tower_M_01_Dr" Pos="124.53082,224.63239,239.61804" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_System_Basic_1" npc="Test_SystemOp" Pos="265,249,257.28418" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF3_01_G1_RhinoceD_58_An_3" npc="LDF3_01_G1_RhinoceD_58_An" Pos="342,122,231" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_1" npc="Test_Quest_NPC_01" Pos="231.53448,240.46928,232.15672" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="957863898" EntityId="1958" EnvSkyBoxObject="" EnvTimeShow="night" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Test_2" LodRatio="100" Name="DeferredLight68313" Pos="127.13342,224.50189,322.61908" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="20">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.882353,0.482353,0.603922" DiffuseMultiplier="0.8" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="25" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_16" npc="Test_Quest_NPC_05" Pos="267.50241,283.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_22" npc="Test_Quest_NPC_05" Pos="277.50241,303.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_NPC_6" npc="Test_Quest_NPC_06" Pos="255.57916,234.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_27" npc="Test_Quest_NPC_05" Pos="277.50241,353.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_19" npc="Test_Quest_NPC_05" Pos="267.50241,333.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_FOBJ_Q9648a_2" npc="Test_FOBJ_Q9648a" Pos="238,264,231" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Rebecca_3" npc="Rebecca_3" Pos="156,147,253" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="70" Name="SP_LDF4b_Boss_4411" npc="" Pos="127.69937,225.20947,315.71384" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Pr_3" npc="LDF4b_4411_Guard_Dr_Pr" Pos="136.14679,229.90787,310.25482" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="2" Name="SP_LDF4b_T4_Fungy_Crystal_Named_60_Ans_12" npc="LDF4b_T4_Fungy_Crystal_Named_60_An" Pos="104.02148,157.69827,262.73553" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,94.999992" dir="5" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_4411_Guard_As_2" npc="LDF4b_4411_Guard_Dr_As" Pos="143.07953,238.43237,234.612" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_20" npc="Test_Quest_NPC_05" Pos="267.50241,313.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Pr_1" npc="LDF4b_4411_Guard_Dr_Pr" Pos="115.19925,218.87195,233.62943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_T4_Fungy_Crystal_Named_60_Ans_11" npc="LDF4b_T4_Fungy_Crystal_Named_60_An" Pos="90.269234,178.24927,263.46948" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="MP_LDF4b_SZ_Tower_M_1" Pos="127.56851,224.76419,318.63062" subzone="LDF4b_SZ_Tower_M_1" Type="MP"/>
+		<Object Angles="0,-0,-59.999996" dir="210" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Pr_4" npc="LDF4b_4411_Guard_Dr_Pr" Pos="124.10928,211.75934,238.37943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_6" npc="Test_Quest_NPC_05" Pos="256.50241,333.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SP_LDF4b_Placeable_OBJ_LINK_Noshow_NPC_124" npc="" Pos="126.42148,235.53229,239.09036" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_5" npc="Test_Quest_NPC_05" Pos="256.50241,353.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Group="-1" Ignore_heightcheck="0" Name="SeedPointLDF4b_Tower_Seedpoint13" Pos="113.94925,225.04276,310.12943" Type="SeedPoint"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4411_Guard_Fi_2" npc="LDF4b_4411_Guard_Dr_Fi" Pos="141.56897,224.79276,238.37943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SP_Test_Monster_34" npc="Test_Quest_NPC_05" Pos="245.50241,363.51651,232" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SP_LDF4b_4401_Guard_Wi_11" npc="LDF4b_4411_Guard_Dr_Wi" Pos="139.06897,230.10025,238.37943" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+	</Objects>
+</Mission>

@@ -1,0 +1,37 @@
+<MusicThemeLibrary Name="IDDF1B-BGM" >
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{FD59452E-E505-4688-A8F3-94005E8EADE1}" Name="IDDF1B-BGM" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\IDDF1b_BGM-01.ogg" LayeringVolume="210" Name="Pattern1" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\IDDF1b_BGM-BATTLE1.ogg" LayeringVolume="210" Name="Pattern0" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{00B3D695-6641-433F-B4B2-50C1E7B20558}" Name="BGM_Mute" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern2" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+</MusicThemeLibrary>

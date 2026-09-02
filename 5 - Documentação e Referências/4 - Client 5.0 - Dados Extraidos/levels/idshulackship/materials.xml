@@ -1,0 +1,260 @@
+<MaterialsLibrary>
+	<Library File="Editor\Materials\Level.xml" Name="Level">
+		<Material GenMask="0" Id="{3E9AF1EF-0DC6-4094-AF91-C8722970D688}" MtlFlags="0" Name="bu_ab_shugo3f_19a0" Shader="">
+			<SubMaterials>
+				<Material GenMask="0" Id="{7D6C9DC7-C2F7-47A0-9566-93D7C0679A64}" MtlFlags="0" Name="[1]" Shader=""/>
+				<Material AlphaTest="0.4" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{8B15EE09-4FB0-430F-8C80-0CD61E1375DD}" MtlFlags="16" Name="[2] default 17" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_51.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_51.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.25" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{621517C3-E316-4130-BA13-620AF0E71859}" MtlFlags="16" Name="[3] Material #2968277" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_52.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_52.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{10BE66FF-8233-40CD-A2B1-D59C353CAF93}" MtlFlags="16" Name="[4] 01 - Default" Shader="nodraw"/>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{BDDA0B48-E3F5-4022-86F8-7169493679A8}" MtlFlags="16" Name="[5] defwwwe" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_23.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/white_ddn.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{A7E0990F-AF2E-4C17-8920-04629D268D7F}" MtlFlags="16" Name="[6] Material #2967400" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/dark/structures/props/interior/pr_d_net_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/white_ddn.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{A3A121E1-1FB1-4374-9BA4-113FC797DB02}" MtlFlags="16" Name="[7] default 8aaaa" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_06.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/white_ddn.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{BE5C1D3B-7049-4F1E-92C4-4339F27DD8B3}" MtlFlags="16" Name="[8] 19 - Default" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/light/structures/props/carriages/pr_l_ship_003.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/white_ddn.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{62328870-E8DA-4DB2-AD6F-4A0DC3A993CB}" MtlFlags="16" Name="[9] Material #2" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_30.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/white_ddn.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{DC8E290E-D408-4451-A20D-DF3C58971733}" MtlFlags="16" Name="[10] default 1" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_29.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/white_ddn.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{EDA957F9-E29E-4CA2-A9A2-F62338CF0305}" MtlFlags="16" Name="[11] Material #2968274" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_33.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/white_ddn.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{661BF4F7-B87E-401A-8E9B-0CD1B59489D2}" MtlFlags="16" Name="[12] default 4" Opacity="1" Reflectance="0" Saturation="0" Shader="aionmrt_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/abyss/idshugoship/bu_ab_shugo3f_01a_04.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" IsTileU="0" IsTileV="0" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/white_ddn.dds" Map="Bumpmap">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+			</SubMaterials>
+		</Material>
+	</Library>
+</MaterialsLibrary>

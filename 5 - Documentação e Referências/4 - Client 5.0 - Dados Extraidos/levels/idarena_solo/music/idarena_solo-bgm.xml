@@ -1,0 +1,106 @@
+<MusicThemeLibrary Name="IDArena_solo-BGM" >
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{FDC21708-FFAD-4CE1-8F8C-36886547418B}" Name="MUTE" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern10" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{8D39DE67-95A8-4DC2-8A0D-BFD3701B5F4A}" Name="IDArena_solo-01" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\idarena-02.ogg" LayeringVolume="255" Name="Pattern11" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{124AA16A-A9BF-4923-A16C-3A2A143499ED}" Name="IDArena_solo-02" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\idarena-05.ogg" LayeringVolume="255" Name="Pattern12" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{23D8AB88-3772-4D70-B70E-73C95988B405}" Name="IDArena_solo-03" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\idnovice-boss.ogg" LayeringVolume="255" Name="Pattern13" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{9C5DD27E-3300-4BCD-85CD-1096E167B763}" Name="IDArena_solo-04" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\idcromede-boss.ogg" LayeringVolume="255" Name="Pattern14" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{EBE6F2DD-0404-4BD4-A87B-C98C1B349F3B}" Name="IDArena_solo-05" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\idarena-01.ogg" LayeringVolume="255" Name="Pattern15" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{1242E5CA-64A0-45E0-8DB8-25B7C0C1B079}" Name="IDArena_solo-06" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\idarena-05.ogg" LayeringVolume="255" Name="Pattern16" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{F48EB108-281B-4678-8AB3-FBC1475FF591}" Name="IDArena_solo-boss" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\idarena-boss.ogg" LayeringVolume="255" Name="Pattern17" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+</MusicThemeLibrary>

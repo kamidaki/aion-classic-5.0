@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="512" HeightmapYSize="512" LightMapPath="Levels\IDDokkaebi\" Name="Levels\IDdokkaebi" Version="{AC218F6F-443A-4B4C-B693-EC3DFD6F6EE4}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

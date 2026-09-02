@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="512" HeightmapYSize="512" LightMapPath="Levels\IDTiamatLab_Q\" Name="Levels\IDTiamatLab_Q" Version="{03F21A40-6A2F-443F-9006-68E4F1DA0FD4}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

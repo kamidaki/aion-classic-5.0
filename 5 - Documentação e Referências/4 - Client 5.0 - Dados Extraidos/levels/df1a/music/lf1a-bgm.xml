@@ -1,0 +1,553 @@
+<MusicThemeLibrary Name="LF1A-BGM" >
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{4847F2A8-7263-4981-A199-EDF8E535C5BE}" Name="BGM_Mute" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\BGM_Mute.ogg" LayeringVolume="255" Name="Pattern0" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{34A1942C-4F79-43CC-808A-9400761F3463}" Name="berteron_swamp" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\the_shifting_sand-original.ogg" LayeringVolume="255" Name="Pattern1" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\the_shifting_sand-rhythm.ogg" LayeringVolume="255" Name="Pattern38" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\last_hymn_for_ruins_part2-celestarcut.ogg" LayeringVolume="255" Name="Pattern52" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle1.ogg" LayeringVolume="255" Name="Pattern16" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{247EEE78-E15D-44F9-B45B-A8980141DC6C}" Name="berteron_fortress" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="1" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\the_tower_of_eternity-shot.ogg" LayeringVolume="255" Name="Pattern2" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\the_wings_of_knight-middlecut.ogg" LayeringVolume="255" Name="Pattern36" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\kingdom_of_light-original.ogg" LayeringVolume="255" Name="Pattern53" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle1.ogg" LayeringVolume="255" Name="Pattern37" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{E3FFB516-51E1-4970-AF19-0B215EF0AFBA}" Name="tolbas_forest" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="1" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\the_still_sad_world-small.ogg" LayeringVolume="255" Name="Pattern3" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\the_tower_of_eternity-middlestrings.ogg" LayeringVolume="255" Name="Pattern39" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\the_still_sad_world-piano.ogg" LayeringVolume="255" Name="Pattern54" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\a_fairy_of_the_peace-piano.ogg" LayeringVolume="255" Name="Pattern55" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle1.ogg" LayeringVolume="255" Name="Pattern17" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{0D767AC0-2031-4675-9E87-02423D99847C}" Name="lehpar" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="3" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\death_waltz-piano.ogg" LayeringVolume="255" Name="Pattern4" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\death_waltz-string.ogg" LayeringVolume="255" Name="Pattern56" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle1.ogg" LayeringVolume="255" Name="Pattern18" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{269754B9-7999-45BC-B2D4-786EFDCBCCF8}" Name="dirty_swamp" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\shivering_secret-01.ogg" LayeringVolume="255" Name="Pattern5" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\shivering_secret-02.ogg" LayeringVolume="255" Name="Pattern57" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\shivering_secret-03.ogg" LayeringVolume="255" Name="Pattern58" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle4.ogg" LayeringVolume="255" Name="Pattern19" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{97EB61E3-40D4-44EE-B368-ADDA246B08F2}" Name="tolbas_town" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\odinary_song-02.ogg" LayeringVolume="255" Name="Pattern6" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\ordinary_song-flut.ogg" LayeringVolume="255" Name="Pattern40" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\step_to_the_next_world-drumcut.ogg" LayeringVolume="255" Name="Pattern59" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle1.ogg" LayeringVolume="255" Name="Pattern41" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{F365EF81-64F1-4D09-A5D3-A19CFAB7AD8C}" Name="kral" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="1" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\kral_field.ogg" LayeringVolume="255" Name="Pattern7" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\kral_field2.ogg" LayeringVolume="255" Name="Pattern33" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\a_battlefield-original.ogg" LayeringVolume="255" Name="Pattern42" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\a_battlefield2.ogg" LayeringVolume="255" Name="Pattern60" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\the_tower_of_eternity-middle.ogg" LayeringVolume="255" Name="Pattern61" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\force_the_conquest_which_kicks-original.ogg" LayeringVolume="255" Name="Pattern62" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\force_the_conquest_which_kicks-brasscut.ogg" LayeringVolume="255" Name="Pattern63" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle2.ogg" LayeringVolume="255" Name="Pattern20" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{81364E36-F01D-4C47-8244-8BF857DF6A1B}" Name="jumion_canyon" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="1" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\jumion_canyon-original.ogg" LayeringVolume="255" Name="Pattern8" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\jumion_canyon-ambience.ogg" LayeringVolume="255" Name="Pattern64" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle3.ogg" LayeringVolume="255" Name="Pattern21" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{4A4AF6CE-2CC0-4A8C-B275-EE9A2567A8FD}" Name="artamia" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\reflection-penflut.ogg" LayeringVolume="255" Name="Pattern9" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle5.ogg" LayeringVolume="255" Name="Pattern22" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{0A47AACA-7493-40EE-98C3-78684BDCF429}" Name="fantasia" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="1" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\song_of_moonlight-original.ogg" LayeringVolume="255" Name="Pattern10" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\song_of_moonlight-voice.ogg" LayeringVolume="255" Name="Pattern65" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\song_of_moonlight-hook.ogg" LayeringVolume="255" Name="Pattern66" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\song_of_moonlight-voicecut.ogg" LayeringVolume="255" Name="Pattern67" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle5.ogg" LayeringVolume="255" Name="Pattern23" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{D6CB3782-7534-4C68-8F16-3C4389D3AF1A}" Name="boss" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\trusin.ogg" LayeringVolume="255" Name="Pattern11" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle6.ogg" LayeringVolume="255" Name="Pattern24" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{FE3E9721-28C0-4308-A9B6-2F117BD186EA}" Name="kantas_coast" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\see_of_memory.ogg" LayeringVolume="255" Name="Pattern12" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle5.ogg" LayeringVolume="255" Name="Pattern25" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{1ED567E3-CFE2-4575-8E27-B3BC9948C4CC}" Name="lehpar2" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\death_waltz-piano.ogg" LayeringVolume="255" Name="Pattern13" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\death_waltz-string.ogg" LayeringVolume="255" Name="Pattern68" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood1" PatternSetChoosePolicy="0" PlaySingle="0" PlayTime="0,23" PlayType="1" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\berteron_battle5.ogg" LayeringVolume="255" Name="Pattern26" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{C25899FF-39D9-414A-BF94-45BE91910D6F}" Name="chun_sanctuary" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="1" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\chun_sanctuary.ogg" LayeringVolume="255" Name="Pattern45" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{AC8B691C-DBDF-46AE-9F71-95C8CACF85E2}" Name="chun_command_center" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="1" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\chun_command_center.ogg" LayeringVolume="255" Name="Pattern46" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{7BD50718-E51F-4E38-917C-998B4F523A69}" Name="chun_auction" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="1" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\chun_auction.ogg" LayeringVolume="255" Name="Pattern47" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{1825AC9F-0F2A-4789-A53F-BF5476B3E7D9}" Name="chun_arms" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="1" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\chun_arms.ogg" LayeringVolume="255" Name="Pattern48" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{9A5EDD42-BD50-4F04-9E4A-6DC6F282CBCA}" Name="chun_food" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="1" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\chun_food.ogg" LayeringVolume="255" Name="Pattern49" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{BF2B8FDA-4AFC-47F8-AF0A-971C8FAE9BAD}" Name="chun_medicines" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="1" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\chun_medicines.ogg" LayeringVolume="255" Name="Pattern50" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+ <Theme DefaultMood="Mood0" DefaultMoodTimeout="0" Id="{4F23EDDC-31F6-4285-ADD8-2BB695F48931}" Name="chun_merchandise" >
+  <Moods>
+   <Mood DelayPlayTime="0" FadeInTime="0" FadeOutTime="3" Name="Mood0" PatternSetChoosePolicy="0" PlaySingle="1" PlayTime="0,23" PlayType="0" Priority="0" >
+    <PatternSet IncidentalLayerProbability="100" MaxSimultaneousIncidentalPatterns="1" MaxSimultaneousRhythmicPatterns="1" MaxTimeout="120" MinTimeout="60" RhythmicLayerProbability="100" >
+     <MainLayer>
+      <Pattern Filename="Sounds\music\chun_merchandise.ogg" LayeringVolume="255" Name="Pattern51" Probability="0" />
+     </MainLayer>
+     <RhythmicLayer>     </RhythmicLayer>
+     <IncidentalLayer>     </IncidentalLayer>
+    </PatternSet>
+   </Mood>
+  </Moods>
+ </Theme>
+</MusicThemeLibrary>

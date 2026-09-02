@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="768" HeightmapYSize="768" LightMapPath="Levels\Tiamat_down_r\" Name="Levels\Tiamat_DOWN_R" Version="{75A45066-C4E0-4DED-B26C-3EEE01C3F017}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

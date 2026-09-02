@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="512" HeightmapYSize="512" LightMapPath="Levels\IDDranamine_War\" Name="Levels\IDDranamine_War" Version="{C192F30C-BCEE-409C-AB23-781ECDDC7F8E}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

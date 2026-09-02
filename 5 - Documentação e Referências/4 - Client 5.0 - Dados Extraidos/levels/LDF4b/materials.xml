@@ -1,0 +1,172 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\LDF4B_Lava.xml" Name="LDF4B_Lava">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{23002439-23BD-4AD0-93DF-392C3C8A5EBC}" MtlFlags="16" Name="T3_Lava.bu_d_lava_fall01a0" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_opacityshift" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/etc/na_d_lava_fall_01.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="levels/common/dark/natural/etc/na_d_lava_fall_01.dds" IsTileU="0" IsTileV="0" Map="Bumpmap" TexType="3">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams shiftspeedx="0" shiftspeedy="-0.05" tex_ambient="0.25"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{76375911-2AAB-476A-8723-D1C21562604B}" MtlFlags="16" Name="T3_Lava.bu_d_lava_fall02a0" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_opacityshift" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/etc/na_d_lava_fall_01.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="levels/common/dark/natural/etc/na_d_lava_fall_01.dds" IsTileU="0" IsTileV="0" Map="Bumpmap" TexType="3">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams shiftspeedx="0" shiftspeedy="-0.05" tex_ambient="0.25"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{65A44015-F7DC-464B-A9E8-D5AD14247BAB}" MtlFlags="16" Name="T3_Lava.na_d_df2_lava_01a0" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_opacityshift" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/etc/na_d_volcano_fall_big_001.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="levels/common/dark/natural/etc/na_d_volcano_fall_big_001.dds" IsTileU="0" IsTileV="0" Map="Bumpmap" TexType="3">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams shiftspeedx="-0.03" shiftspeedy="0" tex_ambient="0.25"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{4C9A3B18-8359-4A4C-9422-C9E1CEF20A53}" MtlFlags="16" Name="T3_Lava.na_d_mt_volcano_01a0" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_opacityshift" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/etc/na_d_volcano_fall_003.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="levels/common/dark/natural/etc/na_d_volcano_fall_003.dds" IsTileU="0" IsTileV="0" Map="Bumpmap" TexType="3">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams shiftspeedx="0" shiftspeedy="-0.06" tex_ambient="0.25"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\LDF4B_tiamat.xml" Name="LDF4B_tiamat"/>
+	<Library File="Editor\Materials\LDF4B_Watervolume.xml" Name="LDF4B_Watervolume">
+		<Material AlphaTest="0" GenMask="0" Id="{E85A0C97-6A4C-4DDB-AAB8-42EF1A359CC6}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-1_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="-50" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="1" textilex="10" textiley="20"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{B8AD7BBB-7839-4AC5-8350-3CFB872DD30C}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-1_02" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="-20" bumpamountx="0.05" bumpamounty="0.05" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="1" textilex="20" textiley="40"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{6FD7DE70-C303-42E0-874C-DAF3D327BC72}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-1_03" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="-20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="5" textiley="5"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{075AE366-940C-4A69-B083-0E0825907E94}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-1_04" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="-20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="7" textiley="15"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{1641312D-061C-4A76-A3D6-69CAE92147E0}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-1_05" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="-20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="10" textiley="5"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{570E563D-456C-4ABA-9E42-DB1D0877982B}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-1_06" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="-20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="30" textiley="15"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{1BFB74C9-EFB8-4090-9629-F5F5B3D60A4C}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-2_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="-40" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="25" textiley="10"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{FB96D465-9362-4C3D-8736-41C582637DD0}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-2_02" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="-20" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="15" textiley="27"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{B15831DA-FE1C-487F-9328-2DF5978F8F76}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-2_03" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="1" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="3" textiley="3"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{5A4BF781-AD28-4D33-8915-2853EB6322E0}" MtlFlags="0" Name="T2_WaterVolume.WaterVolumeT2-3_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.05" bumpamounty="0.07" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.5" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="10" textiley="10"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.64705884,0.80000001,0.32549021" Emissive="0,0,0" GenMask="0" Id="{A618C9C5-24EE-42B7-8566-5AF793B7BC28}" MtlFlags="16" Name="T3_WaterVolume.WaterVolumeT3-1_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="5" textilex="20" textiley="20"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.88627452,0.68235296,0.25490198" Emissive="0,0,0" GenMask="0" Id="{9B8742E1-97F5-4647-ACD6-1170149AFE60}" MtlFlags="16" Name="T3_WaterVolume.WaterVolumeT3-1_02" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="5" textilex="20" textiley="20"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.36078432,0.79215688,0.81176472" Emissive="0,0,0" GenMask="0" Id="{F09C2D58-C17F-4DC2-9E8B-21CCF3232771}" MtlFlags="16" Name="T3_WaterVolume.WaterVolumeT3-1_03" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="5" textilex="20" textiley="20"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.74509805,0.72156864,0.25490198" Emissive="0,0,0" GenMask="0" Id="{25DD9F86-E826-4961-9AE8-9E593EC2D8CD}" MtlFlags="16" Name="C1_WaterVolume.WaterVolumeC1_01" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.7" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="20" textiley="30"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.74509805,0.72156864,0.25490198" Emissive="0,0,0" GenMask="0" Id="{ACC5E518-302A-41C6-8A34-9D9942AB226D}" MtlFlags="16" Name="C1_WaterVolume.WaterVolumeC1_03" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.7" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="10" textiley="10"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

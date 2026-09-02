@@ -1,0 +1,4 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\LF1_WaterVolume.xml" Name="LF1_WaterVolume"/>
+</MaterialsLibrary>

@@ -1,0 +1,28 @@
+<MaterialsLibrary>
+	<Library File="Editor\Materials\Level.xml" Name="Level"/>
+	<Library File="Editor\Materials\IDLF1.xml" Name="IDLF1">
+		<Material AlphaTest="0" GenMask="0" Id="{977E132F-1678-4CF5-8687-A70B64A896E6}" MtlFlags="0" Name="WaterVolume.WaterVolume1" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0.05" bumpamounty="0.05" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.66" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="10" textiley="20"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF2_Subzone3_Lava.xml" Name="DF2_Subzone3_Lava">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{03A8DBFD-9EEB-4B22-8887-B1E2BE1B9E7C}" MtlFlags="16" Name="Lava.na_d_volcano_fall_big_02b1" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_Mon_Lava" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels\common\dark\natural\etc\na_d_volcano_fall_005.dds" Map="Diffuse">
+					<TexMod TexMod_UOscillatorAmplitude="1" TexMod_UOscillatorType="2" TexMod_VOscillatorAmplitude="1" TexMod_VOscillatorRate="-0.07" TexMod_VOscillatorType="2"/>
+				</Texture>
+				<Texture Amount="0" File="levels\common\dark\natural\etc\na_d_volcano_fall_big_005.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams flame_size_horz="1" flame_size_vert="1" flashspeed="0.5" shiftspeedx="-0.01" shiftspeedy="0.04"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

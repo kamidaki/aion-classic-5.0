@@ -1,0 +1,105 @@
+<LevelData>
+	<LevelInfo HeightmapUnitSize="2" HeightmapXSize="1024" HeightmapYSize="1024" Name="idcatacombs" WaterLevel="100"/>
+	<SurfaceTypes>
+		<SurfaceType Bumpmap="" DetailScaleX="0.15" DetailScaleY="0.15" DetailTexture="Levels\IDcatacombs\Detail\IDcatacombs_grass_01.dds" Material="mat_grass" Name="Default" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.2" DetailScaleY="0.2" DetailTexture="Levels\IDcatacombs\Detail\IDcatacombs_dirt_01.dds" Material="mat_dirt" Name="IDcatacombs_dirt_01" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.009" DetailScaleY="0.009" DetailTexture="Levels\IDcatacombs\Detail\ver_IDcatacombs_cliff01.dds" Material="mat_stone_tough" Name="ver_IDcatacombs_cliff01" Offset_U="0" Offset_V="0" ProjAxis="X" ProjectAxis="0" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.009" DetailScaleY="0.009" DetailTexture="Levels\IDcatacombs\Detail\ver_IDcatacombs_cliff01.dds" Material="mat_stone_tough" Name="ver_IDcatacombs_cliff01y" Offset_U="0" Offset_V="0" ProjAxis="Y" ProjectAxis="1" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.15" DetailScaleY="0.15" DetailTexture="Levels\IDcatacombs\Detail\IDcatacombs_bottom_01.dds" Material="mat_stone_marble" Name="IDcatacombs_bottom_01" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.2" DetailScaleY="0.2" DetailTexture="Levels\IDcatacombs\Detail\IDcatacombs_grass_02.dds" Material="mat_grass" Name="IDcatacombs_grass_02" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.15" DetailScaleY="0.15" DetailTexture="Levels\IDcatacombs\Detail\IDcatacombs_dirt_02.dds" Material="mat_stone_marble" Name="IDcatacombs_dirt_02" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.2" DetailScaleY="0.2" DetailTexture="Levels\IDcatacombs\Detail\IDcatacombs_dirt_03.dds" Material="mat_dirt" Name="IDcatacombs_dirt_03" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+		<SurfaceType Bumpmap="" DetailScaleX="0.2" DetailScaleY="0.2" DetailTexture="Levels\IDcatacombs\Detail\IDcatacombs_demage_01.dds" Material="mat_nobreathing" Name="IDcatacombs_demage" Offset_U="0" Offset_V="0" ProjAxis="Z" ProjectAxis="2" Use_Terran_Specular="0">
+			<DetailObjects></DetailObjects>
+		</SurfaceType>
+	</SurfaceTypes>
+	<Vegetation>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="0.91373336,0.67039031,2.0348434" BoxMin="-0.91373318,-0.67039031,-0.21049613" Brightness="1" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\crop\Na_L_pumpkin_06f.cgf" GUID="{9684F3DE-963B-44F3-9AFF-CFC20A571151}" Hidden="0" Hideable="0" Inclination="0" Index="11" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\crop\Na_L_pumpkin_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="4.1449008,3.850786,4.9397759" BoxMin="-3.2672601,-3.9831092,-1.2910421" Brightness="1" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\grass\Na_L_bush_09i.cgf" GUID="{B78DA354-A50D-4EC0-B9AD-53FA67485FF7}" Hidden="0" Hideable="0" Inclination="1" Index="4" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\grass\Na_L_bush_09i.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.5" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="2.849848,2.8612866,3.0321817" BoxMin="-2.7285686,-2.7052436,-0.79256654" Brightness="1" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\grass\Na_L_bush_10j.cgf" GUID="{EA82329C-1702-4F87-9104-8D05B7797DB4}" Hidden="0" Hideable="0" Inclination="0" Index="3" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\grass\Na_L_bush_10j.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.1875174,1.1396316,1.7299029" BoxMin="-1.1113375,-1.022813,-0.20390013" Brightness="1.2" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\grass\Na_L_fern_01a.cgf" GUID="{9000C5D6-CE8C-49B4-A798-86C1079D64C3}" Hidden="0" Hideable="0" Inclination="0" Index="5" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\grass\Na_L_fern_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="0.60899454,0.65043819,0.90123647" BoxMin="-0.60899454,-0.65043819,-0.21629874" Brightness="1" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\grass\na_l_flower_br_08h.cgf" GUID="{A3E51100-8AEB-45FF-9BE2-2B0C4B31C622}" Hidden="0" Hideable="0" Inclination="1" Index="6" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\grass\na_l_flower_br_08h.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.5" SizeVar="0.3" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.6779492,1.7966441,1.0616456" BoxMin="-1.6937714,-1.7333584,-0.32802525" Brightness="0.8" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\grass\Na_L_grass_01a.cgf" GUID="{FFEE9EF8-6BF1-4C8D-8687-0C3877D5D371}" Hidden="0" Hideable="0" Inclination="1" Index="8" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\grass\Na_L_grass_01a.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0.3" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="1.061725,0.67655593,1.0943574" BoxMin="-0.99002707,-0.9274835,-0.45272732" Brightness="1" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\grass\Na_L_grass_06f.cgf" GUID="{C2056EE3-0F1C-46DB-9894-69CEDA4B90F4}" Hidden="0" Hideable="0" Inclination="1" Index="10" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\grass\Na_L_grass_06f.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1.8" SizeVar="0.3" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="3.1911137,2.6295812,3.8943527" BoxMin="-2.4642482,-2.5483277,-0.41231558" Brightness="1.4" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\grass\Na_L_mushgrass_05e.cgf" GUID="{9D794736-6AA2-44C2-BD41-8E518D72C99E}" Hidden="0" Hideable="0" Inclination="1" Index="7" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\grass\Na_L_mushgrass_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="0.8" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="1" BoxMax="3.6602407,3.7306411,9.1439209" BoxMin="-3.3494284,-3.7306433,-0.95415771" Brightness="1" CalcLighting="1" CastShadow="0" Category="grass" Density="1" ElevationMax="500" ElevationMin="187" FadeSize="1" FileName="Levels\common\light\natural\plants\grass\Na_L_shrub_05e.cgf" GUID="{6F2977D0-2FDB-4586-A2EB-69BE72C3BA35}" Hidden="0" Hideable="0" Inclination="0" Index="9" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="Levels\common\light\natural\plants\grass\Na_L_shrub_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="1" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="1" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="5.8790984,7.2526302,15.784543" BoxMin="-11.238154,-10.380085,-0.53277069" Brightness="1" CalcLighting="1" CastShadow="0" Category="Default" Density="1" ElevationMax="500" ElevationMin="16" FadeSize="1" FileName="levels\common\light\natural\Trees\greens\na_l_baobab_03c.cgf" GUID="{2B1FE7EA-5AB9-4BA1-B5A4-7A67AD0EF751}" Hidden="0" Hideable="0" Inclination="1" Index="0" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="levels\common\light\natural\Trees\greens\na_l_baobab_03c.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="5" SizeVar="0" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="1.0074073,0.91455024,1.9908398" BoxMin="-1.1465257,-0.75094259,-0.032498371" Brightness="1" CalcLighting="1" CastShadow="0" Category="Default" Density="1" ElevationMax="500" ElevationMin="16" FadeSize="1" FileName="levels\common\light\natural\Trees\greens\na_l_childtree_09i.cgf" GUID="{1BC05787-3416-407F-86F6-9715A98914A1}" Hidden="0" Hideable="0" Inclination="1" Index="1" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="levels\common\light\natural\Trees\greens\na_l_childtree_09i.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="5" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+		<Object AlphaBlend="0" AmbientColor="0,0,0" BackSideLevel="1" BarkContrast="1" Bending="0" BoxMax="3.363199,3.3562527,13.94289" BoxMin="-3.6002371,-4.0426068,-0.1654911" Brightness="1" CalcLighting="1" CastShadow="0" Category="Default" Density="1" ElevationMax="500" ElevationMin="16" FadeSize="1" FileName="levels\common\light\natural\Trees\greens\Na_L_conifer_05e.cgf" GUID="{96C4E615-41F2-4D26-A667-221627228252}" Hidden="0" Hideable="0" Inclination="0" Index="2" Material="" MaxViewDistRatio="1" NoCollWithCam="0" PhysNonColl="0" PrecalcShadow="0" Prefab="levels\common\light\natural\Trees\greens\Na_L_conifer_05e.cgf" RealTimeShadow="0" RecvShadow="0" ShadowDistRatio="1" Size="3" SizeVar="1" SlopeMax="255" SlopeMin="0" SpriteDistRatio="1" SpriteTexRes="0" UseSprites="1">
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+		</Object>
+	</Vegetation>
+	<MaterialsLibrary>
+		<Library Name="Level"/>
+		<Library Name="DF2A_watervolume"/>
+		<Library Name="DF2_WaterVolume"/>
+		<Library Name="idcatacombs"/>
+	</MaterialsLibrary>
+	<ParticlesLibrary>
+		<Library Name="env_lf_fire"/>
+		<Library Name="env_lf_smoke"/>
+		<Library Name="env_df_nature"/>
+		<Library Name="Ab_test_Shield"/>
+		<Library Name="env_lf_outpost"/>
+		<Library Name="env_lf_nature"/>
+		<Library Name="env_MReffect"/>
+		<Library Name="env_dungeon"/>
+		<Library Name="env_lf_water"/>
+		<Library Name="env_ab1_nature"/>
+		<Library Name="env_lc1_effect"/>
+		<Library Name="env_effect"/>
+		<Library Name="env_lf_lay"/>
+	</ParticlesLibrary>
+	<MusicLibrary>
+		<Library File="IDCatacombs-BGM.xml" Name="IDCatacombs-BGM"/>
+	</MusicLibrary>
+	<Missions>
+		<Mission CGFCount="557" File="Mission_Mission0.xml" Name="Mission0">
+			<LevelOption>
+				<Initialize Render_Beaches="1" Render_Fog="1" Render_Ocean="1" Render_SkyBox="1" Render_SkyCloud="0" Render_Sun="1" Render_Terrain="1"/>
+				<Fly Fly_Whole_Level="0" FRZ_NEGX="50" FRZ_NEGY="50" FRZ_X="50" FRZ_Y="50" MaxHeight="300"/>
+				<BindArea IsPossible="0"/>
+				<ReCall IsPossible="0"/>
+				<Glide IsPossible="1"/>
+			</LevelOption>
+		</Mission>
+	</Missions>
+</LevelData>

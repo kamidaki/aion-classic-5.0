@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="512" HeightmapYSize="512" LightMapPath="Levels\iddragon_twin\" Name="Levels\IDDragon_Twin" Version="{C559AE48-86A5-4196-9700-A5F609F5AE37}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

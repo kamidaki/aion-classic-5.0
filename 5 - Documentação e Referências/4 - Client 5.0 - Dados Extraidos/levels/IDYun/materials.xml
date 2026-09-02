@@ -1,0 +1,445 @@
+<MaterialsLibrary>
+	<Library File="Editor\Materials\Level.xml" Name="Level">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{EFA9D3F6-66AD-49B2-B832-F95E2E96A7B6}" MtlFlags="16" Name="bu_idyun_house_0" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/idzone/idyun/house/bu_idyun_opcastle_01a_013.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<SubMaterials>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{C097ADDB-0EB8-441B-9CD8-BB8B90483224}" MtlFlags="16" Name="[1] Material #1760449" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_outpostrestaburn_01a_009.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.35" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{D532B644-205B-4B91-91AE-2BF393CAB208}" MtlFlags="16" Name="[2] default 7ad2ad" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_lehpargatebuild_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.4999" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{217AFBB3-043A-4C3E-8C3D-E0B576CBAEE3}" MtlFlags="16" Name="[3] default 20" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/dark/structures/buildings/houses/bu_d_foodstore_01a_004.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{4660C0A9-D8D7-4041-BC96-C62ED7D00DD3}" MtlFlags="0" Name="[4]" Shader=""/>
+				<Material AlphaTest="0.6" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{90E7F7F8-FC98-4C10-9BE8-5D854E297FE8}" MtlFlags="16" Name="[5] 07 - Default" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_lehpargatebuild_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{4116A35B-6EF5-47F0-BBE5-B5B6467C0C09}" MtlFlags="0" Name="[6]" Shader=""/>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{D4B62414-6F40-41AB-BC68-6B18E0FAE2F4}" MtlFlags="16" Name="[7] default 15" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_fieldhouse_01a_005.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{76AE1305-8736-4A42-BDF6-CAF1DCBC5981}" MtlFlags="0" Name="[8]" Shader=""/>
+				<Material AlphaTest="0.35" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{6C400EDA-8259-4C56-8FC4-C77BADDEC395}" MtlFlags="16" Name="[9] default 13" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_foodstore_01a_002.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{F6026ABB-D3D0-461A-AD14-1703D76ADB84}" MtlFlags="16" Name="[10] House_Collison" Shader="nodraw"/>
+			</SubMaterials>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{CFE5FB76-3EB9-403E-BB7C-C697901ED2EE}" MtlFlags="16" Name="bu_idyun_house_2" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/idzone/idyun/house/bu_idyun_opcastle_01a_013.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<SubMaterials>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{7C7748AA-E444-42A9-ADBD-598201E68E82}" MtlFlags="16" Name="[1] Material #1760449" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_outpostrestaburn_01a_009.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.35" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{3B0EF357-F7F0-4FA6-9ACD-AFB80A11F7D7}" MtlFlags="16" Name="[2] default 7ad2ad" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_lehpargatebuild_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0.4999" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{DB2759AD-859A-4914-A4BE-86E3D8C24511}" MtlFlags="16" Name="[3] default 20" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/dark/structures/buildings/houses/bu_d_foodstore_01a_004.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{3674334A-CE49-4D0B-A85F-4C9B39DDA5EA}" MtlFlags="0" Name="[4]" Shader=""/>
+				<Material AlphaTest="0.6" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{33681E24-441C-4819-9E85-13A8EDFA26A8}" MtlFlags="16" Name="[5] 07 - Default" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_lehpargatebuild_01a_001.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{E28E5969-B3CD-4D63-9AE6-0B5582F34B8B}" MtlFlags="0" Name="[6]" Shader=""/>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{0EDC39FA-7415-4684-984D-4750D8543EEE}" MtlFlags="16" Name="[7] default 15" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_fieldhouse_01a_005.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{37285A01-2B08-4CFF-AC56-BD8AE898D098}" MtlFlags="0" Name="[8]" Shader=""/>
+				<Material AlphaTest="0.35" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{C9485C3D-E0C8-4C8C-88C5-683ED2937A08}" MtlFlags="16" Name="[9] default 13" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idyun/house/bu_idyun_foodstore_01a_002.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{DD3FBBDE-A24F-4769-A7E2-4730B919685C}" MtlFlags="16" Name="[10] House_Collison" Shader="nodraw"/>
+			</SubMaterials>
+		</Material>
+		<Material GenMask="0" Id="{6B45486A-E083-40ED-8C20-69552FAFBA31}" MtlFlags="16" Name="na_l_deathtree_01b0" Shader="nodraw">
+			<SubMaterials>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{DA732ADB-53FA-4FB5-B0C4-B53A6D5AC50F}" MtlFlags="16" Name="[1] Na_L_deathtree_01a_03" Opacity="0.99" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/light/natural/trees/dryness/na_l_deathtree_01b_03.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{100F9F9D-7239-4417-AFAF-6CFFFDED4F41}" MtlFlags="16" Name="[2] Material #14" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/light/natural/trees/dryness/na_l_deathtree_01b_02.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{2EC10D2B-B405-47B7-B972-A8577AA24440}" MtlFlags="16" Name="[3] Material #4" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/light/natural/trees/dryness/na_l_deathtree_01b_01.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures\defaults\mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures\defaults\default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+			</SubMaterials>
+		</Material>
+	</Library>
+</MaterialsLibrary>

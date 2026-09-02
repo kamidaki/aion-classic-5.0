@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="768" HeightmapYSize="768" LightMapPath="Levels\IDinfinity_party\" Name="Levels\IDInfinity_Party" Version="{9739274D-FA65-47CA-9E05-10BC2186E0D1}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>

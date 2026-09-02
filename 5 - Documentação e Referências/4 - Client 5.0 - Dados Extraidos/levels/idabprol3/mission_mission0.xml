@@ -1,0 +1,1258 @@
+<Mission CGFCount="56" Description="" MusicScript="" Name="Mission0" PlayerEquipPack="" Script="" Time="09:00" >
+ <EquipPacks> </EquipPacks>
+ <Environment>
+  <Fog Color="152,58,41" ColorModify="0" End="280" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="4" ViewDistance="3072" />
+  <Shaders Shore="TerrainWaterBeach" SkyBox="IDAbPro.IDAbPro" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater" />
+  <EnvState AmbientAmplify="1.0" EnvColor="215,201,200" OutdoorAmbientColor="179,179,162" SkyBoxAngle="180" SkyBoxStretching="-1" SunAmplify="1.0" SunColor="112,148,207" SunHeightScale="3" WindForce="0.3" />
+  <MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6" />
+  <MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500" />
+  <Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0" />
+  <HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0" />
+  <Misc VegetationShadowColorMin="0.8" />
+  <Lighting LightingCount="1" />
+  <Lighting_000 Algorithm="3" Ambient="0" CurrentHour="6" HemiSamplQuality="5" Lighting="1" lightmap_name="LIGHTMAP" ObjShadows="1" ShadowBlur="1" ShadowIntensity="50" Shadows="1" SkyColor="8421504" SunColor="16777215" SunHeight="10" SunMultiplier="1" SunRotation="0" SunVector="0,0.99498743,-0.1" />
+ </Environment>
+ <EnvSetManager EnvSetSize="1" >
+  <EnvSet000>
+   <Environment>
+    <Fog Color="152,58,41" ColorModify="0" End="280" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="4" ViewDistance="3072" />
+    <Shaders Shore="TerrainWaterBeach" SkyBox="IDAbPro.IDAbPro" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater" />
+    <EnvState AmbientAmplify="1.0" EnvColor="215,201,200" OutdoorAmbientColor="179,179,162" SkyBoxAngle="180" SkyBoxStretching="-1" SunAmplify="1.0" SunColor="112,148,207" SunHeightScale="3" WindForce="0.3" />
+    <MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6" />
+    <MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500" />
+    <Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0" />
+    <HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0" />
+    <Misc VegetationShadowColorMin="0.8" />
+   </Environment>
+  </EnvSet000>
+ </EnvSetManager>
+ <Weapons>
+  <Used>  </Used>
+  <Ammo>  </Ammo>
+ </Weapons>
+ <LevelOption>
+  <Initialize Render_Beaches="0" Render_Fog="1" Render_Ocean="0" Render_SkyBox="1" Render_SkyCloud="0" Render_Sun="1" Render_Terrain="0" />
+  <Fly Fly_Whole_Level="1" FRZ_NEGX="50" FRZ_NEGY="50" FRZ_X="50" FRZ_Y="50" MaxHeight="300" />
+  <BindArea IsPossible="0" />
+  <ReCall IsPossible="1" />
+  <Glide IsPossible="1" />
+ </LevelOption>
+ <WeatherSystem> </WeatherSystem>
+ <ServerZoneList> </ServerZoneList>
+ <TimeEnvSystem>
+  <TimeEnvOption cloud2d="" cloud3d="" env_color="201,162,137" env_heathaze="0.0" env_windforce="0.8" fog_color="055,034,030" fog_end="250" fog_start="4" fullscreenfx="" GammaDestMax="255.0" GammaDestMin="0.0" GammaInterpolate="1.0" GammaSrcMax="255.0" GammaSrcMin="0.0" name="default" parteffect="" particlefx="" PhotoColor="0,0,0" PhotocolorInterpolate="0.0" SelectiveDest="0,0,0" SelectiveInterpolate="0.0" SelectiveSrc="0,0,0" sky_box_name="IDAbPro.IDAbPro" sky_lens_check="0" sky_lens_name="CryLight" sky_sun_check="0" sky_sun_direction="0" sky_sun_height="15" time_hour="6" time_min="0" time_name="Dawn" view_dist="1024" zonename="" />
+ </TimeEnvSystem>
+ <TimeEnvZoneList> </TimeEnvZoneList>
+ <TimeofDayEnvSystem>
+    
+   
+  <TimeofDayGroup vartype="0" zonename="default" >
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    
+   <time_name type="arr_string" >
+      
+     
+    <keyvalue key0="0.000000,Daylight" />
+   </time_name>
+   <time_hour ratio="0,24" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1" />
+   </time_hour>
+   <time_min ratio="0,24" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </time_min>
+   <SSAO type="arr_string" >
+      
+     
+    <keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2" />
+   </SSAO>
+   <fog_color type="colorbar" >
+      
+     
+    <keyvalue key0="145,44,15,0" />
+   </fog_color>
+   <view_dist ratio="0,4000" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.5,0" key1="0.5,1" />
+   </view_dist>
+   <fog_density ratio="0,0.0099999998" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </fog_density>
+   <fog_heightfalloff ratio="-1,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.50400001,0" key1="0.50400001,1" />
+   </fog_heightfalloff>
+   <fogAtmosphereScale ratio="0,255" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </fogAtmosphereScale>
+   <fogAtmosphereHeight ratio="0,512" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.29296899,0" key1="0.29296899,1" />
+   </fogAtmosphereHeight>
+   <fogAtmosphereDistFog ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.1,0" key1="0.1,1" />
+   </fogAtmosphereDistFog>
+   <fogskyratio ratio="0,255" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,0.439394" key2="0,1" />
+   </fogskyratio>
+   <LayerFogHeight ratio="0,3072" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.91145802,0" key1="0.97142899,0.29244301" key2="0.91145802,1" />
+   </LayerFogHeight>
+   <LayerFogOpacity ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.40000001,0" key1="0.342857,0.085432999" key2="0.31428599,0.29846901" key3="0.40000001,1" />
+   </LayerFogOpacity>
+   <env_color type="colorbar" >
+      
+     
+    <keyvalue key0="183,136,94,0" />
+   </env_color>
+   <outdoor_ambient type="colorbar" >
+      
+     
+    <keyvalue key0="46,65,92,0" />
+   </outdoor_ambient>
+   <AmbientAmplify ratio="0,10" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.44999999,0" key1="0.44999999,1" />
+   </AmbientAmplify>
+   <env_windforce ratio="0,10" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0.17142899,0.50127399" key2="0,1" />
+   </env_windforce>
+   <env_heathaze ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </env_heathaze>
+   <particlefx type="arr_string" >
+      
+     
+    <keyvalue>          </keyvalue>
+   </particlefx>
+   <fullscreenfx type="arr_string" >
+      
+     
+    <keyvalue>          </keyvalue>
+   </fullscreenfx>
+   <fxEnvColorRatio ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </fxEnvColorRatio>
+   <fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </fxEnvAmbAlphaRatio>
+   <fog_start ratio="1,1000" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.011011,0" key1="0.011011,1" />
+   </fog_start>
+   <fog_end ratio="64,2048" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.118952,0" key1="0.118952,1" />
+   </fog_end>
+   <sky_box_name type="arr_string" >
+      
+     
+    <keyvalue>          </keyvalue>
+   </sky_box_name>
+   <sky_dome_Alpha ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </sky_dome_Alpha>
+   <cloud2d type="arr_string" >
+      
+     
+    <keyvalue>          </keyvalue>
+   </cloud2d>
+   <cloud3d type="arr_string" >
+      
+     
+    <keyvalue>          </keyvalue>
+   </cloud3d>
+   <sky_lens_name type="arr_string" >
+      
+     
+    <keyvalue>          </keyvalue>
+   </sky_lens_name>
+   <sky_lens_check type="arr_string" >
+      
+     
+    <keyvalue>          </keyvalue>
+   </sky_lens_check>
+   <sky_sun_check type="arr_string" >
+      
+     
+    <keyvalue>          </keyvalue>
+   </sky_sun_check>
+   <sky_sun_height ratio="-60,35" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </sky_sun_height>
+   <sky_sun_direction ratio="0,360" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.75,0" key1="0.75,1" />
+   </sky_sun_direction>
+   <SunAmplify ratio="0,10" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.5,0" key1="0.5,1" />
+   </SunAmplify>
+   <SunShaftDisplayRatio ratio="0,5" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.40000001,0" key1="0.40000001,1" />
+   </SunShaftDisplayRatio>
+   <SunShaftFogShadowRatio ratio="0,5" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.40000001,0" key1="0.40000001,1" />
+   </SunShaftFogShadowRatio>
+   <SunMultiplier ratio="0,50" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.02,0" key1="0.042856999,0.088359997" key2="0.028571,0.191164" key3="0,0.89469701" key4="0.02,1" />
+   </SunMultiplier>
+   <RayleighScattering ratio="0,30" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </RayleighScattering>
+   <MieScattering ratio="0,30" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </MieScattering>
+   <ZenithShift ratio="0,20" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.1,0" key1="0.1,1" />
+   </ZenithShift>
+   <SunWavelength_r ratio="0,1000" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.72799999,0" key1="0.72799999,1" />
+   </SunWavelength_r>
+   <SunWavelength_g ratio="0,1500" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.40066701,0" key1="0.40066701,1" />
+   </SunWavelength_g>
+   <SunWavelength_b ratio="0,1500" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.352,0" key1="0.352,1" />
+   </SunWavelength_b>
+   <ZenithColor type="colorbar" >
+      
+     
+    <keyvalue key0="119,23,0,0" />
+   </ZenithColor>
+   <NoiseAmount ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </NoiseAmount>
+   <WaveLength ratio="0,5" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.039999999,0" key1="0.039999999,1" />
+   </WaveLength>
+   <WaveSpeed ratio="0,5" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.40000001,0" key1="0.40000001,1" />
+   </WaveSpeed>
+   <WaveAmplitude ratio="0,5" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.059999999,0" key1="0.059999999,1" />
+   </WaveAmplitude>
+   <WaveAngle ratio="0,360" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </WaveAngle>
+   <SunSpecular ratio="0,10" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </SunSpecular>
+   <SurfaceAmount ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </SurfaceAmount>
+   <BeachAmount ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.30000001,0" key1="0.30000001,1" />
+   </BeachAmount>
+   <RefractColor type="colorbar" >
+      
+     
+    <keyvalue key0="51,90,102,0" key1="44,69,107,0.093099996" key2="20,128,133,0.51369101" key3="98,34,13,0.81380099" />
+   </RefractColor>
+   <RefractAmount ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </RefractAmount>
+   <SunColor type="colorbar" >
+      
+     
+    <keyvalue key0="113,179,227,0" key1="97,154,241,0.51150101" key2="237,117,103,0.81160998" />
+   </SunColor>
+   <SunColorMultiplier ratio="0,30" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </SunColorMultiplier>
+   <ReflectAmount ratio="0,10" type="gridwindow" >
+      
+     
+    <keyvalue key0="0.30000001,0" key1="0.30000001,1" />
+   </ReflectAmount>
+   <FogColor type="colorbar" >
+      
+     
+    <keyvalue key0="31,141,184,0" key1="11,31,100,0.084337004" key2="31,141,184,0.50821501" key3="189,99,17,0.81380099" />
+   </FogColor>
+   <FogDensity ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </FogDensity>
+   <LayerIntensity ratio="0,2" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </LayerIntensity>
+   <LayerThaw ratio="0,10" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </LayerThaw>
+   <HorizonColor type="colorbar" >
+      
+     
+    <keyvalue key0="0,0,0,0" key1="0,0,0,0.26612899" />
+   </HorizonColor>
+   <PhotoColor type="colorbar" >
+      
+     
+    <keyvalue key0="0,0,0,-0.0075759999" />
+   </PhotoColor>
+   <SelectiveSrc type="colorbar" >
+      
+     
+    <keyvalue key0="0,0,0,0" />
+   </SelectiveSrc>
+   <SelectiveDest type="colorbar" >
+      
+     
+    <keyvalue key0="0,0,0,0" />
+   </SelectiveDest>
+   <GammaSrcMin ratio="0,255" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </GammaSrcMin>
+   <GammaSrcMax ratio="0,255" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </GammaSrcMax>
+   <GammaDestMin ratio="0,255" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </GammaDestMin>
+   <GammaDestMax ratio="0,255" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </GammaDestMax>
+   <GammaInterpolate ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="1,0" key1="1,1" />
+   </GammaInterpolate>
+   <PhotocolorInterpolate ratio="0,1" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </PhotocolorInterpolate>
+   <SelectiveInterpolate ratio="0,5" type="gridwindow" >
+      
+     
+    <keyvalue key0="0,0" key1="0,1" />
+   </SelectiveInterpolate>
+  </TimeofDayGroup>
+ </TimeofDayEnvSystem>
+ <FxArtifactSystem> </FxArtifactSystem>
+ <CommonShapeList>
+  <music_zones>
+   <music_zone name="MusiczoneShapeIDAbProl3_BGM1" priority="16" theme="MUTE" >
+    <points_info bottom="0.100000" top="10000.100000" type="polygon" >
+     <points points_size="4" >
+      <data x="-251.009995" y="-285.700012" />
+      <data x="-256.238525" y="765.225281" />
+      <data x="687.502747" y="782.217712" />
+      <data x="675.738708" y="-281.778625" />
+     </points>
+    </points_info>
+   </music_zone>
+   <music_zone name="MusiczoneShapeIDAbProL3_BGM" priority="1" theme="IDAbProL2" >
+    <points_info bottom="0.100000" top="10000.100000" type="polygon" >
+     <points points_size="4" >
+      <data x="-161.619995" y="-99.500000" />
+      <data x="-158.619995" y="577.750000" />
+      <data x="551.880005" y="577.375000" />
+      <data x="551.755005" y="-94.125000" />
+     </points>
+    </points_info>
+   </music_zone>
+  </music_zones>
+  <sub_zones>
+   <subzone name="IDAbProL2_AbProL2_SZ_2" priority="16" string="STR_AbProL2_SZ_B" >
+    <points_info bottom="0.100000" top="500.100000" type="polygon" >
+     <points points_size="5" >
+      <data x="170.000000" y="324.000000" />
+      <data x="168.000000" y="147.000000" />
+      <data x="356.000000" y="146.000000" />
+      <data x="354.000000" y="348.000000" />
+      <data x="172.000000" y="347.000000" />
+     </points>
+    </points_info>
+   </subzone>
+   <subzone name="IDAbProL2_AbProL2_SZ_1" priority="16" string="STR_AbProL2_SZ_A" >
+    <points_info bottom="0.100000" top="500.100000" type="polygon" >
+     <points points_size="4" >
+      <data x="46.000000" y="152.000000" />
+      <data x="116.000000" y="180.000000" />
+      <data x="100.000000" y="219.000000" />
+      <data x="35.000000" y="188.000000" />
+     </points>
+    </points_info>
+   </subzone>
+   <subzone name="IDAbProL2_AbProL2_SZ_3" priority="16" string="STR_AbProL2_SZ_C" >
+    <points_info bottom="0.100000" top="500.100000" type="polygon" >
+     <points points_size="4" >
+      <data x="409.000000" y="444.000000" />
+      <data x="410.000000" y="374.000000" />
+      <data x="482.000000" y="374.000000" />
+      <data x="478.000000" y="449.000000" />
+     </points>
+    </points_info>
+   </subzone>
+  </sub_zones>
+  <attribute_zones>  </attribute_zones>
+  <npcpath_boids>  </npcpath_boids>
+  <flying_zones>  </flying_zones>
+  <beach_zones>  </beach_zones>
+ </CommonShapeList>
+ <EntityDescriptions> </EntityDescriptions>
+ <Objects>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1239073536" EntityId="60" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_04" Pos="253.125,268,222.375" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="5.4768,5.4768,5.4768" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="200" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob805" npc="IDAbProL3_LizardPr_50_An" Pos="238.15063,296.46082,210.63904" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-33368319" EntityId="70" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_16" Pos="273.625,249,213.125" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5608879,1.5608879,1.5608879" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="2057752066" EntityId="59" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_03" Pos="264.75,273.875,220.125" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="3.7789919,3.7789919,3.7789919" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="6" iVolume="180" OuterRadius="13" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="317052674" EntityId="15" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect48" Pos="56.269642,188.26247,225.07069" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob852" npc="IDAbProL3_LizardRa_50_An" Pos="267.09625,310.44208,210.75909" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob795" npc="IDAbProL3_LizardPr_50_An" Pos="248.14778,283.59296,212.69527" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1469864455" EntityId="78" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_22" Pos="273.125,292.5,204.125" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.0038462,4.0038462,4.0038462" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="8" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1184291080" EntityId="75" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_19" Pos="288.625,244.375,205.625" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="5.1331358,5.1331358,5.1331358" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="3" iVolume="180" OuterRadius="6" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="98.27877,-2.1505733,-20.240675" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1991844087" EntityId="38" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect61" Pos="235.58812,270.01819,166.69547" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.46060002,0.46060002,0.46060005" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="29.163885,81.936462,106.26556" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="634990602" EntityId="51" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect70" Pos="458.86737,437.89682,225.09897" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob856" npc="IDAbProL3_LizardFi_50_An" Pos="269.862,286.78082,211.28799" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1137269520" EntityId="62" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_06" Pos="254.125,251.875,213" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="3.1529937,3.1529937,3.1529937" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob739" npc="IDAbProL3_LizardFi_50_An" Pos="307.06149,263.55142,212.43016" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-408905455" EntityId="66" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_10" Pos="249.875,271.125,217.75" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="3.5900421,3.5900421,3.5900421" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="150" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob806" npc="IDAbProL3_LizardFi_50_An" Pos="238.12372,299.21997,210.63904" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob741" npc="IDAbProL3_LizardPr_50_An" Pos="300.50607,266.15317,212.43016" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1619767277" EntityId="11" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect4" Pos="147.32368,215.38232,177.1662" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_nature.nature.cloud_blue" Scale="15" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob799" npc="IDAbProL3_LizardAs_50_An" Pos="248.79829,316.13797,214.23349" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob459" npc="IDAbProL3_LizardRa_50_An" Pos="246.63379,229.33696,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob521" npc="IDAbProL3_LizardPr_50_An" Pos="265.2124,241.85042,214.30724" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-51844587" EntityId="34" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect34" Pos="292.21744,298.09985,202.68953" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob603" npc="IDAbProL3_LizardFi_50_An" Pos="246.94066,207.6799,208.65129" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob679" npc="IDAbProL3_LizardAs_50_An" Pos="283.18832,201.29521,209.29008" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-676029674" EntityId="14" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect50" Pos="258.21283,296.29285,202.68953" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="197792280" EntityId="83" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight4" Pos="258.8363,287.56244,211.39255" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Object Angles="0,-0,-50.000008" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob713" npc="IDAbProL3_LizardFi_50_An" Pos="286.41858,223.79095,213.12978" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob854" npc="IDAbProL3_LizardRa_50_An" Pos="263.97577,285.21335,211.28799" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob717" npc="IDAbProL3_LizardFi_50_An" Pos="286.12454,246.21703,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob451" npc="IDAbProL3_LizardRa_50_An" Pos="244.42897,231.44051,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob803" npc="IDAbProL3_LizardFi_50_An" Pos="250.82613,313.77905,214.23349" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob542" npc="IDAbProL3_LizardAs_50_An" Pos="267.37677,222.26123,212.30064" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-50.000008" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob708" npc="IDAbProL3_LizardRa_50_An" Pos="285.29776,228.97536,213.12978" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1052679392" EntityId="18" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect52" Pos="204.20081,269.27338,200.8764" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob790" npc="IDAbProL3_LizardFi_50_An" Pos="245.70107,285.89856,212.69527" Type="SP" use_dir="0" />
+  <Object AreaId="1" Closed="1" DisplayFilled="0" GroupId="111" Height="60" Name="IDAbpro_shape_02" Pos="199,206,180" Type="Shape" Width="20" >
+   <Points>
+    <Point Pos="199,206,180" />
+    <Point Pos="205,298,180" />
+    <Point Pos="263,325,180" />
+    <Point Pos="319,310,179.89999" />
+    <Point Pos="321,241,179.89999" />
+    <Point Pos="324,201,180" />
+    <Point Pos="286,184,179.89999" />
+    <Point Pos="255,196,179.89999" />
+   </Points>
+   <Entities>
+    <Entity Name="IDAbpro_RA_02" />
+   </Entities>
+  </Object>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob724" npc="IDAbProL3_LizardAs_50_An" Pos="300.59811,215.25447,210.44583" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="115908130" EntityId="76" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_20" Pos="298.25,248.75,203.625" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.0038462,4.0038462,4.0038462" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="3" iVolume="180" OuterRadius="6" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob600" npc="IDAbProL3_LizardAs_50_An" Pos="246.39624,211.68411,208.65129" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob540" npc="IDAbProL3_LizardAs_50_An" Pos="267.28284,219.72668,212.30064" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob779" npc="IDAbProL3_LizardPr_50_An" Pos="222.26613,285.99628,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob778" npc="IDAbProL3_LizardFi_50_An" Pos="224.10126,284.94522,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob681" npc="IDAbProL3_LizardPr_50_An" Pos="280.90445,198.35155,209.29008" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob733" npc="IDAbProL3_LizardPr_50_An" Pos="300.03882,237.29897,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob456" npc="IDAbProL3_LizardAs_50_An" Pos="243.51216,236.17407,212.17995" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1801520855" EntityId="71" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_17" Pos="278.375,241.875,212.25" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5608879,1.5608879,1.5608879" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="3" iVolume="180" OuterRadius="8" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-156" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-957561810" EntityId="53" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect72" Pos="467.71664,426.2283,225.53215" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob457" npc="IDAbProL3_LizardFi_50_An" Pos="246.3588,233.28366,212.43016" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="185408816" EntityId="57" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_01" Pos="263.75,254.375,220.875" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.5890107,4.5890107,4.5890107" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="76.759682,14.242658,-112.21991" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-964004816" EntityId="37" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect60" Pos="227.10451,282.05371,153.97794" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.46060002,0.46060002,0.46060005" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob768" npc="IDAbProL3_LizardPr_50_An" Pos="234.71844,271.70001,211.87241" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob782" npc="IDAbProL3_LizardRa_50_An" Pos="225.92628,283.82532,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob752" npc="IDAbProL3_LizardFi_50_An" Pos="284.44565,275.56427,212.95906" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-300166350" EntityId="74" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_07" Pos="246.75,256.125,210.875" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="2.7627716,2.7627716,2.7627716" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="8" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob742" npc="IDAbProL3_LizardPr_50_An" Pos="304.8837,263.47079,212.43016" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-18329292" EntityId="12" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect11" Pos="291.81268,265.05011,205.36871" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob730" npc="IDAbProL3_LizardRa_50_An" Pos="303.92877,237.30159,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob797" npc="IDAbProL3_LizardRa_50_An" Pos="250.75957,310.40784,213.70459" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob683" npc="IDAbProL3_LizardFi_50_An" Pos="280.87753,201.06706,209.29008" Type="SP" use_dir="0" />
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob800" npc="IDAbProL3_LizardPr_50_An" Pos="250.78474,316.22076,214.23349" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="494962750" EntityId="84" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight3" Pos="250.52605,252.68777,218.48753" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-156" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1193725121" EntityId="54" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect73" Pos="461.32996,415.01639,226.80383" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob754" npc="IDAbProL3_LizardRa_50_An" Pos="287.7287,298.63605,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob762" npc="IDAbProL3_LizardRa_50_An" Pos="237.46326,266.94882,211.87241" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob714" npc="IDAbProL3_LizardRa_50_An" Pos="289.01498,243.66536,214.11516" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-162.74594,20.766953,64.340858" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1747605952" EntityId="31" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect55" Pos="223.98436,214.16907,196.28178" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.75328058,0.75328076,0.7532807" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Object AreaId="1" Closed="1" DisplayFilled="0" GroupId="110" Height="1000" Name="IDAbpro_shape_01" Pos="-35.875,-96,0.1" Type="Shape" Width="0" >
+   <Points>
+    <Point Pos="-35.875,-96,0.1" />
+    <Point Pos="-33.875,578.875,0.1" />
+    <Point Pos="709.5,576.5,0.1" />
+    <Point Pos="721.25,-95.125,0.1" />
+   </Points>
+   <Entities>
+    <Entity Name="IDAbpro_RA_01" />
+   </Entities>
+  </Object>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-331687871" EntityId="89" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight9" Pos="220.51807,245.78455,167.30733" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob735" npc="IDAbProL3_LizardFi_50_An" Pos="300.53296,263.43765,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob682" npc="IDAbProL3_LizardPr_50_An" Pos="278.53403,198.27092,209.29008" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="162.28568,-40.51712,-99.292992" CastShadowMaps="0" CastShadows="0" EntityClass="BasicEntity" EntityGUID="-1004732092" EntityId="7" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="0" Layer="IDAbPro_Skyeffect" LodRatio="100" Name="BasicEntity8" Pos="518.85583,526.73688,494.19891" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="3.4401572,3.4401567,3.4401569" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties damage_players="0" object_Model="LEVELS\Common\Abyss\IdAbGate\Bu_AG_sky_effect_01a.cga" sndAnimStart="" sndAnimStop="" >
+    <Animation Animation="Default" bLoop="1" bPlaying="1" Speed="-0.1" />
+    <ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename="" />
+    <Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000" >
+     <LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000" />
+    </Physics>
+   </Properties>
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-349213371" EntityId="9" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect7" Pos="264.24292,269.0672,238.8824" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_smoke.smoke.smoke_black" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-238225595" EntityId="58" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_02" Pos="264.375,261.375,237.375" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="5.4768,5.4768,5.4768" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="10" iVolume="180" OuterRadius="120" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob765" npc="IDAbProL3_LizardRa_50_An" Pos="238.91501,269.02274,211.87241" Type="SP" use_dir="0" />
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob798" npc="IDAbProL3_LizardAs_50_An" Pos="252.86519,313.78497,214.23349" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob749" npc="IDAbProL3_LizardPr_50_An" Pos="283.11188,277.02673,212.95906" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob776" npc="IDAbProL3_LizardFi_50_An" Pos="227.37804,285.89923,212.43016" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1663403702" EntityId="68" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_14" Pos="274.625,258.25,215.875" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5608879,1.5608879,1.5608879" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="200" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Group="-1" Ignore_heightcheck="0" Name="SeedPointIDAbPro_SeedPoints3" Pos="226,252,207" Type="SeedPoint" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-156" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-104889269" EntityId="52" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect71" Pos="440.13763,421.91763,225.19113" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob678" npc="IDAbProL3_LizardAs_50_An" Pos="278.50714,200.98643,209.29008" Type="SP" use_dir="0" />
+  <Object Group="-1" Ignore_heightcheck="0" Name="SeedPointIDAbPro_SeedPoints2" Pos="453.09653,421.78397,232.89626" Type="SeedPoint" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="678450254" EntityId="22" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect22" Pos="276.86392,269.87848,210.13281" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-164.96568,-18.810015,-39.870956" CastShadowMaps="0" CastShadows="0" EntityClass="BasicEntity" EntityGUID="1976107600" EntityId="2" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="0" Layer="IDAbPro_Skyeffect" LodRatio="100" Name="BasicEntity2" Pos="-165.17566,280.75354,639.5249" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="2.1912422,2.1912422,2.1912415" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties damage_players="0" object_Model="LEVELS\Common\Abyss\IdAbGate\Bu_AG_sky_effect_01a.cga" sndAnimStart="" sndAnimStop="" >
+    <Animation Animation="Default" bLoop="1" bPlaying="1" Speed="-0.1" />
+    <ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename="" />
+    <Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000" >
+     <LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000" />
+    </Physics>
+   </Properties>
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob729" npc="IDAbProL3_LizardFi_50_An" Pos="306.95813,239.87502,214.11516" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-156" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-410042287" EntityId="49" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect68" Pos="448.10309,427.03513,206.23912" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="5" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="831723602" EntityId="8" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect6" Pos="285.871,269.25317,174.78102" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_nature.nature.cloud_blue" Scale="15" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob722" npc="IDAbProL3_LizardPr_50_An" Pos="303.43967,212.7588,210.44583" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob751" npc="IDAbProL3_LizardRa_50_An" Pos="287.2243,272.62213,212.95906" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob720" npc="IDAbProL3_LizardAs_50_An" Pos="282.23459,246.2144,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob766" npc="IDAbProL3_LizardFi_50_An" Pos="236.79362,270.50186,211.87241" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob517" npc="IDAbProL3_LizardPr_50_An" Pos="265.33444,236.02632,213.77834" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-475261610" EntityId="17" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect17" Pos="247.97591,272.75507,212.64073" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-147.42348,57.758274,93.952721" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1033905322" EntityId="33" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect56" Pos="226.80077,229.7316,191.19374" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.88133818,0.88133842,0.8813383" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob807" npc="IDAbProL3_LizardRa_50_An" Pos="240.4614,296.68896,210.63904" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob604" npc="IDAbProL3_LizardRa_50_An" Pos="250.57143,211.2388,208.65129" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob745" npc="IDAbProL3_LizardAs_50_An" Pos="285.91669,274.05234,212.95906" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob755" npc="IDAbProL3_LizardPr_50_An" Pos="284.47577,297.2735,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob727" npc="IDAbProL3_LizardFi_50_An" Pos="300.45923,210.12938,210.44583" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob719" npc="IDAbProL3_LizardAs_50_An" Pos="289.06,246.25591,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob791" npc="IDAbProL3_LizardAs_50_An" Pos="247.42957,287.75885,212.69527" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-31.349211,-34.242573,-156.77176" CastShadowMaps="0" CastShadows="0" EntityClass="BasicEntity" EntityGUID="496242523" EntityId="1" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="0" Layer="IDAbPro_Skyeffect" LodRatio="100" Name="BasicEntity1" Pos="81.83728,335.14612,118.46255" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="2.1912422,2.1912422,2.1912415" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties damage_players="0" object_Model="LEVELS\Common\Abyss\IdAbGate\Bu_AG_sky_effect_01a.cga" sndAnimStart="" sndAnimStop="" >
+    <Animation Animation="Default" bLoop="1" bPlaying="1" Speed="-0.1" />
+    <ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename="" />
+    <Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000" >
+     <LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000" />
+    </Physics>
+   </Properties>
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob605" npc="IDAbProL3_LizardRa_50_An" Pos="244.49394,209.98552,208.65129" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob732" npc="IDAbProL3_LizardRa_50_An" Pos="304.02267,239.83614,214.11516" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="76.038475,13.53702,-115.22365" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1487968093" EntityId="35" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect59" Pos="231.27826,281.2724,163.10898" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.46060002,0.46060002,0.46060005" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.3" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob753" npc="IDAbProL3_LizardRa_50_An" Pos="284.5004,301.8259,212.43016" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="272650082" EntityId="23" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect51" Pos="239.7076,218.26694,204.29018" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob728" npc="IDAbProL3_LizardAs_50_An" Pos="303.88379,234.71104,214.11516" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1137140381" EntityId="77" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_21" Pos="267.125,283.875,207.375" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.0038462,4.0038462,4.0038462" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="8" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob731" npc="IDAbProL3_LizardFi_50_An" Pos="306.86423,237.34047,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob809" npc="IDAbProL3_LizardAs_50_An" Pos="235.78021,296.65106,210.63904" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob601" npc="IDAbProL3_LizardPr_50_An" Pos="248.84296,209.37849,208.65129" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob763" npc="IDAbProL3_LizardPr_50_An" Pos="235.5078,268.3035,211.87241" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1352128662" EntityId="91" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight12" Pos="304.69342,279.16702,167.30733" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="29.163919,81.936485,-97.73439" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1444195692" EntityId="40" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect42" Pos="49.213017,166.35852,223.36583" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob792" npc="IDAbProL3_LizardFi_50_An" Pos="246.24548,281.89435,212.69527" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob804" npc="IDAbProL3_LizardAs_50_An" Pos="240.43451,299.44812,210.63904" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,130" dir="40" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob710" npc="IDAbProL3_LizardPr_50_An" Pos="281.87827,223.0921,213.12978" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-10.000014" dir="260" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbProl3_Mob864" npc="p1" Pos="294.46646,254.22054,217.44551" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob513" npc="IDAbProL3_LizardRa_50_An" Pos="263.13455,238.78932,213.77834" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob514" npc="IDAbProL3_LizardFi_50_An" Pos="267.48532,238.82246,213.77834" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="1211221873" EntityId="72" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_09" Pos="279.25,238.25,211.625" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5608879,1.5608879,1.5608879" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="3" iVolume="180" OuterRadius="8" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-263061134" EntityId="44" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect46" Pos="254.03708,226.05595,202.01189" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob715" npc="IDAbProL3_LizardFi_50_An" Pos="289.1539,248.79045,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,149.99998" dir="60" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob777" npc="IDAbProL3_LizardRa_50_An" Pos="222.00696,281.6174,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob793" npc="IDAbProL3_LizardRa_50_An" Pos="249.87625,285.45325,212.69527" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-28.000002,-15,8.8389146e-007" CastShadowMaps="0" CastShadows="0" EntityClass="BasicEntity" EntityGUID="-1346262409" EntityId="3" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="0" Layer="IDAbPro_Skyeffect" LodRatio="100" Name="BasicEntity3" Pos="428.32089,160.00623,53.607758" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="2.1912422,2.1912422,2.1912415" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties damage_players="0" object_Model="LEVELS\Common\Abyss\IdAbGate\Bu_AG_sky_effect_01a.cga" sndAnimStart="" sndAnimStop="" >
+    <Animation Animation="Default" bLoop="1" bPlaying="1" Speed="-0.1" />
+    <ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename="" />
+    <Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000" >
+     <LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000" />
+    </Physics>
+   </Properties>
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob859" npc="IDAbProL3_LizardFi_50_An" Pos="265.90558,287.05652,211.28799" Type="SP" use_dir="0" />
+  <Object Ignore_heightcheck="0" Name="StartPointIDAbPro_StartPoints7" Pos="53.68013,177.00006,233.24048" Type="StartPoint" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob515" npc="IDAbProL3_LizardFi_50_An" Pos="265.30753,238.74184,213.77834" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="111337850" EntityId="56" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_RA_01" Pos="87.625,-67,0" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="21.34461,21.34461,21.34461" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0" >
+    <EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000" >
+     <fReflectionsPan x="0" y="0" z="0" />
+     <fReverbPan x="0" y="0" z="0" />
+    </EaxReverbProperties>
+    <Sound1 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="50" sndSound="Sounds\ambient\ambient_wind_howl.ogg" />
+    <Sound2 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="80" sndSound="Sounds\ambient\ambient_wind_death.ogg" />
+    <Sound3 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="230" sndSound="Sounds\ambient\ambient_space_dark.ogg" />
+    <Sound4 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+    <Sound5 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+    <Sound6 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+    <Sound7 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+   </Properties>
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="489849980" EntityId="73" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_08" Pos="276.625,240.375,219.875" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="2.3101141,2.3101141,2.3101141" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="200" OuterRadius="20" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="769523068" EntityId="30" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect30" Pos="262.43335,249.95413,212.6207" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="0.8" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob758" npc="IDAbProL3_LizardFi_50_An" Pos="282.14203,299.66345,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob677" npc="IDAbProL3_LizardRa_50_An" Pos="283.21521,198.5797,209.29008" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1079115391" EntityId="85" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight6" Pos="280.61688,249.31557,211.39255" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob780" npc="IDAbProL3_LizardAs_50_An" Pos="225.38708,287.14359,212.43016" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="-755010944" EntityId="64" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_RA_02" Pos="166.625,168,0" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="21.34461,21.34461,21.34461" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0" >
+    <EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000" >
+     <fReflectionsPan x="0" y="0" z="0" />
+     <fReverbPan x="0" y="0" z="0" />
+    </EaxReverbProperties>
+    <Sound1 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="100" sndSound="Sounds\ambient\ambient_lava.ogg" />
+    <Sound2 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+    <Sound3 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+    <Sound4 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+    <Sound5 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+    <Sound6 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+    <Sound7 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound="" />
+   </Properties>
+  </Entity>
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob757" npc="IDAbProL3_LizardFi_50_An" Pos="284.50421,295.23492,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob853" npc="IDAbProL3_LizardFi_50_An" Pos="263.05896,289.9469,211.03778" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob767" npc="IDAbProL3_LizardAs_50_An" Pos="233.464,269.4328,211.87241" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,10.000008" dir="280" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbProl3_Mob865" npc="p1" Pos="229.02013,262.37164,220.9007" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-63.000015" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-265031039" EntityId="48" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect67" Pos="459.66711,438.19016,200.43338" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_nature.nature.cloud_blue" Scale="9" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-63.000015" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="2035140994" EntityId="50" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect69" Pos="465.66534,442.18826,216.40981" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_smoke.smoke.smoke_black" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob460" npc="IDAbProL3_LizardPr_50_An" Pos="248.56361,231.18011,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob748" npc="IDAbProL3_LizardFi_50_An" Pos="283.69766,271.9007,212.95906" Type="SP" use_dir="0" />
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob802" npc="IDAbProL3_LizardFi_50_An" Pos="252.82381,316.22668,214.23349" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob740" npc="IDAbProL3_LizardAs_50_An" Pos="304.85681,266.18631,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob750" npc="IDAbProL3_LizardPr_50_An" Pos="285.00528,270.47049,212.95906" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1830366088" EntityId="29" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect29" Pos="276.51389,240.47876,213.16547" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="0.5" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="703270537" EntityId="13" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect13" Pos="210.72374,239.22215,200.8764" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1143783819" EntityId="45" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect47" Pos="244.81456,254.0768,203.61877" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob738" npc="IDAbProL3_LizardFi_50_An" Pos="302.68384,266.2338,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob726" npc="IDAbProL3_LizardRa_50_An" Pos="303.39465,210.16826,210.44583" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob858" npc="IDAbProL3_LizardPr_50_An" Pos="267.48514,285.41144,211.28799" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="256949391" EntityId="86" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight2" Pos="241.22015,266.67377,218.48753" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob734" npc="IDAbProL3_LizardFi_50_An" Pos="306.81921,234.74992,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob606" npc="IDAbProL3_LizardFi_50_An" Pos="243.17108,215.23924,208.8669" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob846" npc="IDAbProL3_LizardAs_50_An" Pos="264.76593,307.30035,210.23019" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="56.594231,-14.92209,-97.642227" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="513559957" EntityId="41" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect64" Pos="202.56979,246.33452,178.01772" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.33669862,0.33669862,0.33669868" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="0.8" SpawnPeriod="0" />
+  </Entity>
+  <Object Group="-1" Ignore_heightcheck="0" Name="SeedPointIDAbPro_SeedPoints1" Pos="54.278416,171.90836,231.99817" Type="SeedPoint" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-138.99995" CastShadowMaps="0" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="1280011414" EntityId="82" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_PlaceableObject" LodRatio="100" Name="PlaceableObject172" Pos="305.58514,293.97534,206.45227" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="40" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties fFontScale="0.1" fileLadderCGF="objects\npc\level_object\artifact_dragon\artifact_dragon.cgf" gostring_Text="" />
+  </Entity>
+  <Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob744" npc="IDAbProL3_LizardRa_50_An" Pos="280.82437,274.96701,212.95906" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="72.98806,-12.880653,-99.513222" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="71213208" EntityId="47" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect66" Pos="213.1994,225.23659,169.3837" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.29441559,0.29441556,0.29441559" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob602" npc="IDAbProL3_LizardAs_50_An" Pos="248.12474,213.54442,208.65129" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1184107420" EntityId="28" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect28" Pos="271.85754,249.10039,226.65211" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob721" npc="IDAbProL3_LizardFi_50_An" Pos="296.61426,212.7173,210.44583" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1842423137" EntityId="16" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect16" Pos="253.44299,250.9064,212.6207" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="0.7" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1009131614" EntityId="87" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight1" Pos="260.46777,273.34796,230.16679" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob543" npc="IDAbProL3_LizardPr_50_An" Pos="270.17328,217.17502,212.30064" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1616590683" EntityId="90" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight11" Pos="454.75656,425.87646,239.82646" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob759" npc="IDAbProL3_LizardAs_50_An" Pos="282.14203,297.26337,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob796" npc="IDAbProL3_LizardFi_50_An" Pos="250.61374,280.9635,212.91087" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="257616808" EntityId="88" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight8" Pos="59.944672,180.11156,239.82646" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="20" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob737" npc="IDAbProL3_LizardRa_50_An" Pos="307.03458,266.26694,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob544" npc="IDAbProL3_LizardFi_50_An" Pos="267.29791,217.13614,212.30064" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="65.452522,34.064236,-34.490753" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="863679146" EntityId="46" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect65" Pos="221.29765,222.64891,178.25084" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.46060005,0.46060002,0.46060005" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-30.000011" dir="240" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob781" npc="IDAbProL3_LizardFi_50_An" Pos="223.52057,288.26349,212.43016" Type="SP" use_dir="0" />
+  <Object Group="-1" Ignore_heightcheck="0" Name="SeedPointIDAbPro_SeedPoints4" Pos="303.58344,189.4346,204.81563" Type="SeedPoint" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-705117780" EntityId="79" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_23" Pos="231.25,265.75,203.875" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.0038462,4.0038462,4.0038462" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="150" OuterRadius="8" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1795470675" EntityId="19" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect19" Pos="242.39835,262.03369,204.75221" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="0.5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob520" npc="IDAbProL3_LizardAs_50_An" Pos="263.16147,236.07381,213.77834" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob541" npc="IDAbProL3_LizardFi_50_An" Pos="270.21832,219.76556,212.30064" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,92.999977" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1153914545" EntityId="32" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect37" Pos="41.257248,165.20308,214.67667" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_smoke.smoke.smoke_black" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-665926222" EntityId="61" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_05" Pos="263.25,249.875,211.5" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="3.1217759,3.1217759,3.1217759" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob810" npc="IDAbProL3_LizardRa_50_An" Pos="238.08365,302.24692,211.16794" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="65.452522,34.064236,-34.490753" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-873235274" EntityId="27" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect54" Pos="209.74716,241.59361,182.63316" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="0.46060005,0.46060002,0.46060005" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="0.8" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob685" npc="IDAbProL3_LizardRa_50_An" Pos="280.83746,204.12816,209.81898" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1822114744" EntityId="42" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect44" Pos="72.8228,173.33818,223.45799" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SPIDAbPro_NPC_FOBJ1" npc="" Pos="305.71655,293.84274,207.36766" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-2060789064" EntityId="39" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect41" Pos="45.874809,180.61757,223.79901" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,92.999977" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-215227970" EntityId="36" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect38" Pos="48.363094,166.41583,198.70024" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_nature.nature.cloud_blue" Scale="9" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob847" npc="IDAbProL3_LizardRa_50_An" Pos="269.474,304.89362,210.23019" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-50.000008" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob709" npc="IDAbProL3_LizardFi_50_An" Pos="286.73312,227.20546,213.12978" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="151.99998,-27.999996,171.00005" CastShadowMaps="0" CastShadows="0" EntityClass="BasicEntity" EntityGUID="639658948" EntityId="4" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="0" Layer="IDAbPro_Skyeffect" LodRatio="100" Name="BasicEntity4" Pos="428.32089,45.465927,417.57245" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.3366579,1.3366579,1.3366576" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties damage_players="0" object_Model="LEVELS\Common\Abyss\IdAbGate\Bu_AG_sky_effect_01a.cga" sndAnimStart="" sndAnimStop="" >
+    <Animation Animation="Default" bLoop="1" bPlaying="1" Speed="-0.1" />
+    <ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename="" />
+    <Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000" >
+     <LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000" />
+    </Physics>
+   </Properties>
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="631528901" EntityId="26" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect26" Pos="280.46774,239.74902,208.15483" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="2" SpawnPeriod="0" />
+  </Entity>
+  <Object Group="-1" Ignore_heightcheck="0" Name="SeedPointIDAbPro_SeedPoints5" Pos="270.07529,276.85309,214.95541" Type="SeedPoint" />
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob743" npc="IDAbProL3_LizardRa_50_An" Pos="303.65585,269.29489,212.95906" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-50.000008" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob707" npc="IDAbProL3_LizardRa_50_An" Pos="284.74741,225.50975,213.12978" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob808" npc="IDAbProL3_LizardFi_50_An" Pos="235.75333,299.27478,210.63904" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="28.503166,-21.062519,-174.86464" CastShadowMaps="0" CastShadows="0" EntityClass="BasicEntity" EntityGUID="1191947977" EntityId="6" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="0" Layer="IDAbPro_Skyeffect" LodRatio="100" Name="BasicEntity6" Pos="208.25362,60.641876,64.597717" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.4725147,1.472515,1.4725145" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties damage_players="0" object_Model="LEVELS\Common\Abyss\IdAbGate\Bu_AG_sky_effect_01a.cga" sndAnimStart="" sndAnimStop="" >
+    <Animation Animation="Default" bLoop="1" bPlaying="1" Speed="-0.1" />
+    <ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename="" />
+    <Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000" >
+     <LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000" />
+    </Physics>
+   </Properties>
+  </Entity>
+  <Object Angles="0,-0,-55" dir="215" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbPro_NPC_SPG473" npc="Hermione" Pos="85,191,232" Type="SP" use_dir="0" />
+  <Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob801" npc="IDAbProL3_LizardFi_50_An" Pos="248.81133,313.74606,214.23349" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="767367627" EntityId="21" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect21" Pos="266.41565,279.50836,205.16006" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="4" SpawnPeriod="0" />
+  </Entity>
+  <Object Ignore_heightcheck="0" Name="LocationIDAbProL3_NPC_SenSoryArea1" Pos="302.73843,291.69629,208.81247" Type="Location" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1652074549" EntityId="20" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect49" Pos="240.09622,301.03162,202.33574" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob538" npc="IDAbProL3_LizardRa_50_An" Pos="263.39288,219.72406,212.30064" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="270144974" EntityId="81" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_12" Pos="275.75,268.25,210.5" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="6.3281517,6.3281517,6.3281517" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-45.000004" dir="225" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob746" npc="IDAbProL3_LizardFi_50_An" Pos="287.98111,277.69211,212.95906" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="-168.89183,-28.793198,57.918179" CastShadowMaps="0" CastShadows="0" EntityClass="BasicEntity" EntityGUID="1045554639" EntityId="5" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="1" IgnoreViewDist="0" Layer="IDAbPro_Skyeffect" LodRatio="100" Name="BasicEntity5" Pos="124.19633,-146.95018,554.02264" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="4.7818184,4.7818179,4.7818184" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties damage_players="0" object_Model="LEVELS\Common\Abyss\IdAbGate\Bu_AG_sky_effect_01a.cga" sndAnimStart="" sndAnimStop="" >
+    <Animation Animation="Default" bLoop="1" bPlaying="1" Speed="-0.1" />
+    <ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename="" />
+    <Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000" >
+     <LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000" />
+    </Physics>
+   </Properties>
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1602956588" EntityId="80" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_24" Pos="240,259.125,208.125" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.0038462,4.0038462,4.0038462" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="8" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob718" npc="IDAbProL3_LizardFi_50_An" Pos="286.21844,248.75157,214.11516" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-50.000008" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob712" npc="IDAbProL3_LizardAs_50_An" Pos="283.25311,227.33351,213.12978" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,45.000004" dir="315" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob794" npc="IDAbProL3_LizardRa_50_An" Pos="243.79877,284.19995,212.69527" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob756" npc="IDAbProL3_LizardFi_50_An" Pos="284.47577,299.67358,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob519" npc="IDAbProL3_LizardRa_50_An" Pos="267.51224,236.10695,213.77834" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,149.99998" dir="60" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob764" npc="IDAbProL3_LizardAs_50_An" Pos="232.54131,265.00549,211.64763" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob851" npc="IDAbProL3_LizardPr_50_An" Pos="267.16321,304.66547,210.23019" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob850" npc="IDAbProL3_LizardFi_50_An" Pos="264.79279,304.58484,210.23019" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="442607069" EntityId="43" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect45" Pos="63.464512,171.90294,204.50598" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob760" npc="IDAbProL3_LizardAs_50_An" Pos="282.16666,301.81577,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob849" npc="IDAbProL3_LizardFi_50_An" Pos="267.13629,307.38098,210.23019" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob747" npc="IDAbProL3_LizardAs_50_An" Pos="282.22662,273.41263,212.95906" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1104795420" EntityId="10" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect12" Pos="212.97322,258.00183,200.95926" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1.5" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob857" npc="IDAbProL3_LizardAs_50_An" Pos="267.65717,288.8844,211.28799" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-156" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="37951461" EntityId="55" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect74" Pos="446.18219,419.77505,228.96474" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="0.7" SpawnPeriod="0" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="437267175" EntityId="24" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect53" Pos="68.172287,177.75406,227.2316" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="0.7" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob761" npc="IDAbProL3_LizardPr_50_An" Pos="282.17047,295.22479,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob458" npc="IDAbProL3_LizardAs_50_An" Pos="248.1104,235.11154,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob461" npc="IDAbProL3_LizardFi_50_An" Pos="250.31522,233.008,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob539" npc="IDAbProL3_LizardAs_50_An" Pos="270.31219,222.30011,212.30064" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob736" npc="IDAbProL3_LizardAs_50_An" Pos="302.71075,263.51828,212.43016" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob725" npc="IDAbProL3_LizardRa_50_An" Pos="300.50421,212.71992,210.44583" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-768282129" EntityId="92" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="2.5_light" LodRatio="100" Name="DeferredLight5" Pos="218.37463,226.01642,211.39255" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.85098,0.25098,0.101961" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob723" npc="IDAbProL3_LizardAs_50_An" Pos="303.53357,215.29335,210.44583" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1974191091" EntityId="25" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbPro_Effect" LodRatio="100" Name="ParticleEffect25" Pos="273.25095,249.21626,212.2327" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="4.2399998,4.2399998,4.2399998" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="200" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.torchlight_max" Scale="1" SpawnPeriod="0" />
+  </Entity>
+  <Object Angles="0,-0,-89.999992" dir="180" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob716" npc="IDAbProL3_LizardPr_50_An" Pos="286.07956,243.62648,214.11516" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1534760967" EntityId="69" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_15" Pos="275.75,254.875,212.625" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="2.1540253,2.1540253,2.1540253" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="17141498" EntityId="63" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_11" Pos="265.625,277.75,210.5" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="6.3281517,6.3281517,6.3281517" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-50.000008" dir="220" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob711" npc="IDAbProL3_LizardAs_50_An" Pos="288.32019,225.48621,213.12978" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="938210045" EntityId="65" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_18" Pos="248.375,272.375,212.75" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="3.3246911,3.3246911,3.3246911" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+  <Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob848" npc="IDAbProL3_LizardAs_50_An" Pos="269.44708,307.60913,210.23019" Type="SP" use_dir="0" />
+  <Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDAbProl3_Mob855" npc="IDAbProL3_LizardRa_50_An" Pos="266.18057,283.1098,211.28799" Type="SP" use_dir="0" />
+  <Entity AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="SoundSpot" EntityGUID="-1822265089" EntityId="67" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDAbproL2_Ambient" LodRatio="100" Name="IDAbpro_Spot-sound_lava_13" Pos="274.75,265.5,217.5" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="2.6379006,2.6379006,2.6379006" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SoundSpot" ViewDistRatio="100" >
+   <customColors>   </customColors>
+   <MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1" />
+   <Properties bEnabled="1" bLoop="1" bOnce="0" bPlay="1" fFadeValue="1" InnerRadius="5" iVolume="180" OuterRadius="10" sndSource="Sounds\ambient\ambient_lava_fall.ogg" />
+  </Entity>
+ </Objects>
+</Mission>

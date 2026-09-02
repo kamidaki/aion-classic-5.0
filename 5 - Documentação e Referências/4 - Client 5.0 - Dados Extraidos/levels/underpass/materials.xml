@@ -1,0 +1,10 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\UnderPass.xml" Name="UnderPass">
+		<Material AlphaTest="0" Ambient="0.11372549,0.11372549,0.84705883" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{82EF371E-EC59-47FF-8326-F28C019912ED}" MtlFlags="16" Name="underpas_water" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="1" bumpamountx="0.1" bumpamounty="0.1" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.3" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="1" textilex="9" textiley="9"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF1A_Subzone9-CS.xml" Name="DF1A_Subzone9-CS"/>
+</MaterialsLibrary>

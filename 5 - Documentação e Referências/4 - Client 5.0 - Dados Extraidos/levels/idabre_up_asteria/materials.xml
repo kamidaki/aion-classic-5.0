@@ -1,0 +1,9 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\DF2a.xml" Name="DF2a">
+		<Material AlphaTest="0" GenMask="0" Id="{614991D6-38EA-417A-9245-C1805AC058DE}" MtlFlags="0" Name="WATER.DF2A_WaterVolume3" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.02" bumpamounty="0.02" opacity="0.8" reflamount="0.6" reflectamount="1" refrtillingamount="2" textilex="17" textiley="17"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

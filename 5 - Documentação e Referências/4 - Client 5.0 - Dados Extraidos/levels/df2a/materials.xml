@@ -1,0 +1,64 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\DF2a.xml" Name="DF2a">
+		<Material AlphaTest="0" GenMask="0" Id="{6397ED38-45FE-47DE-9D63-6D2BC0AA7939}" MtlFlags="0" Name="WATER.DF2A_WaterVolume" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="1" reflamount="0.2" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="75" textiley="75"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{1A476AF3-6463-4CAA-8D20-C15FC2050F99}" MtlFlags="0" Name="WATER.DF2A_WaterVolume2" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.03" bumpamounty="0.07" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.8" reflamount="0.6" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="25" textiley="25"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.21176471,0.26274511,0.20392157" Emissive="0,0,0" GenMask="0" Id="{88878909-CDCD-4C80-AAF5-E7C01AD253AD}" MtlFlags="16" Name="WATER.WATER2" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.07" bumpamounty="0.07" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.6" reflamount="0.33" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="120" textiley="120"/>
+		</Material>
+		<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{C9378C1C-4569-45D8-97C9-CD8C3692DC6B}" MtlFlags="16" Name="town.na_d_townshield_leaf_01a1" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/etc/na_d_townshield_leaf_001.dds" Map="Diffuse">
+					<TexMod TexMod_UOscillatorAmplitude="-0.5" TexMod_UOscillatorPhase="1" TexMod_UOscillatorRate="1" TexMod_UOscillatorType="2"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+		</Material>
+		<Material AlphaTest="0.5" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{FCB87C0F-5D4F-4B1B-9E9F-A40F68113EDC}" MtlFlags="16" Name="town.na_d_townshield_leaf_05a1" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/etc/na_d_townshield_leaf_002.dds" Map="Diffuse">
+					<TexMod TexMod_UOscillatorAmplitude="-0.5" TexMod_UOscillatorPhase="1" TexMod_UOscillatorRate="1" TexMod_UOscillatorType="2"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{4B6E8B3E-53F0-450B-9093-B5148063BC03}" MtlFlags="0" Name="WATER.df2a_topwater" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.04" bumpamounty="0.06" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="80" textiley="80"/>
+		</Material>
+		<Material AlphaTest="0" GenMask="0" Id="{614991D6-38EA-417A-9245-C1805AC058DE}" MtlFlags="0" Name="WATER.DF2A_WaterVolume3" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="5" bumpamountx="0.02" bumpamounty="0.02" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.8" reflamount="0.6" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="17" textiley="17"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF2A_Town.xml" Name="DF2A_Town"/>
+</MaterialsLibrary>

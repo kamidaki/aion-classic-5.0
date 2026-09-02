@@ -1,0 +1,1126 @@
+<Mission CGFCount="51" Description="" MusicScript="" Name="Mission0" PlayerEquipPack="" Script="" Time="09:00">
+	<EquipPacks></EquipPacks>
+	<Environment>
+		<Fog Color="128,128,128" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+		<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+		<EnvState AmbientAmplify="1.0" EnvColor="128,128,128" OutdoorAmbientColor="64,64,64" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="128,128,128" SunHeightScale="1.0" WindForce="0.3"/>
+		<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+		<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+		<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+		<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+		<Misc VegetationShadowColorMin="0.8"/>
+		<Lighting LightingCount="1"/>
+		<Lighting_000 Algorithm="3" Ambient="0" CurrentHour="6" HemiSamplQuality="5" Lighting="1" lightmap_name="LIGHTMAP" ObjShadows="1" ShadowBlur="1" ShadowIntensity="50" Shadows="1" SkyColor="8421504" SunColor="16777215" SunHeight="10" SunMultiplier="1" SunRotation="0" SunVector="0,0.99498743,-0.1"/>
+	</Environment>
+	<EnvSetManager EnvSetSize="1">
+		<EnvSet000>
+			<Environment>
+				<Fog Color="128,128,128" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+				<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+				<EnvState AmbientAmplify="1.0" EnvColor="128,128,128" OutdoorAmbientColor="64,64,64" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="128,128,128" SunHeightScale="1.0" WindForce="0.3"/>
+				<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+				<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+				<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+				<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+				<Misc VegetationShadowColorMin="0.8"/>
+			</Environment>
+		</EnvSet000>
+	</EnvSetManager>
+	<Weapons>
+		<Used></Used>
+		<Ammo></Ammo>
+	</Weapons>
+	<LevelOption>
+		<Initialize Render_Beaches="1" Render_Fog="1" Render_Ocean="0" Render_SkyBox="1" Render_SkyCloud="0" Render_Sun="1" Render_Terrain="1"/>
+		<Fly Fly_Whole_Level="1" FRZ_NEGX="30" FRZ_NEGY="30" FRZ_X="30" FRZ_Y="30" MaxHeight="700"/>
+		<Ride Ride_Whole_Level="0"/>
+		<BindArea IsPossible="0"/>
+		<ReCall IsPossible="0"/>
+		<Glide IsPossible="1"/>
+		<LightMap LightMapLevelName=""/>
+	</LevelOption>
+	<WeatherSystem></WeatherSystem>
+	<ServerZoneList></ServerZoneList>
+	<TimeEnvSystem>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="0" env_color="139,171,171" env_heathaze="0.0" env_windforce="1" fog_color="033,044,058" fog_end="300" fog_start="8" fullscreenfx="" GammaDestMax="255" GammaDestMin="0" GammaInterpolate="1" GammaSrcMax="255" GammaSrcMin="0" name="TZ01" parteffect="" particlefx="" PhotoColor="0,0,0" PhotocolorInterpolate="0" SelectiveDest="0,0,0" SelectiveInterpolate="0" SelectiveSrc="0,0,0" sky_box_name="LF1.Weather.RainBefore" sky_lens_check="1" sky_lens_name="CryLight" sky_sun_check="0" sky_sun_direction="195" sky_sun_height="56" skydome_name="" time_hour="6" time_min="0" time_name="Daylight" view_dist="2048" zonename="TZ01"/>
+	</TimeEnvSystem>
+	<TimeEnvZoneList>
+		<timeenv_zone name="TZ01" priority="16">
+			<points_info bottom="-8.822113" top="491.177887" type="polygon">
+				<points points_size="4">
+					<data x="74.467102" y="791.180420"/>
+					<data x="11.841034" y="-20.241516"/>
+					<data x="1010.798401" y="-7.460449"/>
+					<data x="1018.683411" y="799.000916"/>
+				</points>
+			</points_info>
+		</timeenv_zone>
+	</TimeEnvZoneList>
+	<TimeofDayEnvSystem>
+		<TimeofDayGroup vartype="0" zonename="DF4_TimeZone_C6">
+			<time_name type="arr_string">
+				<keyvalue key0="0.207792,Daylight" key1="0.875325,Night"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="78,136,167,0"/>
+			</fog_color>
+			<view_dist ratio="0,4000" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.68571401,0.5" key2="0,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.0099999998" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-1,1" type="gridwindow">
+				<keyvalue key0="0.505,0" key1="0.505,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.19531301,0" key1="0.19531301,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.75,0" key1="0.75,0.17045499" key2="0.30000001,0.25" key3="0.30000001,0.76704502" key4="0.58571398,0.83602798" key5="0.75,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.439394" key2="0,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,3000" type="gridwindow">
+				<keyvalue key0="0.68266702,0" key1="0.68266702,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</LayerFogOpacity>
+			<env_color type="colorbar">
+				<keyvalue key0="114,137,163,0" key1="114,137,163,0.166234" key2="148,148,148,0.20710801" key3="148,148,148,0.86759299" key4="114,137,163,0.87532502"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="67,83,103,0" key1="67,83,103,0.163636" key2="85,85,85,0.20673101" key3="85,85,85,0.86944401" key4="67,83,103,0.87685198"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.44999999,0" key1="0.44999999,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<fog_start ratio="1,64" type="gridwindow">
+				<keyvalue key0="0.111111,0" key1="0.111111,1"/>
+			</fog_start>
+			<fog_end ratio="0,2048" type="gridwindow">
+				<keyvalue key0="0.25,0" key1="0.25,1"/>
+			</fog_end>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.000000,DF4.TimeEnv.DF4_Night_High" key1="0.208333,DF4.TimeEnv.DF4_Dawn_High" key2="0.416667,DF4.TimeEnv.DF4_Daylight_High" key3="0.708333,DF4.TimeEnv.DF4_Dusk_High" key4="0.875000,DF4.TimeEnv.DF4_Night_High"/>
+			</sky_box_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="0,60" type="gridwindow">
+				<keyvalue key0="0.83333302,0" key1="0.92857099,0.50333297" key2="0.83333302,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="1,0.95844197" key2="0,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.34999999,0" key1="0.35714301,0.16249999" key2="0.5,0.21314099" key3="0.5,0.83493602" key4="0.342857,0.87777799" key5="0.34999999,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.15242501" key2="0.25714299,0.28947401" key3="0.31428599,0.50657898" key4="0.271429,0.77850902" key5="0,0.89254397" key6="0,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.158144" key2="0.25714299,0.282895" key3="0.32857099,0.51315802" key4="0.24285699,0.78070199" key5="0,0.85745603" key6="0,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.02,0.120614" key2="0.085713997,0.211667" key3="0.57142901,0.335145" key4="0.74285698,0.5" key5="0.442857,0.77192998" key6="0.028571,0.86622798" key7="0.02,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.066666998,0" key1="0.066666998,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.066666998,0" key1="0.028571,0.248656" key2="0.014286,0.5" key3="0.057142999,0.77462101" key4="0.114286,0.90991002" key5="0.066666998,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,2" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</ZenithShift>
+			<SunWavelength_r ratio="0,1000" type="gridwindow">
+				<keyvalue key0="0.87099999,0" key1="0.87142903,0.13988701" key2="0.71428603,0.499055" key3="0.728571,0.83175802" key4="0.87099999,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.40066701,0" key1="0.40066701,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.352,0" key1="0.352,1"/>
+			</SunWavelength_b>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="9,13,34,0" key1="9,13,34,0.140351" key2="10,81,211,0.25865999" key3="10,81,210,0.69976902" key4="191,168,77,0.76754397" key5="9,13,34,0.86403501"/>
+			</ZenithColor>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.039999999,0" key1="0.039999999,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.059999999,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="51,90,102,0" key1="64,101,157,0.043561" key2="35,129,24,0.50473499" key3="63,101,156,0.91891903"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="113,179,227,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,30" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.057142999,0.043519001" key2="0.47142899,0.36140001" key3="0.5,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="51,90,102,0"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.115,0" key1="0.115,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="13,13,23,0" key1="13,13,23,0.176136" key2="0,0,0,0.27193001" key3="11,24,145,0.50378799" key4="0,0,0,0.72211701" key5="13,13,23,0.846591"/>
+			</HorizonColor>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,-0.0075759999"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="0.98571402,0.50134403" key2="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.50268799" key2="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.5" key2="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+		<TimeofDayGroup vartype="0" zonename="Default">
+			<time_name type="arr_string">
+				<keyvalue key0="0.207792,Daylight" key1="0.870130,Night"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="134,150,176,0" key1="134,150,176,0.17142899" key2="147,213,249,0.29350701" key3="146,212,248,0.74351901" key4="228,154,133,0.74907398" key5="230,154,132,0.86018503" key6="134,150,176,0.86753201"/>
+			</fog_color>
+			<view_dist ratio="0,4000" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.68571401,0.5" key2="0,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.0099999998" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-1,1" type="gridwindow">
+				<keyvalue key0="0.505,0" key1="0.505,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.60546899,0" key1="0.60546899,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.60000002,0" key1="0.60000002,0.164645" key2="0.38571399,0.22357" key3="0.2,0.26225501" key4="0.2,0.5" key5="0.2,0.814951" key6="0.38571399,0.84055501" key7="0.60000002,0.87009799" key8="0.60000002,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.439394" key2="0,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,3000" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</LayerFogOpacity>
+			<env_color type="colorbar">
+				<keyvalue key0="114,137,163,0" key1="114,137,163,0.163636" key2="148,148,148,0.20710801" key3="148,148,148,0.86666697" key4="114,137,163,0.87532502"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="56,64,82,0" key1="56,64,82,0.15844201" key2="85,85,85,0.20710801" key3="85,85,85,0.86759299" key4="56,64,82,0.877922"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.44999999,0" key1="0.44999999,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<fog_start ratio="0,64" type="gridwindow">
+				<keyvalue key0="0.15625,0" key1="0.15625,1"/>
+			</fog_start>
+			<fog_end ratio="0,2048" type="gridwindow">
+				<keyvalue key0="0.146484,0" key1="0.18571401,0.244156" key2="0.285714,0.50129902" key3="0.146484,0.83946103" key4="0.146484,1"/>
+			</fog_end>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.000000,DF4.TimeEnv.DF4_Night_High" key1="0.208333,DF4.TimeEnv.DF4_Dawn_High" key2="0.416667,DF4.TimeEnv.DF4_Daylight_High" key3="0.708333,DF4.TimeEnv.DF4_Dusk_High" key4="0.875000,DF4.TimeEnv.DF4_Night_High"/>
+			</sky_box_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="-50,60" type="gridwindow">
+				<keyvalue key0="0.909091,0" key1="0.85714298,0.5" key2="0.909091,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="1,0.96363598" key2="0,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.34999999,0" key1="0.34999999,0.162912" key2="0.5,0.213172" key3="0.5,0.87175" key4="0.35714301,0.91847801" key5="0.34999999,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.144044" key2="0.157143,0.20785201" key3="0.31428599,0.50115502" key4="0.2,0.783934" key5="0,0.88452703" key6="0,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.158144" key2="0.085713997,0.24376699" key3="0.31428599,0.50346398" key4="0.271429,0.810624" key5="0,0.87990803" key6="0,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.02,0.16397201" key2="0.142857,0.212635" key3="0.442857,0.49584499" key4="0.24285699,0.796767" key5="0.028571,0.87990803" key6="0.02,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.033333,0" key1="0.18571401,0.50577402" key2="0.033333,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.066666998,0" key1="0.028571,0.248656" key2="0.42857099,0.50539303" key3="0.057142999,0.77462101" key4="0.114286,0.90991002" key5="0.066666998,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,20" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.014286,0.50346398" key2="0.1,1"/>
+			</ZenithShift>
+			<SunWavelength_r ratio="0,1000" type="gridwindow">
+				<keyvalue key0="0.87099999,0" key1="0.87142903,0.13988701" key2="0.71428603,0.499055" key3="0.728571,0.83175802" key4="0.87099999,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.40066701,0" key1="0.40066701,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.352,0" key1="0.352,1"/>
+			</SunWavelength_b>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="0,0,0,0" key1="0,0,0,0.16859099" key2="196,237,253,0.29924199" key3="0,80,168,0.49653599" key4="29,124,203,0.667436" key5="187,43,6,0.76934499" key6="0,0,0,0.846726"/>
+			</ZenithColor>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.039999999,0" key1="0.039999999,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.059999999,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="51,90,102,0" key1="64,101,157,0.043561" key2="35,129,24,0.50473499" key3="63,101,156,0.91891903"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="113,179,227,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,30" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.057142999,0.043519001" key2="0.47142899,0.36140001" key3="0.5,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="51,90,102,0"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.115,0" key1="0.115,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="0,0,0,0" key1="0,0,0,0.117647" key2="113,185,244,0.49422601" key3="0,0,0,0.69284099" key4="0,0,0,0.85661799"/>
+			</HorizonColor>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,-0.0075759999"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="0.98571402,0.50134403" key2="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.50268799" key2="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.5" key2="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+		<TimeofDayGroup vartype="0" zonename="TZ01">
+			<time_name type="arr_string">
+				<keyvalue key0="0.207792,Daylight" key1="0.875325,Night"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="44,58,78,0"/>
+			</fog_color>
+			<view_dist ratio="0,4000" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.68571401,0.5" key2="0,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.0099999998" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-1,1" type="gridwindow">
+				<keyvalue key0="0.52499998,0" key1="0.52499998,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.19531301,0" key1="0.19531301,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.439394" key2="0,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,3000" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</LayerFogOpacity>
+			<env_color type="colorbar">
+				<keyvalue key0="119,157,157,0"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="67,83,103,0" key1="67,83,103,0.163636" key2="67,83,103,0.87685198"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.44999999,0" key1="0.44999999,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fxEnvAmbAlphaRatio>
+			<fog_start ratio="1,64" type="gridwindow">
+				<keyvalue key0="0.111111,0" key1="0.111111,1"/>
+			</fog_start>
+			<fog_end ratio="0,2048" type="gridwindow">
+				<keyvalue key0="0.125,0" key1="0.125,1"/>
+			</fog_end>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.000000,DF4.TimeEnv.DF4_Night_High" key1="0.208333,DF4.TimeEnv.DF4_Dawn_High" key2="0.416667,DF4.TimeEnv.DF4_Daylight_High" key3="0.708333,DF4.TimeEnv.DF4_Dusk_High" key4="0.875000,DF4.TimeEnv.DF4_Night_High"/>
+			</sky_box_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="0,60" type="gridwindow">
+				<keyvalue key0="0.83333302,0" key1="0.92857099,0.50333297" key2="0.83333302,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="1,0.95844197" key2="0,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.34999999,0" key1="0.35714301,0.16249999" key2="0.5,0.21314099" key3="0.5,0.83493602" key4="0.342857,0.87777799" key5="0.34999999,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.15242501" key2="0.25714299,0.28947401" key3="0.31428599,0.50657898" key4="0.271429,0.77850902" key5="0,0.89254397" key6="0,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,0.158144" key2="0.25714299,0.282895" key3="0.32857099,0.51315802" key4="0.24285699,0.78070199" key5="0,0.85745603" key6="0,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.02,0" key1="0.02,0.120614" key2="0.085713997,0.211667" key3="0.57142901,0.335145" key4="0.74285698,0.5" key5="0.442857,0.77192998" key6="0.028571,0.86622798" key7="0.02,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.066666998,0" key1="0.066666998,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.066666998,0" key1="0.028571,0.248656" key2="0.014286,0.5" key3="0.057142999,0.77462101" key4="0.114286,0.90991002" key5="0.066666998,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,2" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</ZenithShift>
+			<SunWavelength_r ratio="0,1000" type="gridwindow">
+				<keyvalue key0="0.87099999,0" key1="0.87142903,0.13988701" key2="0.71428603,0.499055" key3="0.728571,0.83175802" key4="0.87099999,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.40066701,0" key1="0.40066701,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.352,0" key1="0.352,1"/>
+			</SunWavelength_b>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="9,13,34,0"/>
+			</ZenithColor>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.039999999,0" key1="0.039999999,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.059999999,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="51,90,102,0" key1="64,101,157,0.043561" key2="35,129,24,0.50473499" key3="63,101,156,0.91891903"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="113,179,227,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,30" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.057142999,0.043519001" key2="0.47142899,0.36140001" key3="0.5,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="51,90,102,0"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.115,0" key1="0.115,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="13,13,23,0" key1="13,13,23,0.176136" key2="0,0,0,0.27193001" key3="11,24,145,0.50378799" key4="0,0,0,0.72211701" key5="13,13,23,0.846591"/>
+			</HorizonColor>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="0,0,0,-0.0075759999"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="0.98571402,0.50134403" key2="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.50268799" key2="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,0.5" key2="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+	</TimeofDayEnvSystem>
+	<FxArtifactSystem></FxArtifactSystem>
+	<CommonShapeList>
+		<music_zones>
+			<music_zone name="BGM_Mute" npc="-1" priority="16" theme="BGM_Mute">
+				<points_info bottom="0.100000" top="1000.099976" type="polygon">
+					<points points_size="4">
+						<data x="-51.180000" y="-162.600006"/>
+						<data x="-42.726322" y="1159.353882"/>
+						<data x="1082.253174" y="1180.406128"/>
+						<data x="1036.580688" y="-147.702560"/>
+					</points>
+				</points_info>
+			</music_zone>
+			<music_zone name="Dramata_01-BGM" npc="-1" priority="1" theme="IDDramata">
+				<points_info bottom="0.100000" top="1000.099976" type="polygon">
+					<points points_size="4">
+						<data x="0.536530" y="-111.640999"/>
+						<data x="7.747932" y="1097.478638"/>
+						<data x="1026.966064" y="1121.516846"/>
+						<data x="993.312683" y="-91.208565"/>
+					</points>
+				</points_info>
+			</music_zone>
+		</music_zones>
+		<sub_zones>
+			<subzone name="SubzoneShapeIDDramata_Subzone1" priority="16" string="STR_IDDramata_01_SZ_02">
+				<points_info bottom="-7.400612" top="292.599396" type="polygon">
+					<points points_size="19">
+						<data x="530.569763" y="355.527618"/>
+						<data x="521.708679" y="346.874176"/>
+						<data x="507.325012" y="336.249939"/>
+						<data x="491.046600" y="328.812012"/>
+						<data x="372.785278" y="334.047211"/>
+						<data x="366.856171" y="314.777557"/>
+						<data x="365.373871" y="293.284485"/>
+						<data x="386.125824" y="228.805252"/>
+						<data x="392.054932" y="197.677353"/>
+						<data x="439.487915" y="154.691208"/>
+						<data x="503.226013" y="129.492432"/>
+						<data x="538.059570" y="123.563324"/>
+						<data x="644.042664" y="152.467789"/>
+						<data x="675.170593" y="197.677368"/>
+						<data x="664.794617" y="276.979401"/>
+						<data x="639.595825" y="301.437042"/>
+						<data x="620.326172" y="364.433960"/>
+						<data x="580.304565" y="391.115021"/>
+						<data x="542.506409" y="397.785278"/>
+					</points>
+				</points_info>
+			</subzone>
+			<subzone name="SubzoneShapeIDDramata_Subzone2" priority="18" string="STR_IDDramata_01_SZ_01">
+				<points_info bottom="-33.715164" top="266.284851" type="polygon">
+					<points points_size="34">
+						<data x="499.575073" y="323.543091"/>
+						<data x="469.266632" y="352.869568"/>
+						<data x="456.059998" y="364.297424"/>
+						<data x="441.771820" y="377.323822"/>
+						<data x="428.065308" y="391.703705"/>
+						<data x="418.937042" y="402.771088"/>
+						<data x="390.824432" y="429.579956"/>
+						<data x="380.707031" y="446.488190"/>
+						<data x="370.687439" y="465.769958"/>
+						<data x="360.254333" y="477.323395"/>
+						<data x="351.090027" y="483.188110"/>
+						<data x="341.107300" y="491.696381"/>
+						<data x="330.266235" y="501.825012"/>
+						<data x="317.428894" y="515.429138"/>
+						<data x="313.425934" y="523.883484"/>
+						<data x="295.105743" y="604.688416"/>
+						<data x="323.557861" y="630.247070"/>
+						<data x="380.944275" y="649.536621"/>
+						<data x="406.132141" y="586.193665"/>
+						<data x="417.710052" y="581.702393"/>
+						<data x="424.320679" y="560.631653"/>
+						<data x="440.229340" y="531.000732"/>
+						<data x="437.517639" y="524.504639"/>
+						<data x="434.746796" y="519.439514"/>
+						<data x="426.694061" y="501.010376"/>
+						<data x="420.579285" y="493.175415"/>
+						<data x="418.426117" y="488.340240"/>
+						<data x="415.854584" y="476.389587"/>
+						<data x="420.824768" y="457.441803"/>
+						<data x="429.291107" y="439.456299"/>
+						<data x="455.223145" y="418.077515"/>
+						<data x="480.699646" y="393.014587"/>
+						<data x="509.624207" y="372.952728"/>
+						<data x="534.778503" y="349.101776"/>
+					</points>
+				</points_info>
+			</subzone>
+			<subzone name="IDDramata_Subzone_01" priority="20" string="STR_ZONE_NAME_IDDramata_01">
+				<points_info bottom="-32.529015" top="317.470978" type="polygon">
+					<points points_size="34">
+						<data x="410.350586" y="182.669662"/>
+						<data x="455.054199" y="137.991104"/>
+						<data x="517.511963" y="111.718750"/>
+						<data x="555.690369" y="105.992325"/>
+						<data x="592.256531" y="116.103851"/>
+						<data x="661.502686" y="133.420090"/>
+						<data x="692.867188" y="178.851959"/>
+						<data x="682.620789" y="255.966263"/>
+						<data x="656.764771" y="286.307709"/>
+						<data x="637.724243" y="345.215454"/>
+						<data x="598.387573" y="372.812988"/>
+						<data x="559.161011" y="381.686584"/>
+						<data x="546.497864" y="414.147278"/>
+						<data x="553.978760" y="449.183228"/>
+						<data x="595.913391" y="464.931763"/>
+						<data x="632.433960" y="495.883972"/>
+						<data x="633.015503" y="542.590942"/>
+						<data x="587.297729" y="571.995117"/>
+						<data x="583.015503" y="622.838257"/>
+						<data x="486.131531" y="651.709106"/>
+						<data x="392.981689" y="653.502930"/>
+						<data x="325.184723" y="628.804810"/>
+						<data x="259.111206" y="577.414673"/>
+						<data x="258.359955" y="505.137390"/>
+						<data x="272.462097" y="434.908112"/>
+						<data x="315.325165" y="373.292145"/>
+						<data x="351.825897" y="339.201782"/>
+						<data x="390.868713" y="317.629730"/>
+						<data x="384.290070" y="297.574921"/>
+						<data x="383.863312" y="275.240326"/>
+						<data x="398.553223" y="251.285477"/>
+						<data x="411.798340" y="251.004608"/>
+						<data x="421.283447" y="238.556946"/>
+						<data x="403.701752" y="209.717743"/>
+					</points>
+				</points_info>
+			</subzone>
+		</sub_zones>
+		<attribute_zones></attribute_zones>
+		<npcpath_boids></npcpath_boids>
+		<flying_zones></flying_zones>
+		<beach_zones></beach_zones>
+	</CommonShapeList>
+	<EntityDescriptions></EntityDescriptions>
+	<Objects>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC31" npc="IDDramata_01_NPC_01" Pos="621.29028,211.52269,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC58" npc="IDDramata_01_NPC_01" Pos="607.46777,295.24713,72.280518" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,30.000004" dir="300" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDDramata_Quest_NPC5" npc="ane" Pos="374.24405,531.86145,68.168442" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDDramata_RebirthArea3" Pos="384.2164,513.73199,71.672707" Type="Location"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC32" npc="IDDramata_01_NPC_01" Pos="605.14789,182.78563,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC23" npc="IDDramata_01_NPC_01" Pos="511.50922,201.11685,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC45" npc="IDDramata_01_NPC_01" Pos="602.27374,165.48395,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC36" npc="IDDramata_01_NPC_01" Pos="496.17508,211.3609,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC64" npc="IDDramata_01_NPC_01" Pos="517.20483,304.61441,73.00927" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPGuard5" npc="IDDramata_DrakanFiEgg_55_Ae" Pos="573.41254,179.51801,71.39782" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="1" Name="SPDrakan8" npc="p1" Pos="513.76746,340.89444,72.939499" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPGuard1" npc="IDDramata_DrakanFi_55_Ae" Pos="533.10669,247.68481,71.815346" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SP_IDDramata_01_Exit_v25" npc="IDDramata_01_Exit_v25" Pos="351.45755,527.04871,71.030388" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC49" npc="IDDramata_01_NPC_01" Pos="495.85657,192.20811,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg7" npc="IDDramata_DramataEgg_55" Pos="577.46301,155.55267,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPDrakan3" npc="IDDramata_DrakanclHigh_55_Ae" Pos="503.01178,349.25742,72.214836" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-114.05" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="870550302" EntityId="2790" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="12113123123" LodRatio="100" Name="Dramata_shield_1" Pos="535.30432,246.06924,66.780228" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\dramata_shield\dramata_shield.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SPCondition_NPC1" npc="" Pos="565.79968,227.25499,67.656776" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg8" npc="IDDramata_DramataEgg_55" Pos="586.16046,157.21422,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC55" npc="IDDramata_01_NPC_01" Pos="619.74579,171.55145,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC9" npc="IDDramata_01_NPC_01" Pos="602.83331,215.94592,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC43" npc="IDDramata_01_NPC_01" Pos="632.02869,228.03027,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC2" npc="IDDramata_01_NPC_01" Pos="514.15485,238.68948,71.178726" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC4" npc="IDDramata_01_NPC_01" Pos="526.21246,259.9238,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg6" npc="IDDramata_DramataEgg_55" Pos="581.35388,151.63965,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-700377558" EntityId="1" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="12113123123" LodRatio="100" Name="DeferredLight12" Pos="578.01135,152.96635,83.387268" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.843137,0.580392,0.341176" DiffuseMultiplier="1.5" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="40" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC34" npc="IDDramata_01_NPC_01" Pos="542.47363,164.88492,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg4" npc="IDDramata_DramataEggBig_55" Pos="610.3858,210.01604,68.527191" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC44" npc="IDDramata_01_NPC_01" Pos="623.93213,189.36894,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC48" npc="IDDramata_01_NPC_01" Pos="521.71344,163.16656,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg14" npc="IDDramata_DramataEgg_55" Pos="583.46912,145.80937,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC25" npc="IDDramata_01_NPC_01" Pos="510.59506,254.13924,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg13" npc="IDDramata_DramataEgg_55" Pos="577.57379,150.41541,68.849335" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC54" npc="IDDramata_01_NPC_01" Pos="589.33417,151.45235,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC60" npc="IDDramata_01_NPC_01" Pos="535.73639,308.19632,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPDrakan7" npc="IDDramata_DrakanFiHigh_55_Ae" Pos="446.86679,404.46597,68.487228" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg11" npc="IDDramata_DramataEgg_55" Pos="571.43579,150.55763,68.955658" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC39" npc="IDDramata_01_NPC_01" Pos="520.11493,291.49585,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPPhage3_5" npc="IDDramata_SumDrakanSc_55_Ae" Pos="524.21759,176.8053,68.033455" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="1421825598" EntityId="10" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDDramata_Ambient" LodRatio="100" Name="IDDramata_RA_01" Pos="382.35745,-195.92458,219.33804" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="46.204945,46.204945,46.204945" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0">
+				<EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000">
+					<fReflectionsPan x="0" y="0" z="0"/>
+					<fReverbPan x="0" y="0" z="0"/>
+				</EaxReverbProperties>
+				<Sound1 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="100" sndSound="Sounds\ambient\ambient_cave_2.ogg"/>
+				<Sound2 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="40" sndSound="Sounds\ambient\ambient_night_bugs_1.ogg"/>
+				<Sound3 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="90" sndSound="Sounds\ambient\ambient_dungeon_4.ogg"/>
+				<Sound4 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="80" sndSound="Sounds\ambient\ambient_wind_low.ogg"/>
+				<Sound5 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound6 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound7 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC19" npc="IDDramata_01_NPC_01" Pos="606.48248,200.41214,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPGuard4" npc="IDDramata_Drakanwi_55_Ae" Pos="581.09174,265.0488,71.39782" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPDrakan_E_Fi_5" npc="IDDramata_SumDrakanFiEgg_55_Ae" Pos="585.11938,150.989,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC50" npc="IDDramata_01_NPC_01" Pos="483.64987,226.32367,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,74.999992" dir="345" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDDramata_Quest_NPC3" npc="IDDramata_01_DramataChaser_03" Pos="359.7471,522.94958,71.158264" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg10" npc="IDDramata_DramataEgg_55" Pos="575.06427,163.57285,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC27" npc="IDDramata_01_NPC_01" Pos="540.65472,290.4238,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC21" npc="IDDramata_01_NPC_01" Pos="559.60071,172.99144,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg2" npc="IDDramata_DramataEggBig_55" Pos="530.18195,289.95081,68.273514" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC26" npc="IDDramata_01_NPC_01" Pos="531.31641,275.16534,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC59" npc="IDDramata_01_NPC_01" Pos="576.37457,307.96942,72.036247" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPDrakan_E_Fi_1" npc="IDDramata_SumDrakanFiEgg_55_Ae" Pos="579.41486,168.10895,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPDrakan2" npc="IDDramata_DrakanFiHigh_55_Ae" Pos="507.74142,353.08249,72.939499" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1547386711" EntityId="4" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="SubZone_C6" LodRatio="100" Name="DeferredLight5" Pos="601.18707,259.40652,129.10904" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.305882,0.72549,0.290196" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPDrakan_E_Fi_2" npc="IDDramata_SumDrakanFiEgg_55_Ae" Pos="581.31561,157.51962,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC20" npc="IDDramata_01_NPC_01" Pos="586.37054,180.75729,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC65" npc="IDDramata_01_NPC_01" Pos="623.75684,157.34212,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPDranata1" npc="IDDramata_Dramata_55_Al" Pos="565.59033,241.98257,79.752518" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC37" npc="IDDramata_01_NPC_01" Pos="493.0592,243.10046,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,40" dir="310" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDDramata_Quest_NPC1" npc="IDDramata_01_DramataChaser_01" Pos="359.43652,534.71606,68.047928" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC57" npc="IDDramata_01_NPC_01" Pos="620.4975,284.17081,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC63" npc="IDDramata_01_NPC_01" Pos="484.34879,274.49976,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC41" npc="IDDramata_01_NPC_01" Pos="592.1748,295.54416,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC12" npc="IDDramata_01_NPC_01" Pos="546.80316,182.82086,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPDrakan4" npc="IDDramata_DrakanwiHigh_55_Ae" Pos="512.52478,350.45688,72.214836" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="6" Name="SPDrakan9" npc="IDDramata_DrakanScHigh_55_Ae" Pos="477.28101,434.38443,80.385902" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC6" npc="IDDramata_01_NPC_01" Pos="570.88434,272.01312,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC42" npc="IDDramata_01_NPC_01" Pos="624.33698,264.66742,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDDramata_RebirthArea4" Pos="384.76059,512.56201,71.672707" Type="Location"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC35" npc="IDDramata_01_NPC_01" Pos="513.20441,181.73689,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC22" npc="IDDramata_01_NPC_01" Pos="532.78485,180.91434,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="-1" Name="SPGuard2" npc="IDDramata_Drakancl_55_Ae" Pos="595.74823,248.045,71.39782" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC47" npc="IDDramata_01_NPC_01" Pos="550.86017,148.07623,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC28" npc="IDDramata_01_NPC_01" Pos="575.24561,290.95596,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPPhage3_3" npc="IDDramata_SumDrakanFi_55_Ae" Pos="602.64929,288.59564,68.033455" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg3" npc="IDDramata_DramataEggBig_55" Pos="590.57855,290.8851,69.505196" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPDrakan_E_Fi_6" npc="IDDramata_SumDrakanWiEgg_55_Ae" Pos="584.24011,142.23302,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC40" npc="IDDramata_01_NPC_01" Pos="555.94238,301.81903,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1117250684" EntityId="12" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Subzone_D" LodRatio="100" Name="DeferredLight13" Pos="376.56061,529.87695,85.579613" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.733333,0.243137,0.0352941" DiffuseMultiplier="0.5" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-144398460" EntityId="6" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="SubZone_C6" LodRatio="100" Name="DeferredLight7" Pos="506.52127,344.92542,80.458977" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.254902,0.572549,0.760784" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-710278264" EntityId="11" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Subzone_D" LodRatio="100" Name="ParticleEffect28027" Pos="375.70953,530.55017,67.685593" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.6899999,1.6899999,1.6899999" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.brazier_C" Scale="0.5" SpawnPeriod="0"/>
+		</Entity>
+		<Object Angles="0,-0,-20.000011" dir="250" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDDramata_Quest_NPC2" npc="IDDramata_01_DramataChaser_02" Pos="389.30753,538.97931,69.611954" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="IDDramata_Start_Point1" Pos="382.27094,518.65533,69.127563" Type="StartPoint"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC13" npc="IDDramata_01_NPC_01" Pos="525.34583,195.35541,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,0,360" dir="270" Ignore_heightcheck="0" iidle_range="-1" Name="SPIDDramata_Quest_NPC4" npc="Piloti" Pos="376.62708,532.34613,68.051201" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC46" npc="IDDramata_01_NPC_01" Pos="569.48236,151.92212,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC51" npc="IDDramata_01_NPC_01" Pos="494.77994,262.67456,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC16" npc="IDDramata_01_NPC_01" Pos="587.43713,275.07007,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC18" npc="IDDramata_01_NPC_01" Pos="613.49115,228.14223,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1104083809" EntityId="8" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="SubZone_C6" LodRatio="100" Name="DeferredLight9" Pos="618.77826,293.12402,67.375" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.254902,0.572549,0.760784" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPDrakan6" npc="IDDramata_DrakanclHigh_55_Ae" Pos="454.20441,411.67734,69.417397" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="470102948" EntityId="2" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="SubZone_C6" LodRatio="100" Name="DeferredLight2" Pos="547.68732,209.96361,119.68787" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.305882,0.72549,0.290196" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC61" npc="IDDramata_01_NPC_01" Pos="499.83072,287.6748,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPPhage3_6" npc="IDDramata_01_NPC_06" Pos="544.86444,212.40025,68.033455" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC15" npc="IDDramata_01_NPC_01" Pos="559.20764,282.71576,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC52" npc="IDDramata_01_NPC_01" Pos="501.24268,169.87421,74.408363" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg5" npc="IDDramata_DramataEggBig_55" Pos="529.60828,169.49089,68.482651" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89" dir="-1" Ignore_heightcheck="0" iidle_range="0" Name="SPCondition_NPC2" npc="" Pos="572.70117,234.97986,67.656776" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,-154.27998" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="-1853784147" EntityId="2791" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="12113123123" LodRatio="100" Name="Dramata_shield_2" Pos="549.00549,261.86032,66.800224" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\dramata_shield\dramata_shield.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPDrakan_E_Fi_3" npc="IDDramata_SumDrakanFiEgg_55_Ae" Pos="575.073,147.33821,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC29" npc="IDDramata_01_NPC_01" Pos="606.03479,273.78632,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-226371146" EntityId="5" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="SubZone_C6" LodRatio="100" Name="DeferredLight6" Pos="502.97787,250.42458,105.99127" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.305882,0.72549,0.290196" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC53" npc="IDDramata_01_NPC_01" Pos="534.33289,146.90572,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,135" dir="45" Ignore_heightcheck="0" iidle_range="6" Name="SPDrakan5" npc="IDDramata_DrakanwiHigh_55_Ae" Pos="471.28247,353.11758,78.046425" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-45.000004" dir="225" Ignore_heightcheck="0" iidle_range="6" Name="SPDrakan10" npc="IDDramata_DrakanScHigh_55_Ae" Pos="482.93799,424.34949,79.129333" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPGuard3" npc="IDDramata_DrakanSc_55_Ae" Pos="547.83826,264.62408,71.39782" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg1" npc="IDDramata_DramataEggBig_55" Pos="510.02524,250.41644,67.933456" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,115.56" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="-791072321" EntityId="2793" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="12113123123" LodRatio="100" Name="Dramata_shield_4" Pos="593.52747,246.09982,66.850227" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\dramata_shield\dramata_shield.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC17" npc="IDDramata_01_NPC_01" Pos="607.24432,254.65343,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC24" npc="IDDramata_01_NPC_01" Pos="503.28162,228.2375,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPDrakan_E_Fi_7" npc="IDDramata_SumDrakanWiEgg_55_Ae" Pos="590.38721,147.00681,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC30" npc="IDDramata_01_NPC_01" Pos="621.29028,245.40402,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object AreaId="1" Closed="1" DisplayFilled="0" GroupId="111" Height="500" Name="IDDramata_shape_01" Pos="97.086845,-16.516268,1" Type="Shape" VerticalFadeInOut="0" Width="30">
+			<Points>
+				<Point Pos="97.086845,-16.516268,1"/>
+				<Point Pos="96.807892,733.16229,1"/>
+				<Point Pos="833.75848,732.76373,1"/>
+				<Point Pos="834.46436,-15.968453,1"/>
+			</Points>
+			<Entities>
+				<Entity Name="IDDramata_RA_01"/>
+			</Entities>
+		</Object>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPPhage3_4" npc="IDDramata_SumDrakanWi_55_Ae" Pos="613.83319,220.02814,68.033455" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg9" npc="IDDramata_DramataEgg_55" Pos="582.06427,160.78493,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPPhage3_1" npc="IDDramata_SumDrakanFi_55_Ae" Pos="505.14224,261.20078,68.033455" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg15" npc="IDDramata_DramataEgg_55" Pos="587.3609,165.18729,69.121452" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPEgg12" npc="IDDramata_DramataEgg_55" Pos="589.38214,149.75826,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-700954402" EntityId="9" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="SubZone_C6" LodRatio="100" Name="DeferredLight11" Pos="475.26239,451.48276,137.05487" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.623529,0.894118,0.941176" DiffuseMultiplier="5" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC10" npc="IDDramata_01_NPC_01" Pos="591.24774,195.48303,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC11" npc="IDDramata_01_NPC_01" Pos="569.98242,183.20267,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Group="-1" Ignore_heightcheck="0" Name="IDDramata_Seed_Point2" Pos="619.94086,192.67839,71.538353" Type="SeedPoint"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC14" npc="IDDramata_01_NPC_01" Pos="513.93127,216.7193,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC33" npc="IDDramata_01_NPC_01" Pos="577.29773,166.46584,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1793210089" EntityId="7" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="SubZone_C6" LodRatio="100" Name="DeferredLight8" Pos="501.99371,181.97551,70.713028" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.254902,0.572549,0.760784" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC7" npc="IDDramata_01_NPC_01" Pos="591.42737,259.22388,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDDramata_RebirthArea2" Pos="383.56253,512.76575,71.672707" Type="Location"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,149.14" CastShadowMaps="1" CastShadows="0" EntityClass="PlaceableObject" EntityGUID="-62905873" EntityId="2792" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="12113123123" LodRatio="100" Name="Dramata_shield_3" Pos="579.69446,263.09103,66.65023" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties fFontScale="0.1" fileLadderCGF="Objects\npc\level_object\dramata_shield\dramata_shield.cgf" fParticleScale="0" gostring_Text="" sParticleName="">
+				<vParticleOffset x="0" y="0" z="0"/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,-135.00002" dir="135" Ignore_heightcheck="0" iidle_range="-1" Name="SPDrakan1" npc="IDDramata_DrakanScHigh_55_Ae" Pos="503.77698,343.828,70.111053" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC8" npc="IDDramata_01_NPC_01" Pos="602.95734,239.17865,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC38" npc="IDDramata_01_NPC_01" Pos="512.21729,273.25665,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPDrakan_E_Fi_4" npc="IDDramata_SumDrakanWiEgg_55_Ae" Pos="581.14081,148.34225,68.96389" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="RandomAmbientSound" EntityGUID="-321052683" EntityId="13" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="IDDramata_Ambient" LodRatio="100" Name="IDDramata_RA_02" Pos="463.29462,-197.66641,219.33804" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="46.204945,46.204945,46.204945" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="RandomAmbient" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties bLIndoorOnly="0" bLOutdoorOnly="0" fScale="1" nEAXEnvironment="0">
+				<EaxReverbProperties fAirAbsorptionHF="0" fDecayHFRatio="0.1" fDecayLFRatio="0.1" fDecayTime="0.1" fDensity="0" fDiffusion="0" fEchoDepth="0" fEchoTime="0.075" fEnvDiffusion="0" fEnvSize="1" fHFReference="1000" fLFReference="20" fModulationDepth="0" fModulationTime="0.04" fReflectionsDelay="0" fReverbDelay="0" fRoomRolloffFactor="0" nEnvironment="0" nFlags="0" nReflections="-10000" nReverb="-10000" nRoom="-10000" nRoomHF="-10000" nRoomLF="-10000">
+					<fReflectionsPan x="0" y="0" z="0"/>
+					<fReverbPan x="0" y="0" z="0"/>
+				</EaxReverbProperties>
+				<Sound1 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="100" sndSound="Sounds\ambient\ambient_cave_2.ogg"/>
+				<Sound2 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="120" sndSound="Sounds\ambient\ambient_dungeon_10.ogg"/>
+				<Sound3 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="90" sndSound="Sounds\ambient\ambient_dungeon_4.ogg"/>
+				<Sound4 bCentered="1" bDoNotOverlap="1" iChanceOfOccuring="1000" iVolume="80" sndSound="Sounds\ambient\ambient_wind_low.ogg"/>
+				<Sound5 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound6 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+				<Sound7 bCentered="0" bDoNotOverlap="1" iChanceOfOccuring="0" iVolume="0" sndSound=""/>
+			</Properties>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC5" npc="IDDramata_01_NPC_01" Pos="547.75012,272.241,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="819178745" EntityId="3" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="SubZone_C6" LodRatio="100" Name="DeferredLight3" Pos="583.63995,170.88828,124.6439" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.305882,0.72549,0.290196" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="50" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="-1" Name="SPInvi_NPC56" npc="IDDramata_01_NPC_01" Pos="635.73212,204.32938,74.536285" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Ignore_heightcheck="0" Name="LocationIDDramata_Alias1" Pos="565.92822,234.65379,68.957184" Type="Location"/>
+		<Object AreaId="20" Closed="1" DisplayFilled="0" GroupId="111" Height="400" Name="IDDramata_shape_02" Pos="483.86453,45.898472,0.1" Type="Shape" VerticalFadeInOut="0" Width="25">
+			<Points>
+				<Point Pos="483.86453,45.898472,0.1"/>
+				<Point Pos="392.10358,206.1454,0.1"/>
+				<Point Pos="453.47186,322.69971,0.1"/>
+				<Point Pos="527.37482,356.27594,0.10009766"/>
+				<Point Pos="662.8736,373.1694,0.1"/>
+				<Point Pos="763.42169,206.95479,0.1"/>
+				<Point Pos="681.737,62.48568,0.1"/>
+			</Points>
+			<Entities>
+				<Entity Name="IDDramata_RA_02"/>
+			</Entities>
+		</Object>
+		<Object Angles="0,-0,89.999992" dir="0" Ignore_heightcheck="0" iidle_range="0" Name="SPPhage3_2" npc="IDDramata_SumDrakanFi_55_Ae" Pos="535.76801,298.7229,68.033455" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+		<Object Angles="0,-0,-179.99998" dir="90" Ignore_heightcheck="0" iidle_range="-1" Name="SPGuard6" npc="IDDramata_DrakanwiEgg_55_Ae" Pos="581.82721,179.58664,71.39782" teleport_direction="0" teleport_offset="0,0,0" Type="SP" use_dir="0" use_teleport="0"/>
+	</Objects>
+</Mission>

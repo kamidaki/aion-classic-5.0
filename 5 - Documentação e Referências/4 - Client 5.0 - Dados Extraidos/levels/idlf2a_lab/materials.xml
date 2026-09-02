@@ -1,0 +1,9 @@
+<MaterialsLibrary>
+	<Library File="Editor\Materials\Level.xml" Name="Level"/>
+	<Library File="Editor\Materials\Lf2a_lab_water.xml" Name="Lf2a_lab_water">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.30588236,0.3764706,0.17647059" Emissive="0,0,0" GenMask="0" Id="{3D3F61B5-AE62-43DE-9750-D5BB269A54DE}" MtlFlags="16" Name="Subzone_5" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="10" bumpamountx="0.01" bumpamounty="-0.01" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0" reflamount="1" reflectamount="1" refrbumpamount="0.05" refrtillingamount="0.4" textilex="3" textiley="3"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

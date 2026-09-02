@@ -1,0 +1,92 @@
+<MaterialsLibrary>
+	<Library></Library>
+	<Library File="Editor\Materials\DF2_Subzone3.xml" Name="DF2_Subzone3">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{551AF6A1-E576-4BFB-8FA7-DD70C7F58E7A}" MtlFlags="16" Name="Lava.na_d_df2_lava_01a1" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/etc/na_d_volcano_fall_big_001.dds" Map="Diffuse">
+					<TexMod TexMod_UOscillatorAmplitude="1" TexMod_UOscillatorRate="-0.05" TexMod_UOscillatorType="2"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{DA4B275A-3EB4-4089-B1E6-6FD89919E318}" MtlFlags="16" Name="Lava.na_d_volcano_fall_big_02b0" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_BG_Base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/dark/natural/etc/na_d_volcano_fall_big_001.dds" Map="Diffuse">
+					<TexMod TexMod_VOscillatorAmplitude="1" TexMod_VOscillatorRate="-0.05" TexMod_VOscillatorType="2"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\Df2_Subzone_4.xml" Name="Df2_Subzone_4">
+		<Material AlphaTest="0" GenMask="0" Id="{ABCAFFEA-6F07-40BA-A8D7-5D365C431914}" MtlFlags="0" Name="WaterVolume2" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="1" bumpamountx="1" bumpamounty="1" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.17" reflamount="0.5" reflectamount="1.35" refrbumpamount="0.05" refrtillingamount="1" textilex="50" textiley="50"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF2_Subzone_5.xml" Name="DF2_Subzone_5">
+		<Material AlphaTest="0" GenMask="0" Id="{C81FC7A0-E945-49C1-85CD-8EE0259ED50E}" MtlFlags="0" Name="WaterVolume3" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="2" bumpamountx="0.03" bumpamounty="0.03" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="20" textiley="20"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\df2_subzone2.xml" Name="df2_subzone2">
+		<Material AlphaTest="0" GenMask="0" Id="{6B0C3217-DD52-4DF1-9E9B-06FAD689B596}" MtlFlags="0" Name="Waterwall.Waterwall_M6" Opacity="0.75" Reflectance="1" Saturation="1" Shader="Aion_BG_OpacityShift" Wrap="0">
+			<Textures>
+				<Texture File="LEVELS\Common\Light\Natural\etc\na_l_waterwall_01a_03.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+			</Textures>
+			<PublicParams shiftspeedx="0" shiftspeedy="-0.4" tex_ambient="0.64"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.67843139,0.64705884,0.87058824" Emissive="0,0,0" GenMask="0" Id="{A6C00081-F5E7-4284-AF8B-F10195BCDBD8}" MtlFlags="16" Name="water_02" Opacity="0.6" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="3" bumpamountx="0.02" bumpamounty="0.02" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="2" textilex="50" textiley="50"/>
+		</Material>
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="0.67843139,0.75686276,0.24313726" Emissive="0,0,0" GenMask="0" Id="{BE6E4CFB-BE2E-43B8-95F4-0F3901C6AFC3}" MtlFlags="16" Name="water_03" Opacity="1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="1" bumpamountx="0.01" bumpamounty="0.01" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="1.27" reflamount="0.2" reflectamount="1.09" refrbumpamount="0.05" refrtillingamount="1.7" textilex="35" textiley="35"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF2_Subzone1.xml" Name="DF2_Subzone1">
+		<Material AlphaTest="0" GenMask="0" Id="{6DE05DCA-5129-4F50-9FC1-261D17844829}" MtlFlags="0" Name="subzone_1.ice" Opacity="0.1" Reflectance="1" Saturation="1" Shader="Aion_System_WaterVolume" Wrap="0">
+			<Textures></Textures>
+			<PublicParams animspeed="20" bumpamountx="0" bumpamounty="0" colorb="0.36" colorg="0.35" colorr="0.1" lowspecopacity="1" opacity="0.9" reflamount="0.5" reflectamount="1" refrbumpamount="0.05" refrtillingamount="0" textilex="1" textiley="1"/>
+		</Material>
+	</Library>
+	<Library File="Editor\Materials\DF2_Subzone3_Lava.xml" Name="DF2_Subzone3_Lava">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{03A8DBFD-9EEB-4B22-8887-B1E2BE1B9E7C}" MtlFlags="16" Name="Lava.na_d_volcano_fall_big_02b1" Opacity="1" Reflectance="0" Saturation="0" Shader="Aion_Mon_Lava" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels\common\dark\natural\etc\na_d_volcano_fall_005.dds" Map="Diffuse">
+					<TexMod TexMod_UOscillatorAmplitude="1" TexMod_UOscillatorType="2" TexMod_VOscillatorAmplitude="1" TexMod_VOscillatorRate="-0.07" TexMod_VOscillatorType="2"/>
+				</Texture>
+				<Texture Amount="0" File="levels\common\dark\natural\etc\na_d_volcano_fall_big_005.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<PublicParams flame_size_horz="1" flame_size_vert="1" flashspeed="0.5" shiftspeedx="-0.01" shiftspeedy="0.04"/>
+		</Material>
+	</Library>
+</MaterialsLibrary>

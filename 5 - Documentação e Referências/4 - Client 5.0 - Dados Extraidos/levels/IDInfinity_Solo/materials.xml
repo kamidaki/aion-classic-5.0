@@ -1,0 +1,58 @@
+<MaterialsLibrary>
+	<Library File="Editor\Materials\Level.xml" Name="Level">
+		<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{4CB2D42B-3F9E-4D11-818B-F1BF0C50A6F7}" MtlFlags="16" Name="bu_id_idinfinity_bottom_01a0" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+			<Textures>
+				<Texture File="levels/common/idzone/idinfinity/indoor/bu_id_idinfinity_bottom_01a_01.dds" Map="Diffuse">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" Map="MRTMaterialID">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+				<Texture Amount="50" File="textures/defaults/default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+					<TexMod></TexMod>
+				</Texture>
+				<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+					<TexMod TileU="0" TileV="0"/>
+				</Texture>
+			</Textures>
+			<SubMaterials>
+				<Material AlphaTest="0" Ambient="1,1,1" Diffuse="1,1,1" Emissive="0,0,0" GenMask="0" Id="{4FBD99DA-C11A-4DC6-BC94-25CEF0AD1497}" MtlFlags="16" Name="[1] default 6" Opacity="1" Reflectance="0" Saturation="0" Shader="aion_bg_base" Shininess="0" Specular="0,0,0" Wrap="0">
+					<Textures>
+						<Texture File="levels/common/idzone/idinfinity/indoor/bu_id_idinfinity_bottom_01a_03.dds" Map="Diffuse">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/mrt_materialidmap.dds" Map="MRTMaterialID">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_materialmap.dds" IsTileU="0" IsTileV="0" Map="MaterialMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_maskmap.dds" IsTileU="0" IsTileV="0" Map="MaskMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_reflectionmap.dds" IsTileU="0" IsTileV="0" Map="ReflectionMap">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+						<Texture Amount="50" File="textures/defaults/default_normalmap_ddn.dds" Map="Bumpmap" TexType="3">
+							<TexMod></TexMod>
+						</Texture>
+						<Texture Amount="0" File="textures/defaults/default_diffusemap.dds" IsTileU="0" IsTileV="0" Map="Custom2">
+							<TexMod TileU="0" TileV="0"/>
+						</Texture>
+					</Textures>
+				</Material>
+				<Material GenMask="0" Id="{73AB7C5A-7085-439A-9D3A-27A03477ED5E}" MtlFlags="16" Name="[2] default 11" Shader="nodraw"/>
+				<Material GenMask="0" Id="{3646139C-6E2C-43D9-BF1B-27574F1A7955}" MtlFlags="16" Name="[3] 24 - Default" Shader="nodraw"/>
+			</SubMaterials>
+		</Material>
+	</Library>
+</MaterialsLibrary>

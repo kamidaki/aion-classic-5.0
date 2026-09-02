@@ -1,0 +1,505 @@
+<Mission CGFCount="41" Description="" MusicScript="" Name="Mission0" PlayerEquipPack="" Script="" Time="09:00">
+	<EquipPacks></EquipPacks>
+	<Environment>
+		<Fog Color="128,128,128" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+		<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+		<EnvState AmbientAmplify="1.0" EnvColor="73,152,182" OutdoorAmbientColor="82,80,105" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="121,149,189" SunHeightScale="1.0" WindForce="0.3"/>
+		<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+		<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+		<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+		<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+		<Misc VegetationShadowColorMin="0.8"/>
+		<Lighting LightingCount="1"/>
+		<Lighting_000 Algorithm="3" Ambient="0" CurrentHour="6" HemiSamplQuality="5" Lighting="1" lightmap_name="LIGHTMAP" ObjShadows="1" ShadowBlur="1" ShadowIntensity="50" Shadows="1" SkyColor="8421504" SunColor="16777215" SunHeight="10" SunMultiplier="1" SunRotation="0" SunVector="0,0.99498743,-0.1"/>
+	</Environment>
+	<EnvSetManager EnvSetSize="1">
+		<EnvSet000>
+			<Environment>
+				<Fog Color="128,128,128" ColorModify="0" End="1500" FogAtmosphereHeight="300.0" FogAtmosphereScale="0.0" FogDensity="0.0" FogSkyRatio="1.0" HeightFalloff="0.0" Start="32" ViewDistance="2048"/>
+				<Shaders Shore="TerrainWaterBeach" SkyBox="1_sky" SunLensFlares="CryLight" SunWaterRefl="BumpSunGlow" Water="TerrainWater"/>
+				<EnvState AmbientAmplify="1.0" EnvColor="73,152,182" OutdoorAmbientColor="82,80,105" SkyBoxAngle="0" SkyBoxStretching="1.0" SunAmplify="1.0" SunColor="121,149,189" SunHeightScale="1.0" WindForce="0.3"/>
+				<MRTSky HorizonColor="86,103,127" MieScattering="11.37" RayleighScattering="0.87" SunMultiplier="29.7827" SunWavelength_B="481.6" SunWavelength_G="599.704" SunWavelength_R="713.192" ZenithColor="67,132,180" ZenithShift="0.6"/>
+				<MRTOcean BeachAmount="1.0" FogColor="51,90,102" FogDensity="0.115" ReflectAmount="0.5" RefractAmount="0.3" RefractColor="51,90,102" SunColor="162,136,103" SunColorMultiplier="5.0" SunSpecular="1.0" SurfaceAmount="1.0" WaveAmplitude="0.500" WaveAngle="0.0" WaveLength="0.500" WaveSpeed="1.500"/>
+				<Ocean BorderTranspRatio="0.5" BottomTexture="terrain/water/oceanfloorcolor.bmp" Caustics="1" FogColor="51,90,102" FogDistance="16" ShoreSize="2" SurfaceBumpAmountX="0.1" SurfaceBumpAmountY="0.1" SurfaceReflectRatio="1.0" SurfaceTranspRatio="1.0"/>
+				<HeightMap DefaultZoomTexture="" GeometryLodRatio="1.0" TextureLodRatio="1.0"/>
+				<Misc VegetationShadowColorMin="0.8"/>
+			</Environment>
+		</EnvSet000>
+	</EnvSetManager>
+	<Weapons>
+		<Used></Used>
+		<Ammo></Ammo>
+	</Weapons>
+	<LevelOption>
+		<Initialize Render_Beaches="0.000000" Render_Fog="1" Render_Ocean="0.000000" Render_SkyBox="1" Render_SkyCloud="1.000000" Render_Sun="0.000000" Render_Terrain="0.000000"/>
+		<Fly Fly_Whole_Level="0" FRZ_NEGX="50" FRZ_NEGY="50" FRZ_X="50" FRZ_Y="50" MaxHeight="300"/>
+		<Ride Ride_Whole_Level="0"/>
+		<BindArea IsPossible="0"/>
+		<ReCall IsPossible="1"/>
+		<Glide IsPossible="1"/>
+		<LightMap LightMapLevelName="Sunshara_Isle_Lobby"/>
+	</LevelOption>
+	<WeatherSystem></WeatherSystem>
+	<ServerZoneList></ServerZoneList>
+	<TimeEnvSystem>
+		<TimeEnvOption cloud2d="" cloud3d="" cutscenetype="0" env_color="136,163,223" env_heathaze="0.0" env_windforce="0.0" fog_color="000,051,098" fog_end="512" fog_start="32" fullscreenfx="" GammaDestMax="255" GammaDestMin="0" GammaInterpolate="1" GammaSrcMax="255" GammaSrcMin="0" name="subzone_startarea" parteffect="" particlefx="" PhotoColor="0,0,0" PhotocolorInterpolate="0" SelectiveDest="0,0,0" SelectiveInterpolate="0" SelectiveSrc="0,0,0" sky_box_name="LDF5b.TimeEnv.ldf5b_Night" sky_lens_check="1" sky_lens_name="CryLight" sky_sun_check="0" sky_sun_direction="180" sky_sun_height="35" skydome_name="skydome_idldf1_gate.skydome_idldf1_gate.skydome_idldf1_gate" time_hour="6" time_min="0" time_name="Night" view_dist="2048" zonename="Subzone_Startarea"/>
+	</TimeEnvSystem>
+	<TimeEnvZoneList>
+		<timeenv_zone name="Subzone_Startarea" priority="1">
+			<points_info bottom="22.629272" top="322.629272" type="polygon">
+				<points points_size="4">
+					<data x="496.381256" y="17.766258"/>
+					<data x="498.783569" y="492.620148"/>
+					<data x="8.222870" y="500.573212"/>
+					<data x="7.145538" y="13.156609"/>
+				</points>
+			</points_info>
+		</timeenv_zone>
+	</TimeEnvZoneList>
+	<TimeofDayEnvSystem>
+		<TimeofDayGroup vartype="0" zonename="Subzone_Startarea">
+			<time_name type="arr_string">
+				<keyvalue key0="0.207407,Daylight"/>
+			</time_name>
+			<time_hour ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0.95945901,0.498698" key2="0,1"/>
+			</time_hour>
+			<time_min ratio="0,24" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</time_min>
+			<SSAO type="arr_string">
+				<keyvalue key0="0.000000,2" key1="0.500833,2" key2="0.989605,2"/>
+			</SSAO>
+			<fog_color type="colorbar">
+				<keyvalue key0="156,191,220,0"/>
+			</fog_color>
+			<view_dist ratio="0,4000" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</view_dist>
+			<fog_density ratio="0,0.050000001" type="gridwindow">
+				<keyvalue key0="0.0020000001,0" key1="0.0020000001,1"/>
+			</fog_density>
+			<fog_heightfalloff ratio="-2,2" type="gridwindow">
+				<keyvalue key0="0.25,0" key1="0.25,1"/>
+			</fog_heightfalloff>
+			<fogAtmosphereScale ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogAtmosphereScale>
+			<fogAtmosphereHeight ratio="0,512" type="gridwindow">
+				<keyvalue key0="0.47851601,0" key1="0.47851601,1"/>
+			</fogAtmosphereHeight>
+			<fogAtmosphereDistFog ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</fogAtmosphereDistFog>
+			<fogskyratio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</fogskyratio>
+			<LayerFogHeight ratio="0,3000" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</LayerFogHeight>
+			<LayerFogOpacity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</LayerFogOpacity>
+			<fog_start ratio="1,64" type="gridwindow">
+				<keyvalue key0="0.238095,0" key1="0.238095,1"/>
+			</fog_start>
+			<fog_end ratio="0,1200" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</fog_end>
+			<env_color type="colorbar">
+				<keyvalue key0="170,155,125,0"/>
+			</env_color>
+			<outdoor_ambient type="colorbar">
+				<keyvalue key0="55,81,157,0"/>
+			</outdoor_ambient>
+			<AmbientAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.41999999,0" key1="0.41999999,1"/>
+			</AmbientAmplify>
+			<env_windforce ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.090000004,0" key1="0.090000004,1"/>
+			</env_windforce>
+			<env_heathaze ratio="0,1" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</env_heathaze>
+			<particlefx type="arr_string">
+				<keyvalue></keyvalue>
+			</particlefx>
+			<fullscreenfx type="arr_string">
+				<keyvalue></keyvalue>
+			</fullscreenfx>
+			<fxEnvColorRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</fxEnvColorRatio>
+			<fxEnvAmbAlphaRatio ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</fxEnvAmbAlphaRatio>
+			<sky_box_name type="arr_string">
+				<keyvalue key0="0.000000,LF1A.TimeEnv.LF1A_Daylight"/>
+			</sky_box_name>
+			<skydome_name type="arr_string">
+				<keyvalue key0="0.000000,skydome_GAb1_01.skydome_GAb1_01"/>
+			</skydome_name>
+			<sky_dome_Alpha ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</sky_dome_Alpha>
+			<cloud2d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud2d>
+			<cloud3d type="arr_string">
+				<keyvalue></keyvalue>
+			</cloud3d>
+			<sky_lens_name type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_name>
+			<sky_lens_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_lens_check>
+			<sky_sun_check type="arr_string">
+				<keyvalue></keyvalue>
+			</sky_sun_check>
+			<sky_sun_height ratio="0,90" type="gridwindow">
+				<keyvalue key0="0.37777799,0" key1="0.37777799,1"/>
+			</sky_sun_height>
+			<sky_sun_direction ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="1,0.99938703" key2="0,1"/>
+			</sky_sun_direction>
+			<SunAmplify ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.43000001,0" key1="0.43000001,1"/>
+			</SunAmplify>
+			<SunShaftDisplayRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.14,0" key1="0.14,1"/>
+			</SunShaftDisplayRatio>
+			<SunShaftFogShadowRatio ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.16,0" key1="0.16,1"/>
+			</SunShaftFogShadowRatio>
+			<SunMultiplier ratio="0,50" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</SunMultiplier>
+			<RayleighScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.066666998,0.99826401" key2="0.2,1"/>
+			</RayleighScattering>
+			<MieScattering ratio="0,30" type="gridwindow">
+				<keyvalue key0="0.83333302,0" key1="0.83333302,1"/>
+			</MieScattering>
+			<ZenithShift ratio="0,2" type="gridwindow">
+				<keyvalue key0="0.5,0" key1="0.5,1"/>
+			</ZenithShift>
+			<ZenithColor type="colorbar">
+				<keyvalue key0="70,134,198,0"/>
+			</ZenithColor>
+			<SunWavelength_r ratio="0,1000" type="gridwindow">
+				<keyvalue key0="0.75199997,0" key1="0.75199997,1"/>
+			</SunWavelength_r>
+			<SunWavelength_g ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.37733299,0" key1="0.37733299,1"/>
+			</SunWavelength_g>
+			<SunWavelength_b ratio="0,1500" type="gridwindow">
+				<keyvalue key0="0.32800001,0" key1="0.32800001,1"/>
+			</SunWavelength_b>
+			<NoiseAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</NoiseAmount>
+			<WaveLength ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.039999999,0" key1="0.039999999,1"/>
+			</WaveLength>
+			<WaveSpeed ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.40000001,0" key1="0.40000001,1"/>
+			</WaveSpeed>
+			<WaveAmplitude ratio="0,5" type="gridwindow">
+				<keyvalue key0="0.059999999,0" key1="0.059999999,1"/>
+			</WaveAmplitude>
+			<WaveAngle ratio="0,360" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</WaveAngle>
+			<SunSpecular ratio="0,10" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunSpecular>
+			<SurfaceAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.2,0" key1="0.2,1"/>
+			</SurfaceAmount>
+			<BeachAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</BeachAmount>
+			<RefractColor type="colorbar">
+				<keyvalue key0="105,165,204,0"/>
+			</RefractColor>
+			<RefractAmount ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</RefractAmount>
+			<SunColor type="colorbar">
+				<keyvalue key0="113,179,227,0"/>
+			</SunColor>
+			<SunColorMultiplier ratio="0,30" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</SunColorMultiplier>
+			<ReflectAmount ratio="0,10" type="gridwindow">
+				<keyvalue key0="0.1,0" key1="0.1,1"/>
+			</ReflectAmount>
+			<FogColor type="colorbar">
+				<keyvalue key0="108,168,206,0"/>
+			</FogColor>
+			<FogDensity ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.89999998,0" key1="0.89999998,1"/>
+			</FogDensity>
+			<LayerIntensity ratio="0,2" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerIntensity>
+			<LayerThaw ratio="0,10" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</LayerThaw>
+			<HorizonColor type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</HorizonColor>
+			<HorizonRange ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRange>
+			<HorizonOpacity ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonOpacity>
+			<HorizonRatio ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</HorizonRatio>
+			<PhotoColor type="colorbar">
+				<keyvalue key0="193,208,187,0"/>
+			</PhotoColor>
+			<SelectiveSrc type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveSrc>
+			<SelectiveDest type="colorbar">
+				<keyvalue key0="0,0,0,0"/>
+			</SelectiveDest>
+			<GammaSrcMin ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaSrcMin>
+			<GammaSrcMax ratio="0,255" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaSrcMax>
+			<GammaDestMin ratio="0,255" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</GammaDestMin>
+			<GammaDestMax ratio="0,255" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaDestMax>
+			<GammaInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="1,0" key1="1,1"/>
+			</GammaInterpolate>
+			<PhotocolorInterpolate ratio="0,1" type="gridwindow">
+				<keyvalue key0="0.30000001,0" key1="0.30000001,1"/>
+			</PhotocolorInterpolate>
+			<SelectiveInterpolate ratio="0,5" type="gridwindow">
+				<keyvalue key0="0,0" key1="0,1"/>
+			</SelectiveInterpolate>
+		</TimeofDayGroup>
+	</TimeofDayEnvSystem>
+	<FxArtifactSystem></FxArtifactSystem>
+	<CommonShapeList>
+		<music_zones></music_zones>
+		<sub_zones></sub_zones>
+		<attribute_zones></attribute_zones>
+		<npcpath_boids></npcpath_boids>
+		<flying_zones></flying_zones>
+		<beach_zones></beach_zones>
+	</CommonShapeList>
+	<EntityDescriptions></EntityDescriptions>
+	<Objects>
+		<Object Angles="0,0,-42.000004" GeomId="7" LodDist="0" MergeGeom="0" Name="Group2" Pos="304.59552,238.53194,81.338417" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1386077190" EntityId="11" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight175" Pos="396.23755,225.84932,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.4,0.890196,0.733333" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object GeomId="3" LodDist="0" MergeGeom="0" Name="Group7" Pos="274.8197,268.43976,79.543831" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-752238058" EntityId="213" EnvSkyBoxObject="0" EnvTimeShow="" EnvWeatherHide="rain" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="env_fire_campfire25" Pos="274.823,230.06659,79.450203" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.campfire" Scale="0.7" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="872595991" EntityId="15" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight176" Pos="274.806,268.45398,79.867577" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.894118,0.352941,0.121569" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Angles="0,0,-28.000002" GeomId="8" LodDist="0" MergeGeom="0" Name="Group1" Pos="305.17249,259.61929,81.338417" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,109.99996" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-1538536410" EntityId="20" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="dark_desk" LodRatio="100" Name="ParticleEffect27172" Pos="123.56454,222.31255,81.602699" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="500">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.magicroom_effect.candle1" Scale="0.7" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1644003879" EntityId="455" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight165" Pos="305.68069,249.19189,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.4,0.890196,0.733333" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="8" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object GeomId="4" LodDist="0" MergeGeom="0" Name="Group8" Pos="241.40869,268.43976,79.543831" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1713974584" EntityId="14" EnvSkyBoxObject="0" EnvTimeShow="" EnvWeatherHide="rain" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="env_fire_campfire37" Pos="274.823,268.42896,79.450203" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.campfire" Scale="0.7" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="935082818" EntityId="8" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight171" Pos="209.16844,249.04028,85.95797" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.623529,0.282353" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="8" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-70" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-784008632" EntityId="202" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="dark_desk" LodRatio="100" Name="ParticleEffect27170" Pos="112.73956,276.22089,81.624413" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="500">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.magicroom_effect.candle1" Scale="0.7" SpawnPeriod="0"/>
+		</Entity>
+		<Object GeomId="5" LodDist="0" MergeGeom="0" Name="Group6" Pos="274.8197,230.07741,79.543831" Type="Group" UseLOD="0"/>
+		<Object Ignore_heightcheck="0" Name="StartPointMain3" Pos="253.91472,257.33261,79.081833" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-691789222" EntityId="16" EnvSkyBoxObject="0" EnvTimeShow="" EnvWeatherHide="rain" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="env_fire_campfire38" Pos="241.41199,268.42896,79.450203" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.campfire" Scale="0.7" SpawnPeriod="0"/>
+		</Entity>
+		<Object GeomId="1" LodDist="0" MergeGeom="0" Name="Group14" Pos="101.72742,254.88348,80.587944" Scale="1.5,1.5,1.5" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,86.769882" CastShadowMaps="1" CastShadows="0" EntityClass="BasicEntity" EntityGUID="678449510" EntityId="13" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="intermark" LodRatio="100" Name="BasicEntity1829" Pos="211.05057,239.09039,83.548553" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties damage_players="0" object_Model="objects\npc\level_object\ldf5b_fobj\ldf5b_flag\ldf5b_Banner_E_03.cgf" sndAnimStart="" sndAnimStop="">
+				<Animation Animation="Nidle_001" bLoop="1" bPlaying="1" Speed="1"/>
+				<ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename=""/>
+				<Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000">
+					<LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000"/>
+				</Physics>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-86.000229" CastShadowMaps="1" CastShadows="0" EntityClass="BasicEntity" EntityGUID="-1482594965" EntityId="765" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="intermark" LodRatio="100" Name="BasicEntity1822" Pos="305.08527,259.64734,83.474892" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties damage_players="0" object_Model="objects\npc\level_object\ldf5b_fobj\ldf5b_flag\ldf5b_Banner_E_02.cgf" sndAnimStart="" sndAnimStop="">
+				<Animation Animation="Nidle_001" bLoop="1" bPlaying="1" Speed="1"/>
+				<ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename=""/>
+				<Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000">
+					<LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000"/>
+				</Physics>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-70" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1503837805" EntityId="203" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="dark_desk" LodRatio="100" Name="ParticleEffect27171" Pos="117.81721,282.39767,83.345192" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="500">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.magicroom_effect.candle1" Scale="0.7" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-264208274" EntityId="18" EnvSkyBoxObject="0" EnvTimeShow="" EnvWeatherHide="rain" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="env_fire_campfire39" Pos="241.41199,230.06659,79.450203" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.campfire" Scale="0.7" SpawnPeriod="0"/>
+		</Entity>
+		<Object GeomId="9" LodDist="0" MergeGeom="0" Name="Group4" Pos="211.13947,239.06815,81.412079" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="1948790385" EntityId="17" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight177" Pos="241.39499,268.45398,79.867577" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.894118,0.352941,0.121569" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,179.99998" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="2058844021" EntityId="7" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight170" Pos="175.06107,248.04236,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.552941,0.282353" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,86.769882" CastShadowMaps="1" CastShadows="0" EntityClass="BasicEntity" EntityGUID="-1244802442" EntityId="766" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="intermark" LodRatio="100" Name="BasicEntity1827" Pos="210.96407,258.95413,83.548553" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties damage_players="0" object_Model="objects\npc\level_object\ldf5b_fobj\ldf5b_flag\ldf5b_Banner_E_03.cgf" sndAnimStart="" sndAnimStop="">
+				<Animation Animation="Nidle_001" bLoop="1" bPlaying="1" Speed="1"/>
+				<ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename=""/>
+				<Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000">
+					<LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000"/>
+				</Physics>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-747665538" EntityId="414" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight124" Pos="306.03308,255.19133,82.759949" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.121569,0.780392,0.894118" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,109.99996" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-942193529" EntityId="21" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="dark_desk" LodRatio="100" Name="ParticleEffect27173" Pos="118.617,216.30026,83.263344" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="500">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.magicroom_effect.candle1" Scale="0.7" SpawnPeriod="0"/>
+		</Entity>
+		<Object GeomId="2" LodDist="0" MergeGeom="0" Name="Group10" Pos="414.0426,261.13867,80.587944" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1910839415" EntityId="415" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight125" Pos="305.6449,243.88535,82.759949" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.121569,0.780392,0.894118" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-891870832" EntityId="19" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight178" Pos="241.39499,230.09161,79.867577" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.894118,0.352941,0.121569" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointMain1" Pos="258.04349,254.28076,79.081833" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="-498678106" EntityId="5" EnvSkyBoxObject="0" EnvTimeShow="" EnvWeatherHide="rain" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="env_fire_campfire36" Pos="210.46593,254.49472,82.322914" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.8000001,1.8000001,1.8000001" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.campfire" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1651879850" EntityId="251" EnvSkyBoxObject="0" EnvTimeShow="" EnvWeatherHide="rain" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="env_fire_campfire33" Pos="305.53116,254.7785,82.322914" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.8000001,1.8000001,1.8000001" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_fire.df_fire.torch_green" Scale="0.6" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1603076431" EntityId="417" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight127" Pos="274.806,230.09161,79.867577" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.894118,0.352941,0.121569" DiffuseMultiplier="2" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="5" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,179.99998" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="249682881" EntityId="10" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight174" Pos="128.85609,248.76204,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.552941,0.282353" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1635247561" EntityId="252" EnvSkyBoxObject="0" EnvTimeShow="" EnvWeatherHide="rain" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="env_fire_campfire34" Pos="305.36774,243.96991,82.322914" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.8000001,1.8000001,1.8000001" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_df_fire.df_fire.torch_green" Scale="0.6" SpawnPeriod="0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointMain4" Pos="252.52524,247.06627,79.081833" Type="StartPoint"/>
+		<Object GeomId="10" LodDist="0" MergeGeom="0" Name="Group3" Pos="211.05296,258.93188,81.412079" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,0,-100.00024" CastShadowMaps="1" CastShadows="0" EntityClass="BasicEntity" EntityGUID="1718983383" EntityId="12" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="intermark" LodRatio="100" Name="BasicEntity1828" Pos="304.51767,238.58026,83.474892" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="SimpleEntity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties damage_players="0" object_Model="objects\npc\level_object\ldf5b_fobj\ldf5b_flag\ldf5b_Banner_E_02.cgf" sndAnimStart="" sndAnimStop="">
+				<Animation Animation="Nidle_001" bLoop="1" bPlaying="1" Speed="1"/>
+				<ImpactSound InnerRadius="1" nVolume="255" OuterRadius="100" sndFilename=""/>
+				<Physics bActivateOnDamage="0" bFixedDamping="0" bResting="0" bRigidBody="0" bRigidBodyActive="1" damping="0" Density="-1" Mass="700" max_time_step="0.01" sleep_speed="0.04" Type="Unknown" vector_Impulse="1,2,3" water_damping="0" water_density="1000" water_resistance="1000">
+					<LowSpec bKeepMassAndWater="1" bKeepRigidBody="1" bRigidBody="0" Density="-1" Mass="700" max_time_step="0.025" sleep_speed="0.04" water_density="1000" water_resistance="1000"/>
+				</Physics>
+			</Properties>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="56686807" EntityId="2" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight167" Pos="393.71838,270.67151,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.4,0.890196,0.733333" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object GeomId="6" LodDist="0" MergeGeom="0" Name="Group9" Pos="241.40869,230.07741,79.543831" Type="Group" UseLOD="0"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1516184359" EntityId="1" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight166" Pos="359.73395,248.66197,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="0.4,0.890196,0.733333" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointMain2" Pos="257.3027,245.94305,79.081833" Type="StartPoint"/>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,179.99998" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-854792987" EntityId="6" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight172" Pos="117.54823,221.49969,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.552941,0.282353" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="0" CastShadows="0" EntityClass="ParticleEffect" EntityGUID="1870136040" EntityId="4" EnvSkyBoxObject="0" EnvTimeShow="" EnvWeatherHide="rain" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="env_fire_campfire35" Pos="210.29065,244.31198,82.322914" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="0" Scale="1.8000001,1.8000001,1.8000001" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="150">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="0" RecvShadowPLSM="0" RecvShadowPSSM="0"/>
+			<Properties bActive="1" BindingEmitterName="" fUpdateRadius="100" ParticleEffect="env_lf_fire.fire.campfire" Scale="1" SpawnPeriod="0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="511337710" EntityId="3" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight168" Pos="255.91464,252.35475,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.552941,0.282353" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="30" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Entity AdultsOnly="0" AionFXPartialGlow="0" AionFXPostGlow="0" Angles="0,-0,179.99998" CastShadowMaps="1" CastShadows="0" EntityClass="DeferredLight" EntityGUID="-1337507084" EntityId="9" EnvSkyBoxObject="" EnvTimeShow="" EnvWeatherHide="" EnvWeatherShow="" EventType="" HiddenInGame="0" IgnoreFog="0" IgnoreViewDist="0" Layer="Lobby" LodRatio="100" Name="DeferredLight173" Pos="117.7718,274.4328,89.803253" PreCalcShadows="0" ReceiveLightmap="0" RecvShadowMaps="1" Scale="1.5,1.5,1.5" SelfShadowing="0" SkipOnLowSpec="0" SyncAnimation="0" Type="Entity" ViewDistRatio="100">
+			<customColors CustomEquipColor1="1,1,1" CustomEquipColor2="1,1,1" CustomHairColor="1,1,1" CustomSkinColor="1,1,1"/>
+			<MRT_Params CastShadowPLSM="0" CastShadowPSSM="1" RecvShadowPLSM="0" RecvShadowPSSM="1"/>
+			<Properties AnimationSpeed="0" bActive="1" bCastPointShadow="0" bDynamic="0" bProjectInAllDirs="0" clrDiffuse="1,0.552941,0.282353" DiffuseMultiplier="1" fileModel01="Objects/Editor/invisiblebox.cgf" InnerRadius="0" lighttype="0" OuterRadius="15" ProjectorFov="90" texture_ProjectorTexture="" vector_LightDir="0,90,0"/>
+		</Entity>
+		<Object Ignore_heightcheck="0" Name="StartPointMain5" Pos="253.40038,252.11375,79.081833" Type="StartPoint"/>
+	</Objects>
+</Mission>

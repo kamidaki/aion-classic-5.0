@@ -1,0 +1,5 @@
+<LevelInfo HeightmapXSize="256" HeightmapYSize="256" LightMapPath="Levels\IDDF2Flying\" Name="Levels\iddf2flying" Version="{DBF05392-06FF-4B5F-A131-0F592E9782E2}">
+	<Missions>
+		<Mission Description="" Name="Mission0"/>
+	</Missions>
+</LevelInfo>
