@@ -3,6 +3,7 @@
 mod config;
 mod db_manager;
 mod logs;
+mod single_instance;
 mod supervisor;
 mod tray;
 mod ui;
@@ -11,6 +12,7 @@ mod webview;
 use config::load_config;
 use db_manager::DbManager;
 use logs::LogCenter;
+use single_instance::SingleInstanceGuard;
 use supervisor::Supervisor;
 use std::convert::Infallible;
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -33,30 +35,29 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-
-    // 1. Single Instance Protection via Named Mutex
-    let _instance_guard = match commons::single_instance::SingleInstanceGuard::acquire_with_ui(
-        "Auto-Start EmuRust",
-        "Local\\EmuRust_AutoStart_Mutex",
+    // 1. Single Instance Protection via Native Windows Named Mutex
+    let _instance_guard = match SingleInstanceGuard::acquire(
+        "Aion Classic - EMU",
+        "Local\\AionClassicEmu_AutoStart_Mutex",
     ) {
         Some(g) => g,
         None => {
-            std::process::exit(1);
+            std::process::exit(0);
         }
     };
 
-
-    let cfg_path = "config/launcher.json";
+    let cfg_path = "config.json";
     let cfg = load_config(cfg_path);
 
     let log_center = LogCenter::new(
-        cfg.logging.retentionDays,
-        &cfg.logging.loginServerPath,
-        &cfg.logging.gameServerPath,
-        &cfg.logging.chatServerPath,
+        cfg.launcher.clean_archived_logs_days,
+        &cfg.paths.login_server_log_dir,
+        &cfg.paths.game_server_log_dir,
+        &cfg.paths.chat_server_log_dir,
     );
 
-    let supervisor = Supervisor::new(cfg.clone(), log_center.clone());
+    let db_manager = DbManager::new();
+    let supervisor = Supervisor::new(cfg.clone(), log_center.clone(), db_manager.clone());
 
     // 2. Initialize Tokio Runtime for background services
     let rt = tokio::runtime::Builder::new_multi_thread()
@@ -65,7 +66,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _rt_guard = rt.enter();
 
     // 3. Initialize WebView App on main thread
-
     let webview_app = WebViewApp::new();
     let proxy = webview_app.get_proxy();
 
@@ -102,20 +102,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let tray_manager_for_tooltip = tray_manager_arc.clone();
     let is_shutting_down_bg = is_shutting_down.clone();
     let proxy_for_web = proxy.clone();
+    let db_for_routes = db_manager.clone();
 
     rt.spawn(async move {
         sup_clone.spawn_crash_monitor();
         sup_clone.spawn_metrics_sampler();
 
-        // Auto-start servers if enabled in config
-        if cfg_clone.launcher.autoStartLoginServer {
-            let _ = sup_clone.start_server("login").await;
-        }
-        if cfg_clone.launcher.autoStartGameServer {
-            let _ = sup_clone.start_server("game").await;
-        }
-        if cfg_clone.launcher.autoStartChatServer {
-            let _ = sup_clone.start_server("chat").await;
+        // Auto-start servers sequentially if enabled in config
+        if cfg_clone.launcher.auto_start_servers_on_launch {
+            let delay = Duration::from_secs(cfg_clone.launcher.start_sequence_delay_seconds);
+            if cfg_clone.servers.get("chat").map(|s| s.enabled).unwrap_or(true) {
+                let _ = sup_clone.start_server("chat").await;
+                tokio::time::sleep(delay).await;
+            }
+            if cfg_clone.servers.get("login").map(|s| s.enabled).unwrap_or(true) {
+                let _ = sup_clone.start_server("login").await;
+                tokio::time::sleep(delay).await;
+            }
+            if cfg_clone.servers.get("game").map(|s| s.enabled).unwrap_or(true) {
+                let _ = sup_clone.start_server("game").await;
+            }
         }
 
         // Periodic tray tooltip updater (1s interval)
@@ -146,7 +152,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // Route: GET / -> Dashboard HTML
         let index_route = warp::path::end().map(|| warp::reply::html(ui::HTML_DASHBOARD));
 
-        // Route: GET /api/metrics -> Full state JSON with metrics & Fibonacci history
+        // Route: GET /api/metrics -> Full state JSON with metrics
         let metrics_route = warp::path!("api" / "metrics")
             .and(warp::get())
             .and(sup_filter.clone())
@@ -155,7 +161,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 warp::reply::json(&state)
             });
 
-        // Route: GET /api/players -> Online players & accounts list
+        // Route: GET /api/players -> Online players list from MySQL
         let players_route = warp::path!("api" / "players")
             .and(warp::get())
             .and(sup_filter.clone())
@@ -223,10 +229,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 warp::reply::json(&serde_json::json!({ "status": "ok" }))
             });
 
-        // Database Studio Endpoints
-        let db_manager = DbManager::new("data/server/Banco de Dados");
+        // Database Studio Endpoints (MySQL)
         let db_filter = {
-            let db = db_manager.clone();
+            let db = db_for_routes.clone();
             warp::any().map(move || db.clone())
         };
 
@@ -316,7 +321,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             });
 
-        // POST /api/db/table/:table/truncate (Truncate single table)
+        // POST /api/db/table/:table/truncate
         let db_truncate_table_route = warp::path!("api" / "db" / "table" / String / "truncate")
             .and(warp::post())
             .and(warp::query::<std::collections::HashMap<String, String>>())
@@ -324,12 +329,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManager| {
                 let db_id = params.get("db").map(|s| s.as_str());
                 match db.truncate_table(db_id, &table) {
-                    Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Tabela '{}' limpa com sucesso.", table) })),
+                    Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Tabela '{}' limpa.", table) })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
 
-        // POST /api/db/clean_all (Truncate all tables)
+        // POST /api/db/clean_all
         let db_clean_all_route = warp::path!("api" / "db" / "clean_all")
             .and(warp::post())
             .and(db_filter.clone())
@@ -340,7 +345,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             });
 
-        // POST /api/db/query (Custom SQL Query / Multi-statement Batch)
+        // POST /api/db/query
         #[derive(serde::Deserialize)]
         struct RawSqlPayload {
             db: Option<String>,
@@ -352,99 +357,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(db_filter.clone())
             .map(|payload: RawSqlPayload, db: DbManager| {
                 match db.execute_query(payload.db.as_deref(), &payload.sql) {
-                    Ok(res) => warp::reply::json(&serde_json::json!({ "status": "ok", "result": res })),
-                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
-                }
-            });
-
-        // POST /api/db/database/create (Create new SQLite database)
-        #[derive(serde::Deserialize)]
-        struct CreateDbPayload {
-            name: String,
-        }
-        let db_create_db_route = warp::path!("api" / "db" / "database" / "create")
-            .and(warp::post())
-            .and(warp::body::json::<CreateDbPayload>())
-            .and(db_filter.clone())
-            .map(|payload: CreateDbPayload, db: DbManager| {
-                match db.create_database(&payload.name) {
-                    Ok(created_name) => warp::reply::json(&serde_json::json!({ "status": "ok", "name": created_name })),
-                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
-                }
-            });
-
-        // DELETE /api/db/database/:id (Delete custom database)
-        let db_delete_db_route = warp::path!("api" / "db" / "database" / String)
-            .and(warp::delete())
-            .and(db_filter.clone())
-            .map(|id: String, db: DbManager| {
-                match db.delete_database(&id) {
-                    Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Banco '{}' removido.", id) })),
-                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
-                }
-            });
-
-        // POST /api/db/table/create (Create new Table)
-        #[derive(serde::Deserialize)]
-        struct CreateTableReq {
-            db: String,
-            name: String,
-            columns: Vec<db_manager::NewColumnDef>,
-        }
-        let db_create_table_route = warp::path!("api" / "db" / "table" / "create")
-            .and(warp::post())
-            .and(warp::body::json::<CreateTableReq>())
-            .and(db_filter.clone())
-            .map(|payload: CreateTableReq, db: DbManager| {
-                match db.create_table(&payload.db, &payload.name, &payload.columns) {
-                    Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Tabela '{}' criada com sucesso.", payload.name) })),
-                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
-                }
-            });
-
-        // DELETE /api/db/table/:table/drop (Drop Table)
-        let db_drop_table_route = warp::path!("api" / "db" / "table" / String / "drop")
-            .and(warp::delete())
-            .and(warp::query::<std::collections::HashMap<String, String>>())
-            .and(db_filter.clone())
-            .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManager| {
-                let db_id = params.get("db").map(|s| s.as_str()).unwrap_or("game");
-                match db.drop_table(db_id, &table) {
-                    Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Tabela '{}' excluída.", table) })),
-                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
-                }
-            });
-
-        // POST /api/db/table/:table/add_column (Add Column)
-        #[derive(serde::Deserialize)]
-        struct AddColReq {
-            db: String,
-            column: db_manager::NewColumnDef,
-        }
-        let db_add_column_route = warp::path!("api" / "db" / "table" / String / "add_column")
-            .and(warp::post())
-            .and(warp::body::json::<AddColReq>())
-            .and(db_filter.clone())
-            .map(|table: String, payload: AddColReq, db: DbManager| {
-                match db.add_column(&payload.db, &table, &payload.column) {
-                    Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Coluna '{}' adicionada à tabela '{}'.", payload.column.name, table) })),
-                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
-                }
-            });
-
-        // POST /api/db/table/:table/rename (Rename Table)
-        #[derive(serde::Deserialize)]
-        struct RenameTableReq {
-            db: String,
-            new_name: String,
-        }
-        let db_rename_table_route = warp::path!("api" / "db" / "table" / String / "rename")
-            .and(warp::post())
-            .and(warp::body::json::<RenameTableReq>())
-            .and(db_filter.clone())
-            .map(|table: String, payload: RenameTableReq, db: DbManager| {
-                match db.rename_table(&payload.db, &table, &payload.new_name) {
-                    Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Tabela '{}' renomeada para '{}'.", table, payload.new_name) })),
+                    Ok(result) => warp::reply::json(&serde_json::json!({ "status": "ok", "result": result })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
@@ -463,38 +376,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .or(db_delete_route)
             .or(db_truncate_table_route)
             .or(db_clean_all_route)
-            .or(db_query_route)
-            .or(db_create_db_route)
-            .or(db_delete_db_route)
-            .or(db_create_table_route)
-            .or(db_drop_table_route)
-            .or(db_add_column_route)
-            .or(db_rename_table_route);
+            .or(db_query_route);
 
-        let port = cfg_clone.launcher.gui.http_port;
-        warp::serve(routes).run(([0, 0, 0, 0], port)).await;
+        let port = cfg_clone.gui.http_port;
+        warp::serve(routes).run(([127, 0, 0, 1], port)).await;
     });
 
+    // 6. Run WebView loop on main thread
+    let dashboard_url = format!("http://127.0.0.1:{}/", cfg.gui.http_port);
+    let is_shutting_down_wv = is_shutting_down.clone();
+    let sup_for_wv = supervisor.clone();
 
-    // 6. Run Embedded WebView Manager on main thread
-    let port = cfg.launcher.gui.http_port;
-    let url = format!("http://127.0.0.1:{}", port);
-
-    let tray_for_exit = tray_manager_arc.clone();
-    let sup_for_exit = supervisor.clone();
-
-    webview_app.run(url, move || {
-        // Shutdown handler when main event loop exits
-        let sup = sup_for_exit.clone();
-        let tray = tray_for_exit.clone();
-        std::thread::spawn(move || {
-            let rt = tokio::runtime::Runtime::new().unwrap();
-            rt.block_on(async {
-                sup.graceful_shutdown().await;
+    webview_app.run(dashboard_url, move || {
+        if !is_shutting_down_wv.swap(true, Ordering::SeqCst) {
+            let s = sup_for_wv.clone();
+            std::thread::spawn(move || {
+                tokio::runtime::Runtime::new().unwrap().block_on(async {
+                    s.graceful_shutdown().await;
+                });
             });
-            tray.lock().remove();
-            std::process::exit(0);
-        });
+        }
     });
 
     Ok(())

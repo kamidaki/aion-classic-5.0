@@ -1,10 +1,10 @@
 [package]
-name = "auto-start"
+name = "aion-classic-emu"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "auto-start"
+name = "aion-classic-emu"
 path = "src/main.rs"
 
 [dependencies]
@@ -15,20 +15,20 @@ serde_json = "1.0"
 chrono = "0.4"
 parking_lot = "0.12"
 warp = "0.3"
-rusqlite = { version = "0.32", features = ["bundled"] }
-commons = { path = "../commons" }
+flate2 = { version = "1.0", features = ["rust_backend"] }
+mysql = { version = "25", default-features = false }
 wry = "0.47"
 tao = "0.31"
 windows-sys = { version = "0.52", features = [
     "Win32_System_JobObjects",
     "Win32_Foundation",
+    "Win32_Security",
     "Win32_System_Threading",
     "Win32_System_LibraryLoader",
     "Win32_UI_WindowsAndMessaging",
     "Win32_UI_Shell",
     "Win32_Graphics_Gdi"
 ] }
-
 
 [build-dependencies]
 winres = "0.1"

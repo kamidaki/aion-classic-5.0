@@ -3,7 +3,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Aion Classic - EmuRust Dashboard</title>
+    <title>Aion Classic - Classic Emu Dashboard</title>
     <style>
         :root {
             --bg-base: #060910;
@@ -1781,7 +1781,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             </button>
             <div class="brand-box">
                 <div class="brand-icon">A</div>
-                <div class="brand-text">EmuRust</div>
+                <div class="brand-text">Classic Emu</div>
                 <div class="brand-pill">Classic 4.5</div>
             </div>
             <div class="header-status-pills">
@@ -2510,7 +2510,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         <div style="background:#0e1526; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px; width:90%; max-width:400px; display:flex; flex-direction:column; gap:12px;">
             <div style="font-weight:700; font-size:0.95rem; color:#f87171; display:flex; align-items:center; gap:8px;">
                 <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
-                Encerrar Emulador Rust
+                Encerrar Emulador Java
             </div>
             <div style="color:var(--text-muted); font-size:0.78rem; line-height:1.4;">Esta ação finalizará com segurança o Game Server, Login Server e Chat Server, liberando todas as portas de rede.</div>
             <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top:4px;">
@@ -3183,7 +3183,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             try {
                 await fetch('/api/shutdown', { method: 'POST' });
                 document.body.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; background:#070a12; color:#fff; font-family:sans-serif; gap:16px;">
-                    <div style="font-size:1.5rem; font-weight:700; color:#38bdf8;">Emulador Rust Encerrado</div>
+                    <div style="font-size:1.5rem; font-weight:700; color:#38bdf8;">Emulador Java Encerrado</div>
                     <div style="color:#94a3b8; font-size:0.9rem;">Todos os servidores foram finalizados com segurança. Pode fechar esta janela.</div>
                 </div>`;
             } catch (e) {

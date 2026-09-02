@@ -95,7 +95,7 @@ impl TrayManager {
             *GLOBAL_CALLBACK.lock() = Some(callback);
 
             let hinstance = GetModuleHandleW(std::ptr::null());
-            let class_name: Vec<u16> = "EmuRustTrayClass\0".encode_utf16().collect();
+            let class_name: Vec<u16> = "AionClassicEmuTrayClass\0".encode_utf16().collect();
             
             let mut hicon = LoadIconW(hinstance, 1 as *const u16);
             if hicon == 0 {

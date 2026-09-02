@@ -13,6 +13,7 @@
 		<module>LoginServer</module>
 		<module>GameServer</module>
 		<module>ChatServer</module>
+		<module>WebSocketServer</module>
 	</modules>
 
 	<properties>
