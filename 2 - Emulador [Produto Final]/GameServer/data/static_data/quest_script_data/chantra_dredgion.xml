@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+	<item_collecting id="3723" start_npc_ids="799069" action_item_ids="700837" />
+	<item_collecting id="3724" start_npc_ids="799069" end_npc_ids="798928" />
+	<item_collecting id="4723" start_npc_ids="799403" action_item_ids="700837" />
+	<item_collecting id="4724" start_npc_ids="799403" end_npc_ids="799226" />
+</quest_scripts>

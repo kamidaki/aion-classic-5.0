@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<polymorph_panels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="polymorph_panels.xsd">
+	<panel panel_id="9" panel_skills="5133057 5133313" />
+	<panel panel_id="10" panel_skills="5133057 5133313" />
+	<panel panel_id="11" panel_skills="5133057 5133313" />
+	<panel panel_id="12" panel_skills="5238785 5239041" />
+	<panel panel_id="13" panel_skills="5240065 5240321" />
+	<panel panel_id="14" panel_skills="5248001 2708993" />
+	<panel panel_id="15" panel_skills="5248001 2709249" />
+	<panel panel_id="16" panel_skills="5248257 2708993 2709249" />
+	<panel panel_id="17" panel_skills="5249025" />
+</polymorph_panels>

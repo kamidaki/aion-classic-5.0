@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ae_static_data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="static_data.xsd">
+	<ai_templates>
+		<import file="ai" skipRoot="true" />
+	</ai_templates>
+	<import file="bind_points/bind_points.xml" />
+	<import file="chests/chest_templates.xml" />
+	<import file="cube_expander/cube_expander.xml" />
+	<import file="assembled_npcs/assembled_npcs.xml" />
+	<import file="fly_rings/fly_rings.xml" />
+	<import file="gatherables/gatherable_templates.xml" />
+	<import file="goodslists/goodslists.xml" />
+	<import file="guides/guide.xml" />
+	<import file="instance_cooltimes/instance_cooltimes.xml" />
+	<import file="item_sets/item_sets.xml" />
+	<import file="items/item_restriction_cleanups.xml" />
+	<item_templates>
+		<import file="items/item" skipRoot="true" />
+	</item_templates>
+	<import file="items/item_groups.xml" />
+	<import file="npc_factions/npc_factions.xml" />
+	<import file="npc_skills/npc_skills.xml" />
+	<npc_templates>
+		<import file="npcs" skipRoot="true" />
+	</npc_templates>
+	<pet_skill_templates>
+		<import file="pet_skills" skipRoot="true" />
+	</pet_skill_templates>
+	<import file="pets/pets.xml" />
+	<pet_feed>
+		<import file="pets/pet_feed.xml" skipRoot="true" />
+	</pet_feed>
+	<dopings>
+		<import file="pets/pet_doping.xml" skipRoot="true" />
+	</dopings>
+	<import file="quest_data/quest_data.xml" />
+	<quest_scripts>
+		<import file="quest_script_data" skipRoot="true" />
+	</quest_scripts>
+	<import file="recipe/recipe_templates.xml" />
+	<import file="roads/roads.xml" />
+	<import file="siege/siege_locations.xml" />
+	<import file="siege/siege_shields.xml" />
+	<skill_tree>
+		<import file="skill_tree" skipRoot="true" />
+	</skill_tree>
+	<skill_data>
+		<import file="skills/template" skipRoot="true" />
+	</skill_data>
+	<import file="skills/motion_times.xml" />
+	<spawns>
+		<import file="spawns" skipRoot="true" />
+	</spawns>
+	<import file="staticdoors/staticdoor_templates.xml" />
+	<player_stats_templates>
+		<import file="stats/player" skipRoot="true" />
+	</player_stats_templates>
+	<summon_stats_templates>
+		<import file="stats/summon" skipRoot="true" />
+	</summon_stats_templates>
+	<import file="tribe/tribe_relations.xml" />
+	<import file="warehouse_expander/warehouse_expander.xml" />
+	<zones>
+		<import file="zones" skipRoot="true" />
+	</zones>
+	<import file="npc_teleporter.xml" />
+	<import file="npc_trade_list.xml" />
+	<npc_walker>
+		<import file="npc_walker" skipRoot="true" />
+	</npc_walker>
+	<import file="player_experience_table.xml" />
+	<import file="player_initial_data.xml" />
+	<import file="player_titles.xml" />
+	<import file="teleport_location.xml" />
+	<import file="world_maps.xml" />
+	<import file="flypath_template.xml" />
+	<import file="windstreams/windstreams.xml" />
+	<import file="cosmetic_items/cosmetic_items.xml" />
+	<import file="npc_shouts/npc_shouts.xml" />
+	<import file="auto_group/auto_group.xml" />
+	<events_config>
+		<import file="events_config/events_config.xml" skipRoot="true" />
+	</events_config>
+	<import file="instance_bonusattr/instance_bonusattr.xml" />
+	<import file="instance_exit/instance_exit.xml" />
+	<import file="portals/portal_loc.xml" />
+	<import file="portals/portal_template2.xml" />
+	<import file="curing_objects/curing_objects.xml" />
+	<import file="mail_templates.xml" />
+	<import file="abyss_bonusattr/abyss_bonusattr.xml" />
+	<import file="abyss_bonusattr/abyss_groupattr.xml" />
+	<import file="stats/absolute_stats.xml" />
+	<import file="mesh_materials/material_templates.xml" />
+	<import file="weather_table.xml" />
+	<import file="rift/rift_locations.xml" />
+	<import file="reward/reward_mail_template.xml" />
+	<import file="revive_start_points/revive_world_start_points.xml" />
+	<import file="revive_start_points/instance_revive_start_points.xml" />
+	<import file="items/enchant_chances.xml" />
+	<import file="items/decomposable_templates.xml" />
+	<import file="battle_pass/battlepass_season.xml" />
+	<import file="battle_pass/battlepass_quests.xml" />
+	<import file="battle_pass/battlepass_reward.xml" />
+	<import file="battle_pass/battlepass_actions.xml" />
+	<import file="events_window.xml" />
+	<import file="serial_killer/serial_killer.xml" />
+	<import file="instance_rift/instance_rift.xml" />
+	<import file="polymorph_panels/polymorph_panels.xml" />
+	<import file="arcadelist.xml" />
+	<import file="items/assembly_items.xml" />
+	<import file="npc_drops/commons_drop_items.xml" />
+	<import file="shugo_sweep.xml" />
+</ae_static_data>

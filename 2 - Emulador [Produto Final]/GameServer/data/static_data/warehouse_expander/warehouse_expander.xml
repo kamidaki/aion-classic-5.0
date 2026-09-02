@@ -1,0 +1,1202 @@
+<?xml version='1.0' encoding='utf-8'?>
+<warehouse_expander xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="warehouse_expander.xsd">
+	<warehouse_npc id="203221">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="203749">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="203750">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798014">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798309">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798310">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="205443">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="203889">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="203199">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="204047">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801157">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801160">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801163">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801166">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="204632">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801181">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801184">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801187">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801191">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798139">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798171">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798911">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799027">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798965">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798994">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798995">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="260214">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="260215">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263215">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263216">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263515">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263516">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="264715">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263516">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="266515">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="266516">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="268015">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="268016">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="269215">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="269216">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="270115">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="270116">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="271015">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="271016">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799002">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799003">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799013">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799014">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799041">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799042">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799047">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799048">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798313">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="798312">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="204073">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="204074">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="204072">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="205447">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="203687">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="204377">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801169">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801172">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801175">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801178">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="204780">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="204800">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801195">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801198">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801201">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="801205">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="205122">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="205149">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799210">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799331">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799263">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799286">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799287">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="260216">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="260217">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263217">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263218">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263517">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="263518">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="264717">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="264718">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="266517">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="266518">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="268017">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="268018">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="269217">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="269218">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="270117">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="270118">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="271017">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="271018">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799303">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799304">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799312">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799313">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799352">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799353">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799358">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="799359">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="278525">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="278509">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="278025">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="278009">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="279062">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+	<warehouse_npc id="279063">
+		<expand level="1" price="1200" />
+		<expand level="2" price="24000" />
+		<expand level="3" price="72600" />
+		<expand level="4" price="181500" />
+		<expand level="5" price="363000" />
+		<expand level="6" price="1422000" />
+		<expand level="7" price="2844000" />
+		<expand level="8" price="5688000" />
+		<expand level="9" price="11376000" />
+	</warehouse_npc>
+</warehouse_expander>

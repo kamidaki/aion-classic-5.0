@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player_initial_data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="player_initial_data.xsd">
+	<asmodian_spawn_location map_id="120010000" x="1679.0000" y="1399.0000" z="209.0000" heading="57" />
+	<elyos_spawn_location map_id="110010000" x="1342.9700" y="1510.1800" z="571.0400" heading="92" />
+	<asmodian_telos_location map_id="120010000" x="1679.0000" y="1399.0000" z="209.0000" heading="57" />
+	<elyos_telos_location map_id="110010000" x="1342.9700" y="1510.1800" z="571.0400" heading="92" />
+	<player_data class="ASSASSIN">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="100201355" count="1" /> <!-- Novice Assassin’s Dagger -->
+			<item id="100001520" count="1" /> <!-- Novice Assassin’s Longsword -->
+			<item id="110301463" count="1" /> <!-- Novice Assassin’s Jerkin -->
+			<item id="113301414" count="1" /> <!-- Novice Assassin’s Breeches -->
+			<item id="112301341" count="1" /> <!-- Novice Assassin’s Shoulderguards -->
+			<item id="111301393" count="1" /> <!-- Novice Assassin’s Vambraces -->
+			<item id="114301453" count="1" /> <!-- Novice Assassin’s Leather Shoes -->
+			<item id="125003447" count="1" /> <!-- Novice Assassin’s Leather Hat -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="TEMPLAR">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="100001519" count="1" /> <!-- Novice Templar’s Longsword -->
+			<item id="115001470" count="1" /> <!-- Novice Templar’s Shield -->
+			<item id="110601374" count="1" /> <!-- Novice Templar’s Breastplate -->
+			<item id="113601332" count="1" /> <!-- Novice Templar’s Plate Greaves -->
+			<item id="112601323" count="1" /> <!-- Novice Templar’s Shoulderplates -->
+			<item id="111601344" count="1" /> <!-- Novice Templar’s Plate Gauntlets -->
+			<item id="114601333" count="1" /> <!-- Novice Templar’s Sabatons -->
+			<item id="125003443" count="1" /> <!-- Novice Templar’s Plate Helm -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="RANGER">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="101701219" count="1" /> <!-- Novice Ranger’s Bow -->
+			<item id="110301464" count="1" /> <!-- Novice Ranger’s Jerkin -->
+			<item id="113301415" count="1" /> <!-- Novice Ranger’s Breeches -->
+			<item id="112301342" count="1" /> <!-- Novice Ranger’s Shoulderguards -->
+			<item id="111301394" count="1" /> <!-- Novice Ranger’s Vambraces -->
+			<item id="114301454" count="1" /> <!-- Novice Ranger’s Leather Shoes -->
+			<item id="125003448" count="1" /> <!-- Novice Ranger’s Leather Hat -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="GLADIATOR">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="101301127" count="1" /> <!-- Novice Gladiator’s Polearm -->
+			<item id="110601375" count="1" /> <!-- Novice Gladiator’s Breastplate -->
+			<item id="113601333" count="1" /> <!-- Novice Gladiator’s Plate Greaves -->
+			<item id="112601324" count="1" /> <!-- Novice Gladiator’s Shoulderplates -->
+			<item id="111601345" count="1" /> <!-- Novice Gladiator’s Plate Gauntlets -->
+			<item id="114601334" count="1" /> <!-- Novice Gladiator’s Sabatons -->
+			<item id="125003444" count="1" /> <!-- Novice Gladiator’s Plate Helm -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="SORCERER">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="100501181" count="1" /> <!-- Novice Sorcerer’s Orb -->
+			<item id="110101547" count="1" /> <!-- Novice Sorcerer’s Tunic -->
+			<item id="113101433" count="1" /> <!-- Novice Sorcerer’s Cloth Breeches -->
+			<item id="112101374" count="1" /> <!-- Novice Sorcerer’s Pauldrons -->
+			<item id="111101415" count="1" /> <!-- Novice Sorcerer’s Cloth Gloves -->
+			<item id="114101463" count="1" /> <!-- Novice Sorcerer’s Cloth Shoes -->
+			<item id="125003449" count="1" /> <!-- Novice Sorcerer’s Cloth Bandana -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="SPIRIT_MASTER">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="100601234" count="1" /> <!-- Novice Spiritmaster’s Spellbook -->
+			<item id="110101548" count="1" /> <!-- Novice Spiritmaster’s Tunic -->
+			<item id="113101434" count="1" /> <!-- Novice Spiritmaster’s Cloth Breeches -->
+			<item id="112101375" count="1" /> <!-- Novice Spiritmaster’s Pauldrons -->
+			<item id="111101416" count="1" /> <!-- Novice Spiritmaster’s Cloth Gloves -->
+			<item id="114101464" count="1" /> <!-- Novice Spiritmaster’s Cloth Shoes -->
+			<item id="125003450" count="1" /> <!-- Novice Spiritmaster’s Cloth Bandana -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="CLERIC">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="100101171" count="1" /> <!-- Novice Cleric’s Mace -->
+			<item id="115001470" count="1" /> <!-- Novice Templar’s Shield -->
+			<item id="110551028" count="1" /> <!-- Novice Cleric’s Hauberk -->
+			<item id="113501388" count="1" /> <!-- Novice Cleric’s Chain Breeches -->
+			<item id="112501318" count="1" /> <!-- Novice Cleric’s Spaulders -->
+			<item id="111501369" count="1" /> <!-- Novice Cleric’s Chain Gauntlets -->
+			<item id="114501393" count="1" /> <!-- Novice Cleric’s Brogans -->
+			<item id="125003446" count="1" /> <!-- Novice Cleric’s Chain Helm -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="CHANTER">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="101501210" count="1" /> <!-- Novice Chanter’s Staff -->
+			<item id="110551027" count="1" /> <!-- Novice Chanter’s Hauberk -->
+			<item id="113501387" count="1" /> <!-- Novice Chanter’s Chain Breeches -->
+			<item id="112501317" count="1" /> <!-- Novice Chanter’s Spaulders -->
+			<item id="111501368" count="1" /> <!-- Novice Chanter’s Chain Gauntlets -->
+			<item id="114501392" count="1" /> <!-- Novice Chanter’s Brogans -->
+			<item id="125003445" count="1" /> <!-- Novice Chanter’s Chain Helm -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="BRAWLER">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="102500432" count="1" /> <!-- Novice Brawler’s Dragon Claws -->
+			<item id="110301466" count="1" /> <!-- Novice Brawler’s Jerkin -->
+			<item id="113301417" count="1" /> <!-- Novice Brawler’s Breeches -->
+			<item id="112301344" count="1" /> <!-- Novice Brawler’s Shoulderguards -->
+			<item id="111301396" count="1" /> <!-- Novice Brawler’s Vambraces -->
+			<item id="114301456" count="1" /> <!-- Novice Brawler’s Leather Shoes -->
+			<item id="125003453" count="1" /> <!-- Novice Brawler’s Leather Hat -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="REVENANT">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="102400493" count="1" /> <!-- Novice Revenant’s Chainblades -->
+			<item id="110301465" count="1" /> <!-- Novice Revenant’s Jerkin -->
+			<item id="113301416" count="1" /> <!-- Novice Revenant’s Breeches -->
+			<item id="112301343" count="1" /> <!-- Novice Revenant’s Shoulderguards -->
+			<item id="111301395" count="1" /> <!-- Novice Revenant’s Vambraces -->
+			<item id="114301455" count="1" /> <!-- Novice Revenant’s Leather Shoes -->
+			<item id="125003452" count="1" /> <!-- Novice Revenant’s Leather Hat -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="SOUL_REAPER">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="102700003" count="1" /> <!-- Novice Soul Reaper Soulblade -->
+			<item id="110601379" count="1" /> <!-- Novice Soul Reaper Breastplate -->
+			<item id="113601337" count="1" /> <!-- Novice Soul Reaper Plate Greaves -->
+			<item id="112601328" count="1" /> <!-- Novice Soul Reaper Shoulderplates -->
+			<item id="111601349" count="1" /> <!-- Novice Soul Reaper Plate Gauntlets -->
+			<item id="114601338" count="1" /> <!-- Novice Soul Reaper Sabatons -->
+			<item id="125003464" count="1" /> <!-- Novice Soul Reaper Plate Helm -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="LUMINESS">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="102600408" count="1" /> <!-- Novice Luminess’ Rapier -->
+			<item id="110101549" count="1" /> <!-- Novice Luminess’ Tunic -->
+			<item id="113101435" count="1" /> <!-- Novice Luminess’ Cloth Breeches -->
+			<item id="112101376" count="1" /> <!-- Novice Luminess’ Pauldrons -->
+			<item id="111101417" count="1" /> <!-- Novice Luminess’ Cloth Gloves -->
+			<item id="114101465" count="1" /> <!-- Novice Luminess’ Cloth Shoes -->
+			<item id="125003451" count="1" /> <!-- Novice Luminess’ Cloth Bandana -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+	<player_data class="PHOENIX">
+		<items>
+			<item id="182400001" count="0" /> <!-- Kinah -->
+			<item id="182500000" count="0" /> <!-- Arcanium -->
+			<item id="101800054" count="1" /> <!-- Novice Phoenix’s Aether Revolver -->
+			<item id="110301467" count="1" /> <!-- Novice Phoenix’s Jerkin -->
+			<item id="113301418" count="1" /> <!-- Novice Phoenix’s Breeches -->
+			<item id="112301345" count="1" /> <!-- Novice Phoenix’s Leather Epaulettes -->
+			<item id="111301397" count="1" /> <!-- Novice Phoenix’s Leather Gauntlets -->
+			<item id="114301457" count="1" /> <!-- Novice Phoenix’s Leather Footwear -->
+			<item id="125003454" count="1" /> <!-- Novice Phoenix’s Leather Headwear -->
+			<item id="121001324" count="1" /> <!-- Novice War Necklace -->
+			<item id="120015074" count="1" /> <!-- Novice’s War Earring -->
+			<item id="122001596" count="1" /> <!-- Novice’s War Ring -->
+			<item id="123001243" count="1" /> <!-- Novice’s Leather Belt -->
+			<item id="164000221" count="10" /> <!-- [Supply] Greater Courage Scroll -->
+			<item id="164000224" count="10" /> <!-- [Supply] Greater Sprinting Scroll -->
+			<item id="164000227" count="10" /> <!-- [Supply] Greater Raging Wind Scroll -->
+			<item id="164000259" count="10" /> <!-- [Supply] Major Recovery Potion -->
+			<item id="160003577" count="10" /> <!-- [Supply] Major Focus Agent -->
+			<item id="160003578" count="10" /> <!-- [Supply] Major Rally Serum -->
+			<item id="169300007" count="30" /> <!-- Odella Powder -->
+		</items>
+	</player_data>
+</player_initial_data>

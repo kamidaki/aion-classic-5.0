@@ -1,0 +1,86 @@
+# =========================================================================
+#  AION CLASSIC 5.0 EU - JAVA EMULATOR (.GITIGNORE)
+# =========================================================================
+
+# 1. Compilação e Binários Temporários
+target/
+**/target/
+build/
+**/build/
+obj/
+**/obj/
+x64/
+**/x64/
+x86/
+**/x86/
+Release/
+**/Release/
+Debug/
+**/Debug/
+*.tlog
+*.recipe
+*.iobj
+*.ipdb
+*.class
+*.pyc
+__pycache__/
+**/__pycache__/
+scratch/
+**/scratch/
+
+# Preservar binários necessários do Client Patch (bin32 e bin64)
+!4 - Patch para o Client 5.0/bin32/
+!4 - Patch para o Client 5.0/bin64/
+!4 - Patch para o Client 5.0/bin32/**
+!4 - Patch para o Client 5.0/bin64/**
+
+# 2. Logs, Caches e Arquivos Temporários
+log/
+**/log/
+logs/
+**/logs/
+cache/
+**/cache/
+*.log
+**/*.log
+*.WebView2/
+**/*.WebView2/
+
+# 3. Bancos de Dados Temporários e Arquivos de Lock
+*.db-shm
+*.db-wal
+
+# 4. IDEs e Editores
+.idea/
+.vs/
+**/.vs/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# 5. Formatos Binários Pesados e Arquivos Multimídia
+*.dds
+*.DDS
+*.dat
+*.DAT
+*.tga
+*.bmp
+*.wav
+*.mp3
+*.ogg
+*.bik
+*.7z
+*.zip
+
+# 6. Client 5.0 - Dados Extraídos (Regras Específicas)
+# O diretório 'data' não deve ter seu conteúdo de arquivos versionado,
+# mas sua estrutura completa de 206 pastas deve ser preservada no Git via .gitkeep.
+5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**
+!5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/
+!5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/.gitkeep
+
+# 7. Backups e Arquivos de Trabalho dos Parsers
+6 - Ferramentas/parsersXML/backups/
+**/parsersXML/backups/

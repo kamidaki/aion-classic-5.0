@@ -1,0 +1,88 @@
+#include <algorithm>
+#include <list>
+#include <string>
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#include <winsock2.h>
+#include "exports.h"
+#include "detours.h"
+
+// =========================================================================
+//  IP Spoofing & Official IP Pool for Aion Classic Client
+// =========================================================================
+//  Allows connecting to unofficial/private game servers by spoofing the
+//  server IP as an official recognized one from the pool.
+//  Includes all official NCSoft, Gameforge Classic 4.5 captures, and CHS IPs.
+// =========================================================================
+
+// Official Master IP Pool
+static const char* const kOfficialIpPool[] = {
+    "70.5.0.18",       // NCSoft Official Main (Classic NA/KR)
+    "79.110.83.115",   // Gameforge Official Classic EU Game Server (Port 7777 - Wireshark Capture)
+    "79.110.83.118",   // Gameforge Official STS Auth Gateway (Port 6600 - Wireshark Capture)
+    "79.110.83.156",   // Gameforge Official HQ Services / Shop (Port 13001 - Wireshark Capture)
+    "79.110.83.80",    // Gameforge Official Login Server (Port 2106)
+    "79.110.83.60",    // Gameforge Official Auth / Portal
+    "79.110.83.18",    // Gameforge Official Classic Game Gateway
+    "79.110.83.10",    // Gameforge Official Web / Portal
+    "79.110.83.75",    // Gameforge Official Chat / Community
+    "106.54.175.178",  // Shanda / Tencent CHS Classic Official Gateway
+    "150.158.219.159", // Shanda / Tencent CHS NP Gateway
+    "64.25.35.100",    // NCSoft NA Master Auth
+    "64.25.35.103",    // NCSoft NA Game Cluster
+};
+
+static constexpr char kPrimaryOfficialIp[] = "70.5.0.18";
+static std::list<std::string> possibleConnectIps = {};
+
+static bool contains(const std::list<std::string>& list, const char* element) {
+    return !list.empty() && std::find(list.begin(), list.end(), element) != list.end();
+}
+
+/// Checks if an IP is part of the recognized official server pool or official subnets
+static bool isOfficialIp(const char* ip) {
+    if (!ip) return false;
+    for (const char* off : kOfficialIpPool) {
+        if (_stricmp(ip, off) == 0) return true;
+    }
+    // Subnet check for Gameforge dedicated block (79.110.83.*)
+    if (strncmp(ip, "79.110.83.", 10) == 0) return true;
+    return false;
+}
+
+static decltype(inet_ntoa)* real_inet_ntoa = inet_ntoa;
+/// Gathers candidate game server IPs from the server list
+static char* WINAPI zzinet_ntoa(_In_ struct in_addr in) {
+    char* addr = real_inet_ntoa(in);
+    if (addr && !contains(possibleConnectIps, addr)) {
+        possibleConnectIps.push_back(addr);
+        VersionLog("[NET] inet_ntoa: registered candidate game server IP '%s'", addr);
+    }
+    return addr;
+}
+
+static decltype(lstrcpynA)* real_lstrcpynA = lstrcpynA;
+/// Spoofs the IP copy when the client validates the server list entry against official network bounds
+static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ LPCSTR lpString2, _In_ int iMaxLength) {
+    if (iMaxLength == 256 && lpString2) {
+        if (contains(possibleConnectIps, lpString2)) {
+            VersionLog("[NET] lstrcpynA: spoofing server IP '%s' -> '%s' (validation bypass from official pool)", lpString2, kPrimaryOfficialIp);
+            possibleConnectIps.clear();
+            return real_lstrcpynA(lpString1, kPrimaryOfficialIp, iMaxLength);
+        }
+    }
+    return real_lstrcpynA(lpString1, lpString2, iMaxLength);
+}
+
+static decltype(connect)* real_connect = connect;
+static int WSAAPI zzconnect(_In_ SOCKET s, _In_reads_bytes_(namelen) const struct sockaddr FAR* name, _In_ int namelen) {
+    possibleConnectIps.clear();
+    return real_connect(s, name, namelen);
+}
+
+/// Allows connecting to unofficial game servers by spoofing the game server IP as an official one
+void InstallIpFix() {
+    DetourAttach(&(PVOID&)real_inet_ntoa, zzinet_ntoa);
+    DetourAttach(&(PVOID&)real_lstrcpynA, zzlstrcpynA);
+    DetourAttach(&(PVOID&)real_connect, zzconnect);
+    VersionLog("[INIT] IP-Fix hooks installed with official pool (%zu IPs configured).", sizeof(kOfficialIpPool) / sizeof(kOfficialIpPool[0]));
+}

@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='utf-8'?>
+<player_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
+	<player_stats class="LUMINESS" level="1">
+		<stats_template maxHp="235" maxMp="245" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="110" block="0" parry="95" main_hand_attack="16" main_hand_accuracy="210" main_hand_crit_rate="2" magic_accuracy="20" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="2">
+		<stats_template maxHp="297" maxMp="331" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="121" block="0" parry="105" main_hand_attack="16" main_hand_accuracy="217" main_hand_crit_rate="2" magic_accuracy="35" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="3">
+		<stats_template maxHp="362" maxMp="419" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="132" block="0" parry="115" main_hand_attack="16" main_hand_accuracy="224" main_hand_crit_rate="2" magic_accuracy="50" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="4">
+		<stats_template maxHp="428" maxMp="509" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="143" block="0" parry="125" main_hand_attack="16" main_hand_accuracy="231" main_hand_crit_rate="2" magic_accuracy="65" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="5">
+		<stats_template maxHp="495" maxMp="602" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="154" block="0" parry="135" main_hand_attack="16" main_hand_accuracy="238" main_hand_crit_rate="2" magic_accuracy="80" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="6">
+		<stats_template maxHp="565" maxMp="697" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="165" block="0" parry="145" main_hand_attack="16" main_hand_accuracy="245" main_hand_crit_rate="2" magic_accuracy="95" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="7">
+		<stats_template maxHp="635" maxMp="794" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="176" block="0" parry="155" main_hand_attack="16" main_hand_accuracy="252" main_hand_crit_rate="2" magic_accuracy="110" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="8">
+		<stats_template maxHp="708" maxMp="893" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="187" block="0" parry="165" main_hand_attack="16" main_hand_accuracy="259" main_hand_crit_rate="2" magic_accuracy="125" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="9">
+		<stats_template maxHp="782" maxMp="995" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="198" block="0" parry="175" main_hand_attack="16" main_hand_accuracy="266" main_hand_crit_rate="2" magic_accuracy="140" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="10">
+		<stats_template maxHp="857" maxMp="1099" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="209" block="0" parry="185" main_hand_attack="16" main_hand_accuracy="273" main_hand_crit_rate="2" magic_accuracy="155" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="11">
+		<stats_template maxHp="935" maxMp="1205" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="220" block="0" parry="195" main_hand_attack="16" main_hand_accuracy="280" main_hand_crit_rate="2" magic_accuracy="170" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="12">
+		<stats_template maxHp="1013" maxMp="1313" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="231" block="0" parry="205" main_hand_attack="16" main_hand_accuracy="287" main_hand_crit_rate="2" magic_accuracy="185" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="13">
+		<stats_template maxHp="1094" maxMp="1423" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="242" block="0" parry="215" main_hand_attack="16" main_hand_accuracy="294" main_hand_crit_rate="2" magic_accuracy="200" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="14">
+		<stats_template maxHp="1176" maxMp="1535" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="253" block="0" parry="225" main_hand_attack="16" main_hand_accuracy="301" main_hand_crit_rate="2" magic_accuracy="215" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="15">
+		<stats_template maxHp="1259" maxMp="1650" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="264" block="0" parry="235" main_hand_attack="16" main_hand_accuracy="308" main_hand_crit_rate="2" magic_accuracy="230" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="16">
+		<stats_template maxHp="1345" maxMp="1767" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="275" block="0" parry="245" main_hand_attack="16" main_hand_accuracy="315" main_hand_crit_rate="2" magic_accuracy="245" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="17">
+		<stats_template maxHp="1431" maxMp="1886" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="286" block="0" parry="255" main_hand_attack="16" main_hand_accuracy="322" main_hand_crit_rate="2" magic_accuracy="260" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="18">
+		<stats_template maxHp="1520" maxMp="2007" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="297" block="0" parry="265" main_hand_attack="16" main_hand_accuracy="329" main_hand_crit_rate="2" magic_accuracy="275" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="19">
+		<stats_template maxHp="1610" maxMp="2131" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="308" block="0" parry="275" main_hand_attack="16" main_hand_accuracy="336" main_hand_crit_rate="2" magic_accuracy="290" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="20">
+		<stats_template maxHp="1701" maxMp="2257" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="319" block="0" parry="285" main_hand_attack="16" main_hand_accuracy="343" main_hand_crit_rate="2" magic_accuracy="305" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="21">
+		<stats_template maxHp="1795" maxMp="2385" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="330" block="0" parry="295" main_hand_attack="16" main_hand_accuracy="350" main_hand_crit_rate="2" magic_accuracy="320" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="22">
+		<stats_template maxHp="1889" maxMp="2515" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="341" block="0" parry="305" main_hand_attack="16" main_hand_accuracy="357" main_hand_crit_rate="2" magic_accuracy="335" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="23">
+		<stats_template maxHp="1986" maxMp="2647" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="352" block="0" parry="315" main_hand_attack="16" main_hand_accuracy="364" main_hand_crit_rate="2" magic_accuracy="350" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="24">
+		<stats_template maxHp="2084" maxMp="2781" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="363" block="0" parry="325" main_hand_attack="16" main_hand_accuracy="371" main_hand_crit_rate="2" magic_accuracy="365" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="25">
+		<stats_template maxHp="2183" maxMp="2918" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="374" block="0" parry="335" main_hand_attack="16" main_hand_accuracy="378" main_hand_crit_rate="2" magic_accuracy="380" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="26">
+		<stats_template maxHp="2285" maxMp="3057" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="385" block="0" parry="345" main_hand_attack="16" main_hand_accuracy="385" main_hand_crit_rate="2" magic_accuracy="395" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="27">
+		<stats_template maxHp="2387" maxMp="3198" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="396" block="0" parry="355" main_hand_attack="16" main_hand_accuracy="392" main_hand_crit_rate="2" magic_accuracy="410" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="28">
+		<stats_template maxHp="2492" maxMp="3341" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="407" block="0" parry="365" main_hand_attack="16" main_hand_accuracy="399" main_hand_crit_rate="2" magic_accuracy="425" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="29">
+		<stats_template maxHp="2598" maxMp="3487" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="418" block="0" parry="375" main_hand_attack="16" main_hand_accuracy="406" main_hand_crit_rate="2" magic_accuracy="440" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="30">
+		<stats_template maxHp="2705" maxMp="3635" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="429" block="0" parry="385" main_hand_attack="16" main_hand_accuracy="413" main_hand_crit_rate="2" magic_accuracy="455" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="31">
+		<stats_template maxHp="2815" maxMp="3785" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="440" block="0" parry="395" main_hand_attack="16" main_hand_accuracy="420" main_hand_crit_rate="2" magic_accuracy="470" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="32">
+		<stats_template maxHp="2925" maxMp="3937" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="451" block="0" parry="405" main_hand_attack="16" main_hand_accuracy="427" main_hand_crit_rate="2" magic_accuracy="485" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="33">
+		<stats_template maxHp="3038" maxMp="4091" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="462" block="0" parry="415" main_hand_attack="16" main_hand_accuracy="434" main_hand_crit_rate="2" magic_accuracy="500" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="34">
+		<stats_template maxHp="3152" maxMp="4247" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="473" block="0" parry="425" main_hand_attack="16" main_hand_accuracy="441" main_hand_crit_rate="2" magic_accuracy="515" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="35">
+		<stats_template maxHp="3267" maxMp="4406" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="484" block="0" parry="435" main_hand_attack="16" main_hand_accuracy="448" main_hand_crit_rate="2" magic_accuracy="530" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="36">
+		<stats_template maxHp="3385" maxMp="4567" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="495" block="0" parry="445" main_hand_attack="16" main_hand_accuracy="455" main_hand_crit_rate="2" magic_accuracy="545" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="37">
+		<stats_template maxHp="3503" maxMp="4730" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="506" block="0" parry="455" main_hand_attack="16" main_hand_accuracy="462" main_hand_crit_rate="2" magic_accuracy="560" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="38">
+		<stats_template maxHp="3624" maxMp="4895" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="517" block="0" parry="465" main_hand_attack="16" main_hand_accuracy="469" main_hand_crit_rate="2" magic_accuracy="575" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="39">
+		<stats_template maxHp="3746" maxMp="5063" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="528" block="0" parry="475" main_hand_attack="16" main_hand_accuracy="476" main_hand_crit_rate="2" magic_accuracy="590" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="40">
+		<stats_template maxHp="3869" maxMp="5233" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="539" block="0" parry="485" main_hand_attack="16" main_hand_accuracy="483" main_hand_crit_rate="2" magic_accuracy="605" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="41">
+		<stats_template maxHp="3995" maxMp="5405" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="550" block="0" parry="495" main_hand_attack="16" main_hand_accuracy="490" main_hand_crit_rate="2" magic_accuracy="620" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="42">
+		<stats_template maxHp="4121" maxMp="5579" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="561" block="0" parry="505" main_hand_attack="16" main_hand_accuracy="497" main_hand_crit_rate="2" magic_accuracy="635" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="43">
+		<stats_template maxHp="4250" maxMp="5755" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="572" block="0" parry="515" main_hand_attack="16" main_hand_accuracy="504" main_hand_crit_rate="2" magic_accuracy="650" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="44">
+		<stats_template maxHp="4380" maxMp="5933" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="583" block="0" parry="525" main_hand_attack="16" main_hand_accuracy="511" main_hand_crit_rate="2" magic_accuracy="665" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="45">
+		<stats_template maxHp="4511" maxMp="6114" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="594" block="0" parry="535" main_hand_attack="16" main_hand_accuracy="518" main_hand_crit_rate="2" magic_accuracy="680" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="46">
+		<stats_template maxHp="4645" maxMp="6297" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="605" block="0" parry="545" main_hand_attack="16" main_hand_accuracy="525" main_hand_crit_rate="2" magic_accuracy="695" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="47">
+		<stats_template maxHp="4779" maxMp="6482" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="616" block="0" parry="555" main_hand_attack="16" main_hand_accuracy="532" main_hand_crit_rate="2" magic_accuracy="710" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="48">
+		<stats_template maxHp="4916" maxMp="6669" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="627" block="0" parry="565" main_hand_attack="16" main_hand_accuracy="539" main_hand_crit_rate="2" magic_accuracy="725" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="49">
+		<stats_template maxHp="5054" maxMp="6859" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="638" block="0" parry="575" main_hand_attack="16" main_hand_accuracy="546" main_hand_crit_rate="2" magic_accuracy="740" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="50">
+		<stats_template maxHp="5193" maxMp="7051" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="649" block="0" parry="585" main_hand_attack="16" main_hand_accuracy="553" main_hand_crit_rate="2" magic_accuracy="755" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="51">
+		<stats_template maxHp="5335" maxMp="7245" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="660" block="0" parry="595" main_hand_attack="16" main_hand_accuracy="560" main_hand_crit_rate="2" magic_accuracy="770" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="52">
+		<stats_template maxHp="5477" maxMp="7441" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="671" block="0" parry="605" main_hand_attack="16" main_hand_accuracy="567" main_hand_crit_rate="2" magic_accuracy="785" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="53">
+		<stats_template maxHp="5622" maxMp="7639" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="682" block="0" parry="615" main_hand_attack="16" main_hand_accuracy="574" main_hand_crit_rate="2" magic_accuracy="800" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="54">
+		<stats_template maxHp="5768" maxMp="7839" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="693" block="0" parry="625" main_hand_attack="16" main_hand_accuracy="581" main_hand_crit_rate="2" magic_accuracy="815" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="55">
+		<stats_template maxHp="5915" maxMp="8042" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="704" block="0" parry="635" main_hand_attack="16" main_hand_accuracy="588" main_hand_crit_rate="2" magic_accuracy="830" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="56">
+		<stats_template maxHp="6065" maxMp="8247" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="715" block="0" parry="645" main_hand_attack="16" main_hand_accuracy="595" main_hand_crit_rate="2" magic_accuracy="845" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="57">
+		<stats_template maxHp="6215" maxMp="8454" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="726" block="0" parry="655" main_hand_attack="16" main_hand_accuracy="602" main_hand_crit_rate="2" magic_accuracy="860" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="58">
+		<stats_template maxHp="6368" maxMp="8663" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="737" block="0" parry="665" main_hand_attack="16" main_hand_accuracy="609" main_hand_crit_rate="2" magic_accuracy="875" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="59">
+		<stats_template maxHp="6522" maxMp="8875" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="748" block="0" parry="675" main_hand_attack="16" main_hand_accuracy="616" main_hand_crit_rate="2" magic_accuracy="890" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="60">
+		<stats_template maxHp="6677" maxMp="9089" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="759" block="0" parry="685" main_hand_attack="16" main_hand_accuracy="623" main_hand_crit_rate="2" magic_accuracy="905" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="61">
+		<stats_template maxHp="6835" maxMp="9305" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="770" block="0" parry="695" main_hand_attack="16" main_hand_accuracy="630" main_hand_crit_rate="2" magic_accuracy="920" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="62">
+		<stats_template maxHp="6993" maxMp="9523" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="781" block="0" parry="705" main_hand_attack="16" main_hand_accuracy="637" main_hand_crit_rate="2" magic_accuracy="935" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="63">
+		<stats_template maxHp="7154" maxMp="9743" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="792" block="0" parry="715" main_hand_attack="16" main_hand_accuracy="644" main_hand_crit_rate="2" magic_accuracy="950" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="64">
+		<stats_template maxHp="7316" maxMp="9965" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="803" block="0" parry="725" main_hand_attack="16" main_hand_accuracy="651" main_hand_crit_rate="2" magic_accuracy="965" crit_spell="50" />
+	</player_stats>
+	<player_stats class="LUMINESS" level="65">
+		<stats_template maxHp="7479" maxMp="10190" power="95" health="95" agility="100" accuracy="105" knowledge="115" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="814" block="0" parry="735" main_hand_attack="16" main_hand_accuracy="658" main_hand_crit_rate="2" magic_accuracy="980" crit_spell="50" />
+	</player_stats>
+</player_stats_templates>

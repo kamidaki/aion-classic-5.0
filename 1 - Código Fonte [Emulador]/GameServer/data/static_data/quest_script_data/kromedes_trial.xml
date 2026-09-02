@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+	<report_to_many id="18600" start_npc_ids="204500" end_npc_ids="204500" start_dialog_id="1011">
+		<npc_infos npc_id="798321" var="0" quest_dialog="1352" />
+		<npc_infos npc_id="205228" var="1" quest_dialog="1693" />
+		<npc_infos npc_id="204500" var="2" quest_dialog="2375" close_dialog="1009" />
+	</report_to_many>
+	<report_to_many id="18601" start_npc_ids="204500" end_npc_ids="205229" start_dialog_id="1011">
+		<npc_infos npc_id="205229" var="0" quest_dialog="2375" close_dialog="1009" />
+	</report_to_many>
+	<monster_hunt id="18605" start_npc_ids="205230" end_dialog_id="1352">
+		<monster var="0" npc_ids="216970 216971 216972 217026 217027" end_var="8" />
+	</monster_hunt>
+	<monster_hunt id="18606" start_npc_ids="205231" end_dialog_id="1352">
+		<monster var="0" npc_ids="216968" end_var="1" />
+	</monster_hunt>
+	<monster_hunt id="18617" start_npc_ids="204639" end_dialog_id="1352">
+		<monster var="0" npc_ids="217005 217006" end_var="1" />
+	</monster_hunt>
+	<monster_hunt id="60014" start_npc_ids="205230" end_dialog_id="1352">
+		<monster var="0" npc_ids="216973 216974 216975 216976 216977 216978 216979 216983 216984 216985 217028 217029" end_var="10" />
+		<monster var="1" npc_ids="216987 216988 216989 216990 216991 216992 217031 217035 217036" end_var="10" />
+	</monster_hunt>
+	<item_collecting start_npc_ids="205232" id="18607" />
+	<item_collecting start_npc_ids="205232" id="18608" />
+	<item_collecting start_npc_ids="205232" id="18609" />
+	<item_collecting start_npc_ids="205232" id="18610" />
+	<item_collecting start_npc_ids="205232" id="18611" />
+	<item_collecting start_npc_ids="205232" id="18612" />
+	<item_collecting start_npc_ids="205232" id="18613" />
+	<item_collecting start_npc_ids="205232" id="18614" />
+	<item_collecting start_npc_ids="205232" id="18615" />
+	<item_collecting start_npc_ids="205232" id="18616" />
+	<item_collecting start_npc_ids="205232" id="18638" />
+	<item_collecting start_npc_ids="730326" id="18618" />
+	<item_collecting start_npc_ids="730327" id="18619" />
+	<item_collecting start_npc_ids="730328" id="18620" />
+	<item_collecting start_npc_ids="730329" id="18621" />
+	<item_collecting start_npc_ids="730330" id="18622" />
+	<item_collecting start_npc_ids="730331" id="18623" />
+	<item_collecting start_npc_ids="730332" id="18624" />
+	<item_collecting start_npc_ids="730333" id="18625" />
+	<item_collecting start_npc_ids="730334" id="18626" />
+	<item_collecting start_npc_ids="730335" id="18627" />
+	<item_collecting start_npc_ids="205232" id="18628" />
+	<item_collecting start_npc_ids="205232" id="18629" />
+	<item_collecting start_npc_ids="205232" id="18630" />
+	<item_collecting start_npc_ids="205232" id="18631" />
+	<item_collecting start_npc_ids="205232" id="18632" />
+	<item_collecting start_npc_ids="205232" id="18633" />
+	<item_collecting start_npc_ids="205232" id="18634" />
+	<item_collecting start_npc_ids="205232" id="18635" />
+	<item_collecting start_npc_ids="205232" id="18636" />
+	<item_collecting start_npc_ids="205232" id="18639" />
+	<report_to_many id="28601" start_npc_ids="204702" end_npc_ids="205234" start_dialog_id="1011">
+		<npc_infos npc_id="205234" var="0" quest_dialog="2375" close_dialog="1009" />
+	</report_to_many>
+	<monster_hunt id="28605" start_npc_ids="205235" end_dialog_id="1352">
+		<monster var="0" npc_ids="216970 216971 216972 217026 217027" end_var="8" />
+	</monster_hunt>
+	<monster_hunt id="28606" start_npc_ids="205236" end_dialog_id="1352">
+		<monster var="0" npc_ids="216968" end_var="1" />
+	</monster_hunt>
+	<monster_hunt id="28617" start_npc_ids="205235" end_dialog_id="1352">
+		<monster var="0" npc_ids="217005 217006" end_var="1" />
+	</monster_hunt>
+	<monster_hunt id="70014" start_npc_ids="205235" end_dialog_id="1352">
+		<monster var="0" npc_ids="216973 216974 216975 216976 216977 216978 216979 216983 216984 216985 217028 217029" end_var="10" />
+		<monster var="1" npc_ids="216987 216988 216989 216990 216991 216992 217031 217035 217036" end_var="10" />
+	</monster_hunt>
+	<item_collecting start_npc_ids="205237" id="28607" />
+	<item_collecting start_npc_ids="205237" id="28608" />
+	<item_collecting start_npc_ids="205237" id="28609" />
+	<item_collecting start_npc_ids="205237" id="28610" />
+	<item_collecting start_npc_ids="205237" id="28611" />
+	<item_collecting start_npc_ids="205237" id="28612" />
+	<item_collecting start_npc_ids="205237" id="28613" />
+	<item_collecting start_npc_ids="205237" id="28614" />
+	<item_collecting start_npc_ids="205237" id="28615" />
+	<item_collecting start_npc_ids="205237" id="28616" />
+	<item_collecting start_npc_ids="205237" id="28638" />
+	<item_collecting start_npc_ids="730326" id="28618" />
+	<item_collecting start_npc_ids="730327" id="28619" />
+	<item_collecting start_npc_ids="730328" id="28620" />
+	<item_collecting start_npc_ids="730329" id="28621" />
+	<item_collecting start_npc_ids="730330" id="28622" />
+	<item_collecting start_npc_ids="730331" id="28623" />
+	<item_collecting start_npc_ids="730332" id="28624" />
+	<item_collecting start_npc_ids="730333" id="28625" />
+	<item_collecting start_npc_ids="730334" id="28626" />
+	<item_collecting start_npc_ids="730335" id="28627" />
+	<item_collecting start_npc_ids="205237" id="28628" />
+	<item_collecting start_npc_ids="205237" id="28629" />
+	<item_collecting start_npc_ids="205237" id="28630" />
+	<item_collecting start_npc_ids="205237" id="28631" />
+	<item_collecting start_npc_ids="205237" id="28632" />
+	<item_collecting start_npc_ids="205237" id="28633" />
+	<item_collecting start_npc_ids="205237" id="28634" />
+	<item_collecting start_npc_ids="205237" id="28635" />
+	<item_collecting start_npc_ids="205237" id="28636" />
+	<item_collecting start_npc_ids="205237" id="28639" />
+</quest_scripts>

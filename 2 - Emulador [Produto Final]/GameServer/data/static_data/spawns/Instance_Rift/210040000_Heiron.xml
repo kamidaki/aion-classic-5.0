@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns>
+	<spawn_map map_id="210040000">
+		<instance_rift_spawn id="1">
+			<instance_rift_type estate="OPEN">
+				<spawn npc_id="700564">
+					<spot x="2528.662598" y="2680.882813" z="158.871170" entity_id="1617" />
+				</spawn>
+			</instance_rift_type>
+			<instance_rift_type estate="CLOSED">
+			</instance_rift_type>
+		</instance_rift_spawn>
+	</spawn_map>
+</spawns>
