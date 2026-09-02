@@ -2,7 +2,7 @@ use crate::config::RootConfig;
 use crate::db_manager::{DbManager, OnlinePlayerInfo};
 use crate::logs::LogCenter;
 use parking_lot::Mutex;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, VecDeque};
 use std::net::UdpSocket;
 use std::path::PathBuf;
@@ -72,6 +72,18 @@ pub struct HistoryPoint {
     pub players_count: usize,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DatabaseMetrics {
+    pub is_connected: bool,
+    pub engine: String,
+    pub host: String,
+    pub port: u16,
+    pub db_name: String,
+    pub user: String,
+    pub total_tables: usize,
+    pub total_rows: i64,
+}
+
 #[derive(Debug, Clone, Serialize)]
 pub struct DashboardState {
     pub launcher_pid: u32,
@@ -84,6 +96,7 @@ pub struct DashboardState {
     pub servers: Vec<ServerMetrics>,
     pub history: Vec<HistoryPoint>,
     pub online_players_count: usize,
+    pub database: DatabaseMetrics,
     pub subsystems: Vec<SubsystemMetric>,
 }
 
@@ -657,6 +670,8 @@ impl Supervisor {
             (0.0, 0.0)
         };
 
+        let (db_connected, db_tables, db_rows) = self.db_manager.get_summary();
+
         DashboardState {
             launcher_pid: self.launcher_pid,
             launcher_cpu,
@@ -668,6 +683,16 @@ impl Supervisor {
             servers: server_metrics,
             history: hist.iter().cloned().collect(),
             online_players_count: self.db_manager.get_online_players().len(),
+            database: DatabaseMetrics {
+                is_connected: db_connected,
+                engine: "MySQL".to_string(),
+                host: self.db_manager.host.clone(),
+                port: self.db_manager.port,
+                db_name: self.db_manager.db_name.clone(),
+                user: self.db_manager.user.clone(),
+                total_tables: db_tables,
+                total_rows: db_rows,
+            },
             subsystems: Vec::new(),
         }
     }

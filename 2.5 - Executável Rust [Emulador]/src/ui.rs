@@ -1792,7 +1792,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             <div class="brand-box">
                 <div class="brand-icon">A</div>
                 <div class="brand-text">Classic Emu</div>
-                <div class="brand-pill">Classic 4.5</div>
+                <div class="brand-pill">Classic 5.0</div>
             </div>
             <div class="header-status-pills">
                 <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-login"></div> <span>Login</span></div>
@@ -1803,7 +1803,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
         <div class="header-right">
             <!-- Database Studio Header Button -->
-            <button class="btn-db-studio" onclick="openDbStudio()" title="Gerenciador e Editor do Banco de Dados SQLite (Workbench / Navicat)">
+            <button class="btn-db-studio" onclick="openDbStudio()" title="Gerenciador e Editor do Banco de Dados MySQL (Workbench / Navicat)">
                 <span class="btn-svg"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
                 <span>Banco de Dados</span>
             </button>
@@ -1901,15 +1901,15 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 <div class="card-header">
                     <div class="card-title-box">
                         <div class="status-dot online" id="dot-db"></div>
-                        <div class="card-title">Banco SQLite</div>
+                        <div class="card-title">Banco de Dados</div>
                     </div>
-                    <div class="card-tag">SQLite (login / game / chat)</div>
+                    <div class="card-tag" id="tag-db">MySQL (aiondbls_gs)</div>
                 </div>
                 <div class="metrics-box">
-                    <div class="metric-row"><span class="metric-label">Engine / Modo:</span><span class="metric-value" style="color:var(--accent-game);">WAL (Ativo)</span></div>
-                    <div class="metric-row"><span class="metric-label">Tabelas:</span><span class="metric-value" id="val-db-tables" style="color:var(--accent-db);">0 Tabelas (0 Bancos)</span></div>
+                    <div class="metric-row"><span class="metric-label">Engine / Host:</span><span class="metric-value" id="val-db-engine" style="color:var(--accent-game);">MySQL (192.168.3.29:3310)</span></div>
+                    <div class="metric-row"><span class="metric-label">Tabelas:</span><span class="metric-value" id="val-db-tables" style="color:var(--accent-db);">0 Tabelas</span></div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-db" style="width: 100%;"></div></div>
-                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Tamanho em Disco:</span><span class="metric-value" id="val-db-size">0 KB</span></div>
+                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Total de Registros:</span><span class="metric-value" id="val-db-size">0 Registros</span></div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill fill-db" style="width: 100%;"></div></div>
                 </div>
                 <div class="card-actions">
@@ -1919,7 +1919,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     </button>
                     <button class="btn-danger" onclick="openCleanAllModal()">
                         <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
-                        <span>Limpar Tudo</span>
+                        <span>Limpar Tabelas</span>
                     </button>
                 </div>
             </div>
@@ -2085,7 +2085,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 </div>
                 <div class="drawer-card">
                     <div class="drawer-row"><span style="color: var(--text-muted);">Taxa de Tick (TPS):</span><span class="drawer-val" style="color: var(--accent-game);">20.0 / 20.0 TPS (Fixo)</span></div>
-                    <div class="drawer-row"><span style="color: var(--text-muted);">Bancos SQLite:</span><span class="drawer-val" id="reg-db-size">login / game / chat (0 KB)</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">Banco de Dados:</span><span class="drawer-val" id="reg-db-size">MySQL (aiondbls_gs)</span></div>
                     <div class="drawer-row"><span style="color: var(--text-muted);">Memória Total do SO:</span><span class="drawer-val" id="reg-os-mem">0.0 / 0.0 GB</span></div>
                     <div class="drawer-row"><span style="color: var(--text-muted);">Uptime do Launcher:</span><span class="drawer-val" id="reg-uptime">00:00:00</span></div>
                 </div>
@@ -2140,7 +2140,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             <div class="db-header">
                 <div class="db-header-title">
                     <span class="btn-svg" style="color: var(--accent-login);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-                    <span>Database Studio & Workbench (SQLite)</span>
+                    <span>Database Studio & Workbench (MySQL)</span>
                     <span class="brand-pill" id="db-total-tables-pill">0 Tabelas</span>
                 </div>
                 <div class="db-header-actions">
@@ -2825,28 +2825,55 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     });
                 }
 
-                // 2. Update System Registers & DB Card
+                // 2. Update Database Card & System Registers
+                if (data.database) {
+                    const db = data.database;
+                    const dotDb = document.getElementById('dot-db');
+                    if (dotDb) {
+                        dotDb.className = db.is_connected ? 'status-dot online' : 'status-dot offline';
+                    }
+                    const tagDb = document.getElementById('tag-db');
+                    if (tagDb) {
+                        tagDb.innerText = `${db.engine} (${db.db_name})`;
+                    }
+                    const valDbEngine = document.getElementById('val-db-engine');
+                    if (valDbEngine) {
+                        valDbEngine.innerText = `${db.engine} (${db.host}:${db.port})`;
+                    }
+                    const valDbTables = document.getElementById('val-db-tables');
+                    if (valDbTables) {
+                        valDbTables.innerText = `${db.total_tables} Tabelas`;
+                    }
+                    const valDbSize = document.getElementById('val-db-size');
+                    if (valDbSize) {
+                        valDbSize.innerText = `${db.total_rows.toLocaleString()} Registros`;
+                    }
+                    const regDb = document.getElementById('reg-db-size');
+                    if (regDb) {
+                        regDb.innerText = `${db.engine} (${db.db_name}) - ${db.total_tables} Tabelas`;
+                    }
+                    const pill = document.getElementById('db-total-tables-pill');
+                    if (pill && db.total_tables > 0) {
+                        pill.innerText = `${db.total_tables} Tabelas (${db.total_rows.toLocaleString()} Registros)`;
+                    }
+                }
+
                 if (data.registers) {
                     const r = data.registers;
                     externalUrlStr = r.external_url;
                     document.getElementById('hdr-lan-ip').innerText = `${r.lan_ip}:${r.http_port}`;
                     document.getElementById('reg-lan-ip').innerText = r.lan_ip;
                     document.getElementById('reg-ext-url').innerText = r.external_url;
-                    
-                    const dbSizeMB = (r.active_db_size_kb / 1024).toFixed(2);
-                    document.getElementById('reg-db-size').innerText = `SQLite (${dbSizeMB} MB)`;
-                    
-                    const valDbSize = document.getElementById('val-db-size');
-                    if (valDbSize) valDbSize.innerText = `${dbSizeMB} MB`;
-
-                    const totalTbls = r.total_tables_count || 0;
-                    const totalDbs = r.total_databases_count || 0;
-                    const valDbTables = document.getElementById('val-db-tables');
-                    if (valDbTables) {
-                        valDbTables.innerText = `${totalTbls} Tabelas (${totalDbs} Bancos)`;
-                    }
-
                     document.getElementById('reg-os-mem').innerText = `${(r.os_used_memory_mb / 1024).toFixed(1)} / ${(r.os_total_memory_mb / 1024).toFixed(1)} GB`;
+                }
+
+                if (data.local_ip) {
+                    const port = 18080;
+                    externalUrlStr = `http://${data.local_ip}:${port}`;
+                    const hdrLan = document.getElementById('hdr-lan-ip');
+                    if (hdrLan) hdrLan.innerText = `${data.local_ip}:${port}`;
+                    const regLan = document.getElementById('reg-lan-ip');
+                    if (regLan) regLan.innerText = data.local_ip;
                 }
 
                 if (data.launcher_uptime_secs !== undefined) {
@@ -3254,7 +3281,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         // DATABASE STUDIO WORKBENCH FULL LOGIC
         // ==========================================
         let dbDatabases = [];
-        let currentDbId = "game";
+        let currentDbId = "aiondbls_gs";
         let currentDbTable = null;
         let currentDbPage = 1;
         let currentDbLimit = 50;
@@ -4243,6 +4270,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         setInterval(fetchLogs, 800);
         fetchMetrics();
         fetchLogs();
+        loadDbSchema();
     </script>
 </body>
 </html>

@@ -56,7 +56,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         &cfg.paths.chat_server_log_dir,
     );
 
-    let db_manager = DbManager::new();
+    let db_manager = DbManager::new(&cfg.database);
     let supervisor = Supervisor::new(cfg.clone(), log_center.clone(), db_manager.clone());
 
     // 2. Initialize Tokio Runtime for background services

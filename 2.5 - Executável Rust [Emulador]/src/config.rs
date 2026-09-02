@@ -49,13 +49,13 @@ pub struct GuiSettings {
 pub struct DatabaseSettings {
     #[serde(default = "default_true")]
     pub auto_read_properties: bool,
-    #[serde(default = "default_empty")]
+    #[serde(default = "default_db_host")]
     pub host: String,
     #[serde(default = "default_db_port")]
     pub port: u16,
-    #[serde(default = "default_empty")]
+    #[serde(default = "default_db_user")]
     pub user: String,
-    #[serde(default = "default_empty")]
+    #[serde(default = "default_db_pass")]
     pub password: String,
     #[serde(default = "default_db_name")]
     pub database: String,
@@ -112,8 +112,11 @@ fn default_width() -> u32 { 1440 }
 fn default_height() -> u32 { 900 }
 fn default_http_port() -> u16 { 18080 }
 fn default_empty() -> String { "".to_string() }
+fn default_db_host() -> String { "192.168.3.29".to_string() }
 fn default_db_name() -> String { "aiondbls_gs".to_string() }
-fn default_db_port() -> u16 { 3306 }
+fn default_db_port() -> u16 { 3310 }
+fn default_db_user() -> String { "aionliveclassic".to_string() }
+fn default_db_pass() -> String { "@d@mn0gu31r4".to_string() }
 fn default_java() -> String { "java".to_string() }
 fn default_shutdown_delay() -> u64 { 60 }
 

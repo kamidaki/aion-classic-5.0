@@ -22,10 +22,10 @@
   },
   "database": {
     "auto_read_properties": true,
-    "host": "",
-    "port": 3306,
-    "user": "",
-    "password": "",
+    "host": "192.168.3.29",
+    "port": 3310,
+    "user": "aionliveclassic",
+    "password": "@d@mn0gu31r4",
     "database": "aiondbls_gs"
   },
   "servers": {
