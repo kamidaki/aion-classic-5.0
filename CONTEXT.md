@@ -238,19 +238,20 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 ## 🏛 Estrutura de Diretórios do Projeto
 
 ```text
-├── 1 - Código Fonte [Emulador]/          # Código-fonte Java do Emulador (Login, Game, Chat)
+├── 1 - Código Fonte [Emulador]/          # Código-fonte Java do Emulador (Login, Game, Chat, WebSocket)
 │   ├── LoginServer/                      # Autenticação RSA/Blowfish, seleção de servidor e contas
 │   ├── GameServer/                       # Mundo do jogo, física, entidades, skills, itens, dados estáticos
 │   ├── ChatServer/                       # Canais de chat global, grupos e comunicação em tempo real
+│   ├── WebSocketServer/                  # Servidor Java WebSocket (RFC 6455) de gerenciamento e telemetria
 │   ├── pom.xml                           # POM Maven multi-módulo agregador
 │   └── build-server.bat                  # Script de automação de compilação e deploy
 ├── 2 - Emulador [Produto Final]/         # Distribuição executável e pronta para execução imediata
+│   ├── Aion Classic - EMU.exe            # Executável único do Inicializador e Supervisor visual
+│   ├── config.json                       # Configurações do inicializador, JVM e parâmetros de boot
 │   ├── LoginServer/                      # Binários e configs do LoginServer em produção
 │   ├── GameServer/                       # Binários, static_data e configs do GameServer em produção
-│   ├── ChatServer/                       # Binários e configs do ChatServer em produção
-│   ├── StartAll.bat                      # Inicializador unificado de todos os serviços
-│   └── StopAll.bat                       # Finalizador gracioso de todos os serviços
-├── 2.5 - Executável Rust [Emulador]/     # Launcher/wrapper auxiliar de inicialização rápida
+│   └── ChatServer/                       # Binários e configs do ChatServer em produção
+├── 2.5 - Executável Rust [Emulador]/     # Código-fonte Rust do inicializador e painel supervisório
 ├── 3 - Código Fonte [Version.dll]/       # Hook C++/C# para o cliente (No-IP, bypass launcher oficial)
 ├── 4 - Patch para o Client 5.0/          # Patch pronto para o cliente (bin32, bin64, Start x64.bat)
 ├── 5 - Documentação e Referências/       # Documentações, PCAPs oficiais e dados de referência
@@ -276,11 +277,30 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## 🛠 Workflow de Desenvolvimento
+## 🛠 Workflow de Desenvolvimento, Compilação e Deploy
 
-$$\mathbf{Código\ Fonte\ [1]} \xrightarrow{\text{mvn clean package / build-server.bat}} \mathbf{Build\ &amp;\ Deploy} \xrightarrow{\text{Sincronização}} \mathbf{Produto\ Final\ [2]} \xrightarrow{\text{StartAll.bat}} \mathbf{Servidor\ Ativo}$$
+$$\mathbf{Código\ Fonte\ [1]} \xrightarrow{\text{mvn clean package / build-server.bat}} \mathbf{JARs\ Canônicos} \xrightarrow{\text{Deploy}} \mathbf{Produto\ Final\ [2]} \xrightarrow{\text{Aion\ Classic\ -\ EMU.exe}} \mathbf{Servidores\ Ativos}$$
 
 1. **Alterações de Código**: Feitas exclusivamente em `1 - Código Fonte [Emulador]`.
-2. **Compilação**: Executada via `build-server.bat` ou `mvn clean package -DskipTests=true`.
-3. **Deploy**: O `build-server.bat` publica e atualiza automaticamente os artefatos em `2 - Emulador [Produto Final]`.
-4. **Execução**: Realizada através de `StartAll.bat` dentro de `2 - Emulador [Produto Final]`.
+2. **Compilação dos Servidores Java**:
+   - Executada via `build-server.bat` ou `mvn clean package -DskipTests=true`.
+   - Gera os artefatos canônicos:
+     - `ChatServer-ClassicEmu-Brasil.jar`
+     - `LoginServer-ClassicEmu-Brasil.jar`
+     - `GameServer-ClassicEmu-Brasil.jar`
+     - `AL-WebSocket.jar`
+3. **Compilação do Inicializador Rust**:
+   - Executada via `2.5 - Executável Rust [Emulador]\Build.bat` ou `cargo build --release`.
+   - Produz o executável nativo único `2 - Emulador [Produto Final]\Aion Classic - EMU.exe`.
+4. **Deploy Automático**:
+   - O script `build-server.bat` copia os JARs atualizados para as pastas `LoginServer/`, `GameServer/`, `ChatServer/` e seus diretórios `libs/`.
+5. **Execução**:
+   - Realizada exclusivamente através de `2 - Emulador [Produto Final]\Aion Classic - EMU.exe`.
+   - Inicia sequencialmente ChatServer $\to$ LoginServer $\to$ GameServer sem abrir janelas pretas de console.
+   - Fornece painel web com gráficos de CPU/RAM, console de logs agregados e Database Studio.
+6. **Configuração do Inicializador (`config.json`)**:
+   - Editável em `2 - Emulador [Produto Final]\config.json`.
+   - Configura memória JVM (`-Xms`, `-Xmx`), delay sequencial (`start_sequence_delay_seconds`), parâmetros do MySQL e caminhos.
+7. **Serviços de Gerenciamento e Telemetria**:
+   - **ManagementService (`127.0.0.1:18091`)**: Listener HTTP/REST local no GameServer. Permite desligamento/reinício seguro com contagem regressiva de 60 segundos (`STR_SERVER_SHUTDOWN`), garantindo persistência completa dos dados dos jogadores antes de fechar o processo.
+   - **WebSocketServer (`127.0.0.1:18099`)**: Servidor WebSocket nativo (RFC 6455) para broadcast, integração com painéis externos e telemetria contínua.

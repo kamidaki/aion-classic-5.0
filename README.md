@@ -13,15 +13,16 @@ O projeto é organizado nos seguintes módulos e diretórios de primeiro nível:
 │   ├── LoginServer/                      # Autenticação e seleção de servidor
 │   ├── GameServer/                       # Motor do mundo, física, combate, entidades, skills, itens
 │   ├── ChatServer/                       # Servidor de chat e comunicação em tempo real
+│   ├── WebSocketServer/                  # Módulo Java WebSocket (RFC 6455) de gerenciamento e telemetria
 │   ├── pom.xml                           # POM Maven multi-módulo agregador
 │   └── build-server.bat                  # Script de automação de compilação e deploy
 ├── 2 - Emulador [Produto Final]/         # Distribuição executável e pronta para execução imediata
+│   ├── Aion Classic - EMU.exe            # Executável único do Inicializador e Supervisor visual
+│   ├── config.json                       # Configurações do inicializador, JVM e parâmetros de boot
 │   ├── LoginServer/                      # Binários e configs do LoginServer em produção
 │   ├── GameServer/                       # Binários, static_data e configs do GameServer em produção
-│   ├── ChatServer/                       # Binários e configs do ChatServer em produção
-│   ├── StartAll.bat                      # Inicializador unificado de todos os serviços
-│   └── StopAll.bat                       # Finalizador gracioso de todos os serviços
-├── 2.5 - Executável Rust [Emulador]/     # Launcher/wrapper auxiliar em Rust
+│   └── ChatServer/                       # Binários e configs do ChatServer em produção
+├── 2.5 - Executável Rust [Emulador]/     # Código-fonte Rust do inicializador e painel supervisório
 ├── 3 - Código Fonte [Version.dll]/       # Hook C++/C# para o cliente (No-IP, bypass do launcher Gameforge)
 ├── 4 - Patch para o Client 5.0/          # Patch pronto para o cliente (bin32, bin64, Start x64.bat)
 ├── 5 - Documentação e Referências/       # Documentações, PCAPs oficiais e dados de referência
@@ -176,29 +177,92 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## 🛠 Como Compilar e Executar
+## 🛠 Compilação, Deploy e Inicialização
 
-### 1. Compilação e Publicação Automática
-Para compilar o código-fonte e atualizar a pasta de produção `2 - Emulador [Produto Final]`, execute na pasta `1 - Código Fonte [Emulador]`:
+### 1. Compilação dos Servidores Java (Maven)
+O emulador Java é composto pelos servidores **LoginServer**, **GameServer**, **ChatServer** e pelo módulo **WebSocketServer**. Os JARs de produção são padronizados como:
+- `ChatServer-ClassicEmu-Brasil.jar`
+- `LoginServer-ClassicEmu-Brasil.jar`
+- `GameServer-ClassicEmu-Brasil.jar`
+- `AL-WebSocket.jar`
+
+Para compilar todo o código-fonte Java e empacotar os servidores automaticamente:
 ```bat
+cd "1 - Código Fonte [Emulador]"
 build-server.bat
 ```
-Ou via linha de comando com o Maven:
+Ou manualmente via linha de comando com o Maven:
 ```bash
 mvn clean package -DskipTests=true
 ```
 
-### 2. Inicialização dos Servidores
-Para iniciar toda a suite de servidores em janelas dedicadas, acesse `2 - Emulador [Produto Final]` e execute:
-```bat
-StartAll.bat
-```
-Para encerrar graciosamente os servidores:
-```bat
-StopAll.bat
-```
+### 2. Compilação do Inicializador Rust (Aion Classic - EMU.exe)
+O gerenciador e supervisor visual do emulador é desenvolvido em Rust com interface gráfica WebView2, Named Mutex nativo do Windows e conector MySQL.
 
-### 3. Conexão do Cliente
+Para compilar o binário em modo Release e publicá-lo automaticamente:
+```bat
+cd "2.5 - Executável Rust [Emulador]"
+Build.bat
+```
+O script compila o projeto e copia o executável gerado para:
+`2 - Emulador [Produto Final]\Aion Classic - EMU.exe`
+
+### 3. Procedimento de Deploy
+O deploy consiste em disponibilizar os artefatos compilados na pasta de produção:
+1. **Servidores Java**: O script `build-server.bat` copia os arquivos `.jar` atualizados e suas bibliotecas de dependência para `2 - Emulador [Produto Final]\<Server>\` e `2 - Emulador [Produto Final]\<Server>\libs\`.
+2. **Inicializador**: O script `Build.bat` posiciona o `Aion Classic - EMU.exe` diretamente na raiz de `2 - Emulador [Produto Final]\`.
+3. **Dados Estáticos e Banco**: Os arquivos XML de `GameServer\data\static_data` e os scripts SQL de migração em `GameServer\sql\aiondbls_gs.sql` já estão posicionados nos respectivos diretórios de produção.
+
+### 4. Como Iniciar o Emulador
+A inicialização do emulador é realizada exclusivamente através do executável único:
+```text
+2 - Emulador [Produto Final]\Aion Classic - EMU.exe
+```
+Ao iniciar:
+- Uma única instância do emulador é garantida via Windows Named Mutex.
+- Os servidores são inicializados em ordem sequencial com delay configurável: **ChatServer** $\to$ **LoginServer** $\to$ **GameServer**.
+- Todos os processos executam em segundo plano (`CREATE_NO_WINDOW`), sem poluir a tela com janelas pretas de console.
+- A interface gráfica do **Classic Emu** é aberta automaticamente, exibindo gráficos de uso de CPU/RAM em tempo real, console agregado de logs e o Database Studio.
+- O ícone do aplicativo é adicionado à **Bandeja do Sistema (System Tray)** com o ícone oficial `AppTray.ico`. Clicar com o botão direito na bandeja permite reabrir o painel ou encerrar todos os servidores com segurança.
+
+### 5. Como Editar as Configurações do Inicializador (`config.json`)
+Todas as preferências de execução do inicializador e da JVM são controladas pelo arquivo:
+```text
+2 - Emulador [Produto Final]\config.json
+```
+Principais blocos de configuração:
+- **`launcher`**:
+  - `auto_start_servers_on_launch`: `true` inicia os servidores automaticamente ao abrir o `.exe`.
+  - `start_sequence_delay_seconds`: Tempo de espera (em segundos) entre a subida de cada servidor (padrão: `3`).
+  - `clean_archived_logs_days`: Período em dias para expurgo automático de logs antigos (padrão: `7`).
+- **`gui`**:
+  - `http_port`: Porta do painel supervisor web local (padrão: `18080`).
+  - `window_width` e `window_height`: Dimensões da janela inicial (1440x900).
+- **`database`**:
+  - `auto_read_properties`: Quando `true`, lê automaticamente host, porta, usuário e senha diretamente de `database.properties` de cada servidor.
+- **`servers`** (`chat`, `login`, `game`):
+  - `java_exe`: Caminho do executável do Java (padrão `"java"`, resolvendo automaticamente via `JAVA_HOME` ou caminhos do JDK 8 instalado).
+  - `jvm_args`: Parâmetros de memória e JVM (ex: `["-Xms1280m", "-Xmx3192m", "-XX:MaxHeapSize=3192m", "-ea", "-Dfile.encoding=UTF-8"]`).
+  - `classpath`: Lista de JARs do servidor (ex: `"./libs/*;GameServer-ClassicEmu-Brasil.jar;./libs/GameServer-ClassicEmu-Brasil.jar"`).
+  - `shutdown_delay_seconds`: Tempo de contagem regressiva para desligamento seguro (padrão: `60` para o GameServer).
+
+### 6. Como Funciona o WebSocket e o Gerenciamento Remoto
+O emulador conta com dois mecanismos de controle e telemetria:
+
+1. **ManagementService Local (HTTP/REST em `127.0.0.1:18091`)**:
+   - Integrado nativamente ao ciclo de vida do `GameServer`.
+   - **Desligamento / Reinício Seguro**: Ao solicitar parada ou reinicialização pelo inicializador, é enviado `POST /shutdown {"delay": 60, "mode": "shutdown"|"restart"}`.
+   - O GameServer aciona `ShutdownHook.getInstance().doShutdown(60, 1, mode)`, exibindo para todos os jogadores no jogo uma contagem regressiva regressiva de 60 segundos com aviso no centro da tela (`STR_SERVER_SHUTDOWN`).
+   - Todos os personagens ativos são desconectados e gravados com segurança no banco MySQL (`PlayerLeaveWorldService.startLeaveWorld`), eliminando qualquer risco de perda de progresso (rollback).
+   - **Status e Telemetria**: Endpoint `GET /status` retorna a contagem de jogadores online e tempo de atividade em JSON.
+   - **Avisos Globais**: Endpoint `POST /announce {"message": "..."}` envia avisos amarelos no centro da tela para todos os jogadores.
+
+2. **WebSocketServer (RFC 6455 em `127.0.0.1:18099`)**:
+   - Localizado em `1 - Código Fonte [Emulador]\WebSocketServer\`.
+   - Implementa handshake HTTP 101 Switching Protocols e enquadramento binário/texto da RFC 6455.
+   - Permite conexões full-duplex persistentes entre ferramentas administrativas, dashboards web externos e o núcleo do emulador para telemetria em tempo real e broadcast sem sobrecarga de pooling.
+
+### 7. Conexão do Cliente Oficial 5.0
 1. Instale o cliente oficial **Aion Classic 5.0 (EU)**.
 2. Aplique o conteúdo da pasta `4 - Patch para o Client 5.0\` no diretório raiz do seu cliente.
 3. Inicie o jogo através de `Start x64.bat`.

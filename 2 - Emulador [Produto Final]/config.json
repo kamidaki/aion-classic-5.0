@@ -38,7 +38,7 @@
         "-DconsoleEncoding=UTF-8"
       ],
       "main_class": "com.aionemu.chatserver.ChatServer",
-      "classpath": "./libs/*;AL-Chat.jar",
+      "classpath": "./libs/*;ChatServer-ClassicEmu-Brasil.jar;./libs/ChatServer-ClassicEmu-Brasil.jar",
       "working_dir": "ChatServer",
       "label": "Chat Server",
       "tag": "CS",
@@ -57,7 +57,7 @@
         "-DconsoleEncoding=UTF-8"
       ],
       "main_class": "com.aionemu.loginserver.LoginServer",
-      "classpath": "./libs/*;Encom-Login-1.8.jar",
+      "classpath": "./libs/*;LoginServer-ClassicEmu-Brasil.jar;./libs/LoginServer-ClassicEmu-Brasil.jar",
       "working_dir": "LoginServer",
       "label": "Login Server",
       "tag": "LS",
@@ -77,7 +77,7 @@
         "-DconsoleEncoding=UTF-8"
       ],
       "main_class": "com.aionemu.gameserver.GameServer",
-      "classpath": "./libs/*;Encom-Game-1.8.jar",
+      "classpath": "./libs/*;GameServer-ClassicEmu-Brasil.jar;./libs/GameServer-ClassicEmu-Brasil.jar",
       "working_dir": "GameServer",
       "label": "Game Server",
       "tag": "GS",
