@@ -5,7 +5,7 @@ Emulador Java de alta performance para o cliente **Aion Classic 5.0 (EU - Gamefo
 ---
 
 > [!CAUTION]
-> # 🚨 DIRETRIZES MANDATÓRIAS E REGRAS INEGOCIÁVEIS DE DESENVOLVIMENTO
+> # DIRETRIZES MANDATÓRIAS E REGRAS INEGOCIÁVEIS DE DESENVOLVIMENTO
 > **ESTAS REGRAS SÃO ESTRITAMENTE OBRIGATÓRIAS PARA TODOS OS DESENVOLVEDORES E AGENTES DE IA NESTE PROJETO.**
 > **QUALQUER VIOLAÇÃO OU WORKAROUND QUEBRA A ARQUITETURA E NÃO SERÁ TOLERADA.**
 
@@ -68,7 +68,7 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## 🏛 Arquitetura e Mapeamento Oficial de Opcodes (Classic 5.0)
+## Arquitetura e Mapeamento Oficial de Opcodes (Classic 5.0)
 
 ### 1. Fio de Rede (Wire Protocol) e Matemática Criptográfica
 
@@ -235,7 +235,7 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## 🏛 Estrutura de Diretórios do Projeto
+## Estrutura de Diretórios do Projeto
 
 ```text
 ├── 1 - Código Fonte [Emulador]/          # Código-fonte Java do Emulador (Login, Game, Chat, WebSocket)
@@ -266,7 +266,7 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## ⚡ Ambiente de Execução e Roadmap
+## Ambiente de Execução e Roadmap
 
 - **Runtime Atual**: Java 8 (Recomendado: `jdk1.8.0_431` ou superior x64).
 - **Build Tool**: Apache Maven 3.8+ (3.9.9 testado).
@@ -277,7 +277,7 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## 🛠 Workflow de Desenvolvimento, Compilação e Deploy
+## Workflow de Desenvolvimento, Compilação e Deploy
 
 $$\mathbf{Código\ Fonte\ [1]} \xrightarrow{\text{mvn clean package / build-server.bat}} \mathbf{JARs\ Canônicos} \xrightarrow{\text{Deploy}} \mathbf{Produto\ Final\ [2]} \xrightarrow{\text{Aion\ Classic\ -\ EMU.exe}} \mathbf{Servidores\ Ativos}$$
 

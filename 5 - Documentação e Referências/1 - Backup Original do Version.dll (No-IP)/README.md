@@ -18,7 +18,7 @@ This project depends on [MS Detours](https://github.com/Microsoft/Detours). Sinc
 2. **Optional:** If you want to use DXVK, copy `d3d9.dll` from the [latest DXVK release](https://github.com/doitsujin/dxvk/releases) to the same folders and make sure you're using the latest graphics driver. If your graphics card is incompatible because it is too old, you can try the [latest DXVK-Sarek release](https://github.com/pythonlover02/DXVK-Sarek/releases/latest) instead.  
 DXVK can be tweaked via an optional config file. See below for recommended settings.
 
-## ⚙️ Recommended DXVK Configuration (optional)
+## Recommended DXVK Configuration (optional)
 Create a file named `dxvk.conf` in the **game root directory** (NOT `bin32/bin64`):
 ```ini
 # Enable FPS counter (different from the one the game client provides)

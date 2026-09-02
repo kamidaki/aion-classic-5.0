@@ -4,7 +4,7 @@ Emulador completo e de alta performance para o cliente oficial **Aion Classic 5.
 
 ---
 
-## 🏛 Visão Geral da Arquitetura
+## Visão Geral da Arquitetura
 
 O projeto é organizado nos seguintes módulos e diretórios de primeiro nível:
 
@@ -37,7 +37,7 @@ O projeto é organizado nos seguintes módulos e diretórios de primeiro nível:
 
 ---
 
-## 🎯 A Regra Principal de Arquitetura
+## A Regra Principal de Arquitetura
 
 O desenvolvimento e a evolução do emulador seguem rigorosamente a cadeia causal de eventos:
 
@@ -50,7 +50,7 @@ $$\mathbf{Captura\ (PCAP)} \longrightarrow \mathbf{Protocolo\ (Wire)} \longright
 
 ---
 
-## 📝 Padrão Obrigatório de Commits
+## Padrão Obrigatório de Commits
 
 Para manter o histórico do repositório organizado, rastreável e padronizado entre os desenvolvedores:
 
@@ -67,7 +67,7 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## 📡 Arquitetura e Mapeamento Oficial de Opcodes (Classic 5.0)
+## Arquitetura e Mapeamento Oficial de Opcodes (Classic 5.0)
 
 ### 1. Fio de Rede (Wire Protocol) e Transformação Matemática
 
@@ -166,7 +166,7 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## ⚡ Ambiente de Execução e Roadmap
+## Ambiente de Execução e Roadmap
 
 - **Runtime Atual**: Java 8 (Recomendado: `jdk1.8.0_431` ou superior x64).
 - **Build Tool**: Apache Maven 3.8+ (3.9.9 testado).
@@ -177,7 +177,7 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 
 ---
 
-## 🛠 Compilação, Deploy e Inicialização
+## Compilação, Deploy e Inicialização
 
 ### 1. Compilação dos Servidores Java (Maven)
 O emulador Java é composto pelos servidores **LoginServer**, **GameServer**, **ChatServer** e pelo módulo **WebSocketServer**. Os JARs de produção são padronizados como:
@@ -269,5 +269,5 @@ O emulador conta com dois mecanismos de controle e telemetria:
 
 ---
 
-## 📜 Regras de Desenvolvimento e Qualidade
+## Regras de Desenvolvimento e Qualidade
 Consulte sempre o documento [`CONTEXT.md`](file:///CONTEXT.md) para conhecer as diretrizes obrigatórias de arquitetura, integridade de dados estáticos e fluxo de desenvolvimento canônico.
