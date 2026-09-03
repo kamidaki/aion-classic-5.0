@@ -1,9 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
-title Aion Classic 5.0 EU - Build & Publish Server
+cd /d "%~dp0"
+title Aion Classic 5.0 EU - Build and Publish Server
 
 echo ===============================================================================
-echo                AION CLASSIC 5.0 EU - BUILD & PUBLISH PIPELINE
+echo                AION CLASSIC 5.0 EU - BUILD AND PUBLISH PIPELINE
 echo ===============================================================================
 echo.
 

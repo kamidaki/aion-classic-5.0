@@ -27,6 +27,14 @@ public class S_STATUS extends AionServerPacket {
 		this.pls = player.getLifeStats();
 	}
 
+	private int safeCurrent(Stat2 s) {
+		return s != null ? s.getCurrent() : 0;
+	}
+
+	private int safeBase(Stat2 s) {
+		return s != null ? s.getBase() : 0;
+	}
+
 	@Override
 	protected void writeImpl(AionConnection con) {
 		Stat2 power = pgs.getPower();
@@ -74,26 +82,26 @@ public class S_STATUS extends AionServerPacket {
 		Stat2 pCritDamReduce = pgs.getStat(StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE, 0);
 		Stat2 mCritDamReduce = pgs.getStat(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, 0);
 
-		int totalBoostMagicalSkill = mBoost.getCurrent();
+		int totalBoostMagicalSkill = safeCurrent(mBoost);
 		if (totalBoostMagicalSkill > 3200)
 			totalBoostMagicalSkill = 3200;
 
 		writeD(player.getObjectId()); // 000
 		writeD(GameTimeManager.getGameTime().getTime()); // 004 minutos desde 1/1/00 00:00:00
 
-		writeH(power.getCurrent()); // 008
-		writeH(health.getCurrent()); // 010
-		writeH(accuracy.getCurrent()); // 012
-		writeH(agility.getCurrent()); // 014
-		writeH(knowledge.getCurrent()); // 016
-		writeH(will.getCurrent()); // 018
+		writeH(safeCurrent(power)); // 008
+		writeH(safeCurrent(health)); // 010
+		writeH(safeCurrent(accuracy)); // 012
+		writeH(safeCurrent(agility)); // 014
+		writeH(safeCurrent(knowledge)); // 016
+		writeH(safeCurrent(will)); // 018
 
-		writeH(wr.getCurrent()); // 020 agua
-		writeH(windr.getCurrent()); // 022 vento
-		writeH(er.getCurrent()); // 024 terra
-		writeH(fr.getCurrent()); // 026 fogo
-		writeH(erl.getCurrent()); // 028 luz
-		writeH(erd.getCurrent()); // 030 trevas
+		writeH(safeCurrent(wr)); // 020 agua
+		writeH(safeCurrent(windr)); // 022 vento
+		writeH(safeCurrent(er)); // 024 terra
+		writeH(safeCurrent(fr)); // 026 fogo
+		writeH(safeCurrent(erl)); // 028 luz
+		writeH(safeCurrent(erd)); // 030 trevas
 
 		writeH(player.getLevel()); // 032
 
@@ -106,56 +114,56 @@ public class S_STATUS extends AionServerPacket {
 		writeQ(pcd.getExpShown()); // 056 exp dentro do nivel
 		writeD(0); // 064 desconhecido; sempre 0
 
-		writeD(maxHp.getCurrent()); // 068
+		writeD(safeCurrent(maxHp)); // 068
 		writeD(pls.getCurrentHp()); // 072
-		writeD(maxMp.getCurrent()); // 076
+		writeD(safeCurrent(maxMp)); // 076
 		writeD(pls.getCurrentMp()); // 080
 
-		writeH(maxDp.getCurrent()); // 084
+		writeH(safeCurrent(maxDp)); // 084
 		writeH(pcd.getDp()); // 086
 
-		writeD(maxSp.getCurrent()); // 088 na captura sempre 100
+		writeD(safeCurrent(maxSp)); // 088 na captura sempre 100
 		writeD(pcd.getSp()); // 092 na captura sempre 0
 
-		writeD(flyTime.getCurrent()); // 096 tempo de voo maximo
+		writeD(safeCurrent(flyTime)); // 096 tempo de voo maximo
 		writeD(pls.getCurrentFp()); // 100 tempo de voo atual
 
 		writeC(player.getFlyState()); // 104
 		writeC(0); // 105 mascara de movimento; 0 parado, 0xC3 voando na captura
 
-		writeH(mainHandPAtk.getCurrent()); // 106
-		writeH(offHandPAtk.getCurrent()); // 108
-		writeH(pdef.getCurrent()); // 110
-		writeH(mAtk.getCurrent()); // 112
-		writeH(mresist.getCurrent()); // 114
+		writeH(safeCurrent(mainHandPAtk)); // 106
+		writeH(safeCurrent(offHandPAtk)); // 108
+		writeH(safeCurrent(pdef)); // 110
+		writeH(safeCurrent(mAtk)); // 112
+		writeH(safeCurrent(mresist)); // 114
 
-		writeF(arange.getCurrent() / 1000f); // 116
-		writeH(aspeed.getCurrent()); // 120
+		writeF(arange != null ? arange.getCurrent() / 1000f : 1.5f); // 116
+		writeH(safeCurrent(aspeed)); // 120
 
-		writeH(evasion.getCurrent()); // 122
-		writeH(parry.getCurrent()); // 124
-		writeH(block.getCurrent()); // 126
+		writeH(safeCurrent(evasion)); // 122
+		writeH(safeCurrent(parry)); // 124
+		writeH(safeCurrent(block)); // 126
 
-		writeH(mainHandPCrit.getCurrent()); // 128
-		writeH(offHandPCrit.getCurrent()); // 130
-		writeH(mainHandPAcc.getCurrent()); // 132
-		writeH(offHandPAcc.getCurrent()); // 134
+		writeH(safeCurrent(mainHandPCrit)); // 128
+		writeH(safeCurrent(offHandPCrit)); // 130
+		writeH(safeCurrent(mainHandPAcc)); // 132
+		writeH(safeCurrent(offHandPAcc)); // 134
 
 		writeH(2); // 136 desconhecido; 2 nas tres capturas
 
-		writeH(mAcc.getCurrent()); // 138
-		writeH(mCrit.getCurrent()); // 140
+		writeH(safeCurrent(mAcc)); // 138
+		writeH(safeCurrent(mCrit)); // 140
 		writeH(0); // 142 antigo magic boost; sempre 0
 
-		writeF(boostCastTime.getCurrent() / 1000f); // 144
+		writeF(boostCastTime != null ? boostCastTime.getCurrent() / 1000f : 1f); // 144
 
-		writeH(concentration.getCurrent()); // 148
+		writeH(safeCurrent(concentration)); // 148
 		writeH(totalBoostMagicalSkill); // 150
-		writeH(healBoost.getCurrent()); // 152
-		writeH(pCritResist.getCurrent()); // 154
-		writeH(mCritResist.getCurrent()); // 156
-		writeH(pCritDamReduce.getCurrent()); // 158
-		writeH(mCritDamReduce.getCurrent()); // 160
+		writeH(safeCurrent(healBoost)); // 152
+		writeH(safeCurrent(pCritResist)); // 154
+		writeH(safeCurrent(mCritResist)); // 156
+		writeH(safeCurrent(pCritDamReduce)); // 158
+		writeH(safeCurrent(mCritDamReduce)); // 160
 		writeH(0); // 162 sempre 0 (a 2.8 escrevia 16472 aqui)
 
 		writeD(player.getInventory().getLimit()); // 164 na captura 27
@@ -181,59 +189,59 @@ public class S_STATUS extends AionServerPacket {
 
 		// ---------------------------------------------------------------- bloco "base"
 		// (264..395)
-		writeH(power.getBase()); // 264
-		writeH(health.getBase()); // 266
-		writeH(accuracy.getBase()); // 268
-		writeH(agility.getBase()); // 270
-		writeH(knowledge.getBase()); // 272
-		writeH(will.getBase()); // 274
+		writeH(safeBase(power)); // 264
+		writeH(safeBase(health)); // 266
+		writeH(safeBase(accuracy)); // 268
+		writeH(safeBase(agility)); // 270
+		writeH(safeBase(knowledge)); // 272
+		writeH(safeBase(will)); // 274
 
-		writeH(wr.getBase()); // 276 agua
-		writeH(windr.getBase()); // 278 vento
-		writeH(er.getBase()); // 280 terra
-		writeH(fr.getBase()); // 282 fogo
-		writeH(erl.getBase()); // 284 luz
-		writeH(erd.getBase()); // 286 trevas
+		writeH(safeBase(wr)); // 276 agua
+		writeH(safeBase(windr)); // 278 vento
+		writeH(safeBase(er)); // 280 terra
+		writeH(safeBase(fr)); // 282 fogo
+		writeH(safeBase(erl)); // 284 luz
+		writeH(safeBase(erd)); // 286 trevas
 
-		writeD(maxHp.getBase()); // 288
-		writeD(maxMp.getBase()); // 292
-		writeD(maxDp.getBase()); // 296
-		writeD(maxSp.getBase()); // 300
-		writeD(flyTime.getBase()); // 304
+		writeD(safeBase(maxHp)); // 288
+		writeD(safeBase(maxMp)); // 292
+		writeD(safeBase(maxDp)); // 296
+		writeD(safeBase(maxSp)); // 300
+		writeD(safeBase(flyTime)); // 304
 		writeD(100); // 308 desconhecido; 100 nas tres capturas
 
 		writeD(0);
 
-		writeH(mainHandPAtk.getBase()); // 316
-		writeH(offHandPAtk.getBase()); // 318
-		writeH(mAtk.getBase()); // 320
-		writeH(pdef.getBase()); // 322
-		writeH(mresist.getBase()); // 324
+		writeH(safeBase(mainHandPAtk)); // 316
+		writeH(safeBase(offHandPAtk)); // 318
+		writeH(safeBase(mAtk)); // 320
+		writeH(safeBase(pdef)); // 322
+		writeH(safeBase(mresist)); // 324
 		writeH(0); // 326 sempre 0
 
-		writeF(arange.getBase() / 1000f); // 328
+		writeF(arange != null ? arange.getBase() / 1000f : 1.5f); // 328
 
-		writeH(evasion.getBase()); // 332
-		writeH(parry.getBase()); // 334
-		writeH(block.getBase()); // 336
+		writeH(safeBase(evasion)); // 332
+		writeH(safeBase(parry)); // 334
+		writeH(safeBase(block)); // 336
 
-		writeH(mainHandPCrit.getBase()); // 338
-		writeH(offHandPCrit.getBase()); // 340
-		writeH(mCrit.getBase()); // 342
+		writeH(safeBase(mainHandPCrit)); // 338
+		writeH(safeBase(offHandPCrit)); // 340
+		writeH(safeBase(mCrit)); // 342
 		writeH(0); // 344 sempre 0
-		writeH(mainHandPAcc.getBase()); // 346
-		writeH(offHandPAcc.getBase()); // 348
+		writeH(safeBase(mainHandPAcc)); // 346
+		writeH(safeBase(offHandPAcc)); // 348
 
 		writeH(2); // 350 desconhecido; 2 nas tres capturas, par do 136
 
-		writeH(mAcc.getBase()); // 352
-		writeH(concentration.getBase()); // 354
-		writeH(mBoost.getBase()); // 356
-		writeH(healBoost.getBase()); // 358
-		writeH(pCritResist.getBase()); // 360
-		writeH(mCritResist.getBase()); // 362
-		writeH(pCritDamReduce.getBase()); // 364
-		writeH(mCritDamReduce.getBase()); // 366
+		writeH(safeBase(mAcc)); // 352
+		writeH(safeBase(concentration)); // 354
+		writeH(safeBase(mBoost)); // 356
+		writeH(safeBase(healBoost)); // 358
+		writeH(safeBase(pCritResist)); // 360
+		writeH(safeBase(mCritResist)); // 362
+		writeH(safeBase(pCritDamReduce)); // 364
+		writeH(safeBase(mCritDamReduce)); // 366
 
 		writeB(new byte[20]); // 368 sempre 0 na captura
 		writeD(0); // 388 sempre 0

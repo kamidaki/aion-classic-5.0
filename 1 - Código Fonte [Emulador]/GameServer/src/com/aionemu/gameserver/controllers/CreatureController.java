@@ -241,14 +241,18 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 		}
 		int attackType = 0;
 		List<AttackResult> attackResult;
+		ItemAttackType ownerAttackType = getOwner().getAttackType();
+		if (ownerAttackType == null) {
+			ownerAttackType = ItemAttackType.PHYSICAL;
+		}
 		if (getOwner() instanceof Homing) {
-			attackResult = AttackUtil.calculateHomingAttackResult(getOwner(), target, getOwner().getAttackType().getMagicalElement());
+			attackResult = AttackUtil.calculateHomingAttackResult(getOwner(), target, ownerAttackType.getMagicalElement());
 			attackType = 1;
 		} else {
-			if (getOwner().getAttackType() == ItemAttackType.PHYSICAL) {
+			if (ownerAttackType == ItemAttackType.PHYSICAL) {
 				attackResult = AttackUtil.calculatePhysicalAttackResult(getOwner(), target);
 			} else {
-				attackResult = AttackUtil.calculateMagicalAttackResult(getOwner(), target, getOwner().getAttackType().getMagicalElement());
+				attackResult = AttackUtil.calculateMagicalAttackResult(getOwner(), target, ownerAttackType.getMagicalElement());
 				attackType = 1;
 			}
 		}

@@ -10,6 +10,7 @@ import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.stats.calc.AdditionStat;
 import com.aionemu.gameserver.model.stats.calc.Stat2;
 import com.aionemu.gameserver.model.templates.item.ArmorType;
+import com.aionemu.gameserver.model.templates.item.ItemAttackType;
 import com.aionemu.gameserver.model.templates.item.WeaponStats;
 import com.aionemu.gameserver.model.templates.item.WeaponType;
 import com.aionemu.gameserver.model.templates.stats.PlayerStatsTemplate;
@@ -318,13 +319,21 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 		return getStat(StatEnum.BLOCK, pst.getBlock());
 	}
 
+	private boolean isMagicalWeapon(Item weapon) {
+		if (weapon == null || weapon.getItemTemplate() == null) {
+			return false;
+		}
+		ItemAttackType type = weapon.getItemTemplate().getAttackType();
+		return type != null && type.isMagical();
+	}
+
 	@Override
 	public Stat2 getMainHandPAttack() {
 		int base = 18;
 		Equipment equipment = ((Player) this.owner).getEquipment();
-		Item mainHandWeapon = equipment.getMainHandWeapon();
-		if (mainHandWeapon != null) {
-			if (mainHandWeapon.getItemTemplate().getAttackType().isMagical()) {
+		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
+		if (mainHandWeapon != null && mainHandWeapon.getItemTemplate() != null) {
+			if (isMagicalWeapon(mainHandWeapon)) {
 				return new AdditionStat(StatEnum.MAIN_HAND_POWER, 0, this.owner);
 			}
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
@@ -339,11 +348,17 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	public Stat2 getOffHandPAttack() {
 		Item offHandWeapon;
 		Equipment equipment = ((Player) this.owner).getEquipment();
+		if (equipment == null) {
+			return new AdditionStat(StatEnum.OFF_HAND_POWER, 0, this.owner);
+		}
 		Item mainHandWeapon = equipment.getMainHandWeapon();
 		if (mainHandWeapon == (offHandWeapon = equipment.getOffHandWeapon())) {
 			offHandWeapon = null;
 		}
-		if (offHandWeapon != null && offHandWeapon.getItemTemplate().isWeapon()) {
+		if (offHandWeapon != null && offHandWeapon.getItemTemplate() != null && offHandWeapon.getItemTemplate().isWeapon()) {
+			if (isMagicalWeapon(offHandWeapon)) {
+				return new AdditionStat(StatEnum.OFF_HAND_POWER, 0, this.owner);
+			}
 			WeaponStats ws = offHandWeapon.getItemTemplate().getWeaponStats();
 			int base = ws != null ? ws.getMeanDamage() : 0;
 			base = (int) ((double) base * 0.98);
@@ -356,15 +371,15 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	@Override
 	public Stat2 getMainHandPCritical() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), (owner.getLevel()));
-		int base = pst.getMainHandCritRate();
+		int base = pst != null ? pst.getMainHandCritRate() : 10;
 		Equipment equipment = ((Player) this.owner).getEquipment();
-		Item mainHandWeapon = equipment.getMainHandWeapon();
-		if (mainHandWeapon != null && !mainHandWeapon.getItemTemplate().getAttackType().isMagical()) {
+		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
+		if (mainHandWeapon != null && mainHandWeapon.getItemTemplate() != null && !isMagicalWeapon(mainHandWeapon)) {
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
 			if (ws != null) {
 				base = ws.getPhysicalCritical();
 			}
-		} else if (mainHandWeapon != null && mainHandWeapon.hasFusionedItem()) {
+		} else if (mainHandWeapon != null && mainHandWeapon.hasFusionedItem() && mainHandWeapon.getItemTemplate() != null) {
 			WeaponStats ws1 = mainHandWeapon.getItemTemplate().getWeaponStats();
 			WeaponStats ws2 = mainHandWeapon.getFusionedItemTemplate() != null ? mainHandWeapon.getFusionedItemTemplate().getWeaponStats() : null;
 			base += (ws1 != null ? ws1.getPhysicalCritical() : 0) + (ws2 != null ? ws2.getPhysicalCritical() : 0);
@@ -375,12 +390,15 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	public Stat2 getOffHandPCritical() {
 		Item offHandWeapon;
 		Equipment equipment = ((Player) this.owner).getEquipment();
+		if (equipment == null) {
+			return new AdditionStat(StatEnum.OFF_HAND_CRITICAL, 0, this.owner);
+		}
 		Item mainHandWeapon = equipment.getMainHandWeapon();
 		if (mainHandWeapon == (offHandWeapon = equipment.getOffHandWeapon())) {
 			offHandWeapon = null;
 		}
-		if (offHandWeapon != null && offHandWeapon.getItemTemplate().isWeapon()
-				&& !offHandWeapon.getItemTemplate().getAttackType().isMagical()) {
+		if (offHandWeapon != null && offHandWeapon.getItemTemplate() != null && offHandWeapon.getItemTemplate().isWeapon()
+				&& !isMagicalWeapon(offHandWeapon)) {
 			WeaponStats ws = offHandWeapon.getItemTemplate().getWeaponStats();
 			int base = ws != null ? ws.getPhysicalCritical() : 0;
 			return this.getStat(StatEnum.PHYSICAL_CRITICAL, base);
@@ -428,9 +446,9 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	public Stat2 getMAttack() {
 		int base;
 		Equipment equipment = owner.getEquipment();
-		Item mainHandWeapon = equipment.getMainHandWeapon();
-		if (mainHandWeapon != null) {
-			if (!mainHandWeapon.getItemTemplate().getAttackType().isMagical()) {
+		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
+		if (mainHandWeapon != null && mainHandWeapon.getItemTemplate() != null) {
+			if (!isMagicalWeapon(mainHandWeapon)) {
 				return new AdditionStat(StatEnum.MAGICAL_ATTACK, 0, owner);
 			}
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
@@ -445,9 +463,9 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	public Stat2 getMainHandMAttack() {
 		int base = 0;
 		Equipment equipment = ((Player) this.owner).getEquipment();
-		Item mainHandWeapon = equipment.getMainHandWeapon();
-		if (mainHandWeapon != null) {
-			if (!mainHandWeapon.getItemTemplate().getAttackType().isMagical()) {
+		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
+		if (mainHandWeapon != null && mainHandWeapon.getItemTemplate() != null) {
+			if (!isMagicalWeapon(mainHandWeapon)) {
 				return new AdditionStat(StatEnum.MAIN_HAND_POWER, 0, this.owner);
 			}
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
@@ -461,11 +479,17 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	public Stat2 getOffHandMAttack() {
 		Item offHandWeapon;
 		Equipment equipment = ((Player) this.owner).getEquipment();
+		if (equipment == null) {
+			return new AdditionStat(StatEnum.OFF_HAND_POWER, 0, this.owner);
+		}
 		Item mainHandWeapon = equipment.getMainHandWeapon();
 		if (mainHandWeapon == (offHandWeapon = equipment.getOffHandWeapon())) {
 			offHandWeapon = null;
 		}
-		if (offHandWeapon != null && offHandWeapon.getItemTemplate().isWeapon()) {
+		if (offHandWeapon != null && offHandWeapon.getItemTemplate() != null && offHandWeapon.getItemTemplate().isWeapon()) {
+			if (!isMagicalWeapon(offHandWeapon)) {
+				return new AdditionStat(StatEnum.OFF_HAND_POWER, 0, this.owner);
+			}
 			WeaponStats ws = offHandWeapon.getItemTemplate().getWeaponStats();
 			int base = ws != null ? ws.getMeanDamage() : 0;
 			base = (int) ((double) base * 0.98);
@@ -478,8 +502,9 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	@Override
 	public Stat2 getMBoost() {
 		int base = 0;
-		Item mainHandWeapon = ((Player) this.owner).getEquipment().getMainHandWeapon();
-		if (mainHandWeapon != null) {
+		Equipment equipment = ((Player) this.owner).getEquipment();
+		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
+		if (mainHandWeapon != null && mainHandWeapon.getItemTemplate() != null) {
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
 			if (ws != null) {
 				base += ws.getBoostMagicalSkill();
@@ -492,9 +517,10 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	public Stat2 getMAccuracy() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(((Player) this.owner).getPlayerClass(),
 				((Player) this.owner).getLevel());
-		int base = pst.getMagicAccuracy();
-		Item mainHandWeapon = ((Player) this.owner).getEquipment().getMainHandWeapon();
-		if (mainHandWeapon != null) {
+		int base = pst != null ? pst.getMagicAccuracy() : 0;
+		Equipment equipment = ((Player) this.owner).getEquipment();
+		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
+		if (mainHandWeapon != null && mainHandWeapon.getItemTemplate() != null) {
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
 			if (ws != null) {
 				base += ws.getMagicalAccuracy();
@@ -506,9 +532,10 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	public Stat2 getMainHandMAccuracy() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(this.owner.getPlayerClass(),
 				this.owner.getLevel());
-		int base = pst.getMagicAccuracy();
-		Item mainHandWeapon = this.owner.getEquipment().getMainHandWeapon();
-		if (mainHandWeapon != null) {
+		int base = pst != null ? pst.getMagicAccuracy() : 0;
+		Equipment equipment = this.owner.getEquipment();
+		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
+		if (mainHandWeapon != null && mainHandWeapon.getItemTemplate() != null) {
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
 			if (ws != null) {
 				base += ws.getMagicalAccuracy();
@@ -523,12 +550,15 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 
 	public Stat2 getOffHandMAccuracy() {
 		Equipment equipment = this.owner.getEquipment();
+		if (equipment == null) {
+			return new AdditionStat(StatEnum.OFF_HAND_MAGICAL_ACCURACY, 0, this.owner);
+		}
 		Item offHandWeapon = equipment.getOffHandWeapon();
-		if ((offHandWeapon != null) && (offHandWeapon.getItemTemplate().isWeapon())
+		if ((offHandWeapon != null) && (offHandWeapon.getItemTemplate() != null) && (offHandWeapon.getItemTemplate().isWeapon())
 				&& (!offHandWeapon.getItemTemplate().isTwoHandWeapon())) {
 			PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(this.owner.getPlayerClass(),
 					this.owner.getLevel());
-			int base = pst.getMagicAccuracy();
+			int base = pst != null ? pst.getMagicAccuracy() : 0;
 			WeaponStats ws = offHandWeapon.getItemTemplate().getWeaponStats();
 			if (ws != null) {
 				base += ws.getMagicalAccuracy();
@@ -541,8 +571,9 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	@Override
 	public Stat2 getMCritical() {
 		int base = 50;
-		Item mainHandWeapon = ((Player) this.owner).getEquipment().getMainHandWeapon();
-		if (mainHandWeapon != null && mainHandWeapon.getItemTemplate().getAttackType().isMagical()) {
+		Equipment equipment = ((Player) this.owner).getEquipment();
+		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
+		if (mainHandWeapon != null && isMagicalWeapon(mainHandWeapon) && mainHandWeapon.getItemTemplate() != null) {
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
 			if (ws != null) {
 				base += ws.getPhysicalCritical();
