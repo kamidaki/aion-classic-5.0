@@ -94,15 +94,6 @@ public class ChatServer {
      * @param args
      */
     public static void main(String[] args) {
-
-        System.out.println("   _____  .__                _________ .__    .__                ___________              \n" +
-                "  /  _  \\ |__| ____   ____   \\_   ___ \\|  |__ |__| ____ _____    \\_   _____/ _____  __ __ \n" +
-                " /  /_\\  \\|  |/  _ \\ /    \\  /    \\  \\/|  |  \\|  |/    \\\\__  \\    |    __)_ /     \\|  |  \\\n" +
-                "/    |    \\  (  <_> )   |  \\ \\     \\___|   Y  \\  |   |  \\/ __ \\_  |        \\  Y Y  \\  |  /\n" +
-                "\\____|__  /__|\\____/|___|  /  \\______  /___|  /__|___|  (____  / /_______  /__|_|  /____/ \n" +
-                "        \\/               \\/          \\/     \\/        \\/     \\/          \\/      \\/     ");
-        System.out.println("Base On Leaked Encom Team Code ");
-        System.out.println("维护者：soulxi(187033608) 交流群：877847312 \n");
         long start = System.currentTimeMillis();
 
         initalizeLoggger();
@@ -118,5 +109,13 @@ public class ChatServer {
 
         Runtime.getRuntime().addShutdownHook(ShutdownHook.getInstance());
         log.info("AL ChatServer started in " + (System.currentTimeMillis() - start) / 1000 + " seconds.");
+        System.out.println(
+                "    ___    ________  _   __   ________    ___   __________ __________\n" +
+                "   /   |  /  _/ __ \\/ | / /  / ____/ /   /   | / ___/ ___//  _/ ____/\n" +
+                "  / /| |  / // / / /  |/ /  / /   / /   / /| | \\__ \\\\__ \\ / // /     \n" +
+                " / ___ |_/ // /_/ / /|  /  / /___/ /___/ ___ |___/ /__/ // // /___   \n" +
+                "/_/  |_/___/\\____/_/ |_/   \\____/_____/_/  |_/____/____/___/\\____/   ");
+        System.out.println("                        Versão 5.0 EU (GameForge)");
+        System.out.println("               Desenvolvido por: Lost Academy Team & Durak\n");
     }
 }

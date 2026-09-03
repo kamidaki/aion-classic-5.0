@@ -648,6 +648,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
 
         .log-msg {
+            white-space: pre-wrap;
             word-break: break-word;
             overflow-wrap: anywhere;
             flex: 1;

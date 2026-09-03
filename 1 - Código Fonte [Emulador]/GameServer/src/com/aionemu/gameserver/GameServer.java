@@ -243,13 +243,14 @@ public class GameServer
 		AEInfos.printAllInfos();
 		Util.printSection("GameServerLog");
 		log.info("Classic Server started in " + (System.currentTimeMillis() - start) / 1000 + " seconds.");
-		System.out.println("   _____  .___ _________ _______      _________ .____       _____    _________ _________ .___ _________ \n" +
-				"  /  _  \\ |   |/   _   /\\      \\    \\_   ___ \\|    |     /  _  \\  /   _____//   _____/ |   |\\_   ___ \\\n" +
-				" /  /_\\  \\|   |\\  /_\\  \\/   |   \\   /    \\  \\/|    |    /  /_\\  \\ \\_____  \\ \\_____  \\  |   |/    \\  \\/\n" +
-				"/    |    \\   | \\_____  \\    |    \\  \\     \\___|    |___/    |    \\/        \\/        \\ |   |\\     \\___\n" +
-				"\\____|__  /___| /_______/____|__  /   \\______  /_______ \\____|__  /_______  /_______  / |___| \\______  /\n" +
-				"        \\/                      \\/           \\/        \\/       \\/        \\/        \\/               \\/");
-		System.out.println("                                                           Versão 5.0 EU (GameForge)\n");
+		System.out.println(
+				"    ___    ________  _   __   ________    ___   __________ __________\n" +
+				"   /   |  /  _/ __ \\/ | / /  / ____/ /   /   | / ___/ ___//  _/ ____/\n" +
+				"  / /| |  / // / / /  |/ /  / /   / /   / /| | \\__ \\\\__ \\ / // /     \n" +
+				" / ___ |_/ // /_/ / /|  /  / /___/ /___/ ___ |___/ /__/ // // /___   \n" +
+				"/_/  |_/___/\\____/_/ |_/   \\____/_____/_/  |_/____/____/___/\\____/   ");
+		System.out.println("                        Versão 5.0 EU (GameForge)");
+		System.out.println("               Desenvolvido por: Lost Academy Team & Durak\n");
 		gs.startServers();
 		Runtime.getRuntime().addShutdownHook(ShutdownHook.getInstance());
 		if (GSConfig.ENABLE_RATIO_LIMITATION) {
