@@ -127,7 +127,7 @@ public class ServerPacketsOpcodes {
         addPacketOpcode(S_DELETE_GUILD_MEMBER.class, 0x6F, idSet);
         addPacketOpcode(S_CHANGE_GUILD_MEMBER_INFO.class, 0x70, idSet);
         addPacketOpcode(S_CHANGE_GUILD_OTHER.class, 0x71, idSet);
-        //S_ATTACK_RESULT 0x72
+        addPacketOpcode(S_ATTACK_RESULT.class, 0x72, idSet);
         //S_DYNCODE_DATA 0x74
         //S_SNDC_CHECK_MESSAGE 0x75
         addPacketOpcode(S_CHANGE_GUILD_MEMBER_INTRO.class, 0x76, idSet);

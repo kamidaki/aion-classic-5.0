@@ -399,10 +399,13 @@ public class PlayerController extends CreatureController<Player> {
 			}
 		}
 		if (!RestrictionsManager.canAttack(getOwner(), target)) {
+			PacketSendUtility.sendPacket(getOwner(), S_ATTACK_RESULT.STOP_INVALID_TARGET(gameStats.getAttackCounter()));
 			return;
 		} if (!MathUtil.isInAttackRange(getOwner(), target, (gameStats.getAttackRange().getCurrent() / 1000) + 1)) {
+			PacketSendUtility.sendPacket(getOwner(), S_ATTACK_RESULT.TARGET_TOO_FAR_AWAY(gameStats.getAttackCounter()));
 			return;
 		} if (!GeoService.getInstance().canSee(getOwner(), target)) {
+			PacketSendUtility.sendPacket(getOwner(), S_ATTACK_RESULT.STOP_OBSTACLE_IN_THE_WAY(gameStats.getAttackCounter()));
 			//You cannot use that because there is an obstacle in the way.
 			PacketSendUtility.sendPacket(getOwner(), S_MESSAGE_CODE.STR_SKILL_OBSTACLE);
 			return;
