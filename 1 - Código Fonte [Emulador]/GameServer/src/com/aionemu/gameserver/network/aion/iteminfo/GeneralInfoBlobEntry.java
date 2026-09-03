@@ -45,11 +45,14 @@ public class GeneralInfoBlobEntry extends ItemBlobEntry {
 		writeD(buf, 0);
 		writeD(buf, item.getTemporaryExchangeTimeRemaining());
 		writeD(buf, 0);
-		writeH(buf, 0);//item.getItemId() == ItemId.KINAH.value() ? 50 : 0);
+		// 5.0 Classic: a entrada tem 33 bytes e fecha com u16 = 15.
+		// Captura (arma, criador vazio): 3c 88 | 01 00 00 00 00 00 00 00 | 21 zeros | 0f 00
+		writeH(buf, 0);
+		writeH(buf, 15);
 	}
 
 	@Override
 	public int getSize() {
-		return 29 + ownerItem.getItemCreator().length() * 2 + 2;
+		return 31 + ownerItem.getItemCreator().length() * 2 + 2;
 	}
 }

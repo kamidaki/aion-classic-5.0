@@ -19,6 +19,7 @@ package com.aionemu.gameserver.network.aion.iteminfo;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.items.ManaStone;
 import com.aionemu.gameserver.model.stats.calc.functions.StatFunction;
+import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.iteminfo.ItemInfoBlob.ItemBlobType;
 
 import java.nio.ByteBuffer;
@@ -34,7 +35,10 @@ public class CompositeItemBlobEntry extends ItemBlobEntry
 	@Override
     public void writeThisBlob(ByteBuffer buf) {
         Item item = ownerItem;
-        writeD(buf, item.getFusionedItemId());
+        // 5.0 Classic: also reports the secondary weapon fused through the off hand,
+        // so the tooltip shows the info of both weapons.
+        ItemTemplate fusionTemplate = item.getEffectiveFusionTemplate();
+        writeD(buf, fusionTemplate != null ? fusionTemplate.getTemplateId() : 0);
         writeFusionStones(buf);
         writeC(buf, item.hasOptionalFusionSocket() ? item.getOptionalFusionSocket() : 0);
     }

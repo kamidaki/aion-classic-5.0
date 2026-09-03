@@ -74,16 +74,22 @@ public class S_LOAD_INVENTORY extends AionServerPacket {
 	@Override
 	protected void writeImpl(AionConnection con) {
 		if (this.packetType == EMPTY) {
-			writeD(0);
-			writeH(0);
+			// 5.0 Classic: o cabecalho tem 9 bytes e o pacote vazio sao 9 zeros
+			// (provado na captura oficial 01_Login_World).
+			writeB(new byte[9]);
 			return;
 		}
 
 		// something wrong with cube part.
+		// 5.0 Classic: cabecalho de 9 bytes com a contagem no offset 7.
+		// Na captura oficial: 01 00 00 00 00 00 00 | 09 00
 		writeC(isFirstPacket ? 1 : 0);
 		writeC(npcExpandsSize); // cube size from npc (so max 5 for now)
 		writeC(questExpandsSize); // cube size from quest (so max 2 for now)
-		writeC(0); // unk?
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
 		writeH(items.size()); // number of entries
 
 		for (Item item : items)
@@ -96,7 +102,8 @@ public class S_LOAD_INVENTORY extends AionServerPacket {
 
 		writeD(item.getObjectId());
 		writeD(itemTemplate.getTemplateId());
-		writeNameId(itemTemplate.getNameId());
+		// A 5.0 nao tem o bloco writeNameId (0x24 + nameId + 0x00) aqui: o cliente
+		// leria o 0x0024 como tamanho do blob e o pacote desandava no primeiro item.
 
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());

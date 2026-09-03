@@ -42,10 +42,12 @@ public class AccessoryInfoBlobEntry extends ItemBlobEntry{
 
 		ItemSlot[] slots = ItemSlot.getSlotsFor(item.getItemTemplate().getItemSlot());
 		writeQ(buf, (slots != null && slots.length > 0) ? slots[0].getSlotIdMask() : 0);
+		// 5.0 Classic: a entrada de acessorio tem 16 bytes (u64 slot + 8).
+		writeB(buf, new byte[8]);
 	}
 
 	@Override
 	public int getSize() {
-		return 8;
+		return 16;
 	}
 }

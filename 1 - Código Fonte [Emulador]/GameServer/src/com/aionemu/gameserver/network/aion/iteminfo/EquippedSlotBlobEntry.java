@@ -22,11 +22,13 @@ public class EquippedSlotBlobEntry extends ItemBlobEntry
 		} else if (item.getItemTemplate().isTwoHandWeapon() && slot == ItemSlot.MAIN_OFF_HAND.getSlotIdMask()) {
 			slot = ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask();
 		}
-		writeD(buf, item.isEquipped() ? slot : 0);
+		// 5.0 Classic: a mascara de slot e u64 (8 bytes). Comprovado na captura:
+		// arma 01 00 00 00 00 00 00 00, calca 00 10 00 00 00 00 00 00.
+		writeQ(buf, item.isEquipped() ? slot : 0);
 	}
 	
 	@Override
 	public int getSize() {
-		return 4;
+		return 8;
 	}
 }

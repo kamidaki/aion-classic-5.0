@@ -44,10 +44,13 @@ public class ArmorInfoBlobEntry extends ItemBlobEntry {
 		writeC(buf, (item.getItemColor() & 0xFF0000) >> 16);
 		writeC(buf, (item.getItemColor() & 0xFF00) >> 8);
 		writeC(buf, (item.getItemColor() & 0xFF));
+		// 5.0 Classic: a entrada tem 20 bytes. Captura: u64 slot + 12 bytes.
+		// Os 4 primeiros sao a tintura acima (zeros nas amostras, que nao tem cor).
+		writeB(buf, new byte[8]);
 	}
 
 	@Override
 	public int getSize() {
-		return 12;
+		return 20;
 	}
 }

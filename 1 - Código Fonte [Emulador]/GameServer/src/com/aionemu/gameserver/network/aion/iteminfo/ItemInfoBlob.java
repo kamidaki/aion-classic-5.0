@@ -101,6 +101,11 @@ public class ItemInfoBlob extends PacketWriteHelper
 		else if (itemTemplate.getTemplateId() == 141000001) {
 			blob.addBlobEntry(ItemBlobType.STIGMA_SHARD);
 		}
+		// 5.0 Classic: a etiqueta 0x12 vem logo antes do bloco geral em todo item
+		// equipavel, conforme a captura oficial.
+		if (item.getEquipmentType() != EquipType.NONE) {
+			blob.addBlobEntry(ItemBlobType.EXTRA_INFO);
+		}
 		blob.addBlobEntry(ItemBlobType.GENERAL_INFO);
 		return blob;
 	}
@@ -188,6 +193,12 @@ public class ItemInfoBlob extends PacketWriteHelper
 			@Override
 			ItemBlobEntry newBlobEntry() {
 				return new CompositeItemBlobEntry();
+			}
+		},
+		EXTRA_INFO(0x12) {
+			@Override
+			ItemBlobEntry newBlobEntry() {
+				return new ExtraInfoBlobEntry();
 			}
 		},
 		CONDITIONING_INFO(0x0F) {
