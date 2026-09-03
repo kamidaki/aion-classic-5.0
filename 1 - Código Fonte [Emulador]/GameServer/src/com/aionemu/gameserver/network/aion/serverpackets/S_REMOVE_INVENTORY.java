@@ -40,6 +40,6 @@ public class S_REMOVE_INVENTORY extends AionServerPacket {
 	@Override
 	protected void writeImpl(AionConnection con) {
 		writeD(itemObjectId);
-		writeC(deleteType.getMask());
+		writeD(deleteType.getMask());
 	}
 }

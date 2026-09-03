@@ -100,8 +100,5 @@ public class S_ATTACK extends AionServerPacket
 			}
 		}
 		writeC(0);
-		if (GSConfig.SERVER_COUNTRY_CODE == 1) {
-			writeB("00000A00");
-		}
 	}
 }
