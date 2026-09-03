@@ -23,8 +23,11 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_L2AUTH_LOGIN_CHECK(0x182, State.CONNECTED)); // 0x00F0 HQ_LOGIN
         addPacket(new CM_L2AUTH_LOGIN_CHECK(0x117, State.CONNECTED)); // 0x005D L2AUTH_LOGIN
         addPacket(new CM_L2AUTH_LOGIN_CHECK(0x11F, State.CONNECTED)); // Legacy fallback
-        addPacket(new CM_AUTH_SUCCESS(0x190, State.AUTHED, State.IN_GAME)); // 0x00E2 READY_ENTER_WORLD_ACK
+        addPacket(new CM_AUTH_SUCCESS(0x00E2, State.AUTHED)); // 0x00E2 READY_ENTER_WORLD_ACK (AUTHED)
+        addPacket(new CM_AUTH_SUCCESS(0x190, State.AUTHED, State.IN_GAME)); // 0x0190
         addPacket(new CM_AUTH_SUCCESS(0x193, State.AUTHED, State.IN_GAME)); // Legacy fallback
+        addPacket(new CM_LEGION_SEND_EMBLEM_INFO(0x00E2, State.IN_GAME)); // 0x00E2 (dec=0x0010) C_REQUEST_GUILD_NAME (IN_GAME)
+        addPacket(new CM_LEGION_SEND_EMBLEM_INFO(0x10, State.IN_GAME)); // Raw alias
         addPacket(new CM_MAC_ADDRESS(0x1AC, State.CONNECTED, State.AUTHED, State.IN_GAME)); // 0x00D6 MACHINE_INFO
         addPacket(new CM_MAC_ADDRESS(0x174, State.CONNECTED, State.AUTHED, State.IN_GAME)); // Legacy fallback
 

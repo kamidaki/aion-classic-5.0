@@ -211,11 +211,11 @@ public class PlayerService {
 				log.warn("Standard spawn location not available for race " + playerCommonData.getRace(), e);
 			}
 		}
-		int mapId = 110010000;
-		float x = 1342.97f;
-		float y = 1510.18f;
-		float z = 571.04f;
-		byte heading = 92;
+		int mapId = 210010000;
+		float x = 1212.9423f;
+		float y = 1044.8516f;
+		float z = 140.75568f;
+		byte heading = 32;
 		if (ld != null) {
 			mapId = ld.getMapId();
 			x = ld.getX();
@@ -223,11 +223,11 @@ public class PlayerService {
 			z = ld.getZ();
 			heading = ld.getHeading();
 		} else if (playerCommonData.getRace() == Race.ASMODIANS) {
-			mapId = 120010000;
-			x = 1679.0f;
-			y = 1399.0f;
-			z = 209.0f;
-			heading = 57;
+			mapId = 220010000;
+			x = 571.0388f;
+			y = 2787.3420f;
+			z = 299.8750f;
+			heading = 32;
 		}
 		WorldPosition position = World.getInstance().createPosition(mapId, x, y, z, heading, 0);
 		playerCommonData.setPosition(position);

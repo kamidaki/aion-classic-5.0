@@ -40,10 +40,6 @@ public class SecurityConfig
     public static int CAPTCHA_EXTRACTION_BAN_ADD_TIME;
     @Property(key="gameserver.security.captcha.bonus.fp.time", defaultValue="5")
     public static int CAPTCHA_BONUS_FP_TIME;
-    @Property(key="gameserver.security.passkey.enable", defaultValue="false")
-    public static boolean PASSKEY_ENABLE;
-    @Property(key="gameserver.security.passkey.wrong.maxcount", defaultValue="5")
-    public static int PASSKEY_WRONG_MAXCOUNT;
     @Property(key="gameserver.security.pingcheck.enable", defaultValue="true")
     public static boolean SECURITY_ENABLE;
     @Property(key="gameserver.security.pingcheck.interval", defaultValue="80")

@@ -18,10 +18,9 @@ package com.aionemu.gameserver.network.aion.clientpackets;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 import com.aionemu.commons.database.dao.DAOManager;
-import com.aionemu.gameserver.configs.main.SecurityConfig;
 import com.aionemu.gameserver.dao.PlayerPasskeyDAO;
+
 import com.aionemu.gameserver.model.account.CharacterPasskey;
 import com.aionemu.gameserver.model.account.CharacterPasskey.ConnectType;
 import com.aionemu.gameserver.model.account.PlayerAccountData;
@@ -130,7 +129,7 @@ public class CM_CHARACTER_PASSKEY extends AionClientPacket
 				} else {
 					chaPasskey.setIsPass(false);
 					chaPasskey.setWrongCount(chaPasskey.getWrongCount() + 1);
-					log.warn("[PASSKEY] PIN INCORRETO para accountId=" + client.getAccount().getId() + " (tentativa " + chaPasskey.getWrongCount() + "/" + SecurityConfig.PASSKEY_WRONG_MAXCOUNT + ")");
+					log.warn("[PASSKEY] PIN INCORRETO para accountId=" + client.getAccount().getId() + " (tentativa " + chaPasskey.getWrongCount() + "/5)");
 					checkBlock(client.getAccount().getId(), chaPasskey.getWrongCount());
 					client.sendPacket(new S_2ND_PASSWORD(2, type, 0, chaPasskey.getWrongCount()));
 				}
@@ -139,7 +138,7 @@ public class CM_CHARACTER_PASSKEY extends AionClientPacket
 	}
 	
 	private void checkBlock(int accountId, int wrongCount) {
-		if (wrongCount >= SecurityConfig.PASSKEY_WRONG_MAXCOUNT) {
+		if (wrongCount >= 5) {
 			LoginServer.getInstance().sendBanPacket((byte) 2, accountId, "", 60 * 8, 0);
 		}
 	}

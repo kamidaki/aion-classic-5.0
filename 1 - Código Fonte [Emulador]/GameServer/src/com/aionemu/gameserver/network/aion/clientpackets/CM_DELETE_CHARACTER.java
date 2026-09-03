@@ -16,15 +16,10 @@
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
-import com.aionemu.commons.database.dao.DAOManager;
-import com.aionemu.gameserver.configs.main.SecurityConfig;
-import com.aionemu.gameserver.dao.PlayerPasskeyDAO;
-import com.aionemu.gameserver.model.account.CharacterPasskey.ConnectType;
 import com.aionemu.gameserver.model.account.PlayerAccountData;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.network.aion.serverpackets.S_2ND_PASSWORD;
 import com.aionemu.gameserver.network.aion.serverpackets.S_DELETE_CHARACTER;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.services.player.PlayerService;
@@ -72,18 +67,8 @@ public class CM_DELETE_CHARACTER extends AionClientPacket {
 		AionConnection client = getConnection();
 		PlayerAccountData playerAccData = client.getAccount().getPlayerAccountData(chaOid);
 		if (playerAccData != null && !playerAccData.isLegionMember()) {
-			// passkey check
-			if (SecurityConfig.PASSKEY_ENABLE && !client.getAccount().getCharacterPasskey().isPass()) {
-				client.getAccount().getCharacterPasskey().setConnectType(ConnectType.DELETE);
-				client.getAccount().getCharacterPasskey().setObjectId(chaOid);
-				// type 0 = cadastrar PIN, type 1 = digitar o PIN existente (ver showPasskey)
-				boolean hasPasskey = DAOManager.getDAO(PlayerPasskeyDAO.class).existCheckPlayerPasskey(client.getAccount().getId());
-				client.sendPacket(new S_2ND_PASSWORD(hasPasskey ? 1 : 0));
-			}
-			else {
-				PlayerService.deletePlayer(playerAccData);
-				client.sendPacket(new S_DELETE_CHARACTER(chaOid, playerAccData.getDeletionTimeInSeconds()));
-			}
+			PlayerService.deletePlayer(playerAccData);
+			client.sendPacket(new S_DELETE_CHARACTER(chaOid, playerAccData.getDeletionTimeInSeconds()));
 		}
 		else {
 			client.sendPacket(S_MESSAGE_CODE.STR_GUILD_DISPERSE_STAYMODE_CANCEL_1);

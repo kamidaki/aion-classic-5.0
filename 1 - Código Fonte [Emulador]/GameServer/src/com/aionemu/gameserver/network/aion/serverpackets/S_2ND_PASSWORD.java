@@ -14,9 +14,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import com.aionemu.gameserver.configs.main.SecurityConfig;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
@@ -57,8 +57,7 @@ public class S_2ND_PASSWORD extends AionServerPacket {
 				writeH(messageType); // 0: newpasskey complete, 2: passkey edit complete, 3: passkey input
 				//writeC(unk);
 				writeC(wrongCount > 0 ? 1 : 0); // 0: right passkey, 1: wrong passkey
-				writeD(wrongCount); // wrong passkey input count
-				writeD(SecurityConfig.PASSKEY_WRONG_MAXCOUNT);
+				writeD(5);
 				// server default value: 5)
 				break;
 		}

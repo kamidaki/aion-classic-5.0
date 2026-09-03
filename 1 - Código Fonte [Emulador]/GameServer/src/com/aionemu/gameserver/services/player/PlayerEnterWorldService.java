@@ -39,12 +39,10 @@ import com.aionemu.gameserver.configs.main.MembershipConfig;
 import com.aionemu.gameserver.configs.main.PeriodicSaveConfig;
 import com.aionemu.gameserver.configs.main.SecurityConfig;
 import com.aionemu.gameserver.dao.PlayerDAO;
-import com.aionemu.gameserver.dao.PlayerPasskeyDAO;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.account.Account;
-import com.aionemu.gameserver.model.account.CharacterPasskey.ConnectType;
 import com.aionemu.gameserver.model.account.PlayerAccountData;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -59,7 +57,6 @@ import com.aionemu.gameserver.model.items.storage.StorageType;
 import com.aionemu.gameserver.model.team2.alliance.PlayerAllianceService;
 import com.aionemu.gameserver.model.team2.group.PlayerGroupService;
 import com.aionemu.gameserver.network.aion.AionConnection;
-import com.aionemu.gameserver.network.aion.serverpackets.S_2ND_PASSWORD;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ABYSS_POINT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ADDREMOVE_SOCIAL;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ADD_SKILL;
@@ -135,30 +132,7 @@ public final class PlayerEnterWorldService {
 
     public static final void startEnterWorld(final int objectId, final AionConnection client) {
         log.info("[ENTER_WORLD] Solicitacao de entrada no mundo para objectId=" + objectId);
-        if (SecurityConfig.PASSKEY_ENABLE && client.getAccount() != null
-                && !client.getAccount().getCharacterPasskey().isPass()) {
-            log.info("[ENTER_WORLD] Passkey ativado e pendente. Enviando solicitacao de PIN (S_2ND_PASSWORD)...");
-            showPasskey(objectId, client);
-        } else {
-            log.info("[ENTER_WORLD] Passkey validado ou desativado. Entrando no mundo...");
-            validateAndEnterWorld(objectId, client);
-        }
-    }
-
-    private static final void showPasskey(final int objectId, final AionConnection client) {
-        client.getAccount().getCharacterPasskey().setConnectType(ConnectType.ENTER);
-        client.getAccount().getCharacterPasskey().setObjectId(objectId);
-        /*
-         * type 0 abre a janela de cadastro de PIN, type 1 abre a de digitacao.
-         * Contas sao criadas automaticamente no primeiro login e nascem sem PIN,
-         * entao mandar sempre o type 1 deixa o jogador preso numa janela pedindo
-         * um PIN que nunca foi definido.
-         */
-        boolean hasPasskey = DAOManager.getDAO(PlayerPasskeyDAO.class)
-                .existCheckPlayerPasskey(client.getAccount().getId());
-        log.info("[ENTER_WORLD] PIN " + (hasPasskey ? "ja cadastrado, pedindo digitacao" : "ausente, abrindo cadastro")
-                + " para a conta " + client.getAccount().getId());
-        client.sendPacket(new S_2ND_PASSWORD(hasPasskey ? 1 : 0));
+        validateAndEnterWorld(objectId, client);
     }
 
     private static void validateAndEnterWorld(final int objectId, final AionConnection client) {
