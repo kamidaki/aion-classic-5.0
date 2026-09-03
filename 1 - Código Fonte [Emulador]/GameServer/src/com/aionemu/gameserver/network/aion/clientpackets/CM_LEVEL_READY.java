@@ -60,8 +60,8 @@ public class CM_LEVEL_READY extends AionClientPacket {
 		sendPacket(new S_BUILDER_LEVEL(isGM));
 		// 6. Animações customizadas de pose/movimento (op 0x0093, 19 bytes)
 		sendPacket(new S_CUSTOM_ANIM(activePlayer.getObjectId(), activePlayer.getMotions().getActiveMotions()));
-		// 7. Comanda o cliente a fechar a cena/HUD de Character Select e entrar no modo de jogo (op 0x008B)
-		sendPacket(new S_WORLD_SCENE_STATUS(3, 20, 0));
+		// 7. Comanda o cliente a fechar a cena/HUD de Character Select e entrar no modo de jogo (op 0x008B, 03 00000000 00000000)
+		sendPacket(new S_WORLD_SCENE_STATUS(3, 0, 0));
 		WindstreamTemplate template = DataManager.WINDSTREAM_DATA
 				.getStreamTemplate(activePlayer.getPosition().getMapId());
 		Location2D location;

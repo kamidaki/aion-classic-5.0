@@ -55,10 +55,8 @@ public class S_2ND_PASSWORD extends AionServerPacket {
 				break;
 			case 2:
 				writeH(messageType); // 0: newpasskey complete, 2: passkey edit complete, 3: passkey input
-				//writeC(unk);
-				writeC(wrongCount > 0 ? 1 : 0); // 0: right passkey, 1: wrong passkey
-				writeD(5);
-				// server default value: 5)
+				writeB(new byte[5]); // 5.0 Classic padding (5 bytes de 0x00 conforme captura oficial)
+				writeD(5); // server default value: 5 (max wrong count)
 				break;
 		}
 	}

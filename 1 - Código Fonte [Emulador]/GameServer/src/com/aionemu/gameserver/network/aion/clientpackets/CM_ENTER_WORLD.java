@@ -17,9 +17,11 @@
 package com.aionemu.gameserver.network.aion.clientpackets;
 
 import com.aionemu.gameserver.network.aion.AionClientPacket;
+import com.aionemu.gameserver.model.account.CharacterPasskey;
+import com.aionemu.gameserver.model.account.CharacterPasskey.ConnectType;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.services.player.PlayerEnterWorldService;
+import com.aionemu.gameserver.network.aion.serverpackets.S_2ND_PASSWORD;
 
 /**
  * In this packets aion client is asking if given char [by oid] may login into game [ie start playing].
@@ -55,8 +57,13 @@ public class CM_ENTER_WORLD extends AionClientPacket {
 	 */
 	@Override
 	protected void runImpl() {
-
 		final AionConnection client = getConnection();
-		PlayerEnterWorldService.startEnterWorld(objectId, client);
+		if (client.getAccount() == null) {
+			return;
+		}
+		CharacterPasskey chaPasskey = client.getAccount().getCharacterPasskey();
+		chaPasskey.setObjectId(objectId);
+		chaPasskey.setConnectType(ConnectType.ENTER);
+		client.sendPacket(new S_2ND_PASSWORD(1));
 	}
 }

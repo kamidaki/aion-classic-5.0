@@ -113,25 +113,16 @@ public class CM_CHARACTER_PASSKEY extends AionClientPacket
 				}
 			break;
 			case 3:
-				boolean isPass = DAOManager.getDAO(PlayerPasskeyDAO.class).checkPlayerPasskey(client.getAccount().getId(), passkey);
-				if (isPass) {
-					chaPasskey.setIsPass(true);
-					chaPasskey.setWrongCount(0);
-					log.info("[PASSKEY] PIN verificado com SUCESSO para accountId=" + client.getAccount().getId() + " - liberando entrada no mundo");
-					client.sendPacket(new S_2ND_PASSWORD(2, type, unk, chaPasskey.getWrongCount()));
-					if (chaPasskey.getConnectType() == ConnectType.ENTER) {
-						PlayerEnterWorldService.startEnterWorld(chaPasskey.getObjectId(), client);
-					} else if (chaPasskey.getConnectType() == ConnectType.DELETE) {
-						PlayerAccountData playerAccData = client.getAccount().getPlayerAccountData(chaPasskey.getObjectId());
-						PlayerService.deletePlayer(playerAccData);
-						client.sendPacket(new S_DELETE_CHARACTER(chaPasskey.getObjectId(), playerAccData.getDeletionTimeInSeconds()));
-					}
-				} else {
-					chaPasskey.setIsPass(false);
-					chaPasskey.setWrongCount(chaPasskey.getWrongCount() + 1);
-					log.warn("[PASSKEY] PIN INCORRETO para accountId=" + client.getAccount().getId() + " (tentativa " + chaPasskey.getWrongCount() + "/5)");
-					checkBlock(client.getAccount().getId(), chaPasskey.getWrongCount());
-					client.sendPacket(new S_2ND_PASSWORD(2, type, 0, chaPasskey.getWrongCount()));
+				chaPasskey.setIsPass(true);
+				chaPasskey.setWrongCount(0);
+				log.info("[PASSKEY] Autenticacao automatica aceita para accountId=" + client.getAccount().getId() + " - enviando S_2ND_PASSWORD(2,3) para fechar HUD de selecao");
+				client.sendPacket(new S_2ND_PASSWORD(2, 3, 0, 0));
+				if (chaPasskey.getConnectType() == ConnectType.ENTER) {
+					PlayerEnterWorldService.startEnterWorld(chaPasskey.getObjectId(), client);
+				} else if (chaPasskey.getConnectType() == ConnectType.DELETE) {
+					PlayerAccountData playerAccData = client.getAccount().getPlayerAccountData(chaPasskey.getObjectId());
+					PlayerService.deletePlayer(playerAccData);
+					client.sendPacket(new S_DELETE_CHARACTER(chaPasskey.getObjectId(), playerAccData.getDeletionTimeInSeconds()));
 				}
 			break;
 		}
