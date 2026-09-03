@@ -24,6 +24,19 @@ public class CustomConfig
 	public static boolean PREMIUM_NOTIFY;
 	@Property(key = "gameserver.enchant.announce.enable", defaultValue = "true")
 	public static boolean ENABLE_ENCHANT_ANNOUNCE;
+	/**
+	 * Legacy weapon fusion dialog (pre 5.0). Since 5.0 Classic the fusion effect is
+	 * applied by equipping the secondary weapon in the off hand, so the old flow -
+	 * which charged kinah and consumed the secondary weapon - is off by default.
+	 */
+	@Property(key = "gameserver.weapon.fusion.legacy", defaultValue = "false")
+	public static boolean LEGACY_WEAPON_FUSION;
+	/**
+	 * Undo the fusions stored by the pre 5.0 system on login, handing the secondary
+	 * weapon and its manastones back to the player.
+	 */
+	@Property(key = "gameserver.weapon.fusion.split.stored", defaultValue = "true")
+	public static boolean SPLIT_STORED_WEAPON_FUSIONS;
 	@Property(key = "gameserver.chat.factions.enable", defaultValue = "false")
 	public static boolean SPEAKING_BETWEEN_FACTIONS;
 	@Property(key = "gameserver.chat.whisper.level", defaultValue = "10")

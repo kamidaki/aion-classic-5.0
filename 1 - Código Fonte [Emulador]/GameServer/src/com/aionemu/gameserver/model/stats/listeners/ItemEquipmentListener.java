@@ -126,6 +126,21 @@ public class ItemEquipmentListener {
 					}
 					allModifiers.add(new StatAddFunction(item.getItemTemplate().getAttackType().isMagical() ? StatEnum.MAGICAL_ATTACK : StatEnum.PHYSICAL_ATTACK, attack, false));
 				}
+			} else if (item.hasEquipFusion()) {
+				// 5.0 Classic: the secondary weapon is equipped in the off hand as an item of
+				// its own, so it already contributes its modifiers. Only the fusion bonus is
+				// added here, matching what a stored fusion grants.
+				ItemTemplate secondaryTemplate = item.getEquipFusionTemplate();
+				WeaponType secondaryType = secondaryTemplate.getWeaponType();
+				WeaponStats secondaryStats = secondaryTemplate.getWeaponStats();
+				if (secondaryStats != null) {
+					int boostMagicalSkill = Math.round(0.1f * (float) secondaryStats.getBoostMagicalSkill());
+					int attack = Math.round(0.1f * (float) secondaryStats.getMeanDamage());
+					if (secondaryType == WeaponType.ORB_2H || secondaryType == WeaponType.STAFF_2H || secondaryType == WeaponType.BOOK_2H) {
+						allModifiers.add(new StatAddFunction(StatEnum.BOOST_MAGICAL_SKILL, boostMagicalSkill, false));
+					}
+					allModifiers.add(new StatAddFunction(item.getItemTemplate().getAttackType().isMagical() ? StatEnum.MAGICAL_ATTACK : StatEnum.PHYSICAL_ATTACK, attack, false));
+				}
 			}
 		}
 		item.setCurrentModifiers(allModifiers);

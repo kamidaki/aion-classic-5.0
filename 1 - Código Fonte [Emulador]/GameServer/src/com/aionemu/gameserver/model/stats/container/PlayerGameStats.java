@@ -364,9 +364,9 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 			if (ws != null) {
 				base = ws.getPhysicalCritical();
 			}
-		} else if (mainHandWeapon != null && mainHandWeapon.hasFusionedItem()) {
+		} else if (mainHandWeapon != null && mainHandWeapon.hasEffectiveFusion()) {
 			WeaponStats ws1 = mainHandWeapon.getItemTemplate().getWeaponStats();
-			WeaponStats ws2 = mainHandWeapon.getFusionedItemTemplate() != null ? mainHandWeapon.getFusionedItemTemplate().getWeaponStats() : null;
+			WeaponStats ws2 = mainHandWeapon.getEffectiveFusionTemplate() != null ? mainHandWeapon.getEffectiveFusionTemplate().getWeaponStats() : null;
 			base += (ws1 != null ? ws1.getPhysicalCritical() : 0) + (ws2 != null ? ws2.getPhysicalCritical() : 0);
 		}
 		return this.getStat(StatEnum.PHYSICAL_CRITICAL, base);

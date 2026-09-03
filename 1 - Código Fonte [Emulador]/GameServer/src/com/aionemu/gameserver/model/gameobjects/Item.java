@@ -54,6 +54,7 @@ public class Item extends AionObject implements IExpirable, StatOwner {
 	private ItemTemplate itemTemplate;
 	private ItemTemplate itemSkinTemplate;
 	private ItemTemplate fusionedItemTemplate;
+	private ItemTemplate equipFusionTemplate;
 	private boolean isEquipped = false;
 	private int equipmentSlot = ItemStorage.FIRST_AVAILABLE_SLOT;
 	private PersistentState persistentState;
@@ -551,6 +552,36 @@ public class Item extends AionObject implements IExpirable, StatOwner {
 	public void setFusionedItem(ItemTemplate itemTemplate) {
 		fusionedItemTemplate = itemTemplate;
 		updateChargeInfo(0);
+	}
+
+	/**
+	 * Secondary weapon fused by simply being equipped in the off hand (5.0 Classic).
+	 * Kept in memory only - it is never written back to the database, since the
+	 * secondary weapon stays a separate item in its own slot.
+	 */
+	public ItemTemplate getEquipFusionTemplate() {
+		return equipFusionTemplate;
+	}
+
+	public void setEquipFusionTemplate(ItemTemplate itemTemplate) {
+		equipFusionTemplate = itemTemplate;
+	}
+
+	public boolean hasEquipFusion() {
+		return equipFusionTemplate != null;
+	}
+
+	/**
+	 * Fusion template that has to be taken into account for stats and tooltips,
+	 * no matter whether it comes from the legacy stored fusion or from the
+	 * secondary weapon currently equipped in the off hand.
+	 */
+	public ItemTemplate getEffectiveFusionTemplate() {
+		return fusionedItemTemplate != null ? fusionedItemTemplate : equipFusionTemplate;
+	}
+
+	public boolean hasEffectiveFusion() {
+		return getEffectiveFusionTemplate() != null;
 	}
 
 	public int getSockets(boolean isFusionItem) {

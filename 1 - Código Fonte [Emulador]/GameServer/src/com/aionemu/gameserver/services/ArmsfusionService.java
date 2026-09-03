@@ -1,6 +1,7 @@
 package com.aionemu.gameserver.services;
 
 import com.aionemu.commons.database.dao.DAOManager;
+import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.dao.InventoryDAO;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
@@ -20,6 +21,13 @@ public class ArmsfusionService
     private static final Logger log = LoggerFactory.getLogger(ArmsfusionService.class);
 	
     public static void fusionWeapons(Player player, int firstItemUniqueId, int secondItemUniqueId) {
+        if (!CustomConfig.LEGACY_WEAPON_FUSION) {
+            // 5.0 Classic: main and secondary weapons are equipped one in each hand and
+            // the fusion effect is applied on equip. Keeping this dialog alive would give
+            // a second, incompatible way of fusing the very same item.
+            log.debug("Legacy weapon fusion is disabled, ignoring request from " + player.getName());
+            return;
+        }
         Item firstItem = player.getInventory().getItemByObjId(firstItemUniqueId);
         if (firstItem == null) {
             firstItem = player.getEquipment().getEquippedItemByObjId(firstItemUniqueId);

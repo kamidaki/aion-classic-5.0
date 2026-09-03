@@ -97,6 +97,7 @@ import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.AutoGroupService;
 import com.aionemu.gameserver.services.BrokerService;
+import com.aionemu.gameserver.services.WeaponFusionSplitService;
 import com.aionemu.gameserver.services.ClassChangeService;
 import com.aionemu.gameserver.services.CubeExpandService;
 import com.aionemu.gameserver.services.EventService;
@@ -357,6 +358,7 @@ public final class PlayerEnterWorldService {
             PetService.getInstance().onPlayerLogin(player);
             MailService.getInstance().onPlayerLogin(player);
             BrokerService.getInstance().onPlayerLogin(player);
+            WeaponFusionSplitService.onPlayerLogin(player);
             sendMacroList(client, player);
             client.sendPacket(new S_CUR_STATUS((byte) 1));
             if (player.isLegionMember()) {

@@ -111,6 +111,12 @@ public class Equipment
 				    itemSlotMask = itemTemplate.getItemSlot();
 				break;
 			}
+			// 5.0 Classic: two-handed weapons are flagged for the main hand only, so a
+			// compatible secondary weapon would never reach the off hand. Widen the mask
+			// when it can be paired with the weapon already in the main hand.
+			if (canFusionPair(equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask()), item)) {
+				itemSlotMask = ItemSlot.MAIN_OR_SUB.getSlotIdMask();
+			}
 			ItemSlot[] possibleSlots = ItemSlot.getSlotsFor(itemSlotMask);
 			if (possibleSlots == null || possibleSlots.length == 0) {
 				return null;
@@ -162,6 +168,7 @@ public class Equipment
 			owner.getLifeStats().updateCurrentStats();
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
 			QuestEngine.getInstance().onEquipItem(new QuestEnv(null, owner, 0, 0), item.getItemId());
+			refreshWeaponFusion();
 			return item;
 		}
 	}
@@ -252,8 +259,10 @@ public class Equipment
 		}
 		item.setEquipped(false);
 		item.setEquipmentSlot(0);
+		item.setEquipFusionTemplate(null);
 		setPersistentState(PersistentState.UPDATE_REQUIRED);
 		notifyItemUnequip(item);
+		refreshWeaponFusion();
 		owner.getLifeStats().updateCurrentStats();
 		owner.getGameStats().updateStatsAndSpeedVisually();
 		owner.getInventory().put(item);
@@ -298,6 +307,7 @@ public class Equipment
 			if ((item.getEquipmentSlot() & ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask()) == 0) {
 				notifyItemEquipped(item);
 			}
+			refreshWeaponFusion();
 			owner.getLifeStats().updateCurrentStats();
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
 		}
@@ -369,7 +379,9 @@ public class Equipment
 			case 2:
 				switch (item.getItemTemplate().getWeaponType()) {
 					case BOW:
-						if (itemInSubHand != null && itemInSubHand.getItemTemplate().getArmorType() != ArmorType.ARROW) {
+						// A compatible secondary bow fuses instead of being evicted (5.0 Classic).
+						if (itemInSubHand != null && itemInSubHand.getItemTemplate().getArmorType() != ArmorType.ARROW
+								&& !canFusionPair(item, itemInSubHand)) {
 							if (validateOnly) {
 								requiredSlots++;
 								markedFreeSlots.add(ItemSlot.SUB_HAND.getSlotIdMask());
@@ -379,7 +391,8 @@ public class Equipment
 						}
 					break;
 					default:
-					if (itemInSubHand != null) {
+					// A compatible secondary weapon stays in the off hand and fuses (5.0 Classic).
+					if (itemInSubHand != null && !canFusionPair(item, itemInSubHand)) {
 						if (validateOnly) {
 							requiredSlots++;
 							markedFreeSlots.add(ItemSlot.SUB_HAND.getSlotIdMask());
@@ -411,6 +424,17 @@ public class Equipment
 				}
 				Item possibleArrows = equipment.get(ItemSlot.SUB_HAND.getSlotIdMask());
 				if (possibleArrows != null && possibleArrows.getItemTemplate().getArmorType() == ArmorType.ARROW) {
+					if (validateOnly) {
+						requiredSlots++;
+						markedFreeSlots.add(ItemSlot.SUB_HAND.getSlotIdMask());
+					} else {
+						unEquip(ItemSlot.SUB_HAND.getSlotIdMask());
+					}
+				}
+				// A secondary two-handed weapon only exists next to a two-handed main hand.
+				Item orphanSecondary = equipment.get(ItemSlot.SUB_HAND.getSlotIdMask());
+				if (orphanSecondary != null && orphanSecondary.getItemTemplate().isWeapon()
+						&& orphanSecondary.getItemTemplate().isTwoHandWeapon()) {
 					if (validateOnly) {
 						requiredSlots++;
 						markedFreeSlots.add(ItemSlot.SUB_HAND.getSlotIdMask());
@@ -663,6 +687,13 @@ public class Equipment
 	 * stats modificators
 	 */
 	public void onLoadApplyEquipmentStats() {
+		// 5.0 Classic: restore the fusion granted by a secondary weapon held in the off
+		// hand before the stats of each equipped item are applied.
+		Item mainHandItem = equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask());
+		if (mainHandItem != null) {
+			Item secondary = getFusionSecondaryWeapon();
+			mainHandItem.setEquipFusionTemplate(secondary != null ? secondary.getItemTemplate() : null);
+		}
 		for (Item item : equipment.values()) {
 			if (item.getEquipmentSlot() != ItemSlot.MAIN_OFF_HAND.getSlotIdMask() && item.getEquipmentSlot() != ItemSlot.SUB_OFF_HAND.getSlotIdMask()) {
 				ItemEquipmentListener.onItemEquipment(item, owner);
@@ -716,7 +747,7 @@ public class Equipment
 	 * @return <tt>WeaponType</tt> of current weapon in off hand or null
 	 */
 	public WeaponType getOffHandWeaponType() {
-		Item offHandItem = equipment.get(ItemSlot.SUB_HAND.getSlotIdMask());
+		Item offHandItem = getOffHandWeapon();
 		if (offHandItem != null && offHandItem.getItemTemplate().isWeapon()) {
 			return offHandItem.getItemTemplate().getWeaponType();
 		}
@@ -980,8 +1011,80 @@ public class Equipment
 		return equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask());
 	}
 
-	public Item getOffHandWeapon() {
+	/**
+	 * Raw content of the off hand slot, fused secondary weapons included.
+	 */
+	public Item getSubHandItem() {
 		return equipment.get(ItemSlot.SUB_HAND.getSlotIdMask());
+	}
+
+	/**
+	 * Off hand weapon for dual wield purposes. A secondary two-handed weapon fused
+	 * by being equipped (5.0 Classic) is not an off hand weapon: it grants the fusion
+	 * effect through the main hand and never attacks on its own.
+	 */
+	public Item getOffHandWeapon() {
+		Item offHandItem = equipment.get(ItemSlot.SUB_HAND.getSlotIdMask());
+		if (offHandItem != null && isFusionSecondary(offHandItem)) {
+			return null;
+		}
+		return offHandItem;
+	}
+
+	/**
+	 * @return the secondary weapon fused through the off hand slot, or null
+	 */
+	public Item getFusionSecondaryWeapon() {
+		Item offHandItem = equipment.get(ItemSlot.SUB_HAND.getSlotIdMask());
+		return isFusionSecondary(offHandItem) ? offHandItem : null;
+	}
+
+	private boolean isFusionSecondary(Item candidate) {
+		return canFusionPair(equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask()), candidate);
+	}
+
+	/**
+	 * Two two-handed weapons of the same type may be carried one in each hand, and
+	 * the fusion effect is applied simply by having both equipped (5.0 Classic).
+	 */
+	public static boolean canFusionPair(Item mainHand, Item secondary) {
+		if (mainHand == null || secondary == null || mainHand == secondary) {
+			return false;
+		}
+		ItemTemplate mainTemplate = mainHand.getItemTemplate();
+		ItemTemplate secondaryTemplate = secondary.getItemTemplate();
+		if (!mainTemplate.isWeapon() || !secondaryTemplate.isWeapon()) {
+			return false;
+		}
+		if (!mainTemplate.isTwoHandWeapon() || !secondaryTemplate.isTwoHandWeapon()) {
+			return false;
+		}
+		if (mainTemplate.getWeaponType() != secondaryTemplate.getWeaponType()) {
+			return false;
+		}
+		return mainTemplate.isCanFuse() && secondaryTemplate.isCanFuse();
+	}
+
+	/**
+	 * Keeps the main hand weapon in sync with the secondary weapon currently held in
+	 * the off hand, re-applying its stats when the pair is formed or broken.
+	 */
+	private void refreshWeaponFusion() {
+		Item mainHandItem = equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask());
+		if (mainHandItem == null) {
+			return;
+		}
+		Item secondary = getFusionSecondaryWeapon();
+		ItemTemplate secondaryTemplate = secondary != null ? secondary.getItemTemplate() : null;
+		if (mainHandItem.getEquipFusionTemplate() == secondaryTemplate) {
+			return;
+		}
+		ItemEquipmentListener.onItemUnequipment(mainHandItem, owner);
+		mainHandItem.setEquipFusionTemplate(secondaryTemplate);
+		ItemEquipmentListener.onItemEquipment(mainHandItem, owner);
+		owner.getLifeStats().updateCurrentStats();
+		owner.getGameStats().updateStatsAndSpeedVisually();
+		ItemPacketService.updateItemAfterInfoChange(owner, mainHandItem);
 	}
 
     /**

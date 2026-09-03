@@ -28,8 +28,8 @@ class DuplicateStatFunction extends StatFunction
                     func1 = f1.get(0);
                     functions.addAll(f1);
                 }
-            } if (mainWeapon.hasFusionedItem()) {
-                ItemTemplate template = mainWeapon.getFusionedItemTemplate();
+            } if (mainWeapon.hasEffectiveFusion()) {
+                ItemTemplate template = mainWeapon.getEffectiveFusionTemplate();
                 List<StatFunction> functions2 = template.getModifiers();
                 if (functions2 != null) {
                     List<StatFunction> f2 = getFunctions(functions2, stat, mainWeapon);
