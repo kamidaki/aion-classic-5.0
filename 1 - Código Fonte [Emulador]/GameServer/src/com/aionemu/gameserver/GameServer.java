@@ -272,6 +272,7 @@ public class GameServer
 		}
 		onStartup();
 		com.aionemu.gameserver.services.ManagementService.getInstance().start();
+		com.aionemu.gameserver.services.web.InGameWebServer.getInstance().start();
 	}
 	
 	private void startServers() {

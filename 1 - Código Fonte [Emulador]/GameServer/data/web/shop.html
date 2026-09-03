@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aion Classic 5.0 - Loja Oficial Quna & Daeva Pass</title>
+    <style>
+        :root {
+            --bg-base: #0c0a09;
+            --bg-surface: rgba(28, 25, 23, 0.75);
+            --bg-card: rgba(41, 37, 36, 0.6);
+            --primary: #f59e0b;
+            --primary-hover: #d97706;
+            --gold: #fbbf24;
+            --text: #f5f5f4;
+            --text-muted: #a8a29e;
+            --border: rgba(245, 158, 11, 0.2);
+            --border-glow: 0 0 15px rgba(245, 158, 11, 0.3);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body {
+            background: radial-gradient(circle at 50% 0%, #292524 0%, #0c0a09 80%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 28px;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            margin-bottom: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+        }
+        .brand span { color: #fff; font-weight: 400; font-size: 15px; margin-left: 8px; border-left: 1px solid var(--border); padding-left: 12px; }
+        .user-balance {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .balance-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid var(--border);
+            padding: 8px 18px;
+            border-radius: 999px;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .nav-btn {
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .nav-btn.active, .nav-btn:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+            background: rgba(245, 158, 11, 0.1);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 22px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border);
+            box-shadow: var(--border-glow);
+        }
+        .card:hover::before { opacity: 1; }
+        .tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: rgba(245, 158, 11, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+        .item-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .item-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 16px;
+        }
+        .price-tag {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .btn-action {
+            background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+            color: #0c0a09;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+        }
+        .btn-action:hover {
+            transform: scale(1.04);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            🏛️ AION CLASSIC 5.0
+            <span>LOJA DE ITENS & QUNA OFICIAL</span>
+        </div>
+        <div class="user-balance">
+            <div class="balance-badge">🪙 Quna: <span id="balance-val">Disponível</span></div>
+        </div>
+    </header>
+
+    <div class="nav-links">
+        <button class="nav-btn active" onclick="filterItems('all')">Todos os Itens</button>
+        <button class="nav-btn" onclick="filterItems('Asas')">Asas & Cosméticos</button>
+        <button class="nav-btn" onclick="filterItems('Consumiveis')">Consumíveis</button>
+        <button class="nav-btn" onclick="filterItems('Aprimoramento')">Aprimoramento</button>
+        <button class="nav-btn" onclick="window.location.href='/ranking'">🏆 Ver Rankings</button>
+    </div>
+
+    <div class="grid" id="grid">
+        <!-- Renderização dinâmica dos itens -->
+    </div>
+
+    <script>
+        let allItems = [];
+
+        fetch('/api/shop/items')
+            .then(res => res.json())
+            .then(data => {
+                allItems = data;
+                renderCards(allItems);
+            });
+
+        function renderCards(items) {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = items.map(item => `
+                <div class="card">
+                    <div>
+                        <div class="tag">${item.category}</div>
+                        <div class="item-title">${item.name}</div>
+                        <div class="item-desc">Item premium entregue diretamente no inventário do seu personagem.</div>
+                    </div>
+                    <div class="footer-row">
+                        <div class="price-tag">${item.price} Quna</div>
+                        <button class="btn-action" onclick="purchase(${item.itemId}, ${item.price})">Comprar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterItems(cat) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            if (cat === 'all') {
+                renderCards(allItems);
+            } else {
+                renderCards(allItems.filter(i => i.category === cat));
+            }
+        }
+
+        function purchase(itemId, price) {
+            const charName = prompt('Informe o nome do seu Personagem online:');
+            if (!charName) return;
+
+            fetch('/api/shop/buy', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `player=${encodeURIComponent(charName)}&itemId=${itemId}&price=${price}`
+            })
+            .then(r => r.json())
+            .then(data => {
+                alert(data.message);
+                if (data.balance !== undefined) {
+                    document.getElementById('balance-val').innerText = data.balance + ' Quna';
+                }
+            })
+            .catch(err => alert('Erro de comunicacao com o servidor de jogo: ' + err));
+        }
+    </script>
+</body>
+</html>

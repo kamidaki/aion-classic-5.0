@@ -224,6 +224,8 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_RECONNECT_AUTH(0x00B8, State.IN_GAME, State.AUTHED));
         addPacket(new CM_CLIENT_PERF_METRICS(0x01BF, State.IN_GAME)); // 0x00C5 CLIENT_PERF_METRICS (telemetria 21b)
         addPacket(new CM_CLIENT_PERF_METRICS(0x00C5, State.IN_GAME));
+        addPacket(new CM_GET_HOUSE_BIDS(0x01A8, State.IN_GAME)); // 0x00DA C_REQUEST_AUCTION_LIST (Leilão de Casas)
+        addPacket(new CM_GET_HOUSE_BIDS(0x00DA, State.IN_GAME));
     }
 
     public AionPacketHandler getPacketHandler() {
