@@ -24,6 +24,7 @@ import com.aionemu.gameserver.model.stats.calc.functions.StatAddFunction;
 import com.aionemu.gameserver.model.stats.calc.functions.StatFunction;
 import com.aionemu.gameserver.model.stats.container.CreatureGameStats;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
+import com.aionemu.gameserver.model.templates.item.ItemAttackType;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.item.WeaponStats;
 import com.aionemu.gameserver.model.templates.item.WeaponType;
@@ -124,7 +125,9 @@ public class ItemEquipmentListener {
 					if (weaponType == WeaponType.ORB_2H || weaponType == WeaponType.STAFF_2H || weaponType == WeaponType.BOOK_2H) {			    
 						allModifiers.add(new StatAddFunction(StatEnum.BOOST_MAGICAL_SKILL, boostMagicalSkill, false));
 					}
-					allModifiers.add(new StatAddFunction(item.getItemTemplate().getAttackType().isMagical() ? StatEnum.MAGICAL_ATTACK : StatEnum.PHYSICAL_ATTACK, attack, false));
+					ItemAttackType at = item.getItemTemplate() != null ? item.getItemTemplate().getAttackType() : null;
+					boolean isMagical = at != null && at.isMagical();
+					allModifiers.add(new StatAddFunction(isMagical ? StatEnum.MAGICAL_ATTACK : StatEnum.PHYSICAL_ATTACK, attack, false));
 				}
 			} else if (item.hasEquipFusion()) {
 				// 5.0 Classic: the secondary weapon is equipped in the off hand as an item of

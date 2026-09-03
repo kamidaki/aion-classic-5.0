@@ -1771,9 +1771,13 @@ public class Player extends Creature
 
 	@Override
 	public ItemAttackType getAttackType() {
-		Item weapon = getEquipment().getMainHandWeapon();
-		if (weapon != null)
-			return weapon.getItemTemplate().getAttackType();
+		Item weapon = getEquipment() != null ? getEquipment().getMainHandWeapon() : null;
+		if (weapon != null && weapon.getItemTemplate() != null) {
+			ItemAttackType attackType = weapon.getItemTemplate().getAttackType();
+			if (attackType != null) {
+				return attackType;
+			}
+		}
 		return ItemAttackType.PHYSICAL;
 	}
 

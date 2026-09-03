@@ -2,6 +2,7 @@
 
 mod config;
 mod db_manager;
+mod job_object;
 mod logs;
 mod single_instance;
 mod supervisor;
@@ -11,6 +12,7 @@ mod webview;
 
 use config::load_config;
 use db_manager::DbManager;
+use job_object::JobObjectGuard;
 use logs::LogCenter;
 use single_instance::SingleInstanceGuard;
 use supervisor::Supervisor;
@@ -35,11 +37,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    // 1. Single Instance Protection via Native Windows Named Mutex
-    let _instance_guard = match SingleInstanceGuard::acquire(
-        "Aion Classic - EMU",
-        "Local\\AionClassicEmu_AutoStart_Mutex",
-    ) {
+    // 1. Windows Job Object: guarantees all child Java processes die when launcher exits or crashes
+    let _job_guard = JobObjectGuard::init();
+
+    // 2. Strict Single Instance Protection via Global/Local Named Mutex & Process Scan
+    let _instance_guard = match SingleInstanceGuard::acquire("Aion Classic - EMU") {
         Some(g) => g,
         None => {
             std::process::exit(0);
@@ -73,8 +75,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // 4. Initialize Windows System Tray
     let proxy_for_tray = proxy.clone();
-    let is_shutting_down_tray = is_shutting_down.clone();
-    let sup_for_tray_shutdown = supervisor.clone();
 
     let tray_manager_arc = Arc::new(parking_lot::Mutex::new(
         TrayManager::init(Arc::new(move |action| match action {
@@ -82,14 +82,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let _ = proxy_for_tray.send_event(UserEvent::ShowDashboard);
             }
             TrayAction::RequestShutdown => {
-                if !is_shutting_down_tray.swap(true, Ordering::SeqCst) {
-                    let s = sup_for_tray_shutdown.clone();
-                    let p = proxy_for_tray.clone();
-                    tokio::spawn(async move {
-                        s.graceful_shutdown().await;
-                        let _ = p.send_event(UserEvent::RequestShutdown);
-                    });
-                }
+                let _ = proxy_for_tray.send_event(UserEvent::RequestShutdownConfirmation);
             }
         }))
         .expect("Failed to initialize Windows System Tray"),
@@ -215,7 +208,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             });
 
-        // Route: POST /api/shutdown -> Graceful shutdown trigger
+        // Route: POST /api/shutdown -> Synchronous Graceful shutdown trigger
         let is_shutting_down_api = is_shutting_down_bg.clone();
         let sup_shutdown_api = sup_clone.clone();
         let proxy_api = proxy_for_web.clone();
@@ -227,12 +220,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let prx = proxy_api.clone();
                 async move {
                     if !flag.swap(true, Ordering::SeqCst) {
+                        sup.graceful_shutdown().await;
                         tokio::spawn(async move {
-                            sup.graceful_shutdown().await;
-                            let _ = prx.send_event(UserEvent::RequestShutdown);
+                            tokio::time::sleep(Duration::from_millis(800)).await;
+                            let _ = prx.send_event(UserEvent::ExitProcess);
                         });
                     }
-                    Ok::<_, Infallible>(warp::reply::json(&serde_json::json!({ "status": "shutting_down" })))
+                    Ok::<_, Infallible>(warp::reply::json(&serde_json::json!({
+                        "status": "ok",
+                        "message": "Servidores finalizados com sucesso."
+                    })))
                 }
             });
 
@@ -408,18 +405,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         std::thread::sleep(Duration::from_millis(50));
     }
 
-    let is_shutting_down_wv = is_shutting_down.clone();
-    let sup_for_wv = supervisor.clone();
-
+    let sup_for_cleanup = supervisor.clone();
     webview_app.run(dashboard_url, move || {
-        if !is_shutting_down_wv.swap(true, Ordering::SeqCst) {
-            let s = sup_for_wv.clone();
-            std::thread::spawn(move || {
-                tokio::runtime::Runtime::new().unwrap().block_on(async {
-                    s.graceful_shutdown().await;
-                });
-            });
-        }
+        let s = sup_for_cleanup.clone();
+        tokio::runtime::Runtime::new().unwrap().block_on(async {
+            s.graceful_shutdown().await;
+        });
     });
 
     Ok(())

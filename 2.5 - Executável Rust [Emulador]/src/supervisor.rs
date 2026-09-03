@@ -97,6 +97,8 @@ pub struct DashboardState {
     pub history: Vec<HistoryPoint>,
     pub online_players_count: usize,
     pub database: DatabaseMetrics,
+    pub os_total_memory_mb: f32,
+    pub os_used_memory_mb: f32,
     pub subsystems: Vec<SubsystemMetric>,
 }
 
@@ -172,8 +174,70 @@ fn resolve_java_binary(candidate: &str) -> String {
     "java".to_string()
 }
 
+fn is_port_in_use(port: u16) -> bool {
+    let addr = std::net::SocketAddr::from(([127, 0, 0, 1], port));
+    if std::net::TcpStream::connect_timeout(&addr, Duration::from_millis(150)).is_ok() {
+        return true;
+    }
+    std::net::TcpListener::bind(("0.0.0.0", port)).is_err()
+}
+
 impl Supervisor {
+    pub fn purge_orphaned_java_processes(log_center: &LogCenter) {
+        let mut sys = System::new_with_specifics(
+            RefreshKind::new().with_processes(ProcessRefreshKind::new()),
+        );
+        sys.refresh_processes();
+
+        let my_pid = std::process::id();
+        let targets = [
+            "chatserver-classicemu-brasil.jar",
+            "loginserver-classicemu-brasil.jar",
+            "gameserver-classicemu-brasil.jar",
+            "al-chat.jar",
+            "encom-login",
+            "encom-game",
+            "com.aionemu.gameserver.gameserver",
+            "com.aionemu.loginserver.loginserver",
+            "com.aionemu.chatserver.chatserver",
+        ];
+
+        for (pid, proc) in sys.processes() {
+            if pid.as_u32() == my_pid {
+                continue;
+            }
+            let name = proc.name().to_lowercase();
+            let is_java = name == "java.exe" || name == "javaw.exe" || name == "java";
+            if !is_java {
+                continue;
+            }
+
+            let cmdline = proc.cmd().join(" ").to_lowercase();
+            let mut matched = false;
+            for t in &targets {
+                if cmdline.contains(t) {
+                    matched = true;
+                    break;
+                }
+            }
+
+            if matched {
+                log_center.push(
+                    "launcher",
+                    &format!(
+                        "[Supervisor] Processo Java orfão detectado (PID: {}) de execução anterior. Finalizando para liberar portas...",
+                        pid.as_u32()
+                    ),
+                );
+                let _ = proc.kill();
+            }
+        }
+    }
+
     pub fn new(config: RootConfig, log_center: LogCenter, db_manager: DbManager) -> Self {
+        // Purge any orphaned Java processes from previous crashes or unclosed sessions
+        Self::purge_orphaned_java_processes(&log_center);
+
         let mut servers = HashMap::new();
 
         for (id, sc) in &config.servers {
@@ -227,7 +291,23 @@ impl Supervisor {
             let srv = srvs.get_mut(name).ok_or_else(|| format!("Servidor desconhecido: {}", name))?;
 
             if srv.status == ServerStatus::Online || srv.status == ServerStatus::Starting {
-                return Ok(());
+                return Err(format!("O servidor {} já está em execução ou inicializando.", name));
+            }
+
+            // Port de-duplication check
+            let expected_port = match name {
+                "login" => Some(2106),
+                "game" => Some(7777),
+                "chat" => Some(10241),
+                _ => None,
+            };
+
+            if let Some(port) = expected_port {
+                if is_port_in_use(port) {
+                    let err = format!("A porta de rede {} do {} já está em uso por outro processo!", port, name);
+                    self.log_center.push(name, &format!("[Launcher] ERRO: {}", err));
+                    return Err(err);
+                }
             }
 
             srv.status = ServerStatus::Starting;
@@ -341,56 +421,64 @@ impl Supervisor {
                 }
             }
 
-            self.log_center.push(name, &format!("[Launcher] Solicitando desligamento seguro (60s) via porta {}", port));
+            self.log_center.push(name, &format!("[Launcher] Solicitando desligamento seguro via porta de gerenciamento {}...", port));
 
             let client = reqwest_like_http_post(port, shutdown_delay, "shutdown").await;
             if client.is_ok() {
-                self.log_center.push(name, "[Launcher] Contagem regressiva de shutdown seguro iniciada no jogo.");
+                self.log_center.push(name, "[Launcher] Comando de shutdown recebido pelo jogo. Gravando dados em disco...");
             } else {
                 self.log_center.push(name, "[Launcher] Porta de gerenciamento indisponivel, aguardando saida do processo...");
             }
 
             // Aguarda o processo terminar graciosamente
-            let self_clone = self.clone();
-            let name_str = name.to_string();
-            tokio::spawn(async move {
-                let max_wait = Duration::from_secs(shutdown_delay + 15);
-                let start = Instant::now();
+            let max_wait = Duration::from_secs(shutdown_delay.min(15));
+            let start = Instant::now();
 
-                loop {
-                    tokio::time::sleep(Duration::from_millis(500)).await;
-                    let is_running = {
-                        let srvs = self_clone.servers.lock();
-                        if let Some(s) = srvs.get(&name_str) {
-                            s.child.is_some() && s.status == ServerStatus::Stopping
+            loop {
+                tokio::time::sleep(Duration::from_millis(200)).await;
+                let exited = {
+                    let mut srvs = self.servers.lock();
+                    if let Some(s) = srvs.get_mut(name) {
+                        if let Some(child) = s.child.as_mut() {
+                            match child.try_wait() {
+                                Ok(Some(_)) => true,
+                                Ok(None) => false,
+                                Err(_) => true,
+                            }
                         } else {
-                            false
+                            true
                         }
-                    };
-
-                    if !is_running {
-                        break;
+                    } else {
+                        true
                     }
+                };
 
-                    if start.elapsed() > max_wait {
-                        let child_to_kill = {
-                            let mut srvs = self_clone.servers.lock();
-                            srvs.get_mut(&name_str).and_then(|s| s.child.take())
-                        };
-                        if let Some(mut child) = child_to_kill {
-                            let _ = child.kill().await;
-                        }
-                        let mut srvs = self_clone.servers.lock();
-                        if let Some(s) = srvs.get_mut(&name_str) {
-                            s.status = ServerStatus::Offline;
-                            s.pid = None;
-                            s.stopping_deadline = None;
-                        }
-                        break;
-                    }
+                if exited {
+                    break;
                 }
-            });
 
+                if start.elapsed() > max_wait {
+                    self.log_center.push(name, "[Launcher] Tempo limite de shutdown seguro atingido. Finalizando processo...");
+                    let child_to_kill = {
+                        let mut srvs = self.servers.lock();
+                        srvs.get_mut(name).and_then(|s| s.child.take())
+                    };
+                    if let Some(mut child) = child_to_kill {
+                        let _ = child.kill().await;
+                    }
+                    break;
+                }
+            }
+
+            let mut srvs = self.servers.lock();
+            if let Some(s) = srvs.get_mut(name) {
+                s.child = None;
+                s.status = ServerStatus::Offline;
+                s.pid = None;
+                s.stopping_deadline = None;
+            }
+
+            self.log_center.push(name, &format!("[Launcher] {} finalizado com sucesso.", name));
             return Ok(());
         }
 
@@ -407,6 +495,7 @@ impl Supervisor {
 
         if let Some(mut child) = child_to_kill {
             let _ = child.kill().await;
+            let _ = child.wait().await;
         }
 
         {
@@ -450,10 +539,35 @@ impl Supervisor {
     }
 
     pub async fn graceful_shutdown(&self) {
-        self.log_center.push("launcher", "[Launcher] Encerrando todos os servidores graciosamente...");
+        self.log_center.push("launcher", "[Launcher] Encerrando todos os servidores graciosamente com segurança...");
+        self.log_center.push("launcher", "[Launcher] [1/3] Finalizando Game-Server e salvando dados...");
         let _ = self.stop_server("game").await;
+
+        self.log_center.push("launcher", "[Launcher] [2/3] Finalizando Login-Server...");
         let _ = self.stop_server("login").await;
+
+        self.log_center.push("launcher", "[Launcher] [3/3] Finalizando Chat-Server...");
         let _ = self.stop_server("chat").await;
+
+        // Limpeza final de segurança em todos os servidores
+        let mut children_to_kill = Vec::new();
+        {
+            let mut srvs = self.servers.lock();
+            for (_name, srv) in srvs.iter_mut() {
+                if let Some(child) = srv.child.take() {
+                    children_to_kill.push(child);
+                }
+                srv.status = ServerStatus::Offline;
+                srv.pid = None;
+                srv.stopping_deadline = None;
+            }
+        }
+
+        for mut child in children_to_kill {
+            let _ = child.kill().await;
+        }
+
+        self.log_center.push("launcher", "[Launcher] Todos os servidores foram encerrados com sucesso.");
     }
 
     pub async fn start_all_servers_sequentially(&self) {
@@ -531,10 +645,13 @@ impl Supervisor {
     }
 
     fn sample_metrics(&self) {
+        let num_cpus = std::thread::available_parallelism().map(|n| n.get()).unwrap_or(1) as f32;
+
         let mut sys = self.system.lock();
         sys.refresh_processes_specifics(
             ProcessRefreshKind::new().with_cpu().with_memory(),
         );
+        sys.refresh_memory();
 
         let mut srvs = self.servers.lock();
         let mut total_cpu = 0.0f32;
@@ -551,7 +668,7 @@ impl Supervisor {
             if let Some(pid_u32) = srv.pid {
                 let pid = Pid::from_u32(pid_u32);
                 if let Some(proc) = sys.process(pid) {
-                    let cpu = proc.cpu_usage();
+                    let cpu = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
                     let mem = proc.memory() as f32 / (1024.0 * 1024.0);
 
                     srv.cpu_history.push_back(cpu);
@@ -574,7 +691,8 @@ impl Supervisor {
 
         let launcher_pid = Pid::from_u32(self.launcher_pid);
         let (launcher_cpu, launcher_mem) = if let Some(proc) = sys.process(launcher_pid) {
-            (proc.cpu_usage(), proc.memory() as f32 / (1024.0 * 1024.0))
+            let cpu = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
+            (cpu, proc.memory() as f32 / (1024.0 * 1024.0))
         } else {
             (0.0, 0.0)
         };
@@ -585,7 +703,7 @@ impl Supervisor {
         let mut hist = self.history.lock();
         hist.push_back(HistoryPoint {
             timestamp: now_str,
-            total_cpu: total_cpu + launcher_cpu,
+            total_cpu: (total_cpu + launcher_cpu).clamp(0.0, 100.0),
             total_mem_mb: total_mem + launcher_mem,
             login_cpu,
             game_cpu,
@@ -604,6 +722,8 @@ impl Supervisor {
     }
 
     pub fn get_dashboard_state(&self) -> DashboardState {
+        let num_cpus = std::thread::available_parallelism().map(|n| n.get()).unwrap_or(1) as f32;
+
         let sys = self.system.lock();
         let srvs = self.servers.lock();
         let hist = self.history.lock();
@@ -616,7 +736,8 @@ impl Supervisor {
             let (cpu, mem) = if let Some(pid_u32) = srv.pid {
                 let pid = Pid::from_u32(pid_u32);
                 if let Some(proc) = sys.process(pid) {
-                    (proc.cpu_usage(), proc.memory() as f32 / (1024.0 * 1024.0))
+                    let c = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
+                    (c, proc.memory() as f32 / (1024.0 * 1024.0))
                 } else {
                     (0.0, 0.0)
                 }
@@ -665,10 +786,14 @@ impl Supervisor {
 
         let launcher_pid = Pid::from_u32(self.launcher_pid);
         let (launcher_cpu, launcher_mem) = if let Some(proc) = sys.process(launcher_pid) {
-            (proc.cpu_usage(), proc.memory() as f32 / (1024.0 * 1024.0))
+            let c = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
+            (c, proc.memory() as f32 / (1024.0 * 1024.0))
         } else {
             (0.0, 0.0)
         };
+
+        let os_total_mem = sys.total_memory() as f32 / (1024.0 * 1024.0);
+        let os_used_mem = sys.used_memory() as f32 / (1024.0 * 1024.0);
 
         let (db_connected, db_tables, db_rows) = self.db_manager.get_summary();
 
@@ -676,7 +801,7 @@ impl Supervisor {
             launcher_pid: self.launcher_pid,
             launcher_cpu,
             launcher_memory_mb: launcher_mem,
-            total_cpu: total_cpu + launcher_cpu,
+            total_cpu: (total_cpu + launcher_cpu).clamp(0.0, 100.0),
             total_memory_mb: total_mem + launcher_mem,
             uptime_secs: self.start_time.elapsed().as_secs(),
             local_ip: get_local_lan_ip(),
@@ -693,6 +818,8 @@ impl Supervisor {
                 total_tables: db_tables,
                 total_rows: db_rows,
             },
+            os_total_memory_mb: os_total_mem,
+            os_used_memory_mb: os_used_mem,
             subsystems: Vec::new(),
         }
     }

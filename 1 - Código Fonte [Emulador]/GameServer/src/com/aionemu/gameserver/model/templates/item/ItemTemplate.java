@@ -321,7 +321,29 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public ItemAttackType getAttackType() {
-		return attackType;
+		if (attackType != null) {
+			return attackType;
+		}
+		if (weaponType != null) {
+			switch (weaponType) {
+				case BOOK_2H:
+				case _2H_BOOK:
+				case ORB_2H:
+				case _2H_ORB:
+				case GUN_1H:
+				case _1H_GUN:
+				case CANNON_2H:
+				case _2H_CANNON:
+				case HARP_2H:
+				case _2H_HARP:
+				case KEYBLADE_2H:
+				case _2H_KEYBLADE:
+					return ItemAttackType.MAGICAL_WATER;
+				default:
+					return ItemAttackType.PHYSICAL;
+			}
+		}
+		return ItemAttackType.PHYSICAL;
 	}
 
 	public float getAttackGap() {

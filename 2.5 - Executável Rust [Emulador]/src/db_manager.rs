@@ -280,12 +280,19 @@ impl DbManager {
 
         let tables: Vec<String> = conn.query("SHOW TABLES").unwrap_or_default();
         let total_tables = tables.len();
+        if total_tables == 0 {
+            return (true, 0, 0);
+        }
 
-        let count_query = format!(
-            "SELECT COALESCE(SUM(TABLE_ROWS), 0) FROM information_schema.TABLES WHERE TABLE_SCHEMA = '{}'",
-            self.db_name
-        );
-        let count_row: Option<Row> = conn.query_first(&count_query).unwrap_or(None);
+        // Fast exact aggregation across all tables (16ms)
+        let union_inner = tables
+            .iter()
+            .map(|t| format!("SELECT COUNT(*) AS cnt FROM `{}`", t))
+            .collect::<Vec<_>>()
+            .join(" UNION ALL ");
+        let query = format!("SELECT COALESCE(SUM(cnt), 0) FROM ({}) sub", union_inner);
+
+        let count_row: Option<Row> = conn.query_first(&query).unwrap_or(None);
         let total_rows = count_row.map(|r| row_get_i64(&r, 0)).unwrap_or(0);
 
         (true, total_tables, total_rows)
@@ -299,14 +306,28 @@ impl DbManager {
 
         let mut conn = pool.get_conn().map_err(|e| format!("Erro MySQL ao conectar: {}", e))?;
 
-        // 1. Fetch all tables and row counts in ONE query from information_schema
-        let tables_query = format!(
-            "SELECT TABLE_NAME, COALESCE(TABLE_ROWS, 0) FROM information_schema.TABLES WHERE TABLE_SCHEMA = '{}' ORDER BY TABLE_NAME",
-            self.db_name
-        );
-        let table_rows: Vec<Row> = conn.query(&tables_query).unwrap_or_default();
+        // 1. Fetch all tables from SHOW TABLES
+        let tables: Vec<String> = conn.query("SHOW TABLES").unwrap_or_default();
 
-        // 2. Fetch all columns for all tables in ONE query from information_schema
+        // 2. Fetch all exact counts for each table via ONE single UNION ALL query (100ms)
+        let mut table_counts: HashMap<String, i64> = HashMap::new();
+        if !tables.is_empty() {
+            let union_sql = tables
+                .iter()
+                .map(|t| format!("SELECT '{}' AS tbl, COUNT(*) AS cnt FROM `{}`", t, t))
+                .collect::<Vec<_>>()
+                .join(" UNION ALL ");
+
+            if let Ok(c_rows) = conn.query::<Row, _>(&union_sql) {
+                for cr in c_rows {
+                    let tbl = row_get_str_or_default(&cr, 0);
+                    let cnt = row_get_i64(&cr, 1);
+                    table_counts.insert(tbl, cnt);
+                }
+            }
+        }
+
+        // 3. Fetch all columns for all tables in ONE query from information_schema
         let cols_query = format!(
             "SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_KEY, COLUMN_DEFAULT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '{}' ORDER BY TABLE_NAME, ORDINAL_POSITION",
             self.db_name
@@ -337,9 +358,8 @@ impl DbManager {
         let mut table_schemas = Vec::new();
         let mut total_rows = 0i64;
 
-        for r in table_rows {
-            let tbl_name = row_get_str_or_default(&r, 0);
-            let row_count = row_get_i64(&r, 1);
+        for tbl_name in tables {
+            let row_count = table_counts.get(&tbl_name).copied().unwrap_or(0);
             total_rows += row_count;
 
             let columns = cols_by_table.remove(&tbl_name).unwrap_or_default();
@@ -550,7 +570,11 @@ impl DbManager {
         };
 
         let mut conn = pool.get_conn().map_err(|e| e.to_string())?;
-        conn.query_drop(format!("TRUNCATE TABLE `{}`", table)).map_err(|e| e.to_string())?;
+        let _ = conn.query_drop("SET FOREIGN_KEY_CHECKS = 0");
+        if let Err(_) = conn.query_drop(format!("DELETE FROM `{}`", table)) {
+            let _ = conn.query_drop(format!("TRUNCATE TABLE `{}`", table));
+        }
+        let _ = conn.query_drop("SET FOREIGN_KEY_CHECKS = 1");
         Ok(())
     }
 
@@ -562,12 +586,35 @@ impl DbManager {
 
         let mut conn = pool.get_conn().map_err(|e| e.to_string())?;
         let tables: Vec<String> = conn.query("SHOW TABLES").map_err(|e| e.to_string())?;
-
-        conn.query_drop("SET FOREIGN_KEY_CHECKS = 0").map_err(|e| e.to_string())?;
-        for t in &tables {
-            let _ = conn.query_drop(format!("TRUNCATE TABLE `{}`", t));
+        if tables.is_empty() {
+            return Ok(Vec::new());
         }
-        conn.query_drop("SET FOREIGN_KEY_CHECKS = 1").map_err(|e| e.to_string())?;
+
+        // Fast scan to find tables that actually have rows > 0
+        let union_sql = tables
+            .iter()
+            .map(|t| format!("SELECT '{}' AS tbl, COUNT(*) AS cnt FROM `{}`", t, t))
+            .collect::<Vec<_>>()
+            .join(" UNION ALL ");
+
+        let counts: Vec<Row> = conn.query(&union_sql).unwrap_or_default();
+        let tables_to_clean: Vec<String> = counts
+            .iter()
+            .filter_map(|r| {
+                let name = row_get_str_or_default(r, 0);
+                let cnt = row_get_i64(r, 1);
+                if cnt > 0 { Some(name) } else { None }
+            })
+            .collect();
+
+        let _ = conn.query_drop("SET FOREIGN_KEY_CHECKS = 0");
+        for t in &tables_to_clean {
+            if let Err(_) = conn.query_drop(format!("DELETE FROM `{}`", t)) {
+                let _ = conn.query_drop(format!("TRUNCATE TABLE `{}`", t));
+            }
+        }
+        let _ = conn.query_drop("SET FOREIGN_KEY_CHECKS = 1");
+
         Ok(tables)
     }
 

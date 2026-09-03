@@ -277,12 +277,16 @@ public class AttackUtil
         Creature effected = effect.getEffected();
 		int damage = 0;
 		int baseAttack = 0;
-		if (effector.getAttackType() == ItemAttackType.PHYSICAL) {
+		ItemAttackType effectorAttackType = effector.getAttackType();
+		if (effectorAttackType == null) {
+			effectorAttackType = ItemAttackType.PHYSICAL;
+		}
+		if (effectorAttackType == ItemAttackType.PHYSICAL) {
 			baseAttack = effector.getGameStats().getMainHandPAttack().getBase();
 		    damage = StatFunctions.calculatePhysicalAttackDamage(effect.getEffector(), effect.getEffected(), true);
 		} else {
 			baseAttack = effector.getGameStats().getMAttack().getBase();
-			damage = StatFunctions.calculateMagicalAttackDamage(effector, effected, effector.getAttackType().getMagicalElement(), isMainHand);
+			damage = StatFunctions.calculateMagicalAttackDamage(effector, effected, effectorAttackType.getMagicalElement(), isMainHand);
 		} if (func != null) {
 			switch (func) {
 				case ADD:
@@ -332,7 +336,7 @@ public class AttackUtil
             }
         }
 		AttackStatus status = AttackStatus.NORMALHIT;
-		if (effector.getAttackType() == ItemAttackType.PHYSICAL) {
+		if (effectorAttackType == ItemAttackType.PHYSICAL) {
 			status = calculatePhysicalStatus(effector, effected, true, accMod, critProbMod2, true, cannotMiss);
 		} else {
 			status = calculateMagicalStatus(effector, effected, critProbMod2, true);
