@@ -113,9 +113,8 @@ public class StigmaService
             if (item.getItemTemplate().isStigma()) {
                 Stigma stigmaInfo = item.getItemTemplate().getStigma();
                 if (stigmaInfo == null) {
-                    log.warn("Stigma info missing for item: " + item.getItemTemplate().getTemplateId());
+                    log.warn("Stigma Information missing for item: {}", item.getItemTemplate().getTemplateId());
                     player.getEquipment().unEquipItem(item.getObjectId(), 0);
-                    continue;
                 }
             }
         }

@@ -9,7 +9,7 @@ import com.aionemu.gameserver.network.aion.AionServerPacket;
 
 public class S_LOAD_EQUIPMENT_CHANGE extends AionServerPacket {
 
-	private Player player;
+	private final Player player;
 
     public S_LOAD_EQUIPMENT_CHANGE(Player player) {
     	this.player = player;
@@ -20,7 +20,7 @@ public class S_LOAD_EQUIPMENT_CHANGE extends AionServerPacket {
     	writeH(player.getPlayerEquipSettingList().size());
 		for (Entry<Integer, EquipmentSetting> entry : player.getPlayerEquipSettingList().entrySet()) {
 			writeD(entry.getKey());
-			entry.getValue().getObjIds().stream().forEachOrdered((p) -> writeD(p));
+			entry.getValue().getObjIds().forEach(this::writeD);
 		}
     }
 }
