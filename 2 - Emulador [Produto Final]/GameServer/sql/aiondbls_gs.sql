@@ -19,6 +19,132 @@
 CREATE DATABASE IF NOT EXISTS `aiondbls_gs` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `aiondbls_gs`;
 
+-- --------------------------------------------------------
+-- Tabelas Canonicas do Login Server e Chat Server
+-- --------------------------------------------------------
+
+-- Dumping structure for table aiondbls_gs.account_data
+DROP TABLE IF EXISTS `account_data`;
+CREATE TABLE IF NOT EXISTS `account_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `ext_auth_name` varchar(45) DEFAULT NULL,
+  `password` varchar(65) NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `activated` tinyint(1) NOT NULL DEFAULT 1,
+  `access_level` tinyint(4) NOT NULL DEFAULT 0,
+  `membership` tinyint(4) NOT NULL DEFAULT 0,
+  `old_membership` tinyint(4) NOT NULL DEFAULT 0,
+  `last_server` tinyint(4) NOT NULL DEFAULT -1,
+  `last_ip` varchar(20) DEFAULT NULL,
+  `last_mac` varchar(20) NOT NULL DEFAULT 'xx-xx-xx-xx-xx-xx',
+  `last_hdd_serial` varchar(100) DEFAULT NULL,
+  `allowed_hdd_serial` varchar(100) DEFAULT NULL,
+  `ip_force` varchar(20) DEFAULT NULL,
+  `expire` date DEFAULT NULL,
+  `toll` bigint(20) NOT NULL DEFAULT 0,
+  `balance` float NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `ext_auth_name` (`ext_auth_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping structure for table aiondbls_gs.account_time
+DROP TABLE IF EXISTS `account_time`;
+CREATE TABLE IF NOT EXISTS `account_time` (
+  `account_id` int(11) NOT NULL,
+  `last_active` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `expiration_time` timestamp NULL DEFAULT NULL,
+  `session_duration` int(11) DEFAULT 0,
+  `accumulated_online` int(11) DEFAULT 0,
+  `accumulated_rest` int(11) DEFAULT 0,
+  `penalty_end` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`account_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping structure for table aiondbls_gs.banned_ip
+DROP TABLE IF EXISTS `banned_ip`;
+CREATE TABLE IF NOT EXISTS `banned_ip` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mask` varchar(45) NOT NULL,
+  `time_end` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mask` (`mask`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping structure for table aiondbls_gs.banned_mac
+DROP TABLE IF EXISTS `banned_mac`;
+CREATE TABLE IF NOT EXISTS `banned_mac` (
+  `uniId` int(11) NOT NULL AUTO_INCREMENT,
+  `address` varchar(20) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `details` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`uniId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping structure for table aiondbls_gs.banned_hdd
+DROP TABLE IF EXISTS `banned_hdd`;
+CREATE TABLE IF NOT EXISTS `banned_hdd` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serial` varchar(100) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping structure for table aiondbls_gs.account_login_history
+DROP TABLE IF EXISTS `account_login_history`;
+CREATE TABLE IF NOT EXISTS `account_login_history` (
+  `account_id` int(11) NOT NULL,
+  `gameserver_id` tinyint(3) unsigned NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ip` varchar(20) DEFAULT NULL,
+  `mac` varchar(20) DEFAULT NULL,
+  `hdd_serial` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`account_id`,`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping structure for table aiondbls_gs.gameservers
+DROP TABLE IF EXISTS `gameservers`;
+CREATE TABLE IF NOT EXISTS `gameservers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mask` varchar(45) NOT NULL,
+  `password` varchar(65) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table aiondbls_gs.gameservers: ~1 rows (approximately)
+INSERT INTO `gameservers` (`id`, `mask`, `password`) VALUES
+  (1, '*', 'Sabrewolf100!')
+ON DUPLICATE KEY UPDATE `mask`='*', `password`='Sabrewolf100!';
+
+-- Dumping structure for table aiondbls_gs.player_transfers
+DROP TABLE IF EXISTS `player_transfers`;
+CREATE TABLE IF NOT EXISTS `player_transfers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `source_server` tinyint(4) NOT NULL,
+  `target_server` tinyint(4) NOT NULL,
+  `source_account_id` int(11) NOT NULL,
+  `target_account_id` int(11) NOT NULL,
+  `player_id` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `time_added` varchar(100) DEFAULT NULL,
+  `time_performed` varchar(100) DEFAULT NULL,
+  `time_done` varchar(100) DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping structure for table aiondbls_gs.chatlog
+DROP TABLE IF EXISTS `chatlog`;
+CREATE TABLE IF NOT EXISTS `chatlog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sender` varchar(255) DEFAULT NULL,
+  `message` text NOT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- Dumping structure for table aiondbls_gs.abyss_rank
 DROP TABLE IF EXISTS `abyss_rank`;
 CREATE TABLE IF NOT EXISTS `abyss_rank` (

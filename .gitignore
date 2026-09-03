@@ -41,6 +41,8 @@ logs/
 **/logs/
 cache/
 **/cache/
+!**/src/**/cache/
+!**/src/**/cache/**
 *.log
 **/*.log
 *.WebView2/

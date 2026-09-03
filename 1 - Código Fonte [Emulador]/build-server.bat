@@ -7,14 +7,12 @@ echo                AION CLASSIC 5.0 EU - BUILD & PUBLISH PIPELINE
 echo ===============================================================================
 echo.
 
-REM --- 1. Configurar JAVA_HOME para JDK 8 ---
-if exist "C:\Program Files\Java\jdk1.8.0_431" (
-    set "JAVA_HOME=C:\Program Files\Java\jdk1.8.0_431"
-) else if not defined JAVA_HOME (
-    echo [AVISO] JAVA_HOME nao definido. Tentando usar Java padrao do sistema...
+REM --- 1. Verificar JAVA_HOME ---
+if defined JAVA_HOME (
+    echo [*] JAVA_HOME detectado: %JAVA_HOME%
+) else (
+    echo [*] JAVA_HOME nao definido. Utilizando Java e Maven padrao do PATH do sistema...
 )
-
-echo [*] JAVA_HOME configurado para: %JAVA_HOME%
 echo.
 
 REM --- 2. Executar Maven Clean Package ---

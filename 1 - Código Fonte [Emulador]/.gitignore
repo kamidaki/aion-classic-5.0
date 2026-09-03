@@ -31,7 +31,9 @@ LoginServer/out
 **/build/
 **/log/
 **/logs/
-**/cache/
-cache/
+# Runtime cache directories
+/cache/
+GameServer/cache/
+!**/src/**/cache/**
 *.log
 **/*.log
