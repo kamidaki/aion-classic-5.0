@@ -32,7 +32,13 @@ public enum PlayerClass
 	CHANTER(11),
 	MONK(12),
 	THUNDERER(13),
-	ALL(14);
+	REVENANT(13),
+	BRAWLER(15),
+	LUMINESS(16),
+	PHOENIX(17),
+	REAPER(24),
+	SOUL_REAPER(25),
+	ALL(26);
 	
 	private byte classId;
 	
@@ -42,5 +48,13 @@ public enum PlayerClass
 	
 	public byte getClassId() {
 		return classId;
+	}
+
+	public static PlayerClass getPlayerClassById(byte classId) {
+		for (PlayerClass pc : values()) {
+			if (pc.getClassId() == classId)
+				return pc;
+		}
+		return ALL;
 	}
 }

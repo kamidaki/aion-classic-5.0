@@ -193,6 +193,15 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_CLIENT_PING_STATE(0x222, State.IN_GAME)); // 0x0150 CLIENT_PING_STATE (5.0 Classic)
         addPacket(new CM_CUSTOM_SETTING_ACK(0x00F6, State.IN_GAME)); // 0xFFFC CUSTOM_SETTING_ACK
         addPacket(new CM_CUSTOM_SETTING_ACK(0x00F7, State.IN_GAME)); // 0xFFFD CUSTOM_SETTING_ACK2
+        addPacket(new CM_SERVER_PVP_ACK(0x03DC, State.IN_GAME)); // 0x0326 SERVER_PVP_ACK (5.0 Classic)
+        addPacket(new CM_CLIENT_SYNC_ACTION(0x00F0, State.IN_GAME, State.AUTHED)); // 0x0002 CLIENT_SYNC_ACTION (5.0 Classic)
+        addPacket(new CM_CLIENT_PING_SYNC(0x0151, State.IN_GAME, State.AUTHED)); // 0x00A3 CLIENT_PING_SYNC (5.0 Classic)
+        addPacket(new CM_CLIENT_ENV_REPORT(0x014F, State.IN_GAME)); // 0x00B5 CLIENT_ENV_REPORT (5.0 Classic)
+        addPacket(new CM_CLIENT_SCENE_ACK(0x01A7, State.IN_GAME)); // 0x00CD CLIENT_SCENE_ACK (5.0 Classic)
+        addPacket(new CM_CLIENT_MOTION_ACK(0x0181, State.IN_GAME)); // 0x00F3 CLIENT_MOTION_ACK (5.0 Classic)
+        addPacket(new CM_CLIENT_WORLD_EVENT_ACK(0x01E4, State.IN_GAME)); // 0x010E CLIENT_WORLD_EVENT_ACK (5.0 Classic)
+        addPacket(new CM_CLIENT_STORYBOOK_REQUEST(0x01D0, State.IN_GAME)); // 0x0122 CLIENT_STORYBOOK_REQUEST (5.0 Classic)
+        addPacket(new CM_CLIENT_STATUS_HEARTBEAT(0x02DF, State.IN_GAME)); // 0x0225 CLIENT_STATUS_HEARTBEAT (5.0 Classic)
     }
 
     public AionPacketHandler getPacketHandler() {

@@ -245,6 +245,12 @@ public class ChatChannels {
             addJobChannel(Gender.MALE, PlayerClass.ASSASSIN, "job_Assassin");
             addJobChannel(Gender.MALE, PlayerClass.CLERIC, "job_Cleric");
             addJobChannel(Gender.MALE, PlayerClass.THUNDERER, "job_Thunderer");
+            addJobChannel(Gender.MALE, PlayerClass.REVENANT, "job_Revenant");
+            addJobChannel(Gender.MALE, PlayerClass.BRAWLER, "job_Brawler");
+            addJobChannel(Gender.MALE, PlayerClass.LUMINESS, "job_Luminess");
+            addJobChannel(Gender.MALE, PlayerClass.PHOENIX, "job_Phoenix");
+            addJobChannel(Gender.MALE, PlayerClass.REAPER, "job_Reaper");
+            addJobChannel(Gender.MALE, PlayerClass.SOUL_REAPER, "job_SoulReaper");
             //Female
             addJobChannel(Gender.FEMALE, PlayerClass.GLADIATOR, "job_Gladiator");
             addJobChannel(Gender.FEMALE, PlayerClass.TEMPLAR, "job_Templar");
@@ -255,6 +261,12 @@ public class ChatChannels {
             addJobChannel(Gender.FEMALE, PlayerClass.ASSASSIN, "job_Assassin");
             addJobChannel(Gender.FEMALE, PlayerClass.CLERIC, "job_Cleric");
             addJobChannel(Gender.FEMALE, PlayerClass.THUNDERER, "job_Thunderer");
+            addJobChannel(Gender.FEMALE, PlayerClass.REVENANT, "job_Revenant");
+            addJobChannel(Gender.FEMALE, PlayerClass.BRAWLER, "job_Brawler");
+            addJobChannel(Gender.FEMALE, PlayerClass.LUMINESS, "job_Luminess");
+            addJobChannel(Gender.FEMALE, PlayerClass.PHOENIX, "job_Phoenix");
+            addJobChannel(Gender.FEMALE, PlayerClass.REAPER, "job_Reaper");
+            addJobChannel(Gender.FEMALE, PlayerClass.SOUL_REAPER, "job_SoulReaper");
         }
         if (Config.LANG_CHAT == 1) {
             //LANG
@@ -271,6 +283,12 @@ public class ChatChannels {
             addJobChannel(Gender.MALE, PlayerClass.ASSASSIN, "job_Assassin");
             addJobChannel(Gender.MALE, PlayerClass.CLERIC, "job_Cleric");
             addJobChannel(Gender.MALE, PlayerClass.THUNDERER, "job_Thunderer");
+            addJobChannel(Gender.MALE, PlayerClass.REVENANT, "job_Revenant");
+            addJobChannel(Gender.MALE, PlayerClass.BRAWLER, "job_Brawler");
+            addJobChannel(Gender.MALE, PlayerClass.LUMINESS, "job_Luminess");
+            addJobChannel(Gender.MALE, PlayerClass.PHOENIX, "job_Phoenix");
+            addJobChannel(Gender.MALE, PlayerClass.REAPER, "job_Reaper");
+            addJobChannel(Gender.MALE, PlayerClass.SOUL_REAPER, "job_SoulReaper");
             //Female
             addJobChannel(Gender.FEMALE, PlayerClass.GLADIATOR, "job_Gladiator");
             addJobChannel(Gender.FEMALE, PlayerClass.TEMPLAR, "job_Templar");
@@ -281,6 +299,12 @@ public class ChatChannels {
             addJobChannel(Gender.FEMALE, PlayerClass.ASSASSIN, "job_Assassin");
             addJobChannel(Gender.FEMALE, PlayerClass.CLERIC, "job_Cleric");
             addJobChannel(Gender.FEMALE, PlayerClass.THUNDERER, "job_Thunderer");
+            addJobChannel(Gender.FEMALE, PlayerClass.REVENANT, "job_Revenant");
+            addJobChannel(Gender.FEMALE, PlayerClass.BRAWLER, "job_Brawler");
+            addJobChannel(Gender.FEMALE, PlayerClass.LUMINESS, "job_Luminess");
+            addJobChannel(Gender.FEMALE, PlayerClass.PHOENIX, "job_Phoenix");
+            addJobChannel(Gender.FEMALE, PlayerClass.REAPER, "job_Reaper");
+            addJobChannel(Gender.FEMALE, PlayerClass.SOUL_REAPER, "job_SoulReaper");
         }
         if (Config.LANG_CHAT == 2) {
             //LANG

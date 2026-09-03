@@ -203,7 +203,11 @@ public class ItemGroupsData
 			List<ItemRaceEntry> food = getPetFood(foodType);
 			if (food != null) {
 				FastSet<Integer> itemIds = FastSet.newInstance();
-				itemIds.addAll(selectDistinct(with(food).extract(on(ItemRaceEntry.class).getId())));
+				for (ItemRaceEntry entry : food) {
+					if (entry != null) {
+						itemIds.add(entry.getId());
+					}
+				}
 				petFood.put(foodType, itemIds);
 				if (foodType != FoodType.EXCLUDES && foodType != FoodType.STINKY) {
 					petFoodCount += itemIds.size();
