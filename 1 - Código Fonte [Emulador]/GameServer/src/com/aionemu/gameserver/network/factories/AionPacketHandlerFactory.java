@@ -205,8 +205,25 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_CLIENT_SCENE_ACK(0x01A7, State.IN_GAME)); // 0x00CD CLIENT_SCENE_ACK (5.0 Classic)
         addPacket(new CM_CLIENT_MOTION_ACK(0x0181, State.IN_GAME)); // 0x00F3 CLIENT_MOTION_ACK (5.0 Classic)
         addPacket(new CM_CLIENT_WORLD_EVENT_ACK(0x01E4, State.IN_GAME)); // 0x010E CLIENT_WORLD_EVENT_ACK (5.0 Classic)
-        addPacket(new CM_CLIENT_STORYBOOK_REQUEST(0x01D0, State.IN_GAME)); // 0x0122 CLIENT_STORYBOOK_REQUEST (5.0 Classic)
         addPacket(new CM_CLIENT_STATUS_HEARTBEAT(0x02DF, State.IN_GAME)); // 0x0225 CLIENT_STATUS_HEARTBEAT (5.0 Classic)
+        
+        // --- Módulos e Handlers Auditados da Sessão Oficial 5.0 ao Vivo ---
+        addPacket(new CM_MOVE_ITEM(0x014E, State.IN_GAME)); // 0x00B4 MOVE_ITEM (organização de inventário)
+        addPacket(new CM_MOVE_ITEM(0x00B4, State.IN_GAME));
+        addPacket(new CM_UI_SETTINGS(0x00E8, State.IN_GAME)); // 0x001A SAVE_UI_SETTINGS (quickbar / atalhos)
+        addPacket(new CM_UI_SETTINGS(0x001A, State.IN_GAME));
+        addPacket(new CM_HEADING_UPDATE(0x00C9, State.IN_GAME)); // 0x003B HEADING_UPDATE (direção do avatar)
+        addPacket(new CM_HEADING_UPDATE(0x003B, State.IN_GAME));
+        addPacket(new CM_CHAT_AUTH(0x017C, State.IN_GAME)); // 0x0086 SIGN_CLIENT (autenticação do chat)
+        addPacket(new CM_CHAT_AUTH(0x0086, State.IN_GAME));
+        addPacket(new CM_INSTANCE_INFO(0x01B3, State.IN_GAME)); // 0x00C1 INSTANCE_INFO (cooltimes de instâncias)
+        addPacket(new CM_INSTANCE_INFO(0x00C1, State.IN_GAME));
+        addPacket(new CM_MAY_QUIT(0x00FE, State.IN_GAME)); // 0x0004 READY_TO_QUIT (preparação de logout)
+        addPacket(new CM_MAY_QUIT(0x0004, State.IN_GAME));
+        addPacket(new CM_RECONNECT_AUTH(0x014A, State.IN_GAME, State.AUTHED)); // 0x00B8 RECONNECT_AUTH
+        addPacket(new CM_RECONNECT_AUTH(0x00B8, State.IN_GAME, State.AUTHED));
+        addPacket(new CM_CLIENT_PERF_METRICS(0x01BF, State.IN_GAME)); // 0x00C5 CLIENT_PERF_METRICS (telemetria 21b)
+        addPacket(new CM_CLIENT_PERF_METRICS(0x00C5, State.IN_GAME));
     }
 
     public AionPacketHandler getPacketHandler() {
