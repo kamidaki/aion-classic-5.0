@@ -39,6 +39,17 @@ public class S_TITLE extends AionServerPacket
         this.titleId = titleId;
     }
 
+    /**
+     * Titulo em uso, como a captura oficial manda na entrada no mundo: acao 2 seguida de um
+     * dword (`02 01 00 00 00`). A acao 1, que era usada ali, escreve um short e fecha em 3 bytes
+     * em vez de 5 -- o cliente lia dois bytes alem do corpo.
+     */
+    public static S_TITLE emUso(int titleId) {
+        S_TITLE pacote = new S_TITLE(titleId);
+        pacote.action = 2;
+        return pacote;
+    }
+
     public S_TITLE(Player player, int titleId) {
         this.action = 3;
         this.playerObjId = player.getObjectId();
@@ -70,6 +81,9 @@ public class S_TITLE extends AionServerPacket
                 break;
             } case 1: {
                 this.writeH(this.titleId);
+                break;
+            } case 2: {
+                this.writeD(this.titleId);
                 break;
             } case 3: {
                 this.writeD(this.playerObjId);

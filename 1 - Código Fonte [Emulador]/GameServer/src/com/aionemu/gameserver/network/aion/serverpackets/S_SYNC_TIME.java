@@ -54,6 +54,11 @@ public class S_SYNC_TIME extends AionServerPacket {
 		writeD(RandomUtils.nextInt());
 		writeD(nanoTime);
 		writeD(RandomUtils.nextInt());
-		writeD(1);
+		/*
+		 * O ultimo campo e um numero de sequencia por conexao, nao uma constante: na captura
+		 * oficial as sincronias que antecedem o CM_LEVEL_READY vem com 2 e depois 3, e o cliente
+		 * devolve o mesmo valor no seu CM_TIME_CHECK de confirmacao.
+		 */
+		writeD(con.proximaSequenciaSyncTime());
 	}
 }

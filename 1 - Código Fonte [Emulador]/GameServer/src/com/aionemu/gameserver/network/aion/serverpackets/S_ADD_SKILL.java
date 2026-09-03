@@ -42,9 +42,13 @@ public class S_ADD_SKILL extends AionServerPacket
 	public S_ADD_SKILL(PlayerSkillEntry skillListEntry, int messageId, boolean isNew) {
 		this.skillList = new PlayerSkillEntry[] { skillListEntry };
 		this.messageId = messageId;
-		this.skillNameId = DataManager.SKILL_DATA.getSkillTemplate(skillListEntry.getSkillId()).getNameId();
 		this.skillLvl = String.valueOf(skillListEntry.getSkillLevel());
 		this.isNew = isNew;
+		// O nome so entra no corpo quando ha mensagem; procurar o template sem precisar dele so
+		// custa uma busca e expoe a carga inteira do jogador a um template ausente.
+		if (messageId != 0) {
+			this.skillNameId = DataManager.SKILL_DATA.getSkillTemplate(skillListEntry.getSkillId()).getNameId();
+		}
 	}
 	
 	@Override

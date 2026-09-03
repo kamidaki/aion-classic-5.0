@@ -55,11 +55,15 @@ public class AionPacketHandler {
 		data.position(data.position() + 3);
 
 		int decOp = ((id ^ 0x36) - 0xC4) & 0xFFFF;
+		int bytes = data.remaining();
+		String hex = WireTrace.ativo() ? WireTrace.hexDe(data, data.position(), bytes) : "";
 		if (log.isDebugEnabled()) {
 			log.debug(String.format("[REDE <- CLIENTE] Opcode=0x%04X (dec=0x%04X), State=%s, Bytes=%d", id, decOp, state, data.remaining()));
 		}
 
-		return getPacket(state, id, data, client);
+		AionClientPacket recebido = getPacket(state, id, data, client);
+		WireTrace.cliente(client, id, decOp, bytes, recebido == null ? "?" : recebido.getPacketName(), hex);
+		return recebido;
 	}
 
 	public void addPacketPrototype(AionClientPacket packetPrototype) {

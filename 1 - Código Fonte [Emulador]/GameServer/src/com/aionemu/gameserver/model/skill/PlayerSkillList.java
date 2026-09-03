@@ -138,10 +138,25 @@ public final class PlayerSkillList implements SkillList<Player>
 				basicSkills.put(skillId, new PlayerSkillEntry(skillId, false, skillLevel, state));
 				isNew = true;
 			}
-		} if (player.isSpawned()) {
-			sendMessage(player, skillId, isNew);
 		}
-		PacketSendUtility.sendPacket(player, new S_ADD_SKILL(player));
+		/*
+		 * Um pacote por skill, com a skill que entrou -- nunca a lista inteira.
+		 *
+		 * Antes daqui saia tambem um `new S_ADD_SKILL(player)` (a lista completa) a cada skill
+		 * adicionada: com 31 skills viravam 31 pacotes de 347B, ~10,7 KB, todos durante a carga do
+		 * jogador e portanto antes do S_ENTER_WORLD_CHECK. Na captura oficial de um personagem
+		 * recem-criado o servidor manda 32 pacotes pequenos -- um de 3 skills e 31 de uma so, 17B
+		 * cada. Para quem ja esta em jogo o `sendMessage` ja envia o pacote individual com a
+		 * mensagem certa, entao a lista completa era redundante nos dois casos.
+		 */
+		if (player.isSpawned()) {
+			sendMessage(player, skillId, isNew);
+		} else {
+			PlayerSkillEntry entrada = isStigma ? stigmaSkills.get(skillId) : basicSkills.get(skillId);
+			if (entrada != null) {
+				PacketSendUtility.sendPacket(player, new S_ADD_SKILL(entrada, 0, isNew));
+			}
+		}
 		return true;
 	}
 

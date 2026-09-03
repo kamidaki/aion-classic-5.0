@@ -31,5 +31,11 @@ public class S_ABYSS_POINT extends AionServerPacket
 		writeD(rank.getLastKill()); // laterKill
 		writeQ(rank.getLastAP()); // laterAP
 		writeC(0x00); // unk
+		/*
+		 * A captura oficial traz 69 bytes; sem estes quatro o pacote fecha em 65 e o cliente le
+		 * quatro bytes alem do corpo. Nas tres ocorrencias da captura estes bytes sao zero, entao
+		 * o significado do campo ainda e desconhecido -- o que se sabe e o tamanho.
+		 */
+		writeD(0x00);
 	}
 }

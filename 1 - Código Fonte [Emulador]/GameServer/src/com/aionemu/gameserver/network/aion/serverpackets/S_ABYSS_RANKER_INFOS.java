@@ -68,9 +68,18 @@ public class S_ABYSS_RANKER_INFOS extends AionServerPacket {
 			writeD(rs.getPlayerClass().getClassId());// Class Id
 			writeD(0); // Sex ? 0=male / 1=female
 			writeQ(rs.getPlayerAP());// Abyss Points
-			writeH(rs.getPlayerLevel());
-			writeS(rs.getPlayerName(), 52);// Player Name
-			writeS(rs.getLegionName(), 82);// Legion Name
+			/*
+			 * Medido na captura oficial (subida-1-60, sessao 1): o registro tem 177 bytes --
+			 * 7 dwords + o Q dos pontos (36) + nome (54) + legiao (86) + 1 byte final. Nao ha
+			 * campo de nivel; o `writeH` que existia aqui deslocava tudo a partir do nome, e os
+			 * tamanhos 52/82 fechavam 172 em vez de 177. Conferido em 100 registros:
+			 * `18 + 45*177 = 7983`, o tamanho exato do pacote.
+			 */
+			writeS(rs.getPlayerName(), 54);// Player Name
+			writeS(rs.getLegionName(), 86);// Legion Name
+			// 0x2E em todos os 86 registros com legiao, 0 nos 14 sem: marca a presenca da legiao.
+			String legiao = rs.getLegionName();
+			writeC(legiao == null || legiao.isEmpty() ? 0x00 : 0x2E);
 		}
 	}
 }

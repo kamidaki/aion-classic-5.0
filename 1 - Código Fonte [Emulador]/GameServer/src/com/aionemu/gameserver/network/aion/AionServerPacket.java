@@ -44,6 +44,15 @@ public abstract class AionServerPacket extends BaseServerPacket {
 	}
 
 	/**
+	 * Para pacotes cujo opcode nao vem da classe. Existe para o {@link RajadaOficial}, que
+	 * reproduz corpos lidos da captura sem ter uma classe por opcode.
+	 */
+	protected AionServerPacket(int opcode) {
+		super();
+		setOpcode(opcode);
+	}
+
+	/**
 	 * Write packet opcodec and two additional bytes
 	 * 
 	 * @param buf
@@ -93,6 +102,10 @@ public abstract class AionServerPacket extends BaseServerPacket {
 		writeOP(getOpcode());
 		writeImpl(con);
 		((Buffer) buf).flip();
+		if (WireTrace.ativo()) {
+			WireTrace.servidor(con, getOpcode(), buf.limit() - 7, getClass().getSimpleName(),
+				WireTrace.hexDe(buf, 7, buf.limit() - 7));
+		}
 		buf.putShort((short) buf.limit());
 		ByteBuffer b = buf.slice();
 		((Buffer) buf).position(0);

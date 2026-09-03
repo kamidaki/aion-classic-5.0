@@ -148,6 +148,7 @@ public class ServerPacketsOpcodes {
         addPacketOpcode(S_ETC_STATUS.class, 0x87, idSet);
         addPacketOpcode(S_SA_ACCOUNT_ITEM_NOTI.class, 0x88, idSet);
         addPacketOpcode(S_ABYSS_RANKER_INFOS.class, 0x89, idSet);
+        addPacketOpcode(S_UNK_01B5.class, 0x1B5, idSet);
         addPacketOpcode(S_ABYSS_GUILD_INFOS.class, 0x8A, idSet);
         addPacketOpcode(S_WORLD_SCENE_STATUS.class, 0x8B, idSet);
         addPacketOpcode(S_INSTANCE_DUNGEON_COOLTIMES.class, 0x8C, idSet);

@@ -71,6 +71,13 @@
 			<Pattern>%date %message%n</Pattern>
 		</encoder>
 	</appender>
+	<appender name="app_wiretrace" class="ch.qos.logback.core.FileAppender">
+		<file>${logFolder}/wiretrace.log</file>
+		<append>true</append>
+		<encoder>
+			<Pattern>%date %message%n</Pattern>
+		</encoder>
+	</appender>
 	<appender name="app_gmitemrestriction" class="ch.qos.logback.core.FileAppender">
 		<file>${logFolder}/gm_item_restriction.log</file>
 		<append>true</append>
@@ -198,6 +205,9 @@
 	</logger>
 	<logger name="GAMECONNECTION_LOG">
 	    <appender-ref ref="app_gconnection"/>
+	</logger>
+	<logger name="WIRETRACE_LOG" additivity="false">
+		<appender-ref ref="app_wiretrace"/>
 	</logger>
 	<logger name="INGAMESHOP_LOG">
 		<appender-ref ref="app_ingameshop"/>

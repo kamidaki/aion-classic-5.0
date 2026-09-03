@@ -307,12 +307,24 @@ public class AionConnection extends AConnection {
 	 * @param bp
 	 *          AionServerPacket to be sent.
 	 */
+	/** Contador das sincronias de relogio desta conexao; ver {@link serverpackets.S_SYNC_TIME}. */
+	private final java.util.concurrent.atomic.AtomicInteger sequenciaSyncTime =
+		new java.util.concurrent.atomic.AtomicInteger();
+
+	/** Proximo numero de sequencia do S_SYNC_TIME. Comeca em 1, como na captura oficial. */
+	public int proximaSequenciaSyncTime() {
+		return sequenciaSyncTime.incrementAndGet();
+	}
+
 	public final void sendPacket(AionServerPacket bp) {
 		synchronized (guard) {
 			/**
 			 * Connection is already closed or waiting for last (close packet) to be sent
 			 */
 			if (isWriteDisabled())
+				return;
+
+			if (EnterWorldPacketFilter.descarta(bp, getActivePlayer()))
 				return;
 
 			sendMsgQueue.addLast(bp);

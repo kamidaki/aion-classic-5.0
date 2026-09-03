@@ -66,6 +66,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_CHANNEL_CHATTING_BLAC
 import com.aionemu.gameserver.network.aion.serverpackets.S_CHAT_ACCUSE;
 import com.aionemu.gameserver.network.aion.serverpackets.S_CUR_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.S_CUSTOM_ANIM;
+import com.aionemu.gameserver.network.aion.serverpackets.S_TUTORIAL_HINT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ENTER_WORLD_CHECK;
 import com.aionemu.gameserver.network.aion.serverpackets.S_EVENT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_INSTANCE_DUNGEON_COOLTIMES;
@@ -262,8 +263,17 @@ public final class PlayerEnterWorldService {
             }
             client.sendPacket(new S_LOAD_FINISHEDQUEST(completeQuestList));
             client.sendPacket(new S_LOAD_WORKINGQUEST(questList));
-            client.sendPacket(new S_TITLE(player.getCommonData().getTitleId()));
+            client.sendPacket(S_TITLE.emUso(player.getCommonData().getTitleId()));
             client.sendPacket(new S_CUSTOM_ANIM(player.getMotions().getMotions().values()));
+            /*
+             * Sem este pacote o cliente 5.0 nao conclui o carregamento da cena: ele nunca manda o
+             * CM_LEVEL_READY e volta para a tela de personagem. Descoberto por bisseccao,
+             * reproduzindo a rajada da captura oficial e cortando-a pela metade ate sobrar um:
+             * de 58 pacotes ausentes, este era o unico necessario.
+             *
+             * O corpo e o mesmo da captura -- writeH(0) + writeC(0) = `00 00 00`.
+             */
+            client.sendPacket(new S_TUTORIAL_HINT());
             // client.sendPacket(new S_CUSTOM_ANIM(player.getObjectId(),
             // player.getMotions().getActiveMotions()));
             BattlePassService.getInstance().onEnterWorld(player);
@@ -402,6 +412,9 @@ public final class PlayerEnterWorldService {
             client.sendPacket(new S_SHOP_POINT_INFO(1500));
 
             PlayerWardrobeService.getInstance().onEnterWorld(player);
+
+            // Diagnostico, desligado por padrao: ver RajadaOficial.
+            RajadaOficial.envia(client, player);
 
         } else {
             log.info("[DEBUG] Enter World" + objectId + ", Player: " + player);

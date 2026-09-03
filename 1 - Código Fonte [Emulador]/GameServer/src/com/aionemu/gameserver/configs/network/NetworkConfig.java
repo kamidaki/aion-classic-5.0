@@ -115,6 +115,35 @@ public class NetworkConfig {
 	@Property(key = "gameserver.network.display.packets", defaultValue = "false")
 	public static boolean DISPLAY_PACKETS;
 
+	/**
+	 * Rastreia todo pacote que entra e sai em `log/wiretrace.log`, para comparar a nossa
+	 * sequencia com a das capturas oficiais. Diagnostico apenas -- custa uma linha por pacote.
+	 */
+	@Property(key = "gameserver.network.wiretrace", defaultValue = "false")
+	public static boolean WIRE_TRACE;
+
+	/**
+	 * Diagnostico: reproduz na entrada no mundo os pacotes que a captura oficial traz e nos nao
+	 * enviamos, com o corpo lido de `data/diagnostico/rajada_oficial.txt`. Desligado em producao.
+	 */
+	@Property(key = "gameserver.network.diagnostico.rajada", defaultValue = "false")
+	public static boolean RAJADA_OFICIAL;
+
+	/**
+	 * Quantos bytes de payload o rastreador grava por pacote. 32 basta para identificar; para
+	 * comparar campo a campo com a captura e preciso o corpo inteiro (use um valor alto, ex. 8192).
+	 */
+	@Property(key = "gameserver.network.wiretrace.bytes", defaultValue = "32")
+	public static int WIRE_TRACE_BYTES;
+
+	/**
+	 * Diagnostico: opcodes S->C descartados enquanto o jogador nao fez spawn, separados por
+	 * virgula (ex.: "0xBE,0x18"). Serve para conferir se a entrada no mundo trava por causa de
+	 * algo que so nos enviamos. Vazio em producao.
+	 */
+	@Property(key = "gameserver.network.enterworld.filtro", defaultValue = "")
+	public static String ENTER_WORLD_FILTER;
+
 	@Property(key = "gameserver.network.flood.connections", defaultValue = "false")
 	public static boolean ENABLE_FLOOD_CONNECTIONS;
 

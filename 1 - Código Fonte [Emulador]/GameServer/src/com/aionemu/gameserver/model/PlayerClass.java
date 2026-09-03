@@ -40,7 +40,14 @@ public enum PlayerClass
 	REVENANT(13, true),
 	BRAWLER(15, true),
 	LUMINESS(16, true),
-	PHOENIX(17, true),
+	/*
+	 * Phoenix e 22, nao 17: o cliente 5.0 manda 22 ao criar a classe (visto no
+	 * CM_CREATE_CHARACTER), e os 100 jogadores do ranking da captura oficial usam apenas
+	 * os classId 1, 2, 4, 5, 7, 8, 10, 11, 13, 19, 22 e 25 -- 15, 16 e 17 nao aparecem.
+	 * Falta ainda descobrir qual classe e o 19; BRAWLER e LUMINESS estao em ids que a
+	 * captura nao conhece.
+	 */
+	PHOENIX(22, true),
 	REAPER(24, false),
 	SOUL_REAPER(25, true),
 	ALL(26);
@@ -98,7 +105,7 @@ public enum PlayerClass
 				return BRAWLER;
 			case 16:
 				return LUMINESS;
-			case 17:
+			case 22:
 				return PHOENIX;
 			case 24:
 				return REAPER;

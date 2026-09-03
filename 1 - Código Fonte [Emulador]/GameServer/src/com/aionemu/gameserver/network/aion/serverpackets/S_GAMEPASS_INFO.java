@@ -35,5 +35,10 @@ public class S_GAMEPASS_INFO extends AionServerPacket {
                 writeQ(0);
                 writeQ(0);
         }
+        /*
+         * A captura oficial traz 29 bytes; sem este o pacote fecha em 28. Zero nas tres
+         * ocorrencias da captura.
+         */
+        writeC(0x00);
     }
 }

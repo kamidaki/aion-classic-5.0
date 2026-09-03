@@ -23,5 +23,11 @@ public class S_USER_CLASSIC_WARDROBE_LOAD extends AionServerPacket {
             writeD(wardrobeEntry.getColor());
             writeC(wardrobeEntry.isLiked() ? 1 : 0);
         }
+        /*
+         * A captura oficial fecha em 7 bytes com o guarda-roupa vazio (`01 00 00 00 00 00 01`);
+         * sem este byte final o nosso fecha em 6. O valor observado e 1; o significado do campo
+         * ainda e desconhecido.
+         */
+        writeC(0x01);
     }
 }
