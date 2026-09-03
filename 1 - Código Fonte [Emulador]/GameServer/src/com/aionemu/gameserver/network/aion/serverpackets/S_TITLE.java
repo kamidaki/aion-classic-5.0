@@ -80,7 +80,12 @@ public class S_TITLE extends AionServerPacket
                 }
                 break;
             } case 1: {
+                // Classic 5.0: action 1 tem 11 bytes (op 0x00AF, pacote [39] da captura oficial)
+                // writeC(1) + 3 shorts de titulos (stat, display, bonus) + writeD(0)
                 this.writeH(this.titleId);
+                this.writeH(this.titleId);
+                this.writeH(this.titleId);
+                this.writeD(0);
                 break;
             } case 2: {
                 this.writeD(this.titleId);

@@ -14,9 +14,11 @@ public class CM_INIT_LEVEL extends AionClientPacket {
 
     @Override
     protected void readImpl() {
+        readB(getRemainingBytes());
     }
 
     @Override
     protected void runImpl() {
+        // Notificacao de inicializacao de level recebida com sucesso
     }
 }

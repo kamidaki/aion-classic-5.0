@@ -86,3 +86,7 @@ cache/
 # 7. Backups e Arquivos de Trabalho dos Parsers
 6 - Ferramentas/parsersXML/backups/
 **/parsersXML/backups/
+
+# 8. Capturas Live / Sessões brutas de rede de grande porte (> 50MB)
+*_Live_*.pcapng
+**/Oficial_Live_Gameplay/**

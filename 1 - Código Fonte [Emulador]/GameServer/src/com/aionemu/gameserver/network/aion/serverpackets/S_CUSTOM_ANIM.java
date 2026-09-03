@@ -69,9 +69,10 @@ public class S_CUSTOM_ANIM extends AionServerPacket
 				writeH(motionId);
 			break;
 			case 7:
+				// Classic 5.0: 19 bytes no case 7 (op 0x0093, pacote [173] da captura oficial: 1 + 4 + 7*2)
 				writeD(playerId);
-				for (int i = 1; i < 6; i++) {
-					Motion motion = activeMotions.get(i);
+				for (int i = 1; i <= 7; i++) {
+					Motion motion = activeMotions != null ? activeMotions.get(i) : null;
 					if (motion == null) {
 						writeH(0);
 					} else {
