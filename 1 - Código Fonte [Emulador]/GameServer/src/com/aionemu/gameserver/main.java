@@ -1,7 +1,5 @@
 package com.aionemu.gameserver;
 
-import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.network.aion.ServerPacketsOpcodes;

@@ -90,3 +90,11 @@ cache/
 # 8. Capturas Live / Sessões brutas de rede de grande porte (> 50MB)
 *_Live_*.pcapng
 **/Oficial_Live_Gameplay/**
+
+# 9. Arquivos de configuracao local (banco, rede e launcher)
+database.properties
+**/database.properties
+network.properties
+**/network.properties
+config.json
+**/config.json

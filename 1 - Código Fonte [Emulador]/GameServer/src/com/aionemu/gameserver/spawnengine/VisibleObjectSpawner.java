@@ -106,6 +106,9 @@ public class VisibleObjectSpawner
 		Npc npc = null;
 		int spawnSiegeId = spawn.getSiegeId();
 		SiegeLocation loc = SiegeService.getInstance().getSiegeLocation(spawnSiegeId);
+		if (loc == null) {
+			return null;
+		}
 		if ((spawn.isPeace() || loc.isVulnerable()) && spawnSiegeId == loc.getLocationId() && spawn.getSiegeRace() == loc.getRace()) {
 			npc = new SiegeNpc(iDFactory.nextId(), new NpcController(), spawn, npcTemplate);
 			npc.setKnownlist(new NpcKnownList(npc));
@@ -133,6 +136,9 @@ public class VisibleObjectSpawner
 		Npc npc;
 		int spawnId = spawn.getId();
 		InstanceRiftLocation loc = InstanceRiftService.getInstance().getInstanceRiftLocation(spawnId);
+		if (loc == null) {
+			return null;
+		}
 		if (loc.isActive() && spawnId == loc.getId() && spawn.isInstanceRiftOpen()) {
 			npc = new Npc(iDFactory.nextId(), new NpcController(), spawn, npcTemplate);
 			npc.setKnownlist(new NpcKnownList(npc));

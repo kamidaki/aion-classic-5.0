@@ -1,25 +1,10 @@
-/*
- * This file is part of aion-emu <aion-emu.com>.
- *
- *  aion-emu is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-emu is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services.player;
 
 import java.sql.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.commons.utils.GenericValidator;
@@ -66,6 +51,13 @@ public class PlayerService {
 
 	private static final CacheMap<Integer, Player> playerCache = CacheMapFactory.createSoftCacheMap("Player", "player");
 
+	// FIX: lock por playerObjId para evitar que duas chamadas concorrentes a getPlayer()
+	// para o mesmo personagem montem duas instancias de Player independentes (cache miss
+	// em ambas antes que a primeira termine de carregar). Mesmo padrao de "lock por chave"
+	// ja usado em PlayerEnterWorldService.pendingEnterWorld, mas aqui como lock bloqueante
+	// de verdade, pois getPlayer precisa retornar um valor util para quem chamou.
+	private static final ConcurrentHashMap<Integer, Object> playerLoadLocks = new ConcurrentHashMap<>();
+
 	public static boolean isFreeName(String name) {
 		return !DAOManager.getDAO(PlayerDAO.class).isNameUsed(name);
 	}
@@ -82,17 +74,15 @@ public class PlayerService {
 	}
 
 	public static void storePlayer(Player player) {
-		if (player == null) {
-			return;
-		}
+		if (player == null) return;
 		try {
 			DAOManager.getDAO(PlayerDAO.class).storePlayer(player);
 			DAOManager.getDAO(PlayerSkillListDAO.class).storeSkills(player);
 			DAOManager.getDAO(PlayerSettingsDAO.class).saveSettings(player);
 			DAOManager.getDAO(PlayerQuestListDAO.class).store(player);
 			DAOManager.getDAO(AbyssRankDAO.class).storeAbyssRank(player);
-			DAOManager.getDAO(PlayerPunishmentsDAO.class).storePlayerPunishments(player, PunishmentType.PRISON);
-			DAOManager.getDAO(PlayerPunishmentsDAO.class).storePlayerPunishments(player, PunishmentType.GATHER);
+			//DAOManager.getDAO(PlayerPunishmentsDAO.class).storePlayerPunishments(player, PunishmentType.PRISON);
+			//DAOManager.getDAO(PlayerPunishmentsDAO.class).storePlayerPunishments(player, PunishmentType.GATHER);
 			DAOManager.getDAO(InventoryDAO.class).store(player);
 			DAOManager.getDAO(ItemStoneListDAO.class).save(player);
 			DAOManager.getDAO(MailDAO.class).storeMailbox(player);
@@ -100,135 +90,166 @@ public class PlayerService {
 			DAOManager.getDAO(CraftCooldownsDAO.class).storeCraftCooldowns(player);
 			DAOManager.getDAO(PlayerNpcFactionsDAO.class).storeNpcFactions(player);
 			DAOManager.getDAO(EventItemsDAO.class).storeItems(player);
-		} catch (Exception ex) {
-			log.error("Exception during storing player " + player.getName(), ex);
+		} catch (Throwable ex) {
+			// FIX: era catch (Exception ex). Este metodo roda periodicamente via GeneralUpdateTask
+			// agendada no ThreadPoolManager; um Error nao capturado aqui pode encerrar silenciosamente
+			// as proximas execucoes agendadas para este player (deixa de salvar sem log nenhum).
+			// Ampliado para Throwable, consistente com o catch do enter world.
+            log.error("Exception during storing player {}", player.getName(), ex);
 		}
 	}
 
 	public static Player getPlayer(int playerObjId, Account account) {
-		if (account == null) {
-			return null;
-		}
+		if (account == null) return null;
 		if (CacheConfig.CACHE_PLAYERS) {
+			// Fast path sem lock: cobre o caso comum (player ja em cache, online e valido de
+			// verdade), evitando pagar o custo de sincronizacao em toda chamada.
 			Player cachedPlayer = playerCache.get(playerObjId);
-			if (cachedPlayer != null) {
-				if (cachedPlayer.isOnline()) {
-					return cachedPlayer;
-				}
-				playerCache.remove(playerObjId);
+			if (cachedPlayer != null && isCachedPlayerValid(cachedPlayer, playerObjId)) {
+				return cachedPlayer;
 			}
 		}
-		PlayerAccountData playerAccountData = account.getPlayerAccountData(playerObjId);
-		if (playerAccountData == null) {
-			return null;
+
+		Object lock = playerLoadLocks.computeIfAbsent(playerObjId, id -> new Object());
+		synchronized (lock) {
+			try {
+				if (CacheConfig.CACHE_PLAYERS) {
+					// Double-checked locking: outra thread pode ter terminado de carregar (ou
+					// invalidado) o cache enquanto esperavamos o lock.
+					Player cachedPlayer = playerCache.get(playerObjId);
+					if (cachedPlayer != null) {
+						if (isCachedPlayerValid(cachedPlayer, playerObjId)) {
+							return cachedPlayer;
+						}
+						playerCache.remove(playerObjId);
+					}
+				}
+				PlayerAccountData playerAccountData = account.getPlayerAccountData(playerObjId);
+				if (playerAccountData == null) {
+					return null;
+				}
+				PlayerCommonData pcd = playerAccountData.getPlayerCommonData();
+				if (pcd == null) {
+					return null;
+				}
+				PlayerAppearance appearance = playerAccountData.getAppereance();
+				Player player = new Player(new PlayerController(), pcd, appearance, account);
+				LegionMember legionMember = LegionService.getInstance().getLegionMember(player.getObjectId());
+				if (legionMember != null) {
+					player.setLegionMember(legionMember);
+				}
+				MacroList macroses = DAOManager.getDAO(PlayerMacrossesDAO.class).restoreMacrosses(playerObjId);
+				player.setMacroList(macroses);
+				player.setSkillList(DAOManager.getDAO(PlayerSkillListDAO.class).loadSkillList(playerObjId));
+				player.setKnownlist(new KnownList(player));
+				player.setFriendList(DAOManager.getDAO(FriendListDAO.class).load(player));
+				player.setBlockList(DAOManager.getDAO(BlockListDAO.class).load(player));
+				player.setTitleList(DAOManager.getDAO(PlayerTitleListDAO.class).loadTitleList(playerObjId));
+				player.setPlayerSettings(DAOManager.getDAO(PlayerSettingsDAO.class).loadSettings(playerObjId));
+				DAOManager.getDAO(AbyssRankDAO.class).loadAbyssRank(player);
+				DAOManager.getDAO(PlayerNpcFactionsDAO.class).loadNpcFactions(player);
+				DAOManager.getDAO(MotionDAO.class).loadMotionList(player);
+				player.setVars(DAOManager.getDAO(PlayerVarsDAO.class).load(player.getObjectId()));
+				Equipment equipment = DAOManager.getDAO(InventoryDAO.class).loadEquipment(player);
+				ItemService.loadItemStones(equipment.getEquippedItemsWithoutStigma());
+				equipment.setOwner(player);
+				player.setEquipment(equipment);
+				player.setEffectController(new PlayerEffectController(player));
+				player.setFlyController(new FlyController(player));
+				PlayerStatFunctions.addPredefinedStatFunctions(player);
+				player.setQuestStateList(DAOManager.getDAO(PlayerQuestListDAO.class).load(player));
+				player.setRecipeList(DAOManager.getDAO(PlayerRecipesDAO.class).load(player.getObjectId()));
+				Storage accWarehouse = account.getAccountWarehouse();
+				if (accWarehouse != null) {
+					accWarehouse.setOwner(player);
+					player.setStorage(accWarehouse, StorageType.ACCOUNT_WAREHOUSE);
+				}
+				Storage inventory = DAOManager.getDAO(InventoryDAO.class).loadStorage(playerObjId, StorageType.CUBE);
+				ItemService.loadItemStones(inventory.getItems());
+				player.setStorage(inventory, StorageType.CUBE);
+				for (int petBagId = StorageType.PET_BAG_MIN; petBagId <= StorageType.PET_BAG_MAX; petBagId++) {
+					Storage petBag = DAOManager.getDAO(InventoryDAO.class).loadStorage(playerObjId,
+							StorageType.getStorageTypeById(petBagId));
+					ItemService.loadItemStones(petBag.getItems());
+					player.setStorage(petBag, StorageType.getStorageTypeById(petBagId));
+				}
+				Storage warehouse = DAOManager.getDAO(InventoryDAO.class).loadStorage(playerObjId,
+						StorageType.REGULAR_WAREHOUSE);
+				ItemService.loadItemStones(warehouse.getItems());
+				player.setStorage(warehouse, StorageType.REGULAR_WAREHOUSE);
+				player.getEquipment().onLoadApplyEquipmentStats();
+				//DAOManager.getDAO(PlayerPunishmentsDAO.class).loadPlayerPunishments(player, PunishmentType.PRISON);
+				//DAOManager.getDAO(PlayerPunishmentsDAO.class).loadPlayerPunishments(player, PunishmentType.GATHER);
+				player.getController().updatePassiveStats();
+				DAOManager.getDAO(PlayerEffectsDAO.class).loadPlayerEffects(player);
+				DAOManager.getDAO(PlayerCooldownsDAO.class).loadPlayerCooldowns(player);
+				DAOManager.getDAO(ItemCooldownsDAO.class).loadItemCooldowns(player);
+				DAOManager.getDAO(PortalCooldownsDAO.class).loadPortalCooldowns(player);
+				DAOManager.getDAO(PlayerBindPointDAO.class).loadBindPoint(player);
+				DAOManager.getDAO(CraftCooldownsDAO.class).loadCraftCooldowns(player);
+				if (player.getCommonData().getTitleId() > 0) {
+					TitleChangeListener.onTitleChange(player.getGameStats(), player.getCommonData().getTitleId(), true);
+				}
+				DAOManager.getDAO(PlayerLifeStatsDAO.class).loadPlayerLifeStat(player);
+				DAOManager.getDAO(PlayerEmotionListDAO.class).loadEmotions(player);
+				DAOManager.getDAO(PlayerEquipmentSettingDAO.class).loadEquipmentSetting(player);
+				if (CacheConfig.CACHE_PLAYERS) {
+					playerCache.put(playerObjId, player);
+				}
+				return player;
+			} finally {
+				// Remove o lock somente se ainda for o mesmo objeto que colocamos (evita remover
+				// o lock de uma chamada mais nova que tenha entrado depois de nos).
+				playerLoadLocks.remove(playerObjId, lock);
+			}
 		}
-		PlayerCommonData pcd = playerAccountData.getPlayerCommonData();
-		if (pcd == null) {
-			return null;
-		}
-		PlayerAppearance appearance = playerAccountData.getAppereance();
-		Player player = new Player(new PlayerController(), pcd, appearance, account);
-		LegionMember legionMember = LegionService.getInstance().getLegionMember(player.getObjectId());
-		if (legionMember != null) {
-			player.setLegionMember(legionMember);
-		}
-		MacroList macroses = DAOManager.getDAO(PlayerMacrossesDAO.class).restoreMacrosses(playerObjId);
-		player.setMacroList(macroses);
-		player.setSkillList(DAOManager.getDAO(PlayerSkillListDAO.class).loadSkillList(playerObjId));
-		player.setKnownlist(new KnownList(player));
-		player.setFriendList(DAOManager.getDAO(FriendListDAO.class).load(player));
-		player.setBlockList(DAOManager.getDAO(BlockListDAO.class).load(player));
-		player.setTitleList(DAOManager.getDAO(PlayerTitleListDAO.class).loadTitleList(playerObjId));
-		player.setPlayerSettings(DAOManager.getDAO(PlayerSettingsDAO.class).loadSettings(playerObjId));
-		DAOManager.getDAO(AbyssRankDAO.class).loadAbyssRank(player);
-		DAOManager.getDAO(PlayerNpcFactionsDAO.class).loadNpcFactions(player);
-		DAOManager.getDAO(MotionDAO.class).loadMotionList(player);
-		player.setVars(DAOManager.getDAO(PlayerVarsDAO.class).load(player.getObjectId()));
-		Equipment equipment = DAOManager.getDAO(InventoryDAO.class).loadEquipment(player);
-		ItemService.loadItemStones(equipment.getEquippedItemsWithoutStigma());
-		equipment.setOwner(player);
-		player.setEquipment(equipment);
-		player.setEffectController(new PlayerEffectController(player));
-		player.setFlyController(new FlyController(player));
-		PlayerStatFunctions.addPredefinedStatFunctions(player);
-		player.setQuestStateList(DAOManager.getDAO(PlayerQuestListDAO.class).load(player));
-		player.setRecipeList(DAOManager.getDAO(PlayerRecipesDAO.class).load(player.getObjectId()));
-		Storage accWarehouse = account.getAccountWarehouse();
-		if (accWarehouse != null) {
-			accWarehouse.setOwner(player);
-			player.setStorage(accWarehouse, StorageType.ACCOUNT_WAREHOUSE);
-		}
-		Storage inventory = DAOManager.getDAO(InventoryDAO.class).loadStorage(playerObjId, StorageType.CUBE);
-		ItemService.loadItemStones(inventory.getItems());
-		player.setStorage(inventory, StorageType.CUBE);
-		for (int petBagId = StorageType.PET_BAG_MIN; petBagId <= StorageType.PET_BAG_MAX; petBagId++) {
-			Storage petBag = DAOManager.getDAO(InventoryDAO.class).loadStorage(playerObjId,
-					StorageType.getStorageTypeById(petBagId));
-			ItemService.loadItemStones(petBag.getItems());
-			player.setStorage(petBag, StorageType.getStorageTypeById(petBagId));
-		}
-		Storage warehouse = DAOManager.getDAO(InventoryDAO.class).loadStorage(playerObjId,
-				StorageType.REGULAR_WAREHOUSE);
-		ItemService.loadItemStones(warehouse.getItems());
-		player.setStorage(warehouse, StorageType.REGULAR_WAREHOUSE);
-		player.getEquipment().onLoadApplyEquipmentStats();
-		DAOManager.getDAO(PlayerPunishmentsDAO.class).loadPlayerPunishments(player, PunishmentType.PRISON);
-		DAOManager.getDAO(PlayerPunishmentsDAO.class).loadPlayerPunishments(player, PunishmentType.GATHER);
-		player.getController().updatePassiveStats();
-		DAOManager.getDAO(PlayerEffectsDAO.class).loadPlayerEffects(player);
-		DAOManager.getDAO(PlayerCooldownsDAO.class).loadPlayerCooldowns(player);
-		DAOManager.getDAO(ItemCooldownsDAO.class).loadItemCooldowns(player);
-		DAOManager.getDAO(PortalCooldownsDAO.class).loadPortalCooldowns(player);
-		DAOManager.getDAO(PlayerBindPointDAO.class).loadBindPoint(player);
-		DAOManager.getDAO(CraftCooldownsDAO.class).loadCraftCooldowns(player);
-		if (player.getCommonData().getTitleId() > 0) {
-			TitleChangeListener.onTitleChange(player.getGameStats(), player.getCommonData().getTitleId(), true);
-		}
-		DAOManager.getDAO(PlayerLifeStatsDAO.class).loadPlayerLifeStat(player);
-		DAOManager.getDAO(PlayerEmotionListDAO.class).loadEmotions(player);
-		DAOManager.getDAO(PlayerEquipmentSettingDAO.class).loadEquipmentSetting(player);
-		if (CacheConfig.CACHE_PLAYERS) {
-			playerCache.put(playerObjId, player);
-		}
-		return player;
+	}
+
+	/**
+	 * FIX: valida que um player em cache marcado como "online" esta de fato presente no
+	 * World antes de reaproveita-lo. Sem essa checagem, uma flag "online" que ficou stale
+	 * (ex: desconexao sem cleanup completo, crash no meio do enter world) faria este metodo
+	 * devolver um objeto Player incompleto/desatualizado para um novo login ou lookup,
+	 * pulando toda a recarga de estado feita abaixo (skills, storages, efeitos, cooldowns...).
+	 */
+	private static boolean isCachedPlayerValid(Player cachedPlayer, int playerObjId) {
+		return cachedPlayer.isOnline() && World.getInstance().findPlayer(playerObjId) != null;
 	}
 
 	public static Player newPlayer(PlayerCommonData playerCommonData, PlayerAppearance playerAppearance,
-			Account account) {
+								   Account account) {
 		PlayerInitialData playerInitialData = DataManager.PLAYER_INITIAL_DATA;
 		LocationData ld = null;
 		if (playerCommonData.getPlayerClass() == PlayerClass.REVENANT) {
 			try {
 				ld = playerInitialData.getTelosSpawnLocation(playerCommonData.getRace());
 			} catch (Exception e) {
-				log.warn("Telos spawn location not available for race " + playerCommonData.getRace(), e);
+				log.warn("Telos spawn location not available for race {}", playerCommonData.getRace(), e);
 			}
 		}
 		if (ld == null) {
 			try {
 				ld = playerInitialData.getSpawnLocation(playerCommonData.getRace());
 			} catch (Exception e) {
-				log.warn("Standard spawn location not available for race " + playerCommonData.getRace(), e);
+				log.warn("Standard spawn location not available for race {}", playerCommonData.getRace(), e);
 			}
 		}
-		int mapId = 210010000;
-		float x = 1212.9423f;
-		float y = 1044.8516f;
-		float z = 140.75568f;
-		byte heading = 32;
-		if (ld != null) {
-			mapId = ld.getMapId();
-			x = ld.getX();
-			y = ld.getY();
-			z = ld.getZ();
-			heading = ld.getHeading();
-		} else if (playerCommonData.getRace() == Race.ASMODIANS) {
-			mapId = 220010000;
-			x = 571.0388f;
-			y = 2787.3420f;
-			z = 299.8750f;
-			heading = 32;
+		// FIX: removido o fallback com coordenadas hardcoded (mapId 210010000 / 220010000 e
+		// demais valores fixos). A posicao de spawn agora SEMPRE vem do PLAYER_INITIAL_DATA.
+		// Se nao houver spawn location cadastrada para a raca/classe (nenhuma das duas
+		// tentativas acima retornou algo), isso e um erro de dados de configuracao e deve
+		// falhar de forma visivel, em vez de nascer o personagem numa posicao inventada.
+		if (ld == null) {
+			throw new IllegalStateException("Nenhuma spawn location cadastrada no PLAYER_INITIAL_DATA para raca="
+					+ playerCommonData.getRace() + ", classe=" + playerCommonData.getPlayerClass()
+					+ ". Verifique player_initial_data.xml.");
 		}
+		int mapId = ld.getMapId();
+		float x = ld.getX();
+		float y = ld.getY();
+		float z = ld.getZ();
+		byte heading = ld.getHeading();
+
 		WorldPosition position = World.getInstance().createPosition(mapId, x, y, z, heading, 0);
 		playerCommonData.setPosition(position);
 		Player newPlayer = new Player(new PlayerController(), playerCommonData, playerAppearance, account);

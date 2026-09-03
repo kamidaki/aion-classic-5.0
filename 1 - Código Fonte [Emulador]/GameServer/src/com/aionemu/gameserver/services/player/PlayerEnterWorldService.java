@@ -1,53 +1,24 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services.player;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ScheduledFuture;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.dao.DAOManager;
-import com.aionemu.gameserver.cache.HTMLCache;
 import com.aionemu.gameserver.configs.administration.AdminConfig;
-import com.aionemu.gameserver.configs.main.AutoGroupConfig;
-import com.aionemu.gameserver.configs.main.CustomConfig;
-import com.aionemu.gameserver.configs.main.EventsConfig;
 import com.aionemu.gameserver.configs.main.GSConfig;
-import com.aionemu.gameserver.configs.main.HTMLConfig;
-import com.aionemu.gameserver.configs.main.MembershipConfig;
 import com.aionemu.gameserver.configs.main.PeriodicSaveConfig;
-import com.aionemu.gameserver.configs.main.SecurityConfig;
 import com.aionemu.gameserver.dao.PlayerDAO;
-import com.aionemu.gameserver.model.PlayerClass;
-import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.account.Account;
 import com.aionemu.gameserver.model.account.PlayerAccountData;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.gameobjects.player.emotion.Emotion;
 import com.aionemu.gameserver.model.gameobjects.player.motion.Motion;
@@ -59,59 +30,34 @@ import com.aionemu.gameserver.model.team2.alliance.PlayerAllianceService;
 import com.aionemu.gameserver.model.team2.group.PlayerGroupService;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ABYSS_POINT;
-import com.aionemu.gameserver.network.aion.serverpackets.S_ADDREMOVE_SOCIAL;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ADD_SKILL;
-import com.aionemu.gameserver.network.aion.serverpackets.S_ASK_QUIT_RESULT;
-import com.aionemu.gameserver.network.aion.serverpackets.S_CHANGE_CHANNEL;
 import com.aionemu.gameserver.network.aion.serverpackets.S_CHANNEL_CHATTING_BLACKLIST_SETTING;
 import com.aionemu.gameserver.network.aion.serverpackets.S_CHAT_ACCUSE;
 import com.aionemu.gameserver.network.aion.serverpackets.S_CUR_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.S_CUSTOM_ANIM;
-import com.aionemu.gameserver.network.aion.serverpackets.S_TUTORIAL_HINT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ENTER_WORLD_CHECK;
+import com.aionemu.gameserver.network.aion.serverpackets.S_TUTORIAL_HINT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_EVENT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_INSTANCE_DUNGEON_COOLTIMES;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_CLIENT_SETTINGS;
-import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_FINISHEDQUEST;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_INVENTORY;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_ITEM_COOLTIME;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_MACRO;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_SKILL_COOLTIME;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_WAREHOUSE;
-import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_WORKINGQUEST;
 import com.aionemu.gameserver.network.aion.serverpackets.S_RECIPE_LIST;
-import com.aionemu.gameserver.network.aion.serverpackets.S_SHOP_POINT_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.S_SPAM_FILTER_FLAG;
-import com.aionemu.gameserver.model.stats.container.PlayerLifeStats;
 import com.aionemu.gameserver.network.aion.serverpackets.S_STATUS;
-import com.aionemu.gameserver.network.aion.serverpackets.S_MANA_POINT;
-import com.aionemu.gameserver.network.aion.serverpackets.S_HIT_POINT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_TAX_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.S_TIME;
 import com.aionemu.gameserver.network.aion.serverpackets.S_TITLE;
 import com.aionemu.gameserver.network.aion.serverpackets.S_WORLD;
 import com.aionemu.gameserver.network.aion.serverpackets.need.S_LOAD_EQUIPMENT_CHANGE;
-import com.aionemu.gameserver.network.aion.serverpackets.need.S_USER_BIND_STONE_INFO;
-import com.aionemu.gameserver.questEngine.model.QuestState;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.AutoGroupService;
 import com.aionemu.gameserver.services.BrokerService;
 import com.aionemu.gameserver.services.WeaponFusionSplitService;
-import com.aionemu.gameserver.services.ClassChangeService;
-import com.aionemu.gameserver.services.CubeExpandService;
-import com.aionemu.gameserver.services.EventService;
-import com.aionemu.gameserver.services.HTMLService;
-import com.aionemu.gameserver.services.KiskService;
-import com.aionemu.gameserver.services.PunishmentService;
-import com.aionemu.gameserver.services.SerialKillerService;
-import com.aionemu.gameserver.services.SiegeService;
 import com.aionemu.gameserver.services.SkillLearnService;
 import com.aionemu.gameserver.services.StigmaService;
-import com.aionemu.gameserver.services.SurveyService;
-import com.aionemu.gameserver.services.abyss.AbyssSkillService;
-import com.aionemu.gameserver.services.craft.RelinquishCraftStatus;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.legion.GuildSearchService;
 import com.aionemu.gameserver.services.legion.LegionService;
 import com.aionemu.gameserver.services.mail.MailService;
 import com.aionemu.gameserver.services.toypet.PetService;
@@ -120,22 +66,15 @@ import com.aionemu.gameserver.services.teleport.TeleportService2;
 import com.aionemu.gameserver.taskmanager.tasks.ExpireTimerTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
-import com.aionemu.gameserver.utils.audit.AuditLogger;
-import com.aionemu.gameserver.utils.audit.GMService;
 import com.aionemu.gameserver.utils.rates.Rates;
 import com.aionemu.gameserver.world.World;
 
 public final class PlayerEnterWorldService {
     private static final Logger log = LoggerFactory.getLogger("GAMECONNECTION_LOG");
-    private static final String serverName = "Welcome to Aion Classic";
-    private static final String serverIntro = "Aion Revenant is now live!";
     private static final Set<Integer> pendingEnterWorld = ConcurrentHashMap.newKeySet();
-    static ScheduledFuture<?> adv = null;
-    private static int[] elyosStigmaQuest = { 1929, 3930, 3931, 3932, 11049, 11276, 30217 };
-    private static int[] asmodianStigmaQuest = { 2900, 4934, 4935, 4936, 21049, 21278, 30317 };
 
-    public static final void startEnterWorld(final int objectId, final AionConnection client) {
-        log.info("[ENTER_WORLD] Solicitacao de entrada no mundo para objectId=" + objectId);
+    public static void startEnterWorld(final int objectId, final AionConnection client) {
+        log.info("[ENTER_WORLD] Solicitacao de entrada no mundo para objectId={}", objectId);
         validateAndEnterWorld(objectId, client);
     }
 
@@ -150,36 +89,29 @@ public final class PlayerEnterWorldService {
         Timestamp lastOnline = playerAccData.getPlayerCommonData().getLastOnline();
         if (lastOnline != null && client.getAccount() != null
                 && client.getAccount().getAccessLevel() < AdminConfig.GM_LEVEL) {
-            if (System.currentTimeMillis() - lastOnline.getTime() < (GSConfig.CHARACTER_REENTRY_TIME * 1000)) {
-                log.info("[ENTER_WORLD] Reentry delay ativo para objectId=" + objectId);
+            if (System.currentTimeMillis() - lastOnline.getTime() < (GSConfig.CHARACTER_REENTRY_TIME * 1000L)) {
+                log.info("[ENTER_WORLD] Reentry delay ativo para objectId={}", objectId);
                 client.sendPacket(new S_ENTER_WORLD_CHECK((byte) 6));
                 return;
             }
         }
         if (!pendingEnterWorld.add(objectId)) {
-            log.warn("Skipping concurrent enter world for " + objectId);
+            log.warn("Skipping concurrent enter world for {}", objectId);
             return;
         }
         try {
             if (World.getInstance().findPlayer(objectId) != null) {
-                log.warn("Duplicate character in world on enter world: " + objectId);
+                log.warn("Duplicate character in world on enter world: {}", objectId);
                 client.sendPacket(new S_ENTER_WORLD_CHECK((byte) 6));
                 return;
             }
-            enterWorld(client, objectId);
+            // OTIMIZACAO: reaproveita o playerAccData ja carregado acima em vez de buscar de novo dentro de enterWorld.
+            enterWorld(client, objectId, playerAccData);
         } catch (Throwable ex) {
-            log.error("Error during enter world " + objectId, ex);
+            log.error("Error during enter world {}", objectId, ex);
             Player player = client.getActivePlayer();
             if (player != null) {
-                try {
-                    player.getController().delete();
-                    player.getCommonData().setOnline(false);
-                    DAOManager.getDAO(PlayerDAO.class).onlinePlayer(player, false);
-                } catch (Throwable t) {
-                    log.error("Failed to cleanup player after enter world error", t);
-                }
-                player.setClientConnection(null);
-                client.setActivePlayer(null);
+                cleanupFailedEnterWorld(client, player);
             }
             client.sendPacket(new S_ENTER_WORLD_CHECK((byte) 0));
         } finally {
@@ -187,18 +119,38 @@ public final class PlayerEnterWorldService {
         }
     }
 
-    public static final void enterWorld(AionConnection client, int objectId) {
+    /**
+     * Ponto de entrada publico mantido por compatibilidade com quem ja chama
+     * enterWorld(client, objectId) diretamente. Busca o PlayerAccountData e delega
+     * para a versao interna que reaproveita esse valor.
+     */
+    public static void enterWorld(AionConnection client, int objectId) {
         Account account = client.getAccount();
-        PlayerAccountData playerAccData = client.getAccount().getPlayerAccountData(objectId);
-        if (playerAccData == null) {
+        if (account == null) {
+            // FIX: protege contra NPE se este metodo for chamado externamente sem
+            // passar pelo validateAndEnterWorld (que ja garante account != null).
+            log.warn("[ENTER_WORLD] enterWorld chamado sem account valida para objectId={}", objectId);
+            client.sendPacket(new S_ENTER_WORLD_CHECK((byte) 0));
             return;
         }
+        PlayerAccountData playerAccData = account.getPlayerAccountData(objectId);
+        if (playerAccData == null) return;
+        enterWorld(client, objectId, playerAccData);
+    }
+
+    private static void enterWorld(AionConnection client, int objectId, PlayerAccountData playerAccData) {
+        Account account = client.getAccount();
+
         final Player player = PlayerService.getPlayer(objectId, account);
         if (player != null && client.setActivePlayer(player)) {
             player.setClientConnection(client);
-            log.info("[MAC_AUDIT] Player " + player.getName() + " (account " + account.getName()
-                    + ") has entered world with " + client.getMacAddress() + " MAC.");
+            log.info("[MAC_AUDIT] Player {} (account {}) has entered world with {} MAC.", player.getName(), account.getName(), client.getMacAddress());
             World.getInstance().storeObject(player);
+            /*
+            ================= DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
+                                E VALIDAR SE ELA REALMENTE EXISTE NO CLASSIC 5.0
+
+
             if (playerAccData.getPlayerCommonData().getLastOnline() != null) {
                 long lastOnline = playerAccData.getPlayerCommonData().getLastOnline().getTime();
                 PlayerCommonData pcd = player.getCommonData();
@@ -228,22 +180,25 @@ public final class PlayerEnterWorldService {
                     player.getCommonData().setDp(0);
                 }
             }
-            /*
-             * int cubeExpand = CustomConfig.BASIC_CUBE_SIZE_LIMIT - player.getNpcExpands();
-             * while (cubeExpand > 3) {
-             * CubeExpandService.expand(player, true);
-             * cubeExpand--;
-             * }
-             */
+            */
             StigmaService.onPlayerLogin(player);
             InstanceService.onPlayerLogin(player);
+
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
             AbyssSkillService.onEnterWorld(player);
             SerialKillerService.getInstance().onLogin(player);
+            */
             SkillLearnService.addMissingSkills4P(player);
+
             client.sendPacket(new S_ENTER_WORLD_CHECK(player.getObjectId()));
             client.sendPacket(new S_ADD_SKILL(player));
+
             if (player.getSkillCoolDowns() != null) {
-                client.sendPacket(new S_LOAD_SKILL_COOLTIME((Map<Integer, Long>) player.getSkillCoolDowns()));
+                client.sendPacket(new S_LOAD_SKILL_COOLTIME(player.getSkillCoolDowns()));
+            } else {
+                // FIX: mesma logica de fallback ja usada para item cooldown, para nao deixar
+                // o client com um estado de cooldown de skill "preso" de uma sessao anterior.
+                client.sendPacket(new S_LOAD_SKILL_COOLTIME(Collections.emptyMap()));
             }
             if (player.getItemCoolDowns() != null) {
                 client.sendPacket(new S_LOAD_ITEM_COOLTIME(player.getItemCoolDowns()));
@@ -251,8 +206,10 @@ public final class PlayerEnterWorldService {
                 client.sendPacket(new S_LOAD_ITEM_COOLTIME(Collections.emptyMap()));
             }
 
-            List<QuestState> questList = new ArrayList<QuestState>();
-            List<QuestState> completeQuestList = new ArrayList<QuestState>();
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
+
+            List<QuestState> questList = new ArrayList<>();
+            List<QuestState> completeQuestList = new ArrayList<>();
             for (QuestState qs : player.getQuestStateList().getAllQuestState()) {
                 if (qs.getStatus() == QuestStatus.NONE && qs.getCompleteCount() == 0) {
                     continue;
@@ -283,11 +240,13 @@ public final class PlayerEnterWorldService {
              * O corpo e o mesmo da captura -- writeH(0) + writeC(0) = `00 00 00`.
              */
             client.sendPacket(new S_TUTORIAL_HINT());
-            // client.sendPacket(new S_CUSTOM_ANIM(player.getObjectId(),
-            // player.getMotions().getActiveMotions()));
+
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
             BattlePassService.getInstance().onEnterWorld(player);
             PlayerWardrobeService.getInstance().onEnterWorld(player);
-            // S_ENTER_WORLD_CHECK movido para o inicio da sequencia (ver acima)
+            */
+
+
             byte[] uiSettings = player.getPlayerSettings().getUiSettings();
             byte[] shortcuts = player.getPlayerSettings().getShortcuts();
             if (uiSettings != null) {
@@ -301,38 +260,58 @@ public final class PlayerEnterWorldService {
             PacketSendUtility.sendPacket(player, new S_LOAD_EQUIPMENT_CHANGE(player));
 
             playerLoggedIn(player);
+
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
+
+
             client.sendPacket(new S_CHANGE_CHANNEL(player.getPosition()));
             KiskService.getInstance().onLogin(player);
+
+             */
+
             TeleportService2.sendSetBindPoint(player);
+
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
+
             client.sendPacket(new S_USER_BIND_STONE_INFO(player));
+            */
 
             player.setState(CreatureState.ACTIVE);
             client.sendPacket(new S_WORLD(player));
             client.sendPacket(new S_TIME());
             sendWarehouseItemInfos(client, player);
+
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
             client.sendPacket(new S_TITLE(player));
             client.sendPacket(new S_ADDREMOVE_SOCIAL((byte) 0, player.getEmotions().getEmotions()));
             SiegeService.getInstance().onPlayerLogin(player);
+             */
+
             client.sendPacket(new S_TAX_INFO());
             client.sendPacket(new S_INSTANCE_DUNGEON_COOLTIMES(player, false, player.getCurrentTeam()));
             client.sendPacket(new S_ABYSS_POINT(player.getAbyssRank()));
             client.sendPacket(new S_STATUS(player));
             // Na 5.0 oficial, mensagens de chat (S_MESSAGE) nao sao enviadas durante a tela de loading.
             player.setRates(Rates.getRatesFor(client.getAccount().getMembership()));
+
             // Buff.
-            /*
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
              * if (player.getMembership() >= 0) {
              * SkillEngine.getInstance().applyEffectDirectly(2358, player, player, 0);
              * //[Event] A Noble's Blessing.
              * }
              */
+
             PlayerAllianceService.onPlayerLogin(player);
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
             if (player.isInPrison()) {
                 PunishmentService.updatePrisonStatus(player);
             }
             if (player.isNotGatherable()) {
                 PunishmentService.updateGatherableStatus(player);
             }
+
+            */
             PlayerGroupService.onPlayerLogin(player);
             PetService.getInstance().onPlayerLogin(player);
             MailService.getInstance().onPlayerLogin(player);
@@ -343,19 +322,29 @@ public final class PlayerEnterWorldService {
             if (player.isLegionMember()) {
                 LegionService.getInstance().onLogin(player);
             }
+
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
             EventWindowService.getInstance().onEnterWorld(player);
             SielEnergyService.getInstance().onLogin(player);
+             */
+
             client.sendPacket(new S_RECIPE_LIST(player.getRecipeList().getRecipeList()));
-            // PetitionService.getInstance().onPlayerLogin(player);
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
+            PetitionService.getInstance().onPlayerLogin(player);
             if (AutoGroupConfig.AUTO_GROUP_ENABLED) {
                 AutoGroupService.getInstance().onPlayerLogin(player);
             }
+
             ClassChangeService.showClassChangeDialog(player);
             GMService.getInstance().onPlayerLogin(player);
+             */
+
             player.getLifeStats().updateCurrentStats();
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
             player.getEquipment().checkRankLimitItems();
-            // Na 5.0 oficial, dialogos HTML/Survey nao sao abertos durante o carregamento de mundo
             player.getNpcFactions().sendDailyQuest();
+
+             */
             for (StorageType st : StorageType.values()) {
                 if (st == StorageType.LEGION_WAREHOUSE) {
                     continue;
@@ -391,21 +380,24 @@ public final class PlayerEnterWorldService {
             }
             player.getController().addTask(TaskId.PLAYER_UPDATE,
                     ThreadPoolManager.getInstance().scheduleAtFixedRate(new GeneralUpdateTask(player.getObjectId()),
-                            PeriodicSaveConfig.PLAYER_GENERAL * 1000, PeriodicSaveConfig.PLAYER_GENERAL * 1000));
+                            PeriodicSaveConfig.PLAYER_GENERAL * 1000L, PeriodicSaveConfig.PLAYER_GENERAL * 1000L));
             player.getController().addTask(TaskId.INVENTORY_UPDATE,
                     ThreadPoolManager.getInstance().scheduleAtFixedRate(new ItemUpdateTask(player.getObjectId()),
-                            PeriodicSaveConfig.PLAYER_ITEMS * 1000, PeriodicSaveConfig.PLAYER_ITEMS * 1000));
-            /// On the official servers when a player is afk, he can gain energy of repose
-            /// value of 5% every 20Min!!!
+                            PeriodicSaveConfig.PLAYER_ITEMS * 1000L, PeriodicSaveConfig.PLAYER_ITEMS * 1000L));
+
+            /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
+
             player.getController().addTask(TaskId.REPOSE_ENERGY_TASK, ThreadPoolManager.getInstance()
                     .scheduleAtFixedRate(new ReposeEnergyTask(player.getObjectId()), 1200 * 1000, 1200 * 1000));
-            // SurveyService nao deve disparar durante o carregamento de mapa/cena
             if (EventsConfig.ENABLE_EVENT_SERVICE) {
                 EventService.getInstance().onPlayerLogin(player);
             }
             BoostEventService.getInstance().boostEventLogin(player);
             RelinquishCraftStatus.removeExcessCraftStatus(player, false);
             BlackCloudTradeService.getInstance().onLogin(player);
+
+
+             */
             // Chat & Seguranca
             client.sendPacket(new S_CHAT_ACCUSE(player));
             client.sendPacket(new S_SPAM_FILTER_FLAG(player));
@@ -414,8 +406,36 @@ public final class PlayerEnterWorldService {
             // Diagnostico, desligado por padrao: ver RajadaOficial.
             RajadaOficial.envia(client, player);
         } else {
-            log.info("[DEBUG] Enter World" + objectId + ", Player: " + player);
+            // FIX: antes este ramo so logava e deixava o cliente preso na tela de loading,
+            // pois nenhum pacote de resposta era enviado quando player==null ou setActivePlayer falhava.
+            log.warn("[ENTER_WORLD] Falha ao ativar player. objectId={}, player={}, setActivePlayer_ok={}",
+                    objectId, player, player != null);
+            if (player != null) {
+                // player foi carregado por PlayerService.getPlayer, mas nao foi anexado a conexao
+                // nem armazenado no World (storeObject so roda dentro deste if). Nao ha, portanto,
+                // limpeza de World/controller a fazer aqui - so garantimos que a conexao nao fique
+                // com referencia inconsistente.
+                client.setActivePlayer(null);
+            }
+            client.sendPacket(new S_ENTER_WORLD_CHECK((byte) 0));
         }
+    }
+
+    /**
+     * Centraliza a limpeza usada quando o enter world falha apos o player ja ter sido
+     * armazenado no World / anexado a conexao (extraido do catch original para evitar
+     * duplicacao com o novo ramo de falha em enterWorld).
+     */
+    private static void cleanupFailedEnterWorld(AionConnection client, Player player) {
+        try {
+            player.getController().delete();
+            player.getCommonData().setOnline(false);
+            DAOManager.getDAO(PlayerDAO.class).onlinePlayer(player, false);
+        } catch (Throwable t) {
+            log.error("Failed to cleanup player after enter world error", t);
+        }
+        player.setClientConnection(null);
+        client.setActivePlayer(null);
     }
 
     private static void sendWarehouseItemInfos(AionConnection client, Player player) {
@@ -443,7 +463,7 @@ public final class PlayerEnterWorldService {
         player.getWarehouse().setLimit(StorageType.REGULAR_WAREHOUSE.getLimit() + player.getWarehouseSize() * 8);
         Storage inventory = player.getInventory();
         List<Item> equipedItems = player.getEquipment().getEquippedItems();
-        if (equipedItems.size() != 0) {
+        if (!equipedItems.isEmpty()) {
             client.sendPacket(new S_LOAD_INVENTORY(true, player.getEquipment().getEquippedItems(), npcExpands,
                     questExpands, player));
         }
@@ -472,8 +492,7 @@ public final class PlayerEnterWorldService {
     }
 
     private static void playerLoggedIn(Player player) {
-        log.info("Player Logged In: " + player.getName() + " Account: "
-                + player.getClientConnection().getAccount().getName());
+        log.info("Player Logged In: {} Account: {}", player.getName(), player.getClientConnection().getAccount().getName());
         player.getCommonData().setOnline(true);
         DAOManager.getDAO(PlayerDAO.class).onlinePlayer(player, true);
         player.onLoggedIn();

@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.org>.
- *
- *  aion-unique is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-unique is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 package com.aionemu.gameserver.services.player;
 
@@ -41,9 +25,9 @@ import com.aionemu.gameserver.world.WorldMap;
 import com.aionemu.gameserver.world.WorldPosition;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-public class PlayerReviveService
-{
-	public static final void duelRevive(Player player) {
+public class PlayerReviveService {
+
+	public static void duelRevive(Player player) {
 		revive(player, 25, 25, false, 0);
 		PacketSendUtility.broadcastPacket(player, new S_ACTION(player, EmotionType.RESURRECT), true);
 		if (player.getIsFlyingBeforeDeath()) {
@@ -53,7 +37,7 @@ public class PlayerReviveService
 		player.unsetResPosState();
 	}
 	
-	public static final void skillRevive(Player player) {
+	public static void skillRevive(Player player) {
 		if (!player.getResStatus()) {
 			AuditLogger.info(player, "PlayerReviveService: possibly tried to use a skill revive hack (resStatus false)");
 			return;
@@ -74,7 +58,7 @@ public class PlayerReviveService
 		player.setIsFlyingBeforeDeath(false);
 	}
 	
-	public static final void handOfReincarnation(Player player) {
+	public static void handOfReincarnation(Player player) {
 		if (!player.getController().isHandOfReincarnationEffect()) {
 			AuditLogger.info(player, "PlayerReviveService: handOfReincarnation called without active effect");
 			return;
@@ -100,7 +84,7 @@ public class PlayerReviveService
 		player.setIsFlyingBeforeDeath(false);
 	}
 	
-	public static final void rebirthRevive(Player player) {
+	public static void rebirthRevive(Player player) {
 		if (!player.canUseRebirthRevive()) {
 			return;
 		}
@@ -130,11 +114,11 @@ public class PlayerReviveService
 		player.setIsFlyingBeforeDeath(false);
 	}
 	
-	public static final void bindRevive(Player player) {
+	public static void bindRevive(Player player) {
 		bindRevive(player, 0);
 	}
 	
-	public static final void bindRevive(Player player, int skillId) {
+	public static void bindRevive(Player player, int skillId) {
 		revive(player, 25, 25, true, skillId);
 		if (skillId > 0) {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_REBIRTH_MASSAGE_ME);
