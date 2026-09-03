@@ -53,18 +53,28 @@ public class S_PUT_USER extends AionServerPacket {
         // 2. 13 bytes padding (offsets 24..37)
         writeB(new byte[13]);
 
-        // 3. State/Legion + padding + flags (9 bytes: offsets 37..48)
-        writeD(0x0114a1c5);
+        /*
+         * 3. Offsets 37..48. Medido em 13 amostras de S_PUT_USER da captura oficial: os bytes
+         * 37..39 variam (sete das treze sao zero) e o 40 e constante 0x01 -- o `writeD` com a
+         * constante 0x0114A1C5 que estava aqui gravava `c5 a1 14` num campo variavel.
+         */
+        writeB(new byte[3]);
+        writeC(0x01);
         writeB(new byte[3]);
         writeC(enemy ? 0x00 : 0x26); // marcador não-inimigo
         writeC(raceId);
         writeC(pcd.getPlayerClass().getClassId());
         writeC(genderId);
 
-        // 4. Heading + padding + tag (11 bytes: offsets 48..59)
-        writeD(player.getHeading());
-        writeB(new byte[6]);
-        writeC(0x03);
+        /*
+         * 4. Offsets 48..59. Os dois campos estavam trocados: o byte 48 e o **estado** da criatura
+         * (0x01 em onze das treze amostras) e o heading fica no byte 58 (valores como 0x3b, 0x3c,
+         * 0x1e, 0x68). Escrever o heading no byte 48 fazia o personagem nascer com
+         * ACTIVE|FLYING -- a asa aberta em zona sem voo.
+         */
+        writeC(player.getState());
+        writeB(new byte[9]);
+        writeC(player.getHeading());
 
         // 5. Nome do jogador em UTF-16LE com terminador nulo
         String nameFormat = "%s";

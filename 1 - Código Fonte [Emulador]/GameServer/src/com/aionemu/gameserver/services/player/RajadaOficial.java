@@ -35,9 +35,11 @@ import java.util.List;
 public final class RajadaOficial {
 
     private static final Logger log = LoggerFactory.getLogger(RajadaOficial.class);
-    private static final String ARQUIVO = "./data/diagnostico/rajada_oficial.txt";
+    private static final String ENTRADA_NO_MUNDO = "./data/diagnostico/rajada_oficial.txt";
+    private static final String POS_SPAWN = "./data/diagnostico/rajada_pos_spawn.txt";
 
-    private static List<Entrada> entradas;
+    private static final java.util.Map<String, List<Entrada>> cache =
+        new java.util.HashMap<String, List<Entrada>>();
 
     private RajadaOficial() {
     }
@@ -54,11 +56,21 @@ public final class RajadaOficial {
         }
     }
 
+    /** Pacotes que faltam na janela do CM_ENTER_WORLD ate o CM_LEVEL_READY. */
     public static void envia(AionConnection cliente, Player jogador) {
+        envia(cliente, jogador, ENTRADA_NO_MUNDO);
+    }
+
+    /** Pacotes que faltam depois do spawn -- o que impede o personagem de agir. */
+    public static void enviaPosSpawn(AionConnection cliente, Player jogador) {
+        envia(cliente, jogador, POS_SPAWN);
+    }
+
+    private static void envia(AionConnection cliente, Player jogador, String arquivo) {
         if (!NetworkConfig.RAJADA_OFICIAL || cliente == null || jogador == null) {
             return;
         }
-        List<Entrada> lista = carrega();
+        List<Entrada> lista = carrega(arquivo);
         if (lista.isEmpty()) {
             return;
         }
@@ -73,20 +85,21 @@ public final class RajadaOficial {
             }
             cliente.sendPacket(new S_RAJADA_OFICIAL(e.opcode, corpo));
         }
-        log.warn("[RAJADA] Reproduzidos {} pacotes da captura oficial para {} -- diagnostico,"
-            + " desligar depois.", lista.size(), jogador.getName());
+        log.warn("[RAJADA] Reproduzidos {} pacotes de {} para {} -- diagnostico, desligar depois.",
+            lista.size(), arquivo, jogador.getName());
     }
 
-    private static synchronized List<Entrada> carrega() {
-        if (entradas != null) {
-            return entradas;
+    private static synchronized List<Entrada> carrega(String caminho) {
+        List<Entrada> guardadas = cache.get(caminho);
+        if (guardadas != null) {
+            return guardadas;
         }
         List<Entrada> lidas = new ArrayList<Entrada>();
-        File arquivo = new File(ARQUIVO);
+        File arquivo = new File(caminho);
         if (!arquivo.isFile()) {
-            log.warn("[RAJADA] {} nao existe; gere com extrai_rajada_oficial.py", ARQUIVO);
-            entradas = lidas;
-            return entradas;
+            log.warn("[RAJADA] {} nao existe; gere com extrai_rajada_oficial.py", caminho);
+            cache.put(caminho, lidas);
+            return lidas;
         }
         BufferedReader leitor = null;
         try {
@@ -114,9 +127,9 @@ public final class RajadaOficial {
                 }
                 lidas.add(new Entrada(opcode, corpo, posicoes));
             }
-            log.warn("[RAJADA] {} pacotes carregados de {}", lidas.size(), ARQUIVO);
+            log.warn("[RAJADA] {} pacotes carregados de {}", lidas.size(), caminho);
         } catch (Exception e) {
-            log.error("[RAJADA] Falha ao ler " + ARQUIVO, e);
+            log.error("[RAJADA] Falha ao ler " + caminho, e);
             lidas.clear();
         } finally {
             if (leitor != null) {
@@ -127,8 +140,8 @@ public final class RajadaOficial {
                 }
             }
         }
-        entradas = lidas;
-        return entradas;
+        cache.put(caminho, lidas);
+        return lidas;
     }
 
     private static byte[] hexParaBytes(String hex) {

@@ -5,6 +5,8 @@ import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.stats.container.PlayerLifeStats;
 import com.aionemu.gameserver.network.aion.serverpackets.S_HIT_POINT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MANA_POINT;
+import com.aionemu.gameserver.network.aion.serverpackets.S_CUR_STATUS;
+import com.aionemu.gameserver.network.aion.serverpackets.S_FLIGHT_POINT;
 import com.aionemu.gameserver.model.gameobjects.Pet;
 import com.aionemu.gameserver.model.gameobjects.Summon;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -61,7 +63,11 @@ public class CM_LEVEL_READY extends AionClientPacket {
 		// 6. Animações customizadas de pose/movimento (op 0x0093, 19 bytes)
 		sendPacket(new S_CUSTOM_ANIM(activePlayer.getObjectId(), activePlayer.getMotions().getActiveMotions()));
 		// 7. Comanda o cliente a fechar a cena/HUD de Character Select e entrar no modo de jogo (op 0x008B, 03 00000000 00000000)
-		sendPacket(new S_WORLD_SCENE_STATUS(3, 0, 0));
+		/*
+		 * O segundo campo e 20 (0x14), nao 0: `03 14 00 00 00 00 00 00 00` nas quatro ocorrencias
+		 * das duas capturas oficiais, em mapas diferentes -- e constante, nao um id de cena.
+		 */
+		sendPacket(new S_WORLD_SCENE_STATUS(3, 20, 0));
 		WindstreamTemplate template = DataManager.WINDSTREAM_DATA
 				.getStreamTemplate(activePlayer.getPosition().getMapId());
 		Location2D location;
@@ -106,6 +112,15 @@ public class CM_LEVEL_READY extends AionClientPacket {
 		PlayerLifeStats vida = activePlayer.getLifeStats();
 		sendPacket(new S_HIT_POINT(vida.getCurrentHp(), activePlayer.getGameStats().getMaxHp().getCurrent()));
 		sendPacket(new S_MANA_POINT(vida.getCurrentMp(), activePlayer.getGameStats().getMaxMp().getCurrent()));
+		sendPacket(new S_FLIGHT_POINT(vida.getCurrentFp(), vida.getMaxFp()));
+		/*
+		 * Na captura oficial o S_CUR_STATUS aparece duas vezes: `01` durante a entrada no mundo e
+		 * `02` aqui, depois do spawn -- a transicao de "carregando" para "ativo". Nos so
+		 * mandavamos o primeiro, e o personagem ficava no mundo mas congelado.
+		 */
+		sendPacket(new S_CUR_STATUS((byte) 2));
+		// Diagnostico, desligado por padrao: ver RajadaOficial.
+		com.aionemu.gameserver.services.player.RajadaOficial.enviaPosSpawn(getConnection(), activePlayer);
 		log.info("[LEVEL_READY] Personagem " + activePlayer.getName() + " spawnado com sucesso no mundo! Posicao=(" + activePlayer.getX() + ", " + activePlayer.getY() + ", " + activePlayer.getZ() + ")");
 	}
 }

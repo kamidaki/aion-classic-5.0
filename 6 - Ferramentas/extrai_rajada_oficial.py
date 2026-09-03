@@ -15,7 +15,11 @@ captura aparece, para o servidor troca-lo pelo do jogador real -- sem isso o cli
 pacotes apontando para uma entidade que nao existe. Guardar as posicoes, e nao zerar os bytes,
 porque zero e um valor legitimo e comum no corpo destes pacotes.
 
-    python "6 - Ferramentas/extrai_rajada_oficial.py" [wiretrace.log] [captura] [sessao]
+    python "6 - Ferramentas/extrai_rajada_oficial.py" [wiretrace.log] [captura] [sessao] [janela]
+
+`janela` e `entrada` (do CM_ENTER_WORLD ao CM_LEVEL_READY, o padrao) ou `pos-spawn` (do
+CM_LEVEL_READY ao primeiro CM_MOVE) -- a segunda grava `rajada_pos_spawn.txt` e serve para a
+mesma bisseccao aplicada ao que impede o personagem de agir depois de nascer.
 """
 import os
 import re
@@ -31,17 +35,21 @@ CAPTURA = os.path.join("5 - Documentação e Referências", "2 - Wireshark - Ofi
 SESSAO = 1
 DESTINOS = [os.path.join("1 - Código Fonte [Emulador]", "GameServer", "data", "diagnostico"),
             os.path.join("2 - Emulador [Produto Final]", "GameServer", "data", "diagnostico")]
-ENTER_WORLD, LEVEL_READY = 0x0018, 0x0019
+ENTER_WORLD, LEVEL_READY, MOVE = 0x0018, 0x0019, 0x0030
 LINHA = re.compile(r"\d{6}\|S\|0x([0-9A-Fa-f]{4})\|")
 
 
-def nossos_opcodes(caminho):
+def nossos_opcodes(caminho, janela):
+    """Opcodes S->C que ja enviamos na janela pedida."""
+    abre = "|C|0x0018|" if janela == "entrada" else "|C|0x0019|"
+    fecha = "|C|0x0019|" if janela == "entrada" else "|C|0x0030|"
     vistos, dentro = set(), False
     with open(caminho, encoding="utf-8", errors="replace") as f:
         for texto in f:
-            if "|C|0x0018|" in texto:
+            if abre in texto:
                 vistos, dentro = set(), True
-            elif "|C|0x0019|" in texto:
+                continue
+            if dentro and fecha in texto:
                 break
             m = LINHA.search(texto)
             if m and dentro:
@@ -55,20 +63,33 @@ def main():
     if len(sys.argv) > 2: CAPTURA = sys.argv[2]
     if len(sys.argv) > 3: SESSAO = int(sys.argv[3])
 
-    nossos = nossos_opcodes(RASTRO) if os.path.exists(RASTRO) else set()
+    janela = sys.argv[4] if len(sys.argv) > 4 else "entrada"
+    if janela not in ("entrada", "pos-spawn"):
+        print("janela deve ser 'entrada' ou 'pos-spawn'")
+        return 2
+    nossos = nossos_opcodes(RASTRO, janela) if os.path.exists(RASTRO) else set()
     print("opcodes que ja enviamos: %d" % len(nossos))
 
     s = aion_pcap.abre_todas(CAPTURA)[SESSAO]
     linha = aion_pcap.intercalado(s)
-    ini = next(i for i, e in enumerate(linha) if e[1] == "cliente" and e[2] == ENTER_WORLD)
-    fim = next(i for i in range(ini + 1, len(linha))
-               if linha[i][1] == "cliente" and linha[i][2] == LEVEL_READY)
+    if janela == "entrada":
+        ini = next(i for i, e in enumerate(linha) if e[1] == "cliente" and e[2] == ENTER_WORLD)
+        fim = next(i for i in range(ini + 1, len(linha))
+                   if linha[i][1] == "cliente" and linha[i][2] == LEVEL_READY)
+    else:
+        ini = next(i for i, e in enumerate(linha) if e[1] == "cliente" and e[2] == LEVEL_READY)
+        fim = next(i for i in range(ini + 1, len(linha))
+                   if linha[i][1] == "cliente" and linha[i][2] == MOVE)
 
     # objectId do personagem da captura: sai do S_ENTER_WORLD_CHECK, bytes 8..11
     oid = None
     for _t, lado, op, p in linha[ini:fim]:
+        # na entrada ele sai do S_ENTER_WORLD_CHECK; depois do spawn, do S_PUT_USER
         if lado == "servidor" and op == 0x0133 and len(p) >= 12:
             oid = p[8:12]
+            break
+        if lado == "servidor" and op == 0x0020 and len(p) >= 16:
+            oid = p[12:16]
             break
     if oid is None:
         print("nao achei o objectId da captura no S_ENTER_WORLD_CHECK")
@@ -102,7 +123,8 @@ def main():
         if not os.path.isdir(os.path.dirname(destino)):
             print("!! pulei %s" % destino); continue
         os.makedirs(destino, exist_ok=True)
-        alvo = os.path.join(destino, "rajada_oficial.txt")
+        nome = "rajada_oficial.txt" if janela == "entrada" else "rajada_pos_spawn.txt"
+        alvo = os.path.join(destino, nome)
         open(alvo, "w", encoding="utf-8").write(texto)
         print("gravado: %s" % alvo)
     return 0
