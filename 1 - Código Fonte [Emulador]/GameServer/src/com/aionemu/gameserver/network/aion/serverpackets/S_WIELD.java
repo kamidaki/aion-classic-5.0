@@ -45,12 +45,26 @@ public class S_WIELD extends AionServerPacket
 
         writeD(mask); // u32 mask na 5.0
 
-        for (Item item : items) {
-            writeD(item.getItemSkinTemplate().getTemplateId());
-            GodStone godStone = item.getGodStone();
-            writeD(godStone != null ? godStone.getItemId() : 0);
-            writeD(item.getItemColor());
-            writeB(new byte[8]); // 20 bytes por entrada (confirmado no PCAP: 12 + 20*bits)
+        for (int i = 0; i < 32; i++) {
+            int bit = 1 << i;
+            if ((mask & bit) != 0) {
+                Item matchedItem = null;
+                for (Item item : items) {
+                    if ((item.getEquipmentSlot() & bit) != 0) {
+                        matchedItem = item;
+                        break;
+                    }
+                }
+                if (matchedItem != null) {
+                    writeD(matchedItem.getItemSkinTemplate().getTemplateId());
+                    GodStone godStone = matchedItem.getGodStone();
+                    writeD(godStone != null ? godStone.getItemId() : 0);
+                    writeD(matchedItem.getItemColor());
+                    writeB(new byte[8]);
+                } else {
+                    writeB(new byte[20]);
+                }
+            }
         }
     }
 }

@@ -34,7 +34,7 @@ import java.util.TreeMap;
 public class NpcEquippedGear implements Iterable<Entry<ItemSlot, ItemTemplate>> {
 
 	private Map<ItemSlot, ItemTemplate> items;
-	private short mask;
+	private int mask;
 
 	private NpcEquipmentList v;
 
@@ -43,9 +43,9 @@ public class NpcEquippedGear implements Iterable<Entry<ItemSlot, ItemTemplate>> 
 	}
 
 	/**
-	 * @return short
+	 * @return int
 	 */
-	public short getItemsMask() {
+	public int getItemsMask() {
 		if (items == null)
 			init();
 		return mask;

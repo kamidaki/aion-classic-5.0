@@ -108,7 +108,7 @@ public class S_LOAD_INVENTORY extends AionServerPacket {
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());
 
-		writeH(item.isEquipped() ? -1 : item.getEquipmentSlot()); // FF FF equipment
-		writeC(0x00);//isEquiped?
+		writeH(item.isEquipped() ? -1 : item.getEquipmentSlot());
+		writeC(itemTemplate.isCloth() ? 1 : 0);
 	}
 }

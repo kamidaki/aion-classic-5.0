@@ -122,18 +122,31 @@ public class S_PUT_NPC extends AionServerPacket {
 		boolean hasWeapon = false;
 		BoundRadius boundRadius = npcTemplate.getBoundRadius();
 		if (gear == null) {
-			writeH(0x00);
-			writeH(0x00);
+			writeD(0);
 			writeF(boundRadius.getFront());
 		} else {
-			writeH(gear.getItemsMask());
-			writeH(0x00);
-			for (Entry<ItemSlot, ItemTemplate> item : gear) {
-				if (item.getValue().getWeaponType() != null) {
-					hasWeapon = true;
+			int mask = gear.getItemsMask();
+			writeD(mask);
+			for (int i = 0; i < 32; i++) {
+				int bit = 1 << i;
+				if ((mask & bit) != 0) {
+					ItemTemplate matchedItem = null;
+					for (Entry<ItemSlot, ItemTemplate> item : gear) {
+						if ((item.getKey().getSlotIdMask() & bit) != 0) {
+							matchedItem = item.getValue();
+							if (matchedItem.getWeaponType() != null) {
+								hasWeapon = true;
+							}
+							break;
+						}
+					}
+					if (matchedItem != null) {
+						writeD(matchedItem.getTemplateId());
+						writeB(new byte[16]);
+					} else {
+						writeB(new byte[20]);
+					}
 				}
-				writeD(item.getValue().getTemplateId());
-				writeB(new byte[16]);
 			}
 			writeF(boundRadius.getFront() + 0.125f + (hasWeapon ? 0.1f : 0.0f));
 		}

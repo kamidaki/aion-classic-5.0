@@ -59,7 +59,7 @@ public class ItemInfoBlob extends PacketWriteHelper
 		if (item.getConditioningInfo() != null) {
 			blob.addBlobEntry(ItemBlobType.CONDITIONING_INFO);
 		}
-		if (itemTemplate.getWeaponType() != null && itemTemplate.isTwoHandWeapon()) {
+		if (item.hasEffectiveFusion() || item.hasFusionedItem()) {
 			blob.addBlobEntry(ItemBlobType.COMPOSITE_ITEM);
 		}
 
@@ -67,7 +67,9 @@ public class ItemInfoBlob extends PacketWriteHelper
 			blob.addBlobEntry(ItemBlobType.EQUIPPED_SLOT);
 
 			//SLOT INFO
-			if(itemTemplate.getArmorType() != null) {
+			if (itemTemplate.getCategory() == ItemCategory.HELMET || itemTemplate.getCategory() == ItemCategory.NO_ARMOR) {
+				blob.addBlobEntry(ItemBlobType.SLOTS_ACCESSORY);
+			} else if(itemTemplate.getArmorType() != null && itemTemplate.getArmorType() != ArmorType.NO_ARMOR) {
 				switch(itemTemplate.getArmorType()) {
 					case WING:
 						blob.addBlobEntry(ItemBlobType.SLOTS_WING);
@@ -87,24 +89,20 @@ public class ItemInfoBlob extends PacketWriteHelper
 				blob.addBlobEntry(ItemBlobType.SLOTS_ACCESSORY);
 
 			blob.addBlobEntry(ItemBlobType.MANA_SOCKETS);
+			// 5.0 Classic: a etiqueta 0x12 vem logo apos os soquetes e antes dos bonus
+			blob.addBlobEntry(ItemBlobType.EXTRA_INFO);
 
-
-			/*List<StatFunction> allModifiers = itemTemplate.getModifiers();
+			List<StatFunction> allModifiers = itemTemplate.getModifiers();
 			if (allModifiers != null) {
 				for (IStatFunction modifier: allModifiers) {
 					if (modifier.isBonus() && !modifier.hasConditions()) {
 						blob.addBonusBlobEntry(modifier);
 					}
 				}
-			}*/
+			}
 		} 
-		else if (itemTemplate.getTemplateId() == 141000001) {
+		else if (itemTemplate.getTemplateId() == 141000001 || itemTemplate.getTemplateId() == 141000002) {
 			blob.addBlobEntry(ItemBlobType.STIGMA_SHARD);
-		}
-		// 5.0 Classic: a etiqueta 0x12 vem logo antes do bloco geral em todo item
-		// equipavel, conforme a captura oficial.
-		if (item.getEquipmentType() != EquipType.NONE) {
-			blob.addBlobEntry(ItemBlobType.EXTRA_INFO);
 		}
 		blob.addBlobEntry(ItemBlobType.GENERAL_INFO);
 		return blob;

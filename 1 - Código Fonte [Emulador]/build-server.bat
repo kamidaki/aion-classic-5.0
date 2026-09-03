@@ -9,6 +9,13 @@ echo ===========================================================================
 echo.
 
 REM --- 1. Verificar JAVA_HOME ---
+if not defined JAVA_HOME (
+    if exist "C:\Program Files\Java\jdk1.8.0_202" (
+        set "JAVA_HOME=C:\Program Files\Java\jdk1.8.0_202"
+    ) else if exist "C:\Program Files\Java\jdk1.8.0_431" (
+        set "JAVA_HOME=C:\Program Files\Java\jdk1.8.0_431"
+    )
+)
 if defined JAVA_HOME (
     echo [*] JAVA_HOME detectado: %JAVA_HOME%
 ) else (

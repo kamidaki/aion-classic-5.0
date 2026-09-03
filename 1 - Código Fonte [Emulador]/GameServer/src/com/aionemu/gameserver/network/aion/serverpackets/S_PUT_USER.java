@@ -99,13 +99,27 @@ public class S_PUT_USER extends AionServerPacket {
         }
         writeD(mask);
 
-        // 8. Itens equipados (20 bytes cada)
-        for (Item item : items) {
-            writeD(item.getItemSkinTemplate().getTemplateId());
-            GodStone godStone = item.getGodStone();
-            writeD(godStone != null ? godStone.getItemId() : 0);
-            writeD(item.getItemColor());
-            writeB(new byte[8]);
+        // 8. Itens equipados (20 bytes cada por bit ligado no mask)
+        for (int i = 0; i < 32; i++) {
+            int bit = 1 << i;
+            if ((mask & bit) != 0) {
+                Item matchedItem = null;
+                for (Item item : items) {
+                    if ((item.getEquipmentSlot() & bit) != 0) {
+                        matchedItem = item;
+                        break;
+                    }
+                }
+                if (matchedItem != null) {
+                    writeD(matchedItem.getItemSkinTemplate().getTemplateId());
+                    GodStone godStone = matchedItem.getGodStone();
+                    writeD(godStone != null ? godStone.getItemId() : 0);
+                    writeD(matchedItem.getItemColor());
+                    writeB(new byte[8]);
+                } else {
+                    writeB(new byte[20]);
+                }
+            }
         }
 
         // 9. Bloco de aparência (72 bytes)
