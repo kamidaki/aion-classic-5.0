@@ -57,27 +57,27 @@ if exist "%ROOT_DIR%LoginServer\target\LoginServer.zip" (
     powershell -NoProfile -Command "Expand-Archive -Path '%ROOT_DIR%LoginServer\target\LoginServer.zip' -DestinationPath '%DEST_DIR%\LoginServer' -Force"
 )
 if exist "%ROOT_DIR%LoginServer\target\LoginServer-ClassicEmu-Brasil.jar" (
-    copy /Y "%ROOT_DIR%LoginServer\target\LoginServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\LoginServer\" >nul
     copy /Y "%ROOT_DIR%LoginServer\target\LoginServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\LoginServer\libs\" >nul
 )
+if exist "%DEST_DIR%\LoginServer\LoginServer-ClassicEmu-Brasil.jar" del /F /Q "%DEST_DIR%\LoginServer\LoginServer-ClassicEmu-Brasil.jar" >nul
 
 echo [*] Publicando GameServer...
 if exist "%ROOT_DIR%GameServer\target\GameServer.zip" (
     powershell -NoProfile -Command "Expand-Archive -Path '%ROOT_DIR%GameServer\target\GameServer.zip' -DestinationPath '%DEST_DIR%\GameServer' -Force"
 )
 if exist "%ROOT_DIR%GameServer\target\GameServer-ClassicEmu-Brasil.jar" (
-    copy /Y "%ROOT_DIR%GameServer\target\GameServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\GameServer\" >nul
     copy /Y "%ROOT_DIR%GameServer\target\GameServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\GameServer\libs\" >nul
 )
+if exist "%DEST_DIR%\GameServer\GameServer-ClassicEmu-Brasil.jar" del /F /Q "%DEST_DIR%\GameServer\GameServer-ClassicEmu-Brasil.jar" >nul
 
 echo [*] Publicando ChatServer...
 if exist "%ROOT_DIR%ChatServer\target\ChatServer.zip" (
     powershell -NoProfile -Command "Expand-Archive -Path '%ROOT_DIR%ChatServer\target\ChatServer.zip' -DestinationPath '%DEST_DIR%\ChatServer' -Force"
 )
 if exist "%ROOT_DIR%ChatServer\target\ChatServer-ClassicEmu-Brasil.jar" (
-    copy /Y "%ROOT_DIR%ChatServer\target\ChatServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\ChatServer\" >nul
     copy /Y "%ROOT_DIR%ChatServer\target\ChatServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\ChatServer\libs\" >nul
 )
+if exist "%DEST_DIR%\ChatServer\ChatServer-ClassicEmu-Brasil.jar" del /F /Q "%DEST_DIR%\ChatServer\ChatServer-ClassicEmu-Brasil.jar" >nul
 
 mkdir "%DEST_DIR%\GameServer\log" 2>nul
 mkdir "%DEST_DIR%\LoginServer\log" 2>nul
