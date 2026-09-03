@@ -97,6 +97,8 @@ pub struct DashboardState {
     pub history: Vec<HistoryPoint>,
     pub online_players_count: usize,
     pub database: DatabaseMetrics,
+    pub os_total_memory_mb: f32,
+    pub os_used_memory_mb: f32,
     pub subsystems: Vec<SubsystemMetric>,
 }
 
@@ -531,10 +533,13 @@ impl Supervisor {
     }
 
     fn sample_metrics(&self) {
+        let num_cpus = std::thread::available_parallelism().map(|n| n.get()).unwrap_or(1) as f32;
+
         let mut sys = self.system.lock();
         sys.refresh_processes_specifics(
             ProcessRefreshKind::new().with_cpu().with_memory(),
         );
+        sys.refresh_memory();
 
         let mut srvs = self.servers.lock();
         let mut total_cpu = 0.0f32;
@@ -551,7 +556,7 @@ impl Supervisor {
             if let Some(pid_u32) = srv.pid {
                 let pid = Pid::from_u32(pid_u32);
                 if let Some(proc) = sys.process(pid) {
-                    let cpu = proc.cpu_usage();
+                    let cpu = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
                     let mem = proc.memory() as f32 / (1024.0 * 1024.0);
 
                     srv.cpu_history.push_back(cpu);
@@ -574,7 +579,8 @@ impl Supervisor {
 
         let launcher_pid = Pid::from_u32(self.launcher_pid);
         let (launcher_cpu, launcher_mem) = if let Some(proc) = sys.process(launcher_pid) {
-            (proc.cpu_usage(), proc.memory() as f32 / (1024.0 * 1024.0))
+            let cpu = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
+            (cpu, proc.memory() as f32 / (1024.0 * 1024.0))
         } else {
             (0.0, 0.0)
         };
@@ -585,7 +591,7 @@ impl Supervisor {
         let mut hist = self.history.lock();
         hist.push_back(HistoryPoint {
             timestamp: now_str,
-            total_cpu: total_cpu + launcher_cpu,
+            total_cpu: (total_cpu + launcher_cpu).clamp(0.0, 100.0),
             total_mem_mb: total_mem + launcher_mem,
             login_cpu,
             game_cpu,
@@ -604,6 +610,8 @@ impl Supervisor {
     }
 
     pub fn get_dashboard_state(&self) -> DashboardState {
+        let num_cpus = std::thread::available_parallelism().map(|n| n.get()).unwrap_or(1) as f32;
+
         let sys = self.system.lock();
         let srvs = self.servers.lock();
         let hist = self.history.lock();
@@ -616,7 +624,8 @@ impl Supervisor {
             let (cpu, mem) = if let Some(pid_u32) = srv.pid {
                 let pid = Pid::from_u32(pid_u32);
                 if let Some(proc) = sys.process(pid) {
-                    (proc.cpu_usage(), proc.memory() as f32 / (1024.0 * 1024.0))
+                    let c = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
+                    (c, proc.memory() as f32 / (1024.0 * 1024.0))
                 } else {
                     (0.0, 0.0)
                 }
@@ -665,10 +674,14 @@ impl Supervisor {
 
         let launcher_pid = Pid::from_u32(self.launcher_pid);
         let (launcher_cpu, launcher_mem) = if let Some(proc) = sys.process(launcher_pid) {
-            (proc.cpu_usage(), proc.memory() as f32 / (1024.0 * 1024.0))
+            let c = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
+            (c, proc.memory() as f32 / (1024.0 * 1024.0))
         } else {
             (0.0, 0.0)
         };
+
+        let os_total_mem = sys.total_memory() as f32 / (1024.0 * 1024.0);
+        let os_used_mem = sys.used_memory() as f32 / (1024.0 * 1024.0);
 
         let (db_connected, db_tables, db_rows) = self.db_manager.get_summary();
 
@@ -676,7 +689,7 @@ impl Supervisor {
             launcher_pid: self.launcher_pid,
             launcher_cpu,
             launcher_memory_mb: launcher_mem,
-            total_cpu: total_cpu + launcher_cpu,
+            total_cpu: (total_cpu + launcher_cpu).clamp(0.0, 100.0),
             total_memory_mb: total_mem + launcher_mem,
             uptime_secs: self.start_time.elapsed().as_secs(),
             local_ip: get_local_lan_ip(),
@@ -693,6 +706,8 @@ impl Supervisor {
                 total_tables: db_tables,
                 total_rows: db_rows,
             },
+            os_total_memory_mb: os_total_mem,
+            os_used_memory_mb: os_used_mem,
             subsystems: Vec::new(),
         }
     }

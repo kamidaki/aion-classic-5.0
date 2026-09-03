@@ -1444,16 +1444,53 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
 
         .db-toolbar {
-            padding: 8px 14px;
+            padding: 6px 12px;
             background: #0d1424;
             border-bottom: 1px solid var(--border-glass);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
             gap: 8px;
             flex-shrink: 0;
             box-sizing: border-box;
+        }
+        .db-toolbar::-webkit-scrollbar {
+            height: 3px;
+        }
+        .db-toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .db-toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .db-btn-compact {
+            padding: 4px 8px !important;
+            font-size: 0.70rem !important;
+            white-space: nowrap !important;
+            gap: 4px !important;
+            border-radius: 4px !important;
+        }
+        .db-btn-compact span {
+            font-size: 0.70rem !important;
+        }
+        .db-search-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .db-search-input {
+            width: 130px !important;
+            padding: 3px 8px !important;
+            font-size: 0.72rem !important;
+            height: 25px !important;
         }
 
         .db-tab-group {
@@ -2101,9 +2138,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     <div class="drawer-row"><span>Login Server:</span><span class="drawer-val" style="color: var(--accent-login);">2106 (TCP)</span></div>
                     <div class="drawer-row"><span>Game Server:</span><span class="drawer-val" style="color: var(--accent-game);">7777 (TCP)</span></div>
                     <div class="drawer-row"><span>Chat Server:</span><span class="drawer-val" style="color: var(--accent-chat);">10241 (TCP)</span></div>
-                    <div class="drawer-row"><span>Gameforge STS:</span><span class="drawer-val">6600 (TCP)</span></div>
-                    <div class="drawer-row"><span>HQ Auth:</span><span class="drawer-val">13001 (TCP)</span></div>
                     <div class="drawer-row"><span>Web Dashboard:</span><span class="drawer-val" style="color: var(--accent-launcher);">18080 (HTTP)</span></div>
+                    <div class="drawer-row"><span>Banco de Dados:</span><span class="drawer-val" style="color: var(--accent-db);">3310 (MySQL)</span></div>
                 </div>
             </div>
         </div>
@@ -2148,20 +2184,16 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span>
                         <span>Tabelas</span>
                     </button>
-                    <button class="btn-start" onclick="openCreateDbModal()" title="Criar Novo Banco de Dados SQLite">
-                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><line x1="12" y1="9" x2="12" y2="15"/><line x1="9" y1="12" x2="15" y2="12"/></svg></span>
-                        <span>+ Novo Banco</span>
+                    <button class="btn-start db-btn-compact" onclick="openCreateTableModal()" title="Criar Nova Tabela no MySQL">
+                        <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+                        <span>+ Tabela</span>
                     </button>
-                    <button class="btn-start" onclick="openCreateTableModal()" title="Criar Nova Tabela">
-                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
-                        <span>+ Nova Tabela</span>
-                    </button>
-                    <button class="btn-secondary" onclick="loadDbSchema(true)" title="Atualizar Estrutura">
-                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
+                    <button class="btn-secondary db-btn-compact" onclick="loadDbSchema(true)" title="Recarregar Estrutura e Registros">
+                        <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
                         <span>Recarregar</span>
                     </button>
-                    <button class="btn-danger" onclick="openCleanAllModal()" title="Limpar/Truncate em Todas as Tabelas">
-                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                    <button class="btn-danger db-btn-compact" onclick="openCleanAllModal()" title="Limpar Registros de Todas as Tabelas">
+                        <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
                         <span>Limpar Todas</span>
                     </button>
                     <button class="drawer-close-btn" onclick="closeDbStudio()">✕</button>
@@ -2173,15 +2205,15 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 <div class="db-sidebar">
                     <div class="db-sidebar-header">
                         <div class="db-sidebar-title">
-                            <span>Bancos & Tabelas</span>
+                            <span>Tabelas MySQL</span>
                             <div class="db-sidebar-tools">
-                                <button class="db-btn-micro" onclick="openCreateDbModal()" title="Adicionar Banco">+ Banco</button>
                                 <button class="db-btn-micro" onclick="openCreateTableModal()" title="Adicionar Tabela">+ Tabela</button>
-                                <button class="db-btn-micro" onclick="expandAllDbGroups(true)" title="Expandir Todos os Bancos">Expandir</button>
-                                <button class="db-btn-micro" onclick="expandAllDbGroups(false)" title="Recolher Todos os Bancos">Recolher</button>
+                                <button class="db-btn-micro" onclick="loadDbSchema(true)" title="Recarregar Metadados">Atualizar</button>
+                                <button class="db-btn-micro" onclick="expandAllDbGroups(true)" title="Expandir Todos">Expandir</button>
+                                <button class="db-btn-micro" onclick="expandAllDbGroups(false)" title="Recolher Todos">Recolher</button>
                             </div>
                         </div>
-                        <input type="text" class="db-table-search" id="db-filter-table-input" placeholder="Buscar tabelas em todos os bancos..." onkeyup="filterTablesList()">
+                        <input type="text" class="db-table-search" id="db-filter-table-input" placeholder="Buscar tabela..." onkeyup="filterTablesList()">
                     </div>
                     <div class="db-tables-list" id="db-tables-container"></div>
                 </div>
@@ -2189,55 +2221,55 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 <!-- Main Area: Grid, Schema & SQL -->
                 <div class="db-main">
                     <div class="db-toolbar">
-                        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <div class="db-toolbar-left">
                             <div class="db-tab-group">
                                 <button class="db-tab-btn active" id="db-tab-grid" onclick="switchDbTab('grid')">
-                                    <span class="btn-svg"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span>
-                                    <span>Dados (Grid)</span>
+                                    <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span>
+                                    <span>Dados</span>
                                 </button>
                                 <button class="db-tab-btn" id="db-tab-schema" onclick="switchDbTab('schema')">
-                                    <span class="btn-svg"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+                                    <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
                                     <span>Estrutura</span>
                                 </button>
                                 <button class="db-tab-btn" id="db-tab-sql" onclick="switchDbTab('sql')">
-                                    <span class="btn-svg"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
-                                    <span>Console SQL</span>
+                                    <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
+                                    <span>SQL</span>
                                 </button>
                             </div>
 
-                            <div style="display: flex; align-items: center; gap: 6px;" id="db-grid-controls">
-                                <input type="text" class="search-box" style="width: 180px;" id="db-row-search-input" placeholder="Buscar registros..." onkeyup="if(event.key==='Enter') executeRowSearch()">
-                                <button class="btn-secondary" style="padding: 4px 8px;" onclick="executeRowSearch()">
+                            <div class="db-search-wrap" id="db-grid-controls">
+                                <input type="text" class="search-box db-search-input" id="db-row-search-input" placeholder="Buscar registros..." onkeyup="if(event.key==='Enter') executeRowSearch()">
+                                <button class="btn-secondary db-btn-compact" onclick="executeRowSearch()" title="Buscar">
                                     <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
                                     <span>Buscar</span>
                                 </button>
                             </div>
                         </div>
 
-                        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;" id="db-grid-actions">
-                            <button class="btn-start" onclick="openInsertRowModal()">
-                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-                                <span>Novo Registro</span>
+                        <div class="db-toolbar-right" id="db-grid-actions">
+                            <button class="btn-start db-btn-compact" onclick="openInsertRowModal()" title="Inserir Novo Registro">
+                                <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                                <span>+ Registro</span>
                             </button>
-                            <button class="btn-secondary" onclick="openAddColumnModal(currentDbTable, currentDbId)" title="Adicionar Coluna à Tabela">
-                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span>
+                            <button class="btn-secondary db-btn-compact" onclick="openAddColumnModal(currentDbTable, currentDbId)" title="Adicionar Coluna">
+                                <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span>
                                 <span>+ Coluna</span>
                             </button>
-                            <button class="btn-secondary" onclick="openRenameTableModal(currentDbTable, currentDbId)" title="Renomear Tabela Atual">
-                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+                            <button class="btn-secondary db-btn-compact" onclick="openRenameTableModal(currentDbTable, currentDbId)" title="Renomear Tabela">
+                                <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
                                 <span>Renomear</span>
                             </button>
-                            <button class="btn-secondary" onclick="loadTableData(true)" title="Recarregar dados da tabela">
-                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
+                            <button class="btn-secondary db-btn-compact" onclick="loadTableData(true)" title="Recarregar Registros">
+                                <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
                                 <span>Atualizar</span>
                             </button>
-                            <button class="btn-stop" onclick="truncateCurrentTable()" title="Excluir todos os registros desta tabela">
-                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-                                <span>Truncate Tabela</span>
+                            <button class="btn-stop db-btn-compact" onclick="truncateCurrentTable()" title="Limpar Registros Desta Tabela">
+                                <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                                <span>Limpar</span>
                             </button>
-                            <button class="btn-danger" onclick="openDropTableModal(currentDbTable, currentDbId)" title="Excluir permanentemente esta tabela (DROP)">
-                                <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
-                                <span>Excluir Tabela</span>
+                            <button class="btn-danger db-btn-compact" onclick="openDropTableModal(currentDbTable, currentDbId)" title="Excluir Tabela Permanentemente">
+                                <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
+                                <span>Excluir</span>
                             </button>
                         </div>
                     </div>
@@ -2815,9 +2847,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         if (uptimeVal) uptimeVal.innerHTML = uptimeFormatted;
                         if (drawerUptime) drawerUptime.innerHTML = uptimeFormatted;
 
-                        if (cpuVal) cpuVal.innerText = `${s.cpu_percent.toFixed(1)}%`;
-                        if (drawerCpu) drawerCpu.innerText = `${s.cpu_percent.toFixed(1)}%`;
-                        if (cpuBar) cpuBar.style.width = `${Math.min(s.cpu_percent, 100)}%`;
+                        const clampedCpu = Math.min(100.0, Math.max(0.0, s.cpu_percent || 0));
+                        if (cpuVal) cpuVal.innerText = `${clampedCpu.toFixed(1)}%`;
+                        if (drawerCpu) drawerCpu.innerText = `${clampedCpu.toFixed(1)}%`;
+                        if (cpuBar) cpuBar.style.width = `${clampedCpu}%`;
 
                         if (memVal) memVal.innerText = `${s.memory_mb.toFixed(1)} MB`;
                         if (drawerMem) drawerMem.innerText = `${s.memory_mb.toFixed(1)} MB`;
@@ -2853,7 +2886,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         regDb.innerText = `${db.engine} (${db.db_name}) - ${db.total_tables} Tabelas`;
                     }
                     const pill = document.getElementById('db-total-tables-pill');
-                    if (pill && db.total_tables > 0) {
+                    if (pill) {
                         pill.innerText = `${db.total_tables} Tabelas (${db.total_rows.toLocaleString()} Registros)`;
                     }
                 }
@@ -2864,7 +2897,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     document.getElementById('hdr-lan-ip').innerText = `${r.lan_ip}:${r.http_port}`;
                     document.getElementById('reg-lan-ip').innerText = r.lan_ip;
                     document.getElementById('reg-ext-url').innerText = r.external_url;
-                    document.getElementById('reg-os-mem').innerText = `${(r.os_used_memory_mb / 1024).toFixed(1)} / ${(r.os_total_memory_mb / 1024).toFixed(1)} GB`;
                 }
 
                 if (data.local_ip) {
@@ -2874,14 +2906,25 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     if (hdrLan) hdrLan.innerText = `${data.local_ip}:${port}`;
                     const regLan = document.getElementById('reg-lan-ip');
                     if (regLan) regLan.innerText = data.local_ip;
+                    const regExt = document.getElementById('reg-ext-url');
+                    if (regExt) regExt.innerText = externalUrlStr;
                 }
 
-                if (data.launcher_uptime_secs !== undefined) {
-                    const u = data.launcher_uptime_secs;
+                if (data.os_total_memory_mb) {
+                    const regOsMem = document.getElementById('reg-os-mem');
+                    if (regOsMem) {
+                        regOsMem.innerText = `${(data.os_used_memory_mb / 1024).toFixed(1)} / ${(data.os_total_memory_mb / 1024).toFixed(1)} GB`;
+                    }
+                }
+
+                const uptimeVal = data.uptime_secs !== undefined ? data.uptime_secs : data.launcher_uptime_secs;
+                if (uptimeVal !== undefined) {
+                    const u = uptimeVal;
                     const uHrs = Math.floor(u / 3600).toString().padStart(2, '0');
                     const uMins = Math.floor((u % 3600) / 60).toString().padStart(2, '0');
                     const uSecs = (u % 60).toString().padStart(2, '0');
-                    document.getElementById('reg-uptime').innerText = `${uHrs}:${uMins}:${uSecs}`;
+                    const regUptime = document.getElementById('reg-uptime');
+                    if (regUptime) regUptime.innerText = `${uHrs}:${uMins}:${uSecs}`;
                 }
 
                 if (data.history && data.history.length > 0) {
@@ -3156,6 +3199,67 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 drawer.classList.remove('open');
                 overlay.classList.remove('open');
             }
+        }
+
+        function copyExternalUrl() {
+            const url = externalUrlStr || `http://${window.location.hostname || '127.0.0.1'}:18080`;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showToast("Link copiado para a área de transferência!");
+                }).catch(() => {
+                    fallbackCopyText(url);
+                });
+            } else {
+                fallbackCopyText(url);
+            }
+        }
+
+        function fallbackCopyText(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showToast("Link copiado para a área de transferência!");
+            } catch (e) {
+                showToast("Erro ao copiar link.");
+            }
+            document.body.removeChild(ta);
+        }
+
+        function showToast(msg) {
+            let toast = document.getElementById('app-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'app-toast';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '24px';
+                toast.style.right = '24px';
+                toast.style.background = 'rgba(15, 23, 42, 0.95)';
+                toast.style.color = '#38bdf8';
+                toast.style.border = '1px solid rgba(56, 189, 248, 0.4)';
+                toast.style.borderRadius = '8px';
+                toast.style.padding = '10px 18px';
+                toast.style.fontSize = '0.82rem';
+                toast.style.fontWeight = '600';
+                toast.style.zIndex = '999999';
+                toast.style.boxShadow = '0 10px 25px rgba(0,0,0,0.5)';
+                toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                toast.style.pointerEvents = 'none';
+                document.body.appendChild(toast);
+            }
+            toast.innerText = msg;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+            }, 2500);
         }
 
         function openSubsystemsDrawer() {
@@ -4000,7 +4104,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     const json = await res.json();
                     if (json.status === 'ok') {
                         closeRowModal();
+                        showToast("Registro inserido com sucesso!");
                         loadDbSchema(true);
+                        loadTableData(true);
+                        fetchMetrics();
                     } else {
                         alert("Erro ao inserir registro: " + json.message);
                     }
@@ -4013,7 +4120,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     const json = await res.json();
                     if (json.status === 'ok') {
                         closeRowModal();
-                        loadTableData();
+                        showToast("Registro atualizado com sucesso!");
+                        loadDbSchema(true);
+                        loadTableData(true);
+                        fetchMetrics();
                     } else {
                         alert("Erro ao atualizar registro: " + json.message);
                     }
@@ -4035,7 +4145,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 pk[c.name] = row[c.name];
             });
 
-            if (!confirm(`Tem certeza que deseja excluir o registro selecionado de '${currentDbTable}' (${currentDbId}.db)?`)) {
+            if (!confirm(`Tem certeza que deseja excluir o registro selecionado de '${currentDbTable}'?`)) {
                 return;
             }
 
@@ -4047,7 +4157,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 });
                 const json = await res.json();
                 if (json.status === 'ok') {
+                    showToast("Registro excluído com sucesso!");
                     loadDbSchema(true);
+                    loadTableData(true);
+                    fetchMetrics();
                 } else {
                     alert("Erro ao excluir registro: " + json.message);
                 }
@@ -4058,7 +4171,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
         async function truncateCurrentTable() {
             if (!currentDbTable) return;
-            if (!confirm(`ATENÇÃO: Tem certeza que deseja limpar TODOS os registros da tabela '${currentDbTable}' em '${currentDbId}.db'?`)) {
+            if (!confirm(`ATENÇÃO: Tem certeza que deseja limpar TODOS os registros da tabela '${currentDbTable}'?`)) {
                 return;
             }
 
@@ -4068,7 +4181,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 });
                 const json = await res.json();
                 if (json.status === 'ok') {
+                    showToast(`Tabela '${currentDbTable}' limpa com sucesso!`);
                     loadDbSchema(true);
+                    loadTableData(true);
+                    fetchMetrics();
                 } else {
                     alert("Erro ao limpar tabela: " + json.message);
                 }
@@ -4090,8 +4206,10 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 const res = await fetch('/api/db/clean_all', { method: 'POST' });
                 const json = await res.json();
                 if (json.status === 'ok') {
-                    alert("Todas as tabelas foram limpas com sucesso!");
-                    loadDbSchema();
+                    showToast("Todas as tabelas foram limpas com sucesso!");
+                    loadDbSchema(true);
+                    if (currentDbTable) loadTableData(true);
+                    fetchMetrics();
                 } else {
                     alert("Erro ao limpar tabelas: " + json.message);
                 }
@@ -4194,6 +4312,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                         lastQueryColumns = [];
                         lastQueryRows = [];
                         loadDbSchema(true);
+                        fetchMetrics();
                     }
                 }
             } catch (e) {
