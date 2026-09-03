@@ -1,5 +1,29 @@
 <?xml version='1.0' encoding='utf-8'?>
 <player_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
+	<player_stats class="ASSASSIN" level="1">
+		<stats_template maxHp="222" maxMp="175" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="106" block="106" parry="106" main_hand_attack="19" main_hand_accuracy="218" main_hand_crit_rate="3" magic_accuracy="15" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="ASSASSIN" level="2">
+		<stats_template maxHp="263" maxMp="244" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="118" block="118" parry="118" main_hand_attack="19" main_hand_accuracy="226" main_hand_crit_rate="3" magic_accuracy="29" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="ASSASSIN" level="3">
+		<stats_template maxHp="307" maxMp="313" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="130" block="130" parry="130" main_hand_attack="19" main_hand_accuracy="234" main_hand_crit_rate="3" magic_accuracy="43" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="ASSASSIN" level="4">
+		<stats_template maxHp="352" maxMp="382" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="142" block="142" parry="142" main_hand_attack="19" main_hand_accuracy="242" main_hand_crit_rate="3" magic_accuracy="57" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="ASSASSIN" level="5">
+		<stats_template maxHp="400" maxMp="452" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="155" block="155" parry="155" main_hand_attack="19" main_hand_accuracy="250" main_hand_crit_rate="3" magic_accuracy="71" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="ASSASSIN" level="6">
+		<stats_template maxHp="450" maxMp="521" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="167" block="167" parry="167" main_hand_attack="19" main_hand_accuracy="258" main_hand_crit_rate="3" magic_accuracy="85" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="ASSASSIN" level="7">
+		<stats_template maxHp="502" maxMp="591" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="179" block="179" parry="179" main_hand_attack="19" main_hand_accuracy="266" main_hand_crit_rate="3" magic_accuracy="100" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="ASSASSIN" level="8">
+		<stats_template maxHp="556" maxMp="660" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="192" block="192" parry="192" main_hand_attack="19" main_hand_accuracy="274" main_hand_crit_rate="3" magic_accuracy="114" crit_spell="50"/>
+	</player_stats>
 	<player_stats class="ASSASSIN" level="9">
 		<stats_template maxHp="612" maxMp="730" power="110" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="204" block="204" parry="204" main_hand_attack="19" main_hand_accuracy="282" main_hand_crit_rate="3" magic_accuracy="128" crit_spell="50" />
 	</player_stats>

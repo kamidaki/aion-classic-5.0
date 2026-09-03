@@ -1,5 +1,29 @@
 <?xml version='1.0' encoding='utf-8'?>
 <player_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
+	<player_stats class="CLERIC" level="1">
+		<stats_template maxHp="230" maxMp="370" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="44" block="44" parry="44" main_hand_attack="18" main_hand_accuracy="178" main_hand_crit_rate="1" magic_accuracy="15" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="CLERIC" level="2">
+		<stats_template maxHp="266" maxMp="476" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="56" block="56" parry="56" main_hand_attack="18" main_hand_accuracy="186" main_hand_crit_rate="1" magic_accuracy="29" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="CLERIC" level="3">
+		<stats_template maxHp="305" maxMp="581" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="68" block="68" parry="68" main_hand_attack="18" main_hand_accuracy="194" main_hand_crit_rate="1" magic_accuracy="43" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="CLERIC" level="4">
+		<stats_template maxHp="346" maxMp="687" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="80" block="80" parry="80" main_hand_attack="18" main_hand_accuracy="202" main_hand_crit_rate="1" magic_accuracy="57" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="CLERIC" level="5">
+		<stats_template maxHp="388" maxMp="793" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="93" block="93" parry="93" main_hand_attack="18" main_hand_accuracy="210" main_hand_crit_rate="1" magic_accuracy="71" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="CLERIC" level="6">
+		<stats_template maxHp="432" maxMp="898" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="105" block="105" parry="105" main_hand_attack="18" main_hand_accuracy="218" main_hand_crit_rate="1" magic_accuracy="85" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="CLERIC" level="7">
+		<stats_template maxHp="478" maxMp="1004" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="117" block="117" parry="117" main_hand_attack="18" main_hand_accuracy="226" main_hand_crit_rate="1" magic_accuracy="100" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="CLERIC" level="8">
+		<stats_template maxHp="526" maxMp="1109" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="130" block="130" parry="130" main_hand_attack="18" main_hand_accuracy="234" main_hand_crit_rate="1" magic_accuracy="114" crit_spell="50"/>
+	</player_stats>
 	<player_stats class="CLERIC" level="9">
 		<stats_template maxHp="576" maxMp="1215" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="142" block="142" parry="142" main_hand_attack="18" main_hand_accuracy="242" main_hand_crit_rate="1" magic_accuracy="128" crit_spell="50" />
 	</player_stats>

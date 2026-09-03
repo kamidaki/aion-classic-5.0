@@ -1,5 +1,29 @@
 <?xml version='1.0' encoding='utf-8'?>
 <player_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
+	<player_stats class="GLADIATOR" level="1">
+		<stats_template maxHp="336" maxMp="175" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="75" block="75" parry="75" main_hand_attack="19" main_hand_accuracy="198" main_hand_crit_rate="2" magic_accuracy="15" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="GLADIATOR" level="2">
+		<stats_template maxHp="387" maxMp="244" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="87" block="87" parry="87" main_hand_attack="19" main_hand_accuracy="206" main_hand_crit_rate="2" magic_accuracy="29" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="GLADIATOR" level="3">
+		<stats_template maxHp="440" maxMp="313" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="99" block="99" parry="99" main_hand_attack="19" main_hand_accuracy="214" main_hand_crit_rate="2" magic_accuracy="43" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="GLADIATOR" level="4">
+		<stats_template maxHp="496" maxMp="382" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="111" block="111" parry="111" main_hand_attack="19" main_hand_accuracy="222" main_hand_crit_rate="2" magic_accuracy="57" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="GLADIATOR" level="5">
+		<stats_template maxHp="555" maxMp="452" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="124" block="124" parry="124" main_hand_attack="19" main_hand_accuracy="230" main_hand_crit_rate="2" magic_accuracy="71" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="GLADIATOR" level="6">
+		<stats_template maxHp="616" maxMp="521" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="136" block="136" parry="136" main_hand_attack="19" main_hand_accuracy="238" main_hand_crit_rate="2" magic_accuracy="85" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="GLADIATOR" level="7">
+		<stats_template maxHp="679" maxMp="591" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="148" block="148" parry="148" main_hand_attack="19" main_hand_accuracy="246" main_hand_crit_rate="2" magic_accuracy="100" crit_spell="50"/>
+	</player_stats>
+	<player_stats class="GLADIATOR" level="8">
+		<stats_template maxHp="745" maxMp="660" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="161" block="161" parry="161" main_hand_attack="19" main_hand_accuracy="254" main_hand_crit_rate="2" magic_accuracy="114" crit_spell="50"/>
+	</player_stats>
 	<player_stats class="GLADIATOR" level="9">
 		<stats_template maxHp="814" maxMp="730" power="115" health="115" agility="100" accuracy="100" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="173" block="173" parry="173" main_hand_attack="19" main_hand_accuracy="262" main_hand_crit_rate="2" magic_accuracy="128" crit_spell="50" />
 	</player_stats>
