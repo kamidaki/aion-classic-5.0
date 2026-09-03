@@ -8,7 +8,8 @@ pub enum UserEvent {
     ShowDashboard,
     #[allow(dead_code)]
     HideDashboard,
-    RequestShutdown,
+    RequestShutdownConfirmation,
+    ExitProcess,
     ToggleFullscreen,
 }
 
@@ -31,7 +32,7 @@ impl WebViewApp {
     pub fn run(
         self,
         url: String,
-        shutdown_trigger: impl Fn() + Send + Sync + 'static,
+        cleanup_on_exit: impl Fn() + Send + Sync + 'static,
     ) {
         let window = WindowBuilder::new()
             .with_title("Aion Classic - Classic Emu")
@@ -71,17 +72,28 @@ impl WebViewApp {
                         window.set_fullscreen(Some(tao::window::Fullscreen::Borderless(None)));
                     }
                 }
-                Event::UserEvent(UserEvent::RequestShutdown) => {
-                    let _ = std::fs::write("logs/exit_reason.log", "RequestShutdown received\n");
-                    shutdown_trigger();
+                Event::UserEvent(UserEvent::RequestShutdownConfirmation) => {
+                    window.set_visible(true);
+                    window.set_focus();
+                    if let Some(wv) = &webview {
+                        let _ = wv.evaluate_script("if(typeof requestAppShutdownConfirmation === 'function') requestAppShutdownConfirmation(); else if(typeof openShutdownModal === 'function') openShutdownModal();");
+                    }
+                }
+                Event::UserEvent(UserEvent::ExitProcess) => {
+                    cleanup_on_exit();
                     *control_flow = ControlFlow::Exit;
                 }
                 Event::WindowEvent {
                     event: WindowEvent::CloseRequested,
                     ..
                 } => {
-                    // Hide to system tray instead of killing backend
-                    window.set_visible(false);
+                    // Do NOT immediately close or hide the window!
+                    // Prompt the user for confirmation and show shutdown progress
+                    window.set_visible(true);
+                    window.set_focus();
+                    if let Some(wv) = &webview {
+                        let _ = wv.evaluate_script("if(typeof requestAppShutdownConfirmation === 'function') requestAppShutdownConfirmation(); else if(typeof openShutdownModal === 'function') openShutdownModal();");
+                    }
                 }
                 Event::WindowEvent {
                     event: WindowEvent::Destroyed,

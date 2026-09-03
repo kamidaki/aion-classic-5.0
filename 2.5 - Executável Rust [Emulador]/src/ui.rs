@@ -1055,6 +1055,43 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             scrollbar-color: rgba(255, 255, 255, 0.18) rgba(0, 0, 0, 0.25);
         }
 
+        /* Shutdown Modal & Animated Overlay Styles */
+        @keyframes sd-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes sd-pulse {
+            0%, 100% { opacity: 0.35; transform: scale(0.88); }
+            50% { opacity: 1; transform: scale(1.15); }
+        }
+        .shutdown-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(56, 189, 248, 0.15);
+            border-top: 4px solid #38bdf8;
+            border-right: 4px solid #818cf8;
+            border-radius: 50%;
+            animation: sd-spin 0.8s linear infinite;
+        }
+        .sd-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #475569;
+            display: inline-block;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+        .sd-dot.active {
+            background: #38bdf8;
+            box-shadow: 0 0 12px #38bdf8;
+            animation: sd-pulse 1.1s infinite ease-in-out;
+        }
+        .sd-dot.done {
+            background: #10b981;
+            box-shadow: 0 0 8px #10b981;
+        }
+
         /* Database Studio Modal & Workbench (Full Glassmorphism & Responsive) */
         .db-modal-overlay {
             position: fixed;
@@ -2551,17 +2588,45 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         </div>
     </div>
 
-    <!-- Shutdown Modal -->
-    <div class="modal-overlay" id="shutdown-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); backdrop-filter:blur(8px); z-index:2000; align-items:center; justify-content:center;">
-        <div style="background:#0e1526; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px; width:90%; max-width:400px; display:flex; flex-direction:column; gap:12px;">
-            <div style="font-weight:700; font-size:0.95rem; color:#f87171; display:flex; align-items:center; gap:8px;">
-                <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
-                Encerrar Emulador Java
+    <!-- Dedicated Graceful Shutdown Confirmation & Animated Progress Overlay -->
+    <div class="modal-overlay" id="shutdown-modal" style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(3,7,18,0.88); backdrop-filter:blur(14px); z-index:999999; align-items:center; justify-content:center;">
+        <!-- Step 1: Confirmation Card -->
+        <div id="shutdown-confirm-card" style="background:#0b1329; border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:24px 28px; width:92%; max-width:440px; box-shadow:0 25px 60px rgba(0,0,0,0.85); display:flex; flex-direction:column; gap:16px;">
+            <div style="font-weight:700; font-size:1.05rem; color:#f87171; display:flex; align-items:center; gap:10px;">
+                <span class="btn-svg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+                <span>Encerrar Emulador Aion Classic</span>
             </div>
-            <div style="color:var(--text-muted); font-size:0.78rem; line-height:1.4;">Esta ação finalizará com segurança o Game Server, Login Server e Chat Server, liberando todas as portas de rede.</div>
-            <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top:4px;">
-                <button class="btn-secondary" onclick="closeShutdownModal()">Cancelar</button>
-                <button class="btn-danger" onclick="confirmShutdown()">Confirmar</button>
+            <div style="color:#cbd5e1; font-size:0.84rem; line-height:1.5;">
+                Deseja realmente fechar o inicializador? Todos os servidores ativos (<b>Game-Server</b>, <b>Login-Server</b> e <b>Chat-Server</b>) serão finalizados com segurança e os dados dos jogadores gravados em disco.
+            </div>
+            <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:6px;">
+                <button class="btn-secondary" style="padding:7px 16px; font-size:0.82rem;" onclick="closeShutdownModal()">Cancelar</button>
+                <button class="btn-danger" style="padding:7px 18px; font-size:0.82rem; font-weight:700;" onclick="startGracefulAppShutdown()">Encerrar com Segurança</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Animated Progress Overlay (Shown when user confirms) -->
+        <div id="shutdown-progress-card" style="display:none; background:#0b1329; border:1px solid rgba(56,189,248,0.3); border-radius:16px; padding:32px 36px; width:92%; max-width:460px; box-shadow:0 30px 80px rgba(0,0,0,0.9), 0 0 40px rgba(56,189,248,0.15); flex-direction:column; align-items:center; text-align:center; gap:20px;">
+            <div class="shutdown-spinner"></div>
+            
+            <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="font-size:1.15rem; font-weight:800; color:#f8fafc; letter-spacing:0.3px;">Encerrando Servidores...</div>
+                <div style="font-size:0.82rem; color:#94a3b8;" id="shutdown-status-desc">Aguarde a finalização e gravação dos dados em disco.</div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:8px; width:100%; text-align:left; background:rgba(0,0,0,0.35); padding:14px 18px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); font-size:0.78rem;">
+                <div id="sd-step-game" style="display:flex; align-items:center; gap:8px; color:#e2e8f0;">
+                    <span class="sd-dot active"></span> <span>Game-Server: Gravando dados e finalizando...</span>
+                </div>
+                <div id="sd-step-login" style="display:flex; align-items:center; gap:8px; color:#64748b;">
+                    <span class="sd-dot"></span> <span>Login-Server: Encerrando conexões de autenticação...</span>
+                </div>
+                <div id="sd-step-chat" style="display:flex; align-items:center; gap:8px; color:#64748b;">
+                    <span class="sd-dot"></span> <span>Chat-Server: Fechando canais de comunicação...</span>
+                </div>
+                <div id="sd-step-cleanup" style="display:flex; align-items:center; gap:8px; color:#64748b;">
+                    <span class="sd-dot"></span> <span>Desalocando portas e recursos do sistema...</span>
+                </div>
             </div>
         </div>
     </div>
@@ -3171,20 +3236,75 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         }
 
         async function controlServer(server, action) {
+            if (action === 'start') {
+                const srv = rawDashboardState && rawDashboardState.servers ? rawDashboardState.servers.find(s => s.name === server) : null;
+                if (srv && (srv.status === 'Online' || srv.status === 'Starting')) {
+                    showToast(`O servidor ${server.toUpperCase()} já está em execução ou inicializando!`);
+                    return;
+                }
+            }
+
             try {
-                await fetch(`/api/control/${server}/${action}`, { method: 'POST' });
+                const res = await fetch(`/api/control/${server}/${action}`, { method: 'POST' });
+                const json = await res.json();
+                if (json && json.status === 'error') {
+                    showToast(json.message || "Erro na solicitação");
+                } else {
+                    const actionLabel = action === 'start' ? 'iniciado' : (action === 'stop' ? 'parado' : 'reiniciado');
+                    showToast(`Comando enviado: ${server.toUpperCase()} ${actionLabel}`);
+                }
                 fetchMetrics();
             } catch (e) {
                 console.error(`Error controlling ${server} (${action}):`, e);
+                showToast(`Erro ao enviar comando para ${server}`);
             }
         }
 
         async function controlAll(action) {
+            if (action === 'start') {
+                const anyRunning = rawDashboardState && rawDashboardState.servers && rawDashboardState.servers.some(s => s.status === 'Online' || s.status === 'Starting');
+                if (anyRunning) {
+                    showToast("Iniciando servidores pendentes em sequência...");
+                }
+            }
+
             try {
-                await fetch(`/api/control/all/${action}`, { method: 'POST' });
+                const res = await fetch(`/api/control/all/${action}`, { method: 'POST' });
+                const json = await res.json();
+                if (json && json.status === 'error') {
+                    showToast(json.message || "Erro na solicitação");
+                } else {
+                    const msg = action === 'start' ? 'Iniciando todos os servidores...' : (action === 'stop' ? 'Parando todos os servidores...' : 'Reiniciando todos os servidores...');
+                    showToast(msg);
+                }
                 fetchMetrics();
             } catch (e) {
                 console.error(`Error controlling all servers (${action}):`, e);
+                showToast(`Erro ao controlar servidores`);
+            }
+        }
+
+        async function toggleFullscreen() {
+            try {
+                await fetch('/api/window/fullscreen', { method: 'POST' });
+            } catch (e) {
+                console.error("Error toggling fullscreen:", e);
+            }
+        }
+
+        function switchMobileTab(tab) {
+            document.querySelectorAll('.mobile-bottom-bar .tab-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`tab-btn-${tab}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (tab === 'telemetry') {
+                const el = document.getElementById('section-telemetry');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            } else if (tab === 'logs') {
+                const el = document.getElementById('section-logs');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            } else if (tab === 'menu') {
+                toggleDrawer(true);
             }
         }
 
@@ -3362,22 +3482,87 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             }
         }
 
+        function requestAppShutdownConfirmation() {
+            openShutdownModal();
+        }
+
         function openShutdownModal() {
-            document.getElementById('shutdown-modal').style.display = 'flex';
+            const modal = document.getElementById('shutdown-modal');
+            const confirmCard = document.getElementById('shutdown-confirm-card');
+            const progressCard = document.getElementById('shutdown-progress-card');
+            if (modal && confirmCard && progressCard) {
+                confirmCard.style.display = 'flex';
+                progressCard.style.display = 'none';
+                modal.style.display = 'flex';
+            }
         }
+
         function closeShutdownModal() {
-            document.getElementById('shutdown-modal').style.display = 'none';
+            const modal = document.getElementById('shutdown-modal');
+            if (modal) modal.style.display = 'none';
         }
-        async function confirmShutdown() {
-            closeShutdownModal();
+
+        async function startGracefulAppShutdown() {
+            const confirmCard = document.getElementById('shutdown-confirm-card');
+            const progressCard = document.getElementById('shutdown-progress-card');
+            if (confirmCard) confirmCard.style.display = 'none';
+            if (progressCard) progressCard.style.display = 'flex';
+
+            const stepGame = document.getElementById('sd-step-game');
+            const stepLogin = document.getElementById('sd-step-login');
+            const stepChat = document.getElementById('sd-step-chat');
+            const stepCleanup = document.getElementById('sd-step-cleanup');
+            const statusDesc = document.getElementById('shutdown-status-desc');
+
+            const t1 = setTimeout(() => {
+                if (stepGame) stepGame.innerHTML = `<span class="sd-dot done"></span> <span style="color:#10b981; font-weight:600;">Game-Server: Finalizado com sucesso</span>`;
+                if (stepLogin) {
+                    stepLogin.style.color = '#e2e8f0';
+                    stepLogin.innerHTML = `<span class="sd-dot active"></span> <span>Login-Server: Encerrando conexões de autenticação...</span>`;
+                }
+            }, 1200);
+
+            const t2 = setTimeout(() => {
+                if (stepLogin) stepLogin.innerHTML = `<span class="sd-dot done"></span> <span style="color:#10b981; font-weight:600;">Login-Server: Finalizado com sucesso</span>`;
+                if (stepChat) {
+                    stepChat.style.color = '#e2e8f0';
+                    stepChat.innerHTML = `<span class="sd-dot active"></span> <span>Chat-Server: Fechando canais de comunicação...</span>`;
+                }
+            }, 2400);
+
+            const t3 = setTimeout(() => {
+                if (stepChat) stepChat.innerHTML = `<span class="sd-dot done"></span> <span style="color:#10b981; font-weight:600;">Chat-Server: Finalizado com sucesso</span>`;
+                if (stepCleanup) {
+                    stepCleanup.style.color = '#e2e8f0';
+                    stepCleanup.innerHTML = `<span class="sd-dot active"></span> <span>Desalocando portas e recursos do sistema...</span>`;
+                }
+            }, 3600);
+
             try {
-                await fetch('/api/shutdown', { method: 'POST' });
-                document.body.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; background:#070a12; color:#fff; font-family:sans-serif; gap:16px;">
-                    <div style="font-size:1.5rem; font-weight:700; color:#38bdf8;">Emulador Java Encerrado</div>
-                    <div style="color:#94a3b8; font-size:0.9rem;">Todos os servidores foram finalizados com segurança. Pode fechar esta janela.</div>
-                </div>`;
+                const res = await fetch('/api/shutdown', { method: 'POST' });
+                clearTimeout(t1);
+                clearTimeout(t2);
+                clearTimeout(t3);
+
+                if (stepGame) stepGame.innerHTML = `<span class="sd-dot done"></span> <span style="color:#10b981;">Game-Server: Finalizado com sucesso</span>`;
+                if (stepLogin) stepLogin.innerHTML = `<span class="sd-dot done"></span> <span style="color:#10b981;">Login-Server: Finalizado com sucesso</span>`;
+                if (stepChat) stepChat.innerHTML = `<span class="sd-dot done"></span> <span style="color:#10b981;">Chat-Server: Finalizado com sucesso</span>`;
+                if (stepCleanup) stepCleanup.innerHTML = `<span class="sd-dot done"></span> <span style="color:#10b981;">Portas e recursos liberados com sucesso</span>`;
+
+                if (statusDesc) {
+                    statusDesc.innerText = "Todos os servidores finalizados com segurança. Encerrando aplicativo...";
+                    statusDesc.style.color = "#10b981";
+                    statusDesc.style.fontWeight = "700";
+                }
             } catch (e) {
-                console.error("Error shutting down:", e);
+                console.error("Shutdown error:", e);
+                clearTimeout(t1);
+                clearTimeout(t2);
+                clearTimeout(t3);
+                if (statusDesc) {
+                    statusDesc.innerText = "Encerrando processo do emulador...";
+                    statusDesc.style.color = "#f87171";
+                }
             }
         }
 

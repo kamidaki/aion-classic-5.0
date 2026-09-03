@@ -1,43 +1,103 @@
 use std::ffi::OsStr;
 use std::os::windows::ffi::OsStrExt;
+use sysinfo::{ProcessRefreshKind, RefreshKind, System};
 use windows_sys::Win32::Foundation::{CloseHandle, GetLastError, HANDLE, ERROR_ALREADY_EXISTS};
 use windows_sys::Win32::System::Threading::CreateMutexW;
-use windows_sys::Win32::UI::WindowsAndMessaging::{MessageBoxW, MB_ICONWARNING, MB_OK};
+use windows_sys::Win32::UI::WindowsAndMessaging::{
+    FindWindowW, MessageBoxW, SetForegroundWindow, ShowWindow, MB_ICONWARNING, MB_OK, SW_RESTORE,
+};
 
 pub struct SingleInstanceGuard {
     handle: HANDLE,
 }
 
 impl SingleInstanceGuard {
-    pub fn acquire(title: &str, mutex_name: &str) -> Option<Self> {
-        let wide_name: Vec<u16> = OsStr::new(mutex_name)
+    /// Acquires a system-wide single instance mutex and validates running processes.
+    /// If another instance of the launcher is already running, brings its window to the foreground,
+    /// alerts the user, and returns None so the second process can terminate cleanly.
+    pub fn acquire(title: &str) -> Option<Self> {
+        let wide_title: Vec<u16> = OsStr::new(title)
             .encode_wide()
             .chain(std::iter::once(0))
             .collect();
 
-        unsafe {
-            let handle = CreateMutexW(std::ptr::null(), 1, wide_name.as_ptr());
-            if handle == 0 {
-                return None;
+        // 1. Check process table for any other running instance of the launcher
+        let my_pid = std::process::id();
+        let sys = System::new_with_specifics(
+            RefreshKind::new().with_processes(ProcessRefreshKind::new()),
+        );
+
+        let mut already_running_pid: Option<u32> = None;
+        for (pid, proc) in sys.processes() {
+            let pid_u32 = pid.as_u32();
+            if pid_u32 != my_pid {
+                let name = proc.name().to_lowercase();
+                if name == "aion-classic-emu.exe"
+                    || name == "aion classic - emu.exe"
+                    || name == "aion-classic-emu"
+                {
+                    already_running_pid = Some(pid_u32);
+                    break;
+                }
+            }
+        }
+
+        // 2. Try Global Mutex first, then Local Mutex fallback
+        let mutex_names = [
+            "Global\\AionClassicEmu_Global_SingleInstance_Mutex",
+            "Local\\AionClassicEmu_Local_SingleInstance_Mutex",
+        ];
+
+        let mut acquired_handle: Option<HANDLE> = None;
+        let mut mutex_conflict = false;
+
+        for m_name in &mutex_names {
+            let wide_name: Vec<u16> = OsStr::new(m_name)
+                .encode_wide()
+                .chain(std::iter::once(0))
+                .collect();
+
+            unsafe {
+                let handle = CreateMutexW(std::ptr::null(), 1, wide_name.as_ptr());
+                if handle != 0 {
+                    if GetLastError() == ERROR_ALREADY_EXISTS {
+                        CloseHandle(handle);
+                        mutex_conflict = true;
+                        break;
+                    } else if acquired_handle.is_none() {
+                        acquired_handle = Some(handle);
+                    }
+                }
+            }
+        }
+
+        if mutex_conflict || already_running_pid.is_some() {
+            if let Some(h) = acquired_handle {
+                unsafe { CloseHandle(h) };
             }
 
-            if GetLastError() == ERROR_ALREADY_EXISTS {
-                CloseHandle(handle);
+            unsafe {
+                // Focus existing window if visible
+                let hwnd = FindWindowW(std::ptr::null(), wide_title.as_ptr());
+                if hwnd != 0 {
+                    ShowWindow(hwnd, SW_RESTORE);
+                    SetForegroundWindow(hwnd);
+                }
 
-                let wide_title: Vec<u16> = OsStr::new(title)
-                    .encode_wide()
-                    .chain(std::iter::once(0))
-                    .collect();
-                let wide_msg: Vec<u16> = OsStr::new("O Aion Classic - EMU já está em execução neste computador!")
+                let wide_msg: Vec<u16> = OsStr::new("O Aion Classic - EMU já está em execução neste computador!\n\nVerifique a barra de tarefas ou a bandeja do sistema.")
                     .encode_wide()
                     .chain(std::iter::once(0))
                     .collect();
 
                 MessageBoxW(0, wide_msg.as_ptr(), wide_title.as_ptr(), MB_OK | MB_ICONWARNING);
-                return None;
             }
 
-            Some(Self { handle })
+            return None;
+        }
+
+        match acquired_handle {
+            Some(handle) => Some(Self { handle }),
+            None => None,
         }
     }
 }
