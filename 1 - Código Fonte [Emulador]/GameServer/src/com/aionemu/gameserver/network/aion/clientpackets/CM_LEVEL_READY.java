@@ -19,8 +19,12 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.rift.RiftInformer;
 import com.aionemu.gameserver.world.World;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CM_LEVEL_READY extends AionClientPacket {
+	private static final Logger log = LoggerFactory.getLogger("GAMECONNECTION_LOG");
+
 	public CM_LEVEL_READY(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
 	}
@@ -33,8 +37,15 @@ public class CM_LEVEL_READY extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player activePlayer = getConnection().getActivePlayer();
-		if (activePlayer == null || activePlayer.isSpawned())
+		if (activePlayer == null) {
+			log.warn("[LEVEL_READY] Recebido CM_LEVEL_READY mas activePlayer e null!");
 			return;
+		}
+		log.info("[LEVEL_READY] Recebido CM_LEVEL_READY de " + activePlayer.getName() + " (objectId=" + activePlayer.getObjectId() + ", map=" + activePlayer.getWorldId() + ")");
+		if (activePlayer.isSpawned()) {
+			log.warn("[LEVEL_READY] activePlayer " + activePlayer.getName() + " ja esta marcado como spawned.");
+			return;
+		}
 
 		// 1. Invincible time (60s) conforme PCAP oficial (op 0x00FE)
 		sendPacket(new S_INVINCIBLE_TIME(60));
@@ -95,5 +106,6 @@ public class CM_LEVEL_READY extends AionClientPacket {
 		PlayerLifeStats vida = activePlayer.getLifeStats();
 		sendPacket(new S_HIT_POINT(vida.getCurrentHp(), activePlayer.getGameStats().getMaxHp().getCurrent()));
 		sendPacket(new S_MANA_POINT(vida.getCurrentMp(), activePlayer.getGameStats().getMaxMp().getCurrent()));
+		log.info("[LEVEL_READY] Personagem " + activePlayer.getName() + " spawnado com sucesso no mundo! Posicao=(" + activePlayer.getX() + ", " + activePlayer.getY() + ", " + activePlayer.getZ() + ")");
 	}
 }

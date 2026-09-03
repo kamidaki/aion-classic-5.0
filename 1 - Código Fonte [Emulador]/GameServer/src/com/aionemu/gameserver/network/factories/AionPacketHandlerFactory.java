@@ -65,7 +65,9 @@ public class AionPacketHandlerFactory {
         // ==========================================
         // IN-GAME WORLD & GAMEPLAY (5.0 Classic)
         // ==========================================
-        addPacket(new CM_LEVEL_READY(0xEB, State.IN_GAME));  // 0x0019 C_LEVEL_READY (5.0 Classic)
+        addPacket(new CM_LEVEL_READY(0xEB, State.AUTHED, State.IN_GAME));  // 0x0019 C_LEVEL_READY (5.0 Classic)
+        addPacket(new CM_LEVEL_READY(0x19, State.AUTHED, State.IN_GAME));  // Alias dec opcode
+        addPacket(new CM_LEVEL_READY(0x09, State.AUTHED, State.IN_GAME));  // Alias 4.8 opcode
         addPacket(new CM_UI_SETTINGS(0xE8, State.IN_GAME)); // 0x001A UI_SETTINGS
         addPacket(new CM_CHAT_MESSAGE_PUBLIC(0xE9, State.IN_GAME)); // 0x001B CHAT_MESSAGE_PUBLIC
         addPacket(new CM_CHAT_MESSAGE_PUBLIC(0x99, State.IN_GAME)); // Legacy fallback
@@ -190,8 +192,8 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_USER_CLASSIC_WARDROBE_EXTEND(0x188, State.IN_GAME)); // WARDROBE_EXTEND
         addPacket(new CM_USER_CLASSIC_WARDROBE_REGISTER(0x18F, State.IN_GAME)); // WARDROBE_REGISTER
         addPacket(new CM_BATTLE_PASS_REWARD(0x156, State.IN_GAME)); // BATTLE_PASS_REWARD
-        addPacket(new CM_REPORT_CHAT(0x18E, State.IN_GAME)); // REPORT_CHAT
-        addPacket(new CM_RECIPE_LIST(0x14C, State.IN_GAME)); // 0x00B6 RECIPE_LIST (5.0 Classic)
+        addPacket(new CM_RECIPE_LIST(0x14C, State.AUTHED, State.IN_GAME)); // 0x00B6 RECIPE_LIST (5.0 Classic)
+        addPacket(new CM_RECIPE_LIST(0xB6, State.AUTHED, State.IN_GAME));  // Alias dec opcode
         addPacket(new CM_GLOBAL_TRADE(0x1F3, State.IN_GAME)); // 0x0101 GLOBAL_TRADE_SALESLOG (5.0 Classic)
         addPacket(new CM_CLIENT_PING_STATE(0x222, State.IN_GAME)); // 0x0150 CLIENT_PING_STATE (5.0 Classic)
         addPacket(new CM_CUSTOM_SETTING_ACK(0x00F6, State.IN_GAME)); // 0xFFFC CUSTOM_SETTING_ACK

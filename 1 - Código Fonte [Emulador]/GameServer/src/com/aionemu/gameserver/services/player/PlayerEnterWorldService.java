@@ -75,8 +75,8 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_INVENTORY;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_ITEM_COOLTIME;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_MACRO;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_SKILL_COOLTIME;
+import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_WAREHOUSE;
 import com.aionemu.gameserver.network.aion.serverpackets.S_LOAD_WORKINGQUEST;
-import com.aionemu.gameserver.network.aion.serverpackets.S_PLAYER_GUILD_COINS;
 import com.aionemu.gameserver.network.aion.serverpackets.S_RECIPE_LIST;
 import com.aionemu.gameserver.network.aion.serverpackets.S_SHOP_POINT_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.S_SPAM_FILTER_FLAG;
@@ -88,8 +88,8 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_TAX_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.S_TIME;
 import com.aionemu.gameserver.network.aion.serverpackets.S_TITLE;
 import com.aionemu.gameserver.network.aion.serverpackets.S_WORLD;
-import com.aionemu.gameserver.network.aion.serverpackets.missing.SM_QUNA;
 import com.aionemu.gameserver.network.aion.serverpackets.need.S_LOAD_EQUIPMENT_CHANGE;
+import com.aionemu.gameserver.network.aion.serverpackets.need.S_USER_BIND_STONE_INFO;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.AutoGroupService;
@@ -113,6 +113,8 @@ import com.aionemu.gameserver.services.legion.GuildSearchService;
 import com.aionemu.gameserver.services.legion.LegionService;
 import com.aionemu.gameserver.services.mail.MailService;
 import com.aionemu.gameserver.services.toypet.PetService;
+import com.aionemu.gameserver.services.WarehouseService;
+import com.aionemu.gameserver.services.teleport.TeleportService2;
 import com.aionemu.gameserver.taskmanager.tasks.ExpireTimerTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -282,34 +284,19 @@ public final class PlayerEnterWorldService {
             client.sendPacket(new S_INSTANCE_DUNGEON_COOLTIMES(player, false, player.getCurrentTeam()));
             client.sendPacket(new S_CHANGE_CHANNEL(player.getPosition()));
             KiskService.getInstance().onLogin(player);
-            /*
-             * Nao registrar o jogador na regiao ainda.
-             *
-             * World.preSpawn() adicionava o jogador a regiao ativa aqui, e com isso o motor
-             * de visibilidade comecava a despejar S_PUT_NPC antes de o cliente ter
-             * carregado
-             * o mapa. O cliente entao repetia dezenas de vezes um pedido de 4 bytes (um
-             * object
-             * id) sobre objetos que nao conseguia resolver, e desistia -- voltando para a
-             * tela
-             * de selecao de personagem.
-             *
-             * Na captura oficial 5.0 nenhum S_PUT_NPC aparece antes do CM_LEVEL_READY; ate
-             * o
-             * S_PUT_USER do proprio jogador (0x0020) so vem depois dele.
-             *
-             * CM_LEVEL_READY ja chama World.spawn(), que faz tudo o que o preSpawn fazia e
-             * ainda executa onBeforeSpawn() e updateKnownlist(). Aqui fica so o estado, que
-             * era a unica coisa exclusiva do preSpawn.
-             */
+            TeleportService2.sendSetBindPoint(player);
+            client.sendPacket(new S_USER_BIND_STONE_INFO(player));
+
             player.setState(CreatureState.ACTIVE);
             client.sendPacket(new S_WORLD(player));
             client.sendPacket(new S_TIME());
+            sendWarehouseItemInfos(client, player);
             client.sendPacket(new S_TITLE(player));
             client.sendPacket(new S_ADDREMOVE_SOCIAL((byte) 0, player.getEmotions().getEmotions()));
             SiegeService.getInstance().onPlayerLogin(player);
             client.sendPacket(new S_TAX_INFO());
             client.sendPacket(new S_ABYSS_POINT(player.getAbyssRank()));
+            client.sendPacket(new S_STATUS(player));
             // Intro Msg.
             PacketSendUtility.sendWhiteMessage(player, serverName);
             PacketSendUtility.sendWhiteMessage(player, serverIntro);
@@ -406,37 +393,37 @@ public final class PlayerEnterWorldService {
             BoostEventService.getInstance().boostEventLogin(player);
             RelinquishCraftStatus.removeExcessCraftStatus(player, false);
             BlackCloudTradeService.getInstance().onLogin(player);
-            // QuestUpdateService.getInstance().onQuestUpdateLogin(player);
-            // "Energy Of Repose"
-            if (player.getCommonData().getCurrentReposteEnergy() != 0) {
-                client.sendPacket(new S_STATUS(player));
-            }
-            // Fucking 2.4 holy shit chat
+            // Chat & Seguranca
             client.sendPacket(new S_CHAT_ACCUSE(player));
             client.sendPacket(new S_SPAM_FILTER_FLAG(player));
             client.sendPacket(new S_CHANNEL_CHATTING_BLACKLIST_SETTING());
-            client.sendPacket(new SM_QUNA());
             client.sendPacket(new S_INSTANCE_DUNGEON_COOLTIMES(player, 0));
 
             client.sendPacket(new S_SHOP_POINT_INFO(1500));
 
-            // if (!player.getEquipmentSettingList().getEquipmentSetting().isEmpty()) {
-            // client.sendPacket(new
-            // S_LOAD_EQUIPMENT_CHANGE(player.getEquipmentSettingList().getEquipmentSetting()));
-            // }
-
             PlayerWardrobeService.getInstance().onEnterWorld(player);
-            ArcadeUpgradeService.getInstance().onEnterWorld(player);
-            KrContentUpdate(player);
 
         } else {
             log.info("[DEBUG] Enter World" + objectId + ", Player: " + player);
         }
     }
 
-    public static void KrContentUpdate(Player player) {
-        GuildSearchService.getInstance().onPlayerEnterWorld(player);
-        PacketSendUtility.sendPacket(player, new S_PLAYER_GUILD_COINS(player));
+    private static void sendWarehouseItemInfos(AionConnection client, Player player) {
+        WarehouseService.sendWarehouseInfo(player, true);
+        for (int i = StorageType.PET_BAG_MIN - 2; i <= StorageType.PET_BAG_MAX; i++) {
+            IStorage storage = player.getStorage(i);
+            if (storage == null || storage.getItemsWithKinah().isEmpty()) {
+                client.sendPacket(new S_LOAD_WAREHOUSE(null, i, 0, true, player));
+                continue;
+            }
+            List<Item> items = storage.getItemsWithKinah();
+            int itemsSize = items.size();
+            for (int index = 0; index < itemsSize; index += 10) {
+                int end = Math.min(index + 10, itemsSize);
+                client.sendPacket(new S_LOAD_WAREHOUSE(items.subList(index, end), i, 0, index == 0, player));
+            }
+            client.sendPacket(new S_LOAD_WAREHOUSE(null, i, 0, false, player));
+        }
     }
 
     private static void sendItemInfos(AionConnection client, Player player) {
