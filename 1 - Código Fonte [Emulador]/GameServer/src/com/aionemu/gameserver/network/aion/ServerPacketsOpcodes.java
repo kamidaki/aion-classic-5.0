@@ -258,7 +258,6 @@ public class ServerPacketsOpcodes {
         addPacketOpcode(S_STORE_SALE_INFO.class, 0xFD, idSet);
         addPacketOpcode(S_INVINCIBLE_TIME.class, 0xFE, idSet);
         addPacketOpcode(S_RECONNECT_KEY.class, 0xFF, idSet);//1.8
-        addPacketOpcode(S_WEB_NOTI.class, 0x100, idSet); //need to add
         addPacketOpcode(S_HOUSE_BIDS.class, 0x100, idSet); // S_AUCTION_LIST (Leilão de Casas)
         addPacketOpcode(S_BM_PACK_LIST.class, 0x101, idSet);
         addPacketOpcode(S_SECURITY_TOKEN.class, 0x102, idSet);
