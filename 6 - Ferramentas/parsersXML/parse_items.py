@@ -79,7 +79,9 @@ DEFAULT_WEAPON_STATS = {
 
 def map_equipment_type(item_type: str, weapon_type: str, armor_type: str, eq_slot: str) -> tuple[str, str]:
     """Determina category e equipment_type para o schema do servidor."""
-    if weapon_type and weapon_type != "NONE":
+    # NOWEAPON existe em WeaponType (Java) mas nao em ItemCategory: usa-lo como
+    # category gera valor fora da enumeracao do XSD e o servidor nem sobe.
+    if weapon_type and weapon_type not in ("NONE", "NOWEAPON"):
         return weapon_type, "WEAPON"
     if armor_type and armor_type != "NONE":
         return armor_type, "ARMOR"
@@ -189,6 +191,9 @@ def parse_items():
         item_type = c_item.findtext("item_type", "NORMAL").upper()
         weapon_type = c_item.findtext("weapon_type", "NONE").upper()
         armor_type = c_item.findtext("armor_type", "NONE").upper()
+        # attack_type vem do cliente oficial: physical / magical_water / magical_fire.
+        # Sem ele o servidor nao sabe se a arma bate fisico ou magico (ItemAttackType).
+        attack_type = c_item.findtext("attack_type", "").strip().upper()
         max_stack = c_item.findtext("max_stack_count", "1")
         race = c_item.findtext("race", "PC_ALL").upper()
         eq_slots_raw = c_item.findtext("equipment_slots", "none").strip().lower()
@@ -220,6 +225,8 @@ def parse_items():
                 elem.set("category", category)
             if slot_mask > 0:
                 elem.set("slot", str(slot_mask))
+            if attack_type:
+                elem.set("attack_type", attack_type)
             
             # Aplica weapon_stats
             apply_weapon_stats(elem, c_item, weapon_type)
@@ -242,6 +249,8 @@ def parse_items():
             elem.set("equipment_type", equip_type)
             if slot_mask > 0:
                 elem.set("slot", str(slot_mask))
+            if attack_type:
+                elem.set("attack_type", attack_type)
             
             # Aplica weapon_stats
             apply_weapon_stats(elem, c_item, weapon_type)
