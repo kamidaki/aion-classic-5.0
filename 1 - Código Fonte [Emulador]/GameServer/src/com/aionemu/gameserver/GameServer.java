@@ -45,6 +45,11 @@ import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.abyss.AbyssRankUpdateService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.services.instance.*;
+import com.aionemu.gameserver.services.legion.GuildSearchService;
+import com.aionemu.gameserver.services.player.BattlePassService;
+import com.aionemu.gameserver.services.player.EventWindowService;
+import com.aionemu.gameserver.services.player.PlayerLimitService;
+import com.aionemu.gameserver.services.player.ShugoSweepService;
 import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.spawnengine.TemporarySpawnEngine;
 import com.aionemu.gameserver.taskmanager.TaskManagerFromDB;
@@ -188,39 +193,39 @@ public class GameServer
 			Thread.currentThread().interrupt();
 		}
 		//Siege
-		//Util.printSection("Siege Location Data");
-		//SiegeService.getInstance().initSiegeLocations();
+		Util.printSection("Siege Location Data");
+		SiegeService.getInstance().initSiegeLocations();
 		//Rift
-		//Util.printSection("Rift Location Data");
-		//RiftService.getInstance().initRiftLocations();
+		Util.printSection("Rift Location Data");
+		RiftService.getInstance().initRiftLocations();
 		//Instance Rift
-		//Util.printSection("Instance Rift Location Data");
-		//InstanceRiftService.getInstance().initInstance();
-		//InstanceRiftService.getInstance().initInstanceLocations();
-		//SerialKillerService.getInstance().initSerialKillers();
+		Util.printSection("Instance Rift Location Data");
+		InstanceRiftService.getInstance().initInstance();
+		InstanceRiftService.getInstance().initInstanceLocations();
+		SerialKillerService.getInstance().initSerialKillers();
 		Util.printSection("Spawns");
 		SpawnEngine.spawnAll();
-		//RiftService.getInstance().initRifts();
+		RiftService.getInstance().initRifts();
 		TemporarySpawnEngine.spawnAll();
-		//Util.printSection("Limits");
-		//LimitedItemTradeService.getInstance().start();
-		//if (CustomConfig.LIMITS_ENABLED) {
-		//	PlayerLimitService.getInstance().scheduleUpdate();
-		//}
+		Util.printSection("Limits");
+		LimitedItemTradeService.getInstance().start();
+		if (CustomConfig.LIMITS_ENABLED) {
+			PlayerLimitService.getInstance().scheduleUpdate();
+		}
 		GameTimeManager.startClock();
-		//Util.printSection("Siege Schedule initialization");
-		//SiegeService.getInstance().initSieges();
+		Util.printSection("Siege Schedule initialization");
+		SiegeService.getInstance().initSieges();
 		Util.printSection("TaskManagers");
 		PacketBroadcaster.getInstance();
 		GameTimeService.getInstance();
-		//AnnouncementService.getInstance();
-		//DebugService.getInstance();
+		AnnouncementService.getInstance();
+		DebugService.getInstance();
 		WeatherService.getInstance();
-		//BrokerService.getInstance();
+		BrokerService.getInstance();
 		Influence.getInstance();
 		ExchangeService.getInstance();
 		PeriodicSaveService.getInstance();
-		//PetitionService.getInstance();
+		PetitionService.getInstance();
 		if (AIConfig.SHOUTS_ENABLE) {
 			NpcShoutsService.getInstance();
 		}
@@ -239,28 +244,28 @@ public class GameServer
 			ShieldService.getInstance().spawnAll();
 		}
 		//Dredgion & Tiak Research Base.
-		//if (AutoGroupConfig.AUTO_GROUP_ENABLED) {
-		//	Util.printSection("[Dredgion]");
-		//	DredgionService.getInstance().initDredgion();
-		//	Util.printSection("[Tiak Research Base]");
-		//	TiakResearchBaseService.getInstance().initTiakBase();
-		//}
+		if (AutoGroupConfig.AUTO_GROUP_ENABLED) {
+			Util.printSection("[Dredgion]");
+			DredgionService.getInstance().initDredgion();
+			Util.printSection("[Tiak Research Base]");
+			TiakResearchBaseService.getInstance().initTiakBase();
+		}
 		//Custom
-		//if (EventsConfig.ENABLE_EVENT_SERVICE) {
-		//	EventService.getInstance().start();
-		//}
-		//BattlePassService.getInstance().init();
-		//EventWindowService.getInstance().onInit();
-		//AdminService.getInstance();
-		//Util.printSection("Guild");
-		//GuildSearchService.getInstance().onStart();
+		if (EventsConfig.ENABLE_EVENT_SERVICE) {
+			EventService.getInstance().start();
+		}
+		BattlePassService.getInstance().init();
+		EventWindowService.getInstance().onInit();
+		AdminService.getInstance();
+		Util.printSection("Guild");
+		GuildSearchService.getInstance().onStart();
 
 		Util.printSection("System");
-		//AEVersions.printFullVersionInfo();
-		//WebshopService.getInstance();
-		//RestartService.getInstance().onStart();
-		//ShugoSweepService.getInstance().init();
-		//QuestUpdateService.getInstance().onStart();
+		AEVersions.printFullVersionInfo();
+		WebshopService.getInstance();
+		RestartService.getInstance().onStart();
+		ShugoSweepService.getInstance().init();
+		QuestUpdateService.getInstance().onStart();
 		System.gc();
 		AEInfos.printAllInfos();
 		Util.printSection("GameServerLog");
