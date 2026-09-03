@@ -18,6 +18,7 @@ package com.aionemu.gameserver.services.player;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -245,6 +246,8 @@ public final class PlayerEnterWorldService {
             }
             if (player.getItemCoolDowns() != null) {
                 client.sendPacket(new S_LOAD_ITEM_COOLTIME(player.getItemCoolDowns()));
+            } else {
+                client.sendPacket(new S_LOAD_ITEM_COOLTIME(Collections.emptyMap()));
             }
 
             List<QuestState> questList = new ArrayList<QuestState>();
@@ -267,6 +270,7 @@ public final class PlayerEnterWorldService {
             // client.sendPacket(new S_CUSTOM_ANIM(player.getObjectId(),
             // player.getMotions().getActiveMotions()));
             BattlePassService.getInstance().onEnterWorld(player);
+            PlayerWardrobeService.getInstance().onEnterWorld(player);
             // S_ENTER_WORLD_CHECK movido para o inicio da sequencia (ver acima)
             byte[] uiSettings = player.getPlayerSettings().getUiSettings();
             byte[] shortcuts = player.getPlayerSettings().getShortcuts();
@@ -281,7 +285,6 @@ public final class PlayerEnterWorldService {
             PacketSendUtility.sendPacket(player, new S_LOAD_EQUIPMENT_CHANGE(player));
 
             playerLoggedIn(player);
-            client.sendPacket(new S_INSTANCE_DUNGEON_COOLTIMES(player, false, player.getCurrentTeam()));
             client.sendPacket(new S_CHANGE_CHANNEL(player.getPosition()));
             KiskService.getInstance().onLogin(player);
             TeleportService2.sendSetBindPoint(player);
@@ -295,11 +298,10 @@ public final class PlayerEnterWorldService {
             client.sendPacket(new S_ADDREMOVE_SOCIAL((byte) 0, player.getEmotions().getEmotions()));
             SiegeService.getInstance().onPlayerLogin(player);
             client.sendPacket(new S_TAX_INFO());
+            client.sendPacket(new S_INSTANCE_DUNGEON_COOLTIMES(player, false, player.getCurrentTeam()));
             client.sendPacket(new S_ABYSS_POINT(player.getAbyssRank()));
             client.sendPacket(new S_STATUS(player));
-            // Intro Msg.
-            PacketSendUtility.sendWhiteMessage(player, serverName);
-            PacketSendUtility.sendWhiteMessage(player, serverIntro);
+            // Na 5.0 oficial, mensagens de chat (S_MESSAGE) nao sao enviadas durante a tela de loading.
             player.setRates(Rates.getRatesFor(client.getAccount().getMembership()));
             // Buff.
             /*
@@ -336,13 +338,8 @@ public final class PlayerEnterWorldService {
             GMService.getInstance().onPlayerLogin(player);
             player.getLifeStats().updateCurrentStats();
             player.getEquipment().checkRankLimitItems();
-            if (HTMLConfig.ENABLE_HTML_WELCOME) {
-                HTMLService.showHTML(player, HTMLCache.getInstance().getHTML("welcome.xhtml"));
-            }
+            // Na 5.0 oficial, dialogos HTML/Survey nao sao abertos durante o carregamento de mundo
             player.getNpcFactions().sendDailyQuest();
-            if (HTMLConfig.ENABLE_GUIDES) {
-                HTMLService.onPlayerLogin(player);
-            }
             for (StorageType st : StorageType.values()) {
                 if (st == StorageType.LEGION_WAREHOUSE) {
                     continue;
@@ -386,7 +383,7 @@ public final class PlayerEnterWorldService {
             /// value of 5% every 20Min!!!
             player.getController().addTask(TaskId.REPOSE_ENERGY_TASK, ThreadPoolManager.getInstance()
                     .scheduleAtFixedRate(new ReposeEnergyTask(player.getObjectId()), 1200 * 1000, 1200 * 1000));
-            SurveyService.getInstance().showAvailable(player);
+            // SurveyService nao deve disparar durante o carregamento de mapa/cena
             if (EventsConfig.ENABLE_EVENT_SERVICE) {
                 EventService.getInstance().onPlayerLogin(player);
             }
@@ -397,12 +394,6 @@ public final class PlayerEnterWorldService {
             client.sendPacket(new S_CHAT_ACCUSE(player));
             client.sendPacket(new S_SPAM_FILTER_FLAG(player));
             client.sendPacket(new S_CHANNEL_CHATTING_BLACKLIST_SETTING());
-            client.sendPacket(new S_INSTANCE_DUNGEON_COOLTIMES(player, 0));
-
-            client.sendPacket(new S_SHOP_POINT_INFO(1500));
-
-            PlayerWardrobeService.getInstance().onEnterWorld(player);
-
         } else {
             log.info("[DEBUG] Enter World" + objectId + ", Player: " + player);
         }

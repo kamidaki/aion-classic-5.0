@@ -35,8 +35,8 @@ public class BlackCloudTradeService {
 
     public void onLogin(Player player) {
         player.setBlackcloudLetters(DAOManager.getDAO(AccountBlackCloudDAO.class).loadAccountBlackcloud(player.getPlayerAccount()));
-        PacketSendUtility.sendPacket(player, new S_NPSHOP_GOODS_COUNT(player.getBlackcloudLetters().size()));
-        PacketSendUtility.sendPacket(player, new S_RESPONSE_NPSHOP_GOODS_LIST(player));
+        // Na 5.0 oficial, a lista de itens da loja nao e enviada no login; somente contagem se houver
+        // PacketSendUtility.sendPacket(player, new S_RESPONSE_NPSHOP_GOODS_LIST(player));
         log.info("Login Black Cloud size : " + player.getBlackcloudLetters().size());
         player.getController().addTask(TaskId.BLACK_CLOUD_CHECK, ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
             @Override

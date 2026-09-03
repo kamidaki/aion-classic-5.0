@@ -53,6 +53,9 @@ public class S_INSTANCE_DUNGEON_COOLTIMES extends AionServerPacket
 						writeD(0);
 						writeD((int) DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(p, worldId));
 						writeD(cooldownList.getPortalCooldownItem(e.getValue().getWorldId()) != null ? cooldownList.getPortalCooldownItem(e.getValue().getWorldId()).getEntryCount() : 0);
+						// Classic 5.0: cada entrada tem 22 bytes (op 0x008C, pacote [115] da captura oficial)
+						writeD(0);
+						writeH(0);
 					}
 					writeS(p.getName());
 				}
@@ -66,10 +69,12 @@ public class S_INSTANCE_DUNGEON_COOLTIMES extends AionServerPacket
 					writeD(0);
 					writeD((int) DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(player, worldId));
 					writeD(cooldownList.getPortalCooldownItem(e.getValue().getWorldId()) != null ? cooldownList.getPortalCooldownItem(e.getValue().getWorldId()).getEntryCount() : 0);
+					// Classic 5.0: cada entrada tem 22 bytes (op 0x008C, pacote [115] da captura oficial)
+					writeD(0);
+					writeH(0);
 				}
 				writeS(player.getName());
 			}
-			writeS(player.getName());
 
 		} else {
 			writeH(1);
@@ -79,6 +84,8 @@ public class S_INSTANCE_DUNGEON_COOLTIMES extends AionServerPacket
 			writeD(0);
 			writeD((int) DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(player, worldId));
 			writeD(player.getPortalCooldownList().getPortalCooldownItem(worldId) != null ? player.getPortalCooldownList().getPortalCooldownItem(worldId).getEntryCount() : 0);
+			writeD(0);
+			writeH(0);
 			writeS(player.getName());
 		}
 

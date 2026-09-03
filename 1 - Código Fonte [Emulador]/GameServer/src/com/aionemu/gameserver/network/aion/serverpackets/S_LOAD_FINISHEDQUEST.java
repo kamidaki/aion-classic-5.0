@@ -41,8 +41,12 @@ public class S_LOAD_FINISHEDQUEST extends AionServerPacket
 		writeH(0x01);
 		writeH(-questState.size() & 0xFFFF);
 		for (QuestState qs: questState) {
+			// Classic 5.0: cada quest finalizada tem 20 bytes (op 0x007A, pacote [37] da captura oficial)
 			writeD(qs.getQuestId());
 			writeD(qs.getCompleteCount());
+			writeD(0);
+			writeD(0);
+			writeD(1);
 		}
 		if (questState instanceof FastList) {
 			FastList.recycle((FastList<?>) questState);

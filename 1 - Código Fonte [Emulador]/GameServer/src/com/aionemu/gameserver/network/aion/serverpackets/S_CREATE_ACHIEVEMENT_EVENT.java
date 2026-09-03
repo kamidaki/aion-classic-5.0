@@ -35,6 +35,7 @@ public class S_CREATE_ACHIEVEMENT_EVENT extends AionServerPacket {
             writeD(0);
             writeQ(quest.getTemplate().getStartDate().getMillisecond()); //start
             writeQ(quest.getTemplate().getStartDate().getMillisecond()); //end
+            writeC(0); // Classic 5.0: trailing byte (66 bytes por quest no op 0x0112)
         }
     }
 }
