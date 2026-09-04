@@ -65,12 +65,18 @@ public class S_LOAD_WAREHOUSE extends AionServerPacket {
 
 		writeD(item.getObjectId());
 		writeD(itemTemplate.getTemplateId());
-		writeC(0); // some item info (4 - weapon, 7 - armor, 8 - rings, 17 - bottles)
-		writeNameId(itemTemplate.getNameId());
+		// Sem writeC(0) e sem o bloco writeNameId: a 5.0 vai do templateId direto para o
+		// ItemInfoBlob. Eram nove bytes a mais por item, e o cliente lia o 0x0024 do nameId
+		// como tamanho do blob -- dai a quantidade errada e a janela fechando sozinha.
+		// Mesmo defeito que o S_LOAD_INVENTORY ja tinha corrigido e que o S_ADD_INVENTORY
+		// carregava ate a captura mostrar o layout certo.
 
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());
 
 		writeH((int) (item.getEquipmentSlot() & 0xFFFF)); // FF FF equipment
+		// Byte final do bloco de item, igual ao S_LOAD_INVENTORY. Sem ele cada item fica um byte
+		// curto e o pacote do login desanda a partir do segundo.
+		writeC(itemTemplate.isCloth() ? 1 : 0);
 	}
 }
