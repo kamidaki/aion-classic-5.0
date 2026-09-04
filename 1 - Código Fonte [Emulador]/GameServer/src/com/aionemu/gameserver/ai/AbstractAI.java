@@ -38,8 +38,12 @@ import java.util.Iterator;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-
+/**
+ * @author ATracer
+ */
 public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> implements AI {
+
+	private static final ThreadLocal<Integer> DEPTH = ThreadLocal.withInitial(() -> 0);
 
 	private Creature owner;
 	private AIState currentState;
@@ -56,18 +60,23 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 
 	private AIScenario scenario;
 
-	AbstractAI() {
-		HashMap listenableMethods;
+	public AbstractAI() {
+		HashMap<AIEventType, Method> listenableMethods;
 		this.currentState = AIState.CREATED;
 		this.currentSubState = AISubState.NONE;
 		if (this.isFirstMethodFill && (listenableMethods = listenableMethodsByClass.get(this.getClass())) != null) {
-			Iterator iter = listenableMethods.values().iterator();
+			Iterator<Method> iter = listenableMethods.values().iterator();
 			while (iter.hasNext()) {
 				if (iter.next() != null) continue;
 				iter.remove();
 			}
 		}
 		clearScenario();
+	}
+
+	public AbstractAI(Creature owner) {
+		this();
+		this.owner = owner;
 	}
 
 	public AIScenario getScenario() {
@@ -135,7 +144,7 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 			case DIALOG_FINISH:
 				return isNonFightingState();
 			case CREATURE_MOVED:
-				return getName().equals("trap") || currentState != AIState.FIGHT && isNonFightingState();
+				return getName().equals("trap") || (currentState != AIState.FIGHT && isNonFightingState());
 		}
 		return true;
 	}
@@ -179,22 +188,38 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 
 	@Override
 	public void onGeneralEvent(AIEventType event) {
-		if (canHandleEvent(event)) {
-			if (this.isLogging()) {
-				AILogger.info(this, "General event " + event);
+		if (DEPTH.get() > 50) {
+			return;
+		}
+		DEPTH.set(DEPTH.get() + 1);
+		try {
+			if (canHandleEvent(event)) {
+				if (this.isLogging()) {
+					AILogger.info(this, "General event " + event);
+				}
+				handleGeneralEvent(event);
 			}
-			handleGeneralEvent(event);
+		} finally {
+			DEPTH.set(DEPTH.get() - 1);
 		}
 	}
 
 	@Override
 	public void onCreatureEvent(AIEventType event, Creature creature) {
 		Preconditions.checkNotNull(creature, "Creature must not be null");
-		if (canHandleEvent(event)) {
-			if (this.isLogging()) {
-				AILogger.info(this, "Creature event " + event + ": " + creature.getObjectTemplate().getTemplateId());
+		if (DEPTH.get() > 50) {
+			return;
+		}
+		DEPTH.set(DEPTH.get() + 1);
+		try {
+			if (canHandleEvent(event)) {
+				if (this.isLogging()) {
+					AILogger.info(this, "Creature event " + event + ": " + creature.getObjectTemplate().getTemplateId());
+				}
+				handleCreatureEvent(event, creature);
 			}
-			handleCreatureEvent(event, creature);
+		} finally {
+			DEPTH.set(DEPTH.get() - 1);
 		}
 	}
 
@@ -208,8 +233,6 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 
 	/**
 	 * Will be hidden for all AI's below NpcAI
-	 * 
-	 * @return
 	 */
 	public Creature getOwner() {
 		return owner;
@@ -228,10 +251,10 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 	}
 
 	public boolean isAlreadyDead() {
-		return owner.getLifeStats().isAlreadyDead();
+		return owner != null && owner.getLifeStats() != null && owner.getLifeStats().isAlreadyDead();
 	}
 
-	void setOwner(Creature owner) {
+	public void setOwner(Creature owner) {
 		this.owner = owner;
 	}
 
@@ -252,55 +275,55 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 		this.logging = logging;
 	}
 
-	@AIListenable(enabled=false, type=AIEventType.ACTIVATE)
+	@AIListenable(enabled = false, type = AIEventType.ACTIVATE)
 	protected abstract void handleActivate();
 
-	@AIListenable(enabled=false, type=AIEventType.DEACTIVATE)
+	@AIListenable(enabled = false, type = AIEventType.DEACTIVATE)
 	protected abstract void handleDeactivate();
 
-	@AIListenable(enabled=false, type=AIEventType.SPAWNED)
+	@AIListenable(enabled = false, type = AIEventType.SPAWNED)
 	protected abstract void handleSpawned();
 
-	@AIListenable(enabled=false, type=AIEventType.RESPAWNED)
+	@AIListenable(enabled = false, type = AIEventType.RESPAWNED)
 	protected abstract void handleRespawned();
 
-	@AIListenable(enabled=false, type=AIEventType.DESPAWNED)
+	@AIListenable(enabled = false, type = AIEventType.DESPAWNED)
 	protected abstract void handleDespawned();
 
-	@AIListenable(enabled=true, type=AIEventType.DIED)
+	@AIListenable(enabled = true, type = AIEventType.DIED)
 	protected abstract void handleDied();
 
-	@AIListenable(enabled=false, type=AIEventType.MOVE_VALIDATE)
+	@AIListenable(enabled = false, type = AIEventType.MOVE_VALIDATE)
 	protected abstract void handleMoveValidate();
 
-	@AIListenable(enabled=false, type=AIEventType.MOVE_ARRIVED)
+	@AIListenable(enabled = false, type = AIEventType.MOVE_ARRIVED)
 	protected abstract void handleMoveArrived();
 
-	@AIListenable(enabled=false, type=AIEventType.ATTACK_COMPLETE)
+	@AIListenable(enabled = false, type = AIEventType.ATTACK_COMPLETE)
 	protected abstract void handleAttackComplete();
 
-	@AIListenable(enabled=false, type=AIEventType.ATTACK_FINISH)
+	@AIListenable(enabled = false, type = AIEventType.ATTACK_FINISH)
 	protected abstract void handleFinishAttack();
 
-	@AIListenable(enabled=false, type=AIEventType.TARGET_REACHED)
+	@AIListenable(enabled = false, type = AIEventType.TARGET_REACHED)
 	protected abstract void handleTargetReached();
 
-	@AIListenable(enabled=false, type=AIEventType.TARGET_TOOFAR)
+	@AIListenable(enabled = false, type = AIEventType.TARGET_TOOFAR)
 	protected abstract void handleTargetTooFar();
 
-	@AIListenable(enabled=false, type=AIEventType.TARGET_GIVEUP)
+	@AIListenable(enabled = false, type = AIEventType.TARGET_GIVEUP)
 	protected abstract void handleTargetGiveup();
 
-	@AIListenable(enabled=false, type=AIEventType.NOT_AT_HOME)
+	@AIListenable(enabled = false, type = AIEventType.NOT_AT_HOME)
 	protected abstract void handleNotAtHome();
 
-	@AIListenable(enabled=false, type=AIEventType.BACK_HOME)
+	@AIListenable(enabled = false, type = AIEventType.BACK_HOME)
 	protected abstract void handleBackHome();
 
-	@AIListenable(enabled=false, type=AIEventType.DROP_REGISTERED)
+	@AIListenable(enabled = false, type = AIEventType.DROP_REGISTERED)
 	protected abstract void handleDropRegistered();
 
-	@AIListenable(enabled=false, type=AIEventType.ATTACK)
+	@AIListenable(enabled = false, type = AIEventType.ATTACK)
 	protected abstract void handleAttack(Creature creature);
 
 	protected abstract boolean handleCreatureNeedsSupport(Creature creature);
@@ -326,7 +349,7 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 	protected abstract void handleDialogFinish(Player player);
 
 	protected abstract void handleCustomEvent(int eventId, Object... args);
-	
+
 	public abstract boolean onPatternShout(ShoutEventType event, String pattern, int skillNumber);
 
 	@Override
@@ -334,15 +357,15 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 		Annotation annotation = annotatedMethod.getAnnotation(AIListenable.class);
 		if (annotation instanceof AIListenable) {
 			HashMap<AIEventType, Method> listenableMethods;
-			AIListenable listenable = (AIListenable)annotation;
+			AIListenable listenable = (AIListenable) annotation;
 			if (listenableMethodsByClass == null) {
-				listenableMethodsByClass = new FastMap();
+				listenableMethodsByClass = new FastMap<Class<?>, HashMap<AIEventType, Method>>();
 			}
 			if ((listenableMethods = listenableMethodsByClass.get(this.getClass())) == null) {
 				listenableMethods = new HashMap<AIEventType, Method>();
 				listenableMethodsByClass.put(this.getClass(), listenableMethods);
 			}
-			if (listenableMethods.containsKey((Object)listenable.type())) {
+			if (listenableMethods.containsKey(listenable.type())) {
 				return false;
 			}
 			if (!listenable.enabled()) {
@@ -364,7 +387,7 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 		if (listenableMethodsByClass == null) {
 			return false;
 		}
-		HashMap listenableMethods = listenableMethodsByClass.get(this.getClass());
+		HashMap<AIEventType, Method> listenableMethods = listenableMethodsByClass.get(this.getClass());
 		return listenableMethods != null && listenableMethods.containsKey(event);
 	}
 
@@ -539,7 +562,6 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 		return AIAnswers.NEGATIVE;
 	}
 
-	// TODO move to NPC ai
 	protected boolean isDestinationReached() {
 		AIState state = currentState;
 		switch (state) {
@@ -622,15 +644,15 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 	}
 	
 	@Override
-    public int modifySensoryRange(int value) {
-        return value;
-    }
+	public int modifySensoryRange(int value) {
+		return value;
+	}
 	
 	@Override
 	public ItemAttackType modifyAttackType(ItemAttackType type) {
 		return type;
 	}
-	
+
 	public abstract void playerSkillUse(Player paramPlayer, int paramInt);
 	public abstract void ownerSkillUse(int paramInt);
 }

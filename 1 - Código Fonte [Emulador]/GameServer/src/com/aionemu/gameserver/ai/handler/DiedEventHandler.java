@@ -7,7 +7,6 @@ import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.ai.poll.AIQuestion;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 
-
 public class DiedEventHandler {
 
 	public static void onDie(NpcAI npcAI) {
@@ -33,5 +32,4 @@ public class DiedEventHandler {
 		npcAI.setSubStateIfNot(AISubState.NONE);
 		npcAI.getOwner().getAggroList().clear();
 	}
-
 }

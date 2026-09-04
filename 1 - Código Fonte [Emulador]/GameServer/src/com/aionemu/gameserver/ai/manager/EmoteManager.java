@@ -16,8 +16,8 @@ public class EmoteManager
 		owner.unsetState(CreatureState.WALKING);
 		if (!owner.isInState(CreatureState.WEAPON_EQUIPPED)) {
 			owner.setState(CreatureState.WEAPON_EQUIPPED);
-			PacketSendUtility.broadcastPacket(owner, new S_ACTION(owner, EmotionType.START_EMOTE2, 0, target.getObjectId()));
-			PacketSendUtility.broadcastPacket(owner, new S_ACTION(owner, EmotionType.ATTACKMODE, 0, target.getObjectId()));
+			PacketSendUtility.broadcastPacket(owner, new S_ACTION(owner, EmotionType.START_EMOTE2, 0, target != null ? target.getObjectId() : 0));
+			PacketSendUtility.broadcastPacket(owner, new S_ACTION(owner, EmotionType.ATTACKMODE, 0, target != null ? target.getObjectId() : 0));
 		}
 	}
 	

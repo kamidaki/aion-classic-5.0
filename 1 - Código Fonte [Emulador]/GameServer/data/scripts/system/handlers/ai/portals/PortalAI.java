@@ -1,5 +1,7 @@
 package ai.portals;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import ai.ActionItemNpcAI;
 
 import com.aionemu.gameserver.ai.AIName;
@@ -25,6 +27,14 @@ import com.aionemu.gameserver.world.knownlist.Visitor;
 @AIName("portal")
 public class PortalAI extends ActionItemNpcAI
 {
+	public PortalAI() {
+		super();
+	}
+
+	public PortalAI(Npc owner) {
+		super(owner);
+	}
+
 	protected PortalUse portalUse;
 	protected TeleporterTemplate teleportTemplate;
 	

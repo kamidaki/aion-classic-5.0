@@ -1,6 +1,7 @@
 package ai;
 
 import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.model.gameobjects.Npc;
 
 /****/
 /** Author Rinzler (Encom)
@@ -9,6 +10,14 @@ import com.aionemu.gameserver.ai.AIName;
 @AIName("onedmgperhit")
 public class OneDmgPerHitAI extends NoActionAI
 {
+	public OneDmgPerHitAI() {
+		super();
+	}
+
+	public OneDmgPerHitAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	public int modifyDamage(int damage) {
 		return 1;

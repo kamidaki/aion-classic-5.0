@@ -1,5 +1,7 @@
 package ai;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.ai.handler.FollowEventHandler;
@@ -17,6 +19,14 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 @AIName("deliveryman")
 public class DeliveryManAI extends FollowingNpcAI
 {
+	public DeliveryManAI() {
+		super();
+	}
+
+	public DeliveryManAI(Npc owner) {
+		super(owner);
+	}
+
 	private Player owner;
 	public static int EVENT_SET_CREATOR = 1;
 	private static int SERVICE_TIME = 1 * 60 * 1000;

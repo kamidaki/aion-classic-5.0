@@ -6,10 +6,10 @@ import com.aionemu.gameserver.ai.NpcAI;
 public class SpawnEventHandler
 {
 	public static void onSpawn(NpcAI npcAI) {
-        if (npcAI.setStateIfNot(AIState.IDLE) && npcAI.getOwner().getPosition().isMapRegionActive()) {
-            npcAI.think();
-        }
-    }
+		if (npcAI.setStateIfNot(AIState.IDLE) && npcAI.getOwner().getPosition().isMapRegionActive()) {
+			npcAI.think();
+		}
+	}
 	
 	public static void onDespawn(NpcAI npcAI) {
 		npcAI.setStateIfNot(AIState.DESPAWNED);

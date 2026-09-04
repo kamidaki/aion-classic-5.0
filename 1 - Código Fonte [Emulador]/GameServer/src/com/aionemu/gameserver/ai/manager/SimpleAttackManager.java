@@ -39,8 +39,8 @@ public class SimpleAttackManager
 	
 	private static void scheduleCheckedAttackAction(NpcAI npcAI, int delay) {
 		if (delay < 2000) {
-            delay = 2000;
-        } if (npcAI.isLogging()) {
+			delay = 2000;
+		} if (npcAI.isLogging()) {
 			AILogger.info(npcAI, "Scheduling checked attack " + delay);
 		}
 		ThreadPoolManager.getInstance().schedule(new SimpleCheckedAttackAction(npcAI), delay);

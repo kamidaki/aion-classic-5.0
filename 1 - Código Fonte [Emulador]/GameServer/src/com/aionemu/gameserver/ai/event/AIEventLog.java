@@ -2,7 +2,9 @@ package com.aionemu.gameserver.ai.event;
 
 import java.util.concurrent.LinkedBlockingDeque;
 
-
+/**
+ * @author ATracer
+ */
 public class AIEventLog extends LinkedBlockingDeque<AIEventType> {
 
 	private static final long serialVersionUID = -7234174243343636729L;

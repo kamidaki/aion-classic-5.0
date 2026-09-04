@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
 public final class ShoutEventHandler {
 
 	public static void onSee(NpcAI npcAI, Creature target) {
@@ -82,8 +81,6 @@ public final class ShoutEventHandler {
 		}
 	}
 
-	// TODO: Figure out what the difference between ATTACK_BEGIN and HELP; HELPCALL should make NPC run
-
 	/**
 	 * Called on Aggro when NPC is ready to attack
 	 */
@@ -95,7 +92,6 @@ public final class ShoutEventHandler {
 				ShoutEventType.ATTACK_BEGIN, null, 0);
 			NpcShoutsService.getInstance().shout(npc, creature, shouts, 0, false);
 			shouts.clear();
-			return;
 		}
 	}
 
@@ -103,7 +99,6 @@ public final class ShoutEventHandler {
 	 * Handle NPC attacked event (when damage was received or not)
 	 */
 	public static void onHelp(NpcAI npcAI, Creature creature) {
-		// TODO: [RR] change AI or randomise behaviour for "cowards" and "fanatics" ???
 		Npc npc = npcAI.getOwner();
 		if (npc.getAttackedCount() == 0) {
 			if (DataManager.NPC_SHOUT_DATA.hasAnyShout(npc.getPosition().getMapId(), npc.getNpcId(), ShoutEventType.ATTACKED)) {
@@ -124,8 +119,6 @@ public final class ShoutEventHandler {
 
 	/**
 	 * Handles attacks from NPC to NPC.
-	 * <br>
-	 * <b><font color='red'>IMPORTANT!!! </font>All such shouts must be of type SAY.</b>
 	 */
 	public static void onEnemyAttack(NpcAI npcAI, Creature target) {
 		final Npc npc = npcAI.getOwner();

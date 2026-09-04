@@ -4,8 +4,15 @@ import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.npcshout.ShoutEventType;
 
-
 public abstract class AITemplate extends AbstractAI {
+
+	public AITemplate() {
+		super();
+	}
+
+	public AITemplate(Creature owner) {
+		super(owner);
+	}
 
 	@Override
 	public void think() {
@@ -149,6 +156,9 @@ public abstract class AITemplate extends AbstractAI {
 		return AttackIntention.SIMPLE_ATTACK;
 	}
 	
+	@Override
 	public void ownerSkillUse(int skillId) {}
+
+	@Override
 	public void playerSkillUse(Player player, int skillId) {}
 }

@@ -1,5 +1,7 @@
 package com.aionemu.gameserver.ai.handler;
 
+import java.util.Collections;
+
 import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.ai.event.AIEventType;
 import com.aionemu.gameserver.controllers.attack.AttackResult;
@@ -17,24 +19,19 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.geo.GeoService;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import java.util.Collections;
-
-
+/**
+ * @author ATracer
+ */
 public class AggroEventHandler {
 
-	/**
-	 * @param npcAI
-	 * @param creature
-	 */
 	public static void onAggro(NpcAI npcAI, final Creature myTarget) {
 		final Npc owner = npcAI.getOwner();
-		// TODO move out?
 		if (myTarget.getAdminNeutral() == 1 || myTarget.getAdminNeutral() == 3 || myTarget.getAdminEnmity() == 1
-			|| myTarget.getAdminEnmity() == 3)
+			|| myTarget.getAdminEnmity() == 3) {
 			return;
+		}
 
 		PacketSendUtility.broadcastPacket(owner, new S_ATTACK(owner, myTarget, 0, 633, 0, Collections.singletonList(new AttackResult(0, AttackStatus.NORMALHIT))));
-
 		ThreadPoolManager.getInstance().schedule(new AggroNotifier(owner, myTarget, true), 500);
 	}
 
@@ -43,9 +40,7 @@ public class AggroEventHandler {
 		if (notMyTarget.isSupportFrom(owner) && MathUtil.isInRange(owner, notMyTarget, owner.getAggroRange())
 			&& GeoService.getInstance().canSee(owner, notMyTarget)) {
 			VisibleObject myTarget = notMyTarget.getTarget();
-			if (myTarget != null && myTarget instanceof Creature) {
-				Creature targetCreature = (Creature) myTarget;
-
+			if (myTarget instanceof Creature targetCreature) {
 				PacketSendUtility.broadcastPacket(owner, new S_ATTACK(owner, targetCreature, 0, 633, 0, Collections.singletonList(new AttackResult(0, AttackStatus.NORMALHIT))));
 				ThreadPoolManager.getInstance().schedule(new AggroNotifier(owner, targetCreature, false), 500);
 				return true;
@@ -61,8 +56,7 @@ public class AggroEventHandler {
 			return false;
 		}
 		VisibleObject target = attacker.getTarget();
-		if (target != null && target instanceof Player) {
-			Player playerTarget = (Player) target;
+		if (target instanceof Player playerTarget) {
 			if (!owner.isEnemy(playerTarget) && owner.isEnemy(attacker) && MathUtil.isInRange(owner, playerTarget, owner.getAggroRange()) && GeoService.getInstance().canSee(owner, attacker)) {
 				owner.getAggroList().startHate(attacker);
 				return true;
@@ -75,7 +69,7 @@ public class AggroEventHandler {
 
 		private Npc aggressive;
 		private Creature target;
-		private boolean broadcast;
+		private final boolean broadcast;
 
 		AggroNotifier(Npc aggressive, Creature target, boolean broadcast) {
 			this.aggressive = aggressive;
@@ -88,7 +82,6 @@ public class AggroEventHandler {
 			aggressive.getAggroList().addHate(target, 1);
 			if (broadcast) {
 				aggressive.getKnownList().doOnAllNpcs(new Visitor<Npc>() {
-
 					@Override
 					public void visit(Npc object) {
 						object.getAi().onCreatureEvent(AIEventType.CREATURE_NEEDS_SUPPORT, aggressive);
@@ -98,7 +91,5 @@ public class AggroEventHandler {
 			aggressive = null;
 			target = null;
 		}
-
 	}
-
 }

@@ -9,21 +9,17 @@ import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 
-
 public class ThinkEventHandler {
 
-	/**
-	 * @param npcAI
-	 */
 	public static void onThink(NpcAI npcAI) {
 		if (npcAI.isLogging()) {
 			AILogger.info(npcAI, "think");
 		}
-		if(npcAI.isAlreadyDead()){
+		if (npcAI.isAlreadyDead()) {
 			AILogger.info(npcAI, "can't think in dead state");
 			return;
 		}
-		if(!npcAI.tryLockThink()){
+		if (!npcAI.tryLockThink()) {
 			AILogger.info(npcAI, "can't acquire lock");
 			return;
 		}
@@ -46,15 +42,11 @@ public class ThinkEventHandler {
 					thinkIdle(npcAI);
 					break;
 			}
-		}
-		finally {
+		} finally {
 			npcAI.unlockThink();
 		}
 	}
 
-	/**
-	 * @param npcAI
-	 */
 	private static void thinkInInactiveRegion(NpcAI npcAI) {
 		if (!npcAI.canThink()) {
 			return;
@@ -71,35 +63,24 @@ public class ThinkEventHandler {
 					npcAI.onGeneralEvent(AIEventType.NOT_AT_HOME);
 				}
 		}
-
 	}
 
-	/**
-	 * @param npcAI
-	 */
 	public static void thinkAttack(NpcAI npcAI) {
 		Npc npc = npcAI.getOwner();
 		Creature mostHated = npc.getAggroList().getMostHated();
 		if (mostHated != null && !mostHated.getLifeStats().isAlreadyDead()) {
 			npcAI.onCreatureEvent(AIEventType.TARGET_CHANGED, mostHated);
-		}
-		else {
+		} else {
 			npc.getMoveController().recallPreviousStep();
 			npcAI.onGeneralEvent(AIEventType.ATTACK_FINISH);
 			npcAI.onGeneralEvent(npc.isAtSpawnLocation() ? AIEventType.BACK_HOME : AIEventType.NOT_AT_HOME);
 		}
 	}
 
-	/**
-	 * @param npcAI
-	 */
 	public static void thinkWalking(NpcAI npcAI) {
 		WalkManager.startWalking(npcAI);
 	}
 
-	/**
-	 * @param npcAI
-	 */
 	public static void thinkIdle(NpcAI npcAI) {
 		if (WalkManager.isWalking(npcAI)) {
 			boolean startedWalking = WalkManager.startWalking(npcAI);

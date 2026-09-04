@@ -1,5 +1,7 @@
 package com.aionemu.gameserver.ai;
 
+import java.util.Collection;
+
 import com.aionemu.gameserver.controllers.observer.DialogObserver;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -14,98 +16,107 @@ import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-import java.util.Collection;
-
 /**
- * Here will be placed some common AI actions. These methods have access to AI's owner
+ * Common AI actions for entities.
  * 
+ * @author ATracer
  */
+@SuppressWarnings("rawtypes")
 public class AIActions {
 
 	/**
 	 * Despawn and delete owner
 	 */
-	public static void deleteOwner(AbstractAI ai2) {
-		ai2.getOwner().getController().onDelete();
+	public static void deleteOwner(AbstractAI ai) {
+		ai.getOwner().getController().onDelete();
 	}
 
 	/**
 	 * Target will die with all notifications using ai's owner as the last attacker
 	 */
-	public static void killSilently(AbstractAI ai2, Creature target) {
-		target.getController().onDie(ai2.getOwner());
+	public static void killSilently(AbstractAI ai, Creature target) {
+		target.getController().onDie(ai.getOwner());
+	}
+
+	/**
+	 * AI's owner will die
+	 */
+	public static void dieSilently(AbstractAI ai) {
+		ai.getOwner().getController().onDie(ai.getOwner());
 	}
 
 	/**
 	 * AI's owner will die from specified attacker
 	 */
-	public static void dieSilently(AbstractAI ai2, Creature attacker) {
-		ai2.getOwner().getController().onDie(attacker);
+	public static void dieSilently(AbstractAI ai, Creature attacker) {
+		ai.getOwner().getController().onDie(attacker != null ? attacker : ai.getOwner());
 	}
 
 	/**
-	 * Use skill or add intention to use (will be implemented later)
+	 * Use skill or add intention to use
 	 */
-	public static void useSkill(AbstractAI ai2, int skillId) {
-		ai2.getOwner().getController().useSkill(skillId);
+	public static void useSkill(AbstractAI ai, int skillId) {
+		ai.getOwner().getController().useSkill(skillId);
 	}
 
 	/**
 	 * Effect will be created and applied to target with 100% success
 	 */
-	public static void applyEffect(AbstractAI ai2, SkillTemplate template, Creature target) {
-		Effect effect = new Effect(ai2.getOwner(), target, template, template.getLvl(), 0);
+	public static void applyEffect(AbstractAI ai, SkillTemplate template, Creature target) {
+		Effect effect = new Effect(ai.getOwner(), target, template, template.getLvl(), 0);
 		effect.setIsForcedEffect(true);
 		effect.initialize();
 		effect.applyEffect();
 	}
-	
-	public static void applyEffectSelf(AbstractAI ai2, int skillId) {
+
+	public static void applyEffectSelf(AbstractAI ai, int skillId) {
 		SkillTemplate st = DataManager.SKILL_DATA.getSkillTemplate(skillId);
-		Effect effect = new Effect(ai2.getOwner(), ai2.getOwner(), st, 1, st.getEffectsDuration(skillId));
-		effect.initialize();
-		effect.applyEffect();
-	}
-
-	public static void targetSelf(AbstractAI ai2) {
-		ai2.getOwner().setTarget(ai2.getOwner());
-	}
-
-	public static void targetCreature(AbstractAI ai2, Creature target) {
-		ai2.getOwner().setTarget(target);
-	}
-
-	public static void handleUseItemFinish(AbstractAI ai2, Player player) {
-		if (ai2.getPosition().isInstanceMap()) {
-			ai2.getPosition().getWorldMapInstance().getInstanceHandler().handleUseItemFinish(player, ((Npc) ai2.getOwner()));
-		} else {
-			ai2.getPosition().getWorld().getWorldMap(ai2.getPosition().getMapId()).getWorldHandler().handleUseItemFinish(player, ((Npc) ai2.getOwner()));
+		if (st != null) {
+			Effect effect = new Effect(ai.getOwner(), ai.getOwner(), st, 1, st.getEffectsDuration(skillId));
+			effect.initialize();
+			effect.applyEffect();
 		}
 	}
-	
-	public static void fireIndividualEvent(AbstractAI ai2, Npc target) {
-		target.getAi().onIndividualNpcEvent(ai2.getOwner());
+
+	public static void targetSelf(AbstractAI ai) {
+		ai.getOwner().setTarget(ai.getOwner());
 	}
 
-	public static void fireNpcKillInstanceEvent(AbstractAI ai2, Player player) {
-		ai2.getPosition().getWorldMapInstance().getInstanceHandler().onDie((Npc) ai2.getOwner());
+	public static void targetCreature(AbstractAI ai, Creature target) {
+		ai.getOwner().setTarget(target);
 	}
 
-	public static void registerDrop(AbstractAI ai2, Player player, Collection<Player> registeredPlayers) {
-		DropRegistrationService.getInstance().registerDrop((Npc) ai2.getOwner(), player, registeredPlayers);
+	public static void handleUseItemFinish(AbstractAI ai, Player player) {
+		if (ai.getPosition().isInstanceMap()) {
+			ai.getPosition().getWorldMapInstance().getInstanceHandler().handleUseItemFinish(player, ((Npc) ai.getOwner()));
+		} else {
+			ai.getPosition().getWorld().getWorldMap(ai.getPosition().getMapId()).getWorldHandler().handleUseItemFinish(player, ((Npc) ai.getOwner()));
+		}
 	}
 
-	public static void scheduleRespawn(NpcAI ai2) {
-		ai2.getOwner().getController().scheduleRespawn();
+	public static void fireIndividualEvent(AbstractAI ai, Npc target) {
+		target.getAi().onIndividualNpcEvent(ai.getOwner());
 	}
 
-	public static SelectDialogResult selectDialog(AbstractAI ai2, Player player, int questId, int dialogId) {
-		QuestEnv env = new QuestEnv(ai2.getOwner(), player, questId, dialogId);
+	public static void fireNpcKillInstanceEvent(AbstractAI ai, Player player) {
+		ai.getPosition().getWorldMapInstance().getInstanceHandler().onDie((Npc) ai.getOwner());
+	}
+
+	public static void registerDrop(AbstractAI ai, Player player, Collection<Player> registeredPlayers) {
+		DropRegistrationService.getInstance().registerDrop((Npc) ai.getOwner(), player, registeredPlayers);
+	}
+
+	public static void scheduleRespawn(NpcAI ai) {
+		ai.getOwner().getController().scheduleRespawn();
+	}
+
+	public static SelectDialogResult selectDialog(AbstractAI ai, Player player, int questId, int dialogId) {
+		QuestEnv env = new QuestEnv(ai.getOwner(), player, questId, dialogId);
 		boolean result = QuestEngine.getInstance().onDialog(env);
 		return new SelectDialogResult(result, env);
 	}
-	
-	public static final class SelectDialogResult{
+
+	public static final class SelectDialogResult {
 		private final boolean success;
 		private final QuestEnv env;
 
@@ -113,30 +124,30 @@ public class AIActions {
 			this.success = success;
 			this.env = env;
 		}
+
 		public boolean isSuccess() {
 			return success;
 		}
+
 		public QuestEnv getEnv() {
 			return env;
 		}
-		
 	}
 
 	/**
 	 * Add RequestResponseHandler to player with senderId equal to objectId of AI owner
 	 */
-	public static void addRequest(AbstractAI ai2, Player player, int requestId, AIRequest request,
-		Object... requestParams) {
-		addRequest(ai2, player, requestId, ai2.getObjectId(), request, requestParams);
+	public static void addRequest(AbstractAI ai, Player player, int requestId, AIRequest request, Object... requestParams) {
+		addRequest(ai, player, requestId, ai.getObjectId(), request, requestParams);
 	}
 
 	/**
 	 * Add RequestResponseHandler to player, which cancels request on movement
 	 */
-	public static void addRequest(AbstractAI ai2, Player player, int requestId, int senderId, int range, final AIRequest request,
+	public static void addRequest(AbstractAI ai, Player player, int requestId, int senderId, int range, final AIRequest request,
 		Object... requestParams) {
 
-		boolean requested = player.getResponseRequester().putRequest(requestId, new RequestResponseHandler(ai2.getOwner()) {
+		boolean requested = player.getResponseRequester().putRequest(requestId, new RequestResponseHandler(ai.getOwner()) {
 
 			@Override
 			public void denyRequest(Creature requester, Player responder) {
@@ -148,11 +159,11 @@ public class AIActions {
 				request.acceptRequest(requester, responder);
 			}
 		});
-		
+
 		if (requested) {
 			if (range > 0) {
-				player.getObserveController().addObserver(new DialogObserver(ai2.getOwner(), player, range) {
-
+				player.getObserveController().addObserver(new DialogObserver(ai.getOwner(), player, range) {
+					@Override
 					public void tooFar(Creature requester, Player responder) {
 						request.denyRequest(requester, responder);
 					}
@@ -161,11 +172,11 @@ public class AIActions {
 			PacketSendUtility.sendPacket(player, new S_ASK(requestId, senderId, range, requestParams));
 		}
 	}
-	
-    /**
-     * Add RequestResponseHandler to player
-     */
-     public static void addRequest(AbstractAI ai2, Player player, int requestId, int senderId, final AIRequest request, Object... requestParams) {
-         addRequest(ai2, player, requestId, senderId, 0, request, requestParams);
-     }
+
+	/**
+	 * Add RequestResponseHandler to player
+	 */
+	public static void addRequest(AbstractAI ai, Player player, int requestId, int senderId, final AIRequest request, Object... requestParams) {
+		addRequest(ai, player, requestId, senderId, 0, request, requestParams);
+	}
 }

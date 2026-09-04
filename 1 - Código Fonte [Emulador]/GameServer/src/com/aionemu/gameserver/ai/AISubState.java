@@ -1,6 +1,8 @@
 package com.aionemu.gameserver.ai;
 
-
+/**
+ * @author ATracer
+ */
 public enum AISubState {
 	NONE,
 	TALK,
@@ -8,5 +10,6 @@ public enum AISubState {
 	WALK_PATH,
 	WALK_RANDOM,
 	WALK_WAIT_GROUP,
-	FREEZE
+	FREEZE,
+	TARGET_LOST
 }

@@ -1,13 +1,16 @@
 package com.aionemu.gameserver.ai;
 
-import com.aionemu.commons.scripting.classlistener.ClassListener;
-import com.aionemu.commons.utils.ClassUtils;
+import java.lang.reflect.Modifier;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Modifier;
+import com.aionemu.commons.scripting.classlistener.ClassListener;
+import com.aionemu.gameserver.model.gameobjects.Creature;
 
-
+/**
+ * @author ATracer
+ */
 public class AIHandlerClassListener implements ClassListener {
 
 	private static final Logger log = LoggerFactory.getLogger(AIHandlerClassListener.class);
@@ -22,12 +25,8 @@ public class AIHandlerClassListener implements ClassListener {
 			if (!isValidClass(c))
 				continue;
 
-			if (ClassUtils.isSubclass(c, AbstractAI.class)) {
-				Class<? extends AbstractAI> tmp = (Class<? extends AbstractAI>) c;
-				if (tmp != null) {
-					AIEngine.getInstance().registerAI(tmp);
-				}
-			}
+			if (AbstractAI.class.isAssignableFrom(c))
+				AIEngine.getInstance().registerAI((Class<? extends AbstractAI>) c);
 		}
 	}
 

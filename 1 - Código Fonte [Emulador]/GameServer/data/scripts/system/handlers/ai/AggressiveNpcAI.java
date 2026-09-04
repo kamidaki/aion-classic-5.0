@@ -19,6 +19,14 @@ import com.aionemu.gameserver.skillengine.SkillEngine;
 @AIName("aggressive")
 public class AggressiveNpcAI extends GeneralNpcAI
 {
+	public AggressiveNpcAI() {
+		super();
+	}
+
+	public AggressiveNpcAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
     protected void handleCreatureSee(Creature creature) {
         CreatureEventHandler.onCreatureSee(this, creature);

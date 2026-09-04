@@ -7,7 +7,7 @@ import com.aionemu.gameserver.ai.event.AIEventType;
 import com.aionemu.gameserver.ai.manager.EmoteManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
-import com.aionemu.gameserver.network.aion.serverpackets.*;
+import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
@@ -17,7 +17,6 @@ public class FollowEventHandler
 		if (npcAI.setStateIfNot(AIState.FOLLOWING)) {
 			npcAI.getOwner().setTarget(creature);
 			EmoteManager.emoteStartFollowing(npcAI.getOwner());
-			///You start to guard the target.
 			PacketSendUtility.npcSendPacketTime(npcAI.getOwner(), S_MESSAGE_CODE.STR_MSG_ESCORT_Start, 0);
 		}
 	}
@@ -39,13 +38,8 @@ public class FollowEventHandler
 	public static boolean isInRange(AbstractAI ai, VisibleObject object) {
 		if (object == null) {
 			return false;
-		} if (object.isInInstance()) {
-			return MathUtil.isIn3dRange(ai.getOwner(), object, 3);
-		} else if (ai.getOwner().getLifeStats().getHpPercentage() < 100) {
-			return MathUtil.isIn3dRange(ai.getOwner(), object, 3);
-		} else {
-			return MathUtil.isIn3dRange(ai.getOwner(), object, 3);
 		}
+		return MathUtil.isIn3dRange(ai.getOwner(), object, 3);
 	}
 	
 	public static void stopFollow(NpcAI npcAI, Creature creature) {

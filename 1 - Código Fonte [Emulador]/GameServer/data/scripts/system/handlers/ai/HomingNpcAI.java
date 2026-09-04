@@ -1,5 +1,7 @@
 package ai;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.ai.AttackIntention;
 import com.aionemu.gameserver.ai.manager.AttackManager;
@@ -15,6 +17,14 @@ import com.aionemu.gameserver.model.gameobjects.Homing;
 @AIName("homing")
 public class HomingNpcAI extends GeneralNpcAI
 {
+	public HomingNpcAI() {
+		super();
+	}
+
+	public HomingNpcAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	public void think() {
 	}

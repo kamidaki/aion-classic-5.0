@@ -1,5 +1,7 @@
 package ai;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.ai.poll.AIAnswer;
@@ -20,6 +22,14 @@ import java.util.concurrent.Future;
 @AIName("servant")
 public class ServantNpcAI extends GeneralNpcAI
 {
+	public ServantNpcAI() {
+		super();
+	}
+
+	public ServantNpcAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	public void think() {
 	}

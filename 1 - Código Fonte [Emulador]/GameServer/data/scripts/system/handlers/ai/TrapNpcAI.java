@@ -1,5 +1,7 @@
 package ai;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.ai.NpcAI;
@@ -23,6 +25,14 @@ import java.util.concurrent.Future;
 @AIName("trap")
 public class TrapNpcAI extends NpcAI
 {
+	public TrapNpcAI() {
+		super();
+	}
+
+	public TrapNpcAI(Npc owner) {
+		super(owner);
+	}
+
 	private Future<?> despawnTask;
 	
 	@Override

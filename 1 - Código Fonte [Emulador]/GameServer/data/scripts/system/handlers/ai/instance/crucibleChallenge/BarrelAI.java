@@ -1,5 +1,7 @@
 package ai.instance.crucibleChallenge;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.ai.AIActions;
@@ -11,6 +13,14 @@ import com.aionemu.gameserver.ai.AIActions;
 @AIName("barrel")
 public class BarrelAI extends NpcAI
 {
+	public BarrelAI() {
+		super();
+	}
+
+	public BarrelAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	protected void handleDied() {
 		super.handleDied();

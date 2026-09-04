@@ -41,10 +41,10 @@ public class AttackManager
 		} if (!npcAI.canThink()) {
 			return;
 		} if (npcAI.getOwner().getGameStats().getAttackRange().getCurrent() == 0) {
-            attackIntention = AttackIntention.SKILL_ATTACK;
-        } if (DataManager.SKILL_DATA.getSkillTemplate(npcAI.getSkillId()) == null) {
-            attackIntention = AttackIntention.SIMPLE_ATTACK;
-        } switch (attackIntention) {
+			attackIntention = AttackIntention.SKILL_ATTACK;
+		} if (DataManager.SKILL_DATA.getSkillTemplate(npcAI.getSkillId()) == null) {
+			attackIntention = AttackIntention.SIMPLE_ATTACK;
+		} switch (attackIntention) {
 			case SIMPLE_ATTACK:
 				SimpleAttackManager.performAttack(npcAI, delay);
 			break;
@@ -55,7 +55,7 @@ public class AttackManager
 				npcAI.think();
 			break;
 			default:
-            break;
+			break;
 		}
 	}
 	

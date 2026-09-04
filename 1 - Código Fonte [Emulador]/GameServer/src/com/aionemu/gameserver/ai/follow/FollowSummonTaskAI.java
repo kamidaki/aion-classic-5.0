@@ -12,6 +12,9 @@ import com.aionemu.gameserver.utils.MathUtil;
 
 import java.util.concurrent.Future;
 
+/**
+ * @author xTz
+ */
 public class FollowSummonTaskAI implements Runnable {
 
 	private Creature target;
@@ -26,16 +29,20 @@ public class FollowSummonTaskAI implements Runnable {
 		this.target = target;
 		this.summon = summon;
 		this.master = summon.getMaster();
-		task = summon.getMaster().getController().getTask(TaskId.SUMMON_FOLLOW);
+		if (this.master != null && this.master.getController() != null) {
+			task = this.master.getController().getTask(TaskId.SUMMON_FOLLOW);
+		}
 		setLeadingCoordinates();
 	}
 
 	private void setLeadingCoordinates() {
-		targetX = target.getX();
-		targetY = target.getY();
-		targetZ = target.getZ();
+		if (target != null) {
+			targetX = target.getX();
+			targetY = target.getY();
+			targetZ = target.getZ();
+		}
 	}
-	
+
 	@Override
 	public void run() {
 		if (target == null || summon == null || master == null) {
@@ -53,8 +60,7 @@ public class FollowSummonTaskAI implements Runnable {
 				setLeadingCoordinates();
 				onOutOfTargetRange();
 			}
-		}
-		else if (!master.equals(target)) {
+		} else if (!master.equals(target)) {
 			onDestination();
 		}
 	}

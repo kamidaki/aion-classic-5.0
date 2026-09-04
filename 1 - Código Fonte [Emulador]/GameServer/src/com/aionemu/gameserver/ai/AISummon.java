@@ -11,6 +11,14 @@ import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 @AIName("summon")
 public class AISummon extends AITemplate {
 
+	public AISummon() {
+		super();
+	}
+
+	public AISummon(Summon owner) {
+		super(owner);
+	}
+
 	@Override
 	public Summon getOwner() {
 		return (Summon) super.getOwner();

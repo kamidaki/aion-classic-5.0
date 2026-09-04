@@ -19,6 +19,14 @@ import java.util.List;
 @AIName("naia")
 public class NaiaAI extends GeneralNpcAI
 {
+	public NaiaAI() {
+		super();
+	}
+
+	public NaiaAI(Npc owner) {
+		super(owner);
+	}
+
 	boolean saidCannon = false;
 	boolean saidQydro = false;
 	

@@ -30,7 +30,7 @@
 | Ordem | Módulo / Diretório | Documento de Rastreamento | Status | Commit |
 | :---: | :--- | :--- | :---: | :---: |
 | **01** | `controllers` | [`MIGRATION_CONTROLLERS.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_CONTROLLERS.md) | `[CONCLUÍDO]` | `5d8d0b764` |
-| **02** | `ai` | `MIGRATION_AI.md` | `[PENDENTE]` | - |
+| **02** | `ai` | [`MIGRATION_AI.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_AI.md) | `[CONCLUÍDO]` | Em commit |
 | **03** | `geoEngine` | `MIGRATION_GEOENGINE.md` | `[PENDENTE]` | - |
 | **04** | `model` | `MIGRATION_MODEL.md` | `[PENDENTE]` | - |
 | **05** | `questEngine` | `MIGRATION_QUESTENGINE.md` | `[PENDENTE]` | - |

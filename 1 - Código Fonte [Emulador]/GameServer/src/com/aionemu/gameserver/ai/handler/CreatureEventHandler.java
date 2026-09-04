@@ -12,16 +12,15 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.geo.GeoService;
 
-
+/**
+ * @author ATracer
+ */
 public class CreatureEventHandler {
 
-	/**
-	 * @param npcAI
-	 * @param creature
-	 */
 	public static void onCreatureMoved(NpcAI npcAI, Creature creature) {
 		checkAggro(npcAI, creature);
-		if (creature instanceof Player player) {			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
+		if (creature instanceof Player player) {
+			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
 			if (npcAI.getOwner().getPosition().isInstanceMap()) {
 				npcAI.getOwner().getPosition().getWorldMapInstance().getInstanceHandler().checkDistance(player, npcAI.getOwner());
 			} else {
@@ -30,13 +29,10 @@ public class CreatureEventHandler {
 		}
 	}
 
-	/**
-	 * @param npcAI
-	 * @param creature
-	 */
 	public static void onCreatureSee(NpcAI npcAI, Creature creature) {
 		checkAggro(npcAI, creature);
-		if (creature instanceof Player player) {			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
+		if (creature instanceof Player player) {
+			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
 			if (npcAI.getOwner().getPosition().isInstanceMap()) {
 				npcAI.getOwner().getPosition().getWorldMapInstance().getInstanceHandler().checkDistance(player, npcAI.getOwner());
 			} else {
@@ -45,25 +41,24 @@ public class CreatureEventHandler {
 		}
 	}
 
-
-	/**
-	 * @param ai
-	 * @param creature
-	 */
 	protected static void checkAggro(NpcAI ai, Creature creature) {
 		Npc owner = ai.getOwner();
-		
-		if (ai.isInState(AIState.FIGHT))
-			return;
-		
-		if (creature.getLifeStats().isAlreadyDead())
-			return;
 
-		if (!owner.canSee(creature))
+		if (ai.isInState(AIState.FIGHT)) {
 			return;
+		}
 
-		if (!owner.getActiveRegion().isMapRegionActive())
+		if (creature.getLifeStats().isAlreadyDead()) {
 			return;
+		}
+
+		if (!owner.canSee(creature)) {
+			return;
+		}
+
+		if (!owner.getActiveRegion().isMapRegionActive()) {
+			return;
+		}
 
 		boolean isInAggroRange = false;
 		if (ai.poll(AIQuestion.CAN_SHOUT)) {
@@ -76,10 +71,12 @@ public class CreatureEventHandler {
 		}
 		if (!ai.isInState(AIState.FIGHT) && (isInAggroRange || MathUtil.isIn3dRange(owner, creature, owner.getObjectTemplate().getAggroRange()))) {
 			if (owner.isAggressiveTo(creature) && GeoService.getInstance().canSee(owner, creature)) {
-				if (!ai.isInState(AIState.RETURNING))
+				if (!ai.isInState(AIState.RETURNING)) {
 					ai.getOwner().getMoveController().storeStep();
-				if (ai.canThink())
+				}
+				if (ai.canThink()) {
 					ai.onCreatureEvent(AIEventType.CREATURE_AGGRO, creature);
+				}
 			}
 		}
 	}

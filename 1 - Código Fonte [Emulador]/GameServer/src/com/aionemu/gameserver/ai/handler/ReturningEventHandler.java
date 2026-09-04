@@ -8,17 +8,22 @@ import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.geometry.Point3D;
 
-public class ReturningEventHandler
-{
+/**
+ * @author ATracer
+ */
+public class ReturningEventHandler {
+
 	public static void onNotAtHome(NpcAI npcAI) {
 		if (npcAI.isLogging()) {
 			AILogger.info(npcAI, "onNotAtHome");
-		} if (npcAI.setStateIfNot(AIState.RETURNING)) {
+		}
+		if (npcAI.setStateIfNot(AIState.RETURNING)) {
 			if (npcAI.isLogging()) {
 				AILogger.info(npcAI, "returning and restoring");
 			}
 			EmoteManager.emoteStartReturning(npcAI.getOwner());
-		} if (npcAI.isInState(AIState.RETURNING)) {
+		}
+		if (npcAI.isInState(AIState.RETURNING)) {
 			Npc npc = npcAI.getOwner();
 			if (npc.hasWalkRoutes()) {
 				WalkManager.startWalking(npcAI);
@@ -28,7 +33,7 @@ public class ReturningEventHandler
 			}
 		}
 	}
-	
+
 	public static void onBackHome(NpcAI npcAI) {
 		if (npcAI.isLogging()) {
 			AILogger.info(npcAI, "onBackHome");

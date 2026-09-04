@@ -18,7 +18,6 @@ import com.aionemu.gameserver.world.geo.GeoService;
 
 import java.util.List;
 
-
 public class WalkManager {
 
 	private static final int WALK_RANDOM_RANGE = 3;
@@ -27,16 +26,16 @@ public class WalkManager {
 	 * @param npcAI
 	 */
 	public static boolean startWalking(NpcAI npcAI) {
-        npcAI.setStateIfNot(AIState.WALKING);
-        Npc owner = npcAI.getOwner();
-        WalkerTemplate template = DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId());
-        if (template != null && npcAI.setSubStateIfNot(AISubState.WALK_PATH)) {
-            startRouteWalking(npcAI, owner, template);
-        } else {
-            return startRandomWalking(npcAI, owner);
-        }
-        return true;
-    }
+		npcAI.setStateIfNot(AIState.WALKING);
+		Npc owner = npcAI.getOwner();
+		WalkerTemplate template = DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId());
+		if (template != null && npcAI.setSubStateIfNot(AISubState.WALK_PATH)) {
+			startRouteWalking(npcAI, owner, template);
+		} else {
+			return startRandomWalking(npcAI, owner);
+		}
+		return true;
+	}
 
 	/**
 	 * @param npcAI

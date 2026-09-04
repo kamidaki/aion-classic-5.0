@@ -24,10 +24,17 @@ import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.knownlist.KnownList;
 
-
 @AIName("npc")
 public class NpcAI extends AITemplate {
-	
+
+	public NpcAI() {
+		super();
+	}
+
+	public NpcAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	public Npc getOwner() {
 		return (Npc) super.getOwner();
@@ -64,7 +71,7 @@ public class NpcAI extends AITemplate {
 	protected AggroList getAggroList() {
 		return getOwner().getAggroList();
 	}
-	
+
 	protected NpcSkillList getSkillList() {
 		return getOwner().getSkillList();
 	}
@@ -87,7 +94,7 @@ public class NpcAI extends AITemplate {
 	protected int getCreatorId() {
 		return getOwner().getCreatorId();
 	}
-	
+
 	protected boolean isInRange(VisibleObject object, int range) {
 		return MathUtil.isIn3dRange(getOwner(), object, range);
 	}
@@ -157,7 +164,6 @@ public class NpcAI extends AITemplate {
 
 	@Override
 	public boolean isMayShout() {
-		// temp fix, we shouldn't rely on it because of inheritance
 		if (AIConfig.SHOUTS_ENABLE)
 			return getOwner().mayShout(0);
 		return false;
@@ -167,4 +173,6 @@ public class NpcAI extends AITemplate {
 		return getOwner().getGameStats().getMovementSpeedFloat() > 0 && !this.isInSubState(AISubState.FREEZE);
 	}
 
+	public void handleCreatureDetected(Creature creature) {
+	}
 }

@@ -15,6 +15,14 @@ import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 @AIName("surkana")
 public class SurkanaAI extends OneDmgPerHitAI
 {
+	public SurkanaAI() {
+		super();
+	}
+
+	public SurkanaAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	protected void handleAttack(Creature creature) {
 		super.handleAttack(creature);
