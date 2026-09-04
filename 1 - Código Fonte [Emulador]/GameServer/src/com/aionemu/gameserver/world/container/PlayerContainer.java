@@ -3,12 +3,13 @@ package com.aionemu.gameserver.world.container;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.world.exceptions.DuplicateAionObjectException;
 import com.aionemu.gameserver.world.knownlist.Visitor;
-import javolution.util.FastMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Container for storing Players by objectId and name.
@@ -21,11 +22,11 @@ public class PlayerContainer implements Iterable<Player> {
 	/**
 	 * Map<ObjectId,Player>
 	 */
-	private final FastMap<Integer, Player> playersById = new FastMap<Integer, Player>().shared();
+	private final Map<Integer, Player> playersById = new ConcurrentHashMap<>();
 	/**
 	 * Map<Name,Player>
 	 */
-	private final FastMap<String, Player> playersByName = new FastMap<String, Player>().shared();
+	private final Map<String, Player> playersByName = new ConcurrentHashMap<>();
 
 	/**
 	 * Add Player to this Container.
@@ -82,17 +83,17 @@ public class PlayerContainer implements Iterable<Player> {
 	@SuppressWarnings("unused")
 	public void doOnAllPlayers(Visitor<Player> visitor) {
 		try {
-			for (FastMap.Entry<Integer, Player> e = playersById.head(), mapEnd = playersById.tail(); (e = e.getNext()) != mapEnd;) {
-				Player player = e.getValue();
+			for (Player player : playersById.values()) {
 				if (player != null) {
 					visitor.visit(player);
 				}
 			}
 		}
 		catch (Exception ex) {
-			log.error("Exception when running visitor on all players" + ex);
+			log.error("Exception when running visitor on all players", ex);
 		}
 	}
+
 
 	public Collection<Player> getAllPlayers() {
 		return playersById.values();

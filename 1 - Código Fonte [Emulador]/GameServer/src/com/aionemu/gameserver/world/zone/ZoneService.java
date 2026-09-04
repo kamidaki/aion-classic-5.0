@@ -22,12 +22,12 @@ import com.aionemu.gameserver.model.templates.zone.ZoneTemplate;
 import com.aionemu.gameserver.services.ShieldService;
 import com.aionemu.gameserver.world.zone.handler.*;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import javolution.util.FastMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 
@@ -36,10 +36,11 @@ public final class ZoneService implements GameEngine {
 	private static final Logger log = LoggerFactory.getLogger(ZoneService.class);
 	private TIntObjectHashMap<List<ZoneInfo>> zoneByMapIdMap;
 	private final Map<ZoneName, Class<? extends ZoneHandler>> handlers = new HashMap<ZoneName, Class<? extends ZoneHandler>>();
-	private final FastMap<ZoneName, ZoneHandler> collidableHandlers = new FastMap<ZoneName, ZoneHandler>();
+	private final Map<ZoneName, ZoneHandler> collidableHandlers = new ConcurrentHashMap<>();
 	public static final ZoneHandler DUMMY_ZONE_HANDLER = new GeneralZoneHandler();
 	private static ScriptManager scriptManager = new ScriptManager();
 	public static final File ZONE_DESCRIPTOR_FILE = new File("./data/scripts/system/zonehandlers.xml");
+
 
 	private ZoneService() {
 		this.zoneByMapIdMap = DataManager.ZONE_DATA.getZones();

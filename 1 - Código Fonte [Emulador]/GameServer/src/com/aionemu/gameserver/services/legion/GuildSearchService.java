@@ -12,9 +12,12 @@ import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.network.aion.serverpackets.need.S_USER_APPLY_JOIN_GUILD_INFO;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
-import javolution.util.FastList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GuildSearchService {
 
@@ -43,7 +46,7 @@ public class GuildSearchService {
     }
 
     public void handleLegionSearch(Player player, int type, String legionName) {
-        FastList<Legion> matchingLegions = new FastList<Legion>();
+        List<Legion> matchingLegions = new ArrayList<>();
         switch (type) {
             case 0:
                 matchingLegions = LegionService.getInstance().getAllCachedLegions().getAllLegions();
@@ -58,6 +61,7 @@ public class GuildSearchService {
         }
         PacketSendUtility.sendPacket(player, new S_GUILD_LIST(matchingLegions));
     }
+
 
     public void updateLegionJoinSettings(Player player, String description, int joinType, int minLevel, int mainActivity) {
         Legion legion = player.getLegion();

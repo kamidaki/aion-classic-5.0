@@ -19,12 +19,12 @@ import com.aionemu.gameserver.world.zone.ZoneInstance;
 import com.aionemu.gameserver.world.zone.ZoneName;
 import com.aionemu.gameserver.world.zone.ZoneService;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import javolution.util.FastList;
-import javolution.util.FastMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Future;
 
 /**
@@ -53,14 +53,14 @@ public abstract class WorldMapInstance {
 	/**
 	 * All objects spawned in this world map instance
 	 */
-	private final Map<Integer, VisibleObject> worldMapObjects = new FastMap<Integer, VisibleObject>().shared();
+	private final Map<Integer, VisibleObject> worldMapObjects = new ConcurrentHashMap<>();
 
 	/**
 	 * All players spawned in this world map instance
 	 */
-	private final FastMap<Integer, Player> worldMapPlayers = new FastMap<Integer, Player>().shared();
+	private final Map<Integer, Player> worldMapPlayers = new ConcurrentHashMap<>();
 
-	private final Set<Integer> registeredObjects = Collections.newSetFromMap(new FastMap<Integer, Boolean>().shared());
+	private final Set<Integer> registeredObjects = ConcurrentHashMap.newKeySet();
 
 	private PlayerGroup registeredGroup = null;
 
@@ -71,7 +71,7 @@ public abstract class WorldMapInstance {
 	 */
 	private int instanceId;
 
-	private final FastList<Integer> questIds = new FastList<Integer>();
+	private final List<Integer> questIds = new CopyOnWriteArrayList<>();
 
 	private InstanceHandler instanceHandler;
 	
@@ -403,7 +403,7 @@ public abstract class WorldMapInstance {
 		return worldMapPlayers.size();
 	}
 
-	public FastList<Integer> getQuestIds() {
+	public List<Integer> getQuestIds() {
 		return questIds;
 	}
 

@@ -1,6 +1,6 @@
 # AION 4.8 RETAIL → AION CLASSIC 5.0 EU — ROADMAP MESTRE DE MIGRAÇÃO
 
-> **Status Geral**: `FASES 1 A 9 CONCLUÍDAS | AGUARDANDO FASE 10 (WORLD)`  
+> **Status Geral**: `FASES 1 A 10 CONCLUÍDAS | AGUARDANDO FASE 11 (UTILS)`  
 > **Ambiente**: Java 25 LTS (Oracle JDK 25.0.2) | Maven 3.9.9 | MySQL 9.5.0  
 > **Referência Estrutural**: AION 4.8 Retail (`5 - Documentação e Referências/3 - JAVA EMU - 4.8 RETAIL`)  
 > **Implementação Alvo**: AION Classic 5.0 EU (`1 - Código Fonte [Emulador]`)  
@@ -37,8 +37,8 @@
 | **06** | `restrictions` | [`MIGRATION_RESTRICTIONS.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_RESTRICTIONS.md) | `[CONCLUÍDO]` | `235f0b27a` |
 | **07** | `skillengine` | [`MIGRATION_SKILLENGINE.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_SKILLENGINE.md) | `[CONCLUÍDO]` | `10911a78a` |
 | **08** | `spawnengine` | [`MIGRATION_SPAWNENGINE.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_SPAWNENGINE.md) | `[CONCLUÍDO]` | `3f7ef22d1` |
-| **09** | `taskmanager` | [`MIGRATION_TASKMANAGER.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_TASKMANAGER.md) | `[CONCLUÍDO]` | `f1c0fb43f` |
-| **10** | `world` | `MIGRATION_WORLD.md` | `[PENDENTE]` | - |
+| **09** | `taskmanager` | [`MIGRATION_TASKMANAGER.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_TASKMANAGER.md) | `[CONCLUÍDO]` | `ee8400370` |
+| **10** | `world` | [`MIGRATION_WORLD.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_WORLD.md) | `[CONCLUÍDO]` | `4877e49e8` |
 | **11** | `utils` | `MIGRATION_UTILS.md` | `[PENDENTE]` | - |
 | **12** | `services` | `MIGRATION_SERVICES.md` | `[PENDENTE]` | - |
 | **13** | `data/handlers/ai/quests` e `data/handlers/ai/worlds` | `MIGRATION_DATA_HANDLERS.md` | `[PENDENTE]` | - |

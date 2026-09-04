@@ -5,11 +5,11 @@ import com.aionemu.gameserver.instance.handlers.InstanceHandler;
 import com.aionemu.gameserver.model.templates.world.WorldMapTemplate;
 import com.aionemu.gameserver.world.handlers.WorldHandler;
 import com.aionemu.gameserver.world.zone.ZoneAttributes;
-import javolution.util.FastMap;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -26,7 +26,8 @@ public class WorldMap {
 	/**
 	 * List of instances.
 	 */
-	private Map<Integer, WorldMapInstance> instances = new FastMap<Integer, WorldMapInstance>().shared();
+	private Map<Integer, WorldMapInstance> instances = new ConcurrentHashMap<>();
+
 
 	/** World to which belongs this WorldMap */
 	private World world;

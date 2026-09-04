@@ -1,14 +1,16 @@
 package com.aionemu.gameserver.world.zone;
 
-import javolution.util.FastMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class ZoneName
 {
 	private final static Logger log = LoggerFactory.getLogger(ZoneName.class);
 	
-	private static final FastMap<String, ZoneName> zoneNames = new FastMap<String, ZoneName>();
+	private static final Map<String, ZoneName> zoneNames = new ConcurrentHashMap<>();
 	public static final String NONE = "NONE";
 	public static final String ABYSS_CASTLE = "_ABYSS_CASTLE_AREA_";
 	public static final String IDARENA = "IDARENA_ITEMUSEAREA_ALL";
@@ -37,15 +39,10 @@ public final class ZoneName
 		return _name.hashCode();
 	}
 	
-	public static final ZoneName createOrGet(String name) {
-		name = name.toUpperCase();
-		if (zoneNames.containsKey(name)) {
-			return zoneNames.get(name);
-		}
-		ZoneName newZone = new ZoneName(name);
-		zoneNames.put(name, newZone);
-		return newZone;
+	public static ZoneName createOrGet(String name) {
+		return zoneNames.computeIfAbsent(name.toUpperCase(), ZoneName::new);
 	}
+
 	
 	public static final int getId(String name) {
 		name = name.toUpperCase();

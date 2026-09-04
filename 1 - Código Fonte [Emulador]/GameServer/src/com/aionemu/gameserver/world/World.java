@@ -18,23 +18,24 @@ import com.aionemu.gameserver.world.exceptions.DuplicateAionObjectException;
 import com.aionemu.gameserver.world.exceptions.WorldMapNotExistException;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import javolution.util.FastList;
-import javolution.util.FastMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class World
 {
 	private static final Logger log = LoggerFactory.getLogger(World.class);
 	private final PlayerContainer allPlayers;
-	private final FastMap<Integer, VisibleObject> allObjects;
+	private final Map<Integer, VisibleObject> allObjects;
 	private final TIntObjectHashMap<Collection<SiegeNpc>> localSiegeNpcs = new TIntObjectHashMap<Collection<SiegeNpc>>();
 
-	private final FastMap<Integer, Npc> allNpcs;
+	private final Map<Integer, Npc> allNpcs;
 	private final TIntObjectHashMap<WorldMap> worldMaps;
 	
 	/**
@@ -42,8 +43,8 @@ public class World
 	 */
 	private World() {
 		allPlayers = new PlayerContainer();
-		allObjects = new FastMap<Integer, VisibleObject>().shared();
-		allNpcs = new FastMap<Integer, Npc>().shared();
+		allObjects = new ConcurrentHashMap<>();
+		allNpcs = new ConcurrentHashMap<>();
 		worldMaps = new TIntObjectHashMap<WorldMap>();
 		for (WorldMapTemplate template : DataManager.WORLD_MAPS_DATA) {
 			worldMaps.put(template.getMapId(), new WorldMap(template, this));
@@ -72,7 +73,7 @@ public class World
 					if (localSiegeNpcs.containsKey(siegeNpc.getSiegeId())) {
 						npcs = localSiegeNpcs.get(siegeNpc.getSiegeId());
 					} else {
-						npcs = new FastList<SiegeNpc>().shared();
+						npcs = new ConcurrentLinkedQueue<>();
 						localSiegeNpcs.put(siegeNpc.getSiegeId(), npcs);
 					}
 				}
@@ -359,8 +360,7 @@ public class World
 	 */
 	public void doOnAllObjects(Visitor<VisibleObject> visitor) {
 		try {
-			for (FastMap.Entry<Integer, VisibleObject> e = allObjects.head(), mapEnd = allObjects.tail(); (e = e.getNext()) != mapEnd;) {
-				VisibleObject object = e.getValue();
+			for (VisibleObject object : allObjects.values()) {
 				if (object != null) {
 					visitor.visit(object);
 				}

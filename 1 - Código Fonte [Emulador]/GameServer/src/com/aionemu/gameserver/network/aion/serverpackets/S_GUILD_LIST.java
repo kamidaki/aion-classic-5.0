@@ -4,15 +4,17 @@ import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.services.legion.LegionService;
-import javolution.util.FastList;
+
+import java.util.List;
 
 public class S_GUILD_LIST extends AionServerPacket {
 
-    private FastList<Legion> legions;
+    private final List<Legion> legions;
 
-    public S_GUILD_LIST(FastList<Legion> legions) {
+    public S_GUILD_LIST(List<Legion> legions) {
         this.legions = legions;
     }
+
 
     @Override
     protected void writeImpl(AionConnection con) {

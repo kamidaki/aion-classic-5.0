@@ -9,18 +9,18 @@ import com.aionemu.gameserver.model.templates.zone.ZoneTemplate;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.zone.handler.AdvencedZoneHandler;
 import com.aionemu.gameserver.world.zone.handler.ZoneHandler;
-import javolution.util.FastMap;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ZoneInstance implements Comparable<ZoneInstance> {
 
 	private ZoneInfo template;
 	private int mapId;
-	private Map<Integer, Creature> creatures = new FastMap<Integer, Creature>();
+	private final Map<Integer, Creature> creatures = new ConcurrentHashMap<>();
+
 	protected List<ZoneHandler> handlers = new ArrayList<ZoneHandler>();
 
 	public ZoneInstance(int mapId, ZoneInfo template) {
