@@ -163,10 +163,10 @@ public class BoundingSphere extends BoundingVolume {
 	 *          A variable simulating pointer arithmatic from C++, and offset in <code>points</code>.
 	 */
 	private void recurseMini(FloatBuffer points, int p, int b, int ap) {
-		Vector3f tempA = Vector3f.newInstance();
-		Vector3f tempB = Vector3f.newInstance();
-		Vector3f tempC = Vector3f.newInstance();
-		Vector3f tempD = Vector3f.newInstance();
+		Vector3f tempA = new Vector3f();
+		Vector3f tempB = new Vector3f();
+		Vector3f tempC = new Vector3f();
+		Vector3f tempD = new Vector3f();
 
 		try {
 			switch (b) {
@@ -211,10 +211,9 @@ public class BoundingSphere extends BoundingVolume {
 			}
 		}
 		finally {
-			Vector3f.recycle(tempA);
-			Vector3f.recycle(tempB);
-			Vector3f.recycle(tempC);
-			Vector3f.recycle(tempD);
+
+
+
 		}
 	}
 
@@ -449,11 +448,10 @@ public class BoundingSphere extends BoundingVolume {
 
 			case AABB: {
 				BoundingBox box = (BoundingBox) volume;
-				Vector3f radVect = Vector3f.newInstance();
+				Vector3f radVect = new Vector3f();
 				radVect.set(box.xExtent, box.yExtent, box.zExtent);
 				Vector3f temp_center = box.center;
 				float len = radVect.length();
-				Vector3f.recycle(radVect);
 				return merge(len, temp_center, this);
 			}
 
@@ -504,7 +502,7 @@ public class BoundingSphere extends BoundingVolume {
 	// }
 
 	private BoundingVolume merge(float temp_radius, Vector3f temp_center, BoundingSphere rVal) {
-		Vector3f vect1 = Vector3f.newInstance();
+		Vector3f vect1 = new Vector3f();
 		Vector3f diff = temp_center.subtract(center, vect1);
 		float lengthSquared = diff.lengthSquared();
 		float radiusDiff = temp_radius - radius;
@@ -513,7 +511,6 @@ public class BoundingSphere extends BoundingVolume {
 
 		if (fRDiffSqr >= lengthSquared) {
 			if (radiusDiff <= 0.0f) {
-				Vector3f.recycle(vect1);
 				return this;
 			}
 
@@ -523,7 +520,6 @@ public class BoundingSphere extends BoundingVolume {
 			}
 			rCenter.set(temp_center);
 			rVal.setRadius(temp_radius);
-			Vector3f.recycle(vect1);
 			return rVal;
 		}
 
@@ -542,7 +538,6 @@ public class BoundingSphere extends BoundingVolume {
 		}
 
 		rVal.setRadius(0.5f * (length + radius + temp_radius));
-		Vector3f.recycle(vect1);
 		return rVal;
 	}
 
@@ -594,11 +589,10 @@ public class BoundingSphere extends BoundingVolume {
 	public boolean intersectsSphere(BoundingSphere bs) {
 		assert Vector3f.isValidVector(center) && Vector3f.isValidVector(bs.center);
 
-		Vector3f vect1 = Vector3f.newInstance();
+		Vector3f vect1 = new Vector3f();
 		Vector3f diff = center.subtract(bs.center, vect1);
 		float rsum = getRadius() + bs.getRadius();
 		boolean eq = (diff.dot(diff) <= rsum * rsum);
-		Vector3f.recycle(vect1);
 		return eq;
 	}
 
@@ -623,23 +617,20 @@ public class BoundingSphere extends BoundingVolume {
 	public boolean intersects(Ray ray) {
 		assert Vector3f.isValidVector(center);
 
-		Vector3f vect1 = Vector3f.newInstance();
+		Vector3f vect1 = new Vector3f();
 		Vector3f diff = vect1.set(ray.getOrigin()).subtractLocal(center);
 		float radiusSquared = getRadius() * getRadius();
 		float a = diff.dot(diff) - radiusSquared;
 		if (a <= 0.0) {
 			// in sphere
-			Vector3f.recycle(vect1);
 			return true;
 		}
 
 		// outside sphere
 		float b = ray.getDirection().dot(diff);
 		if (b >= 0.0) {
-			Vector3f.recycle(vect1);
 			return false;
 		}
-		Vector3f.recycle(vect1);
 		return b * b >= a;
 	}
 
@@ -648,7 +639,7 @@ public class BoundingSphere extends BoundingVolume {
 	 * @see com.jme.bounding.BoundingVolume#intersectsWhere(com.jme.math.Ray)
 	 */
 	public int collideWithRay(Ray ray, CollisionResults results) {
-		Vector3f vect1 = Vector3f.newInstance();
+		Vector3f vect1 = new Vector3f();
 		Vector3f diff = vect1.set(ray.getOrigin()).subtractLocal(center);
 		float a = diff.dot(diff) - (getRadius() * getRadius());
 		float a1, discr, root;
@@ -663,19 +654,16 @@ public class BoundingSphere extends BoundingVolume {
 
 			CollisionResult result = new CollisionResult(point, distance);
 			results.addCollision(result);
-			Vector3f.recycle(vect1);
 			return 1;
 		}
 
 		a1 = ray.direction.dot(diff);
 		if (a1 >= 0.0) {
-			Vector3f.recycle(vect1);
 			return 0;
 		}
 
 		discr = a1 * a1 - a;
 		if (discr < 0.0) {
-			Vector3f.recycle(vect1);
 			return 0;
 		}
 		else if (discr >= FastMath.ZERO_TOLERANCE) {
@@ -687,14 +675,12 @@ public class BoundingSphere extends BoundingVolume {
 			dist = -a1 + root;
 			point = new Vector3f(ray.direction).multLocal(dist).addLocal(ray.origin);
 			results.addCollision(new CollisionResult(point, dist));
-			Vector3f.recycle(vect1);
 			return 2;
 		}
 		else {
 			float dist = -a1;
 			Vector3f point = new Vector3f(ray.direction).multLocal(dist).addLocal(ray.origin);
 			results.addCollision(new CollisionResult(point, dist));
-			Vector3f.recycle(vect1);
 			return 1;
 		}
 	}

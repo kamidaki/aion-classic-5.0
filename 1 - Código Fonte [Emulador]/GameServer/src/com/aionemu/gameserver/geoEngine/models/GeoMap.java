@@ -19,14 +19,14 @@ import com.aionemu.gameserver.geoEngine.scene.Node;
 import com.aionemu.gameserver.geoEngine.scene.Spatial;
 import com.aionemu.gameserver.geoEngine.scene.mesh.DoorGeometry;
 
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class GeoMap extends Node {
 
 	private short[] terrainData;
 	private List<BoundingBox> tmpBox = new ArrayList<BoundingBox>();
-	private Map<String, DoorGeometry> doors = new FastMap<String, DoorGeometry>();
+	private Map<String, DoorGeometry> doors = new ConcurrentHashMap<>();
 
 	/**
 	 * @param name

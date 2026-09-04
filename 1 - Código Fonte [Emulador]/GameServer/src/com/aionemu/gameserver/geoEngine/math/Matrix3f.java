@@ -1,10 +1,8 @@
 package com.aionemu.gameserver.geoEngine.math;
 
-import com.aionemu.gameserver.configs.main.GeoDataConfig;
-import com.aionemu.gameserver.geoEngine.utils.BufferUtils;
-import javolution.context.ObjectFactory;
-import javolution.lang.Reusable;
 
+
+import com.aionemu.gameserver.geoEngine.utils.BufferUtils;
 import java.nio.FloatBuffer;
 import java.util.logging.Logger;
 
@@ -15,17 +13,11 @@ import java.util.logging.Logger;
  * set of values.
  * 
  */
-public final class Matrix3f implements Cloneable, Reusable {
+public final class Matrix3f implements Cloneable {
 
     private static final Logger logger = Logger.getLogger(Matrix3f.class.getName());
 
-    @SuppressWarnings("rawtypes")
-		private static final ObjectFactory FACTORY = new ObjectFactory() {
 
-      public Object create() {
-          return new Matrix3f();
-      }
-  };
 
     protected float m00, m01, m02;
     protected float m10, m11, m12;
@@ -1228,11 +1220,6 @@ public final class Matrix3f implements Cloneable, Reusable {
             throw new AssertionError(); // can not happen
         }
     }
-
-		/* (non-Javadoc)
-		 * @see javolution.lang.Reusable#reset()
-		 */
-		@Override
 		public void reset() {
 			loadIdentity();
 		}
@@ -1244,11 +1231,12 @@ public final class Matrix3f implements Cloneable, Reusable {
      *
      * @return a new, preallocated or recycled text builder instance.
      */
+    /**
+     * Creates a new Matrix3f instance.
+     * Migrated from 4.8: removed javolution ObjectFactory pattern.
+     */
     public static Matrix3f newInstance() {
-    	if(GeoDataConfig.GEO_OBJECT_FACTORY_ENABLE)
-    		return (Matrix3f) FACTORY.object();
-    	else
-    		return new Matrix3f();
+        return new Matrix3f();
     }
 
     /**
@@ -1256,11 +1244,10 @@ public final class Matrix3f implements Cloneable, Reusable {
      * (on the stack when executing in a {@link javolution.context.StackContext
      * StackContext}). 
      */
-    @SuppressWarnings("unchecked")
-		public static void recycle(Matrix3f instance) {
-    	if(GeoDataConfig.GEO_OBJECT_FACTORY_ENABLE)  
-    		FACTORY.recycle(instance);
-    	else
-    		instance = null;
+    /**
+     * No-op: previously recycled to javolution pool. Now handled by GC.
+     */
+    public static void recycle(Matrix3f instance) {
+        // no-op: let GC handle it
     }
 }

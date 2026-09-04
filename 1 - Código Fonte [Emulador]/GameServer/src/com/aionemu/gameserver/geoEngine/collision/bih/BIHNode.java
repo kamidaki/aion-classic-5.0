@@ -8,7 +8,7 @@ import com.aionemu.gameserver.geoEngine.math.Matrix4f;
 import com.aionemu.gameserver.geoEngine.math.Ray;
 import com.aionemu.gameserver.geoEngine.math.Triangle;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
-import javolution.util.FastList;
+import java.util.ArrayDeque;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -87,7 +87,7 @@ public final class BIHNode {
 
 	public final int intersectWhere(Collidable col, BoundingBox box, Matrix4f worldMatrix, BIHTree tree, CollisionResults results) {
 
-		FastList<BIHStackData> stack = FastList.newInstance();
+		ArrayDeque<BIHStackData> stack = new ArrayDeque<>();
 
 		float[] minExts = { box.getCenter().x - box.getXExtent(), box.getCenter().y - box.getYExtent(), box.getCenter().z - box.getZExtent() };
 
@@ -99,7 +99,7 @@ public final class BIHNode {
 		int cols = 0;
 
 		stackloop: while (stack.size() > 0) {
-			BIHNode node = stack.remove(stack.size() - 1).node;
+			BIHNode node = stack.removeLast().node;
 
 			while (node.axis != 3) {
 				int a = node.axis;
@@ -142,7 +142,7 @@ public final class BIHNode {
 				*/
 			}
 		}
-		FastList.recycle(stack);
+
 		return cols;
 	}
 
@@ -153,12 +153,12 @@ public final class BIHNode {
 
 		int cols = 0;
 
-		FastList<BIHStackData> stack = FastList.newInstance();
+		ArrayDeque<BIHStackData> stack = new ArrayDeque<>();
 		stack.clear();
 		stack.add(new BIHStackData(this, 0, 0));
 		while (stack.size() > 0) {
 
-			BIHStackData data = stack.remove(stack.size() - 1);
+			BIHStackData data = stack.removeLast();
 			BIHNode node = data.node;
 
 			while (node.axis != 3) { // while node is not a leaf
@@ -190,13 +190,13 @@ public final class BIHNode {
 				}
 			}
 		}
-		FastList.recycle(stack);
+
 		return cols;
 	}
 
 	public final int intersectWhere(Ray r, Matrix4f worldMatrix, BIHTree tree, float sceneMin, float sceneMax, CollisionResults results) {
 
-		FastList<BIHStackData> stack = FastList.newInstance();
+		ArrayDeque<BIHStackData> stack = new ArrayDeque<>();
 
 		// float tHit = Float.POSITIVE_INFINITY;
 
@@ -223,7 +223,7 @@ public final class BIHNode {
 		stack.add(new BIHStackData(this, sceneMin, sceneMax));
 		stackloop: while (stack.size() > 0) {
 
-			BIHStackData data = stack.remove(stack.size() - 1);
+			BIHStackData data = stack.removeLast();
 			BIHNode node = data.node;
 			float tMin = data.min, tMax = data.max;
 
@@ -306,7 +306,7 @@ public final class BIHNode {
 
 		r.setOrigin(o);
 		r.setDirection(d);
-		FastList.recycle(stack);
+
 		return cols;
 	}
 

@@ -1,8 +1,5 @@
 package com.aionemu.gameserver.geoEngine.math;
 
-import com.aionemu.gameserver.configs.main.GeoDataConfig;
-import javolution.context.ObjectFactory;
-import javolution.lang.Reusable;
 
 import java.util.logging.Logger;
 
@@ -17,17 +14,9 @@ import java.util.logging.Logger;
  * mathematical calculations.
  *
  */
-public final class Vector3f implements Cloneable, Reusable {
+public final class Vector3f implements Cloneable {
 
     private static final Logger logger = Logger.getLogger(Vector3f.class.getName());
-
-  	@SuppressWarnings("rawtypes")
-		private static final ObjectFactory FACTORY = new ObjectFactory() {
-
-      public Object create() {
-          return new Vector3f();
-      }
-  };
  
     public final static Vector3f ZERO = new Vector3f(0, 0, 0);
     public final static Vector3f NAN = new Vector3f(Float.NaN, Float.NaN, Float.NaN);
@@ -1005,42 +994,22 @@ public final class Vector3f implements Cloneable, Reusable {
         }
         throw new IllegalArgumentException("index must be either 0, 1 or 2");
     }
-
-		/* (non-Javadoc)
-		 * @see javolution.lang.Reusable#reset()
-		 */
-		@Override
 		public void reset() {
 			x = y = z = 0f;
 		}
 
     /**
-     * Returns a new, preallocated or {@link #recycle recycled} text builder
-     * (on the stack when executing in a {@link javolution.context.StackContext
-     * StackContext}).
-     *
-     * @return a new, preallocated or recycled text builder instance.
+     * Creates a new Vector3f instance.
+     * Migrated from 4.8: removed javolution ObjectFactory pattern.
      */
     public static Vector3f newInstance() {
-    	if(GeoDataConfig.GEO_OBJECT_FACTORY_ENABLE) {
-    		Vector3f vector3f = (Vector3f) FACTORY.object();
-      	vector3f.x = vector3f.y = vector3f.z = 0;
-          return vector3f;
-    	}
-    	else
-    		return new Vector3f();
+        return new Vector3f();
     }
 
     /**
-     * Recycles a text builder {@link #newInstance() instance} immediately
-     * (on the stack when executing in a {@link javolution.context.StackContext
-     * StackContext}). 
+     * No-op: previously recycled to javolution pool. Now handled by GC.
      */
-    @SuppressWarnings("unchecked")
-		public static void recycle(Vector3f instance) {
-    	if(GeoDataConfig.GEO_OBJECT_FACTORY_ENABLE)
-    		FACTORY.recycle(instance);
-    	else
-    		instance = null;
+    public static void recycle(Vector3f instance) {
+        // no-op: let GC handle it
     }
 }

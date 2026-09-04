@@ -93,14 +93,14 @@ public class BIHTree implements CollisionData {
     }
 
     private BoundingBox createBox(int l, int r) {
-        Vector3f min = Vector3f.newInstance();
-        Vector3f max = Vector3f.newInstance();
+        Vector3f min = new Vector3f();
+        Vector3f max = new Vector3f();
         min.set(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY);
         max.set(Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY);
 
-        Vector3f v1 = Vector3f.newInstance();
-        Vector3f v2 = Vector3f.newInstance();
-        Vector3f v3 = Vector3f.newInstance();
+        Vector3f v1 = new Vector3f();
+        Vector3f v2 = new Vector3f();
+        Vector3f v3 = new Vector3f();
 
         for (int i = l; i <= r; i++) {
             getTriangle(i, v1,v2,v3);
@@ -110,11 +110,10 @@ public class BIHTree implements CollisionData {
         }
 
         BoundingBox bbox = new BoundingBox(min,max);
-        Vector3f.recycle(min);
-        Vector3f.recycle(max);
-        Vector3f.recycle(v1);
-        Vector3f.recycle(v2);
-        Vector3f.recycle(v3);
+
+
+
+
         return bbox;
     }
 
@@ -126,9 +125,9 @@ public class BIHTree implements CollisionData {
         int pivot = l;
         int j = r;
 
-        Vector3f v1 = Vector3f.newInstance(),
-                 v2 = Vector3f.newInstance(),
-                 v3 = Vector3f.newInstance();
+        Vector3f v1 = new Vector3f(),
+                 v2 = new Vector3f(),
+                 v3 = new Vector3f();
 
         while (pivot <= j){
             getTriangle(pivot, v1, v2, v3);
@@ -141,9 +140,7 @@ public class BIHTree implements CollisionData {
             }
         }
 
-        Vector3f.recycle(v1);
-        Vector3f.recycle(v2);
-        Vector3f.recycle(v3);
+
         pivot = (pivot == l && j < pivot) ? j : pivot;
         return pivot;
     }

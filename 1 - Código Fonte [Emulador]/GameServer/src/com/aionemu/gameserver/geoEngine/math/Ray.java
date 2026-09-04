@@ -157,7 +157,7 @@ public final class Ray implements Cloneable, Collidable {
 	 */
 	private boolean intersects(Vector3f v0, Vector3f v1, Vector3f v2, Vector3f store, boolean doPlanar, boolean quad) {
 
-		Vector3f tempVa = Vector3f.newInstance(), tempVb = Vector3f.newInstance(), tempVc = Vector3f.newInstance(), tempVd = Vector3f
+		Vector3f tempVa = new Vector3f(), tempVb = new Vector3f(), tempVc = new Vector3f(), tempVd = Vector3f
 			.newInstance();
 
 		Vector3f diff = origin.subtract(v0, tempVa);
@@ -188,10 +188,9 @@ public final class Ray implements Cloneable, Collidable {
 					float diffDotNorm = -sign * diff.dot(norm);
 					if (diffDotNorm >= 0.0f) {
 						// this method always returns
-						Vector3f.recycle(tempVa);
-						Vector3f.recycle(tempVb);
-						Vector3f.recycle(tempVc);
-						Vector3f.recycle(tempVd);
+
+
+
 
 						// ray intersects triangle
 						// if storage vector is null, just return true,
@@ -220,10 +219,9 @@ public final class Ray implements Cloneable, Collidable {
 				}
 			}
 		}
-		Vector3f.recycle(tempVa);
-		Vector3f.recycle(tempVb);
-		Vector3f.recycle(tempVc);
-		Vector3f.recycle(tempVd);
+
+
+
 		return false;
 	}
 
@@ -351,7 +349,7 @@ public final class Ray implements Cloneable, Collidable {
 
 	public float distanceSquared(Vector3f point) {
 
-		Vector3f tempVa = Vector3f.newInstance(), tempVb = Vector3f.newInstance();
+		Vector3f tempVa = new Vector3f(), tempVb = new Vector3f();
 
 		point.subtract(origin, tempVa);
 		float rayParam = direction.dot(tempVa);
@@ -365,8 +363,7 @@ public final class Ray implements Cloneable, Collidable {
 
 		tempVb.subtract(point, tempVa);
 		float len = tempVa.lengthSquared();
-		Vector3f.recycle(tempVa);
-		Vector3f.recycle(tempVb);
+
 		return len;
 	}
 
