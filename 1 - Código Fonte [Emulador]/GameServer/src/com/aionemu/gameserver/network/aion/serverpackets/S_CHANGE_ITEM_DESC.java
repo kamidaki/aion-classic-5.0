@@ -45,7 +45,12 @@ public class S_CHANGE_ITEM_DESC extends AionServerPacket
 	protected void writeImpl(AionConnection con) {
 		ItemTemplate itemTemplate = item.getItemTemplate();
 		writeD(item.getObjectId());
-		writeNameId(itemTemplate.getNameId());
+		// Sem o bloco de nameId, como no resto dos pacotes de item da 5.0. Medido na captura
+		// oficial (subida-1-60, sessao 1): 37 amostras, 24 com 15 bytes e 13 com 45. O nosso saia
+		// com 23 fixos -- 4 do objectId + 8 do nameId + 9 do blob + 2 da mascara. Tirando os oito,
+		// a variante curta fecha em 15 e a cheia em 45, os dois numeros do fio.
+		// Este e o PRIMEIRO pacote que o servidor manda em toda operacao de equipar: com ele torto,
+		// o cliente desanda logo na primeira resposta de cada equipar e desequipar.
 		ItemInfoBlob itemInfoBlob;
 		switch (updateType) {
 			case EQUIP_UNEQUIP:

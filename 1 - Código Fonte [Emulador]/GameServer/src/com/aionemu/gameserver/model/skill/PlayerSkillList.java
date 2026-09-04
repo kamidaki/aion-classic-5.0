@@ -129,7 +129,9 @@ public final class PlayerSkillList implements SkillList<Player>
 	private synchronized boolean addSkill(Player player, int skillId, int skillLevel, boolean isStigma, PersistentState state) {
 		PlayerSkillEntry existingSkill = isStigma ? stigmaSkills.get(skillId) : basicSkills.get(skillId);
 		boolean isNew = false;
+		boolean mudou = false;
 		if (existingSkill != null) {
+			mudou = existingSkill.getSkillLevel() != skillLevel;
 			existingSkill.setSkillLvl(skillLevel);
 		} else {
 			if (isStigma) {
@@ -149,14 +151,26 @@ public final class PlayerSkillList implements SkillList<Player>
 		 * cada. Para quem ja esta em jogo o `sendMessage` ja envia o pacote individual com a
 		 * mensagem certa, entao a lista completa era redundante nos dois casos.
 		 */
-		if (player.isSpawned()) {
-			sendMessage(player, skillId, isNew);
-		} else {
-			PlayerSkillEntry entrada = isStigma ? stigmaSkills.get(skillId) : basicSkills.get(skillId);
-			if (entrada != null) {
-				PacketSendUtility.sendPacket(player, new S_ADD_SKILL(entrada, 0, isNew));
-			}
+		// So avisa o cliente quando a skill de fato entrou ou mudou de nivel.
+		//
+		// O pacote saia incondicionalmente, inclusive quando a skill ja existia e nada mudou. Como
+		// o addMissingSkills4P do login percorre os niveis 0 ate o nivel do personagem, re-adicionando
+		// as mesmas skills a cada volta, isso virava uma enxurrada proporcional ao nivel: um
+		// personagem com 41 skills mandava 81 pacotes, e um com 187 mandava 1670. O cliente nao
+		// aguenta e morre na entrada no mundo -- media com dois personagens da mesma conta, um que
+		// entra e um que nao entra, no mesmo rastro.
+		if (!isNew && !mudou) {
+			return true;
 		}
+		// Durante a carga o cliente nao precisa de pacote por skill: o PlayerEnterWorldService manda
+		// a lista inteira num S_ADD_SKILL(player) logo depois do S_ENTER_WORLD_CHECK, e o
+		// addMissingSkills4P percorre todos os niveis do personagem re-adicionando as mesmas skills
+		// a cada volta. Media no fio: um personagem de 187 skills mandava 1606 pacotes individuais
+		// e nao chegava a entrar; um de 41 mandava 81 e entrava.
+		if (!player.isSpawned()) {
+			return true;
+		}
+		sendMessage(player, skillId, isNew);
 		return true;
 	}
 

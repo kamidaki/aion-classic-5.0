@@ -121,10 +121,18 @@ public class S_HIT_POINT_OTHER extends AionServerPacket
         } else {
             writeC(this.attacked.getLifeStats().getHpPercentage());
         }
-        //writeH(0);
-        //writeH(GSConfig.SERVER_COUNTRY_CODE == 0 ? 178 : 173);
-        //writeC(attacked.getLifeStats().getHpPercentage());
-		writeH(skillId);
-		writeH(logId);
+        // 24 bytes, medidos por variancia nas 3669 amostras da captura oficial (subida-1-60,
+        // sessao 1 -- todas com 24 bytes). Os campos aparecem sozinhos: off 0-3 o atingido, 4-7 o
+        // valor, 8 o tipo, 9 a porcentagem de vida (100 valores distintos, 0..100), 10-11 o
+        // skillId, 12-13 sempre zero, 14 o logId, 15 sempre zero, 16-19 o objectId do ATACANTE
+        // (os mesmos padroes de byte do off 0), 20-23 sempre zero.
+        // O nosso saia com 14: faltavam os dez bytes do logId em diante, e o logId ainda estava
+        // escrito como H no lugar onde o fio tem um H(0).
+        writeH(skillId);
+        writeH(0);
+        writeC(logId);
+        writeC(0);
+        writeD(attacker != null ? attacker.getObjectId() : 0);
+        writeD(0);
     }
 }

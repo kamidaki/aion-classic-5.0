@@ -108,7 +108,12 @@ public class S_LOAD_INVENTORY extends AionServerPacket {
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());
 
-		writeH(item.isEquipped() ? -1 : item.getEquipmentSlot());
+		// Sempre 0xFFFF. Medido na captura oficial (subida-1-60, sessao 1): o unico pacote de
+		// inventario do login traz 21 itens e os 21 vem com 0xFFFF -- Kinah, Arcanium,
+		// equipamento e consumivel, sem excecao. Este pacote nao carrega posicao: quem
+		// posiciona e o cliente, que devolve os slots logo depois numa rajada de CM_MOVE_ITEM.
+		// Mandavamos o slot real dos itens do cubo, e com inventario grande o cliente morria.
+		writeH(0xFFFF);
 		writeC(itemTemplate.isCloth() ? 1 : 0);
 	}
 }
