@@ -19,6 +19,7 @@ package com.aionemu.gameserver.network.aion;
 import com.aionemu.commons.network.packet.BaseServerPacket;
 import com.aionemu.gameserver.configs.network.NetworkConfig;
 import com.aionemu.gameserver.network.Crypt;
+import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,7 +93,12 @@ public abstract class AionServerPacket extends BaseServerPacket {
 		if (con.getState().equals(AionConnection.State.IN_GAME) && con.getActivePlayer() != null
 				&& con.getActivePlayer().getPlayerAccount() != null
 				&& con.getActivePlayer().getPlayerAccount().getAccessLevel() == 5 && NetworkConfig.DISPLAY_PACKETS) {
-			if (!this.getPacketName().equals("SM_MESSAGE")) {
+			// O eco e feito com um S_MESSAGE, entao ecoar um S_MESSAGE realimenta a si mesmo. A
+			// guarda existia, mas comparava com a string "SM_MESSAGE", nome anterior a renomeacao
+			// dos pacotes -- nunca casava. Em 2026-09-03 isso gerou 8,7 milhoes de pacotes e 1,8 GB
+			// de rastro no instante em que uma conta virou accessLevel 5. Comparar com o tipo, e
+			// nao com o nome, para nao quebrar de novo numa renomeacao.
+			if (!(this instanceof S_MESSAGE)) {
 				PacketSendUtility.sendMessage(con.getActivePlayer(),
 						"0x" + Integer.toHexString(this.getOpcode()).toUpperCase() + " : " + this.getPacketName());
 			}

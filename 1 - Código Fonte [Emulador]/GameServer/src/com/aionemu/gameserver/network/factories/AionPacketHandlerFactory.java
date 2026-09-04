@@ -156,7 +156,11 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_CAPTCHA(0xE4, State.IN_GAME)); // 0x000E CAPTCHA
         addPacket(new CM_SET_NOTE(0xF8, State.IN_GAME)); // 0x000A SAVE_CLIENT_SETTINGS
         addPacket(new CM_DIALOG_SELECT(0xF4, State.IN_GAME)); // 0xFFFE DIALOG_SELECT
-        addPacket(new CM_OPEN_STATICDOOR(0x9D, State.IN_GAME)); // 0xFFE7 OPEN_STATICDOOR
+        // Fim da animacao de teleporte, corpo vazio. Medido nos dois teleportes da captura
+        // oficial: e ele que autoriza o S_WORLD do mapa novo. Estava registrado como
+        // CM_OPEN_STATICDOOR, que lia 4 bytes de um pacote sem corpo; o opcode real das
+        // portas estaticas continua desconhecido, a captura nao tem nenhuma.
+        addPacket(new CM_TELEPORT_ANIMATION_END(0x9D, State.IN_GAME)); // 0xFFE7 TELEPORT_ANIMATION_END
         addPacket(new CM_TITLE_SET(0x169, State.IN_GAME)); // 0x009B TITLE_SET
         addPacket(new CM_QUESTIONNAIRE(0x163, State.IN_GAME)); // 0x0091 QUESTIONNAIRE
         addPacket(new CM_MOVE_ITEM(0x116, State.IN_GAME)); // MOVE_ITEM

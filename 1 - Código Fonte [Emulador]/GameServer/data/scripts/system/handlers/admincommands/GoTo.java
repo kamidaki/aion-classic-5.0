@@ -1,6 +1,9 @@
 package admincommands;
 
+import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.Race;
+import com.aionemu.gameserver.model.templates.teleport.TelelocationTemplate;
+import com.aionemu.gameserver.model.templates.world.WorldMapTemplate;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.teleport.TeleportService2;
@@ -312,8 +315,58 @@ public class GoTo extends AdminCommand
             goTo(player, 220070000, 1196, 869, 321);
         else if (destination.equalsIgnoreCase("3021"))
             goTo(player, 220070000, 1879, 1107, 337);
-		else
-			PacketSendUtility.sendMessage(player, "Could not find the specified destination !");
+		else if (!vaiPorMapa(player, destination))
+			PacketSendUtility.sendMessage(player, "Destino desconhecido. Use //goto lista, ou //goto <id do mapa>.");
+	}
+
+	/**
+	 * Destinos que a lista de nomes acima nao cobre: id de mapa, ou nome do mapa no world_maps.xml.
+	 *
+	 * A lista de nomes veio do 4.8 e nao conhece os mapas do Classic 5.0, entao acertar um destino
+	 * virava adivinhacao de nome. Aqui o destino sai do proprio world_maps.xml, e a coordenada de
+	 * pouso do teleport_location.xml -- que sao os pontos para onde o voo oficial leva o jogador.
+	 * Quando o mapa existe mas nao tem ponto de chegada conhecido, o comando diz isso em vez de
+	 * largar o jogador numa coordenada inventada.
+	 */
+	private static boolean vaiPorMapa(Player player, String destino) {
+		if ("lista".equalsIgnoreCase(destino) || "list".equalsIgnoreCase(destino)) {
+			listaDestinos(player);
+			return true;
+		}
+		WorldMapTemplate mapa = null;
+		try {
+			mapa = DataManager.WORLD_MAPS_DATA.getTemplate(Integer.parseInt(destino));
+		} catch (NumberFormatException naoEhNumero) {
+			for (WorldMapTemplate t : DataManager.WORLD_MAPS_DATA) {
+				if (t.getName() != null && t.getName().equalsIgnoreCase(destino)) {
+					mapa = t;
+					break;
+				}
+			}
+		}
+		if (mapa == null) {
+			return false;
+		}
+		TelelocationTemplate chegada = DataManager.TELELOCATION_DATA.getPrimeiroDoMapa(mapa.getMapId());
+		if (chegada == null) {
+			PacketSendUtility.sendMessage(player, "O mapa " + mapa.getMapId() + " (" + mapa.getName()
+				+ ") existe, mas nao tem ponto de chegada no teleport_location.xml. Use //moveto "
+				+ mapa.getMapId() + " X Y Z.");
+			return true;
+		}
+		PacketSendUtility.sendMessage(player, "Indo para " + mapa.getMapId() + " (" + mapa.getName()
+			+ ") em " + chegada.getName() + ".");
+		goTo(player, mapa.getMapId(), chegada.getX(), chegada.getY(), chegada.getZ());
+		return true;
+	}
+
+	private static void listaDestinos(Player player) {
+		PacketSendUtility.sendMessage(player, "Mapas com ponto de chegada conhecido:");
+		for (TelelocationTemplate loc : DataManager.TELELOCATION_DATA.getPontosDeChegada()) {
+			WorldMapTemplate mapa = DataManager.WORLD_MAPS_DATA.getTemplate(loc.getMapId());
+			PacketSendUtility.sendMessage(player, "  " + loc.getMapId() + "  "
+				+ (mapa == null ? "?" : mapa.getName()) + "  (" + loc.getName() + ")");
+		}
 	}
 	
 	private static void goTo(final Player player, int worldId, float x, float y, float z) {

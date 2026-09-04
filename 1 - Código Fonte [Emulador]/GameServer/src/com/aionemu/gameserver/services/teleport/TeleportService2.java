@@ -47,10 +47,39 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Timestamp;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class TeleportService2
 {
 	private static final Logger log = LoggerFactory.getLogger(TeleportService2.class);
+
+	/**
+	 * Teleportes ja pedidos ao cliente e ainda nao confirmados, por objectId do jogador.
+	 *
+	 * Quem manda a troca de mapa acontecer e o cliente: depois do S_REQUEST_TELEPORT ele roda a
+	 * animacao e responde 0x009D, e so entao o servidor oficial entrega o S_WORLD. Medido nos dois
+	 * teleportes da captura (subida-1-60, sessao 1): a confirmacao chega em 2050 e 2019 ms, e o
+	 * S_WORLD sai 180 e 412 ms depois dela.
+	 */
+	private static final Map<Integer, Runnable> teleportesPendentes = new ConcurrentHashMap<Integer, Runnable>();
+
+	/** Prazo de seguranca, caso a confirmacao do cliente nunca chegue. */
+	private static final long PRAZO_SEM_CONFIRMACAO = 5000;
+
+	/** Chamado pelo CM_TELEPORT_ANIMATION_END: o cliente terminou a animacao, entrega o mapa. */
+	public static void confirmaAnimacaoDeTeleporte(Player player) {
+		executaTeleportePendente(player.getObjectId());
+	}
+
+	private static void executaTeleportePendente(int objectId) {
+		// ConcurrentHashMap.remove e atomico, entao a confirmacao e o prazo de seguranca nunca
+		// executam a mesma troca duas vezes -- quem chegar primeiro leva.
+		Runnable troca = teleportesPendentes.remove(objectId);
+		if (troca != null) {
+			troca.run();
+		}
+	}
 	
 	public static void teleport(TeleporterTemplate template, int locId, Player player, Npc npc, TeleportAnimation animation) {
 		TribeClass tribe = npc.getTribe();
@@ -131,7 +160,8 @@ public class TeleportService2
 		boolean isInstance = DataManager.WORLD_MAPS_DATA.getTemplate(mapId).isInstance();
 		final int currentWorldId = player.getWorldId();
 		PacketSendUtility.sendPacket(player, new S_REQUEST_TELEPORT(isInstance, instanceId, mapId, x, y, z, h, animation.getStartAnimationId()));
-		ThreadPoolManager.getInstance().schedule(new Runnable() {
+		final int objectId = player.getObjectId();
+		teleportesPendentes.put(objectId, new Runnable() {
 			@Override
 			public void run() {
 				if (player.getLifeStats().isAlreadyDead() || !player.isSpawned()) {
@@ -142,7 +172,17 @@ public class TeleportService2
 					BattlePassService.getInstance().onUpdateBattlePassMission(player, mapId, 1, BattlePassAction.ENTER_WORLD);
 				}
 			}
-		}, 2200);
+		});
+		// A troca sai na confirmacao do cliente; este prazo so existe para o jogador nao ficar
+		// preso se ela se perder. Antes era um relogio fixo de 2200 ms, que por acaso caia logo
+		// depois dos ~2050 ms da confirmacao -- funcionava por pouco, e num cliente mais lento
+		// entregaria o mapa antes da hora.
+		ThreadPoolManager.getInstance().schedule(new Runnable() {
+			@Override
+			public void run() {
+				executaTeleportePendente(objectId);
+			}
+		}, PRAZO_SEM_CONFIRMACAO);
 	}
 	
 	public static void teleportTo(Player player, WorldPosition pos) {
