@@ -353,7 +353,10 @@ public class DialogService {
                         player.getLifeStats().setCurrentHpPercent(100);
                         player.getLifeStats().setCurrentMpPercent(100);
                         ///You received Soul Healing.
-                        PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_SUCCESS_RECOVER_EXPERIENCE, 2000);
+                        // Sem atraso: os 2000 ms do caso 35 sao numero herdado do 4.8, sem medicao
+                        // nenhuma por tras, e no fio eles apareciam como tres segundos de espera
+                        // entre o OK do jogador e a confirmacao na tela.
+                        PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_SUCCESS_RECOVER_EXPERIENCE);
                     }
 
                     @Override
