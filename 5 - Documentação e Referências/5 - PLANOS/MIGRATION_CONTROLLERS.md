@@ -6,6 +6,7 @@
 > **Data de Conclusão**: 2026-09-04  
 > **Fonte (4.8 Retail)**: `5 - Documentação e Referências/3 - JAVA EMU - 4.8 RETAIL/game-server/src/com/aionemu/gameserver/controllers`  
 > **Destino (Classic 5.0)**: `1 - Código Fonte [Emulador]/GameServer/src/com/aionemu/gameserver/controllers`  
+> **Commit**: `5d8d0b764` (`origin/main`)  
 > **Capturas de Referência**: `5 - Documentação e Referências/2 - Wireshark - Oficial Classic 5.0`  
 
 ---
