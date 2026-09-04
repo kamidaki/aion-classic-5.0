@@ -5,7 +5,8 @@ import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dao.MySQL5DAOUtils;
 import com.aionemu.gameserver.dao.WebShopDAO;
 import com.aionemu.gameserver.model.templates.rewards.RewardEntryItem;
-import javolution.util.FastList;
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,8 +25,8 @@ public class MySQL5WebShopDAO extends WebShopDAO
         return MySQL5DAOUtils.supports(arg0, arg1, arg2);
     }
     @Override
-    public FastList<RewardEntryItem> getAvailable(int accountId) {
-        FastList<RewardEntryItem> list = FastList.newInstance();
+    public List<RewardEntryItem> getAvailable(int accountId) {
+        List<RewardEntryItem> list = new ArrayList<>();
         Connection con = null;
         try {
             con = DatabaseFactory.getConnection();

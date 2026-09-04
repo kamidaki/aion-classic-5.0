@@ -10,7 +10,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_ABYSS_RANKER_INFOS;
 import com.aionemu.gameserver.services.legion.LegionService;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.knownlist.Visitor;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +23,8 @@ public class AbyssRankingCache
 {
 	private static final Logger log = LoggerFactory.getLogger(AbyssRankingCache.class);
 	private int lastUpdate;
-	private final FastMap<Race, List<S_ABYSS_RANKER_INFOS>> players = new FastMap<Race, List<S_ABYSS_RANKER_INFOS>>();
-	private final FastMap<Race, S_ABYSS_GUILD_INFOS> legions = new FastMap<Race, S_ABYSS_GUILD_INFOS>();
+	private final Map<Race, List<S_ABYSS_RANKER_INFOS>> players = new ConcurrentHashMap<Race, List<S_ABYSS_RANKER_INFOS>>();
+	private final Map<Race, S_ABYSS_GUILD_INFOS> legions = new ConcurrentHashMap<Race, S_ABYSS_GUILD_INFOS>();
 	
 	public void reloadRankings() {
 		log.info("Updating abyss ranking cache");

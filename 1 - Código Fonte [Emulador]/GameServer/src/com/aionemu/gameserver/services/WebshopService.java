@@ -6,8 +6,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.rewards.RewardEntryItem;
 import com.aionemu.gameserver.services.player.BlackCloudTradeService;
 
-import javolution.util.FastList;
-
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,8 +19,8 @@ public class WebshopService
     }
 	
     public void check(Player player) {
-        FastList<RewardEntryItem> list = DAOManager.getDAO(WebShopDAO.class).getAvailable(player.getPlayerAccount().getId());
-        if (list.size() == 0) {
+        List<RewardEntryItem> list = DAOManager.getDAO(WebShopDAO.class).getAvailable(player.getPlayerAccount().getId());
+        if (list == null || list.isEmpty()) {
             return;
         }
         list.forEach(rewardEntryItem -> {

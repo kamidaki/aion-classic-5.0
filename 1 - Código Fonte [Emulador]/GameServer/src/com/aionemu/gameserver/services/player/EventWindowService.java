@@ -13,7 +13,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
 
-import javolution.util.FastList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ import java.util.List;
 public class EventWindowService {
     private Logger log = LoggerFactory.getLogger(EventWindowService.class);
 
-    private final List<EventsWindowTemplate> activeEvents = new FastList<EventsWindowTemplate>();
+    private final List<EventsWindowTemplate> activeEvents = new CopyOnWriteArrayList<EventsWindowTemplate>();
 
     public void onInit() {
         for (EventsWindowTemplate template : DataManager.EVENTS_WINDOW.getAllEvents().values()) {

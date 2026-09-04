@@ -23,9 +23,7 @@ import com.aionemu.gameserver.services.EventService;
 import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-import javolution.util.FastList;
-import javolution.util.FastMap;
-
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,8 +32,8 @@ import java.util.*;
 
 public class DropRegistrationService
 {
-	private Map<Integer, Set<DropItem>> currentDropMap = new FastMap<Integer, Set<DropItem>>().shared();
-	private Map<Integer, DropNpc> dropRegistrationMap = new FastMap<Integer, DropNpc>().shared();
+	private Map<Integer, Set<DropItem>> currentDropMap = new ConcurrentHashMap<Integer, Set<DropItem>>();
+	private Map<Integer, DropNpc> dropRegistrationMap = new ConcurrentHashMap<Integer, DropNpc>();
 	Logger log = LoggerFactory.getLogger(DropRegistrationService.class);
 	
 	public void registerDrop(Npc npc, Player player, Collection<Player> groupMembers) {
@@ -119,7 +117,7 @@ public class DropRegistrationService
 		//generate common drops if the player has -10 lvl than the mobs!!!
 		if (template.getCommonsdrops() != null && npc.getLevel() + 11 > player.getLevel()) {
 			if (template.getCommonsdrops().size() != 0) {
-				List<NpcCommonDrop> commonDrops = new FastList<NpcCommonDrop>();
+				List<NpcCommonDrop> commonDrops = new ArrayList<NpcCommonDrop>();
 				commonDrops.addAll(template.getCommonsdrops());
 				int dropCount = commonDrops.size() > 1 ? Rnd.get(1, 2) : 1;
 				for (int i = 0; i < dropCount; i++) {

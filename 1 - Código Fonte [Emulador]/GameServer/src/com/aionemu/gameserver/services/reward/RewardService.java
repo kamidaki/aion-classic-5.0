@@ -7,7 +7,8 @@ import com.aionemu.gameserver.model.gameobjects.LetterType;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.rewards.RewardEntryItem;
 import com.aionemu.gameserver.services.mail.SystemMailService;
-import javolution.util.FastList;
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +27,11 @@ public class RewardService
 	}
 	
     public void verify(Player player) {
-        FastList<RewardEntryItem> list = dao.getAvailable(player.getObjectId());
-        if (list.size() == 0 || player.getMailbox() == null) {
+        List<RewardEntryItem> list = dao.getAvailable(player.getObjectId());
+        if (list == null || list.isEmpty() || player.getMailbox() == null) {
             return;
         }
-        FastList<Integer> rewarded = FastList.newInstance();
+        List<Integer> rewarded = new ArrayList<>();
         for (RewardEntryItem item : list) {
             if (DataManager.ITEM_DATA.getItemTemplate(item.id) == null) {
                 log.warn("[RewardController][" + item.unique + "] null template for item " + item.id + " on player " + player.getObjectId() + ".");
@@ -45,10 +46,8 @@ public class RewardService
                 log.error("[RewardController][" + item.unique + "] failed to add item (" + item.count + ")" + item.id + " to " + player.getObjectId(), e);
                 continue;
             }
-        } if (rewarded.size() > 0) {
+        } if (!rewarded.isEmpty()) {
 			dao.uncheckAvailable(rewarded);
-			FastList.recycle(rewarded);
-			FastList.recycle(list);
 		}
 	}
 }

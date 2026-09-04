@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +38,7 @@ public class RiftService
 	private final Lock closing = new ReentrantLock();
 	private static final int duration = CustomConfig.RIFT_DURATION;
 	private static final Logger log = LoggerFactory.getLogger(RiftService.class);
-	private FastMap<Integer, RiftLocation> activeRifts = new FastMap<Integer, RiftLocation>();
+	private Map<Integer, RiftLocation> activeRifts = new ConcurrentHashMap<Integer, RiftLocation>();
 	
 	public void initRiftLocations() {
         if (CustomConfig.RIFT_ENABLED) {
@@ -134,7 +134,7 @@ public class RiftService
             }
 		}
         RiftManager.getInstance().spawnRift(location);
-        activeRifts.putEntry(location.getId(), location);
+        activeRifts.put(location.getId(), location);
     }
 	
 	public void closeRift(RiftLocation location) {

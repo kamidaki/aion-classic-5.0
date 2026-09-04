@@ -4,17 +4,17 @@ import com.aionemu.gameserver.controllers.RVController;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
-import javolution.util.FastMap;
+import java.util.Map;
 
 public class S_WORLD_INFO extends AionServerPacket
 {
 	private int actionId;
 	private RVController rift;
-	private FastMap<Integer, Integer> rifts;
+	private Map<Integer, Integer> rifts;
 	private int gelkmaros, inggison;
 	private int objectId;
 	
-	public S_WORLD_INFO(FastMap<Integer, Integer> rifts) {
+	public S_WORLD_INFO(Map<Integer, Integer> rifts) {
 		this.actionId = 0;
 		this.rifts = rifts;
 	}

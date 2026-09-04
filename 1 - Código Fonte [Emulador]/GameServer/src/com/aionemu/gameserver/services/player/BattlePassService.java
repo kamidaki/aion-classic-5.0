@@ -16,9 +16,9 @@ import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.idfactory.IDFactory;
 
-import javolution.util.FastList;
-
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +30,8 @@ import java.util.Map;
 public class BattlePassService
 {
     private Logger log = LoggerFactory.getLogger(BattlePassService.class);
-    List<BattlePassSeasonTemplate> season = new FastList<BattlePassSeasonTemplate>();
-    Map<Integer, List<BattlePassQuestTemplate>> seasonQuest = new FastMap<Integer, List<BattlePassQuestTemplate>>();
+    List<BattlePassSeasonTemplate> season = new CopyOnWriteArrayList<BattlePassSeasonTemplate>();
+    Map<Integer, List<BattlePassQuestTemplate>> seasonQuest = new ConcurrentHashMap<Integer, List<BattlePassQuestTemplate>>();
 
     private Timestamp start;
     private Timestamp end;
@@ -55,7 +55,7 @@ public class BattlePassService
                     if (seasonQuest.containsKey(season.getId())) {
                         seasonQuest.get(season.getId()).add(template);
                     } else {
-                        List<BattlePassQuestTemplate> list = new FastList<BattlePassQuestTemplate>();
+                        List<BattlePassQuestTemplate> list = new ArrayList<BattlePassQuestTemplate>();
                         list.add(template);
                         seasonQuest.put(season.getId(), list);
                     }
@@ -95,8 +95,8 @@ public class BattlePassService
     }
 
     public void onUpdateBattlePassMission(Player player, int value, int count, BattlePassAction type) {
-        List<BattlePassQuest> questUpdateList = new FastList<BattlePassQuest>();
-        List<BattlePassQuest> questFinishList = new FastList<BattlePassQuest>();
+        List<BattlePassQuest> questUpdateList = new ArrayList<BattlePassQuest>();
+        List<BattlePassQuest> questFinishList = new ArrayList<BattlePassQuest>();
         player.getPlayerBattlePass().getBattlePassQuest().forEach((id, quest) -> {
             if (quest.getActionTemplate().getType() == type && quest.getState() == BattleQuestState.START) {
                 int progress = quest.getStep() + count;
@@ -122,7 +122,7 @@ public class BattlePassService
     }
 
     public void OnEnchant(Player player, int enchantLevel) {
-        List<BattlePassQuest> questFinishList = new FastList<BattlePassQuest>();
+        List<BattlePassQuest> questFinishList = new ArrayList<BattlePassQuest>();
         player.getPlayerBattlePass().getBattlePassQuest().forEach((id, quest) -> {
             if (quest.getActionTemplate().getType() == BattlePassAction.SUCCESS_ENCHANT && quest.getState() == BattleQuestState.START) {
                 if (enchantLevel >= quest.getActionTemplate().getEnchant().getLevel()) {
@@ -135,8 +135,8 @@ public class BattlePassService
     }
 
     public void onWinAp(Player player, int ap) {
-        List<BattlePassQuest> questFinishList = new FastList<BattlePassQuest>();
-        List<BattlePassQuest> questUpdateList = new FastList<BattlePassQuest>();
+        List<BattlePassQuest> questFinishList = new ArrayList<BattlePassQuest>();
+        List<BattlePassQuest> questUpdateList = new ArrayList<BattlePassQuest>();
         player.getPlayerBattlePass().getBattlePassQuest().forEach((id, quest) -> {
             if (quest.getActionTemplate().getType() == BattlePassAction.CHANGE_AP && quest.getState() == BattleQuestState.START) {
                 int newValue = ap + quest.getStep();
@@ -154,7 +154,7 @@ public class BattlePassService
     }
 
     public void onFinishQuest(Player player, List<BattlePassQuest> quests) {
-        List<BattlePassQuest> questList = new FastList<BattlePassQuest>();
+        List<BattlePassQuest> questList = new ArrayList<BattlePassQuest>();
         quests.forEach((quest) -> {
             quest.setState(BattleQuestState.REWARD);
             getDAO().updateQuest(player, quest);

@@ -10,7 +10,6 @@ import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.services.legion.LegionService;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
-import javolution.util.FastList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

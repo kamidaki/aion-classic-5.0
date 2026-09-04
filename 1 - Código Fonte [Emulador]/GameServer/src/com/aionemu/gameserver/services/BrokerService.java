@@ -30,7 +30,7 @@ import com.aionemu.gameserver.taskmanager.AbstractFIFOPeriodicTaskManager;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.lang.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,15 +41,15 @@ import java.util.*;
 
 public class BrokerService {
 
-    private Map<Integer, BrokerItem> elyosBrokerItems = new FastMap<Integer, BrokerItem>().shared();
-    private Map<Integer, BrokerItem> elyosSettledItems = new FastMap<Integer, BrokerItem>().shared();
-    private Map<Integer, BrokerItem> asmodianBrokerItems = new FastMap<Integer, BrokerItem>().shared();
-    private Map<Integer, BrokerItem> asmodianSettledItems = new FastMap<Integer, BrokerItem>().shared();
+    private Map<Integer, BrokerItem> elyosBrokerItems = new ConcurrentHashMap<Integer, BrokerItem>();
+    private Map<Integer, BrokerItem> elyosSettledItems = new ConcurrentHashMap<Integer, BrokerItem>();
+    private Map<Integer, BrokerItem> asmodianBrokerItems = new ConcurrentHashMap<Integer, BrokerItem>();
+    private Map<Integer, BrokerItem> asmodianSettledItems = new ConcurrentHashMap<Integer, BrokerItem>();
     private static final Logger log = LoggerFactory.getLogger("EXCHANGE_LOG");
     private final int DELAY_BROKER_SAVE = (BrokerConfig.SAVE_MANAGER_INTERVAL * 1000) >= 6000 ? (BrokerConfig.SAVE_MANAGER_INTERVAL * 1000) : 6000;
     private final int DELAY_BROKER_CHECK = (BrokerConfig.CHECK_EXPIRED_ITEMS_INTERVAL * 1000) >= 60000 ? (BrokerConfig.CHECK_EXPIRED_ITEMS_INTERVAL * 1000) : 60000;
     private BrokerPeriodicTaskManager saveManager;
-    private Map<Integer, BrokerPlayerCache> playerBrokerCache = new FastMap<Integer, BrokerPlayerCache>().shared();
+    private Map<Integer, BrokerPlayerCache> playerBrokerCache = new ConcurrentHashMap<Integer, BrokerPlayerCache>();
 
     public static final BrokerService getInstance() {
         return SingletonHolder.instance;

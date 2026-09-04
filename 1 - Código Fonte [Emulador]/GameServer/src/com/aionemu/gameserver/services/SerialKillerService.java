@@ -15,13 +15,16 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import javolution.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SerialKillerService
 {
-	private FastMap<Integer, SerialKiller> serialKillers = new FastMap<Integer, SerialKiller>();
-	private FastMap<Integer, FastMap<Integer, Player>> worldKillers = new FastMap<Integer, FastMap<Integer, Player>>();
-	private static final FastMap<Integer, WorldType> handledWorlds = new FastMap<Integer, WorldType>();
+	private Map<Integer, SerialKiller> serialKillers = new ConcurrentHashMap<Integer, SerialKiller>();
+	private Map<Integer, Map<Integer, Player>> worldKillers = new ConcurrentHashMap<Integer, Map<Integer, Player>>();
+	private static final Map<Integer, WorldType> handledWorlds = new ConcurrentHashMap<Integer, WorldType>();
 	private int refresh = CustomConfig.SERIAL_KILLER_REFRESH;
 	private int levelDiff = CustomConfig.SERIAL_KILLER_LEVEL_DIFF;
 	private SerialKillerDebuff debuff;
@@ -65,14 +68,8 @@ public class SerialKillerService
 		}, refresh * 60000, refresh * 60000);
 	}
 	
-	public FastMap<Integer, Player> getWorldKillers(int worldId) {
-		if (worldKillers.containsKey(worldId)) {
-			return worldKillers.get(worldId);
-		} else {
-			FastMap<Integer, Player> killers = new FastMap<Integer, Player>();
-			worldKillers.putEntry(worldId, killers);
-			return killers;
-		}
+	public Map<Integer, Player> getWorldKillers(int worldId) {
+		return worldKillers.computeIfAbsent(worldId, k -> new ConcurrentHashMap<Integer, Player>());
 	}
 	
 	public void onLogin(Player player) {
@@ -103,9 +100,9 @@ public class SerialKillerService
 			return;
 		} if (isEnemyWorld(player)) {
 			int objId = player.getObjectId();
-			final FastMap<Integer, Player> world = getWorldKillers(worldId);
+			final Map<Integer, Player> world = getWorldKillers(worldId);
 			if (!world.containsKey(objId)) {
-				world.putEntry(objId, player);
+				world.put(objId, player);
 			}
 			debuff.applyEffect(player, info.getRank());
 			World.getInstance().getWorldMap(worldId).getWorldMapInstanceById(player.getInstanceId()).doOnAllPlayers(new Visitor<Player>() {
@@ -127,8 +124,8 @@ public class SerialKillerService
 			return;
 		} if (isEnemyWorld(player)) {
 			SerialKiller info = player.getSKInfo();
-			FastList<Player> kill = new FastList<Player>();
-			FastMap<Integer, Player> killers = getWorldKillers(worldId);
+			List<Player> kill = new ArrayList<Player>();
+			Map<Integer, Player> killers = getWorldKillers(worldId);
 			kill.addAll(killers.values());
 			killers.remove(player.getObjectId());
 			if (info.getRank() > 0) {
@@ -157,7 +154,7 @@ public class SerialKillerService
 				if (info.getRank() != rank) {
 					info.setRank(rank);
 					debuff.applyEffect(killer, rank);
-					final FastMap<Integer, Player> killers = getWorldKillers(killer.getWorldId());
+					final Map<Integer, Player> killers = getWorldKillers(killer.getWorldId());
 					PacketSendUtility.sendPacket(killer, new S_SERIAL_KILLER_LIST(true, info.getRank()));
 					World.getInstance().getWorldMap(killer.getWorldId()).getWorldMapInstanceById(killer.getInstanceId()).doOnAllPlayers(new Visitor<Player>() {
 						@Override

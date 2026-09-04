@@ -2,7 +2,8 @@ package com.aionemu.gameserver.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import javolution.util.FastMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,8 +34,8 @@ public class ShieldService {
 		protected static final ShieldService instance = new ShieldService();
 	}
 
-	private final FastMap<Integer, Shield> sphereShields = new FastMap<Integer, Shield>();
-	private final FastMap<Integer, List<SiegeShield>> registeredShields = new FastMap<Integer, List<SiegeShield>>(0);
+	private final Map<Integer, Shield> sphereShields = new ConcurrentHashMap<Integer, Shield>();
+	private final Map<Integer, List<SiegeShield>> registeredShields = new ConcurrentHashMap<Integer, List<SiegeShield>>();
 
 	public static final ShieldService getInstance() {
 		return SingletonHolder.instance;

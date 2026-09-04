@@ -24,7 +24,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.*;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
-import javolution.util.FastList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,8 +34,8 @@ import java.util.Iterator;
 public class InstanceService
 {
 	private static final Logger log = LoggerFactory.getLogger(InstanceService.class);
-	private static final FastList<Integer> instanceAggro = new FastList<Integer>();
-	private static final FastList<Integer> instanceCoolDownFilter = new FastList<Integer>();
+	private static final List<Integer> instanceAggro = new CopyOnWriteArrayList<Integer>();
+	private static final List<Integer> instanceCoolDownFilter = new CopyOnWriteArrayList<Integer>();
 	private static final int SOLO_INSTANCES_DESTROY_DELAY = 3 * 60 * 1000;
 
 	public static void load() {

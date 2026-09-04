@@ -8,14 +8,15 @@ import com.aionemu.gameserver.model.templates.curingzones.CuringTemplate;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.knownlist.Visitor;
-import javolution.util.FastList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CuringZoneService
 {
 	Logger log = LoggerFactory.getLogger(CuringZoneService.class);
-	private FastList<CuringObject> curingObjects = new FastList<CuringObject>();
+	private List<CuringObject> curingObjects = new CopyOnWriteArrayList<CuringObject>();
 	
 	private CuringZoneService() {
 		for (CuringTemplate t : DataManager.CURING_OBJECTS_DATA.getCuringObject()) {

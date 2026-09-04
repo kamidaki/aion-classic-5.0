@@ -14,19 +14,18 @@ import com.aionemu.gameserver.services.AutoGroupService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 
-import javolution.util.FastList;
-
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Iterator;
 
 public class TiakResearchBaseService
 {
 	private static final Logger log = LoggerFactory.getLogger(TiakResearchBaseService.class);
 	
 	private boolean registerAvailable;
-	private final FastList<Integer> playersWithCooldown = FastList.newInstance();
+	private final List<Integer> playersWithCooldown = new CopyOnWriteArrayList<Integer>();
 	public static final byte minLevel = 50, capLevel = 56;
     public static final int maskId = 33;
 	

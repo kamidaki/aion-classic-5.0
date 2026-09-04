@@ -6,12 +6,12 @@ import com.aionemu.gameserver.model.SellLimit;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-import javolution.util.FastMap;
-
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerLimitService {
 
-	private static FastMap<Integer, Long> sellLimit = new FastMap<Integer, Long>().shared();
+	private static final Map<Integer, Long> sellLimit = new ConcurrentHashMap<Integer, Long>();
 
 	public static boolean updateSellLimit(Player player, long reward) {
 		if (!CustomConfig.LIMITS_ENABLED)
@@ -30,7 +30,7 @@ public class PlayerLimitService {
 		}
 		else {
 			limit -= reward;
-			sellLimit.putEntry(accoutnId, limit);
+			sellLimit.put(accoutnId, limit);
 			return true;
 		}
 	}

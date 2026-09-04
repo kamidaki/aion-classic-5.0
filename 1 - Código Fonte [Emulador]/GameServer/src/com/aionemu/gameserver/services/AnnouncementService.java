@@ -9,7 +9,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
-import javolution.util.FastSet;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,9 +43,11 @@ public class AnnouncementService {
 	 */
 	public void reload() {
 		// Cancel all tasks
-		if (delays != null && delays.size() > 0)
+		if (delays != null && delays.size() > 0) {
 			for (Future<?> delay : delays)
 				delay.cancel(false);
+			delays.clear();
+		}
 
 		// Clear all announcements
 		announcements.clear();
@@ -58,7 +60,7 @@ public class AnnouncementService {
 	 * Load the announcements system
 	 */
 	private void load() {
-		announcements = new FastSet<Announcement>(getDAO().getAnnouncements()).shared();
+		announcements = new CopyOnWriteArrayList<Announcement>(getDAO().getAnnouncements());
 
 		for (final Announcement announce : announcements) {
 			delays.add(ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {

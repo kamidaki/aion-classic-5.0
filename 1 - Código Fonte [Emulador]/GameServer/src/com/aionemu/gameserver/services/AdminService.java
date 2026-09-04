@@ -4,7 +4,8 @@ import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-import javolution.util.FastList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ import java.io.IOException;
 public class AdminService {
 	private final Logger log = LoggerFactory.getLogger(AdminService.class);
 	private static final Logger itemLog = LoggerFactory.getLogger("GMITEMRESTRICTION");
-	private FastList<Integer> list;
+	private List<Integer> list;
 	private static AdminService instance = new AdminService();
 
 	public static AdminService getInstance() {
@@ -25,7 +26,7 @@ public class AdminService {
 	}
 
 	public AdminService() {
-		list = FastList.newInstance();
+		list = new CopyOnWriteArrayList<>();
 		if(AdminConfig.ENABLE_TRADEITEM_RESTRICTION)
 			reload();
 	}

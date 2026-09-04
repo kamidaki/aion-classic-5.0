@@ -21,8 +21,8 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.utils.stats.AbyssRankEnum;
 import com.aionemu.gameserver.utils.stats.StatFunctions;
 
-import javolution.util.FastMap;
-
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,10 +37,10 @@ public class PvpService
 		return SingletonHolder.instance;
 	}
 	
-	private FastMap<Integer, KillList> pvpKillLists;
+	private Map<Integer, KillList> pvpKillLists;
 	
 	private PvpService() {
-		pvpKillLists = new FastMap<Integer, KillList>();
+		pvpKillLists = new ConcurrentHashMap<Integer, KillList>();
 	}
 	
 	/**

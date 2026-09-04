@@ -15,7 +15,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import javolution.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.*;
 import java.util.*;
 
@@ -23,7 +23,7 @@ public class BalaurAssaultService
 {
 	private static final BalaurAssaultService instance = new BalaurAssaultService();
 	private Logger log = LoggerFactory.getLogger("SIEGE_LOG");
-	private final Map<Integer, FortressAssault> fortressAssaults = new FastMap<Integer, FortressAssault>().shared();
+	private final Map<Integer, FortressAssault> fortressAssaults = new ConcurrentHashMap<Integer, FortressAssault>();
 	
 	public static BalaurAssaultService getInstance() {
 		return instance;

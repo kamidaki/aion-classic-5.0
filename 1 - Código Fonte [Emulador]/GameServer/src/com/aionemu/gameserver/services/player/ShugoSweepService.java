@@ -10,7 +10,7 @@ import com.aionemu.gameserver.model.templates.shugosweep.ShugoSweepReward;
 import com.aionemu.gameserver.network.aion.serverpackets.S_BOARD_BUSINESS_MODEL;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-import javolution.util.FastList;
+import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -91,7 +91,7 @@ public class ShugoSweepService {
         if(player.getPlayerShugoSweep() == null) {
             //int boardId = Rnd.get(1, 22);
             int boardId = 4;
-            PlayerSweep ps = new PlayerSweep(0, 10, boardId, new FastList<Integer>());
+            PlayerSweep ps = new PlayerSweep(0, 10, boardId, new ArrayList<Integer>());
             player.setPlayerShugoSweep(ps);
         }
         return player.getPlayerShugoSweep();

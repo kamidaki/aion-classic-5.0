@@ -15,8 +15,7 @@ import com.aionemu.gameserver.model.templates.item.WeaponType;
 import com.aionemu.gameserver.skillengine.model.*;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-import javolution.util.FastMap;
-
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +39,7 @@ public class MotionLoggingService {
 	
 	private static Logger log = LoggerFactory.getLogger(MotionLoggingService.class);
 
-	private FastMap<String, MotionLog> motionsMap = new FastMap<String, MotionLog>().shared();
+	private Map<String, MotionLog> motionsMap = new ConcurrentHashMap<String, MotionLog>();
 
 	private boolean advancedLog = false;
 	
