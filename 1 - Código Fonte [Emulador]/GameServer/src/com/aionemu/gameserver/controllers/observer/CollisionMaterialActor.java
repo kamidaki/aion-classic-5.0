@@ -53,9 +53,7 @@ public class CollisionMaterialActor extends AbstractCollisionObserver implements
 	}
 	
 	private MaterialSkill getSkillForTarget(Creature creature) {
-		if (creature instanceof Player) {
-			Player player = (Player) creature;
-			if (player.isProtectionActive())
+		if (creature instanceof Player player) {			if (player.isProtectionActive())
 				return null;
 		}
 		MaterialSkill foundSkill = null;

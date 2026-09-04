@@ -20,7 +20,6 @@ import com.aionemu.commons.network.util.ThreadUncaughtExceptionHandler;
 import com.aionemu.commons.utils.concurrent.AionRejectedExecutionHandler;
 import com.aionemu.commons.utils.concurrent.PriorityThreadFactory;
 import com.aionemu.commons.utils.concurrent.RunnableWrapper;
-import com.aionemu.commons.utils.internal.chmv8.ForkJoinPool;
 import com.aionemu.gameserver.configs.main.ThreadConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
-public final class ThreadPoolManager
+public final class ThreadPoolManager implements Executor
 {
 	private static final Logger log = LoggerFactory.getLogger(ThreadPoolManager.class);
 	public static final long MAXIMUM_RUNTIME_IN_MILLISEC_WITHOUT_WARNING = 5000;
@@ -37,30 +36,20 @@ public final class ThreadPoolManager
 	private final ScheduledThreadPoolExecutor scheduledPool;
 	private final ThreadPoolExecutor instantPool;
 	private final ThreadPoolExecutor longRunningPool;
-	private final ForkJoinPool workStealingPool;
 	
 	private ThreadPoolManager() {
 		final int instantPoolSize = Math.max(1, ThreadConfig.THREAD_POOL_SIZE) * Runtime.getRuntime().availableProcessors();
-		instantPool = new ThreadPoolExecutor(instantPoolSize, instantPoolSize, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100000), new PriorityThreadFactory("InstantPool", ThreadConfig.USE_PRIORITIES ? 7 : Thread.NORM_PRIORITY));
+		instantPool = new ThreadPoolExecutor(instantPoolSize, instantPoolSize, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(100000), new PriorityThreadFactory("InstantPool", ThreadConfig.USE_PRIORITIES ? 7 : Thread.NORM_PRIORITY));
 		instantPool.setRejectedExecutionHandler(new AionRejectedExecutionHandler());
 		instantPool.prestartAllCoreThreads();
 		scheduledPool = new ScheduledThreadPoolExecutor(Math.max(1, ThreadConfig.EXTRA_THREAD_PER_CORE) * Runtime.getRuntime().availableProcessors());
 		scheduledPool.setRejectedExecutionHandler(new AionRejectedExecutionHandler());
 		scheduledPool.prestartAllCoreThreads();
+		scheduledPool.setExecuteExistingDelayedTasksAfterShutdownPolicy(false);
 		longRunningPool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 		longRunningPool.setRejectedExecutionHandler(new AionRejectedExecutionHandler());
 		longRunningPool.prestartAllCoreThreads();
-		WorkStealThreadFactory forkJoinThreadFactory = new WorkStealThreadFactory("ForkJoinPool");
-		workStealingPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors(), forkJoinThreadFactory, new ThreadUncaughtExceptionHandler(), true);
-		forkJoinThreadFactory.setDefaultPool(workStealingPool);
-		Thread maintainThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				purge();
-			}
-		}, "ThreadPool Purge Task");
-		maintainThread.setDaemon(true);
-		scheduleAtFixedRate(maintainThread, 500000L, 500000L);
+		scheduleAtFixedRate(this::purge, 500000L, 500000L);
 	}
 	
 	private long validate(long delay) {
@@ -87,7 +76,7 @@ public final class ThreadPoolManager
 	}
 	
 	public ForkJoinPool getForkingPool() {
-		return workStealingPool;
+		return ForkJoinPool.commonPool();
 	}
 	
 	public final void execute(Runnable r) {
@@ -126,11 +115,9 @@ public final class ThreadPoolManager
 		log.info("\t... executing " + getTaskCount(scheduledPool) + " scheduled tasks.");
 		log.info("\t... executing " + getTaskCount(instantPool) + " instant tasks.");
 		log.info("\t... executing " + getTaskCount(longRunningPool) + " long running tasks.");
-		log.info("\t... " + (workStealingPool.getQueuedTaskCount() + workStealingPool.getQueuedSubmissionCount()) + " forking tasks left.");
 		scheduledPool.shutdown();
 		instantPool.shutdown();
 		longRunningPool.shutdown();
-		workStealingPool.shutdown();
 		boolean success = false;
 		try {
 			success |= awaitTermination(5000);
@@ -145,8 +132,6 @@ public final class ThreadPoolManager
 		log.info("\t... " + getTaskCount(scheduledPool) + " scheduled tasks left.");
 		log.info("\t... " + getTaskCount(instantPool) + " instant tasks left.");
 		log.info("\t... " + getTaskCount(longRunningPool) + " long running tasks left.");
-		log.info("\t... " + (workStealingPool.getQueuedTaskCount() + workStealingPool.getQueuedSubmissionCount()) + " forking tasks left.");
-		workStealingPool.shutdownNow();
 	}
 	
 	private int getTaskCount(ThreadPoolExecutor tp) {
@@ -154,7 +139,7 @@ public final class ThreadPoolManager
 	}
 	
 	public List<String> getStats() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		list.add("");
 		list.add("Scheduled pool:");
 		list.add("=================================================");
@@ -188,14 +173,6 @@ public final class ThreadPoolManager
 		list.add("\tgetCompletedTaskCount: " + longRunningPool.getCompletedTaskCount());
 		list.add("\tgetQueuedTaskCount: .. " + longRunningPool.getQueue().size());
 		list.add("\tgetTaskCount: ........ " + longRunningPool.getTaskCount());
-		list.add("");
-		list.add("Work forking pool:");
-		list.add("=================================================");
-		list.add("\tgetActiveCount: ...... " + workStealingPool.getActiveThreadCount());
-		list.add("\tgetPoolSize: ......... " + workStealingPool.getPoolSize());
-		list.add("\tgetStealCount: ........" + workStealingPool.getStealCount());
-		list.add("\tgetQueuedTaskCount: .. " + workStealingPool.getQueuedTaskCount());
-		list.add("\tgetRunningThreadCount: " + workStealingPool.getRunningThreadCount());
 		return list;
 	}
 	
@@ -205,8 +182,6 @@ public final class ThreadPoolManager
 			if (!scheduledPool.awaitTermination(10, TimeUnit.MILLISECONDS) && scheduledPool.getActiveCount() > 0)
 				continue;
 			if (!instantPool.awaitTermination(10, TimeUnit.MILLISECONDS) && instantPool.getActiveCount() > 0)
-				continue;
-			if (!workStealingPool.awaitTermination(10, TimeUnit.MILLISECONDS) && workStealingPool.getActiveThreadCount() > 0)
 				continue;
 			if (!longRunningPool.awaitTermination(10, TimeUnit.MILLISECONDS) && longRunningPool.getActiveCount() > 0)
 				continue;

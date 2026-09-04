@@ -155,7 +155,7 @@ public class Legion {
 	 * @param playerObjId
 	 */
 	public void deleteLegionMember(int playerObjId) {
-		legionMembers.remove(new Integer(playerObjId));
+		legionMembers.remove(Integer.valueOf(playerObjId));
 	}
 
 	/**

@@ -368,13 +368,9 @@ public final class Ray implements Cloneable, Collidable {
 	}
 
 	public int collideWith(Collidable other, CollisionResults results) {
-		if (other instanceof BoundingVolume) {
-			BoundingVolume bv = (BoundingVolume) other;
-			return bv.collideWith(this, results);
+		if (other instanceof BoundingVolume bv) {			return bv.collideWith(this, results);
 		}
-		else if (other instanceof AbstractTriangle) {
-			AbstractTriangle tri = (AbstractTriangle) other;
-			float d = intersects(tri.get1(), tri.get2(), tri.get3());
+		else if (other instanceof AbstractTriangle tri) {			float d = intersects(tri.get1(), tri.get2(), tri.get3());
 			if (Float.isInfinite(d) || Float.isNaN(d))
 				return 0;
 

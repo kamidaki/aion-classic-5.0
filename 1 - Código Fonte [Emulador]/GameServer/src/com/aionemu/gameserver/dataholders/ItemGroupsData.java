@@ -219,9 +219,7 @@ public class ItemGroupsData
 	
 	void MapCraftReward(FastMap<Integer, FastMap<IntRange, List<CraftReward>>> dataHolder, CraftReward reward) {
 		int lowerBound = 0, upperBound = 0;
-		if (reward instanceof CraftRecipe) {
-			CraftRecipe recipe = (CraftRecipe) reward;
-			lowerBound = recipe.getLevel();
+		if (reward instanceof CraftRecipe recipe) {			lowerBound = recipe.getLevel();
 			upperBound = lowerBound + RECIPE_UPPER;
 			if (upperBound / 100 != lowerBound / 100) {
 				upperBound = lowerBound / 100 + 99;

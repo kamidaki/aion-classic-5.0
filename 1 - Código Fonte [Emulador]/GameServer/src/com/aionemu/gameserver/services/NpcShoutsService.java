@@ -130,9 +130,7 @@ public class NpcShoutsService {
 
 		Object param = shout.getParam();
 
-		if (target instanceof Player) {
-			Player player = (Player) target;
-			if ("username".equals(param))
+		if (target instanceof Player player) {			if ("username".equals(param))
 				param = player.getName();
 			else if ("userclass".equals(param))
 				param = (240000 + player.getCommonData().getPlayerClass().getClassId()) * 2 + 1;

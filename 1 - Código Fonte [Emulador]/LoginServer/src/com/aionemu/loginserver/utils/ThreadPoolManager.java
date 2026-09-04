@@ -23,7 +23,7 @@ import java.util.concurrent.*;
 /**
  * @author -Nemesiss-, NB4L1, MrPoke, lord_rex
  */
-public final class ThreadPoolManager {
+public final class ThreadPoolManager implements Executor {
 
 	private static final Logger log = LoggerFactory.getLogger(ThreadPoolManager.class);
 
@@ -44,22 +44,16 @@ public final class ThreadPoolManager {
 		scheduledPool.prestartAllCoreThreads();
 
 		instantPool = new ThreadPoolExecutor(instantPoolSize, instantPoolSize, 0, TimeUnit.SECONDS,
-			new ArrayBlockingQueue<Runnable>(100000));
+			new ArrayBlockingQueue<>(100000));
 		instantPool.setRejectedExecutionHandler(new AionRejectedExecutionHandler());
 		instantPool.prestartAllCoreThreads();
 
 		longRunningPool = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
-			new SynchronousQueue<Runnable>());
+			new SynchronousQueue<>());
 		longRunningPool.setRejectedExecutionHandler(new AionRejectedExecutionHandler());
 		longRunningPool.prestartAllCoreThreads();
 
-		scheduleAtFixedRate(new Runnable() {
-
-			@Override
-			public void run() {
-				purge();
-			}
-		}, 150000, 150000);
+		scheduleAtFixedRate(this::purge, 150000L, 150000L);
 
 		log.info("ThreadPoolManager: Initialized with " + scheduledPool.getPoolSize() + " scheduler, "
 			+ instantPool.getPoolSize() + " instant, " + longRunningPool.getPoolSize() + " long running thread(s).");

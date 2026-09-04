@@ -104,7 +104,7 @@ public final class IntMap<T> implements Iterable<Entry>, Cloneable {
     }
 
     public boolean containsKey(int key) {
-        int index = ((int) key) & mask;
+        int index = key & mask;
         for (Entry e = table[index]; e != null; e = e.next){
             if (e.key == key){
                 return true;

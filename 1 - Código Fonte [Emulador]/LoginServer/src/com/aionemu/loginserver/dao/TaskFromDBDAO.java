@@ -39,8 +39,8 @@ public class TaskFromDBDAO
 
 			while (rset.next()) {
 				try {
-					TaskFromDBTrigger trigger = TaskFromDBTriggerHolder.valueOf(rset.getString("trigger_type")).getTriggerClass().newInstance();
-					TaskFromDBHandler handler = TaskFromDBHandlerHolder.valueOf(rset.getString("task_type")).getTaskClass().newInstance();
+					TaskFromDBTrigger trigger = TaskFromDBTriggerHolder.valueOf(rset.getString("trigger_type")).getTriggerClass().getDeclaredConstructor().newInstance();
+					TaskFromDBHandler handler = TaskFromDBHandlerHolder.valueOf(rset.getString("task_type")).getTaskClass().getDeclaredConstructor().newInstance();
 
 					handler.setTaskId(rset.getInt("id"));
 
@@ -56,7 +56,7 @@ public class TaskFromDBDAO
 
 					result.add(trigger);
 
-				} catch (InstantiationException | IllegalAccessException ex) {
+				} catch (ReflectiveOperationException ex) {
 					log.error(ex.getMessage(), ex);
 				}
 			}

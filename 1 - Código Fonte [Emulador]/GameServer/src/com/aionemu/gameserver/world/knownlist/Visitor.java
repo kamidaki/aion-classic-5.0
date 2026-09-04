@@ -19,6 +19,7 @@ package com.aionemu.gameserver.world.knownlist;
 /**
  * @author ATracer
  */
+@FunctionalInterface
 public interface Visitor<T> {
 
 	void visit(T object);

@@ -130,7 +130,7 @@ public class ShutdownHook extends Thread
 	}
 	
 	public void doShutdown(int delay, int announceInterval, ShutdownMode mode) {
-		shutdownHook(delay, announceInterval, mode);
+		Thread.startVirtualThread(() -> shutdownHook(delay, announceInterval, mode));
 	}
 	
 	private static final class SingletonHolder {

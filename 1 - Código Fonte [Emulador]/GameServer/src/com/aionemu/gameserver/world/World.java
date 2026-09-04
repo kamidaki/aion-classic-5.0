@@ -66,9 +66,7 @@ public class World
 			throw new DuplicateAionObjectException();
 		if (object instanceof Player) {
 			allPlayers.add((Player) object);
-		} if (object instanceof SiegeNpc) {
-			SiegeNpc siegeNpc = (SiegeNpc) object;
-			Collection<SiegeNpc> npcs = localSiegeNpcs.get(siegeNpc.getSiegeId());
+		} if (object instanceof SiegeNpc siegeNpc) {			Collection<SiegeNpc> npcs = localSiegeNpcs.get(siegeNpc.getSiegeId());
 			if (npcs == null) {
 				synchronized (localSiegeNpcs) {
 					if (localSiegeNpcs.containsKey(siegeNpc.getSiegeId())) {
@@ -91,9 +89,7 @@ public class World
 	 */
 	public void removeObject(VisibleObject object) {
 		allObjects.remove(object.getObjectId());
-		if (object instanceof SiegeNpc) {
-			SiegeNpc siegeNpc = (SiegeNpc) object;
-			Collection<SiegeNpc> locSpawn = localSiegeNpcs.get(siegeNpc.getSiegeId());
+		if (object instanceof SiegeNpc siegeNpc) {			Collection<SiegeNpc> locSpawn = localSiegeNpcs.get(siegeNpc.getSiegeId());
 			if (!GenericValidator.isBlankOrNull(locSpawn)) {
 				locSpawn.remove(siegeNpc);
 			}
@@ -190,9 +186,7 @@ public class World
 		if (newRegion == null) {
 			if (object instanceof Creature) {
 				((Creature) object).getMoveController().abortMove();
-			} if (object instanceof Player) {
-				Player player = (Player) object;
-				float x, y, z;
+			} if (object instanceof Player player) {				float x, y, z;
 				int worldId;
 				byte h = 0;
 				if (player.getBindPoint() != null) {

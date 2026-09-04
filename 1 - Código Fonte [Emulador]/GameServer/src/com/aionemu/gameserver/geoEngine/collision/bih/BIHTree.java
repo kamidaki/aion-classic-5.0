@@ -426,12 +426,8 @@ public class BIHTree implements CollisionData {
                            BoundingVolume worldBound,
                            CollisionResults results){
         
-    	if (other instanceof Ray){
-            Ray ray = (Ray) other;
-            return collideWithRay(ray, worldMatrix, worldBound, results);
-        }else if (other instanceof BoundingVolume){
-            BoundingVolume bv = (BoundingVolume) other;
-            return collideWithBoundingVolume(bv, worldMatrix, results);
+    	if (other instanceof Ray ray) {            return collideWithRay(ray, worldMatrix, worldBound, results);
+        }else if (other instanceof BoundingVolume bv) {            return collideWithBoundingVolume(bv, worldMatrix, results);
         }else{
             throw new UnsupportedCollisionException();
         }

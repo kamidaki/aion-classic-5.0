@@ -66,7 +66,7 @@ public class KnownList {
 	 */
 	protected volatile FastMap<Integer, Player> visualPlayers;
 
-	private ReentrantLock lock = new ReentrantLock();
+	private final ReentrantLock lock = new ReentrantLock();
 
 	/**
 	 * @param owner

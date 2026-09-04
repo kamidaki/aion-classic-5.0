@@ -93,9 +93,7 @@ public class PlayerController extends CreatureController<Player> {
 	@Override
 	public void see(VisibleObject object) {
 		super.see(object);
-		if (object instanceof Player) {
-			Player player = (Player) object;
-			PacketSendUtility.sendPacket(getOwner(), new S_PUT_USER(player, getOwner().isAggroIconTo(player)));
+		if (object instanceof Player player) {			PacketSendUtility.sendPacket(getOwner(), new S_PUT_USER(player, getOwner().isAggroIconTo(player)));
 			PacketSendUtility.sendPacket(getOwner(), new S_CUSTOM_ANIM(player.getObjectId(), player.getMotions().getActiveMotions()));
 			if (player.isTransformed()) {
 				player.getEffectController().updatePlayerEffectIcons();
@@ -791,7 +789,7 @@ public class PlayerController extends CreatureController<Player> {
 	public boolean isNoDeathPenaltyInEffect() {
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = (Effect) iterator.next();
+			Effect effect = iterator.next();
 			if (effect.isNoDeathPenalty()) {
 				return true;
 			}
@@ -802,7 +800,7 @@ public class PlayerController extends CreatureController<Player> {
 	public boolean isNoDeathPenaltyReduceInEffect() {
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = (Effect) iterator.next();
+			Effect effect = iterator.next();
 			if (effect.isNoDeathPenaltyReduce()) {
 				return true;
 			}
@@ -813,7 +811,7 @@ public class PlayerController extends CreatureController<Player> {
 	public boolean isDeathPenaltyReduceInEffect() {
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = (Effect) iterator.next();
+			Effect effect = iterator.next();
 			if (effect.isDeathPenaltyReduce()) {
 				return true;
 			}
@@ -824,7 +822,7 @@ public class PlayerController extends CreatureController<Player> {
 	public boolean isNoResurrectPenaltyInEffect() {
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = (Effect) iterator.next();
+			Effect effect = iterator.next();
 			if (effect.isNoResurrectPenalty()) {
 				return true;
 			}
@@ -835,7 +833,7 @@ public class PlayerController extends CreatureController<Player> {
 	public boolean isHiPassInEffect() {
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = (Effect) iterator.next();
+			Effect effect = iterator.next();
 			if (effect.isHiPass()) {
 				return true;
 			}
@@ -846,7 +844,7 @@ public class PlayerController extends CreatureController<Player> {
 	public boolean isHandOfReincarnationEffect() {
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = (Effect) iterator.next();
+			Effect effect = iterator.next();
 			if (effect.isHandOfReincarnation()) {
 				return true;
 			}

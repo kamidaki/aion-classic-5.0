@@ -220,9 +220,7 @@ public abstract class WorldMapInstance {
 	public Npc getNpc(int npcId) {
 		for (Iterator<VisibleObject> iter = objectIterator(); iter.hasNext();) {
 			VisibleObject obj = iter.next();
-			if (obj instanceof Npc) {
-				Npc npc = (Npc) obj;
-				if (npc.getNpcId() == npcId) {
+			if (obj instanceof Npc npc) {				if (npc.getNpcId() == npcId) {
 					return npc;
 				}
 			}
@@ -235,9 +233,7 @@ public abstract class WorldMapInstance {
 		Iterator<VisibleObject> iter = objectIterator();
 		while (iter.hasNext()) {
 			VisibleObject obj = iter.next();
-			if (obj instanceof Npc) {
-				Npc npc = (Npc) obj;
-				if (npc.getNpcId() == npcId) {
+			if (obj instanceof Npc npc) {				if (npc.getNpcId() == npcId) {
 					npcList.add(npc);
 				}
 			}
@@ -263,9 +259,7 @@ public abstract class WorldMapInstance {
 		List<Npc> npcs = new ArrayList<Npc>();
 		for (Iterator<VisibleObject> iter = objectIterator(); iter.hasNext();) {
 			VisibleObject obj = iter.next();
-			if (obj instanceof Npc) {
-				Npc npc = (Npc) obj;
-				if (npc.getNpcId() == npcId) {
+			if (obj instanceof Npc npc) {				if (npc.getNpcId() == npcId) {
 					npcs.add(npc);
 				}
 			}
@@ -294,9 +288,7 @@ public abstract class WorldMapInstance {
 		Map<Integer,StaticDoor> doors = new HashMap<Integer,StaticDoor>();
 		for (Iterator<VisibleObject> iter = objectIterator(); iter.hasNext();) {
 			VisibleObject obj = iter.next();
-			if (obj instanceof StaticDoor) {
-				StaticDoor door = (StaticDoor) obj;
-				doors.put(door.getSpawn().getEntityId(), door);
+			if (obj instanceof StaticDoor door) {				doors.put(door.getSpawn().getEntityId(), door);
 			}
 		}
 		return doors;
@@ -309,9 +301,7 @@ public abstract class WorldMapInstance {
         List<Trap> traps = new ArrayList<Trap>();
         for (Iterator<VisibleObject> iter = objectIterator(); iter.hasNext();) {
             VisibleObject obj = iter.next();
-            if (obj instanceof Trap) {
-                Trap t = (Trap)obj;
-                if (t.getCreatorId() == p.getObjectId()) {
+            if (obj instanceof Trap t) {                if (t.getCreatorId() == p.getObjectId()) {
                     traps.add(t);
 				}
             }

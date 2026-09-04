@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -35,27 +36,20 @@ public class AdminService {
 		if(list.size() > 0)
 			list.clear();
 		
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader("./config/administration/item.restriction.txt"));
+		File file = new File("./config/administration/item.restriction.txt");
+		if (!file.exists())
+			return;
+		try (BufferedReader br = new BufferedReader(new FileReader(file, java.nio.charset.StandardCharsets.UTF_8))) {
 			String line = null;
 			while ((line = br.readLine()) != null) {
-				if(line.startsWith("#") || line.trim().length() == 0)
+				if (line.startsWith("#") || line.trim().isEmpty())
 					continue;
 				
 				String pt = line.split("#")[0].replaceAll(" ", "");
 				list.add(Integer.parseInt(pt));
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+			log.error("Failed to load item restrictions", e);
 		}
 		
 		log.info("AdminService loaded "+list.size()+" operational items.");

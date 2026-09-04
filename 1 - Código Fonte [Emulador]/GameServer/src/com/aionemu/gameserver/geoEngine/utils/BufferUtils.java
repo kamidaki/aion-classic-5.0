@@ -32,14 +32,14 @@
 
 package com.aionemu.gameserver.geoEngine.utils;
 
-import com.aionemu.commons.utils.internal.chmv8.PlatformDependent;
-import com.aionemu.gameserver.geoEngine.math.Vector2f;
-import com.aionemu.gameserver.geoEngine.math.Vector3f;
-
 import java.nio.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.WeakHashMap;
+
+import com.aionemu.gameserver.geoEngine.math.Vector2f;
+import com.aionemu.gameserver.geoEngine.math.Vector3f;
 
 /**
  * <code>BufferUtils</code> is a helper class for generating nio buffers from
@@ -56,7 +56,7 @@ public final class BufferUtils {
 //    private static final ColorRGBA _tempColor = new ColorRGBA();
 
     ////  -- TRACKER HASH --  ////
-    private static final Map<Buffer, Object> trackingHash = PlatformDependent.newConcurrentHashMap(new WeakHashMap<Buffer, Object>());
+    private static final Map<Buffer, Object> trackingHash = Collections.synchronizedMap(new WeakHashMap<Buffer, Object>());
     private static final Object ref = new Object();
     private static final boolean trackDirectMemory = false;
 

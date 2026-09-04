@@ -183,14 +183,8 @@ public class InGameWebServer {
                 exchange.sendResponseHeaders(405, -1);
                 return;
             }
-            InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            Map<String, String> params = parseFormData(sb.toString());
+            String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+            Map<String, String> params = parseFormData(body);
             String charName = params.get("player");
             String itemIdStr = params.get("itemId");
             String priceStr = params.get("price");

@@ -16,6 +16,9 @@
  */
 package com.aionemu.gameserver.services;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dataholders.MotionData;
 import com.aionemu.gameserver.model.Gender;
@@ -262,12 +265,11 @@ public class MotionLoggingService {
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(templates.getClass());
 			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
-					new Boolean(true));
-			marshaller.marshal(templates, new FileOutputStream(file));
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			try (FileOutputStream fos = new FileOutputStream(file)) {
+				marshaller.marshal(templates, fos);
+			}
+		} catch (JAXBException | IOException e) {
 			e.printStackTrace();
 		}
 	}

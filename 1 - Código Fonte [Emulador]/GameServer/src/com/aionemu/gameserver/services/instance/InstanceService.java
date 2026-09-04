@@ -81,9 +81,7 @@ public class InstanceService
 		Iterator<VisibleObject> it = instance.objectIterator();
 		while (it.hasNext()) {
 			VisibleObject obj = it.next();
-			if (obj instanceof Player) {
-				Player player = (Player) obj;
-				PacketSendUtility.sendPacket(player, new S_MESSAGE_CODE(SystemMessageId.LEAVE_INSTANCE_NOT_PARTY));
+			if (obj instanceof Player player) {				PacketSendUtility.sendPacket(player, new S_MESSAGE_CODE(SystemMessageId.LEAVE_INSTANCE_NOT_PARTY));
 				moveToExitPoint((Player) obj);
 			} else {
 				obj.getController().onDelete();

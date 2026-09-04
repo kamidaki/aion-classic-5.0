@@ -598,7 +598,7 @@ public class BoundingSphere extends BoundingVolume {
 			return rVal;
 		}
 
-		return new BoundingSphere(radius, (center != null ? (Vector3f) center.clone() : null));
+		return new BoundingSphere(radius, (center != null ? center.clone() : null));
 	}
 
 	/**
@@ -733,9 +733,7 @@ public class BoundingSphere extends BoundingVolume {
 	}
 
 	public int collideWith(Collidable other, CollisionResults results) {
-		if (other instanceof Ray) {
-			Ray ray = (Ray) other;
-			return collideWithRay(ray, results);
+		if (other instanceof Ray ray) {			return collideWithRay(ray, results);
 		}
 		else {
 			throw new UnsupportedCollisionException();

@@ -61,9 +61,7 @@ public class CM_VIEW_PLAYER_DETAILS extends AionClientPacket {
 			return;
 		}
 		
-		if (obj instanceof Player) {
-			Player target = (Player) obj;
-			
+		if (obj instanceof Player target) {			
 			if (!target.getPlayerSettings().isInDeniedStatus(DeniedStatus.VIEW_DETAILS) || player.getAccessLevel() >= AdminConfig.ADMIN_VIEW_DETAILS)
 				sendPacket(new S_ITEM_LIST(target.getEquipment().getEquippedItemsWithoutStigma(), target));
 			else {

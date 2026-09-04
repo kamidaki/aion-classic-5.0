@@ -33,7 +33,8 @@ public class GatherableController extends VisibleObjectController<Gatherable>
 	private int gatherCount;
 	private int currentGatherer;
 	private GatheringTask task;
-	private GatherState state = GatherState.IDLE;
+	private volatile GatherState state = GatherState.IDLE;
+	private final Object lock = new Object();
 	private RndSelector<Material> mats;
 	
 	public enum GatherState {
@@ -93,7 +94,7 @@ public class GatherableController extends VisibleObjectController<Gatherable>
 		for (Material mat: materials) {
 			mats.add(mat, mat.getRate());
 		}
-		synchronized (state) {
+		synchronized (lock) {
 			if (state != GatherState.GATHERING) {
 				state = GatherState.GATHERING;
 				currentGatherer = player.getObjectId();
@@ -173,10 +174,12 @@ public class GatherableController extends VisibleObjectController<Gatherable>
 	}
 	
 	public void completeInteraction() {
-		state = GatherState.IDLE;
-		gatherCount++;
-		if (gatherCount == getOwner().getObjectTemplate().getHarvestCount()) {
-			onDespawn();
+		synchronized (lock) {
+			state = GatherState.IDLE;
+			gatherCount++;
+			if (gatherCount == getOwner().getObjectTemplate().getHarvestCount()) {
+				onDespawn();
+			}
 		}
 	}
 	
@@ -196,12 +199,14 @@ public class GatherableController extends VisibleObjectController<Gatherable>
 	}
 	
 	public void finishGathering(Player player) {
-		if (currentGatherer == player.getObjectId()) {
-			if (state == GatherState.GATHERING) {
-				task.abort();
+		synchronized (lock) {
+			if (currentGatherer == player.getObjectId()) {
+				if (state == GatherState.GATHERING) {
+					task.abort();
+				}
+				currentGatherer = 0;
+				state = GatherState.IDLE;
 			}
-			currentGatherer = 0;
-			state = GatherState.IDLE;
 		}
 	}
 	

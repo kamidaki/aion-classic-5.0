@@ -56,9 +56,7 @@ public class CM_CLOSE_DIALOG extends AionClientPacket
 		final AionConnection client = getConnection();
 		if(obj == null) {
 			return;
-		} if (obj instanceof Npc) {
-			Npc npc = (Npc)obj;
-			npc.getAi2().onCreatureEvent(AIEventType.DIALOG_FINISH, player);
+		} if (obj instanceof Npc npc) {			npc.getAi2().onCreatureEvent(AIEventType.DIALOG_FINISH, player);
 			DialogService.onCloseDialog(npc, player);
 			ThreadPoolManager.getInstance().schedule(new Runnable() {
 				@Override

@@ -44,7 +44,7 @@ public class CraftingTask extends AbstractCraftTask
 	
     @Override
     protected void analyzeInteraction() {
-        int critVal = (int) (Rnd.get(55000) / (skillLvlDiff + 1));
+        int critVal = Rnd.get(55000) / (skillLvlDiff + 1);
         if (critVal < CraftConfig.CRAFT_CHANCE_BLUE_CRIT) {
             critType = CraftCritType.BLUE;
         } else if ((critVal < CraftConfig.CRAFT_CHANCE_INSTANT) && (this.itemQuality.getQualityId() < ItemQuality.EPIC.getQualityId())) {

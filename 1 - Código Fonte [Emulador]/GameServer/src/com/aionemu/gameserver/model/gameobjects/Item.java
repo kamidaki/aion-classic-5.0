@@ -329,7 +329,7 @@ public class Item extends AionObject implements IExpirable, StatOwner {
 	}
 
 	public int getEquipmentSlotInteger() {
-		return new Long(equipmentSlot).intValue();
+		return equipmentSlot;
 	}
 
 	/**

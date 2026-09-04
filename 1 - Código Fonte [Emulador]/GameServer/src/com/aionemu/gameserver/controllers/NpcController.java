@@ -151,9 +151,7 @@ public class NpcController extends CreatureController<Npc>
 			}
 		}
 		super.onDie(lastAttacker);
-		if (lastAttacker instanceof Player) {
-			Player player = (Player) lastAttacker;
-			int npcObjId = owner.getObjectId();
+		if (lastAttacker instanceof Player player) {			int npcObjId = owner.getObjectId();
 			if (player.getPet() != null && player.getPet().getPetTemplate().getPetFunction(PetFunctionType.LOOT) != null
 				&& player.getPet().getCommonData().isLooting()) {
 				PacketSendUtility.sendPacket(player, new S_FUNCTIONAL_PET(true, npcObjId));
@@ -234,9 +232,7 @@ public class NpcController extends CreatureController<Npc>
 				PlayerTeamDistributionService.doReward((TemporaryPlayerTeam<?>) attacker, percentage, getOwner(), winner);
 			} else if (attacker instanceof Player && ((Player) attacker).isInGroup2()) {
 				PlayerTeamDistributionService.doReward(((Player) attacker).getPlayerGroup2(), percentage, getOwner(), winner);
-			} else if (attacker instanceof Player) {
-				Player player = (Player) attacker;
-				if (!player.getLifeStats().isAlreadyDead()) {
+			} else if (attacker instanceof Player player) {				if (!player.getLifeStats().isAlreadyDead()) {
 					long rewardXp = StatFunctions.calculateSoloExperienceReward(player, getOwner());
 					int rewardDp = StatFunctions.calculateSoloDPReward(player, getOwner());
 					int rewardAp = StatFunctions.calculatePvEApGained(player, getOwner());

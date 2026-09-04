@@ -203,10 +203,8 @@ public class SpawnsData2
 			// ignore, if schemas are wrong then we even could not call the command;
 		}
 
-		FileInputStream fin = null;
 		if (xml.exists()) {
-			try {
-				fin = new FileInputStream(xml);
+			try (FileInputStream fin = new FileInputStream(xml)) {
 				Unmarshaller unmarshaller = jc.createUnmarshaller();
 				unmarshaller.setSchema(schema);
 				data = (SpawnsData2) unmarshaller.unmarshal(fin);
@@ -215,10 +213,6 @@ public class SpawnsData2
 				log.error(e.getMessage());
 				PacketSendUtility.sendMessage(admin, "Could not load old XML file!");
 				return false;
-			}
-			finally {
-				if (fin != null)
-					fin.close();
 			}
 		}
 
@@ -295,14 +289,14 @@ public class SpawnsData2
 		if (addGroup)
 			map.addSpawns(oldGroup);
 
-		FileOutputStream fos = null;
 		try {
 			xml.getParentFile().mkdir();
-			fos = new FileOutputStream(xml);
-			Marshaller marshaller = jc.createMarshaller();
-			marshaller.setSchema(schema);
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.marshal(data, fos);
+			try (FileOutputStream fos = new FileOutputStream(xml)) {
+				Marshaller marshaller = jc.createMarshaller();
+				marshaller.setSchema(schema);
+				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+				marshaller.marshal(data, fos);
+			}
 			DataManager.SPAWNS_DATA2.templates = data.templates;
 			DataManager.SPAWNS_DATA2.afterUnmarshal(null, null);
 			DataManager.SPAWNS_DATA2.clearTemplates();
@@ -312,10 +306,6 @@ public class SpawnsData2
 			log.error(e.getMessage());
 			PacketSendUtility.sendMessage(admin, "Could not save XML file!");
 			return false;
-		}
-		finally {
-			if (fos != null)
-				fos.close();
 		}
 		return true;
 	}

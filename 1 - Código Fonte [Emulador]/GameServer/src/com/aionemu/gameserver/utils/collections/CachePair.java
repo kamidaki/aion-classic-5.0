@@ -31,9 +31,7 @@ public class CachePair<K extends Comparable, V> implements Comparable<CachePair>
 	public V value;
 
 	public boolean equals(Object obj) {
-		if (obj instanceof CachePair) {
-			CachePair p = (CachePair) obj;
-			return key.equals(p.key) && value.equals(p.value);
+		if (obj instanceof CachePair p) {			return key.equals(p.key) && value.equals(p.value);
 		}
 		return false;
 	}

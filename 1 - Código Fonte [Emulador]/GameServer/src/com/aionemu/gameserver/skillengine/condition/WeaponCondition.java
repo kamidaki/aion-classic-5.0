@@ -58,9 +58,7 @@ public class WeaponCondition extends Condition {
 	 * @return
 	 */
 	private boolean isValidWeapon(Creature creature) {
-		if (creature instanceof Player) {
-			Player player = (Player) creature;
-			return weaponType.contains(player.getEquipment().getMainHandWeaponType());
+		if (creature instanceof Player player) {			return weaponType.contains(player.getEquipment().getMainHandWeaponType());
 		}
 		// for npcs we don't validate weapon, though in templates they are present
 		return true;

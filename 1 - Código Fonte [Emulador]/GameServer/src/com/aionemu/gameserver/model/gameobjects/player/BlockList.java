@@ -1,9 +1,8 @@
 package com.aionemu.gameserver.model.gameobjects.player;
 
-import com.aionemu.commons.utils.internal.chmv8.PlatformDependent;
-
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BlockList implements Iterable<BlockedPlayer>
 {
@@ -12,11 +11,11 @@ public class BlockList implements Iterable<BlockedPlayer>
 	private final Map<Integer, BlockedPlayer> blockedList;
 	
 	public BlockList() {
-		this.blockedList = PlatformDependent.newConcurrentHashMap();
+		this.blockedList = new ConcurrentHashMap<>();
 	}
 	
 	public BlockList(Map<Integer, BlockedPlayer> initialList) {
-		this.blockedList = PlatformDependent.newConcurrentHashMap(initialList);
+		this.blockedList = new ConcurrentHashMap<>(initialList);
 	}
 	
 	public void add(BlockedPlayer plr) {

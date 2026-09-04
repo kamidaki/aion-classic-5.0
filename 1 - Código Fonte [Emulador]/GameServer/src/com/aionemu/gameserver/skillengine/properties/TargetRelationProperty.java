@@ -50,9 +50,7 @@ public class TargetRelationProperty
                     Player player = null;
                     if (nextEffected instanceof Player) {
                         player = (Player) nextEffected;
-                    } else if (nextEffected instanceof Summon) {
-                        Summon playerSummon = (Summon) nextEffected;
-                        if (playerSummon.getMaster() != null) {
+                    } else if (nextEffected instanceof Summon playerSummon) {                        if (playerSummon.getMaster() != null) {
                             player = playerSummon.getMaster();
                         }
                     } if (player != null) {

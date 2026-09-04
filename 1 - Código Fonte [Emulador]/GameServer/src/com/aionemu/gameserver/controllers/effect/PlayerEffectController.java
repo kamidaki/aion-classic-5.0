@@ -86,7 +86,7 @@ public class PlayerEffectController extends EffectController {
 	@Override
 	public void updatePlayerEffectIconsImpl() {
 		Collection<Effect> effects = getAbnormalEffectsToShow();
-		PacketSendUtility.sendPacket((Player) getOwner(), new S_ABNORMAL_STATUS(effects, abnormals));
+		PacketSendUtility.sendPacket(getOwner(), new S_ABNORMAL_STATUS(effects, abnormals));
 	}
 
 	/**

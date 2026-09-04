@@ -10,10 +10,10 @@ echo.
 
 REM --- 1. Verificar JAVA_HOME ---
 if not defined JAVA_HOME (
-    if exist "C:\Program Files\Java\jdk1.8.0_202" (
-        set "JAVA_HOME=C:\Program Files\Java\jdk1.8.0_202"
-    ) else if exist "C:\Program Files\Java\jdk1.8.0_431" (
-        set "JAVA_HOME=C:\Program Files\Java\jdk1.8.0_431"
+    if exist "C:\Program Files\Java\jdk-25.0.2" (
+        set "JAVA_HOME=C:\Program Files\Java\jdk-25.0.2"
+    ) else if exist "C:\Program Files\Java\jdk-25" (
+        set "JAVA_HOME=C:\Program Files\Java\jdk-25"
     )
 )
 if defined JAVA_HOME (

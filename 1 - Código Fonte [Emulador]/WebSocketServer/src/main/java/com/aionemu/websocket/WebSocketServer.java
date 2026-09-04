@@ -28,7 +28,7 @@ public class WebSocketServer {
     private final int port;
     private ServerSocket serverSocket;
     private volatile boolean running = false;
-    private final ExecutorService threadPool = Executors.newCachedThreadPool();
+    private final ExecutorService threadPool = Executors.newVirtualThreadPerTaskExecutor();
     private final Set<ClientConnection> clients = Collections.synchronizedSet(new HashSet<>());
 
     public WebSocketServer(int port) {
@@ -233,7 +233,7 @@ public class WebSocketServer {
                 } else {
                     frame.write(127);
                     for (int i = 7; i >= 0; i--) {
-                        frame.write((int) ((raw.length >> (8 * i)) & 0xFF));
+                        frame.write(((raw.length >> (8 * i)) & 0xFF));
                     }
                 }
                 frame.write(raw);

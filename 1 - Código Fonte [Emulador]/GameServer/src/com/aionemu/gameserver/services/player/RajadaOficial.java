@@ -101,10 +101,8 @@ public final class RajadaOficial {
             cache.put(caminho, lidas);
             return lidas;
         }
-        BufferedReader leitor = null;
-        try {
-            leitor = new BufferedReader(new InputStreamReader(new FileInputStream(arquivo),
-                Charset.forName("UTF-8")));
+        try (BufferedReader leitor = new BufferedReader(new InputStreamReader(new FileInputStream(arquivo),
+                java.nio.charset.StandardCharsets.UTF_8))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
                 linha = linha.trim();
@@ -131,14 +129,6 @@ public final class RajadaOficial {
         } catch (Exception e) {
             log.error("[RAJADA] Falha ao ler " + caminho, e);
             lidas.clear();
-        } finally {
-            if (leitor != null) {
-                try {
-                    leitor.close();
-                } catch (IOException ignorado) {
-                    // fechar o arquivo de diagnostico nao pode derrubar a entrada no mundo
-                }
-            }
         }
         cache.put(caminho, lidas);
         return lidas;

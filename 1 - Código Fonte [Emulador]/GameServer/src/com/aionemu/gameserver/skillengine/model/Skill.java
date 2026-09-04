@@ -140,18 +140,14 @@ public class Skill
             return false;
         }
 		//Restriction "Abyss Transformation"
-		if (effector instanceof Player) {
-			Player player = (Player) effector;
-			if (this.skillTemplate.isDeityAvatar() && player.isTransformed()) {
+		if (effector instanceof Player player) {			if (this.skillTemplate.isDeityAvatar() && player.isTransformed()) {
 				//You cannot use this skill while transformed.
 				PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_SKILL_CAN_NOT_CAST_IN_SHAPECHANGE, 0);
 				return false;
 			}
 		} if (!preCastCheck()) {
             return false;
-		} if (effector instanceof Player) {
-            Player player = (Player) effector;
-            if (this.skillTemplate.getCounterSkill() != null) {
+		} if (effector instanceof Player player) {            if (this.skillTemplate.getCounterSkill() != null) {
                 long time = player.getLastCounterSkill(skillTemplate.getCounterSkill());
                 if ((time + 5000) < System.currentTimeMillis()) {
                     return false;

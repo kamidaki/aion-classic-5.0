@@ -45,7 +45,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ObserveController {
 
-	private ReentrantLock lock = new ReentrantLock();
+	private final ReentrantLock lock = new ReentrantLock();
 	protected Collection<ActionObserver> observers = new FastList<ActionObserver>(0).shared();
 	protected FastList<ActionObserver> onceUsedObservers = new FastList<ActionObserver>(0);
 	protected Collection<AttackCalcObserver> attackCalcObservers = new FastList<AttackCalcObserver>(0).shared();

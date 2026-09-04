@@ -120,18 +120,15 @@ public class PacketSendUtility
 	}
 	
 	public static void broadcastPacketAndReceive(VisibleObject visibleObject, AionServerPacket packet) {
-		if (visibleObject instanceof Player)
-			sendPacket((Player) visibleObject, packet);
+		if (visibleObject instanceof Player player)
+			sendPacket(player, packet);
 		broadcastPacket(visibleObject, packet);
 	}
 	
 	public static void broadcastPacket(VisibleObject visibleObject, final AionServerPacket packet) {
-		visibleObject.getKnownList().doOnAllPlayers(new Visitor<Player>() {
-			@Override
-			public void visit(Player player) {
-				if (player.isOnline()) {
-					sendPacket(player, packet);
-				}
+		visibleObject.getKnownList().doOnAllPlayers(player -> {
+			if (player.isOnline()) {
+				sendPacket(player, packet);
 			}
 		});
 	}
@@ -141,34 +138,24 @@ public class PacketSendUtility
 		if (toSelf) {
 			sendPacket(player, packet);
 		}
-		player.getKnownList().doOnAllPlayers(new Visitor<Player>() {
-			@Override
-			public void visit(Player object) {
-				if (filter.acceptObject(object))
-					sendPacket(object, packet);
-			}
+		player.getKnownList().doOnAllPlayers(object -> {
+			if (filter.acceptObject(object))
+				sendPacket(object, packet);
 		});
 	}
 	
 	public static void broadcastPacket(final VisibleObject visibleObject, final AionServerPacket packet, final int distance) {
-		visibleObject.getKnownList().doOnAllPlayers(new Visitor<Player>() {
-			@Override
-			public void visit(Player p) {
-				if (MathUtil.isIn3dRange(visibleObject, p, distance))
-					sendPacket(p, packet);
-			}
+		visibleObject.getKnownList().doOnAllPlayers(p -> {
+			if (MathUtil.isIn3dRange(visibleObject, p, distance))
+				sendPacket(p, packet);
 		});
 	}
 	
 	public static void broadcastFilteredPacket(final AionServerPacket packet,
 		final ObjectFilter<Player> filter) {
-		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
-
-			@Override
-			public void visit(Player object) {
-				if (filter.acceptObject(object))
-					sendPacket(object, packet);
-			}
+		World.getInstance().doOnAllPlayers(object -> {
+			if (filter.acceptObject(object))
+				sendPacket(object, packet);
 		});
 	}
 	
@@ -186,11 +173,6 @@ public class PacketSendUtility
 	}
 	
 	public static void broadcastPacketToZone(SiegeZoneInstance zone, final AionServerPacket packet) {
-		zone.doOnAllPlayers(new Visitor<Player>() {
-			@Override
-			public void visit(Player player) {
-				sendPacket(player, packet);
-			}
-		});
+		zone.doOnAllPlayers(player -> sendPacket(player, packet));
 	}
 }

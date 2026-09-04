@@ -135,9 +135,7 @@ public class MapRegion {
 	public Map<Integer, StaticDoor> getDoors() {
 		Map<Integer, StaticDoor> doors = new HashMap<Integer, StaticDoor>();
 		for (VisibleObject obj : objects.values()) {
-			if (obj instanceof StaticDoor) {
-				StaticDoor door = (StaticDoor) obj;
-				doors.put(door.getSpawn().getEntityId(), door);
+			if (obj instanceof StaticDoor door) {				doors.put(door.getSpawn().getEntityId(), door);
 			}
 		}
 		return doors;
@@ -246,9 +244,7 @@ public class MapRegion {
 	 */
 	private final void activateObjects() {
 		for (VisibleObject visObject : objects.values()) {
-			if (visObject instanceof Creature) {
-				Creature creature = (Creature) visObject;
-				creature.getAi2().onGeneralEvent(AIEventType.ACTIVATE);
+			if (visObject instanceof Creature creature) {				creature.getAi2().onGeneralEvent(AIEventType.ACTIVATE);
 			}
 		}
 	}

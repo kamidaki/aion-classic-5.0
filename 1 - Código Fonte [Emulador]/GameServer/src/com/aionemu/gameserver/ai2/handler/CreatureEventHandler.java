@@ -39,9 +39,7 @@ public class CreatureEventHandler {
 	 */
 	public static void onCreatureMoved(NpcAI2 npcAI, Creature creature) {
 		checkAggro(npcAI, creature);
-		if (creature instanceof Player) {
-			Player player = (Player) creature;
-			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
+		if (creature instanceof Player player) {			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
 			if (npcAI.getOwner().getPosition().isInstanceMap()) {
 				npcAI.getOwner().getPosition().getWorldMapInstance().getInstanceHandler().checkDistance(player, npcAI.getOwner());
 			} else {
@@ -56,9 +54,7 @@ public class CreatureEventHandler {
 	 */
 	public static void onCreatureSee(NpcAI2 npcAI, Creature creature) {
 		checkAggro(npcAI, creature);
-		if (creature instanceof Player) {
-			Player player = (Player) creature;
-			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
+		if (creature instanceof Player player) {			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
 			if (npcAI.getOwner().getPosition().isInstanceMap()) {
 				npcAI.getOwner().getPosition().getWorldMapInstance().getInstanceHandler().checkDistance(player, npcAI.getOwner());
 			} else {

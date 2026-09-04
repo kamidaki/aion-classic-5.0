@@ -42,9 +42,7 @@ public class S_NPC_HTML_MESSAGE extends AionServerPacket
 		writeD(0);
 		if (this.dialogID == DialogPage.MAIL.id()) {
 			AionObject object = World.getInstance().findVisibleObject(targetObjectId);
-			if (object instanceof Npc) {
-				Npc znpc = (Npc) object;
-				if (znpc.getNpcId() == 798100 || znpc.getNpcId() == 798101) {
+			if (object instanceof Npc znpc) {				if (znpc.getNpcId() == 798100 || znpc.getNpcId() == 798101) {
 					player.getMailbox().mailBoxState = PlayerMailboxState.EXPRESS;
 					writeH(2);
 				} else {
