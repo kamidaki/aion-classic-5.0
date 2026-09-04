@@ -82,6 +82,10 @@ public class PlayerRestrictions extends AbstractRestrictions
 			//You cannot use that skill in your current stance.
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_SKILL_CAN_NOT_CAST_IN_CURRENT_STANCE);
             return false;
+        } if (player.isInState(CreatureState.PRIVATE_SHOP)) {
+			//You cannot use that skill in your current stance.
+			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_SKILL_CAN_NOT_CAST_IN_CURRENT_STANCE);
+            return false;
         } if (!player.canAttack() && player.getEffectController().isAbnormalSet(AbnormalState.CANT_ATTACK_STATE) && !template.hasEvadeEffect()) {
             return false;
         } if ((template.getType() == SkillType.MAGICAL) && (player.getEffectController().isAbnormalSet(AbnormalState.SILENCE)) && (!template.hasEvadeEffect())) {
@@ -232,6 +236,10 @@ public class PlayerRestrictions extends AbstractRestrictions
 		if (creature.getLifeStats().isAlreadyDead()) {
 			return false;
 		} if (player.isInState(CreatureState.RESTING)) {
+			//You cannot attack in your current stance.
+			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_SKILL_CAN_NOT_ATTACK_WHILE_IN_CURRENT_STANCE);
+            return false;
+        } if (player.isInState(CreatureState.PRIVATE_SHOP)) {
 			//You cannot attack in your current stance.
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_SKILL_CAN_NOT_ATTACK_WHILE_IN_CURRENT_STANCE);
             return false;

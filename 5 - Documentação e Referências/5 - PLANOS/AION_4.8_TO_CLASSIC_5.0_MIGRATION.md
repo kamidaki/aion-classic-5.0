@@ -1,6 +1,6 @@
 # AION 4.8 RETAIL → AION CLASSIC 5.0 EU — ROADMAP MESTRE DE MIGRAÇÃO
 
-> **Status Geral**: `FASES 1 A 5 CONCLUÍDAS | AGUARDANDO FASE 6 (RESTRICTIONS)`  
+> **Status Geral**: `FASES 1 A 6 CONCLUÍDAS | AGUARDANDO FASE 7 (SKILLENGINE)`  
 > **Ambiente**: Java 25 LTS (Oracle JDK 25.0.2) | Maven 3.9.9 | MySQL 9.5.0  
 > **Referência Estrutural**: AION 4.8 Retail (`5 - Documentação e Referências/3 - JAVA EMU - 4.8 RETAIL`)  
 > **Implementação Alvo**: AION Classic 5.0 EU (`1 - Código Fonte [Emulador]`)  
@@ -33,8 +33,8 @@
 | **02** | `ai` | [`MIGRATION_AI.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_AI.md) | `[CONCLUÍDO]` | `2d5b7c352` |
 | **03** | `geoEngine` | [`MIGRATION_GEOENGINE.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_GEOENGINE.md) | `[CONCLUÍDO]` | `a84231733` |
 | **04** | `model` | [`MIGRATION_MODEL.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_MODEL.md) | `[CONCLUÍDO]` | `d817758a2` |
-| **05** | `questEngine` | [`MIGRATION_QUESTENGINE.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_QUESTENGINE.md) | `[CONCLUÍDO]` | `e5b9f5139` |
-| **06** | `restrictions` | `MIGRATION_RESTRICTIONS.md` | `[PENDENTE]` | - |
+| **05** | `questEngine` | [`MIGRATION_QUESTENGINE.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_QUESTENGINE.md) | `[CONCLUÍDO]` | `659045089` |
+| **06** | `restrictions` | [`MIGRATION_RESTRICTIONS.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_RESTRICTIONS.md) | `[CONCLUÍDO]` | `07d7f0bcc` |
 | **07** | `skillengine` | `MIGRATION_SKILLENGINE.md` | `[PENDENTE]` | - |
 | **08** | `spawnengine` | `MIGRATION_SPAWNENGINE.md` | `[PENDENTE]` | - |
 | **09** | `taskmanager` | `MIGRATION_TASKMANAGER.md` | `[PENDENTE]` | - |
