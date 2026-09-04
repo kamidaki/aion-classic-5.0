@@ -219,8 +219,13 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_MOVE_ITEM(0x00B4, State.IN_GAME));
         addPacket(new CM_UI_SETTINGS(0x00E8, State.IN_GAME)); // 0x001A SAVE_UI_SETTINGS (quickbar / atalhos)
         addPacket(new CM_UI_SETTINGS(0x001A, State.IN_GAME));
-        addPacket(new CM_HEADING_UPDATE(0x00C9, State.IN_GAME)); // 0x003B HEADING_UPDATE (direção do avatar)
-        addPacket(new CM_HEADING_UPDATE(0x003B, State.IN_GAME));
+        // 0x00C9 e CM_EMOTION, registrado la em cima. O CM_HEADING_UPDATE estava aqui embaixo
+        // no mesmo opcode e, como addPacketPrototype usa Map.put, ganhava em silencio -- toda
+        // emocao virava mudanca de direcao. Conferido na captura oficial: o byte unico do
+        // 0x00C9 assume so oito valores, e eles batem com o roteiro -- 13 FLY e 14 LAND uma vez
+        // cada no tutorial ("abri as asas", "desci do voo"), 1 JUMP duas vezes e 38 ATTACKMODE2
+        // uma vez no fim ("pulei duas vezes", "apertei X para sacar as armas"), 0 SELECT_TARGET
+        // 87 vezes. Direcao do avatar nao tem pacote proprio: vem no byte de heading do CM_MOVE.
         addPacket(new CM_CHAT_AUTH(0x017C, State.IN_GAME)); // 0x0086 SIGN_CLIENT (autenticação do chat)
         addPacket(new CM_CHAT_AUTH(0x0086, State.IN_GAME));
         addPacket(new CM_INSTANCE_INFO(0x01B3, State.IN_GAME)); // 0x00C1 INSTANCE_INFO (cooltimes de instâncias)
