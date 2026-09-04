@@ -6,15 +6,16 @@ import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.templates.spawns.SpawnGroup;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.TemporarySpawn;
-import javolution.util.FastList;
-import javolution.util.FastMap;
 
-import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class TemporarySpawnEngine {
 
-    private static final FastList<SpawnGroup> temporarySpawns = new FastList<SpawnGroup>();
-    private static final FastMap<SpawnGroup, HashSet<Integer>> tempSpawnInstanceMap = new FastMap<SpawnGroup, HashSet<Integer>>();
+    private static final CopyOnWriteArrayList<SpawnGroup> temporarySpawns = new CopyOnWriteArrayList<>();
+    private static final Map<SpawnGroup, Set<Integer>> tempSpawnInstanceMap = new ConcurrentHashMap<>();
 
     public static void spawnAll() {
         spawn(true);
@@ -33,7 +34,8 @@ public class TemporarySpawnEngine {
                     if (object == null) {
                         continue;
                     }
-                    if (object instanceof Npc npc) {                        if (!npc.getLifeStats().isAlreadyDead() && template.hasPool()) {
+                    if (object instanceof Npc npc) {
+                        if (!npc.getLifeStats().isAlreadyDead() && template.hasPool()) {
                             spawn.setTemplateUse(npc.getInstanceId(), template, false);
                         }
                         npc.getController().cancelTask(TaskId.RESPAWN);
@@ -48,7 +50,10 @@ public class TemporarySpawnEngine {
 
     private static void spawn(boolean startCheck) {
         for (SpawnGroup spawn : temporarySpawns) {
-            HashSet<Integer> instances = tempSpawnInstanceMap.get(spawn);
+            Set<Integer> instances = tempSpawnInstanceMap.get(spawn);
+            if (instances == null) {
+                continue;
+            }
             if (spawn.hasPool()) {
                 TemporarySpawn temporarySpawn = spawn.geTemporarySpawn();
                 if (temporarySpawn.canSpawn() || (startCheck && spawn.getRespawnTime() != 0 && temporarySpawn.isInSpawnTime())) {
@@ -64,8 +69,9 @@ public class TemporarySpawnEngine {
                 for (SpawnTemplate template : spawn.getSpawnTemplates()) {
                     TemporarySpawn temporarySpawn = template.getTemporarySpawn();
                     if (temporarySpawn.canSpawn() || (startCheck && !template.isNoRespawn() && temporarySpawn.isInSpawnTime())) {
-                        for (Integer instanceId : instances)
+                        for (Integer instanceId : instances) {
                             SpawnEngine.spawnObject(template, instanceId);
+                        }
                     }
                 }
             }
@@ -73,15 +79,12 @@ public class TemporarySpawnEngine {
     }
 
     /**
-     * @param spawnTemplate
+     * @param spawn
+     * @param instanceId
      */
     public static void addSpawnGroup(SpawnGroup spawn, int instanceId) {
-        temporarySpawns.add(spawn);
-        HashSet<Integer> instances = tempSpawnInstanceMap.get(spawn);
-        if (instances == null) {
-            instances = new HashSet<Integer>();
-            tempSpawnInstanceMap.put(spawn, instances);
-        }
-        instances.add(instanceId);
+        temporarySpawns.addIfAbsent(spawn);
+        tempSpawnInstanceMap.computeIfAbsent(spawn, _ -> ConcurrentHashMap.newKeySet()).add(instanceId);
     }
 }
+
