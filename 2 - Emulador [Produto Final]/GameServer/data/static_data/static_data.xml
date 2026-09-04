@@ -84,7 +84,7 @@
 	<import file="instance_bonusattr/instance_bonusattr.xml" />
 	<import file="instance_exit/instance_exit.xml" />
 	<import file="portals/portal_loc.xml" />
-	<import file="portals/portal_template2.xml" />
+	<import file="portals/portal_template.xml" />
 	<import file="curing_objects/curing_objects.xml" />
 	<import file="mail_templates.xml" />
 	<import file="abyss_bonusattr/abyss_bonusattr.xml" />
