@@ -63,7 +63,7 @@ public class _2020Keeping_The_Black_Claw_Tribe_In_Check extends QuestHandler
 		final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
-        int var = qs.getQuestVarById(0);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
         if (qs != null && qs.getStatus() == QuestStatus.START) {
 			if (targetId == 203665) {
 				switch (env.getDialog()) {

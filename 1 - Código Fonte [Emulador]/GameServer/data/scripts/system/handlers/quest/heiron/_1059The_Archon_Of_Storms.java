@@ -70,7 +70,7 @@ public class _1059The_Archon_Of_Storms extends QuestHandler
 		final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
-        int var = qs.getQuestVarById(0);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
         if (qs != null && qs.getStatus() == QuestStatus.START) {
 			if (targetId == 204505) {
 				switch (env.getDialog()) {

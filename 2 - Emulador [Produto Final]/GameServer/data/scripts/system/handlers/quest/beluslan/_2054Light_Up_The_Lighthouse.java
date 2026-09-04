@@ -67,7 +67,7 @@ public class _2054Light_Up_The_Lighthouse extends QuestHandler
 		final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
-        int var = qs.getQuestVarById(0);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
         if (qs != null && qs.getStatus() == QuestStatus.START) {
 			if (targetId == 204768) {
 				switch (env.getDialog()) {

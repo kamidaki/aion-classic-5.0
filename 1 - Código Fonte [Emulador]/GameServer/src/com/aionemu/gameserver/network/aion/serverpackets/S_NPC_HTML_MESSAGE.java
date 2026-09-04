@@ -33,14 +33,16 @@ public class S_NPC_HTML_MESSAGE extends AionServerPacket
 	@Override
 	protected void writeImpl(AionConnection con) {
 		Player player = con.getActivePlayer();
+		// 14 bytes na captura oficial (subida-1-60, sessao 1): D(objectId) H(dialogo) D(quest) D(0).
+		// Medido nas paginas 10, 1011, 1012, 1013 e no fechamento (tudo zero). Havia um writeH(0) a
+		// mais no fim, que deixava o pacote com 16.
 		writeD(targetObjectId);
 		writeH(dialogID);
 		writeD(questId);
-		//writeH(0);
 		writeD(0);
 		if (this.dialogID == DialogPage.MAIL.id()) {
 			AionObject object = World.getInstance().findVisibleObject(targetObjectId);
-			if (object != null && object instanceof Npc) {
+			if (object instanceof Npc) {
 				Npc znpc = (Npc) object;
 				if (znpc.getNpcId() == 798100 || znpc.getNpcId() == 798101) {
 					player.getMailbox().mailBoxState = PlayerMailboxState.EXPRESS;
@@ -48,11 +50,7 @@ public class S_NPC_HTML_MESSAGE extends AionServerPacket
 				} else {
 					player.getMailbox().mailBoxState = PlayerMailboxState.REGULAR;
 				}
-			} else {
-				writeH(0);
 			}
-		} else {
-			writeH(0);
 		}
 	}
 }

@@ -44,11 +44,13 @@ public class S_TARGET_INFO extends AionServerPacket
 	
 	@Override
 	protected void writeImpl(AionConnection con) {
+		// 14 bytes na captura oficial (subida-1-60, sessao 1): D(objectId) H(nivel) D(hpMax) D(hpAtual).
+		// Medido no NPC de dialogo (indice 532: nivel 50, 14614/14614) e num mob (indice 13780:
+		// nivel 7, 831/831). Havia um writeC(0) e um writeD(mp) a mais no fim, cinco bytes que o
+		// cliente 5.0 nao le -- o alvo do dialogo passava por aqui logo antes da janela abrir.
 		writeD(targetObjId);
 		writeH(level);
 		writeD(maxHp);
 		writeD(currentHp);
-		writeC(0);
-        writeD(currentMp);
 	}
 }

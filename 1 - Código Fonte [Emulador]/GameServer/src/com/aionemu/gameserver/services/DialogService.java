@@ -311,6 +311,61 @@ public class DialogService {
                 }
                 break;
             }
+
+            case 128:
+            case 130: {
+                //HACTION_RECOVERY2 e HACTION_RECOVERY2_FREE -- "Heal Holy Soul" do Obelisco.
+                // A semantica vem do proprio cliente 5.0. Em l10n/ENG/Data/dialogs/hyperlinks.xml a
+                // acao 128 chama-se HACTION_RECOVERY2 e a 130 HACTION_RECOVERY2_FREE; em
+                // client_strings_ui.xml o texto 909382 diz "I can restore your XP and heal your
+                // soul. I can also restore your HP and MP for you. If you want to heal a holy soul,
+                // you require %qina0" e o 909383 e o mesmo servico com "You do not need to pay
+                // anything". Ou seja: cura de alma + HP e MP cheios, uma variante paga e uma de
+                // graca.
+                // Sem este bloco o dialogId caia no fim do switch e o servidor devolvia a pagina
+                // 128, que nao existe no cliente -- a janela abria com "load fail! (HtmlPageId 128)".
+                final boolean gratuito = (dialogId == 130);
+                final long expLost = player.getCommonData().getExpRecoverable();
+                final double factor = (expLost < 1000000 ? 0.25 - (0.00000015 * expLost) : 0.1);
+                // O quanto a variante "holy" cobra a mais por restaurar HP e MP nao aparece em
+                // nenhuma captura: o jogador nunca a usou na subida-1-60. Ate isso ser medido ela
+                // cobra o mesmo que a cura de alma comum.
+                final int price = gratuito ? 0 : (int) (expLost * factor);
+                RequestResponseHandler recovery2Handler = new RequestResponseHandler(npc) {
+                    @Override
+                    public void acceptRequest(Creature requester, Player responder) {
+                        if (price > 0 && player.getInventory().getKinah() < price) {
+                            ///You don't have enough Kinah. It costs %num0 Kinah.
+                            PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_MSG_NOT_ENOUGH_KINA(price));
+                            return;
+                        }
+                        if (price > 0) {
+                            player.getInventory().decreaseKinah(price);
+                        }
+                        if (expLost > 0) {
+                            ///You have gained %num0 XP.
+                            PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_GET_EXP2(expLost));
+                            player.getCommonData().resetRecoverableExp();
+                        }
+                        player.getEffectController().removeEffect(8291);
+                        player.getEffectController().removeAbnormalEffectsByTargetSlot(SkillTargetSlot.SPEC2);
+                        player.getCommonData().setDeathCount(0);
+                        player.getLifeStats().setCurrentHpPercent(100);
+                        player.getLifeStats().setCurrentMpPercent(100);
+                        ///You received Soul Healing.
+                        PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_SUCCESS_RECOVER_EXPERIENCE, 2000);
+                    }
+
+                    @Override
+                    public void denyRequest(Creature requester, Player responder) {
+                    }
+                };
+                int pergunta = gratuito ? S_ASK.STR_ASK_RECOVER_EXPERIENCE3 : S_ASK.STR_ASK_RECOVER_EXPERIENCE2;
+                if (player.getResponseRequester().putRequest(pergunta, recovery2Handler)) {
+                    PacketSendUtility.sendPacket(player, new S_ASK(pergunta, 0, 0, String.valueOf(price)));
+                }
+                break;
+            }
             case 39:
             case 44: {
                 //Flight & Teleport.

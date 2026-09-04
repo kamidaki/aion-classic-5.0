@@ -68,8 +68,8 @@ public class _10022Support_The_Inggison_Outpost extends QuestHandler
 		final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
-        int var = qs.getQuestVarById(0);
-		int var3 = qs.getQuestVarById(3);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
+		int var3 = qs != null ? qs.getQuestVarById(3) : 0;
         if (qs != null && qs.getStatus() == QuestStatus.START) {
 			if (targetId == 798932) {
 				switch (env.getDialog()) {

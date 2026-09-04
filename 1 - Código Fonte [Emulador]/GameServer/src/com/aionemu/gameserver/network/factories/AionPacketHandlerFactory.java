@@ -85,7 +85,6 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_MOVE_IN_AIR(0xC3, State.IN_GAME)); // 0x0031 PATH_FLY
         addPacket(new CM_QUESTION_RESPONSE(0xC0, State.IN_GAME)); // 0x0032 QUESTION_RESPONSE
         addPacket(new CM_BUY_ITEM(0xC1, State.IN_GAME)); // 0x0033 BUY_SELL
-        addPacket(new CM_SHOW_DIALOG(0xCE, State.IN_GAME)); // 0x0034 SHOW_DIALOG
         addPacket(new CM_TARGET_SELECT(0xCD, State.IN_GAME)); // 0x0037 CHANGE_TARGET
         addPacket(new CM_TARGET_SELECT(0x95, State.IN_GAME)); // Legacy fallback
         addPacket(new CM_PLAYER_LISTENER(0xCA, State.IN_GAME)); // 0x0038 MOVE_OBJECT
@@ -196,8 +195,12 @@ public class AionPacketHandlerFactory {
         addPacket(new CM_RECIPE_LIST(0xB6, State.AUTHED, State.IN_GAME));  // Alias dec opcode
         addPacket(new CM_GLOBAL_TRADE(0x1F3, State.IN_GAME)); // 0x0101 GLOBAL_TRADE_SALESLOG (5.0 Classic)
         addPacket(new CM_CLIENT_PING_STATE(0x222, State.IN_GAME)); // 0x0150 CLIENT_PING_STATE (5.0 Classic)
-        addPacket(new CM_CUSTOM_SETTING_ACK(0x00F6, State.IN_GAME)); // 0xFFFC CUSTOM_SETTING_ACK
-        addPacket(new CM_CUSTOM_SETTING_ACK(0x00F7, State.IN_GAME)); // 0xFFFD CUSTOM_SETTING_ACK2
+        // Interagir com objeto e parar de interagir. Medido na captura oficial
+        // (subida-1-60, sessao 1): o clique no NPC sai em 0x00F6 com 4 bytes (o objectId) e o
+        // servidor responde S_NPC_CHANGED_TARGET + S_NPC_HTML_MESSAGE; 0x00F7 encerra a
+        // interacao. O cliente 5.0 nunca manda 0x00CE, onde o CM_SHOW_DIALOG estava sentado.
+        addPacket(new CM_SHOW_DIALOG(0x00F6, State.IN_GAME));  // 0xFFFC USE_OBJECT
+        addPacket(new CM_CLOSE_DIALOG(0x00F7, State.IN_GAME)); // 0xFFFD STOP_USE_OBJECT
         addPacket(new CM_SERVER_PVP_ACK(0x03DC, State.IN_GAME)); // 0x0326 SERVER_PVP_ACK (5.0 Classic)
         addPacket(new CM_CLIENT_SYNC_ACTION(0x00F0, State.IN_GAME, State.AUTHED)); // 0x0002 CLIENT_SYNC_ACTION (5.0 Classic)
         addPacket(new CM_CLIENT_PING_SYNC(0x0151, State.IN_GAME, State.AUTHED)); // 0x00A3 CLIENT_PING_SYNC (5.0 Classic)

@@ -62,7 +62,7 @@ public class _2019Securing_The_Supply_Route extends QuestHandler
 		final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
-        int var = qs.getQuestVarById(0);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
         if (qs != null && qs.getStatus() == QuestStatus.START) {
 			if (targetId == 798033) {
 				switch (env.getDialog()) {

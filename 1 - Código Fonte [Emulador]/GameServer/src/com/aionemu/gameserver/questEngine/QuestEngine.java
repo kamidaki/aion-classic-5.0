@@ -109,8 +109,16 @@ public class QuestEngine implements GameEngine {
                     questHandler = getQuestHandlerByQuestId(questId);
                     if (questHandler != null) {
                         env.setQuestId(questId);
-                        if (questHandler.onDialogEvent(env)) {
-                            return true;
+                        // Um handler que estoura nao pode levar junto as outras quests do mesmo NPC:
+                        // o try de fora abortava o laco inteiro, e o jogador ficava sem as quests que
+                        // vinham depois da quebrada. Cada quest responde por si.
+                        try {
+                            if (questHandler.onDialogEvent(env)) {
+                                return true;
+                            }
+                        } catch (Exception ex) {
+                            log.error("QE: exception in onDialog, quest " + questId + " do npc "
+                                + (npc == null ? 0 : npc.getNpcId()), ex);
                         }
                     }
                 }

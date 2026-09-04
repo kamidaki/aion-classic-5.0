@@ -73,7 +73,7 @@ public class _10021Friends_For_Life extends QuestHandler
 		final Player player = env.getPlayer();
 		final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
-        int var = qs.getQuestVarById(0);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
 		if (qs != null && qs.getStatus() == QuestStatus.START) {
 			if (targetId == 798927) {
 				switch (env.getDialog()) {

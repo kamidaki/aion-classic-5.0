@@ -61,7 +61,7 @@ public class _1037Secrets_Of_The_Temple extends QuestHandler
 		final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		int targetId = env.getTargetId();
-        int var = qs.getQuestVarById(0);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
         if (qs != null && qs.getStatus() == QuestStatus.START) {
 			if (targetId == 203965) {
 				switch (env.getDialog()) {

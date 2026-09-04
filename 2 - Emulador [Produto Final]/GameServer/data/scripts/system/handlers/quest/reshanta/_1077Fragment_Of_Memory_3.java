@@ -68,7 +68,7 @@ public class _1077Fragment_Of_Memory_3 extends QuestHandler
     public boolean onDialogEvent(final QuestEnv env) {
         final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
-        int var = qs.getQuestVarById(0);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
         int targetId = env.getTargetId();
 		if (qs != null && qs.getStatus() == QuestStatus.START) {
             if (targetId == 203704) {

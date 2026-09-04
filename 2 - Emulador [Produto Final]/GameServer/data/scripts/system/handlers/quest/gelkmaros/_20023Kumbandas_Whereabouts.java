@@ -70,11 +70,11 @@ public class _20023Kumbandas_Whereabouts extends QuestHandler
     public boolean onDialogEvent(final QuestEnv env) {
         final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
-        int var = qs.getQuestVarById(0);
-		int var1 = qs.getQuestVarById(1);
-		int var2 = qs.getQuestVarById(2);
-		int var3 = qs.getQuestVarById(3);
-		int var4 = qs.getQuestVarById(4);
+        int var = qs != null ? qs.getQuestVarById(0) : 0;
+		int var1 = qs != null ? qs.getQuestVarById(1) : 0;
+		int var2 = qs != null ? qs.getQuestVarById(2) : 0;
+		int var3 = qs != null ? qs.getQuestVarById(3) : 0;
+		int var4 = qs != null ? qs.getQuestVarById(4) : 0;
         int targetId = env.getTargetId();
         if (qs != null && qs.getStatus() == QuestStatus.START) {
             if (targetId == 799226) {

@@ -44,6 +44,11 @@ public class S_ASK extends AionServerPacket
 	public static final int STR_QUEST_GIVEUP = 150000;
 	public static final int STR_QUEST_GIVEUP_WHEN_DELETE_QUEST_ITEM = 150001;
 	public static final int STR_ASK_RECOVER_EXPERIENCE = 160011;
+	// Variantes do Obelisco, lidas do client_strings_ui.xml do proprio cliente 5.0:
+	// 909382 "...I can also restore your HP and MP for you. If you want to heal a holy soul,
+	// you require %qina0" e 909383, o mesmo texto com "You do not need to pay anything".
+	public static final int STR_ASK_RECOVER_EXPERIENCE2 = 909382;
+	public static final int STR_ASK_RECOVER_EXPERIENCE3 = 909383;
 	public static final int STR_ASK_REGISTER_RESURRECT_POINT = 160012;
 	public static final int STR_ASK_GROUP_GATE_DO_YOU_ACCEPT_MOVE = 160014;
 	public static final int STR_ASK_USE_ARTIFACT = 160016;
