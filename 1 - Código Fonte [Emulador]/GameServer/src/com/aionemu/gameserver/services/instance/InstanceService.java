@@ -18,7 +18,7 @@ import com.aionemu.gameserver.network.aion.SystemMessageId;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.services.AutoGroupService;
 import com.aionemu.gameserver.services.summons.SummonsService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -143,12 +143,12 @@ public class InstanceService
 
 	private static int getLastRegisteredId(Player player) {
 		int lookupId;
-		if (player.isInGroup2()) {
-			lookupId = player.getPlayerGroup2().getTeamId();
-		} else if (player.isInAlliance2()) {
-			lookupId = player.getPlayerAlliance2().getTeamId();
+		if (player.isInGroup()) {
+			lookupId = player.getPlayerGroup().getTeamId();
+		} else if (player.isInAlliance()) {
+			lookupId = player.getPlayerAlliance().getTeamId();
 			if (player.isInLeague()) {
-				lookupId = player.getPlayerAlliance2().getLeague().getObjectId();
+				lookupId = player.getPlayerAlliance().getLeague().getObjectId();
 			}
 		}
 		lookupId = player.getObjectId();
@@ -175,7 +175,7 @@ public class InstanceService
 	}
 
 	public static void moveToExitPoint(Player player) {
-		TeleportService2.moveToInstanceExit(player, player.getWorldId(), player.getRace());
+		TeleportService.moveToInstanceExit(player, player.getWorldId(), player.getRace());
 	}
 
 	public static boolean isInstanceExist(int worldId, int instanceId) {

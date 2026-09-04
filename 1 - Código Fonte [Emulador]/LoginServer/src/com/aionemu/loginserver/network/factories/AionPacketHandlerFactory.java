@@ -1,13 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
 package com.aionemu.loginserver.network.factories;
 
 import java.nio.ByteBuffer;
@@ -21,9 +11,7 @@ import com.aionemu.loginserver.network.aion.AionClientPacket;
 import com.aionemu.loginserver.network.aion.LoginConnection;
 import com.aionemu.loginserver.network.aion.LoginConnection.State;
 
-/**
- * @author -Nemesiss-
- */
+
 public class AionPacketHandlerFactory {
 
 	/** 

@@ -213,7 +213,7 @@ public class VisibleObjectSpawner
 		final Npc postman = new Npc(iDFactory.nextId(), new NpcController(), spawn, template);
 		postman.setKnownlist(new PlayerAwareKnownList(postman));
 		postman.setEffectController(new EffectController(postman));
-		postman.getAi2().onCustomEvent(1, owner);
+		postman.getAi().onCustomEvent(1, owner);
 		SpawnEngine.bringIntoWorld(postman, spawn, instanceId);
 		owner.setPostman(postman);
 		return postman;
@@ -234,7 +234,7 @@ public class VisibleObjectSpawner
 		final Npc functionalNpc = new Npc(iDFactory.nextId(), new NpcController(), spawn, template);
 		functionalNpc.setKnownlist(new PlayerAwareKnownList(functionalNpc));
 		functionalNpc.setEffectController(new EffectController(functionalNpc));
-		functionalNpc.getAi2().onCustomEvent(1, owner);
+		functionalNpc.getAi().onCustomEvent(1, owner);
 		SpawnEngine.bringIntoWorld(functionalNpc, spawn, instanceId);
 		return functionalNpc;
 	}

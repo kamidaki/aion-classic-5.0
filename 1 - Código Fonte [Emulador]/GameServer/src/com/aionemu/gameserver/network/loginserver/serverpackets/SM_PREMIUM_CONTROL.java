@@ -5,9 +5,7 @@ import com.aionemu.gameserver.model.ingameshop.IGRequest;
 import com.aionemu.gameserver.network.loginserver.LoginServerConnection;
 import com.aionemu.gameserver.network.loginserver.LsServerPacket;
 
-/**
- * @author KID
- */
+
 public class SM_PREMIUM_CONTROL extends LsServerPacket {
 	private IGRequest request;
 	private long cost;

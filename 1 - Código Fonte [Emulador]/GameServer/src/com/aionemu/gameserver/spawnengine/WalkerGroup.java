@@ -1,25 +1,9 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.spawnengine;
 
 import com.aionemu.gameserver.ai2.AI2Logger;
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AISubState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
@@ -161,7 +145,7 @@ public class WalkerGroup
 			if (memberSteps[i] > currentStep)
 				currentStep = memberSteps[i];
 			if (members.get(i).getNpc().equals(member)) {
-				AI2Logger.info(members.get(i).getNpc().getAi2(), "Setting step to " + step);
+				AI2Logger.info(members.get(i).getNpc().getAi(), "Setting step to " + step);
 				memberSteps[i] = step;
 			}
 		}
@@ -169,12 +153,12 @@ public class WalkerGroup
 			groupStep = step;
 	}
 
-	public void targetReached(NpcAI2 npcAI) {
+	public void targetReached(NpcAI npcAI) {
 		synchronized (members) {
 			npcAI.setSubStateIfNot(AISubState.WALK_WAIT_GROUP);
 			boolean allArrived = true;
 			for (ClusteredNpc snpc : members) {
-				allArrived &= snpc.getNpc().getAi2().getSubState() == AISubState.WALK_WAIT_GROUP;
+				allArrived &= snpc.getNpc().getAi().getSubState() == AISubState.WALK_WAIT_GROUP;
 				if (!allArrived)
 					break;
 			}
@@ -187,7 +171,7 @@ public class WalkerGroup
 					npcAI.setSubStateIfNot(AISubState.WALK_WAIT_GROUP);
 					continue;
 				}
-				npcAI = (NpcAI2) (snpc.getNpc().getAi2());
+				npcAI = (NpcAI) (snpc.getNpc().getAi());
 				WalkManager.targetReached(npcAI);
 			}
 		}

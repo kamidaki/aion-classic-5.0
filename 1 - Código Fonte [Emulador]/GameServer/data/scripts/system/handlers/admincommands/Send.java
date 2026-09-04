@@ -32,7 +32,6 @@ import java.util.List;
  * <p/>
  * Created on: 14.07.2009 13:54:46
  * 
- * @author Aquanox
  */
 public class Send extends AdminCommand {
 

@@ -1,23 +1,7 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.handler;
 
 import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.ai2.poll.AIQuestion;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -28,16 +12,14 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.geo.GeoService;
 
-/**
- * @author ATracer
- */
+
 public class CreatureEventHandler {
 
 	/**
 	 * @param npcAI
 	 * @param creature
 	 */
-	public static void onCreatureMoved(NpcAI2 npcAI, Creature creature) {
+	public static void onCreatureMoved(NpcAI npcAI, Creature creature) {
 		checkAggro(npcAI, creature);
 		if (creature instanceof Player player) {			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
 			if (npcAI.getOwner().getPosition().isInstanceMap()) {
@@ -52,7 +34,7 @@ public class CreatureEventHandler {
 	 * @param npcAI
 	 * @param creature
 	 */
-	public static void onCreatureSee(NpcAI2 npcAI, Creature creature) {
+	public static void onCreatureSee(NpcAI npcAI, Creature creature) {
 		checkAggro(npcAI, creature);
 		if (creature instanceof Player player) {			QuestEngine.getInstance().onAtDistance(new QuestEnv(npcAI.getOwner(), player, 0, 0));
 			if (npcAI.getOwner().getPosition().isInstanceMap()) {
@@ -68,7 +50,7 @@ public class CreatureEventHandler {
 	 * @param ai
 	 * @param creature
 	 */
-	protected static void checkAggro(NpcAI2 ai, Creature creature) {
+	protected static void checkAggro(NpcAI ai, Creature creature) {
 		Npc owner = ai.getOwner();
 		
 		if (ai.isInState(AIState.FIGHT))

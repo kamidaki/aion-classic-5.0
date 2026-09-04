@@ -3,7 +3,7 @@ package com.aionemu.gameserver.network.aion.clientpackets;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 
 /**
  * O cliente avisa que terminou a animacao de teleporte e esta pronto para receber o mapa novo.
@@ -40,6 +40,6 @@ public class CM_TELEPORT_ANIMATION_END extends AionClientPacket {
 		if (player == null) {
 			return;
 		}
-		TeleportService2.confirmaAnimacaoDeTeleporte(player);
+		TeleportService.confirmaAnimacaoDeTeleporte(player);
 	}
 }

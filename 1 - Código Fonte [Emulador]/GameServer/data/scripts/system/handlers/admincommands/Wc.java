@@ -9,9 +9,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-/**
- * @author -Evilwizard-, Wakizashi World Channel, only for GM/Admins
- */
+
 public class Wc extends AdminCommand {
 
 	public Wc() {

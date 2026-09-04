@@ -3,11 +3,7 @@ package com.aionemu.gameserver.network.aion.clientpackets;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 
-/**
- * 
- * @author Ranastic
- *
- */
+
 public class CM_GG extends AionClientPacket {
 
 	private int size;

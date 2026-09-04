@@ -1,0 +1,13 @@
+package ai.worlds.instances;
+
+import ai.AggressiveNpcAI;
+import com.aionemu.gameserver.ai2.AIName;
+
+/**
+ * Auto-generated 5.0 AI Handler based on AggressiveNpcAI
+ * Original AI Name: IDGods_Descent_Q_Ctrl_NPC_05
+ */
+@AIName("IDGods_Descent_Q_Ctrl_NPC_05")
+public class IDGods_Descent_Q_Ctrl_NPC_05AI extends AggressiveNpcAI
+{
+}

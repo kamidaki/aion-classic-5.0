@@ -2,11 +2,7 @@ package com.aionemu.gameserver.network;
 
 import java.sql.Timestamp;
 
-/**
- * 
- * @author KID
- *
- */
+
 public class BannedMacEntry {
 	private String mac, details;
 	private Timestamp timeEnd;

@@ -1,10 +1,6 @@
 package com.aionemu.gameserver.network;
 
-/**
- * 
- * @author KID
- *
- */
+
 public class NetworkController {
 
 	private static NetworkController instance = new NetworkController();

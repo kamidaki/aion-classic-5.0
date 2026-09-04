@@ -1,11 +1,3 @@
-/*
- * This file is part of Eleanor project
- *
- * This is proprietary software. See the EULA file distributed with
- * this project for additional information regarding copyright ownership.
- *
- * Copyright (c) 2011-2013, Eleanor Team. All rights reserved.
- */
 package com.eleanor.utils;
 
 
@@ -17,7 +9,6 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 /**
  * Collection of 2d/3d geometry math utils
  *
- * @author MetaWind
  */
 public class GeomUtil {
 

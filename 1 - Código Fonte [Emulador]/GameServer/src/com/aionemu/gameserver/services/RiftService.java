@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services;
 
 import java.util.Collections;
@@ -36,7 +20,7 @@ import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.rift.RiftLocation;
 import com.aionemu.gameserver.model.templates.rift.OpenRift;
-import com.aionemu.gameserver.model.templates.spawns.SpawnGroup2;
+import com.aionemu.gameserver.model.templates.spawns.SpawnGroup;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.riftspawns.RiftSpawnTemplate;
 import com.aionemu.gameserver.services.rift.RiftInformer;
@@ -141,8 +125,8 @@ public class RiftService
 	public void openRifts(RiftLocation location, boolean guards) {
         location.setOpened(true);
 		if (guards) {
-            List<SpawnGroup2> locSpawns = DataManager.SPAWNS_DATA2.getRiftSpawnsByLocId(location.getId());
-            for (SpawnGroup2 group : locSpawns) {
+            List<SpawnGroup> locSpawns = DataManager.SPAWNS_DATA.getRiftSpawnsByLocId(location.getId());
+            for (SpawnGroup group : locSpawns) {
                 for (SpawnTemplate st : group.getSpawnTemplates()) {
                     RiftSpawnTemplate template = (RiftSpawnTemplate) st;
                     location.getSpawned().add(SpawnEngine.spawnObject(template, 1));

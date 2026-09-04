@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
@@ -31,7 +15,7 @@ import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.NpcShoutsService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -211,16 +195,16 @@ public class Adma_Stronghold extends GeneralInstanceHandler
 	}
 	
 	protected void wreckOfUnstable(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void admaStrongholdExitE(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 210060000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 210060000, 1, x, y, z, h);
 	}
 	protected void admaStrongholdExitA(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 220050000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 220050000, 1, x, y, z, h);
 	}
 	protected void warehouseBackdoorExit(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 220050000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 220050000, 1, x, y, z, h);
 	}
 	
 	public void removeItems(Player player) {

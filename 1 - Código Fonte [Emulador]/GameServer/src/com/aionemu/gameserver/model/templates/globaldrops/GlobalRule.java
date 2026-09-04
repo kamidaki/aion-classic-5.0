@@ -2,9 +2,7 @@ package com.aionemu.gameserver.model.templates.globaldrops;
 
 import javax.xml.bind.annotation.*;
 
-/**
- * @author Wnkrz
- */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "GlobalRule")
 public class GlobalRule

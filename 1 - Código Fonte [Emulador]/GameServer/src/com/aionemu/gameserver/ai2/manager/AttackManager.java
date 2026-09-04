@@ -1,25 +1,9 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.manager;
 
 import com.aionemu.gameserver.ai2.AI2Logger;
 import com.aionemu.gameserver.ai2.AISubState;
 import com.aionemu.gameserver.ai2.AttackIntention;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -27,7 +11,7 @@ import com.aionemu.gameserver.model.gameobjects.Npc;
 
 public class AttackManager
 {
-	public static void startAttacking(NpcAI2 npcAI) {
+	public static void startAttacking(NpcAI npcAI) {
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "AttackManager: startAttacking");
 		}
@@ -36,7 +20,7 @@ public class AttackManager
 		scheduleNextAttack(npcAI);
 	}
 	
-	public static void scheduleNextAttack(NpcAI2 npcAI) {
+	public static void scheduleNextAttack(NpcAI npcAI) {
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "AttackManager: scheduleNextAttack");
 		}
@@ -50,7 +34,7 @@ public class AttackManager
 		}
 	}
 	
-	protected static void chooseAttack(NpcAI2 npcAI, int delay) {
+	protected static void chooseAttack(NpcAI npcAI, int delay) {
 		AttackIntention attackIntention = npcAI.chooseAttackIntention();
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "AttackManager: chooseAttack " + attackIntention + " delay " + delay);
@@ -75,7 +59,7 @@ public class AttackManager
 		}
 	}
 	
-	public static void targetTooFar(NpcAI2 npcAI) {
+	public static void targetTooFar(NpcAI npcAI) {
 		Npc npc = npcAI.getOwner();
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "AttackManager: attackTimeDelta " + npc.getGameStats().getLastAttackTimeDelta());
@@ -101,7 +85,7 @@ public class AttackManager
 		npcAI.onGeneralEvent(AIEventType.TARGET_GIVEUP);
 	}
 	
-	private static boolean checkGiveupDistance(NpcAI2 npcAI) {
+	private static boolean checkGiveupDistance(NpcAI npcAI) {
 		Npc npc = npcAI.getOwner();
 		float distanceToTarget = npc.getDistanceToTarget();
 		if (npcAI.isLogging()) {

@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.org>.
- *
- *  aion-unique is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-unique is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.restrictions;
 
 import com.aionemu.gameserver.configs.main.GroupConfig;
@@ -130,7 +114,7 @@ public class PlayerRestrictions extends AbstractRestrictions
 	
 	@Override
 	public boolean canInviteToGroup(Player player, Player target) {
-		final com.aionemu.gameserver.model.team2.group.PlayerGroup group = player.getPlayerGroup2();
+		final com.aionemu.gameserver.model.team2.group.PlayerGroup group = player.getPlayerGroup();
 		if (group != null && group.isFull()) {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_CANT_ADD_NEW_MEMBER);
 			return false;
@@ -152,12 +136,12 @@ public class PlayerRestrictions extends AbstractRestrictions
 		} else if (player.getLifeStats().isAlreadyDead()) {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_CANT_INVITE_WHEN_DEAD);
 			return false;
-		} else if (player.isInGroup2() && target.isInGroup2() && player.getPlayerGroup2().getTeamId() == target.getPlayerGroup2().getTeamId()) {
+		} else if (player.isInGroup() && target.isInGroup() && player.getPlayerGroup().getTeamId() == target.getPlayerGroup().getTeamId()) {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_HE_IS_ALREADY_MEMBER_OF_OUR_PARTY(target.getName()));
-		} else if (target.isInGroup2()) {
+		} else if (target.isInGroup()) {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_HE_IS_ALREADY_MEMBER_OF_OTHER_PARTY(target.getName()));
 			return false;
-		} else if (target.isInAlliance2()) {
+		} else if (target.isInAlliance()) {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_FORCE_ALREADY_OTHER_FORCE(target.getName()));
 			return false;
 		} else if ((player.isUsingFlyTeleport()) || (player.isInPlayerMode(PlayerMode.WINDSTREAM))) {
@@ -174,7 +158,7 @@ public class PlayerRestrictions extends AbstractRestrictions
 	
 	@Override
 	public boolean canLeaveGroup(Player player) {
-		if ((player.isUsingFlyTeleport()) || (player.isInPlayerMode(PlayerMode.WINDSTREAM)) && player.isInGroup2()) {
+		if ((player.isUsingFlyTeleport()) || (player.isInPlayerMode(PlayerMode.WINDSTREAM)) && player.isInGroup()) {
 			//You cannot leave the group in %0.
             PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_MSG_CANNOT_LEAVE_PARTY_DURING_PATH_FLYING(new DescriptionId(2800111)));
             return false;
@@ -190,9 +174,9 @@ public class PlayerRestrictions extends AbstractRestrictions
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_CANT_INVITE_OTHER_RACE);
 			return false;
 		}
-		final com.aionemu.gameserver.model.team2.alliance.PlayerAlliance alliance = player.getPlayerAlliance2();
-		if (target.isInAlliance2()) {
-			if (target.getPlayerAlliance2() == alliance) {
+		final com.aionemu.gameserver.model.team2.alliance.PlayerAlliance alliance = player.getPlayerAlliance();
+		if (target.isInAlliance()) {
+			if (target.getPlayerAlliance() == alliance) {
 				PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_ALLIANCE_HE_IS_ALREADY_MEMBER_OF_OUR_ALLIANCE(target.getName()));
 				return false;
 			} else {
@@ -214,8 +198,8 @@ public class PlayerRestrictions extends AbstractRestrictions
 		} if (player.getLifeStats().isAlreadyDead()) {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_FORCE_CANT_INVITE_WHEN_DEAD);
 			return false;
-		} if (target.isInGroup2()) {
-			PlayerGroup targetGroup = target.getPlayerGroup2();
+		} if (target.isInGroup()) {
+			PlayerGroup targetGroup = target.getPlayerGroup();
 			if (targetGroup.isLeader(target)) {
 				PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_FORCE_INVITE_PARTY_HIM(target.getName(), targetGroup.getLeader().getName()));
 				return false;

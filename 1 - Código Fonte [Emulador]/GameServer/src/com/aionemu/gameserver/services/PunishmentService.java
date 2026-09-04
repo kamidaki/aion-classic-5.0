@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.org>.
- *
- *  aion-unique is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-unique is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services;
 
 import com.aionemu.commons.database.dao.DAOManager;
@@ -25,7 +9,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_CAPTCHA;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ASK_QUIT_RESULT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.network.chatserver.ChatServer;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
@@ -34,9 +18,7 @@ import com.aionemu.gameserver.world.WorldMapType;
 import java.util.Calendar;
 import java.util.concurrent.Future;
 
-/**
- * @author lord_rex, Cura, nrg
- */
+
 public class PunishmentService {
 	
 	/**
@@ -104,7 +86,7 @@ public class PunishmentService {
 				ChatServer.getInstance().sendPlayerLogout(player);
 
 			player.setStartPrison(System.currentTimeMillis());
-			TeleportService2.teleportToPrison(player);
+			TeleportService.teleportToPrison(player);
 			DAOManager.getDAO(PlayerPunishmentsDAO.class).punishPlayer(player, PunishmentType.PRISON, reason);
 		}
 		else {
@@ -115,7 +97,7 @@ public class PunishmentService {
 				
 			player.setPrisonTimer(0);
 
-			TeleportService2.moveToBindLocation(player, true);
+			TeleportService.moveToBindLocation(player, true);
 
 			DAOManager.getDAO(PlayerPunishmentsDAO.class).unpunishPlayer(player.getObjectId(), PunishmentType.PRISON);
 		}
@@ -165,7 +147,7 @@ public class PunishmentService {
 
 					@Override
 					public void run() {
-						TeleportService2.teleportToPrison(player);
+						TeleportService.teleportToPrison(player);
 					}
 				}, 60000);
 			}				
@@ -196,7 +178,6 @@ public class PunishmentService {
 	 * @param captchaCount
 	 * @param state
 	 * @param delay
-	 * @author Cura
 	 */
 	public static void setIsNotGatherable(Player player, int captchaCount, boolean state, long delay) {
 		stopGatherableTask(player, false);
@@ -230,7 +211,6 @@ public class PunishmentService {
 	 * 
 	 * @param player
 	 * @param save
-	 * @author Cura
 	 */
 	public static void stopGatherableTask(Player player, boolean save) {
 		Future<?> gatherableTask = player.getController().getTask(TaskId.GATHERABLE);
@@ -250,7 +230,6 @@ public class PunishmentService {
 	 * This method will update the gathering status
 	 * 
 	 * @param player
-	 * @author Cura
 	 */
 	public static void updateGatherableStatus(Player player) {
 		if (player.isNotGatherable()) {
@@ -268,7 +247,6 @@ public class PunishmentService {
 	 * 
 	 * @param player
 	 * @param gatherableTimer
-	 * @author Cura
 	 */
 	private static void scheduleGatherableTask(final Player player, long gatherableTimer) {
 		player.setGatherableTimer(gatherableTimer);
@@ -284,7 +262,6 @@ public class PunishmentService {
 	/**
 	 * PunishmentType
 	 * 
-	 * @author Cura
 	 */
 	public enum PunishmentType {
 		PRISON,

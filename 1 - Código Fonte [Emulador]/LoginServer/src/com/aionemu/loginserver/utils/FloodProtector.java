@@ -11,9 +11,7 @@ import com.aionemu.loginserver.configs.Config;
 import com.aionemu.loginserver.controller.BannedIpController;
 import com.aionemu.loginserver.network.aion.clientpackets.CM_LOGIN;
 
-/**
- * @author Mr. Poke
- */
+
 public class FloodProtector {
 
 	/**

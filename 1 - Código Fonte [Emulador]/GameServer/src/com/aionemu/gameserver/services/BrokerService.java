@@ -38,11 +38,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.Timestamp;
 import java.util.*;
 
-/**
- * @author kosyachok
- * @author ATracer
- * @author Antraxx
- */
+
 public class BrokerService {
 
     private Map<Integer, BrokerItem> elyosBrokerItems = new FastMap<Integer, BrokerItem>().shared();

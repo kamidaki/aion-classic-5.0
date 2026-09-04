@@ -4,9 +4,7 @@ import com.aionemu.gameserver.model.account.AccountSielEnergy;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
-/**
- * @author soulxj
- */
+
 public class S_GAMEPASS_INFO extends AionServerPacket {
 
     private AccountSielEnergy accountSielEnergy;

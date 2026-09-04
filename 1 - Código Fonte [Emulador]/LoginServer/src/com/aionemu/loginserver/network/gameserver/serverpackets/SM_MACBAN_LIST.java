@@ -7,11 +7,7 @@ import com.aionemu.loginserver.model.base.BannedMacEntry;
 import com.aionemu.loginserver.network.gameserver.GsConnection;
 import com.aionemu.loginserver.network.gameserver.GsServerPacket;
 
-/**
- * 
- * @author KID
- *
- */
+
 public class SM_MACBAN_LIST extends GsServerPacket {
 
 	private Map<String, BannedMacEntry> bannedList;

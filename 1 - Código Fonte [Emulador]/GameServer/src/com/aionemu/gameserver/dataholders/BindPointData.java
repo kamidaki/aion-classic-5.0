@@ -10,9 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-/**
- * @author avol
- */
+
 @XmlRootElement(name = "bind_points")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class BindPointData {

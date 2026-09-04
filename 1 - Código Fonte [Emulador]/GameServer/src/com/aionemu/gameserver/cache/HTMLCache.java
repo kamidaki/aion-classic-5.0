@@ -12,9 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.configs.main.HTMLConfig;
 
-/**
- * @author Layane, nbali, savormix, hex1r0, lord_rex
- */
+
 public final class HTMLCache {
 
 	private static final Logger log = LoggerFactory.getLogger(HTMLCache.class);

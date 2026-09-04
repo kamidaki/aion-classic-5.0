@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services;
 
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -49,7 +33,7 @@ import com.aionemu.gameserver.services.craft.RelinquishCraftStatus;
 import com.aionemu.gameserver.services.item.ItemChargeService;
 import com.aionemu.gameserver.services.legion.LegionService;
 import com.aionemu.gameserver.services.teleport.PortalService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.trade.PricesService;
 import com.aionemu.gameserver.skillengine.model.SkillTargetSlot;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -209,7 +193,7 @@ public class DialogService {
                     if (qs != null) {
                         if (qs.getStatus() == QuestStatus.START || qs.getStatus() == QuestStatus.REWARD) {
                             log.info("Error in the quest " + questId + ". No response from " + npc.getNpcId() + " on the step " + qs.getQuestVarById(0));
-                            if (!"useitem".equals(npc.getAi2().getName())) {
+                            if (!"useitem".equals(npc.getAi().getName())) {
                                 PacketSendUtility.sendPacket(player, new S_NPC_HTML_MESSAGE(targetObjectId, 10));
                             } else {
                                 PacketSendUtility.sendPacket(player, new S_NPC_HTML_MESSAGE(targetObjectId, 0));
@@ -234,10 +218,10 @@ public class DialogService {
 //				int level = player.getLevel();
 //				switch (npc.getNpcId()) {
 //					case 204089: //Garm.
-//						TeleportService2.teleportTo(player, 120010000, 984.0000f, 1543.0000f, 222.0000f, (byte) 0);
+//						TeleportService.teleportTo(player, 120010000, 984.0000f, 1543.0000f, 222.0000f, (byte) 0);
 //					break;
 //					case 203764: //Epeios.
-//						TeleportService2.teleportTo(player, 110010000, 1462.0000f, 1326.0000f, 564.0000f, (byte) 0);
+//						TeleportService.teleportTo(player, 110010000, 1462.0000f, 1326.0000f, 564.0000f, (byte) 0);
 //					break;
 //					case 203981: //Meneus.
 //				        if (player.getRace() == Race.ELYOS) {
@@ -247,7 +231,7 @@ public class DialogService {
 //						        PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_CANNOT_MOVE_TO_AIRPORT_NEED_FINISH_QUEST);
 //						        PacketSendUtility.sendPacket(player, new S_NPC_HTML_MESSAGE(targetObjectId, 27));
 //					        } else {
-//						        TeleportService2.teleportTo(player, 210020000, 439.0000f, 422.0000f, 274.0000f, (byte) 0);
+//						        TeleportService.teleportTo(player, 210020000, 439.0000f, 422.0000f, 274.0000f, (byte) 0);
 //					        }
 //						}
 //				    break;
@@ -256,13 +240,13 @@ public class DialogService {
                 //Arena City Teleporter.
                 switch (npc.getNpcId()) {
                     case 204087: //Gunnar.
-                        TeleportService2.teleportTo(player, 120010000, 1005.0000f, 1528.0000f, 222.0000f, (byte) 0);
+                        TeleportService.teleportTo(player, 120010000, 1005.0000f, 1528.0000f, 222.0000f, (byte) 0);
                         break;
                     case 203875: //Nepis.
-                        TeleportService2.teleportTo(player, 110010000, 1470.0000f, 1343.0000f, 563.0000f, (byte) 0);
+                        TeleportService.teleportTo(player, 110010000, 1470.0000f, 1343.0000f, 563.0000f, (byte) 0);
                         break;
                     case 203982: //Ipetos.
-                        TeleportService2.teleportTo(player, 210020000, 446.0000f, 431.0000f, 274.0000f, (byte) 0);
+                        TeleportService.teleportTo(player, 210020000, 446.0000f, 431.0000f, 274.0000f, (byte) 0);
                         break;
                 }
                 break;
@@ -372,7 +356,7 @@ public class DialogService {
             case 39:
             case 44: {
                 //Flight & Teleport.
-                TeleportService2.showMap(player, targetObjectId, npc.getNpcId());
+                TeleportService.showMap(player, targetObjectId, npc.getNpcId());
                 break;
             }
 			case 41: {
@@ -594,7 +578,7 @@ public class DialogService {
                     } else if (template != null) {
                         TeleportLocation loc = template.getTeleLocIdData().getTelelocations().get(0);
                         if (loc != null) {
-                            TeleportService2.teleport(template, loc.getLocId(), player, npc, npc.getAi2().getName().equals("general") ? TeleportAnimation.JUMP_ANIMATION : TeleportAnimation.BEAM_ANIMATION);
+                            TeleportService.teleport(template, loc.getLocId(), player, npc, npc.getAi().getName().equals("general") ? TeleportAnimation.JUMP_ANIMATION : TeleportAnimation.BEAM_ANIMATION);
                         }
                     }
                 } else {

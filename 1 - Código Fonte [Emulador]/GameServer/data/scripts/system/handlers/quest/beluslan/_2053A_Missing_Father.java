@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.beluslan;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -24,7 +8,7 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.questEngine.model.QuestDialog;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.zone.ZoneName;
@@ -131,7 +115,7 @@ public class _2053A_Missing_Father extends QuestHandler
 				switch (env.getDialog()) {
                     case USE_OBJECT: {
 						if (var == 7 && secretPortKey == 1) {
-							TeleportService2.teleportTo(env.getPlayer(), 220040000, 1757.0000f, 1392.0000f, 401.0000f, (byte) 94);
+							TeleportService.teleportTo(env.getPlayer(), 220040000, 1757.0000f, 1392.0000f, 401.0000f, (byte) 94);
 							return useQuestObject(env, 7, 7, true, 0, 0, 0, 182204307, 1, 236);
 						} else if (var == 7 && secretPortKey == 0) {
 							///You need a key to open the door.

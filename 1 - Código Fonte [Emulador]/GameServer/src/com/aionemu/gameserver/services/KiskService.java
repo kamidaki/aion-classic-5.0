@@ -5,7 +5,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.S_RESURRECT_LOC_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.S_EFFECT;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import javolution.util.FastMap;
 
@@ -41,7 +41,7 @@ public class KiskService
 			player.getKisk().removePlayer(player);
 		}
 		kisk.addPlayer(player);
-		TeleportService2.sendSetBindPoint(player);
+		TeleportService.sendSetBindPoint(player);
 		PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_BINDSTONE_REGISTER);
 		PacketSendUtility.broadcastPacket(player, new S_EFFECT(player.getObjectId(), 2, player.getCommonData().getLevel()), true);
 	}

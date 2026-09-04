@@ -16,9 +16,7 @@ import javolution.util.FastList;
 
 import java.util.List;
 
-/**
- * @author KID
- */
+
 public class LegionCommand extends AdminCommand {
 	private LegionService service;
 	public LegionCommand() {

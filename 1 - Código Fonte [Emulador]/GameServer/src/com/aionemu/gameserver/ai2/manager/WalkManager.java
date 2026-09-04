@@ -1,25 +1,9 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.manager;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AISubState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.configs.main.AIConfig;
 import com.aionemu.gameserver.configs.main.GeoDataConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -34,9 +18,7 @@ import com.aionemu.gameserver.world.geo.GeoService;
 
 import java.util.List;
 
-/**
- * @author ATracer
- */
+
 public class WalkManager {
 
 	private static final int WALK_RANDOM_RANGE = 3;
@@ -44,7 +26,7 @@ public class WalkManager {
 	/**
 	 * @param npcAI
 	 */
-	public static boolean startWalking(NpcAI2 npcAI) {
+	public static boolean startWalking(NpcAI npcAI) {
         npcAI.setStateIfNot(AIState.WALKING);
         Npc owner = npcAI.getOwner();
         WalkerTemplate template = DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId());
@@ -60,7 +42,7 @@ public class WalkManager {
 	 * @param npcAI
 	 * @param owner
 	 */
-	private static boolean startRandomWalking(NpcAI2 npcAI, Npc owner) {
+	private static boolean startRandomWalking(NpcAI npcAI, Npc owner) {
 		if (!AIConfig.ACTIVE_NPC_MOVEMENT) {
 			return false;
 		}
@@ -81,7 +63,7 @@ public class WalkManager {
 	 * @param owner
 	 * @param template
 	 */
-	protected static void startRouteWalking(NpcAI2 npcAI, Npc owner, WalkerTemplate template) {
+	protected static void startRouteWalking(NpcAI npcAI, Npc owner, WalkerTemplate template) {
 		if (!AIConfig.ACTIVE_NPC_MOVEMENT)
 			return;
 		List<RouteStep> route = template.getRouteSteps();
@@ -163,7 +145,7 @@ public class WalkManager {
 	 * @param npcAI
 	 * @return
 	 */
-	public static boolean isWalking(NpcAI2 npcAI) {
+	public static boolean isWalking(NpcAI npcAI) {
 		return npcAI.isMoveSupported() && (hasWalkRoutes(npcAI) || npcAI.getOwner().isAttackableNpc());
 	}
 
@@ -171,14 +153,14 @@ public class WalkManager {
 	 * @param npcAI
 	 * @return
 	 */
-	public static boolean hasWalkRoutes(NpcAI2 npcAI) {
+	public static boolean hasWalkRoutes(NpcAI npcAI) {
 		return npcAI.getOwner().hasWalkRoutes();
 	}
 
 	/**
 	 * @param npcAI
 	 */
-	public static void targetReached(final NpcAI2 npcAI) {
+	public static void targetReached(final NpcAI npcAI) {
 		if (npcAI.isInState(AIState.WALKING)) {
 			switch (npcAI.getSubState()) {
 				case WALK_PATH:
@@ -209,7 +191,7 @@ public class WalkManager {
 	/**
 	 * @param npcAI
 	 */
-	protected static void chooseNextRouteStep(final NpcAI2 npcAI) {
+	protected static void chooseNextRouteStep(final NpcAI npcAI) {
 		int walkPause = npcAI.getOwner().getMoveController().getWalkPause();
 		if (walkPause == 0) {
 			npcAI.getOwner().getMoveController().resetMove();
@@ -234,7 +216,7 @@ public class WalkManager {
 	/**
 	 * @param npcAI
 	 */
-	private static void chooseNextRandomPoint(final NpcAI2 npcAI) {
+	private static void chooseNextRandomPoint(final NpcAI npcAI) {
 		final Npc owner = npcAI.getOwner();
 		owner.getMoveController().abortMove();
 		int randomWalkNr = owner.getSpawn().getRandomWalk();
@@ -265,7 +247,7 @@ public class WalkManager {
 	/**
 	 * @param npcAI
 	 */
-	public static void stopWalking(NpcAI2 npcAI) {
+	public static void stopWalking(NpcAI npcAI) {
 		npcAI.getOwner().getMoveController().abortMove();
 		npcAI.setStateIfNot(AIState.IDLE);
 		npcAI.setSubStateIfNot(AISubState.NONE);
@@ -276,7 +258,7 @@ public class WalkManager {
 	 * @param owner
 	 * @return
 	 */
-	public static boolean isArrivedAtPoint(NpcAI2 npcAI) {
+	public static boolean isArrivedAtPoint(NpcAI npcAI) {
 		return npcAI.getOwner().getMoveController().isReachedPoint();
 	}
 

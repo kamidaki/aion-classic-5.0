@@ -133,10 +133,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.aionemu</groupId>
-			<artifactId>encom-commons</artifactId>
-			<version>1.8</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/encom-commons-1.8.jar</systemPath>
+			<artifactId>commons</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>

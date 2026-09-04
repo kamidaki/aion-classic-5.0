@@ -10,9 +10,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
 import java.util.List;
 
-/**
- * @author Wakizashi
- */
+
 public class NpcSkill extends AdminCommand {
 
 	public NpcSkill() {

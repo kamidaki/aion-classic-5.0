@@ -33,7 +33,6 @@ import java.util.Map;
  * the player, together with the manastones it carried. As in retail, the enchantment
  * level of the weapons is reset and the kinah spent on the old fusion is not refunded.
  *
- * @author Claude
  */
 public class WeaponFusionSplitService {
 

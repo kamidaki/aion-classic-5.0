@@ -33,9 +33,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author KID
- */
+
 public class ItemService {
 
     private static final Logger log = LoggerFactory.getLogger("ITEM_LOG");

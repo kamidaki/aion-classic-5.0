@@ -22,8 +22,8 @@ public class SummonsService
             return;
         }
         final Summon summon = VisibleObjectSpawner.spawnSummon(master, npcId, skillId, skillLevel, time);
-        if (summon.getAi2().getName().equals("siege_weapon")) {
-            summon.getAi2().onGeneralEvent(AIEventType.SPAWNED);
+        if (summon.getAi().getName().equals("siege_weapon")) {
+            summon.getAi().onGeneralEvent(AIEventType.SPAWNED);
         }
         master.setSummon(summon);
         PacketSendUtility.sendPacket(master, new S_ADD_PET(summon));

@@ -46,8 +46,8 @@ public class CM_QUEST_SHARE extends AionClientPacket
 		QuestState questState = player.getQuestStateList().getQuestState(this.questId);
 		if ((questState == null) || (questState.getStatus() == QuestStatus.COMPLETE))
 			return;
-		if (player.isInGroup2()) {
-			for (Player member : player.getPlayerGroup2().getOnlineMembers()) {
+		if (player.isInGroup()) {
+			for (Player member : player.getPlayerGroup().getOnlineMembers()) {
 				if (player == member)
 					continue;
 				if (!MathUtil.isIn3dRange(member, player, GroupConfig.GROUP_MAX_DISTANCE)) {
@@ -74,8 +74,8 @@ public class CM_QUEST_SHARE extends AionClientPacket
 				}
 				PacketSendUtility.sendPacket(member, new S_QUEST(this.questId, member.getObjectId(), true));
 			}
-		} else if (player.isInAlliance2()) {
-			for (Player member : player.getPlayerAllianceGroup2().getOnlineMembers()) {
+		} else if (player.isInAlliance()) {
+			for (Player member : player.getPlayerAllianceGroup().getOnlineMembers()) {
 				if (player == member)
 					continue;
 					if (!MathUtil.isIn3dRange(member, player, GroupConfig.GROUP_MAX_DISTANCE)) {

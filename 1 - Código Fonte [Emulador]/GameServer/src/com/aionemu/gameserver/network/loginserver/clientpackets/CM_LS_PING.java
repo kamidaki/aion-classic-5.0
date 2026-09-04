@@ -6,9 +6,7 @@ import com.aionemu.gameserver.network.loginserver.serverpackets.SM_LS_PONG;
 
 import java.lang.management.ManagementFactory;
 
-/**
- * @author KID
- */
+
 public class CM_LS_PING extends LsClientPacket {
 	public CM_LS_PING(int opCode) {
 		super(opCode);

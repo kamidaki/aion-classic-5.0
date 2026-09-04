@@ -1,13 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
 package com.aionemu.loginserver.utils;
 
 import com.aionemu.commons.utils.concurrent.AionRejectedExecutionHandler;
@@ -20,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
-/**
- * @author -Nemesiss-, NB4L1, MrPoke, lord_rex
- */
+
 public final class ThreadPoolManager implements Executor {
 
 	private static final Logger log = LoggerFactory.getLogger(ThreadPoolManager.class);

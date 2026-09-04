@@ -5,9 +5,7 @@ import com.aionemu.gameserver.network.BannedMacManager;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author KID
- */
+
 public class UnBanMac extends AdminCommand {
 
 	public UnBanMac() {

@@ -13,7 +13,7 @@ import com.aionemu.gameserver.services.player.BattlePassService;
 import com.aionemu.gameserver.services.rift.RiftEnum;
 import com.aionemu.gameserver.services.rift.RiftInformer;
 import com.aionemu.gameserver.services.rift.RiftManager;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import javolution.util.FastMap;
 
@@ -69,7 +69,7 @@ public class RVController extends NpcController
 					float y = slaveSpawnTemplate.getY();
 					float z = slaveSpawnTemplate.getZ();
 					BattlePassService.getInstance().onUpdateBattlePassMission(responder, 0, 1, BattlePassAction.RIFT);
-					TeleportService2.teleportTo(responder, worldId, x, y, z);
+					TeleportService.teleportTo(responder, worldId, x, y, z);
 					syncPassed(false);
 				}
 			}

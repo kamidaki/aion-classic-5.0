@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.inggison;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -22,7 +6,7 @@ import com.aionemu.gameserver.questEngine.model.QuestDialog;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 
 /****/
 /** Author Rinzler (Encom)
@@ -85,7 +69,7 @@ public class _11228No_He_Never_Returned extends QuestHandler
 						}
 					} case STEP_TO_2: {
 						changeQuestStep(env, 1, 2, false);
-						TeleportService2.teleportTo(env.getPlayer(), 210050000, 2328.0000f, 1663.0000f, 272.0000f, (byte) 48);
+						TeleportService.teleportTo(env.getPlayer(), 210050000, 2328.0000f, 1663.0000f, 272.0000f, (byte) 48);
 						return closeDialogWindow(env);
 					}
                 }

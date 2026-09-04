@@ -40,7 +40,7 @@ public class StatCapUtil
         }
     }
 	
-    public static void calculateBaseValue(Stat2 stat, byte isPlayer) {
+    public static void calculateBaseValue(Stat stat, byte isPlayer) {
         int lowerCap = getLowerCap(stat.getStat());
         int upperCap = getUpperCap(stat.getStat());
         if (stat.getStat() == StatEnum.ATTACK_SPEED) {
@@ -139,7 +139,7 @@ public class StatCapUtil
         return value;
     }
 	
-    private static void calculate(Stat2 stat2, int lowerCap, int upperCap) {
+    private static void calculate(Stat stat2, int lowerCap, int upperCap) {
         if (stat2.getCurrent() > upperCap) {
             stat2.setBonus(upperCap - stat2.getBase());
         } else if (stat2.getCurrent() < lowerCap) {
@@ -147,10 +147,10 @@ public class StatCapUtil
         }
     }
     
-    public static void dumpWrongStats(String ownerInfo, Stat2... stats) {
-		List<Stat2> wrongStats = null;
-		for (Stat2 stat : stats) {
-			Stat2 wrongStat = null;
+    public static void dumpWrongStats(String ownerInfo, Stat... stats) {
+		List<Stat> wrongStats = null;
+		for (Stat stat : stats) {
+			Stat wrongStat = null;
 			if (stat.getCurrent() < getLowerCap(stat.getStat())) {
 				wrongStat = stat;
 			}
@@ -159,7 +159,7 @@ public class StatCapUtil
 			}
 			if (wrongStat != null) {
 				if (wrongStats == null) {
-					wrongStats = new ArrayList<Stat2>();
+					wrongStats = new ArrayList<Stat>();
 				}
 				wrongStats.add(wrongStat);
 			}
@@ -170,7 +170,7 @@ public class StatCapUtil
 		StringBuilder msg = new StringBuilder();
 		msg.append(ownerInfo);
 		msg.append('\n');
-		for (Stat2 stat : wrongStats) {
+		for (Stat stat : wrongStats) {
 			msg.append(stat.getStat());
 			msg.append(": [");
 			msg.append(" Min: ").append(Integer.toString(getMinValue(stat.getStat())));

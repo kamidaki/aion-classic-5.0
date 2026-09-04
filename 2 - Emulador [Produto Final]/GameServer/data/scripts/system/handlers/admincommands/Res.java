@@ -7,9 +7,7 @@ import com.aionemu.gameserver.services.player.PlayerReviveService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Sarynth
- */
+
 public class Res extends AdminCommand {
 
 	public Res() {

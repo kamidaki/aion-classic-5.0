@@ -10,7 +10,6 @@ import com.aionemu.gameserver.world.World;
 /**
  * Admin revoke command.
  * 
- * @author Cyrakuse
  * @modified By Aionchs-Wylovech
  */
 public class Revoke extends AdminCommand {

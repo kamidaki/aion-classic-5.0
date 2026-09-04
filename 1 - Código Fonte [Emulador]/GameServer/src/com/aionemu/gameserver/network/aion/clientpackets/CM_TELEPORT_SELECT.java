@@ -8,7 +8,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.teleport.TeleporterTemplate;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.MathUtil;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +50,7 @@ public class CM_TELEPORT_SELECT extends AionClientPacket
             }
             TeleporterTemplate teleport = DataManager.TELEPORTER_DATA.getTeleporterTemplateByNpcId(npcId);
             if (teleport != null) {
-                TeleportService2.teleport(teleport, this.locId, player, npc, TeleportAnimation.JUMP_ANIMATION_2);
+                TeleportService.teleport(teleport, this.locId, player, npc, TeleportAnimation.JUMP_ANIMATION_2);
             } else {
                 LoggerFactory.getLogger(CM_TELEPORT_SELECT.class).warn("teleportation id " + this.locId + " was not found on npc " + npcId);
             }

@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
@@ -21,7 +5,7 @@ import com.aionemu.commons.network.util.ThreadPoolManager;
 
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AbstractAI;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
 import com.aionemu.gameserver.instance.handlers.InstanceID;
@@ -33,7 +17,7 @@ import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.*;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
@@ -113,12 +97,12 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
 			case 1:
 				final Npc idcatacombsn_undrakanfinightnmd_55_ah1 = (Npc) spawn(216242, 1100.8206f, 21.70855f, 234.1083f, (byte) 0);
 				idcatacombsn_undrakanfinightnmd_55_ah1.getSpawn().setWalkerId("idcatacombs_path_12");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_undrakanfinightnmd_55_ah1.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_undrakanfinightnmd_55_ah1.getAi());
 			break;
 			case 2:
 				final Npc idcatacombsn_drakanfidaynmd_55_ah1 = (Npc) spawn(216243, 1100.8206f, 21.70855f, 234.1083f, (byte) 0);
 				idcatacombsn_drakanfidaynmd_55_ah1.getSpawn().setWalkerId("idcatacombs_path_12");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakanfidaynmd_55_ah1.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakanfidaynmd_55_ah1.getAi());
 			break;
 		}
 		///Gatekeeper Darfall.
@@ -126,12 +110,12 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
 			case 1:
 				final Npc idcatacombsn_drakankey1nmd_55_ah1 = (Npc) spawn(216251, 1492.8317f, 1497.5365f, 300.3300f, (byte) 0);
 				idcatacombsn_drakankey1nmd_55_ah1.getSpawn().setWalkerId("idcatacombs_path_23");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakankey1nmd_55_ah1.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakankey1nmd_55_ah1.getAi());
 			break;
 			case 2:
 				final Npc idcatacombsn_drakankey1nmd_55_ah2 = (Npc) spawn(216251, 1499.1567f, 1528.0023f, 304.6597f, (byte) 0);
 				idcatacombsn_drakankey1nmd_55_ah2.getSpawn().setWalkerId("idcatacombs_path_26");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakankey1nmd_55_ah2.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakankey1nmd_55_ah2.getAi());
 			break;
 		}
 		///Gatekeeper Kutarrun.
@@ -139,12 +123,12 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
 			case 1:
 				final Npc idcatacombsn_drakankey2nmd_55_ah1 = (Npc) spawn(216252, 1395.1289f, 1464.8728f, 307.7928f, (byte) 0);
 				idcatacombsn_drakankey2nmd_55_ah1.getSpawn().setWalkerId("idcatacombs_path_25");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakankey2nmd_55_ah1.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakankey2nmd_55_ah1.getAi());
 			break;
 			case 2:
 				final Npc idcatacombsn_drakankey2nmd_55_ah2 = (Npc) spawn(216252, 1463.3372f, 1500.9946f, 301.3335f, (byte) 0);
 				idcatacombsn_drakankey2nmd_55_ah2.getSpawn().setWalkerId("idcatacombs_path_21");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakankey2nmd_55_ah2.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakankey2nmd_55_ah2.getAi());
 			break;
 		}
 		///Gatekeeper Samarrn.
@@ -152,12 +136,12 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
 			case 1:
 				final Npc idcatacombsn_drakankey3nmd_55_ah1 = (Npc) spawn(216253, 1505.1925f, 1354.1690f, 307.7928f, (byte) 0);
 				idcatacombsn_drakankey3nmd_55_ah1.getSpawn().setWalkerId("idcatacombs_path_24");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakankey3nmd_55_ah1.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakankey3nmd_55_ah1.getAi());
 			break;
 			case 2:
 				final Npc idcatacombsn_drakankey3nmd_55_ah2 = (Npc) spawn(216253, 1539.1180f, 1460.9127f, 300.3300f, (byte) 0);
 				idcatacombsn_drakankey3nmd_55_ah2.getSpawn().setWalkerId("idcatacombs_path_22");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakankey3nmd_55_ah2.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakankey3nmd_55_ah2.getAi());
 			break;
 		}
 		///Gatekeeper Rhapsharr.
@@ -165,12 +149,12 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
 			case 1:
 				final Npc idcatacombsn_drakankey4nmd_55_ah1 = (Npc) spawn(216254, 1551.0248f, 1433.5009f, 301.3335f, (byte) 0);
 				idcatacombsn_drakankey4nmd_55_ah1.getSpawn().setWalkerId("idcatacombs_path_20");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakankey4nmd_55_ah1.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakankey4nmd_55_ah1.getAi());
 			break;
 			case 2:
 				final Npc idcatacombsn_drakankey4nmd_55_ah2 = (Npc) spawn(216254, 1575.0342f, 1441.1349f, 304.6597f, (byte) 0);
 				idcatacombsn_drakankey4nmd_55_ah2.getSpawn().setWalkerId("idcatacombs_path_27");
-				WalkManager.startWalking((NpcAI2) idcatacombsn_drakankey4nmd_55_ah2.getAi2());
+				WalkManager.startWalking((NpcAI) idcatacombsn_drakankey4nmd_55_ah2.getAi());
 			break;
 		}
 		///Dorakiki's Chest.
@@ -396,13 +380,13 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
 					    //Macunbello's power is weakening.
 					    sendMsgByRace(1400466, Race.PC_ALL, 0);
 				    } else if (debufflich == 24) {
-						macunbello2.getAi2().think();
+						macunbello2.getAi().think();
 						//Macunbello's power has weakened.
 					    sendMsgByRace(1400467, Race.PC_ALL, 0);
 						macunbello2.getEffectController().removeEffect(NPC_STATDOWN_1);
 						SkillEngine.getInstance().applyEffectDirectly(NPC_STATDOWN_2, macunbello2, macunbello2, 0);
 				    } else if (debufflich == 36) {
-						macunbello2.getAi2().think();
+						macunbello2.getAi().think();
 					    //Macunbello has been crippled.
 					    sendMsgByRace(1400468, Race.PC_ALL, 0);
 						macunbello2.getEffectController().removeEffect(NPC_STATDOWN_2);
@@ -496,10 +480,10 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
     }
 	
 	protected void prisonOfIce(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void moveBack(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	
 	private void removeItems(Player player) {
@@ -549,7 +533,7 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
                 if (!isInstanceDestroyed) {
                     Npc npc = (Npc) spawn(npcId, x, y, z, h);
                     npc.getSpawn().setWalkerId(walkerId);
-                    WalkManager.startWalking((NpcAI2) npc.getAi2());
+                    WalkManager.startWalking((NpcAI) npc.getAi());
                 }
             }
         }, time));

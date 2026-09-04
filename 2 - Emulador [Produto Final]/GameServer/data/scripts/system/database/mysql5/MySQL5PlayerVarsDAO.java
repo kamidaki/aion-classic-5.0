@@ -12,9 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
-/**
- * @author KID
- */
+
 public class MySQL5PlayerVarsDAO extends PlayerVarsDAO {
 
 	@Override

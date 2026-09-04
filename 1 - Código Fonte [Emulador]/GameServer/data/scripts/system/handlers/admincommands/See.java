@@ -6,9 +6,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_INVISIBLE_LEVEL;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Mathew
- */
+
 public class See extends AdminCommand {
 
 	public See() {

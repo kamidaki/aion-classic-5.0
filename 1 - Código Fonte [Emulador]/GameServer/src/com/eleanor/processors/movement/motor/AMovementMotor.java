@@ -1,11 +1,3 @@
-/*
- * This file is part of Eleanor project
- *
- * This is proprietary software. See the EULA file distributed with
- * this project for additional information regarding copyright ownership.
- *
- * Copyright (c) 2011-2013, Eleanor Team. All rights reserved.
- */
 package com.eleanor.processors.movement.motor;
 
 import com.aionemu.gameserver.ai2.AIState;
@@ -13,13 +5,12 @@ import com.aionemu.gameserver.controllers.movement.MovementMask;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.eleanor.processors.movement.MovementProcessor;
 
 /**
  * Base abstraction of all movement motors
  *
- * @author MetaWind
  */
 public abstract class AMovementMotor {
 
@@ -83,7 +74,7 @@ public abstract class AMovementMotor {
         if (oldHeading != _targetHeading)
             _targetMask |= MovementMask.NPC_STARTMOVE;
 
-        final Stat2 stat = _owner.getGameStats().getMovementSpeed();
+        final Stat stat = _owner.getGameStats().getMovementSpeed();
         if (_owner.isInState(CreatureState.WEAPON_EQUIPPED)) {
             _targetMask |= stat.getBonus() < 0 ? MovementMask.NPC_RUN_FAST : MovementMask.NPC_RUN_SLOW;
         } else if (_owner.isInState(CreatureState.WALKING) || _owner.isInState(CreatureState.ACTIVE)) {
@@ -91,7 +82,7 @@ public abstract class AMovementMotor {
         }
         if (_owner.isFlying())
             _targetMask |= MovementMask.GLIDE;
-        if (_owner.getAi2().getState() == AIState.RETURNING) {
+        if (_owner.getAi().getState() == AIState.RETURNING) {
             _targetMask |= MovementMask.NPC_RUN_FAST;
         }
     }

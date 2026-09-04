@@ -1,23 +1,7 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.handler;
 
 import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -33,12 +17,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @author Rolandas
- */
+
 public final class ShoutEventHandler {
 
-	public static void onSee(NpcAI2 npcAI, Creature target) {
+	public static void onSee(NpcAI npcAI, Creature target) {
 		Npc npc = npcAI.getOwner();
 		if (DataManager.NPC_SHOUT_DATA.hasAnyShout(npc.getPosition().getMapId(), npc.getNpcId(), ShoutEventType.SEE)) {
 			List<NpcShout> shouts = DataManager.NPC_SHOUT_DATA.getNpcShouts(npc.getPosition().getMapId(), npc.getNpcId(),
@@ -48,7 +30,7 @@ public final class ShoutEventHandler {
 		}
 	}
 
-	public static void onBeforeDespawn(NpcAI2 npcAI) {
+	public static void onBeforeDespawn(NpcAI npcAI) {
 		Npc npc = npcAI.getOwner();
 		if (DataManager.NPC_SHOUT_DATA.hasAnyShout(npc.getPosition().getMapId(), npc.getNpcId(),
 			ShoutEventType.BEFORE_DESPAWN)) {
@@ -59,7 +41,7 @@ public final class ShoutEventHandler {
 		}
 	}
 
-	public static void onReachedWalkPoint(NpcAI2 npcAI) {
+	public static void onReachedWalkPoint(NpcAI npcAI) {
 		Npc npc = npcAI.getOwner();
 		WalkerTemplate tp = DataManager.WALKER_DATA.getWalkerTemplate(npc.getSpawn().getWalkerId());
 		int stepCount = tp.getRouteSteps().size();
@@ -78,7 +60,7 @@ public final class ShoutEventHandler {
 		}
 	}
 
-	public static void onSwitchedTarget(NpcAI2 npcAI, Creature creature) {
+	public static void onSwitchedTarget(NpcAI npcAI, Creature creature) {
 		Npc npc = npcAI.getOwner();
 		if (DataManager.NPC_SHOUT_DATA.hasAnyShout(npc.getPosition().getMapId(), npc.getNpcId(),
 			ShoutEventType.SWITCH_TARGET)) {
@@ -89,7 +71,7 @@ public final class ShoutEventHandler {
 		}
 	}
 
-	public static void onDied(NpcAI2 npcAI) {
+	public static void onDied(NpcAI npcAI) {
 		Npc owner = npcAI.getOwner();
 		if (DataManager.NPC_SHOUT_DATA.hasAnyShout(owner.getPosition().getMapId(), owner.getNpcId(), ShoutEventType.DIED)) {
 			List<NpcShout> shouts = DataManager.NPC_SHOUT_DATA.getNpcShouts(owner.getPosition().getMapId(), owner.getNpcId(),
@@ -105,7 +87,7 @@ public final class ShoutEventHandler {
 	/**
 	 * Called on Aggro when NPC is ready to attack
 	 */
-	public static void onAttackBegin(NpcAI2 npcAI, Creature creature) {
+	public static void onAttackBegin(NpcAI npcAI, Creature creature) {
 		Npc npc = npcAI.getOwner();
 		if (DataManager.NPC_SHOUT_DATA.hasAnyShout(npc.getPosition().getMapId(), npc.getNpcId(),
 			ShoutEventType.ATTACK_BEGIN)) {
@@ -120,7 +102,7 @@ public final class ShoutEventHandler {
 	/**
 	 * Handle NPC attacked event (when damage was received or not)
 	 */
-	public static void onHelp(NpcAI2 npcAI, Creature creature) {
+	public static void onHelp(NpcAI npcAI, Creature creature) {
 		// TODO: [RR] change AI or randomise behaviour for "cowards" and "fanatics" ???
 		Npc npc = npcAI.getOwner();
 		if (npc.getAttackedCount() == 0) {
@@ -145,7 +127,7 @@ public final class ShoutEventHandler {
 	 * <br>
 	 * <b><font color='red'>IMPORTANT!!! </font>All such shouts must be of type SAY.</b>
 	 */
-	public static void onEnemyAttack(NpcAI2 npcAI, Creature target) {
+	public static void onEnemyAttack(NpcAI npcAI, Creature target) {
 		final Npc npc = npcAI.getOwner();
 		if (!DataManager.NPC_SHOUT_DATA.hasAnyShout(npc.getPosition().getMapId(), npc.getNpcId(), ShoutEventType.ATTACKED))
 			return;
@@ -185,18 +167,18 @@ public final class ShoutEventHandler {
 		}, 0);
 	}
 
-	public static void onCast(NpcAI2 npcAI, Creature creature) {
+	public static void onCast(NpcAI npcAI, Creature creature) {
 		handleNumericEvent(npcAI, creature, ShoutEventType.CAST_K);
 	}
 
 	/**
 	 * Handle target attacked events
 	 */
-	public static void onAttack(NpcAI2 npcAI, Creature creature) {
+	public static void onAttack(NpcAI npcAI, Creature creature) {
 		handleNumericEvent(npcAI, creature, ShoutEventType.ATTACK_K);
 	}
 
-	private static void handleNumericEvent(NpcAI2 npcAI, Creature creature, ShoutEventType eventType) {
+	private static void handleNumericEvent(NpcAI npcAI, Creature creature, ShoutEventType eventType) {
 		Npc owner = npcAI.getOwner();
 		List<NpcShout> shouts = DataManager.NPC_SHOUT_DATA.getNpcShouts(owner.getPosition().getMapId(), owner.getNpcId(),
 			eventType, null, 0);
@@ -228,7 +210,7 @@ public final class ShoutEventHandler {
 		shouts.clear();
 	}
 
-	public static void onAttackEnd(NpcAI2 npcAI) {
+	public static void onAttackEnd(NpcAI npcAI) {
 		Npc npc = npcAI.getOwner();
 		if (DataManager.NPC_SHOUT_DATA.hasAnyShout(npc.getPosition().getMapId(), npc.getNpcId(), ShoutEventType.ATTACK_END)) {
 			List<NpcShout> shouts = DataManager.NPC_SHOUT_DATA.getNpcShouts(npc.getPosition().getMapId(), npc.getNpcId(),

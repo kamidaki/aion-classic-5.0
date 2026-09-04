@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.team2.alliance.events;
 
 
@@ -50,13 +34,13 @@ public class PlayerAllianceInvite extends RequestResponseHandler
         if (PlayerAllianceService.canInvite(inviter, invited)) {
             //%0 has joined the alliance.
 			PacketSendUtility.sendPacket(inviter, S_MESSAGE_CODE.STR_FORCE_ENTER_HIM(invited.getName()));
-			PlayerAlliance alliance = inviter.getPlayerAlliance2();
+			PlayerAlliance alliance = inviter.getPlayerAlliance();
             if (alliance != null) {
                 if (alliance.size() == 24) {
                     PacketSendUtility.sendMessage(invited, "That alliance is already full.");
                     PacketSendUtility.sendMessage(inviter, "Your alliance is already full.");
                     return;
-                } else if (invited.isInGroup2() && invited.getPlayerGroup2().size() + alliance.size() > 24) {
+                } else if (invited.isInGroup() && invited.getPlayerGroup().size() + alliance.size() > 24) {
                     PacketSendUtility.sendMessage(invited, "That alliance is now too full for your group to join.");
                     PacketSendUtility.sendMessage(inviter, "Your alliance is now too full for that group to join.");
                     return;
@@ -73,16 +57,16 @@ public class PlayerAllianceInvite extends RequestResponseHandler
     }
 	
     private final void collectPlayersToAdd(List<Player> playersToAdd, PlayerAlliance alliance) {
-        if (inviter.isInGroup2()) {
+        if (inviter.isInGroup()) {
             Preconditions.checkState(alliance == null, "If inviter is in group - alliance should be null");
-            PlayerGroup group = inviter.getPlayerGroup2();
+            PlayerGroup group = inviter.getPlayerGroup();
             playersToAdd.addAll(group.filterMembers(new ExcludePlayerFilter(inviter)));
             Iterator<Player> pIter = group.getMembers().iterator();
             while (pIter.hasNext()) {
                 PlayerGroupService.removePlayer(pIter.next());
             }
-        } if (invited.isInGroup2()) {
-            PlayerGroup group = invited.getPlayerGroup2();
+        } if (invited.isInGroup()) {
+            PlayerGroup group = invited.getPlayerGroup();
             playersToAdd.addAll(group.getMembers());
             Iterator<Player> pIter = group.getMembers().iterator();
             while (pIter.hasNext()) {

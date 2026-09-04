@@ -4,9 +4,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
-/**
- * @author Rinzler (Encom)
- */
+
 public class S_WORLD extends AionServerPacket
 {
 	private final Player player;

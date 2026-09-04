@@ -35,7 +35,7 @@ public class MentorMonsterHunt extends MonsterHunt
             switch (qt.getMentorType()) {
                 case MENTOR:
                     if (player.isMentor()) {
-                        PlayerGroup group = player.getPlayerGroup2();
+                        PlayerGroup group = player.getPlayerGroup();
                         for (Player member: group.getMembers()) {
                             if (member.getLevel() >= menteMinLevel && member.getLevel() <= menteMaxLevel && MathUtil.getDistance(player, member) < GroupConfig.GROUP_MAX_DISTANCE) {
                                 return super.onKillEvent(env);
@@ -44,8 +44,8 @@ public class MentorMonsterHunt extends MonsterHunt
                     }
                 break;
                 case MENTE:
-                    if (player.isInGroup2()) {
-                        PlayerGroup group = player.getPlayerGroup2();
+                    if (player.isInGroup()) {
+                        PlayerGroup group = player.getPlayerGroup();
                         for (Player member: group.getMembers()) {
                             if (member.isMentor() && MathUtil.getDistance(player, member) < GroupConfig.GROUP_MAX_DISTANCE) {
                                 return super.onKillEvent(env);

@@ -10,9 +10,7 @@ import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Source, kecimis
- */
+
 public class UseSkill extends AdminCommand {
 
 	private final String syntax = "Syntax: //skill <skillId> <skillLevel> [true|target] <duration>";

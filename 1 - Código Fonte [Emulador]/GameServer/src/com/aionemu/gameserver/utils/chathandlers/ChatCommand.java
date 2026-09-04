@@ -5,9 +5,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author KID
- */
+
 public abstract class ChatCommand {
 
 	private String alias;

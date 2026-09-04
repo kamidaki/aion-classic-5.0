@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.team2.alliance;
 
 import com.aionemu.commons.callbacks.metadata.GlobalCallback;
@@ -56,7 +40,7 @@ public class PlayerAllianceService
         if (canInvite(inviter, invited)) {
             PlayerAllianceInvite invite = new PlayerAllianceInvite(inviter, invited);
             if (invited.getResponseRequester().putRequest(S_ASK.STR_MSGBOX_FORCE_INVITE_PARTY, invite)) {
-                if (invited.isInGroup2()) {
+                if (invited.isInGroup()) {
                     PacketSendUtility.sendPacket(inviter, S_MESSAGE_CODE.STR_PARTY_ALLIANCE_INVITED_HIS_PARTY(invited.getName()));
                 } else {
                     PacketSendUtility.sendPacket(inviter, S_MESSAGE_CODE.STR_FORCE_INVITED_HIM(invited.getName()));
@@ -105,7 +89,7 @@ public class PlayerAllianceService
     }
 	
     public static final void onPlayerLogout(Player player) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         if (alliance != null) {
             PlayerAllianceMember member = alliance.getMember(player.getObjectId());
             member.updateLastOnlineTime();
@@ -114,7 +98,7 @@ public class PlayerAllianceService
     }
 	
     public static final void updateAlliance(Player player, PlayerAllianceEvent allianceEvent) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         if (alliance != null) {
             alliance.onEvent(new PlayerAllianceUpdateEvent(alliance, player, allianceEvent));
         }
@@ -126,7 +110,7 @@ public class PlayerAllianceService
     }
 	
     public static final void removePlayer(Player player) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         if (alliance != null) {
             alliance.onEvent(new PlayerAllianceLeavedEvent(alliance, player));
         }
@@ -135,7 +119,7 @@ public class PlayerAllianceService
     public static final void banPlayer(Player bannedPlayer, Player banGiver) {
         Preconditions.checkNotNull(bannedPlayer, "Banned player should not be null");
         Preconditions.checkNotNull(banGiver, "Bangiver player should not be null");
-        PlayerAlliance alliance = banGiver.getPlayerAlliance2();
+        PlayerAlliance alliance = banGiver.getPlayerAlliance();
         if (alliance != null) {
             PlayerAllianceMember bannedMember = alliance.getMember(bannedPlayer.getObjectId());
             if (bannedMember != null) {
@@ -154,14 +138,14 @@ public class PlayerAllianceService
     }
 	
     public static void changeLeader(Player player) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         if (alliance != null) {
             alliance.onEvent(new ChangeAllianceLeaderEvent(alliance, player));
         }
     }
 	
     public static void changeViceCaptain(Player player, AssignType assignType) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         if (alliance != null) {
             alliance.onEvent(new AssignViceCaptainEvent(alliance, player, assignType));
         }
@@ -177,7 +161,7 @@ public class PlayerAllianceService
     }
 	
     public static void changeMemberGroup(Player player, int firstPlayer, int secondPlayer, int allianceGroupId) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         Preconditions.checkNotNull(alliance, "Alliance should not be null for group change");
         if (alliance.isLeader(player) || alliance.isViceCaptain(player)) {
             alliance.onEvent(new ChangeMemberGroupEvent(alliance, firstPlayer, secondPlayer, allianceGroupId));
@@ -187,28 +171,28 @@ public class PlayerAllianceService
     }
 	
     public static void checkReady(Player player, TeamCommand eventCode) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         if (alliance != null) {
             alliance.onEvent(new CheckAllianceReadyEvent(alliance, player, eventCode));
         }
     }
 	
     public static void distributeKinah(Player player, long amount) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         if (alliance != null) {
             alliance.onEvent(new TeamKinahDistributionEvent<PlayerAlliance>(alliance, player, amount));
         }
     }
 	
     public static void distributeKinahInGroup(Player player, long amount) {
-        PlayerAllianceGroup allianceGroup = player.getPlayerAllianceGroup2();
+        PlayerAllianceGroup allianceGroup = player.getPlayerAllianceGroup();
         if (allianceGroup != null) {
             allianceGroup.onEvent(new TeamKinahDistributionEvent<PlayerAllianceGroup>(allianceGroup, player, amount));
         }
     }
 	
     public static void showBrand(Player player, int targetObjId, int brandId) {
-        PlayerAlliance alliance = player.getPlayerAlliance2();
+        PlayerAlliance alliance = player.getPlayerAlliance();
         if (alliance != null) {
             alliance.onEvent(new ShowBrandEvent<PlayerAlliance>(alliance, targetObjId, brandId));
         }
@@ -240,7 +224,7 @@ public class PlayerAllianceService
     }
     
     public static final void updateAllianceEffects(Player player, int slot) {
-		PlayerAlliance alliance = player.getPlayerAlliance2();
+		PlayerAlliance alliance = player.getPlayerAlliance();
 		if (alliance != null) {
 			alliance.onEvent(new PlayerAllianceUpdateEvent(alliance, player, PlayerAllianceEvent.UPDATE_BUFF));
 		}

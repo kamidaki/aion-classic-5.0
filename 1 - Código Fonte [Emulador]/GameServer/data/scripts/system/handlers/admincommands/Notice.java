@@ -10,7 +10,6 @@ import java.util.Iterator;
 /**
  * Admin notice command
  * 
- * @author Jenose Updated By Darkwolf
  */
 public class Notice extends AdminCommand {
 

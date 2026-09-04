@@ -13,11 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 
-/**
- * 
- * @author KID
- *
- */
+
 public class MySQL5SurveyControllerDAO extends SurveyControllerDAO {
 	private static final Logger log = LoggerFactory.getLogger(MySQL5SurveyControllerDAO.class);
 	public static final String UPDATE_QUERY = "UPDATE `surveys` SET `used`=?, used_time=NOW() WHERE `unique_id`=?";

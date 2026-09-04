@@ -24,7 +24,7 @@ public abstract class HealOverTimeEffect extends AbstractOverTimeEffect
 
 		Creature effector = effect.getEffector();
 		if (effect.getEffected() instanceof Npc) {
-			value = effector.getAi2().modifyHealValue(value);
+			value = effector.getAi().modifyHealValue(value);
 		}
 		int valueWithDelta = value + delta * effect.getSkillLevel();
 		int maxCurValue = getMaxStatValue(effect);

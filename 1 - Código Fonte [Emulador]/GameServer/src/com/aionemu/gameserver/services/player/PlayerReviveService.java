@@ -17,7 +17,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_ACTION;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.network.aion.serverpackets.S_TARGET_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.S_USE_ITEM;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.world.World;
@@ -50,9 +50,9 @@ public class PlayerReviveService {
 		}
 		player.getGameStats().updateStatsAndSpeedVisually();
 		if (player.isInPrison()) {
-			TeleportService2.teleportToPrison(player);
+			TeleportService.teleportToPrison(player);
 		} else if (player.isInResPostState()) {
-			TeleportService2.teleportTo(player, player.getWorldId(), player.getInstanceId(), player.getResPosX(), player.getResPosY(), player.getResPosZ());
+			TeleportService.teleportTo(player, player.getWorldId(), player.getInstanceId(), player.getResPosX(), player.getResPosY(), player.getResPosZ());
 		}
 		player.unsetResPosState();
 		player.setIsFlyingBeforeDeath(false);
@@ -78,7 +78,7 @@ public class PlayerReviveService {
 		}
 		player.getGameStats().updateStatsAndSpeedVisually();
 		if (player.isInPrison()) {
-			TeleportService2.teleportToPrison(player);
+			TeleportService.teleportToPrison(player);
 		}
 		player.unsetResPosState();
 		player.setIsFlyingBeforeDeath(false);
@@ -108,7 +108,7 @@ public class PlayerReviveService {
 		}
 		player.getGameStats().updateStatsAndSpeedVisually();
 		if (player.isInPrison()) {
-			TeleportService2.teleportToPrison(player);
+			TeleportService.teleportToPrison(player);
 		}
 		player.unsetResPosState();
 		player.setIsFlyingBeforeDeath(false);
@@ -127,9 +127,9 @@ public class PlayerReviveService {
 		player.unsetResPosState();
 		player.setIsFlyingBeforeDeath(false);
 		if (player.isInPrison()) {
-			TeleportService2.teleportToPrison(player);
+			TeleportService.teleportToPrison(player);
 		} else {
-			TeleportService2.moveToBindLocation(player, true);
+			TeleportService.moveToBindLocation(player, true);
 		}
 	}
 	
@@ -144,7 +144,7 @@ public class PlayerReviveService {
 			return;
 		}
 		if (player.isInPrison()) {
-			TeleportService2.teleportToPrison(player);
+			TeleportService.teleportToPrison(player);
 			return;
 		}
 		WorldPosition bind = kisk.getPosition();
@@ -156,7 +156,7 @@ public class PlayerReviveService {
 		player.getGameStats().updateStatsAndSpeedVisually();
 		player.unsetResPosState();
 		player.setIsFlyingBeforeDeath(false);
-		TeleportService2.moveToKiskLocation(player, bind);
+		TeleportService.moveToKiskLocation(player, bind);
 	}
 	
 	public static final void instanceRevive(Player player) {
@@ -177,9 +177,9 @@ public class PlayerReviveService {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_REBIRTH_MASSAGE_ME);
 		}
 		player.getGameStats().updateStatsAndSpeedVisually();
-		InstanceReviveStartPoints revivePoint = TeleportService2.getReviveInstanceStartPoints(map.getMapId());
+		InstanceReviveStartPoints revivePoint = TeleportService.getReviveInstanceStartPoints(map.getMapId());
 		if (revivePoint != null) {
-			TeleportService2.teleportTo(player, revivePoint.getReviveWorld(), player.getInstanceId(), revivePoint.getX(), revivePoint.getY(), revivePoint.getZ(), revivePoint.getH());
+			TeleportService.teleportTo(player, revivePoint.getReviveWorld(), player.getInstanceId(), revivePoint.getX(), revivePoint.getY(), revivePoint.getZ(), revivePoint.getH());
 		} else {
 			bindRevive(player, skillId);
 		}
@@ -219,10 +219,10 @@ public class PlayerReviveService {
 			player.setPortAnimation(4);
 			player.getAggroList().clear();
 			player.getController().onBeforeSpawn(false);
-			if (player.isInGroup2()) {
+			if (player.isInGroup()) {
 				PlayerGroupService.updateGroup(player, GroupEvent.MOVEMENT);
 			}
-			if (player.isInAlliance2()) {
+			if (player.isInAlliance()) {
 				PlayerAllianceService.updateAlliance(player, PlayerAllianceEvent.MOVEMENT);
 			}
 		}
@@ -251,7 +251,7 @@ public class PlayerReviveService {
 		}
 		player.getGameStats().updateStatsAndSpeedVisually();
 		if (player.isInPrison()) {
-			TeleportService2.teleportToPrison(player);
+			TeleportService.teleportToPrison(player);
 		}
 		player.unsetResPosState();
 		player.setIsFlyingBeforeDeath(false);
@@ -270,9 +270,9 @@ public class PlayerReviveService {
 		player.unsetResPosState();
 		player.setIsFlyingBeforeDeath(false);
 		if (player.isInPrison()) {
-			TeleportService2.teleportToPrison(player);
+			TeleportService.teleportToPrison(player);
 		} else {
-			TeleportService2.teleportWorldStartPoint(player, player.getWorldId());
+			TeleportService.teleportWorldStartPoint(player, player.getWorldId());
 		}
 	}
 	

@@ -131,7 +131,7 @@ public class Player extends Creature
 	private PlayerStatsTemplate playerStatsTemplate;
 	private final AbsoluteStatOwner absStatsHolder;
 	private PlayerSettings playerSettings;
-	private com.aionemu.gameserver.model.team2.group.PlayerGroup playerGroup2;
+	private com.aionemu.gameserver.model.team2.group.PlayerGroup playerGroup;
 	private PlayerAllianceGroup playerAllianceGroup;
 	private AbyssRank abyssRank;
 	private NpcFactions npcFactions;
@@ -745,12 +745,12 @@ public class Player extends Creature
 		titleList.setOwner(this);
 	}
 
-	public com.aionemu.gameserver.model.team2.group.PlayerGroup getPlayerGroup2() {
-		return playerGroup2;
+	public com.aionemu.gameserver.model.team2.group.PlayerGroup getPlayerGroup() {
+		return playerGroup;
 	}
 
-	public void setPlayerGroup2(com.aionemu.gameserver.model.team2.group.PlayerGroup playerGroup) {
-		this.playerGroup2 = playerGroup;
+	public void setPlayerGroup(com.aionemu.gameserver.model.team2.group.PlayerGroup playerGroup) {
+		this.playerGroup = playerGroup;
 	}
 
 	/**
@@ -836,8 +836,8 @@ public class Player extends Creature
 		setLegionMember(null);
 	}
 
-	public boolean isInGroup2() {
-		return playerGroup2 != null;
+	public boolean isInGroup() {
+		return playerGroup != null;
 	}
 
 	/**
@@ -1184,12 +1184,12 @@ public class Player extends Creature
 	}
 
 	public boolean isInSameTeam(Player player) {
-		if (isInGroup2() && player.isInGroup2()) {
-			return getPlayerGroup2().getTeamId().equals(player.getPlayerGroup2().getTeamId());
-		} else if (isInAlliance2() && player.isInAlliance2()) {
-			return getPlayerAlliance2().getObjectId().equals(player.getPlayerAlliance2().getObjectId());
+		if (isInGroup() && player.isInGroup()) {
+			return getPlayerGroup().getTeamId().equals(player.getPlayerGroup().getTeamId());
+		} else if (isInAlliance() && player.isInAlliance()) {
+			return getPlayerAlliance().getObjectId().equals(player.getPlayerAlliance().getObjectId());
 		} else if (isInLeague() && player.isInLeague()) {
-			return getPlayerAllianceGroup2().getObjectId().equals(player.getPlayerAllianceGroup2().getObjectId());
+			return getPlayerAllianceGroup().getObjectId().equals(player.getPlayerAllianceGroup().getObjectId());
 		}
 		return false;
 	}
@@ -1466,42 +1466,42 @@ public class Player extends Creature
 		return isFlyingBeforeDeath;
 	}
 
-	public com.aionemu.gameserver.model.team2.alliance.PlayerAlliance getPlayerAlliance2() {
+	public com.aionemu.gameserver.model.team2.alliance.PlayerAlliance getPlayerAlliance() {
 		return playerAllianceGroup != null ? playerAllianceGroup.getAlliance() : null;
 	}
 
-	public PlayerAllianceGroup getPlayerAllianceGroup2() {
+	public PlayerAllianceGroup getPlayerAllianceGroup() {
 		return playerAllianceGroup;
 	}
 
-	public boolean isInAlliance2() {
+	public boolean isInAlliance() {
 		return playerAllianceGroup != null;
 	}
 
-	public void setPlayerAllianceGroup2(PlayerAllianceGroup playerAllianceGroup) {
+	public void setPlayerAllianceGroup(PlayerAllianceGroup playerAllianceGroup) {
 		this.playerAllianceGroup = playerAllianceGroup;
 	}
 
 	public final boolean isInLeague() {
-		return isInAlliance2() && getPlayerAlliance2().isInLeague();
+		return isInAlliance() && getPlayerAlliance().isInLeague();
 	}
 
 	public final boolean isInTeam() {
-		return isInGroup2() || isInAlliance2();
+		return isInGroup() || isInAlliance();
 	}
 
 	/**
 	 * @return current {@link PlayerGroup}, {@link PlayerAlliance} or null
 	 */
 	public final TemporaryPlayerTeam<? extends TeamMember<Player>> getCurrentTeam() {
-		return isInGroup2() ? getPlayerGroup2() : getPlayerAlliance2();
+		return isInGroup() ? getPlayerGroup() : getPlayerAlliance();
 	}
 
 	/**
 	 * @return current {@link PlayerGroup}, {@link PlayerAllianceGroup} or null
 	 */
 	public final TemporaryPlayerTeam<? extends TeamMember<Player>> getCurrentGroup() {
-		return isInGroup2() ? getPlayerGroup2() : getPlayerAllianceGroup2();
+		return isInGroup() ? getPlayerGroup() : getPlayerAllianceGroup();
 	}
 
 	/**
@@ -1995,11 +1995,11 @@ public class Player extends Creature
 	}
 
 	public LootGroupRules getLootGroupRules() {
-		if (isInGroup2()) {
-			return getPlayerGroup2().getLootGroupRules();
+		if (isInGroup()) {
+			return getPlayerGroup().getLootGroupRules();
 		}
-		if (isInAlliance2()) {
-			return getPlayerAlliance2().getLootGroupRules();
+		if (isInAlliance()) {
+			return getPlayerAlliance().getLootGroupRules();
 		}
 		return null;
 	}

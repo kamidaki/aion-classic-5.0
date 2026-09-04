@@ -1,25 +1,9 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AbstractAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
@@ -72,12 +56,12 @@ public class Draupnir_Cave extends GeneralInstanceHandler
 		    case 1:
 				final Npc iddf3_aea_lizardasd_47_ae = (Npc) spawn(213390, 175.02058f, 540.7148f, 504.7490f, (byte) 0);
 				iddf3_aea_lizardasd_47_ae.getSpawn().setWalkerId("iddf3_dragon_06_mobpath_n_hidden_named_xx");
-				WalkManager.startWalking((NpcAI2) iddf3_aea_lizardasd_47_ae.getAi2());
+				WalkManager.startWalking((NpcAI) iddf3_aea_lizardasd_47_ae.getAi());
 			break;
 			case 2:
 				final Npc iddf3_pit_goldsaamhiddennmdd_47_ae = (Npc) spawn(213588, 175.02058f, 540.7148f, 504.7490f, (byte) 0);
 				iddf3_pit_goldsaamhiddennmdd_47_ae.getSpawn().setWalkerId("iddf3_dragon_06_mobpath_n_hidden_named_xx");
-				WalkManager.startWalking((NpcAI2) iddf3_pit_goldsaamhiddennmdd_47_ae.getAi2());
+				WalkManager.startWalking((NpcAI) iddf3_pit_goldsaamhiddennmdd_47_ae.getAi());
 			break;
         }
 		///Protector Rakkan OR Bakarma Scaleguard.
@@ -85,12 +69,12 @@ public class Draupnir_Cave extends GeneralInstanceHandler
 		    case 1:
 				final Npc iddf3_lizardfinnamedd_46_Ae = (Npc) spawn(213771, 494.63162f, 434.6142f, 616.0161f, (byte) 0);
 				iddf3_lizardfinnamedd_46_Ae.getSpawn().setWalkerId("iddf3_dragon_start_mobpath_n_named_xx");
-				WalkManager.startWalking((NpcAI2) iddf3_lizardfinnamedd_46_Ae.getAi2());
+				WalkManager.startWalking((NpcAI) iddf3_lizardfinnamedd_46_Ae.getAi());
 			break;
 			case 2:
 				final Npc iddf3_fea_lizardfid_46_ae = (Npc) spawn(213377, 494.63162f, 434.6142f, 616.0161f, (byte) 0);
 				iddf3_fea_lizardfid_46_ae.getSpawn().setWalkerId("iddf3_dragon_start_mobpath_n_named_xx");
-				WalkManager.startWalking((NpcAI2) iddf3_fea_lizardfid_46_ae.getAi2());
+				WalkManager.startWalking((NpcAI) iddf3_fea_lizardfid_46_ae.getAi());
 			break;
         }
 		///Hungry Ooze OR Cave Slime.
@@ -130,7 +114,7 @@ public class Draupnir_Cave extends GeneralInstanceHandler
 					//Commander Bakarma.
 					final Npc iddf3_drakanfibossd_50_ah = (Npc) spawn(213780, 744.9534f, 458.35495f, 318.06277f, (byte) 0);
 				    iddf3_drakanfibossd_50_ah.getSpawn().setWalkerId("boss_mobpath_n_iddf3_drakanfibossd_50_ah");
-				    WalkManager.startWalking((NpcAI2) iddf3_drakanfibossd_50_ah.getAi2());
+				    WalkManager.startWalking((NpcAI) iddf3_drakanfibossd_50_ah.getAi());
 				}
 			break;
         }

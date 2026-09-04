@@ -4,9 +4,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author cura
- */
+
 public class Teleportation extends AdminCommand {
 
 	public Teleportation() {

@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2;
 
 import com.aionemu.gameserver.controllers.observer.DialogObserver;
@@ -33,9 +17,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import java.util.Collection;
 
 /**
- * Here will be placed some common AI2 actions. These methods have access to AI2's owner
+ * Here will be placed some common AI actions. These methods have access to AI's owner
  * 
- * @author ATracer
  */
 public class AI2Actions {
 
@@ -101,7 +84,7 @@ public class AI2Actions {
 	}
 	
 	public static void fireIndividualEvent(AbstractAI ai2, Npc target) {
-		target.getAi2().onIndividualNpcEvent(ai2.getOwner());
+		target.getAi().onIndividualNpcEvent(ai2.getOwner());
 	}
 
 	public static void fireNpcKillInstanceEvent(AbstractAI ai2, Player player) {
@@ -112,7 +95,7 @@ public class AI2Actions {
 		DropRegistrationService.getInstance().registerDrop((Npc) ai2.getOwner(), player, registeredPlayers);
 	}
 
-	public static void scheduleRespawn(NpcAI2 ai2) {
+	public static void scheduleRespawn(NpcAI ai2) {
 		ai2.getOwner().getController().scheduleRespawn();
 	}
 

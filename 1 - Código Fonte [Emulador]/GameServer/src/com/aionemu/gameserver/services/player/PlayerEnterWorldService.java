@@ -62,7 +62,7 @@ import com.aionemu.gameserver.services.legion.LegionService;
 import com.aionemu.gameserver.services.mail.MailService;
 import com.aionemu.gameserver.services.toypet.PetService;
 import com.aionemu.gameserver.services.WarehouseService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.taskmanager.tasks.ExpireTimerTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -269,7 +269,7 @@ public final class PlayerEnterWorldService {
 
              */
 
-            TeleportService2.sendSetBindPoint(player);
+            TeleportService.sendSetBindPoint(player);
 
             /* DESATIVADO TEMPORÁRIAMENTE ATÉ CHEGAR NO DESENVOLVIMENTO DESSA FUNÇÃO
 

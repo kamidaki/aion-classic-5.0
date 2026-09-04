@@ -10,7 +10,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.siege.SiegeModType;
 import com.aionemu.gameserver.model.siege.SiegeRace;
 import com.aionemu.gameserver.model.templates.npc.AbyssNpcType;
-import com.aionemu.gameserver.model.templates.spawns.SpawnGroup2;
+import com.aionemu.gameserver.model.templates.spawns.SpawnGroup;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.siegespawns.SiegeSpawnTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
@@ -128,8 +128,8 @@ public class FortressAssault extends Assault<FortressSiege>
 	
 	private void spawnRegularBalaurs() {
         this.spawnLocations = new ArrayList<float[]>();
-        List<SpawnGroup2> siegeSpawns = DataManager.SPAWNS_DATA2.getSiegeSpawnsByLocId(this.locationId);
-        for (SpawnGroup2 spawnGroup : siegeSpawns) {
+        List<SpawnGroup> siegeSpawns = DataManager.SPAWNS_DATA.getSiegeSpawnsByLocId(this.locationId);
+        for (SpawnGroup spawnGroup : siegeSpawns) {
             for (SpawnTemplate spawnTemplate : spawnGroup.getSpawnTemplates()) {
                 SiegeSpawnTemplate temp = (SiegeSpawnTemplate)spawnTemplate;
                 AbyssNpcType type = DataManager.NPC_DATA.getNpcTemplate(temp.getNpcId()).getAbyssNpcType();

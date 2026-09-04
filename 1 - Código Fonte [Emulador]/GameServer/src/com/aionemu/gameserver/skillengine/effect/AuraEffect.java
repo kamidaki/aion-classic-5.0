@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.org>.
- *
- *  aion-unique is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-unique is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.skillengine.effect;
 
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -60,8 +44,8 @@ public class AuraEffect extends EffectTemplate
         final Player effector = (Player) effect.getEffector();
         if (!effector.isOnline()) {
             return;
-        } if (effector.isInGroup2() || effector.isInAlliance2()) {
-            Collection<Player> onlinePlayers = effector.isInGroup2() ? effector.getPlayerGroup2().getOnlineMembers() : effector.getPlayerAllianceGroup2().getOnlineMembers();
+        } if (effector.isInGroup() || effector.isInAlliance()) {
+            Collection<Player> onlinePlayers = effector.isInGroup() ? effector.getPlayerGroup().getOnlineMembers() : effector.getPlayerAllianceGroup().getOnlineMembers();
             final int actualRange = (int) (distance * effector.getGameStats().getStat(StatEnum.BOOST_MANTRA_RANGE, 100).getCurrent() / 100f);
             for (Player player : onlinePlayers) {
                 if (MathUtil.isIn3dRange(effector, player, actualRange)) {

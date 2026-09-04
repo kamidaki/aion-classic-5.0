@@ -2,7 +2,7 @@ package com.aionemu.gameserver.model.stats.calc.functions;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 
@@ -14,7 +14,7 @@ import static ch.lambdaj.Lambda.*;
 class DuplicateStatFunction extends StatFunction
 {
 	@Override
-    public void apply(Stat2 stat) {
+    public void apply(Stat stat) {
         Item mainWeapon = ((Player) stat.getOwner()).getEquipment().getMainHandWeapon();
         Item offWeapon = ((Player) stat.getOwner()).getEquipment().getOffHandWeapon();
         if (mainWeapon != null) {
@@ -60,7 +60,7 @@ class DuplicateStatFunction extends StatFunction
         }
     }
 	
-    private List<StatFunction> getFunctions(List<StatFunction> list, Stat2 stat, Item item) {
+    private List<StatFunction> getFunctions(List<StatFunction> list, Stat stat, Item item) {
         List<StatFunction> functions = new ArrayList<StatFunction>();
         for (StatFunction func : list) {
             StatFunctionProxy func2 = new StatFunctionProxy(item, func);

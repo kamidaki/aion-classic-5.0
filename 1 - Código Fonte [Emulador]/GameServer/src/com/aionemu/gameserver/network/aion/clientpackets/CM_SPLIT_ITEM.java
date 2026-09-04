@@ -5,9 +5,7 @@ import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.services.item.ItemSplitService;
 
-/**
- * @author kosyak
- */
+
 public class CM_SPLIT_ITEM extends AionClientPacket {
 
 	int sourceItemObjId;

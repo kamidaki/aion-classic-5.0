@@ -54,7 +54,7 @@ if not exist "%DEST_DIR%\ChatServer\libs" mkdir "%DEST_DIR%\ChatServer\libs"
 REM --- 4. Extrair e Publicar os Servidores ---
 echo [*] Publicando LoginServer...
 if exist "%ROOT_DIR%LoginServer\target\LoginServer.zip" (
-    powershell -NoProfile -Command "Expand-Archive -Path '%ROOT_DIR%LoginServer\target\LoginServer.zip' -DestinationPath '%DEST_DIR%\LoginServer' -Force"
+    tar -xf "%ROOT_DIR%LoginServer\target\LoginServer.zip" -C "%DEST_DIR%\LoginServer"
 )
 if exist "%ROOT_DIR%LoginServer\target\LoginServer-ClassicEmu-Brasil.jar" (
     copy /Y "%ROOT_DIR%LoginServer\target\LoginServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\LoginServer\libs\" >nul
@@ -63,7 +63,7 @@ if exist "%DEST_DIR%\LoginServer\LoginServer-ClassicEmu-Brasil.jar" del /F /Q "%
 
 echo [*] Publicando GameServer...
 if exist "%ROOT_DIR%GameServer\target\GameServer.zip" (
-    powershell -NoProfile -Command "Expand-Archive -Path '%ROOT_DIR%GameServer\target\GameServer.zip' -DestinationPath '%DEST_DIR%\GameServer' -Force"
+    tar -xf "%ROOT_DIR%GameServer\target\GameServer.zip" -C "%DEST_DIR%\GameServer"
 )
 if exist "%ROOT_DIR%GameServer\target\GameServer-ClassicEmu-Brasil.jar" (
     copy /Y "%ROOT_DIR%GameServer\target\GameServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\GameServer\libs\" >nul
@@ -72,12 +72,28 @@ if exist "%DEST_DIR%\GameServer\GameServer-ClassicEmu-Brasil.jar" del /F /Q "%DE
 
 echo [*] Publicando ChatServer...
 if exist "%ROOT_DIR%ChatServer\target\ChatServer.zip" (
-    powershell -NoProfile -Command "Expand-Archive -Path '%ROOT_DIR%ChatServer\target\ChatServer.zip' -DestinationPath '%DEST_DIR%\ChatServer' -Force"
+    tar -xf "%ROOT_DIR%ChatServer\target\ChatServer.zip" -C "%DEST_DIR%\ChatServer"
 )
 if exist "%ROOT_DIR%ChatServer\target\ChatServer-ClassicEmu-Brasil.jar" (
     copy /Y "%ROOT_DIR%ChatServer\target\ChatServer-ClassicEmu-Brasil.jar" "%DEST_DIR%\ChatServer\libs\" >nul
 )
 if exist "%DEST_DIR%\ChatServer\ChatServer-ClassicEmu-Brasil.jar" del /F /Q "%DEST_DIR%\ChatServer\ChatServer-ClassicEmu-Brasil.jar" >nul
+
+echo [*] Publicando WebSocketServer...
+if exist "%ROOT_DIR%WebSocketServer\target\AL-WebSocket.jar" (
+    copy /Y "%ROOT_DIR%WebSocketServer\target\AL-WebSocket.jar" "%DEST_DIR%\" >nul
+)
+
+echo [*] Sincronizando commons e limpando bibliotecas legadas...
+del /F /Q "%DEST_DIR%\GameServer\libs\encom-commons*.jar" 2>nul
+del /F /Q "%DEST_DIR%\LoginServer\libs\commonsLib*.jar" 2>nul
+del /F /Q "%DEST_DIR%\ChatServer\libs\commonsLib*.jar" 2>nul
+
+if exist "%ROOT_DIR%commons\target\commons-5.0-SNAPSHOT.jar" (
+    copy /Y "%ROOT_DIR%commons\target\commons-5.0-SNAPSHOT.jar" "%DEST_DIR%\LoginServer\libs\" >nul
+    copy /Y "%ROOT_DIR%commons\target\commons-5.0-SNAPSHOT.jar" "%DEST_DIR%\GameServer\libs\" >nul
+    copy /Y "%ROOT_DIR%commons\target\commons-5.0-SNAPSHOT.jar" "%DEST_DIR%\ChatServer\libs\" >nul
+)
 
 mkdir "%DEST_DIR%\GameServer\log" 2>nul
 mkdir "%DEST_DIR%\LoginServer\log" 2>nul
@@ -93,3 +109,4 @@ echo           2 - Emulador [Produto Final]\Aion Classic - EMU.exe
 echo ===============================================================================
 echo.
 if "%1"=="" pause
+exit /b 0

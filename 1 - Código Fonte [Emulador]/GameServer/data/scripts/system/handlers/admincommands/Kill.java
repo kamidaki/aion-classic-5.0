@@ -7,9 +7,7 @@ import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author ATracer, Wakizashi
- */
+
 public class Kill extends AdminCommand {
 
 	public Kill() {

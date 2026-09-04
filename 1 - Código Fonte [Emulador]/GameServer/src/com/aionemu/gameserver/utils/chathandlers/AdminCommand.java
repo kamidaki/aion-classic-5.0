@@ -7,9 +7,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author synchro2
- */
+
 public abstract class AdminCommand extends ChatCommand {
 
 	static final Logger log = LoggerFactory.getLogger("ADMINAUDIT_LOG");

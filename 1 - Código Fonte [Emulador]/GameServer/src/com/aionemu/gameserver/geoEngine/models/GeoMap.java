@@ -21,9 +21,7 @@ import com.aionemu.gameserver.geoEngine.scene.mesh.DoorGeometry;
 
 import javolution.util.FastMap;
 
-/**
- * @author Mr. Poke
- */
+
 public class GeoMap extends Node {
 
 	private short[] terrainData;

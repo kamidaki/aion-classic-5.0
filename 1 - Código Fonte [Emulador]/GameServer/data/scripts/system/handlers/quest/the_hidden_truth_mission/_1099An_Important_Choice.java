@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.the_hidden_truth_mission;
 
 import com.aionemu.gameserver.model.EmotionType;
@@ -28,7 +12,7 @@ import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.services.QuestService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 
@@ -140,7 +124,7 @@ public class _1099An_Important_Choice extends QuestHandler
 						ThreadPoolManager.getInstance().schedule(new Runnable() {
 							@Override
 							public void run() {
-								TeleportService2.teleportTo(env.getPlayer(), 110010000, 1324.0000f, 1511.0000f, 567.0000f, (byte) 5);
+								TeleportService.teleportTo(env.getPlayer(), 110010000, 1324.0000f, 1511.0000f, 567.0000f, (byte) 5);
 							}
 						}, 3000);
 						return defaultCloseDialog(env, 54, 54, true, false);
@@ -150,7 +134,7 @@ public class _1099An_Important_Choice extends QuestHandler
 						ThreadPoolManager.getInstance().schedule(new Runnable() {
 							@Override
 							public void run() {
-								TeleportService2.teleportTo(env.getPlayer(), 110010000, 1324.0000f, 1511.0000f, 567.0000f, (byte) 5);
+								TeleportService.teleportTo(env.getPlayer(), 110010000, 1324.0000f, 1511.0000f, 567.0000f, (byte) 5);
 							}
 						}, 3000);
 						return defaultCloseDialog(env, 54, 54, true, false);

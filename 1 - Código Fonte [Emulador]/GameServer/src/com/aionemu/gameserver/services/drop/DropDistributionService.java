@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.org>
- *
- * aion-lightning is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * aion-lightning is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with aion-lightning. If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services.drop;
 
 import com.aionemu.commons.utils.Rnd;
@@ -46,7 +30,7 @@ public class DropDistributionService
             return;
         }
         int luck = 0;
-        if (player.isInGroup2() || player.isInAlliance2()) {
+        if (player.isInGroup() || player.isInAlliance()) {
             if (roll == 0) {
 				//You gave up rolling the dice.
                 PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_MSG_DICE_GIVEUP_ME);
@@ -56,7 +40,7 @@ public class DropDistributionService
                 PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_MSG_DICE_RESULT_ME(luck, 100));
             } for (Player member : dropNpc.getInRangePlayers()) {
                 if (member == null) {
-					log.warn("member null Owner is in group? " + player.isInGroup2() + " Owner is in Alliance? " + player.isInAlliance2());
+					log.warn("member null Owner is in group? " + player.isInGroup() + " Owner is in Alliance? " + player.isInAlliance());
                     continue;
                 }
                 int teamId = member.getCurrentTeamId();
@@ -79,7 +63,7 @@ public class DropDistributionService
         DropNpc dropNpc = DropRegistrationService.getInstance().getDropRegistrationMap().get(npcId);
         if (player == null || dropNpc == null) {
             return;
-        } if (player.isInGroup2() || player.isInAlliance2()) {
+        } if (player.isInGroup() || player.isInAlliance()) {
             if ((bid > 0 && player.getInventory().getKinah() < bid) || bid < 0 || bid > 999999999) {
                 bid = 0;
             } if (bid > 0) {
@@ -90,7 +74,7 @@ public class DropDistributionService
                 PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_MSG_PAY_GIVEUP_ME);
             } for (Player member : dropNpc.getInRangePlayers()) {
                 if (member == null) {
-					log.warn("member null Owner is in group? " + player.isInGroup2() + " Owner is in Alliance? " + player.isInAlliance2());
+					log.warn("member null Owner is in group? " + player.isInGroup() + " Owner is in Alliance? " + player.isInAlliance());
                     continue;
                 }
                 int teamId = member.getCurrentTeamId();
@@ -132,7 +116,7 @@ public class DropDistributionService
             requestedItem.setWinningPlayer(player);
         } if (!dropNpc.getPlayerStatus().isEmpty()) {
             return;
-        } if (player.isInGroup2() || player.isInAlliance2()) {
+        } if (player.isInGroup() || player.isInAlliance()) {
             for (Player member : dropNpc.getInRangePlayers()) {
                 if (member == null) {
                     continue;

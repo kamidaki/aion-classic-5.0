@@ -2,7 +2,7 @@ package com.aionemu.gameserver.model.stats.calc.functions;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.items.ItemSlot;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.model.templates.item.ArmorType;
 import com.aionemu.gameserver.model.templates.item.ItemCategory;
@@ -27,7 +27,7 @@ public class StatEnchantFunction extends StatAddFunction
 	}
 	
 	@Override
-    public void apply(Stat2 stat) {
+    public void apply(Stat stat) {
 		if (!item.isEquipped()) {
 			return;
 		}
@@ -40,7 +40,7 @@ public class StatEnchantFunction extends StatAddFunction
 		stat.addToBase(getEnchantAdditionModifier(enchantLvl, stat));
 	}
 	
-	private int getEnchantAdditionModifier(int enchantLvl, Stat2 stat) {
+	private int getEnchantAdditionModifier(int enchantLvl, Stat stat) {
 		if (item.getItemTemplate().isWeapon()) {
 			return getWeaponModifiers(enchantLvl);
 		} else if (item.getItemTemplate().isArmor()) {
@@ -95,7 +95,7 @@ public class StatEnchantFunction extends StatAddFunction
 		}
 	}
 
-	private int getArmorModifiers(int enchantLvl, Stat2 applyStat) {
+	private int getArmorModifiers(int enchantLvl, Stat applyStat) {
 		ArmorType armorType = item.getItemTemplate().getArmorType();
 		if (armorType == null) {
 			return 0;

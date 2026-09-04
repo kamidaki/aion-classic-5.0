@@ -1,7 +1,3 @@
-/*
- * This file is part of the requirements for the Illusion Gate Skill.
- * Code References from ATracer's SummonTrapEffect.java of Aion-Unique
- */
 package com.aionemu.gameserver.skillengine.effect;
 
 import com.aionemu.gameserver.model.TaskId;

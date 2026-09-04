@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
 
 import com.aionemu.gameserver.ai2.event.AIEventType;
@@ -25,10 +9,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.WorldMapInstance;
 
 
-/**
- * @author Rolandas
- *
- */
+
 public class Map extends AdminCommand {
 
 	public Map() {
@@ -40,12 +21,12 @@ public class Map extends AdminCommand {
 		WorldMapInstance instance = admin.getPosition().getWorldMapInstance();
 		if ("freeze".equalsIgnoreCase(params[0])) {
 			for (Npc npc : instance.getNpcs())
-				npc.getAi2().onGeneralEvent(AIEventType.FREEZE);
+				npc.getAi().onGeneralEvent(AIEventType.FREEZE);
 			PacketSendUtility.sendMessage(admin, "World map is frozen!");
 		}
 		else if ("unfreeze".equalsIgnoreCase(params[0])) {
 			for (Npc npc : instance.getNpcs())
-				npc.getAi2().onGeneralEvent(AIEventType.UNFREEZE);
+				npc.getAi().onGeneralEvent(AIEventType.UNFREEZE);
 			PacketSendUtility.sendMessage(admin, "World map is unfrozen!");
 		}
 		else if ("stats".equalsIgnoreCase(params[0])) {

@@ -8,9 +8,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
 import java.util.Set;
 
-/**
- * @author Divinity
- */
+
 public class Announcements extends AdminCommand {
 
 	private AnnouncementService announceService;

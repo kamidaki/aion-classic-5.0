@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
 import com.aionemu.gameserver.instance.handlers.InstanceID;
@@ -29,7 +13,7 @@ import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.utils.*;
 import com.aionemu.gameserver.world.WorldMapInstance;
@@ -203,86 +187,86 @@ public class Asteria_Chamber extends GeneralInstanceHandler
 			case 1:
 				final Npc asteria_lizardfi_45_ae1 = (Npc) spawn(214752, 500.7873f, 564.15f, 198.875f, (byte) 0);
 				asteria_lizardfi_45_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfi_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfi_45_ae1.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardas_45_ae1 = (Npc) spawn(214753, 500.7873f, 564.15f, 198.875f, (byte) 0);
 				asteria_lizardas_45_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardas_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardas_45_ae1.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardra_45_ae1 = (Npc) spawn(214754, 500.7873f, 564.15f, 198.875f, (byte) 0);
 				asteria_lizardra_45_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardra_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardra_45_ae1.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardpr_45_ae1 = (Npc) spawn(214755, 500.7873f, 564.15f, 198.875f, (byte) 0);
 				asteria_lizardpr_45_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardpr_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardpr_45_ae1.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc asteria_lizardfi_45_ae2 = (Npc) spawn(214752, 547.4973f, 567.0600f, 198.875f, (byte) 0);
 				asteria_lizardfi_45_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_02");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfi_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfi_45_ae2.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardas_45_ae2 = (Npc) spawn(214753, 547.4973f, 567.0600f, 198.875f, (byte) 0);
 				asteria_lizardas_45_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_02");
-				WalkManager.startWalking((NpcAI2) asteria_lizardas_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardas_45_ae2.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardra_45_ae2 = (Npc) spawn(214754, 547.4973f, 567.0600f, 198.875f, (byte) 0);
 				asteria_lizardra_45_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_02");
-				WalkManager.startWalking((NpcAI2) asteria_lizardra_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardra_45_ae2.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardpr_45_ae2 = (Npc) spawn(214755, 547.4973f, 567.0600f, 198.875f, (byte) 0);
 				asteria_lizardpr_45_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_02");
-				WalkManager.startWalking((NpcAI2) asteria_lizardpr_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardpr_45_ae2.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc asteria_lizardfi_45_ae3 = (Npc) spawn(214752, 524.7202f, 592.1607f, 199.55836f, (byte) 0);
 				asteria_lizardfi_45_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_03");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfi_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfi_45_ae3.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardas_45_ae3 = (Npc) spawn(214753, 524.7202f, 592.1607f, 199.55836f, (byte) 0);
 				asteria_lizardas_45_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_03");
-				WalkManager.startWalking((NpcAI2) asteria_lizardas_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardas_45_ae3.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardra_45_ae3 = (Npc) spawn(214754, 524.7202f, 592.1607f, 199.55836f, (byte) 0);
 				asteria_lizardra_45_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_03");
-				WalkManager.startWalking((NpcAI2) asteria_lizardra_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardra_45_ae3.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardpr_45_ae3 = (Npc) spawn(214755, 524.7202f, 592.1607f, 199.55836f, (byte) 0);
 				asteria_lizardpr_45_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_03");
-				WalkManager.startWalking((NpcAI2) asteria_lizardpr_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardpr_45_ae3.getAi());
 			break;
 		} switch (Rnd.get(1, 2)) {
 			case 1:
 				final Npc asteria_lizardfi_45_ae4 = (Npc) spawn(214752, 531.68744f, 549.48865f, 198.85547f, (byte) 0);
 				asteria_lizardfi_45_ae4.getSpawn().setWalkerId("npcpath_g_asteria_lizardfi_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfi_45_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfi_45_ae4.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardra_45_ae4 = (Npc) spawn(214754, 539.9147f, 574.2119f, 198.66013f, (byte) 0);
 				asteria_lizardra_45_ae4.getSpawn().setWalkerId("npcpath_g_asteria_lizardra_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardra_45_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardra_45_ae4.getAi());
 			break;
 		} switch (Rnd.get(1, 2)) {
 			case 1:
 				final Npc asteria_lizardas_45_ae4 = (Npc) spawn(214753, 517.80786f, 582.0497f, 198.6401f, (byte) 0);
 				asteria_lizardas_45_ae4.getSpawn().setWalkerId("npcpath_g_asteria_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardas_45_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardas_45_ae4.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardpr_45_ae4 = (Npc) spawn(214755, 508.60083f, 558.5831f, 198.81335f, (byte) 0);
 				asteria_lizardpr_45_ae4.getSpawn().setWalkerId("npcpath_g_asteria_lizardpr_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardpr_45_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardpr_45_ae4.getAi());
 			break;
 		}
 		///Dakaer Scout OR Dakaer Ambusher OR Dakaer Sniper OR Dakaer Bloodbinder.
@@ -394,64 +378,64 @@ public class Asteria_Chamber extends GeneralInstanceHandler
 			case 1:
 				final Npc asteria_lizardfihigh_45_ae1 = (Npc) spawn(214756, 534.9153f, 441.59177f, 198.88867f, (byte) 0);
 				asteria_lizardfihigh_45_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_17");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfihigh_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfihigh_45_ae1.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardashigh_45_ae1 = (Npc) spawn(214757, 534.9153f, 441.59177f, 198.88867f, (byte) 0);
 				asteria_lizardashigh_45_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_17");
-				WalkManager.startWalking((NpcAI2) asteria_lizardashigh_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardashigh_45_ae1.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardrahigh_45_ae1 = (Npc) spawn(214758, 534.9153f, 441.59177f, 198.88867f, (byte) 0);
 				asteria_lizardrahigh_45_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_17");
-				WalkManager.startWalking((NpcAI2) asteria_lizardrahigh_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardrahigh_45_ae1.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardprhigh_45_ae1 = (Npc) spawn(214759, 534.9153f, 441.59177f, 198.88867f, (byte) 0);
 				asteria_lizardprhigh_45_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_17");
-				WalkManager.startWalking((NpcAI2) asteria_lizardprhigh_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardprhigh_45_ae1.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc asteria_lizardfihigh_45_ae2 = (Npc) spawn(214756, 509.69403f, 476.2498f, 198.88869f, (byte) 0);
 				asteria_lizardfihigh_45_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_18");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfihigh_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfihigh_45_ae2.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardashigh_45_ae2 = (Npc) spawn(214757, 509.69403f, 476.2498f, 198.88869f, (byte) 0);
 				asteria_lizardashigh_45_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_18");
-				WalkManager.startWalking((NpcAI2) asteria_lizardashigh_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardashigh_45_ae2.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardrahigh_45_ae2 = (Npc) spawn(214758, 509.69403f, 476.2498f, 198.88869f, (byte) 0);
 				asteria_lizardrahigh_45_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_18");
-				WalkManager.startWalking((NpcAI2) asteria_lizardrahigh_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardrahigh_45_ae2.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardprhigh_45_ae2 = (Npc) spawn(214759, 509.69403f, 476.2498f, 198.88869f, (byte) 0);
 				asteria_lizardprhigh_45_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_18");
-				WalkManager.startWalking((NpcAI2) asteria_lizardprhigh_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardprhigh_45_ae2.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc asteria_lizardfihigh_45_ae3 = (Npc) spawn(214756, 521.8986f, 536.14746f, 199.2367f, (byte) 0);
 				asteria_lizardfihigh_45_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_04");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfihigh_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfihigh_45_ae3.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardashigh_45_ae3 = (Npc) spawn(214757, 521.8986f, 536.14746f, 199.2367f, (byte) 0);
 				asteria_lizardashigh_45_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_04");
-				WalkManager.startWalking((NpcAI2) asteria_lizardashigh_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardashigh_45_ae3.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardrahigh_45_ae3 = (Npc) spawn(214758, 521.8986f, 536.14746f, 199.2367f, (byte) 0);
 				asteria_lizardrahigh_45_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_04");
-				WalkManager.startWalking((NpcAI2) asteria_lizardrahigh_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardrahigh_45_ae3.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardprhigh_45_ae3 = (Npc) spawn(214759, 521.8986f, 536.14746f, 199.2367f, (byte) 0);
 				asteria_lizardprhigh_45_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardas_45_ae_04");
-				WalkManager.startWalking((NpcAI2) asteria_lizardprhigh_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardprhigh_45_ae3.getAi());
 			break;
 		}
 		///Dakaer Guardian OR Dakaer Abjurer OR Dakaer Chanter.
@@ -636,64 +620,64 @@ public class Asteria_Chamber extends GeneralInstanceHandler
 			case 1:
 				final Npc asteria_lizardfihigh_50_ae1 = (Npc) spawn(215439, 602.3872f, 565.1336f, 205.13074f, (byte) 0);
 				asteria_lizardfihigh_50_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfihigh_50_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfihigh_50_ae1.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardashigh_50_ae1 = (Npc) spawn(215440, 602.3872f, 565.1336f, 205.13074f, (byte) 0);
 				asteria_lizardashigh_50_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardashigh_50_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardashigh_50_ae1.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardrahigh_50_ae1 = (Npc) spawn(215441, 602.3872f, 565.1336f, 205.13074f, (byte) 0);
 				asteria_lizardrahigh_50_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardrahigh_50_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardrahigh_50_ae1.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardprhigh_50_ae1 = (Npc) spawn(215442, 602.3872f, 565.1336f, 205.13074f, (byte) 0);
 				asteria_lizardprhigh_50_ae1.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_01");
-				WalkManager.startWalking((NpcAI2) asteria_lizardprhigh_50_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardprhigh_50_ae1.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc asteria_lizardfihigh_50_ae2 = (Npc) spawn(215439, 618.7113f, 570.7796f, 204.04173f, (byte) 0);
 				asteria_lizardfihigh_50_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_13");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfihigh_50_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfihigh_50_ae2.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardashigh_50_ae2 = (Npc) spawn(215440, 618.7113f, 570.7796f, 204.04173f, (byte) 0);
 				asteria_lizardashigh_50_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_13");
-				WalkManager.startWalking((NpcAI2) asteria_lizardashigh_50_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardashigh_50_ae2.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardrahigh_50_ae2 = (Npc) spawn(215441, 618.7113f, 570.7796f, 204.04173f, (byte) 0);
 				asteria_lizardrahigh_50_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_13");
-				WalkManager.startWalking((NpcAI2) asteria_lizardrahigh_50_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardrahigh_50_ae2.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardprhigh_50_ae2 = (Npc) spawn(215442, 618.7113f, 570.7796f, 204.04173f, (byte) 0);
 				asteria_lizardprhigh_50_ae2.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_13");
-				WalkManager.startWalking((NpcAI2) asteria_lizardprhigh_50_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardprhigh_50_ae2.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc asteria_lizardfihigh_50_ae3 = (Npc) spawn(215439, 646.74347f, 559.6181f, 204.04451f, (byte) 0);
 				asteria_lizardfihigh_50_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_14");
-				WalkManager.startWalking((NpcAI2) asteria_lizardfihigh_50_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardfihigh_50_ae3.getAi());
 			break;
 			case 2:
 				final Npc asteria_lizardashigh_50_ae3 = (Npc) spawn(215440, 646.74347f, 559.6181f, 204.04451f, (byte) 0);
 				asteria_lizardashigh_50_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_14");
-				WalkManager.startWalking((NpcAI2) asteria_lizardashigh_50_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardashigh_50_ae3.getAi());
 			break;
 			case 3:
 				final Npc asteria_lizardrahigh_50_ae3 = (Npc) spawn(215441, 646.74347f, 559.6181f, 204.04451f, (byte) 0);
 				asteria_lizardrahigh_50_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_14");
-				WalkManager.startWalking((NpcAI2) asteria_lizardrahigh_50_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardrahigh_50_ae3.getAi());
 			break;
 			case 4:
 				final Npc asteria_lizardprhigh_50_ae3 = (Npc) spawn(215442, 646.74347f, 559.6181f, 204.04451f, (byte) 0);
 				asteria_lizardprhigh_50_ae3.getSpawn().setWalkerId("npcpath_ph_asteria_lizardashigh_45_ae_14");
-				WalkManager.startWalking((NpcAI2) asteria_lizardprhigh_50_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) asteria_lizardprhigh_50_ae3.getAi());
 			break;
 		}
 		///Treasurer Manonasa OR Ebonlord Kiriel.

@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.convent_of_marchutan;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -23,7 +7,7 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.questEngine.model.QuestDialog;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.world.zone.ZoneName;
 
 /****/
@@ -90,7 +74,7 @@ public class _20001Traveling_To_Gelkmaros extends QuestHandler
 						changeQuestStep(env, 1, 2, false);
 						return closeDialogWindow(env);
 					} case SET_REWARD: {
-						TeleportService2.teleportTo(env.getPlayer(), 220070000, 1850.0000f, 2787.0000f, 530.0000f, (byte) 0);
+						TeleportService.teleportTo(env.getPlayer(), 220070000, 1850.0000f, 2787.0000f, 530.0000f, (byte) 0);
 						return closeDialogWindow(env);
 					}
                 }

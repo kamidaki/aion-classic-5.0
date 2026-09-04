@@ -1,25 +1,9 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
 import com.aionemu.gameserver.instance.handlers.InstanceID;
@@ -29,7 +13,7 @@ import com.aionemu.gameserver.model.gameobjects.StaticDoor;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.*;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.*;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
@@ -71,22 +55,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_drguard_thunderer_m_ae1 = (Npc) spawn(219348, 1897.0000f, 747.0000f, 227.0000f, (byte) 0);
 				idldf1_drguard_thunderer_m_ae1.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan13");
-				WalkManager.startWalking((NpcAI2) idldf1_drguard_thunderer_m_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_drguard_thunderer_m_ae1.getAi());
 			break;
 			case 2:
 				final Npc idldf1_drguard_thunderer_f_ae1 = (Npc) spawn(219349, 1897.0000f, 747.0000f, 227.0000f, (byte) 0);
 				idldf1_drguard_thunderer_f_ae1.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan13");
-				WalkManager.startWalking((NpcAI2) idldf1_drguard_thunderer_f_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_drguard_thunderer_f_ae1.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_fi_55_ae1 = (Npc) spawn(219350, 1897.0000f, 747.0000f, 227.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae1.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan13");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae1.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_as_55_ae1 = (Npc) spawn(219351, 1897.0000f, 747.0000f, 227.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae1.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan13");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae1.getAi());
 			break;
 		}
 		//
@@ -94,32 +78,32 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_drguard_thunderer_m_ae2 = (Npc) spawn(219348, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_drguard_thunderer_m_ae2.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan14");
-				WalkManager.startWalking((NpcAI2) idldf1_drguard_thunderer_m_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_drguard_thunderer_m_ae2.getAi());
 			break;
 			case 2:
 				final Npc idldf1_drguard_thunderer_f_ae2 = (Npc) spawn(219349, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_drguard_thunderer_f_ae2.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan14");
-				WalkManager.startWalking((NpcAI2) idldf1_drguard_thunderer_f_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_drguard_thunderer_f_ae2.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_fi_55_ae2 = (Npc) spawn(219350, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae2.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan14");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae2.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_as_55_ae2 = (Npc) spawn(219351, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae2.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan14");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae2.getAi());
 			break;
 			case 5:
 				final Npc idldf1_lizard_ra_55_ae2 = (Npc) spawn(219352, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae2.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan14");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae2.getAi());
 			break;
 			case 6:
 				final Npc idldf1_lizard_pr_55_ae2 = (Npc) spawn(219353, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae2.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan14");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae2.getAi());
 			break;
 		}
 		//
@@ -127,27 +111,27 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_drguard_thunderer_m_ae3 = (Npc) spawn(219348, 1794.0000f, 1009.0000f, 237.0000f, (byte) 0);
 				idldf1_drguard_thunderer_m_ae3.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard12");
-				WalkManager.startWalking((NpcAI2) idldf1_drguard_thunderer_m_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_drguard_thunderer_m_ae3.getAi());
 			break;
 			case 2:
 				final Npc idldf1_drguard_thunderer_f_ae3 = (Npc) spawn(219349, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_drguard_thunderer_f_ae3.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard12");
-				WalkManager.startWalking((NpcAI2) idldf1_drguard_thunderer_f_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_drguard_thunderer_f_ae3.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_fi_55_ae3 = (Npc) spawn(219350, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae3.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard12");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae3.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_as_55_ae3 = (Npc) spawn(219351, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae3.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard12");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae3.getAi());
 			break;
 			case 5:
 				final Npc idldf1_lizard_ra_55_ae3 = (Npc) spawn(219352, 1899.0000f, 878.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae3.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard12");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae3.getAi());
 			break;
 		}
 		//
@@ -155,32 +139,32 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_drguard_thunderer_m_ae4 = (Npc) spawn(219348, 1879.0000f, 800.0000f, 228.0000f, (byte) 0);
 				idldf1_drguard_thunderer_m_ae4.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan11");
-				WalkManager.startWalking((NpcAI2) idldf1_drguard_thunderer_m_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_drguard_thunderer_m_ae4.getAi());
 			break;
 			case 2:
 				final Npc idldf1_drguard_thunderer_f_ae4 = (Npc) spawn(219349, 1879.0000f, 800.0000f, 228.0000f, (byte) 0);
 				idldf1_drguard_thunderer_f_ae4.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan11");
-				WalkManager.startWalking((NpcAI2) idldf1_drguard_thunderer_f_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_drguard_thunderer_f_ae4.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_fi_55_ae4 = (Npc) spawn(219350, 1879.0000f, 800.0000f, 228.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae4.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan11");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae4.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_as_55_ae4 = (Npc) spawn(219351, 1879.0000f, 800.0000f, 228.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae4.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan11");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae4.getAi());
 			break;
 			case 5:
 				final Npc idldf1_lizard_ra_55_ae4 = (Npc) spawn(219352, 1879.0000f, 800.0000f, 228.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae4.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan11");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae4.getAi());
 			break;
 			case 6:
 				final Npc idldf1_lizard_pr_55_ae4 = (Npc) spawn(219353, 1879.0000f, 800.0000f, 228.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae4.getSpawn().setWalkerId("idldf1_npcpathidldf1_drakan11");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae4.getAi());
 			break;
 		}
 		//
@@ -188,22 +172,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae5 = (Npc) spawn(219350, 1797.0000f, 726.0000f, 227.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae5.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard22");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae5.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae5.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae5 = (Npc) spawn(219351, 1797.0000f, 726.0000f, 227.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae5.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard22");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae5.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae5.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae5 = (Npc) spawn(219352, 1797.0000f, 726.0000f, 227.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae5.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard22");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae5.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae5.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae5 = (Npc) spawn(219353, 1797.0000f, 726.0000f, 227.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae5.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard22");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae5.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae5.getAi());
 			break;
 		}
 		//
@@ -211,22 +195,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae6 = (Npc) spawn(219350, 1781.0000f, 611.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae6.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard3");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae6.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae6.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae6 = (Npc) spawn(219351, 1781.0000f, 611.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae6.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard3");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae6.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae6.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae6 = (Npc) spawn(219352, 1781.0000f, 611.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae6.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard3");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae6.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae6.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae6 = (Npc) spawn(219353, 1781.0000f, 611.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae6.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard3");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae6.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae6.getAi());
 			break;
 		}
 		//
@@ -234,22 +218,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae7 = (Npc) spawn(219350, 1751.0000f, 1114.0000f, 240.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae7.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard9");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae7.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae7.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae7 = (Npc) spawn(219351, 1751.0000f, 1114.0000f, 240.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae7.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard9");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae7.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae7.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae7 = (Npc) spawn(219352, 1751.0000f, 1114.0000f, 240.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae7.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard9");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae7.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae7.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae7 = (Npc) spawn(219353, 1751.0000f, 1114.0000f, 240.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae7.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard9");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae7.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae7.getAi());
 			break;
 		}
 		//
@@ -257,22 +241,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae8 = (Npc) spawn(219350, 1836.0000f, 707.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae8.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard21");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae8.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae8.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae8 = (Npc) spawn(219351, 1836.0000f, 707.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae8.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard21");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae8.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae8.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae8 = (Npc) spawn(219352, 1836.0000f, 707.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae8.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard21");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae8.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae8.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae8 = (Npc) spawn(219353, 1836.0000f, 707.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae8.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard21");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae8.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae8.getAi());
 			break;
 		}
 		//
@@ -280,22 +264,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae9 = (Npc) spawn(219350, 1517.0000f, 953.0000f, 270.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae9.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard4");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae9.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae9.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae9 = (Npc) spawn(219351, 1517.0000f, 953.0000f, 270.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae9.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard4");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae9.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae9.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae9 = (Npc) spawn(219352, 1517.0000f, 953.0000f, 270.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae9.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard4");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae9.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae9.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae9 = (Npc) spawn(219353, 1517.0000f, 953.0000f, 270.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae9.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard4");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae9.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae9.getAi());
 			break;
 		}
 		//
@@ -303,22 +287,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae10 = (Npc) spawn(219350, 1812.0000f, 767.0000f, 231.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae10.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard7");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae10.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae10.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae10 = (Npc) spawn(219351, 1812.0000f, 767.0000f, 231.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae10.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard7");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae10.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae10.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae10 = (Npc) spawn(219352, 1812.0000f, 767.0000f, 231.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae10.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard7");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae10.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae10.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae10 = (Npc) spawn(219353, 1812.0000f, 767.0000f, 231.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae10.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard7");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae10.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae10.getAi());
 			break;
 		}
 		//
@@ -326,22 +310,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae11 = (Npc) spawn(219350, 1868.0000f, 754.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae11.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard2");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae11.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae11.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae11 = (Npc) spawn(219351, 1868.0000f, 754.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae11.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard2");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae11.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae11.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae11 = (Npc) spawn(219352, 1868.0000f, 754.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae11.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard2");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae11.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae11.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae11 = (Npc) spawn(219353, 1868.0000f, 754.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae11.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard2");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae11.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae11.getAi());
 			break;
 		}
 		//
@@ -349,22 +333,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae12 = (Npc) spawn(219350, 1846.0000f, 1045.0000f, 230.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae12.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard6");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae12.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae12.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae12 = (Npc) spawn(219351, 1846.0000f, 1045.0000f, 230.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae12.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard6");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae12.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae12.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae12 = (Npc) spawn(219352, 1846.0000f, 1045.0000f, 230.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae12.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard6");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae12.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae12.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae12 = (Npc) spawn(219353, 1846.0000f, 1045.0000f, 230.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae12.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard6");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae12.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae12.getAi());
 			break;
 		}
 		//
@@ -372,22 +356,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae13 = (Npc) spawn(219350, 1564.0000f, 898.0000f, 276.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae13.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard8");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae13.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae13.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae13 = (Npc) spawn(219351, 1564.0000f, 898.0000f, 276.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae13.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard8");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae13.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae13.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae13 = (Npc) spawn(219352, 1564.0000f, 898.0000f, 276.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae13.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard8");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae13.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae13.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae13 = (Npc) spawn(219353, 1564.0000f, 898.0000f, 276.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae13.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard8");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae13.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae13.getAi());
 			break;
 		}
 		//
@@ -395,22 +379,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae14 = (Npc) spawn(219350, 1905.0000f, 781.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae14.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard5");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae14.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae14.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae14 = (Npc) spawn(219351, 1905.0000f, 781.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae14.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard5");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae14.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae14.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae14 = (Npc) spawn(219352, 1905.0000f, 781.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae14.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard5");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae14.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae14.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae14 = (Npc) spawn(219353, 1905.0000f, 781.0000f, 226.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae14.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard5");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae14.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae14.getAi());
 			break;
 		}
 		//
@@ -418,22 +402,22 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 			case 1:
 				final Npc idldf1_lizard_fi_55_ae15 = (Npc) spawn(219350, 1821.0000f, 1101.0000f, 237.0000f, (byte) 0);
 				idldf1_lizard_fi_55_ae15.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard20");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_fi_55_ae15.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_fi_55_ae15.getAi());
 			break;
 			case 2:
 				final Npc idldf1_lizard_as_55_ae15 = (Npc) spawn(219351, 1821.0000f, 1101.0000f, 237.0000f, (byte) 0);
 				idldf1_lizard_as_55_ae15.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard20");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_as_55_ae15.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_as_55_ae15.getAi());
 			break;
 			case 3:
 				final Npc idldf1_lizard_ra_55_ae15 = (Npc) spawn(219352, 1821.0000f, 1101.0000f, 237.0000f, (byte) 0);
 				idldf1_lizard_ra_55_ae15.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard20");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_ra_55_ae15.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_ra_55_ae15.getAi());
 			break;
 			case 4:
 				final Npc idldf1_lizard_pr_55_ae15 = (Npc) spawn(219353, 1821.0000f, 1101.0000f, 237.0000f, (byte) 0);
 				idldf1_lizard_pr_55_ae15.getSpawn().setWalkerId("idldf1_npcpathidldf1_lizard20");
-				WalkManager.startWalking((NpcAI2) idldf1_lizard_pr_55_ae15.getAi2());
+				WalkManager.startWalking((NpcAI) idldf1_lizard_pr_55_ae15.getAi());
 			break;
 		}
     }
@@ -481,7 +465,7 @@ public class Telos_Of_The_Forgotten extends GeneralInstanceHandler
 	}
 	
 	protected void idldf1_exit(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 600010000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 600010000, 1, x, y, z, h);
 	}
 	
 	private void rewardPlayerInside() {

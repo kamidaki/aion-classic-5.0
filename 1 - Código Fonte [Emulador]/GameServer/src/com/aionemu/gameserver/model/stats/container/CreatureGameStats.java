@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.smfnew.com>.
- *
- *  aion-emu is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-emu is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.stats.container;
 
 import com.aionemu.gameserver.model.SkillElement;
@@ -44,8 +28,8 @@ public abstract class CreatureGameStats<T extends Creature>
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private int attackCounter = 0;
     protected T owner = null;
-    private Stat2 cachedHPStat;
-    private Stat2 cachedMPStat;
+    private Stat cachedHPStat;
+    private Stat cachedMPStat;
 
     protected CreatureGameStats(T owner) {
         this.owner = owner;
@@ -120,38 +104,38 @@ public abstract class CreatureGameStats<T extends Creature>
     }
 
     public int getPositiveStat(StatEnum statEnum, int base) {
-        Stat2 stat = getStat(statEnum, base);
+        Stat stat = getStat(statEnum, base);
         int value = stat.getCurrent();
         return value > 0 ? value : 0;
     }
 
     public int getPositiveReverseStat(StatEnum statEnum, int base) {
-        Stat2 stat = getReverseStat(statEnum, base);
+        Stat stat = getReverseStat(statEnum, base);
         int value = stat.getCurrent();
         return value > 0 ? value : 0;
     }
 
-    public Stat2 getStat(StatEnum statEnum, int base) {
-        Stat2 stat = new AdditionStat(statEnum, base, (Creature) owner);
+    public Stat getStat(StatEnum statEnum, int base) {
+        Stat stat = new AdditionStat(statEnum, base, (Creature) owner);
         return getStat(statEnum, stat);
     }
 
-    public Stat2 getStat(StatEnum statEnum, int base, float bonusRate) {
-        Stat2 stat = new AdditionStat(statEnum, base, (Creature) owner, bonusRate);
+    public Stat getStat(StatEnum statEnum, int base, float bonusRate) {
+        Stat stat = new AdditionStat(statEnum, base, (Creature) owner, bonusRate);
         return getStat(statEnum, stat);
     }
 
-    public Stat2 getReverseStat(StatEnum statEnum, int base) {
-        Stat2 stat = new ReverseStat(statEnum, base, (Creature) owner);
+    public Stat getReverseStat(StatEnum statEnum, int base) {
+        Stat stat = new ReverseStat(statEnum, base, (Creature) owner);
         return getStat(statEnum, stat);
     }
 
-    public Stat2 getReverseStat(StatEnum statEnum, int base, float bonusRate) {
-        Stat2 stat = new ReverseStat(statEnum, base, (Creature) owner, bonusRate);
+    public Stat getReverseStat(StatEnum statEnum, int base, float bonusRate) {
+        Stat stat = new ReverseStat(statEnum, base, (Creature) owner, bonusRate);
         return getStat(statEnum, stat);
     }
 
-    public Stat2 getStat(StatEnum statEnum, Stat2 stat) {
+    public Stat getStat(StatEnum statEnum, Stat stat) {
         lock.readLock().lock();
         try {
             TreeSet<IStatFunction> functions = getStatsByStatEnum(statEnum);
@@ -170,7 +154,7 @@ public abstract class CreatureGameStats<T extends Creature>
         }
     }
 
-    public Stat2 getItemStatBoost(StatEnum statEnum, Stat2 stat) {
+    public Stat getItemStatBoost(StatEnum statEnum, Stat stat) {
         lock.readLock().lock();
         try {
             TreeSet<IStatFunction> functions = getStatsByStatEnum(statEnum);
@@ -188,89 +172,89 @@ public abstract class CreatureGameStats<T extends Creature>
         return stat;
     }
 
-    public abstract Stat2 getMaxHp();
+    public abstract Stat getMaxHp();
 
-    public abstract Stat2 getMaxMp();
+    public abstract Stat getMaxMp();
 
-    public abstract Stat2 getAttackSpeed();
+    public abstract Stat getAttackSpeed();
 
-    public abstract Stat2 getMovementSpeed();
+    public abstract Stat getMovementSpeed();
 
-    public abstract Stat2 getAttackRange();
+    public abstract Stat getAttackRange();
 
-    public abstract Stat2 getPDef();
+    public abstract Stat getPDef();
 
-    public abstract Stat2 getMDef();
+    public abstract Stat getMDef();
 
-    public abstract Stat2 getMResist();
+    public abstract Stat getMResist();
 
-    public abstract Stat2 getPower();
+    public abstract Stat getPower();
 
-    public abstract Stat2 getHealth();
+    public abstract Stat getHealth();
 
-    public abstract Stat2 getAccuracy();
+    public abstract Stat getAccuracy();
 
-    public abstract Stat2 getAgility();
+    public abstract Stat getAgility();
 
-    public abstract Stat2 getKnowledge();
+    public abstract Stat getKnowledge();
 
-    public abstract Stat2 getWill();
+    public abstract Stat getWill();
 
-    public abstract Stat2 getEvasion();
+    public abstract Stat getEvasion();
 
-    public abstract Stat2 getParry();
+    public abstract Stat getParry();
 
-    public abstract Stat2 getBlock();
+    public abstract Stat getBlock();
 
-    public abstract Stat2 getMainHandPAttack();
+    public abstract Stat getMainHandPAttack();
 
-    public abstract Stat2 getMainHandPCritical();
+    public abstract Stat getMainHandPCritical();
 
-    public abstract Stat2 getMainHandPAccuracy();
+    public abstract Stat getMainHandPAccuracy();
 	
-	public abstract Stat2 getMAttack();
+	public abstract Stat getMAttack();
 
-    public abstract Stat2 getMainHandMAttack();
+    public abstract Stat getMainHandMAttack();
 
-    public abstract Stat2 getOffHandMAttack();
+    public abstract Stat getOffHandMAttack();
 
-    public abstract Stat2 getMBoost();
+    public abstract Stat getMBoost();
 
-    public abstract Stat2 getMBResist();
+    public abstract Stat getMBResist();
 
-    public abstract Stat2 getMAccuracy();
+    public abstract Stat getMAccuracy();
 
-    public abstract Stat2 getMCritical();
+    public abstract Stat getMCritical();
 
-    public abstract Stat2 getHpRegenRate();
+    public abstract Stat getHpRegenRate();
 
-    public abstract Stat2 getMpRegenRate();
+    public abstract Stat getMpRegenRate();
 
-	public abstract Stat2 getStrikeResist();
+	public abstract Stat getStrikeResist();
 
-	public abstract Stat2 getStrikeFort();
+	public abstract Stat getStrikeFort();
 
-	public abstract Stat2 getSpellResist();
+	public abstract Stat getSpellResist();
 
-	public abstract Stat2 getSpellFort();
+	public abstract Stat getSpellFort();
 
-	public abstract Stat2 getBCastingTime();
+	public abstract Stat getBCastingTime();
 
-	public abstract Stat2 getConcentration();
+	public abstract Stat getConcentration();
 
-	public abstract Stat2 getRootResistance();
+	public abstract Stat getRootResistance();
 
-	public abstract Stat2 getSnareResistance();
+	public abstract Stat getSnareResistance();
 
-	public abstract Stat2 getBindResistance();
+	public abstract Stat getBindResistance();
 
-	public abstract Stat2 getFearResistance();
+	public abstract Stat getFearResistance();
 
-    public abstract Stat2 getSleepResistance();
+    public abstract Stat getSleepResistance();
 
-    public abstract Stat2 getMainHandMAccuracy();
+    public abstract Stat getMainHandMAccuracy();
 
-    public abstract Stat2 getAllSpeed();
+    public abstract Stat getAllSpeed();
 
     public int getMagicalDefenseFor(SkillElement element) {
         switch (element) {
@@ -358,9 +342,9 @@ public abstract class CreatureGameStats<T extends Creature>
     }
 	
     private void checkHPStats() {
-        Stat2 oldHP = cachedHPStat;
+        Stat oldHP = cachedHPStat;
         cachedHPStat = null;
-        Stat2 newHP = this.getMaxHp();
+        Stat newHP = this.getMaxHp();
         cachedHPStat = newHP;
         if (oldHP == null) {
             return;
@@ -371,9 +355,9 @@ public abstract class CreatureGameStats<T extends Creature>
     }
 	
     private void checkMPStats() {
-        Stat2 oldMP = cachedMPStat;
+        Stat oldMP = cachedMPStat;
         cachedMPStat = null;
-        Stat2 newMP = this.getMaxMp();
+        Stat newMP = this.getMaxMp();
         cachedMPStat = newMP;
         if (oldMP == null) {
             return;

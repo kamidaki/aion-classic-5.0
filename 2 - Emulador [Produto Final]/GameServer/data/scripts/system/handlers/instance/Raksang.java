@@ -1,25 +1,9 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
 import com.aionemu.gameserver.instance.handlers.InstanceID;
@@ -29,7 +13,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.*;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.utils.*;
 import com.aionemu.gameserver.world.WorldMapInstance;
@@ -348,7 +332,7 @@ public class Raksang extends GeneralInstanceHandler
 				final Npc melkennis2 = instance.getNpc(217392);
 				if (melkennis2 != null) {
 				    if (keropGuard == 2) {
-						melkennis2.getAi2().think();
+						melkennis2.getAi().think();
 					    //The Indomitable Armor of Gatekeeper Melkennis has disappeared.
 					    sendMsgByRace(1401279, Race.PC_ALL, 2000);
 						melkennis2.getEffectController().removeEffect(BNFI_INVINCIBLE_STATUE);
@@ -398,7 +382,7 @@ public class Raksang extends GeneralInstanceHandler
 				final Npc magicGargoyle2 = instance.getNpc(217473);
 				if (magicGargoyle2 != null) {
 				    if (gargoyle == 2) {
-					    magicGargoyle2.getAi2().think();
+					    magicGargoyle2.getAi().think();
 						//The Protective Shield is down around the Magic Gargoyle.
 					    sendMsgByRace(1401159, Race.PC_ALL, 0);
 						magicGargoyle2.getEffectController().removeEffect(BNFI_INVINCIBLE_STATUE);
@@ -430,10 +414,10 @@ public class Raksang extends GeneralInstanceHandler
 				final Npc soulGargoyle2 = instance.getNpc(217471); //Soul Gargoyle.
 				final Npc sappingGargoyle2 = instance.getNpc(217472); //Sapping Gargoyle.
 				if (soulGargoyle2 != null) {
-					soulGargoyle2.getAi2().think();
+					soulGargoyle2.getAi().think();
 					soulGargoyle2.getEffectController().removeEffect(BNFI_INVINCIBLE_STATUE);
 				} if (sappingGargoyle2 != null) {
-					sappingGargoyle2.getAi2().think();
+					sappingGargoyle2.getAi().think();
 					sappingGargoyle2.getEffectController().removeEffect(BNFI_INVINCIBLE_STATUE);
 				}
 				final Npc vasukiLifespark = instance.getNpc(217764);
@@ -501,48 +485,48 @@ public class Raksang extends GeneralInstanceHandler
 	}
 	
 	protected void dungeonEntrance1(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void dungeonEntrance2(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void executionGroundIn(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void executionGroundOut(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void interrogationRoomIn(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void interrogationRoomOut(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void hellpathEntrance(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void sealedArea(float x, float y, float z, byte h) {
 		final Npc vasukiLifespark2 = instance.getNpc(217764);
 		if (vasukiLifespark2 != null) {
-			vasukiLifespark2.getAi2().think();
+			vasukiLifespark2.getAi().think();
 			vasukiLifespark2.getEffectController().removeEffect(BNFI_INVINCIBLE_STATUE);
 		} for (Player player: instance.getPlayersInside()) {
 			if (player.isOnline()) {
-				TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+				TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 			}
 		}
 	}
 	protected void mirrorOfProjection1(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void mirrorOfProjection2(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void dungeonExit(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void raksangExit(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 600020000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 600020000, 1, x, y, z, h);
 	}
 	
 	@Override
@@ -623,7 +607,7 @@ public class Raksang extends GeneralInstanceHandler
                 if (!isInstanceDestroyed) {
                     Npc npc = (Npc) spawn(npcId, x, y, z, h);
                     npc.getSpawn().setWalkerId(walkerId);
-                    WalkManager.startWalking((NpcAI2) npc.getAi2());
+                    WalkManager.startWalking((NpcAI) npc.getAi());
                 }
             }
         }, time));
@@ -689,6 +673,6 @@ public class Raksang extends GeneralInstanceHandler
 	
 	@Override
 	public void onPlayerLogOut(Player player) {
-		TeleportService2.moveToInstanceExit(player, mapId, player.getRace());
+		TeleportService.moveToInstanceExit(player, mapId, player.getRace());
 	}
 }

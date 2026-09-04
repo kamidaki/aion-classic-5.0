@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.sanctum;
 
 import com.aionemu.gameserver.model.PlayerClass;
@@ -23,7 +7,7 @@ import com.aionemu.gameserver.questEngine.model.QuestDialog;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.*;
 
 /****/
@@ -107,7 +91,7 @@ public class _1926Secret_Library_Access extends QuestHandler
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
 					@Override
 					public void run() {
-						TeleportService2.teleportTo(player, 110010000, 2033.0000f, 1474.0000f, 592.0000f, (byte) 11);
+						TeleportService.teleportTo(player, 110010000, 2033.0000f, 1474.0000f, 592.0000f, (byte) 11);
 					}
 				}, 3000);
 			}

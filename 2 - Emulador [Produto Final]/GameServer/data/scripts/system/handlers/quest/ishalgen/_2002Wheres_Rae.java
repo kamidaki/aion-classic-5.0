@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.ishalgen;
 
 import com.aionemu.gameserver.model.EmotionType;
@@ -31,7 +15,7 @@ import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.WorldMapInstance;
@@ -138,7 +122,7 @@ public class _2002Wheres_Rae extends QuestHandler
 						changeQuestStep(env, 12, 99, false);
 						WorldMapInstance KaramatisC = InstanceService.getNextAvailableInstance(320020000);
 						InstanceService.registerPlayerWithInstance(KaramatisC, player);
-						TeleportService2.teleportTo(player, 320020000, KaramatisC.getInstanceId(), 457.0000f, 426.0000f, 230.0000f);
+						TeleportService.teleportTo(player, 320020000, KaramatisC.getInstanceId(), 457.0000f, 426.0000f, 230.0000f);
 						return closeDialogWindow(env);
 					} case STEP_TO_6: {
 						changeQuestStep(env, 13, 14, false);
@@ -179,7 +163,7 @@ public class _2002Wheres_Rae extends QuestHandler
                                 @Override
                                 public void run() {
                                     changeQuestStep(qe, 99, 13, false);
-									TeleportService2.teleportTo(env.getPlayer(), 220010000, 1, 940, 2295, 265, (byte) 43);
+									TeleportService.teleportTo(env.getPlayer(), 220010000, 1, 940, 2295, 265, (byte) 43);
                                 }
                             }, 43000);
                             return true;

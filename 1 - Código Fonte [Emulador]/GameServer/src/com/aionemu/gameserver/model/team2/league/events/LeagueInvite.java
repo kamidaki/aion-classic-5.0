@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.team2.league.events;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -40,7 +24,7 @@ public class LeagueInvite extends RequestResponseHandler
         if (LeagueService.canInvite(inviter, invited)) {
             //%0's Alliance has joined the League.
 			PacketSendUtility.sendPacket(inviter, S_MESSAGE_CODE.STR_UNION_ENTER_HIM(invited.getName()));
-			League league = inviter.getPlayerAlliance2().getLeague();
+			League league = inviter.getPlayerAlliance().getLeague();
             if (league == null) {
                 league = LeagueService.createLeague(inviter, invited);
             } else if (league.size() == 48) {
@@ -48,7 +32,7 @@ public class LeagueInvite extends RequestResponseHandler
 				PacketSendUtility.sendMessage(inviter, "Your league is already full.");
 				return;
 			} if (!invited.isInLeague()) {
-                LeagueService.addAlliance(league, invited.getPlayerAlliance2());
+                LeagueService.addAlliance(league, invited.getPlayerAlliance());
             }
         }
     }

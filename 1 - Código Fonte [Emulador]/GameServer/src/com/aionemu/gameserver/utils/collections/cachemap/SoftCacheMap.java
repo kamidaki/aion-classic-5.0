@@ -1,19 +1,3 @@
-/**
- * This file is part of aion-lightning <aion-lightning.org>.
- * 
- * aion-lightning is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * aion-lightning is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.utils.collections.cachemap;
 
 import org.slf4j.Logger;
@@ -29,7 +13,6 @@ import java.lang.ref.SoftReference;
  * Value may be stored in map really long, but it for sure will be removed if there is low memory (and of course there
  * isn't any strong reference to value object)
  * 
- * @author Luno
  */
 class SoftCacheMap<K, V> extends AbstractCacheMap<K, V> implements CacheMap<K, V> {
 
@@ -38,7 +21,6 @@ class SoftCacheMap<K, V> extends AbstractCacheMap<K, V> implements CacheMap<K, V
 	/**
 	 * This class is a {@link SoftReference} with additional responsibility of holding key object
 	 * 
-	 * @author Luno
 	 */
 	private class SoftEntry extends SoftReference<V> {
 

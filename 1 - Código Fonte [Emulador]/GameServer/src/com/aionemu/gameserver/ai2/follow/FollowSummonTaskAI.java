@@ -68,10 +68,10 @@ public class FollowSummonTaskAI implements Runnable {
 	}
 
 	protected void onDestination() {
-		summon.getAi2().onCreatureEvent(AIEventType.ATTACK, target);
+		summon.getAi().onCreatureEvent(AIEventType.ATTACK, target);
 	}
 
 	private void onOutOfTargetRange() {
-		summon.getAi2().onGeneralEvent(AIEventType.MOVE_VALIDATE);
+		summon.getAi().onGeneralEvent(AIEventType.MOVE_VALIDATE);
 	}
 }

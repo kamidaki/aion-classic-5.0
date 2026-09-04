@@ -9,9 +9,7 @@ import com.aionemu.loginserver.utils.Util;
 
 import java.sql.Timestamp;
 
-/**
- * @author soulxj
- */
+
 public class AccountSielEnergy implements IExpirable {
 
 

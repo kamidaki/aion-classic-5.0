@@ -1,6 +1,3 @@
-/*
- Aion-Core by veigar
- */
 package com.aionemu.gameserver.skillengine.effect;
 
 import com.aionemu.gameserver.controllers.observer.ActionObserver;
@@ -13,9 +10,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
-/**
- * @author Rama and Sippolo
- */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "BoostSkillCostEffect")
 public class BoostSkillCostEffect extends BuffEffect {

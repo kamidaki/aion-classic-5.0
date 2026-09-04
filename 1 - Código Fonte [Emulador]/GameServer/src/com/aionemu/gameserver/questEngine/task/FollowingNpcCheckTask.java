@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.questEngine.task;
 
 import com.aionemu.gameserver.ai2.event.AIEventType;
@@ -24,9 +8,7 @@ import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.utils.MathUtil;
 
-/**
- * @author ATracer
- */
+
 public class FollowingNpcCheckTask implements Runnable {
 
 	private final QuestEnv env;
@@ -78,6 +60,6 @@ public class FollowingNpcCheckTask implements Runnable {
 		Player player = env.getPlayer();
 		Npc npc = (Npc) env.getVisibleObject();
 		player.getController().cancelTask(TaskId.QUEST_FOLLOW);
-		npc.getAi2().onCreatureEvent(AIEventType.STOP_FOLLOW_ME, player);
+		npc.getAi().onCreatureEvent(AIEventType.STOP_FOLLOW_ME, player);
 	}
 }

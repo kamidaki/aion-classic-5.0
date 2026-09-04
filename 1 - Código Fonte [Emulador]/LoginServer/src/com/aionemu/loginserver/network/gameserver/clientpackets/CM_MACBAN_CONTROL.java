@@ -3,11 +3,7 @@ package com.aionemu.loginserver.network.gameserver.clientpackets;
 import com.aionemu.loginserver.controller.BannedMacManager;
 import com.aionemu.loginserver.network.gameserver.GsClientPacket;
 
-/**
- * 
- * @author KID
- *
- */
+
 public class CM_MACBAN_CONTROL  extends GsClientPacket {
 	private byte type;
 	private String address;

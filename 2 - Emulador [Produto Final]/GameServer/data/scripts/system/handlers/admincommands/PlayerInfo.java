@@ -82,7 +82,7 @@ public class PlayerInfo extends AdminCommand
 			showAllLines(admin, strbld.toString());
 		} else if (params[1].equals("group")) {
 			final StringBuilder strbld = new StringBuilder("-group info:\n  Leader: ");
-			PlayerGroup group = target.getPlayerGroup2();
+			PlayerGroup group = target.getPlayerGroup();
 			if (group == null) {
 				PacketSendUtility.sendMessage(admin, "-group info: no group");
 			} else {

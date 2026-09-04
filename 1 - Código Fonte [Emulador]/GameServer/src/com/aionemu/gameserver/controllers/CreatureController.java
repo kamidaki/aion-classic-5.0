@@ -7,9 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.ai2.AI2;
+import com.aionemu.gameserver.ai2.AI;
 import com.aionemu.gameserver.ai2.AISubState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.ai2.handler.ShoutEventHandler;
 import com.aionemu.gameserver.ai2.poll.AIQuestion;
@@ -170,25 +170,25 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
         getOwner().getAggroList().addDamage(attacker, damage);
 		getOwner().getLifeStats().reduceHp(damage, attacker);
 		if (getOwner() instanceof Npc) {
-            AI2 ai = getOwner().getAi2();
+            AI ai = getOwner().getAi();
             if (ai.poll(AIQuestion.CAN_SHOUT)) {
                 if (attacker instanceof Player) {
-                    ShoutEventHandler.onHelp((NpcAI2) ai, attacker);
+                    ShoutEventHandler.onHelp((NpcAI) ai, attacker);
                 } else {
-                    ShoutEventHandler.onEnemyAttack((NpcAI2) ai, attacker);
+                    ShoutEventHandler.onEnemyAttack((NpcAI) ai, attacker);
                 }
             }
         } else if (getOwner() instanceof Player && attacker instanceof Npc) {
-			AI2 ai = attacker.getAi2();
+			AI ai = attacker.getAi();
 			if (ai.poll(AIQuestion.CAN_SHOUT)) {
-				ShoutEventHandler.onAttack((NpcAI2) ai, getOwner());
+				ShoutEventHandler.onAttack((NpcAI) ai, getOwner());
 			}
 		}
         getOwner().incrementAttackedCount();
 		getOwner().getKnownList().doOnAllNpcs(new Visitor<Npc>() {
             @Override
             public void visit(Npc object) {
-				object.getAi2().onCreatureEvent(AIEventType.CREATURE_NEEDS_SUPPORT, getOwner());
+				object.getAi().onCreatureEvent(AIEventType.CREATURE_NEEDS_SUPPORT, getOwner());
             }
         });
     }
@@ -382,8 +382,8 @@ public abstract class CreatureController<T extends Creature> extends VisibleObje
 		creature.setNextSkillUse(0);
 		if (castingSkill.getSkillMethod() == SkillMethod.CAST) {
 			PacketSendUtility.broadcastPacket(creature, new S_SKILL_CANCELED(creature, castingSkill.getSkillTemplate().getSkillId()));
-		} if (getOwner().getAi2() instanceof NpcAI2) {
-			NpcAI2 npcAI = (NpcAI2) getOwner().getAi2();
+		} if (getOwner().getAi() instanceof NpcAI) {
+			NpcAI npcAI = (NpcAI) getOwner().getAi();
 			npcAI.setSubStateIfNot(AISubState.NONE);
 			npcAI.onGeneralEvent(AIEventType.ATTACK_COMPLETE);
 			if (creature.getSkillNumber() > 0) {

@@ -2,7 +2,7 @@ package com.aionemu.gameserver.model.stats.container;
 
 import com.aionemu.gameserver.model.gameobjects.Homing;
 import com.aionemu.gameserver.model.gameobjects.Npc;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 
 public class HomingGameStats extends SummonedObjectGameStats
 {
@@ -11,8 +11,8 @@ public class HomingGameStats extends SummonedObjectGameStats
 	}
 	
 	@Override
-	public Stat2 getStat(StatEnum statEnum, int base) {
-        Stat2 stat = super.getStat(statEnum, base);
+	public Stat getStat(StatEnum statEnum, int base) {
+        Stat stat = super.getStat(statEnum, base);
         if (((Npc)this.owner).getMaster() == null) {
             return stat;
         } switch (statEnum) {
@@ -25,7 +25,7 @@ public class HomingGameStats extends SummonedObjectGameStats
     }
 	
 	@Override
-    public Stat2 getMAttack() {;
+    public Stat getMAttack() {;
         return this.getStat(StatEnum.MAGICAL_ATTACK, owner.getObjectTemplate().getStatsTemplate().getMagicalAttack());
     }
 }

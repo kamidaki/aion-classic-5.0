@@ -3,14 +3,12 @@ package admincommands;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.WorldMapType;
 
-/**
- * @author Centisgood(Barahime)
- */
+
 public class SetRace extends AdminCommand {
 
 	public SetRace() {
@@ -34,12 +32,12 @@ public class SetRace extends AdminCommand {
 		Player target = (Player) visibleobject;
 		if (params[0].equalsIgnoreCase("elyos")) {
 			target.getCommonData().setRace(Race.ELYOS);
-			TeleportService2.teleportTo(target, WorldMapType.SANCTUM.getId(), 1322, 1511, 568, 0);
+			TeleportService.teleportTo(target, WorldMapType.SANCTUM.getId(), 1322, 1511, 568, 0);
 			PacketSendUtility.sendMessage(target, "Has been moved to Sanctum.");
 		}
 		else if (params[0].equalsIgnoreCase("asmodians")) {
 			target.getCommonData().setRace(Race.ASMODIANS);
-			TeleportService2.teleportTo(target, WorldMapType.PANDAEMONIUM.getId(), 1679, 1400, 195, 0);
+			TeleportService.teleportTo(target, WorldMapType.PANDAEMONIUM.getId(), 1679, 1400, 195, 0);
 			PacketSendUtility.sendMessage(target, "Has been moved to Pandaemonium");
 		}
 		PacketSendUtility.sendMessage(admin,

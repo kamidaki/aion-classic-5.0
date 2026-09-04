@@ -6,9 +6,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_PUT_USER;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Pan
- */
+
 public class Enemy extends AdminCommand {
 
 	public Enemy() {

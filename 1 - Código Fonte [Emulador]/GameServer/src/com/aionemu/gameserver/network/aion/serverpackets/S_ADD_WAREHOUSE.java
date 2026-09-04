@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.aionemu.gameserver.network.aion.serverpackets;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -16,10 +11,7 @@ import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @author kosyachok
- * @author -Nemesiss-
- */
+
 public class S_ADD_WAREHOUSE extends AionServerPacket {
 
 	private int warehouseType;

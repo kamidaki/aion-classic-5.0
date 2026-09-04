@@ -8,9 +8,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Divinity
- */
+
 public class Say extends AdminCommand {
 
 	public Say() {

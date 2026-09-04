@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.questEngine.handlers;
 
 import com.aionemu.gameserver.ai2.event.AIEventType;
@@ -46,7 +30,6 @@ import com.aionemu.gameserver.world.zone.ZoneName;
 import java.util.Collections;
 
 /**
- * @author MrPoke
  * @modified vlog
  */
 public abstract class QuestHandler extends AbstractQuestHandler
@@ -178,7 +161,7 @@ public abstract class QuestHandler extends AbstractQuestHandler
 				return false;
 			} if (QuestService.finishQuest(env, reward)) {
 				Npc npc = (Npc) env.getVisibleObject();
-				if ("useitem".equals(npc.getAi2().getName()) || ("quest_use_item".equals(npc.getAi2().getName()))) {
+				if ("useitem".equals(npc.getAi().getName()) || ("quest_use_item".equals(npc.getAi().getName()))) {
 					return closeDialogWindow(env);
 				} else {
 					return sendQuestSelectionDialog(env);
@@ -240,7 +223,7 @@ public abstract class QuestHandler extends AbstractQuestHandler
 				return sendQuestEndDialog(env, rewardId);
 			}
 			Npc npc = (Npc) env.getVisibleObject();
-			if ("useitem".equals(npc.getAi2().getName())) {
+			if ("useitem".equals(npc.getAi().getName())) {
 				return closeDialogWindow(env);
 			} else {
 				return sendQuestSelectionDialog(env);
@@ -488,7 +471,7 @@ public abstract class QuestHandler extends AbstractQuestHandler
 			return false;
 		}
 		PacketSendUtility.sendPacket(player, new S_PUT_NPC(follower, player));
-		follower.getAi2().onCreatureEvent(AIEventType.FOLLOW_ME, player);
+		follower.getAi().onCreatureEvent(AIEventType.FOLLOW_ME, player);
 		player.getController().addTask(TaskId.QUEST_FOLLOW, QuestTasks.newFollowingToTargetCheckTask(env, follower, targetNpcId));
 		if (step == 0 && nextStep == 0) {
 			return true;
@@ -504,7 +487,7 @@ public abstract class QuestHandler extends AbstractQuestHandler
 			return false;
 		}
 		PacketSendUtility.sendPacket(player, new S_PUT_NPC(follower, player));
-		follower.getAi2().onCreatureEvent(AIEventType.FOLLOW_ME, player);
+		follower.getAi().onCreatureEvent(AIEventType.FOLLOW_ME, player);
 		player.getController().addTask(TaskId.QUEST_FOLLOW, QuestTasks.newFollowingToTargetCheckTask(env, follower, x, y, z));
 		if (step == 0 && nextStep == 0) {
 			return true;
@@ -519,7 +502,7 @@ public abstract class QuestHandler extends AbstractQuestHandler
             return false;
         }
         PacketSendUtility.sendPacket(player, new S_PUT_NPC(follower, player));
-        follower.getAi2().onCreatureEvent(AIEventType.FOLLOW_ME, player);
+        follower.getAi().onCreatureEvent(AIEventType.FOLLOW_ME, player);
         player.getController().addTask(TaskId.QUEST_FOLLOW, QuestTasks.newFollowingToTargetCheckTask(env, follower, zonename));
         if (step == 0 && nextStep == 0) {
             return true;

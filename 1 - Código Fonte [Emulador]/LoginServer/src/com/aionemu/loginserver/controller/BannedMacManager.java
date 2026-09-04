@@ -8,11 +8,7 @@ import javolution.util.FastMap;
 import com.aionemu.loginserver.dao.BannedMacDAO;
 import com.aionemu.loginserver.model.base.BannedMacEntry;
 
-/**
- *
- * @author KID
- *
- */
+
 public class BannedMacManager {
 	private static BannedMacManager manager = new BannedMacManager();
 

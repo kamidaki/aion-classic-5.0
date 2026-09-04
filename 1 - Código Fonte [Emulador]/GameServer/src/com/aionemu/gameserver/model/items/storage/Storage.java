@@ -16,9 +16,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-/**
- * @author KID, ATracer
- */
+
 public abstract class Storage implements IStorage {
 
 	private ItemStorage itemStorage;

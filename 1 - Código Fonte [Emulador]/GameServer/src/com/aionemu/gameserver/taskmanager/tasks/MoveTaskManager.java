@@ -1,19 +1,3 @@
-/**
- * This file is part of aion-lightning <aion-lightning.org>.
- * 
- * aion-lightning is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * aion-lightning is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.taskmanager.tasks;
 
 import javolution.util.FastList;
@@ -51,7 +35,7 @@ public class MoveTaskManager extends AbstractPeriodicTaskManager
         for (FastMap.Entry<Integer, Creature> e = movingCreatures.head(), mapEnd = movingCreatures.tail(); (e = e.getNext()) != mapEnd; ) {
             Creature creature = e.getValue();
             creature.getMoveController().moveToDestination();
-            if (creature.getAi2().poll(AIQuestion.DESTINATION_REACHED)) {
+            if (creature.getAi().poll(AIQuestion.DESTINATION_REACHED)) {
                 movingCreatures.remove(e.getKey());
                 arrivedCreatures.add(e.getValue());
             } else {
@@ -73,7 +57,7 @@ public class MoveTaskManager extends AbstractPeriodicTaskManager
         protected void removeAndExecuteFirst() {
             final Creature creature = removeFirst();
             try {
-                creature.getAi2().onGeneralEvent(AIEventType.MOVE_ARRIVED);
+                creature.getAi().onGeneralEvent(AIEventType.MOVE_ARRIVED);
             } catch (RuntimeException e) {
                 //log.warn("", e);
             }
@@ -85,7 +69,7 @@ public class MoveTaskManager extends AbstractPeriodicTaskManager
         protected void removeAndExecuteFirst() {
             final Creature creature = removeFirst();
             try {
-                creature.getAi2().onGeneralEvent(AIEventType.MOVE_VALIDATE);
+                creature.getAi().onGeneralEvent(AIEventType.MOVE_VALIDATE);
             } catch (RuntimeException e) {
                 //log.warn("", e);
             }

@@ -1,0 +1,13 @@
+package ai.worlds.instances;
+
+import ai.AggressiveNpcAI;
+import com.aionemu.gameserver.ai2.AIName;
+
+/**
+ * Auto-generated 5.0 AI Handler based on AggressiveNpcAI
+ * Original AI Name: IDRaksha_Door_5F_Boss_Entrance
+ */
+@AIName("IDRaksha_Door_5F_Boss_Entrance")
+public class IDRaksha_Door_5F_Boss_EntranceAI extends AggressiveNpcAI
+{
+}

@@ -12,7 +12,6 @@ import java.util.Map;
  * <p/>
  * Created on: 13.07.2009 16:28:23
  * 
- * @author Aquanox, nrg
  */
 public class MacroList {
 

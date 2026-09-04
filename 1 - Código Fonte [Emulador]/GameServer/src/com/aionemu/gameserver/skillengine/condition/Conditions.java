@@ -1,6 +1,6 @@
 package com.aionemu.gameserver.skillengine.condition;
 
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.stats.calc.functions.IStatFunction;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.Skill;
@@ -56,7 +56,7 @@ public class Conditions
 		return true;
 	}
 	
-	public boolean validate(Stat2 stat, IStatFunction statFunction) {
+	public boolean validate(Stat stat, IStatFunction statFunction) {
 		if (conditions != null) {
 			for (Condition condition : getConditions()) {
 				if (!condition.validate(stat, statFunction)) {

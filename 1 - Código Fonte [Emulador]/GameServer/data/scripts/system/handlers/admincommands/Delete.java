@@ -28,7 +28,7 @@ public class Delete extends AdminCommand
 		SpawnTemplate template = npc.getSpawn();
 		npc.getController().delete();
 		try {
-			DataManager.SPAWNS_DATA2.saveSpawn(player, npc, true);
+			DataManager.SPAWNS_DATA.saveSpawn(player, npc, true);
 		} catch (IOException e) {
 			e.printStackTrace();
 			PacketSendUtility.sendMessage(player, "Could not remove spawn");

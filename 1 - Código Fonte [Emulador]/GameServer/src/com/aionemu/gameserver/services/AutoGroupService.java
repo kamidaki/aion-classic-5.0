@@ -70,7 +70,7 @@ public class AutoGroupService
 		} else {
 			lfp.addInstanceMaskId(instanceMaskId, ert);
 		} if (ert.isGroupEntry()) {
-			for (Player member : player.getPlayerGroup2().getOnlineMembers()) {
+			for (Player member : player.getPlayerGroup().getOnlineMembers()) {
 				if (agt.isDredgion()) {
 					PacketSendUtility.sendPacket(member, new S_MATCHMAKER_INFO(instanceMaskId, (Number)6, true));
 				} else if (agt.isTiakBase()) {
@@ -95,9 +95,9 @@ public class AutoGroupService
 		AutoInstance instance = getAutoInstance(player, instanceMaskId);
 		if (instance == null || instance.players.get(player.getObjectId()).isPressedEnter()) {
 			return;
-		} if (player.isInGroup2()) {
+		} if (player.isInGroup()) {
 			PlayerGroupService.removePlayer(player);
-		} if (player.isInAlliance2()) {
+		} if (player.isInAlliance()) {
 			PlayerAllianceService.removePlayer(player);
 		}
 		instance.onPressEnter(player);
@@ -166,7 +166,7 @@ public class AutoGroupService
 		LookingForParty lfp = searchers.get(obj);
 		if (lfp != null) {
 			for (SearchInstance searchInstance : lfp.getSearchInstances()) {
-				if (searchInstance.getEntryRequestType().isGroupEntry() && !player.isInGroup2()) {
+				if (searchInstance.getEntryRequestType().isGroupEntry() && !player.isInGroup()) {
 					int instanceMaskId = searchInstance.getInstanceMaskId();
 					lfp.unregisterInstance(instanceMaskId);
 					if (searchInstance.isDredgion() && DredgionService.getInstance().isDredgionAvailable()) {
@@ -285,7 +285,7 @@ public class AutoGroupService
 					SearchInstance searchInstance = lfp.getSearchInstance(instanceMaskId);
 					if (searchInstance != null) {
 						if (searchInstance.getEntryRequestType().isGroupEntry()) {
-							if (!lfp.getPlayer().isInGroup2()) {
+							if (!lfp.getPlayer().isInGroup()) {
 								if (lfp.unregisterInstance(instanceMaskId) == 0) {
 									iter.remove();
 								}
@@ -295,7 +295,7 @@ public class AutoGroupService
 						AGQuestion question = autoInstance.addPlayer(lfp.getPlayer(), searchInstance);
 						if (!question.isFailed()) {
 							if (searchInstance.getEntryRequestType().isGroupEntry()) {
-								for (Player member : lfp.getPlayer().getPlayerGroup2().getOnlineMembers()) {
+								for (Player member : lfp.getPlayer().getPlayerGroup().getOnlineMembers()) {
 									if (searchInstance.getMembers().contains(member.getObjectId())) {
 										players.add(member);
 									}
@@ -376,7 +376,7 @@ public class AutoGroupService
 				if (!agt.hasRegisterGroup()) {
 					return false;
 				}
-				PlayerGroup group = player.getPlayerGroup2();
+				PlayerGroup group = player.getPlayerGroup();
 				if (group == null || !group.isLeader(player)) {
 					PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_MSG_CANT_INSTANCE_NOT_LEADER);
 					return false;

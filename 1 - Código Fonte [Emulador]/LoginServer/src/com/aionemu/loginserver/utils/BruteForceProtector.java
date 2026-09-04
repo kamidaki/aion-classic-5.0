@@ -4,10 +4,7 @@ import javolution.util.FastMap;
 
 import com.aionemu.loginserver.configs.Config;
 
-/**
- * @author Mr. Poke
- * 
- */
+
 public class BruteForceProtector {
 	private FastMap<String, FailedLoginInfo> failedConnections = new FastMap<String, FailedLoginInfo>();
 

@@ -63,7 +63,7 @@ public class SummonServantEffect extends SummonEffect
 		}, time * 1000);
 		servant.getController().addTask(TaskId.DESPAWN, task);
 		if (servant.getNpcObjectType() != NpcObjectType.TOTEM) {
-			servant.getAi2().onCreatureEvent(AIEventType.ATTACK, (target != null ? target : effected));
+			servant.getAi().onCreatureEvent(AIEventType.ATTACK, (target != null ? target : effected));
 		}
 		return servant;
 	}

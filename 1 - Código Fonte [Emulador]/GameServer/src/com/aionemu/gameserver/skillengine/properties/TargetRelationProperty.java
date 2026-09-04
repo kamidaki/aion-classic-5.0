@@ -58,12 +58,12 @@ public class TargetRelationProperty
                             effector = ((Servant) effector).getMaster();
                         }
                         Player playerEffector = (Player) effector;
-                        if (playerEffector.isInAlliance2() && player.isInAlliance2()) {
-                            if (playerEffector.getPlayerAlliance2().getObjectId().equals(player.getPlayerAlliance2().getObjectId())) {
+                        if (playerEffector.isInAlliance() && player.isInAlliance()) {
+                            if (playerEffector.getPlayerAlliance().getObjectId().equals(player.getPlayerAlliance().getObjectId())) {
                                 continue;
                             }
-                        } else if (playerEffector.isInGroup2() && player.isInGroup2()) {
-                            if (playerEffector.getPlayerGroup2().getTeamId().equals(player.getPlayerGroup2().getTeamId())) {
+                        } else if (playerEffector.isInGroup() && player.isInGroup()) {
+                            if (playerEffector.getPlayerGroup().getTeamId().equals(player.getPlayerGroup().getTeamId())) {
                                 continue;
                             }
                         }

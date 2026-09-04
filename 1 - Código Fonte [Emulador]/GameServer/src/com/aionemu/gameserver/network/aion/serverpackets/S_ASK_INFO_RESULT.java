@@ -23,10 +23,10 @@ public class S_ASK_INFO_RESULT extends AionServerPacket
 		if (target == null)
 			return;
 		if (isGroup) {
-			if (target.isInGroup2()) {
+			if (target.isInGroup()) {
 				writeC(2);
 				writeS(target.getName());
-				PlayerGroup group = target.getPlayerGroup2();
+				PlayerGroup group = target.getPlayerGroup();
 				writeD(group.getTeamId());
 				writeS(group.getLeader().getName());
 				Collection<Player> members = group.getMembers();
@@ -38,10 +38,10 @@ public class S_ASK_INFO_RESULT extends AionServerPacket
 					writeC(groupMember.getPlayerClass().getClassId());
 				for (int i = group.size(); i < 6; i++)
 					writeC(0);
-			} else if (target.isInAlliance2()) {
+			} else if (target.isInAlliance()) {
 				writeC(2);
 				writeS(target.getName());
-				PlayerAlliance alliance = target.getPlayerAlliance2();
+				PlayerAlliance alliance = target.getPlayerAlliance();
 				writeD(alliance.getTeamId());
 				writeS(alliance.getLeader().getName());
 				Collection<Player> members = alliance.getMembers();

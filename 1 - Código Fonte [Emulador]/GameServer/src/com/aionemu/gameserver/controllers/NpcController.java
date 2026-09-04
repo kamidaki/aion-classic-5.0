@@ -55,7 +55,7 @@ public class NpcController extends CreatureController<Npc>
 	public void notSee(VisibleObject object, boolean isOutOfRange) {
 		super.notSee(object, isOutOfRange);
 		if (object instanceof Creature) {
-			getOwner().getAi2().onCreatureEvent(AIEventType.CREATURE_NOT_SEE, (Creature) object);
+			getOwner().getAi().onCreatureEvent(AIEventType.CREATURE_NOT_SEE, (Creature) object);
 			getOwner().getAggroList().remove((Creature) object);
 		}
 	}
@@ -65,7 +65,7 @@ public class NpcController extends CreatureController<Npc>
         super.see(object);
         Npc owner = getOwner();
         if (object instanceof Creature) {
-            owner.getAi2().onCreatureEvent(AIEventType.CREATURE_SEE, (Creature) object);
+            owner.getAi().onCreatureEvent(AIEventType.CREATURE_SEE, (Creature) object);
         }
         if (object instanceof Player) {
             // TODO see player ai event
@@ -86,7 +86,7 @@ public class NpcController extends CreatureController<Npc>
             owner.setState(CreatureState.NPC_IDLE);
 		}
         owner.getLifeStats().setCurrentHpPercent(100);
-        owner.getAi2().onGeneralEvent(AIEventType.RESPAWNED);
+        owner.getAi().onGeneralEvent(AIEventType.RESPAWNED);
         if (owner.getSpawn().canFly()) {
             owner.setState(CreatureState.FLYING);
         } if (owner.getSpawn().getState() != 0) {
@@ -97,7 +97,7 @@ public class NpcController extends CreatureController<Npc>
 	@Override
 	public void onAfterSpawn() {
 		super.onAfterSpawn();
-		getOwner().getAi2().onGeneralEvent(AIEventType.SPAWNED);
+		getOwner().getAi().onGeneralEvent(AIEventType.SPAWNED);
 		if (getOwner().getPosition().isInstanceMap()) {
             getOwner().getPosition().getWorldMapInstance().getInstanceHandler().onSpawn(getOwner());
         } else {
@@ -109,7 +109,7 @@ public class NpcController extends CreatureController<Npc>
 	public void onDespawn() {
 		Npc owner = getOwner();
 		DropService.getInstance().unregisterDrop(getOwner());
-		owner.getAi2().onGeneralEvent(AIEventType.DESPAWNED);
+		owner.getAi().onGeneralEvent(AIEventType.DESPAWNED);
 		if (getOwner().getPosition().isInstanceMap()) {
             getOwner().getPosition().getWorldMapInstance().getInstanceHandler().onDespawn(getOwner());
         } else {
@@ -129,18 +129,18 @@ public class NpcController extends CreatureController<Npc>
 		boolean deleteImmediately = false;
 		boolean shouldRespawn = true;
 		try {
-			deleteImmediately = !owner.getAi2().poll(AIQuestion.SHOULD_DECAY);
-			shouldRespawn = owner.getAi2().poll(AIQuestion.SHOULD_RESPAWN);
-			if ((shouldReward = owner.getAi2().poll(AIQuestion.SHOULD_REWARD)))
+			deleteImmediately = !owner.getAi().poll(AIQuestion.SHOULD_DECAY);
+			shouldRespawn = owner.getAi().poll(AIQuestion.SHOULD_RESPAWN);
+			if ((shouldReward = owner.getAi().poll(AIQuestion.SHOULD_REWARD)))
 				this.doReward();
 			owner.getPosition().getWorldMapInstance().getInstanceHandler().onDie(owner, lastAttacker);
-			owner.getAi2().onGeneralEvent(AIEventType.DIED);
+			owner.getAi().onGeneralEvent(AIEventType.DIED);
 		} finally {
 			if (!deleteImmediately) {
 				addTask(TaskId.DECAY, RespawnService.scheduleDecayTask(owner));
 			}
-			else if (shouldReward && owner.getAi2().poll(AIQuestion.SHOULD_LOOT)) {
-				log.warn("AI " + owner.getAi2().getName() + " has SHOULD_REWARD && SHOULD_LOOT but not SHOULD_DECAY, rewards will be lost!");
+			else if (shouldReward && owner.getAi().poll(AIQuestion.SHOULD_LOOT)) {
+				log.warn("AI " + owner.getAi().getName() + " has SHOULD_REWARD && SHOULD_LOOT but not SHOULD_DECAY, rewards will be lost!");
 			}
 			// TODO: refactor this: used for rift AI, better to use getDecayTime for AI
 			if (shouldRespawn && !owner.isDeleteDelayed() && !SiegeService.getInstance().isSiegeNpcInActiveSiege(owner)) {
@@ -179,19 +179,19 @@ public class NpcController extends CreatureController<Npc>
 		}
 		PacketSendUtility.broadcastPacket(owner, new S_ACTION(owner, EmotionType.DIE, 0, owner.equals(lastAttacker) ? 0 : lastAttacker.getObjectId()));
 		try {
-			if (owner.getAi2().poll(AIQuestion.SHOULD_REWARD)) {
+			if (owner.getAi().poll(AIQuestion.SHOULD_REWARD)) {
 				this.doReward();
 			} if (owner.getPosition().isInstanceMap()) {
 				owner.getPosition().getWorldMapInstance().getInstanceHandler().onDie(owner);
-				owner.getAi2().onGeneralEvent(AIEventType.DIED);
+				owner.getAi().onGeneralEvent(AIEventType.DIED);
 			} else {
 				owner.getPosition().getWorld().getWorldMap(owner.getWorldId()).getWorldHandler().onDie(owner);
-				owner.getAi2().onGeneralEvent(AIEventType.DIED);
+				owner.getAi().onGeneralEvent(AIEventType.DIED);
 			}
 		} finally {
-			if (owner.getAi2().poll(AIQuestion.SHOULD_DECAY)) {
+			if (owner.getAi().poll(AIQuestion.SHOULD_DECAY)) {
 				addTask(TaskId.DECAY, RespawnService.scheduleDecayTask(owner));
-			} if (owner.getAi2().poll(AIQuestion.SHOULD_RESPAWN) && !owner.isDeleteDelayed() && !SiegeService.getInstance().isSiegeNpcInActiveSiege(owner)) {
+			} if (owner.getAi().poll(AIQuestion.SHOULD_RESPAWN) && !owner.isDeleteDelayed() && !SiegeService.getInstance().isSiegeNpcInActiveSiege(owner)) {
 				Future<?> task = scheduleRespawn();
 				if (task != null) {
 					addTask(TaskId.RESPAWN, task);
@@ -230,8 +230,8 @@ public class NpcController extends CreatureController<Npc>
 				continue;
 			} if (attacker instanceof TemporaryPlayerTeam<?>) {
 				PlayerTeamDistributionService.doReward((TemporaryPlayerTeam<?>) attacker, percentage, getOwner(), winner);
-			} else if (attacker instanceof Player && ((Player) attacker).isInGroup2()) {
-				PlayerTeamDistributionService.doReward(((Player) attacker).getPlayerGroup2(), percentage, getOwner(), winner);
+			} else if (attacker instanceof Player && ((Player) attacker).isInGroup()) {
+				PlayerTeamDistributionService.doReward(((Player) attacker).getPlayerGroup(), percentage, getOwner(), winner);
 			} else if (attacker instanceof Player player) {				if (!player.getLifeStats().isAlreadyDead()) {
 					long rewardXp = StatFunctions.calculateSoloExperienceReward(player, getOwner());
 					int rewardDp = StatFunctions.calculateSoloDPReward(player, getOwner());
@@ -276,7 +276,7 @@ public class NpcController extends CreatureController<Npc>
             return;
         }
         player.getObserveController().notifyRequestDialogObservers(this.getOwner());
-        this.getOwner().getAi2().onCreatureEvent(AIEventType.DIALOG_START, player);
+        this.getOwner().getAi().onCreatureEvent(AIEventType.DIALOG_START, player);
     }
 
 	@Override
@@ -284,7 +284,7 @@ public class NpcController extends CreatureController<Npc>
         QuestEnv env = new QuestEnv(this.getOwner(), player, questId, dialogId);
         if (!MathUtil.isInRange(getOwner(), player, getOwner().getObjectTemplate().getTalkDistance() + 3) && !QuestEngine.getInstance().onDialog(env)) {
 			return;
-		} if (!this.getOwner().getAi2().onDialogSelect(player, dialogId, questId, extendedRewardIndex)) {
+		} if (!this.getOwner().getAi().onDialogSelect(player, dialogId, questId, extendedRewardIndex)) {
             DialogService.onDialogSelect(dialogId, player, this.getOwner(), questId, extendedRewardIndex);
         } if (this.getOwner().getPosition().isInstanceMap()) {
             this.getOwner().getPosition().getWorldMapInstance().getInstanceHandler().onDialog(player, this.getOwner(), dialogId);
@@ -410,7 +410,7 @@ public class NpcController extends CreatureController<Npc>
 	@Override
     public boolean useSkill(int skillId, int skillLevel) {
         SkillTemplate skillTemplate = DataManager.SKILL_DATA.getSkillTemplate(skillId);
-        if (this.getOwner().getAi2().getName().equals("servant")) {
+        if (this.getOwner().getAi().getName().equals("servant")) {
             this.getOwner().getGameStats().renewLastSkillTime();
             return super.useSkill(skillId, skillLevel);
         } if (!this.getOwner().isSkillDisabled(skillTemplate)) {

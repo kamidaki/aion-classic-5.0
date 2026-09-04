@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.autogroup;
 
 import com.aionemu.commons.taskmanager.AbstractLockManager;
@@ -32,7 +16,7 @@ public class LookingForParty extends AbstractLockManager
 	
 	public LookingForParty(Player player, int instanceMaskId, EntryRequestType ert) {
 		this.player = player;
-		searchInstances.add(new SearchInstance(instanceMaskId, ert, ert.isGroupEntry() ? player.getPlayerGroup2().getOnlineMembers() : null));
+		searchInstances.add(new SearchInstance(instanceMaskId, ert, ert.isGroupEntry() ? player.getPlayerGroup().getOnlineMembers() : null));
 	}
 	
 	public int unregisterInstance(int instanceMaskId) {
@@ -62,7 +46,7 @@ public class LookingForParty extends AbstractLockManager
 	public void addInstanceMaskId(int instanceMaskId, EntryRequestType ert) {
 		super.writeLock();
 		try {
-			searchInstances.add(new SearchInstance(instanceMaskId, ert, ert.isGroupEntry() ? player.getPlayerGroup2().getOnlineMembers() : null));
+			searchInstances.add(new SearchInstance(instanceMaskId, ert, ert.isGroupEntry() ? player.getPlayerGroup().getOnlineMembers() : null));
 		}
 		finally {
 			super.writeUnlock();

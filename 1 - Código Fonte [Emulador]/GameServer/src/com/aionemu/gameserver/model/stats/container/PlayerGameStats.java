@@ -8,7 +8,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Equipment;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.stats.calc.AdditionStat;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.templates.item.ArmorType;
 import com.aionemu.gameserver.model.templates.item.ItemAttackType;
 import com.aionemu.gameserver.model.templates.item.WeaponStats;
@@ -53,51 +53,51 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMaxHp() {
+	public Stat getMaxHp() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.MAXHP, pst.getMaxHp());
 	}
 
-	public Stat2 getMaxMp() {
+	public Stat getMaxMp() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		int base = pst.getMaxMp();
 		return this.getStat(StatEnum.MAXMP, base);
 	}
 
-	public Stat2 getStrikeResist() {
+	public Stat getStrikeResist() {
 		return getStat(StatEnum.PHYSICAL_CRITICAL_RESIST, 0);
 	}
 
-	public Stat2 getStrikeFort() {
+	public Stat getStrikeFort() {
 		return getStat(StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE, 0);
 	}
 
-	public Stat2 getSpellResist() {
+	public Stat getSpellResist() {
 		return getStat(StatEnum.MAGICAL_CRITICAL_RESIST, 0);
 	}
 
-	public Stat2 getSpellFort() {
+	public Stat getSpellFort() {
 		return getStat(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, 0);
 	}
 
-	public Stat2 getMaxDp() {
+	public Stat getMaxDp() {
 		return getStat(StatEnum.MAXDP, 4000);
 	}
 
-	public Stat2 getMaxSp() {
+	public Stat getMaxSp() {
 		return getStat(StatEnum.MAX_SP, 100);
 	}
 
-	public Stat2 getFlyTime() {
+	public Stat getFlyTime() {
 		return getStat(StatEnum.FLY_TIME, 60); // ...1 Min
 	}
 
-	public Stat2 getAllSpeed() {
+	public Stat getAllSpeed() {
 		return getStat(StatEnum.ALLSPEED, 7500);
 	}
 
 	@Override
-	public Stat2 getAttackSpeed() {
+	public Stat getAttackSpeed() {
 		int base = 1500;
 		Equipment equipment = owner.getEquipment();
 		Item mainHandWeapon = equipment.getMainHandWeapon();
@@ -117,12 +117,12 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 				}
 			}
 		}
-		Stat2 aSpeed = getStat(StatEnum.ATTACK_SPEED, base);
+		Stat aSpeed = getStat(StatEnum.ATTACK_SPEED, base);
 		return aSpeed;
 	}
 
 	@Override
-	public Stat2 getBCastingTime() {
+	public Stat getBCastingTime() {
 		int base = 0;
 		int casterClass = owner.getPlayerClass().getClassId();
 		if (casterClass == 7 || // Sorcerer.
@@ -133,7 +133,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getConcentration() {
+	public Stat getConcentration() {
 		int base = 0;
 		int sorcerer1 = owner.getPlayerClass().getClassId();
 		int spiritMaster1 = owner.getPlayerClass().getClassId();
@@ -146,37 +146,37 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getRootResistance() {
+	public Stat getRootResistance() {
 		return getStat(StatEnum.ROOT_RESISTANCE, 0);
 	}
 
 	@Override
-	public Stat2 getSnareResistance() {
+	public Stat getSnareResistance() {
 		return getStat(StatEnum.SNARE_RESISTANCE, 0);
 	}
 
 	@Override
-	public Stat2 getBindResistance() {
+	public Stat getBindResistance() {
 		return getStat(StatEnum.BIND_RESISTANCE, 0);
 	}
 
 	@Override
-	public Stat2 getFearResistance() {
+	public Stat getFearResistance() {
 		return getStat(StatEnum.FEAR_RESISTANCE, 0);
 	}
 
 	@Override
-	public Stat2 getSleepResistance() {
+	public Stat getSleepResistance() {
 		return getStat(StatEnum.SLEEP_RESISTANCE, 0);
 	}
 
 	@Override
-	public Stat2 getPDef() {
+	public Stat getPDef() {
 		return getStat(StatEnum.PHYSICAL_DEFENSE, 0);
 	}
 
 	@Override
-	public Stat2 getMResist() {
+	public Stat getMResist() {
 		int base = 0;
 		int assassin = owner.getPlayerClass().getClassId();
 		if (assassin == 4 && owner.getLevel() >= 37) {
@@ -186,7 +186,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMBResist() {
+	public Stat getMBResist() {
 		int base = 0;
 		int cleric = owner.getPlayerClass().getClassId();
 		int sorcerer2 = owner.getPlayerClass().getClassId();
@@ -204,8 +204,8 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMovementSpeed() {
-		Stat2 movementSpeed;
+	public Stat getMovementSpeed() {
+		Stat movementSpeed;
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(),
 				owner.getLevel());
 		if (owner.isInState(CreatureState.FLYING)) {
@@ -231,7 +231,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getAttackRange() {
+	public Stat getAttackRange() {
 		int base = 1500;
 		int minWeaponRange = Integer.MAX_VALUE;
 		Equipment equipment = owner.getEquipment();
@@ -253,54 +253,54 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMDef() {
+	public Stat getMDef() {
 		return getStat(StatEnum.MAGICAL_DEFEND, 0);
 	}
 
 	@Override
-	public Stat2 getPower() {
+	public Stat getPower() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.POWER, pst.getPower());
 	}
 
 	@Override
-	public Stat2 getHealth() {
+	public Stat getHealth() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.HEALTH, pst.getHealth());
 	}
 
 	@Override
-	public Stat2 getAccuracy() {
+	public Stat getAccuracy() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.ACCURACY, pst.getAccuracy());
 	}
 
 	@Override
-	public Stat2 getAgility() {
+	public Stat getAgility() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.AGILITY, pst.getAgility());
 	}
 
 	@Override
-	public Stat2 getKnowledge() {
+	public Stat getKnowledge() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.KNOWLEDGE, pst.getKnowledge());
 	}
 
 	@Override
-	public Stat2 getWill() {
+	public Stat getWill() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.WILL, pst.getWill());
 	}
 
 	@Override
-	public Stat2 getEvasion() {
+	public Stat getEvasion() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.EVASION, pst.getEvasion());
 	}
 
 	@Override
-	public Stat2 getParry() {
+	public Stat getParry() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		int base = pst.getParry();
 		Item mainHandWeapon = owner.getEquipment().getMainHandWeapon();
@@ -314,7 +314,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getBlock() {
+	public Stat getBlock() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), owner.getLevel());
 		return getStat(StatEnum.BLOCK, pst.getBlock());
 	}
@@ -328,7 +328,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMainHandPAttack() {
+	public Stat getMainHandPAttack() {
 		int base = 18;
 		Equipment equipment = owner.getEquipment();
 		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
@@ -341,11 +341,11 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 				base = ws.getMeanDamage();
 			}
 		}
-		Stat2 stat = this.getStat(StatEnum.PHYSICAL_ATTACK, base);
+		Stat stat = this.getStat(StatEnum.PHYSICAL_ATTACK, base);
 		return this.getStat(StatEnum.MAIN_HAND_POWER, stat);
 	}
 
-	public Stat2 getOffHandPAttack() {
+	public Stat getOffHandPAttack() {
 		Item offHandWeapon;
 		Equipment equipment = owner.getEquipment();
 		if (equipment == null) {
@@ -362,14 +362,14 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 			WeaponStats ws = offHandWeapon.getItemTemplate().getWeaponStats();
 			int base = ws != null ? ws.getMeanDamage() : 0;
 			base = (int) ((double) base * 0.98);
-			Stat2 stat = this.getStat(StatEnum.PHYSICAL_ATTACK, base);
+			Stat stat = this.getStat(StatEnum.PHYSICAL_ATTACK, base);
 			return this.getStat(StatEnum.OFF_HAND_POWER, stat);
 		}
 		return new AdditionStat(StatEnum.OFF_HAND_POWER, 0, this.owner);
 	}
 
 	@Override
-	public Stat2 getMainHandPCritical() {
+	public Stat getMainHandPCritical() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(), (owner.getLevel()));
 		int base = pst != null ? pst.getMainHandCritRate() : 10;
 		Equipment equipment = owner.getEquipment();
@@ -387,7 +387,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 		return this.getStat(StatEnum.PHYSICAL_CRITICAL, base);
 	}
 
-	public Stat2 getOffHandPCritical() {
+	public Stat getOffHandPCritical() {
 		Item offHandWeapon;
 		Equipment equipment = owner.getEquipment();
 		if (equipment == null) {
@@ -407,7 +407,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMainHandPAccuracy() {
+	public Stat getMainHandPAccuracy() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(),
 				owner.getLevel());
 		int base = pst.getMainHandAccuracy();
@@ -422,7 +422,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 		return this.getStat(StatEnum.PHYSICAL_ACCURACY, base);
 	}
 
-	public Stat2 getOffHandPAccuracy() {
+	public Stat getOffHandPAccuracy() {
 		Item offHandWeapon;
 		Equipment equipment = owner.getEquipment();
 		Item mainHandWeapon = equipment.getMainHandWeapon();
@@ -443,7 +443,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMAttack() {
+	public Stat getMAttack() {
 		int base;
 		Equipment equipment = owner.getEquipment();
 		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
@@ -460,7 +460,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMainHandMAttack() {
+	public Stat getMainHandMAttack() {
 		int base = 0;
 		Equipment equipment = owner.getEquipment();
 		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
@@ -471,12 +471,12 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 			WeaponStats ws = mainHandWeapon.getItemTemplate().getWeaponStats();
 			base = ws != null ? ws.getMeanDamage() : 0;
 		}
-		Stat2 stat = this.getStat(StatEnum.MAGICAL_ATTACK, base);
+		Stat stat = this.getStat(StatEnum.MAGICAL_ATTACK, base);
 		return this.getStat(StatEnum.MAIN_HAND_POWER, stat);
 	}
 
 	@Override
-	public Stat2 getOffHandMAttack() {
+	public Stat getOffHandMAttack() {
 		Item offHandWeapon;
 		Equipment equipment = owner.getEquipment();
 		if (equipment == null) {
@@ -493,14 +493,14 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 			WeaponStats ws = offHandWeapon.getItemTemplate().getWeaponStats();
 			int base = ws != null ? ws.getMeanDamage() : 0;
 			base = (int) ((double) base * 0.98);
-			Stat2 stat = this.getStat(StatEnum.MAGICAL_ATTACK, base);
+			Stat stat = this.getStat(StatEnum.MAGICAL_ATTACK, base);
 			return this.getStat(StatEnum.OFF_HAND_POWER, stat);
 		}
 		return new AdditionStat(StatEnum.OFF_HAND_POWER, 0, this.owner);
 	}
 
 	@Override
-	public Stat2 getMBoost() {
+	public Stat getMBoost() {
 		int base = 0;
 		Equipment equipment = owner.getEquipment();
 		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
@@ -514,7 +514,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMAccuracy() {
+	public Stat getMAccuracy() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(owner.getPlayerClass(),
 				owner.getLevel());
 		int base = pst != null ? pst.getMagicAccuracy() : 0;
@@ -529,7 +529,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 		return this.getStat(StatEnum.MAGICAL_ACCURACY, base);
 	}
 
-	public Stat2 getMainHandMAccuracy() {
+	public Stat getMainHandMAccuracy() {
 		PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(this.owner.getPlayerClass(),
 				this.owner.getLevel());
 		int base = pst != null ? pst.getMagicAccuracy() : 0;
@@ -541,14 +541,14 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 				base += ws.getMagicalAccuracy();
 			}
 		}
-		Stat2 stat = getStat(StatEnum.MAGICAL_ACCURACY, base);
+		Stat stat = getStat(StatEnum.MAGICAL_ACCURACY, base);
 		int HAGI = this.owner.getGameStats().getStat(StatEnum.AGILITY, 0).getCurrent();
 		int MAccuracyCalculation = Math.round(2286 * HAGI / (376.0F + HAGI));
 		stat.addToBonus(MAccuracyCalculation);
 		return stat;
 	}
 
-	public Stat2 getOffHandMAccuracy() {
+	public Stat getOffHandMAccuracy() {
 		Equipment equipment = this.owner.getEquipment();
 		if (equipment == null) {
 			return new AdditionStat(StatEnum.OFF_HAND_MAGICAL_ACCURACY, 0, this.owner);
@@ -569,7 +569,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMCritical() {
+	public Stat getMCritical() {
 		int base = 50;
 		Equipment equipment = owner.getEquipment();
 		Item mainHandWeapon = equipment != null ? equipment.getMainHandWeapon() : null;
@@ -583,7 +583,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getHpRegenRate() {
+	public Stat getHpRegenRate() {
 		int base = owner.getLevel() + 3;
 		if (owner.isInState(CreatureState.RESTING)) {
 			base *= 8;
@@ -593,7 +593,7 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	}
 
 	@Override
-	public Stat2 getMpRegenRate() {
+	public Stat getMpRegenRate() {
 		int base = owner.getLevel() + 8;
 		if (owner.isInState(CreatureState.RESTING)) {
 			base *= 8;

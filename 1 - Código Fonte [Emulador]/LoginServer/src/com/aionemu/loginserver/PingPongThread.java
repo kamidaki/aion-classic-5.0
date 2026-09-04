@@ -9,9 +9,7 @@ import com.aionemu.loginserver.configs.Config;
 import com.aionemu.loginserver.network.gameserver.GsConnection;
 import com.aionemu.loginserver.network.gameserver.serverpackets.SM_PING;
 
-/**
- * @author KID
- */
+
 public class PingPongThread implements Runnable {
 
 	private final Logger log = LoggerFactory.getLogger(PingPongThread.class);

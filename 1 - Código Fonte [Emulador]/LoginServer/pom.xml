@@ -55,13 +55,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
-			<version>4.0.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/HikariCP-4.0.3.jar</systemPath>
-		</dependency>
-		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.1</version>
@@ -84,10 +77,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.aionemu</groupId>
-			<artifactId>commonsLib</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/commonsLib.jar</systemPath>
+			<artifactId>commons</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>

@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2;
 
 import com.aionemu.commons.callbacks.metadata.ObjectCallback;
@@ -54,10 +38,8 @@ import java.util.Iterator;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * @author ATracer
- */
-public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> implements AI2 {
+
+public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> implements AI {
 
 	private Creature owner;
 	private AIState currentState;
@@ -225,7 +207,7 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 	}
 
 	/**
-	 * Will be hidden for all AI's below NpcAI2
+	 * Will be hidden for all AI's below NpcAI
 	 * 
 	 * @return
 	 */
@@ -571,7 +553,7 @@ public abstract class AbstractAI extends AbstractEventSource<GeneralAIEvent> imp
 			case FOLLOWING:
 				return FollowEventHandler.isInRange(this, getOwner().getTarget());
 			case WALKING:
-				return currentSubState == AISubState.TALK || WalkManager.isArrivedAtPoint((NpcAI2) this);
+				return currentSubState == AISubState.TALK || WalkManager.isArrivedAtPoint((NpcAI) this);
 		}
 		return true;
 	}

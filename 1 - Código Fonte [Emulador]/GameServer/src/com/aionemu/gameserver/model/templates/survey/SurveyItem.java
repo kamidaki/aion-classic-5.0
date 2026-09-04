@@ -1,8 +1,6 @@
 package com.aionemu.gameserver.model.templates.survey;
 
-/**
- * @author KID
- */
+
 public class SurveyItem {
 
 	public int ownerId;

@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.skillengine.model;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.AISubState;
 import com.aionemu.gameserver.ai2.handler.ShoutEventHandler;
 import com.aionemu.gameserver.ai2.manager.SkillAttackManager;
@@ -36,7 +20,7 @@ import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.*;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.model.templates.item.*;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
@@ -214,7 +198,7 @@ public class Skill
             castStartTime = System.currentTimeMillis();
             startCast();
             if (effector instanceof Npc) {
-                ((NpcAI2) ((Npc) effector).getAi2()).setSubStateIfNot(AISubState.CAST);
+                ((NpcAI) ((Npc) effector).getAi()).setSubStateIfNot(AISubState.CAST);
             }
         }
         effector.getObserveController().attach(conditionChangeListener);
@@ -274,7 +258,7 @@ public class Skill
     }
 
 	private boolean checkAnimationTime() {
-		Stat2 attackSpeed;
+		Stat attackSpeed;
 		if (!(this.effector instanceof Player) || this.skillMethod != SkillMethod.CAST) {
             return true;
         }
@@ -376,7 +360,7 @@ public class Skill
                 case 0:
                     PacketSendUtility.broadcastPacketAndReceive(effector, new S_USE_SKILL(effector.getObjectId(), skillTemplate.getSkillId(), skillLevel, targetType, targetObjId, this.duration));
                     if (effector instanceof Npc && firstTarget instanceof Player) {
-                        NpcAI2 ai = (NpcAI2) effector.getAi2();
+                        NpcAI ai = (NpcAI) effector.getAi();
                         if (ai.poll(AIQuestion.CAN_SHOUT)) {
                             ShoutEventHandler.onCast(ai, firstTarget);
 						}
@@ -518,7 +502,7 @@ public class Skill
         } if (skillMethod == SkillMethod.CAST || skillMethod == SkillMethod.ITEM) {
             sendCastspellEnd(spellStatus, dashStatus, effects);
         } if (effector instanceof Npc) {
-            SkillAttackManager.afterUseSkill((NpcAI2) ((Npc) effector).getAi2());
+            SkillAttackManager.afterUseSkill((NpcAI) ((Npc) effector).getAi());
         }
 	}
 	

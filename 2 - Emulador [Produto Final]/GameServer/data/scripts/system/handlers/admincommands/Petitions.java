@@ -15,9 +15,7 @@ import com.aionemu.gameserver.world.World;
 
 import java.util.Collection;
 
-/**
- * @author zdead
- */
+
 public class Petitions extends AdminCommand {
 
 	public Petitions() {

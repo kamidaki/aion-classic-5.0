@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.reshanta;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -23,7 +7,7 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.WorldMapInstance;
@@ -98,7 +82,7 @@ public class _1076Fragment_Of_Memory_2 extends QuestHandler
 						changeQuestStep(env, 3, 4, false);
 						WorldMapInstance sliverOfDarkness = InstanceService.getNextAvailableInstance(310070000);
 						InstanceService.registerPlayerWithInstance(sliverOfDarkness, player);
-						TeleportService2.teleportTo(player, 310070000, sliverOfDarkness.getInstanceId(), 523.0000f, 218.0000f, 1204.0000f);
+						TeleportService.teleportTo(player, 310070000, sliverOfDarkness.getInstanceId(), 523.0000f, 218.0000f, 1204.0000f);
 						ThreadPoolManager.getInstance().schedule(new Runnable() {
 							@Override
 							public void run() {
@@ -162,7 +146,7 @@ public class _1076Fragment_Of_Memory_2 extends QuestHandler
 					qs.setQuestVar(5);
                     updateQuestStatus(env);
 					removeQuestItem(env, 182202006, 1);
-					TeleportService2.teleportTo(env.getPlayer(), 110010000, 2004.0000f, 1491.0000f, 581.0000f, (byte) 88);
+					TeleportService.teleportTo(env.getPlayer(), 110010000, 2004.0000f, 1491.0000f, 581.0000f, (byte) 88);
 				}
 			}, 3000);
 			return true;

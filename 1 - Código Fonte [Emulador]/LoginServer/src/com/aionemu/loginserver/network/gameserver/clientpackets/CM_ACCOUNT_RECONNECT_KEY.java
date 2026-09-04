@@ -1,13 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
 package com.aionemu.loginserver.network.gameserver.clientpackets;
 
 
@@ -25,7 +15,6 @@ import com.aionemu.loginserver.network.gameserver.serverpackets.SM_ACCOUNT_RECON
  * This packet is sended by GameServer when player is requesting fast reconnect to login server. LoginServer in response
  * will send reconectKey.
  * 
- * @author -Nemesiss-
  */
 public class CM_ACCOUNT_RECONNECT_KEY extends GsClientPacket {
 

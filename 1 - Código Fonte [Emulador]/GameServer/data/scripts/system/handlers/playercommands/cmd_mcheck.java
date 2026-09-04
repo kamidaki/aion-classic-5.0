@@ -13,7 +13,6 @@ import java.util.Collection;
 /**
  * Checks all LOCKED missions for start conditions immediately And starts them, if conditions are fulfilled
  * 
- * @author vlog
  */
 public class cmd_mcheck extends PlayerCommand {
 

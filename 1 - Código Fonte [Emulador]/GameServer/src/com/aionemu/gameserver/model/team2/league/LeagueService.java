@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.team2.league;
 
 import com.aionemu.commons.callbacks.util.GlobalCallbackHelper;
@@ -47,7 +31,7 @@ public class LeagueService
         if (canInvite(inviter, invited)) {
             LeagueInvite invite = new LeagueInvite(inviter, invited);
             if (invited.getResponseRequester().putRequest(S_ASK.STR_MSGBOX_UNION_INVITE_ME, invite)) {
-                if (invited.isInAlliance2()) {
+                if (invited.isInAlliance()) {
 					PacketSendUtility.sendPacket(inviter, S_MESSAGE_CODE.STR_UNION_INVITE_HIM(invited.getName(), inviter.getName()));
 				}
 				PacketSendUtility.sendPacket(invited, new S_ASK(S_ASK.STR_MSGBOX_UNION_INVITE_ME, 0, 0, inviter.getName()));
@@ -56,11 +40,11 @@ public class LeagueService
     }
 	
     public static final boolean canInvite(Player inviter, Player invited) {
-		return inviter.isInAlliance2() && invited.isInAlliance2() && inviter.getPlayerAlliance2().isLeader(inviter);
+		return inviter.isInAlliance() && invited.isInAlliance() && inviter.getPlayerAlliance().isLeader(inviter);
     }
 	
     public static final League createLeague(Player inviter, Player invited) {
-        PlayerAlliance alliance = inviter.getPlayerAlliance2();
+        PlayerAlliance alliance = inviter.getPlayerAlliance();
         Preconditions.checkNotNull(alliance, "League can not be null");
         League newLeague = new League(new LeagueMember(alliance, 0));
         leagues.put(newLeague.getTeamId(), newLeague);
@@ -90,11 +74,11 @@ public class LeagueService
         Preconditions.checkNotNull(expelGiver, "ExpelGiver player should not be null");
         Preconditions.checkArgument(expelGiver.isInLeague(), "Expelled player should be in league");
         Preconditions.checkArgument(expelledPlayer.isInLeague(), "ExpelGiver should be in league");
-        Preconditions.checkArgument(expelGiver.getPlayerAlliance2().getLeague().isLeader(expelGiver.getPlayerAlliance2()), "ExpelGiver alliance should be the leader of league");
-        Preconditions.checkArgument(expelGiver.getPlayerAlliance2().isLeader(expelGiver), "ExpelGiver should be the leader of alliance");
-        PlayerAlliance alliance = expelGiver.getPlayerAlliance2();
+        Preconditions.checkArgument(expelGiver.getPlayerAlliance().getLeague().isLeader(expelGiver.getPlayerAlliance()), "ExpelGiver alliance should be the leader of league");
+        Preconditions.checkArgument(expelGiver.getPlayerAlliance().isLeader(expelGiver), "ExpelGiver should be the leader of alliance");
+        PlayerAlliance alliance = expelGiver.getPlayerAlliance();
         League league = alliance.getLeague();
-        league.onEvent(new LeagueLeftEvent(league, expelledPlayer.getPlayerAlliance2(), LeagueLeftEvent.LeaveReson.EXPEL));
+        league.onEvent(new LeagueLeftEvent(league, expelledPlayer.getPlayerAlliance(), LeagueLeftEvent.LeaveReson.EXPEL));
     }
 	
     public static void disband(League league) {

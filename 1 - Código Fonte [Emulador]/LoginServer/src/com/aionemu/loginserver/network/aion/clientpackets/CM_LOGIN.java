@@ -1,13 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
 package com.aionemu.loginserver.network.aion.clientpackets;
 
 import java.nio.ByteBuffer;
@@ -31,9 +21,7 @@ import com.aionemu.loginserver.network.aion.serverpackets.SM_LOGIN_FAIL;
 import com.aionemu.loginserver.network.aion.serverpackets.SM_LOGIN_OK;
 import com.aionemu.loginserver.utils.BruteForceProtector;
 
-/**
- * @author -Nemesiss-, KID, Lyahim
- */
+
 public class CM_LOGIN extends AionClientPacket {
 
 	/**

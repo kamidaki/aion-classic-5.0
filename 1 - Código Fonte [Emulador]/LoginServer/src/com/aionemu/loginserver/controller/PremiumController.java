@@ -8,9 +8,7 @@ import com.aionemu.loginserver.GameServerTable;
 import com.aionemu.loginserver.dao.PremiumDAO;
 import com.aionemu.loginserver.network.gameserver.serverpackets.SM_PREMIUM_RESPONSE;
 
-/**
- * @author KID
- */
+
 public class PremiumController {
 	private Logger log = LoggerFactory.getLogger("PREMIUM_CTRL");
 	private static PremiumController controller = new PremiumController();

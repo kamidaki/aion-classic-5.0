@@ -3,13 +3,11 @@ package admincommands;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author MrPoke, lord_rex and ginho1
- */
+
 public class MoveToNpc extends AdminCommand {
 
 	public MoveToNpc() {
@@ -52,7 +50,7 @@ public class MoveToNpc extends AdminCommand {
 		if(npcId > 0) {
 			message = "Teleporting to Npc: "+npcId+"\n"+message;
 			PacketSendUtility.sendMessage(player, message);
-			TeleportService2.teleportToNpc(player, npcId);
+			TeleportService.teleportToNpc(player, npcId);
 		}
 	}
 

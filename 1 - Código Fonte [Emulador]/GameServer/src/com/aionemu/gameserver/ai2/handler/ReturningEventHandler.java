@@ -1,24 +1,8 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.handler;
 
 import com.aionemu.gameserver.ai2.AI2Logger;
 import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.EmoteManager;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -26,7 +10,7 @@ import com.aionemu.gameserver.model.geometry.Point3D;
 
 public class ReturningEventHandler
 {
-	public static void onNotAtHome(NpcAI2 npcAI) {
+	public static void onNotAtHome(NpcAI npcAI) {
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "onNotAtHome");
 		} if (npcAI.setStateIfNot(AIState.RETURNING)) {
@@ -45,7 +29,7 @@ public class ReturningEventHandler
 		}
 	}
 	
-	public static void onBackHome(NpcAI2 npcAI) {
+	public static void onBackHome(NpcAI npcAI) {
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "onBackHome");
 		}

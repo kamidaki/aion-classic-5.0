@@ -5,10 +5,10 @@ import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.spawns.Spawn;
-import com.aionemu.gameserver.model.templates.spawns.SpawnGroup2;
+import com.aionemu.gameserver.model.templates.spawns.SpawnGroup;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MOVEBACK;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -44,10 +44,10 @@ public class FixNpc extends AdminCommand
 				final Npc target = (Npc) admin.getTarget();
 				final SpawnTemplate temp = target.getSpawn();
                 final float adminZ = admin.getZ();
-                List<SpawnGroup2> spawnId = DataManager.SPAWNS_DATA2.getSpawnsByWorldId(admin.getWorldId());
+                List<SpawnGroup> spawnId = DataManager.SPAWNS_DATA.getSpawnsByWorldId(admin.getWorldId());
                 PacketSendUtility.sendMessage(admin, "SPAWN ID: " + spawnId);
                 if (spawnId != null) {
-                } for (final SpawnGroup2 spawn : spawnId) {
+                } for (final SpawnGroup spawn : spawnId) {
                 	StringBuilder comment = new StringBuilder();
                     comment.append(target.getObjectTemplate().getName()).append(" (");
                     int isObject = target.getSpawn().getEntityId();
@@ -66,7 +66,7 @@ public class FixNpc extends AdminCommand
                         	VisibleObject visibleObject = SpawnEngine.spawnObject(spawn2, admin.getInstanceId());
 							//target.getController().delete();
                 			try {
-                				DataManager.SPAWNS_DATA2.saveSpawn(admin, visibleObject, false);
+                				DataManager.SPAWNS_DATA.saveSpawn(admin, visibleObject, false);
                 			} catch (IOException e) {
                 				e.printStackTrace();
                 				PacketSendUtility.sendMessage(admin, "Could not save spawn");
@@ -87,10 +87,10 @@ public class FixNpc extends AdminCommand
                 stop = Integer.parseInt(params[1]);
             }
             final Player admin2 = admin;
-            List<SpawnGroup2> spawngroups = DataManager.SPAWNS_DATA2.getSpawnsByWorldId(admin2.getWorldId());
+            List<SpawnGroup> spawngroups = DataManager.SPAWNS_DATA.getSpawnsByWorldId(admin2.getWorldId());
             List<SpawnTemplate> templates = new ArrayList<SpawnTemplate>();
             PacketSendUtility.sendMessage(admin2, "[AUTO SPAWN]: will start in 10 seconds.");
-            for (final SpawnGroup2 spawngroup : spawngroups) {
+            for (final SpawnGroup spawngroup : spawngroups) {
                 templates.addAll(spawngroup.getSpawnTemplates());
                 numofspawns += spawngroup.getSpawnTemplates().size();
             }
@@ -107,7 +107,7 @@ public class FixNpc extends AdminCommand
                 task = ThreadPoolManager.getInstance().schedule(new Runnable() {
                     @Override
                     public void run() {
-                        TeleportService2.teleportTo(admin2, template.getWorldId(), template.getX(), template.getY(), template.getZ(), (byte) 0);
+                        TeleportService.teleportTo(admin2, template.getWorldId(), template.getX(), template.getY(), template.getZ(), (byte) 0);
                         admin2.getKnownList().doOnAllNpcs(new Visitor<Npc>() {
                             @Override
                             public void visit(Npc n) {
@@ -143,7 +143,7 @@ public class FixNpc extends AdminCommand
                             }
                             comment.append(" ").append(npc.getObjectTemplate().getRank().name()).append(" ");
                             comment.append("lvl:").append(npc.getLevel()).append(")");
-                            Spawn spawnId = DataManager.SPAWNS_DATA2.getSpawnsForNpc(admin.getWorldId(), npc.getNpcId());
+                            Spawn spawnId = DataManager.SPAWNS_DATA.getSpawnsForNpc(admin.getWorldId(), npc.getNpcId());
                             if (spawnId != null) {
                                 log.info("[AUDIT] Deleted npc id=" + template.getNpcId() + ": //moveto " + template.getWorldId() + " " + template.getX() + " " + template.getY() + " " + template.getZ());
                             }
@@ -151,7 +151,7 @@ public class FixNpc extends AdminCommand
                             VisibleObject visibleObject = SpawnEngine.spawnObject(spawn2, admin.getInstanceId());
 							//npc.getController().delete();
                         	try {
-                        		DataManager.SPAWNS_DATA2.saveSpawn(admin, visibleObject, false);
+                        		DataManager.SPAWNS_DATA.saveSpawn(admin, visibleObject, false);
                         	} catch (IOException e) {
                         		e.printStackTrace();
                         		PacketSendUtility.sendMessage(admin, "Could not save spawn");

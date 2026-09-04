@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.org>.
- *
- *  aion-unique is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-unique is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services.drop;
 
 import com.aionemu.commons.objects.filter.ObjectFilter;
@@ -56,9 +40,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author ATracer, xTz
- */
+
 public class DropService {
 
 	private static final Logger log = LoggerFactory.getLogger(DropService.class);
@@ -358,7 +340,7 @@ public class DropService {
 			// to do distribution
 			currentDropItemCount = ItemService.addItem(player, itemId, currentDropItemCount, ItemService.DEFAULT_UPDATE_PREDICATE);
 		}
-		else if (!player.isInGroup2() && !player.isInAlliance2() && !requestedItem.isItemWonNotCollected()
+		else if (!player.isInGroup() && !player.isInAlliance() && !requestedItem.isItemWonNotCollected()
 			&& dropNpc.getDistributionId() == 0) {
 			currentDropItemCount = ItemService.addItem(player, itemId, currentDropItemCount, ItemService.DEFAULT_UPDATE_PREDICATE);
 			uniqueDropAnnounce(player, requestedItem);
@@ -380,7 +362,7 @@ public class DropService {
 			return;
 		}
 		if (!requestedItem.isDistributeItem()) {
-			if (player.isInGroup2() || player.isInAlliance2()) {
+			if (player.isInGroup() || player.isInAlliance()) {
 				lootGrouRules = player.getLootGroupRules();
 				if (lootGrouRules.isMisc(quality)) {
 					Collection<Player> members = dropNpc.getInRangePlayers();
@@ -484,7 +466,7 @@ public class DropService {
 		PacketSendUtility.sendPacket(player,
 			S_MESSAGE_CODE.STR_MSG_LOOT_GET_ITEM_ME(new DescriptionId(ItemInfoService.getNameId(itemId))));
 
-		if (player.isInGroup2() || player.isInAlliance2()) {
+		if (player.isInGroup() || player.isInAlliance()) {
 			for (Player member : DropRegistrationService.getInstance().getDropRegistrationMap().get(npcId).getInRangePlayers()) {
 				if (member != null && !player.equals(member) && member.isOnline()) {
 					PacketSendUtility.sendPacket(
@@ -507,7 +489,7 @@ public class DropService {
 			player.getInventory().decreaseKinah(highestValue);
 		}
 
-		if (player.isInGroup2() || player.isInAlliance2())
+		if (player.isInGroup() || player.isInAlliance())
 			for (Player member : dropNpc.getInRangePlayers())
 				if (member != null && !player.equals(member) && member.isOnline()) {
 					PacketSendUtility.sendPacket(member, S_MESSAGE_CODE.STR_MSG_PAY_ACCOUNT_OTHER(player.getName(), highestValue));
@@ -523,7 +505,7 @@ public class DropService {
 			return;
 
 		int itemId = requestedItem.getItemId();
-		if (player.isInGroup2() || player.isInAlliance2()) {
+		if (player.isInGroup() || player.isInAlliance()) {
 			for (Player member : dropNpc.getInRangePlayers()) {
 				if (member != null && !requestedItem.getWinningPlayer().equals(member) && member.isOnline())
 					PacketSendUtility.sendPacket(member, S_MESSAGE_CODE.STR_MSG_GET_ITEM_PARTYNOTICE(requestedItem.getWinningPlayer().getName(), new DescriptionId(ItemInfoService.getNameId(itemId))));

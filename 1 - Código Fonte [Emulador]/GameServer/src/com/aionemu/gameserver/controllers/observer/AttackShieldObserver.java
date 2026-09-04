@@ -22,9 +22,7 @@ import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-/**
- * @author ATracer modified by Sippolo, kecimis, Luzien
- */
+
 public class AttackShieldObserver extends AttackCalcObserver {
 
 	private int hit;
@@ -144,7 +142,7 @@ public class AttackShieldObserver extends AttackCalcObserver {
 					}
 					attackResult.setShieldType(shieldType);
 					if (attacker instanceof Npc) {
-						reflectedHit = attacker.getAi2().modifyDamage(reflectedHit);
+						reflectedHit = attacker.getAi().modifyDamage(reflectedHit);
 					}
 					attackResult.setReflectedDamage(reflectedHit);
 					attackResult.setReflectedSkillId(effect.getSkillId());

@@ -19,7 +19,7 @@ public class SpawnTemplate
 	private int fly;
 	private String anchor;
 	private boolean isUsed;
-	private SpawnGroup2 spawnGroup;
+	private SpawnGroup spawnGroup;
 	private EventTemplate eventTemplate;
 	private SpawnModel model;
 	private int state;
@@ -40,7 +40,7 @@ public class SpawnTemplate
 	private VisibleObject visibleObject;
 	private FastList<VisibleObject> visibleObjects;
 	
-	public SpawnTemplate(SpawnGroup2 spawnGroup, SpawnSpotTemplate spot) {
+	public SpawnTemplate(SpawnGroup spawnGroup, SpawnSpotTemplate spot) {
 		this.spawnGroup = spawnGroup;
 		x = spot.getX();
 		y = spot.getY();
@@ -68,7 +68,7 @@ public class SpawnTemplate
 		temporarySpawn = spot.getTemporarySpawn();
 	}
 	
-	public SpawnTemplate(SpawnGroup2 spawnGroup, float x, float y, float z, byte heading, int randWalk, String walkerId, int entityId, int fly) {
+	public SpawnTemplate(SpawnGroup spawnGroup, float x, float y, float z, byte heading, int randWalk, String walkerId, int entityId, int fly) {
 		this.spawnGroup = spawnGroup;
 		this.x = x;
 		this.y = y;

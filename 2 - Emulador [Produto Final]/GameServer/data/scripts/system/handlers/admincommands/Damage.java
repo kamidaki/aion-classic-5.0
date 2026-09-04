@@ -9,9 +9,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author Source
- */
+
 public class Damage extends AdminCommand {
 
 	public Damage() {

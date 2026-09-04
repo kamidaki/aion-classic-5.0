@@ -6,7 +6,7 @@ import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.commons.database.IUStH;
 import com.aionemu.commons.database.ParamReadStH;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.ChatUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
@@ -20,7 +20,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Mrakobes
  * @modified antness
  */
 public class Bk extends AdminCommand {
@@ -117,7 +116,7 @@ public class Bk extends AdminCommand {
 				}
 				finally {
 					if (tele_bk != null) {
-						TeleportService2.teleportTo(player, tele_bk.getWorld_id(), tele_bk.getX(), tele_bk.getY(), tele_bk.getZ());
+						TeleportService.teleportTo(player, tele_bk.getWorld_id(), tele_bk.getX(), tele_bk.getY(), tele_bk.getZ());
 						PacketSendUtility.sendMessage(player, "Teleported to bookmark " + tele_bk.getName() + " location");
 					}
 				}

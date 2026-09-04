@@ -11,7 +11,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.siege.Influence;
 import com.aionemu.gameserver.model.stats.calc.AdditionStat;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.stats.container.CreatureGameStats;
 import com.aionemu.gameserver.model.stats.container.PlayerGameStats;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
@@ -173,7 +173,7 @@ public class StatFunctions
 	}
 	
 	public static int calculateHate(Creature creature, int value) {
-		Stat2 stat = new AdditionStat(StatEnum.BOOST_HATE, value, creature, 0.1f);
+		Stat stat = new AdditionStat(StatEnum.BOOST_HATE, value, creature, 0.1f);
 		return (int) (creature.getGameStats().getStat(StatEnum.BOOST_HATE, stat).getCurrent());
 	}
 	
@@ -187,15 +187,15 @@ public class StatFunctions
 		elements = element;
         resultDamage = (int) adjustDamages(attacker, target, resultDamage, 0, true);
 		if (target instanceof Npc) {
-            return target.getAi2().modifyDamage((int) resultDamage);
+            return target.getAi().modifyDamage((int) resultDamage);
         } if (attacker instanceof Npc) {
-            return attacker.getAi2().modifyOwnerDamage(resultDamage);
+            return attacker.getAi().modifyOwnerDamage(resultDamage);
         }
         return resultDamage;
     }
 	
 	public static int calculatePhysicalAttackDamage(Creature attacker, Creature target, boolean isMainHand) {
-		Stat2 pAttack;
+		Stat pAttack;
 		if (isMainHand) {
 			pAttack = attacker.getGameStats().getMainHandPAttack();
 		} else {
@@ -266,7 +266,7 @@ public class StatFunctions
 	}
 	
 	public static int calculateMagicalAttackDamage(Creature attacker, Creature target, SkillElement element, boolean isMainHand) {
-        Stat2 mAttack;
+        Stat mAttack;
         if (isMainHand) {
             mAttack = attacker.getGameStats().getMainHandMAttack();
         } else {
@@ -337,7 +337,7 @@ public class StatFunctions
         if (damages <= 0) {
             damages = 1;
         } if (target instanceof Npc) {
-            return target.getAi2().modifyDamage((int) damages);
+            return target.getAi().modifyDamage((int) damages);
         }
         return Math.round(damages);
     }

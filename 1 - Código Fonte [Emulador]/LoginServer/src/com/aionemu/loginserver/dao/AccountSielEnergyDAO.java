@@ -14,9 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * @author soulxj
- */
+
 public class AccountSielEnergyDAO {
 
     private static final Logger log = LoggerFactory.getLogger(AccountSielEnergyDAO.class);

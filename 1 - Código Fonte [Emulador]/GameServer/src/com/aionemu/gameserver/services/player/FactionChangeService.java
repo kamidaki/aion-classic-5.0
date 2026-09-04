@@ -7,7 +7,7 @@ import com.aionemu.gameserver.model.gameobjects.player.BindPointPosition;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.S_PUT_USER;
 import com.aionemu.gameserver.network.aion.serverpackets.S_WIELD;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,7 +64,7 @@ public class FactionChangeService {
         PacketSendUtility.sendMessage(player, "[Troca de Faccao] Sua faccao foi alterada para " + targetRace.name() + " com sucesso!");
 
         // Teleportar para a nova capital
-        TeleportService2.teleportTo(player, targetWorldId, x, y, z, heading);
+        TeleportService.teleportTo(player, targetWorldId, x, y, z, heading);
 
         log.info("[FactionChangeService] Jogador " + player.getName() + " alterou faccao para " + targetRace.name());
         return true;

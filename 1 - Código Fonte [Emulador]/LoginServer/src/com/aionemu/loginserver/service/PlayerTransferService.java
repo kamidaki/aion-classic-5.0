@@ -22,9 +22,7 @@ import com.aionemu.loginserver.service.ptransfer.PlayerTransferStatus;
 import com.aionemu.loginserver.service.ptransfer.PlayerTransferTask;
 import com.aionemu.loginserver.utils.ThreadPoolManager;
 
-/**
- * @author KID
- */
+
 public class PlayerTransferService {
 	private static PlayerTransferService instance = new PlayerTransferService();
 	private final Logger log = LoggerFactory.getLogger(PlayerTransferService.class);

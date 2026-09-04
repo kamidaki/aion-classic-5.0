@@ -7,10 +7,7 @@ import com.aionemu.gameserver.services.HTMLService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author ginho1, Damon
- * 
- */
+
 public class AddEmotion extends AdminCommand {
 
 	public AddEmotion() {

@@ -3,11 +3,7 @@ package com.aionemu.gameserver.network.loginserver.serverpackets;
 import com.aionemu.gameserver.network.loginserver.LoginServerConnection;
 import com.aionemu.gameserver.network.loginserver.LsServerPacket;
 
-/**
- * 
- * @author KID
- *
- */
+
 public class SM_MACBAN_CONTROL extends LsServerPacket {
 
 	private byte type;

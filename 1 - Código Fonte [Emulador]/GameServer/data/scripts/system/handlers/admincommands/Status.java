@@ -6,9 +6,7 @@ import com.aionemu.gameserver.model.team2.group.PlayerGroupService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author KID
- */
+
 public class Status extends AdminCommand {
 
 	public Status() {

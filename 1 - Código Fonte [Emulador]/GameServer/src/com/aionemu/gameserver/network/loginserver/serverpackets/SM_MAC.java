@@ -3,11 +3,7 @@ package com.aionemu.gameserver.network.loginserver.serverpackets;
 import com.aionemu.gameserver.network.loginserver.LoginServerConnection;
 import com.aionemu.gameserver.network.loginserver.LsServerPacket;
 
-/**
- * 
- * @author nrg
- *
- */
+
 public class SM_MAC extends LsServerPacket {
 
 	private int accountId;

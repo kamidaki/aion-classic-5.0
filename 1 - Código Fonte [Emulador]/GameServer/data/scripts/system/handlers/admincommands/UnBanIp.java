@@ -5,9 +5,7 @@ import com.aionemu.gameserver.network.loginserver.LoginServer;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Watson
- */
+
 public class UnBanIp extends AdminCommand {
 
 	public UnBanIp() {

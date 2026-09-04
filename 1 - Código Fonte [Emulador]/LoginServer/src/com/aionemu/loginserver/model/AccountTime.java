@@ -1,14 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
-
 package com.aionemu.loginserver.model;
 
 import java.sql.Timestamp;
@@ -17,7 +6,6 @@ import java.sql.Timestamp;
  * Class for storing account time data (last login time, last session duration time, accumulated online time today,
  * accumulated rest time today)
  * 
- * @author EvilSpirit
  */
 public class AccountTime {
 

@@ -17,9 +17,7 @@ import com.aionemu.gameserver.utils.idfactory.IDFactory;
 import com.aionemu.gameserver.world.World;
 import org.apache.commons.lang.StringUtils;
 
-/**
- * @author xTz
- */
+
 public class Gameshop extends AdminCommand {
 
 	public Gameshop() {

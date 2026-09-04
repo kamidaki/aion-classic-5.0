@@ -1,16 +1,10 @@
-/*
- * This file is part of the requirements for the Illusion Gate Skill.
- * Code References from ATracer's Trap.java of Aion-Unique
- */
 package com.aionemu.gameserver.model.gameobjects;
 
 import com.aionemu.gameserver.controllers.NpcController;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 
-/**
- * @author LokiReborn
- */
+
 public class GroupGate extends SummonedObject<Creature> {
 
 	/**

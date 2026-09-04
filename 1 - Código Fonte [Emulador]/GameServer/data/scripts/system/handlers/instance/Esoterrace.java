@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AbstractAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
@@ -125,7 +109,7 @@ public class Esoterrace extends GeneralInstanceHandler
 				///Greenfingers.
 				final Npc idf4re_dra_01_nameda_sum_3_53_ae = (Npc) spawn(282178, 1234.0000f, 654.0000f, 296.0000f, (byte) 0);
 				idf4re_dra_01_nameda_sum_3_53_ae.getSpawn().setWalkerId("npcpathidf4re_drana_etc_1st_bridge_mob");
-				WalkManager.startWalking((NpcAI2) idf4re_dra_01_nameda_sum_3_53_ae.getAi2());
+				WalkManager.startWalking((NpcAI) idf4re_dra_01_nameda_sum_3_53_ae.getAi());
 				idf4re_dra_01_nameda_sum_3_53_ae.setState(1);
 				PacketSendUtility.broadcastPacket(idf4re_dra_01_nameda_sum_3_53_ae, new S_ACTION(idf4re_dra_01_nameda_sum_3_53_ae, EmotionType.START_EMOTE2, 0, idf4re_dra_01_nameda_sum_3_53_ae.getObjectId()));
 				actionGreenfingers(instance.getNpc(282178));
@@ -158,7 +142,7 @@ public class Esoterrace extends GeneralInstanceHandler
 			    despawnNpc(npc);
 				final Npc keeningSirokin = instance.getNpc(799580);
 				keeningSirokin.getSpawn().setWalkerId("idf4re_dra_02_shulackprisoner_hidden");
-				WalkManager.startWalking((NpcAI2) keeningSirokin.getAi2());
+				WalkManager.startWalking((NpcAI) keeningSirokin.getAi());
 				actionKeeningSirokin(instance.getNpc(799580));
 			break;
 			case 217195: //Captain Murugan.
@@ -204,7 +188,7 @@ public class Esoterrace extends GeneralInstanceHandler
     }
 	
 	private void moveToForward(final Npc npc, float x, float y, float z, boolean despawn) {
-		((AbstractAI) npc.getAi2()).setStateIfNot(AIState.WALKING);
+		((AbstractAI) npc.getAi()).setStateIfNot(AIState.WALKING);
 		npc.setState(1);
 		npc.getMoveController().moveToPoint(x, y, z);
 		PacketSendUtility.broadcastPacket(npc, new S_ACTION(npc, EmotionType.START_EMOTE2, 0, npc.getObjectId()));

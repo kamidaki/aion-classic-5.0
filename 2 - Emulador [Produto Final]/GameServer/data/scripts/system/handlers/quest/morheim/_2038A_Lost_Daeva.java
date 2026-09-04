@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.morheim;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -22,7 +6,7 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.questEngine.model.QuestDialog;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 
 /****/
 /** Author Rinzler (Encom)
@@ -91,7 +75,7 @@ public class _2038A_Lost_Daeva extends QuestHandler
 				switch (env.getDialog()) {
 					case USE_OBJECT: {
 						if (var == 1) {
-							TeleportService2.teleportTo(env.getPlayer(), 220020000, 2635.0000f, 2599.0000f, 143.0000f, (byte) 92);
+							TeleportService.teleportTo(env.getPlayer(), 220020000, 2635.0000f, 2599.0000f, 143.0000f, (byte) 92);
 							return useQuestObject(env, 1, 2, false, 0, 83);
 						}
 					}

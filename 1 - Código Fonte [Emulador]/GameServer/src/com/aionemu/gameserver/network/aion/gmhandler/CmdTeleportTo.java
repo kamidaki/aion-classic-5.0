@@ -1,33 +1,15 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.network.aion.gmhandler;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.WorldMap;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.WorldMapType;
 
-/**
- * @author Alcapwnd
- */
+
 public class CmdTeleportTo extends AbstractGMHandler {
 
 	public CmdTeleportTo(Player admin, String params) {
@@ -360,9 +342,9 @@ public class CmdTeleportTo extends AbstractGMHandler {
 	private static void goTo(final Player admin, int worldId, float x, float y, float z) {
 		WorldMap destinationMap = World.getInstance().getWorldMap(worldId);
 		if (destinationMap.isInstanceType())
-			TeleportService2.teleportTo(admin, worldId, getInstanceId(worldId, admin), x, y, z);
+			TeleportService.teleportTo(admin, worldId, getInstanceId(worldId, admin), x, y, z);
 		else
-			TeleportService2.teleportTo(admin, worldId, x, y, z);
+			TeleportService.teleportTo(admin, worldId, x, y, z);
 	}
 
 	private static int getInstanceId(int worldId, Player admin) {

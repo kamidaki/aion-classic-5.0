@@ -5,9 +5,7 @@ import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 
 import javax.xml.bind.annotation.*;
 
-/**
- * @author Wnkrz
- */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "GlobalDropItem")
 public class GlobalDropItem

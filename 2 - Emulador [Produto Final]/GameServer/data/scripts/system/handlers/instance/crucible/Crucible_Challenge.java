@@ -1,25 +1,9 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance.crucible;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.instance.handlers.InstanceID;
 import com.aionemu.gameserver.model.DescriptionId;
@@ -44,7 +28,7 @@ import com.aionemu.gameserver.services.NpcShoutsService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.item.ItemService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.skillengine.model.DispelCategoryType;
 import com.aionemu.gameserver.skillengine.model.Effect;
@@ -538,25 +522,25 @@ public class Crucible_Challenge extends Crucible_System
 	}
 	
 	protected void crucibleStage1(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage2(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage3(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage41(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage42(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage5(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage6(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	
 	@Override
@@ -943,7 +927,7 @@ public class Crucible_Challenge extends Crucible_System
 				instanceReward.setInstanceScoreType(InstanceScoreType.END_PROGRESS);
 			}
 		} else {
-			TeleportService2.moveToInstanceExit(player, mapId, player.getRace());
+			TeleportService.moveToInstanceExit(player, mapId, player.getRace());
 		}
 		PacketSendUtility.sendPacket(player, new S_INSTANT_DUNGEON_INFO(instanceReward));
 	}
@@ -962,7 +946,7 @@ public class Crucible_Challenge extends Crucible_System
 				sendMsgByRace(1401067, Race.PC_ALL, 0);
 				final Npc idarena_solo_s4_polymorph_porguss = (Npc) spawn(217802, 1780.5371f, 307.3513f, 469.2500f, (byte) 0);
 				idarena_solo_s4_polymorph_porguss.getSpawn().setWalkerId("idarena_solo_s4_polymorph_porguss");
-				WalkManager.startWalking((NpcAI2) idarena_solo_s4_polymorph_porguss.getAi2());
+				WalkManager.startWalking((NpcAI) idarena_solo_s4_polymorph_porguss.getAi());
 			}
 		}, 1000);
 		bonusTimer = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
@@ -1069,10 +1053,10 @@ public class Crucible_Challenge extends Crucible_System
 	}
 	
 	protected void teleport(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void teleportNewStage(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	
 	@Override

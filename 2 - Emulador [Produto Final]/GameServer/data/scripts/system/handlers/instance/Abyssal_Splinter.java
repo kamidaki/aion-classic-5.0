@@ -1,22 +1,6 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AbstractAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
@@ -33,7 +17,7 @@ import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.ClassChangeService;
 import com.aionemu.gameserver.services.item.ItemService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
@@ -237,7 +221,7 @@ public class Abyssal_Splinter extends GeneralInstanceHandler
 			    despawnNpc(npc);
 			    final Npc rukril2 = instance.getNpc(216948); //Rukril.
 				if (rukril2 != null) {
-					rukril2.getAi2().think();
+					rukril2.getAi().think();
 					rukril2.getEffectController().removeEffect(IDABRE_COREB_ODDSHIELD_LIGHT);
 				}
 			break;
@@ -245,7 +229,7 @@ public class Abyssal_Splinter extends GeneralInstanceHandler
 			    despawnNpc(npc);
 				final Npc ebonsoul2 = instance.getNpc(216949); //Ebonsoul.
 				if (ebonsoul2 != null) {
-					ebonsoul2.getAi2().think();
+					ebonsoul2.getAi().think();
 					ebonsoul2.getEffectController().removeEffect(IDABRE_COREB_ODDSHIELD);
 				}
 			break;
@@ -334,13 +318,13 @@ public class Abyssal_Splinter extends GeneralInstanceHandler
 	}
 	
 	protected void teleporterDevice1(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void teleporterDevice2(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void teleporterDevice3(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	
 	private void removeItems(Player player) {
@@ -408,7 +392,7 @@ public class Abyssal_Splinter extends GeneralInstanceHandler
                 if (!isInstanceDestroyed) {
                     Npc npc = (Npc) spawn(npcId, x, y, z, h);
                     npc.getSpawn().setWalkerId(walkerId);
-                    WalkManager.startWalking((NpcAI2) npc.getAi2());
+                    WalkManager.startWalking((NpcAI) npc.getAi());
                 }
             }
         }, time));

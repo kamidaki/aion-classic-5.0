@@ -7,9 +7,7 @@ import com.aionemu.gameserver.utils.Util;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.World;
 
-/**
- * @author lord_rex Command: //sprison <player> <delay>(minutes) This command is sending player to prison.
- */
+
 public class SPrison extends AdminCommand {
 
 	public SPrison() {

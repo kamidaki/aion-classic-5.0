@@ -7,10 +7,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
-/**
- * @author Krz
- *
- */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "commons_drop_items")
 public class CommonsDropData {

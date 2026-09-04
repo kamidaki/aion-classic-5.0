@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
 import com.aionemu.gameserver.instance.handlers.InstanceID;
@@ -215,106 +199,106 @@ public class Chamber_Of_Roah extends GeneralInstanceHandler
 			case 1:
 				final Npc rhoo_lizardfi_45_ae1 = (Npc) spawn(214771, 500.17514f, 456.7734f, 86.72303f, (byte) 0);
 				rhoo_lizardfi_45_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfi_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfi_45_ae1.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardas_45_ae1 = (Npc) spawn(214772, 500.17514f, 456.7734f, 86.72303f, (byte) 0);
 				rhoo_lizardas_45_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardas_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardas_45_ae1.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardra_45_ae1 = (Npc) spawn(214773, 500.17514f, 456.7734f, 86.72303f, (byte) 0);
 				rhoo_lizardra_45_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardra_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardra_45_ae1.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardpr_45_ae1 = (Npc) spawn(214774, 500.17514f, 456.7734f, 86.72303f, (byte) 0);
 				rhoo_lizardpr_45_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_01");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardpr_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardpr_45_ae1.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc rhoo_lizardfi_45_ae2 = (Npc) spawn(214771, 508.335f, 464.12936f, 86.756065f, (byte) 0);
 				rhoo_lizardfi_45_ae2.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_02");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfi_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfi_45_ae2.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardas_45_ae2 = (Npc) spawn(214772, 508.335f, 464.12936f, 86.756065f, (byte) 0);
 				rhoo_lizardas_45_ae2.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_02");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardas_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardas_45_ae2.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardra_45_ae2 = (Npc) spawn(214773, 508.335f, 464.12936f, 86.756065f, (byte) 0);
 				rhoo_lizardra_45_ae2.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_02");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardra_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardra_45_ae2.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardpr_45_ae2 = (Npc) spawn(214774, 508.335f, 464.12936f, 86.756065f, (byte) 0);
 				rhoo_lizardpr_45_ae2.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_02");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardpr_45_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardpr_45_ae2.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc rhoo_lizardfi_45_ae3 = (Npc) spawn(214771, 500.01886f, 504.12762f, 88.9788f, (byte) 0);
 				rhoo_lizardfi_45_ae3.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_06");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfi_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfi_45_ae3.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardas_45_ae3 = (Npc) spawn(214772, 500.01886f, 504.12762f, 88.9788f, (byte) 0);
 				rhoo_lizardas_45_ae3.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_06");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardas_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardas_45_ae3.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardra_45_ae3 = (Npc) spawn(214773, 500.01886f, 504.12762f, 88.9788f, (byte) 0);
 				rhoo_lizardra_45_ae3.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_06");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardra_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardra_45_ae3.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardpr_45_ae3 = (Npc) spawn(214774, 500.01886f, 504.12762f, 88.9788f, (byte) 0);
 				rhoo_lizardpr_45_ae3.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_06");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardpr_45_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardpr_45_ae3.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc rhoo_lizardfi_45_ae4 = (Npc) spawn(214771, 508.04385f, 504.0504f, 88.97879f, (byte) 0);
 				rhoo_lizardfi_45_ae4.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_07");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfi_45_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfi_45_ae4.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardas_45_ae4 = (Npc) spawn(214772, 508.04385f, 504.0504f, 88.97879f, (byte) 0);
 				rhoo_lizardas_45_ae4.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_07");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardas_45_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardas_45_ae4.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardra_45_ae4 = (Npc) spawn(214773, 508.04385f, 504.0504f, 88.97879f, (byte) 0);
 				rhoo_lizardra_45_ae4.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_07");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardra_45_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardra_45_ae4.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardpr_45_ae4 = (Npc) spawn(214774, 508.04385f, 504.0504f, 88.97879f, (byte) 0);
 				rhoo_lizardpr_45_ae4.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_07");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardpr_45_ae4.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardpr_45_ae4.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc rhoo_lizardfi_45_ae5 = (Npc) spawn(214771, 439.92746f, 487.69226f, 99.13802f, (byte) 0);
 				rhoo_lizardfi_45_ae5.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_10");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfi_45_ae5.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfi_45_ae5.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardas_45_ae5 = (Npc) spawn(214772, 439.92746f, 487.69226f, 99.13802f, (byte) 0);
 				rhoo_lizardas_45_ae5.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_10");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardas_45_ae5.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardas_45_ae5.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardra_45_ae5 = (Npc) spawn(214773, 439.92746f, 487.69226f, 99.13802f, (byte) 0);
 				rhoo_lizardra_45_ae5.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_10");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardra_45_ae5.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardra_45_ae5.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardpr_45_ae5 = (Npc) spawn(214774, 439.92746f, 487.69226f, 99.13802f, (byte) 0);
 				rhoo_lizardpr_45_ae5.getSpawn().setWalkerId("npcpath_mob_ph_rhoo_lizardas_45_ae_10");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardpr_45_ae5.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardpr_45_ae5.getAi());
 			break;
 		}
 		///Dakaer Fighter OR Dakaer Manbane OR Dakaer Sentinel OR Dakaer Bloodbinder.
@@ -452,22 +436,22 @@ public class Chamber_Of_Roah extends GeneralInstanceHandler
 			case 1:
 				final Npc rhoo_lizardfihigh_45_ae1 = (Npc) spawn(214775, 568.63184f, 480.14392f, 99.18538f, (byte) 0);
 				rhoo_lizardfihigh_45_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_30");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfihigh_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfihigh_45_ae1.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardashigh_45_ae1 = (Npc) spawn(214776, 568.63184f, 480.14392f, 99.18538f, (byte) 0);
 				rhoo_lizardashigh_45_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_30");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardashigh_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardashigh_45_ae1.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardrahigh_45_ae1 = (Npc) spawn(214777, 568.63184f, 480.14392f, 99.18538f, (byte) 0);
 				rhoo_lizardrahigh_45_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_30");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardrahigh_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardrahigh_45_ae1.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardprhigh_45_ae1 = (Npc) spawn(214778, 568.63184f, 480.14392f, 99.18538f, (byte) 0);
 				rhoo_lizardprhigh_45_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardas_45_ae_30");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardprhigh_45_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardprhigh_45_ae1.getAi());
 			break;
 		}
 		///Dakaer Bulwark OR Dakaer Diabolist OR Dakaer Bloodmender.
@@ -600,64 +584,64 @@ public class Chamber_Of_Roah extends GeneralInstanceHandler
 			case 1:
 				final Npc rhoo_lizardfihigh_50_ae1 = (Npc) spawn(215445, 485.37903f, 562.4739f, 100.504684f, (byte) 0);
 				rhoo_lizardfihigh_50_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_05");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfihigh_50_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfihigh_50_ae1.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardashigh_50_ae1 = (Npc) spawn(215446, 485.37903f, 562.4739f, 100.504684f, (byte) 0);
 				rhoo_lizardashigh_50_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_05");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardashigh_50_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardashigh_50_ae1.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardrahigh_50_ae1 = (Npc) spawn(215447, 485.37903f, 562.4739f, 100.504684f, (byte) 0);
 				rhoo_lizardrahigh_50_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_05");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardrahigh_50_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardrahigh_50_ae1.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardprhigh_50_ae1 = (Npc) spawn(215448, 485.37903f, 562.4739f, 100.504684f, (byte) 0);
 				rhoo_lizardprhigh_50_ae1.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_05");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardprhigh_50_ae1.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardprhigh_50_ae1.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc rhoo_lizardfihigh_50_ae2 = (Npc) spawn(215445, 523.02454f, 599.43665f, 100.50599f, (byte) 0);
 				rhoo_lizardfihigh_50_ae2.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_06");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfihigh_50_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfihigh_50_ae2.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardashigh_50_ae2 = (Npc) spawn(215446, 523.02454f, 599.43665f, 100.50599f, (byte) 0);
 				rhoo_lizardashigh_50_ae2.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_06");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardashigh_50_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardashigh_50_ae2.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardrahigh_50_ae2 = (Npc) spawn(215447, 523.02454f, 599.43665f, 100.50599f, (byte) 0);
 				rhoo_lizardrahigh_50_ae2.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_06");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardrahigh_50_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardrahigh_50_ae2.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardprhigh_50_ae2 = (Npc) spawn(215448, 523.02454f, 599.43665f, 100.50599f, (byte) 0);
 				rhoo_lizardprhigh_50_ae2.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_06");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardprhigh_50_ae2.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardprhigh_50_ae2.getAi());
 			break;
 		} switch (Rnd.get(1, 4)) {
 			case 1:
 				final Npc rhoo_lizardfihigh_50_ae3 = (Npc) spawn(215445, 504.14554f, 542.4772f, 98.73344f, (byte) 0);
 				rhoo_lizardfihigh_50_ae3.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_09");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardfihigh_50_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardfihigh_50_ae3.getAi());
 			break;
 			case 2:
 				final Npc rhoo_lizardashigh_50_ae3 = (Npc) spawn(215446, 504.14554f, 542.4772f, 98.73344f, (byte) 0);
 				rhoo_lizardashigh_50_ae3.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_09");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardashigh_50_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardashigh_50_ae3.getAi());
 			break;
 			case 3:
 				final Npc rhoo_lizardrahigh_50_ae3 = (Npc) spawn(215447, 504.14554f, 542.4772f, 98.73344f, (byte) 0);
 				rhoo_lizardrahigh_50_ae3.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_09");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardrahigh_50_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardrahigh_50_ae3.getAi());
 			break;
 			case 4:
 				final Npc rhoo_lizardprhigh_50_ae3 = (Npc) spawn(215448, 504.14554f, 542.4772f, 98.73344f, (byte) 0);
 				rhoo_lizardprhigh_50_ae3.getSpawn().setWalkerId("npcpath_ph_rhoo_lizardashigh_45_ae_09");
-				WalkManager.startWalking((NpcAI2) rhoo_lizardprhigh_50_ae3.getAi2());
+				WalkManager.startWalking((NpcAI) rhoo_lizardprhigh_50_ae3.getAi());
 			break;
 		}
 		///Protector Kael OR Ebonlord Vasana.

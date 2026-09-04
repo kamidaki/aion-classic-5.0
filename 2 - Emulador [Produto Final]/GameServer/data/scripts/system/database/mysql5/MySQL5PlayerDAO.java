@@ -548,9 +548,7 @@ public class MySQL5PlayerDAO extends PlayerDAO
 		return accountId;
 	}
 
-	/**
-	 * @author xTz
-	 */
+	
 	@Override
 	public void storePlayerName(final PlayerCommonData recipientCommonData) {
 		Connection con = null;

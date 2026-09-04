@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2;
 
 import com.aionemu.commons.scripting.classlistener.AggregatedClassListener;
@@ -39,9 +23,7 @@ import java.util.concurrent.CountDownLatch;
 import static ch.lambdaj.Lambda.*;
 import static ch.lambdaj.collection.LambdaCollections.with;
 
-/**
- * @author ATracer
- */
+
 public class AI2Engine implements GameEngine {
 
 	private static final Logger log = LoggerFactory.getLogger(AI2Engine.class);
@@ -52,7 +34,7 @@ public class AI2Engine implements GameEngine {
 
 	@Override
 	public void load(CountDownLatch progressLatch) {
-		log.info("AI2 engine load started");
+		log.info("AI engine load started");
 		scriptManager = new ScriptManager();
 
 		AggregatedClassListener acl = new AggregatedClassListener();
@@ -63,7 +45,7 @@ public class AI2Engine implements GameEngine {
 
 		try {
 			scriptManager.load(INSTANCE_DESCRIPTOR_FILE);
-			log.info("Loaded " + aiMap.size() + " AI2.");
+			log.info("Loaded " + aiMap.size() + " AI.");
 			validateScripts();
 		}
 		catch (Exception e) {
@@ -77,11 +59,11 @@ public class AI2Engine implements GameEngine {
 
 	@Override
 	public void shutdown() {
-		log.info("AI2 engine shutdown started");
+		log.info("AI engine shutdown started");
 		scriptManager.shutdown();
 		scriptManager = null;
 		aiMap.clear();
-		log.info("AI2 engine shutdown complete");
+		log.info("AI engine shutdown complete");
 	}
 
 	public void registerAI(Class<? extends AbstractAI> class1) {
@@ -91,7 +73,7 @@ public class AI2Engine implements GameEngine {
 		}
 	}
 
-	public final AI2 setupAI(String name, Creature owner) {
+	public final AI setupAI(String name, Creature owner) {
 		AbstractAI aiInstance = null;
 		try {
 			Class<? extends AbstractAI> aiClass = null;
@@ -111,21 +93,21 @@ public class AI2Engine implements GameEngine {
 				if (aiClass == null) {
 					aiClass = aiMap.get("npc");
 					if (aiClass == null) {
-						aiClass = NpcAI2.class;
+						aiClass = NpcAI.class;
 					}
 				}
 			}
 			if (aiClass != null) {
 				aiInstance = aiClass.newInstance();
 				aiInstance.setOwner(owner);
-				owner.setAi2(aiInstance);
+				owner.setAi(aiInstance);
 				if (AIConfig.ONCREATE_DEBUG) {
 					aiInstance.setLogging(true);
 				}
 			}
 		}
 		catch (Exception e) {
-			log.error("[AI2] AI factory error: " + name, e);
+			log.error("[AI] AI factory error: " + name, e);
 		}
 		return aiInstance;
 	}

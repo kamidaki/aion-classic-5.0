@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.com>.
- *
- *  aion-unique is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-unique is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.skillengine.properties;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -128,10 +112,10 @@ public class FirstTargetProperty
 				Creature effected = skill.getFirstTarget();
 				if ((effected == null) || (skill.getEffector() == null))
 					return false;
-				if ((!(effected instanceof Player)) || (!(skill.getEffector() instanceof Player)) || (!((Player) skill.getEffector()).isInGroup2()))
+				if ((!(effected instanceof Player)) || (!(skill.getEffector() instanceof Player)) || (!((Player) skill.getEffector()).isInGroup()))
 					return false;
 				boolean myParty = false;
-				for (Player member : ((Player) skill.getEffector()).getPlayerGroup2().getMembers()) {
+				for (Player member : ((Player) skill.getEffector()).getPlayerGroup().getMembers()) {
 					if (member != skill.getEffector()) {
 						if (member == effected) {
 							myParty = true;

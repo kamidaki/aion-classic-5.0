@@ -1,6 +1,3 @@
-/* Copyright (c) 2018 To Aion Ryzen Project */
-
-
 package com.aionemu.gameserver.network.aion.serverpackets;
 
 import com.aionemu.gameserver.configs.main.GSConfig;

@@ -1,8 +1,6 @@
 package com.aionemu.gameserver.model.ingameshop;
 
-/**
- * @author KID
- */
+
 public class IGRequest {
 
 	public boolean gift = false, sync = false;

@@ -8,9 +8,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 
-/**
- * @author ginho1
- */
+
 public class CM_CHAT_GROUP_INFO extends AionClientPacket {
 
 	private String playerName;

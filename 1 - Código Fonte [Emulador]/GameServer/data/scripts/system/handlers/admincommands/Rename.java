@@ -22,9 +22,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
 import java.util.Iterator;
 
-/**
- * @author xTz
- */
+
 public class Rename extends AdminCommand {
 
 	public Rename() {

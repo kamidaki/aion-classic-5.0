@@ -16,7 +16,7 @@ public class QuestTasks
 	}
 	
 	public static final Future<?> newFollowingToTargetCheckTask(final QuestEnv env, Npc npc, int npcTargetId) {
-		SpawnSearchResult searchResult = DataManager.SPAWNS_DATA2.getFirstSpawnByNpcId(npc.getWorldId(), npcTargetId);
+		SpawnSearchResult searchResult = DataManager.SPAWNS_DATA.getFirstSpawnByNpcId(npc.getWorldId(), npcTargetId);
 		if (searchResult == null) {
 			throw new IllegalArgumentException("Supplied npc doesn't exist: " + npcTargetId);
 		}

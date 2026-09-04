@@ -9,11 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.Timestamp;
 import java.util.Map;
 
-/**
- * 
- * @author KID
- * 
- */
+
 public class BannedMacManager {
 	private static BannedMacManager manager = new BannedMacManager();
 	private final Logger log = LoggerFactory.getLogger(BannedMacManager.class);

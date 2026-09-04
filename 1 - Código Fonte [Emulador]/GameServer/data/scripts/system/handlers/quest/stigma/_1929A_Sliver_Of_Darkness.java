@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.stigma;
 
 import com.aionemu.gameserver.model.Race;
@@ -31,7 +15,7 @@ import com.aionemu.gameserver.questEngine.model.QuestDialog;
 import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.WorldMapInstance;
@@ -126,7 +110,7 @@ public class _1929A_Sliver_Of_Darkness extends QuestHandler
 						changeQuestStep(env, 2, 93, false);
 						WorldMapInstance sliverOfDarkness = InstanceService.getNextAvailableInstance(310070000);
 						InstanceService.registerPlayerWithInstance(sliverOfDarkness, player);
-						TeleportService2.teleportTo(player, 310070000, sliverOfDarkness.getInstanceId(), 339.0000f, 100.0000f, 1190.0000f);
+						TeleportService.teleportTo(player, 310070000, sliverOfDarkness.getInstanceId(), 339.0000f, 100.0000f, 1190.0000f);
 						return closeDialogWindow(env);
 					} case STEP_TO_7: {
 						changeQuestStep(env, 8, 9, false);
@@ -263,7 +247,7 @@ public class _1929A_Sliver_Of_Darkness extends QuestHandler
 						@Override
 						public void run() {
 							changeQuestStep(qe, 97, 8, false);
-							TeleportService2.teleportTo(env.getPlayer(), 210030000, 2315.0000f, 1800.0000f, 195.0000f, (byte) 0);
+							TeleportService.teleportTo(env.getPlayer(), 210030000, 2315.0000f, 1800.0000f, 195.0000f, (byte) 0);
 						}
 					}, 3000);
 					return true;

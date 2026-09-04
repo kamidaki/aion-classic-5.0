@@ -8,9 +8,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.PlayerCommand;
 import org.apache.commons.lang.ArrayUtils;
 
-/**
- * @author ATracer
- */
+
 public class cmd_questauto extends PlayerCommand {
 
 	/**

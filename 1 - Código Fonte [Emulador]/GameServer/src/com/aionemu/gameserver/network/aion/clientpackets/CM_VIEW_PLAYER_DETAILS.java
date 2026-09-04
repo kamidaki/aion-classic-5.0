@@ -1,19 +1,3 @@
-/**
- * This file is part of aion-emu <aion-unique.com>.
- *
- *  aion-emu is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-emu is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
 import com.aionemu.gameserver.configs.administration.AdminConfig;
@@ -27,9 +11,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_ITEM_LIST;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author Avol
- */
+
 public class CM_VIEW_PLAYER_DETAILS extends AionClientPacket {
 
 	private static final Logger log = LoggerFactory.getLogger(CM_VIEW_PLAYER_DETAILS.class);

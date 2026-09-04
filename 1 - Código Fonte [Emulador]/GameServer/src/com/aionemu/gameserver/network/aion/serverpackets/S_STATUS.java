@@ -2,7 +2,7 @@ package com.aionemu.gameserver.network.aion.serverpackets;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.stats.container.PlayerGameStats;
 import com.aionemu.gameserver.model.stats.container.PlayerLifeStats;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
@@ -27,60 +27,60 @@ public class S_STATUS extends AionServerPacket {
 		this.pls = player.getLifeStats();
 	}
 
-	private int safeCurrent(Stat2 s) {
+	private int safeCurrent(Stat s) {
 		return s != null ? s.getCurrent() : 0;
 	}
 
-	private int safeBase(Stat2 s) {
+	private int safeBase(Stat s) {
 		return s != null ? s.getBase() : 0;
 	}
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		Stat2 power = pgs.getPower();
-		Stat2 health = pgs.getHealth();
-		Stat2 accuracy = pgs.getAccuracy();
-		Stat2 agility = pgs.getAgility();
-		Stat2 knowledge = pgs.getKnowledge();
-		Stat2 will = pgs.getWill();
+		Stat power = pgs.getPower();
+		Stat health = pgs.getHealth();
+		Stat accuracy = pgs.getAccuracy();
+		Stat agility = pgs.getAgility();
+		Stat knowledge = pgs.getKnowledge();
+		Stat will = pgs.getWill();
 
-		Stat2 wr = pgs.getStat(StatEnum.WATER_RESISTANCE, 0);
-		Stat2 windr = pgs.getStat(StatEnum.WIND_RESISTANCE, 0);
-		Stat2 er = pgs.getStat(StatEnum.EARTH_RESISTANCE, 0);
-		Stat2 fr = pgs.getStat(StatEnum.FIRE_RESISTANCE, 0);
-		Stat2 erl = pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_LIGHT, 0);
-		Stat2 erd = pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_DARK, 0);
+		Stat wr = pgs.getStat(StatEnum.WATER_RESISTANCE, 0);
+		Stat windr = pgs.getStat(StatEnum.WIND_RESISTANCE, 0);
+		Stat er = pgs.getStat(StatEnum.EARTH_RESISTANCE, 0);
+		Stat fr = pgs.getStat(StatEnum.FIRE_RESISTANCE, 0);
+		Stat erl = pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_LIGHT, 0);
+		Stat erd = pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_DARK, 0);
 
-		Stat2 maxHp = pgs.getMaxHp();
-		Stat2 maxMp = pgs.getMaxMp();
-		Stat2 maxDp = pgs.getMaxDp();
-		Stat2 maxSp = pgs.getMaxSp();
-		Stat2 flyTime = pgs.getFlyTime();
+		Stat maxHp = pgs.getMaxHp();
+		Stat maxMp = pgs.getMaxMp();
+		Stat maxDp = pgs.getMaxDp();
+		Stat maxSp = pgs.getMaxSp();
+		Stat flyTime = pgs.getFlyTime();
 
-		Stat2 mainHandPAtk = pgs.getMainHandPAttack();
-		Stat2 offHandPAtk = pgs.getOffHandPAttack();
-		Stat2 pdef = pgs.getPDef();
-		Stat2 mAtk = pgs.getMAttack();
-		Stat2 mresist = pgs.getMResist();
-		Stat2 arange = pgs.getAttackRange();
-		Stat2 aspeed = pgs.getAttackSpeed();
-		Stat2 evasion = pgs.getEvasion();
-		Stat2 parry = pgs.getParry();
-		Stat2 block = pgs.getBlock();
-		Stat2 mainHandPCrit = pgs.getMainHandPCritical();
-		Stat2 offHandPCrit = pgs.getOffHandPCritical();
-		Stat2 mainHandPAcc = pgs.getMainHandPAccuracy();
-		Stat2 offHandPAcc = pgs.getOffHandPAccuracy();
-		Stat2 mAcc = pgs.getMAccuracy();
-		Stat2 mCrit = pgs.getMCritical();
-		Stat2 boostCastTime = pgs.getReverseStat(StatEnum.BOOST_CASTING_TIME, 1000);
-		Stat2 concentration = pgs.getStat(StatEnum.CONCENTRATION, 0);
-		Stat2 mBoost = pgs.getMBoost();
-		Stat2 healBoost = pgs.getStat(StatEnum.HEAL_BOOST, 0);
-		Stat2 pCritResist = pgs.getStat(StatEnum.PHYSICAL_CRITICAL_RESIST, 0);
-		Stat2 mCritResist = pgs.getStat(StatEnum.MAGICAL_CRITICAL_RESIST, 0);
-		Stat2 pCritDamReduce = pgs.getStat(StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE, 0);
-		Stat2 mCritDamReduce = pgs.getStat(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, 0);
+		Stat mainHandPAtk = pgs.getMainHandPAttack();
+		Stat offHandPAtk = pgs.getOffHandPAttack();
+		Stat pdef = pgs.getPDef();
+		Stat mAtk = pgs.getMAttack();
+		Stat mresist = pgs.getMResist();
+		Stat arange = pgs.getAttackRange();
+		Stat aspeed = pgs.getAttackSpeed();
+		Stat evasion = pgs.getEvasion();
+		Stat parry = pgs.getParry();
+		Stat block = pgs.getBlock();
+		Stat mainHandPCrit = pgs.getMainHandPCritical();
+		Stat offHandPCrit = pgs.getOffHandPCritical();
+		Stat mainHandPAcc = pgs.getMainHandPAccuracy();
+		Stat offHandPAcc = pgs.getOffHandPAccuracy();
+		Stat mAcc = pgs.getMAccuracy();
+		Stat mCrit = pgs.getMCritical();
+		Stat boostCastTime = pgs.getReverseStat(StatEnum.BOOST_CASTING_TIME, 1000);
+		Stat concentration = pgs.getStat(StatEnum.CONCENTRATION, 0);
+		Stat mBoost = pgs.getMBoost();
+		Stat healBoost = pgs.getStat(StatEnum.HEAL_BOOST, 0);
+		Stat pCritResist = pgs.getStat(StatEnum.PHYSICAL_CRITICAL_RESIST, 0);
+		Stat mCritResist = pgs.getStat(StatEnum.MAGICAL_CRITICAL_RESIST, 0);
+		Stat pCritDamReduce = pgs.getStat(StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE, 0);
+		Stat mCritDamReduce = pgs.getStat(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, 0);
 
 		int totalBoostMagicalSkill = safeCurrent(mBoost);
 		if (totalBoostMagicalSkill > 3200)

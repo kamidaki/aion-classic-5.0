@@ -1,24 +1,8 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.manager;
 
 import com.aionemu.gameserver.ai2.AI2Logger;
 import com.aionemu.gameserver.ai2.AISubState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -33,7 +17,7 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 
 public class SkillAttackManager
 {
-	public static void performAttack(NpcAI2 npcAI, int delay) {
+	public static void performAttack(NpcAI npcAI, int delay) {
 		if (npcAI.getOwner().getObjectTemplate().getAttackRange() == 0) {
 			if (npcAI.getOwner().getTarget() != null && !MathUtil.isInRange(npcAI.getOwner(), npcAI.getOwner().getTarget(), npcAI.getOwner().getAggroRange())) {
 				npcAI.onGeneralEvent(AIEventType.TARGET_TOOFAR);
@@ -49,7 +33,7 @@ public class SkillAttackManager
 		}
 	}
 	
-	protected static void skillAction(NpcAI2 npcAI) {
+	protected static void skillAction(NpcAI npcAI) {
 		Creature target = (Creature) npcAI.getOwner().getTarget();
 		if (npcAI.getOwner().getObjectTemplate().getAttackRange() == 0) {
 			if (npcAI.getOwner().getTarget() != null && !MathUtil.isInRange(npcAI.getOwner(), npcAI.getOwner().getTarget(), npcAI.getOwner().getAggroRange())) {
@@ -93,12 +77,12 @@ public class SkillAttackManager
 		}
 	}
 	
-	public static void afterUseSkill(NpcAI2 npcAI) {
+	public static void afterUseSkill(NpcAI npcAI) {
 		npcAI.setSubStateIfNot(AISubState.NONE);
 		npcAI.onGeneralEvent(AIEventType.ATTACK_COMPLETE);
 	}
 	
-	public static NpcSkillEntry chooseNextSkill(NpcAI2 npcAI) {
+	public static NpcSkillEntry chooseNextSkill(NpcAI npcAI) {
 		if (npcAI.isInSubState(AISubState.CAST)) {
 			return null;
 		}
@@ -125,8 +109,8 @@ public class SkillAttackManager
 	}
 	
 	private final static class SkillAction implements Runnable {
-		private NpcAI2 npcAI;
-		SkillAction(NpcAI2 npcAI) {
+		private NpcAI npcAI;
+		SkillAction(NpcAI npcAI) {
 			this.npcAI = npcAI;
 		}
 		

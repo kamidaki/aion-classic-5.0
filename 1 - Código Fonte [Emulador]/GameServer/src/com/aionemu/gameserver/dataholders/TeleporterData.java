@@ -17,7 +17,6 @@ import java.util.List;
  * Briefly: Every {@link Npc} instance represents some class of NPCs among which each have the same id, name, items,
  * statistics. Data for such NPC class is defined in {@link NpcTemplate} and is uniquely identified by npc id.
  * 
- * @author orz
  */
 @XmlRootElement(name = "npc_teleporter")
 @XmlAccessorType(XmlAccessType.FIELD)

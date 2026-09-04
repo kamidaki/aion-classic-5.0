@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
 import com.aionemu.commons.objects.filter.ObjectFilter;
@@ -72,7 +56,7 @@ public class CM_CHAT_MESSAGE_PUBLIC extends AionClientPacket
 					broadcastToGroupMembers(player);
 				break;
 				case ALLIANCE:
-					if (!player.isInAlliance2()) {
+					if (!player.isInAlliance()) {
 						return;
 					}
 					broadcastToAllianceMembers(player);
@@ -80,7 +64,7 @@ public class CM_CHAT_MESSAGE_PUBLIC extends AionClientPacket
 				case GROUP_LEADER:
 					if (!player.isInTeam()) {
 						return;
-					} if (player.isInGroup2()) {
+					} if (player.isInGroup()) {
 						broadcastToGroupMembers(player);
 					} else {
 						broadcastToAllianceMembers(player);
@@ -173,11 +157,11 @@ public class CM_CHAT_MESSAGE_PUBLIC extends AionClientPacket
 	}
 	
 	private void broadcastToAllianceMembers(final Player player) {
-		player.getPlayerAlliance2().sendPacket(new S_MESSAGE(player, message, type));
+		player.getPlayerAlliance().sendPacket(new S_MESSAGE(player, message, type));
 	}
 	
 	private void broadcastToLeagueMembers(final Player player) {
-		player.getPlayerAlliance2().getLeague().sendPacket(new S_MESSAGE(player, message, type));
+		player.getPlayerAlliance().getLeague().sendPacket(new S_MESSAGE(player, message, type));
 	}
 	
 	private void broadcastToLegionMembers(final Player player) {

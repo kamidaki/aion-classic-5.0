@@ -2,10 +2,7 @@ package com.aionemu.gameserver.model.templates.windstreams;
 
 import javax.xml.bind.annotation.*;
 
-/**
- * @author LokiReborn
- *
- */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "WindFlight")
 public class WindstreamTemplate

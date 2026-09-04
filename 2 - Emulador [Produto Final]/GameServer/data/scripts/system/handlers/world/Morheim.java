@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package world;
 
 import com.aionemu.commons.utils.Rnd;
@@ -32,7 +16,7 @@ import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.skillengine.SkillEngine;
@@ -132,7 +116,7 @@ public class Morheim extends GeneralWorldHandler
 					if (qs2041 != null && qs2041.getStatus() == QuestStatus.START && qs2041.getQuestVarById(0) == 2) {
 						WorldMapInstance nidalber = InstanceService.getNextAvailableInstance(320040000);
 					    InstanceService.registerPlayerWithInstance(nidalber, player);
-					    TeleportService2.teleportTo(player, 320040000, nidalber.getInstanceId(), 277.0000f, 170.0000f, 204.0000f, (byte) 0);
+					    TeleportService.teleportTo(player, 320040000, nidalber.getInstanceId(), 277.0000f, 170.0000f, 204.0000f, (byte) 0);
 					}
 				} else {
 					///You cannot move to that destination.
@@ -249,16 +233,16 @@ public class Morheim extends GeneralWorldHandler
 	}
 	
 	protected void symbolOfMauHeroIn(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, 1, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, 1, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void statueOfMauHeroIn(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, 1, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, 1, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void statueOfMauHeroExit(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, 1, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, 1, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void primumLanding(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 400010000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 400010000, 1, x, y, z, h);
 	}
 	
 	protected void despawnNpc(Npc npc) {

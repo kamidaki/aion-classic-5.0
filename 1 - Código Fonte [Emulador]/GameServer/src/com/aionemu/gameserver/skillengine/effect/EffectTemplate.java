@@ -571,7 +571,7 @@ public abstract class EffectTemplate {
 	private boolean isImuneToAbnormal(Effect effect, StatEnum statEnum) {
 		Creature effected = effect.getEffected();
 		if (effected != effect.getEffector()) {
-			if (effected instanceof Npc npc) {				if (npc.isBoss() || npc.hasEntity() || npc instanceof Kisk || npc.getAi2().ask(AIQuestion.CAN_RESIST_ABNORMAL).isPositive()) {
+			if (effected instanceof Npc npc) {				if (npc.isBoss() || npc.hasEntity() || npc instanceof Kisk || npc.getAi().ask(AIQuestion.CAN_RESIST_ABNORMAL).isPositive()) {
 					return true;
 				} if (npc.getObjectTemplate().getStatsTemplate().getRunSpeed() == 0) {
 					if (statEnum == StatEnum.PULLED_RESISTANCE || statEnum == StatEnum.STAGGER_RESISTANCE || statEnum == StatEnum.STUMBLE_RESISTANCE) {

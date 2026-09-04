@@ -20,7 +20,6 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * @author KID
  * @Modified Rolandas
  */
 public class ChatProcessor implements GameEngine {

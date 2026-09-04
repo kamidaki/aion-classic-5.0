@@ -1,22 +1,6 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance.quest;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.controllers.effect.PlayerEffectController;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
@@ -31,7 +15,7 @@ import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -224,28 +208,28 @@ public class TempusQ extends GeneralInstanceHandler
 	}
 	
 	protected void tempus_stagestart_a(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void tempus_stagestart_b(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void tempus_stagestart_c(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void tempus_returnstart_a(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void tempus_returnstart_b(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void tempus_returnstart_c(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void tempus_q_exit_e(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 210050000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 210050000, 1, x, y, z, h);
 	}
 	protected void tempus_q_exit_a(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 220070000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 220070000, 1, x, y, z, h);
 	}
 	
 	private int getTime() {
@@ -396,7 +380,7 @@ public class TempusQ extends GeneralInstanceHandler
                 if (!isInstanceDestroyed) {
                     Npc npc = (Npc) spawn(npcId, x, y, z, h);
                     npc.getSpawn().setWalkerId(walkerId);
-                    WalkManager.startWalking((NpcAI2) npc.getAi2());
+                    WalkManager.startWalking((NpcAI) npc.getAi());
                 }
             }
         }, time));
@@ -446,7 +430,7 @@ public class TempusQ extends GeneralInstanceHandler
 	public void onExitInstance(Player player) {
 		InstanceService.destroyInstance(player.getPosition().getWorldMapInstance());
 		if (instanceReward.getInstanceScoreType().isEndProgress()) {
-			TeleportService2.moveToInstanceExit(player, mapId, player.getRace());
+			TeleportService.moveToInstanceExit(player, mapId, player.getRace());
 		}
 	}
 	

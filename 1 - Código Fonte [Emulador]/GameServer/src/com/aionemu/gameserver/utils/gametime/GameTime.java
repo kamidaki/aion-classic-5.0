@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-emu <aion-emu.com>.
- *
- *  aion-emu is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-emu is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.utils.gametime;
 
 import com.aionemu.gameserver.services.WeatherService;
@@ -24,7 +8,6 @@ import java.security.InvalidParameterException;
 /**
  * Represents the internal clock for the time in aion world
  *
- * @author Ben, reworked by vlog
  */
 public class GameTime implements Cloneable {
 
@@ -221,7 +204,6 @@ public class GameTime implements Cloneable {
     /**
      * Convert from game time into real time
      *
-     * @author vlog
      */
     public int convertTime() {
         return this.getTime() / 12;
@@ -272,7 +254,6 @@ public class GameTime implements Cloneable {
      *
      * @param GameTime object
      * @return true or false
-     * @author vlog
      */
     @Override
     public boolean equals(Object o) {

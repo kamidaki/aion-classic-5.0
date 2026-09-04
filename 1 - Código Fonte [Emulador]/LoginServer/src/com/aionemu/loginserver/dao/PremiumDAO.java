@@ -10,10 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- * @author KID
- * @author Skunk
- */
+
 public class PremiumDAO
 {
 	private static final Logger log = LoggerFactory.getLogger("PREMIUM_CTRL");

@@ -5,9 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * @author KID
- */
+
 @XmlRootElement(name = "item_restriction_cleanups")
 @XmlAccessorType(XmlAccessType.NONE)
 public class ItemCleanupTemplate {

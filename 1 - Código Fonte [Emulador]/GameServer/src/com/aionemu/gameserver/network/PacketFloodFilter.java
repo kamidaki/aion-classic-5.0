@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-/**
- * @author KID
- */
+
 public class PacketFloodFilter {
 
 	private static PacketFloodFilter pff = new PacketFloodFilter();

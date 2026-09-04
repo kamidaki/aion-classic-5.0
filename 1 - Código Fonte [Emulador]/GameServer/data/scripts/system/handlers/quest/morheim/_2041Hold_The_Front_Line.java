@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.morheim;
 
 import java.util.*;
@@ -35,7 +19,7 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.QuestService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 
@@ -153,7 +137,7 @@ public class _2041Hold_The_Front_Line extends QuestHandler
 		final Player player = env.getPlayer();
         final QuestState qs = player.getQuestStateList().getQuestState(questId);
 		if (movieId == 86) {
-			TeleportService2.teleportTo(player, 220020000, 2795.0000f, 478.0000f, 265.0000f, (byte) 51);
+			TeleportService.teleportTo(player, 220020000, 2795.0000f, 478.0000f, 265.0000f, (byte) 51);
 			return true;
 		}
 		return false;
@@ -236,7 +220,7 @@ public class _2041Hold_The_Front_Line extends QuestHandler
             }
         } if (target != null) {
             spawn.setTarget(target);
-            ((AbstractAI) spawn.getAi2()).setStateIfNot(AIState.WALKING);
+            ((AbstractAI) spawn.getAi()).setStateIfNot(AIState.WALKING);
             spawn.setState(1);
             spawn.getMoveController().moveToTargetObject();
             PacketSendUtility.broadcastPacket(spawn, new S_ACTION(spawn, EmotionType.START_EMOTE2, 0, spawn.getObjectId()));

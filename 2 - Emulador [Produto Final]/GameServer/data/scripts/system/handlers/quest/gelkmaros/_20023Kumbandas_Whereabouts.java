@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.gelkmaros;
 
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -25,7 +9,7 @@ import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.questEngine.model.QuestDialog;
 import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.WorldMapInstance;
@@ -149,7 +133,7 @@ public class _20023Kumbandas_Whereabouts extends QuestHandler
 							changeQuestStep(env, 6, 7, false);
 							WorldMapInstance udasTemple = InstanceService.getNextAvailableInstance(300150000);
 							InstanceService.registerPlayerWithInstance(udasTemple, player);
-							TeleportService2.teleportTo(player, 300150000, udasTemple.getInstanceId(), 561.0000f, 223.0000f, 134.0000f, (byte) 91);
+							TeleportService.teleportTo(player, 300150000, udasTemple.getInstanceId(), 561.0000f, 223.0000f, 134.0000f, (byte) 91);
 							return closeDialogWindow(env);
 						}
 					}
@@ -248,7 +232,7 @@ public class _20023Kumbandas_Whereabouts extends QuestHandler
 				switch (env.getDialog()) {
                     case USE_OBJECT: {
 						if (var == 10) {
-							TeleportService2.teleportTo(env.getPlayer(), 220070000, 2272.0000f, 1603.0000f, 310.0000f, (byte) 117);
+							TeleportService.teleportTo(env.getPlayer(), 220070000, 2272.0000f, 1603.0000f, 310.0000f, (byte) 117);
 							return useQuestObject(env, 10, 11, false, 0, 0, 0, 182207613, 1);
 						}
 					}

@@ -1,22 +1,6 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.handler;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.controllers.attack.AttackResult;
 import com.aionemu.gameserver.controllers.attack.AttackStatus;
@@ -35,16 +19,14 @@ import com.aionemu.gameserver.world.knownlist.Visitor;
 
 import java.util.Collections;
 
-/**
- * @author ATracer
- */
+
 public class AggroEventHandler {
 
 	/**
 	 * @param npcAI
 	 * @param creature
 	 */
-	public static void onAggro(NpcAI2 npcAI, final Creature myTarget) {
+	public static void onAggro(NpcAI npcAI, final Creature myTarget) {
 		final Npc owner = npcAI.getOwner();
 		// TODO move out?
 		if (myTarget.getAdminNeutral() == 1 || myTarget.getAdminNeutral() == 3 || myTarget.getAdminEnmity() == 1
@@ -56,7 +38,7 @@ public class AggroEventHandler {
 		ThreadPoolManager.getInstance().schedule(new AggroNotifier(owner, myTarget, true), 500);
 	}
 
-	public static boolean onCreatureNeedsSupport(NpcAI2 npcAI, Creature notMyTarget) {
+	public static boolean onCreatureNeedsSupport(NpcAI npcAI, Creature notMyTarget) {
 		Npc owner = npcAI.getOwner();
 		if (notMyTarget.isSupportFrom(owner) && MathUtil.isInRange(owner, notMyTarget, owner.getAggroRange())
 			&& GeoService.getInstance().canSee(owner, notMyTarget)) {
@@ -72,7 +54,7 @@ public class AggroEventHandler {
 		return false;
 	}
 
-	public static boolean onGuardAgainstAttacker(NpcAI2 npcAI, Creature attacker) {
+	public static boolean onGuardAgainstAttacker(NpcAI npcAI, Creature attacker) {
 		Npc owner = npcAI.getOwner();
 		TribeClass tribe = owner.getTribe();
 		if (!tribe.isGuard() && owner.getObjectTemplate().getNpcTemplateType() != NpcTemplateType.GUARD) {
@@ -109,7 +91,7 @@ public class AggroEventHandler {
 
 					@Override
 					public void visit(Npc object) {
-						object.getAi2().onCreatureEvent(AIEventType.CREATURE_NEEDS_SUPPORT, aggressive);
+						object.getAi().onCreatureEvent(AIEventType.CREATURE_NEEDS_SUPPORT, aggressive);
 					}
 				});
 			}

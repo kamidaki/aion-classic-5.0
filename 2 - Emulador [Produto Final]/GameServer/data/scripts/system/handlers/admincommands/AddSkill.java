@@ -5,9 +5,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Phantom
- */
+
 public class AddSkill extends AdminCommand {
 
 	public AddSkill() {

@@ -7,9 +7,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
 import java.lang.reflect.Field;
 
-/**
- * @author SheppeR
- */
+
 public class Channel extends AdminCommand {
 
 	public Channel() {

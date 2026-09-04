@@ -29,12 +29,12 @@ public class CM_SHOW_BRAND extends AionClientPacket
     @Override
     protected void runImpl() {
         Player player = getConnection().getActivePlayer();
-        if (player.isInGroup2()) {
-            if (player.getPlayerGroup2().isLeader(player)) {
+        if (player.isInGroup()) {
+            if (player.getPlayerGroup().isLeader(player)) {
                 PlayerGroupService.showBrand(player, targetObjectId, brandId);
             }
-        } else if (player.isInAlliance2()) {
-            if (player.getPlayerAlliance2().isSomeCaptain(player)) {
+        } else if (player.isInAlliance()) {
+            if (player.getPlayerAlliance().isSomeCaptain(player)) {
                 PlayerAllianceService.showBrand(player, targetObjectId, brandId);
             }
         } else {

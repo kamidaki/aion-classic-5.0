@@ -4,9 +4,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.PlayerCommand;
 
-/**
- * @author Wakizashi
- */
+
 public class cmd_noexp extends PlayerCommand {
 
 	public cmd_noexp() {

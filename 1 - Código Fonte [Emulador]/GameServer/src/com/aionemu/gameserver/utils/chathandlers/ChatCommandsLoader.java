@@ -8,7 +8,6 @@ import java.lang.reflect.Modifier;
 /**
  * Created on: 12.09.2009 14:13:24
  * 
- * @author Aquanox
  */
 public class ChatCommandsLoader implements ClassListener {
 

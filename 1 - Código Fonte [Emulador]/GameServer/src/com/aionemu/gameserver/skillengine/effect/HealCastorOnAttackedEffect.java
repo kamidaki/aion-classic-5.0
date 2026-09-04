@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.skillengine.effect;
 
 import com.aionemu.gameserver.controllers.observer.ActionObserver;
@@ -60,14 +44,14 @@ public class HealCastorOnAttackedEffect extends EffectTemplate {
 
 			@Override
 			public void attacked(Creature creature) {
-				if (player.getPlayerGroup2() != null) {
-					for (Player p : player.getPlayerGroup2().getMembers()) {
+				if (player.getPlayerGroup() != null) {
+					for (Player p : player.getPlayerGroup().getMembers()) {
 						if (MathUtil.isIn3dRange(effect.getEffected(), p, range))
 							p.getController().onRestore(type, valueWithDelta, effect.getSkillId());
 					}
 				}
-				else if (player.isInAlliance2()) {
-					for (Player p : player.getPlayerAllianceGroup2().getMembers()) {
+				else if (player.isInAlliance()) {
+					for (Player p : player.getPlayerAllianceGroup().getMembers()) {
 						if (!p.isOnline())
 							continue;
 						if (MathUtil.isIn3dRange(effect.getEffected(), p, range))

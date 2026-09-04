@@ -6,11 +6,7 @@ import com.aionemu.loginserver.configs.Config;
 import com.aionemu.loginserver.network.aion.AionConnectionFactoryImpl;
 import com.aionemu.loginserver.network.gameserver.GsConnectionFactoryImpl;
 
-/**
- * 
- * @author KID
- *
- */
+
 public class NetConnector {
 	/**
 	 * NioServer instance that will handle io.

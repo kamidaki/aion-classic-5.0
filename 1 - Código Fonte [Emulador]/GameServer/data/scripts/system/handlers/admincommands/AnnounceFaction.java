@@ -12,7 +12,6 @@ import java.util.Iterator;
 /**
  * Admin announce faction
  * 
- * @author Divinity
  */
 public class AnnounceFaction extends AdminCommand {
 

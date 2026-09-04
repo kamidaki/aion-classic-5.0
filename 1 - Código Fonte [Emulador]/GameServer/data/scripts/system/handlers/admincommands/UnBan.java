@@ -8,9 +8,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.Util;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Watson
- */
+
 public class UnBan extends AdminCommand {
 
 	public UnBan() {

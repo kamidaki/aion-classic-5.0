@@ -6,9 +6,7 @@ import com.aionemu.gameserver.services.HTMLService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author lord_rex
- */
+
 public class Html extends AdminCommand {
 
 	public Html() {

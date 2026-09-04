@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.controllers;
 
 import com.aionemu.gameserver.configs.main.*;
@@ -336,8 +320,8 @@ public class PlayerController extends CreatureController<Player> {
 		super.onDie(lastAttacker);
 		sendDieFromCreature(lastAttacker, showPacket);
 		QuestEngine.getInstance().onDie(new QuestEnv(null, player, 0, 0));
-		if (player.isInGroup2()) {
-			player.getPlayerGroup2().sendPacket(S_MESSAGE_CODE.STR_MSG_COMBAT_FRIENDLY_DEATH(player.getName()), new ExcludePlayerFilter(player));
+		if (player.isInGroup()) {
+			player.getPlayerGroup().sendPacket(S_MESSAGE_CODE.STR_MSG_COMBAT_FRIENDLY_DEATH(player.getName()), new ExcludePlayerFilter(player));
 		}
 	}
 	

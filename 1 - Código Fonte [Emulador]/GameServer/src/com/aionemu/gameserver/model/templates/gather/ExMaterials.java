@@ -7,9 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
-/**
- * @author KID
- */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Exmaterials", propOrder = { "material" })
 public class ExMaterials {

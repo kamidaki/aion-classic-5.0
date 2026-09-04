@@ -5,7 +5,6 @@ package com.aionemu.gameserver;
  * <p/>
  * Created on: 13.07.2009 16:47:25
  * 
- * @author Aquanox
  */
 public class GameServerError extends Error {
 

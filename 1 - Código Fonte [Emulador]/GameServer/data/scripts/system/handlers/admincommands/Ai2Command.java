@@ -15,9 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 
-/**
- * @author ATracer
- */
+
 public class Ai2Command extends AdminCommand {
 
 	public Ai2Command() {
@@ -53,7 +51,7 @@ public class Ai2Command extends AdminCommand {
 		}
 
 		if (param0.equals("say")) {
-			LoggerFactory.getLogger(Ai2Command.class).info("[AI2] marker: " + params[1]);
+			LoggerFactory.getLogger(Ai2Command.class).info("[AI] marker: " + params[1]);
 		}
 
 		/**
@@ -68,21 +66,21 @@ public class Ai2Command extends AdminCommand {
 		Npc npc = (Npc) target;
 
 		if (param0.equals("info")) {
-			PacketSendUtility.sendMessage(player, "Ai name: " + npc.getAi2().getName());
-			PacketSendUtility.sendMessage(player, "Ai state: " + npc.getAi2().getState());
-			PacketSendUtility.sendMessage(player, "Ai substate: " + npc.getAi2().getSubState());
+			PacketSendUtility.sendMessage(player, "Ai name: " + npc.getAi().getName());
+			PacketSendUtility.sendMessage(player, "Ai state: " + npc.getAi().getState());
+			PacketSendUtility.sendMessage(player, "Ai substate: " + npc.getAi().getSubState());
 			return;
 		}
 
 		if (param0.equals("log")) {
-			boolean oldValue = npc.getAi2().isLogging();
-			((AbstractAI) npc.getAi2()).setLogging(!oldValue);
+			boolean oldValue = npc.getAi().isLogging();
+			((AbstractAI) npc.getAi()).setLogging(!oldValue);
 			PacketSendUtility.sendMessage(player, "New log value: " + !oldValue);
 			return;
 		}
 
 		if (param0.equals("print")) {
-			AIEventLog eventLog = ((AbstractAI) npc.getAi2()).getEventLog();
+			AIEventLog eventLog = ((AbstractAI) npc.getAi()).getEventLog();
 			Iterator<AIEventType> iterator = eventLog.iterator();
 			while (iterator.hasNext()) {
 				PacketSendUtility.sendMessage(player, "EVENT: " + iterator.next().name());
@@ -98,22 +96,22 @@ public class Ai2Command extends AdminCommand {
 		else if (param0.equals("event")) {
 			AIEventType eventType = AIEventType.valueOf(param1.toUpperCase());
 			if (eventType != null) {
-				npc.getAi2().onGeneralEvent(eventType);
+				npc.getAi().onGeneralEvent(eventType);
 			}
 		}
 		else if (param0.equals("event2")) {
 			AIEventType eventType = AIEventType.valueOf(param1.toUpperCase());
 			Creature creature = (Creature) World.getInstance().findVisibleObject(Integer.valueOf(params[2]));
 			if (eventType != null) {
-				npc.getAi2().onCreatureEvent(eventType, creature);
+				npc.getAi().onCreatureEvent(eventType, creature);
 			}
 		}
 		else if (param0.equals("state")) {
 			AIState state = AIState.valueOf(param1.toUpperCase());
-			((NpcAI2) npc.getAi2()).setStateIfNot(state);
+			((NpcAI) npc.getAi()).setStateIfNot(state);
 			if (params.length > 2) {
 				AISubState substate = AISubState.valueOf(params[2]);
-				((NpcAI2) npc.getAi2()).setSubStateIfNot(substate);
+				((NpcAI) npc.getAi()).setSubStateIfNot(substate);
 			}
 		}
 	}

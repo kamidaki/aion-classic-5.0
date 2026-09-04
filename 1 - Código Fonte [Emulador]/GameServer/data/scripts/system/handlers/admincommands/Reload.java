@@ -30,9 +30,7 @@ import java.util.List;
 
 import static org.apache.commons.io.filefilter.FileFilterUtils.*;
 
-/**
- * @author MrPoke
- */
+
 public class Reload extends AdminCommand {
 
 	private static final Logger log = LoggerFactory.getLogger(Reload.class);

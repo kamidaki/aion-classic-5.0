@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.dataholders;
 
 import com.aionemu.gameserver.dataholders.loadingutils.XmlDataLoader;
@@ -74,7 +58,7 @@ public final class DataManager {
 	public static AssembledNpcsData ASSEMBLED_NPC_DATA;
 	public static CosmeticItemsData COSMETIC_ITEMS_DATA;
 	public static ItemGroupsData ITEM_GROUPS_DATA;
-	public static SpawnsData2 SPAWNS_DATA2;
+	public static SpawnsData SPAWNS_DATA;
 	public static AutoGroupData AUTO_GROUP;
 	public static EventData EVENT_DATA;
 	public static InstanceBuffData INSTANCE_BUFF_DATA;
@@ -166,7 +150,7 @@ public final class DataManager {
 		WINDSTREAM_DATA = data.windstreamsData;
 		ASSEMBLED_NPC_DATA = data.assembledNpcData;
 		COSMETIC_ITEMS_DATA = data.cosmeticItemsData;
-		SPAWNS_DATA2 = data.spawnsData2;
+		SPAWNS_DATA = data.spawnsData;
 		ITEM_GROUPS_DATA = data.itemGroupsData;
 		AUTO_GROUP = data.autoGroupData;
 		EVENT_DATA = data.eventData;

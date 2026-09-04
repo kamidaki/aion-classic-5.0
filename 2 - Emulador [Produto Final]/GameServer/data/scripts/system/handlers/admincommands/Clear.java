@@ -5,9 +5,7 @@ import com.aionemu.gameserver.services.FindGroupService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author KID
- */
+
 public class Clear extends AdminCommand {
 
 	public Clear() {

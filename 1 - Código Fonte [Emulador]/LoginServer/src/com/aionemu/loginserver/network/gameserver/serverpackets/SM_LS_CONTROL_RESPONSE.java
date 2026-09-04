@@ -1,14 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
-
 package com.aionemu.loginserver.network.gameserver.serverpackets;
 
 import com.aionemu.loginserver.network.gameserver.GsConnection;
@@ -17,9 +6,7 @@ import com.aionemu.loginserver.network.gameserver.GsServerPacket;
 import java.sql.Timestamp;
 
 
-/**
- * @author Aionchs-Wylovech
- */
+
 public class SM_LS_CONTROL_RESPONSE extends GsServerPacket {
 
 	private int type;

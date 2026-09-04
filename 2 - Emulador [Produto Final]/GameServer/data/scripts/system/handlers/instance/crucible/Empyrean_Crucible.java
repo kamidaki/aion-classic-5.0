@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance.crucible;
 
 import com.aionemu.commons.utils.Rnd;
@@ -35,7 +19,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_WORLD_SCENE_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.item.ItemService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.skillengine.model.DispelCategoryType;
 import com.aionemu.gameserver.skillengine.model.Effect;
@@ -486,7 +470,7 @@ public class Empyrean_Crucible extends Crucible_System
 				despawnNpc(npc);
 				Npc goldenEyeMantutu1 = instance.getNpc(217553); //Golden Eye Mantutu.
 				if (goldenEyeMantutu1 != null) {
-					goldenEyeMantutu1.getAi2().think();
+					goldenEyeMantutu1.getAi().think();
 					goldenEyeMantutu1.getEffectController().removeEffect(18180); //Hunger.
 				}
 			break;
@@ -494,7 +478,7 @@ public class Empyrean_Crucible extends Crucible_System
 				despawnNpc(npc);
 				Npc goldenEyeMantutu2 = instance.getNpc(217553); //Golden Eye Mantutu.
 				if (goldenEyeMantutu2 != null) {
-					goldenEyeMantutu2.getAi2().think();
+					goldenEyeMantutu2.getAi().think();
 					goldenEyeMantutu2.getEffectController().removeEffect(18181); //Thirst.
 				}
 			break;
@@ -1836,7 +1820,7 @@ public class Empyrean_Crucible extends Crucible_System
 				ItemService.addItem(player, RndArray.get(crucibleRewardKinah), 1);
 			}
 		} else {
-			TeleportService2.moveToInstanceExit(player, mapId, player.getRace());
+			TeleportService.moveToInstanceExit(player, mapId, player.getRace());
 		}
 		PacketSendUtility.sendPacket(player, new S_INSTANT_DUNGEON_INFO(instanceReward, InstanceScoreType.END_PROGRESS));
 	}
@@ -2129,34 +2113,34 @@ public class Empyrean_Crucible extends Crucible_System
 	private void crucibleTeleport(float x, float y, float z, byte h) {
 		for (Player player: instance.getPlayersInside()) {
 			if (player.isOnline()) {
-				TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+				TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 			}
 		}
 	}
 	
 	protected void crucibleStage1_4(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage5(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage6(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage7(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage8(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage9(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void crucibleStage10(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void readyRoomTeleport(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	
 	private void moveToReadyRoom(Player player) {
@@ -2240,7 +2224,7 @@ public class Empyrean_Crucible extends Crucible_System
 	@Override
 	public void onExitInstance(Player player) {
 		removeItems(player);
-		TeleportService2.moveToInstanceExit(player, mapId, player.getRace());
+		TeleportService.moveToInstanceExit(player, mapId, player.getRace());
 		///"Player Name" dropped out of training and left the Crucible.
 		PacketSendUtility.sendPacket(player, new S_MESSAGE_CODE(1400962, player.getName()));
 	}

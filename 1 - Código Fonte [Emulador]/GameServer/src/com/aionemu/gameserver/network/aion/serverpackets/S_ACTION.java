@@ -1,26 +1,10 @@
-/*
- * This file is part of aion-emu <aion-emu.com>.
- *
- * aion-emu is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * aion-emu is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.network.aion.serverpackets;
 
 
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
@@ -49,7 +33,7 @@ public class S_ACTION extends AionServerPacket
 		this.emotion = emotion;
 		this.targetObjectId = targetObjectId;
 		this.state = creature.getState();
-		Stat2 aSpeed = creature.getGameStats().getAttackSpeed();
+		Stat aSpeed = creature.getGameStats().getAttackSpeed();
 		this.baseAttackSpeed = aSpeed.getBase();
 		this.currentAttackSpeed = aSpeed.getCurrent();
 		this.speed = creature.getGameStats().getMovementSpeedFloat();
@@ -81,7 +65,7 @@ public class S_ACTION extends AionServerPacket
 		this.targetObjectId = targetObjectId;
 		this.state = player.getState();
 		this.speed = player.getGameStats().getMovementSpeedFloat();
-		Stat2 aSpeed = player.getGameStats().getAttackSpeed();
+		Stat aSpeed = player.getGameStats().getAttackSpeed();
 		this.baseAttackSpeed = aSpeed.getBase();
 		this.currentAttackSpeed = aSpeed.getCurrent();
 	}

@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.team2.group;
 
 import com.aionemu.commons.callbacks.metadata.GlobalCallback;
@@ -110,7 +94,7 @@ public class PlayerGroupService
     }
 	
     public static final void onPlayerLogout(Player player) {
-        PlayerGroup group = player.getPlayerGroup2();
+        PlayerGroup group = player.getPlayerGroup();
         if (group != null) {
             PlayerGroupMember member = group.getMember(player.getObjectId());
             member.updateLastOnlineTime();
@@ -119,7 +103,7 @@ public class PlayerGroupService
     }
 
     public static final void updateGroup(Player player, GroupEvent groupEvent) {
-        PlayerGroup group = player.getPlayerGroup2();
+        PlayerGroup group = player.getPlayerGroup();
         if (group != null) {
             group.onEvent(new PlayerGroupUpdateEvent(group, player, groupEvent));
         }
@@ -131,7 +115,7 @@ public class PlayerGroupService
 	}
 	
     public static final void removePlayer(Player player) {
-        PlayerGroup group = player.getPlayerGroup2();
+        PlayerGroup group = player.getPlayerGroup();
         if (group != null) {
             group.onEvent(new PlayerGroupLeavedEvent(group, player));
         }
@@ -140,7 +124,7 @@ public class PlayerGroupService
     public static final void banPlayer(Player bannedPlayer, Player banGiver) {
         Preconditions.checkNotNull(bannedPlayer, "Banned player should not be null");
         Preconditions.checkNotNull(banGiver, "Bangiver player should not be null");
-        PlayerGroup group = banGiver.getPlayerGroup2();
+        PlayerGroup group = banGiver.getPlayerGroup();
         if (group != null) {
             if (group.hasMember(bannedPlayer.getObjectId())) {
                 group.onEvent(new PlayerGroupLeavedEvent(group, bannedPlayer, LeaveReson.BAN, banGiver.getName()));
@@ -158,35 +142,35 @@ public class PlayerGroupService
     }
 	
     public static void distributeKinah(Player player, long kinah) {
-        PlayerGroup group = player.getPlayerGroup2();
+        PlayerGroup group = player.getPlayerGroup();
         if (group != null) {
             group.onEvent(new TeamKinahDistributionEvent<PlayerGroup>(group, player, kinah));
         }
     }
 	
     public static void showBrand(Player player, int targetObjId, int brandId) {
-        PlayerGroup group = player.getPlayerGroup2();
+        PlayerGroup group = player.getPlayerGroup();
         if (group != null) {
             group.onEvent(new ShowBrandEvent<PlayerGroup>(group, targetObjId, brandId));
         }
     }
 	
     public static void changeLeader(Player player) {
-        PlayerGroup group = player.getPlayerGroup2();
+        PlayerGroup group = player.getPlayerGroup();
         if (group != null) {
             group.onEvent(new ChangeGroupLeaderEvent(group, player));
         }
     }
 	
     public static void startMentoring(Player player) {
-        PlayerGroup group = player.getPlayerGroup2();
+        PlayerGroup group = player.getPlayerGroup();
         if (group != null) {
             group.onEvent(new PlayerStartMentoringEvent(group, player));
         }
     }
 	
     public static void stopMentoring(Player player) {
-        PlayerGroup group = player.getPlayerGroup2();
+        PlayerGroup group = player.getPlayerGroup();
         if (group != null) {
             group.onEvent(new PlayerGroupStopMentoringEvent(group, player));
         }
@@ -232,7 +216,7 @@ public class PlayerGroupService
 	
     public static void addGroupMemberToCache(Player player) {
         if (!groupMembers.containsKey(player.getObjectId())) {
-            groupMembers.put(player.getObjectId(), player.getPlayerGroup2());
+            groupMembers.put(player.getObjectId(), player.getPlayerGroup());
         }
     }
 }

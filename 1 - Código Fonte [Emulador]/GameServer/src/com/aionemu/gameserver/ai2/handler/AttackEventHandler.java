@@ -1,25 +1,9 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.handler;
 
 import com.aionemu.gameserver.ai2.AI2Logger;
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AISubState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.ai2.manager.AttackManager;
 import com.aionemu.gameserver.ai2.manager.EmoteManager;
@@ -28,16 +12,14 @@ import com.aionemu.gameserver.ai2.poll.AIQuestion;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 
-/**
- * @author ATracer
- */
+
 public class AttackEventHandler {
 
 	/**
 	 * @param npcAI
 	 * @param creature
 	 */
-	public static void onAttack(NpcAI2 npcAI, Creature creature) {
+	public static void onAttack(NpcAI npcAI, Creature creature) {
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "onAttack");
 		} if (creature == null || creature.getLifeStats().isAlreadyDead()) {
@@ -71,14 +53,14 @@ public class AttackEventHandler {
 	/**
 	 * @param npcAI
 	 */
-	public static void onForcedAttack(NpcAI2 npcAI) {
+	public static void onForcedAttack(NpcAI npcAI) {
 		onAttack(npcAI, (Creature) npcAI.getOwner().getTarget());
 	}
 
 	/**
 	 * @param npcAI
 	 */
-	public static void onAttackComplete(NpcAI2 npcAI) {
+	public static void onAttackComplete(NpcAI npcAI) {
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "onAttackComplete: " + npcAI.getOwner().getGameStats().getLastAttackTimeDelta());
 		}
@@ -89,7 +71,7 @@ public class AttackEventHandler {
 	/**
 	 * @param npcAI
 	 */
-	public static void onFinishAttack(NpcAI2 npcAI) {
+	public static void onFinishAttack(NpcAI npcAI) {
 		if (!npcAI.canThink()) {
 			return;
 		}

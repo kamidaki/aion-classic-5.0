@@ -55,7 +55,7 @@ public class DropRegistrationService
 		Integer winnerObj = 0;
 		Collection<Player> dropPlayers = new ArrayList<Player>();
 		Collection<Player> winningPlayers = new ArrayList<Player>();
-		if (player.isInGroup2() || player.isInAlliance2()) {
+		if (player.isInGroup() || player.isInAlliance()) {
 			List<Integer> dropMembers = new ArrayList<Integer>();
 			LootGroupRules lootGrouRules = player.getLootGroupRules();
 			switch (lootGrouRules.getLootRule()) {
@@ -82,7 +82,7 @@ public class DropRegistrationService
 					winningPlayers = groupMembers;
 				break;
 				case LEADER:
-					Player leader = player.isInGroup2() ? player.getPlayerGroup2().getLeaderObject() : player.getPlayerAlliance2().getLeaderObject();
+					Player leader = player.isInGroup() ? player.getPlayerGroup().getLeaderObject() : player.getPlayerAlliance().getLeaderObject();
 					winningPlayers.add(leader);
 					winnerObj = leader.getObjectId();
 					setItemsToWinner(droppedItems, winnerObj);
@@ -134,7 +134,7 @@ public class DropRegistrationService
 		if (template.getDropGroup() != null && npc.getLevel() + 11 > player.getLevel()) {
 			for (Integer id : template.getDropGroup().getIds()) {
 				CommonDropItemTemplate commonDropItemTemplate = DataManager.COMMONS_DROP_DATA.getTemplate(id);
-				if (npc.getAi2().getName().equals("chest") || npc.getObjectTemplate().getRank() == NpcRank.EXPERT) {
+				if (npc.getAi().getName().equals("chest") || npc.getObjectTemplate().getRank() == NpcRank.EXPERT) {
 					//base 10-15% for all "boss or chest" spawn on world or instances!!!
 					if (Rnd.chance(Rnd.get(10, 15))) {
 						CommonItemTemplate randomItem = commonDropItemTemplate.getCommonItems().get(Rnd.get(0, commonDropItemTemplate.getCommonItems().size() - 1));
@@ -192,7 +192,7 @@ public class DropRegistrationService
 			npc.getPosition().getWorld().getWorldMap(npc.getWorldId()).getWorldHandler().onDropRegistered(npc);
 			npc.getPosition().getWorld().getWorldMap(npc.getWorldId()).getWorldHandler().onWorldDropRegistered(npc);
 		}
-		npc.getAi2().onGeneralEvent(AIEventType.DROP_REGISTERED);
+		npc.getAi().onGeneralEvent(AIEventType.DROP_REGISTERED);
 		for (Player p : dropPlayers) {
 			PacketSendUtility.sendPacket(p, new S_LOOT(npcObjId, 0));
 		} if (player.getPet() != null && player.getPet().getPetTemplate().getPetFunction(PetFunctionType.LOOT) != null && player.getPet().getCommonData().isLooting()) {

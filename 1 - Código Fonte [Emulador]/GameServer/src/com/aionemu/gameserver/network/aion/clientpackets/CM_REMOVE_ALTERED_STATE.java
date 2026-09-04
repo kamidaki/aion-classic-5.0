@@ -4,9 +4,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 
-/**
- * @author dragoon112
- */
+
 public class CM_REMOVE_ALTERED_STATE extends AionClientPacket {
 
 	private int skillid;

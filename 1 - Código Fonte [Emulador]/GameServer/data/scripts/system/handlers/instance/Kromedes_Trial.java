@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
@@ -31,7 +15,7 @@ import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.item.ItemService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.utils.*;
@@ -155,10 +139,10 @@ public class Kromedes_Trial extends GeneralInstanceHandler
 				final Npc shadowJudgeKaliga1 = instance.getNpc(217005); //Shadow Judge Kaliga.
 				final Npc kaligaTheUnjust1 = instance.getNpc(217006); //Kaliga The Unjust.
 				if (shadowJudgeKaliga1 != null) {
-					shadowJudgeKaliga1.getAi2().think();
+					shadowJudgeKaliga1.getAi().think();
 					shadowJudgeKaliga1.getEffectController().removeEffect(19248); //Mana Relic Effect.
 				} if (kaligaTheUnjust1 != null) {
-					kaligaTheUnjust1.getAi2().think();
+					kaligaTheUnjust1.getAi().think();
 					kaligaTheUnjust1.getEffectController().removeEffect(19248); //Mana Relic Effect.
 				}
             break;
@@ -166,10 +150,10 @@ public class Kromedes_Trial extends GeneralInstanceHandler
 				final Npc shadowJudgeKaliga2 = instance.getNpc(217005); //Shadow Judge Kaliga.
 				final Npc kaligaTheUnjust2 = instance.getNpc(217006); //Kaliga The Unjust.
 				if (shadowJudgeKaliga2 != null) {
-					shadowJudgeKaliga2.getAi2().think();
+					shadowJudgeKaliga2.getAi().think();
 					shadowJudgeKaliga2.getEffectController().removeEffect(19247); //Strength Relic Effect.
 				} if (kaligaTheUnjust2 != null) {
-					kaligaTheUnjust2.getAi2().think();
+					kaligaTheUnjust2.getAi().think();
 					kaligaTheUnjust2.getEffectController().removeEffect(19247); //Strength Relic Effect.
 				}
             break;
@@ -315,16 +299,16 @@ public class Kromedes_Trial extends GeneralInstanceHandler
 	}
 	
 	protected void kaligaDungeons(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void kaligaTreasury(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void kromedeTrialExitE(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 210040000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 210040000, 1, x, y, z, h);
 	}
 	protected void kromedeTrialExitA(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 220040000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 220040000, 1, x, y, z, h);
 	}
 	
 	private void announceKaligaTreasury() {

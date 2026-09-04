@@ -9,9 +9,7 @@ import com.aionemu.gameserver.world.World;
 
 import java.util.NoSuchElementException;
 
-/**
- * @author lord_rex Command: //rprison <player> This command is removing player from prison.
- */
+
 public class RPrison extends AdminCommand {
 
 	public RPrison() {

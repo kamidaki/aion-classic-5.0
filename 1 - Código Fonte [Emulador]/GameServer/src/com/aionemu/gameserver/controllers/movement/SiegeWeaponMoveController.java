@@ -22,7 +22,7 @@ public class SiegeWeaponMoveController extends SummonMoveController {
 	
 	@Override
 	public void moveToDestination() {
-		if (!owner.canPerformMove() || (owner.getAi2().getSubState() == AISubState.CAST)) {
+		if (!owner.canPerformMove() || (owner.getAi().getSubState() == AISubState.CAST)) {
 			if (started.compareAndSet(true, false)) {
 				setAndSendStopMove(owner);
 			}

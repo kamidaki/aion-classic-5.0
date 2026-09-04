@@ -2,7 +2,7 @@ package admincommands;
 
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.stats.calc.StatOwner;
 import com.aionemu.gameserver.model.stats.calc.functions.IStatFunction;
 import com.aionemu.gameserver.model.stats.calc.functions.StatFunction;
@@ -62,7 +62,7 @@ public class Speed extends AdminCommand implements StatOwner
 		}
 		
 		@Override
-		public void apply(Stat2 stat) {
+		public void apply(Stat stat) {
 			switch (this.stat) {
 				case SPEED:
 					stat.setBase(speed + (speed * modifier) / 100);

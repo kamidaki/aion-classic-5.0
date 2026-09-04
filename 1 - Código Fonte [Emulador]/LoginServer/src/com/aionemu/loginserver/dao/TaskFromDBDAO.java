@@ -14,11 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * @author Divinity
- * @author nrg
- * @author Skunk
- */
+
 
 public class TaskFromDBDAO
 {

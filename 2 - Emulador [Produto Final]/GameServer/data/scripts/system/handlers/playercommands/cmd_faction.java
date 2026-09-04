@@ -12,9 +12,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.PlayerCommand;
 import com.aionemu.gameserver.world.World;
 
-/**
- * @author Shepper, modified: bobobear
- */
+
 public class cmd_faction extends PlayerCommand {
 
 	public cmd_faction() {

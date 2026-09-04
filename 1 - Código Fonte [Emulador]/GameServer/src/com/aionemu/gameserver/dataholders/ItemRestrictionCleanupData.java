@@ -8,9 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-/**
- * @author KID
- */
+
 @XmlRootElement(name = "item_restriction_cleanups")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ItemRestrictionCleanupData {

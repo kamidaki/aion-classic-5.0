@@ -1,0 +1,13 @@
+package ai.worlds.general;
+
+import ai.AggressiveNpcAI;
+import com.aionemu.gameserver.ai2.AIName;
+
+/**
+ * Auto-generated 5.0 AI Handler based on AggressiveNpcAI
+ * Original AI Name: LGuard_RhB_L52
+ */
+@AIName("LGuard_RhB_L52")
+public class LGuard_RhB_L52AI extends AggressiveNpcAI
+{
+}

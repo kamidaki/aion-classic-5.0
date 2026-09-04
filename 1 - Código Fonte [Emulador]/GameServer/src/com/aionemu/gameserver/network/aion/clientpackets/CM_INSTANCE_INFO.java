@@ -31,9 +31,9 @@ public class CM_INSTANCE_INFO extends AionClientPacket
 			log.debug("Received CM_INSTANCE_INFO with teamdata request but player has no team!");
         } if (unk2 == 1) {
             Player player = getConnection().getActivePlayer();
-            if (player.isInAlliance2()) {
+            if (player.isInAlliance()) {
                 boolean answer = true;
-                for (Player p: player.getPlayerAlliance2().getMembers()) {
+                for (Player p: player.getPlayerAlliance().getMembers()) {
                     if (answer) {
                         PacketSendUtility.sendPacket(p, new S_INSTANCE_DUNGEON_COOLTIMES(p, true, p.getCurrentTeam()));
                         answer = false;
@@ -41,9 +41,9 @@ public class CM_INSTANCE_INFO extends AionClientPacket
                         PacketSendUtility.sendPacket(p, new S_INSTANCE_DUNGEON_COOLTIMES(p, false, p.getCurrentTeam()));
                     }
                 }
-            } else if (player.isInGroup2()) {
+            } else if (player.isInGroup()) {
                 boolean answer = true;
-                for (Player p: player.getPlayerGroup2().getMembers()) {
+                for (Player p: player.getPlayerGroup().getMembers()) {
                     if (answer) {
                         PacketSendUtility.sendPacket(p, new S_INSTANCE_DUNGEON_COOLTIMES(p, true, p.getCurrentTeam()));
                         answer = false;

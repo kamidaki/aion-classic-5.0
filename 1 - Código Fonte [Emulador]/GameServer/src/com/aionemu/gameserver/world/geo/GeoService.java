@@ -10,9 +10,7 @@ import com.aionemu.gameserver.utils.MathUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author ATracer
- */
+
 public class GeoService {
 
     private static final Logger log = LoggerFactory.getLogger(GeoService.class);

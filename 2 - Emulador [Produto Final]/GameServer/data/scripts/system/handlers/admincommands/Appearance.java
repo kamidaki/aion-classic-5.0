@@ -3,13 +3,11 @@ package admincommands;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerAppearance;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Divinity
- */
+
 public class Appearance extends AdminCommand {
 
 	public Appearance() {
@@ -49,7 +47,7 @@ public class Appearance extends AdminCommand {
 			PacketSendUtility.sendMessage(player, "An admin has resetted your appearance.");
 
 			// Send update packets
-			TeleportService2.teleportTo(player, player.getWorldId(), player.getInstanceId(), player.getX(), player.getY(),
+			TeleportService.teleportTo(player, player.getWorldId(), player.getInstanceId(), player.getX(), player.getY(),
 				player.getZ(), player.getHeading());
 
 			return;
@@ -226,7 +224,7 @@ public class Appearance extends AdminCommand {
 		PacketSendUtility.sendMessage(player, "An admin has changed your appearance.");
 
 		// Send update packets
-		TeleportService2.teleportTo(player, player.getWorldId(), player.getInstanceId(), player.getX(), player.getY(),
+		TeleportService.teleportTo(player, player.getWorldId(), player.getInstanceId(), player.getX(), player.getY(),
 			player.getZ(), player.getHeading());
 	}
 

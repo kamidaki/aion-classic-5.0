@@ -1,7 +1,7 @@
 package com.aionemu.gameserver.ai2.handler;
 
 import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.model.NpcType;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -11,15 +11,15 @@ import com.aionemu.gameserver.world.geo.GeoService;
 
 public class SimpleAbyssGuardHandler
 {
-	public static void onCreatureMoved(NpcAI2 npcAI, Creature creature) {
+	public static void onCreatureMoved(NpcAI npcAI, Creature creature) {
 		checkAggro(npcAI, creature);
 	}
 	
-	public static void onCreatureSee(NpcAI2 npcAI, Creature creature) {
+	public static void onCreatureSee(NpcAI npcAI, Creature creature) {
 		checkAggro(npcAI, creature);
 	}
 	
-	protected static void checkAggro(NpcAI2 ai, Creature creature) {
+	protected static void checkAggro(NpcAI ai, Creature creature) {
 		if (!(creature instanceof Npc)) {
 			CreatureEventHandler.checkAggro(ai, creature);
 			return;

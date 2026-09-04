@@ -132,13 +132,13 @@ public abstract class Siege<SL extends SiegeLocation>
 
 	protected void registerSiegeBossListeners() {
 		this.getBoss().getAggroList().addEventListener(this.siegeBossDoAddDamageListener);
-		AbstractAI ai = (AbstractAI)this.getBoss().getAi2();
+		AbstractAI ai = (AbstractAI)this.getBoss().getAi();
 		ai.addEventListener(this.siegeBossDeathListener);
 	}
 
 	protected void unregisterSiegeBossListeners() {
 		this.getBoss().getAggroList().removeEventListener(this.siegeBossDoAddDamageListener);
-		AbstractAI ai = (AbstractAI)this.getBoss().getAi2();
+		AbstractAI ai = (AbstractAI)this.getBoss().getAi();
 		ai.removeEventListener(this.siegeBossDeathListener);
 	}
 

@@ -12,9 +12,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author ginho1
- */
+
 public class Assault extends AdminCommand {
 
 	public Assault() {

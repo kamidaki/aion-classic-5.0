@@ -19,9 +19,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Nemiroff Date: 28.12.2009
- */
+
 public class Info extends AdminCommand {
 
 	public Info() {
@@ -94,7 +92,7 @@ public class Info extends AdminCommand {
 			PacketSendUtility.sendMessage(admin, "Tribe: " + npc.getTribe() + "\nRace: " + npc.getObjectTemplate().getRace()
 				+ "\nNpcType: " + npc.getObjectTemplate().getNpcType().name() + "\nTemplateType: "
 				+ npc.getObjectTemplate().getNpcTemplateType().name() + "\nAbyssType: "
-				+ npc.getObjectTemplate().getAbyssNpcType().name() + "\nAI: " + npc.getAi2().getName());
+				+ npc.getObjectTemplate().getAbyssNpcType().name() + "\nAI: " + npc.getAi().getName());
 			PacketSendUtility.sendMessage(
 				admin,
 				"[Relations to target]" + "\nisEnemy: " + admin.isEnemy(npc) + "\ncanAttack: "

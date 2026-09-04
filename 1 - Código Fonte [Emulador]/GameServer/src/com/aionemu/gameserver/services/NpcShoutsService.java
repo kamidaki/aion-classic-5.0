@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services;
 
 import com.aionemu.commons.utils.Rnd;
@@ -44,7 +28,6 @@ import java.util.List;
 /**
  * This class is handling NPC shouts
  * 
- * @author Rolandas
  */
 public class NpcShoutsService {
 
@@ -78,11 +61,11 @@ public class NpcShoutsService {
 					if (npcObj != null && npcObj instanceof Npc) {
 						Npc npc2 = (Npc) npcObj;
 						// check if AI overrides
-						if (!npc2.getAi2().poll(AIQuestion.CAN_SHOUT))
+						if (!npc2.getAi().poll(AIQuestion.CAN_SHOUT))
 							return;
 						int randomShout = Rnd.get(shouts.size());
 						NpcShout shout = shouts.get(randomShout);
-						if (shout.getPattern() != null && !((AITemplate)npc2.getAi2()).onPatternShout(ShoutEventType.IDLE, shout.getPattern(), 0)) {
+						if (shout.getPattern() != null && !((AITemplate)npc2.getAi()).onPatternShout(ShoutEventType.IDLE, shout.getPattern(), 0)) {
 							return;
 						}
 						Iterator<Player> iter = npc2.getKnownList().getKnownPlayers().values().iterator();

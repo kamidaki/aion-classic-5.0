@@ -1,11 +1,3 @@
-/*
- * This file is part of Eleanor project
- *
- * This is proprietary software. See the EULA file distributed with
- * this project for additional information regarding copyright ownership.
- *
- * Copyright (c) 2011-2013, Eleanor Team. All rights reserved.
- */
 package com.eleanor.processors.movement.motor;
 
 import com.aionemu.gameserver.ai2.AIState;
@@ -93,7 +85,7 @@ public class FollowMotor extends AMovementMotor {
 
         VisibleObject target = _target;
 
-        if (target == null || _task != null && _task.isCancelled() || _owner.getLifeStats().isAlreadyDead() || _owner.getAi2().getState() == AIState.DIED)
+        if (target == null || _task != null && _task.isCancelled() || _owner.getLifeStats().isAlreadyDead() || _owner.getAi().getState() == AIState.DIED)
             return false;
 
         _lastMovePoint = new Vector3f(_owner.getX(), _owner.getY(), _owner.getZ());
@@ -211,7 +203,7 @@ public class FollowMotor extends AMovementMotor {
     }
 
     private boolean canMove() {
-        return !_owner.getEffectController().isUnderFear() && _owner.canPerformMove() && !(_owner.getAi2().getSubState() == AISubState.CAST);
+        return !_owner.getEffectController().isUnderFear() && _owner.canPerformMove() && !(_owner.getAi().getSubState() == AISubState.CAST);
     }
 }
 

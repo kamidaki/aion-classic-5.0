@@ -5,10 +5,7 @@ import com.aionemu.gameserver.services.CubeExpandService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Kamui
- *
- */
+
 public class Cube extends AdminCommand {
 
 

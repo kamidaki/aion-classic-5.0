@@ -12,9 +12,7 @@ import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.services.LimitedItemTradeService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-/**
- * @author Dr.Nism
- */
+
 
 public class S_STORE_SALE_INFO extends AionServerPacket
 {

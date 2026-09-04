@@ -2,9 +2,7 @@ package com.aionemu.loginserver.service.ptransfer;
 
 import com.aionemu.loginserver.model.Account;
 
-/**
- * @author KID
- */
+
 public class PlayerTransferRequest {
 	public PlayerTransferStatus status;
 	public byte serverId;

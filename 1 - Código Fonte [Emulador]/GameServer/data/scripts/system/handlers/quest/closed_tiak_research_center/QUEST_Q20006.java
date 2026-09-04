@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.closed_tiak_research_center;
 
 import com.aionemu.gameserver.model.Race;
@@ -26,7 +10,7 @@ import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.questEngine.model.QuestDialog;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.world.zone.ZoneName;
 import com.aionemu.gameserver.world.WorldMapInstance;
 
@@ -126,7 +110,7 @@ public class QUEST_Q20006 extends QuestHandler
 						changeQuestStep(env, 5, 6, false);
 						WorldMapInstance IDF4Re_Solo_Q = InstanceService.getNextAvailableInstance(300510000);
 						InstanceService.registerPlayerWithInstance(IDF4Re_Solo_Q, player);
-						TeleportService2.teleportTo(player, 300510000, IDF4Re_Solo_Q.getInstanceId(), 800.0000f, 384.0000f, 161.0000f, (byte) 60);
+						TeleportService.teleportTo(player, 300510000, IDF4Re_Solo_Q.getInstanceId(), 800.0000f, 384.0000f, 161.0000f, (byte) 60);
 						return closeDialogWindow(env);
 					}
 				}

@@ -34,7 +34,7 @@ public class SiegeWeaponController extends SummonController
 	public void restMode() {
 		super.restMode();
 		getMaster().getController().cancelTask(TaskId.SUMMON_FOLLOW);
-		getOwner().getAi2().onCreatureEvent(AIEventType.STOP_FOLLOW_ME, getMaster());
+		getOwner().getAi().onCreatureEvent(AIEventType.STOP_FOLLOW_ME, getMaster());
 		
 	}
 
@@ -49,7 +49,7 @@ public class SiegeWeaponController extends SummonController
 		super.guardMode();
 		getMaster().getController().cancelTask(TaskId.SUMMON_FOLLOW);
 		getOwner().setTarget(getMaster());
-		getOwner().getAi2().onCreatureEvent(AIEventType.FOLLOW_ME, getMaster());
+		getOwner().getAi().onCreatureEvent(AIEventType.FOLLOW_ME, getMaster());
 		getOwner().getMoveController().moveToTargetObject();
 		getMaster().getController().addTask(TaskId.SUMMON_FOLLOW, FollowStartService.newFollowingToTargetCheckTask(getOwner(), getMaster()));
 	}
@@ -62,7 +62,7 @@ public class SiegeWeaponController extends SummonController
 			return;
 		}
 		getOwner().setTarget(target);
-		getOwner().getAi2().onCreatureEvent(AIEventType.FOLLOW_ME, target);
+		getOwner().getAi().onCreatureEvent(AIEventType.FOLLOW_ME, target);
 		getOwner().getMoveController().moveToTargetObject();
 		getMaster().getController().addTask(TaskId.SUMMON_FOLLOW, FollowStartService.newFollowingToTargetCheckTask(getOwner(), target));
 		spiritSiegebreakerTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {

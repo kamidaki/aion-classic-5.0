@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.com>.
- *
- *  aion-unique is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-unique is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.skillengine.properties;
 
 import com.aionemu.gameserver.model.actions.PlayerMode;
@@ -99,9 +83,9 @@ public class TargetRangeProperty
 				int partyCount = 0;
 				if (skill.getEffector() instanceof Player) {
 					Player effector = (Player) skill.getEffector();
-					if (effector.isInAlliance2()) {
+					if (effector.isInAlliance()) {
 						effectedList.clear();
-						for (Player player : effector.getPlayerAllianceGroup2().getMembers()) {
+						for (Player player : effector.getPlayerAllianceGroup().getMembers()) {
 							if (partyCount >= 6 || partyCount >= maxcount) {
 								break;
 							} if (!player.isOnline()) {
@@ -113,9 +97,9 @@ public class TargetRangeProperty
 								partyCount++;
 							}
 						}
-					} else if (effector.isInGroup2()) {
+					} else if (effector.isInGroup()) {
 						effectedList.clear();
-						for (Player member : effector.getPlayerGroup2().getMembers()) {
+						for (Player member : effector.getPlayerGroup().getMembers()) {
 							if (partyCount >= maxcount) {
 								break;
 							} if (!member.isOnline()) {
@@ -133,9 +117,9 @@ public class TargetRangeProperty
 			case PARTY_WITHPET:
 				if (skill.getEffector() instanceof Player) {
 					final Player effector = (Player) skill.getEffector();
-					if (effector.isInAlliance2()) {
+					if (effector.isInAlliance()) {
 						effectedList.clear();
-						for (Player player : effector.getPlayerAlliance2().getMembers()) {
+						for (Player player : effector.getPlayerAlliance().getMembers()) {
 							if (!player.isOnline()) {
 								continue;
 							} if (player.getLifeStats().isAlreadyDead()) {
@@ -148,9 +132,9 @@ public class TargetRangeProperty
 								}
 							}
 						}
-					} else if (effector.isInGroup2()) {
+					} else if (effector.isInGroup()) {
 						effectedList.clear();
-						for (Player member : effector.getPlayerGroup2().getMembers()) {
+						for (Player member : effector.getPlayerGroup().getMembers()) {
 							if (!member.isOnline()) {
 								continue;
 							} if (member.getLifeStats().isAlreadyDead()) {

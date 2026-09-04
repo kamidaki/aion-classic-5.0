@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.controllers.effect.PlayerEffectController;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
@@ -32,7 +16,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.item.ItemService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
@@ -117,7 +101,7 @@ public class Steel_Rake extends GeneralInstanceHandler
 		///Timid Alakin.
 		final Npc idship_shulackwihknmd_45_ae = (Npc) spawn(215058, 461.2178f, 537.5136f, 886.01807f, (byte) 0);
 		idship_shulackwihknmd_45_ae.getSpawn().setWalkerId("npcpathidshulackship_npc46");
-		WalkManager.startWalking((NpcAI2) idship_shulackwihknmd_45_ae.getAi2());
+		WalkManager.startWalking((NpcAI) idship_shulackwihknmd_45_ae.getAi());
 		///Largimark The Smoker OR Hook The One-Armed.
 		switch (Rnd.get(1, 2)) {
 		    case 1:
@@ -248,7 +232,7 @@ public class Steel_Rake extends GeneralInstanceHandler
 						    killNpc(getNpcs(215405));
 							final Npc idship_shulackasfirstmateknmd_45_ae = (Npc) spawn(215069, 474.1537f, 508.9921f, 1032.8387f, (byte) 0);
 					        idship_shulackasfirstmateknmd_45_ae.getSpawn().setWalkerId("idship_mobpath_shulackasfirstmateknmd_45_ae");
-					        WalkManager.startWalking((NpcAI2) idship_shulackasfirstmateknmd_45_ae.getAi2());
+					        WalkManager.startWalking((NpcAI) idship_shulackasfirstmateknmd_45_ae.getAi());
 						}
 					}, 3000);
 				} else {
@@ -428,40 +412,40 @@ public class Steel_Rake extends GeneralInstanceHandler
 	}
 	
 	protected void IDShip1FBigCageInDoor(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShip1FBigCageOutDoor(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShip1FBossRoomDoor(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShip3FCannonInDoor(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShip3FCannonOutDoor(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShip3FBossRoomDoor(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShip_Teleport_3F(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShipAnchor(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShipLeverAliasDown(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void IDShipLeverAliasUp(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 	}
 	protected void steelRakeExitE(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 110010000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 110010000, 1, x, y, z, h);
 	}
 	protected void steelRakeExitA(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, 120010000, 1, x, y, z, h);
+		TeleportService.teleportTo(player, 120010000, 1, x, y, z, h);
 	}
 	
 	private void removeDranaSteam(Player player) {

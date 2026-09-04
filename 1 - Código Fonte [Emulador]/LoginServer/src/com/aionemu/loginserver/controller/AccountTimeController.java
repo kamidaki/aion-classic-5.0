@@ -1,14 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
-
 package com.aionemu.loginserver.controller;
 
 import java.sql.Timestamp;
@@ -21,7 +10,6 @@ import com.aionemu.loginserver.model.AccountTime;
  * This class is for account time controlling. When character logins any server, it should get its day online time and
  * rest time. Some aion ingame feautres also depend on player's online time
  *
- * @author EvilSpirit
  */
 public class AccountTimeController {
 

@@ -1,6 +1,3 @@
-/* Copyright (c) 2018 To Aion Ryzen Project */
-
-
 package com.aionemu.gameserver.dataholders;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;

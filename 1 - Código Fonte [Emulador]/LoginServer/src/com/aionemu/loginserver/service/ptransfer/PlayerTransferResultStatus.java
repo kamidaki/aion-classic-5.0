@@ -1,8 +1,6 @@
 package com.aionemu.loginserver.service.ptransfer;
 
-/**
- * @author KID
- */
+
 public enum PlayerTransferResultStatus {
 	SEND_INFO(20),
 	OK(21),

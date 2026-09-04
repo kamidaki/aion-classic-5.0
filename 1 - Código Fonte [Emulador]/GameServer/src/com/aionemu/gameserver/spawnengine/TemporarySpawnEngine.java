@@ -3,7 +3,7 @@ package com.aionemu.gameserver.spawnengine;
 import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
-import com.aionemu.gameserver.model.templates.spawns.SpawnGroup2;
+import com.aionemu.gameserver.model.templates.spawns.SpawnGroup;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.TemporarySpawn;
 import javolution.util.FastList;
@@ -13,8 +13,8 @@ import java.util.HashSet;
 
 public class TemporarySpawnEngine {
 
-    private static final FastList<SpawnGroup2> temporarySpawns = new FastList<SpawnGroup2>();
-    private static final FastMap<SpawnGroup2, HashSet<Integer>> tempSpawnInstanceMap = new FastMap<SpawnGroup2, HashSet<Integer>>();
+    private static final FastList<SpawnGroup> temporarySpawns = new FastList<SpawnGroup>();
+    private static final FastMap<SpawnGroup, HashSet<Integer>> tempSpawnInstanceMap = new FastMap<SpawnGroup, HashSet<Integer>>();
 
     public static void spawnAll() {
         spawn(true);
@@ -26,7 +26,7 @@ public class TemporarySpawnEngine {
     }
 
     private static void despawn() {
-        for (SpawnGroup2 spawn : temporarySpawns) {
+        for (SpawnGroup spawn : temporarySpawns) {
             for (SpawnTemplate template : spawn.getSpawnTemplates()) {
                 if (template.getTemporarySpawn().canDespawn()) {
                     VisibleObject object = template.getVisibleObject();
@@ -47,7 +47,7 @@ public class TemporarySpawnEngine {
     }
 
     private static void spawn(boolean startCheck) {
-        for (SpawnGroup2 spawn : temporarySpawns) {
+        for (SpawnGroup spawn : temporarySpawns) {
             HashSet<Integer> instances = tempSpawnInstanceMap.get(spawn);
             if (spawn.hasPool()) {
                 TemporarySpawn temporarySpawn = spawn.geTemporarySpawn();
@@ -75,7 +75,7 @@ public class TemporarySpawnEngine {
     /**
      * @param spawnTemplate
      */
-    public static void addSpawnGroup(SpawnGroup2 spawn, int instanceId) {
+    public static void addSpawnGroup(SpawnGroup spawn, int instanceId) {
         temporarySpawns.add(spawn);
         HashSet<Integer> instances = tempSpawnInstanceMap.get(spawn);
         if (instances == null) {

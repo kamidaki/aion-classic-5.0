@@ -9,7 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Processor that handle all npc's movements
  *
- * @author MetaWind
  */
 public class MovementProcessor extends AGameProcessor {
 

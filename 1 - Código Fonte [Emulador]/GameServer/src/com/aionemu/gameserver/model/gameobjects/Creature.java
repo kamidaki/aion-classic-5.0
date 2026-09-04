@@ -1,6 +1,6 @@
 package com.aionemu.gameserver.model.gameobjects;
 
-import com.aionemu.gameserver.ai2.AI2;
+import com.aionemu.gameserver.ai2.AI;
 import com.aionemu.gameserver.ai2.AI2Engine;
 import com.aionemu.gameserver.controllers.CreatureController;
 import com.aionemu.gameserver.controllers.ObserveController;
@@ -36,7 +36,7 @@ public abstract class Creature extends VisibleObject
 {
 	private static final Logger log = LoggerFactory.getLogger(Creature.class);
 	
-	protected AI2 ai2;
+	protected AI ai2;
 	private boolean isDespawnDelayed = false;
 	private CreatureLifeStats<? extends Creature> lifeStats;
 	private CreatureGameStats<? extends Creature> gameStats;
@@ -151,11 +151,11 @@ public abstract class Creature extends VisibleObject
 		this.effectController = effectController;
 	}
 
-	public AI2 getAi2() {
+	public AI getAi() {
 		return ai2 != null ? ai2 : AI2Engine.getInstance().setupAI("dummy", this);
 	}
 
-	public void setAi2(AI2 ai2) {
+	public void setAi(AI ai2) {
 		this.ai2 = ai2;
 	}
 

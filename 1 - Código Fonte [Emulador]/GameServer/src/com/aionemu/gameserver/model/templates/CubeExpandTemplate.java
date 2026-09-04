@@ -5,9 +5,7 @@ import com.aionemu.gameserver.model.templates.expand.Expand;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
-/**
- * @author Simple
- */
+
 @XmlRootElement(name = "cube_npc")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CubeExpandTemplate {

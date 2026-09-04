@@ -15,8 +15,6 @@ import java.util.List;
 /**
  * Send packet in raw format.
  * 
- * @author Luno
- * @author Aquanox
  */
 public class Raw extends AdminCommand {
 

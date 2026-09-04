@@ -6,9 +6,7 @@ import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.PlayerCommand;
 
-/**
- * @author Tiger
- */
+
 public class cmd_toll extends PlayerCommand {
 
 	public cmd_toll() {

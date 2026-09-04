@@ -1,25 +1,9 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.controllers.effect.PlayerEffectController;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
@@ -309,7 +293,7 @@ public class Talocs_Hollow extends GeneralInstanceHandler
 							doors.get(48).setOpen(false);
 							final Npc idelim_1f_clodwormnm_52_ae = (Npc) spawn(215467, 236.0108f, 708.5716f, 1170.8591f, (byte) 0);
 							idelim_1f_clodwormnm_52_ae.getSpawn().setWalkerId("idelim_1f_path_clodwormnm_52");
-							WalkManager.startWalking((NpcAI2) idelim_1f_clodwormnm_52_ae.getAi2());
+							WalkManager.startWalking((NpcAI) idelim_1f_clodwormnm_52_ae.getAi());
 						}
 					}, 12000);
 				}

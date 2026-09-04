@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance.dredgion;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.configs.main.GroupConfig;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
@@ -44,7 +28,7 @@ import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.services.player.PlayerReviveService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -157,12 +141,12 @@ public class Baranath_Dredgion extends GeneralInstanceHandler
 					case 1:
 						final Npc idab1_dreadgion_drakanmasboss_50_ah = (Npc) spawn(215086, 460.0000f, 877.0000f, 405.0000f, (byte) 90);
 						idab1_dreadgion_drakanmasboss_50_ah.getSpawn().setWalkerId("idab1_dreadgion_path_idab1_drd_17");
-						WalkManager.startWalking((NpcAI2) idab1_dreadgion_drakanmasboss_50_ah.getAi2());
+						WalkManager.startWalking((NpcAI) idab1_dreadgion_drakanmasboss_50_ah.getAi());
 					break;
 					case 2:
 						final Npc idab1_dreadgion_drakanrainspector_50_ah = (Npc) spawn(215390, 460.0000f, 877.0000f, 405.0000f, (byte) 90);
 						idab1_dreadgion_drakanrainspector_50_ah.getSpawn().setWalkerId("idab1_dreadgion_path_idab1_drd_17");
-						WalkManager.startWalking((NpcAI2) idab1_dreadgion_drakanrainspector_50_ah.getAi2());
+						WalkManager.startWalking((NpcAI) idab1_dreadgion_drakanrainspector_50_ah.getAi());
 					break;
 				}
 			}
@@ -399,7 +383,7 @@ public class Baranath_Dredgion extends GeneralInstanceHandler
     }
 	
 	protected void moveBack(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	
 	private void despawnNpc(Npc npc) {
@@ -548,8 +532,8 @@ public class Baranath_Dredgion extends GeneralInstanceHandler
 		}
 		addPointsByRace(player.getRace(), points);
 		List<Player> playersToGainScore = new ArrayList<Player>();
-		if (target != null && player.isInGroup2()) {
-			for (Player member : player.getPlayerGroup2().getOnlineMembers()) {
+		if (target != null && player.isInGroup()) {
+			for (Player member : player.getPlayerGroup().getOnlineMembers()) {
 				if (member.getLifeStats().isAlreadyDead()) {
 					continue;
 				} if (MathUtil.isIn3dRange(member, target, GroupConfig.GROUP_MAX_DISTANCE)) {
@@ -636,7 +620,7 @@ public class Baranath_Dredgion extends GeneralInstanceHandler
                 if (!isInstanceDestroyed) {
                     Npc npc = (Npc) spawn(npcId, x, y, z, h);
                     npc.getSpawn().setWalkerId(walkerId);
-                    WalkManager.startWalking((NpcAI2) npc.getAi2());
+                    WalkManager.startWalking((NpcAI) npc.getAi());
                 }
             }
         }, time));
@@ -682,12 +666,12 @@ public class Baranath_Dredgion extends GeneralInstanceHandler
 	
 	@Override
     public void onExitInstance(Player player) {
-        TeleportService2.moveToBindLocation(player, true);
+        TeleportService.moveToBindLocation(player, true);
     }
 	
 	@Override
 	public void onPlayerLogOut(Player player) {
-		TeleportService2.moveToBindLocation(player, true);
+		TeleportService.moveToBindLocation(player, true);
 	}
 	
 	@Override
@@ -695,7 +679,7 @@ public class Baranath_Dredgion extends GeneralInstanceHandler
         stopInstanceTask();
 		//"Player Name" has left the battle.
 		PacketSendUtility.sendPacket(player, new S_MESSAGE_CODE(1400255, player.getName()));
-        if (player.isInGroup2()) {
+        if (player.isInGroup()) {
             PlayerGroupService.removePlayer(player);
         }
     }

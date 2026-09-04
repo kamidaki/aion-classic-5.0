@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-unique <aion-unique.org>.
- *
- *  aion-unique is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-unique is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.gameobjects.player;
 
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -30,9 +14,7 @@ import java.util.Collection;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-/**
- * @author MrPoke
- */
+
 public class QuestStateList {
 
 	private static final Logger log = LoggerFactory.getLogger(QuestStateList.class);
@@ -84,7 +66,6 @@ public class QuestStateList {
 
 	/*
 	 * Issue #13 fix Used by the QuestService to check the amount of normal quests in the player's list
-	 * @author vlog
 	 */
 	public int getNormalQuestListSize() {
 		return this.getNormalQuests().size();
@@ -92,7 +73,6 @@ public class QuestStateList {
 
 	/*
 	 * Issue #13 fix Returns the list of normal quests
-	 * @author vlog
 	 */
 	public Collection<QuestState> getNormalQuests() {
 		Collection<QuestState> l = new ArrayList<QuestState>();
@@ -110,7 +90,6 @@ public class QuestStateList {
 
 	/*
 	 * Returns true if there is a quest in the list with this id Used by the QuestService
-	 * @author vlog
 	 */
 	public boolean hasQuest(int questId) {
 		return _quests.containsKey(questId);
@@ -118,7 +97,6 @@ public class QuestStateList {
 
 	/*
 	 * Change the old value of the quest status to the new one Used by the QuestService
-	 * @author vlog
 	 */
 	public void changeQuestStatus(Integer key, QuestStatus newStatus) {
 		_quests.get(key).setStatus(newStatus);

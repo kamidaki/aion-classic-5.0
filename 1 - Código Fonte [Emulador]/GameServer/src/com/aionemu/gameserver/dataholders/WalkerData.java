@@ -19,9 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author KKnD, Rolandas
- */
+
 @XmlRootElement(name = "npc_walker")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WalkerData {

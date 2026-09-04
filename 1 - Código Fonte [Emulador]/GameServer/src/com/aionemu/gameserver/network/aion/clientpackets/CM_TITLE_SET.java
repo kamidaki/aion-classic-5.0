@@ -4,9 +4,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 
-/**
- * @author Ranastic (Encom)
- */
+
 
 public class CM_TITLE_SET extends AionClientPacket
 {

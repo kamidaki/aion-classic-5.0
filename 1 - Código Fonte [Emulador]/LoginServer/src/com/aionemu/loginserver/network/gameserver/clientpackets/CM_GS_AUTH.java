@@ -1,13 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
 package com.aionemu.loginserver.network.gameserver.clientpackets;
 
 import java.util.ArrayList;
@@ -29,7 +19,6 @@ import com.aionemu.loginserver.utils.ThreadPoolManager;
 /**
  * This is authentication packet that gs will send to login server for registration.
  * 
- * @author -Nemesiss-
  */
 public class CM_GS_AUTH extends GsClientPacket {
 

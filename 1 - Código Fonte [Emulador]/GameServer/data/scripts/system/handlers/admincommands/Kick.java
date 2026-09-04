@@ -7,9 +7,7 @@ import com.aionemu.gameserver.utils.Util;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.World;
 
-/**
- * @author Elusive
- */
+
 public class Kick extends AdminCommand {
 
 	public Kick() {

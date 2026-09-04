@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.configs.main.GroupConfig;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
@@ -39,7 +23,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.services.player.PlayerReviveService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -1022,34 +1006,34 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
 	}
 	
 	protected void idtiamatlab_war_teleporter_l_01(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_l_02(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_l_03(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_l_04(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_l_05(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_d_01(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_d_02(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_d_03(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_d_04(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	protected void idtiamatlab_war_teleporter_d_05(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	
 	@Override
@@ -1070,7 +1054,7 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
     }
 	
 	protected void moveBack(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	
 	private void despawnNpc(Npc npc) {
@@ -1185,17 +1169,17 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
 			case 1:
 				final Npc idtiamatlab_war_drakanworker_named_fi_50_an1 = (Npc) spawn(218899, 686.0000f, 558.5000f, 128.3125f, (byte) 0);
 				idtiamatlab_war_drakanworker_named_fi_50_an1.getSpawn().setWalkerId("idtiamatlab_war_npcpathidwar_d3");
-				WalkManager.startWalking((NpcAI2) idtiamatlab_war_drakanworker_named_fi_50_an1.getAi2());
+				WalkManager.startWalking((NpcAI) idtiamatlab_war_drakanworker_named_fi_50_an1.getAi());
 			break;
 			case 2:
 				final Npc idtiamatlab_war_drakanworker_named_fi_50_an2 = (Npc) spawn(218899, 766.0000f, 542.0000f, 127.6250f, (byte) 0);
 				idtiamatlab_war_drakanworker_named_fi_50_an2.getSpawn().setWalkerId("idtiamatlab_war_npcpathidwar_d4");
-				WalkManager.startWalking((NpcAI2) idtiamatlab_war_drakanworker_named_fi_50_an2.getAi2());
+				WalkManager.startWalking((NpcAI) idtiamatlab_war_drakanworker_named_fi_50_an2.getAi());
 			break;
 			case 3:
 				final Npc idtiamatlab_war_drakanworker_named_fi_50_an3 = (Npc) spawn(218899, 696.0000f, 574.5000f, 127.6562f, (byte) 0);
 				idtiamatlab_war_drakanworker_named_fi_50_an3.getSpawn().setWalkerId("idtiamatlab_war_npcpathidwar_d2");
-				WalkManager.startWalking((NpcAI2) idtiamatlab_war_drakanworker_named_fi_50_an3.getAi2());
+				WalkManager.startWalking((NpcAI) idtiamatlab_war_drakanworker_named_fi_50_an3.getAi());
 			break;
 		}
 		///These npc have a buff either physical or magical & are random spawn!!!
@@ -1759,8 +1743,8 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
 		}
 		addPointsByRace(player.getRace(), points);
 		List<Player> playersToGainScore = new ArrayList<Player>();
-		if (target != null && player.isInGroup2()) {
-			for (Player member : player.getPlayerGroup2().getOnlineMembers()) {
+		if (target != null && player.isInGroup()) {
+			for (Player member : player.getPlayerGroup().getOnlineMembers()) {
 				if (member.getLifeStats().isAlreadyDead()) {
 					continue;
 				} if (MathUtil.isIn3dRange(member, target, GroupConfig.GROUP_MAX_DISTANCE)) {
@@ -1847,7 +1831,7 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
                 if (!isInstanceDestroyed) {
                     Npc npc = (Npc) spawn(npcId, x, y, z, h);
                     npc.getSpawn().setWalkerId(walkerId);
-                    WalkManager.startWalking((NpcAI2) npc.getAi2());
+                    WalkManager.startWalking((NpcAI) npc.getAi());
                 }
             }
         }, time));
@@ -1893,12 +1877,12 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
 	
 	@Override
     public void onExitInstance(Player player) {
-        TeleportService2.moveToBindLocation(player, true);
+        TeleportService.moveToBindLocation(player, true);
     }
 	
 	@Override
 	public void onPlayerLogOut(Player player) {
-		TeleportService2.moveToBindLocation(player, true);
+		TeleportService.moveToBindLocation(player, true);
 	}
 	
 	@Override
@@ -1906,7 +1890,7 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
         stopInstanceTask();
 		//"Player Name" has left the battle.
 		PacketSendUtility.sendPacket(player, new S_MESSAGE_CODE(1400255, player.getName()));
-        if (player.isInGroup2()) {
+        if (player.isInGroup()) {
             PlayerGroupService.removePlayer(player);
         }
     }

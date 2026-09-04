@@ -116,7 +116,7 @@ public class CM_MOVE extends AionClientPacket
 		}
 		World.getInstance().updatePosition(player, x, y, z, heading);
 		m.updateLastMove();
-		if (player.isInGroup2() || player.isInAlliance2()) {
+		if (player.isInGroup() || player.isInAlliance()) {
 			TeamMoveUpdater.getInstance().startTask(player);
 		} if ((type & MovementMask.STARTMOVE) == MovementMask.STARTMOVE || type == 0) {
 			PacketSendUtility.broadcastPacket(player, new S_MOVE_NEW(player));

@@ -10,9 +10,7 @@ import com.aionemu.gameserver.world.zone.ZoneName;
 
 import java.util.List;
 
-/**
- * @author ATracer
- */
+
 public class Zone extends AdminCommand {
 
 	public Zone() {

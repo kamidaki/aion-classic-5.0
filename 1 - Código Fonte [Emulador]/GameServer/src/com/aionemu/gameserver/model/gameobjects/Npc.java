@@ -254,7 +254,7 @@ public class Npc extends Creature
 	@Override
 	public boolean isEnemy(Creature creature) {
 		if (creature instanceof Player) {
-			if (getAi2().ask(AIQuestion.CAN_ATTACK_PLAYER).isPositive()) {
+			if (getAi().ask(AIQuestion.CAN_ATTACK_PLAYER).isPositive()) {
 				return true;
 			}
 		}
@@ -386,7 +386,7 @@ public class Npc extends Creature
 	public void shout(final NpcShout shout, final Creature target, final Object param, int delaySeconds) {
 		if (shout.getWhen() != ShoutEventType.DIED && shout.getWhen() != ShoutEventType.BEFORE_DESPAWN && getLifeStats().isAlreadyDead() || !mayShout(delaySeconds)) {
 			return;
-		} if (shout.getPattern() != null && !((AITemplate) getAi2()).onPatternShout(shout.getWhen(), shout.getPattern(), shout.getSkillNo())) {
+		} if (shout.getPattern() != null && !((AITemplate) getAi()).onPatternShout(shout.getWhen(), shout.getPattern(), shout.getSkillNo())) {
 			return;
 		}
 		final int shoutRange = getObjectTemplate().getMinimumShoutRange();

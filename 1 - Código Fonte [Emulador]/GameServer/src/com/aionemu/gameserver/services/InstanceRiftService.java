@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services;
 
 import com.aionemu.commons.services.CronService;
@@ -27,7 +11,7 @@ import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.instancerift.InstanceRiftLocation;
 import com.aionemu.gameserver.model.instancerift.InstanceRiftStateType;
-import com.aionemu.gameserver.model.templates.spawns.SpawnGroup2;
+import com.aionemu.gameserver.model.templates.spawns.SpawnGroup;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.instanceriftspawns.InstanceRiftSpawnTemplate;
 import com.aionemu.gameserver.services.instanceriftservice.InstanceStartRunnable;
@@ -44,9 +28,7 @@ import javolution.util.FastMap;
 
 import java.util.*;
 
-/**
- * @author Rinzler (Encom)
- */
+
 
 public class InstanceRiftService
 {
@@ -112,8 +94,8 @@ public class InstanceRiftService
 	public void spawn(InstanceRiftLocation loc, InstanceRiftStateType estate) {
 		if (estate.equals(InstanceRiftStateType.OPEN)) {
 		}
-		List<SpawnGroup2> locSpawns = DataManager.SPAWNS_DATA2.getInstanceRiftSpawnsByLocId(loc.getId());
-		for (SpawnGroup2 group : locSpawns) {
+		List<SpawnGroup> locSpawns = DataManager.SPAWNS_DATA.getInstanceRiftSpawnsByLocId(loc.getId());
+		for (SpawnGroup group : locSpawns) {
 			for (SpawnTemplate st : group.getSpawnTemplates()) {
 				InstanceRiftSpawnTemplate instanceRifttemplate = (InstanceRiftSpawnTemplate) st;
 				if (instanceRifttemplate.getEStateType().equals(estate)) {

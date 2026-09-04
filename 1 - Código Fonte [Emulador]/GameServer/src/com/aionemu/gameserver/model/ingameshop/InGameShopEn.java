@@ -26,9 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-/**
- * @author KID
- */
+
 public class InGameShopEn {
 
 	private static InGameShopEn instance = new InGameShopEn();

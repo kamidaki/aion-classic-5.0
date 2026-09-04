@@ -1,20 +1,9 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
 package com.aionemu.loginserver.network.ncrypt;
 
 /**
  * Blowfish Cipher - symmetric 16-round cipher, uses 64-bit blocks, 32-448 key size and key-dependend 32-bit four
  * S-boxes
  * 
- * @author EvilSpirit
  */
 public class BlowfishCipher {
 

@@ -7,9 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Wnkrz
- */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "GlobalDropRaces")
 public class GlobalDropRaces

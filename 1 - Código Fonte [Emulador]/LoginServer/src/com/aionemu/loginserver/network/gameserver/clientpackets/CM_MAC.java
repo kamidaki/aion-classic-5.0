@@ -5,11 +5,7 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.loginserver.controller.AccountController;
 import com.aionemu.loginserver.network.gameserver.GsClientPacket;
 
-/**
- * 
- * @author nrg
- *
- */
+
 public class CM_MAC extends GsClientPacket {
 
 	private int accountId;

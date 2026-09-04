@@ -9,9 +9,7 @@ import com.aionemu.gameserver.world.World;
 
 import java.util.concurrent.Future;
 
-/**
- * @author Watson
- */
+
 public class UnGag extends AdminCommand {
 
 	public UnGag() {

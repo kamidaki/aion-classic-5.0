@@ -10,9 +10,7 @@ import com.aionemu.gameserver.network.loginserver.LoginServer;
 import com.aionemu.gameserver.network.loginserver.serverpackets.SM_ACCOUNT_CHARGE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-/**
- * @author soulxj
- */
+
 public class SielEnergyService {
 
     public void onLogout(Player player) {

@@ -7,9 +7,7 @@ import com.aionemu.gameserver.model.templates.tradelist.TradeNpcType;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
-/**
- * @author Rinzler (30.03.2014)
- */
+
 
 public class S_TRADE_IN extends AionServerPacket
 {

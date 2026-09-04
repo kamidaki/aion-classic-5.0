@@ -10,7 +10,6 @@ import com.aionemu.gameserver.world.World;
 /**
  * Admin promote command.
  * 
- * @author Cyrakuse
  * @modified By Aionchs-Wylovech
  */
 public class Promote extends AdminCommand {

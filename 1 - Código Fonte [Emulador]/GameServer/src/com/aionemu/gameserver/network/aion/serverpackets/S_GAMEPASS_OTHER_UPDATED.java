@@ -4,9 +4,7 @@ import com.aionemu.gameserver.model.account.SielEnergyType;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
-/**
- * @author soulxj
- */
+
 public class S_GAMEPASS_OTHER_UPDATED extends AionServerPacket {
 
     private int playerId;

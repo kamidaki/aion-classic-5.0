@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.poeta;
 
 import com.aionemu.gameserver.configs.main.CustomConfig;
@@ -40,7 +24,7 @@ import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.services.ClassChangeService;
 import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.WorldMapInstance;
@@ -117,13 +101,13 @@ public class _1006Ascension extends QuestHandler
 							}
 							qs.setQuestVar(1);
 							updateQuestStatus(env);
-							TeleportService2.teleportTo(player, 210010000, 657f, 1071f, 99.375f, (byte) 72, TeleportAnimation.BEAM_ANIMATION);
+							TeleportService.teleportTo(player, 210010000, 657f, 1071f, 99.375f, (byte) 72, TeleportAnimation.BEAM_ANIMATION);
 							return true;
 						}
 						case STEP_TO_3: {
 							WorldMapInstance newInstance = InstanceService.getNextAvailableInstance(310010000);
 							InstanceService.registerPlayerWithInstance(newInstance, player);
-							TeleportService2.teleportTo(player, 310010000, newInstance.getInstanceId(), 52, 174, 229, (byte) 10);
+							TeleportService.teleportTo(player, 310010000, newInstance.getInstanceId(), 52, 174, 229, (byte) 10);
 							qs.setQuestVar(99); // 99
 							updateQuestStatus(env);
 							removeQuestItem(env, 182200009, 1);
@@ -236,7 +220,7 @@ public class _1006Ascension extends QuestHandler
 				switch (env.getDialog()) {
 					case SELECTED_QUEST_NOREWARD:
 						if (player.getWorldId() == 310010000) {
-							TeleportService2.teleportTo(player, 210010000, 245.14868f, 1639.1372f, 100.35713f, (byte) 60, TeleportAnimation.BEAM_ANIMATION);
+							TeleportService.teleportTo(player, 210010000, 245.14868f, 1639.1372f, 100.35713f, (byte) 60, TeleportAnimation.BEAM_ANIMATION);
 						}
 						break;
 					default:
@@ -363,7 +347,7 @@ public class _1006Ascension extends QuestHandler
 			giveQuestItem(env, 182200009, 1);
 			qs.setQuestVar(3);
 			updateQuestStatus(env);
-			TeleportService2.teleportTo(player, 210010000, 246f, 1639f, 100.316f, (byte) 56, TeleportAnimation.BEAM_ANIMATION);
+			TeleportService.teleportTo(player, 210010000, 246f, 1639f, 100.316f, (byte) 56, TeleportAnimation.BEAM_ANIMATION);
 			return true;
 		}
 		return false;

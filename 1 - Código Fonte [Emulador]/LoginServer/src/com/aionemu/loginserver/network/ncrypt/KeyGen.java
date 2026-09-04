@@ -1,14 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
-
 package com.aionemu.loginserver.network.ncrypt;
 
 import java.security.GeneralSecurityException;
@@ -27,7 +16,6 @@ import com.aionemu.commons.utils.Rnd;
 /**
  * Key generator. It generates keys or keyPairs for Blowfish and RSA
  * 
- * @author -Nemesiss-
  */
 public class KeyGen {
 	/**

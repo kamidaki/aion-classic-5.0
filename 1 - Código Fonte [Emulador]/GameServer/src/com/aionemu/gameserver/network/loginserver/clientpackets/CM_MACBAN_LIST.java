@@ -3,11 +3,7 @@ package com.aionemu.gameserver.network.loginserver.clientpackets;
 import com.aionemu.gameserver.network.BannedMacManager;
 import com.aionemu.gameserver.network.loginserver.LsClientPacket;
 
-/**
- * 
- * @author KID
- *
- */
+
 public class CM_MACBAN_LIST extends LsClientPacket {
 
 	public CM_MACBAN_LIST(int opCode) {

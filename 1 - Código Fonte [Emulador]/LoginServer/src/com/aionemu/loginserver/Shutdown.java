@@ -1,13 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
 package com.aionemu.loginserver;
 
 import com.aionemu.commons.services.CronService;
@@ -18,9 +8,7 @@ import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.loginserver.network.NetConnector;
 import com.aionemu.loginserver.utils.ThreadPoolManager;
 
-/**
- * @author -Nemesiss-
- */
+
 public class Shutdown extends Thread {
 
 	/**

@@ -1,7 +1,7 @@
 package com.aionemu.gameserver.skillengine.condition;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
-import com.aionemu.gameserver.model.stats.calc.Stat2;
+import com.aionemu.gameserver.model.stats.calc.Stat;
 import com.aionemu.gameserver.model.stats.calc.StatOwner;
 import com.aionemu.gameserver.model.stats.calc.functions.IStatFunction;
 import com.aionemu.gameserver.skillengine.model.Skill;
@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
 public class ItemChargeCondition extends ChargeCondition
 {
     @Override
-    public boolean validate(Stat2 env, IStatFunction statFunction) {
+    public boolean validate(Stat env, IStatFunction statFunction) {
         StatOwner owner = statFunction.getOwner();
         if (owner instanceof Item item) {            return item.getChargeLevel() >= level;
         }

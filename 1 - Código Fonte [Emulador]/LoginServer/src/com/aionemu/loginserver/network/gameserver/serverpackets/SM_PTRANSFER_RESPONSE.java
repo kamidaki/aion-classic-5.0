@@ -7,9 +7,7 @@ import com.aionemu.loginserver.service.ptransfer.PlayerTransferRequest;
 import com.aionemu.loginserver.service.ptransfer.PlayerTransferResultStatus;
 import com.aionemu.loginserver.service.ptransfer.PlayerTransferTask;
 
-/**
- * @author KID
- */
+
 public class SM_PTRANSFER_RESPONSE extends GsServerPacket {
 	private PlayerTransferResultStatus result;
 	private Account account;

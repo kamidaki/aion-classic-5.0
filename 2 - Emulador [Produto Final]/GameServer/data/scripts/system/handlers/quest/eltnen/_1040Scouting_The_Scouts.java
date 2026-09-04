@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.eltnen;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -22,7 +6,7 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.questEngine.model.QuestDialog;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 
 /****/
 /** Author Rinzler (Encom)
@@ -112,7 +96,7 @@ public class _1040Scouting_The_Scouts extends QuestHandler
 					    }
 					} case STEP_TO_4: {
 						changeQuestStep(env, 6, 7, false);
-					    TeleportService2.teleportTo(env.getPlayer(), 210020000, 2211.0000f, 811.0000f, 513.0000f, (byte) 0);
+					    TeleportService.teleportTo(env.getPlayer(), 210020000, 2211.0000f, 811.0000f, 513.0000f, (byte) 0);
 						return closeDialogWindow(env);
 					} case STEP_TO_7: {
 						return defaultCloseDialog(env, 10, 10, true, false);
@@ -131,7 +115,7 @@ public class _1040Scouting_The_Scouts extends QuestHandler
 						return closeDialogWindow(env);
 					} case STEP_TO_6: {
 						changeQuestStep(env, 9, 10, false);
-						TeleportService2.teleportTo(env.getPlayer(), 210020000, 1606.0000f, 1529.0000f, 318.0000f, (byte) 0);
+						TeleportService.teleportTo(env.getPlayer(), 210020000, 1606.0000f, 1529.0000f, 318.0000f, (byte) 0);
 						return closeDialogWindow(env);
 					}
 				}

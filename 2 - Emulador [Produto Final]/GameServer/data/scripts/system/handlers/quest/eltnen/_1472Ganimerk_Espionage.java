@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.eltnen;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -22,7 +6,7 @@ import com.aionemu.gameserver.questEngine.model.QuestDialog;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 
 /****/
 /** Author Rinzler (Encom)
@@ -56,7 +40,7 @@ public class _1472Ganimerk_Espionage extends QuestHandler
 					} case ASK_ACCEPTION: {
 						return sendQuestDialog(env, 4);
 					} case ACCEPT_QUEST: {
-						TeleportService2.teleportTo(env.getPlayer(), 220020000, 2652.0000f, 808.0000f, 247.0000f, (byte) 106);
+						TeleportService.teleportTo(env.getPlayer(), 220020000, 2652.0000f, 808.0000f, 247.0000f, (byte) 106);
 						return sendQuestStartDialog(env);
 					} case REFUSE_QUEST: {
 				        return closeDialogWindow(env);

@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- * @author KID
- * @author Skunk
- */
+
 public class PlayerTransferDAO
 {
 	private static final Logger log = LoggerFactory.getLogger(PlayerTransferDAO.class);

@@ -1,25 +1,9 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.manager;
 
 import com.aionemu.gameserver.ai2.AI2Logger;
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AbstractAI;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -29,7 +13,7 @@ import com.aionemu.gameserver.world.geo.GeoService;
 
 public class SimpleAttackManager
 {
-	public static void performAttack(NpcAI2 npcAI, int delay) {
+	public static void performAttack(NpcAI npcAI, int delay) {
 		if (npcAI.isLogging()) {
 			AI2Logger.info(npcAI, "performAttack");
 		} if (npcAI.getOwner().getGameStats().isNextAttackScheduled()) {
@@ -53,7 +37,7 @@ public class SimpleAttackManager
 		}
 	}
 	
-	private static void scheduleCheckedAttackAction(NpcAI2 npcAI, int delay) {
+	private static void scheduleCheckedAttackAction(NpcAI npcAI, int delay) {
 		if (delay < 2000) {
             delay = 2000;
         } if (npcAI.isLogging()) {
@@ -63,16 +47,16 @@ public class SimpleAttackManager
 	}
 	
 	public static boolean isTargetInAttackRange(Npc npc) {
-		if (npc.getAi2().isLogging()) {
+		if (npc.getAi().isLogging()) {
 			float distance = npc.getDistanceToTarget();
-			AI2Logger.info((AbstractAI) npc.getAi2(), "isTargetInAttackRange: " + distance);
+			AI2Logger.info((AbstractAI) npc.getAi(), "isTargetInAttackRange: " + distance);
 		} if (npc.getTarget() == null || !(npc.getTarget() instanceof Creature)) {
 			return false;
 		}
 		return MathUtil.isInAttackRange(npc, (Creature) npc.getTarget(), npc.getGameStats().getAttackRange().getCurrent() / 1000f);
 	}
 	
-	protected static void attackAction(final NpcAI2 npcAI) {
+	protected static void attackAction(final NpcAI npcAI) {
 		if (!npcAI.isInState(AIState.FIGHT)) {
 			return;
 		} if (npcAI.isLogging()) {
@@ -97,8 +81,8 @@ public class SimpleAttackManager
 	}
 	
 	private final static class SimpleAttackAction implements Runnable {
-		private NpcAI2 npcAI;
-		SimpleAttackAction(NpcAI2 npcAI) {
+		private NpcAI npcAI;
+		SimpleAttackAction(NpcAI npcAI) {
 			this.npcAI = npcAI;
 		}
 		@Override
@@ -109,8 +93,8 @@ public class SimpleAttackManager
 	}
 	
 	private final static class SimpleCheckedAttackAction implements Runnable {
-		private NpcAI2 npcAI;
-		SimpleCheckedAttackAction(NpcAI2 npcAI) {
+		private NpcAI npcAI;
+		SimpleCheckedAttackAction(NpcAI npcAI) {
 			this.npcAI = npcAI;
 		}
 		@Override

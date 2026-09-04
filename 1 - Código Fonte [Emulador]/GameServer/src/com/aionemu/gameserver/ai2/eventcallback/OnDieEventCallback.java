@@ -8,7 +8,6 @@ import com.aionemu.gameserver.events.EventListener;
 /**
  * Callback for {@link AIEventType#DIED} event
  *
- * @author SoulKeeper
  */
 public abstract class OnDieEventCallback implements EventListener<GeneralAIEvent> {
 

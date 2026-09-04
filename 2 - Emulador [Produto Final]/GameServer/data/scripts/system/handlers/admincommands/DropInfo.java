@@ -11,9 +11,7 @@ import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Oliver
- */
+
 public class DropInfo extends AdminCommand {
 
 	public DropInfo() {

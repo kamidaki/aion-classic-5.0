@@ -6,9 +6,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.World;
 
-/**
- * @author Imaginary
- */
+
 public class AdminChat extends AdminCommand {
 
 	public AdminChat() {

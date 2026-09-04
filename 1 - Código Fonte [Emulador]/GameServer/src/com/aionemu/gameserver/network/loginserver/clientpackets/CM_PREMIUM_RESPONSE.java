@@ -3,9 +3,7 @@ package com.aionemu.gameserver.network.loginserver.clientpackets;
 import com.aionemu.gameserver.model.ingameshop.InGameShopEn;
 import com.aionemu.gameserver.network.loginserver.LsClientPacket;
 
-/**
- * @author KID
- */
+
 public class CM_PREMIUM_RESPONSE extends LsClientPacket {
 	private int requestId;
 	private int result;

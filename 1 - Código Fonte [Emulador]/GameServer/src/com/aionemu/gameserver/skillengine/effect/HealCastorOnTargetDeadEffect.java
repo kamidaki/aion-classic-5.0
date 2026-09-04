@@ -49,16 +49,16 @@ public class HealCastorOnTargetDeadEffect extends EffectTemplate
 				if (MathUtil.isIn3dRange(effect.getEffected(), player, range)) {
 					player.getController().onRestore(HealType.HP, valueWithDelta, effect.getSkillId());
 				} if (healparty) {
-					if (player.getPlayerGroup2() != null) {
-						for (Player p : player.getPlayerGroup2().getMembers()) {
+					if (player.getPlayerGroup() != null) {
+						for (Player p : player.getPlayerGroup().getMembers()) {
 							if (p == player) {
 								continue;
 							} if (MathUtil.isIn3dRange(effect.getEffected(), p, range)) {
 								p.getController().onRestore(HealType.HP, valueWithDelta, effect.getSkillId());
 							}
 						}
-					} else if (player.isInAlliance2()) {
-						for (Player p : player.getPlayerAllianceGroup2().getMembers()) {
+					} else if (player.isInAlliance()) {
+						for (Player p : player.getPlayerAllianceGroup().getMembers()) {
 							if (!p.isOnline()) {
 								continue;
 							} if (p.equals(player)) {

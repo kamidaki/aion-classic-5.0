@@ -1,14 +1,3 @@
-/*
- *  Aion Classic Emu based on Aion Encom Source Files
- *
- *  ENCOM Team based on Aion-Lighting Open Source
- *  All Copyrights : "Data/Copyrights/AEmu-Copyrights.text
- *
- *  iMPERIVM.FUN - AION DEVELOPMENT FORUM
- *  Forum: <http://https://imperivm.fun/>
- *
- */
-
 package com.aionemu.loginserver.network.aion;
 
 import java.io.IOException;
@@ -38,7 +27,6 @@ import com.aionemu.loginserver.network.ncrypt.KeyGen;
 /**
  * Object representing connection between LoginServer and Aion Client.
  * 
- * @author -Nemesiss-
  */
 public class LoginConnection extends AConnection {
 

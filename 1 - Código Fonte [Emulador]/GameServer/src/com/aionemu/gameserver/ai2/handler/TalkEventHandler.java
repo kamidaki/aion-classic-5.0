@@ -1,24 +1,8 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.ai2.handler;
 
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AISubState;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -33,7 +17,7 @@ import java.util.*;
 
 public class TalkEventHandler
 {
-	public static void onTalk(NpcAI2 npcAI, Creature creature) {
+	public static void onTalk(NpcAI npcAI, Creature creature) {
 		onSimpleTalk(npcAI, creature);
 		if (creature instanceof Player player) {			List<Integer> relatedQuests = QuestEngine.getInstance().getQuestNpc(npcAI.getOwner().getNpcId()).getOnTalkEvent();
 			if (QuestEngine.getInstance().onDialog(new QuestEnv(npcAI.getOwner(), player, 0, -1))) {
@@ -53,14 +37,14 @@ public class TalkEventHandler
 		}
 	}
 	
-	public static void onSimpleTalk(NpcAI2 npcAI, Creature creature) {
+	public static void onSimpleTalk(NpcAI npcAI, Creature creature) {
 		if (npcAI.getOwner().getObjectTemplate().isDialogNpc()) {
             npcAI.setSubStateIfNot(AISubState.TALK);
             npcAI.getOwner().setTarget(creature);
         }
 	}
 	
-	public static void onFinishTalk(NpcAI2 npcAI, Creature creature) {
+	public static void onFinishTalk(NpcAI npcAI, Creature creature) {
 		Npc owner = npcAI.getOwner();
 		if (owner.isTargeting(creature.getObjectId())) {
 			if (npcAI.getState() != AIState.FOLLOWING) {
@@ -70,7 +54,7 @@ public class TalkEventHandler
 		}
 	}
 	
-	public static void onSimpleFinishTalk(NpcAI2 npcAI, Creature creature) {
+	public static void onSimpleFinishTalk(NpcAI npcAI, Creature creature) {
 		Npc owner = npcAI.getOwner();
 		if (owner.isTargeting(creature.getObjectId()) && npcAI.setSubStateIfNot(AISubState.NONE)) {
 			owner.setTarget(null);

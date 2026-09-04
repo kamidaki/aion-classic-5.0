@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
 import com.aionemu.gameserver.instance.handlers.InstanceID;
@@ -33,7 +17,7 @@ import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.spawnengine.SpawnEngine;
@@ -444,37 +428,37 @@ public class Dark_Poeta extends GeneralInstanceHandler
 		//idlf1_b_02_lizardas_50_ae
 		final Npc idlf1_b_02_lizardas_50_ae = (Npc) spawn(214837, 807.178162f, 480.325409f, 107.952164f, (byte) 0);
 		idlf1_b_02_lizardas_50_ae.getSpawn().setWalkerId("idlf1_b_path_mob_rush_1");
-		WalkManager.startWalking((NpcAI2) idlf1_b_02_lizardas_50_ae.getAi2());
+		WalkManager.startWalking((NpcAI) idlf1_b_02_lizardas_50_ae.getAi());
 		idlf1_b_02_lizardas_50_ae.setState(1);
 		PacketSendUtility.broadcastPacket(idlf1_b_02_lizardas_50_ae, new S_ACTION(idlf1_b_02_lizardas_50_ae, EmotionType.START_EMOTE2, 0, idlf1_b_02_lizardas_50_ae.getObjectId()));
 		//idlf1_b_02_lizardpr_50_ae
 		final Npc idlf1_b_02_lizardpr_50_ae = (Npc) spawn(214839, 806.178162f, 483.325409f, 107.952164f, (byte) 0);
 		idlf1_b_02_lizardpr_50_ae.getSpawn().setWalkerId("idlf1_b_path_mob_rush_2");
-		WalkManager.startWalking((NpcAI2) idlf1_b_02_lizardpr_50_ae.getAi2());
+		WalkManager.startWalking((NpcAI) idlf1_b_02_lizardpr_50_ae.getAi());
 		idlf1_b_02_lizardpr_50_ae.setState(1);
 		PacketSendUtility.broadcastPacket(idlf1_b_02_lizardpr_50_ae, new S_ACTION(idlf1_b_02_lizardpr_50_ae, EmotionType.START_EMOTE2, 0, idlf1_b_02_lizardpr_50_ae.getObjectId()));
 		//idlf1_b_lizardfinamed_50_ae
 		final Npc idlf1_b_lizardfinamed_50_ae = (Npc) spawn(214841, 807.178162f, 486.325409f, 107.952164f, (byte) 0);
 		idlf1_b_lizardfinamed_50_ae.getSpawn().setWalkerId("idlf1_b_path_mob_rush_3");
-		WalkManager.startWalking((NpcAI2) idlf1_b_lizardfinamed_50_ae.getAi2());
+		WalkManager.startWalking((NpcAI) idlf1_b_lizardfinamed_50_ae.getAi());
 		idlf1_b_lizardfinamed_50_ae.setState(1);
 		PacketSendUtility.broadcastPacket(idlf1_b_lizardfinamed_50_ae, new S_ACTION(idlf1_b_lizardfinamed_50_ae, EmotionType.START_EMOTE2, 0, idlf1_b_lizardfinamed_50_ae.getObjectId()));
 		//idlf1_b_02_lizardra_50_ae
 		final Npc idlf1_b_02_lizardra_50_ae = (Npc) spawn(214838, 873.178162f, 494.325409f, 112.952164f, (byte) 0);
 		idlf1_b_02_lizardra_50_ae.getSpawn().setWalkerId("idlf1_b_path_mob_rush_4");
-		WalkManager.startWalking((NpcAI2) idlf1_b_02_lizardra_50_ae.getAi2());
+		WalkManager.startWalking((NpcAI) idlf1_b_02_lizardra_50_ae.getAi());
 		idlf1_b_02_lizardra_50_ae.setState(1);
 		PacketSendUtility.broadcastPacket(idlf1_b_02_lizardra_50_ae, new S_ACTION(idlf1_b_02_lizardra_50_ae, EmotionType.START_EMOTE2, 0, idlf1_b_02_lizardra_50_ae.getObjectId()));
 		//idlf1_b_lizardasnamed_50_ae
 		final Npc idlf1_b_lizardasnamed_50_ae = (Npc) spawn(214842, 871.178162f, 491.325409f, 112.952164f, (byte) 0);
 		idlf1_b_lizardasnamed_50_ae.getSpawn().setWalkerId("idlf1_b_path_mob_rush_5");
-		WalkManager.startWalking((NpcAI2) idlf1_b_lizardasnamed_50_ae.getAi2());
+		WalkManager.startWalking((NpcAI) idlf1_b_lizardasnamed_50_ae.getAi());
 		idlf1_b_lizardasnamed_50_ae.setState(1);
 		PacketSendUtility.broadcastPacket(idlf1_b_lizardasnamed_50_ae, new S_ACTION(idlf1_b_lizardasnamed_50_ae, EmotionType.START_EMOTE2, 0, idlf1_b_lizardasnamed_50_ae.getObjectId()));
 		//idlf1_b_02_lizardfi_50_ae
 		final Npc idlf1_b_02_lizardfi_50_ae = (Npc) spawn(214836, 867.178162f, 488.325409f, 111.952164f, (byte) 0);
 		idlf1_b_02_lizardfi_50_ae.getSpawn().setWalkerId("idlf1_b_path_mob_rush_6");
-		WalkManager.startWalking((NpcAI2) idlf1_b_02_lizardfi_50_ae.getAi2());
+		WalkManager.startWalking((NpcAI) idlf1_b_02_lizardfi_50_ae.getAi());
 		idlf1_b_02_lizardfi_50_ae.setState(1);
 		PacketSendUtility.broadcastPacket(idlf1_b_02_lizardfi_50_ae, new S_ACTION(idlf1_b_02_lizardfi_50_ae, EmotionType.START_EMOTE2, 0, idlf1_b_02_lizardfi_50_ae.getObjectId()));
 	}
@@ -486,7 +470,7 @@ public class Dark_Poeta extends GeneralInstanceHandler
 		if (isDead(booster1) && isDead(booster2) && isDead(booster3)) {
 			final Npc marabataOfStrength = instance.getNpc(214849);
 			if (marabataOfStrength != null) {
-				marabataOfStrength.getAi2().think();
+				marabataOfStrength.getAi().think();
 				marabataOfStrength.getEffectController().removeEffect(18110); //Torrent Of Wrath.
 				marabataOfStrength.getEffectController().removeEffect(18556); //Marabata Barrier.
 			}
@@ -502,7 +486,7 @@ public class Dark_Poeta extends GeneralInstanceHandler
 		if (isDead(booster4) && isDead(booster5) && isDead(booster6)) {
 			final Npc marabataOfAether = instance.getNpc(214850);
 			if (marabataOfAether != null) {
-				marabataOfAether.getAi2().think();
+				marabataOfAether.getAi().think();
 				marabataOfAether.getEffectController().removeEffect(18110); //Torrent Of Wrath.
 				marabataOfAether.getEffectController().removeEffect(18556); //Marabata Barrier.
 			}
@@ -518,7 +502,7 @@ public class Dark_Poeta extends GeneralInstanceHandler
 		if (isDead(booster7) && isDead(booster8) && isDead(booster9)) {
 			final Npc marabataOfPoisoning = instance.getNpc(214851);
 			if (marabataOfPoisoning != null) {
-				marabataOfPoisoning.getAi2().think();
+				marabataOfPoisoning.getAi().think();
 				marabataOfPoisoning.getEffectController().removeEffect(18110); //Torrent Of Wrath.
 				marabataOfPoisoning.getEffectController().removeEffect(18556); //Marabata Barrier.
 			}
@@ -530,7 +514,7 @@ public class Dark_Poeta extends GeneralInstanceHandler
 	protected void tahabataAbyssGate(float x, float y, float z, byte h) {
 		for (Player player: instance.getPlayersInside()) {
 			if (player.isOnline()) {
-				TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h);
+				TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h);
 			}
 		}
 	}
@@ -674,7 +658,7 @@ public class Dark_Poeta extends GeneralInstanceHandler
                 if (!isInstanceDestroyed) {
                     Npc npc = (Npc) spawn(npcId, x, y, z, h);
                     npc.getSpawn().setWalkerId(walkerId);
-                    WalkManager.startWalking((NpcAI2) npc.getAi2());
+                    WalkManager.startWalking((NpcAI) npc.getAi());
                 }
             }
         }, time));
@@ -744,7 +728,7 @@ public class Dark_Poeta extends GeneralInstanceHandler
 	public void onLeaveInstance(Player player) {
 		//"Player Name" has left the battle.
 		PacketSendUtility.sendPacket(player, new S_MESSAGE_CODE(1400255, player.getName()));
-		if (player.isInGroup2()) {
+		if (player.isInGroup()) {
             PlayerGroupService.removePlayer(player);
         }
 	}
@@ -753,7 +737,7 @@ public class Dark_Poeta extends GeneralInstanceHandler
 	public void onExitInstance(Player player) {
 		InstanceService.destroyInstance(player.getPosition().getWorldMapInstance());
 		if (instanceReward.getInstanceScoreType().isEndProgress()) {
-			TeleportService2.moveToInstanceExit(player, mapId, player.getRace());
+			TeleportService.moveToInstanceExit(player, mapId, player.getRace());
 		}
 	}
 	

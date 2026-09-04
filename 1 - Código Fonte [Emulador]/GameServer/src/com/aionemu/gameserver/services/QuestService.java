@@ -70,7 +70,7 @@ import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.player.BattlePassService;
 import com.aionemu.gameserver.services.reward.BonusService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -713,7 +713,7 @@ public final class QuestService
 		for (QuestDrop drop : drops) {
 			if (Rnd.get() * 100 > drop.getChance()) {
 				continue;
-			} if (players != null && player.isInGroup2()) {
+			} if (players != null && player.isInGroup()) {
 				List<Player> pls = new ArrayList<Player>();
 				if (drop.isDropEachMemberGroup()) {
 					for (Player member : players) {
@@ -735,13 +735,13 @@ public final class QuestService
 					}
 					for (Player p : pls) {
 						dropNpc.setPlayerObjectId(p.getObjectId());
-						if (player.getPlayerGroup2().getLootGroupRules().getLootRule() != LootRuleType.FREEFORALL) {
+						if (player.getPlayerGroup().getLootGroupRules().getLootRule() != LootRuleType.FREEFORALL) {
 							PacketSendUtility.sendPacket(p, new S_LOOT(npc.getObjectId(), 0));
 						}
 					}
 					pls.clear();
 				}
-			} else if (players != null && player.isInAlliance2()) {
+			} else if (players != null && player.isInAlliance()) {
 				List<Player> pls = new ArrayList<Player>();
 				if (drop.isDropEachMemberAlliance()) {
 					for (Player member : players) {
@@ -763,7 +763,7 @@ public final class QuestService
 					}
 					for (Player p : pls) {
 						dropNpc.setPlayerObjectId(p.getObjectId());
-						if (player.getPlayerAlliance2().getLootGroupRules().getLootRule() != LootRuleType.FREEFORALL) {
+						if (player.getPlayerAlliance().getLootGroupRules().getLootRule() != LootRuleType.FREEFORALL) {
 							PacketSendUtility.sendPacket(p, new S_LOOT(npc.getObjectId(), 0));
 						}
 					}
@@ -798,10 +798,10 @@ public final class QuestService
         }
 		QuestTemplate qt = DataManager.QUEST_DATA.getQuestById(questId);
 		if (qt.getMentorType() == QuestMentorType.MENTE) {
-			if (!player.isInGroup2()) {
+			if (!player.isInGroup()) {
                 return false;
             }
-			PlayerGroup group = player.getPlayerGroup2();
+			PlayerGroup group = player.getPlayerGroup();
 			boolean found = false;
 			for (Player member : group.getMembers()) {
 				if (member.isMentor() && MathUtil.getDistance(player, member) < GroupConfig.GROUP_MAX_DISTANCE) {
@@ -989,7 +989,7 @@ public final class QuestService
 		}
 		if (qs.getStatus() == QuestStatus.START || qs.getStatus() == QuestStatus.REWARD) {
 			int worldId = player.getWorldId();
-			SpawnSearchResult searchResult = DataManager.SPAWNS_DATA2.getFirstSpawnByNpcId(worldId, npcId);
+			SpawnSearchResult searchResult = DataManager.SPAWNS_DATA.getFirstSpawnByNpcId(worldId, npcId);
 			if (player.getState() == CreatureState.RESTING.getId() || player.getState() == CreatureState.FLIGHT_TELEPORT.getId() ||
 				player.getState() == CreatureState.GLIDING.getId() || player.getState() == CreatureState.LOOTING.getId() ||
 				player.getState() == CreatureState.PRIVATE_SHOP.getId() || player.getState() == CreatureState.CHAIR.getId() ||
@@ -999,7 +999,7 @@ public final class QuestService
 				PacketSendUtility.sendPacket(player, new S_MESSAGE_CODE(1401744));
 				return;
 			}
-			TeleportService2.teleportToNpc(player, npcId);
+			TeleportService.teleportToNpc(player, npcId);
 		}
 	}
 }

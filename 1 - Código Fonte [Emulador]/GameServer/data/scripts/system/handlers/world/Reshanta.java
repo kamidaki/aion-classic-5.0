@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package world;
 
 import com.aionemu.commons.utils.Rnd;
@@ -32,7 +16,7 @@ import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.services.instance.InstanceService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.skillengine.SkillEngine;
@@ -458,7 +442,7 @@ public class Reshanta extends GeneralWorldHandler
 				    if (qs1099 != null && qs1099.getStatus() == QuestStatus.START && qs1099.getQuestVarById(0) == 1) {
 						WorldMapInstance ataxiarA = InstanceService.getNextAvailableInstance(310120000);
 						InstanceService.registerPlayerWithInstance(ataxiarA, player);
-						TeleportService2.teleportTo(player, 310120000, ataxiarA.getInstanceId(), 52.0000f, 174.0000f, 229.0000f, (byte) 0);
+						TeleportService.teleportTo(player, 310120000, ataxiarA.getInstanceId(), 52.0000f, 174.0000f, 229.0000f, (byte) 0);
 					} else {
 						///You cannot move to that destination.
 						PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_CANNOT_MOVE_TO_AIRPORT_NO_ROUTE);
@@ -468,7 +452,7 @@ public class Reshanta extends GeneralWorldHandler
 					if (qs2099 != null && qs2099.getStatus() == QuestStatus.START && qs2099.getQuestVarById(0) == 1) {
 						WorldMapInstance ataxiarD = InstanceService.getNextAvailableInstance(320140000);
 					    InstanceService.registerPlayerWithInstance(ataxiarD, player);
-					    TeleportService2.teleportTo(player, 320140000, ataxiarD.getInstanceId(), 452.0000f, 420.0000f, 230.0000f, (byte) 75);
+					    TeleportService.teleportTo(player, 320140000, ataxiarD.getInstanceId(), 452.0000f, 420.0000f, 230.0000f, (byte) 75);
 					} else {
 						///You cannot move to that destination.
 						PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_CANNOT_MOVE_TO_AIRPORT_NO_ROUTE);

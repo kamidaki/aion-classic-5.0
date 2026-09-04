@@ -1,11 +1,3 @@
-/*
- * This file is part of Eleanor project
- *
- * This is proprietary software. See the EULA file distributed with
- * this project for additional information regarding copyright ownership.
- *
- * Copyright (c) 2011-2013, Eleanor Team. All rights reserved.
- */
 package com.eleanor.processors;
 
 
@@ -22,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Base game processor component abstraction
  *
- * @author MetaWind
  */
 public class AGameProcessor {
 

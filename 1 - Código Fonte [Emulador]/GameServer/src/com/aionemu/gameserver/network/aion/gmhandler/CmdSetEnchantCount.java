@@ -2,9 +2,7 @@ package com.aionemu.gameserver.network.aion.gmhandler;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 
-/**
- * @author Soulxj
- */
+
 public class CmdSetEnchantCount extends AbstractGMHandler {
 
     public CmdSetEnchantCount(Player admin, String params) {

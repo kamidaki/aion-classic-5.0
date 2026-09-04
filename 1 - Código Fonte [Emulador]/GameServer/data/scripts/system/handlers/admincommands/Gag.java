@@ -10,9 +10,7 @@ import com.aionemu.gameserver.world.World;
 
 import java.util.concurrent.Future;
 
-/**
- * @author Watson
- */
+
 public class Gag extends AdminCommand {
 
 	public Gag() {

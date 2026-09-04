@@ -10,9 +10,7 @@ import com.aionemu.gameserver.utils.Util;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.World;
 
-/**
- * @author Antivirus
- */
+
 public class AddSet extends AdminCommand {
 
 	public AddSet() {

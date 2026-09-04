@@ -7,10 +7,7 @@ import com.aionemu.gameserver.utils.Util;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.World;
 
-/**
- * @author Kamui
- *
- */
+
 public class AddCube extends AdminCommand {
 
 

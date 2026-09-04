@@ -1,23 +1,7 @@
-/*
- * This file is part of aion-lightning <aion-lightning.com>.
- *
- *  aion-lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.templates.event;
 
 import com.aionemu.gameserver.dataholders.DataManager;
-import com.aionemu.gameserver.dataholders.SpawnsData2;
+import com.aionemu.gameserver.dataholders.SpawnsData;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.Guides.GuideTemplate;
@@ -55,7 +39,7 @@ public class EventTemplate
 	protected EventQuestList quests;
 	
 	@XmlElement(name = "spawns", required = false)
-	protected SpawnsData2 spawns;
+	protected SpawnsData spawns;
 	
 	@XmlElement(name = "inventory_drop", required = false)
 	protected InventoryDrop inventoryDrop;
@@ -142,7 +126,7 @@ public class EventTemplate
 			}
 			int spawnCount = 0;
 			for (SpawnMap map : spawns.getTemplates()) {
-				DataManager.SPAWNS_DATA2.addNewSpawnMap(map);
+				DataManager.SPAWNS_DATA.addNewSpawnMap(map);
 				Collection<Integer> instanceIds = World.getInstance().getWorldMap(map.getMapId()).getAvailableInstanceIds();
 				for (Integer instanceId : instanceIds) {
 					for (Spawn spawn : map.getSpawns()) {
@@ -157,8 +141,8 @@ public class EventTemplate
 				}
 			}
 			log.info("[EventService] Spawned " + spawnCount + " Event objects:" + " (" + this.getName() + ")");
-			DataManager.SPAWNS_DATA2.afterUnmarshal(null, null);
-			DataManager.SPAWNS_DATA2.clearTemplates();
+			DataManager.SPAWNS_DATA.afterUnmarshal(null, null);
+			DataManager.SPAWNS_DATA.clearTemplates();
 		} if (inventoryDrop != null) {
 			invDropTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
 				@Override
@@ -209,7 +193,7 @@ public class EventTemplate
 					o.getController().delete();
 				}
 			}
-			DataManager.SPAWNS_DATA2.removeEventSpawnObjects(spawnedObjects);
+			DataManager.SPAWNS_DATA.removeEventSpawnObjects(spawnedObjects);
 			log.info("Despawned " + spawnedObjects.size() + " event objects (" + this.getName() + ")");
 			spawnedObjects.clear();
 			spawnedObjects = null;

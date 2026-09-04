@@ -5,9 +5,7 @@ import com.aionemu.gameserver.services.abyss.AbyssRankUpdateService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author ATracer
- */
+
 public class Ranking extends AdminCommand {
 
 	public Ranking() {

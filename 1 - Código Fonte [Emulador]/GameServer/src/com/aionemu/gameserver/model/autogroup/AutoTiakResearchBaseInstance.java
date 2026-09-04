@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.autogroup;
 
 import com.aionemu.commons.database.dao.DAOManager;
@@ -27,7 +11,7 @@ import com.aionemu.gameserver.model.team2.group.PlayerGroup;
 import com.aionemu.gameserver.model.team2.group.PlayerGroupService;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.services.instance.TiakResearchBaseService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
 import java.util.*;
@@ -50,7 +34,7 @@ public class AutoTiakResearchBaseInstance extends AutoInstance
 			if (ert.isGroupEntry()) {
 				if (searchInstance.getMembers().size() + playersByRace.size() > 3) {
 					return AGQuestion.FAILED;
-				} for (Player member : player.getPlayerGroup2().getOnlineMembers()) {
+				} for (Player member : player.getPlayerGroup().getOnlineMembers()) {
 					if (searchInstance.getMembers().contains(member.getObjectId())) {
 						players.put(member.getObjectId(), new AGPlayer(player));
 					}
@@ -73,7 +57,7 @@ public class AutoTiakResearchBaseInstance extends AutoInstance
         long useDelay = DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(player, instance.getMapId());
 		List<Player> playersByRace = getPlayersByRace(player.getRace());
 		playersByRace.remove(player);
-        if (playersByRace.size() == 1 && !playersByRace.get(0).isInGroup2()) {
+        if (playersByRace.size() == 1 && !playersByRace.get(0).isInGroup()) {
             PlayerGroup newGroup = PlayerGroupService.createGroup(playersByRace.get(0), player, TeamType.GROUP);
             int groupId = newGroup.getObjectId();
             if (!instance.isRegistered(groupId)) {
@@ -86,8 +70,8 @@ public class AutoTiakResearchBaseInstance extends AutoInstance
 				//You have successfully entered the area, consuming one of your permitted entries.
 				PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_MSG_INSTANCE_DUNGEON_COUNT_USE);
 			}
-        } else if (!playersByRace.isEmpty() && playersByRace.get(0).isInGroup2()) {
-            PlayerGroupService.addPlayer(playersByRace.get(0).getPlayerGroup2(), player);
+        } else if (!playersByRace.isEmpty() && playersByRace.get(0).isInGroup()) {
+            PlayerGroupService.addPlayer(playersByRace.get(0).getPlayerGroup(), player);
 			if (player.getPortalCooldownList().getPortalCooldownItem(instance.getMapId()) == null) {
 				player.getPortalCooldownList().addPortalCooldown(instance.getMapId(), 1, DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(player, instance.getMapId()));
 			} else {
@@ -113,7 +97,7 @@ public class AutoTiakResearchBaseInstance extends AutoInstance
 	public void onLeaveInstance(Player player) {
 		super.unregister(player);
 		PlayerGroupService.removePlayer(player);
-		TeleportService2.moveToBindLocation(player, true);
+		TeleportService.moveToBindLocation(player, true);
 	}
 	
 	private List<AGPlayer> getAGPlayersByRace(Race race) {

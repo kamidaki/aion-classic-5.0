@@ -42,7 +42,7 @@ public class SpawnNpc extends AdminCommand
 			PacketSendUtility.sendMessage(admin, "Spawn id " + templateId + " was not found!");
 		} else if (respawnTime > 0) {
 			try {
-				DataManager.SPAWNS_DATA2.saveSpawn(admin, visibleObject, false);
+				DataManager.SPAWNS_DATA.saveSpawn(admin, visibleObject, false);
 			} catch (IOException e) {
 				e.printStackTrace();
 				PacketSendUtility.sendMessage(admin, "Could not save spawn");

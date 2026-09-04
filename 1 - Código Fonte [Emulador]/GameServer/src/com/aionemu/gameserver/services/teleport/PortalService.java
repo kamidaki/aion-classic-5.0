@@ -106,19 +106,19 @@ public class PortalService
 				break;
 				case 3:
 				case 6:
-					if (player.getPlayerGroup2() != null) {
-						instance = InstanceService.getRegisteredInstance(mapId, player.getPlayerGroup2().getTeamId());
+					if (player.getPlayerGroup() != null) {
+						instance = InstanceService.getRegisteredInstance(mapId, player.getPlayerGroup().getTeamId());
 					}
 				break;
 				case 12:
 				case 18:
 				case 24:
 				case 48:
-					if (player.isInAlliance2()) {
+					if (player.isInAlliance()) {
 						if (player.isInLeague()) {
-							instance = InstanceService.getRegisteredInstance(mapId, player.getPlayerAlliance2().getLeague().getObjectId());
+							instance = InstanceService.getRegisteredInstance(mapId, player.getPlayerAlliance().getLeague().getObjectId());
 						} else {
-							instance = InstanceService.getRegisteredInstance(mapId, player.getPlayerAlliance2().getObjectId());
+							instance = InstanceService.getRegisteredInstance(mapId, player.getPlayerAlliance().getObjectId());
 						}
 					}
 				break;
@@ -137,8 +137,8 @@ public class PortalService
 		} else {
 			log.debug(player.getName() + "doesn't have cd of this instance, can enter and will be registed to this intance");
 		}
-		PlayerGroup group = player.getPlayerGroup2();
-		PlayerAlliance allianceGroup = player.getPlayerAlliance2();
+		PlayerGroup group = player.getPlayerGroup();
+		PlayerAlliance allianceGroup = player.getPlayerAlliance();
 		switch (playerSize) {
 			case 0:
 				if (group != null && !instanceGroupReq) {
@@ -277,7 +277,7 @@ public class PortalService
 		int errDialog = portalPath.getErrGroup();
 		int playerSize = portalPath.getPlayerCount();
 		if (playerSize >= 2 && playerSize <= 6) {
-			if (!player.isInGroup2()) {
+			if (!player.isInGroup()) {
 				if (errDialog != 0) {
 					PacketSendUtility.sendPacket(player, new S_NPC_HTML_MESSAGE(npcObjectId, errDialog));
 				} else {
@@ -286,7 +286,7 @@ public class PortalService
 				return false;
 			}
 		} else if (playerSize >= 7 && playerSize <= 24) {
-			if (!player.isInAlliance2()) {
+			if (!player.isInAlliance()) {
 				if (errDialog != 0) {
 					PacketSendUtility.sendPacket(player, new S_NPC_HTML_MESSAGE(npcObjectId, errDialog));
 				} else {
@@ -396,10 +396,10 @@ public class PortalService
 	private static void transfer(Player player, PortalLoc loc, WorldMapInstance instance, boolean reenter) {
 		player.setInstanceStartPos(loc.getX(), loc.getY(), loc.getZ());
 		InstanceService.registerPlayerWithInstance(instance, player);
-		TeleportService2.teleportTo(player, loc.getWorldId(), instance.getInstanceId(), loc.getX(), loc.getY(), loc.getZ(), loc.getH(), TeleportAnimation.FIRE_ANIMATION);
+		TeleportService.teleportTo(player, loc.getWorldId(), instance.getInstanceId(), loc.getX(), loc.getY(), loc.getZ(), loc.getH(), TeleportAnimation.FIRE_ANIMATION);
 	}
 	
 	private static void easyTransfer(Player player, PortalLoc loc) {
-		TeleportService2.teleportTo(player, loc.getWorldId(), loc.getX(), loc.getY(), loc.getZ(), loc.getH(), TeleportAnimation.FIRE_ANIMATION);
+		TeleportService.teleportTo(player, loc.getWorldId(), loc.getX(), loc.getY(), loc.getZ(), loc.getH(), TeleportAnimation.FIRE_ANIMATION);
 	}
 }

@@ -4,9 +4,7 @@ import com.aionemu.commons.database.dao.DAO;
 
 import java.util.Map;
 
-/**
- * @author KID
- */
+
 public abstract class PlayerVarsDAO implements DAO {
 	@Override
 	public String getClassName() {

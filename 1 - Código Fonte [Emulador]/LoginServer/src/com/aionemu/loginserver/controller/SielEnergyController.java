@@ -8,9 +8,7 @@ import com.aionemu.loginserver.model.SielEnergyType;
 
 import java.sql.Timestamp;
 
-/**
- * @author soulxj
- */
+
 public class SielEnergyController {
 
     /**

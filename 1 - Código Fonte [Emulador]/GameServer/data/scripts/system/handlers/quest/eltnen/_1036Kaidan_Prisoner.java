@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package quest.eltnen;
 
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -23,7 +7,7 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.questEngine.model.QuestDialog;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.*;
 
 /****/
@@ -86,7 +70,7 @@ public class _1036Kaidan_Prisoner extends QuestHandler
 						return playQuestMovie(env, 32);
 					} case STEP_TO_2: {
 						changeQuestStep(env, 1, 2, false);
-						TeleportService2.teleportTo(env.getPlayer(), 210020000, 1461.0000f, 2488.0000f, 344.0000f, (byte) 58);
+						TeleportService.teleportTo(env.getPlayer(), 210020000, 1461.0000f, 2488.0000f, 344.0000f, (byte) 58);
 						return closeDialogWindow(env);
 					}
 				}
@@ -121,7 +105,7 @@ public class _1036Kaidan_Prisoner extends QuestHandler
 					} case STEP_TO_5: {
 						giveQuestItem(env, 182201004, 1);
 						changeQuestStep(env, 4, 5, false);
-						TeleportService2.teleportTo(env.getPlayer(), 210020000, 1605.0000f, 1528.0000f, 318.0000f, (byte) 119);
+						TeleportService.teleportTo(env.getPlayer(), 210020000, 1605.0000f, 1528.0000f, 318.0000f, (byte) 119);
 						return closeDialogWindow(env);
 					}
 				}

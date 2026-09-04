@@ -10,10 +10,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @author Wakizashi, Imaginary
- *
- */
+
 public class Reskin extends AdminCommand {
 	public Reskin()	{
 		super("reskin");

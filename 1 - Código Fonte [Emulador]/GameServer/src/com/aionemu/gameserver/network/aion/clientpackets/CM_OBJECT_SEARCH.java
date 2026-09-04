@@ -6,7 +6,7 @@ import com.aionemu.gameserver.model.templates.spawns.SpawnSearchResult;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.S_FIND_NPC_POS_RESULT;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 
 public class CM_OBJECT_SEARCH extends AionClientPacket
 {
@@ -23,12 +23,12 @@ public class CM_OBJECT_SEARCH extends AionClientPacket
 	
 	@Override
 	protected void runImpl() {
-		SpawnSearchResult searchResult = DataManager.SPAWNS_DATA2.getFirstSpawnByNpcId(0, npcId);
+		SpawnSearchResult searchResult = DataManager.SPAWNS_DATA.getFirstSpawnByNpcId(0, npcId);
 		Player player = getConnection().getActivePlayer();
 		if (searchResult != null) {
 			sendPacket(new S_FIND_NPC_POS_RESULT(npcId, searchResult.getWorldId(), searchResult.getSpot().getX(), searchResult.getSpot().getY(), searchResult.getSpot().getZ()));
 			if (player.isGM()) {
-        		TeleportService2.teleportToNpc(player, this.npcId);
+        		TeleportService.teleportToNpc(player, this.npcId);
 			}
 		}
 	}

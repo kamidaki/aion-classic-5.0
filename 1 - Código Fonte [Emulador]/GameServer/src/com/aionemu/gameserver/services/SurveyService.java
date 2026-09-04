@@ -22,9 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-/**
- * @author KID
- */
+
 public class SurveyService {
 
 	private static final Logger log = LoggerFactory.getLogger(SurveyService.class);

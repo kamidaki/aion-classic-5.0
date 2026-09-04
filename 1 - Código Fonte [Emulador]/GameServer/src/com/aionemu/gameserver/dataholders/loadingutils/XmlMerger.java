@@ -1,19 +1,3 @@
-/*
- * This file is part of aion-emu <aion-emu.com>.
- *
- *  aion-emu is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  aion-emu is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.dataholders.loadingutils;
 
 import org.apache.commons.io.FileUtils;
@@ -84,7 +68,6 @@ import static org.apache.commons.io.filefilter.FileFilterUtils.makeSVNAware;
  * <p/>
  * Created on: 23.07.2009 12:55:14
  * 
- * @author Aquanox
  */
 public class XmlMerger {
 

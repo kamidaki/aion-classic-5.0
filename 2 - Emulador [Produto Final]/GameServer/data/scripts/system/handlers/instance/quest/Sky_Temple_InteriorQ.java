@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance.quest;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
 import com.aionemu.gameserver.instance.handlers.InstanceID;
@@ -56,12 +40,12 @@ public class Sky_Temple_InteriorQ extends GeneralInstanceHandler
 		    case 1:
 				final Npc elementalwater3nmd_31_an = (Npc) spawn(212834, 394.7483f, 54.3286f, 223.1608f, (byte) 0);
 				elementalwater3nmd_31_an.getSpawn().setWalkerId("iddf2flying_mpath_elementalwater3nmd_31_1");
-				WalkManager.startWalking((NpcAI2) elementalwater3nmd_31_an.getAi2());
+				WalkManager.startWalking((NpcAI) elementalwater3nmd_31_an.getAi());
 			break;
 			case 2:
 				final Npc elementalwater3d_31_an = (Npc) spawn(212764, 394.7483f, 54.3286f, 223.1608f, (byte) 0);
 				elementalwater3d_31_an.getSpawn().setWalkerId("iddf2flying_mpath_elementalwater3nmd_31_1");
-				WalkManager.startWalking((NpcAI2) elementalwater3d_31_an.getAi2());
+				WalkManager.startWalking((NpcAI) elementalwater3d_31_an.getAi());
 			break;
 		}
 		///Fire Key Guardian.

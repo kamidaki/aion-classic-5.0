@@ -4,7 +4,7 @@ import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.templates.spawns.SpawnGroup2;
+import com.aionemu.gameserver.model.templates.spawns.SpawnGroup;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.walker.WalkerTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.S_REMOVE_OBJECT;
@@ -19,7 +19,6 @@ import static ch.lambdaj.Lambda.*;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * @author KID
  * @modified Rolandas
  */
 public class SpawnUpdate extends AdminCommand {
@@ -53,7 +52,7 @@ public class SpawnUpdate extends AdminCommand {
 				PacketSendUtility.sendPacket(admin, new S_PUT_NPC(npc, admin));
 				PacketSendUtility.sendMessage(admin, "updated npcs x to " + x + ".");
 				try {
-					DataManager.SPAWNS_DATA2.saveSpawn(admin, npc, false);
+					DataManager.SPAWNS_DATA.saveSpawn(admin, npc, false);
 				}
 				catch (IOException e) {
 					e.printStackTrace();
@@ -73,7 +72,7 @@ public class SpawnUpdate extends AdminCommand {
 				PacketSendUtility.sendPacket(admin, new S_PUT_NPC(npc, admin));
 				PacketSendUtility.sendMessage(admin, "updated npcs y to " + y + ".");
 				try {
-					DataManager.SPAWNS_DATA2.saveSpawn(admin, npc, false);
+					DataManager.SPAWNS_DATA.saveSpawn(admin, npc, false);
 				}
 				catch (IOException e) {
 					e.printStackTrace();
@@ -93,7 +92,7 @@ public class SpawnUpdate extends AdminCommand {
 				PacketSendUtility.sendPacket(admin, new S_PUT_NPC(npc, admin));
 				PacketSendUtility.sendMessage(admin, "updated npcs z to " + z + ".");
 				try {
-					DataManager.SPAWNS_DATA2.saveSpawn(admin, npc, false);
+					DataManager.SPAWNS_DATA.saveSpawn(admin, npc, false);
 				}
 				catch (IOException e) {
 					e.printStackTrace();
@@ -119,7 +118,7 @@ public class SpawnUpdate extends AdminCommand {
 				PacketSendUtility.sendPacket(admin, new S_PUT_NPC(npc, admin));
 				PacketSendUtility.sendMessage(admin, "updated npcs heading to " + h + ".");
 				try {
-					DataManager.SPAWNS_DATA2.saveSpawn(admin, npc, false);
+					DataManager.SPAWNS_DATA.saveSpawn(admin, npc, false);
 				}
 				catch (IOException e) {
 					e.printStackTrace();
@@ -132,13 +131,13 @@ public class SpawnUpdate extends AdminCommand {
 				PacketSendUtility.sendPacket(admin, new S_REMOVE_OBJECT(npc, 0));
 				npc.getPosition().setXYZH(admin.getX(), null, null, null);
 				try {
-					DataManager.SPAWNS_DATA2.saveSpawn(admin, npc, false);
+					DataManager.SPAWNS_DATA.saveSpawn(admin, npc, false);
 					PacketSendUtility.sendPacket(admin, new S_PUT_NPC(npc, admin));
 					npc.getPosition().setXYZH(null, admin.getY(), null, null);
-					DataManager.SPAWNS_DATA2.saveSpawn(admin, npc, false);
+					DataManager.SPAWNS_DATA.saveSpawn(admin, npc, false);
 					PacketSendUtility.sendPacket(admin, new S_PUT_NPC(npc, admin));
 					npc.getPosition().setXYZH(null, null, admin.getZ(), null);
-					DataManager.SPAWNS_DATA2.saveSpawn(admin, npc, false);
+					DataManager.SPAWNS_DATA.saveSpawn(admin, npc, false);
 					PacketSendUtility.sendPacket(admin, new S_PUT_NPC(npc, admin));
 					PacketSendUtility.sendMessage(admin, "updated npcs coordinates to " + admin.getX() + ", " + admin.getY() + ", " + admin.getZ() + ".");
 				}
@@ -159,8 +158,8 @@ public class SpawnUpdate extends AdminCommand {
 						PacketSendUtility.sendMessage(admin, "No such template exists in npc_walker.xml.");
 						return;
 					}
-					List<SpawnGroup2> allSpawns = DataManager.SPAWNS_DATA2.getSpawnsByWorldId(npc.getWorldId());
-					List<SpawnTemplate> allSpots = flatten(extractIterator(allSpawns, on(SpawnGroup2.class).getSpawnTemplates()));
+					List<SpawnGroup> allSpawns = DataManager.SPAWNS_DATA.getSpawnsByWorldId(npc.getWorldId());
+					List<SpawnTemplate> allSpots = flatten(extractIterator(allSpawns, on(SpawnGroup.class).getSpawnTemplates()));
 					List<SpawnTemplate> sameIds = filter(having(on(SpawnTemplate.class).getWalkerId(), equalTo(walkerId)), allSpots);
 					if (sameIds.size() >= template.getPool()) {
 						PacketSendUtility.sendMessage(admin, "Can not assign, walker pool reached the limit.");
@@ -175,7 +174,7 @@ public class SpawnUpdate extends AdminCommand {
 				else
 					PacketSendUtility.sendMessage(admin, "updated npcs walker_id to " + walkerId + ".");
 				try {
-					DataManager.SPAWNS_DATA2.saveSpawn(admin, npc, false);
+					DataManager.SPAWNS_DATA.saveSpawn(admin, npc, false);
 				}
 				catch (IOException e) {
 					e.printStackTrace();

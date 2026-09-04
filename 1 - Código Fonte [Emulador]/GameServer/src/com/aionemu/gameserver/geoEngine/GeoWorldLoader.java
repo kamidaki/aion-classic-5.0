@@ -31,9 +31,7 @@ import com.aionemu.gameserver.world.zone.ZoneName;
 import com.aionemu.gameserver.world.zone.ZoneService;
 
 
-/**
- * @author Mr. Poke
- */
+
 public class GeoWorldLoader {
 
 	@SuppressWarnings("unused")

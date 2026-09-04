@@ -4,9 +4,7 @@ import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.world.zone.ZoneName;
 
-/**
- * @author LightNing
- */
+
 public class SM_PLAYER_REGION extends AionServerPacket {
 
     private final ZoneName subZone;

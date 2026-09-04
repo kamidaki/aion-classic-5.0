@@ -1,24 +1,8 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance.dredgion;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.manager.WalkManager;
 import com.aionemu.gameserver.configs.main.GroupConfig;
 import com.aionemu.gameserver.instance.handlers.GeneralInstanceHandler;
@@ -45,7 +29,7 @@ import com.aionemu.gameserver.services.AutoGroupService;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.services.player.PlayerReviveService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -169,7 +153,7 @@ public class Chantra_Dredgion extends GeneralInstanceHandler
 					case 2:
 					    final Npc iddreadgion_02_drakanrainspector_55_ah = (Npc) spawn(216887, 484.54420f, 909.91736f, 405.25128f, (byte) 0);
 						iddreadgion_02_drakanrainspector_55_ah.getSpawn().setWalkerId("path_iddreadgion_02_drakanrainspector_55_ah_1");
-						WalkManager.startWalking((NpcAI2) iddreadgion_02_drakanrainspector_55_ah.getAi2());
+						WalkManager.startWalking((NpcAI) iddreadgion_02_drakanrainspector_55_ah.getAi());
 					break;
 				}
 			}
@@ -375,7 +359,7 @@ public class Chantra_Dredgion extends GeneralInstanceHandler
     }
 	
 	protected void moveBack(Player player, float x, float y, float z, byte h) {
-		TeleportService2.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
+		TeleportService.teleportTo(player, mapId, instanceId, x, y, z, h, TeleportAnimation.NO_ANIMATION);
 	}
 	
 	private void despawnNpc(Npc npc) {
@@ -524,8 +508,8 @@ public class Chantra_Dredgion extends GeneralInstanceHandler
 		}
 		addPointsByRace(player.getRace(), points);
 		List<Player> playersToGainScore = new ArrayList<Player>();
-		if (target != null && player.isInGroup2()) {
-			for (Player member : player.getPlayerGroup2().getOnlineMembers()) {
+		if (target != null && player.isInGroup()) {
+			for (Player member : player.getPlayerGroup().getOnlineMembers()) {
 				if (member.getLifeStats().isAlreadyDead()) {
 					continue;
 				} if (MathUtil.isIn3dRange(member, target, GroupConfig.GROUP_MAX_DISTANCE)) {
@@ -612,7 +596,7 @@ public class Chantra_Dredgion extends GeneralInstanceHandler
                 if (!isInstanceDestroyed) {
                     Npc npc = (Npc) spawn(npcId, x, y, z, h);
                     npc.getSpawn().setWalkerId(walkerId);
-                    WalkManager.startWalking((NpcAI2) npc.getAi2());
+                    WalkManager.startWalking((NpcAI) npc.getAi());
                 }
             }
         }, time));
@@ -658,12 +642,12 @@ public class Chantra_Dredgion extends GeneralInstanceHandler
 	
 	@Override
     public void onExitInstance(Player player) {
-        TeleportService2.moveToBindLocation(player, true);
+        TeleportService.moveToBindLocation(player, true);
     }
 	
 	@Override
 	public void onPlayerLogOut(Player player) {
-		TeleportService2.moveToBindLocation(player, true);
+		TeleportService.moveToBindLocation(player, true);
 	}
 	
 	@Override
@@ -671,7 +655,7 @@ public class Chantra_Dredgion extends GeneralInstanceHandler
         stopInstanceTask();
 		//"Player Name" has left the battle.
 		PacketSendUtility.sendPacket(player, new S_MESSAGE_CODE(1400255, player.getName()));
-        if (player.isInGroup2()) {
+        if (player.isInGroup()) {
             PlayerGroupService.removePlayer(player);
         }
     }

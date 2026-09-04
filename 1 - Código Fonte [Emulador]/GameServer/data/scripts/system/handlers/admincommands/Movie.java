@@ -5,9 +5,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_PLAY_CUTSCENE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author d3v1an
- */
+
 public class Movie extends AdminCommand {
 
 	public Movie() {

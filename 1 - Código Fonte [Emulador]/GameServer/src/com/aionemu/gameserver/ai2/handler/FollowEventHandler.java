@@ -2,7 +2,7 @@ package com.aionemu.gameserver.ai2.handler;
 
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.AbstractAI;
-import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.NpcAI;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.ai2.manager.EmoteManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -13,7 +13,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 
 public class FollowEventHandler
 {
-	public static void follow(NpcAI2 npcAI, Creature creature) {
+	public static void follow(NpcAI npcAI, Creature creature) {
 		if (npcAI.setStateIfNot(AIState.FOLLOWING)) {
 			npcAI.getOwner().setTarget(creature);
 			EmoteManager.emoteStartFollowing(npcAI.getOwner());
@@ -22,7 +22,7 @@ public class FollowEventHandler
 		}
 	}
 	
-	public static void creatureMoved(NpcAI2 npcAI, Creature creature) {
+	public static void creatureMoved(NpcAI npcAI, Creature creature) {
 		if (npcAI.isInState(AIState.FOLLOWING)) {
 			if (npcAI.getOwner().isTargeting(creature.getObjectId()) && !creature.getLifeStats().isAlreadyDead()) {
 				checkFollowTarget(npcAI, creature);
@@ -30,7 +30,7 @@ public class FollowEventHandler
 		}
 	}
 	
-	public static void checkFollowTarget(NpcAI2 npcAI, Creature creature) {
+	public static void checkFollowTarget(NpcAI npcAI, Creature creature) {
 		if (!isInRange(npcAI, creature)) {
 			npcAI.onGeneralEvent(AIEventType.TARGET_TOOFAR);
 		}
@@ -48,7 +48,7 @@ public class FollowEventHandler
 		}
 	}
 	
-	public static void stopFollow(NpcAI2 npcAI, Creature creature) {
+	public static void stopFollow(NpcAI npcAI, Creature creature) {
 		if (npcAI.setStateIfNot(AIState.IDLE)) {
 			npcAI.getOwner().setTarget(null);
 			npcAI.getOwner().getMoveController().abortMove();

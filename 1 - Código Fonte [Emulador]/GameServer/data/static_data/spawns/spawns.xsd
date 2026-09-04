@@ -2,8 +2,8 @@
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:include schemaLocation="../global_types.xsd"/>
 	<xs:include schemaLocation="../import.xsd"/>
-	<xs:element name="spawns" type="SpawnsData2"/>
-	<xs:complexType name="SpawnsData2">
+	<xs:element name="spawns" type="SpawnsData"/>
+	<xs:complexType name="SpawnsData">
 		<xs:sequence>
 			<xs:element ref="import" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="spawn_map" type="SpawnMap" minOccurs="0" maxOccurs="unbounded"/>

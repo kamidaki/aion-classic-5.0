@@ -8,7 +8,6 @@ import com.aionemu.gameserver.ai2.event.AIEventType;
 /**
  * Callback that is broadcasted when general ai event occurs.
  * 
- * @author SoulKeeper
  */
 @SuppressWarnings("rawtypes")
 public abstract class OnHandleAIGeneralEvent implements Callback<AbstractAI> {

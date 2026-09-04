@@ -22,7 +22,6 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
  * //fsc 0xD8 cdds 8 50 80 someText - will send packet with id 0xD8 (subids will be added automaticaly) then will be
  * sent one byte - 8, later two ints -50 and 80 and at the end a String - someText
  * 
- * @author Luno
  */
 public class Fsc extends AdminCommand {
 

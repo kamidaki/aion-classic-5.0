@@ -8,7 +8,6 @@ import com.aionemu.gameserver.world.World;
 import java.util.Iterator;
 
 /**
- * @author Ben, Ritsu Smart Matching Enabled //announce anon This will work. as well as //announce a This will work.
  *         Both will match the "a" or "anon" to the "anonymous" flag.
  */
 public class Announce extends AdminCommand {

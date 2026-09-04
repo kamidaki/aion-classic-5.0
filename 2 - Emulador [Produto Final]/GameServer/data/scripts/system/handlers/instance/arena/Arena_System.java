@@ -1,19 +1,3 @@
-/*
- * This file is part of Encom. **ENCOM FUCK OTHER SVN**
- *
- *  Encom is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Encom is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser Public License
- *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
- */
 package instance.arena;
 
 import com.aionemu.commons.utils.Rnd;
@@ -41,7 +25,7 @@ import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.services.player.PlayerReviveService;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.skillengine.model.DispelCategoryType;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.SkillEngine;
@@ -238,7 +222,7 @@ public class Arena_System extends GeneralInstanceHandler
 	
 	@Override
 	public void onPlayerLogOut(Player player) {
-		TeleportService2.moveToBindLocation(player, true);
+		TeleportService.moveToBindLocation(player, true);
 		getPlayerReward(player.getObjectId()).updateLogOutTime();
 	}
 	
@@ -364,7 +348,7 @@ public class Arena_System extends GeneralInstanceHandler
 	
 	@Override
 	public void onExitInstance(Player player) {
-		TeleportService2.moveToBindLocation(player, true);
+		TeleportService.moveToBindLocation(player, true);
 	}
 	
 	private void openDoors() {
