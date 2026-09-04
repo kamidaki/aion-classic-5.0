@@ -2,13 +2,13 @@ package com.aionemu.gameserver.questEngine.handlers.models;
 
 import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.handlers.template.MentorMonsterHunt;
-import javolution.util.FastMap;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -31,7 +31,7 @@ public class MentorMonsterHuntData extends MonsterHuntData
 	
 	@Override
     public void register(QuestEngine questEngine) {
-        FastMap<Monster, Set<Integer>> monsterNpcs = new FastMap<Monster, Set<Integer>>();
+        Map<Monster, Set<Integer>> monsterNpcs = new HashMap<Monster, Set<Integer>>();
         for (Monster m : monster) {
             monsterNpcs.put(m, new HashSet<Integer>(m.getNpcIds()));
         }

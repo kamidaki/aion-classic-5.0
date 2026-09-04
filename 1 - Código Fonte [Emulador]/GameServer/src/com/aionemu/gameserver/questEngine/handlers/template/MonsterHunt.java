@@ -11,10 +11,9 @@ import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.services.RiftService;
 
-import javolution.util.FastMap;
-
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class MonsterHunt extends QuestHandler
@@ -22,12 +21,12 @@ public class MonsterHunt extends QuestHandler
     private final int questId;
     private final Set<Integer> startNpcs = new HashSet<Integer>();
     private final Set<Integer> endNpcs = new HashSet<Integer>();
-    private final FastMap<Monster, Set<Integer>> monsters;
+    private final Map<Monster, Set<Integer>> monsters;
     private final int startDialog;
     private final int endDialog;
     private final Set<Integer> aggroNpcs = new HashSet<Integer>();
 	
-    public MonsterHunt(int questId, List<Integer> startNpcIds, List<Integer> endNpcIds, FastMap<Monster, Set<Integer>> monsters, int startDialog, int endDialog, List<Integer> aggroNpcs) {
+    public MonsterHunt(int questId, List<Integer> startNpcIds, List<Integer> endNpcIds, Map<Monster, Set<Integer>> monsters, int startDialog, int endDialog, List<Integer> aggroNpcs) {
         super(questId);
         this.questId = questId;
         this.startNpcs.addAll(startNpcIds);

@@ -10,9 +10,8 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.utils.MathUtil;
-import javolution.util.FastMap;
-
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 public class MentorMonsterHunt extends MonsterHunt
 {
@@ -20,7 +19,7 @@ public class MentorMonsterHunt extends MonsterHunt
     private int menteMaxLevel;
     private QuestTemplate qt;
 	
-    public MentorMonsterHunt(int questId, List<Integer> startNpcIds, List<Integer> endNpcIds, FastMap<Monster, Set<Integer>> monsters, int menteMinLevel, int menteMaxLevel) {
+    public MentorMonsterHunt(int questId, List<Integer> startNpcIds, List<Integer> endNpcIds, Map<Monster, Set<Integer>> monsters, int menteMinLevel, int menteMaxLevel) {
         super(questId, startNpcIds, endNpcIds, monsters, 0, 0, null);
         this.menteMinLevel = menteMinLevel;
         this.menteMaxLevel = menteMaxLevel;

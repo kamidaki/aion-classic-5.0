@@ -13,11 +13,10 @@ import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-import javolution.util.FastMap;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class ReportToMany extends QuestHandler
@@ -31,9 +30,9 @@ public class ReportToMany extends QuestHandler
 	private final int startDialog;
 	private final int endDialog;
 	private final int maxVar;
-	private final FastMap<Integer, NpcInfos> npcInfos;
+	private final Map<Integer, NpcInfos> npcInfos;
 	
-	public ReportToMany(int questId, int itemId, int startItem, int startItem2, List<Integer> startNpcIds, List<Integer> endNpcIds, FastMap<Integer, NpcInfos> npcInfos, int startDialog, int endDialog, int maxVar, boolean mission) {
+	public ReportToMany(int questId, int itemId, int startItem, int startItem2, List<Integer> startNpcIds, List<Integer> endNpcIds, Map<Integer, NpcInfos> npcInfos, int startDialog, int endDialog, int maxVar, boolean mission) {
 		super(questId);
 		this.itemId = itemId;
 		this.startItem = startItem;

@@ -31,17 +31,17 @@ import com.aionemu.gameserver.world.zone.ZoneName;
 import gnu.trove.list.array.TIntArrayList;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import gnu.trove.procedure.TIntProcedure;
-import javolution.util.FastMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 public class QuestEngine implements GameEngine {
     private static final Logger log = LoggerFactory.getLogger(QuestEngine.class);
-    private static final FastMap<Integer, QuestHandler> questHandlers = new FastMap<Integer, QuestHandler>();
+    private static final Map<Integer, QuestHandler> questHandlers = new ConcurrentHashMap<Integer, QuestHandler>();
     private static ScriptManager scriptManager = new ScriptManager();
     private TIntObjectHashMap<QuestNpc> questNpcs = new TIntObjectHashMap<QuestNpc>();
     private TIntObjectHashMap<TIntArrayList> questItemRelated = new TIntObjectHashMap<TIntArrayList>();
@@ -51,21 +51,21 @@ public class QuestEngine implements GameEngine {
     private TIntArrayList questOnDie = new TIntArrayList();
     private TIntArrayList questOnLogOut = new TIntArrayList();
     private TIntArrayList questOnEnterWorld = new TIntArrayList();
-    private FastMap<ZoneName, TIntArrayList> questOnEnterZone = new FastMap<ZoneName, TIntArrayList>();
-    private FastMap<ZoneName, TIntArrayList> questOnLeaveZone = new FastMap<ZoneName, TIntArrayList>();
-    private FastMap<String, TIntArrayList> questOnPassFlyingRings = new FastMap<String, TIntArrayList>();
+    private Map<ZoneName, TIntArrayList> questOnEnterZone = new ConcurrentHashMap<ZoneName, TIntArrayList>();
+    private Map<ZoneName, TIntArrayList> questOnLeaveZone = new ConcurrentHashMap<ZoneName, TIntArrayList>();
+    private Map<String, TIntArrayList> questOnPassFlyingRings = new ConcurrentHashMap<String, TIntArrayList>();
     private TIntObjectHashMap<TIntArrayList> questOnMovieEnd = new TIntObjectHashMap<TIntArrayList>();
     private List<Integer> questOnTimerEnd = new ArrayList<Integer>();
     private List<Integer> onInvisibleTimerEnd = new ArrayList<Integer>();
-    private FastMap<AbyssRankEnum, TIntArrayList> questOnKillRanked = new FastMap<AbyssRankEnum, TIntArrayList>();
-    private FastMap<Integer, TIntArrayList> questOnKillInWorld = new FastMap<Integer, TIntArrayList>();
+    private Map<AbyssRankEnum, TIntArrayList> questOnKillRanked = new ConcurrentHashMap<AbyssRankEnum, TIntArrayList>();
+    private Map<Integer, TIntArrayList> questOnKillInWorld = new ConcurrentHashMap<Integer, TIntArrayList>();
     private TIntObjectHashMap<TIntArrayList> questOnUseSkill = new TIntObjectHashMap<TIntArrayList>();
-    private FastMap<Integer, QuestDialog> dialogMap = FastMap.newInstance();
+    private Map<Integer, QuestDialog> dialogMap = new ConcurrentHashMap<Integer, QuestDialog>();
     private Map<Integer, Integer> questOnFailCraft = new HashMap<Integer, Integer>();
     private Map<Integer, Set<Integer>> questOnEquipItem = new HashMap<Integer, Set<Integer>>();
     private TIntObjectHashMap<TIntArrayList> questCanAct = new TIntObjectHashMap<TIntArrayList>();
     private List<Integer> questOnDredgionReward = new ArrayList<Integer>();
-    private FastMap<BonusType, TIntArrayList> questOnBonusApply = new FastMap<BonusType, TIntArrayList>();
+    private Map<BonusType, TIntArrayList> questOnBonusApply = new ConcurrentHashMap<BonusType, TIntArrayList>();
     private TIntArrayList reachTarget = new TIntArrayList();
     private TIntArrayList lostTarget = new TIntArrayList();
 
@@ -914,6 +914,9 @@ public class QuestEngine implements GameEngine {
         questOnUseSkill.clear();
         reachTarget.clear();
         lostTarget.clear();
+        questOnKillInWorld.clear();
+        questOnBonusApply.clear();
+        dialogMap.clear();
         questHandlers.clear();
     }
 

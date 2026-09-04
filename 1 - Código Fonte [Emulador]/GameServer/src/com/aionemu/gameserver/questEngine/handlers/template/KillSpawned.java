@@ -12,11 +12,10 @@ import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.QuestService;
 import gnu.trove.list.array.TIntArrayList;
-import javolution.util.FastMap;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class KillSpawned extends QuestHandler
@@ -24,10 +23,10 @@ public class KillSpawned extends QuestHandler
 	private final int questId;
 	private final Set<Integer> startNpcs = new HashSet<Integer>();
 	private final Set<Integer> endNpcs = new HashSet<Integer>();
-	private final FastMap<List<Integer>, SpawnedMonster> spawnedMonsters;
+	private final Map<List<Integer>, SpawnedMonster> spawnedMonsters;
 	private TIntArrayList spawnerObjects;
 	
-	public KillSpawned(int questId, List<Integer> startNpcIds, List<Integer> endNpcIds, FastMap<List<Integer>, SpawnedMonster> spawnedMonsters) {
+	public KillSpawned(int questId, List<Integer> startNpcIds, List<Integer> endNpcIds, Map<List<Integer>, SpawnedMonster> spawnedMonsters) {
 		super(questId);
 		this.questId = questId;
 		this.startNpcs.addAll(startNpcIds);
