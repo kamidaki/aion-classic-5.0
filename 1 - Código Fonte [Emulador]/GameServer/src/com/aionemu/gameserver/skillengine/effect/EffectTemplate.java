@@ -1,5 +1,6 @@
 package com.aionemu.gameserver.skillengine.effect;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.Unmarshaller;
@@ -30,8 +31,6 @@ import com.aionemu.gameserver.skillengine.effect.modifier.ActionModifier;
 import com.aionemu.gameserver.skillengine.effect.modifier.ActionModifiers;
 import com.aionemu.gameserver.skillengine.model.*;
 import com.aionemu.gameserver.utils.stats.StatFunctions;
-
-import javolution.util.FastList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Effect")
@@ -322,7 +321,7 @@ public abstract class EffectTemplate {
 		} if (!effectConditionsCheck(effect)) {
 			return false;
 		} if (this.getPosition() > 1) {
-			FastList<Integer> positions = getPreEffects();
+			List<Integer> positions = getPreEffects();
 			for (int pos : positions) {
 				if (!effect.isInSuccessEffects(pos)) {
 					return false;
@@ -407,8 +406,8 @@ public abstract class EffectTemplate {
 		return effectConditions != null ? effectConditions.validate(effect) : true;
 	}
 
-	private FastList<Integer> getPreEffects() {
-		FastList<Integer> preEffects = new FastList<Integer>();
+	private List<Integer> getPreEffects() {
+		List<Integer> preEffects = new ArrayList<Integer>();
 		if (this.getPreEffect() == null) {
 			return preEffects;
 		}
