@@ -1,16 +1,18 @@
 package com.aionemu.gameserver.controllers.attack;
 
-public enum AttackStatus
-{
+/**
+ * @author ATracer
+ */
+public enum AttackStatus {
 	DODGE(0, true, false),
 	OFFHAND_DODGE(1, true, false),
 	PARRY(2, true, false),
 	OFFHAND_PARRY(3, true, false),
 	BLOCK(4, true, false),
 	OFFHAND_BLOCK(5, true, false),
-    RESIST(6, true, false),
-	OFFHAND_RESIST(7),
-	BUF(8),
+	RESIST(6, true, false),
+	OFFHAND_RESIST(7, true, false),
+	BUF(8), // ??
 	OFFHAND_BUF(9),
 	NORMALHIT(10),
 	OFFHAND_NORMALHIT(11),
@@ -24,33 +26,33 @@ public enum AttackStatus
 	OFFHAND_CRITICAL_BLOCK(213, true, true),
 	OFFHAND_CRITICAL_RESIST(215, false, true),
 	OFFHAND_CRITICAL(219, false, true);
-	
-	private final int type;
+
+	private final int id;
 	private final boolean counterSkill;
 	private final boolean isCritical;
-	
-	private AttackStatus(int type) {
-		this(type, false, false);
+
+	AttackStatus(int id) {
+		this(id, false, false);
 	}
-	
-	private AttackStatus(int type, boolean counterSkill, boolean isCritical) {
-		this.type = type;
+
+	AttackStatus(int id, boolean counterSkill, boolean isCritical) {
+		this.id = id;
 		this.counterSkill = counterSkill;
 		this.isCritical = isCritical;
 	}
-	
+
 	public final int getId() {
-		return type;
+		return id;
 	}
-	
+
 	public final boolean isCounterSkill() {
 		return counterSkill;
 	}
-	
+
 	public final boolean isCritical() {
 		return isCritical;
 	}
-	
+
 	public static final AttackStatus getOffHandStats(AttackStatus mainHandStatus) {
 		switch (mainHandStatus) {
 			case DODGE:
@@ -78,7 +80,7 @@ public enum AttackStatus
 		}
 		throw new IllegalArgumentException("Invalid mainHandStatus " + mainHandStatus);
 	}
-	
+
 	public static final AttackStatus getBaseStatus(AttackStatus status) {
 		switch (status) {
 			case DODGE:
@@ -86,6 +88,11 @@ public enum AttackStatus
 			case OFFHAND_DODGE:
 			case OFFHAND_CRITICAL_DODGE:
 				return AttackStatus.DODGE;
+			case RESIST:
+			case CRITICAL_RESIST:
+			case OFFHAND_RESIST:
+			case OFFHAND_CRITICAL_RESIST:
+				return AttackStatus.RESIST;
 			case PARRY:
 			case CRITICAL_PARRY:
 			case OFFHAND_PARRY:
@@ -96,18 +103,13 @@ public enum AttackStatus
 			case OFFHAND_BLOCK:
 			case OFFHAND_CRITICAL_BLOCK:
 				return AttackStatus.BLOCK;
-			case RESIST:
-			case CRITICAL_RESIST:
-			case OFFHAND_RESIST:
-			case OFFHAND_CRITICAL_RESIST:
-				return AttackStatus.RESIST;
 			default:
 				return status;
 		}
 	}
-	
+
 	public static final AttackStatus getCriticalStatusFor(AttackStatus status) {
-		switch(status) {
+		switch (status) {
 			case DODGE:
 				return AttackStatus.CRITICAL_DODGE;
 			case OFFHAND_DODGE:
@@ -120,16 +122,12 @@ public enum AttackStatus
 				return AttackStatus.CRITICAL_BLOCK;
 			case OFFHAND_BLOCK:
 				return AttackStatus.OFFHAND_CRITICAL_BLOCK;
-			case RESIST:
-				return AttackStatus.CRITICAL_RESIST;
-			case OFFHAND_RESIST:
-				return AttackStatus.OFFHAND_CRITICAL_RESIST;
 			case NORMALHIT:
 				return AttackStatus.CRITICAL;
 			case OFFHAND_NORMALHIT:
 				return AttackStatus.OFFHAND_CRITICAL;
-		    default:
-			    return status;
+			default:
+				return status;
 		}
 	}
 }

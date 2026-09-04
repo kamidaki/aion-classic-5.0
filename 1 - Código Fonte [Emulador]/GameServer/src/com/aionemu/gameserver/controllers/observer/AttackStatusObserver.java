@@ -2,7 +2,9 @@ package com.aionemu.gameserver.controllers.observer;
 
 import com.aionemu.gameserver.controllers.attack.AttackStatus;
 
-
+/**
+ * @author ATracer
+ */
 public class AttackStatusObserver extends AttackCalcObserver {
 
 	protected int value;

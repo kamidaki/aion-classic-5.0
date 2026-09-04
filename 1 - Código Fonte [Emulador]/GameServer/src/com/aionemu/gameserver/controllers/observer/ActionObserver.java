@@ -2,121 +2,109 @@ package com.aionemu.gameserver.controllers.observer;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Item;
-import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.Skill;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
-
+/**
+ * @author ATracer
+ */
 public class ActionObserver {
 
-	private AtomicBoolean used;
+	private boolean oneTimeUse = false;
+	private java.util.concurrent.atomic.AtomicBoolean used = new java.util.concurrent.atomic.AtomicBoolean(false);
 
-	private ObserverType observerType;
+	private final ObserverType observerType;
 
 	public ActionObserver(ObserverType observerType) {
 		this.observerType = observerType;
 	}
 
-	/**
-	 * Make this observer usable exactly one time
-	 */
 	public void makeOneTimeUse() {
-		used = new AtomicBoolean(false);
+		oneTimeUse = true;
+		used = new java.util.concurrent.atomic.AtomicBoolean(false);
 	}
 
-	/**
-	 * Try to use this observer. Will return true only once.
-	 * 
-	 * @return
-	 */
 	public boolean tryUse() {
 		return used.compareAndSet(false, true);
 	}
 
+	public boolean isOneTimeUse() {
+		return oneTimeUse;
+	}
+
 	/**
-	 * @return the observerType
+	 * Called when the observer was removed and no longer receives events
 	 */
+	public void onRemoved() {
+	}
+
 	public ObserverType getObserverType() {
 		return observerType;
 	}
 
 	public void moved() {
-	};
+	}
 
-	/**
-	 * @param creature
-	 */
 	public void attacked(Creature creature) {
-	};
+	}
 
 	/**
-	 * @param creature
+	 * @param creature who effected
+	 * @param skillId - effector skill id, which called this method
 	 */
+	public void attacked(Creature creature, int skillId) {
+		attacked(creature);
+	}
+
 	public void attack(Creature creature) {
-	};
+	}
 
-	/**
-	 * @param item
-	 * @param owner
-	 */
+	public void attack(Creature creature, int skillId) {
+		attack(creature);
+	}
+
 	public void equip(Item item, Player owner) {
-	};
+	}
 
-	/**
-	 * @param item
-	 * @param owner
-	 */
 	public void unequip(Item item, Player owner) {
-	};
+	}
 
-	/**
-	 * @param skill
-	 */
 	public void skilluse(Skill skill) {
-	};
-	
-	/**
-	 * @param creature
-	 */
-	public void died(Creature creature) {
-	};
+	}
 
-	/**
-	 * @param creature
-	 * @param dotEffect 
-	 */
+	public void startSkillCast(Skill skill) {
+		skilluse(skill);
+	}
+
+	public void endSkillCast(Skill skill) {
+	}
+
+	public void boostSkillCost(Skill skill) {
+	}
+
+	public void died(Creature lastAttacker) {
+	}
+
 	public void dotattacked(Creature creature, Effect dotEffect) {
-	};
-	
-	/**
-	 * 
-	 * @param item
-	 */
+	}
+
 	public void itemused(Item item) {
-	};
-	
-	/**
-	 * 
-	 * @param npc
-	 */
-	public void npcdialogrequested(Npc npc) {
-	};
-	
-	/**
-	 * 
-	 * @param state
-	 */
+	}
+
 	public void abnormalsetted(AbnormalState state) {
-	};
-	
-	/**
-	 * 
-	 * @param 
-	 */
+	}
+
+	public void npcdialogrequested(com.aionemu.gameserver.model.gameobjects.Npc npc) {
+	}
+
 	public void summonrelease() {
-	};
+	}
+
+	public void sit() {
+	}
+
+	public void hpChanged(int value) {
+	}
 }

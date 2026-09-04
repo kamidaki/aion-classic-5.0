@@ -1,13 +1,15 @@
 package com.aionemu.gameserver.controllers.observer;
 
+import java.util.List;
+
 import com.aionemu.gameserver.controllers.attack.AttackResult;
 import com.aionemu.gameserver.controllers.attack.AttackStatus;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.skillengine.model.Effect;
 
-import java.util.List;
-
-
+/**
+ * @author ATracer
+ */
 public class AttackCalcObserver {
 
 	/**
@@ -20,7 +22,7 @@ public class AttackCalcObserver {
 
 	/**
 	 * @param attackList
-	 * @param effect 
+	 * @param effect
 	 * @return value
 	 */
 	public void checkShield(List<AttackResult> attackList, Effect effect, Creature attacker) {
@@ -34,7 +36,7 @@ public class AttackCalcObserver {
 	public boolean checkAttackerStatus(AttackStatus status) {
 		return false;
 	}
-	
+
 	/**
 	 * @param status
 	 * @param isSkill
