@@ -5,7 +5,9 @@
   [![](https://img.shields.io/github/contributors-anon/beyond-aion/aion-server)](https://gisthost.github.io/?ce9729bcacaac31f78771b8521512d0a&repo=beyond-aion%2Faion-server&title=Beyond%20Aion%20Server%20Contributors)
   ![](https://img.shields.io/github/repo-size/beyond-aion/aion-server)
 
-</div> # Aion 4.8 Server Emulator
+</div>
+
+# Aion 4.8 Server Emulator
 
 This is the server for the MMORPG *Aion: The Tower of Eternity* that we host for our players.  
 Our server emulator is intended to be faithful to the original experience of the official servers of the time, but a few custom features have also been implemented to meet the needs of our community.  

@@ -33,7 +33,6 @@ import com.aionemu.gameserver.model.gameobjects.state.CreatureVisualState;
 import com.aionemu.gameserver.model.gameobjects.state.FlyState;
 import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.stats.container.PlayerGameStats;
-import com.aionemu.gameserver.model.summons.SummonMode;
 import com.aionemu.gameserver.model.summons.UnsummonType;
 import com.aionemu.gameserver.model.templates.QuestTemplate;
 import com.aionemu.gameserver.model.templates.flypath.FlightPath;
@@ -47,6 +46,7 @@ import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.restrictions.PlayerRestrictions;
 import com.aionemu.gameserver.services.*;
+import com.aionemu.gameserver.services.RecallService.CancelReason;
 import com.aionemu.gameserver.services.conquerorAndProtectorSystem.ConquerorAndProtectorService;
 import com.aionemu.gameserver.services.drop.DropService;
 import com.aionemu.gameserver.services.instance.InstanceService;
@@ -268,6 +268,7 @@ public class PlayerController extends CreatureController<Player> {
 	public void onDie(Creature lastAttacker) {
 		Player player = getOwner();
 		player.getController().cancelCurrentSkill(null);
+		RecallService.getInstance().cancel(player, CancelReason.CANCELLED);
 		setRebirthReviveInfo();
 		Creature master = lastAttacker.getMaster();
 
@@ -290,7 +291,7 @@ public class PlayerController extends CreatureController<Player> {
 		// Release summon
 		Summon summon = player.getSummon();
 		if (summon != null)
-			SummonsService.doMode(SummonMode.RELEASE, summon, UnsummonType.UNSPECIFIED);
+			SummonsService.release(summon, UnsummonType.MASTER_DEATH);
 
 		// setIsFlyingBeforeDead for PlayerReviveService
 		if (player.isInState(CreatureState.FLYING))
@@ -425,7 +426,7 @@ public class PlayerController extends CreatureController<Player> {
 			PacketSendUtility.sendPacket(getOwner(), SM_ATTACK_RESPONSE.STOP_WITHOUT_MESSAGE(gameStats.getAttackCounter()));
 			return;
 		}
-		lastAttackMillis = milis;
+		enterCombat(true);
 
 		super.attackTarget(target, time, true);
 	}
@@ -451,7 +452,7 @@ public class PlayerController extends CreatureController<Player> {
 			QuestEngine.getInstance().onAttack(new QuestEnv(attacker, getOwner(), 0));
 		}
 
-		lastAttackedMillis = System.currentTimeMillis();
+		enterCombat(false);
 	}
 
 	public void useSkill(SkillTemplate template, int targetType, float x, float y, float z, int clientHitTime, int skillLevel) {
@@ -465,6 +466,11 @@ public class PlayerController extends CreatureController<Player> {
 		}
 
 		if (skill != null) {
+			// item casts get interrupted by skill usage (skill casts don't, see PlayerRestrictions#canUseSkill). this must
+			// happen before checking the restrictions, since Creature#canAttack returns false as long as we are casting
+			if (player.isCasting() && player.getCastingSkill().getItemTemplate() != null)
+				cancelCurrentSkill(null);
+
 			if (!PlayerRestrictions.canUseSkill(player, skill))
 				return;
 
@@ -529,7 +535,6 @@ public class PlayerController extends CreatureController<Player> {
 				PacketSendUtility.sendPacket(player, message);
 		} else if (castingSkill.getSkillMethod() == SkillMethod.ITEM) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_CANCELED());
-			player.removeItemCoolDown(castingSkill.getItemTemplate().getUseLimits().getDelayId());
 			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), castingSkill.getFirstTarget().getObjectId(),
 				castingSkill.getItemObjectId(), castingSkill.getItemTemplate().getTemplateId(), 0, 3, 0), true);
 		}
@@ -541,14 +546,7 @@ public class PlayerController extends CreatureController<Player> {
 
 	@Override
 	public void cancelUseItem() {
-		Player player = getOwner();
-		Item usingItem = player.getUsingItem();
-		player.setUsingItem(null);
-		if (hasTask(TaskId.ITEM_USE)) {
-			cancelTask(TaskId.ITEM_USE);
-			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), usingItem == null ? 0 : usingItem.getObjectId(),
-				usingItem == null ? 0 : usingItem.getItemTemplate().getTemplateId(), 0, 3, 0), true);
-		}
+		getOwner().getObserveController().abortItemUseObservers(); // each observer knows its item and cancels its own task, message and animation
 	}
 
 	@Override
@@ -751,4 +749,17 @@ public class PlayerController extends CreatureController<Player> {
 		return Math.max(lastAttackedMillis, lastAttackMillis);
 	}
 
+	/**
+	 * Refreshes the combat timer (see {@link #isInCombat()}) and cancels a pending summon request, which combat invalidates.
+	 *
+	 * @param attacking
+	 *          True, if the player attacked someone, false if he was attacked
+	 */
+	public void enterCombat(boolean attacking) {
+		if (attacking)
+			lastAttackMillis = System.currentTimeMillis();
+		else
+			lastAttackedMillis = System.currentTimeMillis();
+		RecallService.getInstance().cancel(getOwner(), CancelReason.CANCELLED);
+	}
 }

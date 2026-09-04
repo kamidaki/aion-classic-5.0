@@ -34,6 +34,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
+import com.aionemu.gameserver.services.RecallService;
 import com.aionemu.gameserver.services.abyss.AbyssService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.skillengine.SkillEngine;
@@ -150,6 +151,9 @@ public class Skill {
 		if (!preCastCheck())
 			return false;
 
+		if (castState == CastState.CAST_START && isInvalidRecall())
+			return false;
+
 		// check for counter skill
 		if (effector instanceof Player player) {
 			if (skillMethod == SkillMethod.CAST && chainCategory == null) // category gets set in preCastCheck()
@@ -169,7 +173,29 @@ public class Skill {
 			}
 		}
 
+		if (castState == CastState.CAST_START && !canPayCastCosts())
+			return false;
+
 		return validateEffectedList();
+	}
+
+	/**
+	 * Checks the costs the cast will have to pay when it ends, without paying them, so that a cast which cannot be afforded never starts (example:
+	 * Dimensional Fragments for Summon Group Member, skillId: 3777).
+	 *
+	 * @return True, if all costs can be paid
+	 */
+	private boolean canPayCastCosts() {
+		Conditions endConditions = skillTemplate.getEndConditions();
+		if (endConditions != null && !endConditions.canValidate(this))
+			return false;
+		Actions skillActions = skillTemplate.getActions();
+		if (skillActions == null)
+			return true;
+		for (Action action : skillActions.getActions())
+			if (!action.canAct(this))
+				return false;
+		return true;
 	}
 
 	private boolean validateEffectedList() {
@@ -353,8 +379,10 @@ public class Skill {
 	}
 
 	private int calculateCastDuration() {
-		// ap & cash revival stones, or 2nd+ time of multicast-skill activation
-		if (getSkillId() == 10802 || getMultiCastCount() > 0)
+		if (getItemTemplate() != null)
+			return getItemTemplate().getCastingDelay();
+		//2nd+ time of multicast-skill activation
+		if (getMultiCastCount() > 0)
 			return 0;
 		if (skillTemplate.getType() != SkillType.MAGICAL || !isCastDurationAffectedByCastSpeed())
 			return baseCastDuration;
@@ -544,31 +572,15 @@ public class Skill {
 			effector.getController().cancelCurrentSkill(null); // calls effector.setCasting(null) and sends skill cancel packet
 			return;
 		}
+		if (isInvalidRecall()) {
+			effector.getController().cancelCurrentSkill(null, null); // the validation already told the caster why the recall failed
+			return;
+		}
+		if (!payCastCosts()) {
+			effector.getController().cancelCurrentSkill(null, null); // the unpaid cost already told the player what is missing
+			return;
+		}
 		effector.setCasting(null);
-
-		// try removing item, if its not possible return to prevent exploits
-		if (effector instanceof Player && skillMethod == SkillMethod.ITEM) {
-			Item item = ((Player) effector).getInventory().getItemByObjId(itemObjectId);
-			if (item == null)
-				return;
-			if (item.getActivationCount() > 1) {
-				item.setActivationCount(item.getActivationCount() - 1);
-			} else {
-				if (!((Player) effector).getInventory().decreaseByObjectId(item.getObjectId(), 1, ItemUpdateType.DEC_ITEM_USE))
-					return;
-			}
-		}
-
-		endCondCheck();
-
-		// Perform necessary actions (use mp,dp items etc)
-		Actions skillActions = skillTemplate.getActions();
-		if (skillActions != null) {
-			for (Action action : skillActions.getActions()) {
-				if (!action.act(this))
-					return;
-			}
-		}
 
 		// Create effects and precalculate result
 		int dashStatus = 0;
@@ -644,13 +656,24 @@ public class Skill {
 		if (!blockedPenaltySkill)
 			startPenaltySkill();
 
-		if (isInstantSkill())
+		if (isHostile() && effector instanceof Player playerEffector)
+			playerEffector.getController().enterCombat(true);
+
+		boolean isItemSkill = skillMethod == SkillMethod.ITEM;
+		boolean sentCastSpellResultPacket = false;
+		// the client must learn the hit time before any HP change reaches it, or it updates the status bar before displaying the hit
+		if (isItemSkill)
+			sentCastSpellResultPacket = sendCastSpellEnd(dashStatus, effects);
+
+		// item skills apply their effects immediately, hitTime only tells the client when to display the hit
+		if (isInstantSkill() || isItemSkill)
 			applyEffect(effects);
 		else
 			ThreadPoolManager.getInstance().schedule(() -> applyEffect(effects), hitTime);
 
-		if (skillMethod == SkillMethod.PENALTY || skillMethod == SkillMethod.CAST || skillMethod == SkillMethod.ITEM) {
-			boolean sentCastSpellResultPacket = sendCastSpellEnd(dashStatus, effects);
+		if (skillMethod == SkillMethod.PENALTY || skillMethod == SkillMethod.CAST || isItemSkill) {
+			if (!isItemSkill)
+				sentCastSpellResultPacket = sendCastSpellEnd(dashStatus, effects);
 			if (sentCastSpellResultPacket && skillMethod != SkillMethod.PENALTY && effector instanceof Player player) {
 				// animation times must be calculated after applyEffect of instant skills in order to honor speed buffs from this skill
 				AnimationTimes animation = DataManager.MOTION_DATA.calculateAnimationTimesAfterLastHit(player, this);
@@ -709,7 +732,32 @@ public class Skill {
 		// Apply effects to effected objects
 		effects.forEach(Effect::applyEffect);
 
+		if (isHostile()) {
+			for (Effect effect : effects) {
+				if (effect.getEffected() instanceof Player effectedPlayer)
+					effectedPlayer.getController().enterCombat(false);
+			}
+		}
+
 		addResistedEffectHateAndNotifyFriends(effects);
+	}
+
+	/**
+	 * Recall skills (Summon Group Member, example skillId: 3777) validate their target when the cast starts and again when it ends. The caster is
+	 * told why it failed.
+	 *
+	 * @return True, if this is a recall skill whose target may not be recalled
+	 */
+	private boolean isInvalidRecall() {
+		return skillTemplate.hasRecallInstant() && effector instanceof Player caster && !RecallService.validateCast(caster, firstTarget);
+	}
+
+	/**
+	 * @return True, if this skill is meant to be used against enemies (which is what puts caster and targets into combat)
+	 */
+	private boolean isHostile() {
+		SkillSubType subType = skillTemplate.getSubType();
+		return subType == SkillSubType.ATTACK || subType == SkillSubType.DEBUFF;
 	}
 
 	private boolean sendCastSpellEnd(int dashStatus, List<Effect> effects) {
@@ -738,6 +786,41 @@ public class Skill {
 	}
 
 	/**
+	 * Consumes everything the cast costs: the used item, the skill conditions and the skill actions (mp, dp, items).
+	 *
+	 * @return False, if any of them could not be paid, in which case the cast must be cancelled
+	 */
+	private boolean payCastCosts() {
+		if (!canPayCastCosts()) // nothing may be paid before it is certain that everything can be paid
+			return false;
+
+		// try removing item, if its not possible return to prevent exploits
+		if (skillMethod == SkillMethod.ITEM && effector instanceof Player itemUser) {
+			Item item = itemUser.getInventory().getItemByObjId(itemObjectId);
+			if (item == null)
+				return false;
+			if (item.getActivationCount() > 1)
+				item.setActivationCount(item.getActivationCount() - 1);
+			else if (!itemUser.getInventory().decreaseByObjectId(item.getObjectId(), 1, ItemUpdateType.DEC_ITEM_USE))
+				return false;
+			itemUser.startCooldown(item);
+		}
+
+		if (!endCondCheck())
+			return false;
+
+		// Perform necessary actions (use mp,dp items etc)
+		Actions skillActions = skillTemplate.getActions();
+		if (skillActions != null) {
+			for (Action action : skillActions.getActions()) {
+				if (!action.act(this))
+					return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Check all conditions before starting cast
 	 */
 	private boolean preCastCheck() {
@@ -754,7 +837,9 @@ public class Skill {
 	}
 
 	/**
-	 * Check all conditions after using skill
+	 * Pays the conditions the skill costs when it ends (mp, hp, item and stone charges).
+	 *
+	 * @return False, if one of them could not be paid
 	 */
 	private boolean endCondCheck() {
 		Conditions skillConditions = skillTemplate.getEndConditions();

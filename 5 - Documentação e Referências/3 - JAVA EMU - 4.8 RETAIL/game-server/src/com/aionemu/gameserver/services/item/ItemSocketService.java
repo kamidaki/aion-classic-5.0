@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.aionemu.gameserver.controllers.observer.StartMovingListener;
+import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
 import com.aionemu.gameserver.dao.ItemStoneListDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.TaskId;
@@ -162,20 +162,6 @@ public class ItemSocketService {
 			return;
 		}
 
-		final StartMovingListener move = new StartMovingListener() {
-
-			@Override
-			public void moved() {
-				super.moved();
-				player.getObserveController().removeObserver(this);
-				player.getController().cancelUseItem();
-				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_GIVE_PROC_CANCEL(weapon.getL10n()));
-
-			}
-		};
-
-		player.getObserveController().attach(move);
-
 		Item godstone = player.getInventory().getItemByObjId(stoneId);
 		if (godstone == null) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_PROC_NO_PROC_GIVE_ITEM());
@@ -188,11 +174,24 @@ public class ItemSocketService {
 			return;
 		}
 
+		final ItemUseObserver observer = new ItemUseObserver() {
+			@Override
+			public void abort() {
+				player.getObserveController().removeObserver(this);
+				player.getController().cancelTask(TaskId.ITEM_USE);
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_GIVE_PROC_CANCEL(weapon.getL10n()));
+				PacketSendUtility.broadcastPacketAndReceive(player,
+					new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), stoneId, itemTemplate.getTemplateId(), 0, 3, 0));
+			}
+		};
+
+		player.getObserveController().attach(observer);
+
 		PacketSendUtility.broadcastPacketAndReceive(player,
 			new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), stoneId, itemTemplate.getTemplateId(), 2000, 0, 0));
 
 		player.getController().addTask(TaskId.ITEM_USE, ThreadPoolManager.getInstance().schedule(() -> {
-			player.getObserveController().removeObserver(move);
+			player.getObserveController().removeObserver(observer);
 
 			PacketSendUtility.broadcastPacketAndReceive(player,
 				new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), stoneId, itemTemplate.getTemplateId(), 0, 1, 0));

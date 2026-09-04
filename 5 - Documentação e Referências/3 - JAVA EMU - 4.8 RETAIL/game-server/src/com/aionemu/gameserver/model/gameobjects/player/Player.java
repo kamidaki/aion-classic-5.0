@@ -71,7 +71,7 @@ import com.aionemu.gameserver.skillengine.effect.RebirthEffect;
 import com.aionemu.gameserver.skillengine.model.ChainSkills;
 import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
-import com.aionemu.gameserver.skillengine.task.CraftingTask;
+import com.aionemu.gameserver.skillengine.task.AbstractInteractionTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.WorldMapType;
 import com.aionemu.gameserver.world.WorldPosition;
@@ -108,9 +108,7 @@ public class Player extends Creature {
 	private final Storage regularWarehouse;
 	private final Storage[] petBags = new Storage[StorageType.PET_BAG_MAX - StorageType.PET_BAG_MIN + 1];
 	private final Storage[] cabinets = new Storage[StorageType.HOUSE_WH_MAX - StorageType.HOUSE_WH_MIN + 1];
-	private Item usingItem;
 
-	private final AbsoluteStatOwner absStatsHolder;
 	private PlayerSettings playerSettings;
 
 	private PlayerGroup playerGroup;
@@ -121,7 +119,7 @@ public class Player extends Creature {
 
 	private int flyState = 0;
 	private FlyController flyController;
-	private CraftingTask craftingTask;
+	private volatile AbstractInteractionTask interactionTask;
 	private FlightPath flightPath;
 	private Summon summon;
 	private Pet pet;
@@ -214,7 +212,6 @@ public class Player extends Creature {
 
 		setGameStats(new PlayerGameStats(this));
 		setLifeStats(new PlayerLifeStats(this));
-		absStatsHolder = new AbsoluteStatOwner(this, 0);
 	}
 
 	public boolean isInPlayerMode(PlayerMode mode) {
@@ -461,14 +458,6 @@ public class Player extends Creature {
 
 	public Equipment getEquipment() {
 		return equipment;
-	}
-
-	public Item getUsingItem() {
-		return usingItem;
-	}
-
-	public void setUsingItem(Item usingItem) {
-		this.usingItem = usingItem;
 	}
 
 	/**
@@ -806,12 +795,15 @@ public class Player extends Creature {
 		this.flyController = flyController;
 	}
 
-	public void setCraftingTask(CraftingTask craftingTask) {
-		this.craftingTask = craftingTask;
+	public void setInteractionTask(AbstractInteractionTask interactionTask) {
+		this.interactionTask = interactionTask;
 	}
 
-	public CraftingTask getCraftingTask() {
-		return craftingTask;
+	/**
+	 * @return The gathering or crafting task the player is currently busy with, null if there is none.
+	 */
+	public AbstractInteractionTask getInteractionTask() {
+		return interactionTask;
 	}
 
 	public void setFlightTeleportId(int flightTeleportId) {
@@ -1007,6 +999,14 @@ public class Player extends Creature {
 			return false;
 		}
 		return true;
+	}
+
+	public void startCooldown(Item item) {
+		ItemUseLimits limits = item.getItemTemplate().getUseLimits();
+		if (limits == null || limits.getDelayTime() <= 0)
+			return;
+
+		addItemCoolDown(limits.getDelayId(), System.currentTimeMillis() + limits.getDelayTime(), limits.getDelayTime() / 1000);
 	}
 
 	public long getItemReuseTime(int delayId) {
@@ -1575,7 +1575,7 @@ public class Player extends Creature {
 		this.isInSprintMode = isInSprintMode;
 	}
 
-	public void setRideObservers(ActionObserver observer) {
+	public void addRideObserver(ActionObserver observer) {
 		if (rideObservers == null)
 			rideObservers = new ArrayList<>();
 
@@ -1586,10 +1586,6 @@ public class Player extends Creature {
 
 	public List<ActionObserver> getRideObservers() {
 		return rideObservers;
-	}
-
-	public AbsoluteStatOwner getAbsoluteStats() {
-		return absStatsHolder;
 	}
 
 	@Override
@@ -1619,7 +1615,7 @@ public class Player extends Creature {
 	@Override
 	public boolean canPerformMove() {
 		// player cannot move is transformed
-		if (getTransformModel().getBanMovement() == 1)
+		if (getTransformModel().cantMove())
 			return false;
 
 		return super.canPerformMove();

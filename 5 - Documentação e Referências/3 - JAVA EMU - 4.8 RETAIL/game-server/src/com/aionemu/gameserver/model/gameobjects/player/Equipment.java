@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.aionemu.gameserver.controllers.observer.ActionObserver;
-import com.aionemu.gameserver.controllers.observer.ObserverType;
+import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
 import com.aionemu.gameserver.dao.InventoryDAO;
+import com.aionemu.gameserver.model.ActionState;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TaskId;
@@ -33,7 +33,6 @@ import com.aionemu.gameserver.services.StigmaService;
 import com.aionemu.gameserver.services.item.ItemPacketService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.skillengine.effect.WeaponDualEffect;
-import com.aionemu.gameserver.utils.ChatUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
@@ -700,25 +699,25 @@ public class Equipment implements Persistable {
 		if (player.getInventory().getItemByObjId(item.getObjectId()) == null)
 			return false;
 		if (player.isDead()) {
-			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ChatUtil.l10n(1400059)));
+			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ActionState.DEAD.getL10n()));
 			return false;
 		} else if (player.isInPlayerMode(PlayerMode.RIDE)) {
-			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ChatUtil.l10n(1400056)));
+			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ActionState.RIDING.getL10n()));
 			return false;
 		} else if (player.isInState(CreatureState.CHAIR)) {
-			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ChatUtil.l10n(1400058)));
+			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ActionState.SITTING.getL10n()));
 			return false;
 		} else if (player.isInState(CreatureState.RESTING)) {
-			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ChatUtil.l10n(1400057)));
+			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ActionState.RESTING.getL10n()));
 			return false;
 		} else if (player.isInState(CreatureState.GLIDING)) {
-			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ChatUtil.l10n(1400082)));
+			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ActionState.GLIDING.getL10n()));
 			return false;
 		} else if (player.isInState(CreatureState.FLYING)) {
-			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ChatUtil.l10n(1400055)));
+			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ActionState.FREE_FLYING.getL10n()));
 			return false;
 		} else if (player.isInState(CreatureState.WEAPON_EQUIPPED)) {
-			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ChatUtil.l10n(1400079)));
+			PacketSendUtility.sendPacket(player, STR_SOUL_BOUND_INVALID_STANCE(ActionState.COMBAT.getL10n()));
 			return false;
 		}
 
@@ -731,26 +730,25 @@ public class Equipment implements Persistable {
 				PacketSendUtility.broadcastPacket(responder,
 					new SM_ITEM_USAGE_ANIMATION(responder.getObjectId(), item.getObjectId(), item.getItemId(), 5000, 4), true);
 
-				responder.getController().cancelTask(TaskId.ITEM_USE);
-
-				final ActionObserver moveObserver = new ActionObserver(ObserverType.MOVE) {
+				final ItemUseObserver observer = new ItemUseObserver() {
 
 					@Override
-					public void moved() {
+					public void abort() {
 						responder.getController().cancelTask(TaskId.ITEM_USE);
 						PacketSendUtility.sendPacket(responder, STR_SOUL_BOUND_ITEM_CANCELED(item.getL10n()));
 						PacketSendUtility.broadcastPacket(responder,
 							new SM_ITEM_USAGE_ANIMATION(responder.getObjectId(), item.getObjectId(), item.getItemId(), 0, 8), true);
 					}
 				};
-				responder.getObserveController().attach(moveObserver);
+
+				responder.getObserveController().attach(observer);
 
 				// item usage animation
 				responder.getController().addTask(TaskId.ITEM_USE, ThreadPoolManager.getInstance().schedule(new Runnable() {
 
 					@Override
 					public void run() {
-						responder.getObserveController().removeObserver(moveObserver);
+						responder.getObserveController().removeObserver(observer);
 
 						PacketSendUtility.broadcastPacket(responder,
 							new SM_ITEM_USAGE_ANIMATION(responder.getObjectId(), item.getObjectId(), item.getItemId(), 0, 6), true);
