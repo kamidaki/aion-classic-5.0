@@ -2,10 +2,10 @@ package ai.siege;
 
 import ai.AggressiveNpcAI;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.poll.*;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.poll.*;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.*;
@@ -30,8 +30,8 @@ public class MineAI extends AggressiveNpcAI
 	
 	private void explode(Creature creature) {
 		if (setStateIfNot(AIState.FIGHT)) {
-			AI2Actions.useSkill(this, 17790);
-			AI2Actions.targetCreature(MineAI.this, creature);
+			AIActions.useSkill(this, 17790);
+			AIActions.targetCreature(MineAI.this, creature);
 		}
 	}
 	

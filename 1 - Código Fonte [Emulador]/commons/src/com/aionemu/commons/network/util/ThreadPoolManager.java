@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ThreadPoolManager
-implements Executor {
+        implements Executor {
     private static final Logger log = LoggerFactory.getLogger(ThreadPoolManager.class);
     private ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
     private ListeningScheduledExecutorService scheduledThreadPool;
@@ -34,15 +34,19 @@ implements Executor {
 
     private ThreadPoolManager() {
         new DeadLockDetector(60, DeadLockDetector.RESTART).start();
-        this.scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(4, new PriorityThreadFactory("ScheduledThreadPool", 5));
-        this.scheduledThreadPool = MoreExecutors.listeningDecorator((ScheduledExecutorService)this.scheduledThreadPoolExecutor);
-        this.generalPacketsThreadPoolExecutor = new ThreadPoolExecutor(1, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
-        this.generalPacketsThreadPool = MoreExecutors.listeningDecorator((ExecutorService)this.generalPacketsThreadPoolExecutor);
+        this.scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(4,
+                new PriorityThreadFactory("ScheduledThreadPool", 5));
+        this.scheduledThreadPool = MoreExecutors
+                .listeningDecorator((ScheduledExecutorService) this.scheduledThreadPoolExecutor);
+        this.generalPacketsThreadPoolExecutor = new ThreadPoolExecutor(1, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
+                new SynchronousQueue<Runnable>());
+        this.generalPacketsThreadPool = MoreExecutors
+                .listeningDecorator((ExecutorService) this.generalPacketsThreadPoolExecutor);
     }
 
     @Override
     public void execute(Runnable pkt) {
-        this.generalPacketsThreadPool.execute((Runnable)new RunnableWrapper(pkt));
+        this.generalPacketsThreadPool.execute((Runnable) new RunnableWrapper(pkt));
     }
 
     public ListeningExecutorService getPacketsThreadPool() {
@@ -54,9 +58,9 @@ implements Executor {
             if (delay < 0L) {
                 delay = 0L;
             }
-            return JdkFutureAdapters.listenInPoolThread((Future)this.scheduledThreadPool.schedule(r, delay, TimeUnit.MILLISECONDS));
-        }
-        catch (RejectedExecutionException e) {
+            return JdkFutureAdapters
+                    .listenInPoolThread((Future) this.scheduledThreadPool.schedule(r, delay, TimeUnit.MILLISECONDS));
+        } catch (RejectedExecutionException e) {
             return null;
         }
     }
@@ -69,9 +73,9 @@ implements Executor {
             if (initial < 0L) {
                 initial = 0L;
             }
-            return JdkFutureAdapters.listenInPoolThread((Future)this.scheduledThreadPool.scheduleAtFixedRate(r, initial, delay, TimeUnit.MILLISECONDS));
-        }
-        catch (RejectedExecutionException e) {
+            return JdkFutureAdapters.listenInPoolThread(
+                    (Future) this.scheduledThreadPool.scheduleAtFixedRate(r, initial, delay, TimeUnit.MILLISECONDS));
+        } catch (RejectedExecutionException e) {
             return null;
         }
     }
@@ -83,9 +87,8 @@ implements Executor {
             this.scheduledThreadPool.awaitTermination(2L, TimeUnit.SECONDS);
             this.generalPacketsThreadPool.awaitTermination(2L, TimeUnit.SECONDS);
             log.info("All ThreadPools are now stopped.");
-        }
-        catch (InterruptedException e) {
-            log.error("Can't shutdown ThreadPoolManager", (Throwable)e);
+        } catch (InterruptedException e) {
+            log.error("Can't shutdown ThreadPoolManager", (Throwable) e);
         }
     }
 
@@ -96,4 +99,3 @@ implements Executor {
         }
     }
 }
-

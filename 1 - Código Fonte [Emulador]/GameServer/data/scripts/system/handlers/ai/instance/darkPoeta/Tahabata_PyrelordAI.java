@@ -5,8 +5,8 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
@@ -78,7 +78,7 @@ public class Tahabata_PyrelordAI extends AggressiveNpcAI
 						sendMsg(341831, getObjectId(), false, 8000);
 					break;
 					case 15:
-					    AI2Actions.useSkill(this, 18232); //Explosion Of Wrath.
+					    AIActions.useSkill(this, 18232); //Explosion Of Wrath.
 					break;
 				}
 				percents.remove(percent);
@@ -89,7 +89,7 @@ public class Tahabata_PyrelordAI extends AggressiveNpcAI
 	
 	private void faithfulSubordinate1() {
 		//Rise, My Faithful Servant.
-		AI2Actions.useSkill(this, 18233);
+		AIActions.useSkill(this, 18233);
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
@@ -100,7 +100,7 @@ public class Tahabata_PyrelordAI extends AggressiveNpcAI
 	
 	private void faithfulSubordinate2() {
 		//Rise, My Faithful Servant.
-		AI2Actions.useSkill(this, 18233);
+		AIActions.useSkill(this, 18233);
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
@@ -125,7 +125,7 @@ public class Tahabata_PyrelordAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

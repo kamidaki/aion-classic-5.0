@@ -122,8 +122,8 @@ public class StaticData
 	public InstanceExitData instanceExitData;
 	@XmlElement(name = "portal_locs")
 	PortalLocData portalLocData;
-	@XmlElement(name = "portal_templates2")
-	Portal2Data portalTemplate2;
+	@XmlElement(name = "portal_templates")
+	PortalData portalTemplate2;
 	@XmlElement(name = "curing_objects")
 	public CuringObjectsData curingObjectsData;
 	@XmlElement(name = "mails")

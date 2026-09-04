@@ -2,8 +2,8 @@ package ai.instance.beshmundirTemple;
 
 import ai.AggressiveNpcAI;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -22,7 +22,7 @@ public class Grave_SlimeAI extends AggressiveNpcAI
 		spawn(281671, getOwner().getX(), getOwner().getY(), getOwner().getZ(), (byte) getOwner().getHeading());
 		spawn(281671, getOwner().getX(), getOwner().getY(), getOwner().getZ(), (byte) getOwner().getHeading());
 		super.handleDied();
-		AI2Actions.deleteOwner(this);
+		AIActions.deleteOwner(this);
 	}
 	
 	private void announceGraveSlime() {

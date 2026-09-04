@@ -4,8 +4,8 @@ import ai.AggressiveNpcAI;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 
 /****/
@@ -26,7 +26,7 @@ public class Explosive_Device_Of_YuditioAI extends AggressiveNpcAI
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
-				AI2Actions.deleteOwner(Explosive_Device_Of_YuditioAI.this);
+				AIActions.deleteOwner(Explosive_Device_Of_YuditioAI.this);
 			}
 		}, 6000);
 	}
@@ -39,6 +39,6 @@ public class Explosive_Device_Of_YuditioAI extends AggressiveNpcAI
 	@Override
 	protected void handleDied() {
 		super.handleDied();
-		AI2Actions.deleteOwner(this);
+		AIActions.deleteOwner(this);
 	}
 }

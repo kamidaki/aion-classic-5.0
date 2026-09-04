@@ -2,8 +2,8 @@ package ai.instance.esoterrace;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.*;
-import com.aionemu.gameserver.ai2.manager.*;
+import com.aionemu.gameserver.ai.*;
+import com.aionemu.gameserver.ai.manager.*;
 import com.aionemu.gameserver.model.*;
 import com.aionemu.gameserver.model.actions.*;
 import com.aionemu.gameserver.model.gameobjects.*;

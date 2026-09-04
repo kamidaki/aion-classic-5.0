@@ -4,8 +4,8 @@ import ai.GeneralNpcAI;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 
 import java.util.*;
 
@@ -29,7 +29,7 @@ public class Triroan_ElementAI extends GeneralNpcAI
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
 					@Override
 					public void run() {
-						AI2Actions.useSkill(Triroan_ElementAI.this, 18486); //Curse Of Flame.
+						AIActions.useSkill(Triroan_ElementAI.this, 18486); //Curse Of Flame.
 					}
 				}, 25000);
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -45,7 +45,7 @@ public class Triroan_ElementAI extends GeneralNpcAI
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
 					@Override
 					public void run() {
-						AI2Actions.useSkill(Triroan_ElementAI.this, 18483); //Scream Of Water.
+						AIActions.useSkill(Triroan_ElementAI.this, 18483); //Scream Of Water.
 					}
 				}, 25000);
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -61,8 +61,8 @@ public class Triroan_ElementAI extends GeneralNpcAI
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
 					@Override
 					public void run() {
-						AI2Actions.targetCreature(Triroan_ElementAI.this, getPosition().getWorldMapInstance().getNpc(237250)); //Sealed Unstable Triroan.
-						AI2Actions.useSkill(Triroan_ElementAI.this, 18485); //Wall Of Earth.
+						AIActions.targetCreature(Triroan_ElementAI.this, getPosition().getWorldMapInstance().getNpc(237250)); //Sealed Unstable Triroan.
+						AIActions.useSkill(Triroan_ElementAI.this, 18485); //Wall Of Earth.
 					}
 				}, 30000);
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -78,7 +78,7 @@ public class Triroan_ElementAI extends GeneralNpcAI
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
 					@Override
 					public void run() {
-						AI2Actions.useSkill(Triroan_ElementAI.this, 18484); //Wind Blade Of Rage.
+						AIActions.useSkill(Triroan_ElementAI.this, 18484); //Wind Blade Of Rage.
 					}
 				}, 30000);
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -94,6 +94,6 @@ public class Triroan_ElementAI extends GeneralNpcAI
     }
 	
 	private void despawn() {
-		AI2Actions.deleteOwner(this);
+		AIActions.deleteOwner(this);
 	}
 }

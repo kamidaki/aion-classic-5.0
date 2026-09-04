@@ -4,12 +4,12 @@ import ai.AggressiveNpcAI;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AbstractAI;
-import com.aionemu.gameserver.ai2.manager.EmoteManager;
-import com.aionemu.gameserver.ai2.manager.WalkManager;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AbstractAI;
+import com.aionemu.gameserver.ai.manager.EmoteManager;
+import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.controllers.effect.*;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -178,7 +178,7 @@ public class Shadow_Judge_KaligaAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

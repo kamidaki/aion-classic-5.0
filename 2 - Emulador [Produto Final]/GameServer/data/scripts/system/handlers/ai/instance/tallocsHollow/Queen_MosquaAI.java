@@ -5,9 +5,9 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -73,7 +73,7 @@ public class Queen_MosquaAI extends AggressiveNpcAI
 					case 30:
 					    //Spawn Eggs.
 						rndSpawn(282006, 3);
-						AI2Actions.useSkill(this, 19232);
+						AIActions.useSkill(this, 19232);
 					break;
 					case 25:
 					case 15:
@@ -168,7 +168,7 @@ public class Queen_MosquaAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

@@ -1,8 +1,8 @@
 package ai;
 
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.handler.FollowEventHandler;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.handler.FollowEventHandler;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.S_NPC_HTML_MESSAGE;
@@ -60,7 +60,7 @@ public class DeliveryManAI extends FollowingNpcAI
 	private final class DeleteDeliveryMan implements Runnable {
 		@Override
 		public void run() {
-			AI2Actions.deleteOwner(DeliveryManAI.this);
+			AIActions.deleteOwner(DeliveryManAI.this);
 		}
 	}
 	

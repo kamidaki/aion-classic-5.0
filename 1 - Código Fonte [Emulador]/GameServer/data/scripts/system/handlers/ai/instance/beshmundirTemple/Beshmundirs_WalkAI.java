@@ -2,9 +2,9 @@ package ai.instance.beshmundirTemple;
 
 import ai.ActionItemNpcAI;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AI2Request;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIRequest;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.*;
 import com.aionemu.gameserver.model.autogroup.AutoGroupType;
@@ -35,7 +35,7 @@ public class Beshmundirs_WalkAI extends ActionItemNpcAI
 	
 	@Override
 	public boolean onDialogSelect(Player player, final int dialogId, int questId, int extendedRewardIndex) {
-		AI2Request request = new AI2Request() {
+		AIRequest request = new AIRequest() {
 			@Override
 			public void acceptRequest(Creature requester, Player responder) {
 				moveToInstance(responder);
@@ -65,11 +65,11 @@ public class Beshmundirs_WalkAI extends ActionItemNpcAI
 				}
 			break;
 			case 4763:
-				AI2Actions.addRequest(this, player, S_ASK.STR_INSTANCE_DUNGEON_WITH_DIFFICULTY_ENTER_CONFIRM, getObjectId(), request, new DescriptionId(1804103));
+				AIActions.addRequest(this, player, S_ASK.STR_INSTANCE_DUNGEON_WITH_DIFFICULTY_ENTER_CONFIRM, getObjectId(), request, new DescriptionId(1804103));
 				PacketSendUtility.sendPacket(player, new S_NPC_HTML_MESSAGE(getObjectId(), 4762));
 			break;
 			case 4848:
-				AI2Actions.addRequest(this, player, S_ASK.STR_INSTANCE_DUNGEON_WITH_DIFFICULTY_ENTER_CONFIRM, getObjectId(), request, new DescriptionId(1804105));
+				AIActions.addRequest(this, player, S_ASK.STR_INSTANCE_DUNGEON_WITH_DIFFICULTY_ENTER_CONFIRM, getObjectId(), request, new DescriptionId(1804105));
 				PacketSendUtility.sendPacket(player, new S_NPC_HTML_MESSAGE(getObjectId(), 4762));
 			break;
 		}
@@ -88,7 +88,7 @@ public class Beshmundirs_WalkAI extends ActionItemNpcAI
 	}
 	
 	private void moveToInstance(Player player) {
-		PortalUse portalUse = DataManager.PORTAL2_DATA.getPortalUse(getNpcId());
+		PortalUse portalUse = DataManager.PORTAL_DATA.getPortalUse(getNpcId());
 		if (portalUse != null) {
 			PortalPath portalPath = portalUse.getPortalPath(player.getRace());
 			if (portalPath != null) {

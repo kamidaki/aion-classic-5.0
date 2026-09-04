@@ -1,9 +1,9 @@
 package ai.instance.beshmundirTemple;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.TaskId;
@@ -81,7 +81,7 @@ public class Entrance_Of_Oracular_ChamberAI extends NpcAI
 	
     protected void handleUseItemFinish(Player player) {
         if (getOwner().isInInstance()) {
-			AI2Actions.dieSilently(this, player);
+			AIActions.dieSilently(this, player);
 		}
     }
 	

@@ -1,7 +1,7 @@
 package ai.walkers;
 
 import ai.GeneralNpcAI;
-import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 
 /****/

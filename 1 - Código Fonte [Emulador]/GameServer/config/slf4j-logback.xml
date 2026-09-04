@@ -236,7 +236,7 @@
 	<logger name="ai">
 		<appender-ref ref="app_ai"/>
 	</logger>
-	<logger name="com.aionemu.gameserver.ai2">
+	<logger name="com.aionemu.gameserver.ai">
 		<appender-ref ref="app_ai"/>
 	</logger>
 	<logger name="instance" additivity="false">

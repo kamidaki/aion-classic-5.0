@@ -1,8 +1,8 @@
 package ai.instance.beshmundirTemple;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.*;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -60,7 +60,7 @@ public class Aetheric_Field_GeneratorAI extends NpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

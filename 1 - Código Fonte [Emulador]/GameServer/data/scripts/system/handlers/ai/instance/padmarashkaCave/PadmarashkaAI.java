@@ -5,9 +5,9 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -72,7 +72,7 @@ public class PadmarashkaAI extends AggressiveNpcAI
 					    padmarashkaEggs();
 					break;
 					case 30:
-					    AI2Actions.useSkill(this, 20100); //Padmarashka's Roar.
+					    AIActions.useSkill(this, 20100); //Padmarashka's Roar.
 					break;
 					case 20:
 					   rockFall();
@@ -111,7 +111,7 @@ public class PadmarashkaAI extends AggressiveNpcAI
 		sendMsg(1400541, getObjectId(), false, 0);
 		///You will never see the light of day again!
 		sendMsg(1400542, getObjectId(), false, 5000);
-		AI2Actions.useSkill(this, 19177); //Lay Egg.
+		AIActions.useSkill(this, 19177); //Lay Egg.
 		//The huge hidden egg is finally revealed.
 		PacketSendUtility.npcSendPacketTime(getOwner(), S_MESSAGE_CODE.STR_MSG_IDDramata_02, 2000);
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -163,7 +163,7 @@ public class PadmarashkaAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

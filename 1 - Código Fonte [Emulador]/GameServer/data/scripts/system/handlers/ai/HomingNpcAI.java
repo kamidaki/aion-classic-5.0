@@ -1,11 +1,11 @@
 package ai;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AttackIntention;
-import com.aionemu.gameserver.ai2.manager.AttackManager;
-import com.aionemu.gameserver.ai2.poll.AIAnswer;
-import com.aionemu.gameserver.ai2.poll.AIAnswers;
-import com.aionemu.gameserver.ai2.poll.AIQuestion;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AttackIntention;
+import com.aionemu.gameserver.ai.manager.AttackManager;
+import com.aionemu.gameserver.ai.poll.AIAnswer;
+import com.aionemu.gameserver.ai.poll.AIAnswers;
+import com.aionemu.gameserver.ai.poll.AIQuestion;
 import com.aionemu.gameserver.model.gameobjects.Homing;
 
 /****/

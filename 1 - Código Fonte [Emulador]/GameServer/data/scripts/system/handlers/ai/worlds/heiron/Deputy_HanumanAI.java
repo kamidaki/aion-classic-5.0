@@ -5,8 +5,8 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -54,7 +54,7 @@ public class Deputy_HanumanAI extends AggressiveNpcAI
 					case 85:
 					case 65:
 					    //Stun Strike.
-						AI2Actions.useSkill(this, 17870);
+						AIActions.useSkill(this, 17870);
 						ThreadPoolManager.getInstance().schedule(new Runnable() {
 							@Override
 							public void run() {
@@ -70,7 +70,7 @@ public class Deputy_HanumanAI extends AggressiveNpcAI
 					break;
 					case 50:
 					    //Stun Strike.
-						AI2Actions.useSkill(this, 17870);
+						AIActions.useSkill(this, 17870);
 					    ///Chuckle, this is interesting.
 						sendMsg(341123, getObjectId(), false, 0);
 						///Should I change the mood?
@@ -84,7 +84,7 @@ public class Deputy_HanumanAI extends AggressiveNpcAI
 					break;
 					case 25:
 					    //Stun Strike.
-						AI2Actions.useSkill(this, 17870);
+						AIActions.useSkill(this, 17870);
 					    ///Exterminate them!
 						sendMsg(340876, getObjectId(), false, 0);
 						ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -118,7 +118,7 @@ public class Deputy_HanumanAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

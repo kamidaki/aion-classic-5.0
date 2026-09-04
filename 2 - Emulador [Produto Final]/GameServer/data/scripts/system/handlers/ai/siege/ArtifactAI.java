@@ -1,9 +1,9 @@
 package ai.siege;
 
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AI2Request;
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIRequest;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.DescriptionId;
@@ -51,10 +51,10 @@ public class ArtifactAI extends NpcAI
 	@Override
 	protected void handleDialogStart(final Player player) {
 		final ArtifactLocation loc = SiegeService.getInstance().getArtifact(getSpawnTemplate().getSiegeId());
-		AI2Actions.addRequest(this, player, 160028, new AI2Request() {
+		AIActions.addRequest(this, player, 160028, new AIRequest() {
 			@Override
 			public void acceptRequest(Creature requester, Player responder) {
-				AI2Actions.addRequest(ArtifactAI.this, player, 160016, new AI2Request() {
+				AIActions.addRequest(ArtifactAI.this, player, 160016, new AIRequest() {
 					@Override
 					public void acceptRequest(Creature requester, Player responder) {
 						if (MathUtil.isInRange(requester, responder, 10)) {
@@ -219,7 +219,7 @@ public class ArtifactAI extends NpcAI
 							}
 						break;
 					}
-					AI2Actions.applyEffect(ArtifactAI.this, skill, creature);
+					AIActions.applyEffect(ArtifactAI.this, skill, creature);
 				}
 			}
 		}

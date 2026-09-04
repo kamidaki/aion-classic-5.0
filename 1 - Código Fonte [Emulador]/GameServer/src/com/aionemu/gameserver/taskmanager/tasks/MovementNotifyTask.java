@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.aionemu.gameserver.ai2.AI2Logger;
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.event.AIEventType;
+import com.aionemu.gameserver.ai.AILogger;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.event.AIEventType;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -85,7 +85,7 @@ public class MovementNotifyTask extends AbstractFIFOPeriodicTaskManager<Creature
         public void visit(Npc object, VisibleObject owner) {
             if (object.getAi().getState() == AIState.DIED || object.getLifeStats().isAlreadyDead()) {
                 if (object.getAi().isLogging()) {
-                    AI2Logger.moveinfo(object, "WARN: NPC died but still in knownlist");
+                    AILogger.moveinfo(object, "WARN: NPC died but still in knownlist");
                 }
                 return;
             }

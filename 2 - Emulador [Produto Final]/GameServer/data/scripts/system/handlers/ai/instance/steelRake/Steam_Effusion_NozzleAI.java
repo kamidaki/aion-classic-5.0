@@ -2,10 +2,10 @@ package ai.instance.steelRake;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.poll.*;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.poll.*;
 
 import java.util.concurrent.Future;
 
@@ -32,7 +32,7 @@ public class Steam_Effusion_NozzleAI extends NpcAI
 		dranaSteamTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
-				AI2Actions.useSkill(Steam_Effusion_NozzleAI.this, 18153); //Drana Steam.
+				AIActions.useSkill(Steam_Effusion_NozzleAI.this, 18153); //Drana Steam.
 			}
 		}, 3000, 15000);
 	}

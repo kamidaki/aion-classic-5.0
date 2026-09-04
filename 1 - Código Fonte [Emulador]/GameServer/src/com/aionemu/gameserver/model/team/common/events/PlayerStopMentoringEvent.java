@@ -1,0 +1,43 @@
+package com.aionemu.gameserver.model.team.common.events;
+
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.team.TeamMember;
+import com.aionemu.gameserver.model.team.TemporaryPlayerTeam;
+import com.aionemu.gameserver.network.aion.serverpackets.S_ETC_STATUS;
+import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.google.common.base.Predicate;
+
+
+public abstract class PlayerStopMentoringEvent<T extends TemporaryPlayerTeam<? extends TeamMember<Player>>> extends AlwaysTrueTeamEvent implements Predicate<Player> {
+
+    protected final T team;
+    protected final Player player;
+
+    public PlayerStopMentoringEvent(T team, Player player) {
+        this.team = team;
+        this.player = player;
+    }
+
+    @Override
+    public void handleEvent() {
+        player.setMentor(false);
+        PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_MSG_MENTOR_END);
+        team.applyOnMembers(this);
+        PacketSendUtility.broadcastPacketAndReceive(player, new S_ETC_STATUS(2, player));
+    }
+
+    @Override
+    public boolean apply(Player member) {
+        if (!player.equals(member)) {
+            PacketSendUtility.sendPacket(member, S_MESSAGE_CODE.STR_MSG_MENTOR_END_PARTYMSG(player.getName()));
+        }
+        sendGroupPacketOnMentorEnd(member);
+        return true;
+    }
+
+    /**
+     * @param member
+     */
+    protected abstract void sendGroupPacketOnMentorEnd(Player member);
+}

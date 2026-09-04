@@ -1,6 +1,6 @@
 package ai.portals;
 
-import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.*;
 import com.aionemu.gameserver.model.autogroup.AutoGroupType;
@@ -56,7 +56,7 @@ public class PortalDialogAI extends PortalAI
 			}
 		} else {
 			if (questId == 0) {
-				PortalPath portalPath = DataManager.PORTAL2_DATA.getPortalDialog(getNpcId(), dialogId, player.getRace());
+				PortalPath portalPath = DataManager.PORTAL_DATA.getPortalDialog(getNpcId(), dialogId, player.getRace());
 				if (portalPath != null) {
 					PortalService.port(portalPath, player, getObjectId());
 				}
@@ -74,7 +74,7 @@ public class PortalDialogAI extends PortalAI
 	
 	private void checkDialog(Player player) {
 		int npcId = getNpcId();
-		int teleportationDialogId = DataManager.PORTAL2_DATA.getTeleportDialogId(npcId);
+		int teleportationDialogId = DataManager.PORTAL_DATA.getTeleportDialogId(npcId);
 		List<Integer> relatedQuests = QuestEngine.getInstance().getQuestNpc(npcId).getOnTalkEvent();
 		boolean playerHasQuest = false;
 		boolean playerCanStartQuest = false;

@@ -1,8 +1,8 @@
 package ai;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AI2Actions.SelectDialogResult;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIActions.SelectDialogResult;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.S_NPC_HTML_MESSAGE;
 import com.aionemu.gameserver.questEngine.QuestEngine;
@@ -35,7 +35,7 @@ public class QuestItemNpcAI extends ActionItemNpcAI
 	
 	@Override
 	protected void handleUseItemFinish(Player player) {
-		SelectDialogResult dialogResult = AI2Actions.selectDialog(this, player, 0, -1);
+		SelectDialogResult dialogResult = AIActions.selectDialog(this, player, 0, -1);
 		if (!dialogResult.isSuccess()) {
 			if (isDialogNpc()) {
 				PacketSendUtility.sendPacket(player, new S_NPC_HTML_MESSAGE(getObjectId(), QuestDialog.SELECT_ACTION_1011.id()));
@@ -46,7 +46,7 @@ public class QuestItemNpcAI extends ActionItemNpcAI
 		if (QuestService.getQuestDrop(getNpcId()).isEmpty()) {
 			return;
 		} if (registeredPlayers.isEmpty()) {
-			AI2Actions.scheduleRespawn(this);
+			AIActions.scheduleRespawn(this);
 			if (player.isInGroup()) {
 				registeredPlayers = QuestService.getEachDropMembersGroup(player.getPlayerGroup(), getNpcId(), questEnv.getQuestId());
 				if (registeredPlayers.isEmpty()) {
@@ -60,7 +60,7 @@ public class QuestItemNpcAI extends ActionItemNpcAI
 			} else {
 				registeredPlayers.add(player);
 			}
-			AI2Actions.registerDrop(this, player, registeredPlayers);
+			AIActions.registerDrop(this, player, registeredPlayers);
 			DropService.getInstance().requestDropList(player, getObjectId());
 		} else if (registeredPlayers.contains(player)) {
 			DropService.getInstance().requestDropList(player, getObjectId());

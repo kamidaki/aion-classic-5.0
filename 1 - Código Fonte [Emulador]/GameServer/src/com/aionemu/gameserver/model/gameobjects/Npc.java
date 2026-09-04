@@ -1,8 +1,8 @@
 package com.aionemu.gameserver.model.gameobjects;
 
-import com.aionemu.gameserver.ai2.AI2Engine;
-import com.aionemu.gameserver.ai2.AITemplate;
-import com.aionemu.gameserver.ai2.poll.AIQuestion;
+import com.aionemu.gameserver.ai.AIEngine;
+import com.aionemu.gameserver.ai.AITemplate;
+import com.aionemu.gameserver.ai.poll.AIQuestion;
 import com.aionemu.gameserver.configs.main.AIConfig;
 import com.aionemu.gameserver.controllers.NpcController;
 import com.aionemu.gameserver.controllers.movement.NpcMoveController;
@@ -65,12 +65,12 @@ public class Npc extends Creature
 		if (spawnTemplate.getModel() != null) {
 			if (spawnTemplate.getModel().getAi() != null) {
 				aiOverride = true;
-				AI2Engine.getInstance().setupAI(spawnTemplate.getModel().getAi(), this);
+				AIEngine.getInstance().setupAI(spawnTemplate.getModel().getAi(), this);
 			}
 		}
 
 		if (!aiOverride)
-			AI2Engine.getInstance().setupAI(objectTemplate.getAi(), this);
+			AIEngine.getInstance().setupAI(objectTemplate.getAi(), this);
 
 		lastShoutedSeconds = System.currentTimeMillis() / 1000;
 	}

@@ -4,10 +4,10 @@ import ai.AggressiveNpcAI;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.manager.WalkManager;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
@@ -78,7 +78,7 @@ public class YamennesAI extends AggressiveNpcAI
 						sendMsg(1500008, getObjectId(), false, 5000);
 					break;
 					case 15:
-					    AI2Actions.useSkill(this, 19228); //Delirium.
+					    AIActions.useSkill(this, 19228); //Delirium.
 					break;
 				}
 				percents.remove(percent);
@@ -211,7 +211,7 @@ public class YamennesAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

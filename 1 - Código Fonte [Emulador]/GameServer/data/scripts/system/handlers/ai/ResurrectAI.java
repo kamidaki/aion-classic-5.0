@@ -2,7 +2,7 @@ package ai;
 
 import com.aionemu.commons.database.dao.DAOManager;
 
-import com.aionemu.gameserver.ai2.*;
+import com.aionemu.gameserver.ai.*;
 import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.dao.PlayerBindPointDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -90,7 +90,7 @@ public class ResurrectAI extends NpcAI
 	
 	private void bindHere(Player player, final BindPointTemplate bindPointTemplate) {
 		String price = Integer.toString(bindPointTemplate.getPrice());
-		AI2Actions.addRequest(this, player, S_ASK.STR_ASK_REGISTER_RESURRECT_POINT, 0, new AI2Request() {
+		AIActions.addRequest(this, player, S_ASK.STR_ASK_REGISTER_RESURRECT_POINT, 0, new AIRequest() {
 			@Override
 			public void acceptRequest(Creature requester, Player responder) {
 				if (responder.getWorldId() == requester.getWorldId()) {

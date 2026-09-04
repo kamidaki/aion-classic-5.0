@@ -2,8 +2,8 @@ package ai.worlds.inggison;
 
 import ai.ActionItemNpcAI;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.skillengine.SkillEngine;
@@ -32,8 +32,8 @@ public class Veille_Aetheric_ConcentratorAI extends ActionItemNpcAI
 			case 296907:
 				if (player.getLevel() >= 50) {
 					announceVeilleI();
-					AI2Actions.targetCreature(Veille_Aetheric_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258200)); //Enraged Veille.
-				    AI2Actions.useSkill(Veille_Aetheric_ConcentratorAI.this, 20107); //Defense Aether.
+					AIActions.targetCreature(Veille_Aetheric_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258200)); //Enraged Veille.
+				    AIActions.useSkill(Veille_Aetheric_ConcentratorAI.this, 20107); //Defense Aether.
 				} else {
 					//You have failed to use the Empyrean Avatar. You will need to gather power and summon it again.
 				    PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_MSG_GODELITE_DEATHBLOW_FAIL, 0);
@@ -43,8 +43,8 @@ public class Veille_Aetheric_ConcentratorAI extends ActionItemNpcAI
 			case 296908:
 			    if (player.getLevel() >= 50) {
 					announceVeilleII();
-					AI2Actions.targetCreature(Veille_Aetheric_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258200)); //Enraged Veille.
-				    AI2Actions.useSkill(Veille_Aetheric_ConcentratorAI.this, 20108); //Elemental Resistance Aether.
+					AIActions.targetCreature(Veille_Aetheric_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258200)); //Enraged Veille.
+				    AIActions.useSkill(Veille_Aetheric_ConcentratorAI.this, 20108); //Elemental Resistance Aether.
 				} else {
 					//You have failed to use the Empyrean Avatar. You will need to gather power and summon it again.
 				    PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_MSG_GODELITE_DEATHBLOW_FAIL, 0);
@@ -54,9 +54,9 @@ public class Veille_Aetheric_ConcentratorAI extends ActionItemNpcAI
 			case 296909:
 			    if (player.getLevel() >= 50) {
 					announceVeilleII();
-				    AI2Actions.targetCreature(Veille_Aetheric_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258200)); //Enraged Veille.
-				    AI2Actions.useSkill(Veille_Aetheric_ConcentratorAI.this, 20109); //Power Aether.
-					AI2Actions.useSkill(Veille_Aetheric_ConcentratorAI.this, 20110); //Magical Aether.
+				    AIActions.targetCreature(Veille_Aetheric_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258200)); //Enraged Veille.
+				    AIActions.useSkill(Veille_Aetheric_ConcentratorAI.this, 20109); //Power Aether.
+					AIActions.useSkill(Veille_Aetheric_ConcentratorAI.this, 20110); //Magical Aether.
 				} else {
 					//You have failed to use the Empyrean Avatar. You will need to gather power and summon it again.
 				    PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_MSG_GODELITE_DEATHBLOW_FAIL, 0);

@@ -1,6 +1,6 @@
 package com.aionemu.gameserver.model.templates.npc;
 
-import com.aionemu.gameserver.ai2.AiNames;
+import com.aionemu.gameserver.ai.AiNames;
 import com.aionemu.gameserver.model.NpcType;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TribeClass;

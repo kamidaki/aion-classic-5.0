@@ -2,9 +2,9 @@ package ai.instance.steelRake;
 
 import ai.AggressiveNpcAI;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.poll.*;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.poll.*;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 
@@ -17,7 +17,7 @@ public class Koakoa_BombAI extends AggressiveNpcAI
 {
 	@Override
 	protected void handleCreatureAggro(Creature creature) {
-		AI2Actions.useSkill(this, 18551); //Explosion.
+		AIActions.useSkill(this, 18551); //Explosion.
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {

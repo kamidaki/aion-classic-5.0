@@ -64,7 +64,7 @@ public final class DataManager {
 	public static InstanceBuffData INSTANCE_BUFF_DATA;
 	public static InstanceExitData INSTANCE_EXIT_DATA;
 	public static PortalLocData PORTAL_LOC_DATA;
-	public static Portal2Data PORTAL2_DATA;
+	public static PortalData PORTAL_DATA;
 	public static CuringObjectsData CURING_OBJECTS_DATA;
 	public static Mails SYSTEM_MAIL_TEMPLATES;
 	public static AbyssBuffData ABYSS_BUFF_DATA;
@@ -157,7 +157,7 @@ public final class DataManager {
 		INSTANCE_BUFF_DATA = data.instanceBuffData;
 		INSTANCE_EXIT_DATA = data.instanceExitData;
 		PORTAL_LOC_DATA = data.portalLocData;
-		PORTAL2_DATA = data.portalTemplate2;
+		PORTAL_DATA = data.portalTemplate2;
 		CURING_OBJECTS_DATA = data.curingObjectsData;
 		SYSTEM_MAIL_TEMPLATES = data.systemMailTemplates;
 		ITEM_DATA.cleanup();

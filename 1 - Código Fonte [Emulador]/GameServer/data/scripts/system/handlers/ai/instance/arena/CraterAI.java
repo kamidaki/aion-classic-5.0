@@ -2,10 +2,10 @@ package ai.instance.arena;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.poll.*;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.poll.*;
 
 import java.util.concurrent.Future;
 
@@ -32,7 +32,7 @@ public class CraterAI extends NpcAI
 		craterExplosionTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
-				AI2Actions.useSkill(CraterAI.this, 20069); //Crater Explosion.
+				AIActions.useSkill(CraterAI.this, 20069); //Crater Explosion.
 			}
 		}, 3000, 10000);
 	}

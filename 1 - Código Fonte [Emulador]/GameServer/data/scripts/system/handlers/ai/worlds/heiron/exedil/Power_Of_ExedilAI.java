@@ -2,9 +2,9 @@ package ai.worlds.heiron.exedil;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
 
 /****/
 /** Author Rinzler (Encom)
@@ -21,8 +21,8 @@ public class Power_Of_ExedilAI extends NpcAI
 	protected void handleSpawned() {
 		super.handleSpawned();
 		despawn();
-		AI2Actions.targetCreature(Power_Of_ExedilAI.this, getPosition().getWorldMapInstance().getNpc(212317)); //Exedil.
-		AI2Actions.useSkill(Power_Of_ExedilAI.this, 17125);
+		AIActions.targetCreature(Power_Of_ExedilAI.this, getPosition().getWorldMapInstance().getNpc(212317)); //Exedil.
+		AIActions.useSkill(Power_Of_ExedilAI.this, 17125);
 	}
 	
     private void despawn() {

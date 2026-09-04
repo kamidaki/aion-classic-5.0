@@ -1,9 +1,9 @@
 package com.aionemu.gameserver.services.siegeservice;
 
-import com.aionemu.gameserver.ai2.AbstractAI;
-import com.aionemu.gameserver.ai2.GeneralAIEvent;
-import com.aionemu.gameserver.ai2.eventcallback.OnDieEventCallback;
-import com.aionemu.gameserver.ai2.eventcallback.OnDieEventListener;
+import com.aionemu.gameserver.ai.AbstractAI;
+import com.aionemu.gameserver.ai.GeneralAIEvent;
+import com.aionemu.gameserver.ai.eventcallback.OnDieEventCallback;
+import com.aionemu.gameserver.ai.eventcallback.OnDieEventListener;
 import com.aionemu.gameserver.services.SiegeService;
 
 @SuppressWarnings("rawtypes")

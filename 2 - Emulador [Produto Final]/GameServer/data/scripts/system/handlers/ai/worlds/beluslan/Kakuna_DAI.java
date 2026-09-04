@@ -4,12 +4,12 @@ import ai.AggressiveNpcAI;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AttackIntention;
-import com.aionemu.gameserver.ai2.event.AIEventType;
-import com.aionemu.gameserver.ai2.handler.*;
-import com.aionemu.gameserver.ai2.manager.*;
-import com.aionemu.gameserver.ai2.poll.*;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AttackIntention;
+import com.aionemu.gameserver.ai.event.AIEventType;
+import com.aionemu.gameserver.ai.handler.*;
+import com.aionemu.gameserver.ai.manager.*;
+import com.aionemu.gameserver.ai.poll.*;
 import com.aionemu.gameserver.model.*;
 import com.aionemu.gameserver.model.gameobjects.*;
 import com.aionemu.gameserver.model.gameobjects.player.Player;

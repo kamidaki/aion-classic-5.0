@@ -2,8 +2,8 @@ package ai;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.ai.Percentage;
 import com.aionemu.gameserver.model.ai.SummonGroup;
@@ -92,7 +92,7 @@ public class SummonerAI extends AggressiveNpcAI
 			} if (hpPercentage <= percent.getPercent()) {
 				int skill = percent.getSkillId();
 				if (skill != 0) {
-					AI2Actions.useSkill(this, skill);
+					AIActions.useSkill(this, skill);
 				} if (percent.isIndividual()) {
 					handleIndividualSpawnedSummons(percent);
 				} else if (percent.getSummons() != null) {

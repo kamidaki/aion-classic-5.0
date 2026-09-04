@@ -4,11 +4,11 @@ import ai.AggressiveNpcAI;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.manager.EmoteManager;
-import com.aionemu.gameserver.ai2.manager.WalkManager;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.manager.EmoteManager;
+import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -93,7 +93,7 @@ public class Suspicious_BoyAI extends AggressiveNpcAI
 	}
 	
 	private void deleteSuspiciousBoy() {
-        AI2Actions.deleteOwner(this);
+        AIActions.deleteOwner(this);
     }
 	
 	private void sendMsg(int msg, int Obj, boolean isShout, int time) {

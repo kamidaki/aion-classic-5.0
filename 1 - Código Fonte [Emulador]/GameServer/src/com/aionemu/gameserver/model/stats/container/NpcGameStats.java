@@ -1,7 +1,7 @@
 package com.aionemu.gameserver.model.stats.container;
 
 import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.ai2.AI2Logger;
+import com.aionemu.gameserver.ai.AILogger;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.SummonedObject;
@@ -303,7 +303,7 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 		if (attackSpeed == 0) {
 			attackSpeed = 2000;
 		} if (owner.getAi().isLogging()) {
-			AI2Logger.info(owner.getAi(), "adelay = " + attackDelay + " aspeed = " + attackSpeed);
+			AILogger.info(owner.getAi(), "adelay = " + attackDelay + " aspeed = " + attackSpeed);
 		}
 		int nextAttack = 0;
 		if (attackDelay < attackSpeed) {

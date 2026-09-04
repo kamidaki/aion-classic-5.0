@@ -7,12 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import com.aionemu.gameserver.ai2.AI2Logger;
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.AISubState;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.handler.TargetEventHandler;
-import com.aionemu.gameserver.ai2.manager.WalkManager;
+import com.aionemu.gameserver.ai.AILogger;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.AISubState;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.handler.TargetEventHandler;
+import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.configs.main.GeoDataConfig;
 import com.aionemu.gameserver.model.actions.NpcActions;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -67,7 +67,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
     public void moveToTargetObject() {
         if (started.compareAndSet(false, true)) {
             if (owner.getAi().isLogging()) {
-                AI2Logger.moveinfo(owner, "MC: moveToTarget started");
+                AILogger.moveinfo(owner, "MC: moveToTarget started");
             }
             destination = Destination.TARGET_OBJECT;
             updateLastMove();
@@ -78,7 +78,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
     public void moveToPoint(float x, float y, float z) {
         if (started.compareAndSet(false, true)) {
             if (owner.getAi().isLogging()) {
-                AI2Logger.moveinfo(owner, "MC: moveToPoint started");
+                AILogger.moveinfo(owner, "MC: moveToPoint started");
             }
             destination = Destination.POINT;
             pointX = x;
@@ -92,7 +92,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
     public void moveToNextPoint() {
         if (started.compareAndSet(false, true)) {
             if (owner.getAi().isLogging()) {
-                AI2Logger.moveinfo(owner, "MC: moveToNextPoint started");
+                AILogger.moveinfo(owner, "MC: moveToNextPoint started");
             }
             destination = Destination.POINT;
             updateLastMove();
@@ -106,7 +106,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
     @Override
     public void moveToDestination() {
         if (owner.getAi().isLogging()) {
-            AI2Logger.moveinfo(owner, "moveToDestination destination: " + destination);
+            AILogger.moveinfo(owner, "moveToDestination destination: " + destination);
         }
         if (NpcActions.isAlreadyDead(owner)) {
             abortMove();
@@ -114,7 +114,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
         }
         if (!owner.canPerformMove() || (owner.getAi().getSubState() == AISubState.CAST)) {
             if (owner.getAi().isLogging()) {
-                AI2Logger.moveinfo(owner, "moveToDestination can't perform move");
+                AILogger.moveinfo(owner, "moveToDestination can't perform move");
             }
             if (started.compareAndSet(true, false)) {
                 setAndSendStopMove(owner);
@@ -128,7 +128,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
 
         if (!started.get()) {
             if (owner.getAi().isLogging()) {
-                AI2Logger.moveinfo(owner, "moveToDestination not started");
+                AILogger.moveinfo(owner, "moveToDestination not started");
             }
         }
 
@@ -202,7 +202,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
             this.heading = (byte)(Math.toDegrees(Math.atan2(targetY - ownerY, targetX - ownerX)) / 3.0);
         }
         if (this.owner.getAi().isLogging()) {
-            AI2Logger.moveinfo(this.owner, "OLD targetDestX: " + this.targetDestX + " targetDestY: " + this.targetDestY + " targetDestZ " + this.targetDestZ);
+            AILogger.moveinfo(this.owner, "OLD targetDestX: " + this.targetDestX + " targetDestY: " + this.targetDestY + " targetDestZ " + this.targetDestZ);
         }
         if (targetX == 0.0f && targetY == 0.0f) {
             targetX = this.owner.getSpawn().getX();
@@ -213,18 +213,18 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
         this.targetDestY = targetY;
         this.targetDestZ = targetZ;
         if (this.owner.getAi().isLogging()) {
-            AI2Logger.moveinfo(this.owner, "ownerX=" + ownerX + " ownerY=" + ownerY + " ownerZ=" + ownerZ);
-            AI2Logger.moveinfo(this.owner, "targetDestX: " + this.targetDestX + " targetDestY: " + this.targetDestY + " targetDestZ " + this.targetDestZ);
+            AILogger.moveinfo(this.owner, "ownerX=" + ownerX + " ownerY=" + ownerY + " ownerZ=" + ownerZ);
+            AILogger.moveinfo(this.owner, "targetDestX: " + this.targetDestX + " targetDestY: " + this.targetDestY + " targetDestZ " + this.targetDestZ);
         }
         float currentSpeed = this.owner.getGameStats().getMovementSpeedFloat();
         float futureDistPassed = currentSpeed * (float)(System.currentTimeMillis() - this.lastMoveUpdate) / 1000.0f;
         float dist = (float)MathUtil.getDistance(ownerX, ownerY, ownerZ, targetX, targetY, targetZ);
         if (this.owner.getAi().isLogging()) {
-            AI2Logger.moveinfo(this.owner, "futureDist: " + futureDistPassed + " dist: " + dist);
+            AILogger.moveinfo(this.owner, "futureDist: " + futureDistPassed + " dist: " + dist);
         } if (dist == 0.0f) {
             if (this.owner.getAi().getState() == AIState.RETURNING) {
                 if (this.owner.getAi().isLogging()) {
-                    AI2Logger.moveinfo(this.owner, "State RETURNING: abort move");
+                    AILogger.moveinfo(this.owner, "State RETURNING: abort move");
                 }
                 TargetEventHandler.onTargetReached((NpcAI) this.owner.getAi());
             }
@@ -248,13 +248,13 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
             }
             this.owner.getGameStats().setLastGeoZUpdate(System.currentTimeMillis() + 500);
         } if (this.owner.getAi().isLogging()) {
-            AI2Logger.moveinfo(this.owner, "newX=" + newX + " newY=" + newY + " newZ=" + newZ + " mask=" + this.movementMask);
+            AILogger.moveinfo(this.owner, "newX=" + newX + " newY=" + newY + " newZ=" + newZ + " mask=" + this.movementMask);
         }
         World.getInstance().updatePosition(this.owner, newX, newY, newZ, this.heading, false);
         byte newMask = this.getMoveMask(directionChanged);
         if (this.movementMask != newMask) {
             if (this.owner.getAi().isLogging()) {
-                AI2Logger.moveinfo(this.owner, "oldMask=" + this.movementMask + " newMask=" + newMask);
+                AILogger.moveinfo(this.owner, "oldMask=" + this.movementMask + " newMask=" + newMask);
             }
             this.movementMask = newMask;
             PacketSendUtility.broadcastPacket(this.owner, new S_MOVE_NEW(this.owner));
@@ -295,7 +295,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
      */
     public void resetMove() {
         if (this.owner.getAi().isLogging()) {
-            AI2Logger.moveinfo(this.owner, "MC perform stop");
+            AILogger.moveinfo(this.owner, "MC perform stop");
         }
         cancelFollow();
         this.started.set(false);
@@ -314,7 +314,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
      */
     public void setCurrentRoute(List<RouteStep> currentRoute) {
         if (currentRoute == null) {
-            AI2Logger.info(owner.getAi(), String.format("MC: setCurrentRoute is setting route to null (NPC id: {})!!!", owner.getNpcId()));
+            AILogger.info(owner.getAi(), String.format("MC: setCurrentRoute is setting route to null (NPC id: {})!!!", owner.getNpcId()));
         } else {
             this.currentRoute = currentRoute;
         }
@@ -400,7 +400,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
         }
         Point3D currentStep = new Point3D(this.owner.getX(), this.owner.getY(), this.owner.getZ());
         if (this.owner.getAi().isLogging()) {
-            AI2Logger.moveinfo(this.owner, "store back step: X=" + this.owner.getX() + " Y=" + this.owner.getY() + " Z=" + this.owner.getZ());
+            AILogger.moveinfo(this.owner, "store back step: X=" + this.owner.getX() + " Y=" + this.owner.getY() + " Z=" + this.owner.getZ());
         } if (this.stepSequenceNr == 0 || MathUtil.getDistance(this.lastSteps.get(this.stepSequenceNr), currentStep) >= 10.0) {
             this.stepSequenceNr = (byte)(this.stepSequenceNr + 1);
             this.lastSteps.put(this.stepSequenceNr, currentStep);
@@ -414,7 +414,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
         Point3D result = stepSequenceNr == 0 ? null : lastSteps.get(stepSequenceNr--);
         if (result == null) {
             if (owner.getAi().isLogging()) {
-                AI2Logger.moveinfo(owner, "recall back step: spawn point");
+                AILogger.moveinfo(owner, "recall back step: spawn point");
             }
             targetDestX = owner.getSpawn().getX();
             targetDestY = owner.getSpawn().getY();
@@ -422,7 +422,7 @@ public class NpcMoveController extends CreatureMoveController<Npc> {
             result = new Point3D(targetDestX, targetDestY, targetDestZ);
         } else {
             if (owner.getAi().isLogging()) {
-                AI2Logger.moveinfo(owner, "recall back step: X=" + result.getX() + " Y=" + result.getY() + " Z=" + result.getZ());
+                AILogger.moveinfo(owner, "recall back step: X=" + result.getX() + " Y=" + result.getY() + " Z=" + result.getZ());
             }
             targetDestX = result.getX();
             targetDestY = result.getY();

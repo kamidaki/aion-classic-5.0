@@ -1,9 +1,9 @@
 package ai;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.TaskId;
@@ -53,7 +53,7 @@ public class ActionItemNpcAI extends NpcAI
 	}
 	
 	protected void handleUseItemFinish(Player player) {
-		AI2Actions.handleUseItemFinish(this, player);
+		AIActions.handleUseItemFinish(this, player);
 	}
 	
 	protected int getTalkDelay() {

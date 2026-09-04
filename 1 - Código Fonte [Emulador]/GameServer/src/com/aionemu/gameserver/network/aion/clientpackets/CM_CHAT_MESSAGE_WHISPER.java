@@ -38,7 +38,7 @@ public class CM_CHAT_MESSAGE_WHISPER extends AionClientPacket
 	
 	@Override
 	protected void runImpl() {
-		name = ChatUtil.getRealAdminName2(name);
+		name = ChatUtil.stripAdminTags(name);
 		String formatname = Util.convertName(name);
 		
 		Player sender = getConnection().getActivePlayer();

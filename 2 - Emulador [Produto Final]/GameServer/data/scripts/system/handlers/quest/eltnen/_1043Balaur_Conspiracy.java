@@ -4,8 +4,8 @@ import com.aionemu.commons.utils.Rnd;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.AbstractAI;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.AbstractAI;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;

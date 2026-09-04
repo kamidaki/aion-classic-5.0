@@ -3,9 +3,9 @@ package com.aionemu.gameserver.model.autogroup;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.team2.TeamType;
-import com.aionemu.gameserver.model.team2.group.PlayerGroup;
-import com.aionemu.gameserver.model.team2.group.PlayerGroupService;
+import com.aionemu.gameserver.model.team.TeamType;
+import com.aionemu.gameserver.model.team.group.PlayerGroup;
+import com.aionemu.gameserver.model.team.group.PlayerGroupService;
 import com.aionemu.gameserver.model.templates.portal.PortalLoc;
 import com.aionemu.gameserver.model.templates.portal.PortalPath;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
@@ -71,7 +71,7 @@ public class AutoGeneralInstance extends AutoInstance
 	@Override
 	public void onPressEnter(Player player) {
 		super.onPressEnter(player);
-		PortalPath portal = DataManager.PORTAL2_DATA.getPortalDialog(worldId, 10000, player.getRace());
+		PortalPath portal = DataManager.PORTAL_DATA.getPortalDialog(worldId, 10000, player.getRace());
 		if (portal == null) {
 			return;
 		}

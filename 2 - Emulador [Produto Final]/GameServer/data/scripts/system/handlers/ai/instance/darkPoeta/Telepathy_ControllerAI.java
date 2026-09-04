@@ -5,8 +5,8 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -63,7 +63,7 @@ public class Telepathy_ControllerAI extends AggressiveNpcAI
 	
 	private void anuhartEscort() {
 		//Explosion.
-		AI2Actions.useSkill(this, 18583);
+		AIActions.useSkill(this, 18583);
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
@@ -78,7 +78,7 @@ public class Telepathy_ControllerAI extends AggressiveNpcAI
 	
 	private void bionicClodworm() {
 		//Explosion.
-		AI2Actions.useSkill(this, 18583);
+		AIActions.useSkill(this, 18583);
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
@@ -109,7 +109,7 @@ public class Telepathy_ControllerAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

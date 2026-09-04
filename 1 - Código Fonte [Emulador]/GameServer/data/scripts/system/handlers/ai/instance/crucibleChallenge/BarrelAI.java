@@ -1,8 +1,8 @@
 package ai.instance.crucibleChallenge;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
 
 /****/
 /** Author Rinzler (Encom)
@@ -24,6 +24,6 @@ public class BarrelAI extends NpcAI
 			break;
 		}
 		spawn(npcId, 1298.4448f, 1728.3262f, 316.8472f, (byte) 63);
-		AI2Actions.deleteOwner(this);
+		AIActions.deleteOwner(this);
 	}
 }

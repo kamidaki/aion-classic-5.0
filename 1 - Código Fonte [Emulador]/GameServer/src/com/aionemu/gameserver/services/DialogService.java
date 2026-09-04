@@ -572,7 +572,7 @@ public class DialogService {
             case 10013: {
                 if (questId == 0) {
                     TeleporterTemplate template = DataManager.TELEPORTER_DATA.getTeleporterTemplateByNpcId(npc.getNpcId());
-                    PortalPath portalPath = DataManager.PORTAL2_DATA.getPortalDialog(npc.getNpcId(), dialogId, player.getRace());
+                    PortalPath portalPath = DataManager.PORTAL_DATA.getPortalDialog(npc.getNpcId(), dialogId, player.getRace());
                     if (portalPath != null) {
                         PortalService.port(portalPath, player, targetObjectId);
                     } else if (template != null) {

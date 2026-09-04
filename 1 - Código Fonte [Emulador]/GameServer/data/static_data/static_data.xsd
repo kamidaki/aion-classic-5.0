@@ -55,7 +55,7 @@
 	<xs:include schemaLocation="instance_bonusattr/instance_bonusattr.xsd"/>
 	<xs:include schemaLocation="instance_exit/instance_exit.xsd"/>
 	<xs:include schemaLocation="portals/portal_loc.xsd"/>
-	<xs:include schemaLocation="portals/portal_template2.xsd"/>
+	<xs:include schemaLocation="portals/portal_template.xsd"/>
 	<xs:include schemaLocation="curing_objects/curing_objects.xsd"/>
 	<xs:include schemaLocation="mail_templates.xsd"/>
 	<xs:include schemaLocation="abyss_bonusattr/abyss_bonusattr.xsd"/>
@@ -139,7 +139,7 @@
 				<xs:element ref="instance_bonusattrs" minOccurs="0"/>
 				<xs:element ref="instance_exits" minOccurs="0"/>
 				<xs:element ref="portal_locs" minOccurs="0"/>
-				<xs:element ref="portal_templates2" minOccurs="0"/>
+				<xs:element ref="portal_templates" minOccurs="0"/>
 				<xs:element ref="curing_objects" minOccurs="0"/>
 				<xs:element ref="mails" minOccurs="0"/>
 				<xs:element ref="abyss_bonusattrs" minOccurs="0"/>

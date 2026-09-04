@@ -5,8 +5,8 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
@@ -72,7 +72,7 @@ public class Frostmane_LestinAI extends AggressiveNpcAI
 	
 	private void faithfulServant1() {
 		//Wide Snare.
-		AI2Actions.useSkill(this, 18393);
+		AIActions.useSkill(this, 18393);
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
@@ -83,7 +83,7 @@ public class Frostmane_LestinAI extends AggressiveNpcAI
 	
 	private void faithfulServant2() {
 		//Wide Snare.
-		AI2Actions.useSkill(this, 18393);
+		AIActions.useSkill(this, 18393);
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
@@ -94,7 +94,7 @@ public class Frostmane_LestinAI extends AggressiveNpcAI
 	
 	private void faithfulServant3() {
 		//Wide Snare.
-		AI2Actions.useSkill(this, 18393);
+		AIActions.useSkill(this, 18393);
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
@@ -125,7 +125,7 @@ public class Frostmane_LestinAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

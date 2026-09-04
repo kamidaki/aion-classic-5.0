@@ -1,6 +1,6 @@
 package ai.siege;
 
-import com.aionemu.gameserver.ai2.*;
+import com.aionemu.gameserver.ai.*;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.AionObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -27,7 +27,7 @@ public class Siege_ShieldAI extends NpcAI
 	@Override
 	protected void handleDied() {
 		sendShieldPacket(false);
-		AI2Actions.deleteOwner(Siege_ShieldAI.this);
+		AIActions.deleteOwner(Siege_ShieldAI.this);
 		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
 			@Override
 			public void visit(Player player) {

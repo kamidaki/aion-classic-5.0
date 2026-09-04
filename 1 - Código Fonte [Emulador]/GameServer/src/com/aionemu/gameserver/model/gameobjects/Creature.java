@@ -1,7 +1,7 @@
 package com.aionemu.gameserver.model.gameobjects;
 
-import com.aionemu.gameserver.ai2.AI;
-import com.aionemu.gameserver.ai2.AI2Engine;
+import com.aionemu.gameserver.ai.AI;
+import com.aionemu.gameserver.ai.AIEngine;
 import com.aionemu.gameserver.controllers.CreatureController;
 import com.aionemu.gameserver.controllers.ObserveController;
 import com.aionemu.gameserver.controllers.attack.AggroList;
@@ -152,7 +152,7 @@ public abstract class Creature extends VisibleObject
 	}
 
 	public AI getAi() {
-		return ai2 != null ? ai2 : AI2Engine.getInstance().setupAI("dummy", this);
+		return ai2 != null ? ai2 : AIEngine.getInstance().setupAI("dummy", this);
 	}
 
 	public void setAi(AI ai2) {

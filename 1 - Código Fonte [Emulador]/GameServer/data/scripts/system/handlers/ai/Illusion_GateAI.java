@@ -1,9 +1,9 @@
 package ai;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AI2Request;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIRequest;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ASK;
@@ -27,7 +27,7 @@ public class Illusion_GateAI extends NpcAI
 		} else if (player.isInGroup()) {
 			isMember = player.getPlayerGroup().hasMember(creatorId);
 		} if (isMember && player.getLevel() >= 10) {
-			AI2Actions.addRequest(this, player, S_ASK.STR_ASK_GROUP_GATE_DO_YOU_ACCEPT_MOVE, 0, 9, new AI2Request() {
+			AIActions.addRequest(this, player, S_ASK.STR_ASK_GROUP_GATE_DO_YOU_ACCEPT_MOVE, 0, 9, new AIRequest() {
 				private boolean decided = false;
 				@Override
 				public void acceptRequest(Creature requester, Player responder) {

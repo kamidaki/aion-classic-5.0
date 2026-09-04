@@ -5,10 +5,10 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.manager.WalkManager;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -56,7 +56,7 @@ public class Dalia_CharlandsAI extends AggressiveNpcAI
 		///Release me...from this curse.
 		sendMsg(1500240, getObjectId(), false, 0);
 		//Rampage Of Pain.
-		AI2Actions.useSkill(this, 19323);
+		AIActions.useSkill(this, 19323);
 		final Npc daliaWatcher1 = (Npc) spawn(217650, 1185.0000f, 672.0000f, 295.0000f, (byte) 115);
 		final Npc daliaWatcher2 = (Npc) spawn(217650, 1201.0000f, 604.0000f, 293.0000f, (byte) 17);
 		final Npc daliaWatcher3 = (Npc) spawn(217650, 1219.0000f, 697.0000f, 299.0000f, (byte) 105);
@@ -85,7 +85,7 @@ public class Dalia_CharlandsAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

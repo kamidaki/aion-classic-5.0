@@ -4,7 +4,7 @@ import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.team2.alliance.PlayerAllianceService;
+import com.aionemu.gameserver.model.team.alliance.PlayerAllianceService;
 import com.aionemu.gameserver.network.aion.serverpackets.S_ABNORMAL_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.S_CHANGE_STANCE;
 import com.aionemu.gameserver.skillengine.model.Effect;

@@ -1,8 +1,8 @@
 package ai;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.poll.*;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.poll.*;
 import com.aionemu.gameserver.configs.main.GroupConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -44,7 +44,7 @@ public class ChestAI extends ActionItemNpcAI
 			if (isAlreadyDead()) {
 				return;
 			}
-			AI2Actions.dieSilently(this, player);
+			AIActions.dieSilently(this, player);
 			Collection<Player> players = new HashSet<Player>();
 			if (player.isInGroup()) {
 				for (Player member: player.getPlayerGroup().getOnlineMembers()) {

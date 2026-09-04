@@ -1,6 +1,6 @@
 package com.eleanor.processors.movement.motor;
 
-import com.aionemu.gameserver.ai2.AIState;
+import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.controllers.movement.MovementMask;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
 import com.aionemu.gameserver.model.gameobjects.Npc;

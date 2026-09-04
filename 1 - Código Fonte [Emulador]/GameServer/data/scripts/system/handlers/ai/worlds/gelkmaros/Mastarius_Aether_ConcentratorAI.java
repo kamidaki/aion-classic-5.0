@@ -2,8 +2,8 @@ package ai.worlds.gelkmaros;
 
 import ai.ActionItemNpcAI;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.skillengine.SkillEngine;
@@ -32,8 +32,8 @@ public class Mastarius_Aether_ConcentratorAI extends ActionItemNpcAI
 			case 296913:
 				if (player.getLevel() >= 50) {
 					announceMastariusI();
-				    AI2Actions.targetCreature(Mastarius_Aether_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258220)); //Enraged Mastarius.
-				    AI2Actions.useSkill(Mastarius_Aether_ConcentratorAI.this, 20107); //Defense Aether.
+				    AIActions.targetCreature(Mastarius_Aether_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258220)); //Enraged Mastarius.
+				    AIActions.useSkill(Mastarius_Aether_ConcentratorAI.this, 20107); //Defense Aether.
 				} else {
 					//You have failed to use the Empyrean Avatar. You will need to gather power and summon it again.
 				    PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_MSG_GODELITE_DEATHBLOW_FAIL, 0);
@@ -43,8 +43,8 @@ public class Mastarius_Aether_ConcentratorAI extends ActionItemNpcAI
 			case 296914:
 			    if (player.getLevel() >= 50) {
 					announceMastariusII();
-				    AI2Actions.targetCreature(Mastarius_Aether_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258220)); //Enraged Mastarius.
-				    AI2Actions.useSkill(Mastarius_Aether_ConcentratorAI.this, 20108); //Elemental Resistance Aether.
+				    AIActions.targetCreature(Mastarius_Aether_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258220)); //Enraged Mastarius.
+				    AIActions.useSkill(Mastarius_Aether_ConcentratorAI.this, 20108); //Elemental Resistance Aether.
 				} else {
 					//You have failed to use the Empyrean Avatar. You will need to gather power and summon it again.
 				    PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_MSG_GODELITE_DEATHBLOW_FAIL, 0);
@@ -54,9 +54,9 @@ public class Mastarius_Aether_ConcentratorAI extends ActionItemNpcAI
 			case 296915:
 			    if (player.getLevel() >= 50) {
 					announceMastariusII();
-				    AI2Actions.targetCreature(Mastarius_Aether_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258220)); //Enraged Mastarius.
-				    AI2Actions.useSkill(Mastarius_Aether_ConcentratorAI.this, 20109); //Power Aether.
-					AI2Actions.useSkill(Mastarius_Aether_ConcentratorAI.this, 20110); //Magical Aether.
+				    AIActions.targetCreature(Mastarius_Aether_ConcentratorAI.this, getPosition().getWorldMapInstance().getNpc(258220)); //Enraged Mastarius.
+				    AIActions.useSkill(Mastarius_Aether_ConcentratorAI.this, 20109); //Power Aether.
+					AIActions.useSkill(Mastarius_Aether_ConcentratorAI.this, 20110); //Magical Aether.
 				} else {
 					//You have failed to use the Empyrean Avatar. You will need to gather power and summon it again.
 				    PacketSendUtility.playerSendPacketTime(player, S_MESSAGE_CODE.STR_MSG_GODELITE_DEATHBLOW_FAIL, 0);

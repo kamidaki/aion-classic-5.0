@@ -5,8 +5,8 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
@@ -67,7 +67,7 @@ public class Queen_AlukinaAI extends AggressiveNpcAI
 		///Turn into a water drop!
 		sendMsg(341126, getObjectId(), false, 3000);
 		///Charming Attraction.
-		AI2Actions.useSkill(this, 17899);
+		AIActions.useSkill(this, 17899);
 		rndSpawn(280713, 2);
 	}
 	
@@ -77,7 +77,7 @@ public class Queen_AlukinaAI extends AggressiveNpcAI
 		///It is time I showed you my power.
 		sendMsg(341125, getObjectId(), false, 3000);
 		///Blow Up Blobble.
-		AI2Actions.useSkill(this, 17902);
+		AIActions.useSkill(this, 17902);
 		rndSpawn(280713, 2);
 	}
 	
@@ -103,7 +103,7 @@ public class Queen_AlukinaAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

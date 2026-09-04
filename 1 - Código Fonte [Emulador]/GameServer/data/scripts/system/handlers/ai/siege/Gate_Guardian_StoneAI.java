@@ -1,8 +1,8 @@
 package ai.siege;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.DescriptionId;
 import com.aionemu.gameserver.model.gameobjects.AionObject;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -52,7 +52,7 @@ public class Gate_Guardian_StoneAI extends NpcAI
 	
 	@Override
 	protected void handleDied() {
-		AI2Actions.deleteOwner(Gate_Guardian_StoneAI.this);
+		AIActions.deleteOwner(Gate_Guardian_StoneAI.this);
 		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
 			@Override
 			public void visit(Player player) {

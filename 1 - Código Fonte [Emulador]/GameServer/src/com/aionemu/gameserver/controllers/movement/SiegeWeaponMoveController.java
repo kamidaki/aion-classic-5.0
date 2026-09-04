@@ -1,6 +1,6 @@
 package com.aionemu.gameserver.controllers.movement;
 
-import com.aionemu.gameserver.ai2.AISubState;
+import com.aionemu.gameserver.ai.AISubState;
 import com.aionemu.gameserver.model.gameobjects.Summon;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MOVE_NEW;
 import com.aionemu.gameserver.taskmanager.tasks.MoveTaskManager;

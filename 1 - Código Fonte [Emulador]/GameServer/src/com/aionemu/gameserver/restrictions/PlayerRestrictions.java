@@ -8,7 +8,7 @@ import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
-import com.aionemu.gameserver.model.team2.group.PlayerGroup;
+import com.aionemu.gameserver.model.team.group.PlayerGroup;
 import com.aionemu.gameserver.model.templates.item.*;
 import com.aionemu.gameserver.model.templates.zone.ZoneClassName;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
@@ -114,7 +114,7 @@ public class PlayerRestrictions extends AbstractRestrictions
 	
 	@Override
 	public boolean canInviteToGroup(Player player, Player target) {
-		final com.aionemu.gameserver.model.team2.group.PlayerGroup group = player.getPlayerGroup();
+		final com.aionemu.gameserver.model.team.group.PlayerGroup group = player.getPlayerGroup();
 		if (group != null && group.isFull()) {
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_CANT_ADD_NEW_MEMBER);
 			return false;
@@ -174,7 +174,7 @@ public class PlayerRestrictions extends AbstractRestrictions
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_CANT_INVITE_OTHER_RACE);
 			return false;
 		}
-		final com.aionemu.gameserver.model.team2.alliance.PlayerAlliance alliance = player.getPlayerAlliance();
+		final com.aionemu.gameserver.model.team.alliance.PlayerAlliance alliance = player.getPlayerAlliance();
 		if (target.isInAlliance()) {
 			if (target.getPlayerAlliance() == alliance) {
 				PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_PARTY_ALLIANCE_HE_IS_ALREADY_MEMBER_OF_OUR_ALLIANCE(target.getName()));

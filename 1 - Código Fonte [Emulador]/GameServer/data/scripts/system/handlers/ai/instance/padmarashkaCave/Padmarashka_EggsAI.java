@@ -2,9 +2,9 @@ package ai.instance.padmarashkaCave;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 
@@ -40,6 +40,6 @@ public class Padmarashka_EggsAI extends NpcAI
 			break;
 		}
 		super.handleDied();
-		AI2Actions.deleteOwner(this);
+		AIActions.deleteOwner(this);
 	}
 }

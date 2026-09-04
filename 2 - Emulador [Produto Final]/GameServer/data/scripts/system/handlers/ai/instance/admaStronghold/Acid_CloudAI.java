@@ -1,9 +1,9 @@
 package ai.instance.admaStronghold;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.poll.*;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.poll.*;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.MathUtil;
@@ -39,7 +39,7 @@ public class Acid_CloudAI extends NpcAI
 		} if (creature instanceof Player) {
 			if (getNpcId() == 281458 && MathUtil.isIn3dRangeLimited(getOwner(), creature, 1, 15)) {
 				if (!creature.getEffectController().hasAbnormalEffect(skill)) {
-					AI2Actions.useSkill(this, skill);
+					AIActions.useSkill(this, skill);
 				}
 			}
 		}

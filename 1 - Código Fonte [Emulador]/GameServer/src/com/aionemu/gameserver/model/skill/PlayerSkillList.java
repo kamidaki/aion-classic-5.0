@@ -44,7 +44,7 @@ public final class PlayerSkillList implements SkillList<Player>
 		return allSkills.toArray(new PlayerSkillEntry[allSkills.size()]);
 	}
 	
-	public List<Integer> getAllSkills2() {
+	public List<Integer> getAllSkillIds() {
 		HashSet<Integer> allSkills = new HashSet<Integer>();
 		for (PlayerSkillEntry i : basicSkills.values()) {
 			allSkills.add(i.getSkillId());

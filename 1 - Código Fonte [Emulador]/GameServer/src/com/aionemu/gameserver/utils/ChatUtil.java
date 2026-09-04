@@ -46,7 +46,7 @@ public class ChatUtil {
         return RealName;
     }
 	
-	public static String getRealAdminName2 (String RealAdminName) {
+	public static String stripAdminTags(String RealAdminName) {
 		RealAdminName = removePattern(RealAdminName, AdminConfig.ADMIN_TAG_1);
 		RealAdminName = removePattern(RealAdminName, AdminConfig.ADMIN_TAG_2);
 		RealAdminName = removePattern(RealAdminName, AdminConfig.ADMIN_TAG_3);

@@ -63,12 +63,12 @@ import com.aionemu.gameserver.model.stats.container.PlayerLifeStats;
 import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.model.team.legion.LegionJoinRequestState;
 import com.aionemu.gameserver.model.team.legion.LegionMember;
-import com.aionemu.gameserver.model.team2.TeamMember;
-import com.aionemu.gameserver.model.team2.TemporaryPlayerTeam;
-import com.aionemu.gameserver.model.team2.alliance.PlayerAlliance;
-import com.aionemu.gameserver.model.team2.alliance.PlayerAllianceGroup;
-import com.aionemu.gameserver.model.team2.common.legacy.LootGroupRules;
-import com.aionemu.gameserver.model.team2.group.PlayerGroup;
+import com.aionemu.gameserver.model.team.TeamMember;
+import com.aionemu.gameserver.model.team.TemporaryPlayerTeam;
+import com.aionemu.gameserver.model.team.alliance.PlayerAlliance;
+import com.aionemu.gameserver.model.team.alliance.PlayerAllianceGroup;
+import com.aionemu.gameserver.model.team.common.legacy.LootGroupRules;
+import com.aionemu.gameserver.model.team.group.PlayerGroup;
 import com.aionemu.gameserver.model.templates.BoundRadius;
 import com.aionemu.gameserver.model.templates.decomposable.DecomposableItemList;
 import com.aionemu.gameserver.model.templates.flypath.FlyPathEntry;
@@ -131,7 +131,7 @@ public class Player extends Creature
 	private PlayerStatsTemplate playerStatsTemplate;
 	private final AbsoluteStatOwner absStatsHolder;
 	private PlayerSettings playerSettings;
-	private com.aionemu.gameserver.model.team2.group.PlayerGroup playerGroup;
+	private com.aionemu.gameserver.model.team.group.PlayerGroup playerGroup;
 	private PlayerAllianceGroup playerAllianceGroup;
 	private AbyssRank abyssRank;
 	private NpcFactions npcFactions;
@@ -745,11 +745,11 @@ public class Player extends Creature
 		titleList.setOwner(this);
 	}
 
-	public com.aionemu.gameserver.model.team2.group.PlayerGroup getPlayerGroup() {
+	public com.aionemu.gameserver.model.team.group.PlayerGroup getPlayerGroup() {
 		return playerGroup;
 	}
 
-	public void setPlayerGroup(com.aionemu.gameserver.model.team2.group.PlayerGroup playerGroup) {
+	public void setPlayerGroup(com.aionemu.gameserver.model.team.group.PlayerGroup playerGroup) {
 		this.playerGroup = playerGroup;
 	}
 
@@ -1466,7 +1466,7 @@ public class Player extends Creature
 		return isFlyingBeforeDeath;
 	}
 
-	public com.aionemu.gameserver.model.team2.alliance.PlayerAlliance getPlayerAlliance() {
+	public com.aionemu.gameserver.model.team.alliance.PlayerAlliance getPlayerAlliance() {
 		return playerAllianceGroup != null ? playerAllianceGroup.getAlliance() : null;
 	}
 

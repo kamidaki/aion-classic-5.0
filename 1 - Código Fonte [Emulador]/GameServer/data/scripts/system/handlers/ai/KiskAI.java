@@ -1,9 +1,9 @@
 package ai;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AI2Request;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIRequest;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Kisk;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -68,7 +68,7 @@ public class KiskAI extends NpcAI
 			PacketSendUtility.sendPacket(player, S_MESSAGE_CODE.STR_BINDSTONE_ALREADY_REGISTERED);
 			return;
 		} if (getOwner().canBind(player)) {
-			AI2Actions.addRequest(this, player, S_ASK.STR_ASK_REGISTER_BINDSTONE, getOwner().getObjectId(), CANCEL_DIALOG_METERS, new AI2Request() {
+			AIActions.addRequest(this, player, S_ASK.STR_ASK_REGISTER_BINDSTONE, getOwner().getObjectId(), CANCEL_DIALOG_METERS, new AIRequest() {
                 private boolean decisionTaken = false;
 				@Override
 				public void acceptRequest(Creature requester, Player responder) {

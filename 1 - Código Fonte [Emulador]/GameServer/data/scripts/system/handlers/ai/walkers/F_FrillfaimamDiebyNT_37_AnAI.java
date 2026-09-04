@@ -1,6 +1,6 @@
 package ai.walkers;
 
-import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.ai.AIName;
 
 /****/
 /** Author Rinzler (Encom)

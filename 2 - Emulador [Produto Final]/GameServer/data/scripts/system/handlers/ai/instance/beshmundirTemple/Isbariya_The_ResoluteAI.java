@@ -5,10 +5,10 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.manager.WalkManager;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.model.*;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -132,7 +132,7 @@ public class Isbariya_The_ResoluteAI extends AggressiveNpcAI
 	}
 	
 	private void apocalypticEnergy() {
-		AI2Actions.useSkill(this, 18993); //Tiamat's Chaos.
+		AIActions.useSkill(this, 18993); //Tiamat's Chaos.
 		///Fools! Now dost thou understand the might of the Balaur?
 		sendMsg(1500084, getObjectId(), false, 0);
 		//Isbariya the Resolute unleashes an intense power.
@@ -181,7 +181,7 @@ public class Isbariya_The_ResoluteAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

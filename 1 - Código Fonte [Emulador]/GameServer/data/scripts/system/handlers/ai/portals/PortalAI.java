@@ -2,8 +2,8 @@ package ai.portals;
 
 import ai.ActionItemNpcAI;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.TeleportAnimation;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -37,12 +37,12 @@ public class PortalAI extends ActionItemNpcAI
 	protected void handleSpawned() {
 		super.handleSpawned();
 		teleportTemplate = DataManager.TELEPORTER_DATA.getTeleporterTemplateByNpcId(getNpcId());
-		portalUse = DataManager.PORTAL2_DATA.getPortalUse(getNpcId());
+		portalUse = DataManager.PORTAL_DATA.getPortalUse(getNpcId());
 	}
 	
 	@Override
 	protected void handleDialogStart(Player player) {
-		AI2Actions.selectDialog(this, player, 0, -1);
+		AIActions.selectDialog(this, player, 0, -1);
 		if (getTalkDelay() != 0) {
 			super.handleDialogStart(player);
 		} else {

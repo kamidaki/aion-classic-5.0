@@ -1,8 +1,8 @@
 package com.aionemu.gameserver.services;
 
 import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.ai2.AITemplate;
-import com.aionemu.gameserver.ai2.poll.AIQuestion;
+import com.aionemu.gameserver.ai.AITemplate;
+import com.aionemu.gameserver.ai.poll.AIQuestion;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.NpcShoutData;
 import com.aionemu.gameserver.model.gameobjects.AionObject;

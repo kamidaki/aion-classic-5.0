@@ -1,12 +1,12 @@
 package ai;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.poll.AIAnswer;
-import com.aionemu.gameserver.ai2.poll.AIAnswers;
-import com.aionemu.gameserver.ai2.poll.AIQuestion;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.poll.AIAnswer;
+import com.aionemu.gameserver.ai.poll.AIAnswers;
+import com.aionemu.gameserver.ai.poll.AIQuestion;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureVisualState;
@@ -65,8 +65,8 @@ public class TrapNpcAI extends NpcAI
 			getOwner().getKnownList().doUpdate();
 			getOwner().unsetVisualState(CreatureVisualState.HIDE1);
 			PacketSendUtility.broadcastPacket(getOwner(), new S_INVISIBLE_LEVEL(getOwner()));
-			AI2Actions.targetCreature(TrapNpcAI.this, creature);
-			AI2Actions.useSkill(this, getSkillList().getRandomSkill().getSkillId());
+			AIActions.targetCreature(TrapNpcAI.this, creature);
+			AIActions.useSkill(this, getSkillList().getRandomSkill().getSkillId());
 			despawnTask = ThreadPoolManager.getInstance().schedule(new TrapDelete(this), 3000);
 		}
 	}
@@ -95,7 +95,7 @@ public class TrapNpcAI extends NpcAI
 		
 		@Override
 		public void run() {
-			AI2Actions.deleteOwner(ai);
+			AIActions.deleteOwner(ai);
 			ai = null;
 		}
 	}

@@ -1,8 +1,8 @@
 package com.aionemu.gameserver.skillengine.effect;
 
 import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.ai2.*;
-import com.aionemu.gameserver.ai2.event.AIEventType;
+import com.aionemu.gameserver.ai.*;
+import com.aionemu.gameserver.ai.event.AIEventType;
 import com.aionemu.gameserver.configs.main.GeoDataConfig;
 import com.aionemu.gameserver.controllers.observer.*;
 import com.aionemu.gameserver.geoEngine.collision.CollisionIntention;

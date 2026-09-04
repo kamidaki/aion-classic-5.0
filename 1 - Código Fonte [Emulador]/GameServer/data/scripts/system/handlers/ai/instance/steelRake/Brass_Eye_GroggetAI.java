@@ -4,11 +4,11 @@ import ai.AggressiveNpcAI;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AIState;
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.manager.EmoteManager;
-import com.aionemu.gameserver.ai2.manager.WalkManager;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIState;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.manager.EmoteManager;
+import com.aionemu.gameserver.ai.manager.WalkManager;
 import com.aionemu.gameserver.controllers.effect.*;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -103,7 +103,7 @@ public class Brass_Eye_GroggetAI extends AggressiveNpcAI
 						spawn(281193, 409.72568f, 504.62695f, 1072.4496f, (byte) 63);
 					break;
 					case 30:
-					    AI2Actions.useSkill(this, 18200); //Curse Of Roots.
+					    AIActions.useSkill(this, 18200); //Curse Of Roots.
 						///Turn into a tree! I really love this skill!
 						sendMsg(341909, getObjectId(), false, 0);
 						ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -114,7 +114,7 @@ public class Brass_Eye_GroggetAI extends AggressiveNpcAI
 						}, 1500);
 					break;
 					case 15:
-					    AI2Actions.useSkill(this, 18200); //Curse Of Roots.
+					    AIActions.useSkill(this, 18200); //Curse Of Roots.
 						///I didn't think I'd have to resort to this! Brace yourself!
 		                sendMsg(341905, getObjectId(), false, 0);
 						///You did try hard, but it's still not enough against me!
@@ -218,7 +218,7 @@ public class Brass_Eye_GroggetAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

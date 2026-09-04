@@ -1,6 +1,6 @@
 package ai.siege;
 
-import com.aionemu.gameserver.ai2.*;
+import com.aionemu.gameserver.ai.*;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.AionObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -23,7 +23,7 @@ public class Castle_GateAI extends NpcAI
 	@Override
 	protected void handleDialogStart(Player player) {
 		//Do you want to pass through the castle gate ?
-		AI2Actions.addRequest(this, player, S_ASK.STR_ASK_PASS_BY_GATE, getOwner().getObjectId(), CANCEL_DIALOG_METERS, new AI2Request() {
+		AIActions.addRequest(this, player, S_ASK.STR_ASK_PASS_BY_GATE, getOwner().getObjectId(), CANCEL_DIALOG_METERS, new AIRequest() {
 			private boolean decisionTaken = false;
 			@Override
 			public void acceptRequest(Creature requester, Player responder) {
@@ -53,7 +53,7 @@ public class Castle_GateAI extends NpcAI
 	
 	@Override
 	protected void handleDied() {
-		AI2Actions.deleteOwner(Castle_GateAI.this);
+		AIActions.deleteOwner(Castle_GateAI.this);
 		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
 			@Override
 			public void visit(Player player) {

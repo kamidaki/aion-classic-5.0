@@ -1,7 +1,7 @@
 package ai;
 
-import com.aionemu.gameserver.ai2.AI2Actions;
-import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.ai.AIActions;
+import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.ai.BombTemplate;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -31,13 +31,13 @@ public class BombAi extends AggressiveNpcAI
 	}
 	
 	private void useSkill(int skill) {
-		AI2Actions.targetSelf(this);
-		AI2Actions.useSkill(this, skill);
+		AIActions.targetSelf(this);
+		AIActions.useSkill(this, skill);
 		int duration = DataManager.SKILL_DATA.getSkillTemplate(skill).getDuration();
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
-				AI2Actions.deleteOwner(BombAi.this);
+				AIActions.deleteOwner(BombAi.this);
 			}
 		}, duration != 0 ? duration + 1000 : 0);
 	}

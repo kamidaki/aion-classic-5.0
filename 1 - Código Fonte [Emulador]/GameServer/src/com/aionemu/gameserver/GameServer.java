@@ -25,7 +25,7 @@ import com.aionemu.commons.network.NioServer;
 import com.aionemu.commons.network.ServerCfg;
 import com.aionemu.commons.services.CronService;
 import com.aionemu.commons.utils.AEInfos;
-import com.aionemu.gameserver.ai2.AI2Engine;
+import com.aionemu.gameserver.ai.AIEngine;
 import com.aionemu.gameserver.cache.HTMLCache;
 import com.aionemu.gameserver.configs.*;
 import com.aionemu.gameserver.configs.main.*;
@@ -144,7 +144,7 @@ public class GameServer
 	// internamente mesmo no codigo original, entao a excecao nunca escapava deste metodo.
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
-		final GameEngine[] parallelEngines = {QuestEngine.getInstance(), InstanceEngine.getInstance(), AI2Engine.getInstance(), ChatProcessor.getInstance()};
+		final GameEngine[] parallelEngines = {QuestEngine.getInstance(), InstanceEngine.getInstance(), AIEngine.getInstance(), ChatProcessor.getInstance()};
 		final GameEngine[] worldEngines = {WorldEngine.getInstance()};
 		final CountDownLatch progressLatch = new CountDownLatch(parallelEngines.length);
 		final CountDownLatch progressLatch2 = new CountDownLatch(worldEngines.length);

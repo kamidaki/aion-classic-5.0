@@ -5,8 +5,8 @@ import ai.AggressiveNpcAI;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.commons.network.util.ThreadPoolManager;
 
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.ai.AIName;
+import com.aionemu.gameserver.ai.AIActions;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
@@ -71,31 +71,31 @@ public class Power_GeneratorAI extends AggressiveNpcAI
 	
 	private void lightGeneratorCore() {
 		//Precision Ray.
-		AI2Actions.useSkill(this, 18123);
+		AIActions.useSkill(this, 18123);
 		rndSpawn(281088, 3);
 	}
 	
 	private void waveGeneratorCore() {
 		//Massive Ray.
-		AI2Actions.useSkill(this, 18124);
+		AIActions.useSkill(this, 18124);
 		rndSpawn(281089, 3);
 	}
 	
 	private void torpidityGeneratorCore() {
 		//Ray Web.
-		AI2Actions.useSkill(this, 18125);
+		AIActions.useSkill(this, 18125);
 		rndSpawn(281090, 3);
 	}
 	
 	private void shockwaveGeneratorCore() {
 		//Electrocution.
-		AI2Actions.useSkill(this, 18126);
+		AIActions.useSkill(this, 18126);
 		rndSpawn(281091, 3);
 	}
 	
 	private void confusionGeneratorCore() {
 		//Confusion Impact.
-		AI2Actions.useSkill(this, 18127);
+		AIActions.useSkill(this, 18127);
 		rndSpawn(281092, 3);
 	}
 	
@@ -121,7 +121,7 @@ public class Power_GeneratorAI extends AggressiveNpcAI
 	
 	private void killNpc(List<Npc> npcs) {
 		for (Npc npc: npcs) {
-			AI2Actions.killSilently(this, npc);
+			AIActions.killSilently(this, npc);
 		}
 	}
 	

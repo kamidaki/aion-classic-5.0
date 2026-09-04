@@ -514,7 +514,7 @@ public class TeleportService
 	}
 	
 	public static void useTeleportScroll(Player player, String portalName, int worldId) {
-		PortalScroll template = DataManager.PORTAL2_DATA.getPortalScroll(portalName);
+		PortalScroll template = DataManager.PORTAL_DATA.getPortalScroll(portalName);
 		int curentWorldId = player.getWorldId();
 		if (template == null) {
 			log.warn("No portal template found for : " + portalName + " " + worldId);

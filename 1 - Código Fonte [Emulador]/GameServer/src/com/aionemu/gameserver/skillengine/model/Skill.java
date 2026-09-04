@@ -2,11 +2,11 @@ package com.aionemu.gameserver.skillengine.model;
 
 import com.aionemu.commons.utils.Rnd;
 
-import com.aionemu.gameserver.ai2.NpcAI;
-import com.aionemu.gameserver.ai2.AISubState;
-import com.aionemu.gameserver.ai2.handler.ShoutEventHandler;
-import com.aionemu.gameserver.ai2.manager.SkillAttackManager;
-import com.aionemu.gameserver.ai2.poll.AIQuestion;
+import com.aionemu.gameserver.ai.NpcAI;
+import com.aionemu.gameserver.ai.AISubState;
+import com.aionemu.gameserver.ai.handler.ShoutEventHandler;
+import com.aionemu.gameserver.ai.manager.SkillAttackManager;
+import com.aionemu.gameserver.ai.poll.AIQuestion;
 import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.configs.main.GeoDataConfig;
 import com.aionemu.gameserver.configs.main.SecurityConfig;
