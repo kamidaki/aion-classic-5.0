@@ -1,18 +1,20 @@
 package com.aionemu.gameserver.taskmanager.tasks;
 
-import javolution.util.FastList;
-import javolution.util.FastMap;
-
 import com.aionemu.gameserver.ai.event.AIEventType;
 import com.aionemu.gameserver.ai.poll.AIQuestion;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.taskmanager.AbstractPeriodicTaskManager;
 import com.aionemu.gameserver.taskmanager.FIFOSimpleExecutableQueue;
-import com.aionemu.gameserver.world.zone.ZoneUpdateService;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MoveTaskManager extends AbstractPeriodicTaskManager
 {
-    private final FastMap<Integer, Creature> movingCreatures = new FastMap<Integer, Creature>().shared();
+    private final Map<Integer, Creature> movingCreatures = new ConcurrentHashMap<>();
     private final TargetReachedManager targetReachedManager = new TargetReachedManager();
     private final TargetTooFarManager targetTooFarManager = new TargetTooFarManager();
 	
@@ -30,23 +32,23 @@ public class MoveTaskManager extends AbstractPeriodicTaskManager
 	
     @Override
     public void run() {
-        final FastList<Creature> arrivedCreatures = FastList.newInstance();
-        final FastList<Creature> followingCreatures = FastList.newInstance();
-        for (FastMap.Entry<Integer, Creature> e = movingCreatures.head(), mapEnd = movingCreatures.tail(); (e = e.getNext()) != mapEnd; ) {
-            Creature creature = e.getValue();
+        final List<Creature> arrivedCreatures = new ArrayList<>();
+        final List<Creature> followingCreatures = new ArrayList<>();
+        for (Iterator<Map.Entry<Integer, Creature>> it = movingCreatures.entrySet().iterator(); it.hasNext(); ) {
+            Map.Entry<Integer, Creature> entry = it.next();
+            Creature creature = entry.getValue();
             creature.getMoveController().moveToDestination();
             if (creature.getAi().poll(AIQuestion.DESTINATION_REACHED)) {
-                movingCreatures.remove(e.getKey());
-                arrivedCreatures.add(e.getValue());
+                it.remove();
+                arrivedCreatures.add(creature);
             } else {
-                followingCreatures.add(e.getValue());
+                followingCreatures.add(creature);
             }
         }
         targetReachedManager.executeAll(arrivedCreatures);
         targetTooFarManager.executeAll(followingCreatures);
-        FastList.recycle(arrivedCreatures);
-        FastList.recycle(followingCreatures);
     }
+
 	
     public static MoveTaskManager getInstance() {
         return SingletonHolder.INSTANCE;

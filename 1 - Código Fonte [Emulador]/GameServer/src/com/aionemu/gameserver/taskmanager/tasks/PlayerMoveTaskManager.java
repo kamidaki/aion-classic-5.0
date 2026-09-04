@@ -3,11 +3,12 @@ package com.aionemu.gameserver.taskmanager.tasks;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.taskmanager.AbstractPeriodicTaskManager;
 
-import javolution.util.FastMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerMoveTaskManager extends AbstractPeriodicTaskManager
 {
-    private final FastMap<Integer, Creature> movingPlayers = new FastMap().shared();
+    private final Map<Integer, Creature> movingPlayers = new ConcurrentHashMap<>();
 	
     private PlayerMoveTaskManager() {
         super(200);
@@ -23,13 +24,11 @@ public class PlayerMoveTaskManager extends AbstractPeriodicTaskManager
 	
     @Override
     public void run() {
-        FastMap.Entry e = this.movingPlayers.head();
-        FastMap.Entry mapEnd = this.movingPlayers.tail();
-        while ((e = e.getNext()) != mapEnd) {
-            Creature player = (Creature)e.getValue();
+        for (Creature player : this.movingPlayers.values()) {
             player.getMoveController().moveToDestination();
         }
     }
+
 	
     public static PlayerMoveTaskManager getInstance() {
         return SingletonHolder.INSTANCE;
