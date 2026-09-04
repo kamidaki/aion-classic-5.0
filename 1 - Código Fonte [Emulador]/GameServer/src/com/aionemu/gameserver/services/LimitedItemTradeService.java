@@ -1,5 +1,7 @@
 package com.aionemu.gameserver.services;
 
+import java.util.List;
+
 import com.aionemu.commons.services.CronService;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.GoodsListData;
@@ -27,7 +29,7 @@ public class LimitedItemTradeService
 				if (goodsList == null) {
 					continue;
 				}
-				FastList<LimitedItem> limitedItems = goodsList.getLimitedItems();
+				List<LimitedItem> limitedItems = goodsList.getLimitedItems();
 				if (limitedItems.isEmpty()) {
 					continue;
 				} if (!limitedTradeNpcs.containsKey(npcId)) {

@@ -6,12 +6,13 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.gameserver.model.instance.InstanceScoreType;
 import com.aionemu.gameserver.model.instance.playerreward.InstancePlayerReward;
 
-import javolution.util.FastList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class InstanceReward<T extends InstancePlayerReward>
 {
 	private final Logger log = LoggerFactory.getLogger(InstanceReward.class);
-	protected FastList<T> instanceRewards = new FastList<T>();
+	protected List<T> instanceRewards = new CopyOnWriteArrayList<T>();
 	private InstanceScoreType instanceScoreType = InstanceScoreType.START_PROGRESS;
 	protected Integer mapId;
 	protected int instanceId;
@@ -22,7 +23,7 @@ public class InstanceReward<T extends InstancePlayerReward>
 		this.instanceId = instanceId;
 	}
 	
-	public FastList<T> getInstanceRewards() {
+	public List<T> getInstanceRewards() {
 		return instanceRewards;
 	}
 	

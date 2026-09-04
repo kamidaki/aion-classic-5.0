@@ -8,8 +8,8 @@ import com.aionemu.gameserver.model.stats.calc.*;
 import com.aionemu.gameserver.model.stats.calc.functions.IStatFunction;
 import com.aionemu.gameserver.model.stats.calc.functions.StatFunction;
 import com.aionemu.gameserver.model.stats.calc.functions.StatFunctionProxy;
-import javolution.util.FastMap;
-import javolution.util.FastMap.Entry;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +24,7 @@ public abstract class CreatureGameStats<T extends Creature>
     protected static final Logger log = LoggerFactory.getLogger(CreatureGameStats.class);
     private static final int ATTACK_MAX_COUNTER = Integer.MAX_VALUE;
     private long lastGeoUpdate = 0;
-    private FastMap<StatEnum, TreeSet<IStatFunction>> stats;
+    private Map<StatEnum, TreeSet<IStatFunction>> stats;
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private int attackCounter = 0;
     protected T owner = null;
@@ -33,7 +33,7 @@ public abstract class CreatureGameStats<T extends Creature>
 
     protected CreatureGameStats(T owner) {
         this.owner = owner;
-        this.stats = new FastMap<StatEnum, TreeSet<IStatFunction>>();
+        this.stats = new ConcurrentHashMap<StatEnum, TreeSet<IStatFunction>>();
     }
 
     /**
@@ -88,8 +88,7 @@ public abstract class CreatureGameStats<T extends Creature>
     public final void endEffect(StatOwner statOwner) {
         lock.writeLock().lock();
         try {
-            for (Entry<StatEnum, TreeSet<IStatFunction>> e = stats.head(), end = stats.tail(); (e = e.getNext()) != end; ) {
-                TreeSet<IStatFunction> value = e.getValue();
+            for (TreeSet<IStatFunction> value : stats.values()) {
                 for (Iterator<IStatFunction> iter = value.iterator(); iter.hasNext(); ) {
                     IStatFunction ownedMod = iter.next();
                     if (ownedMod.getOwner() != null && ownedMod.getOwner().equals(statOwner)) {

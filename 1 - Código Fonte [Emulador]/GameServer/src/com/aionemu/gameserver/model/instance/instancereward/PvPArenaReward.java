@@ -8,7 +8,6 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_INSTANT_DUNGEON_INFO;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
-import javolution.util.FastList;
 
 import java.util.*;
 
@@ -17,7 +16,7 @@ import static ch.lambdaj.Lambda.*;
 public class PvPArenaReward extends InstanceReward<PvPArenaPlayerReward>
 {
 	private Map<Integer, Boolean> positions = new HashMap<Integer, Boolean>();
-	private FastList<Integer> zones = new FastList<Integer>();
+	private List<Integer> zones = new ArrayList<Integer>();
 	private int round = 1;
 	private Integer zone;
 	private int bonusTime;

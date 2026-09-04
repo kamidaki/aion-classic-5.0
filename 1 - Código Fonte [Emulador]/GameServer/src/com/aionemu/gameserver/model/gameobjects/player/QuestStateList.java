@@ -1,11 +1,13 @@
 package com.aionemu.gameserver.model.gameobjects.player;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.QuestsData;
 import com.aionemu.gameserver.model.templates.quest.QuestCategory;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import javolution.util.FastList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,8 +56,8 @@ public class QuestStateList {
 		return _quests.values();
 	}
 
-	public FastList<QuestState> getAllFinishedQuests() {
-		FastList<QuestState> completeQuestList = FastList.newInstance();
+	public List<QuestState> getAllFinishedQuests() {
+		List<QuestState> completeQuestList = new ArrayList<QuestState>();
 		for (QuestState qs : _quests.values()) {
 			if (qs.getStatus() == QuestStatus.COMPLETE) {
 				completeQuestList.add(qs);

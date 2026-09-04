@@ -3,16 +3,17 @@ package com.aionemu.gameserver.model.motion;
 import java.util.ArrayList;
 import java.util.List;
 
-import javolution.util.FastMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.aionemu.gameserver.model.Gender;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.skillengine.model.WeaponTypeWrapper;
 
 public class MotionLog {
-	private FastMap<WeaponTypeWrapper, List<SkillTime>> motionsForWeapons = new FastMap<WeaponTypeWrapper, List<SkillTime>>();
+	private Map<WeaponTypeWrapper, List<SkillTime>> motionsForWeapons = new ConcurrentHashMap<WeaponTypeWrapper, List<SkillTime>>();
 	 
-	 public FastMap<WeaponTypeWrapper, List<SkillTime>> getMotionLog() {
+	 public Map<WeaponTypeWrapper, List<SkillTime>> getMotionLog() {
 		 return this.motionsForWeapons;
 	 }
 	 public boolean addSkillTime(WeaponTypeWrapper weapon, SkillTime skillTime) {

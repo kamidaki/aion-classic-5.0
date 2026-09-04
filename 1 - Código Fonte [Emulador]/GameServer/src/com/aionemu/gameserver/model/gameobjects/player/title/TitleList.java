@@ -11,17 +11,18 @@ import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.network.aion.serverpackets.S_TITLE;
 import com.aionemu.gameserver.taskmanager.tasks.ExpireTimerTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-import javolution.util.FastMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import java.util.Collection;
 
 public class TitleList {
 
-	private final FastMap<Integer, Title> titles;
+	private final Map<Integer, Title> titles;
 	private Player owner;
 	
 	public TitleList() {
-		this.titles = new FastMap<Integer, Title>();
+		this.titles = new ConcurrentHashMap<Integer, Title>();
 		this.owner = null;
 	}
 	

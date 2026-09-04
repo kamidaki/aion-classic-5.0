@@ -7,7 +7,8 @@ import com.aionemu.gameserver.model.team.TemporaryPlayerTeam;
 import com.aionemu.gameserver.model.templates.InstanceCooltime;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
-import javolution.util.FastMap;
+import java.util.Map.Entry;
+import com.aionemu.gameserver.model.gameobjects.player.PortalCooldownItem;
 
 public class S_INSTANCE_DUNGEON_COOLTIMES extends AionServerPacket
 {
@@ -47,12 +48,12 @@ public class S_INSTANCE_DUNGEON_COOLTIMES extends AionServerPacket
 				for (Player p : playerTeam.getMembers()) {
 					writeD(p.getObjectId());
 					writeH(DataManager.INSTANCE_COOLTIME_DATA.size());
-					for (FastMap.Entry<Integer, InstanceCooltime> e = DataManager.INSTANCE_COOLTIME_DATA.getAllInstances().head(), end = DataManager.INSTANCE_COOLTIME_DATA.getAllInstances().tail(); (e = e.getNext()) != end;) {
+					for (InstanceCooltime instanceCooltime : DataManager.INSTANCE_COOLTIME_DATA.getAllInstances().values()) {
 						PortalCooldownList cooldownList = p.getPortalCooldownList();
-						writeD(e.getValue().getId());
+						writeD(instanceCooltime.getId());
 						writeD(0);
 						writeD((int) DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(p, worldId));
-						writeD(cooldownList.getPortalCooldownItem(e.getValue().getWorldId()) != null ? cooldownList.getPortalCooldownItem(e.getValue().getWorldId()).getEntryCount() : 0);
+						writeD(cooldownList.getPortalCooldownItem(instanceCooltime.getWorldId()) != null ? cooldownList.getPortalCooldownItem(instanceCooltime.getWorldId()).getEntryCount() : 0);
 						// Classic 5.0: cada entrada tem 22 bytes (op 0x008C, pacote [115] da captura oficial)
 						writeD(0);
 						writeH(0);
@@ -64,11 +65,11 @@ public class S_INSTANCE_DUNGEON_COOLTIMES extends AionServerPacket
 				writeD(player.getObjectId());
 				writeH(DataManager.INSTANCE_COOLTIME_DATA.size());
 
-				for (FastMap.Entry<Integer, InstanceCooltime> e = DataManager.INSTANCE_COOLTIME_DATA.getAllInstances().head(), end = DataManager.INSTANCE_COOLTIME_DATA.getAllInstances().tail(); (e = e.getNext()) != end;) {
-					writeD(e.getValue().getId());
+				for (InstanceCooltime instanceCooltime : DataManager.INSTANCE_COOLTIME_DATA.getAllInstances().values()) {
+					writeD(instanceCooltime.getId());
 					writeD(0);
 					writeD((int) DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(player, worldId));
-					writeD(cooldownList.getPortalCooldownItem(e.getValue().getWorldId()) != null ? cooldownList.getPortalCooldownItem(e.getValue().getWorldId()).getEntryCount() : 0);
+					writeD(cooldownList.getPortalCooldownItem(instanceCooltime.getWorldId()) != null ? cooldownList.getPortalCooldownItem(instanceCooltime.getWorldId()).getEntryCount() : 0);
 					// Classic 5.0: cada entrada tem 22 bytes (op 0x008C, pacote [115] da captura oficial)
 					writeD(0);
 					writeH(0);
@@ -99,7 +100,7 @@ public class S_INSTANCE_DUNGEON_COOLTIMES extends AionServerPacket
 					writeD(p.getObjectId());
 					writeH(cooldownList.size());
 
-					for (FastMap.Entry<Integer, Long> e = cooldownList.getPortalCoolDowns().head(), end = cooldownList.getPortalCoolDowns().tail(); (e = e.getNext()) != end;) {
+					for (Entry<Integer, PortalCooldownItem> e : cooldownList.getPortalCoolDowns().entrySet()) {
 						writeD(DataManager.INSTANCE_COOLTIME_DATA.getInstanceCooltimeByWorldId(e.getKey()).getId());
 						writeD(0x0);
 						writeD(0);
@@ -115,7 +116,7 @@ public class S_INSTANCE_DUNGEON_COOLTIMES extends AionServerPacket
 				writeD(player.getObjectId());
 				writeH(cooldownList.size());
 
-				for (FastMap.Entry<Integer, Long> e = cooldownList.getPortalCoolDowns().head(), end = cooldownList.getPortalCoolDowns().tail(); (e = e.getNext()) != end;) {
+				for (Entry<Integer, PortalCooldownItem> e : cooldownList.getPortalCoolDowns().entrySet()) {
 					writeD(DataManager.INSTANCE_COOLTIME_DATA.getInstanceCooltimeByWorldId(e.getKey()).getId());
 					writeD(0x0);
 					writeD(0);

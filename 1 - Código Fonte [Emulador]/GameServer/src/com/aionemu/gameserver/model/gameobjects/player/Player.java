@@ -6,8 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javolution.util.FastList;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.configs.administration.AdminConfig;
@@ -218,7 +217,7 @@ public class Player extends Creature
 	public long prevPosUT;
 	public byte prevMoveType;
 	private PlayerVarsDAO daoVars = (PlayerVarsDAO) DAOManager.getDAO(PlayerVarsDAO.class);
-	private Map<String, Object> vars = FastMap.newInstance();
+	private Map<String, Object> vars = new ConcurrentHashMap<String, Object>();
 	private int playersBonusId = 0;
 	private int transformModelId;
 	private int transformItemId;
@@ -231,10 +230,10 @@ public class Player extends Creature
 	private int authorizeBoostValue;
 	private SerialKiller skList;
 	private PlayerBattlePass playerBattlePass;
-	private Map<Integer, PlayerEventWindow> playerEventWindow = new FastMap<Integer, PlayerEventWindow>();
+	private Map<Integer, PlayerEventWindow> playerEventWindow = new ConcurrentHashMap<Integer, PlayerEventWindow>();
 	private AccountSielEnergy accountSielEnergy;
 	private PlayerBoostEvent playerBoostEvent;
-	private FastMap<Integer, EquipmentSetting> playerEquipSettingList = FastMap.newInstance();
+	private Map<Integer, EquipmentSetting> playerEquipSettingList = new ConcurrentHashMap<Integer, EquipmentSetting>();
 	
 	private Player(PlayerCommonData plCommonData) {
 		super(plCommonData.getPlayerObjId(), new PlayerController(), null, plCommonData, null);
@@ -700,8 +699,8 @@ public class Player extends Creature
 	 * 
 	 * @return
 	 */
-	public FastList<Item> getAllItems() {
-		FastList<Item> items = FastList.newInstance();
+	public List<Item> getAllItems() {
+		List<Item> items = new ArrayList<Item>();
 		items.addAll(this.inventory.getItemsWithKinah());
 		if (this.regularWarehouse != null)
 			items.addAll(this.regularWarehouse.getItemsWithKinah());
@@ -1383,7 +1382,7 @@ public class Player extends Creature
 	 */
 	public void addItemCoolDown(int delayId, long time, int useDelay) {
 		if (itemCoolDowns == null)
-			itemCoolDowns = new FastMap<Integer, ItemCooldown>().shared();
+			itemCoolDowns = new ConcurrentHashMap<Integer, ItemCooldown>();
 
 		itemCoolDowns.put(delayId, new ItemCooldown(time, useDelay));
 	}
@@ -2323,7 +2322,7 @@ public class Player extends Creature
         return pc == PlayerClass.CLERIC || pc == PlayerClass.SORCERER || pc == PlayerClass.SPIRIT_MASTER || pc == PlayerClass.LUMINESS || pc == PlayerClass.PHOENIX || pc == PlayerClass.SOUL_REAPER;
     }
 
-	private List<DecomposableItemList> decomposableItemLists = new FastList<DecomposableItemList>();
+	private List<DecomposableItemList> decomposableItemLists = new ArrayList<DecomposableItemList>();
 
 	public List<DecomposableItemList> getDecomposableItemLists() {
 		return decomposableItemLists;
@@ -2383,7 +2382,7 @@ public class Player extends Creature
 	}
 
 
-	private Map<Integer, WardrobeEntry> playerWardrobe = new FastMap<Integer, WardrobeEntry>();
+	private Map<Integer, WardrobeEntry> playerWardrobe = new ConcurrentHashMap<Integer, WardrobeEntry>();
 
 	public Map<Integer, WardrobeEntry> getPlayerWardrobe() {
 		return playerWardrobe;
@@ -2393,7 +2392,7 @@ public class Player extends Creature
 		this.playerWardrobe = playerWardrobe;
 	}
 
-	private Map<Integer, BlackcloudLetter> blackcloudLetters = new FastMap<Integer, BlackcloudLetter>();
+	private Map<Integer, BlackcloudLetter> blackcloudLetters = new ConcurrentHashMap<Integer, BlackcloudLetter>();
 
 	public Map<Integer, BlackcloudLetter> getBlackcloudLetters() {
 		return blackcloudLetters;
@@ -2418,7 +2417,7 @@ public class Player extends Creature
 		playerEquipSettingList.put(macross.getMacrossId(), macross);
 	}
 
-	public FastMap<Integer, EquipmentSetting> getPlayerEquipSettingList() {
+	public Map<Integer, EquipmentSetting> getPlayerEquipSettingList() {
 		return playerEquipSettingList;
 	}
 

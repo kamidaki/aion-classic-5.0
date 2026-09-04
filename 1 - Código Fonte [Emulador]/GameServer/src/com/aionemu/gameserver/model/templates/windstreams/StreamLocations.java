@@ -1,6 +1,6 @@
 package com.aionemu.gameserver.model.templates.windstreams;
 
-import javolution.util.FastList;
+import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ public class StreamLocations
 	public List<Location2D> getLocation()
 	{
 		if(location == null)
-			location = FastList.newInstance();
+			location = new ArrayList<Location2D>();
 		
 		return this.location;
 	}

@@ -3,7 +3,7 @@ package com.aionemu.gameserver.model.team.legion;
 import com.aionemu.gameserver.configs.main.LegionConfig;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.world.World;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -471,9 +471,9 @@ public class Legion {
 	private long essenceCoin;
 	private long essenceFragment;
 	private int productivityStep;
-	private FastMap<Integer, LegionJoinRequest> joinRequestMap = new FastMap<Integer, LegionJoinRequest>();
+	private Map<Integer, LegionJoinRequest> joinRequestMap = new ConcurrentHashMap<Integer, LegionJoinRequest>();
 
-	public FastMap<Integer, LegionJoinRequest> getJoinRequestMap() {
+	public Map<Integer, LegionJoinRequest> getJoinRequestMap() {
 		return joinRequestMap;
 	}
 

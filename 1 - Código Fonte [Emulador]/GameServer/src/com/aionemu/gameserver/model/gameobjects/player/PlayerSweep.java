@@ -1,7 +1,7 @@
 package com.aionemu.gameserver.model.gameobjects.player;
 
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
-import javolution.util.FastList;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class PlayerSweep {
     private int boardId;
     private int lastDiceReward;
     private int roll;
-    private List<Integer> rewardCell = new FastList<Integer>();
+    private List<Integer> rewardCell = new ArrayList<Integer>();
 
     public PlayerSweep(int step, int freeDice, int boardId, List<Integer> rewardCell) {
         this.step = step;

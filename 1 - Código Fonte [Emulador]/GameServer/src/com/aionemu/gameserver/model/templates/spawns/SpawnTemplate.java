@@ -3,7 +3,8 @@ package com.aionemu.gameserver.model.templates.spawns;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.templates.event.EventTemplate;
 import com.aionemu.gameserver.spawnengine.SpawnHandlerType;
-import javolution.util.FastList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.apache.commons.lang.StringUtils;
 
 public class SpawnTemplate
@@ -38,7 +39,7 @@ public class SpawnTemplate
 	private String masterName = StringUtils.EMPTY;
 	private TemporarySpawn temporarySpawn;
 	private VisibleObject visibleObject;
-	private FastList<VisibleObject> visibleObjects;
+	private List<VisibleObject> visibleObjects;
 	
 	public SpawnTemplate(SpawnGroup spawnGroup, SpawnSpotTemplate spot) {
 		this.spawnGroup = spawnGroup;
@@ -293,13 +294,13 @@ public class SpawnTemplate
 		this.visibleObject = visibleObject;
 	}
 	
-	public FastList<VisibleObject> getVisibleObjects() {
+	public List<VisibleObject> getVisibleObjects() {
 		return this.visibleObjects;
 	}
 	
 	public void addVisibleObject(VisibleObject visibleObject) {
 		if (this.visibleObjects == null) {
-			this.visibleObjects = new FastList();
+			this.visibleObjects = new CopyOnWriteArrayList<VisibleObject>();
 		}
 		this.visibleObjects.add(visibleObject);
 	}

@@ -2,7 +2,7 @@ package com.aionemu.gameserver.model.gameobjects.player.battlePass;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.templates.battle_pass.BattlePassSeasonTemplate;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import java.util.Map;
 
@@ -12,7 +12,7 @@ public class BattlePassSeason {
     private int level;
     private long exp;
     private BattlePassSeasonTemplate template;
-    Map<Integer, BattlePassReward> rewards = new FastMap<Integer, BattlePassReward>();
+    Map<Integer, BattlePassReward> rewards = new ConcurrentHashMap<Integer, BattlePassReward>();
 
     public BattlePassSeason(int id, int level, long exp) {
         this.id = id;

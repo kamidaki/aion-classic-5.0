@@ -7,7 +7,8 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.item.ItemQuality;
 import com.aionemu.gameserver.services.drop.DropDistributionService;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
-import javolution.util.FastList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import java.util.Collection;
 
@@ -25,7 +26,7 @@ public class LootGroupRules {
     private int nrMisc;
     private int nrRoundRobin;
     private int mythic_item_above;
-    private FastList<DropItem> itemsToBeDistributed = new FastList<DropItem>();
+    private List<DropItem> itemsToBeDistributed = new CopyOnWriteArrayList<DropItem>();
 
     public LootGroupRules() {
         lootRule = LootRuleType.ROUNDROBIN;
@@ -216,7 +217,7 @@ public class LootGroupRules {
         itemsToBeDistributed.remove(dropItem);
     }
 
-    public FastList<DropItem> getItemsToBeDistributed() {
+    public List<DropItem> getItemsToBeDistributed() {
         return itemsToBeDistributed;
     }
 }

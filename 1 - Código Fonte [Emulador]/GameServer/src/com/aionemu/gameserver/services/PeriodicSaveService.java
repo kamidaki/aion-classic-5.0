@@ -1,5 +1,7 @@
 package com.aionemu.gameserver.services;
 
+import java.util.List;
+
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.configs.main.PeriodicSaveConfig;
 import com.aionemu.gameserver.dao.InventoryDAO;
@@ -39,7 +41,7 @@ public class PeriodicSaveService
 			int legionWhUpdated = 0;
 			while (legionsIterator.hasNext()) {
 				Legion legion = legionsIterator.next();
-				FastList<Item> allItems = legion.getLegionWarehouse().getItemsWithKinah();
+				List<Item> allItems = legion.getLegionWarehouse().getItemsWithKinah();
 				allItems.addAll(legion.getLegionWarehouse().getDeletedItems());
 				try {
 					DAOManager.getDAO(InventoryDAO.class).store(allItems, null, null, legion.getLegionId());

@@ -1,8 +1,9 @@
 package com.aionemu.gameserver.model.items.storage;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
-import javolution.util.FastList;
-import javolution.util.FastMap;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ItemStorage
 {
     public static final int FIRST_AVAILABLE_SLOT = 65535;
 	
-    private FastMap<Integer, Item> items;
+    private Map<Integer, Item> items;
     private int limit;
     private int specialLimit;
     private final StorageType storageType;
@@ -23,13 +24,11 @@ public class ItemStorage
         this.limit = storageType.getLimit();
         this.specialLimit = storageType.getSpecialLimit();
         this.storageType = storageType;
-        this.items = FastMap.newInstance();
+        this.items = new ConcurrentHashMap<>();
     }
 	
-    public FastList<Item> getItems() {
-        FastList<Item> temp = FastList.newInstance();
-        temp.addAll(items.values());
-        return temp;
+    public List<Item> getItems() {
+        return new ArrayList<>(items.values());
     }
 	
     public int getLimit() {
@@ -54,8 +53,8 @@ public class ItemStorage
         return null;
     }
 	
-    public FastList<Item> getItemsById(int itemId) {
-        FastList<Item> temp = FastList.newInstance();
+    public List<Item> getItemsById(int itemId) {
+        List<Item> temp = new ArrayList<>();
         for (Item item : items.values()) {
             if (item.getItemTemplate().getTemplateId() == itemId) {
                 temp.add(item);

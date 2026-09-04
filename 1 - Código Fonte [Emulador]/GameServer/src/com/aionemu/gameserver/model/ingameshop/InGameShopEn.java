@@ -19,8 +19,8 @@ import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.mail.SystemMailService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
-import javolution.util.FastList;
-import javolution.util.FastMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,12 +31,12 @@ public class InGameShopEn {
 
 	private static InGameShopEn instance = new InGameShopEn();
 	private final Logger log = LoggerFactory.getLogger("INGAMESHOP_LOG");
-	private FastMap<Byte, List<IGItem>> items;
+	private Map<Byte, List<IGItem>> items;
 	private InGameShopDAO dao;
 	private InGameShopProperty iGProperty;
 	private int lastRequestId = 0;
-	private FastList<IGRequest> activeRequests;
-	private static Map<Integer, Long> lastUsage = new FastMap<Integer, Long>();
+	private List<IGRequest> activeRequests;
+	private static Map<Integer, Long> lastUsage = new ConcurrentHashMap<Integer, Long>();
 
 	public static InGameShopEn getInstance() {
 		return instance;
@@ -49,8 +49,8 @@ public class InGameShopEn {
 		}
 		iGProperty = InGameShopProperty.load();
 		dao = DAOManager.getDAO(InGameShopDAO.class);
-		items = FastMap.newInstance();
-		activeRequests = FastList.newInstance();
+		items = new ConcurrentHashMap<Byte, List<IGItem>>();
+		activeRequests = new CopyOnWriteArrayList<IGRequest>();
 		items = dao.loadInGameShopItems();
 		log.info("Loaded with " + items.size() + " items.");
 	}
@@ -88,17 +88,17 @@ public class InGameShopEn {
 		return items.get(category);
 	}
 
-	public FastList<Integer> getTopSales(int subCategory, byte category) {
+	public List<Integer> getTopSales(int subCategory, byte category) {
 		byte max = 6;
 		TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>(new DescFilter());
 		if (!items.containsKey(category)) {
-			return FastList.newInstance();
+			return new ArrayList<Integer>();
 		}
 		for (IGItem item : items.get(category))
 			if (item.getSalesRanking() != 0 && (subCategory == 2 || item.getSubCategory() == subCategory)) {
 				map.put(item.getSalesRanking(), item.getObjectId());
 			}
-		FastList<Integer> top = FastList.newInstance();
+		List<Integer> top = new ArrayList<Integer>();
 		byte cnt = 0;
 		for (Iterator<Integer> i = map.values().iterator(); i.hasNext();) {
 			int objId = i.next();

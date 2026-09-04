@@ -17,7 +17,6 @@ import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 
-import javolution.util.FastList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -156,7 +155,7 @@ public class DecomposeAction extends AbstractItemAction
 	}
 	
 	public List<DecomposableItemList> getItemList(Player player, int id) {
-		List<DecomposableItemList> items = new FastList<DecomposableItemList>();
+		List<DecomposableItemList> items = new ArrayList<DecomposableItemList>();
 		DecomposableTemplate template = DataManager.DECOMPOSABLE_TEMPLATE_DATA.getInfoByItemId(id);
 		for (DecomposableList list : template.getItems()) {
 			if (list.getPlayerClass() == PlayerClass.ALL && list.getRace() == Race.PC_ALL && list.getMin_level() == 0 && list.getMax_level() == 0) {

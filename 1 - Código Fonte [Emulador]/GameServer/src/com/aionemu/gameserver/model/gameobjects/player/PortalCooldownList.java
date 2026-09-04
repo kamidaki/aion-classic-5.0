@@ -4,12 +4,13 @@ import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.network.aion.serverpackets.S_INSTANCE_DUNGEON_COOLTIMES;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE_CODE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-import javolution.util.FastMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PortalCooldownList {
 
     private Player owner;
-    private FastMap<Integer, PortalCooldownItem> portalCooldowns;
+    private Map<Integer, PortalCooldownItem> portalCooldowns;
 
     /**
      * @param owner
@@ -64,7 +65,7 @@ public class PortalCooldownList {
         return portalCooldowns.get(worldId);
     }
 
-    public FastMap<Integer, PortalCooldownItem> getPortalCoolDowns() {
+    public Map<Integer, PortalCooldownItem> getPortalCoolDowns() {
         return portalCooldowns;
     }
 
@@ -72,13 +73,13 @@ public class PortalCooldownList {
      * @param worldId
      * @param time
      */
-    public void setPortalCoolDowns(FastMap<Integer, PortalCooldownItem> portalCoolDowns) {
+    public void setPortalCoolDowns(Map<Integer, PortalCooldownItem> portalCoolDowns) {
         this.portalCooldowns = portalCoolDowns;
     }
 
     public void addPortalCooldown(int worldId, int entryCount, long useDelay) {
         if (portalCooldowns == null) {
-            portalCooldowns = new FastMap<Integer, PortalCooldownItem>();
+            portalCooldowns = new ConcurrentHashMap<Integer, PortalCooldownItem>();
         }
         portalCooldowns.put(worldId, new PortalCooldownItem(worldId, entryCount, useDelay));
         if (owner.isInTeam()) {

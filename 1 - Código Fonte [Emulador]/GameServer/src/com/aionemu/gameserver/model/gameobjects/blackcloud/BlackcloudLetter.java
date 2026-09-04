@@ -4,7 +4,7 @@ import com.aionemu.gameserver.model.gameobjects.AionObject;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.LetterType;
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
-import javolution.util.FastList;
+import java.util.ArrayList;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -26,7 +26,7 @@ public class BlackcloudLetter extends AionObject {
         this.timeStamp = timeStamp;
         this.unread = unread;
         this.letterType = LetterType.BLACKCLOUD;
-        this.attachedItem = new FastList<BlackcloudItem>();
+        this.attachedItem = new ArrayList<BlackcloudItem>();
     }
 
     @Override

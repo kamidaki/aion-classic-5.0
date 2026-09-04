@@ -3,7 +3,6 @@ package com.aionemu.gameserver.model.account;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.blackcloud.BlackcloudLetter;
 import com.aionemu.gameserver.model.items.storage.Storage;
-import javolution.util.FastMap;
 
 import java.sql.Timestamp;
 import java.util.*;

@@ -27,7 +27,6 @@ import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.stats.AbyssRankEnum;
-import javolution.util.FastList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -563,8 +562,8 @@ public class Equipment
 	/**
 	 * @return List<Item>
 	 */
-	public FastList<Item> getEquippedItemsWithoutStigma() {
-		FastList<Item> equippedItems = FastList.newInstance();
+	public List<Item> getEquippedItemsWithoutStigma() {
+		List<Item> equippedItems = new ArrayList<Item>();
 		Item twoHanded = null;
 		for (Item item : equipment.values()) {
 			if (!ItemSlot.isStigma(item.getEquipmentSlot())) {
@@ -595,8 +594,8 @@ public class Equipment
 		return equippedItems;
 	}
 
-	public FastList<Item> getEquippedItemsWithoutStigmaOld() {
-		FastList<Item> equippedItems = FastList.newInstance();
+	public List<Item> getEquippedItemsWithoutStigmaOld() {
+		List<Item> equippedItems = new ArrayList<Item>();
 		Item twoHanded = null;
 		Item offTwoHanded = null;
 		for (Item item : equipment.values()) {

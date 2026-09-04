@@ -1007,7 +1007,7 @@ public class LegionService {
 		if (legion == null)
 			return;
 
-		FastList<Item> allItems = legion.getLegionWarehouse().getItemsWithKinah();
+		List<Item> allItems = legion.getLegionWarehouse().getItemsWithKinah();
 		allItems.addAll(legion.getLegionWarehouse().getDeletedItems());
 		try {
 			/**

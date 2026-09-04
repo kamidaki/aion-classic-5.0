@@ -8,7 +8,8 @@ import com.aionemu.gameserver.model.geometry.Point3D;
 import com.aionemu.gameserver.model.instance.playerreward.TiakPlayerReward;
 import com.aionemu.gameserver.services.teleport.TeleportService;
 
-import javolution.util.FastList;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.mutable.MutableInt;
 
@@ -25,7 +26,7 @@ public class TiakReward extends InstanceReward<TiakPlayerReward>
 	private MutableInt asmodiansPoints = new MutableInt(0);
 	private MutableInt elyosPoins = new MutableInt(0);
 	private Race race;
-	private FastList<TiakRooms> tiakRooms = new FastList<TiakRooms>();
+	private List<TiakRooms> tiakRooms = new ArrayList<TiakRooms>();
 	private Point3D asmodiansStartPosition;
 	private Point3D elyosStartPosition;
 	
@@ -84,7 +85,7 @@ public class TiakReward extends InstanceReward<TiakPlayerReward>
 		}
 	}
 	
-	public FastList<TiakRooms> getTiakRooms() {
+	public List<TiakRooms> getTiakRooms() {
 		return tiakRooms;
 	}
 	

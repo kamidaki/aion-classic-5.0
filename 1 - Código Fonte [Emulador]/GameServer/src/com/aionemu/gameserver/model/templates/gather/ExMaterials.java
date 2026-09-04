@@ -1,6 +1,6 @@
 package com.aionemu.gameserver.model.templates.gather;
 
-import javolution.util.FastList;
+import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,7 +16,7 @@ public class ExMaterials {
 
 	public List<Material> getMaterial() {
 		if (material == null) {
-			material = FastList.newInstance();
+			material = new ArrayList<Material>();
 		}
 		return this.material;
 	}

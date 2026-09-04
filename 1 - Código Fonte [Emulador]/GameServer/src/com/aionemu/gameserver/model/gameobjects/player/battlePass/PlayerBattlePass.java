@@ -1,7 +1,7 @@
 package com.aionemu.gameserver.model.gameobjects.player.battlePass;
 
 import com.aionemu.gameserver.model.templates.battle_pass.BattleQuestType;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import java.util.Map;
 
@@ -11,8 +11,8 @@ public class PlayerBattlePass {
     private Map<Integer, BattlePassQuest> battlePassQuest;
 
     public PlayerBattlePass() {
-        this.battlePassSeason = new FastMap<Integer, BattlePassSeason>();
-        this.battlePassQuest = new FastMap<Integer, BattlePassQuest>();
+        this.battlePassSeason = new ConcurrentHashMap<Integer, BattlePassSeason>();
+        this.battlePassQuest = new ConcurrentHashMap<Integer, BattlePassQuest>();
     }
 
     public Map<Integer, BattlePassSeason> getBattlePassSeason() {
