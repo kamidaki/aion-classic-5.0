@@ -5,12 +5,11 @@ import com.aionemu.gameserver.model.ChatType;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.S_MESSAGE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-import javolution.util.FastMap;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GMService
 {
@@ -18,7 +17,7 @@ public class GMService
 		return SingletonHolder.instance;
 	}
 	
-	private Map<Integer, Player> gms = new FastMap<Integer, Player>();
+	private Map<Integer, Player> gms = new ConcurrentHashMap<Integer, Player>();
 	private boolean announceAny = false;
 	private List<Byte> announceList;
 	private GMService() {

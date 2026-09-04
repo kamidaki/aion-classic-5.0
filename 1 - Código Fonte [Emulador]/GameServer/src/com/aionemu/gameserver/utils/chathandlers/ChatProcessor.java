@@ -10,7 +10,7 @@ import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.model.GameEngine;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,8 +26,8 @@ public class ChatProcessor implements GameEngine {
 
 	private static final Logger log = LoggerFactory.getLogger("ADMINAUDIT_LOG");
 	private static ChatProcessor instance = new ChatProcessor();
-	private Map<String, ChatCommand> commands = new FastMap<String, ChatCommand>();
-	private Map<String, Byte> accessLevel = new FastMap<String, Byte>();
+	private Map<String, ChatCommand> commands = new ConcurrentHashMap<String, ChatCommand>();
+	private Map<String, Byte> accessLevel = new ConcurrentHashMap<String, Byte>();
 	private ScriptManager sm = new ScriptManager();
 	private Exception loadException = null;
 
@@ -117,7 +117,7 @@ public class ChatProcessor implements GameEngine {
 	public void reload() {
 		ScriptManager tmpSM;
 		final ChatProcessor adminCP;
-		Map<String, ChatCommand> backupCommands = new FastMap<String, ChatCommand>(commands);
+		Map<String, ChatCommand> backupCommands = new ConcurrentHashMap<String, ChatCommand>(commands);
 		commands.clear();
 		loadException = null;
 

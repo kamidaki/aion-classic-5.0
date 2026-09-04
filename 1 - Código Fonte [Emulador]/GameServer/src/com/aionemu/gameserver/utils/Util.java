@@ -1,8 +1,7 @@
 package com.aionemu.gameserver.utils;
 
-import javolution.util.FastList;
-
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -123,7 +122,7 @@ public class Util {
 
 	public static List<Integer> stringToIntList(String numbersString){
 		String[] ids = numbersString.split(",");
-		List<Integer> idd = new FastList<Integer>();
+		List<Integer> idd = new ArrayList<>();
 		for (String id : ids) {
 			idd.add(Integer.parseInt(id));
 		}
