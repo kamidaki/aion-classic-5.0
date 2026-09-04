@@ -55,9 +55,16 @@ public class S_ADD_INVENTORY extends AionServerPacket
 			if (size == 1 && items.get(0).getEquipmentSlot() != ItemStorage.FIRST_AVAILABLE_SLOT)
 				mask = ItemAddType.PARTIAL_WITH_SLOT.getMask();
 		}
+		// Cabecalho de 8 bytes, medido nas nove amostras de S_ADD_INVENTORY da captura oficial
+		// (subida-1-60, sessao 1): H(mascara) H(0) C(0) C(1) H(quantidade). Faltava o C(1), e o byte
+		// a menos deslocava tudo o que vinha depois -- era o que derrubava o cliente ao pegar item
+		// de loot e ao receber recompensa de quest.
+		// Nas nove amostras a quantidade e sempre 1, entao elas nao separam "constante 1" de "copia
+		// da quantidade". Se um dia um pacote com varios itens sair torto, e o primeiro palpite.
 		writeH(mask);
-		writeH(0); //2.7
-		writeC(0); //2.7
+		writeH(0);
+		writeC(0);
+		writeC(1);
 		writeH(size); // number of entries
 		for (Item item : items)
 			writeItemInfo(item);
@@ -67,7 +74,8 @@ public class S_ADD_INVENTORY extends AionServerPacket
 		ItemTemplate itemTemplate = item.getItemTemplate();
 		writeD(item.getObjectId());
 		writeD(itemTemplate.getTemplateId());
-		writeNameId(itemTemplate.getNameId());
+		// Sem bloco de nameId aqui: na captura o corpo vai direto do templateId para o ItemInfoBlob.
+		// O writeNameId punha H(0x24) D(nameId) H(0) no meio, oito bytes que o cliente 5.0 nao le.
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());
 
