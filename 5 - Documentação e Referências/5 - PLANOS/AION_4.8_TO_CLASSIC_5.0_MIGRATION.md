@@ -41,7 +41,7 @@
 | **10** | `world` | [`MIGRATION_WORLD.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_WORLD.md) | `[CONCLUÍDO]` | `703885e60` |
 | **11** | `utils` | [`MIGRATION_UTILS.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_UTILS.md) | `[CONCLUÍDO]` | `2344cdedf` |
 | **12** | `services` | [`MIGRATION_SERVICES.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_SERVICES.md) | `[CONCLUÍDO]` | `5f0780537` |
-| **13** | `data/handlers/ai/quests`, `data/handlers/world/instance` e `database` | [`MIGRATION_DATA_HANDLERS.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_DATA_HANDLERS.md) | `[CONCLUÍDO]` | `pendente` |
+| **13** | `data/handlers/ai/quests`, `data/handlers/world/instance` e `database` | [`MIGRATION_DATA_HANDLERS.md`](file:///D:/AION%20CLASSIC%205.0%20-%20EMULADOR/5%20-%20Documenta%C3%A7%C3%A3o%20e%20Refer%C3%AAncias/5%20-%20PLANOS/MIGRATION_DATA_HANDLERS.md) | `[CONCLUÍDO]` | `76c3249cb` |
 
 ---
 
