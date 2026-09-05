@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Map.Entry;
 
 
+import javax.xml.bind.annotation.XmlTransient;
+
 public abstract class CraftGroup extends BonusItemGroup {
 
+	@XmlTransient
 	private Map<Integer, ? extends Map<IntRange, List<CraftReward>>> dataHolder;
 
 	public ItemRaceEntry[] getRewards(Integer skillId) {
