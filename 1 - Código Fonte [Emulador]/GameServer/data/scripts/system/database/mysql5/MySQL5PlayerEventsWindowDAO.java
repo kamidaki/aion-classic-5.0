@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.aionemu.gameserver.model.gameobjects.player.PlayerEventWindow;
-import javolution.util.FastMap;
+import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +33,7 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
 
     @Override
     public Map<Integer, PlayerEventWindow> load(Player player) {
-        Map<Integer, PlayerEventWindow> eventWindow = new FastMap<Integer, PlayerEventWindow>();
+        Map<Integer, PlayerEventWindow> eventWindow = new HashMap<Integer, PlayerEventWindow>();
         Connection con = null;
         try {
             con = DatabaseFactory.getConnection();

@@ -1,8 +1,7 @@
 package world;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javolution.util.FastList;
 
 import com.aionemu.commons.network.util.ThreadPoolManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -56,7 +55,7 @@ public class Telos_Elyos extends GeneralWorldHandler
 	}
 	
 	protected List<Npc> getNpcs(int npcId) {
-        List<Npc> npcs = new FastList<Npc>();
+        List<Npc> npcs = new ArrayList<Npc>();
         for (Npc npc : this.map.getWorld().getNpcs()) {
             if (npc.getNpcId() == npcId) {
                 npcs.add(npc);

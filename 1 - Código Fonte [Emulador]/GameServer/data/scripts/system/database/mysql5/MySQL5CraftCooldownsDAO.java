@@ -4,7 +4,7 @@ import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dao.CraftCooldownsDAO;
 import com.aionemu.gameserver.dao.MySQL5DAOUtils;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import javolution.util.FastMap;
+import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ public class MySQL5CraftCooldownsDAO extends CraftCooldownsDAO {
 	@Override
 	public void loadCraftCooldowns(final Player player) {
 		Connection con = null;
-		FastMap<Integer, Long> craftCoolDowns = new FastMap<Integer, Long>();
+		Map<Integer, Long> craftCoolDowns = new HashMap<Integer, Long>();
 		try {
 			con = DatabaseFactory.getConnection();
 			PreparedStatement stmt = con.prepareStatement(SELECT_QUERY);

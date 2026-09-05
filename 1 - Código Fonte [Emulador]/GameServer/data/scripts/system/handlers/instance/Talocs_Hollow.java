@@ -30,7 +30,6 @@ import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
 import java.util.*;
-import javolution.util.*;
 
 /****/
 /** Author Rinzler (Encom)

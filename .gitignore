@@ -84,7 +84,6 @@ cache/
 !5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/.gitkeep
 
 # 7. Backups e Arquivos de Trabalho dos Parsers
-7 - BACKUP EMULADOR/
 6 - Ferramentas/parsersXML/backups/
 **/parsersXML/backups/
 
@@ -99,3 +98,7 @@ network.properties
 **/network.properties
 config.json
 **/config.json
+
+# 10. Backups Locais do Emulador
+7 - BACKUP EMULADOR/
+**/7 - BACKUP EMULADOR/**

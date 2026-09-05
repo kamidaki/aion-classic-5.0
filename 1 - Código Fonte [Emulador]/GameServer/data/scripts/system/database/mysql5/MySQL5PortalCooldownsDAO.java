@@ -5,7 +5,7 @@ import com.aionemu.gameserver.dao.MySQL5DAOUtils;
 import com.aionemu.gameserver.dao.PortalCooldownsDAO;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PortalCooldownItem;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ public class MySQL5PortalCooldownsDAO extends PortalCooldownsDAO {
 	@Override
 	public void loadPortalCooldowns(final Player player) {
 		Connection con = null;
-		FastMap<Integer, PortalCooldownItem> portalCoolDowns = new FastMap<Integer, PortalCooldownItem>();
+		Map<Integer, PortalCooldownItem> portalCoolDowns = new ConcurrentHashMap<Integer, PortalCooldownItem>();
 		PreparedStatement stmt = null;
 		try {
 			con = DatabaseFactory.getConnection();

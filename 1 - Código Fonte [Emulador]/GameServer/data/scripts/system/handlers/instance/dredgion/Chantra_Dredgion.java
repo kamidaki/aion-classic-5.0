@@ -36,7 +36,7 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import javolution.util.FastList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.commons.lang.mutable.MutableInt;
 
@@ -58,7 +58,7 @@ public class Chantra_Dredgion extends GeneralInstanceHandler
 	protected DredgionReward dredgionReward;
 	private float loosingGroupMultiplier = 1;
 	private boolean isInstanceDestroyed = false;
-	private final FastList<Future<?>> chantraTask = FastList.newInstance();
+	private final List<Future<?>> chantraTask = new CopyOnWriteArrayList<Future<?>>();
 	
 	protected DredgionPlayerReward getPlayerReward(Player player) {
 		Integer object = player.getObjectId();
@@ -628,9 +628,9 @@ public class Chantra_Dredgion extends GeneralInstanceHandler
 	}
 	
 	private void stopInstanceTask() {
-        for (FastList.Node<Future<?>> n = chantraTask.head(), end = chantraTask.tail(); (n = n.getNext()) != end; ) {
-            if (n.getValue() != null) {
-                n.getValue().cancel(true);
+        for (Future<?> task : chantraTask) {
+            if (task != null) {
+                task.cancel(true);
             }
         }
     }

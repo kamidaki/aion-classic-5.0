@@ -9,8 +9,8 @@ import com.aionemu.gameserver.model.account.Account;
 import com.aionemu.gameserver.model.gameobjects.blackcloud.BlackcloudItem;
 import com.aionemu.gameserver.model.gameobjects.blackcloud.BlackcloudLetter;
 import com.aionemu.gameserver.model.gameobjects.player.WardrobeEntry;
-import javolution.util.FastList;
-import javolution.util.FastMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,7 @@ public class MySQL5AccountBlackCloudDAO extends AccountBlackCloudDAO {
 
     @Override
     public Map<Integer, BlackcloudLetter> loadAccountBlackcloud(Account account) {
-        Map<Integer, BlackcloudLetter> letterMap = new FastMap<Integer, BlackcloudLetter>();
+        Map<Integer, BlackcloudLetter> letterMap = new HashMap<Integer, BlackcloudLetter>();
         DB.select("SELECT * FROM `account_blackcloud` WHERE `owner`=?", new ParamReadStH() {
             @Override
             public void setParams(PreparedStatement stmt) throws SQLException {
@@ -87,7 +87,7 @@ public class MySQL5AccountBlackCloudDAO extends AccountBlackCloudDAO {
 
     @Override
     public List<BlackcloudItem> loadBlackcloudItem(BlackcloudLetter blackcloudLetter) {
-        List<BlackcloudItem> blackcloudItems = new FastList<BlackcloudItem>();
+        List<BlackcloudItem> blackcloudItems = new ArrayList<BlackcloudItem>();
         DB.select("SELECT * FROM `blackcloud_item` WHERE `blackcloud_id`=?", new ParamReadStH() {
             @Override
             public void setParams(PreparedStatement stmt) throws SQLException {

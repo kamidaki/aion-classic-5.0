@@ -22,7 +22,7 @@ import com.aionemu.gameserver.world.zone.ZoneInstance;
 import com.aionemu.gameserver.world.zone.ZoneName;
 
 import java.util.*;
-import javolution.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Future;
 
 /****/
@@ -41,7 +41,7 @@ public class Raksang extends GeneralInstanceHandler
 	private boolean vasukiLifesparkEvent2;
 	private boolean vasukiLifesparkEvent3;
 	private Map<Integer, StaticDoor> doors;
-	private final FastList<Future<?>> raksangTask = FastList.newInstance();
+	private final List<Future<?>> raksangTask = new CopyOnWriteArrayList<Future<?>>();
 	
 	protected final int IDRKASHA_KNCL_TELPOR = 19967;
 	protected final int IDRAKSHA_BNPR_SHIELD = 19974;
@@ -571,9 +571,9 @@ public class Raksang extends GeneralInstanceHandler
     }
 	
 	private void stopInstanceTask() {
-        for (FastList.Node<Future<?>> n = raksangTask.head(), end = raksangTask.tail(); (n = n.getNext()) != end;) {
-            if (n.getValue() != null) {
-                n.getValue().cancel(true);
+        for (Future<?> task : raksangTask) {
+            if (task != null) {
+                task.cancel(true);
             }
         }
     }

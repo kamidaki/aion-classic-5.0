@@ -28,7 +28,7 @@ import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
 import java.util.*;
-import javolution.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Future;
 
 /****/
@@ -43,7 +43,7 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
 	private int IDCT_SpecterN_Spawn;
 	private boolean isInstanceDestroyed;
 	private Map<Integer, StaticDoor> doors;
-	private final FastList<Future<?>> beshmundirTask = FastList.newInstance();
+	private final List<Future<?>> beshmundirTask = new CopyOnWriteArrayList<Future<?>>();
 	
 	protected final int IDCATACOMBS_SPECTRE_BUFF = 18895;
 	protected final int NPC_STATDOWN_1 = 19046;
@@ -497,9 +497,9 @@ public class Beshmundir_Temple extends GeneralInstanceHandler
 	}
 	
 	private void stopInstanceTask() {
-        for (FastList.Node<Future<?>> n = beshmundirTask.head(), end = beshmundirTask.tail(); (n = n.getNext()) != end;) {
-            if (n.getValue() != null) {
-                n.getValue().cancel(true);
+        for (Future<?> task : beshmundirTask) {
+            if (task != null) {
+                task.cancel(true);
             }
         }
     }

@@ -1,8 +1,7 @@
 package com.aionemu.gameserver.dao;
 
 import com.aionemu.gameserver.model.team.legion.*;
-import javolution.util.FastList;
-
+import java.util.List;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.TreeMap;
@@ -31,7 +30,7 @@ public abstract class LegionDAO implements IDFactoryAwareDAO
 	public abstract boolean saveNewLegionHistory(int legionId, LegionHistory legionHistory);
 
 	public abstract void storeLegionJoinRequest(LegionJoinRequest legionJoinRequest);
-	public abstract FastList<LegionJoinRequest> loadLegionJoinRequests(int legionId);
+	public abstract List<LegionJoinRequest> loadLegionJoinRequests(int legionId);
 	public abstract void deleteLegionJoinRequest(int legionId, int playerId);
 	public abstract void deleteLegionJoinRequest(LegionJoinRequest legionJoinRequest);
 }

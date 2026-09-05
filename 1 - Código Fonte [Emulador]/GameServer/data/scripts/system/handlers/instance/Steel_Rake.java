@@ -25,7 +25,6 @@ import com.aionemu.gameserver.utils.*;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import javolution.util.FastMap;
 
 import java.util.*;
 

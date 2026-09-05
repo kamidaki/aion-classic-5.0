@@ -5,7 +5,7 @@ import com.aionemu.commons.database.IUStH;
 import com.aionemu.commons.database.ParamReadStH;
 import com.aionemu.gameserver.dao.MySQL5DAOUtils;
 import com.aionemu.gameserver.dao.PlayerVarsDAO;
-import javolution.util.FastMap;
+import java.util.HashMap;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ public class MySQL5PlayerVarsDAO extends PlayerVarsDAO {
 
 	@Override
 	public Map<String, Object> load(final int playerId) {
-		final Map<String, Object> map = FastMap.newInstance();
+		final Map<String, Object> map = new HashMap<String, Object>();
 		DB.select("SELECT param,value FROM player_vars WHERE player_id=?", new ParamReadStH() {
 
 			@Override

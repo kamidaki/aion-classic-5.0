@@ -22,7 +22,7 @@ import com.aionemu.gameserver.utils.*;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import javolution.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import java.util.*;
 import java.util.concurrent.Future;
@@ -49,7 +49,7 @@ public class Tempus extends GeneralInstanceHandler
 	private int prepareTimerSeconds = 180000; //...3Min
 	//Duration Instance Time.
 	private int instanceTimerSeconds = 3600000; //...1Hr
-	private final FastList<Future<?>> tempusTask = FastList.newInstance();
+	private final List<Future<?>> tempusTask = new CopyOnWriteArrayList<Future<?>>();
 	
 	protected final int IDF4RE_SOLO_POLYMORPH_1 = 20498;
 	protected final int IDF4RE_SOLO_POLYMORPH_2 = 20499;
@@ -317,9 +317,9 @@ public class Tempus extends GeneralInstanceHandler
 	}
 	
 	private void stopInstanceTask() {
-        for (FastList.Node<Future<?>> n = tempusTask.head(), end = tempusTask.tail(); (n = n.getNext()) != end; ) {
-            if (n.getValue() != null) {
-                n.getValue().cancel(true);
+        for (Future<?> task : tempusTask) {
+            if (task != null) {
+                task.cancel(true);
             }
         }
     }

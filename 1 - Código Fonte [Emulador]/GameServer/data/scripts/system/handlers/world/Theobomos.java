@@ -27,7 +27,6 @@ import com.aionemu.gameserver.world.*;
 import com.aionemu.gameserver.world.zone.ZoneName;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
 
-import javolution.util.*;
 
 import java.util.*;
 import java.util.concurrent.Future;
@@ -221,7 +220,7 @@ public class Theobomos extends GeneralWorldHandler
     }
 	
 	protected List<Npc> getNpcs(int npcId) {
-        List<Npc> npcs = new FastList<Npc>();
+        List<Npc> npcs = new ArrayList<Npc>();
         for (Npc npc : this.map.getWorld().getNpcs()) {
             if (npc.getNpcId() == npcId) {
                 npcs.add(npc);
