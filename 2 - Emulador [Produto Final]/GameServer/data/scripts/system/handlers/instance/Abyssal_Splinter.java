@@ -26,7 +26,7 @@ import com.aionemu.gameserver.utils.*;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import javolution.util.FastList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import java.util.*;
 import java.util.concurrent.Future;
@@ -42,7 +42,7 @@ public class Abyssal_Splinter extends GeneralInstanceHandler
 	private int hugeAetherFragment;
 	private boolean isInstanceDestroyed;
 	private Map<Integer, StaticDoor> doors;
-	private final FastList<Future<?>> abyssalSplinterTask = FastList.newInstance();
+	private final List<Future<?>> abyssalSplinterTask = new CopyOnWriteArrayList<Future<?>>();
 	
 	protected final int IDABRE_COREB_LIGHTBUFF = 19146;
 	protected final int IDABRE_COREB_DARKBUFF = 19147;
@@ -356,9 +356,9 @@ public class Abyssal_Splinter extends GeneralInstanceHandler
 	}
 	
 	private void stopInstanceTask() {
-        for (FastList.Node<Future<?>> n = abyssalSplinterTask.head(), end = abyssalSplinterTask.tail(); (n = n.getNext()) != end; ) {
-            if (n.getValue() != null) {
-                n.getValue().cancel(true);
+        for (Future<?> task : abyssalSplinterTask) {
+            if (task != null) {
+                task.cancel(true);
             }
         }
     }

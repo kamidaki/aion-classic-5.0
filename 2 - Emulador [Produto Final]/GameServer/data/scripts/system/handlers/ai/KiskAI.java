@@ -1,5 +1,7 @@
 package ai;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.ai.NpcAI;
 import com.aionemu.gameserver.ai.AIActions;
@@ -22,6 +24,14 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 @AIName("kisk")
 public class KiskAI extends NpcAI
 {
+	public KiskAI() {
+		super();
+	}
+
+	public KiskAI(Npc owner) {
+		super(owner);
+	}
+
     private final int CANCEL_DIALOG_METERS = 9;
 	
 	@Override

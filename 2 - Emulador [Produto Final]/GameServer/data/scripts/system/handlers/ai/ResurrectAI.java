@@ -1,5 +1,7 @@
 package ai;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.commons.database.dao.DAOManager;
 
 import com.aionemu.gameserver.ai.*;
@@ -33,6 +35,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @AIName("resurrect")
 public class ResurrectAI extends NpcAI
 {
+	public ResurrectAI() {
+		super();
+	}
+
+	public ResurrectAI(Npc owner) {
+		super(owner);
+	}
+
 	private boolean canThink = true;
 	private AtomicBoolean startedEvent = new AtomicBoolean(false);
 	private static Logger log = LoggerFactory.getLogger(ResurrectAI.class);

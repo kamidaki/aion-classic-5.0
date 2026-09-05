@@ -26,6 +26,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @AIName("manadar")
 public class ManadarAI extends AggressiveNpcAI
 {
+	public ManadarAI() {
+		super();
+	}
+
+	public ManadarAI(Npc owner) {
+		super(owner);
+	}
+
 	private Future<?> skillTask;
 	private AtomicBoolean isHome = new AtomicBoolean(true);
 	

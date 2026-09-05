@@ -25,7 +25,7 @@ import com.aionemu.gameserver.world.MapRegion;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.WorldPosition;
 import com.google.common.collect.Maps;
-import javolution.util.FastMap;
+import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +36,8 @@ import java.util.*;
 public class MySQL5PlayerDAO extends PlayerDAO
 {
 	private static final Logger log = LoggerFactory.getLogger(MySQL5PlayerDAO.class);
-	private FastMap<Integer, PlayerCommonData> playerCommonData = new FastMap<Integer, PlayerCommonData>().shared();
-	private FastMap<String, PlayerCommonData> playerCommonDataByName = new FastMap<String, PlayerCommonData>().shared();
+	private Map<Integer, PlayerCommonData> playerCommonData = new ConcurrentHashMap<Integer, PlayerCommonData>();
+	private Map<String, PlayerCommonData> playerCommonDataByName = new ConcurrentHashMap<String, PlayerCommonData>();
 
 	/**
 	 * {@inheritDoc}
@@ -142,8 +142,8 @@ public class MySQL5PlayerDAO extends PlayerDAO
 		if (CacheConfig.CACHE_COMMONDATA) {
 			PlayerCommonData cached = playerCommonData.get(player.getObjectId());
 			if (cached != null) {
-				playerCommonData.putEntry(player.getCommonData().getPlayerObjId(), player.getCommonData());
-				playerCommonDataByName.putEntry(player.getName().toLowerCase(), player.getCommonData());
+				playerCommonData.put(player.getCommonData().getPlayerObjId(), player.getCommonData());
+				playerCommonDataByName.put(player.getName().toLowerCase(), player.getCommonData());
 			}
 		}
 	}

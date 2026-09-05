@@ -27,7 +27,7 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import javolution.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import java.util.*;
 import java.util.concurrent.Future;
@@ -51,7 +51,7 @@ public class Dark_Poeta extends GeneralInstanceHandler
 	private int prepareTimerSeconds = 7200000; //...2Hrs
 	//Duration Instance Time.
 	private int instanceTimerSeconds = 7200000; //...2Hrs
-	private final FastList<Future<?>> darkPoetaTask = FastList.newInstance();
+	private final List<Future<?>> darkPoetaTask = new CopyOnWriteArrayList<Future<?>>();
 	
 	@Override
 	public void handleUseItemFinish(final Player player, final Npc npc) {
@@ -622,9 +622,9 @@ public class Dark_Poeta extends GeneralInstanceHandler
 	}
 	
 	private void stopInstanceTask() {
-        for (FastList.Node<Future<?>> n = darkPoetaTask.head(), end = darkPoetaTask.tail(); (n = n.getNext()) != end; ) {
-            if (n.getValue() != null) {
-                n.getValue().cancel(true);
+        for (Future<?> task : darkPoetaTask) {
+            if (task != null) {
+                task.cancel(true);
             }
         }
     }

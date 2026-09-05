@@ -26,6 +26,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @AIName("omega")
 public class OmegaAI extends AggressiveNpcAI
 {
+	public OmegaAI() {
+		super();
+	}
+
+	public OmegaAI(Npc owner) {
+		super(owner);
+	}
+
 	private boolean canThink = true;
 	private int curentPercent = 100;
 	private List<Integer> percents = new ArrayList<Integer>();

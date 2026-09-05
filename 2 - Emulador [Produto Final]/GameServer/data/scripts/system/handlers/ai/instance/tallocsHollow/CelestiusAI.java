@@ -26,6 +26,14 @@ import java.util.concurrent.Future;
 @AIName("celestius")
 public class CelestiusAI extends AggressiveNpcAI
 {
+	public CelestiusAI() {
+		super();
+	}
+
+	public CelestiusAI(Npc owner) {
+		super(owner);
+	}
+
 	private boolean canThink = true;
 	private int curentPercent = 100;
 	private List<Integer> percents = new ArrayList<Integer>();

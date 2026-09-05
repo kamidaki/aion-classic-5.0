@@ -1,5 +1,7 @@
 package ai;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.ai.AIState;
 import com.aionemu.gameserver.ai.StateEvents;
@@ -14,6 +16,14 @@ import com.aionemu.gameserver.model.gameobjects.Creature;
 @AIName("following")
 public class FollowingNpcAI extends GeneralNpcAI
 {
+	public FollowingNpcAI() {
+		super();
+	}
+
+	public FollowingNpcAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	protected void handleFollowMe(Creature creature) {
 		FollowEventHandler.follow(this, creature);

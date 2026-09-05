@@ -1,5 +1,7 @@
 package ai.portals;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.*;
@@ -24,6 +26,14 @@ import java.util.*;
 @AIName("portal_dialog")
 public class PortalDialogAI extends PortalAI
 {
+	public PortalDialogAI() {
+		super();
+	}
+
+	public PortalDialogAI(Npc owner) {
+		super(owner);
+	}
+
 	protected int rewardDialogId = 5;
 	protected int startingDialogId = 1011;
 	protected int questDialogId = 10;

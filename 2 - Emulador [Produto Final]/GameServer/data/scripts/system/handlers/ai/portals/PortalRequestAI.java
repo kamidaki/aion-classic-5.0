@@ -1,5 +1,7 @@
 package ai.portals;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.gameserver.ai.AIName;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.DescriptionId;
@@ -21,6 +23,14 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 @AIName("portal_request")
 public class PortalRequestAI extends PortalAI
 {
+	public PortalRequestAI() {
+		super();
+	}
+
+	public PortalRequestAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	protected void handleUseItemFinish(final Player player) {
 		if (teleportTemplate != null) {

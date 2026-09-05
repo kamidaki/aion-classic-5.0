@@ -1,5 +1,7 @@
 package ai;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import com.aionemu.commons.network.util.ThreadPoolManager;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai.AIActions;
@@ -26,6 +28,14 @@ import java.util.*;
 @AIName("summoner")
 public class SummonerAI extends AggressiveNpcAI
 {
+	public SummonerAI() {
+		super();
+	}
+
+	public SummonerAI(Npc owner) {
+		super(owner);
+	}
+
 	private final List<Integer> spawnedNpc = new ArrayList<Integer>();
 	private List<Percentage> percentage = Collections.emptyList();
 	private int spawnedPercent = 0;

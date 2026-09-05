@@ -11,6 +11,7 @@ import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.skill.NpcSkillEntry;
@@ -29,6 +30,14 @@ import java.util.*;
 @AIName("general")
 public class GeneralNpcAI extends NpcAI
 {
+	public GeneralNpcAI() {
+		super();
+	}
+
+	public GeneralNpcAI(Npc owner) {
+		super(owner);
+	}
+
 	@Override
 	public void think() {
 		ThinkEventHandler.onThink(this);

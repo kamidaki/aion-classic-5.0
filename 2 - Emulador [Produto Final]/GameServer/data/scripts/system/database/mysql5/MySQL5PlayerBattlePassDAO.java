@@ -11,7 +11,7 @@ import com.aionemu.gameserver.model.gameobjects.player.battlePass.BattlePassRewa
 import com.aionemu.gameserver.model.gameobjects.player.battlePass.BattlePassSeason;
 import com.aionemu.gameserver.model.gameobjects.player.battlePass.BattleQuestState;
 import com.aionemu.gameserver.model.templates.battle_pass.BattleQuestType;
-import javolution.util.FastMap;
+import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -175,7 +175,7 @@ public class MySQL5PlayerBattlePassDAO extends PlayerBattlePassDAO {
 
     @Override
     public Map<Integer, BattlePassSeason> loadPlayerBattlePass(final Player player) {
-        final Map<Integer, BattlePassSeason> seasonMap = new FastMap<Integer, BattlePassSeason>();
+        final Map<Integer, BattlePassSeason> seasonMap = new HashMap<Integer, BattlePassSeason>();
         DB.select(LOAD_SEASON, new ParamReadStH() {
             @Override
             public void setParams(PreparedStatement stmt) throws SQLException {
@@ -195,7 +195,7 @@ public class MySQL5PlayerBattlePassDAO extends PlayerBattlePassDAO {
 
     @Override
     public Map<Integer, BattlePassReward> loadPlayerBattleReward(final int season, final Player player) {
-        final Map<Integer, BattlePassReward> rewardMap = new FastMap<Integer, BattlePassReward>();
+        final Map<Integer, BattlePassReward> rewardMap = new HashMap<Integer, BattlePassReward>();
         DB.select(LOAD_REWARD, new ParamReadStH() {
             @Override
             public void setParams(PreparedStatement stmt) throws SQLException {
@@ -215,7 +215,7 @@ public class MySQL5PlayerBattlePassDAO extends PlayerBattlePassDAO {
 
     @Override
     public Map<Integer, BattlePassQuest> loadPlayerBattleQuest(final Player player) {
-        final Map<Integer, BattlePassQuest> questMap = new FastMap<Integer, BattlePassQuest>();
+        final Map<Integer, BattlePassQuest> questMap = new HashMap<Integer, BattlePassQuest>();
         DB.select(LOAD_QUEST, new ParamReadStH() {
             @Override
             public void setParams(PreparedStatement stmt) throws SQLException {

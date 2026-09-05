@@ -27,6 +27,14 @@ import static ch.lambdaj.Lambda.maxFrom;
 @AIName("chest")
 public class ChestAI extends ActionItemNpcAI
 {
+	public ChestAI() {
+		super();
+	}
+
+	public ChestAI(Npc owner) {
+		super(owner);
+	}
+
 	private ChestTemplate chestTemplate;
 	
 	@Override

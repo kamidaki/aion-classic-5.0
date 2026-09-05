@@ -1,5 +1,7 @@
 package ai.instance.tallocsHollow;
 
+import com.aionemu.gameserver.model.gameobjects.Npc;
+
 import ai.AggressiveNpcAI;
 
 import com.aionemu.commons.utils.Rnd;
@@ -18,6 +20,14 @@ import java.util.*;
 @AIName("Kinquid")
 public class KinquidAI extends AggressiveNpcAI
 {
+	public KinquidAI() {
+		super();
+	}
+
+	public KinquidAI(Npc owner) {
+		super(owner);
+	}
+
 	private boolean canThink = true;
 	private int curentPercent = 100;
 	private List<Integer> percents = new ArrayList<Integer>();

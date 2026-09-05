@@ -31,7 +31,7 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-import javolution.util.FastList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.commons.lang.mutable.MutableInt;
 
@@ -53,7 +53,7 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
 	private Map<Integer, StaticDoor> doors;
 	private float loosingGroupMultiplier = 1;
 	private boolean isInstanceDestroyed = false;
-	private final FastList<Future<?>> tiakTask = FastList.newInstance();
+	private final List<Future<?>> tiakTask = new CopyOnWriteArrayList<Future<?>>();
 	
 	protected final int NPC_INVINCIBLE_MODE = 18500;
 	
@@ -1863,9 +1863,9 @@ public class Tiak_Research_Base extends GeneralInstanceHandler
 	}
 	
 	private void stopInstanceTask() {
-        for (FastList.Node<Future<?>> n = tiakTask.head(), end = tiakTask.tail(); (n = n.getNext()) != end; ) {
-            if (n.getValue() != null) {
-                n.getValue().cancel(true);
+        for (Future<?> task : tiakTask) {
+            if (task != null) {
+                task.cancel(true);
             }
         }
     }
