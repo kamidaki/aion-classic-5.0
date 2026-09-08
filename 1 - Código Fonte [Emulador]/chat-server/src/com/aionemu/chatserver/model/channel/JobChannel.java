@@ -25,7 +25,12 @@ public class JobChannel extends RaceChannel {
 		newOrderedSet("Chanter", "Kantor", "Cantor", "Cantore", "Aède", "Чародей", "护法星", "호법성"),
 		newOrderedSet("Aethertech", "Äthertech", "Técnico del éter", "Tecnico dell'etere", "Éthertech", "EterTech", "Etertek", "Пилот", "机甲星", "기갑성"),
 		newOrderedSet("Gunslinger", "Gunner", "Schütze", "Tirador", "Tiratore", "Pistolero", "Strzelec", "Nişancı", "Снайпер", "枪炮星", "사격성"),
-		newOrderedSet("Songweaver", "Bard", "Barde", "Bardo", "Ozan", "Бард", "吟游星", "음유성")
+		newOrderedSet("Songweaver", "Bard", "Barde", "Bardo", "Ozan", "Бард", "吟游星", "음유성"),
+		newOrderedSet("Revenant", "Thunderer", "Monk", "Executioner", "집행자"),
+		newOrderedSet("Brawler", "Striker", "권성"),
+		newOrderedSet("Luminess", "Orchestrator"),
+		newOrderedSet("Phoenix", "Engineer", "화선"),
+		newOrderedSet("Soul Reaper", "Reaper", "SoulReaper", "사신")
 	);
 
 	private final Set<String> classIdentifiers;

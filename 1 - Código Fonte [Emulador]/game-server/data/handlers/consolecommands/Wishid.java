@@ -19,7 +19,7 @@ public class Wishid extends ConsoleCommand {
 
 	@Override
 	public void execute(Player admin, String... params) {
-		if (params.length < 2) {
+		if (params.length < 1) {
 			info(admin, null);
 			return;
 		}
@@ -29,12 +29,27 @@ public class Wishid extends ConsoleCommand {
 			target = player;
 		}
 
-		long itemCount;
-		int itemId;
+		long itemCount = 1;
+		int itemId = 0;
 
 		try {
-			itemCount = Long.parseLong(params[0]);
-			itemId = Integer.parseInt(params[1]);
+			long val0 = Long.parseLong(params[0]);
+			if (params.length == 1) {
+				itemId = (int) val0;
+				itemCount = 1;
+			} else {
+				long val1 = Long.parseLong(params[1]);
+				if (DataManager.ITEM_DATA.getItemTemplate((int) val0) != null) {
+					itemId = (int) val0;
+					itemCount = val1;
+				} else if (DataManager.ITEM_DATA.getItemTemplate((int) val1) != null) {
+					itemId = (int) val1;
+					itemCount = val0;
+				} else {
+					itemId = (int) val1;
+					itemCount = val0;
+				}
+			}
 		} catch (NumberFormatException e) {
 			info(admin, null);
 			return;

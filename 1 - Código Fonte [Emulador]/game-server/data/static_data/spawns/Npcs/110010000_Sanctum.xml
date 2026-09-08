@@ -1283,51 +1283,39 @@
 		<spawn npc_id="832843" respawn_time="295">
 			<spot x="1620.047" y="1521.449" z="573.6293" h="60" />
 		</spawn>
-		<!-- Zayeed and Shooey -->
 		<spawn npc_id="730617" respawn_time="295">
 			<spot x="1603.42" y="1519.9279" z="574.6685" h="0" />
 		</spawn>
-		<!-- Sarakiel -->
 		<spawn npc_id="801258" respawn_time="295">
 			<spot x="1393.46" y="1645.9292" z="574.4368" h="0" />
 		</spawn>
-		<!-- Flight Transporter Soarinerk -->
 		<spawn npc_id="801878" respawn_time="295">
 			<spot x="1391.2581" y="1401.2755" z="573.981" h="0" />
 		</spawn>
-		<!-- Dedication to Asmodians -->
 		<spawn npc_id="730123" respawn_time="295">
 			<spot x="1622.0713" y="1541.0674" z="574.4137" h="0" />
 		</spawn>
-		<!-- Abyss Rift -->
 		<spawn npc_id="803571" respawn_time="295">
 			<spot x="1437.6" y="1524.2" z="574" h="0" />
 		</spawn>
-		<!-- Yannis -->
 		<spawn npc_id="799069" respawn_time="295">
 			<spot x="1378.6887" y="1494.1526" z="570.397" h="0" />
 		</spawn>
-		<!-- Elysium Ring 4 -->
 		<spawn npc_id="701560" respawn_time="295">
 			<spot x="1517.8683" y="1591.7404" z="600.4493" h="0" />
 		</spawn>
-		<!-- The Mau Tribes -->
 		<spawn npc_id="730181" respawn_time="295">
 			<spot x="1602.3829" y="1560.8953" z="575.9437" h="0" />
 		</spawn>
-		<!-- Asmo and Ellie -->
 		<spawn npc_id="730084" respawn_time="295">
 			<spot x="1605.6353" y="1548.7145" z="575.0106" h="0" />
 		</spawn>
-		<!-- Terrible Dredgion -->
 		<spawn npc_id="730183" respawn_time="295">
 			<spot x="1606.2855" y="1459.0245" z="575.3102" h="0" />
 		</spawn>
-		<!-- Elysium Ring 1 -->
 		<spawn npc_id="701557" respawn_time="295">
 			<spot x="1504.8975" y="1459.4136" z="593.358" h="0" />
 		</spawn>
-		<!-- Rapid Tornado -->
 		<spawn npc_id="800753" respawn_time="295">
 			<spot x="1575" y="1404" z="569.86" h="0" />
 			<spot x="1565.0234" y="1610.8972" z="569.86" h="0" />
@@ -1335,271 +1323,204 @@
 			<spot x="1587.7898" y="1499.6149" z="574.0262" h="0" />
 			<spot x="1462.4364" y="1562.6699" z="573.3947" h="0" />
 		</spawn>
-		<!-- Who Moved My Potcrab? -->
 		<spawn npc_id="730618" respawn_time="295">
 			<spot x="1604.0637" y="1502.8888" z="574.4172" h="0" />
 		</spawn>
-		<!-- The Mysteries of Shugos -->
 		<spawn npc_id="730088" respawn_time="295">
 			<spot x="1621.3734" y="1544.5814" z="575.2319" h="0" />
 		</spawn>
-		<!-- LC1_SensoryArea_Q3959 -->
 		<spawn npc_id="206101" respawn_time="295">
 			<spot x="1860.4744" y="1510.2524" z="806.6342" h="0" />
 		</spawn>
-		<!-- Resina -->
 		<spawn npc_id="730661" respawn_time="295">
 			<spot x="1401.4606" y="1521.5402" z="574.0963" h="0" />
 		</spawn>
-		<!-- Lodos -->
 		<spawn npc_id="803572" respawn_time="295">
 			<spot x="1437.9" y="1521.8" z="574" h="0" />
 		</spawn>
-		<!-- Zemurru -->
 		<spawn npc_id="730082" respawn_time="295">
 			<spot x="1605.12" y="1549.1763" z="576.8861" h="0" />
 		</spawn>
-		<!-- Wonderful Tripeeds! -->
 		<spawn npc_id="730117" respawn_time="295">
 			<spot x="1599.9587" y="1559.4048" z="574.2628" h="0" />
 		</spawn>
-		<!-- Femme Fatale of History 9 -->
 		<spawn npc_id="730086" respawn_time="295">
 			<spot x="1619.9236" y="1551.746" z="574.7109" h="0" />
 		</spawn>
-		<!-- The Death of Deltras the Prideful -->
 		<spawn npc_id="730115" respawn_time="295">
 			<spot x="1613.8917" y="1564.136" z="574.4859" h="0" />
 		</spawn>
-		<!-- A Guardian's Life-The Early Years -->
 		<spawn npc_id="748005" respawn_time="295">
 			<spot x="1619.1281" y="1467.8533" z="574.4744" h="0" />
 		</spawn>
-		<!-- Kipos -->
 		<spawn npc_id="799068" respawn_time="295">
 			<spot x="1376.3813" y="1494.6564" z="570.3351" h="0" />
 		</spawn>
-		<!-- Elysium Ring 2 -->
 		<spawn npc_id="701558" respawn_time="295">
 			<spot x="1567.4332" y="1444.5593" z="599.4493" h="0" />
 		</spawn>
-		<!-- Lionelo's Journal -->
 		<spawn npc_id="748015" respawn_time="295">
 			<spot x="1602.999" y="1561.3152" z="573.8882" h="0" />
 		</spawn>
-		<!-- Song of Three Sages -->
 		<spawn npc_id="748009" respawn_time="295">
 			<spot x="1621.2501" y="1475.9426" z="574.311" h="0" />
 		</spawn>
-		<!-- Atreian Folk Tales Vol. 9 -->
 		<spawn npc_id="748017" respawn_time="295">
 			<spot x="1608.6677" y="1563.6876" z="574.4859" h="0" />
 		</spawn>
-		<!-- Calista -->
 		<spawn npc_id="803575" respawn_time="295">
 			<spot x="1441.8" y="1526.1" z="574" h="0" />
 		</spawn>
-		<!-- Impetusium of Glory -->
 		<spawn npc_id="730081" respawn_time="295">
 			<spot x="1600.9595" y="1559.8878" z="573.7166" h="0" />
 		</spawn>
-		<!-- Historical Criminals of Atreia -->
 		<spawn npc_id="730120" respawn_time="295">
 			<spot x="1617.6936" y="1464.0568" z="575.0576" h="0" />
 		</spawn>
-		<!-- Ereshkigal Legend -->
 		<spawn npc_id="730184" respawn_time="295">
 			<spot x="1621.5378" y="1531.0331" z="574.4636" h="0" />
 		</spawn>
-		<!-- Namokata and the Dragon -->
 		<spawn npc_id="730136" respawn_time="295">
 			<spot x="1606.0682" y="1563.9536" z="575.5829" h="0" />
 		</spawn>
-		<!-- The Sixth Dragon -->
 		<spawn npc_id="730615" respawn_time="295">
 			<spot x="1606.1309" y="1522.6676" z="575.4441" h="0" />
 		</spawn>
-		<!-- The Golden Trumpet Temple -->
 		<spawn npc_id="730135" respawn_time="295">
 			<spot x="1600.8126" y="1559.8207" z="575.9437" h="0" />
 		</spawn>
-		<!-- Semelle -->
 		<spawn npc_id="266551" respawn_time="295">
 			<spot x="1408.6251" y="1435.5613" z="574.2994" h="0" />
 		</spawn>
-		<!-- Creatures of the Dawning Era -->
 		<spawn npc_id="748004" respawn_time="295">
 			<spot x="1620.421" y="1471.5139" z="574.5518" h="0" />
 		</spawn>
-		<!-- Weathered Door -->
 		<spawn npc_id="701115" respawn_time="295">
 			<spot x="1348.2024" y="1387.0789" z="575.684" h="0" />
 		</spawn>
-		<!-- Interesting Daevas of Asmodae -->
 		<spawn npc_id="730124" respawn_time="295">
 			<spot x="1621.3531" y="1545.3842" z="574.3682" h="0" />
 		</spawn>
-		<!-- The Struggle for Primum -->
 		<spawn npc_id="730129" respawn_time="295">
 			<spot x="1621.5352" y="1528.597" z="576.8121" h="0" />
 		</spawn>
-		<!-- Journal of an Explorer -->
 		<spawn npc_id="730080" respawn_time="295">
 			<spot x="1617.301" y="1559.5439" z="575.8621" h="0" />
 		</spawn>
-		<!-- Arbolu, the Ancestor of Elim -->
 		<spawn npc_id="730133" respawn_time="295">
 			<spot x="1620.0121" y="1470.2428" z="573.7034" h="0" />
 		</spawn>
-		<!-- Adel -->
 		<spawn npc_id="800825" respawn_time="295">
 			<spot x="1525.7867" y="1453.9739" z="573.5857" h="0" />
 		</spawn>
-		<!-- History of Ancient Atreia -->
 		<spawn npc_id="730079" respawn_time="295">
 			<spot x="1601.8448" y="1560.2257" z="574.3668" h="0" />
 		</spawn>
-		<!-- Rishien -->
 		<spawn npc_id="730659" respawn_time="295">
 			<spot x="1404.0149" y="1518.2168" z="574.1669" h="0" />
 		</spawn>
-		<!-- Frozen in Time -->
 		<spawn npc_id="730089" respawn_time="295">
 			<spot x="1603.813" y="1562.5135" z="574.3013" h="0" />
 		</spawn>
-		<!-- History of Pandaemonium -->
 		<spawn npc_id="730121" respawn_time="295">
 			<spot x="1620.4064" y="1551.6818" z="576.3979" h="0" />
 		</spawn>
-		<!-- The Burning of Theobomos -->
 		<spawn npc_id="730180" respawn_time="295">
 			<spot x="1606.1599" y="1475.3865" z="575.8762" h="0" />
 		</spawn>
-		<!-- Eingael -->
 		<spawn npc_id="800038" respawn_time="295">
 			<spot x="1380.8204" y="1494.5074" z="570.535" h="0" />
 		</spawn>
-		<!-- Interesting Asmodae -->
 		<spawn npc_id="730085" respawn_time="295">
 			<spot x="1606.5277" y="1547.1813" z="575.9766" h="0" />
 		</spawn>
-		<!-- The Brohums -->
 		<spawn npc_id="730182" respawn_time="295">
 			<spot x="1600.9307" y="1559.9944" z="575.2224" h="0" />
 		</spawn>
-		<!-- Violetwing -->
 		<spawn npc_id="800718" respawn_time="295">
 			<spot x="1464.1045" y="1640.4521" z="573.3672" h="0" />
 		</spawn>
-		<!-- History of Eltnen Fortress -->
 		<spawn npc_id="730118" respawn_time="295">
 			<spot x="1600.9403" y="1462.3492" z="575.103" h="0" />
 		</spawn>
-		<!-- Washrag – A Black Cloud Business Book -->
 		<spawn npc_id="730619" respawn_time="295">
 			<spot x="1605.6573" y="1501.3062" z="576.0602" h="0" />
 		</spawn>
-		<!-- Black Cloud Merchants Guidebook -->
 		<spawn npc_id="730130" respawn_time="295">
 			<spot x="1606.3302" y="1500.5663" z="574.4172" h="0" />
 		</spawn>
-		<!-- Femme Fatale of History 2 -->
 		<spawn npc_id="748002" respawn_time="295">
 			<spot x="1617.3951" y="1558.7383" z="575.2134" h="0" />
 		</spawn>
-		<!-- Theorus -->
 		<spawn npc_id="801549" respawn_time="295">
 			<spot x="1349.2064" y="1393.9231" z="573.5978" h="0" />
 		</spawn>
-		<!-- Femme Fatale of History 10 -->
 		<spawn npc_id="748003" respawn_time="295">
 			<spot x="1618.6791" y="1555.9916" z="575.2134" h="0" />
 		</spawn>
-		<!-- Kyarena -->
 		<spawn npc_id="801853" respawn_time="295">
 			<spot x="1435.3966" y="1518.6818" z="574.52" h="0" />
 		</spawn>
-		<!-- Renoios -->
 		<spawn npc_id="730669" respawn_time="295">
 			<spot x="1368.3662" y="1477.0338" z="570.0553" h="0" />
 		</spawn>
-		<!-- Odirius -->
 		<spawn npc_id="203699" respawn_time="295">
 			<spot x="1323.2128" y="1385.6572" z="575.2104" h="0" />
 		</spawn>
-		<!-- Lian -->
 		<spawn npc_id="803574" respawn_time="295">
 			<spot x="1439.2" y="1525.4" z="574" h="0" />
 		</spawn>
-		<!-- Kentari Folktales of Morheim -->
 		<spawn npc_id="730116" respawn_time="295">
 			<spot x="1621.4342" y="1543.7118" z="576.8121" h="0" />
 		</spawn>
-		<!-- Balaur, Who Are They! -->
 		<spawn npc_id="730083" respawn_time="295">
 			<spot x="1605.985" y="1547.8662" z="574.3135" h="0" />
 		</spawn>
-		<!-- Botanical Museum 7 -->
 		<spawn npc_id="730090" respawn_time="295">
 			<spot x="1604.084" y="1562.3953" z="576.7863" h="0" />
 		</spawn>
-		<!-- Fenris Fangs Test Past Papers -->
 		<spawn npc_id="748001" respawn_time="295">
 			<spot x="1614.7672" y="1563.6324" z="575.8621" h="0" />
 		</spawn>
-		<!-- Rinea -->
 		<spawn npc_id="800780" respawn_time="295">
 			<spot x="1355.0803" y="1420.0104" z="574.264" h="0" />
 		</spawn>
-		<!-- Agrif's Magic Sword -->
 		<spawn npc_id="748008" respawn_time="295">
 			<spot x="1619.7947" y="1553.6476" z="576.319" h="0" />
 		</spawn>
-		<!-- In Defence of Humanity -->
 		<spawn npc_id="730087" respawn_time="295">
 			<spot x="1621.9701" y="1540.8273" z="576.1625" h="0" />
 		</spawn>
-		<!-- Joining the Miragent Ranks -->
 		<spawn npc_id="748000" respawn_time="295">
 			<spot x="1621.7712" y="1483.1395" z="575.166" h="0" />
 		</spawn>
-		<!-- Legend of Eltnen 3 -->
 		<spawn npc_id="730119" respawn_time="295">
 			<spot x="1618.7144" y="1466.5546" z="574.4744" h="0" />
 		</spawn>
-		<!-- The Shadow Court -->
 		<spawn npc_id="730122" respawn_time="295">
 			<spot x="1621.8157" y="1542.049" z="573.9045" h="0" />
 		</spawn>
-		<!-- Traditional Fairy Tales of Atreia, Vol. 2 -->
 		<spawn npc_id="748014" respawn_time="295">
 			<spot x="1609.2308" y="1563.9137" z="575.4427" h="0" />
 		</spawn>
-		<!-- Elysium Ring 3 -->
 		<spawn npc_id="701559" respawn_time="295">
 			<spot x="1580.442" y="1561.752" z="597.1824" h="0" />
 		</spawn>
-		<!-- Odanerk -->
 		<spawn npc_id="802445" respawn_time="295">
 			<spot x="1459.4125" y="1521.2567" z="573.5015" h="0" />
 		</spawn>
-		<!-- Baba Bukiki’s Big Book of Gurriki Folktales -->
 		<spawn npc_id="730616" respawn_time="295">
 			<spot x="1603.8923" y="1520.7034" z="576.276" h="0" />
 		</spawn>
-		<!-- Traditional Fairy Tales of Atreia, Vol. 6 -->
 		<spawn npc_id="748013" respawn_time="295">
 			<spot x="1608.4596" y="1563.9806" z="576.3124" h="0" />
 		</spawn>
-		<!-- Expedition to Reshanta -->
 		<spawn npc_id="730128" respawn_time="295">
 			<spot x="1608.022" y="1458.5521" z="575.3102" h="0" />
 		</spawn>
-		<!-- Cloister of Kaisinel Teleport Statue -->
 		<spawn npc_id="804457" respawn_time="295">
 			<spot x="1366.4565" y="1543.7913" z="571.0732" h="0" />
 		</spawn>
-		<!-- Wasteland Kurin -->
 		<spawn npc_id="211272" respawn_time="295">
 			<spot x="1449.6257" y="1289.4095" z="558.7863" h="0" />
 			<spot x="1444.6324" y="1280.5088" z="558.7863" h="0" />
@@ -1614,7 +1535,6 @@
 			<spot x="1446.2428" y="1292.8914" z="558.7863" h="0" />
 			<spot x="1442.4697" y="1289.584" z="558.7863" h="0" />
 		</spawn>
-		<!-- Vicious Fangwing -->
 		<spawn npc_id="211275" respawn_time="295">
 			<spot x="1449.6257" y="1289.4095" z="558.7863" h="0" />
 			<spot x="1444.6324" y="1280.5088" z="558.7863" h="0" />
@@ -1629,23 +1549,18 @@
 			<spot x="1446.2428" y="1292.8914" z="558.7863" h="0" />
 			<spot x="1442.4697" y="1289.584" z="558.7863" h="0" />
 		</spawn>
-		<!-- Dethor -->
 		<spawn npc_id="800751" respawn_time="295">
 			<spot x="1393.6394" y="1641.1431" z="574.3979" h="0" />
 		</spawn>
-		<!-- Rediscovery of Superus Civilization -->
 		<spawn npc_id="730132" respawn_time="295">
 			<spot x="1619.3241" y="1468.2968" z="573.7034" h="0" />
 		</spawn>
-		<!-- The Tragedy of Heiron -->
 		<spawn npc_id="730134" respawn_time="295">
 			<spot x="1620.5551" y="1471.6763" z="573.7034" h="0" />
 		</spawn>
-		<!-- Pherdix -->
 		<spawn npc_id="271051" respawn_time="295">
 			<spot x="1403.8513" y="1437.8802" z="574.2719" h="0" />
 		</spawn>
-		<!-- Journal of Melleas -->
 		<spawn npc_id="730179" respawn_time="295">
 			<spot x="1618.9342" y="1467.0618" z="575.3335" h="0" />
 		</spawn>
