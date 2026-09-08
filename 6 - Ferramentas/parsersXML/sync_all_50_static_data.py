@@ -16,10 +16,10 @@ import backup_manager
 
 SERVER_BASE_DIR = os.path.join(PROJECT_ROOT, "Produto Final\data\server\data")
 TARGET_DIRS = [
-    os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data"),
+    os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "game-server", "data", "static_data"),
     os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 ]
-STRINGS_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "4 - Client 5.0 - Dados Extraidos", "Strings", "strings")
+STRINGS_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos", "Strings", "strings")
 
 NAME_TO_ID = {}
 NAME_TO_BODY = {}

@@ -185,7 +185,8 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeD(100); // 216
 		writeB(new byte[32]); // 220
 
-		writeD(0); // 252
+		int cp = com.aionemu.gameserver.services.CombatTalentService.calculateCombatPower(player);
+		writeD(cp); // 252
 		writeD(0); // 256
 		writeD(0); // 260
 
@@ -244,7 +245,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(safeBase(mCritDamReduce)); // 366
 
 		writeB(new byte[20]); // 368
-		writeD(0); // 388
+		writeD(cp); // 388
 		writeD(0); // 392
 		writeD(0); // 396
 

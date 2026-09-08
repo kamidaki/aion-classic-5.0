@@ -204,14 +204,20 @@ public class TradeService {
 				boolean valid = false;
 				for (TradeTab tab : purchaseTemplate.getTradeTablist()) {
 					GoodsList goodList = goodsListData.getGoodsPurchaseListById(tab.getId());
-					if (goodList.getItemIdList().contains(itemId)) {
+					if (goodList != null && goodList.getItemIdList().contains(itemId)) {
 						valid = true;
 						break;
 					}
 				}
-				if (!valid)
-					return false;
-				sellReward = (long) (item.getItemTemplate().getPrice() * purchaseTemplate.getBuyPriceRate() / 100D);
+				if (valid) {
+					sellReward = (long) (item.getItemTemplate().getPrice() * purchaseTemplate.getBuyPriceRate() / 100D);
+				} else {
+					if (!item.isSellable()) {
+						PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_BUY_SELL_ITEM_CAN_NOT_BE_SELLED_TO_NPC(item.getL10n()));
+						return false;
+					}
+					sellReward = PricesService.getSellReward(item.getItemTemplate().getPrice(), sellModifier);
+				}
 			} else {
 				if (!item.isSellable()) {
 					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_BUY_SELL_ITEM_CAN_NOT_BE_SELLED_TO_NPC(item.getL10n()));

@@ -19,9 +19,9 @@ PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
 import aion_bxml
 import backup_manager
 
-CLIENT_DATA_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "4 - Client 5.0 - Dados Extraidos", "data")
-CLIENT_STRINGS_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "4 - Client 5.0 - Dados Extraidos", "Strings", "strings")
-SERVER_DATA_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data")
+CLIENT_DATA_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos", "data")
+CLIENT_STRINGS_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos", "Strings", "strings")
+SERVER_DATA_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "game-server", "data", "static_data")
 PRODUTO_FINAL_DATA_DIR = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 
 # String and Item Caches

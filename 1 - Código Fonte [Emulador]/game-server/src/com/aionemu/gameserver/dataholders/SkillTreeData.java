@@ -30,7 +30,7 @@ public class SkillTreeData {
 
 	void afterUnmarshal(Unmarshaller u, Object parent) {
 		for (SkillLearnTemplate template : skillTemplates) {
-			if (template.getClassId() == null) {
+			if (template.getClassId() == null || template.getClassId() == PlayerClass.ALL) {
 				for (PlayerClass pClass: PlayerClass.values()) {
 					addTemplate(pClass, template);
 				}
@@ -78,6 +78,15 @@ public class SkillTreeData {
 			newSkills.addAll(classRaceSpecificTemplates);
 		if (classSpecificTemplates != null)
 			newSkills.addAll(classSpecificTemplates);
+
+		if (playerClass != PlayerClass.ALL) {
+			List<SkillLearnTemplate> allClassRaceSpecific = templates.get(makeHash(PlayerClass.ALL.ordinal(), race.ordinal(), level));
+			List<SkillLearnTemplate> allClassSpecific = templates.get(makeHash(PlayerClass.ALL.ordinal(), Race.PC_ALL.ordinal(), level));
+			if (allClassRaceSpecific != null)
+				newSkills.addAll(allClassRaceSpecific);
+			if (allClassSpecific != null)
+				newSkills.addAll(allClassSpecific);
+		}
 
 		return newSkills;
 	}
@@ -139,7 +148,7 @@ public class SkillTreeData {
 		List<SkillLearnTemplate> byId = templatesById.get(skillId);
 		if (byId != null) {
 			for (SkillLearnTemplate template : byId)
-				if ((template.getClassId() == null || template.getClassId() == playerClass)
+				if ((template.getClassId() == null || template.getClassId() == playerClass || template.getClassId() == PlayerClass.ALL)
 						&& (template.getRace() == Race.PC_ALL || template.getRace() == race))
 					searchSkills.add(template);
 		}

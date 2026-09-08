@@ -87,14 +87,6 @@ public class FlyController {
 	}
 
 	private static boolean canFly(Player player) {
-		if (!player.getCommonData().isDaeva()) {
-			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GLIDE_ONLY_DEVA_CAN());
-			return false;
-		}
-		if (!player.hasAccess(AdminConfig.FREE_FLIGHT) && (player.isInsideZoneType(ZoneType.NO_FLY) || !player.isInsideZoneType(ZoneType.FLY))) {
-			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_FLYING_FORBIDDEN_HERE());
-			return false;
-		}
 		if (player.getEffectController().isAbnormalSet(AbnormalState.NOFLY)) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_CANT_FLY_NOW_DUE_TO_NOFLY());
 			return false;
@@ -131,10 +123,6 @@ public class FlyController {
 	}
 
 	private static boolean canGlide(Player player) {
-		if (!player.getCommonData().isDaeva()) {
-			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GLIDE_ONLY_DEVA_CAN());
-			return false;
-		}
 		if (player.getTransformModel().cantFly()) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GLIDE_CANNOT_GLIDE_POLYMORPH_STATUS());
 			return false;

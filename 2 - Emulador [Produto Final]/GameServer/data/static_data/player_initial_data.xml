@@ -26,13 +26,14 @@
 			<item id="120015074" count="1" />
 			<item id="122001596" count="1" />
 			<item id="123001243" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="TEMPLAR">
@@ -51,20 +52,20 @@
 			<item id="120015074" count="1" />
 			<item id="122001596" count="1" />
 			<item id="123001243" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="RANGER">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="101701219" count="1" />
 			<item id="101701219" count="1" />
 			<item id="110301464" count="1" />
 			<item id="113301415" count="1" />
@@ -76,20 +77,20 @@
 			<item id="120015074" count="1" />
 			<item id="122001596" count="1" />
 			<item id="123001243" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="GLADIATOR">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="101301127" count="1" />
 			<item id="101301127" count="1" />
 			<item id="110601375" count="1" />
 			<item id="113601333" count="1" />
@@ -101,20 +102,20 @@
 			<item id="120015074" count="1" />
 			<item id="122001596" count="1" />
 			<item id="123001243" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="SORCERER">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="100501181" count="1" />
 			<item id="100501181" count="1" />			
 			<item id="110101547" count="1" />
 			<item id="113101433" count="1" />
@@ -126,20 +127,20 @@
 			<item id="120015075" count="1" />
 			<item id="122001597" count="1" />
 			<item id="121001325" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="SPIRIT_MASTER">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="100601234" count="1" />
 			<item id="100601234" count="1" />
 			<item id="110101548" count="1" />
 			<item id="113101434" count="1" />
@@ -151,13 +152,14 @@
 			<item id="120015075" count="1" />
 			<item id="122001597" count="1" />
 			<item id="121001325" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="CLERIC">
@@ -176,20 +178,20 @@
 			<item id="120015075" count="1" />
 			<item id="122001597" count="1" />
 			<item id="121001325" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="CHANTER">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="101501210" count="1" />
 			<item id="101501210" count="1" />
 			<item id="110551027" count="1" />
 			<item id="113501387" count="1" />
@@ -201,20 +203,20 @@
 			<item id="120015074" count="1" />
 			<item id="122001596" count="1" />
 			<item id="123001243" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="BRAWLER">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="102500432" count="1" />
 			<item id="102500432" count="1" />
 			<item id="110301466" count="1" />
 			<item id="113301417" count="1" />
@@ -226,20 +228,20 @@
 			<item id="120015074" count="1" />
 			<item id="122001596" count="1" />
 			<item id="123001243" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="REVENANT">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="102400493" count="1" />
 			<item id="102400493" count="1" />
 			<item id="110301465" count="1" />
 			<item id="113301416" count="1" />
@@ -251,13 +253,14 @@
 			<item id="120015074" count="1" />
 			<item id="122001596" count="1" />
 			<item id="123001243" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="SOUL_REAPER">
@@ -265,7 +268,6 @@
 			<item id="182400001" count="0" /> <!-- Wing / flight item -->
 			<item id="182500000" count="0" /> <!-- Wing / flight item -->
 			<item id="102700003" count="1" /> <!-- Novice Soul Reaper Soulblade (2H_RUNESWORD) -->
-			<item id="102700003" count="1" />
 			<item id="110601379" count="1" /> <!-- Novice Soul Reaper Breastplate (PLATE) -->
 			<item id="113601337" count="1" /> <!-- Novice Soul Reaper Plate Greaves (PLATE) -->
 			<item id="112601328" count="1" /> <!-- Novice Soul Reaper Shoulderplates (PLATE) -->
@@ -276,20 +278,20 @@
 			<item id="120015074" count="1" /> <!-- Novice Leather Earrings -->
 			<item id="122001596" count="1" /> <!-- Novice Leather Ring -->
 			<item id="123001243" count="1" /> <!-- Novice Leather Belt -->
-			<item id="164000221" count="10" /> <!-- Minor Life Potion -->
-			<item id="164000224" count="10" /> <!-- Minor Mana Potion -->
-			<item id="164000227" count="10" /> <!-- Minor Recovery Potion -->
-			<item id="164000259" count="10" /> <!-- Minor Wind Potion -->
-			<item id="160003577" count="10" /> <!-- Minor Life Serum -->
-			<item id="160003578" count="10" /> <!-- Minor Mana Serum -->
-			<item id="169300007" count="30" /> <!-- Power Shard -->
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="LUMINESS">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="102600408" count="1" />
 			<item id="102600408" count="1" />
 			<item id="110101549" count="1" />
 			<item id="113101435" count="1" />
@@ -301,20 +303,20 @@
 			<item id="120015075" count="1" />
 			<item id="122001597" count="1" />
 			<item id="121001325" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	<player_data class="PHOENIX">
 		<items>
 			<item id="182400001" count="0" />
 			<item id="182500000" count="0" />
-			<item id="101800054" count="1" />
 			<item id="101800054" count="1" />
 			<item id="110301467" count="1" />
 			<item id="113301418" count="1" />
@@ -326,13 +328,14 @@
 			<item id="120015075" count="1" />
 			<item id="122001597" count="1" />
 			<item id="121001325" count="1" />
-			<item id="164000221" count="10" />
-			<item id="164000224" count="10" />
-			<item id="164000227" count="10" />
-			<item id="164000259" count="10" />
-			<item id="160003577" count="10" />
-			<item id="160003578" count="10" />
-			<item id="169300007" count="30" />
+			<item id="162000002" count="20" /> <!-- Minor Life Potion -->
+			<item id="162000007" count="20" /> <!-- Minor Mana Potion -->
+			<item id="162000012" count="20" /> <!-- Minor Life Serum -->
+			<item id="162000022" count="20" /> <!-- Lesser Healing Potion -->
+			<item id="164000074" count="20" /> <!-- Lesser Running Scroll -->
+			<item id="164000071" count="20" /> <!-- Lesser Courage Scroll -->
+			<item id="164000132" count="20" /> <!-- Lesser Awakening Scroll -->
+			<item id="169300007" count="100" /> <!-- Power Shard -->
 		</items>
 	</player_data>
 	</player_initial_data>

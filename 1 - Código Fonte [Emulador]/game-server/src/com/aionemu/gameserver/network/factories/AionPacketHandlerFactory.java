@@ -136,7 +136,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_GROUP_LOOT.class, 0x17B, State.IN_GAME); // 0x0089 GROUP_LOOT
 		addPacket(CM_DISTRIBUTION_SETTINGS.class, 0x178, State.IN_GAME); // 0x008A DISTRIBUTION_SETTINGS
 		addPacket(CM_CRAFT.class, 0x167, State.IN_GAME); // 0x008D CRAFT
-		addPacket(CM_SEND_MAIL.class, 0x16E, State.IN_GAME); // 0x0094 SEND_MAIL
+		addPacket(CM_SEND_MAIL.class, 0x17E, State.IN_GAME); // 0x0084 SEND_MAIL
 		addPacket(CM_CHECK_MAIL_LIST.class, 0x16F, State.IN_GAME); // 0x0095 CHECK_MAIL_SIZE
 		addPacket(CM_READ_MAIL.class, 0x16C, State.IN_GAME); // 0x0096 READ_MAIL
 		addPacket(CM_GET_MAIL_ATTACHMENT.class, 0x16A, State.IN_GAME); // 0x0098 GET_MAIL_ATTACHMENT
@@ -168,12 +168,16 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_TELEPORT_ANIMATION_DONE.class, 0x9D, State.IN_GAME); // 0xFFE7 TELEPORT_ANIMATION_DONE
 		addPacket(CM_TITLE_SET.class, 0x169, State.IN_GAME); // 0x009B TITLE_SET
 		addPacket(CM_QUESTIONNAIRE.class, 0x163, State.IN_GAME); // 0x0091 QUESTIONNAIRE
-		addPacket(CM_MOVE_ITEM.class, 0x116, State.IN_GAME); // MOVE_ITEM
-		addPacket(CM_SPLIT_ITEM.class, 0x157, State.IN_GAME); // SPLIT_ITEM (0x157)
+		addPacket(CM_MOVE_ITEM.class, 0x156, State.IN_GAME); // 0x009C MOVE_ITEM (5.0 Classic)
+		addPacket(CM_MOVE_ITEM.class, 0x9C, State.IN_GAME); // Alias dec opcode
+		addPacket(CM_SPLIT_ITEM.class, 0x157, State.IN_GAME); // 0x009D SPLIT_ITEM (0x157)
 		addPacket(CM_DELETE_ITEM.class, 0x10E, State.IN_GAME); // DELETE_ITEM (0x10E)
 		addPacket(CM_DELETE_QUEST.class, 0x122, State.IN_GAME); // DELETE_QUEST
-		addPacket(CM_REVIVE.class, 0xEF, State.IN_GAME); // REVIVE
-		addPacket(CM_TELEPORT_SELECT.class, 0x16E, State.IN_GAME); // TELEPORT_SELECT (0x16E Flight & Teleport NPCs)
+		addPacket(CM_REVIVE.class, 0x00FF, State.IN_GAME); // 0x0005 C_DEAD_RESTART (5.0 Classic)
+		addPacket(CM_REVIVE.class, 0x0005, State.IN_GAME); // Raw alias
+		addPacket(CM_REVIVE.class, 0xEF, State.IN_GAME); // Legacy fallback
+		addPacket(CM_TELEPORT_SELECT.class, 0x16E, State.IN_GAME); // 0x0094 TELEPORT_SELECT (0x16E Flight & Teleport NPCs)
+		addPacket(CM_TELEPORT_SELECT.class, 0x0094, State.IN_GAME); // Raw alias
 		addPacket(CM_PLAYER_SEARCH.class, 0x155, State.IN_GAME); // PLAYER_SEARCH (0x155 Who Key 'V')
 		addPacket(CM_MOTION.class, 0x12D, State.IN_GAME); // MOTION
 		addPacket(CM_FUSION_WEAPONS.class, 0x1A5, State.IN_GAME); // FUSION_WEAPONS
@@ -200,7 +204,6 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_USER_CLASSIC_WARDROBE_DYE.class, 0x18D, State.IN_GAME); // WARDROBE_DYE
 		addPacket(CM_USER_CLASSIC_WARDROBE_EXTEND.class, 0x188, State.IN_GAME); // WARDROBE_EXTEND
 		addPacket(CM_USER_CLASSIC_WARDROBE_REGISTER.class, 0x18F, State.IN_GAME); // WARDROBE_REGISTER
-		addPacket(CM_BATTLE_PASS_REWARD.class, 0x156, State.IN_GAME); // BATTLE_PASS_REWARD
 		addPacket(CM_RECIPE_LIST.class, 0x14C, State.AUTHED, State.IN_GAME); // 0x00B6 RECIPE_LIST (5.0 Classic)
 		addPacket(CM_RECIPE_LIST.class, 0xB6, State.AUTHED, State.IN_GAME); // Alias dec opcode
 		addPacket(CM_GLOBAL_TRADE.class, 0x1F3, State.IN_GAME); // 0x0101 GLOBAL_TRADE_SALESLOG (5.0 Classic)
@@ -217,8 +220,6 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CLIENT_STATUS_HEARTBEAT.class, 0x02DF, State.IN_GAME); // 0x0225 CLIENT_STATUS_HEARTBEAT (5.0 Classic)
 
 		// Session telemetry & aliases
-		addPacket(CM_MOVE_ITEM.class, 0x014E, State.IN_GAME); // 0x00B4 MOVE_ITEM
-		addPacket(CM_MOVE_ITEM.class, 0x00B4, State.IN_GAME);
 		addPacket(CM_UI_SETTINGS.class, 0x00E8, State.IN_GAME); // 0x001A SAVE_UI_SETTINGS
 		addPacket(CM_UI_SETTINGS.class, 0x001A, State.IN_GAME);
 		addPacket(CM_CHAT_AUTH.class, 0x017C, State.IN_GAME); // 0x0086 SIGN_CLIENT
@@ -230,8 +231,6 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_RECONNECT_AUTH.class, 0x014A, State.AUTHED); // 0x00B8 RECONNECT_AUTH
 		addPacket(CM_RECONNECT_AUTH.class, 0x00B8, State.AUTHED);
 		addPacket(CM_CLIENT_PERF_METRICS.class, 0x00C5, State.IN_GAME);
-		addPacket(CM_FUSION_DIALOG_ACK.class, 0x00FF, State.IN_GAME); // 0x0005 FUSION_DIALOG_ACK
-		addPacket(CM_FUSION_DIALOG_ACK.class, 0x0005, State.IN_GAME);
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x01D0, State.IN_GAME, State.AUTHED); // 0x0122 PROTOCOL_PING_ACK
 		addPacket(CM_PROTOCOL_PING_ACK.class, 0x0122, State.IN_GAME, State.AUTHED);
 	}

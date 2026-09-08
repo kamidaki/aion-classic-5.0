@@ -16,10 +16,10 @@ public class EquippedSlotBlobEntry extends ItemBlobEntry {
 	public void writeThisBlob(ByteBuffer buf) {
 		Item item = ownerItem;
 		long slot = item.getEquipmentSlot();
-		if (item.getItemTemplate().isTwoHandWeapon() && slot == ItemSlot.MAIN_HAND.getSlotIdMask()) {
-			slot = ItemSlot.MAIN_OR_SUB.getSlotIdMask();
-		} else if (item.getItemTemplate().isTwoHandWeapon() && slot == ItemSlot.MAIN_OFF_HAND.getSlotIdMask()) {
-			slot = ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask();
+		if ((slot & ItemSlot.MAIN_OR_SUB.getSlotIdMask()) == ItemSlot.MAIN_OR_SUB.getSlotIdMask()) {
+			slot = ItemSlot.MAIN_HAND.getSlotIdMask();
+		} else if ((slot & ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask()) == ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask()) {
+			slot = ItemSlot.MAIN_OFF_HAND.getSlotIdMask();
 		}
 		// 5.0 Classic: a mascara de slot e u64 (8 bytes).
 		writeQ(buf, item.isEquipped() ? slot : 0);

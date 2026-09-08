@@ -156,6 +156,51 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		if (useLimits == null)
 			useLimits = emptyUseLimits;
 
+		int classCount = PlayerClass.values().length;
+		if (levelRestrictions != null && levelRestrictions.length < classCount) {
+			byte[] newRestr = new byte[classCount];
+			System.arraycopy(levelRestrictions, 0, newRestr, 0, levelRestrictions.length);
+			boolean allNonZero = true;
+			byte minVal = 0;
+			for (byte b : levelRestrictions) {
+				if (b == 0) {
+					allNonZero = false;
+					break;
+				}
+				if (minVal == 0 || (b & 0xFF) < (minVal & 0xFF)) {
+					minVal = b;
+				}
+			}
+			if (allNonZero && minVal > 0) {
+				for (int i = levelRestrictions.length; i < classCount; i++) {
+					newRestr[i] = minVal;
+				}
+			}
+			levelRestrictions = newRestr;
+		}
+
+		if (maxLevelRestrictions != null && maxLevelRestrictions.length < classCount) {
+			byte[] newMax = new byte[classCount];
+			System.arraycopy(maxLevelRestrictions, 0, newMax, 0, maxLevelRestrictions.length);
+			boolean allNonZero = true;
+			byte maxVal = 0;
+			for (byte b : maxLevelRestrictions) {
+				if (b == 0) {
+					allNonZero = false;
+					break;
+				}
+				if (maxVal == 0 || (b & 0xFF) > (maxVal & 0xFF)) {
+					maxVal = b;
+				}
+			}
+			if (allNonZero && maxVal > 0) {
+				for (int i = maxLevelRestrictions.length; i < classCount; i++) {
+					newMax[i] = maxVal;
+				}
+			}
+			maxLevelRestrictions = newMax;
+		}
+
 		// check if it can be randomized
 		if (getItemSlot() == 0)
 			maxTuneCount = 0;
@@ -177,17 +222,21 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		if (isArmor() || isWeapon()) {
 			return true;
 		}
-		boolean related = levelRestrictions[playerClass.ordinal()] > 0;
+		int ord = playerClass.ordinal();
+		boolean related = ord < levelRestrictions.length && levelRestrictions[ord] > 0;
 		if (!related && playerClass.getStartingClass() != playerClass) {
-			related = levelRestrictions[playerClass.getStartingClass().ordinal()] > 0;
+			int startOrd = playerClass.getStartingClass().ordinal();
+			related = startOrd < levelRestrictions.length && levelRestrictions[startOrd] > 0;
 		}
 		return related;
 	}
 
 	public int getRequiredLevel(PlayerClass playerClass) {
-		int requiredLevel = levelRestrictions[playerClass.ordinal()];
+		int ord = playerClass.ordinal();
+		int requiredLevel = ord < levelRestrictions.length ? (levelRestrictions[ord] & 0xFF) : 0;
 		if (requiredLevel == 0 && playerClass.getStartingClass() != playerClass) {
-			requiredLevel = levelRestrictions[playerClass.getStartingClass().ordinal()];
+			int startOrd = playerClass.getStartingClass().ordinal();
+			requiredLevel = startOrd < levelRestrictions.length ? (levelRestrictions[startOrd] & 0xFF) : 0;
 		}
 		if (requiredLevel == 0) {
 			if (isArmor() || isWeapon()) {
@@ -208,9 +257,11 @@ public class ItemTemplate extends VisibleObjectTemplate {
 
 	public byte getMaxLevelRestrict(PlayerClass playerClass) {
 		if (maxLevelRestrictions != null) {
-			byte max = maxLevelRestrictions[playerClass.ordinal()];
+			int ord = playerClass.ordinal();
+			byte max = ord < maxLevelRestrictions.length ? maxLevelRestrictions[ord] : 0;
 			if (max == 0 && playerClass.getStartingClass() != playerClass) {
-				max = maxLevelRestrictions[playerClass.getStartingClass().ordinal()];
+				int startOrd = playerClass.getStartingClass().ordinal();
+				max = startOrd < maxLevelRestrictions.length ? maxLevelRestrictions[startOrd] : 0;
 			}
 			if (max == 0 && (isArmor() || isWeapon())) {
 				for (byte m : maxLevelRestrictions) {

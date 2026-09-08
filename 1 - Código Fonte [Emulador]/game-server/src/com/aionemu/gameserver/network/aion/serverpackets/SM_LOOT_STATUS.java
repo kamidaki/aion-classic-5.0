@@ -27,7 +27,6 @@ public class SM_LOOT_STATUS extends AionServerPacket {
 	protected void writeImpl(AionConnection con) {
 		writeD(targetObjectId);
 		writeC(status.getId());
-		writeD(lootEffectId);
 	}
 
 	private static int getLootEffect(int targetObjectId) {

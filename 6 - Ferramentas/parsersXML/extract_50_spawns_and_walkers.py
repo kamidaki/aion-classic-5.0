@@ -21,15 +21,16 @@ from collections import defaultdict
 sys.stdout.reconfigure(encoding='utf-8')
 
 # Caminhos base
-BASE_TOOLS = r"D:\AION CLASSIC 5.0 - EMULADOR\6 - Ferramentas"
-CLIENT_DATA_DIR = r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_TOOLS = os.path.join(BASE_DIR, "6 - Ferramentas")
+CLIENT_DATA_DIR = os.path.join(BASE_DIR, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos")
 STRINGS_DIR = os.path.join(CLIENT_DATA_DIR, "Strings", "strings")
 CLIENT_NPCS_PATH = os.path.join(CLIENT_DATA_DIR, "data", "npcs", "client_npcs.xml")
 CLIENT_WORLD_DIR = os.path.join(CLIENT_DATA_DIR, "data", "world")
 WAYPOINT_CSV_PATH = os.path.join(CLIENT_WORLD_DIR, "waypoint.csv")
 
-GAME_SERVER_STATIC = r"D:\AION CLASSIC 5.0 - BEYOND TESTE\game-server\data\static_data"
-EMULADOR_FINAL_STATIC = r"D:\AION CLASSIC 5.0 - BEYOND TESTE\EMULADOR FINAL\GameServer\data\static_data"
+GAME_SERVER_STATIC = os.path.join(BASE_DIR, "1 - Código Fonte [Emulador]", "game-server", "data", "static_data")
+EMULADOR_FINAL_STATIC = os.path.join(BASE_DIR, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 
 sys.path.insert(0, BASE_TOOLS)
 import aion_bxml

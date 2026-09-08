@@ -10,6 +10,7 @@ import com.aionemu.gameserver.network.aion.AionServerPacket;
 public class SM_ATTACK_STATUS extends AionServerPacket {
 
 	private Creature creature;
+	private Creature attacker;
 	private TYPE type;
 	private int skillId;
 	private int value;
@@ -94,20 +95,25 @@ public class SM_ATTACK_STATUS extends AionServerPacket {
 		}
 	}
 
-	public SM_ATTACK_STATUS(Creature creature, TYPE type, int skillId, int value, LOG log) {
+	public SM_ATTACK_STATUS(Creature creature, Creature attacker, TYPE type, int skillId, int value, LOG log) {
 		this.creature = creature;
+		this.attacker = attacker;
 		this.type = type;
 		this.skillId = skillId;
 		this.value = value;
 		this.logId = log.getValue();
 	}
 
+	public SM_ATTACK_STATUS(Creature creature, TYPE type, int skillId, int value, LOG log) {
+		this(creature, null, type, skillId, value, log);
+	}
+
 	public SM_ATTACK_STATUS(Creature creature, TYPE type, int skillId, int value) {
-		this(creature, type, skillId, value, LOG.REGULAR);
+		this(creature, null, type, skillId, value, LOG.REGULAR);
 	}
 
 	public SM_ATTACK_STATUS(Creature creature, int value) {
-		this(creature, TYPE.REGULAR, 0, value, LOG.REGULAR);
+		this(creature, null, TYPE.REGULAR, 0, value, LOG.REGULAR);
 	}
 
 	@Override
@@ -145,7 +151,10 @@ public class SM_ATTACK_STATUS extends AionServerPacket {
 		writeC(type.getValue());
 		writeC(hpOrMp);
 		writeH(skillId);
+		writeH(0); // 5.0 Classic unk1
 		writeH(logId);
+		writeD(attacker != null ? attacker.getObjectId() : 0); // 5.0 Classic attacker objectId
+		writeD(0); // 5.0 Classic unk2
 	}
 
 	/**

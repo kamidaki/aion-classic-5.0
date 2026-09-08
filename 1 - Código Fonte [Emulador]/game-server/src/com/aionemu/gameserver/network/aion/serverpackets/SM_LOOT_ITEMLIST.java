@@ -43,17 +43,11 @@ public class SM_LOOT_ITEMLIST extends AionServerPacket {
 
 		for (DropItem dropItem : dropItems) {
 			Drop drop = dropItem.getDropTemplate();
-			writeC(dropItem.getIndex()); // index in droplist
+			writeD(dropItem.getIndex()); // u32 index in droplist
+			writeC(0);
 			writeD(drop.getItemId());
 			writeD((int) dropItem.getCount());
-			writeC(dropItem.getOptionalSocket());
-			writeC(0);
-			writeC(0); // 3.5
-			ItemTemplate template = DataManager.ITEM_DATA.getItemTemplate(drop.getItemId());
-			boolean showLootConfirmation = !template.isTradeable();
-			if (dropItem.isOnlyPossibleLooter(activePlayer) || !teamMembersNearby)
-				showLootConfirmation = false;
-			writeC(showLootConfirmation ? 1 : 0);
+			writeH(0);
 		}
 
 	}

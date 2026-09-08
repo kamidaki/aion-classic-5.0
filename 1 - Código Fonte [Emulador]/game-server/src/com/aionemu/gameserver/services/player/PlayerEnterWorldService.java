@@ -52,6 +52,7 @@ import com.aionemu.gameserver.services.LegionService;
 import com.aionemu.gameserver.services.mail.MailService;
 import com.aionemu.gameserver.services.teleport.TeleportService;
 import com.aionemu.gameserver.services.toypet.PetService;
+import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.taskmanager.tasks.ExpireTimerTask;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.PositionUtil;
@@ -242,6 +243,13 @@ public final class PlayerEnterWorldService {
 			client.sendPacket(new SM_ABYSS_RANK(player));
 			client.sendPacket(new SM_UNK_0191());
 			client.sendPacket(new SM_STATS_INFO(player));
+
+			// 13. Quests
+			if (player.getQuestStateList().getAllQuestState().isEmpty()) {
+				QuestEngine.getInstance().onLevelChanged(player);
+			}
+			QuestEngine.getInstance().sendCompletedQuests(player);
+			client.sendPacket(new SM_QUEST_LIST(player.getQuestStateList().getAllQuestState()));
 
 
 			// 14. Equipe & Servicos sociais

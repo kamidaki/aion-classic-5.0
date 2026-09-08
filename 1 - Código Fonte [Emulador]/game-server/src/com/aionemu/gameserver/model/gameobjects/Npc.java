@@ -357,7 +357,7 @@ public class Npc extends Creature {
 	 * @return True if this npc sells items.
 	 */
 	public boolean canSell() {
-		return DataManager.TRADE_LIST_DATA.getTradeListTemplate(getNpcId()) != null && getObjectTemplate().supportsAction(DialogAction.BUY);
+		return DataManager.TRADE_LIST_DATA.getTradeListTemplate(getNpcId()) != null || getObjectTemplate().supportsAction(DialogAction.BUY);
 	}
 
 	/**

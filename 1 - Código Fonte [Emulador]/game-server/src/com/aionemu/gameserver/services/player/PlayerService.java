@@ -261,7 +261,11 @@ public class PlayerService {
 						}
 					}
 				}
-				newPlayer.getInventory().onLoadHandler(item);
+				if (item.isEquipped()) {
+					newPlayer.getEquipment().onLoadHandler(item);
+				} else {
+					newPlayer.getInventory().onLoadHandler(item);
+				}
 			}
 		}
 		newPlayer.setMailbox(new Mailbox(newPlayer));

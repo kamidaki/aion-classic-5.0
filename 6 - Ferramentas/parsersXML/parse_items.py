@@ -162,7 +162,7 @@ def parse_items():
         return
 
     # 2. Carrega item_templates.xml do servidor
-    server_path = "items/item/item_templates.xml"
+    server_path = "items/item_templates.xml"
     _, server_root = common_bxml.read_server_xml(server_path)
     orig_count = len(server_root)
     
@@ -274,7 +274,7 @@ def parse_items():
     common_bxml.log_step("Itens (item_templates)", orig_count, added_count, updated_count, final_count)
 
     # Sincroniza diretamente com o PRODUTO FINAL
-    produto_final_xml = os.path.join(os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data", "items\item\item_templates.xml"))
+    produto_final_xml = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data", "items", "item_templates.xml")
     if os.path.exists(os.path.dirname(produto_final_xml)):
         source_xml = os.path.join(common_bxml.SERVER_DATA_DIR, server_path)
         shutil.copy2(source_xml, produto_final_xml)
