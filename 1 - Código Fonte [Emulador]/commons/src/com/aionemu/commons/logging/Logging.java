@@ -65,8 +65,8 @@ public class Logging {
 				createArchive(oldLogsFolder.resolve(outFilename), logFiles, logFolder);
 				delete(logFiles);
 			}
-		} catch (IOException | SecurityException e) {
-			throw new RuntimeException("Error gathering and archiving old logs", e);
+		} catch (Exception e) {
+			System.err.println("Warning: Could not archive old logs: " + e.getMessage());
 		}
 	}
 
@@ -82,10 +82,19 @@ public class Logging {
 		}
 	}
 
-	private static void delete(List<Path> files) throws IOException {
-		for (Path logFile : files)
-			Files.delete(logFile);
+	private static void delete(List<Path> files) {
+		for (Path logFile : files) {
+			try {
+				Files.deleteIfExists(logFile);
+			} catch (Exception ignored) {
+			}
+		}
 		// attempt to delete parent folders (only deletes empty folders)
-		files.stream().map(Path::getParent).distinct().forEach(parent -> parent.toFile().delete());
+		files.stream().map(Path::getParent).distinct().forEach(parent -> {
+			try {
+				parent.toFile().delete();
+			} catch (Exception ignored) {
+			}
+		});
 	}
 }

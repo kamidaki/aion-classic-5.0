@@ -21,9 +21,7 @@ import com.aionemu.commons.scripting.impl.javacompiler.BinaryClass;
 import com.aionemu.commons.utils.PropertiesUtils;
 
 /**
- * This class holds file references to compiled classes. Script compiler may use it to load/store compiled classes from/to disk to accelerate class
- * loading.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class ScriptCompilerCache {
 

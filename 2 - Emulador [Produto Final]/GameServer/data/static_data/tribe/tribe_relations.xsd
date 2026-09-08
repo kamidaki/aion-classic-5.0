@@ -12,9 +12,9 @@
 	</xs:element>
 	<xs:complexType name="Tribe">
 		<xs:all>
-			<xs:element name="aggressive" type="TribeListType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="aggro" type="TribeListType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="hostile" type="TribeListType" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="friendly" type="TribeListType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="friend" type="TribeListType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="neutral" type="TribeListType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="support" type="TribeListType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="none" type="TribeListType" minOccurs="0" maxOccurs="1"/>

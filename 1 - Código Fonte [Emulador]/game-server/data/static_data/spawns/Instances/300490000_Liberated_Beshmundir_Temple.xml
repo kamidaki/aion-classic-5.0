@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="300490000">
+		<!-- Prison of Ice Gate -->
+		<spawn npc_id="730527" respawn_time="295">
+			<spot x="653.9366" y="497.2061" z="203.6136" h="0"/>
+		</spawn>
+		<!-- Beshmundir Temple Exit -->
+		<spawn npc_id="730528" respawn_time="295">
+			<spot x="726.558" y="536.4696" z="199.5639" h="0"/>
+		</spawn>
+		<!-- Isbariya's Corpse -->
+		<spawn npc_id="800487" respawn_time="295">
+			<spot x="658.7437" y="510.7497" z="203.6136" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

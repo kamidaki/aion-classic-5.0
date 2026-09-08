@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="800070000">
+		<!-- Ruonas -->
+		<spawn npc_id="209397" respawn_time="295">
+			<spot x="753.571" y="125.9518" z="1198.6195" h="0"/>
+		</spawn>
+		<!-- Marmara -->
+		<spawn npc_id="209398" respawn_time="295">
+			<spot x="754.2184" y="187.0221" z="1203.7533" h="0"/>
+		</spawn>
+		<!-- Trois -->
+		<spawn npc_id="209399" respawn_time="295">
+			<spot x="753.571" y="1409.9873" z="1199.9409" h="0"/>
+		</spawn>
+		<!-- Grimron -->
+		<spawn npc_id="209400" respawn_time="295">
+			<spot x="754.2184" y="1352.4429" z="1205.0747" h="0"/>
+		</spawn>
+		<!-- Zerona -->
+		<spawn npc_id="209411" respawn_time="295">
+			<spot x="779.529" y="71.4731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Ariane -->
+		<spawn npc_id="209412" respawn_time="295">
+			<spot x="779.529" y="82.4731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Domitia -->
+		<spawn npc_id="209413" respawn_time="295">
+			<spot x="779.529" y="85.4731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Erika -->
+		<spawn npc_id="209414" respawn_time="295">
+			<spot x="779.779" y="1465.4731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Styrmir -->
+		<spawn npc_id="209415" respawn_time="295">
+			<spot x="779.779" y="1454.9731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Gudrun -->
+		<spawn npc_id="209416" respawn_time="295">
+			<spot x="779.779" y="1451.9731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Mailbox -->
+		<spawn npc_id="701554" respawn_time="295">
+			<spot x="780.529" y="68.4731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Mailbox -->
+		<spawn npc_id="701555" respawn_time="295">
+			<spot x="780.779" y="1468.4731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Craft: Durable Adamantium Plate Greaves -->
+		<spawn npc_id="730657" respawn_time="295">
+			<spot x="731" y="26" z="1197" h="0"/>
+		</spawn>
+		<!-- Craft: Worthy Durable Adamantium Chain Helm -->
+		<spawn npc_id="730666" respawn_time="295">
+			<spot x="308.0132" y="537.8427" z="1037.2483" h="0"/>
+		</spawn>
+		<!-- Sublime Flamesteed Identifier -->
+		<spawn npc_id="780183" respawn_time="295">
+			<spot x="645.6102" y="729.1095" z="1224.8119" h="0"/>
+		</spawn>
+		<!-- Fine Crucible Coliseum Invincibility Water -->
+		<spawn npc_id="780189" respawn_time="295">
+			<spot x="642.0299" y="683.6251" z="1229.8109" h="0"/>
+		</spawn>
+		<!-- Treasure Map Identifier -->
+		<spawn npc_id="802390" respawn_time="295">
+			<spot x="732.264" y="65.1361" z="1198.2483" h="0"/>
+			<spot x="731.522" y="1453.6216" z="1198.2483" h="0"/>
+		</spawn>
+		<!-- Elyos Entrance Teleporter -->
+		<spawn npc_id="802791" respawn_time="295">
+			<spot x="754.1829" y="232.9547" z="1185.2605" h="0"/>
+		</spawn>
+		<!-- Asmodian Entrance Teleporter -->
+		<spawn npc_id="802792" respawn_time="295">
+			<spot x="754.1829" y="1300.9847" z="1185.2605" h="0"/>
+		</spawn>
+		<!-- Somnium Portal -->
+		<spawn npc_id="802947" respawn_time="295">
+			<spot x="779.529" y="76.9731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Tiamaranta Garrison Entrance -->
+		<spawn npc_id="802948" respawn_time="295">
+			<spot x="754.779" y="13.9731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="802949" respawn_time="295">
+			<spot x="779.529" y="51.4731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Nornir Portal -->
+		<spawn npc_id="802952" respawn_time="295">
+			<spot x="779.779" y="1460.4731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Tiamaranta Garrison Entrance -->
+		<spawn npc_id="802953" respawn_time="295">
+			<spot x="754.2335" y="1522.3595" z="1198.2076" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="802954" respawn_time="295">
+			<spot x="779.779" y="1485.9731" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Apprentinerk -->
+		<spawn npc_id="802957" respawn_time="295">
+			<spot x="733.0132" y="72.6408" z="1198.2483" h="0"/>
+		</spawn>
+		<!-- Assistinerk -->
+		<spawn npc_id="802958" respawn_time="295">
+			<spot x="732.5132" y="1460.7909" z="1198.2483" h="0"/>
+		</spawn>
+		<!-- Managerinerk -->
+		<spawn npc_id="802960" respawn_time="295">
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1198.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1198.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1198.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1198.2483" h="0"/>
+		</spawn>
+		<!-- Gafferinerk -->
+		<spawn npc_id="802961" respawn_time="295">
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1199.2483" h="0"/>
+		</spawn>
+		<!-- Bossinerk -->
+		<spawn npc_id="802962" respawn_time="295">
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+			<spot x="734.5132" y="77.2909" z="1200.2483" h="0"/>
+		</spawn>
+		<!-- Teamleadinerk -->
+		<spawn npc_id="802963" respawn_time="295">
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1198.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1198.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1198.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1198.2483" h="0"/>
+		</spawn>
+		<!-- Departmentinerk -->
+		<spawn npc_id="802964" respawn_time="295">
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1199.2483" h="0"/>
+		</spawn>
+		<!-- Supervisorinerk -->
+		<spawn npc_id="802965" respawn_time="295">
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+			<spot x="734.0132" y="1465.7909" z="1200.2483" h="0"/>
+		</spawn>
+		<!-- Black Cloud Secret Emissary -->
+		<spawn npc_id="803088" respawn_time="295">
+			<spot x="732.0132" y="69.6408" z="1198.2483" h="0"/>
+		</spawn>
+		<!-- Black Cloud Secret Emissary -->
+		<spawn npc_id="803089" respawn_time="295">
+			<spot x="731.5132" y="1457.7909" z="1198.2483" h="0"/>
+		</spawn>
+		<!-- Siron -->
+		<spawn npc_id="803188" respawn_time="295">
+			<spot x="779.5428" y="47.2282" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Renio -->
+		<spawn npc_id="803189" respawn_time="295">
+			<spot x="779.5469" y="41.1188" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Maran -->
+		<spawn npc_id="803190" respawn_time="295">
+			<spot x="779.5428" y="61.3845" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Sinia -->
+		<spawn npc_id="803191" respawn_time="295">
+			<spot x="779.5428" y="55.2595" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Rinai -->
+		<spawn npc_id="803192" respawn_time="295">
+			<spot x="779.6678" y="1489.8845" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Murtanin -->
+		<spawn npc_id="803193" respawn_time="295">
+			<spot x="779.6678" y="1496.0095" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Luniz -->
+		<spawn npc_id="803194" respawn_time="295">
+			<spot x="779.6678" y="1481.9783" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Sakchi -->
+		<spawn npc_id="803195" respawn_time="295">
+			<spot x="779.6719" y="1475.8688" z="1198.6617" h="0"/>
+		</spawn>
+		<!-- Elyos Supplier -->
+		<spawn npc_id="803319" respawn_time="295">
+			<spot x="779.7254" y="64.8783" z="1198.4988" h="0"/>
+		</spawn>
+		<!-- Asmodian Supplier -->
+		<spawn npc_id="803320" respawn_time="295">
+			<spot x="779.7568" y="1472.5261" z="1198.4988" h="0"/>
+		</spawn>
+		<!-- Tiamat's Abyss Gate -->
+		<spawn npc_id="803850" respawn_time="295">
+			<spot x="756.8183" y="766.7898" z="1217.7889" h="0"/>
+			<spot x="756.8183" y="766.7898" z="1217.7889" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

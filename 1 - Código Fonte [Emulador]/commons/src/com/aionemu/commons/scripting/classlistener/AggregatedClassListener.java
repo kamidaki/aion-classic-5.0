@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ClassListener that aggregates a collection of ClassListeners.<br>
- * Please note that "shutdown" listeners will be executed in reverse order.
- *
+ * @author Lost Academy Team & Durak
  */
 public class AggregatedClassListener implements ClassListener {
 

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="300500000">
+		<!-- Drana Report -->
+		<spawn npc_id="800505" respawn_time="295">
+			<spot x="670" y="397" z="146" h="0"/>
+			<spot x="686" y="324" z="146" h="0"/>
+		</spawn>
+		<!-- Prototype Report -->
+		<spawn npc_id="800506" respawn_time="295">
+			<spot x="459" y="626" z="133" h="0"/>
+			<spot x="420" y="576" z="133" h="0"/>
+		</spawn>
+		<!-- Dilator Key Box -->
+		<spawn npc_id="800524" respawn_time="295">
+			<spot x="464.5237" y="385.3164" z="177.6" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800531" respawn_time="295">
+			<spot x="420" y="459" z="99.1" h="0"/>
+			<spot x="420" y="459" z="99.1" h="0"/>
+			<spot x="420" y="459" z="99.1" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800532" respawn_time="295">
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800533" respawn_time="295">
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+		</spawn>
+		<!-- Siel's Energy Pack -->
+		<spawn npc_id="800534" respawn_time="295">
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="489.5" y="373" z="113.1" h="0"/>
+			<spot x="420" y="459" z="99.6" h="0"/>
+			<spot x="420" y="459" z="99.6" h="0"/>
+			<spot x="420" y="459" z="99.6" h="0"/>
+		</spawn>
+		<!-- Meleris -->
+		<spawn npc_id="800535" respawn_time="295">
+			<spot x="788" y="383" z="162.5" h="0"/>
+		</spawn>
+		<!-- Karnia -->
+		<spawn npc_id="800536" respawn_time="295">
+			<spot x="788" y="383" z="162.5" h="0"/>
+		</spawn>
+		<!-- Omne Solum -->
+		<spawn npc_id="800552" respawn_time="295">
+			<spot x="186.25" y="602" z="139.1488" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800581" respawn_time="295">
+			<spot x="354.2149" y="587.6049" z="136.5" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800582" respawn_time="295">
+			<spot x="354.2149" y="599.6049" z="136.5" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800583" respawn_time="295">
+			<spot x="354.2149" y="614.6049" z="136.5" h="0"/>
+		</spawn>
+		<!-- Empty Soldier Chest -->
+		<spawn npc_id="800584" respawn_time="295">
+			<spot x="393" y="634" z="138" h="0"/>
+			<spot x="416" y="569" z="129" h="0"/>
+			<spot x="468" y="343" z="116" h="0"/>
+			<spot x="495" y="621" z="129" h="0"/>
+			<spot x="687" y="425" z="150" h="0"/>
+			<spot x="654" y="415" z="150" h="0"/>
+			<spot x="738" y="346" z="150" h="0"/>
+			<spot x="692" y="345" z="150" h="0"/>
+			<spot x="761" y="400" z="150" h="0"/>
+			<spot x="457" y="638" z="144" h="0"/>
+		</spawn>
+		<!-- Omne Solum -->
+		<spawn npc_id="800602" respawn_time="295">
+			<spot x="805" y="384.6594" z="161.25" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="800060000">
+		<!-- Lake of Tears -->
+		<spawn npc_id="206290" respawn_time="295">
+			<spot x="2272.3687" y="1534.3527" z="243" h="0"/>
+		</spawn>
+		<!-- Karst of Desperation -->
+		<spawn npc_id="206291" respawn_time="295">
+			<spot x="1763.215" y="1133.1558" z="219" h="0"/>
+		</spawn>
+		<!-- Craggy Heart -->
+		<spawn npc_id="206292" respawn_time="295">
+			<spot x="1142.3495" y="2030.1545" z="263.5" h="0"/>
+		</spawn>
+		<!-- Splinter of Warning -->
+		<spawn npc_id="701577" respawn_time="295">
+			<spot x="1932.265" y="1471.47" z="233" h="0"/>
+		</spawn>
+		<!-- Weightless Weight -->
+		<spawn npc_id="701578" respawn_time="295">
+			<spot x="270" y="1294" z="380" h="0"/>
+		</spawn>
+		<!-- Rotten Golden Apple Branch -->
+		<spawn npc_id="701579" respawn_time="295">
+			<spot x="270" y="1294" z="346" h="0"/>
+		</spawn>
+		<!-- Luciferin of Sentiment -->
+		<spawn npc_id="701589" respawn_time="295">
+			<spot x="2007.3505" y="1517.2155" z="233" h="0"/>
+			<spot x="1943.2389" y="1492.4409" z="238.0143" h="0"/>
+			<spot x="1954.8726" y="1514.854" z="243.1034" h="0" walker_id="37D5FA53F3F6AB3FF5662C8405414A1BA513FFEF" walker_index="1"/>
+			<spot x="1983.4513" y="1515.9705" z="238.1512" h="0"/>
+		</spawn>
+		<!-- Gravity Ruins Borderland -->
+		<spawn npc_id="701603" respawn_time="295">
+			<spot x="2011.2904" y="1517.1936" z="233" h="0"/>
+		</spawn>
+		<!-- Gate Record -->
+		<spawn npc_id="730637" respawn_time="295">
+			<spot x="2647.1201" y="82" z="392.25" h="0"/>
+		</spawn>
+		<!-- Mysterious Document -->
+		<spawn npc_id="730643" respawn_time="295">
+			<spot x="2885.4766" y="1681.828" z="156.9951" h="0"/>
+		</spawn>
+		<!-- Craft: Durable Adamantium Breastplate -->
+		<spawn npc_id="730658" respawn_time="295">
+			<spot x="2940" y="1728" z="29.7369" h="0"/>
+		</spawn>
+		<!-- Sublime Flamesteed Identifier -->
+		<spawn npc_id="780183" respawn_time="295">
+			<spot x="382.3815" y="1317.9316" z="340.2383" h="0"/>
+		</spawn>
+		<!-- Expert Flamesteed Identifier -->
+		<spawn npc_id="780184" respawn_time="295">
+			<spot x="2872.4961" y="1657.7678" z="157.2357" h="0"/>
+		</spawn>
+		<!-- Adventurer's Seal Shugo -->
+		<spawn npc_id="801527" respawn_time="295">
+			<spot x="2859.5095" y="1658.7761" z="156" h="0"/>
+		</spawn>
+		<!-- Adventurer's Seal Shugo -->
+		<spawn npc_id="801528" respawn_time="295">
+			<spot x="2882.9268" y="1658.7761" z="156" h="0"/>
+		</spawn>
+		<!-- Treasure Map Identifier -->
+		<spawn npc_id="802390" respawn_time="295">
+			<spot x="2798.8635" y="1708.5015" z="163.0099" h="0"/>
+		</spawn>
+		<!-- Field Mission Rewards Officer -->
+		<spawn npc_id="802678" respawn_time="295">
+			<spot x="2864.4187" y="1687.7228" z="156" h="0"/>
+		</spawn>
+		<!-- Triumph Bonus Bundle (Rank 4) -->
+		<spawn npc_id="802693" respawn_time="295">
+			<spot x="1367.1348" y="1659.606" z="285.7822" h="0"/>
+			<spot x="1419.1348" y="1419.606" z="285.7822" h="0"/>
+			<spot x="748.8848" y="1547.606" z="322.2822" h="0"/>
+		</spawn>
+		<!-- Arcanium Merchant -->
+		<spawn npc_id="802695" respawn_time="295">
+			<spot x="1420.1348" y="1414.606" z="279.7822" h="0"/>
+		</spawn>
+		<!-- Arcanium Merchant -->
+		<spawn npc_id="802697" respawn_time="295">
+			<spot x="1362.1348" y="1657.606" z="282.7822" h="0"/>
+		</spawn>
+		<!-- Arcanium Merchant -->
+		<spawn npc_id="802698" respawn_time="295">
+			<spot x="751.6348" y="1550.856" z="322.0322" h="0"/>
+		</spawn>
+		<!-- Egginerk -->
+		<spawn npc_id="802714" respawn_time="295">
+			<spot x="2802.6863" y="1745.8584" z="163.0099" h="0"/>
+		</spawn>
+		<!-- Soul Healing Device -->
+		<spawn npc_id="802739" respawn_time="295">
+			<spot x="2853.5" y="1682" z="159" h="0"/>
+		</spawn>
+		<!-- Stigma Equipping Device -->
+		<spawn npc_id="802740" respawn_time="295">
+			<spot x="2853.5" y="1677.5" z="156" h="0"/>
+		</spawn>
+		<!-- Storehouse Manager -->
+		<spawn npc_id="802741" respawn_time="295">
+			<spot x="2842.074" y="1747.6188" z="163.1693" h="0"/>
+		</spawn>
+		<!-- Storehouse Manager -->
+		<spawn npc_id="802742" respawn_time="295">
+			<spot x="2842.1084" y="1745.6509" z="163.1693" h="0"/>
+		</spawn>
+		<!-- Teleport Shugo (Teva) -->
+		<spawn npc_id="802743" respawn_time="295">
+			<spot x="2835.887" y="1640.7666" z="156.4489" h="0"/>
+		</spawn>
+		<!-- [PC방] 불타는 피의 성채 추가 입장 주문서 (1일) -->
+		<spawn npc_id="802750" respawn_time="295">
+			<spot x="2925" y="1659" z="167" h="0"/>
+			<spot x="2918.5" y="1659" z="167" h="0"/>
+			<spot x="1704.8529" y="1539.0824" z="410" h="0"/>
+			<spot x="1694" y="1544" z="410" h="0"/>
+			<spot x="1706.1993" y="1544.5253" z="410" h="0"/>
+			<spot x="2926.5" y="1687" z="167" h="0"/>
+			<spot x="2916.4619" y="1687" z="167" h="0"/>
+		</spawn>
+		<!-- Plant Supply Bag -->
+		<spawn npc_id="802751" respawn_time="295">
+			<spot x="2833.1064" y="1738.7584" z="162.9511" h="0"/>
+		</spawn>
+		<!-- Loot Supply -->
+		<spawn npc_id="802752" respawn_time="295">
+			<spot x="2835.1604" y="1740.2288" z="162.9511" h="0"/>
+		</spawn>
+		<!-- Abyss Supply Station for Consumables -->
+		<spawn npc_id="802753" respawn_time="295">
+			<spot x="2840.0686" y="1743.8496" z="164.3236" h="0"/>
+		</spawn>
+		<!-- Material Supply -->
+		<spawn npc_id="802754" respawn_time="295">
+			<spot x="2838.4844" y="1742.5519" z="162.9511" h="0"/>
+		</spawn>
+		<!-- Meoldeureuk -->
+		<spawn npc_id="802758" respawn_time="295">
+			<spot x="1065.1051" y="621.3312" z="282.3438" h="0"/>
+		</spawn>
+		<!-- Ujireuk -->
+		<spawn npc_id="802759" respawn_time="295">
+			<spot x="1094.1722" y="2332.864" z="262.321" h="0"/>
+		</spawn>
+		<!-- Opeureuk -->
+		<spawn npc_id="802760" respawn_time="295">
+			<spot x="2793.9897" y="1744.6743" z="175" h="0"/>
+		</spawn>
+		<!-- Merikatoring -->
+		<spawn npc_id="802764" respawn_time="295">
+			<spot x="2796.8635" y="1712.5015" z="163.0099" h="0"/>
+		</spawn>
+		<!-- Eldringring -->
+		<spawn npc_id="802767" respawn_time="295">
+			<spot x="2794.0193" y="1740.4884" z="175" h="0"/>
+		</spawn>
+		<!-- Sell Field Mission Items -->
+		<spawn npc_id="802917" respawn_time="295">
+			<spot x="1097.7889" y="621.5022" z="275.0622" h="0"/>
+			<spot x="1700.91" y="1540.6431" z="400" h="0"/>
+			<spot x="1111.3416" y="2318.9919" z="266.5269" h="0"/>
+			<spot x="2867.3999" y="1687.9" z="161.45" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="802920" respawn_time="295">
+			<spot x="2861.6589" y="1657.931" z="156" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="802921" respawn_time="295">
+			<spot x="2880.5471" y="1657.8416" z="156" h="0"/>
+		</spawn>
+		<!-- Teleporter Shugo (Secret Black Cloud Station) -->
+		<spawn npc_id="802923" respawn_time="295">
+			<spot x="1630.2709" y="2105.5918" z="302.7781" h="0"/>
+			<spot x="1082.2899" y="1549.1052" z="413.0971" h="0"/>
+			<spot x="2272.4773" y="1573.2009" z="384.0674" h="0"/>
+			<spot x="1577.8867" y="1008.9244" z="418.423" h="0"/>
+		</spawn>
+		<!-- Shugo Area Leader (Control Zone) -->
+		<spawn npc_id="802925" respawn_time="295">
+			<spot x="2275.344" y="1554.0405" z="384.0674" h="0"/>
+			<spot x="1623.201" y="2095.5293" z="302.7781" h="0"/>
+			<spot x="1083.8907" y="1556.9193" z="413.0971" h="0"/>
+			<spot x="1563.8851" y="1005.0283" z="418.423" h="0"/>
+		</spawn>
+		<!-- Sale (Prism Core) -->
+		<spawn npc_id="802926" respawn_time="295">
+			<spot x="2884.9517" y="1669.4542" z="159.1826" h="0"/>
+		</spawn>
+		<!-- Runanerk's Personal Secretary -->
+		<spawn npc_id="802927" respawn_time="295">
+			<spot x="2885.3796" y="1674.0487" z="159.1826" h="0"/>
+		</spawn>
+		<!-- Arcanium Merchant -->
+		<spawn npc_id="802928" respawn_time="295">
+			<spot x="2860.9268" y="1687.7761" z="156" h="0"/>
+		</spawn>
+		<!-- Runanerk -->
+		<spawn npc_id="803133" respawn_time="295">
+			<spot x="2886.95" y="1671.73" z="158.5" h="0"/>
+		</spawn>
+		<!-- Tinkerinerk -->
+		<spawn npc_id="803234" respawn_time="295">
+			<spot x="2823.5095" y="1748.4242" z="161.4047" h="0"/>
+		</spawn>
+		<!-- Lost Trader's Bodyguard -->
+		<spawn npc_id="803235" respawn_time="295">
+			<spot x="1666.1726" y="1702.0332" z="265.3077" h="0"/>
+		</spawn>
+		<!-- Locatinerk -->
+		<spawn npc_id="803236" respawn_time="295">
+			<spot x="1017.1106" y="806.9093" z="320.8343" h="0"/>
+		</spawn>
+		<!-- Explorinerk -->
+		<spawn npc_id="803237" respawn_time="295">
+			<spot x="1062.5398" y="2043.0881" z="278.8375" h="0"/>
+		</spawn>
+		<!-- Shugo Hammerer -->
+		<spawn npc_id="803309" respawn_time="295">
+			<spot x="2820.4443" y="1542.3791" z="161.5485" h="0"/>
+			<spot x="2799.5288" y="1518.7311" z="162.1637" h="0"/>
+			<spot x="2827.9988" y="1461.5341" z="163.8237" h="0"/>
+			<spot x="2849.2988" y="1502.8729" z="155.7032" h="0"/>
+			<spot x="2806.5393" y="1524.9507" z="162.4455" h="0"/>
+			<spot x="2826.4343" y="1503.3225" z="155.7032" h="0"/>
+			<spot x="2845.2012" y="1503.1234" z="155.7032" h="0"/>
+		</spawn>
+		<!-- Shugo Hammerer -->
+		<spawn npc_id="803310" respawn_time="295">
+			<spot x="2846.1814" y="1465.1271" z="163.1343" h="0"/>
+			<spot x="2830.3652" y="1503.2428" z="155.5856" h="0"/>
+			<spot x="2835.2251" y="1465.6201" z="163.1343" h="0"/>
+			<spot x="2840.668" y="1466.1578" z="163.1343" h="0"/>
+			<spot x="2834.2825" y="1503.9679" z="155.5856" h="0"/>
+			<spot x="2823.9507" y="1474.5272" z="163.1343" h="0"/>
+			<spot x="2811.447" y="1545.1809" z="169.9849" h="0"/>
+			<spot x="2835.8259" y="1560.21" z="160.2829" h="0"/>
+			<spot x="2820.4407" y="1538.663" z="161.4047" h="0"/>
+			<spot x="2835.083" y="1566.8134" z="160.2829" h="0"/>
+		</spawn>
+		<!-- Shugo Transporter -->
+		<spawn npc_id="803311" respawn_time="295">
+			<spot x="2797.0813" y="1496.723" z="160.2829" h="0" walker_id="C9FB782FAFD083B9E2C4B1044AF0B087C9D0EBAE" walker_index="1"/>
+		</spawn>
+		<!-- Elyos Worker -->
+		<spawn npc_id="803312" respawn_time="295">
+			<spot x="2806.2063" y="1564.598" z="161.0329" h="0"/>
+			<spot x="2818.8313" y="1463.973" z="163.9079" h="0"/>
+		</spawn>
+		<!-- Elyos Worker -->
+		<spawn npc_id="803313" respawn_time="295">
+			<spot x="2808.6846" y="1567.1128" z="161.0329" h="0"/>
+		</spawn>
+		<!-- Asmodian Worker -->
+		<spawn npc_id="803314" respawn_time="295">
+			<spot x="2810.9468" y="1570.307" z="161.0329" h="0"/>
+			<spot x="2819.3218" y="1466.432" z="163.9079" h="0"/>
+		</spawn>
+		<!-- Asmodian Worker -->
+		<spawn npc_id="803315" respawn_time="295">
+			<spot x="2812.6968" y="1573.307" z="161.0329" h="0"/>
+		</spawn>
+		<!-- Shugo Foreman -->
+		<spawn npc_id="803316" respawn_time="295">
+			<spot x="2813.4563" y="1565.473" z="160.4079" h="0"/>
+			<spot x="2845.9563" y="1469.598" z="163.1579" h="0" walker_id="15F0DDFCB19CB612B8F6DF8A99A08EB759EB75C6" walker_index="3"/>
+		</spawn>
+		<!-- [Supply] Enchantment Stone (Level 55) -->
+		<spawn npc_id="803334" respawn_time="295">
+			<spot x="1203.5637" y="1559.6345" z="420.5165" h="0"/>
+		</spawn>
+		<!-- [Supply] Enchantment Stone (Level 56) -->
+		<spawn npc_id="803335" respawn_time="295">
+			<spot x="2694.4631" y="1550.4587" z="420.5165" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

@@ -12,8 +12,7 @@ import javax.tools.FileObject;
 import javax.tools.SimpleJavaFileObject;
 
 /**
- * This class is just a hack to make javac compiler work with classes loaded by previous classloader. Also it's used as container for loaded class
- * 
+ * @author Lost Academy Team & Durak
  */
 public class BinaryClass extends SimpleJavaFileObject {
 

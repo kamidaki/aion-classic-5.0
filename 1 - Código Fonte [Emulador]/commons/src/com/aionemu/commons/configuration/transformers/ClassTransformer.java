@@ -5,10 +5,7 @@ import java.io.InvalidClassException;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * Returns the {@link Class} object associated with the class or interface with the given string name. The class is not being initialized.<br>
- * Created on: 12.09.2009 15:10:47
- * 
- * @see Class#forName(String, boolean, ClassLoader)
+ * @author Lost Academy Team & Durak
  */
 public class ClassTransformer extends PropertyTransformer<Class<?>> {
 

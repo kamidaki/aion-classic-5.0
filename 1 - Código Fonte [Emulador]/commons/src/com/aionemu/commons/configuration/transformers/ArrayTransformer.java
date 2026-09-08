@@ -6,8 +6,7 @@ import java.util.List;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * Creates an <code>Array</code> containing the comma separated items.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class ArrayTransformer extends CommaSeparatedValueTransformer<Object> {
 

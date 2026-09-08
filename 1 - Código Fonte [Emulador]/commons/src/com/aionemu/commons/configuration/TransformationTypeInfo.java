@@ -5,8 +5,7 @@ import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 
 /**
- * Metadata for transformers to help decide which type to instantiate for deserialization.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class TransformationTypeInfo {
 

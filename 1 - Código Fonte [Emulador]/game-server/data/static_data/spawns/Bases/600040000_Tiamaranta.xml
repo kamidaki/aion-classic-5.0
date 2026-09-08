@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="600040000">
+		<base_spawn id="7103">
+			<occupier_template occupier="ELYOS">
+				<!-- ELY FLAG -->
+				<spawn npc_id="701799" handler="FLAG">
+					<spot x="627" y="896" z="1207" h="43"/>
+				</spawn>
+				<!-- ELY BOSS -->
+				<spawn npc_id="235157" handler="BOSS">
+					<spot x="627" y="896" z="1207" h="43"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235184" handler="SENTINEL" respawn_time="295">
+					<spot x="604" y="915" z="1206" h="46"/>
+					<spot x="608" y="919" z="1205" h="44"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235185" handler="SENTINEL" respawn_time="295">
+					<spot x="618" y="917" z="1207" h="43"/>
+					<spot x="606" y="906" z="1207" h="44"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235186" handler="SENTINEL" respawn_time="295">
+					<spot x="611" y="890" z="1207" h="45"/>
+					<spot x="633" y="913" z="1207" h="46"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235188" handler="SENTINEL" respawn_time="295">
+					<spot x="639" y="902" z="1207" h="56"/>
+					<spot x="619" y="884" z="1207" h="34"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235185" handler="SENTINEL" respawn_time="295">
+					<spot x="617" y="900" z="1207" h="44"/>
+					<spot x="623" y="906" z="1207" h="44"/>
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- ASMO FLAG -->
+				<spawn npc_id="701800" handler="FLAG">
+					<spot x="627" y="896" z="1207" h="43"/>
+				</spawn>
+				<!-- ASMO BOSS -->
+				<spawn npc_id="235170" handler="BOSS">
+					<spot x="627" y="896" z="1207" h="43"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235196" handler="SENTINEL" respawn_time="295">
+					<spot x="604" y="915" z="1206" h="46"/>
+					<spot x="608" y="919" z="1205" h="44"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235197" handler="SENTINEL" respawn_time="295">
+					<spot x="618" y="917" z="1207" h="43"/>
+					<spot x="606" y="906" z="1207" h="44"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235198" handler="SENTINEL" respawn_time="295">
+					<spot x="611" y="890" z="1207" h="45"/>
+					<spot x="633" y="913" z="1207" h="46"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235200" handler="SENTINEL" respawn_time="295">
+					<spot x="639" y="902" z="1207" h="56"/>
+					<spot x="619" y="884" z="1207" h="34"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235197" handler="SENTINEL" respawn_time="295">
+					<spot x="617" y="900" z="1207" h="44"/>
+					<spot x="623" y="906" z="1207" h="44"/>
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- BALAUR FLAG -->
+				<spawn npc_id="701797" handler="FLAG">
+					<spot x="627" y="896" z="1207" h="43"/>
+				</spawn>
+				<!-- BALAUR BOSS -->
+				<spawn npc_id="235144" handler="BOSS">
+					<spot x="627" y="896" z="1207" h="43"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235172" handler="SENTINEL" respawn_time="295">
+					<spot x="604" y="915" z="1206" h="46"/>
+					<spot x="608" y="919" z="1205" h="44"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235173" handler="SENTINEL" respawn_time="295">
+					<spot x="618" y="917" z="1207" h="43"/>
+					<spot x="606" y="906" z="1207" h="44"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235174" handler="SENTINEL" respawn_time="295">
+					<spot x="611" y="890" z="1207" h="45"/>
+					<spot x="633" y="913" z="1207" h="46"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235176" handler="SENTINEL" respawn_time="295">
+					<spot x="639" y="902" z="1207" h="56"/>
+					<spot x="619" y="884" z="1207" h="34"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235175" handler="SENTINEL" respawn_time="295">
+					<spot x="617" y="900" z="1207" h="44"/>
+					<spot x="623" y="906" z="1207" h="44"/>
+				</spawn>
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="7104">
+			<occupier_template occupier="ELYOS">
+				<!-- ELY FLAG -->
+				<spawn npc_id="701799" handler="FLAG">
+					<spot x="848" y="925" z="1207" h="19"/>
+				</spawn>
+				<!-- ELY BOSS -->
+				<spawn npc_id="235157" handler="BOSS">
+					<spot x="848" y="925" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235184" handler="SENTINEL" respawn_time="295">
+					<spot x="860" y="952" z="1206" h="20"/>
+					<spot x="866" y="949" z="1206" h="20"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235185" handler="SENTINEL" respawn_time="295">
+					<spot x="852" y="947" z="1207" h="18"/>
+					<spot x="865" y="939" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235186" handler="SENTINEL" respawn_time="295">
+					<spot x="865" y="924" z="1207" h="20"/>
+					<spot x="838" y="939" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235188" handler="SENTINEL" respawn_time="295">
+					<spot x="835" y="928" z="1207" h="10"/>
+					<spot x="858" y="916" z="1207" h="29"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235185" handler="SENTINEL" respawn_time="295">
+					<spot x="855" y="930" z="1207" h="19"/>
+					<spot x="849" y="934" z="1207" h="19"/>
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- ASMO FLAG -->
+				<spawn npc_id="701800" handler="FLAG">
+					<spot x="848" y="925" z="1207" h="19"/>
+				</spawn>
+				<!-- ASMO BOSS -->
+				<spawn npc_id="235170" handler="BOSS">
+					<spot x="848" y="925" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235196" handler="SENTINEL" respawn_time="295">
+					<spot x="860" y="952" z="1206" h="20"/>
+					<spot x="866" y="949" z="1206" h="20"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235197" handler="SENTINEL" respawn_time="295">
+					<spot x="852" y="947" z="1207" h="18"/>
+					<spot x="865" y="939" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235198" handler="SENTINEL" respawn_time="295">
+					<spot x="865" y="924" z="1207" h="20"/>
+					<spot x="838" y="939" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235200" handler="SENTINEL" respawn_time="295">
+					<spot x="835" y="928" z="1207" h="10"/>
+					<spot x="858" y="916" z="1207" h="29"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235197" handler="SENTINEL" respawn_time="295">
+					<spot x="855" y="930" z="1207" h="19"/>
+					<spot x="849" y="934" z="1207" h="19"/>
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- BALAUR FLAG -->
+				<spawn npc_id="701797" handler="FLAG">
+					<spot x="848" y="925" z="1207" h="19"/>
+				</spawn>
+				<!-- BALAUR BOSS -->
+				<spawn npc_id="235144" handler="BOSS">
+					<spot x="848" y="925" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235172" handler="SENTINEL" respawn_time="295">
+					<spot x="860" y="952" z="1206" h="20"/>
+					<spot x="866" y="949" z="1206" h="20"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235173" handler="SENTINEL" respawn_time="295">
+					<spot x="852" y="947" z="1207" h="18"/>
+					<spot x="865" y="939" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235174" handler="SENTINEL" respawn_time="295">
+					<spot x="865" y="924" z="1207" h="20"/>
+					<spot x="838" y="939" z="1207" h="19"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235176" handler="SENTINEL" respawn_time="295">
+					<spot x="835" y="928" z="1207" h="10"/>
+					<spot x="858" y="916" z="1207" h="29"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235175" handler="SENTINEL" respawn_time="295">
+					<spot x="855" y="930" z="1207" h="19"/>
+					<spot x="849" y="934" z="1207" h="19"/>
+				</spawn>
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="7105">
+			<occupier_template occupier="ELYOS">
+				<!-- ELY FLAG -->
+				<spawn npc_id="701799" handler="FLAG">
+					<spot x="848" y="608" z="1207" h="99"/>
+				</spawn>
+				<!-- ELY BOSS -->
+				<spawn npc_id="235157" handler="BOSS">
+					<spot x="848" y="608" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235184" handler="SENTINEL" respawn_time="295">
+					<spot x="866" y="584" z="1206" h="100"/>
+					<spot x="859" y="580" z="1206" h="100"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235185" handler="SENTINEL" respawn_time="295">
+					<spot x="864" y="594" z="1207" h="99"/>
+					<spot x="852" y="586" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235186" handler="SENTINEL" respawn_time="295">
+					<spot x="838" y="593" z="1207" h="99"/>
+					<spot x="865" y="609" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235188" handler="SENTINEL" respawn_time="295">
+					<spot x="857" y="616" z="1207" h="90"/>
+					<spot x="836" y="603" z="1207" h="110"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235185" handler="SENTINEL" respawn_time="295">
+					<spot x="855" y="602" z="1207" h="99"/>
+					<spot x="849" y="599" z="1207" h="99"/>
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- ASMO FLAG -->
+				<spawn npc_id="701800" handler="FLAG">
+					<spot x="848" y="608" z="1207" h="99"/>
+				</spawn>
+				<!-- ASMO BOSS -->
+				<spawn npc_id="235170" handler="BOSS">
+					<spot x="848" y="608" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235196" handler="SENTINEL" respawn_time="295">
+					<spot x="866" y="584" z="1206" h="100"/>
+					<spot x="859" y="580" z="1206" h="100"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235197" handler="SENTINEL" respawn_time="295">
+					<spot x="864" y="594" z="1207" h="99"/>
+					<spot x="852" y="586" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235198" handler="SENTINEL" respawn_time="295">
+					<spot x="838" y="593" z="1207" h="99"/>
+					<spot x="865" y="609" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235200" handler="SENTINEL" respawn_time="295">
+					<spot x="857" y="616" z="1207" h="90"/>
+					<spot x="836" y="603" z="1207" h="110"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235197" handler="SENTINEL" respawn_time="295">
+					<spot x="855" y="602" z="1207" h="99"/>
+					<spot x="849" y="599" z="1207" h="99"/>
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- BALAUR FLAG -->
+				<spawn npc_id="701797" handler="FLAG">
+					<spot x="848" y="608" z="1207" h="99"/>
+				</spawn>
+				<!-- BALAUR BOSS -->
+				<spawn npc_id="235144" handler="BOSS">
+					<spot x="848" y="608" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235172" handler="SENTINEL" respawn_time="295">
+					<spot x="866" y="584" z="1206" h="100"/>
+					<spot x="859" y="580" z="1206" h="100"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235173" handler="SENTINEL" respawn_time="295">
+					<spot x="864" y="594" z="1207" h="99"/>
+					<spot x="852" y="586" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235174" handler="SENTINEL" respawn_time="295">
+					<spot x="838" y="593" z="1207" h="99"/>
+					<spot x="865" y="609" z="1207" h="99"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235176" handler="SENTINEL" respawn_time="295">
+					<spot x="857" y="616" z="1207" h="90"/>
+					<spot x="836" y="603" z="1207" h="110"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235175" handler="SENTINEL" respawn_time="295">
+					<spot x="855" y="602" z="1207" h="99"/>
+					<spot x="849" y="599" z="1207" h="99"/>
+				</spawn>
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="7106">
+			<occupier_template occupier="ELYOS">
+				<!-- ELY FLAG -->
+				<spawn npc_id="701799" handler="FLAG">
+					<spot x="627" y="637" z="1207" h="74"/>
+				</spawn>
+				<!-- ELY BOSS -->
+				<spawn npc_id="235157" handler="BOSS">
+					<spot x="627" y="637" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235184" handler="SENTINEL" respawn_time="295">
+					<spot x="608" y="613" z="1206" h="74"/>
+					<spot x="603" y="618" z="1206" h="74"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235185" handler="SENTINEL" respawn_time="295">
+					<spot x="617" y="618" z="1207" h="74"/>
+					<spot x="608" y="627" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235186" handler="SENTINEL" respawn_time="295">
+					<spot x="611" y="642" z="1207" h="74"/>
+					<spot x="633" y="621" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235188" handler="SENTINEL" respawn_time="295">
+					<spot x="637" y="630" z="1207" h="64"/>
+					<spot x="620" y="647" z="1207" h="85"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235185" handler="SENTINEL" respawn_time="295">
+					<spot x="619" y="633" z="1207" h="74"/>
+					<spot x="623" y="629" z="1207" h="74"/>
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- ASMO FLAG -->
+				<spawn npc_id="701800" handler="FLAG">
+					<spot x="627" y="637" z="1207" h="74"/>
+				</spawn>
+				<!-- ASMO BOSS -->
+				<spawn npc_id="235170" handler="BOSS">
+					<spot x="627" y="637" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235196" handler="SENTINEL" respawn_time="295">
+					<spot x="608" y="613" z="1206" h="74"/>
+					<spot x="603" y="618" z="1206" h="74"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235197" handler="SENTINEL" respawn_time="295">
+					<spot x="617" y="618" z="1207" h="74"/>
+					<spot x="608" y="627" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235198" handler="SENTINEL" respawn_time="295">
+					<spot x="611" y="642" z="1207" h="74"/>
+					<spot x="633" y="621" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235200" handler="SENTINEL" respawn_time="295">
+					<spot x="637" y="630" z="1207" h="64"/>
+					<spot x="620" y="647" z="1207" h="85"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235197" handler="SENTINEL" respawn_time="295">
+					<spot x="619" y="633" z="1207" h="74"/>
+					<spot x="623" y="629" z="1207" h="74"/>
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- BALAUR FLAG -->
+				<spawn npc_id="701797" handler="FLAG">
+					<spot x="627" y="637" z="1207" h="74"/>
+				</spawn>
+				<!-- BALAUR BOSS -->
+				<spawn npc_id="235144" handler="BOSS">
+					<spot x="627" y="637" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Templar -->
+				<spawn npc_id="235172" handler="SENTINEL" respawn_time="295">
+					<spot x="608" y="613" z="1206" h="74"/>
+					<spot x="603" y="618" z="1206" h="74"/>
+				</spawn>
+				<!-- Guardian Warrior -->
+				<spawn npc_id="235173" handler="SENTINEL" respawn_time="295">
+					<spot x="617" y="618" z="1207" h="74"/>
+					<spot x="608" y="627" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Magus -->
+				<spawn npc_id="235174" handler="SENTINEL" respawn_time="295">
+					<spot x="611" y="642" z="1207" h="74"/>
+					<spot x="633" y="621" z="1207" h="74"/>
+				</spawn>
+				<!-- Guardian Patrol -->
+				<spawn npc_id="235176" handler="SENTINEL" respawn_time="295">
+					<spot x="637" y="630" z="1207" h="64"/>
+					<spot x="620" y="647" z="1207" h="85"/>
+				</spawn>
+				<!-- Guardian Duelist -->
+				<spawn npc_id="235175" handler="SENTINEL" respawn_time="295">
+					<spot x="619" y="633" z="1207" h="74"/>
+					<spot x="623" y="629" z="1207" h="74"/>
+				</spawn>
+			</occupier_template>
+		</base_spawn>
+	</spawn_map>
+</spawns>

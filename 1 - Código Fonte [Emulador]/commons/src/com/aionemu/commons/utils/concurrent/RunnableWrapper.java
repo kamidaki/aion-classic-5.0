@@ -1,6 +1,8 @@
 package com.aionemu.commons.utils.concurrent;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class RunnableWrapper implements Runnable {
 
 	private final Runnable runnable;
@@ -9,10 +11,6 @@ public class RunnableWrapper implements Runnable {
 
 	public RunnableWrapper(Runnable runnable) {
 		this(runnable, Long.MAX_VALUE, true);
-	}
-
-	public RunnableWrapper(Runnable runnable, long maxRuntimeMsWithoutWarning) {
-		this(runnable, maxRuntimeMsWithoutWarning, true);
 	}
 
 	public RunnableWrapper(Runnable runnable, long maxRuntimeMsWithoutWarning, boolean catchAndLogThrowables) {

@@ -24,9 +24,7 @@ import ch.qos.logback.core.encoder.Encoder;
 import ch.qos.logback.core.status.StatusManager;
 
 /**
- * Sends messages via a webhook (see <a href="https://discord.com/developers/docs/resources/webhook#execute-webhook">API docs</a>).<br>
- * If the message is longer than {@value #MAX_MESSAGE_LENGTH} characters (Discord limit) it will be sent in parts, while keeping code blocks intact.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class DiscordChannelAppender<E> extends AppenderBase<E> {
 

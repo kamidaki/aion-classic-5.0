@@ -1,167 +1,163 @@
 package com.aionemu.commons.network;
 
-import com.aionemu.commons.network.AConnection;
-import com.aionemu.commons.network.AcceptDispatcherImpl;
-import com.aionemu.commons.network.AcceptReadWriteDispatcherImpl;
-import com.aionemu.commons.network.Acceptor;
-import com.aionemu.commons.network.Dispatcher;
-import com.aionemu.commons.network.ServerCfg;
-import com.aionemu.commons.network.util.ThreadPoolManager;
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.ServerSocketChannel;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Executor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.aionemu.commons.options.Assertion;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class NioServer {
-    private static final Logger log = LoggerFactory.getLogger((String)NioServer.class.getName());
-    private final List<SelectionKey> serverChannelKeys = new ArrayList<SelectionKey>();
-    private Dispatcher acceptDispatcher;
-    private int currentReadWriteDispatcher;
-    private Dispatcher[] readWriteDispatchers;
-    private final Executor dcPool = ThreadPoolManager.getInstance();
-    private int readWriteThreads;
-    private ServerCfg[] cfgs;
 
-    public NioServer(int readWriteThreads, ServerCfg ... cfgs) {
-        this.readWriteThreads = readWriteThreads;
-        this.cfgs = cfgs;
-    }
+	/**
+	 * Logger for NioServer
+	 */
+	private static final Logger log = LoggerFactory.getLogger(NioServer.class.getName());
 
-    public void connect() {
-        try {
-            this.initDispatchers(this.readWriteThreads, this.dcPool);
-            for (ServerCfg cfg : this.cfgs) {
-                InetSocketAddress isa;
-                ServerSocketChannel serverChannel = ServerSocketChannel.open();
-                serverChannel.configureBlocking(false);
-                if ("*".equals(cfg.hostName)) {
-                    isa = new InetSocketAddress(cfg.port);
-                    log.info("Server listening on all available IPs on Port " + cfg.port + " for " + cfg.connectionName);
-                } else {
-                    isa = new InetSocketAddress(cfg.hostName, cfg.port);
-                    log.info("Server listening on IP: " + cfg.hostName + " Port " + cfg.port + " for " + cfg.connectionName);
-                }
-                serverChannel.socket().bind(isa);
-                SelectionKey acceptKey = this.getAcceptDispatcher().register((SelectableChannel)serverChannel, 16, new Acceptor(cfg.factory, this));
-                this.serverChannelKeys.add(acceptKey);
-            }
-        }
-        catch (Exception e) {
-            log.error("NioServer Initialization Error: " + e, (Throwable)e);
-            throw new Error("NioServer Initialization Error!");
-        }
-    }
+	/**
+	 * The channels on which we'll accept connections
+	 */
+	private final List<SelectionKey> serverChannelKeys = new ArrayList<>();
 
-    public final Dispatcher getAcceptDispatcher() {
-        return this.acceptDispatcher;
-    }
+	/**
+	 * Dispatcher that will accept connections
+	 */
+	private Dispatcher acceptDispatcher;
+	/**
+	 * Useful int to load balance connections between Dispatchers
+	 */
+	private int currentReadWriteDispatcher;
+	private Dispatcher[] readWriteDispatchers;
 
-    public final Dispatcher getReadWriteDispatcher() {
-        if (this.readWriteDispatchers == null) {
-            return this.acceptDispatcher;
-        }
-        if (this.readWriteDispatchers.length == 1) {
-            return this.readWriteDispatchers[0];
-        }
-        if (this.currentReadWriteDispatcher >= this.readWriteDispatchers.length) {
-            this.currentReadWriteDispatcher = 0;
-        }
-        return this.readWriteDispatchers[this.currentReadWriteDispatcher++];
-    }
+	private int readWriteThreads;
+	private ServerCfg[] cfgs;
 
-    private void initDispatchers(int readWriteThreads, Executor dcPool) throws IOException {
-        if (readWriteThreads < 1) {
-            this.acceptDispatcher = new AcceptReadWriteDispatcherImpl("AcceptReadWrite Dispatcher", dcPool);
-            this.acceptDispatcher.start();
-        } else {
-            this.acceptDispatcher = new AcceptDispatcherImpl("Accept Dispatcher");
-            this.acceptDispatcher.start();
-            this.readWriteDispatchers = new Dispatcher[readWriteThreads];
-            for (int i = 0; i < this.readWriteDispatchers.length; ++i) {
-                this.readWriteDispatchers[i] = new AcceptReadWriteDispatcherImpl("ReadWrite-" + i + " Dispatcher", dcPool);
-                this.readWriteDispatchers[i].start();
-            }
-        }
-    }
+	public NioServer(int readWriteThreads, ServerCfg... cfgs) {
+		// Test if this build should use assertion and enforce it. If NetworkAssertion == false javac will remove this code block
+		if (Assertion.NetworkAssertion) {
+			boolean assertionEnabled = false;
+			assert assertionEnabled = true;
+			if (!assertionEnabled)
+				throw new RuntimeException(
+					"This is unstable build. Assertion must be enabled! Add -ea to your start script or consider using stable build instead.");
+		}
+		this.readWriteThreads = readWriteThreads;
+		this.cfgs = cfgs;
+	}
 
-    public final int getActiveConnections() {
-        int count = 0;
-        if (this.readWriteDispatchers != null) {
-            for (Dispatcher d : this.readWriteDispatchers) {
-                count += d.selector().keys().size();
-            }
-        } else {
-            count = this.acceptDispatcher.selector().keys().size() - this.serverChannelKeys.size();
-        }
-        return count;
-    }
+	public void connect(Executor dcExecutor) {
+		try {
+			initDispatchers(readWriteThreads, dcExecutor);
 
-    public final void shutdown() {
-        log.info("Closing ServerChannels...");
-        try {
-            for (SelectionKey key : this.serverChannelKeys) {
-                key.cancel();
-            }
-            log.info("ServerChannel closed.");
-        }
-        catch (Exception e) {
-            log.error("Error during closing ServerChannel, " + e, (Throwable)e);
-        }
-        this.notifyServerClose();
-        try {
-            Thread.sleep(1000L);
-        }
-        catch (Throwable t) {
-            log.warn("Nio thread was interrupted during shutdown", t);
-        }
-        log.info(" Active connections: " + this.getActiveConnections());
-        log.info("Forced Disconnecting all connections...");
-        this.closeAll();
-        log.info(" Active connections: " + this.getActiveConnections());
-        try {
-            Thread.sleep(1000L);
-        }
-        catch (Throwable t) {
-            log.warn("Nio thread was interrupted during shutdown", t);
-        }
-    }
+			for (ServerCfg cfg : cfgs) {
+				ServerSocketChannel serverChannel = ServerSocketChannel.open();
+				serverChannel.configureBlocking(false);
 
-    private void notifyServerClose() {
-        if (this.readWriteDispatchers != null) {
-            for (Dispatcher d : this.readWriteDispatchers) {
-                for (SelectionKey key : d.selector().keys()) {
-                    if (!(key.attachment() instanceof AConnection)) continue;
-                    ((AConnection)key.attachment()).onServerClose();
-                }
-            }
-        } else {
-            for (SelectionKey key : this.acceptDispatcher.selector().keys()) {
-                if (!(key.attachment() instanceof AConnection)) continue;
-                ((AConnection)key.attachment()).onServerClose();
-            }
-        }
-    }
+				serverChannel.socket().bind(cfg.address());
+				log.info("Listening on " + cfg.getAddressInfo() + " for " + cfg.clientDescription());
 
-    private void closeAll() {
-        if (this.readWriteDispatchers != null) {
-            for (Dispatcher d : this.readWriteDispatchers) {
-                for (SelectionKey key : d.selector().keys()) {
-                    if (!(key.attachment() instanceof AConnection)) continue;
-                    ((AConnection)key.attachment()).close(true);
-                }
-            }
-        } else {
-            for (SelectionKey key : this.acceptDispatcher.selector().keys()) {
-                if (!(key.attachment() instanceof AConnection)) continue;
-                ((AConnection)key.attachment()).close(true);
-            }
-        }
-    }
+				// Register the server socket channel, indicating an interest in accepting new connections
+				SelectionKey acceptKey = getAcceptDispatcher().register(serverChannel, SelectionKey.OP_ACCEPT, new Acceptor(cfg.connectionFactory(), this));
+				serverChannelKeys.add(acceptKey);
+			}
+		} catch (Exception e) {
+			throw new Error("Could not open server socket: " + e.getMessage(), e);
+		}
+	}
+
+	public final Dispatcher getAcceptDispatcher() {
+		return acceptDispatcher;
+	}
+
+	/**
+	 * @return one of ReadWrite Dispatcher or Accept Dispatcher if readWriteThreads was set to 0.
+	 */
+	public final Dispatcher getReadWriteDispatcher() {
+		if (readWriteDispatchers == null)
+			return acceptDispatcher;
+
+		if (readWriteDispatchers.length == 1)
+			return readWriteDispatchers[0];
+
+		if (currentReadWriteDispatcher >= readWriteDispatchers.length)
+			currentReadWriteDispatcher = 0;
+		return readWriteDispatchers[currentReadWriteDispatcher++];
+	}
+
+	private void initDispatchers(int readWriteThreads, Executor dcExecutor) throws IOException {
+		if (readWriteThreads < 1) {
+			acceptDispatcher = new AcceptReadWriteDispatcherImpl("AcceptReadWrite Dispatcher", dcExecutor);
+			acceptDispatcher.start();
+		} else {
+			acceptDispatcher = new AcceptDispatcherImpl("Accept Dispatcher", dcExecutor);
+			acceptDispatcher.start();
+
+			readWriteDispatchers = new Dispatcher[readWriteThreads];
+			for (int i = 0; i < readWriteDispatchers.length; i++) {
+				readWriteDispatchers[i] = new AcceptReadWriteDispatcherImpl("ReadWrite-" + i + " Dispatcher", dcExecutor);
+				readWriteDispatchers[i].start();
+			}
+		}
+	}
+
+	public final void shutdown() {
+		log.info("Closing ServerChannels...");
+		serverChannelKeys.forEach(SelectionKey::cancel);
+		log.info("ServerChannels closed.");
+
+		// find active connections once, at this point new ones cannot be added anymore
+		Set<AConnection<?>> activeConnections = findAllConnections();
+		if (!activeConnections.isEmpty()) {
+			log.info("\tClosing " + activeConnections.size() + " connections...");
+
+			// notify connections about server close (they should close themselves)
+			activeConnections.forEach(AConnection::onServerClose);
+
+			// wait for connections to close or force close them
+			long timeout = System.currentTimeMillis() + 5000;
+			while (isAnyConnectionClosePending(activeConnections)) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException ignored) {
+				}
+				if (System.currentTimeMillis() > timeout) {
+					activeConnections.removeIf(AConnection::isClosed);
+					log.info("\tForcing " + activeConnections.size() + " connections to disconnect...");
+					activeConnections.forEach(AConnection::close);
+					break;
+				}
+			}
+			activeConnections.removeIf(AConnection::isClosed);
+			log.info("\tActive connections left: " + activeConnections.size());
+		}
+	}
+
+	private Set<AConnection<?>> findAllConnections() {
+		Set<AConnection<?>> activeConnections = new HashSet<>();
+		if (readWriteDispatchers != null) {
+			for (Dispatcher d : readWriteDispatchers)
+				for (SelectionKey key : d.selector().keys()) {
+					if (key.attachment() instanceof AConnection<?> connection) {
+						activeConnections.add(connection);
+					}
+				}
+		}
+		for (SelectionKey key : acceptDispatcher.selector().keys()) {
+			if (key.attachment() instanceof AConnection<?> connection) {
+				activeConnections.add(connection);
+			}
+		}
+		return activeConnections;
+	}
+
+	private boolean isAnyConnectionClosePending(Collection<AConnection<?>> connections) {
+		return connections.stream().anyMatch(AConnection::isPendingClose);
+	}
 }
-

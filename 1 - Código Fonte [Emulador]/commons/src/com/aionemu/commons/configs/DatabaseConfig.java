@@ -3,8 +3,7 @@ package com.aionemu.commons.configs;
 import com.aionemu.commons.configuration.Property;
 
 /**
- * This class holds all configuration of database
- * 
+ * @author Lost Academy Team & Durak
  */
 public class DatabaseConfig {
 
@@ -22,15 +21,35 @@ public class DatabaseConfig {
 	 */
 	@Property(key = "database.connectionpool.connections.max", defaultValue = "5")
 	public static int DATABASE_CONNECTIONS_MAX;
+
+	/**
+	 * Minimum amount of connections kept in connection pool
+	 */
+	@Property(key = "database.connectionpool.connections.min", defaultValue = "2")
+	public static int DATABASE_CONNECTIONS_MIN;
+
 	/**
 	 * Maximum wait time when getting a DB connection, before throwing a timeout error
 	 */
 	@Property(key = "database.connectionpool.timeout", defaultValue = "5000")
 	public static int DATABASE_TIMEOUT;
 
-	@Property(key = "database.driver", defaultValue = "com.mysql.cj.jdbc.Driver")
-	public static String DATABASE_DRIVER;
+	/**
+	 * Maximum lifetime of a connection in milliseconds before it is retired (must be shorter than MySQL wait_timeout)
+	 */
+	@Property(key = "database.connectionpool.maxlifetime", defaultValue = "60000")
+	public static long DATABASE_MAX_LIFETIME;
 
-	@Property(key = "database.scriptcontext.descriptor", defaultValue = "./data/scripts/system/database.xml")
-	public static java.io.File DATABASE_SCRIPTCONTEXT_DESCRIPTOR;
+	/**
+	 * Maximum idle time for connection in milliseconds
+	 */
+	@Property(key = "database.connectionpool.idletimeout", defaultValue = "30000")
+	public static long DATABASE_IDLE_TIMEOUT;
+
+	/**
+	 * Keepalive ping time for idle connections in milliseconds
+	 */
+	@Property(key = "database.connectionpool.keepalive", defaultValue = "20000")
+	public static long DATABASE_KEEPALIVE;
+
 }

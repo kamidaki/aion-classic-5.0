@@ -1,8 +1,7 @@
 package com.aionemu.commons.scripting.classlistener;
 
 /**
- * This interface implements listener that is called post class load/before class unload.<br>
- * 
+ * @author Lost Academy Team & Durak
  */
 public interface ClassListener {
 

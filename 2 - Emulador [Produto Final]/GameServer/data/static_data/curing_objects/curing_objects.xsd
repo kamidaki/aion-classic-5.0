@@ -7,6 +7,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:complexType name="CuringTemplate">
 		<xs:attribute name="map_id" type="xs:int"/>
 		<xs:attribute name="x" type="xs:float"/>

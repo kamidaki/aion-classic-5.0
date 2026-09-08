@@ -9,8 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.commons.scripting.url.VirtualClassURLStreamHandler;
 
 /**
- * Abstract class loader that should be extended by child classloaders. If needed, this class should wrap another classloader.
- *
+ * @author Lost Academy Team & Durak
  */
 public abstract class ScriptClassLoader extends URLClassLoader {
 

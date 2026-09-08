@@ -9,8 +9,7 @@ import java.nio.file.Paths;
 import javax.tools.SimpleJavaFileObject;
 
 /**
- * This class is a simple wrapper for SimpleJavaFileObject that loads a class source from file system
- * 
+ * @author Lost Academy Team & Durak
  */
 public class JavaSourceFromFile extends SimpleJavaFileObject {
 

@@ -8,16 +8,14 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.configs.CommonsConfig;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class ExecuteWrapper implements Executor {
 
 	private static final Logger log = LoggerFactory.getLogger(ExecuteWrapper.class);
 
 	private final long expectedMaxExecutionTimeMillis;
-
-	public ExecuteWrapper() {
-		this(Long.MAX_VALUE);
-	}
 
 	public ExecuteWrapper(long expectedMaxExecutionTimeMillis) {
 		this.expectedMaxExecutionTimeMillis = expectedMaxExecutionTimeMillis;
@@ -25,10 +23,6 @@ public class ExecuteWrapper implements Executor {
 
 	@Override
 	public void execute(Runnable runnable) {
-		execute(runnable, expectedMaxExecutionTimeMillis, true);
-	}
-
-	public static void execute(Runnable runnable, long expectedMaxExecutionTimeMillis) {
 		execute(runnable, expectedMaxExecutionTimeMillis, true);
 	}
 

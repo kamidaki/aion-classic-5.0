@@ -5,7 +5,7 @@
 			<xs:sequence>
 				<xs:element name="tradelist_template" type="TradelistTemplate" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="trade_in_list_template" type="TradelistTemplate" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="purchase_list_template" type="TradelistTemplate" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="purchase_template" type="TradelistTemplate" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -20,15 +20,18 @@
 		<xs:attribute name="npc_id" type="xs:int"/>
 		<xs:attribute name="npc_type" type="tradeNpcType"/>
 		<xs:attribute name="sell_price_rate" type="xs:int"/>
+		<xs:attribute name="sell_price_rate2" type="xs:int"/>
+		<xs:attribute name="ap_sell_price_rate2" type="xs:int"/>
 		<xs:attribute name="buy_price_rate" type="xs:int"/>
-		<xs:attribute name="ap_buy_price_rate" type="xs:int"/>
-		<xs:attribute name="ap_sell_price_rate" type="xs:int"/>
+		<xs:attribute name="save_count" type="xs:boolean" use="optional"/>
 	</xs:complexType>
 	<xs:simpleType name="tradeNpcType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="NORMAL"/>
 			<xs:enumeration value="ABYSS"/>
+			<xs:enumeration value="LEGION_COIN"/>
 			<xs:enumeration value="REWARD"/>
+			<xs:enumeration value="ABYSS_KINAH"/>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

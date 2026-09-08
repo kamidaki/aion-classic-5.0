@@ -6,17 +6,7 @@ import java.util.*;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * Creates a <code>Collection</code> containing the comma separated items.<br>
- * If the declared class is an interface, the following implementations will be used:
- * <ul>
- * <li>{@link List} as {@link ArrayList}</li>
- * <li>{@link Set} as {@link HashSet}</li>
- * </ul>
- * <p/>
- * Normal classes will be invoked via the reflective #newInstance() method.
- * Trying to use not implemented interfaces/abstract classes will throw an Exception.
- * If the input is empty, an empty collection will be returned. Output is never null.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class CollectionTransformer extends CommaSeparatedValueTransformer<Collection<?>> {
 

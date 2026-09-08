@@ -1,7 +1,5 @@
 package com.aionemu.commons.network;
 
-import com.aionemu.commons.network.AConnection;
-import com.aionemu.commons.network.Dispatcher;
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.util.ArrayList;
@@ -9,69 +7,80 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-public class AcceptReadWriteDispatcherImpl
-extends Dispatcher {
-    private final List<AConnection> pendingClose = new ArrayList<AConnection>();
+/**
+ * @author Lost Academy Team & Durak
+ */
+public class AcceptReadWriteDispatcherImpl extends Dispatcher {
 
-    public AcceptReadWriteDispatcherImpl(String name, Executor dcPool) throws IOException {
-        super(name, dcPool);
-    }
+	/**
+	 * List of connections that should be closed by this <code>Dispatcher</code> as soon as possible.
+	 */
+	private final List<AConnection<?>> pendingClose = new ArrayList<>();
 
-    @Override
-    void dispatch() throws IOException {
-        int selected = this.selector.select();
-        this.processPendingClose();
-        if (selected != 0) {
-            Iterator<SelectionKey> selectedKeys = this.selector.selectedKeys().iterator();
-            while (selectedKeys.hasNext()) {
-                SelectionKey key = selectedKeys.next();
-                selectedKeys.remove();
-                if (!key.isValid()) continue;
-                switch (key.readyOps()) {
-                    case 16: {
-                        this.accept(key);
-                        break;
-                    }
-                    case 1: {
-                        this.read(key);
-                        break;
-                    }
-                    case 4: {
-                        this.write(key);
-                        break;
-                    }
-                    case 5: {
-                        this.read(key);
-                        if (!key.isValid()) break;
-                        this.write(key);
-                    }
-                }
-            }
-        }
-    }
+	public AcceptReadWriteDispatcherImpl(String name, Executor dcExecutor) throws IOException {
+		super(name, dcExecutor);
+	}
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    @Override
-    void closeConnection(AConnection con) {
-        List<AConnection> list = this.pendingClose;
-        synchronized (list) {
-            this.pendingClose.add(con);
-        }
-    }
+	/**
+	 * Process Pending Close connections and then dispatch <code>Selector</code> selected-key set.
+	 * 
+	 * @see com.aionemu.commons.network.Dispatcher#dispatch()
+	 */
+	@Override
+	void dispatch() throws IOException {
+		int selected = selector.select();
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    private void processPendingClose() {
-        List<AConnection> list = this.pendingClose;
-        synchronized (list) {
-            for (AConnection connection : this.pendingClose) {
-                this.closeConnectionImpl(connection);
-            }
-            this.pendingClose.clear();
-        }
-    }
+		if (selected != 0) {
+			for (Iterator<SelectionKey> selectedKeys = selector.selectedKeys().iterator(); selectedKeys.hasNext();) {
+				SelectionKey key = selectedKeys.next();
+				selectedKeys.remove();
+
+				if (!key.isValid())
+					continue;
+
+				// Check what event is available and deal with it
+				switch (key.readyOps()) {
+					case SelectionKey.OP_ACCEPT -> accept(key);
+					case SelectionKey.OP_READ -> read(key);
+					case SelectionKey.OP_WRITE -> write(key);
+					case SelectionKey.OP_READ | SelectionKey.OP_WRITE -> {
+						read(key);
+						if (key.isValid())
+							write(key);
+					}
+				}
+			}
+		}
+		processPendingClose();
+	}
+
+	/**
+	 * Add connection to pendingClose list, so this connection will be closed by this <code>Dispatcher</code> as soon as possible.
+	 * 
+	 * @see com.aionemu.commons.network.Dispatcher#closeConnection(com.aionemu.commons.network.AConnection)
+	 */
+	@Override
+	void closeConnection(AConnection<?> con) {
+		synchronized (pendingClose) {
+			pendingClose.add(con);
+		}
+	}
+
+	/**
+	 * Process Pending Close connections.
+	 */
+	private void processPendingClose() {
+		if (pendingClose.isEmpty())
+			return;
+		synchronized (pendingClose) {
+			long nowMillis = System.currentTimeMillis();
+			for (Iterator<AConnection<?>> iterator = pendingClose.iterator(); iterator.hasNext();) {
+				AConnection<?> connection = iterator.next();
+				if (connection.getSendMsgQueue().isEmpty() || !connection.isConnected() || nowMillis > connection.pendingCloseUntilMillis) {
+					closeConnectionImpl(connection);
+					iterator.remove();
+				}
+			}
+		}
+	}
 }
-

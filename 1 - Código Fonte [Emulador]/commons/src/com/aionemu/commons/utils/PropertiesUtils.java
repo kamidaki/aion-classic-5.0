@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * This class is designed to simplify routine job with properties
- * 
+ * @author Lost Academy Team & Durak
  */
 public class PropertiesUtils {
 
@@ -77,66 +76,8 @@ public class PropertiesUtils {
 	}
 
 	private static List<File> collectPropertiesFiles(File dir, boolean recursive) throws IOException {
-		if (!dir.exists() || !dir.isDirectory()) {
-			return List.of();
-		}
 		try (var paths = Files.find(dir.toPath(), recursive ? Integer.MAX_VALUE : 1, (path, attr) -> attr.isRegularFile() && path.toString().endsWith(".properties"))) {
 			return paths.map(Path::toFile).toList();
 		}
-	}
-
-	public static Properties[] load(String... files) throws IOException {
-		Properties[] result = new Properties[files.length];
-		for (int i = 0; i < result.length; ++i) {
-			result[i] = load(files[i]);
-		}
-		return result;
-	}
-
-	public static Properties[] load(File... files) throws IOException {
-		Properties[] result = new Properties[files.length];
-		for (int i = 0; i < result.length; ++i) {
-			result[i] = load(files[i], null);
-		}
-		return result;
-	}
-
-	public static Properties[] loadAllFromDirectory(String dir) throws IOException {
-		return loadAllFromDirectory(new File(dir), false);
-	}
-
-	public static Properties[] loadAllFromDirectory(File dir) throws IOException {
-		return loadAllFromDirectory(dir, false);
-	}
-
-	public static Properties[] loadAllFromDirectory(String dir, boolean recursive) throws IOException {
-		return loadAllFromDirectory(new File(dir), recursive);
-	}
-
-	public static Properties[] loadAllFromDirectory(File dir, boolean recursive) throws IOException {
-		List<File> files = collectPropertiesFiles(dir, recursive);
-		Properties[] result = new Properties[files.size()];
-		for (int i = 0; i < files.size(); i++) {
-			result[i] = load(files.get(i), null);
-		}
-		return result;
-	}
-
-	public static Properties[] overrideProperties(Properties[] initialProperties, Properties[] properties) {
-		if (properties != null) {
-			for (Properties props : properties) {
-				overrideProperties(initialProperties, props);
-			}
-		}
-		return initialProperties;
-	}
-
-	public static Properties[] overrideProperties(Properties[] initialProperties, Properties properties) {
-		if (properties != null && initialProperties != null) {
-			for (Properties initialProps : initialProperties) {
-				initialProps.putAll(properties);
-			}
-		}
-		return initialProperties;
 	}
 }

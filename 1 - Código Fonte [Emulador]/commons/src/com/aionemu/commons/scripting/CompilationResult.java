@@ -5,8 +5,7 @@ import java.util.Collection;
 import com.aionemu.commons.scripting.impl.javacompiler.BinaryClass;
 
 /**
- * This class represents compilation result of script context
- * 
+ * @author Lost Academy Team & Durak
  */
 public class CompilationResult {
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="800090000">
+		<!-- Ruonas -->
+		<spawn npc_id="209397" respawn_time="295">
+			<spot x="753.571" y="125.9518" z="1198.6195" h="0"/>
+		</spawn>
+		<!-- Trois -->
+		<spawn npc_id="209399" respawn_time="295">
+			<spot x="753.571" y="1409.9873" z="1199.9409" h="0"/>
+		</spawn>
+		<!-- General Teleportation Portal -->
+		<spawn npc_id="750035" respawn_time="295">
+			<spot x="758.1747" y="187.1916" z="1203.7533" h="0"/>
+		</spawn>
+		<!-- Portal (with Entry Ticket) -->
+		<spawn npc_id="750036" respawn_time="295">
+			<spot x="750.2288" y="187.21" z="1203.7533" h="0"/>
+		</spawn>
+		<!-- General Teleportation Portal -->
+		<spawn npc_id="750037" respawn_time="295">
+			<spot x="758.2559" y="1352.0853" z="1203.7533" h="0"/>
+		</spawn>
+		<!-- Portal (with Entry Ticket) -->
+		<spawn npc_id="750038" respawn_time="295">
+			<spot x="750.3099" y="1352.1038" z="1203.7533" h="0"/>
+		</spawn>
+		<!-- Portal to the Raid Area -->
+		<spawn npc_id="750041" respawn_time="295">
+			<spot x="912.24" y="766.52" z="1230.45" h="0"/>
+			<spot x="600.8732" y="766.3" z="1230.51" h="0"/>
+		</spawn>
+		<!-- Escaped Reian -->
+		<spawn npc_id="750042" respawn_time="295">
+			<spot x="913.0916" y="778.1409" z="1228.9794" h="0"/>
+			<spot x="600.5419" y="754.6031" z="1227.9001" h="0"/>
+		</spawn>
+		<!-- Tiamat -->
+		<spawn npc_id="803180" respawn_time="295">
+			<spot x="756.5035" y="766.6954" z="1222.7338" h="0"/>
+			<spot x="756.5035" y="766.6954" z="1222.7338" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

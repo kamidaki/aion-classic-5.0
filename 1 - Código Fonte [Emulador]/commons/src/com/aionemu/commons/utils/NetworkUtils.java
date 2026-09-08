@@ -6,7 +6,9 @@ import java.nio.ByteBuffer;
 
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class NetworkUtils {
 
 	/**

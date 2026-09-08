@@ -8,7 +8,9 @@ import java.util.stream.LongStream;
 
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public final class Rnd {
 
 	// not thread-safe, only used to split off thread-local generators
@@ -19,36 +21,6 @@ public final class Rnd {
 			return splittableGenerator.split();
 		}
 	});
-
-	/**
-	 * @return A random float between 0.0f (inclusive) and 1.0f (exclusive)
-	 */
-	public static float get() {
-		return nextFloat();
-	}
-
-	/**
-	 * @return A random int between 0 (inclusive) and n (exclusive)
-	 */
-	public static int get(int n) {
-		return n <= 0 ? 0 : nextInt(n);
-	}
-
-	public static boolean chance(int chance) {
-		return chance >= 1 && (chance > 99 || nextInt(99) + 1 <= chance);
-	}
-
-	public static boolean chance(double chance) {
-		return nextDouble() <= chance / 100.0;
-	}
-
-	public static double nextGaussian() {
-		return rnd.get().nextGaussian();
-	}
-
-	public static double nextGaussian(double mean, double stddev) {
-		return rnd.get().nextGaussian(mean, stddev);
-	}
 
 	/**
 	 * To compare this chance with a success rate, evaluate "{@code if (chance() < success rate)}" to determine a success or, alternatively

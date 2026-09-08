@@ -10,8 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class is simple compiler error listener that forwards errors to log4j logger
- * 
+ * @author Lost Academy Team & Durak
  */
 public class ErrorListener implements DiagnosticListener<JavaFileObject> {
 
@@ -27,8 +26,8 @@ public class ErrorListener implements DiagnosticListener<JavaFileObject> {
 	public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
 		String msg = diagnostic.getMessage(Locale.ENGLISH);
 		if (diagnostic.getKind() == Diagnostic.Kind.NOTE) {
-			if ("Some input files use preview language features.".equals(msg) || "Recompile with -Xlint:preview for details.".equals(msg) || msg.endsWith(" uses preview language features."))
-				return; // we're intentionally using preview features if we use --enable-preview, so don't spam our logs about it
+			log.debug("Java Compiler NOTE: {}", msg);
+			return;
 		}
 		StringBuilder sb = new StringBuilder();
 		sb.append("Java Compiler ");

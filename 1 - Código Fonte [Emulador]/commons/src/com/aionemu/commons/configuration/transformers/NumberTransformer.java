@@ -5,8 +5,7 @@ import java.util.Map;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * Parses most common number types.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class NumberTransformer extends PropertyTransformer<Number> {
 

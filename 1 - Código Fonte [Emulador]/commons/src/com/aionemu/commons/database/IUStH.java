@@ -4,9 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Insert/Update Statement handler.<br>
- * For usage details check documentation of DB class.
- * 
+ * @author Lost Academy Team & Durak
  */
 public interface IUStH {
 

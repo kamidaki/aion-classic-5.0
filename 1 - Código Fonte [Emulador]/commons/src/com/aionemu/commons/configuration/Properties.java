@@ -7,8 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This is a specialized form of the {@link Property} annotation. It's used to generate a key-value map of select config keys.
- * 
+ * @author Lost Academy Team & Durak
  */
 @Documented
 @Target({ ElementType.FIELD })

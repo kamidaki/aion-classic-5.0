@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="800030000">
+		<!-- Guardian Labourer -->
+		<spawn npc_id="220041" respawn_time="295">
+			<spot x="985.8123" y="1165.286" z="464.0089" h="0" walker_id="B6D68590D241E5B3CB6DEFC83FE6BC322F57B2D6" walker_index="6"/>
+			<spot x="985.8123" y="1165.286" z="464.0089" h="0" walker_id="B6D68590D241E5B3CB6DEFC83FE6BC322F57B2D6" walker_index="6"/>
+			<spot x="1082.6008" y="880.4724" z="464.0089" h="0"/>
+			<spot x="1104.2692" y="1006.4309" z="464.0089" h="0"/>
+			<spot x="995.9462" y="1061.5581" z="464.0089" h="0"/>
+			<spot x="1052.4303" y="1060.9398" z="464.0089" h="0"/>
+			<spot x="965.7975" y="1082.3748" z="464.0089" h="0"/>
+			<spot x="1019.0602" y="1026.6776" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Guardian Labourer -->
+		<spawn npc_id="220042" respawn_time="295">
+			<spot x="1057.1857" y="1020.65" z="464.0089" h="0"/>
+			<spot x="1030.7469" y="1063.2147" z="464.0089" h="0"/>
+			<spot x="1101.0846" y="906.407" z="464.0089" h="0"/>
+			<spot x="992.8315" y="1000.6628" z="464.0089" h="0"/>
+			<spot x="997.0498" y="1174.366" z="464.0089" h="0" walker_id="B6D68590D241E5B3CB6DEFC83FE6BC322F57B2D6" walker_index="4"/>
+			<spot x="977.9492" y="1126.3921" z="464.0089" h="0"/>
+			<spot x="996.0162" y="1189.7859" z="464.0089" h="0" walker_id="B6D68590D241E5B3CB6DEFC83FE6BC322F57B2D6" walker_index="3"/>
+			<spot x="1001.2376" y="1070.8827" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Guardian Labourer -->
+		<spawn npc_id="220043" respawn_time="295">
+			<spot x="1097.4607" y="893.8084" z="464.0089" h="0"/>
+			<spot x="964.3978" y="1072.5543" z="464.0089" h="0"/>
+			<spot x="966.0145" y="1095.9656" z="464.0089" h="0"/>
+			<spot x="1041.5758" y="1060.4415" z="464.0089" h="0"/>
+			<spot x="986.0933" y="1178.3816" z="464.0089" h="0" walker_id="B6D68590D241E5B3CB6DEFC83FE6BC322F57B2D6" walker_index="5"/>
+			<spot x="986.0933" y="1178.3816" z="464.0089" h="0" walker_id="B6D68590D241E5B3CB6DEFC83FE6BC322F57B2D6" walker_index="5"/>
+			<spot x="1006.8455" y="1178.3816" z="464.0089" h="0" walker_id="B6D68590D241E5B3CB6DEFC83FE6BC322F57B2D6" walker_index="3"/>
+			<spot x="1002.5596" y="1010.7348" z="464.0089" h="0"/>
+			<spot x="982.2161" y="1139.7351" z="464.0089" h="0"/>
+			<spot x="1068.0145" y="1020.4331" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Archon Labourer -->
+		<spawn npc_id="220044" respawn_time="295">
+			<spot x="943.4553" y="913.2078" z="464.0089" h="0"/>
+			<spot x="902.495" y="913.8323" z="464.0089" h="0"/>
+			<spot x="949.3292" y="1029.9773" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="11"/>
+			<spot x="949.3292" y="1029.9773" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="11"/>
+			<spot x="949.3292" y="1029.9773" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="11"/>
+			<spot x="1093.9244" y="932.6708" z="464.0089" h="0"/>
+			<spot x="949.66" y="927.5703" z="464.0089" h="0"/>
+			<spot x="963.6946" y="951.3166" z="464.0089" h="0"/>
+			<spot x="918.8345" y="945.7611" z="464.0089" h="0"/>
+			<spot x="931.7571" y="1023.7734" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="13"/>
+			<spot x="931.7571" y="1023.7734" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="13"/>
+			<spot x="931.7571" y="1023.7734" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="13"/>
+		</spawn>
+		<!-- Archon Labourer -->
+		<spawn npc_id="220045" respawn_time="295">
+			<spot x="936.9515" y="1036.339" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="11"/>
+			<spot x="936.9515" y="1036.339" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="11"/>
+			<spot x="1091.1699" y="941.7804" z="464.0089" h="0"/>
+			<spot x="939.4929" y="1019.4172" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="20"/>
+			<spot x="939.4929" y="1019.4172" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="20"/>
+			<spot x="939.4929" y="1019.4172" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="20"/>
+			<spot x="969.4784" y="960.1194" z="464.0089" h="0"/>
+			<spot x="905.5681" y="921.0306" z="464.0089" h="0"/>
+			<spot x="919.2762" y="959.1329" z="464.0089" h="0"/>
+			<spot x="939.7642" y="896.7621" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Archon Labourer -->
+		<spawn npc_id="220046" respawn_time="295">
+			<spot x="1082.8052" y="952.8091" z="464.0089" h="0"/>
+			<spot x="935.8293" y="1028.5763" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="11"/>
+			<spot x="935.8293" y="1028.5763" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="11"/>
+			<spot x="935.8293" y="1028.5763" z="464.0089" h="0" walker_id="F71497BCEA558C88419F01EEE1A4934607C91743" walker_index="11"/>
+			<spot x="1114.423" y="920.3035" z="464.0089" h="0"/>
+			<spot x="910.9243" y="931.9852" z="464.0089" h="0"/>
+			<spot x="974.8527" y="967.7231" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Reian Worker -->
+		<spawn npc_id="220047" respawn_time="295">
+			<spot x="1222.7629" y="829.8732" z="464.9209" h="0"/>
+			<spot x="1171.8793" y="912.1536" z="464.9209" h="0"/>
+			<spot x="1052.7157" y="871.392" z="464.9209" h="0"/>
+			<spot x="1222.0549" y="997.0398" z="464.0089" h="0" walker_id="D08273FBB8BCFD3C7158AB11AB21A2A43F8347DE" walker_index="11"/>
+			<spot x="1031.0345" y="883.287" z="464.9209" h="0"/>
+			<spot x="1141.0194" y="983.4962" z="464.9209" h="0"/>
+			<spot x="1230.0325" y="986.8954" z="464.0089" h="0" walker_id="D08273FBB8BCFD3C7158AB11AB21A2A43F8347DE" walker_index="10"/>
+			<spot x="1166.7267" y="936.093" z="464.9209" h="0"/>
+			<spot x="1224.5902" y="871.1769" z="464.9209" h="0"/>
+			<spot x="1177.2418" y="883.3631" z="464.9209" h="0"/>
+			<spot x="1215.7029" y="820.3377" z="464.9209" h="0"/>
+		</spawn>
+		<!-- Reian Worker -->
+		<spawn npc_id="220048" respawn_time="295">
+			<spot x="1216.2939" y="987.3672" z="464.0089" h="0" walker_id="D08273FBB8BCFD3C7158AB11AB21A2A43F8347DE" walker_index="11"/>
+			<spot x="1229.6472" y="864.5737" z="464.9209" h="0"/>
+			<spot x="1170.015" y="922.1263" z="464.9209" h="0"/>
+			<spot x="1146.7941" y="979.9741" z="464.9209" h="0"/>
+			<spot x="1040.6327" y="873.6583" z="464.9209" h="0"/>
+			<spot x="1210.3745" y="811.4491" z="464.9209" h="0"/>
+		</spawn>
+		<!-- Reian Worker -->
+		<spawn npc_id="220049" respawn_time="295">
+			<spot x="1065.9055" y="870.4268" z="464.9209" h="0"/>
+			<spot x="1227.0081" y="840.908" z="464.9209" h="0"/>
+			<spot x="1165.0809" y="957.7107" z="464.9209" h="0"/>
+			<spot x="1225.2086" y="1011.2041" z="464.0089" h="0" walker_id="D08273FBB8BCFD3C7158AB11AB21A2A43F8347DE" walker_index="12"/>
+			<spot x="1133.109" y="988.6" z="464.9209" h="0"/>
+			<spot x="1175.4167" y="896.369" z="464.9209" h="0"/>
+		</spawn>
+		<!-- Guardian Labourer -->
+		<spawn npc_id="220050" respawn_time="295">
+			<spot x="854.3486" y="923.6349" z="464.0089" h="0"/>
+			<spot x="860.3177" y="913.0649" z="464.0089" h="0"/>
+			<spot x="860.3177" y="913.0649" z="464.0089" h="0"/>
+			<spot x="860.8892" y="919.4481" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Guardian Labourer -->
+		<spawn npc_id="220051" respawn_time="295">
+			<spot x="863.7587" y="914.7491" z="464.0089" h="0"/>
+			<spot x="863.7587" y="914.7491" z="464.0089" h="0"/>
+			<spot x="854.3726" y="918.1025" z="464.0089" h="0"/>
+			<spot x="860.5575" y="924.7081" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Archon Labourer -->
+		<spawn npc_id="220052" respawn_time="295">
+			<spot x="851.47" y="889.1374" z="464.0089" h="0"/>
+			<spot x="841.47" y="887.1374" z="464.0089" h="0"/>
+			<spot x="841.47" y="887.1374" z="464.0089" h="0"/>
+			<spot x="849.47" y="884.1374" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Archon Labourer -->
+		<spawn npc_id="220053" respawn_time="295">
+			<spot x="843.47" y="894.1374" z="464.0089" h="0"/>
+			<spot x="843.47" y="894.1374" z="464.0089" h="0"/>
+			<spot x="845.47" y="887.6374" z="464.0089" h="0"/>
+			<spot x="845.47" y="887.6374" z="464.0089" h="0"/>
+			<spot x="845.47" y="893.1374" z="464.0089" h="0"/>
+			<spot x="845.47" y="893.1374" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Guardian Labourer -->
+		<spawn npc_id="220054" respawn_time="295">
+			<spot x="865.5029" y="921.3687" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Guardian Labourer -->
+		<spawn npc_id="220055" respawn_time="295">
+			<spot x="863.3176" y="929.6979" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Archon Labourer -->
+		<spawn npc_id="220056" respawn_time="295">
+			<spot x="842.0582" y="881.5768" z="464.0089" h="0"/>
+			<spot x="842.0582" y="881.5768" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Archon Labourer -->
+		<spawn npc_id="220057" respawn_time="295">
+			<spot x="844.47" y="881.6374" z="464.0089" h="0"/>
+			<spot x="844.47" y="881.6374" z="464.0089" h="0"/>
+		</spawn>
+		<!-- Reian Corpse -->
+		<spawn npc_id="701454" respawn_time="295">
+			<spot x="2598.7212" y="1424.0558" z="360.6192" h="0"/>
+			<spot x="2448.519" y="1857.9575" z="376.0146" h="0"/>
+			<spot x="2593.0212" y="1426.0558" z="359.6265" h="0"/>
+			<spot x="2587.0874" y="1422.9506" z="357.3327" h="0"/>
+			<spot x="2531.4214" y="1922.6162" z="375.4539" h="0"/>
+			<spot x="2449.8682" y="1851.147" z="376.3829" h="0"/>
+			<spot x="2504.2212" y="1893.6558" z="376.5787" h="0"/>
+			<spot x="2639.1213" y="1349.2557" z="362.5716" h="0"/>
+			<spot x="2641.7212" y="1354.9557" z="363.2895" h="0"/>
+			<spot x="2443.4214" y="1862.8557" z="377.1952" h="0"/>
+		</spawn>
+		<!-- Evidence of Runaway Workers -->
+		<spawn npc_id="701455" respawn_time="295">
+			<spot x="1688.8624" y="2091.063" z="245.5019" h="0"/>
+			<spot x="1520.1063" y="2188.9512" z="282.0327" h="0"/>
+			<spot x="1839.3931" y="2098.356" z="300.0327" h="0"/>
+			<spot x="1813.285" y="1811.9598" z="251.0327" h="0"/>
+			<spot x="1585.9197" y="2097.3188" z="275.0327" h="0"/>
+			<spot x="1739.381" y="1827.1743" z="262.0327" h="0"/>
+			<spot x="1793.1914" y="1913.0632" z="266.6937" h="0"/>
+			<spot x="1888.5793" y="1884.9275" z="266.0327" h="0"/>
+			<spot x="1897.1271" y="2049.6929" z="258.5529" h="0"/>
+			<spot x="1774.0706" y="2024.4291" z="246.68" h="0"/>
+		</spawn>
+		<!-- Eroded Cell Door -->
+		<spawn npc_id="730564" respawn_time="295">
+			<spot x="1138.6541" y="768.5324" z="307.2577" h="0"/>
+		</spawn>
+		<!-- Scroll of Obscurity -->
+		<spawn npc_id="730565" respawn_time="295">
+			<spot x="2076.8354" y="506.9878" z="191.818" h="0"/>
+			<spot x="2213.7092" y="460.766" z="192.9999" h="0"/>
+		</spawn>
+		<!-- Sealed Scroll -->
+		<spawn npc_id="730566" respawn_time="295">
+			<spot x="2288.0657" y="666.6117" z="203.744" h="0"/>
+			<spot x="2348" y="480.5383" z="198.9076" h="0"/>
+		</spawn>
+		<!-- Weathered Cell Door -->
+		<spawn npc_id="730567" respawn_time="295">
+			<spot x="953.6025" y="980.9624" z="306.9927" h="0"/>
+		</spawn>
+		<!-- Opaque Document -->
+		<spawn npc_id="730568" respawn_time="295">
+			<spot x="2172.2903" y="2555.2002" z="276.6612" h="0"/>
+			<spot x="2146.4155" y="2662.7302" z="241.5713" h="0"/>
+		</spawn>
+		<!-- Sealed Document -->
+		<spawn npc_id="730569" respawn_time="295">
+			<spot x="1919.9869" y="2568.0171" z="220.6495" h="0"/>
+			<spot x="2213.3694" y="2487.2319" z="256.3324" h="0"/>
+		</spawn>
+		<!-- Secret Compartment -->
+		<spawn npc_id="730571" respawn_time="295">
+			<spot x="2129.5959" y="490.0347" z="195.5648" h="0"/>
+			<spot x="2268.4707" y="390.015" z="183.474" h="0"/>
+			<spot x="1945.484" y="414.7155" z="205.0916" h="0"/>
+		</spawn>
+		<!-- Secret Safe -->
+		<spawn npc_id="730572" respawn_time="295">
+			<spot x="2154.0852" y="2684.803" z="242.1043" h="0"/>
+			<spot x="2012.3651" y="2529.6877" z="229.2249" h="0"/>
+			<spot x="2259.5615" y="2616.8005" z="235.1947" h="0"/>
+		</spawn>
+		<!-- Chronos -->
+		<spawn npc_id="800918" respawn_time="295">
+			<spot x="1129.0656" y="2861.4998" z="513.5652" h="0"/>
+		</spawn>
+		<!-- Diadrome -->
+		<spawn npc_id="800919" respawn_time="295">
+			<spot x="1124.6768" y="2856.5327" z="516.9893" h="0"/>
+		</spawn>
+		<!-- Xythei -->
+		<spawn npc_id="800920" respawn_time="295">
+			<spot x="1183.7568" y="294.4284" z="505.3386" h="0"/>
+		</spawn>
+		<!-- Rissagon -->
+		<spawn npc_id="800921" respawn_time="295">
+			<spot x="1177.7993" y="298.0979" z="505.4501" h="0"/>
+		</spawn>
+		<!-- Kensunerk -->
+		<spawn npc_id="800950" respawn_time="295">
+			<spot x="254.8366" y="1580.1626" z="356.8782" h="0"/>
+		</spawn>
+		<!-- Resource Bookkeeper -->
+		<spawn npc_id="800965" respawn_time="295">
+			<spot x="1207.731" y="350.5013" z="483.149" h="0"/>
+			<spot x="1206.8907" y="2820.0427" z="493.6886" h="0"/>
+			<spot x="1165.0584" y="2874.6025" z="490.4283" h="0"/>
+			<spot x="1225.934" y="297.8543" z="483.535" h="0"/>
+			<spot x="1228.8767" y="360.1008" z="483.4321" h="0"/>
+			<spot x="1292.5219" y="353.3101" z="483.6537" h="0"/>
+		</spawn>
+		<!-- Resource Transporter -->
+		<spawn npc_id="800966" respawn_time="295">
+			<spot x="1229.3652" y="296.7476" z="483.662" h="0" walker_id="E097434561E7F09BC1CF43169A40F1CD95276A92" walker_index="1"/>
+			<spot x="1162.8496" y="2874.2307" z="489.9819" h="0" walker_id="A8784CD49CEB6E08E4ACDFD2A883F0C4C76D8A81" walker_index="1"/>
+			<spot x="1233.5765" y="364.4779" z="482.9968" h="0" walker_id="24B8E72661B3A095BCF223EE0837E53F295B9A78" walker_index="1"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="801161" respawn_time="295">
+			<spot x="1100.1471" y="2878.1086" z="511.5342" h="0"/>
+		</spawn>
+		<!-- Eos Portal -->
+		<spawn npc_id="801162" respawn_time="295">
+			<spot x="1241.527" y="2871.5342" z="378.8965" h="0"/>
+		</spawn>
+		<!-- Landing Site Teleport Statue -->
+		<spawn npc_id="801163" respawn_time="295">
+			<spot x="1110.5819" y="2848.7117" z="489.9702" h="0"/>
+		</spawn>
+		<!-- Landing Site Teleport Statue -->
+		<spawn npc_id="801164" respawn_time="295">
+			<spot x="1130.4753" y="2885.1411" z="489.1619" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="801166" respawn_time="295">
+			<spot x="1157.2611" y="273.0209" z="501.9534" h="0"/>
+		</spawn>
+		<!-- Minox Portal -->
+		<spawn npc_id="801167" respawn_time="295">
+			<spot x="1174.5251" y="185.2945" z="372.062" h="0"/>
+		</spawn>
+		<!-- Landing Site Teleport Statue -->
+		<spawn npc_id="801168" respawn_time="295">
+			<spot x="1186.3784" y="270.0049" z="480.3188" h="0"/>
+		</spawn>
+		<!-- Landing Site Teleport Statue -->
+		<spawn npc_id="801169" respawn_time="295">
+			<spot x="1160.3374" y="302.8167" z="480.1718" h="0"/>
+		</spawn>
+		<!-- Shariana -->
+		<spawn npc_id="801174" respawn_time="295">
+			<spot x="1159.8871" y="2878.4937" z="496.1286" h="0"/>
+		</spawn>
+		<!-- Dionamion -->
+		<spawn npc_id="801175" respawn_time="295">
+			<spot x="1107.3108" y="2862.8113" z="496.6002" h="0"/>
+		</spawn>
+		<!-- Duaro -->
+		<spawn npc_id="801177" respawn_time="295">
+			<spot x="293.9115" y="979.3322" z="475.6523" h="0"/>
+		</spawn>
+		<!-- Lalasia -->
+		<spawn npc_id="801178" respawn_time="295">
+			<spot x="1669.5341" y="661.0458" z="418.1185" h="0"/>
+		</spawn>
+		<!-- Myrdos -->
+		<spawn npc_id="801179" respawn_time="295">
+			<spot x="1153.5171" y="2882.448" z="496.2021" h="0"/>
+		</spawn>
+		<!-- Marina -->
+		<spawn npc_id="801180" respawn_time="295">
+			<spot x="290.8937" y="982.4551" z="475.6523" h="0"/>
+		</spawn>
+		<!-- Ludion -->
+		<spawn npc_id="801181" respawn_time="295">
+			<spot x="1670.1488" y="656.5692" z="418.1185" h="0"/>
+		</spawn>
+		<!-- Eos Crewman -->
+		<spawn npc_id="801182" respawn_time="295">
+			<spot x="1199.0875" y="2814.9573" z="496.1933" h="0" walker_id="89BC05476DCC4F027FD8BB3DE39745C1971BBC9A" walker_index="1"/>
+			<spot x="1154.0646" y="2820.6077" z="496.0516" h="0" walker_id="5B04E57DA13312044AD3820E221F156FE80F6644" walker_index="1"/>
+			<spot x="1262.9364" y="2789.1199" z="495.4186" h="0" walker_id="6EA4D0DD3EA29BFC2B39B566B507D5CC4F658D42" walker_index="1"/>
+		</spawn>
+		<!-- Eos Crewman -->
+		<spawn npc_id="801183" respawn_time="295">
+			<spot x="1085.2794" y="2889.4482" z="506.1086" h="0" walker_id="9E029111D6BD481E51EF0E6F59005E48590C3FA4" walker_index="1"/>
+			<spot x="1139.6799" y="2845.429" z="494.255" h="0" walker_id="241E24146BE45E67DC0DEE3C8B88743B8C14F7E4" walker_index="1"/>
+		</spawn>
+		<!-- Tirni -->
+		<spawn npc_id="801188" respawn_time="295">
+			<spot x="1251.0848" y="313.4395" z="486.2747" h="0"/>
+		</spawn>
+		<!-- Ditior -->
+		<spawn npc_id="801189" respawn_time="295">
+			<spot x="1158.3204" y="287.378" z="490.7968" h="0"/>
+		</spawn>
+		<!-- Langolas -->
+		<spawn npc_id="801191" respawn_time="295">
+			<spot x="209.3934" y="1959.8304" z="398.8553" h="0"/>
+		</spawn>
+		<!-- Renaus -->
+		<spawn npc_id="801192" respawn_time="295">
+			<spot x="1807.0457" y="2475.0461" z="394.0845" h="0"/>
+		</spawn>
+		<!-- Kordion -->
+		<spawn npc_id="801193" respawn_time="295">
+			<spot x="1242.6685" y="306.2715" z="486.0909" h="0"/>
+		</spawn>
+		<!-- Hirina -->
+		<spawn npc_id="801194" respawn_time="295">
+			<spot x="205.5664" y="1963.1412" z="398.8553" h="0"/>
+		</spawn>
+		<!-- Prado -->
+		<spawn npc_id="801195" respawn_time="295">
+			<spot x="1801.8828" y="2479.0842" z="393.8867" h="0"/>
+		</spawn>
+		<!-- Minox Crewman -->
+		<spawn npc_id="801196" respawn_time="295">
+			<spot x="1190.6499" y="317.4336" z="508.0424" h="0" walker_id="DCEF0B86F3F61422D22E1F12A05B19FD4AFBBACB" walker_index="1"/>
+			<spot x="1152.0361" y="260.9567" z="506.6895" h="0" walker_id="D4A808C0C3D0453F6A431FB598C340375F864A36" walker_index="1"/>
+		</spawn>
+		<!-- Minox Crewman -->
+		<spawn npc_id="801197" respawn_time="295">
+			<spot x="1217.887" y="289.0911" z="507.955" h="0" walker_id="6EF60D6A880098182AEA0B9BB563B651DB7B7A7D" walker_index="1"/>
+			<spot x="1329.4108" y="405.7562" z="508.6311" h="0" walker_id="D8246766981821B638D295873EA0B1096FB204DB" walker_index="1"/>
+			<spot x="1272.2762" y="378.5564" z="509.4446" h="0" walker_id="6C4C62DD04BA60CEAA991BFE9E575F2C0D564141" walker_index="1"/>
+			<spot x="1194.3157" y="329.562" z="507.5845" h="0" walker_id="9C2935AE98158946D9337942663913E7CC855A66" walker_index="12"/>
+		</spawn>
+		<!-- Lana -->
+		<spawn npc_id="801315" respawn_time="295">
+			<spot x="1131.3131" y="2844.1816" z="496.2697" h="0"/>
+		</spawn>
+		<!-- Vellond -->
+		<spawn npc_id="801316" respawn_time="295">
+			<spot x="303.0034" y="971.2184" z="473.388" h="0"/>
+		</spawn>
+		<!-- Amarena -->
+		<spawn npc_id="801317" respawn_time="295">
+			<spot x="749.9" y="1649.7" z="298.9872" h="0"/>
+		</spawn>
+		<!-- Chimanaus -->
+		<spawn npc_id="801319" respawn_time="295">
+			<spot x="633.531" y="333.1885" z="434.4153" h="0"/>
+		</spawn>
+		<!-- Mychanon -->
+		<spawn npc_id="801320" respawn_time="295">
+			<spot x="826.6378" y="1126.9918" z="314.7105" h="0"/>
+		</spawn>
+		<!-- Bleary-Eyed Prisoner -->
+		<spawn npc_id="801321" respawn_time="295">
+			<spot x="1163.8856" y="773.7408" z="307.3652" h="0"/>
+		</spawn>
+		<!-- Bleary-Eyed Prisoner -->
+		<spawn npc_id="801322" respawn_time="295">
+			<spot x="1175.6948" y="744.7903" z="307.3581" h="0"/>
+		</spawn>
+		<!-- Bleary-Eyed Prisoner -->
+		<spawn npc_id="801323" respawn_time="295">
+			<spot x="1184.8422" y="751.3474" z="307.6328" h="0"/>
+		</spawn>
+		<!-- Clear-Headed Prisoner -->
+		<spawn npc_id="801324" respawn_time="295">
+			<spot x="1138.8397" y="769.4484" z="307.4993" h="0"/>
+		</spawn>
+		<!-- Entu -->
+		<spawn npc_id="801328" respawn_time="295">
+			<spot x="1183.0188" y="312.3397" z="482.8086" h="0"/>
+		</spawn>
+		<!-- Khaloa -->
+		<spawn npc_id="801329" respawn_time="295">
+			<spot x="238.3352" y="1944.566" z="470.8291" h="0"/>
+		</spawn>
+		<!-- Valoth -->
+		<spawn npc_id="801330" respawn_time="295">
+			<spot x="300.3372" y="2366.282" z="332.6393" h="0"/>
+		</spawn>
+		<!-- Tuan -->
+		<spawn npc_id="801331" respawn_time="295">
+			<spot x="1097.0251" y="1902.9739" z="286.8346" h="0"/>
+		</spawn>
+		<!-- Disillusioned Prisoner -->
+		<spawn npc_id="801333" respawn_time="295">
+			<spot x="960.7188" y="990.5031" z="306.8427" h="0"/>
+		</spawn>
+		<!-- Disillusioned Prisoner -->
+		<spawn npc_id="801334" respawn_time="295">
+			<spot x="930.3106" y="1001.2828" z="307.2518" h="0"/>
+		</spawn>
+		<!-- Disillusioned Prisoner -->
+		<spawn npc_id="801335" respawn_time="295">
+			<spot x="956.1592" y="1038.5605" z="306.1772" h="0"/>
+		</spawn>
+		<!-- Clear-Eyed Prisoner -->
+		<spawn npc_id="801336" respawn_time="295">
+			<spot x="954.8474" y="980.5529" z="306.9164" h="0"/>
+		</spawn>
+		<!-- New Laphsaran Rift -->
+		<spawn npc_id="801337" respawn_time="295">
+			<spot x="1625.1209" y="1249.2021" z="146.3837" h="0"/>
+		</spawn>
+		<!-- Blocked Passage -->
+		<spawn npc_id="801339" respawn_time="295">
+			<spot x="511.9918" y="2720.6997" z="292.8749" h="0"/>
+		</spawn>
+		<!-- Generated Laphsaran Rift -->
+		<spawn npc_id="801341" respawn_time="295">
+			<spot x="1519.7894" y="1137.1296" z="212.0601" h="0"/>
+		</spawn>
+		<!-- Collapsed Passage -->
+		<spawn npc_id="801343" respawn_time="295">
+			<spot x="768.619" y="2781.009" z="300.335" h="0"/>
+		</spawn>
+		<!-- Laferinerk -->
+		<spawn npc_id="801372" respawn_time="295">
+			<spot x="1593.2645" y="953.7913" z="171.8856" h="0"/>
+			<spot x="1593.2645" y="953.7913" z="171.8856" h="0"/>
+		</spawn>
+		<!-- Lasrunerk -->
+		<spawn npc_id="801373" respawn_time="295">
+			<spot x="1591.7" y="1910.3" z="271.3" h="0"/>
+			<spot x="1591.7" y="1910.3" z="271.3" h="0"/>
+		</spawn>
+		<!-- Lanterinerk -->
+		<spawn npc_id="801374" respawn_time="295">
+			<spot x="817.7217" y="1092.8788" z="314.4299" h="0"/>
+			<spot x="817.7217" y="1092.8788" z="314.4299" h="0"/>
+		</spawn>
+		<!-- Lanterunerk -->
+		<spawn npc_id="801375" respawn_time="295">
+			<spot x="1090.8" y="1901.3" z="291.1" h="0"/>
+			<spot x="1090.8" y="1901.3" z="291.1" h="0"/>
+		</spawn>
+		<!-- Reian Refugee -->
+		<spawn npc_id="801383" respawn_time="295">
+			<spot x="759.152" y="1662.1307" z="314.5889" h="0" walker_id="4F8A07EC8530E0C04A7A9C0CB1BE2D02CE9E8049" walker_index="6"/>
+			<spot x="708.8832" y="1609.9366" z="314.5889" h="0" walker_id="99CCC880A7703FCC065AC03BDDA1444AD2EEDC1B" walker_index="6"/>
+			<spot x="717.3695" y="1616.5527" z="314.5889" h="0" walker_id="28DE17D264A9973276CA637785DF90188E6F52CC" walker_index="5"/>
+			<spot x="763.7326" y="1595.5133" z="314.5889" h="0" walker_id="15EC404197A5AAC29787FC3066C5B89DC4477276" walker_index="3"/>
+			<spot x="762.6918" y="1663.8333" z="314.5889" h="0" walker_id="4F8A07EC8530E0C04A7A9C0CB1BE2D02CE9E8049" walker_index="4"/>
+			<spot x="715.8939" y="1611.5742" z="314.5889" h="0" walker_id="99CCC880A7703FCC065AC03BDDA1444AD2EEDC1B" walker_index="1"/>
+			<spot x="713.0253" y="1608.283" z="314.5889" h="0" walker_id="28DE17D264A9973276CA637785DF90188E6F52CC" walker_index="1"/>
+			<spot x="766.3607" y="1661.5951" z="314.5889" h="0" walker_id="4F8A07EC8530E0C04A7A9C0CB1BE2D02CE9E8049" walker_index="11"/>
+			<spot x="766.3607" y="1661.5951" z="314.5889" h="0" walker_id="4F8A07EC8530E0C04A7A9C0CB1BE2D02CE9E8049" walker_index="11"/>
+			<spot x="772.6617" y="1600.4808" z="314.5889" h="0" walker_id="E4B4B2E78C1C42BEDACFC102F1945E0F881191E1" walker_index="1"/>
+			<spot x="740.4548" y="1653.0576" z="314.5889" h="0"/>
+		</spawn>
+		<!-- Reian Refugee -->
+		<spawn npc_id="801384" respawn_time="295">
+			<spot x="712.9588" y="1617.0122" z="314.5889" h="0" walker_id="28DE17D264A9973276CA637785DF90188E6F52CC" walker_index="8"/>
+			<spot x="770.3077" y="1594.688" z="314.5889" h="0" walker_id="15EC404197A5AAC29787FC3066C5B89DC4477276" walker_index="8"/>
+			<spot x="719.738" y="1613.8307" z="314.5889" h="0" walker_id="885F3FDC91CD1A99ED518E61008CA28C955D9FC7" walker_index="9"/>
+			<spot x="761.7316" y="1660.2991" z="314.5889" h="0" walker_id="4F8A07EC8530E0C04A7A9C0CB1BE2D02CE9E8049" walker_index="9"/>
+			<spot x="765.1634" y="1662.7164" z="314.5889" h="0" walker_id="4F8A07EC8530E0C04A7A9C0CB1BE2D02CE9E8049" walker_index="1"/>
+			<spot x="765.1634" y="1662.7164" z="314.5889" h="0" walker_id="4F8A07EC8530E0C04A7A9C0CB1BE2D02CE9E8049" walker_index="1"/>
+			<spot x="765.7127" y="1591.4811" z="314.5889" h="0" walker_id="15EC404197A5AAC29787FC3066C5B89DC4477276" walker_index="5"/>
+			<spot x="766.6234" y="1599.6232" z="314.5889" h="0" walker_id="15EC404197A5AAC29787FC3066C5B89DC4477276" walker_index="11"/>
+			<spot x="742.6577" y="1652.9718" z="314.5889" h="0"/>
+			<spot x="712.0982" y="1612.1084" z="314.5889" h="0" walker_id="99CCC880A7703FCC065AC03BDDA1444AD2EEDC1B" walker_index="3"/>
+		</spawn>
+		<!-- Reian Refugee -->
+		<spawn npc_id="801385" respawn_time="295">
+			<spot x="741.4444" y="1655.1221" z="314.5889" h="0"/>
+		</spawn>
+		<!-- Hubidinar -->
+		<spawn npc_id="801388" respawn_time="295">
+			<spot x="750.6757" y="1677.3076" z="301.1455" h="0"/>
+		</spawn>
+		<!-- Reian Bodyguard -->
+		<spawn npc_id="801390" respawn_time="295">
+			<spot x="837.5497" y="1692.7412" z="314.5889" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="12"/>
+			<spot x="736.0963" y="1602.8284" z="314.5889" h="0" walker_id="551EA5298262F19B4661B982EEF43B0A26F1B786" walker_index="7"/>
+			<spot x="767.6601" y="1620.3199" z="307.0724" h="0" walker_id="6D8B6919C83562052E2EFC9FE9308165613246B2" walker_index="1"/>
+			<spot x="777.4951" y="1613.2924" z="307.0785" h="0" walker_id="4834B595E762309B59049AE868CB3EFAD86AF60B" walker_index="13"/>
+			<spot x="724.7075" y="1638.7128" z="314.5889" h="0"/>
+			<spot x="743.9292" y="1557.7694" z="314.5889" h="0"/>
+			<spot x="836.1796" y="1654.8573" z="314.5889" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="7"/>
+			<spot x="699.4514" y="1583.295" z="307.1677" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="13"/>
+			<spot x="727.6959" y="1674.5995" z="314.5889" h="0"/>
+			<spot x="785.2351" y="1632.6493" z="314.5889" h="0"/>
+			<spot x="804.3535" y="1651.1171" z="307.0684" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="11"/>
+			<spot x="736.8912" y="1631.256" z="314.5889" h="0"/>
+			<spot x="838.0656" y="1672.9647" z="314.5889" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="9"/>
+			<spot x="759.2214" y="1652.8524" z="307.1342" h="0" walker_id="DCCF0FFA776EDF6F3170B402FB219D52A8019D39" walker_index="1"/>
+			<spot x="687.949" y="1585.774" z="314.5889" h="0"/>
+			<spot x="746.2505" y="1678.678" z="314.5889" h="0"/>
+			<spot x="823.3893" y="1684.621" z="307.0826" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="11"/>
+		</spawn>
+		<!-- Reian Bodyguard -->
+		<spawn npc_id="801391" respawn_time="295">
+			<spot x="754.9184" y="1673.9552" z="314.5889" h="0"/>
+			<spot x="770.0557" y="1579.1858" z="314.5889" h="0" walker_id="15EC404197A5AAC29787FC3066C5B89DC4477276" walker_index="6"/>
+			<spot x="774.9948" y="1697.7025" z="314.6207" h="0" walker_id="5D68C1DDEBBA7F2084396EF1C4DDDE87CB0AE1C1" walker_index="13"/>
+			<spot x="719.3787" y="1652.5225" z="314.5889" h="0"/>
+			<spot x="739.1328" y="1680.0834" z="314.5889" h="0"/>
+			<spot x="766.6601" y="1622.3199" z="307.0724" h="0" walker_id="6D8B6919C83562052E2EFC9FE9308165613246B2" walker_index="12"/>
+			<spot x="760.5353" y="1579.2914" z="314.5889" h="0" walker_id="15EC404197A5AAC29787FC3066C5B89DC4477276" walker_index="5"/>
+			<spot x="747.0762" y="1557.4116" z="314.5889" h="0"/>
+			<spot x="776.4951" y="1615.2924" z="307.0785" h="0" walker_id="4834B595E762309B59049AE868CB3EFAD86AF60B" walker_index="13"/>
+			<spot x="798.4149" y="1690.1846" z="314.5889" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="6"/>
+			<spot x="737.4146" y="1578.9641" z="314.5889" h="0"/>
+			<spot x="733.59" y="1643.6605" z="314.5889" h="0"/>
+			<spot x="690.7538" y="1579.0922" z="314.5889" h="0"/>
+			<spot x="698.4514" y="1585.295" z="307.1677" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="1"/>
+			<spot x="728.0471" y="1572.1414" z="314.5889" h="0"/>
+			<spot x="803.3535" y="1653.1171" z="307.0684" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="1"/>
+			<spot x="758.2214" y="1654.8524" z="307.1342" h="0" walker_id="DCCF0FFA776EDF6F3170B402FB219D52A8019D39" walker_index="13"/>
+			<spot x="787.6029" y="1635.8102" z="314.5889" h="0"/>
+			<spot x="809.3153" y="1697.2034" z="314.5889" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="6"/>
+			<spot x="822.3893" y="1686.621" z="307.0826" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="12"/>
+		</spawn>
+		<!-- Reian Bodyguard -->
+		<spawn npc_id="801392" respawn_time="295">
+			<spot x="777.5333" y="1648.8154" z="314.5889" h="0" walker_id="309A8B3C5887DD6A820FE95CCA64DB0C7A6D03A1" walker_index="36"/>
+			<spot x="685.1793" y="1591.7675" z="314.5889" h="0"/>
+			<spot x="787.7137" y="1629.566" z="314.5889" h="0"/>
+			<spot x="802.2001" y="1695.7291" z="314.5889" h="0"/>
+			<spot x="725.8666" y="1664.9481" z="314.5889" h="0"/>
+			<spot x="766.6601" y="1618.3199" z="307.0724" h="0" walker_id="6D8B6919C83562052E2EFC9FE9308165613246B2" walker_index="12"/>
+			<spot x="733.0747" y="1678.1556" z="314.5889" h="0"/>
+			<spot x="776.4951" y="1611.2924" z="307.0785" h="0" walker_id="4834B595E762309B59049AE868CB3EFAD86AF60B" walker_index="13"/>
+			<spot x="764.7308" y="1574.4664" z="314.5889" h="0"/>
+			<spot x="698.4514" y="1581.295" z="307.1677" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="13"/>
+			<spot x="803.3535" y="1649.1171" z="307.0684" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="1"/>
+			<spot x="746.5404" y="1560.864" z="314.5889" h="0"/>
+			<spot x="758.2214" y="1650.8524" z="307.1342" h="0" walker_id="DCCF0FFA776EDF6F3170B402FB219D52A8019D39" walker_index="12"/>
+			<spot x="822.3893" y="1682.621" z="307.0826" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="2"/>
+		</spawn>
+		<!-- Reian Protector -->
+		<spawn npc_id="801393" respawn_time="295">
+			<spot x="790.2061" y="1632.5746" z="314.5889" h="0"/>
+		</spawn>
+		<!-- Reian Scout -->
+		<spawn npc_id="801394" respawn_time="295">
+			<spot x="780.9011" y="1534.4664" z="277.731" h="0" walker_id="1A1238F14C4F7EA6F30140B6F9FE5443074AF19E" walker_index="22"/>
+			<spot x="859.9891" y="1639.3805" z="314.5889" h="0" walker_id="AD0CAF52DB12D53B3ABAF4DD9ABE667B5A5CB0E8" walker_index="8"/>
+			<spot x="763.5735" y="1491.2443" z="314.5889" h="0"/>
+			<spot x="864.3767" y="1749.7035" z="325.8316" h="0" walker_id="5F51DBA3CDE2E81A3EB2AB7B95A722BFD8B998BF" walker_index="19"/>
+			<spot x="844.2874" y="1578.1278" z="314.5889" h="0" walker_id="AD0CAF52DB12D53B3ABAF4DD9ABE667B5A5CB0E8" walker_index="1"/>
+			<spot x="812.0666" y="1638.87" z="295.5526" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="21"/>
+			<spot x="782.739" y="1520.1182" z="314.5889" h="0" walker_id="1A1238F14C4F7EA6F30140B6F9FE5443074AF19E" walker_index="22"/>
+			<spot x="838.6726" y="1532.0861" z="314.5889" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="9"/>
+			<spot x="838.8411" y="1467.6327" z="307.0982" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="18"/>
+			<spot x="871.4891" y="1719.6383" z="314.5889" h="0"/>
+			<spot x="787.4081" y="1661.2175" z="314.5889" h="0"/>
+			<spot x="774.6911" y="1480.6885" z="307.3823" h="0" walker_id="40561FF174C439572A1E56A81AE3BAB8ED1315C3" walker_index="1"/>
+			<spot x="867.6246" y="1582.1243" z="314.5889" h="0" walker_id="AD0CAF52DB12D53B3ABAF4DD9ABE667B5A5CB0E8" walker_index="1"/>
+		</spawn>
+		<!-- Reian Scout -->
+		<spawn npc_id="801395" respawn_time="295">
+			<spot x="781.9011" y="1532.4664" z="277.731" h="0" walker_id="1A1238F14C4F7EA6F30140B6F9FE5443074AF19E" walker_index="22"/>
+			<spot x="780.9011" y="1530.4664" z="277.731" h="0" walker_id="1A1238F14C4F7EA6F30140B6F9FE5443074AF19E" walker_index="22"/>
+			<spot x="850.3557" y="1553.9325" z="314.5889" h="0" walker_id="AD0CAF52DB12D53B3ABAF4DD9ABE667B5A5CB0E8" walker_index="1"/>
+			<spot x="772.4438" y="1495.9542" z="314.5889" h="0"/>
+			<spot x="860.4907" y="1719.5696" z="314.5889" h="0"/>
+			<spot x="820.5256" y="1525.4529" z="314.5889" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="9"/>
+			<spot x="773.8932" y="1546.7712" z="314.5889" h="0" walker_id="551EA5298262F19B4661B982EEF43B0A26F1B786" walker_index="16"/>
+			<spot x="813.0666" y="1636.87" z="295.5526" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="1"/>
+			<spot x="812.0666" y="1634.87" z="295.5526" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="20"/>
+			<spot x="787.3948" y="1665.5035" z="314.5889" h="0"/>
+			<spot x="839.8411" y="1465.6327" z="307.0982" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="18"/>
+			<spot x="838.8411" y="1463.6327" z="307.0982" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="18"/>
+			<spot x="874.6491" y="1639.0962" z="314.5889" h="0" walker_id="AD0CAF52DB12D53B3ABAF4DD9ABE667B5A5CB0E8" walker_index="16"/>
+			<spot x="775.6911" y="1478.6885" z="307.3823" h="0" walker_id="40561FF174C439572A1E56A81AE3BAB8ED1315C3" walker_index="2"/>
+			<spot x="774.6911" y="1476.6885" z="307.3823" h="0" walker_id="40561FF174C439572A1E56A81AE3BAB8ED1315C3" walker_index="2"/>
+			<spot x="868.6246" y="1580.1243" z="314.5889" h="0" walker_id="AD0CAF52DB12D53B3ABAF4DD9ABE667B5A5CB0E8" walker_index="23"/>
+			<spot x="867.6246" y="1578.1243" z="314.5889" h="0" walker_id="AD0CAF52DB12D53B3ABAF4DD9ABE667B5A5CB0E8" walker_index="1"/>
+		</spawn>
+		<!-- Reian Scout Commander -->
+		<spawn npc_id="801396" respawn_time="295">
+			<spot x="790.9657" y="1663.2242" z="314.5889" h="0"/>
+		</spawn>
+		<!-- The key opens the Protectorate's Treasure Chest. -->
+		<spawn npc_id="801397" respawn_time="295">
+			<spot x="887.4453" y="823.3031" z="289.4584" h="0"/>
+			<spot x="2126.8542" y="1478.2456" z="235.6419" h="0"/>
+			<spot x="2509.7808" y="1278.7095" z="301.2638" h="0"/>
+			<spot x="1179.0898" y="712.7597" z="320.3023" h="0"/>
+			<spot x="842.8937" y="1921.9094" z="272.8039" h="0"/>
+			<spot x="2120.1685" y="1730.5835" z="246.9445" h="0"/>
+			<spot x="2373.6909" y="2060.6838" z="319.4422" h="0"/>
+			<spot x="1115.8127" y="803.1259" z="295.1229" h="0"/>
+			<spot x="1109.4048" y="1965.4938" z="271.4635" h="0"/>
+		</spawn>
+		<!-- Northern Guardian Base Area -->
+		<spawn npc_id="801412" respawn_time="295">
+			<spot x="362.0002" y="993.3918" z="442.5952" h="0"/>
+		</spawn>
+		<!-- Brackwater Area -->
+		<spawn npc_id="801413" respawn_time="295">
+			<spot x="862.3538" y="1849.2327" z="274.7594" h="0"/>
+		</spawn>
+		<!-- Mistmorn Rift Area -->
+		<spawn npc_id="801414" respawn_time="295">
+			<spot x="1783.9265" y="1075.7727" z="42.7752" h="0"/>
+		</spawn>
+		<!-- Rift Area -->
+		<spawn npc_id="801415" respawn_time="295">
+			<spot x="1617.0649" y="1254.7677" z="148.5691" h="0"/>
+		</spawn>
+		<!-- Northern Archon Base Area -->
+		<spawn npc_id="801416" respawn_time="295">
+			<spot x="223.8948" y="2070.894" z="429.2772" h="0"/>
+		</spawn>
+		<!-- Reian Refugee Camp Area -->
+		<spawn npc_id="801417" respawn_time="295">
+			<spot x="892.1707" y="1496.9526" z="294.1624" h="0"/>
+		</spawn>
+		<!-- Mistmorn Rift Area -->
+		<spawn npc_id="801418" respawn_time="295">
+			<spot x="1515.6973" y="1001.8385" z="252.7871" h="0"/>
+		</spawn>
+		<!-- Rift Area -->
+		<spawn npc_id="801419" respawn_time="295">
+			<spot x="1538.4985" y="1131.8654" z="212.2037" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801466" respawn_time="295">
+			<spot x="616.9377" y="341.39" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801467" respawn_time="295">
+			<spot x="296.5804" y="2346.6299" z="321.8326" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801468" respawn_time="295">
+			<spot x="817.2621" y="1109.9143" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801469" respawn_time="295">
+			<spot x="1090.241" y="1888.6342" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801470" respawn_time="295">
+			<spot x="1637.2856" y="942.8898" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801471" respawn_time="295">
+			<spot x="1604.2887" y="1937.6735" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801472" respawn_time="295">
+			<spot x="2361.8992" y="678.2562" z="245.6244" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801473" respawn_time="295">
+			<spot x="2607.3286" y="1656.855" z="397.1977" h="0"/>
+		</spawn>
+		<!-- 1st Guardian Quartermaster -->
+		<spawn npc_id="801474" respawn_time="295">
+			<spot x="2299.9287" y="2418.6509" z="286.1466" h="0"/>
+		</spawn>
+		<!-- Eos Quartermaster -->
+		<spawn npc_id="801475" respawn_time="295">
+			<spot x="1145.7416" y="2867.9272" z="513.5192" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801476" respawn_time="295">
+			<spot x="616.9377" y="341.39" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801477" respawn_time="295">
+			<spot x="296.5804" y="2346.6299" z="321.8326" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801478" respawn_time="295">
+			<spot x="817.2621" y="1109.9143" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801479" respawn_time="295">
+			<spot x="1090.241" y="1888.6342" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801480" respawn_time="295">
+			<spot x="1637.2856" y="942.8898" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801481" respawn_time="295">
+			<spot x="1604.2887" y="1937.6735" z="434.4153" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801482" respawn_time="295">
+			<spot x="2361.8992" y="678.2562" z="245.6244" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801483" respawn_time="295">
+			<spot x="2607.3286" y="1656.855" z="397.1977" h="0"/>
+		</spawn>
+		<!-- 1st Archon Quartermaster -->
+		<spawn npc_id="801484" respawn_time="295">
+			<spot x="2299.9287" y="2418.6509" z="286.1466" h="0"/>
+		</spawn>
+		<!-- Minox Quartermaster -->
+		<spawn npc_id="801485" respawn_time="295">
+			<spot x="1201.8003" y="288.3805" z="497.9381" h="0"/>
+		</spawn>
+		<!-- Land of Wailing Stones -->
+		<spawn npc_id="801486" respawn_time="295">
+			<spot x="406.5" y="2598.8999" z="284.6245" h="0"/>
+		</spawn>
+		<!-- Land of Smouldering Acids -->
+		<spawn npc_id="801487" respawn_time="295">
+			<spot x="508.501" y="406.3478" z="493.788" h="0"/>
+		</spawn>
+		<!-- Disillusioned Guardian Labourer -->
+		<spawn npc_id="801490" respawn_time="295">
+			<spot x="1027.1212" y="1065.4558" z="320.0488" h="0"/>
+		</spawn>
+		<!-- Runaway Reian -->
+		<spawn npc_id="801492" respawn_time="295">
+			<spot x="761.4678" y="1592.2756" z="351.5576" h="0"/>
+		</spawn>
+		<!-- Guardian Geoteam -->
+		<spawn npc_id="801493" respawn_time="295">
+			<spot x="1272.9059" y="1569.7556" z="473.909" h="0"/>
+		</spawn>
+		<!-- Aetha -->
+		<spawn npc_id="801494" respawn_time="295">
+			<spot x="1719.0951" y="1055.3856" z="87.3885" h="0"/>
+		</spawn>
+		<!-- Sogellia -->
+		<spawn npc_id="801495" respawn_time="295">
+			<spot x="1518.6619" y="1105.6902" z="2.8" h="0"/>
+		</spawn>
+		<!-- Guardian Refugee -->
+		<spawn npc_id="801496" respawn_time="295">
+			<spot x="2574.7847" y="1724.9312" z="393.9993" h="0"/>
+		</spawn>
+		<!-- Guardian Prisoner -->
+		<spawn npc_id="801498" respawn_time="295">
+			<spot x="2597.6433" y="1573.3439" z="384.84" h="0"/>
+			<spot x="2597.6433" y="1573.3439" z="384.84" h="0"/>
+			<spot x="2519.9131" y="1704.646" z="391.3268" h="0"/>
+			<spot x="2481.6409" y="1758.0392" z="385.5069" h="0"/>
+			<spot x="2478.1321" y="1761.8075" z="385.3336" h="0"/>
+			<spot x="2525.9541" y="1704.4124" z="393.703" h="0"/>
+			<spot x="2597.5322" y="1568.408" z="385.6011" h="0"/>
+			<spot x="2598.1829" y="1526.2494" z="384.4" h="0"/>
+			<spot x="2597.072" y="1521.9946" z="384.84" h="0"/>
+		</spawn>
+		<!-- Disillusioned Archon Labourer -->
+		<spawn npc_id="801500" respawn_time="295">
+			<spot x="947.7855" y="919.7424" z="320.0067" h="0"/>
+		</spawn>
+		<!-- Reian Refugee -->
+		<spawn npc_id="801502" respawn_time="295">
+			<spot x="712.5057" y="1617.1885" z="351.5576" h="0"/>
+		</spawn>
+		<!-- Archon Geoteam -->
+		<spawn npc_id="801503" respawn_time="295">
+			<spot x="1487.4166" y="1797.3308" z="473.909" h="0"/>
+		</spawn>
+		<!-- Joshua -->
+		<spawn npc_id="801504" respawn_time="295">
+			<spot x="1741.8409" y="1131.0776" z="194" h="0"/>
+		</spawn>
+		<!-- Suhandra -->
+		<spawn npc_id="801505" respawn_time="295">
+			<spot x="1638.9238" y="1220.2502" z="4.1018" h="0"/>
+		</spawn>
+		<!-- Archon Refugee -->
+		<spawn npc_id="801506" respawn_time="295">
+			<spot x="2627.3213" y="1509.455" z="372.9263" h="0"/>
+		</spawn>
+		<!-- Archon Prisoner -->
+		<spawn npc_id="801508" respawn_time="295">
+			<spot x="2492.3884" y="1730.0177" z="385.2271" h="0"/>
+			<spot x="2490.6084" y="1733.2684" z="385.2271" h="0"/>
+			<spot x="2596.4575" y="1602.3721" z="385.2271" h="0"/>
+			<spot x="2590.9209" y="1537.5696" z="385.2585" h="0"/>
+			<spot x="2471.0762" y="1783.0231" z="385.2271" h="0"/>
+			<spot x="2594.5352" y="1545.5515" z="385.2584" h="0"/>
+			<spot x="2596.6206" y="1598.6683" z="385.2271" h="0"/>
+			<spot x="2466.7612" y="1786.2786" z="385.2271" h="0"/>
+		</spawn>
+		<!-- Runaway Mont -->
+		<spawn npc_id="801562" respawn_time="295">
+			<spot x="828.1378" y="1105.2418" z="314.7105" h="0"/>
+		</spawn>
+		<!-- Escaped Mont -->
+		<spawn npc_id="801563" respawn_time="295">
+			<spot x="1112.3611" y="1893.6481" z="284.3028" h="0"/>
+		</spawn>
+		<!-- LDF10_supply2_light_guide -->
+		<spawn npc_id="801809" respawn_time="295">
+			<spot x="1184.6" y="2865.3999" z="490" h="0" walker_id="A8784CD49CEB6E08E4ACDFD2A883F0C4C76D8A81" walker_index="23"/>
+			<spot x="1184.6" y="2865.3999" z="490" h="0" walker_id="A8784CD49CEB6E08E4ACDFD2A883F0C4C76D8A81" walker_index="23"/>
+			<spot x="1184.6" y="2865.3999" z="490" h="0" walker_id="A8784CD49CEB6E08E4ACDFD2A883F0C4C76D8A81" walker_index="23"/>
+		</spawn>
+		<!-- LDF10_supply2_dark_guide -->
+		<spawn npc_id="801810" respawn_time="295">
+			<spot x="1191.3" y="343.3" z="480" h="0" walker_id="E097434561E7F09BC1CF43169A40F1CD95276A92" walker_index="11"/>
+			<spot x="1191.3" y="343.3" z="480" h="0" walker_id="E097434561E7F09BC1CF43169A40F1CD95276A92" walker_index="11"/>
+			<spot x="1191.3" y="343.3" z="480" h="0" walker_id="E097434561E7F09BC1CF43169A40F1CD95276A92" walker_index="11"/>
+		</spawn>
+		<!-- Somnium Portal -->
+		<spawn npc_id="801994" respawn_time="295">
+			<spot x="1122.1371" y="2857.9219" z="516.9893" h="0"/>
+		</spawn>
+		<!-- Nornir Portal -->
+		<spawn npc_id="801999" respawn_time="295">
+			<spot x="1175.2545" y="296.6645" z="505.4501" h="0"/>
+		</spawn>
+		<!-- Energy Source Dimensional Gate -->
+		<spawn npc_id="802102" respawn_time="295">
+			<spot x="2057.0884" y="551.6946" z="513.1" h="0"/>
+			<spot x="2322.0701" y="493.96" z="513.1" h="0"/>
+			<spot x="2213.0908" y="548.8757" z="513.1" h="0"/>
+			<spot x="2097.6294" y="420.6924" z="513.1" h="0"/>
+			<spot x="1978.2201" y="360.1978" z="513.1" h="0"/>
+			<spot x="1984.6801" y="2587.3401" z="513.1" h="0"/>
+			<spot x="2022.8331" y="2318.8533" z="513.1" h="0"/>
+			<spot x="2073.1394" y="2450.7371" z="513.1" h="0"/>
+			<spot x="2025.4565" y="2774.0017" z="513.1" h="0"/>
+			<spot x="2169.7456" y="2656.3208" z="513.1" h="0"/>
+			<spot x="806.7841" y="2031.3571" z="513.1" h="0"/>
+			<spot x="698.38" y="1903.95" z="513.1" h="0"/>
+			<spot x="1386.8639" y="1876.9484" z="513.1" h="0"/>
+			<spot x="1266.7642" y="2173.2332" z="513.1" h="0"/>
+			<spot x="1087.1273" y="2321.0361" z="513.1" h="0"/>
+			<spot x="1760.7866" y="1443.6863" z="513.1" h="0"/>
+			<spot x="1491.4688" y="1690.1985" z="513.1" h="0"/>
+			<spot x="2005.4254" y="1514.2864" z="513.1" h="0"/>
+			<spot x="1679.6274" y="1567.8254" z="513.1" h="0"/>
+			<spot x="1435.79" y="1407.97" z="513.1" h="0"/>
+			<spot x="911.74" y="1735.98" z="513.1" h="0"/>
+			<spot x="1035.9399" y="1641.5" z="513.1" h="0"/>
+			<spot x="1232.96" y="1270.98" z="513.1" h="0"/>
+			<spot x="794.29" y="1444.62" z="513.1" h="0"/>
+			<spot x="1165.86" y="1512.5601" z="513.1" h="0"/>
+			<spot x="573.47" y="620.41" z="513.9" h="0"/>
+			<spot x="612.34" y="445.65" z="513.9" h="0"/>
+			<spot x="495.01" y="554.67" z="513.932" h="0"/>
+			<spot x="847.27" y="296.34" z="513.8669" h="0"/>
+			<spot x="511.52" y="360.97" z="513.9" h="0"/>
+			<spot x="514.4114" y="1586.1107" z="350.261" h="0"/>
+			<spot x="424.0061" y="1519.1279" z="350.2817" h="0"/>
+			<spot x="495.6179" y="1686.6176" z="350.2704" h="0"/>
+			<spot x="319.4479" y="1564.0979" z="350.357" h="0"/>
+			<spot x="406.1991" y="1603.3818" z="350.2685" h="0"/>
+			<spot x="2038.2054" y="1833.1417" z="513.1" h="0"/>
+			<spot x="2208.5063" y="2153.1431" z="513.1" h="0"/>
+			<spot x="1973.3281" y="1831.137" z="513.1" h="0"/>
+			<spot x="2125.644" y="2102.9705" z="513.1" h="0"/>
+			<spot x="1798.6238" y="1943.9221" z="513.1" h="0"/>
+			<spot x="554.8542" y="2542.6968" z="510.1791" h="0"/>
+			<spot x="651.0209" y="2573.1016" z="510.1791" h="0"/>
+			<spot x="337.4589" y="2499.5327" z="510.1791" h="0"/>
+			<spot x="701.4864" y="2713.2329" z="510.1791" h="0"/>
+			<spot x="557.8206" y="2270.4026" z="510.1791" h="0"/>
+			<spot x="1132.96" y="1044.05" z="513.1" h="0"/>
+			<spot x="1054.16" y="860.36" z="513.1" h="0"/>
+			<spot x="911.25" y="1190.14" z="513.1" h="0"/>
+			<spot x="1109.2" y="687.09" z="513.1" h="0"/>
+			<spot x="819.3188" y="998.0051" z="513.0098" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

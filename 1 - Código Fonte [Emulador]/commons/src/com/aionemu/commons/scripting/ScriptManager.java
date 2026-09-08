@@ -7,19 +7,7 @@ import com.aionemu.commons.scripting.classlistener.ClassListener;
 import com.aionemu.commons.scripting.impl.ScriptContextImpl;
 
 /**
- * Class that represents managers of script contexts. It loads, reloads and unload script contexts. In the future it may be extended to support
- * programmatic manipulation of contexts, but for now it's not needed. <br />
- * Example:
- * 
- * <pre>
- *      ScriptManager sm = new ScriptManager();
- *      sm.load(new File(&quot;st/javaSourceRootDirectory&quot;));
- *      ...
- *      sm.shutdown();
- * </pre>
- * 
- * <br>
- * 
+ * @author Lost Academy Team & Durak
  */
 public class ScriptManager {
 

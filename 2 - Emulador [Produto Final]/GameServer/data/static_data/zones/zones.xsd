@@ -11,10 +11,10 @@
 	</xs:element>
 	<xs:complexType name="Zone">
 		<xs:choice>
-			<xs:element name="cylinder" type="Cylinder" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="points" type="Points" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="sphere" type="Sphere" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="semisphere" type="Semisphere" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="cylinder" type="Cylinder" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="points" type="Points" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="sphere" type="Sphere" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="semisphere" type="Semisphere" minOccurs="0" maxOccurs="1"/>
 		</xs:choice>
 		<xs:attribute name="priority" type="xs:int"/>
 		<xs:attribute name="siege_id" type="SiegeList"/>
@@ -25,6 +25,7 @@
 		<xs:attribute name="mapid" type="xs:int" use="required"/>
 		<xs:attribute name="flags" type="xs:int" default="-1"/>
 	</xs:complexType>
+
 	<xs:complexType name="Points">
 		<xs:sequence>
 			<xs:element name="point" type="Point2D" minOccurs="1" maxOccurs="unbounded"/>
@@ -32,6 +33,7 @@
 		<xs:attribute name="top" type="xs:float"/>
 		<xs:attribute name="bottom" type="xs:float"/>
 	</xs:complexType>
+
 	<xs:complexType name="Cylinder">
 		<xs:attribute name="top" type="xs:float"/>
 		<xs:attribute name="bottom" type="xs:float"/>
@@ -39,28 +41,34 @@
 		<xs:attribute name="y" type="xs:float"/>
 		<xs:attribute name="r" type="xs:float"/>
 	</xs:complexType>
+	
 	<xs:complexType name="Sphere">
 		<xs:attribute name="x" type="xs:float"/>
 		<xs:attribute name="y" type="xs:float"/>
 		<xs:attribute name="z" type="xs:float"/>
 		<xs:attribute name="r" type="xs:float"/>
 	</xs:complexType>
+	
 	<xs:complexType name="Semisphere">
 		<xs:complexContent>
-			<xs:extension base="Sphere"/>
+			<xs:extension base="Sphere" />
 		</xs:complexContent>
 	</xs:complexType>
+	
 	<xs:complexType name="Point2D">
 		<xs:attribute name="x" type="xs:float"/>
 		<xs:attribute name="y" type="xs:float"/>
 	</xs:complexType>
+
 	<xs:simpleType name="SiegeList">
 		<xs:list itemType="xs:int"/>
 	</xs:simpleType>
+
 	<xs:simpleType name="ZoneClassName">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="SUB"/>
 			<xs:enumeration value="FLY"/>
+			<xs:enumeration value="NO_FLY"/>
 			<xs:enumeration value="ARTIFACT"/>
 			<xs:enumeration value="FORT"/>
 			<xs:enumeration value="LIMIT"/>
@@ -69,9 +77,10 @@
 			<xs:enumeration value="DUEL"/>
 			<xs:enumeration value="HOUSE"/>
 			<xs:enumeration value="WEATHER"/>
-			<xs:enumeration value="RIDE"/>
+			<xs:enumeration value="DOMINION"/>
 		</xs:restriction>
 	</xs:simpleType>
+
 	<xs:simpleType name="AreaType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="POLYGON"/>
@@ -80,6 +89,7 @@
 			<xs:enumeration value="SEMISPHERE"/>
 		</xs:restriction>
 	</xs:simpleType>
+
 	<xs:simpleType name="ZoneName">
 		<xs:restriction base="xs:ID"/>
 	</xs:simpleType>

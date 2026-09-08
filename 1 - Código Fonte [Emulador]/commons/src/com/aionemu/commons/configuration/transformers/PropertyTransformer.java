@@ -6,8 +6,7 @@ import com.aionemu.commons.configuration.TransformationException;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * @param <T>
- *          Type of returned value
+ * @author Lost Academy Team & Durak
  */
 public abstract class PropertyTransformer<T> {
 

@@ -6,8 +6,7 @@ import javax.tools.JavaFileObject;
 import javax.tools.SimpleJavaFileObject;
 
 /**
- * This class allows us to compile sources that are located only in memory.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class JavaSourceFromString extends SimpleJavaFileObject {
 

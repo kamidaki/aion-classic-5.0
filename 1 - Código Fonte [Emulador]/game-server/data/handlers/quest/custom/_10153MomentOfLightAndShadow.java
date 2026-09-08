@@ -1,0 +1,166 @@
+package quest.custom;
+
+import static com.aionemu.gameserver.model.DialogAction.*;
+
+import com.aionemu.gameserver.model.ChatType;
+import com.aionemu.gameserver.model.Race;
+import com.aionemu.gameserver.model.animations.TeleportAnimation;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.questEngine.handlers.AbstractQuestHandler;
+import com.aionemu.gameserver.questEngine.model.QuestEnv;
+import com.aionemu.gameserver.questEngine.model.QuestState;
+import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.services.QuestService;
+import com.aionemu.gameserver.services.instance.InstanceService;
+import com.aionemu.gameserver.services.teleport.TeleportService;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.world.WorldMapInstance;
+
+/**
+ * Quest ID: 10153
+ * Title: Moment of Light and Shadow
+ * Zone: Land of Shadows (390000000 / IDTutorialQ)
+ * 
+ * Flow:
+ * 1. Talk to High Priest Jucleas (203752) in Sanctum Lyceum.
+ * 2. Accept trial -> teleport to Land of Shadows (390000000).
+ * 3. Ariel's blessing granted upon entering Land of Shadows.
+ * 4. Defeat invading Balaur creatures (224321..224328).
+ * 5. Speak with Inggness, Daeva of Time (804134) to receive rewards and return to Sanctum.
+ */
+public class _10153MomentOfLightAndShadow extends AbstractQuestHandler {
+
+	private static final int JUCLEAS = 203752;
+	private static final int INGGNESS = 804134;
+	private static final int MAP_LAND_OF_SHADOWS = 390000000;
+	private static final int MAP_SANCTUM = 110010000;
+
+	private static final int[] MOBS = {
+		224321, 224322, 224323, 224324, 224325, 224326, 224327, 224328
+	};
+
+	public _10153MomentOfLightAndShadow() {
+		super(10153);
+	}
+
+	@Override
+	public void register() {
+		qe.registerOnLevelChanged(questId);
+		qe.registerOnEnterWorld(questId);
+		qe.registerQuestNpc(JUCLEAS).addOnQuestStart(questId);
+		qe.registerQuestNpc(JUCLEAS).addOnTalkEvent(questId);
+		qe.registerQuestNpc(INGGNESS).addOnTalkEvent(questId);
+		for (int mob : MOBS) {
+			qe.registerQuestNpc(mob).addOnKillEvent(questId);
+		}
+	}
+
+	@Override
+	public boolean onDialogEvent(QuestEnv env) {
+		Player player = env.getPlayer();
+		QuestState qs = player.getQuestStateList().getQuestState(questId);
+		int dialogActionId = env.getDialogActionId();
+		int targetId = env.getTargetId();
+
+		if (qs == null || qs.isStartable()) {
+			if (targetId == JUCLEAS) {
+				if (dialogActionId == QUEST_SELECT) {
+					return sendQuestDialog(env, 1011);
+				} else if (dialogActionId == ASK_QUEST_ACCEPT || dialogActionId == QUEST_ACCEPT_1) {
+					QuestService.startQuest(env);
+					qs = player.getQuestStateList().getQuestState(questId);
+					if (qs != null) {
+						qs.setQuestVar(1);
+						updateQuestStatus(env);
+						teleportToLandOfShadows(player);
+						return closeDialogWindow(env);
+					}
+				} else {
+					return sendQuestStartDialog(env);
+				}
+			}
+		} else if (qs.getStatus() == QuestStatus.START) {
+			int var = qs.getQuestVarById(0);
+			if (targetId == JUCLEAS) {
+				switch (dialogActionId) {
+					case QUEST_SELECT:
+						return sendQuestDialog(env, 1011);
+					case SETPRO1:
+					case SET_SUCCEED:
+						qs.setQuestVar(1);
+						updateQuestStatus(env);
+						teleportToLandOfShadows(player);
+						return closeDialogWindow(env);
+				}
+			} else if (targetId == INGGNESS) {
+				switch (dialogActionId) {
+					case QUEST_SELECT:
+						if (var >= 1) {
+							return sendQuestDialog(env, 2375);
+						}
+						return false;
+					case SELECT_QUEST_REWARD:
+						qs.setStatus(QuestStatus.REWARD);
+						updateQuestStatus(env);
+						return sendQuestEndDialog(env);
+				}
+			}
+		} else if (qs.getStatus() == QuestStatus.REWARD) {
+			if (targetId == INGGNESS) {
+				TeleportService.teleportTo(player, MAP_SANCTUM, 1623.732f, 1512.784f, 573.6294f, (byte) 60, TeleportAnimation.FADE_OUT_BEAM);
+				return sendQuestEndDialog(env);
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean onEnterWorldEvent(QuestEnv env) {
+		Player player = env.getPlayer();
+		if (player.getWorldId() == MAP_LAND_OF_SHADOWS) {
+			player.getLifeStats().setCurrentHpPercent(100);
+			player.getLifeStats().setCurrentMpPercent(100);
+			PacketSendUtility.sendMessage(player, "A new Daeva has appeared in Atreia. Your abilities have been strengthened by the blessing of Ariel.", ChatType.YELLOW_CENTER);
+			return true;
+		}
+		QuestState qs = player.getQuestStateList().getQuestState(questId);
+		if (qs == null && player.getRace() == Race.ELYOS && player.getLevel() >= 1) {
+			env.setQuestId(questId);
+			return QuestService.startQuest(env);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean onKillEvent(QuestEnv env) {
+		Player player = env.getPlayer();
+		QuestState qs = player.getQuestStateList().getQuestState(questId);
+		if (qs != null && qs.getStatus() == QuestStatus.START) {
+			int var = qs.getQuestVarById(0);
+			if (player.getWorldId() == MAP_LAND_OF_SHADOWS && var == 1) {
+				int kills = qs.getQuestVarById(1);
+				if (kills < 5) {
+					kills++;
+					qs.setQuestVarById(1, kills);
+					if (kills >= 5) {
+						qs.setQuestVar(2);
+						PacketSendUtility.sendMessage(player, "Trial combat complete! Speak with Inggness, Daeva of Time, to exit the Land of Shadows.", ChatType.YELLOW_CENTER);
+					}
+					updateQuestStatus(env);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void onLevelChangedEvent(Player player) {
+		defaultOnLevelChangedEvent(player);
+	}
+
+	private void teleportToLandOfShadows(Player player) {
+		WorldMapInstance newInstance = InstanceService.getNextAvailableInstance(MAP_LAND_OF_SHADOWS, player);
+		TeleportService.teleportTo(player, newInstance, 680.0f, 520.0f, 358.4f, (byte) 60, TeleportAnimation.FADE_OUT_BEAM);
+	}
+}

@@ -3,17 +3,7 @@ package com.aionemu.commons.configuration.transformers;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * Transforms enum string representation to enum. String must match case definition of enum, for instance:
- * 
- * <pre>
- * enum{
- *  FILE,
- *  URL
- * }
- * </pre>
- * 
- * will be parsed with string "FILE" but not "file".
- * 
+ * @author Lost Academy Team & Durak
  */
 public class EnumTransformer extends PropertyTransformer<Enum<?>> {
 

@@ -21,8 +21,7 @@ import com.aionemu.commons.scripting.ScriptClassLoader;
 import com.aionemu.commons.scripting.ScriptCompiler;
 
 /**
- * Wrapper for JavaCompiler api
- * 
+ * @author Lost Academy Team & Durak
  */
 public class ScriptCompilerImpl implements ScriptCompiler {
 
@@ -31,7 +30,7 @@ public class ScriptCompilerImpl implements ScriptCompiler {
 
 	static {
 		RuntimeMXBean runtimeMxBean = ManagementFactory.getRuntimeMXBean();
-		COMPILER_OPTIONS.addAll(Arrays.asList("-encoding", "UTF-8", "-g"));
+		COMPILER_OPTIONS.addAll(Arrays.asList("-encoding", "UTF-8", "-g", "-Xlint:-deprecation"));
 		if (runtimeMxBean.getInputArguments().contains("--enable-preview")) {
 			// activate preview features in compiler too, if the project was started with --enable-preview
 			COMPILER_OPTIONS.add("--enable-preview");

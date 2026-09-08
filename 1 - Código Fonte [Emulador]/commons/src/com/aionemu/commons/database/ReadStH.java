@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Read statement handler.<br>
- * For usage details check documentation of DB class.
- * 
+ * @author Lost Academy Team & Durak
  */
 public interface ReadStH {
 

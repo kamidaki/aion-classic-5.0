@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.commons.scripting.ScriptCompilerCache;
 import com.aionemu.commons.utils.ExitCode;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class UncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
 
 	private static final Logger log = LoggerFactory.getLogger(UncaughtExceptionHandler.class);

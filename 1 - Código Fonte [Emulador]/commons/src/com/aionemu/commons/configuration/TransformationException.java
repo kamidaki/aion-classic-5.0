@@ -3,12 +3,7 @@ package com.aionemu.commons.configuration;
 import com.aionemu.commons.configuration.transformers.PropertyTransformer;
 
 /**
- * This exception indicates errors while transforming parsed configuration values to actual class field values (according to the fields
- * {@link Property annotation}).
- * 
- * @see Property
- * @see PropertyTransformer
- * @see ConfigurableProcessor
+ * @author Lost Academy Team & Durak
  */
 public class TransformationException extends RuntimeException {
 

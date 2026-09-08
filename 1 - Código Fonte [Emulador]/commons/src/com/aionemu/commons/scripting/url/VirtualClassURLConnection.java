@@ -9,11 +9,7 @@ import java.net.URLConnection;
 import com.aionemu.commons.scripting.ScriptClassLoader;
 
 /**
- * This class represents URL Connection that is used to "connect" to scripts binary data that was loaded by specified
- * {@link com.aionemu.commons.scripting.impl.javacompiler.ScriptCompilerImpl}.<br>
- * <br>
- * TODO: Implement all methods of {@link URLConnection} to ensure valid behaviour
- * 
+ * @author Lost Academy Team & Durak
  */
 public class VirtualClassURLConnection extends URLConnection {
 

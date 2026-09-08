@@ -11,9 +11,7 @@ import javax.tools.JavaFileObject.Kind;
 import com.aionemu.commons.scripting.ScriptClassLoader;
 
 /**
- * This class extends manages loaded classes. It is also responsible for tricking compiler. Unfortunally compiler doen't work with classloaders, so we
- * have to pass class data manually for each compilation.
- *
+ * @author Lost Academy Team & Durak
  */
 public class ClassFileManager extends ForwardingJavaFileManager<JavaFileManager> {
 

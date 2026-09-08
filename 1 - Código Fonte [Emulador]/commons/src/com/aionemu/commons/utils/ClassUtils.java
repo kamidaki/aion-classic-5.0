@@ -16,22 +16,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class contains utilities that are used when we are working with classes
- *
+ * @author Lost Academy Team & Durak
  */
 public class ClassUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(ClassUtils.class);
-
-	public static boolean isSubclass(Class<?> a, Class<?> b) {
-		if (a == b) {
-			return true;
-		}
-		if (a == null || b == null) {
-			return false;
-		}
-		return b.isAssignableFrom(a);
-	}
 
 	/**
 	 * Checks if class in member of the package

@@ -7,8 +7,7 @@ import com.aionemu.commons.utils.ExitCode;
 import com.aionemu.commons.utils.concurrent.DeadLockDetector;
 
 /**
- * This test is for checking print of deadlock report. Should not be executed during unit test phase
- * 
+ * @author Lost Academy Team & Durak
  */
 public class DeadlockTest {
 

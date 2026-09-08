@@ -9,12 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class allows easy manipulations with transactions, it should be used when critical or synchronized data should be commited to two or more
- * tables. This class allows us to avoid data synchronization problems in db.
- * <p/>
- * Class is not designed to be thread-safe, should be synchronized externally.<br>
- * Class is not fail-safe, if error happens - exception will be thrown.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class Transaction {
 

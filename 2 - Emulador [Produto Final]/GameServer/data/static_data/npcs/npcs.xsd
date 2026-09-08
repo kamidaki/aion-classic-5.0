@@ -4,6 +4,7 @@
 	<xs:include schemaLocation="../stats/stats.xsd"/>
 	<xs:include schemaLocation="../import.xsd"/>
 	<xs:include schemaLocation="../modifiers.xsd"/>
+	<xs:include schemaLocation="../global_types.xsd"/>
 	<xs:element name="npc_templates" type="npcTemplates"/>
 	<xs:complexType name="npcTemplates">
 		<xs:sequence>
@@ -13,73 +14,43 @@
 	</xs:complexType>
 	<xs:complexType name="npcTemplate">
 		<xs:sequence>
-			<xs:element name="stats" type="npcStatsTemplate"/>
+			<xs:element name="stats" type="statsTemplate"/>
 			<xs:element name="equipment" type="npcEquipmentList" minOccurs="0"/>
 			<xs:element name="kisk_stats" type="KiskStats" minOccurs="0"/>
 			<xs:element name="bound_radius" type="BoundRadius" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="talk_info" type="TalkInfo" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="cash" type="NpcCash" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="common_drop" type="NpcCommonDrop" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="drop_group" type="NpcDropGroup" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="massive_looting" type="MassiveLooting" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="massive_loot" type="MassiveLoot" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="npc_id" type="npcId" use="required"/>
-		<xs:attribute name="level" type="xs:int" use="required"/>
+		<xs:attribute name="level" type="xs:short" use="required"/>
 		<xs:attribute name="name_id" type="xs:int" use="required"/>
 		<xs:attribute name="title_id" type="xs:int" default="0"/>
 		<xs:attribute name="name" type="xs:string" default=""/>
+		<xs:attribute name="group_drop" type="GroupDropType" default="NONE"/>
 		<xs:attribute name="height" type="xs:float" default="0"/>
 		<xs:attribute name="ammo_speed" type="xs:int"/>
-		<xs:attribute name="npc_type" type="npcType" default="NON_ATTACKABLE"/>
 		<xs:attribute name="rating" type="NpcRating"/>
 		<xs:attribute name="rank" type="NpcRank"/>
-		<xs:attribute name="sensory_range" type="xs:float" default="0"/>
+		<xs:attribute name="srange" type="xs:int" default="0"/>
+		<xs:attribute name="sangle" type="xs:int" default="360"/>
 		<xs:attribute name="tribe" type="TribeClass"/>
 		<xs:attribute name="type" type="NpcTemplateType"/>
 		<xs:attribute name="abyss_type" type="AbyssType"/>
-		<xs:attribute name="ai" type="xs:string" default="dummy"/>
+		<xs:attribute name="ai" type="xs:string"/>
 		<xs:attribute name="race" type="Race"/>
-		<xs:attribute name="hpgauge_level" type="xs:int"/>
-		<xs:attribute name="attack_range" type="xs:int"/>
-		<xs:attribute name="attack_rate" type="xs:int"/>
-		<xs:attribute name="attack_delay" type="xs:int"/>
+		<xs:attribute name="hpgauge" type="xs:int"/>
+		<xs:attribute name="arange" type="xs:int"/>
+		<xs:attribute name="cast_speed" type="xs:int" default="1000"/>
+		<xs:attribute name="cancel_level" type="xs:int" default="100"/>
+		<xs:attribute name="attack_speed" type="xs:int" default="2000"/>
 		<xs:attribute name="state" type="xs:int"/>
 		<xs:attribute name="floatcorpse" type="xs:boolean" default="false"/>
-		<xs:attribute name="savetradecount" type="xs:boolean" default="false"/>
 		<xs:attribute name="stare_range" type="xs:int" default="10"/>
 		<xs:attribute name="on_mist" type="xs:boolean"/>
-		<xs:attribute name="max_enemy_count" type="xs:int" default="0"/>
-		<xs:attribute name="max_chase_time" type="xs:int" default="0"/>
-		<xs:attribute name="can_see_invisible" type="xs:int" default="0"/>
-	</xs:complexType>
-	<xs:complexType name="npcStatsTemplate">
-		<xs:complexContent>
-			<xs:extension base="statsTemplate">
-				<xs:sequence/>
-				<xs:attribute name="hp_regen" type="xs:int"/>
-				<xs:attribute name="exp" type="xs:int"/>
-				<xs:attribute name="dp" type="xs:int"/>
-				<xs:attribute name="ap" type="xs:int"/>
-				<xs:attribute name="physical_attack" type="xs:int"/>
-				<xs:attribute name="min_damage" type="xs:int"/>
-				<xs:attribute name="max_damage" type="xs:int"/>
-				<xs:attribute name="hit_accuracy" type="xs:int"/>
-				<xs:attribute name="magical_attack" type="xs:int"/>
-				<xs:attribute name="magical_hit_accuracy" type="xs:int"/>
-				<xs:attribute name="physical_defend" type="xs:int"/>
-				<xs:attribute name="pdef" type="xs:int"/>
-				<xs:attribute name="magical_resist" type="xs:int"/>
-				<xs:attribute name="mdef" type="xs:int"/>
-				<xs:attribute name="critical" type="xs:int"/>
-				<xs:attribute name="magical_critical" type="xs:int"/>
-				<xs:attribute name="run_speed_fight" type="xs:float"/>
-				<xs:attribute name="physical_critical_reduce_rate" type="xs:int"/>
-				<xs:attribute name="physical_critical_damage_reduce" type="xs:int"/>
-				<xs:attribute name="magical_critical_reduce_rate" type="xs:int"/>
-				<xs:attribute name="magical_critical_damage_reduce" type="xs:int"/>
-				<xs:attribute name="concentration" type="xs:int"/>
-			</xs:extension>
-		</xs:complexContent>
+		<xs:attribute name="mobile_event" type="xs:int"/>
+		<xs:attribute name="flag_type" type="xs:int"/>
+		<xs:attribute name="war_flag" type="xs:int"/>
+		<xs:attribute name="item_upgrade" type="xs:int"/>
 	</xs:complexType>
 	<xs:complexType name="npcEquipmentList">
 		<xs:sequence>
@@ -87,11 +58,10 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="KiskStats">
-	    <xs:sequence/>
+		<xs:sequence/>
 		<xs:attribute name="usemask" type="xs:int" use="required"/>
 		<xs:attribute name="members" type="xs:int" use="required"/>
 		<xs:attribute name="resurrects" type="xs:int" use="required"/>
-		<xs:attribute name="live_time" type="xs:int" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="BoundRadius">
 		<xs:attribute name="front" type="xs:float"/>
@@ -102,44 +72,17 @@
 		<xs:attribute name="distance" type="xs:int"/>
 		<xs:attribute name="delay" type="xs:int"/>
 		<xs:attribute name="is_dialog" type="xs:boolean" default="false"/>
+		<xs:attribute name="func_dialogs" type="IntListType"/>
+		<xs:attribute name="subdialog_type" type="SubDialogType"/>
+		<xs:attribute name="subdialog_value" type="xs:int" use="optional"/>
+		<xs:attribute name="can_talk_invisible" type="xs:boolean" default="true"/>
 	</xs:complexType>
-	<xs:complexType name="NpcCash">
-		<xs:attribute name="min_cash" type="xs:int"/>
-		<xs:attribute name="max_cash" type="xs:int"/>
+	<xs:complexType name="MassiveLoot">
+		<xs:attribute name="m_loot_count" type="xs:int"/>
+		<xs:attribute name="m_loot_item" type="xs:int"/>
+		<xs:attribute name="m_loot_min_level" type="xs:int"/>
+		<xs:attribute name="m_loot_max_level" type="xs:int"/>
 	</xs:complexType>
-	<xs:complexType name="NpcCommonDrop">
-		<xs:attribute name="item_id" type="xs:int"/>
-		<xs:attribute name="count" type="xs:int"/>
-		<xs:attribute name="prob" type="xs:float" use="optional"/>
-	</xs:complexType>
-	<xs:complexType name="NpcDropGroup">
-		<xs:attribute name="ids" type="IntListType"/>
-	</xs:complexType>
-	<xs:complexType name="MassiveLooting">
-		<xs:attribute name="looting_num" type="xs:int"/>
-		<xs:attribute name="itemid" type="xs:int"/>
-		<xs:attribute name="min_level" type="xs:int"/>
-		<xs:attribute name="max_level" type="xs:int"/>
-	</xs:complexType>
-	<xs:simpleType name="npcType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="PEACE"/>
-			<xs:enumeration value="ATTACKABLE"/>
-			<xs:enumeration value="AGGRESSIVE"/>
-			<xs:enumeration value="INVULNERABLE"/>
-			<xs:enumeration value="NON_ATTACKABLE"/>
-			<xs:enumeration value="SUPPORT"/>
-			<xs:enumeration value="GENERAL"/>
-			<xs:enumeration value="GUARD"/>
-			<xs:enumeration value="SUMMON_PET"/>
-			<xs:enumeration value="ABYSS_GUARD"/>
-			<xs:enumeration value="MONSTER"/>
-			<xs:enumeration value="RAID_MONSTER"/>
-			<xs:enumeration value="HOUSING"/>
-			<xs:enumeration value="FLAG"/>
-			<xs:enumeration value="NORMAL"/>
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:simpleType name="NpcTemplateType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="MERCENARY"/>
@@ -152,19 +95,13 @@
 			<xs:enumeration value="FLAG"/>
 			<xs:enumeration value="NONE"/>
 			<xs:enumeration value="RAID_MONSTER"/>
-			<xs:enumeration value="ATTACKABLE"/>
-			<xs:enumeration value="INVULNERABLE"/>
-			<xs:enumeration value="NON_ATTACKABLE"/>
-			<xs:enumeration value="PEACE"/>
-			<xs:enumeration value="AGGRESSIVE"/>
-			<xs:enumeration value="SUPPORT"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="AbyssType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="SHIELD_NPC_OFF"/>
+			<xs:enumeration value="SHIELDNPC_OFF"/>
 			<xs:enumeration value="RAID"/>
-			<xs:enumeration value="SHIELD_NPC_ON"/>
+			<xs:enumeration value="SHIELDNPC_ON"/>
 			<xs:enumeration value="DEFENDER"/>
 			<xs:enumeration value="BOSS"/>
 			<xs:enumeration value="DOOR"/>
@@ -172,7 +109,7 @@
 			<xs:enumeration value="TELEPORTER"/>
 			<xs:enumeration value="ETC"/>
 			<xs:enumeration value="ARTIFACT_EFFECT_CORE"/>
-			<xs:enumeration value="DOOR_REPAIR"/>
+			<xs:enumeration value="DOORREPAIR"/>
 			<xs:enumeration value="ARTIFACT"/>
 			<xs:enumeration value="NONE"/>
 		</xs:restriction>
@@ -185,7 +122,6 @@
 			<xs:enumeration value="EXPERT"/>
 			<xs:enumeration value="VETERAN"/>
 			<xs:enumeration value="MASTER"/>
-			<xs:enumeration value="NORMAL"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="NpcRating">
@@ -195,6 +131,27 @@
 			<xs:enumeration value="ELITE"/>
 			<xs:enumeration value="HERO"/>
 			<xs:enumeration value="LEGENDARY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SubDialogType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FORT_CAPTURE"/>
+			<xs:enumeration value="SKILL_ID"/>
+			<xs:enumeration value="ITEM_ID"/>
+			<xs:enumeration value="RETURN"/>
+			<xs:enumeration value="PCBANG"/>
+			<xs:enumeration value="PAID_USER"/>
+			<xs:enumeration value="NEWBIE"/>
+			<xs:enumeration value="ABYSSRANK"/>
+			<xs:enumeration value="CASH"/>
+			<xs:enumeration value="ABYSSRANKING"/>
+			<xs:enumeration value="LEVEL"/>
+			<xs:enumeration value="LEVEL_LOW"/>
+			<xs:enumeration value="LEVEL_HIGH"/>
+			<xs:enumeration value="LEGION_DOMINION_NPC"/>
+			<xs:enumeration value="TARGET_LEGION_DOMINION"/>
+			<xs:enumeration value="PACK_3"/>
+			<xs:enumeration value="PACK_4"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="npcId">

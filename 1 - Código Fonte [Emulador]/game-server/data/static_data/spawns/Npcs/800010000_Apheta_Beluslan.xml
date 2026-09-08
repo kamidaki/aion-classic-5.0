@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="800010000">
+		<!-- Elyos Castle Gate -->
+		<spawn npc_id="279820" respawn_time="295">
+			<spot x="324.6676" y="338.9225" z="236.535" h="0"/>
+			<spot x="409.3193" y="340.2463" z="236.535" h="0"/>
+			<spot x="359.3193" y="389.2463" z="236.535" h="0"/>
+		</spawn>
+		<!-- Fortress Gate -->
+		<spawn npc_id="279821" respawn_time="295">
+			<spot x="324.6676" y="338.9225" z="236.535" h="0"/>
+			<spot x="409.3193" y="340.2463" z="236.535" h="0"/>
+			<spot x="359.3193" y="389.2463" z="236.535" h="0"/>
+		</spawn>
+		<!-- Balaur Castle Gate -->
+		<spawn npc_id="279822" respawn_time="295">
+			<spot x="324.6676" y="338.9225" z="236.535" h="0"/>
+			<spot x="409.3193" y="340.2463" z="236.535" h="0"/>
+			<spot x="359.3193" y="389.2463" z="236.535" h="0"/>
+		</spawn>
+		<!-- Elyos Artefact: Favour of Apheta Beluslan Fortress -->
+		<spawn npc_id="279823" respawn_time="295">
+			<spot x="249.0383" y="329.8834" z="240.7112" h="0"/>
+		</spawn>
+		<!-- Asmodian Artefact: Favour of Apheta Beluslan Fortress -->
+		<spawn npc_id="279824" respawn_time="295">
+			<spot x="249.0383" y="329.8834" z="240.7112" h="0"/>
+		</spawn>
+		<!-- Balaur Artefact: Favour of Apheta Beluslan Fortress -->
+		<spawn npc_id="279825" respawn_time="295">
+			<spot x="249.0383" y="329.8834" z="240.7112" h="0"/>
+		</spawn>
+		<!-- Elyos Artefact: Strike of Flame -->
+		<spawn npc_id="279826" respawn_time="295">
+			<spot x="228.6188" y="192.946" z="243.9043" h="0"/>
+		</spawn>
+		<!-- Asmodian Artefact: Strike of Flame -->
+		<spawn npc_id="279827" respawn_time="295">
+			<spot x="228.6188" y="192.946" z="243.9043" h="0"/>
+		</spawn>
+		<!-- Balaur Artefact: Strike of Flame -->
+		<spawn npc_id="279828" respawn_time="295">
+			<spot x="228.6188" y="192.946" z="243.9043" h="0"/>
+		</spawn>
+		<!-- Elyos Artefact: Inspiring Cheer -->
+		<spawn npc_id="279829" respawn_time="295">
+			<spot x="473.9218" y="536.3494" z="221.2659" h="0"/>
+		</spawn>
+		<!-- Asmodian Artefact: Inspiring Cheer -->
+		<spawn npc_id="279830" respawn_time="295">
+			<spot x="473.9218" y="536.3494" z="221.2659" h="0"/>
+		</spawn>
+		<!-- Balaur Artefact: Inspiring Cheer -->
+		<spawn npc_id="279831" respawn_time="295">
+			<spot x="473.9218" y="536.3494" z="221.2659" h="0"/>
+		</spawn>
+		<!-- Damaged Elyos Castle Gate -->
+		<spawn npc_id="279858" respawn_time="295">
+			<spot x="284.1938" y="424.7692" z="236.3549" h="0"/>
+			<spot x="432.5109" y="322.4168" z="237.035" h="0"/>
+		</spawn>
+		<!-- Damaged Fortress Gate -->
+		<spawn npc_id="279859" respawn_time="295">
+			<spot x="284.1938" y="424.7692" z="236.3549" h="0"/>
+			<spot x="432.5109" y="322.4168" z="237.035" h="0"/>
+		</spawn>
+		<!-- Damaged Balaur Castle Gate -->
+		<spawn npc_id="279860" respawn_time="295">
+			<spot x="284.1938" y="424.7692" z="236.3549" h="0"/>
+			<spot x="432.5109" y="322.4168" z="237.035" h="0"/>
+		</spawn>
+		<!-- LDF3_01_Transparent NPC -->
+		<spawn npc_id="279861" respawn_time="295">
+			<spot x="346.4091" y="485.8471" z="250.298" h="0"/>
+		</spawn>
+		<!-- LDF3_01_Transparent NPC -->
+		<spawn npc_id="279862" respawn_time="295">
+			<spot x="346.4091" y="485.8471" z="250.298" h="0"/>
+		</spawn>
+		<!-- LDF3_01_Transparent NPC -->
+		<spawn npc_id="279863" respawn_time="295">
+			<spot x="346.4091" y="485.8471" z="250.298" h="0"/>
+		</spawn>
+		<!-- Siel's Energy Pack -->
+		<spawn npc_id="800534" respawn_time="295">
+			<spot x="2289.864" y="2543.6172" z="634.5957" h="0"/>
+			<spot x="1768.7743" y="2635.8179" z="590.1455" h="0"/>
+			<spot x="576.5124" y="2505.6018" z="292.5037" h="0"/>
+			<spot x="590.7555" y="2534.7866" z="290.6228" h="0"/>
+			<spot x="2866.2124" y="1302.072" z="494.8273" h="0"/>
+			<spot x="1605.2677" y="2729.9021" z="706.2505" h="0"/>
+			<spot x="2606.3892" y="1273.6924" z="371.2391" h="0"/>
+			<spot x="203.4628" y="362.8499" z="243.6569" h="0"/>
+			<spot x="2508.5188" y="940.7461" z="376.0475" h="0"/>
+			<spot x="1587.4628" y="2115.8499" z="586.6569" h="0"/>
+			<spot x="1265.9021" y="367.5686" z="312.7352" h="0"/>
+			<spot x="1654.7455" y="1499.6138" z="335.9726" h="0"/>
+			<spot x="2855.9363" y="1524.519" z="269.8167" h="0"/>
+			<spot x="383.4628" y="195.8499" z="227.6569" h="0"/>
+			<spot x="1396.1599" y="2641.6934" z="540.2107" h="0"/>
+			<spot x="2565.1006" y="1435.9142" z="308.3247" h="0"/>
+			<spot x="1423.7488" y="2696.041" z="608.0461" h="0"/>
+			<spot x="1732.3741" y="1722.9478" z="575.5967" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="800861" respawn_time="295">
+			<spot x="558.4929" y="905.2585" z="324.8829" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="800862" respawn_time="295">
+			<spot x="803.6656" y="696.5681" z="336.9462" h="0"/>
+		</spawn>
+		<!-- Jararinerk -->
+		<spawn npc_id="800927" respawn_time="295">
+			<spot x="547.2552" y="893.5155" z="326.0561" h="0"/>
+		</spawn>
+		<!-- Besserinerk -->
+		<spawn npc_id="800929" respawn_time="295">
+			<spot x="802.271" y="686.9355" z="336.9462" h="0"/>
+		</spawn>
+		<!-- Psyche -->
+		<spawn npc_id="801047" respawn_time="295">
+			<spot x="391" y="285" z="238" h="0"/>
+		</spawn>
+		<!-- Rasomenia -->
+		<spawn npc_id="801048" respawn_time="295">
+			<spot x="391" y="285" z="238" h="0"/>
+		</spawn>
+		<!-- Gorgia -->
+		<spawn npc_id="801049" respawn_time="295">
+			<spot x="376" y="282" z="238" h="0"/>
+		</spawn>
+		<!-- Resmas -->
+		<spawn npc_id="801050" respawn_time="295">
+			<spot x="376" y="282" z="238" h="0"/>
+		</spawn>
+		<!-- Andreas -->
+		<spawn npc_id="801053" respawn_time="295">
+			<spot x="254.3443" y="360.6592" z="238" h="0"/>
+		</spawn>
+		<!-- Selia -->
+		<spawn npc_id="801054" respawn_time="295">
+			<spot x="259.2903" y="370.899" z="238" h="0"/>
+		</spawn>
+		<!-- Denkana -->
+		<spawn npc_id="801055" respawn_time="295">
+			<spot x="254.3443" y="360.6592" z="238" h="0"/>
+		</spawn>
+		<!-- Fendios -->
+		<spawn npc_id="801056" respawn_time="295">
+			<spot x="259.2903" y="370.899" z="238" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

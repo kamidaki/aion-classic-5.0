@@ -26,7 +26,7 @@
 		<xs:sequence>
 			<xs:element name="modifiers" type="Modifiers"/>
 		</xs:sequence>
-		<xs:attribute name="count" type="xs:int" use="optional"/>
+		<xs:attribute name="count" type="xs:int"/>
 	</xs:complexType>
 	<xs:complexType name="FullBonus">
 		<xs:sequence>

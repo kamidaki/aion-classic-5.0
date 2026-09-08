@@ -20,7 +20,9 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.utils.ClassUtils;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class VersionInfo {
 
 	private static final Logger log = LoggerFactory.getLogger(VersionInfo.class);

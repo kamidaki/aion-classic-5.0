@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public abstract class CommaSeparatedValueTransformer<T> extends PropertyTransformer<T> {
 
 	@Override

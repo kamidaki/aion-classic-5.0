@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="300650000">
+		<!-- Siel's Energy Pack -->
+		<spawn npc_id="800534" respawn_time="295">
+			<spot x="483.045" y="327.2818" z="266.7929" h="0"/>
+			<spot x="497.9242" y="720.6047" z="270.1577" h="0"/>
+		</spawn>
+		<!-- Battlefield Outpost Teleporter -->
+		<spawn npc_id="801641" respawn_time="295">
+			<spot x="832.4709" y="269.889" z="269.6358" h="0"/>
+			<spot x="710.6668" y="268.0829" z="293.3523" h="0"/>
+		</spawn>
+		<!-- Battlefield Outpost Teleporter -->
+		<spawn npc_id="801643" respawn_time="295">
+			<spot x="151.2207" y="761.7479" z="268.3494" h="0"/>
+			<spot x="276.4325" y="775.5234" z="293.9822" h="0"/>
+		</spawn>
+		<!-- Dranium Processing Camp -->
+		<spawn npc_id="801665" respawn_time="295">
+			<spot x="498.2789" y="720.4695" z="271.3044" h="0"/>
+			<spot x="483.0267" y="327.1716" z="267.7015" h="0"/>
+			<spot x="483.0267" y="327.1716" z="267.7015" h="0"/>
+		</spawn>
+		<!-- Riana -->
+		<spawn npc_id="801674" respawn_time="295">
+			<spot x="831.2964" y="253.4287" z="270.7834" h="0"/>
+		</spawn>
+		<!-- Ellix -->
+		<spawn npc_id="801675" respawn_time="295">
+			<spot x="157.4765" y="777.3177" z="267.3519" h="0"/>
+		</spawn>
+		<!-- Archon Prefect's Sabatons -->
+		<spawn npc_id="801718" respawn_time="295">
+			<spot x="183.5444" y="531.7567" z="262.6465" h="0"/>
+			<spot x="809.2817" y="509.3828" z="264.7391" h="0"/>
+		</spawn>
+		<!-- Massive Dranium Ore -->
+		<spawn npc_id="801785" respawn_time="295">
+			<spot x="472.7664" y="513.8498" z="595.06" h="0"/>
+			<spot x="472.7664" y="513.8498" z="595.06" h="0"/>
+		</spawn>
+		<!-- Archon Prefect's Sash -->
+		<spawn npc_id="801790" respawn_time="295">
+			<spot x="421.7217" y="492.46" z="255.8944" h="0"/>
+		</spawn>
+		<!-- Guardian Battle Commander's Corundum Earring -->
+		<spawn npc_id="801791" respawn_time="295">
+			<spot x="421.6788" y="492.6606" z="259.7542" h="0"/>
+		</spawn>
+		<!-- Guardian Battle Commander's Turquoise Earring -->
+		<spawn npc_id="801792" respawn_time="295">
+			<spot x="422.315" y="492.6006" z="261.5341" h="0"/>
+			<spot x="422.315" y="492.6006" z="261.5341" h="0"/>
+		</spawn>
+		<!-- Archon Battle Commander's Corundum Earring -->
+		<spawn npc_id="801793" respawn_time="295">
+			<spot x="421.1397" y="492.5157" z="262.3854" h="0"/>
+			<spot x="421.1397" y="492.5157" z="262.3854" h="0"/>
+		</spawn>
+		<!-- Archon Battle Commander's Turquoise Earring -->
+		<spawn npc_id="801794" respawn_time="295">
+			<spot x="421.9839" y="492.6035" z="263.8171" h="0"/>
+		</spawn>
+		<!-- Guardian Battle Commander's Corundum Necklace -->
+		<spawn npc_id="801795" respawn_time="295">
+			<spot x="421.4706" y="500.9895" z="255.2619" h="0"/>
+		</spawn>
+		<!-- Guardian Battle Commander's Turquoise Necklace -->
+		<spawn npc_id="801796" respawn_time="295">
+			<spot x="421.1664" y="501.1013" z="256.2222" h="0"/>
+			<spot x="421.1664" y="501.1013" z="256.2222" h="0"/>
+		</spawn>
+		<!-- Archon Battle Commander's Corundum Necklace -->
+		<spawn npc_id="801797" respawn_time="295">
+			<spot x="421.1505" y="500.8489" z="258.0429" h="0"/>
+		</spawn>
+		<!-- Archon Battle Commander's Turquoise Necklace -->
+		<spawn npc_id="801798" respawn_time="295">
+			<spot x="420.9509" y="500.7882" z="259.0014" h="0"/>
+			<spot x="420.9509" y="500.7882" z="259.0014" h="0"/>
+		</spawn>
+		<!-- Battlefield Outpost Teleporter -->
+		<spawn npc_id="801800" respawn_time="295">
+			<spot x="146.5576" y="498.2839" z="266.5083" h="0"/>
+		</spawn>
+		<!-- Battlefield Outpost Teleporter -->
+		<spawn npc_id="801801" respawn_time="295">
+			<spot x="846.0623" y="541.9772" z="268.4707" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

@@ -18,10 +18,7 @@ import com.aionemu.commons.scripting.ScriptClassLoader;
 import com.aionemu.commons.utils.ClassUtils;
 
 /**
- * This classloader is used to load script classes. <br>
- * <br>
- * Due to JavaCompiler limitations we have to keep list of available classes here.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class ScriptClassLoaderImpl extends ScriptClassLoader {
 

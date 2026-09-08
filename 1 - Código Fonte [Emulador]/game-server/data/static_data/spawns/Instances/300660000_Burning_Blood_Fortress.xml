@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="300660000">
+		<!-- Thick Tome -->
+		<spawn npc_id="730585" respawn_time="295">
+			<spot x="699.3378" y="308.1902" z="233.239" h="0"/>
+		</spawn>
+		<!-- Blood Drana Research Journal -->
+		<spawn npc_id="730586" respawn_time="295">
+			<spot x="702.4009" y="308.2555" z="233.5204" h="0"/>
+		</spawn>
+		<!-- Splotchy Research Journal -->
+		<spawn npc_id="730587" respawn_time="295">
+			<spot x="707.3486" y="306.9777" z="233.4934" h="0"/>
+		</spawn>
+		<!-- Exit from Burning Blood Fortress -->
+		<spawn npc_id="801650" respawn_time="295">
+			<spot x="704.7817" y="330.7567" z="232.9992" h="0"/>
+			<spot x="948.2524" y="514.0066" z="211.6717" h="0"/>
+		</spawn>
+		<!-- 1st Test Area Teleport Orb -->
+		<spawn npc_id="801651" respawn_time="295">
+			<spot x="898.6188" y="505.0243" z="212.5279" h="0"/>
+		</spawn>
+		<!-- Disabled Teleport Orb -->
+		<spawn npc_id="801652" respawn_time="295">
+			<spot x="530.6648" y="380.7781" z="1038.0574" h="0"/>
+			<spot x="530.1561" y="646.7582" z="1038.0574" h="0"/>
+			<spot x="898.6188" y="505.0243" z="212.5279" h="0"/>
+			<spot x="898.6285" y="518.3732" z="212.8521" h="0"/>
+		</spawn>
+		<!-- Suspicious Teleport Orb -->
+		<spawn npc_id="801736" respawn_time="295">
+			<spot x="502.9945" y="353.8177" z="1038.0574" h="0"/>
+			<spot x="502.5199" y="646.7201" z="1038.0574" h="0"/>
+			<spot x="502.5199" y="646.7201" z="1038.0574" h="0"/>
+		</spawn>
+		<!-- Archon Battle Commander's Shoulderguards -->
+		<spawn npc_id="801738" respawn_time="295">
+			<spot x="924.2092" y="527.0867" z="212.8521" h="0"/>
+		</spawn>
+		<!-- 2nd Test Area Teleport Orb -->
+		<spawn npc_id="801979" respawn_time="295">
+			<spot x="530.6648" y="380.7781" z="1038.0574" h="0"/>
+		</spawn>
+		<!-- 1st Test Area Teleport Orb -->
+		<spawn npc_id="801980" respawn_time="295">
+			<spot x="530.1561" y="646.7582" z="1038.0574" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

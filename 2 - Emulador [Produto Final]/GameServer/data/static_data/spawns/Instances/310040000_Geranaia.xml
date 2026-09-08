@@ -1,11 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns>
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="310040000">
-		<spawn npc_id="204044" respawn_time="120">
-			<spot x="272.66403" y="175.63103" z="204.34718" h="36" />
-		</spawn>
-		<spawn npc_id="700187">
-			<spot x="275.935913" y="162.008057" z="208.480850" entity_id="17" />
+		<!-- Kimeia -->
+		<spawn npc_id="204044">
+			<spot x="269.79" y="176.751" z="204.347" h="94"/>
 		</spawn>
 	</spawn_map>
 </spawns>

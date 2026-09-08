@@ -16,8 +16,7 @@ import com.aionemu.commons.configuration.transformers.MapTransformer;
 import com.aionemu.commons.configuration.transformers.PropertyTransformers;
 
 /**
- * This class is designed to process classes and interfaces that have fields marked with {@link Property} annotation
- * 
+ * @author Lost Academy Team & Durak
  */
 public class ConfigurableProcessor {
 
@@ -40,18 +39,6 @@ public class ConfigurableProcessor {
 			}
 		}
 		return unusedProperties;
-	}
-
-	public static void process(Object object, Properties... properties) {
-		Properties merged = new Properties();
-		if (properties != null) {
-			for (Properties p : properties) {
-				if (p != null) {
-					merged.putAll(p);
-				}
-			}
-		}
-		process(merged, object);
 	}
 
 	/**

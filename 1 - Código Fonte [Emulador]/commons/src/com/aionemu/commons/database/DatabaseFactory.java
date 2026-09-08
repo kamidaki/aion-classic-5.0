@@ -13,9 +13,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import com.zaxxer.hikari.pool.HikariPool;
 
 /**
- * This file is used for creating a pool of connections for the server.<br>
- * It utilizes database.properties and creates a pool of connections and automatically recycles them when closed.<br>
- * 
+ * @author Lost Academy Team & Durak
  */
 public class DatabaseFactory {
 
@@ -34,45 +32,36 @@ public class DatabaseFactory {
 		config.setUsername(DatabaseConfig.DATABASE_USER);
 		config.setPassword(DatabaseConfig.DATABASE_PASSWORD);
 		config.setMaximumPoolSize(DatabaseConfig.DATABASE_CONNECTIONS_MAX);
+		if (DatabaseConfig.DATABASE_CONNECTIONS_MIN > 0 && DatabaseConfig.DATABASE_CONNECTIONS_MIN <= DatabaseConfig.DATABASE_CONNECTIONS_MAX) {
+			config.setMinimumIdle(DatabaseConfig.DATABASE_CONNECTIONS_MIN);
+		}
 		config.setConnectionTimeout(DatabaseConfig.DATABASE_TIMEOUT);
+		if (DatabaseConfig.DATABASE_MAX_LIFETIME >= 30000) {
+			config.setMaxLifetime(DatabaseConfig.DATABASE_MAX_LIFETIME);
+		}
+		if (DatabaseConfig.DATABASE_IDLE_TIMEOUT >= 10000) {
+			config.setIdleTimeout(DatabaseConfig.DATABASE_IDLE_TIMEOUT);
+		}
+		if (DatabaseConfig.DATABASE_KEEPALIVE >= 30000) {
+			config.setKeepaliveTime(DatabaseConfig.DATABASE_KEEPALIVE);
+		}
+
+		// Performance optimizations for MySQL / MariaDB over network
+		config.addDataSourceProperty("cachePrepStmts", "true");
+		config.addDataSourceProperty("prepStmtCacheSize", "500");
+		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+		config.addDataSourceProperty("useServerPrepStmts", "true");
+		config.addDataSourceProperty("useLocalSessionState", "true");
+		config.addDataSourceProperty("rewriteBatchedStatements", "true");
+		config.addDataSourceProperty("cacheResultSetMetadata", "true");
+		config.addDataSourceProperty("cacheServerConfiguration", "true");
+		config.addDataSourceProperty("elideSetAutoCommits", "true");
+		config.addDataSourceProperty("maintainTimeStats", "false");
+		config.addDataSourceProperty("tcpKeepAlive", "true");
+		config.addDataSourceProperty("tcpNoDelay", "true");
 
 		dataSource = new HikariDataSource(config);
 
-		try (Connection c = getConnection()) {
-			java.sql.DatabaseMetaData dmd = c.getMetaData();
-			databaseName = dmd.getDatabaseProductName();
-			databaseMajorVersion = dmd.getDatabaseMajorVersion();
-			databaseMinorVersion = dmd.getDatabaseMinorVersion();
-		} catch (Exception e) {
-			LoggerFactory.getLogger(DatabaseFactory.class).error("Error reading database metadata", e);
-		}
-	}
-
-	private static String databaseName = "MySQL";
-	private static int databaseMajorVersion = 5;
-	private static int databaseMinorVersion = 0;
-
-	public static String getDatabaseName() {
-		return databaseName;
-	}
-
-	public static int getDatabaseMajorVersion() {
-		return databaseMajorVersion;
-	}
-
-	public static int getDatabaseMinorVersion() {
-		return databaseMinorVersion;
-	}
-
-	public static synchronized void shutdown() {
-		if (dataSource instanceof HikariDataSource hikari) {
-			try {
-				hikari.close();
-			} catch (Exception e) {
-				LoggerFactory.getLogger(DatabaseFactory.class).warn("Failed to shutdown DatabaseFactory", e);
-			}
-		}
-		dataSource = null;
 	}
 
 	/**
@@ -90,43 +79,6 @@ public class DatabaseFactory {
 		return con;
 	}
 
-	public static void close(java.sql.Statement st, Connection con) {
-		close(st);
-		close(con);
-	}
-
-	public static void close(java.sql.Statement st) {
-		if (st == null) {
-			return;
-		}
-		try {
-			if (!st.isClosed()) {
-				st.close();
-			}
-		} catch (SQLException e) {
-			LoggerFactory.getLogger(DatabaseFactory.class).error("Can't close Statement", e);
-		}
-	}
-
-	public static void close(Connection con) {
-		if (con == null) {
-			return;
-		}
-		try {
-			if (!con.getAutoCommit()) {
-				con.setAutoCommit(true);
-			}
-		} catch (SQLException e) {
-			LoggerFactory.getLogger(DatabaseFactory.class).error("Failed to set autocommit to true while closing connection: ", e);
-		}
-		try {
-			con.close();
-		} catch (SQLException e) {
-			LoggerFactory.getLogger(DatabaseFactory.class).error("DatabaseFactory: Failed to close database connection!", e);
-		}
-	}
-
 	private DatabaseFactory() {
 	}
 }
-

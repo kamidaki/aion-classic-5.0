@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="300320000">
+		<!-- IDArena_RoundNPC_1 -->
+		<spawn npc_id="205345" respawn_time="295">
+			<spot x="345.7802" y="1665.2374" z="100.3521" h="0"/>
+			<spot x="345.7802" y="1665.2374" z="100.3521" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_2 -->
+		<spawn npc_id="205346" respawn_time="295">
+			<spot x="345.7569" y="1667.5061" z="100.3521" h="0"/>
+			<spot x="345.7569" y="1667.5061" z="100.3521" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_6 -->
+		<spawn npc_id="205350" respawn_time="295">
+			<spot x="1783.6544" y="308.455" z="480.3188" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_11 -->
+		<spawn npc_id="205355" respawn_time="295">
+			<spot x="1307.5841" y="1736.126" z="321.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_12 -->
+		<spawn npc_id="205356" respawn_time="295">
+			<spot x="1307.6401" y="1738.802" z="321.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_16 -->
+		<spawn npc_id="205360" respawn_time="295">
+			<spot x="1271.4688" y="794.2286" z="438.5746" h="0"/>
+			<spot x="1258.8182" y="240.9045" z="409.2545" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_17 -->
+		<spawn npc_id="205361" respawn_time="295">
+			<spot x="1271.4998" y="796.6874" z="438.5746" h="0"/>
+			<spot x="1258.8492" y="243.3633" z="409.2545" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_21 -->
+		<spawn npc_id="205365" respawn_time="295">
+			<spot x="346.5612" y="352.0637" z="97.6655" h="0"/>
+			<spot x="346.5612" y="352.0637" z="97.6655" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_22 -->
+		<spawn npc_id="205366" respawn_time="295">
+			<spot x="346.6061" y="354.5523" z="97.6655" h="0"/>
+			<spot x="346.6061" y="354.5523" z="97.6655" h="0"/>
+		</spawn>
+		<!-- IDArena_RoundNPC_26 -->
+		<spawn npc_id="205370" respawn_time="295">
+			<spot x="1769.6241" y="1286.3079" z="390.7308" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_1 -->
+		<spawn npc_id="205654" respawn_time="295">
+			<spot x="1777.6056" y="306.9807" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_2 -->
+		<spawn npc_id="205655" respawn_time="295">
+			<spot x="1777.6056" y="306.9807" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_3 -->
+		<spawn npc_id="205656" respawn_time="295">
+			<spot x="1775.6146" y="307.0689" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_4 -->
+		<spawn npc_id="205657" respawn_time="295">
+			<spot x="1775.6146" y="307.0689" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_5 -->
+		<spawn npc_id="205658" respawn_time="295">
+			<spot x="1303.4661" y="1733.0256" z="322.8018" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_6 -->
+		<spawn npc_id="205659" respawn_time="295">
+			<spot x="1303.4661" y="1733.0256" z="322.8018" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_7 -->
+		<spawn npc_id="205660" respawn_time="295">
+			<spot x="1251.2924" y="237.9914" z="410.136" h="0"/>
+			<spot x="1266.9878" y="791.5599" z="443.3694" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_8 -->
+		<spawn npc_id="205661" respawn_time="295">
+			<spot x="1773.4771" y="307.0297" z="471.1734" h="0"/>
+			<spot x="1773.4771" y="307.0297" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_9 -->
+		<spawn npc_id="205662" respawn_time="295">
+			<spot x="1780.618" y="312.1808" z="475.9133" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205663" respawn_time="295">
+			<spot x="1295.7217" y="242.1501" z="407.1923" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205664" respawn_time="295">
+			<spot x="1748.1993" y="1742.0352" z="390.9514" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205665" respawn_time="295">
+			<spot x="1821.5776" y="801.9846" z="471.1734" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205666" respawn_time="295">
+			<spot x="1258.7214" y="237.8552" z="408.8992" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205667" respawn_time="295">
+			<spot x="1258.8464" y="237.8552" z="411.0242" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205668" respawn_time="295">
+			<spot x="345.7795" y="1662.6697" z="100.3954" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205669" respawn_time="295">
+			<spot x="1784.4633" y="306.9864" z="475.3489" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205670" respawn_time="295">
+			<spot x="1307.5472" y="1732.9865" z="321.1734" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205671" respawn_time="295">
+			<spot x="1271.4222" y="791.3614" z="438.5746" h="0"/>
+			<spot x="1271.4222" y="791.3614" z="438.5746" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205672" respawn_time="295">
+			<spot x="346.523" y="349.2559" z="97.6655" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205673" respawn_time="295">
+			<spot x="1767.1036" y="1288.4425" z="390.7308" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205674" respawn_time="295">
+			<spot x="345.5295" y="1662.6697" z="102.5653" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205675" respawn_time="295">
+			<spot x="1784.5883" y="306.9864" z="477.4739" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205676" respawn_time="295">
+			<spot x="1307.6722" y="1732.9865" z="323.2984" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205677" respawn_time="295">
+			<spot x="1271.5472" y="791.3614" z="440.6996" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205678" respawn_time="295">
+			<spot x="346.648" y="349.2559" z="100.086" h="0"/>
+		</spawn>
+		<!-- Recordkeeper -->
+		<spawn npc_id="205679" respawn_time="295">
+			<spot x="1767.2286" y="1288.4425" z="392.8558" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205682" respawn_time="295">
+			<spot x="383.3434" y="1667.2977" z="98.3352" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205683" respawn_time="295">
+			<spot x="1821.5643" y="311.9248" z="471.1734" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205684" respawn_time="295">
+			<spot x="1358.4021" y="1758.744" z="320.9201" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205685" respawn_time="295">
+			<spot x="1308.9664" y="796.2028" z="439.6133" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205686" respawn_time="295">
+			<spot x="383.3093" y="354.0785" z="99.2472" h="0"/>
+		</spawn>
+		<!-- Arbiter -->
+		<spawn npc_id="205687" respawn_time="295">
+			<spot x="1747.3901" y="1250.201" z="390.7308" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_RoundNPC_Bonus -->
+		<spawn npc_id="205688" respawn_time="295">
+			<spot x="1765.2725" y="1281.7683" z="390.7308" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_InviNPC_1 -->
+		<spawn npc_id="205689" respawn_time="295">
+			<spot x="1783.098" y="304.789" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_InviNPC_2 -->
+		<spawn npc_id="205690" respawn_time="295">
+			<spot x="1783.0964" y="306.9802" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_InviNPC_3 -->
+		<spawn npc_id="205691" respawn_time="295">
+			<spot x="1783.088" y="309.1517" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_InviNPC_4 -->
+		<spawn npc_id="205692" respawn_time="295">
+			<spot x="1786.0027" y="307.0311" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_SensoryArea_H2 -->
+		<spawn npc_id="206205" respawn_time="295">
+			<spot x="1802.2156" y="795.3983" z="471.1734" h="0"/>
+		</spawn>
+		<!-- IDArena_Solo_CTRL01 -->
+		<spawn npc_id="206206" respawn_time="295">
+			<spot x="1303.2855" y="1740.4072" z="322.8018" h="0"/>
+		</spawn>
+		<!-- Worthiness Ticket Box -->
+		<spawn npc_id="217758" respawn_time="295">
+			<spot x="347.2403" y="1660.2524" z="100.3171" h="0"/>
+		</spawn>
+		<!-- Poppy on the Run -->
+		<spawn npc_id="217802" respawn_time="295">
+			<spot x="1780.5665" y="307.4046" z="475.9133" h="0"/>
+			<spot x="1780.5665" y="307.4046" z="475.9133" h="0"/>
+		</spawn>
+		<!-- Administrator Arminos -->
+		<spawn npc_id="217820" respawn_time="295">
+			<spot x="1251.1598" y="237.9774" z="406.3888" h="0"/>
+			<spot x="1266.9661" y="791.5348" z="438.0792" h="0"/>
+		</spawn>
+		<!-- Crucible Rift -->
+		<spawn npc_id="730460" respawn_time="295">
+			<spot x="1780.8339" y="786.7057" z="470.2828" h="0"/>
+			<spot x="1759.2914" y="1786.37" z="390.7308" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

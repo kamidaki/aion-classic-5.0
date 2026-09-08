@@ -5,8 +5,7 @@ import java.io.File;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * Transforms string to file by creating new file instance. It's not checked if file exists.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class FileTransformer extends PropertyTransformer<File> {
 

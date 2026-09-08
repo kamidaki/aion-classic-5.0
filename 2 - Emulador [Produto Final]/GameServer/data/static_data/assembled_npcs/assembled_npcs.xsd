@@ -20,6 +20,6 @@
 	</xs:complexType>
 	<xs:complexType name="AssembledNpcPart">
 		<xs:attribute name="npcId" type="xs:int" use="required"/>
-		<xs:attribute name="entityId" type="xs:int" use="required"/>
+		<xs:attribute name="staticId" type="xs:int" use="required"/>
 	</xs:complexType>
 </xs:schema>

@@ -3,10 +3,7 @@ package com.aionemu.commons.configuration.transformers;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * This class implements basic boolean transformer.
- * <p/>
- * Boolean can be represented by true / false (case doesn't matter) or 1 / 0.
- * 
+ * @author Lost Academy Team & Durak
  */
 public class BooleanTransformer extends PropertyTransformer<Boolean> {
 

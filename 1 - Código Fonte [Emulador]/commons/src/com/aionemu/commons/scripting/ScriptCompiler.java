@@ -4,9 +4,7 @@ import java.io.File;
 import java.util.Map;
 
 /**
- * This interface represents common functionality list that should be available for any compiler that is going to be used with scripting engine. For
- * instance, groovy can be used, however it produces by far not the best bytecode so by default javac from sun is used.
- * 
+ * @author Lost Academy Team & Durak
  */
 public interface ScriptCompiler {
 
@@ -60,15 +58,4 @@ public interface ScriptCompiler {
 	 * @return {@link com.aionemu.commons.scripting.CompilationResult}
 	 */
 	CompilationResult compile(Iterable<File> compilationUnits);
-
-	default void setLibraries(Iterable<File> files) {
-	}
-
-	default void setLibraires(Iterable<File> files) {
-		setLibraries(files);
-	}
-
-	default String[] getSupportedFileTypes() {
-		return new String[]{"java"};
-	}
 }

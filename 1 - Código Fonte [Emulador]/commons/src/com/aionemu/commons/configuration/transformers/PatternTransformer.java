@@ -5,8 +5,7 @@ import java.util.regex.Pattern;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * Automatic pattern transformer for RegExp resolving
- * 
+ * @author Lost Academy Team & Durak
  */
 public class PatternTransformer extends PropertyTransformer<Pattern> {
 

@@ -3,7 +3,9 @@ package com.aionemu.commons.utils.concurrent;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class PriorityThreadFactory implements ThreadFactory {
 
 	/**

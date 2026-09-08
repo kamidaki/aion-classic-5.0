@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:include schemaLocation="global_types.xsd"/>
+	<xs:include schemaLocation="import.xsd"/>
 	<xs:element name="npc_teleporter" type="Data"/>
 	<xs:complexType name="Data">
 		<xs:sequence>
@@ -25,8 +26,7 @@
 		<xs:attribute name="teleportid" type="xs:int"/>
 		<xs:attribute name="price" type="xs:int"/>
 		<xs:attribute name="pricePvp" type="xs:int"/>
-		<xs:attribute name="requiredQuest" type="xs:int"/>
-		<xs:attribute name="siege_id" type="xs:int"/>
+		<xs:attribute name="required_quest" type="xs:int"/>
 		<xs:attribute name="type" type="TeleportType" use="required"/>
 	</xs:complexType>
 	<xs:simpleType name="TeleportType">

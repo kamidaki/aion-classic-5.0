@@ -1,5 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<instance_rift xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="instance_rift.xsd">
-	<instance_location id="1" />
-	<instance_location id="2" />
-</instance_rift>

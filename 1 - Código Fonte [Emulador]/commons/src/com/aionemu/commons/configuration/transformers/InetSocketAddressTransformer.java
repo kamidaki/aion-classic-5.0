@@ -6,9 +6,7 @@ import java.net.URI;
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
 /**
- * Transforms strings in the format {@code host:port} to an InetSocketAddress, where host can be a hostname or an IP address (IPv6 addresses must be
- * enclosed in square brackets).
- * 
+ * @author Lost Academy Team & Durak
  */
 public class InetSocketAddressTransformer extends PropertyTransformer<InetSocketAddress> {
 

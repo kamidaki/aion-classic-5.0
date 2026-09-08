@@ -4,7 +4,9 @@ import java.time.ZoneId;
 
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class ZoneIdTransformer extends PropertyTransformer<ZoneId> {
 
 	@Override

@@ -6,7 +6,9 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class SystemInfo {
 
 	private static final Logger log = LoggerFactory.getLogger(SystemInfo.class);

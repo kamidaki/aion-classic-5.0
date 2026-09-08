@@ -8,8 +8,7 @@ import java.net.URLStreamHandler;
 import com.aionemu.commons.scripting.ScriptClassLoader;
 
 /**
- * This class represents URL Stream handler that accepts {@value #HANDLER_PROTOCOL} protocol
- * 
+ * @author Lost Academy Team & Durak
  */
 public class VirtualClassURLStreamHandler extends URLStreamHandler {
 

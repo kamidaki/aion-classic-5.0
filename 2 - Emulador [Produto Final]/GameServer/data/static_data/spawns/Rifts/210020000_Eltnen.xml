@@ -1,37 +1,87 @@
-<?xml version='1.0' encoding='utf-8'?>
-<spawns>
+<?xml version="1.0" encoding="UTF-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="210020000">
+		<!-- Rift -->
 		<spawn npc_id="700137" handler="RIFT">
-			<spot x="225.09428" y="2942.9639" z="155.6807" anchor="ELTNEN_AM" />
-			<spot x="768.04060" y="1879.6875" z="263.8359" anchor="ELTNEN_BM" />
-			<spot x="1627.8823" y="1760.4395" z="345.2426" anchor="ELTNEN_CM" />
-			<spot x="1039.4309" y="52.244410" z="317.0791" anchor="ELTNEN_DM" />
-			<spot x="1426.8889" y="415.91855" z="365.4565" anchor="ELTNEN_EM" />
-			<spot x="2429.2002" y="2253.4546" z="269.1250" anchor="ELTNEN_FM" />
-			<spot x="2413.9458" y="721.20530" z="371.9606" anchor="ELTNEN_GM" />
+			<spot x="224.042" y="2934.95" z="155.5" anchor="ELTNEN_AM"/>	<!-- id 2120 -->
+			<spot x="777.936" y="1947.14" z="290.717" anchor="ELTNEN_BM"/>	<!-- id 2121 -->
+			<spot x="1629.42" y="1762.11" z="345.332" anchor="ELTNEN_CM"/>	<!-- id 2122 -->
+			<spot x="1024.32" y="61.013" z="316.938" anchor="ELTNEN_DM"/>	<!-- id 2123 -->
+			<spot x="1532.21" y="491.778" z="361.095" anchor="ELTNEN_EM"/>	<!-- id 2124 -->
+			<spot x="2213.28" y="2604.72" z="270.42" anchor="ELTNEN_FM"/>	<!-- id 2125 -->
+			<spot x="2177.84" y="556.885" z="434.354" anchor="ELTNEN_GM"/>	<!-- id 2126 -->
 		</spawn>
 		<spawn npc_id="700138" handler="RIFT">
-			<spot x="699.58730" y="2673.4558" z="250.2106" anchor="ELTNEN_AS" />
-			<spot x="152.13107" y="1644.5100" z="262.8586" anchor="ELTNEN_BS" />
-			<spot x="1247.4799" y="2778.8250" z="307.8447" anchor="ELTNEN_CS" />
-			<spot x="49.984287" y="285.46637" z="113.9087" anchor="ELTNEN_DS" />
-			<spot x="1386.9507" y="412.10767" z="368.9400" anchor="ELTNEN_ES" />
-			<spot x="2451.3325" y="2353.6233" z="270.9058" anchor="ELTNEN_FS" />
-			<spot x="2502.7960" y="669.04260" z="359.3489" anchor="ELTNEN_GS" />
+			<spot x="719.325" y="2777.03" z="259.084" anchor="ELTNEN_AS"/>	<!-- id 2220 -->
+			<spot x="445.553" y="1292.31" z="283.047" anchor="ELTNEN_BS"/>	<!-- id 2221 -->
+			<spot x="1470.21" y="2446.05" z="288.589" anchor="ELTNEN_CS"/>	<!-- id 2222 -->
+			<spot x="93.156" y="246.245" z="273.63" anchor="ELTNEN_DS"/>	<!-- id 2223 -->
+			<spot x="2586.27" y="651.752" z="463.625" anchor="ELTNEN_GS"/>	<!-- id 2224 -->
+			<spot x="1329.67" y="337.576" z="396.786" anchor="ELTNEN_ES"/>	<!-- id 2225 -->
+			<spot x="2295.90" y="2278.78" z="294.760" anchor="ELTNEN_FS"/>	<!-- id 2226 -->
 		</spawn>
-		<rift_spawn id="2220">
+		<!-- ELTNEN_AM -->
+		<rift_spawn id="2120">
+			<!-- someone to spawn -->
+			<!-- <spawn npc_id="000" respawn_time="000">
+				<spot x="000.000" y="000.000" z="000.000"/>
+			</spawn> -->
 		</rift_spawn>
-		<rift_spawn id="2221">
+		<!-- ELTNEN_BM -->
+		<rift_spawn id="2121">
+			<!-- someone to spawn -->
+			<!-- <spawn npc_id="000" respawn_time="000">
+				<spot x="000.000" y="000.000" z="000.000"/>
+			</spawn> -->
 		</rift_spawn>
-		<rift_spawn id="2222">
+		<!-- ELTNEN_CM -->
+		<rift_spawn id="2122">
+			<!-- someone to spawn -->
+			<!-- <spawn npc_id="000" respawn_time="000">
+				<spot x="000.000" y="000.000" z="000.000"/>
+			</spawn> -->
 		</rift_spawn>
-		<rift_spawn id="2223">
-        </rift_spawn>
-		<rift_spawn id="2224">
+		<!-- ELTNEN_DM -->
+		<rift_spawn id="2123">
+			<!-- someone to spawn -->
+			<!-- <spawn npc_id="000" respawn_time="000">
+				<spot x="000.000" y="000.000" z="000.000"/>
+			</spawn> -->
 		</rift_spawn>
-		<rift_spawn id="2225">
+		<!-- ELTNEN_EM -->
+		<rift_spawn id="2124">
+			<!-- someone to spawn -->
+			<!-- <spawn npc_id="000" respawn_time="000">
+				<spot x="000.000" y="000.000" z="000.000"/>
+			</spawn> -->
 		</rift_spawn>
-		<rift_spawn id="2226">
-        </rift_spawn>
+		<!-- ELTNEN_FM -->
+		<rift_spawn id="2125">
+			<!-- someone to spawn -->
+			<!-- <spawn npc_id="000" respawn_time="000">
+				<spot x="000.000" y="000.000" z="000.000"/>
+			</spawn> -->
+		</rift_spawn>
+		<!-- ELTNEN_GM -->
+		<rift_spawn id="2126">
+			<!-- someone to spawn -->
+			<!-- <spawn npc_id="000" respawn_time="000">
+				<spot x="000.000" y="000.000" z="000.000"/>
+			</spawn> -->
+		</rift_spawn>
+		<!-- ELTNEN_AS -->
+		<rift_spawn id="2220"/>
+		<!-- ELTNEN_BS -->
+		<rift_spawn id="2221"/>
+		<!-- ELTNEN_CS -->
+		<rift_spawn id="2222"/>
+		<!-- ELTNEN_DS -->
+		<rift_spawn id="2223"/>
+		<!-- ELTNEN_ES -->
+		<rift_spawn id="2224"/>
+		<!-- ELTNEN_FS -->
+		<rift_spawn id="2225"/>
+		<!-- ELTNEN_GS -->
+		<rift_spawn id="2226"/>
 	</spawn_map>
 </spawns>

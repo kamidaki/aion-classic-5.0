@@ -4,7 +4,9 @@ import java.util.TimeZone;
 
 import com.aionemu.commons.configuration.TransformationTypeInfo;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class TimeZoneTransformer extends PropertyTransformer<TimeZone> {
 
 	@Override

@@ -10,7 +10,7 @@
 	</xs:element>
 	<xs:complexType name="Shield">
 		<xs:sequence>
-			<xs:element name="center" type="ShieldPoint" minOccurs="0" maxOccurs="6"/>
+			<xs:element name="center" type="ShieldPoint"/>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string"/>
 		<xs:attribute name="map" type="xs:int"/>

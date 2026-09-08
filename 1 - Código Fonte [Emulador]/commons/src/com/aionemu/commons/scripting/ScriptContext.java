@@ -62,25 +62,22 @@ public interface ScriptContext {
 	 */
 	ClassListener getClassListener();
 
-	java.io.File getRoot();
-
-	void setLibraries(Iterable<java.io.File> files);
-
-	Iterable<java.io.File> getLibraries();
-
-	ScriptContext getParentScriptContext();
-
-	java.util.Collection<ScriptContext> getChildScriptContexts();
-
-	void addChildScriptContext(ScriptContext context);
-
-	void setCompilerClassName(String className);
-
-	String getCompilerClassName();
-
+	/**
+	 * Tests if this ScriptContext is equal to another ScriptContext. Comparison is done by comparing root files and parent contexts (if there is any
+	 * parent)
+	 * 
+	 * @param obj
+	 *          object to compare with
+	 * @return result of comparison
+	 */
 	@Override
 	boolean equals(Object obj);
 
+	/**
+	 * Returns hashCoded of this ScriptContext. Hashcode is calculated using root file and parent context(if available)
+	 * 
+	 * @return hashCode
+	 */
 	@Override
 	int hashCode();
 }

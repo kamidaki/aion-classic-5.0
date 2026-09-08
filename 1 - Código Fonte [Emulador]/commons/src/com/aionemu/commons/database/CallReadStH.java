@@ -3,7 +3,9 @@ package com.aionemu.commons.database;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public interface CallReadStH extends ReadStH {
 
 	/**

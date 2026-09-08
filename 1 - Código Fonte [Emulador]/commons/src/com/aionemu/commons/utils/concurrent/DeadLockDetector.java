@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class DeadLockDetector implements Runnable {
 
 	private final Duration checkInterval;

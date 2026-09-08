@@ -7,7 +7,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public final class AionRejectedExecutionHandler implements RejectedExecutionHandler {
 
 	private static final Logger log = LoggerFactory.getLogger(AionRejectedExecutionHandler.class);

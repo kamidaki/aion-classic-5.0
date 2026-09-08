@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.commons.scripting.metadata.OnClassLoad;
 import com.aionemu.commons.scripting.metadata.OnClassUnload;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class OnClassLoadUnloadListener implements ClassListener {
 
 	/**

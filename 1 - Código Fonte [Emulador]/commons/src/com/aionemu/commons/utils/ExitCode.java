@@ -1,8 +1,7 @@
 package com.aionemu.commons.utils;
 
 /**
- * Class that contains exit codes for server
- * 
+ * @author Lost Academy Team & Durak
  */
 public final class ExitCode {
 
@@ -27,8 +26,4 @@ public final class ExitCode {
 	 * Shit happens :(
 	 */
 	public static final int ERROR = 1;
-
-	public static final int CODE_NORMAL = NORMAL;
-	public static final int CODE_RESTART = RESTART;
-	public static final int CODE_ERROR = ERROR;
 }

@@ -1,52 +1,77 @@
 package com.aionemu.commons.network.packet;
 
+/**
+ * @author Lost Academy Team & Durak
+ */
 public abstract class BasePacket {
-    public static final String TYPE_PATTERN = "[%s] 0x%02X %s";
-    private final PacketType packetType;
-    private int opcode;
 
-    protected BasePacket(PacketType packetType, int opcode) {
-        this.packetType = packetType;
-        this.opcode = opcode;
-    }
+	/**
+	 * Packet opCode field
+	 */
+	private int opCode;
 
-    protected BasePacket(PacketType packetType) {
-        this.packetType = packetType;
-    }
+	/**
+	 * Constructs a new packet.<br>
+	 * If this constructor is used, then setOpcode() must be used just after it.
+	 */
+	protected BasePacket() {
+	}
 
-    protected void setOpcode(int opcode) {
-        this.opcode = opcode;
-    }
+	/**
+	 * Constructs a new packet with specified id.
+	 * 
+	 * @param opCode
+	 *          Id of packet
+	 */
+	protected BasePacket(int opCode) {
+		this.opCode = opCode;
+	}
 
-    public final int getOpcode() {
-        return this.opcode;
-    }
+	/**
+	 * Returns packet opCode.
+	 * 
+	 * @return packet id
+	 */
+	public final int getOpCode() {
+		return opCode;
+	}
 
-    public final PacketType getPacketType() {
-        return this.packetType;
-    }
+	protected final void setOpCode(int opCode) {
+		this.opCode = opCode;
+	}
 
-    public String getPacketName() {
-        return this.getClass().getSimpleName();
-    }
+	/**
+	 * Returns packet name.
+	 * <p/>
+	 * Actually packet name is a simple name of the underlying class.
+	 * 
+	 * @return packet name
+	 * @see Class#getSimpleName()
+	 */
+	public final String getPacketName() {
+		return getClass().getSimpleName();
+	}
 
-    public String toString() {
-        return String.format(TYPE_PATTERN, this.getPacketType().getName(), this.getOpcode(), this.getPacketName());
-    }
+	protected int getOpCodeZeroPadding() {
+		return 3;
+	}
 
-    public static enum PacketType {
-        SERVER("S"),
-        CLIENT("C");
+	public String toFormattedPacketNameString() {
+		return toFormattedPacketNameString(getOpCodeZeroPadding(), getOpCode(), getPacketName());
+	}
 
-        private final String name;
+	public static String toFormattedPacketNameString(int zeroPadding, int opcode, String packetName) {
+		return String.format("[%0" + zeroPadding + "d] %s", opcode, packetName);
+	}
 
-        private PacketType(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-    }
+	/**
+	 * Returns string representation of this packet based on opCode and name.
+	 * 
+	 * @return packet type string
+	 * @see #toFormattedPacketNameString
+	 */
+	@Override
+	public String toString() {
+		return toFormattedPacketNameString();
+	}
 }
-

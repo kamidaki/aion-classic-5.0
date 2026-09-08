@@ -4,10 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Read statement handler.<br>
- * Allows to set query params before execution.<br>
- * For usage details check documentation of DB class.
- * 
+ * @author Lost Academy Team & Durak
  */
 public interface ParamReadStH extends ReadStH {
 

@@ -2,7 +2,9 @@ package com.aionemu.commons.configs;
 
 import com.aionemu.commons.configuration.Property;
 
-
+/**
+ * @author Lost Academy Team & Durak
+ */
 public class CommonsConfig {
 
 	@Property(key = "commons.runnablestats.enable", defaultValue = "false")

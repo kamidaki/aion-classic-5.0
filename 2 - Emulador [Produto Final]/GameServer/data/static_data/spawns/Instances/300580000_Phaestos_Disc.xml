@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="300580000">
+		<!-- Exit of Phaestos' Disc -->
+		<spawn npc_id="800968" respawn_time="295">
+			<spot x="900.1685" y="1097.2101" z="166.6506" h="0"/>
+			<spot x="900.251" y="835.9857" z="166.6506" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>
