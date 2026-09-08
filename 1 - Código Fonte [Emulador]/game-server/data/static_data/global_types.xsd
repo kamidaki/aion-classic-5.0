@@ -1284,6 +1284,7 @@
 			<xs:enumeration value="COMMON" />
 			<xs:enumeration value="RARE" />
 			<xs:enumeration value="LEGEND" />
+			<xs:enumeration value="LEGENDARY" />
 			<xs:enumeration value="UNIQUE" />
 			<xs:enumeration value="EPIC" />
 			<xs:enumeration value="MYTHIC" />

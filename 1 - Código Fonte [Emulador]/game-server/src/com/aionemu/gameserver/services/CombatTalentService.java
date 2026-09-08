@@ -73,7 +73,7 @@ public class CombatTalentService {
 				case JUNK -> 0;
 				case COMMON -> 20;
 				case RARE -> 50;
-				case LEGEND -> 150;
+				case LEGEND, LEGENDARY -> 150;
 				case UNIQUE -> 250;
 				case EPIC -> 400;
 				case MYTHIC -> 600;
@@ -98,7 +98,7 @@ public class CombatTalentService {
 				power += (fusedTemplate.getLevel() * 5);
 				if (fusedTemplate.getItemQuality() != null) {
 					power += switch (fusedTemplate.getItemQuality()) {
-						case LEGEND -> 75;
+						case LEGEND, LEGENDARY -> 75;
 						case UNIQUE -> 125;
 						case EPIC -> 200;
 						case MYTHIC -> 300;

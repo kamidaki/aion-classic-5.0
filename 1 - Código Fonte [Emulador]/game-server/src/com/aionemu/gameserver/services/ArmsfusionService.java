@@ -102,6 +102,7 @@ public class ArmsfusionService {
 			case RARE:
 				return 250;
 			case LEGEND:
+			case LEGENDARY:
 				return 300;
 			case UNIQUE:
 				return 400;

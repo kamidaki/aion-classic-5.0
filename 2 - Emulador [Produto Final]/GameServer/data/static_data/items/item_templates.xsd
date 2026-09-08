@@ -410,9 +410,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-		<xs:simpleType name="ItemAttackType">
+	<xs:simpleType name="ItemAttackType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="PHYSICAL"/>
+			<xs:enumeration value="MAGICAL"/>
 			<xs:enumeration value="MAGICAL_WATER"/>
 			<xs:enumeration value="MAGICAL_WIND"/>
 			<xs:enumeration value="MAGICAL_FIRE"/>
@@ -459,6 +460,7 @@
 			<xs:enumeration value="DRACONIC"/>
 			<xs:enumeration value="DEVANION"/>
 			<xs:enumeration value="LEGEND"/>
+			<xs:enumeration value="LEGENDARY"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="itemRace">

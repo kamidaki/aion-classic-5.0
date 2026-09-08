@@ -56,7 +56,7 @@ public class LootGroupRules {
 		return switch (quality) {
 			case COMMON -> commonItemAbove != 0; // White
 			case RARE -> superiorItemAbove != 0; // Green
-			case LEGEND -> heroicItemAbove != 0; // Blue
+			case LEGEND, LEGENDARY -> heroicItemAbove != 0; // Blue
 			case UNIQUE -> fabledItemAbove != 0; // Yellow
 			case EPIC -> eternalItemAbove != 0; // Orange
 			case MYTHIC -> mythicItemAbove != 0; // Purple

@@ -135,6 +135,7 @@ public class CraftingTask extends AbstractCraftTask {
 		float bonusModifier = 1;
 		switch (itemTemplate.getItemQuality()) {
 			case LEGEND:
+			case LEGENDARY:
 				bonusModifier = 0.9f;
 				break;
 			case UNIQUE:

@@ -71,7 +71,8 @@ public class StigmaService {
 			if ((player.getRace() == Race.ASMODIANS && player.getWorldId() == 320070000)
 				|| (player.getRace() == Race.ELYOS && player.getWorldId() == 310070000))
 				kinahcount = 1000;
-			else if (resultItem.getItemTemplate().getItemQuality().equals(ItemQuality.LEGEND))
+			else if (resultItem.getItemTemplate().getItemQuality().equals(ItemQuality.LEGEND)
+				|| resultItem.getItemTemplate().getItemQuality().equals(ItemQuality.LEGENDARY))
 				kinahcount = 50000;
 			else if (resultItem.getItemTemplate().getItemQuality().equals(ItemQuality.UNIQUE))
 				kinahcount = 100000;

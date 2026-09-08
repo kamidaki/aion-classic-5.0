@@ -277,7 +277,7 @@ public class StatFunctions {
 		Stat2 mainHandAttack;
 		Stat2 offHandAttack = null;
 		HitType hitType = HitType.PHHIT;
-		if (element == SkillElement.NONE) {
+		if (!attacker.getAttackType().isMagical() && element == SkillElement.NONE) {
 			mainHandAttack = attacker.getGameStats().getMainHandPAttack(calculationTypes);
 			if (attacker instanceof Player p)
 				offHandAttack = p.getGameStats().getOffHandPAttack(calculationTypes);

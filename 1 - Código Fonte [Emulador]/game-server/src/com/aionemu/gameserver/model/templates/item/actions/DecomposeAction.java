@@ -238,12 +238,12 @@ public class DecomposeAction extends AbstractItemAction {
 									itemQuality = ItemQuality.LEGEND;
 								else
 									itemQuality = ItemQuality.COMMON;
-								List<ItemTemplate> selectedStones = stones.stream().filter(t -> t.getItemQuality() == itemQuality && !t.getName().contains(" MP "))
+								List<ItemTemplate> selectedStones = stones.stream().filter(t -> (t.getItemQuality() == itemQuality || (itemQuality == ItemQuality.LEGEND && t.getItemQuality() == ItemQuality.LEGENDARY)) && !t.getName().contains(" MP "))
 									.collect(Collectors.toList());
 								randomId = Rnd.get(selectedStones).getTemplateId();
 							} else {
 								List<ItemTemplate> selectedStones = stones.stream().filter(
-									t -> t.getItemQuality() != ItemQuality.LEGEND && !t.getName().contains(" MP ")).collect(Collectors.toList());
+									t -> t.getItemQuality() != ItemQuality.LEGEND && t.getItemQuality() != ItemQuality.LEGENDARY && !t.getName().contains(" MP ")).collect(Collectors.toList());
 								randomId = Rnd.get(selectedStones).getTemplateId();
 							}
 							break;
@@ -268,7 +268,7 @@ public class DecomposeAction extends AbstractItemAction {
 							else
 								itemQuality = ItemQuality.COMMON;
 							List<ItemTemplate> selectedStones = ancientStones.stream().filter(
-								t -> t.getItemQuality() == itemQuality && !t.getName().contains(" MP ")).collect(Collectors.toList());
+								t -> (t.getItemQuality() == itemQuality || (itemQuality == ItemQuality.LEGEND && t.getItemQuality() == ItemQuality.LEGENDARY)) && !t.getName().contains(" MP ")).collect(Collectors.toList());
 							randomId = Rnd.get(selectedStones).getTemplateId();
 							break;
 						case CHUNK_EARTH:

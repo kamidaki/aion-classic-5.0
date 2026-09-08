@@ -190,6 +190,7 @@ public class MailService {
 				return 0.05f;
 			case UNIQUE:
 			case LEGEND:
+			case LEGENDARY:
 				return 0.04f;
 			case RARE:
 				return 0.03f;

@@ -85,6 +85,7 @@ public class EnchantService {
 			case RARE:
 				return itemLevel + 5;
 			case LEGEND:
+			case LEGENDARY:
 				return itemLevel + 10;
 			case UNIQUE:
 				return itemLevel + 15;

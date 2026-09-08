@@ -13,5 +13,6 @@ public enum ItemType {
 	ABYSS,
 	DRACONIC,
 	DEVANION,
-	LEGEND
+	LEGEND,
+	LEGENDARY
 }

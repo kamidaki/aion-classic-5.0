@@ -84,7 +84,7 @@ public class AttackUtil {
 
 		if (status.isCritical()) {
 			mainMultiplier = 1.5f;
-			if (element == SkillElement.NONE) {
+			if (!attacker.getAttackType().isMagical() && element == SkillElement.NONE) {
 				ItemGroup mainHandGroup = getWeaponGroup(attacker, true);
 				if (mainHandGroup != null) {
 					mainMultiplier = getWeaponMultiplier(mainHandGroup);
@@ -96,7 +96,7 @@ public class AttackUtil {
 			}
 			if (attacked instanceof Player) {
 				int fortitude;
-				if (element == SkillElement.NONE) { // if stat != null ? why
+				if (!attacker.getAttackType().isMagical() && element == SkillElement.NONE) { // if stat != null ? why
 					fortitude = attacked.getGameStats().getStat(StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE, 0).getCurrent();
 				} else {
 					fortitude = attacked.getGameStats().getStat(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, 0).getCurrent();
@@ -111,7 +111,7 @@ public class AttackUtil {
 			LoggerFactory.getLogger(AttackUtil.class).warn("attackResultList has more elements than expected (" + attackResultList.size() + ")");
 		for (int i = 0; i < maxListIndex; i++) {
 			float damageMultiplier = i == 0 ? mainMultiplier : offMultiplier;
-			boolean isPhysical = element == SkillElement.NONE;
+			boolean isPhysical = !attacker.getAttackType().isMagical() && element == SkillElement.NONE;
 			StatEnum attackStat = isPhysical ? StatEnum.PHYSICAL_ATTACK : StatEnum.MAGICAL_ATTACK;
 			StatEnum defenseStat = isPhysical ? StatEnum.PHYSICAL_DEFENSE : StatEnum.MAGICAL_DEFEND;
 			float defenseStatValue = isPhysical ? attacked.getGameStats().getPDef().getCurrent() : attacked.getGameStats().getMDef().getCurrent();

@@ -10,6 +10,7 @@ import com.aionemu.gameserver.model.SkillElement;
 @XmlEnum
 public enum ItemAttackType {
 	PHYSICAL(false, SkillElement.NONE),
+	MAGICAL(true, SkillElement.NONE),
 	MAGICAL_EARTH(true, SkillElement.EARTH),
 	MAGICAL_WATER(true, SkillElement.WATER),
 	MAGICAL_WIND(true, SkillElement.WIND),
