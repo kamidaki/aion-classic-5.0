@@ -21,6 +21,8 @@ public class SpellAtkDrainInstantEffect extends DamageEffect {
 	private int hpPercent;
 	@XmlAttribute(name = "mp_percent")
 	private int mpPercent;
+	@XmlAttribute(name = "sp")
+	private int sp;
 
 
 	@Override

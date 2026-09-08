@@ -177,6 +177,10 @@
 			<xs:enumeration value="BOOST_DROP_RATE"/>
 			<xs:enumeration value="DR_BOOST"/>
 			<xs:enumeration value="AP_BOOST"/>
+			<xs:enumeration value="BOOST_DURATION_BUFF"/>
+			<xs:enumeration value="GATHER_SUCCESS"/>
+			<xs:enumeration value="GATHER_DOUBLE"/>
+			<xs:enumeration value="GATHER_SPEED"/>
 			<!-- 3.0 -->
 			<xs:enumeration value="MAGICAL_DEFEND"/>
 			<xs:enumeration value="MAGIC_SKILL_BOOST_RESIST"/>

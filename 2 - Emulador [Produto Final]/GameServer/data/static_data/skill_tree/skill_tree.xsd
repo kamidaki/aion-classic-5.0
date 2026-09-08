@@ -11,11 +11,15 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:complexType name="SkillTreeEntry">
+		<xs:attribute name="name" type="xs:string"/>
 		<xs:attribute name="classId" type="playerClass"/>
 		<xs:attribute name="skillId" type="xs:int" use="required"/>
+		<xs:attribute name="skillLevel" type="xs:int"/>
 		<xs:attribute name="skillLearn" type="xs:int"/>
 		<xs:attribute name="autolearn" type="xs:boolean"/>
+		<xs:attribute name="autoLearn" type="xs:boolean"/>
 		<xs:attribute name="stigma" type="xs:boolean"/>
+		<xs:attribute name="skillBook" type="xs:boolean"/>
 		<xs:attribute name="race" type="Race"/>
 		<xs:attribute name="minLevel" type="xs:int" use="required"/>
 	</xs:complexType>

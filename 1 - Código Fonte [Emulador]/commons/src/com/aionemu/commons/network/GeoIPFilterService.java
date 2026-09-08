@@ -35,6 +35,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * @author Lost Academy Team & Durak
+ *
  * Geographic Firewall & IP Allow-list Service.
  * <p>
  * Controls allowed incoming connections across LoginServer, GameServer, and ChatServer.
@@ -275,11 +277,7 @@ public final class GeoIPFilterService {
 		Path[] candidates = {
 			Path.of(WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize(),
 			Path.of("..", WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize(),
-			Path.of("..", "..", WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize(),
-			Path.of("EMULADOR FINAL", WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize(),
-			Path.of("..", "EMULADOR FINAL", WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize(),
-			Path.of("D:/AION CLASSIC 5.0 - BEYOND TESTE/EMULADOR FINAL/WORLD IP RANGE").toAbsolutePath().normalize(),
-			Path.of("F:/Aion Live Clássico - América do Sul/ZONA DE CUSTOM/LOST ACADEMY/WORLD IP RANGE").toAbsolutePath().normalize()
+			Path.of("..", "..", WORLD_IP_RANGE_DIR_NAME).toAbsolutePath().normalize()
 		};
 
 		for (Path c : candidates) {

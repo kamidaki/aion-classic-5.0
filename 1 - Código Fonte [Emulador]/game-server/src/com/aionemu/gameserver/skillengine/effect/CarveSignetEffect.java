@@ -16,15 +16,21 @@ import com.aionemu.gameserver.skillengine.model.Effect;
 @XmlType(name = "CarveSignetEffect")
 public class CarveSignetEffect extends DamageEffect {
 
-	@XmlAttribute(name = "signet_increment", required = true)
+	@XmlAttribute(name = "signet_increment")
 	protected int signetIncrement = 1;
-	@XmlAttribute(name = "signet_cap", required = true)
-	protected int signetCap;
-	@XmlAttribute(name = "signet_id", required = true)
-	protected int signetId;
+	@XmlAttribute(name = "signet_cap")
+	protected Integer signetCap;
+	@XmlAttribute(name = "signet_id")
+	protected Integer signetId;
+	@XmlAttribute(name = "signetid")
+	protected Integer signetIdAlt;
+	@XmlAttribute(name = "signetlvl")
+	protected Integer signetLvl;
+	@XmlAttribute(name = "signetlvlstart")
+	protected Integer signetLvlStart;
 	@XmlAttribute(required = true)
 	protected String signet;
-	@XmlAttribute(required = true)
+	@XmlAttribute
 	protected int prob = 100;
 
 	@Override
@@ -34,13 +40,19 @@ public class CarveSignetEffect extends DamageEffect {
 		if (Rnd.chance() >= prob)
 			return;
 
+		int targetCap = signetCap != null ? signetCap : (signetLvl != null ? signetLvl : 5);
+		int targetSignetId = signetId != null ? signetId : (signetIdAlt != null ? signetIdAlt : 0);
 		int nextSignetLevel = signetIncrement;
 		Effect activeSignet = effect.getEffected().getEffectController().getAbnormalEffect(signet);
 		if (activeSignet != null) {
 			activeSignet.endEffect();
-			nextSignetLevel = Math.min(activeSignet.getCarvedSignet() + signetIncrement, Math.max(signetCap, activeSignet.getCarvedSignet()));
+			nextSignetLevel = Math.min(activeSignet.getCarvedSignet() + signetIncrement, Math.max(targetCap, activeSignet.getCarvedSignet()));
 		}
-		Effect signet = SkillEngine.getInstance().applyEffect(signetId + nextSignetLevel - 1, effect.getEffector(), effect.getEffected());
-		signet.setCarvedSignet(nextSignetLevel);
+		if (targetSignetId > 0) {
+			Effect signetEffect = SkillEngine.getInstance().applyEffect(targetSignetId + nextSignetLevel - 1, effect.getEffector(), effect.getEffected());
+			if (signetEffect != null) {
+				signetEffect.setCarvedSignet(nextSignetLevel);
+			}
+		}
 	}
 }

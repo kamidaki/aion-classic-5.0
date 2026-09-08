@@ -2,6 +2,7 @@ package com.aionemu.gameserver.skillengine.effect;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -10,5 +11,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "OneTimeBoostHealEffect")
 public class OneTimeBoostHealEffect extends BufEffect {
+
+	@XmlAttribute
+	protected int count;
 
 }

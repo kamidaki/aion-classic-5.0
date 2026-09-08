@@ -30,9 +30,15 @@ public class HideEffect extends BufEffect {
 	@XmlAttribute
 	protected CreatureVisualState state;
 	@XmlAttribute(name = "bufcount")
-	protected int buffCount;
+	protected Integer bufCount;
+	@XmlAttribute(name = "buffcount")
+	protected Integer buffCountXml;
 	@XmlAttribute
 	protected int type = 0;
+
+	public int getBuffCount() {
+		return buffCountXml != null ? buffCountXml : (bufCount != null ? bufCount : 0);
+	}
 
 	@Override
 	public void applyEffect(Effect effect) {
@@ -89,7 +95,7 @@ public class HideEffect extends BufEffect {
 						return;
 					}
 					boolean isShapeChange = skill.getSkillTemplate().getEffects().hasAnyEffectType(EffectType.SHAPECHANGE);
-					if (isShapeChange || !skill.isSelfBuff() || ++buffNumber >= buffCount)
+					if (isShapeChange || !skill.isSelfBuff() || ++buffNumber >= getBuffCount())
 						effect.endEffect();
 				}
 			});
@@ -107,7 +113,7 @@ public class HideEffect extends BufEffect {
 					// [4.5] Buff items do not affect Hide II. Hide I is cancelled.
 					ItemActions actions = item.getItemTemplate().getActions();
 					if (actions != null) {
-						if (buffCount == 0 || actions.getSkillUseAction() == null)
+						if (getBuffCount() == 0 || actions.getSkillUseAction() == null)
 							effect.endEffect();
 					}
 				}

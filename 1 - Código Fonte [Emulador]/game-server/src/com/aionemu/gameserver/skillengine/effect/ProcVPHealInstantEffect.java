@@ -13,16 +13,26 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
  */
 public class ProcVPHealInstantEffect extends EffectTemplate {
 
-	@XmlAttribute(required = true)
+	@XmlAttribute
 	protected int value2;// cap
+	@XmlAttribute
+	protected int points;
 	@XmlAttribute
 	protected boolean percent;
 
 	@Override
 	public void applyEffect(Effect effect) {
-		if (effect.getEffected() instanceof Player) {
-			Player player = (Player) effect.getEffected();
+		if (effect.getEffected() instanceof Player player) {
 			PlayerCommonData pcd = player.getCommonData();
+
+			if (points > 0) {
+				pcd.addReposeEnergy(points);
+				PacketSendUtility.sendPacket(
+					player,
+					new SM_STATUPDATE_EXP(pcd.getExpShown(), pcd.getExpRecoverable(), pcd.getExpNeed(), pcd.getCurrentReposeEnergy(), pcd
+						.getMaxReposeEnergy()));
+				return;
+			}
 
 			long cap = pcd.getMaxReposeEnergy() * value2 / 100;
 

@@ -107,6 +107,18 @@ public class SkillTemplate implements L10n {
 	private boolean applyMcrit = true;
 	@XmlAttribute(name = "hostile_type")
 	private HostileType hostileType = HostileType.NONE;
+	@XmlAttribute(name = "name_desc")
+	private String nameDesc;
+	@XmlAttribute(name = "unpottable")
+	private boolean unpottable = false;
+
+	public String getNameDesc() {
+		return nameDesc;
+	}
+
+	public boolean isUnpottable() {
+		return unpottable;
+	}
 
 	public Properties getProperties() {
 		return properties;

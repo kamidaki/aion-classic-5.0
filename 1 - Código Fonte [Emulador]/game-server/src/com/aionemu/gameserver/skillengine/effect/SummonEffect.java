@@ -26,6 +26,12 @@ public class SummonEffect extends EffectTemplate {
 	protected int npcId;
 	@XmlAttribute(name = "time", required = true)
 	protected int time; // in seconds
+	@XmlAttribute(name = "skill_id")
+	protected Integer skillId;
+
+	public Integer getSkillId() {
+		return skillId;
+	}
 
 	@Override
 	public void applyEffect(Effect effect) {

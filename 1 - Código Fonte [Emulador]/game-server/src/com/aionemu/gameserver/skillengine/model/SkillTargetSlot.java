@@ -36,7 +36,7 @@ public enum SkillTargetSlot {
 				return BUFF;
 			case DEBUFF:
 				return DEBUFF;
-			case SPECIAL2:
+			case SPECIAL2, SPEC2:
 				return SPEC2;
 			default:
 				return null;

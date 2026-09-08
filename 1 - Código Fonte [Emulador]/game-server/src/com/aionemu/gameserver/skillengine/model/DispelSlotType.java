@@ -12,6 +12,7 @@ public enum DispelSlotType {
 
 	BUFF,
 	DEBUFF,
-	SPECIAL2;
+	SPECIAL2,
+	SPEC2;
 
 }

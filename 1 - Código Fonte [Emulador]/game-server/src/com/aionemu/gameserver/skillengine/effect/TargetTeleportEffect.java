@@ -30,6 +30,9 @@ public class TargetTeleportEffect extends EffectTemplate {
 	@XmlAttribute
 	protected int distance; // TODO: find out what this value does. Its not the distance.
 
+	@XmlAttribute(name = "same_map")
+	protected boolean sameMap;
+
 	@Override
 	public void applyEffect(Effect effect) {
 		if (effect.getEffected() instanceof Player p) {

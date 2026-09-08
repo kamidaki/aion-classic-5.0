@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.gameserver.controllers.observer.AttackShieldObserver;
+import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.ShieldType;
 
@@ -26,6 +27,12 @@ public class ShieldEffect extends EffectTemplate {
 	protected int radius = 0;
 	@XmlAttribute
 	protected int minradius = 0;
+	@XmlAttribute(name = "condrace")
+	protected Race condrace;
+
+	public Race getCondrace() {
+		return condrace;
+	}
 
 	@Override
 	public void applyEffect(Effect effect) {

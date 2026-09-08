@@ -20,16 +20,24 @@ public class SkillLearnTemplate {
 	private PlayerClass classId;
 	@XmlAttribute(name = "skillId", required = true)
 	private int skillId;
+	@XmlAttribute(name = "name")
+	private String name;
+	@XmlAttribute(name = "skillLevel")
+	private Integer skillLevel;
 	@XmlAttribute(name = "skillLearn")
 	private Integer skillLearn;
 	@XmlAttribute(name = "race")
 	private Race race = Race.PC_ALL;
 	@XmlAttribute(name = "minLevel", required = true)
 	private int minLevel;
-	@XmlAttribute
+	@XmlAttribute(name = "autolearn")
 	private boolean autolearn;
+	@XmlAttribute(name = "autoLearn")
+	private Boolean autoLearn;
 	@XmlAttribute
 	private boolean stigma;
+	@XmlAttribute(name = "skillBook")
+	private boolean skillBook;
 
 	public PlayerClass getClassId() {
 		return classId;
@@ -39,7 +47,14 @@ public class SkillLearnTemplate {
 		return skillId;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public int getSkillLevel() {
+		if (skillLevel != null) {
+			return skillLevel;
+		}
 		return DataManager.SKILL_DATA.getSkillTemplate(skillId).getLvl();
 	}
 
@@ -52,11 +67,15 @@ public class SkillLearnTemplate {
 	}
 
 	public boolean isAutolearn() {
-		return autolearn;
+		return (autoLearn != null && autoLearn) || autolearn;
 	}
 
 	public boolean isStigma() {
 		return stigma;
+	}
+
+	public boolean isSkillBook() {
+		return skillBook;
 	}
 
 	public boolean isLinkedStigma() { return false; }

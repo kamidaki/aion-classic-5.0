@@ -58,6 +58,9 @@ public class Properties {
 	@XmlAttribute(name = "effective_dist")
 	private int effectiveDist;
 
+	@XmlAttribute(name = "effective_width")
+	private int effectiveWidth;
+
 	@XmlAttribute(name = "direction")
 	protected AreaDirections direction = AreaDirections.NONE;
 
@@ -184,6 +187,10 @@ public class Properties {
 
 	public int getIneffectiveRange() {
 		return ineffectiveRange;
+	}
+
+	public int getEffectiveWidth() {
+		return effectiveWidth;
 	}
 
 	public static class ValidationResult {
