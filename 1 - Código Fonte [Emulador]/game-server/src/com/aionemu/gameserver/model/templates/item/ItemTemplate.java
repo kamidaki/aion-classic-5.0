@@ -151,6 +151,8 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	void afterUnmarshal(Unmarshaller u, Object parent) {
+		if (itemGroup == null)
+			itemGroup = ItemGroup.NONE;
 		if (weaponStats == null)
 			weaponStats = emptyWeaponStats;
 		if (useLimits == null)
@@ -215,7 +217,7 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public long getItemSlot() {
-		return itemGroup.getValidEquipmentSlots();
+		return itemGroup != null ? itemGroup.getValidEquipmentSlots() : 0L;
 	}
 
 	public boolean isClassSpecific(PlayerClass playerClass) {
@@ -287,11 +289,11 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public ItemSubType getItemSubType() {
-		return itemGroup.getItemSubType();
+		return itemGroup != null ? itemGroup.getItemSubType() : ItemSubType.NONE;
 	}
 
 	public EquipType getEquipmentType() {
-		return itemGroup.getEquipType();
+		return itemGroup != null ? itemGroup.getEquipType() : EquipType.NONE;
 	}
 
 	public long getPrice() {
@@ -590,7 +592,7 @@ public class ItemTemplate extends VisibleObjectTemplate {
 
 	public boolean isCloth() {
 		// not sure about LT_HEAD and CL_HEAD, check in retail
-		return isArmor() && (itemGroup.getArmorType() != ArmorType.ACCESSORY && getItemGroup() != ItemGroup.BELT || itemGroup == ItemGroup.HEAD);
+		return isArmor() && (getItemGroup().getArmorType() != ArmorType.ACCESSORY && getItemGroup() != ItemGroup.BELT || getItemGroup() == ItemGroup.HEAD);
 	}
 
 	public boolean isPotion() {
@@ -638,11 +640,11 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public ItemGroup getItemGroup() {
-		return itemGroup;
+		return itemGroup == null ? ItemGroup.NONE : itemGroup;
 	}
 
 	public int[] getRequiredSkills() {
-		return itemGroup.getRequiredSkills();
+		return itemGroup != null ? itemGroup.getRequiredSkills() : new int[0];
 	}
 
 	public String getTemperingName() { return null; }
