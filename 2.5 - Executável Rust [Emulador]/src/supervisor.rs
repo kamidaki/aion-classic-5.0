@@ -1,5 +1,5 @@
 use crate::config::RootConfig;
-use crate::db_manager::{DbManager, OnlinePlayerInfo};
+use crate::db_manager::{DbManagerMulti, DatabaseSummary, OnlinePlayerInfo};
 use crate::logs::LogCenter;
 use parking_lot::Mutex;
 use serde::{Deserialize, Serialize};
@@ -96,11 +96,15 @@ pub struct DashboardState {
     pub servers: Vec<ServerMetrics>,
     pub history: Vec<HistoryPoint>,
     pub online_players_count: usize,
+    /// Legacy single-database (kept for backward compat with old UI calls)
     pub database: DatabaseMetrics,
+    /// Multi-database list: gs, ls, cs
+    pub databases: Vec<DatabaseSummary>,
     pub os_total_memory_mb: f32,
     pub os_used_memory_mb: f32,
     pub subsystems: Vec<SubsystemMetric>,
 }
+
 
 pub struct ManagedServer {
     pub name: String,
@@ -112,7 +116,9 @@ pub struct ManagedServer {
     pub jvm_args: Vec<String>,
     pub classpath: String,
     pub main_class: String,
+    #[allow(dead_code)]
     pub management_port: Option<u16>,
+    #[allow(dead_code)]
     pub shutdown_delay_seconds: u64,
     pub child: Option<Child>,
     pub pid: Option<u32>,
@@ -131,7 +137,7 @@ pub struct Supervisor {
     system: Arc<Mutex<System>>,
     start_time: Instant,
     history: Arc<Mutex<VecDeque<HistoryPoint>>>,
-    db_manager: DbManager,
+    db_manager: DbManagerMulti,
     launcher_pid: u32,
 }
 
@@ -151,23 +157,43 @@ fn resolve_java_binary(candidate: &str) -> String {
         return candidate.to_string();
     }
 
-    // Prioritize official JDK 8 paths required by Aion Classic emulator
-    let defaults = [
-        r"C:\Program Files\Java\jdk1.8.0_431\bin\java.exe",
-        r"C:\Program Files\Java\jdk-1.8\bin\java.exe",
-        r"C:\Program Files\Java\jre1.8.0_431\bin\java.exe",
+    // 1. Check JAVA_HOME environment variable first
+    if let Ok(java_home) = std::env::var("JAVA_HOME") {
+        let p = PathBuf::from(java_home).join("bin").join("java.exe");
+        if p.exists() {
+            return p.to_string_lossy().to_string();
+        }
+    }
+
+    // 2. Prioritize modern JDK paths (JDK 25 LTS required by this Aion build)
+    let modern_defaults = [
+        r"C:\Program Files\Java\jdk-25.0.2\bin\java.exe",
+        r"C:\Program Files\Java\jdk-25\bin\java.exe",
+        r"C:\Program Files\Java\jdk-24\bin\java.exe",
+        r"C:\Program Files\Java\jdk-23\bin\java.exe",
+        r"C:\Program Files\Java\jdk-22\bin\java.exe",
+        r"C:\Program Files\Java\jdk-21\bin\java.exe",
+        r"C:\Program Files\Java\jdk-17\bin\java.exe",
     ];
 
-    for d in &defaults {
+    for d in &modern_defaults {
         if std::path::Path::new(d).exists() {
             return d.to_string();
         }
     }
 
-    if let Ok(java_home) = std::env::var("JAVA_HOME") {
-        let p = PathBuf::from(java_home).join("bin").join("java.exe");
-        if p.exists() {
-            return p.to_string_lossy().to_string();
+    // 3. Look for any other JDK installed in C:\Program Files\Java
+    if let Ok(entries) = std::fs::read_dir(r"C:\Program Files\Java") {
+        let mut candidates: Vec<PathBuf> = entries
+            .filter_map(|e| e.ok())
+            .filter(|e| e.file_type().map(|t| t.is_dir()).unwrap_or(false))
+            .map(|e| e.path().join("bin").join("java.exe"))
+            .filter(|p| p.exists())
+            .collect();
+        // Sort descending so newer versions (jdk-25 > jdk-21 > jdk-17) come first
+        candidates.sort_by(|a, b| b.cmp(a));
+        if let Some(best) = candidates.first() {
+            return best.to_string_lossy().to_string();
         }
     }
 
@@ -180,6 +206,42 @@ fn is_port_in_use(port: u16) -> bool {
         return true;
     }
     std::net::TcpListener::bind(("0.0.0.0", port)).is_err()
+}
+
+pub fn decode_process_output(slice: &[u8]) -> String {
+    let mut bytes = slice;
+    while bytes.ends_with(b"\n") || bytes.ends_with(b"\r") {
+        bytes = &bytes[..bytes.len() - 1];
+    }
+    if bytes.is_empty() {
+        return String::new();
+    }
+    if let Ok(valid_str) = std::str::from_utf8(bytes) {
+        return valid_str.to_string();
+    }
+    // Fallback: decode PT-BR CP850 / Windows-1252 so accented characters never break
+    let mut s = String::with_capacity(bytes.len());
+    for &b in bytes {
+        if b < 0x80 {
+            s.push(b as char);
+        } else {
+            let ch = match b {
+                0x80 => 'Ç', 0x81 => 'ü', 0x82 => 'é', 0x83 => 'â', 0x84 => 'ä', 0x85 => 'à',
+                0x86 => 'å', 0x87 => 'ç', 0x88 => 'ê', 0x89 => 'ë', 0x8a => 'è', 0x8b => 'ï',
+                0x8c => 'î', 0x8d => 'ì', 0x8e => 'Ä', 0x8f => 'Å', 0x90 => 'É', 0x91 => 'æ',
+                0x92 => 'Æ', 0x93 => 'ô', 0x94 => 'ö', 0x95 => 'ò', 0x96 => 'û', 0x97 => 'ù',
+                0x98 => 'ÿ', 0x99 => 'Ö', 0x9a => 'Ü', 0xa0 => 'á', 0xa1 => 'í', 0xa2 => 'ó',
+                0xa3 => 'ú', 0xa4 => 'ñ', 0xa5 => 'Ñ', 0xa6 => 'ª', 0xa7 => 'º', 0xa8 => '¿',
+                0xad => '¡', 0xc6 => 'ã', 0xc7 => 'Ã', 0xe4 => 'õ', 0xe5 => 'Õ',
+                0xc1 => 'Á', 0xc9 => 'É', 0xcd => 'Í', 0xd3 => 'Ó', 0xda => 'Ú',
+                0xe1 => 'á', 0xe9 => 'é', 0xed => 'í', 0xf3 => 'ó', 0xfa => 'ú',
+                0xe3 => 'ã', 0xe7 => 'ç', 0xf5 => 'õ', 0xea => 'ê', 0xf4 => 'ô',
+                _ => char::from(b),
+            };
+            s.push(ch);
+        }
+    }
+    s
 }
 
 impl Supervisor {
@@ -234,7 +296,7 @@ impl Supervisor {
         }
     }
 
-    pub fn new(config: RootConfig, log_center: LogCenter, db_manager: DbManager) -> Self {
+    pub fn new(config: RootConfig, log_center: LogCenter, db_manager: DbManagerMulti) -> Self {
         // Purge any orphaned Java processes from previous crashes or unclosed sessions
         Self::purge_orphaned_java_processes(&log_center);
 
@@ -310,6 +372,33 @@ impl Supervisor {
                 }
             }
 
+            // Database existence and connection check
+            let db_id = match name {
+                "chat" => "cs",
+                "login" => "ls",
+                "game" => "gs",
+                _ => "",
+            };
+            if !db_id.is_empty() {
+                let chk = self.db_manager.check_database(db_id);
+                if !chk.connected {
+                    let err = format!(
+                        "Falha ao conectar no MySQL do {} ({}:{} - usuário '{}'). Verifique o arquivo: {}. Erro: {}",
+                        chk.server_name, chk.host, chk.port, chk.user, chk.properties_file, chk.error.unwrap_or_default()
+                    );
+                    self.log_center.push(name, &format!("[Launcher] ERRO DE BANCO: {}", err));
+                    return Err(err);
+                }
+                if !chk.db_exists {
+                    let err = format!(
+                        "O banco de dados '{}' do {} não existe no MySQL! Crie o banco de dados antes de iniciar o servidor.",
+                        chk.db_name, chk.server_name
+                    );
+                    self.log_center.push(name, &format!("[Launcher] ERRO DE BANCO: {}", err));
+                    return Err(err);
+                }
+            }
+
             srv.status = ServerStatus::Starting;
             srv.user_stopped = false;
             srv.stopping_deadline = None;
@@ -334,7 +423,7 @@ impl Supervisor {
         cmd.stderr(Stdio::piped());
         cmd.creation_flags(CREATE_NO_WINDOW);
 
-        self.log_center.push(name, &format!("[Launcher] Iniciando {} com JVM: {:?}...", name, jvm_args));
+        self.log_center.push(name, &format!("[Launcher] Iniciando {} com Java [{}] e JVM: {:?}...", name, java_exe, jvm_args));
 
         match cmd.spawn() {
             Ok(mut child) => {
@@ -358,9 +447,20 @@ impl Supervisor {
                 let name_out = name.to_string();
                 if let Some(out) = stdout {
                     tokio::spawn(async move {
-                        let mut reader = BufReader::new(out).lines();
-                        while let Ok(Some(line)) = reader.next_line().await {
-                            lc_out.push(&name_out, &line);
+                        let mut reader = BufReader::new(out);
+                        let mut buf = Vec::with_capacity(1024);
+                        loop {
+                            buf.clear();
+                            match reader.read_until(b'\n', &mut buf).await {
+                                Ok(0) => break,
+                                Ok(_) => {
+                                    let line = decode_process_output(&buf);
+                                    if !line.trim().is_empty() {
+                                        lc_out.push(&name_out, &line);
+                                    }
+                                }
+                                Err(_) => break,
+                            }
                         }
                     });
                 }
@@ -369,9 +469,20 @@ impl Supervisor {
                 let name_err = name.to_string();
                 if let Some(err) = stderr {
                     tokio::spawn(async move {
-                        let mut reader = BufReader::new(err).lines();
-                        while let Ok(Some(line)) = reader.next_line().await {
-                            lc_err.push(&name_err, &line);
+                        let mut reader = BufReader::new(err);
+                        let mut buf = Vec::with_capacity(1024);
+                        loop {
+                            buf.clear();
+                            match reader.read_until(b'\n', &mut buf).await {
+                                Ok(0) => break,
+                                Ok(_) => {
+                                    let line = decode_process_output(&buf);
+                                    if !line.trim().is_empty() {
+                                        lc_err.push(&name_err, &line);
+                                    }
+                                }
+                                Err(_) => break,
+                            }
                         }
                     });
                 }
@@ -391,7 +502,7 @@ impl Supervisor {
     }
 
     pub async fn stop_server(&self, name: &str) -> Result<(), String> {
-        let (management_port, shutdown_delay, child_exists) = {
+        let child_to_kill = {
             let mut srvs = self.servers.lock();
             let srv = srvs.get_mut(name).ok_or_else(|| format!("Servidor desconhecido: {}", name))?;
 
@@ -400,97 +511,8 @@ impl Supervisor {
             }
 
             srv.user_stopped = true;
-            (srv.management_port, srv.shutdown_delay_seconds, srv.child.is_some())
-        };
-
-        if !child_exists {
-            let mut srvs = self.servers.lock();
-            if let Some(s) = srvs.get_mut(name) {
-                s.status = ServerStatus::Offline;
-            }
-            return Ok(());
-        }
-
-        // Se o servidor tiver porta de gerenciamento (ex: GameServer), dispara desligamento seguro
-        if let Some(port) = management_port {
-            {
-                let mut srvs = self.servers.lock();
-                if let Some(s) = srvs.get_mut(name) {
-                    s.status = ServerStatus::Stopping;
-                    s.stopping_deadline = Some(Instant::now() + Duration::from_secs(shutdown_delay));
-                }
-            }
-
-            self.log_center.push(name, &format!("[Launcher] Solicitando desligamento seguro via porta de gerenciamento {}...", port));
-
-            let client = reqwest_like_http_post(port, shutdown_delay, "shutdown").await;
-            if client.is_ok() {
-                self.log_center.push(name, "[Launcher] Comando de shutdown recebido pelo jogo. Gravando dados em disco...");
-            } else {
-                self.log_center.push(name, "[Launcher] Porta de gerenciamento indisponivel, aguardando saida do processo...");
-            }
-
-            // Aguarda o processo terminar graciosamente
-            let max_wait = Duration::from_secs(shutdown_delay.min(15));
-            let start = Instant::now();
-
-            loop {
-                tokio::time::sleep(Duration::from_millis(200)).await;
-                let exited = {
-                    let mut srvs = self.servers.lock();
-                    if let Some(s) = srvs.get_mut(name) {
-                        if let Some(child) = s.child.as_mut() {
-                            match child.try_wait() {
-                                Ok(Some(_)) => true,
-                                Ok(None) => false,
-                                Err(_) => true,
-                            }
-                        } else {
-                            true
-                        }
-                    } else {
-                        true
-                    }
-                };
-
-                if exited {
-                    break;
-                }
-
-                if start.elapsed() > max_wait {
-                    self.log_center.push(name, "[Launcher] Tempo limite de shutdown seguro atingido. Finalizando processo...");
-                    let child_to_kill = {
-                        let mut srvs = self.servers.lock();
-                        srvs.get_mut(name).and_then(|s| s.child.take())
-                    };
-                    if let Some(mut child) = child_to_kill {
-                        let _ = child.kill().await;
-                    }
-                    break;
-                }
-            }
-
-            let mut srvs = self.servers.lock();
-            if let Some(s) = srvs.get_mut(name) {
-                s.child = None;
-                s.status = ServerStatus::Offline;
-                s.pid = None;
-                s.stopping_deadline = None;
-            }
-
-            self.log_center.push(name, &format!("[Launcher] {} finalizado com sucesso.", name));
-            return Ok(());
-        }
-
-        // Caso contrario (LoginServer / ChatServer), encerra o processo diretamente
-        let child_to_kill = {
-            let mut srvs = self.servers.lock();
-            if let Some(s) = srvs.get_mut(name) {
-                s.status = ServerStatus::Stopping;
-                s.child.take()
-            } else {
-                None
-            }
+            srv.status = ServerStatus::Stopping;
+            srv.child.take()
         };
 
         if let Some(mut child) = child_to_kill {
@@ -574,19 +596,28 @@ impl Supervisor {
         self.log_center.push("launcher", "[Launcher] Iniciando sequencia: ChatServer -> (5s) -> LoginServer -> (5s) -> GameServer.");
         
         self.log_center.push("launcher", "[Launcher] [1/3] Iniciando ChatServer...");
-        let _ = self.start_server("chat").await;
+        if let Err(e) = self.start_server("chat").await {
+            self.log_center.push("launcher", &format!("[Launcher] Interrompendo sequência: ChatServer não pôde ser iniciado: {}", e));
+            return;
+        }
 
         self.log_center.push("launcher", "[Launcher] Aguardando 5 segundos antes de inicializar o LoginServer...");
         tokio::time::sleep(Duration::from_secs(5)).await;
 
         self.log_center.push("launcher", "[Launcher] [2/3] Iniciando LoginServer...");
-        let _ = self.start_server("login").await;
+        if let Err(e) = self.start_server("login").await {
+            self.log_center.push("launcher", &format!("[Launcher] Interrompendo sequência: LoginServer não pôde ser iniciado: {}", e));
+            return;
+        }
 
         self.log_center.push("launcher", "[Launcher] Aguardando 5 segundos antes de inicializar o GameServer...");
         tokio::time::sleep(Duration::from_secs(5)).await;
 
         self.log_center.push("launcher", "[Launcher] [3/3] Iniciando GameServer...");
-        let _ = self.start_server("game").await;
+        if let Err(e) = self.start_server("game").await {
+            self.log_center.push("launcher", &format!("[Launcher] GameServer não pôde ser iniciado: {}", e));
+            return;
+        }
 
         self.log_center.push("launcher", "[Launcher] Sequencia de servidores inicializada com sucesso.");
     }
@@ -795,7 +826,33 @@ impl Supervisor {
         let os_total_mem = sys.total_memory() as f32 / (1024.0 * 1024.0);
         let os_used_mem = sys.used_memory() as f32 / (1024.0 * 1024.0);
 
-        let (db_connected, db_tables, db_rows) = self.db_manager.get_summary();
+        // --- Multi-database summaries (GS, LS, CS) ---
+        let db_summaries = self.db_manager.get_all_summaries();
+        // Legacy single-database compat: use GS as primary
+        let gs_summary = db_summaries.iter().find(|d| d.id == "gs");
+        let legacy_database = if let Some(gs) = gs_summary {
+            DatabaseMetrics {
+                is_connected: gs.is_connected,
+                engine: gs.engine.clone(),
+                host: gs.host.clone(),
+                port: gs.port,
+                db_name: gs.db_name.clone(),
+                user: gs.user.clone(),
+                total_tables: gs.total_tables,
+                total_rows: gs.total_rows,
+            }
+        } else {
+            DatabaseMetrics {
+                is_connected: false,
+                engine: "MySQL".to_string(),
+                host: "N/A".to_string(),
+                port: 3306,
+                db_name: "N/A".to_string(),
+                user: "N/A".to_string(),
+                total_tables: 0,
+                total_rows: 0,
+            }
+        };
 
         DashboardState {
             launcher_pid: self.launcher_pid,
@@ -808,16 +865,8 @@ impl Supervisor {
             servers: server_metrics,
             history: hist.iter().cloned().collect(),
             online_players_count: self.db_manager.get_online_players().len(),
-            database: DatabaseMetrics {
-                is_connected: db_connected,
-                engine: "MySQL".to_string(),
-                host: self.db_manager.host.clone(),
-                port: self.db_manager.port,
-                db_name: self.db_manager.db_name.clone(),
-                user: self.db_manager.user.clone(),
-                total_tables: db_tables,
-                total_rows: db_rows,
-            },
+            database: legacy_database,
+            databases: db_summaries,
             os_total_memory_mb: os_total_mem,
             os_used_memory_mb: os_used_mem,
             subsystems: Vec::new(),
@@ -835,20 +884,16 @@ impl Supervisor {
     }
 }
 
-async fn reqwest_like_http_post(port: u16, delay: u64, mode: &str) -> Result<(), ()> {
-    use tokio::io::AsyncWriteExt;
-    use tokio::net::TcpStream;
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    let addr = format!("127.0.0.1:{}", port);
-    let mut stream = TcpStream::connect(&addr).await.map_err(|_| ())?;
-
-    let body = format!("{{\"delay\":{},\"mode\":\"{}\"}}", delay, mode);
-    let req = format!(
-        "POST /shutdown HTTP/1.1\r\nHost: 127.0.0.1:{}\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}",
-        port, body.len(), body
-    );
-
-    stream.write_all(req.as_bytes()).await.map_err(|_| ())?;
-    stream.flush().await.map_err(|_| ())?;
-    Ok(())
+    #[test]
+    fn test_resolve_java_binary() {
+        let bin = resolve_java_binary("java");
+        println!("Resolved Java binary: {}", bin);
+        assert!(!bin.contains("1.8"), "Must NOT resolve to obsolete JDK 8: {}", bin);
+        assert!(bin.contains("jdk-25"), "Should resolve to JDK 25: {}", bin);
+    }
 }
+

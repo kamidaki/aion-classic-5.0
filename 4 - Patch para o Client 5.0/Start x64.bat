@@ -36,4 +36,4 @@ REM  -probability         - Desativa requisicoes remotas de probabilidades de lo
 REM  -nospamcheck         - Desativa filtros remotos de spam de chat dos servidores oficiais.
 REM =========================================================================================
 
-start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -dss -dce -sugogachakina /ticket:ULS21-12f6f96f5a324279a097b950d2c3908d /AuthProviderCode:shanda 
+start bin64\Aion.bin -ip:127.0.0.1 -port:2106 -lang:ENG -cc:2 -dss -dce

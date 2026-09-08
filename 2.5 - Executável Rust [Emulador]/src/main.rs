@@ -11,7 +11,7 @@ mod ui;
 mod webview;
 
 use config::load_config;
-use db_manager::DbManager;
+use db_manager::DbManagerMulti;
 use job_object::JobObjectGuard;
 use logs::LogCenter;
 use single_instance::SingleInstanceGuard;
@@ -28,7 +28,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _ = std::fs::create_dir_all("logs");
     std::panic::set_hook(Box::new(|info| {
         let msg = format!("[PANIC] {:?}\n", info);
-        let _ = std::fs::write("logs/auto_start_panic.log", msg);
+        let _ = std::fs::write("logs/panic.log", &msg);
     }));
 
     if let Ok(exe_path) = std::env::current_exe() {
@@ -58,7 +58,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         &cfg.paths.chat_server_log_dir,
     );
 
-    let db_manager = DbManager::new(&cfg.database);
+    let db_manager = DbManagerMulti::new(&cfg.databases);
     let supervisor = Supervisor::new(cfg.clone(), log_center.clone(), db_manager.clone());
 
     // 2. Initialize Tokio Runtime for background services
@@ -88,7 +88,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .expect("Failed to initialize Windows System Tray"),
     ));
 
-    // 5. Spawn background tasks inside Tokio runtime
     let sup_clone = supervisor.clone();
     let cfg_clone = cfg.clone();
     let log_center_clone = log_center.clone();
@@ -252,7 +251,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let db_schema_route = warp::path!("api" / "db" / "schema")
             .and(warp::get())
             .and(db_filter.clone())
-            .map(|db: DbManager| {
+            .map(|db: DbManagerMulti| {
                 match db.get_all_databases_schema() {
                     Ok(databases) => {
                         let total_tables: usize = databases.iter().map(|d| d.table_count).sum();
@@ -271,7 +270,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::get())
             .and(warp::query::<std::collections::HashMap<String, String>>())
             .and(db_filter.clone())
-            .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManager| {
+            .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManagerMulti| {
                 let db_id = params.get("db").map(|s| s.as_str());
                 let page = params.get("page").and_then(|p| p.parse::<usize>().ok()).unwrap_or(1);
                 let limit = params.get("limit").and_then(|l| l.parse::<usize>().ok()).unwrap_or(50);
@@ -291,7 +290,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::query::<std::collections::HashMap<String, String>>())
             .and(warp::body::json::<std::collections::HashMap<String, serde_json::Value>>())
             .and(db_filter.clone())
-            .map(|table: String, params: std::collections::HashMap<String, String>, body: std::collections::HashMap<String, serde_json::Value>, db: DbManager| {
+            .map(|table: String, params: std::collections::HashMap<String, String>, body: std::collections::HashMap<String, serde_json::Value>, db: DbManagerMulti| {
                 let db_id = params.get("db").map(|s| s.as_str());
                 match db.insert_row(db_id, &table, &body) {
                     Ok(id) => warp::reply::json(&serde_json::json!({ "status": "ok", "inserted_id": id })),
@@ -310,7 +309,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::put())
             .and(warp::body::json::<UpdateRowPayload>())
             .and(db_filter.clone())
-            .map(|table: String, payload: UpdateRowPayload, db: DbManager| {
+            .map(|table: String, payload: UpdateRowPayload, db: DbManagerMulti| {
                 match db.update_row(payload.db.as_deref(), &table, &payload.pk, &payload.updates) {
                     Ok(count) => warp::reply::json(&serde_json::json!({ "status": "ok", "rows_affected": count })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
@@ -327,7 +326,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::delete())
             .and(warp::body::json::<DeleteRowPayload>())
             .and(db_filter.clone())
-            .map(|table: String, payload: DeleteRowPayload, db: DbManager| {
+            .map(|table: String, payload: DeleteRowPayload, db: DbManagerMulti| {
                 match db.delete_row(payload.db.as_deref(), &table, &payload.pk) {
                     Ok(count) => warp::reply::json(&serde_json::json!({ "status": "ok", "rows_affected": count })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
@@ -339,7 +338,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::post())
             .and(warp::query::<std::collections::HashMap<String, String>>())
             .and(db_filter.clone())
-            .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManager| {
+            .map(|table: String, params: std::collections::HashMap<String, String>, db: DbManagerMulti| {
                 let db_id = params.get("db").map(|s| s.as_str());
                 match db.truncate_table(db_id, &table) {
                     Ok(_) => warp::reply::json(&serde_json::json!({ "status": "ok", "message": format!("Tabela '{}' limpa.", table) })),
@@ -350,9 +349,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // POST /api/db/clean_all
         let db_clean_all_route = warp::path!("api" / "db" / "clean_all")
             .and(warp::post())
+            .and(warp::query::<std::collections::HashMap<String, String>>())
             .and(db_filter.clone())
-            .map(|db: DbManager| {
-                match db.clean_all_tables() {
+            .map(|params: std::collections::HashMap<String, String>, db: DbManagerMulti| {
+                let db_id = params.get("db").map(|s| s.as_str());
+                match db.clean_all_tables(db_id) {
                     Ok(tables) => warp::reply::json(&serde_json::json!({ "status": "ok", "cleaned_tables": tables })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
@@ -368,9 +369,49 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::post())
             .and(warp::body::json::<RawSqlPayload>())
             .and(db_filter.clone())
-            .map(|payload: RawSqlPayload, db: DbManager| {
+            .map(|payload: RawSqlPayload, db: DbManagerMulti| {
                 match db.execute_query(payload.db.as_deref(), &payload.sql) {
                     Ok(result) => warp::reply::json(&serde_json::json!({ "status": "ok", "result": result })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // GET /api/db/check?db=cs
+        let db_check_route = warp::path!("api" / "db" / "check")
+            .and(warp::get())
+            .and(warp::query::<std::collections::HashMap<String, String>>())
+            .and(db_filter.clone())
+            .map(|params: std::collections::HashMap<String, String>, db: DbManagerMulti| {
+                let db_id = params.get("db").map(|s| s.as_str()).unwrap_or("cs");
+                let res = db.check_database(db_id);
+                warp::reply::json(&serde_json::json!({ "status": "ok", "data": res }))
+            });
+
+        // GET /api/db/check_all
+        let db_check_all_route = warp::path!("api" / "db" / "check_all")
+            .and(warp::get())
+            .and(db_filter.clone())
+            .map(|db: DbManagerMulti| {
+                let list = db.check_all_databases();
+                warp::reply::json(&serde_json::json!({ "status": "ok", "databases": list }))
+            });
+
+        // POST /api/db/create
+        #[derive(serde::Deserialize)]
+        struct CreateDbPayload {
+            db: String,
+        }
+        let db_create_route = warp::path!("api" / "db" / "create")
+            .and(warp::post())
+            .and(warp::body::json::<CreateDbPayload>())
+            .and(db_filter.clone())
+            .map(|payload: CreateDbPayload, db: DbManagerMulti| {
+                match db.create_database(&payload.db) {
+                    Ok(count) => warp::reply::json(&serde_json::json!({
+                        "status": "ok",
+                        "tables_created": count,
+                        "message": format!("Banco de dados e {} tabelas criados com sucesso!", count)
+                    })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
@@ -389,7 +430,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .or(db_delete_route)
             .or(db_truncate_table_route)
             .or(db_clean_all_route)
-            .or(db_query_route);
+            .or(db_query_route)
+            .or(db_check_route)
+            .or(db_check_all_route)
+            .or(db_create_route);
 
         let port = cfg_clone.gui.http_port;
         warp::serve(routes).run(([127, 0, 0, 1], port)).await;
@@ -398,8 +442,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 6. Wait until local web server is bound and accepting connections
     let dashboard_url = format!("http://127.0.0.1:{}/", cfg.gui.http_port);
     let target_addr = format!("127.0.0.1:{}", cfg.gui.http_port);
+    let mut _bound = false;
     for _ in 0..100 {
         if std::net::TcpStream::connect(&target_addr).is_ok() {
+            _bound = true;
             break;
         }
         std::thread::sleep(Duration::from_millis(50));

@@ -59,6 +59,15 @@ pub struct DatabaseSettings {
     pub password: String,
     #[serde(default = "default_db_name")]
     pub database: String,
+    /// Optional: explicit path to the database.properties file for this DB
+    #[serde(default)]
+    pub properties_file: String,
+    /// Display label for the UI (e.g. "Game Server")
+    #[serde(default)]
+    pub label: String,
+    /// Color tag for the UI card
+    #[serde(default)]
+    pub color: String,
 }
 
 #[derive(Debug, Deserialize, Serialize, Clone)]
@@ -90,8 +99,12 @@ pub struct RootConfig {
     pub paths: PathsSettings,
     #[serde(default)]
     pub gui: GuiSettings,
+    /// Legacy single-database config (kept for backward compat, prefer `databases`)
     #[serde(default)]
     pub database: DatabaseSettings,
+    /// Multi-database map: keys are "gs", "ls", "cs"
+    #[serde(default)]
+    pub databases: HashMap<String, DatabaseSettings>,
     #[serde(default)]
     pub servers: HashMap<String, ServerConfig>,
 }
@@ -112,13 +125,13 @@ fn default_width() -> u32 { 1440 }
 fn default_height() -> u32 { 900 }
 fn default_http_port() -> u16 { 18080 }
 fn default_empty() -> String { "".to_string() }
-fn default_db_host() -> String { "192.168.3.29".to_string() }
-fn default_db_name() -> String { "aiondbls_gs".to_string() }
-fn default_db_port() -> u16 { 3310 }
-fn default_db_user() -> String { "aionliveclassic".to_string() }
-fn default_db_pass() -> String { "@d@mn0gu31r4".to_string() }
+fn default_db_host() -> String { "".to_string() }
+fn default_db_name() -> String { "aionclassic_gs".to_string() }
+fn default_db_port() -> u16 { 3306 }
+fn default_db_user() -> String { "".to_string() }
+fn default_db_pass() -> String { "".to_string() }
 fn default_java() -> String { "java".to_string() }
-fn default_shutdown_delay() -> u64 { 60 }
+fn default_shutdown_delay() -> u64 { 5 }
 
 impl Default for LauncherSettings {
     fn default() -> Self {
@@ -164,9 +177,50 @@ impl Default for DatabaseSettings {
             port: 3306,
             user: "".to_string(),
             password: "".to_string(),
-            database: "aiondbls_gs".to_string(),
+            database: "aionclassic_gs".to_string(),
+            properties_file: "".to_string(),
+            label: "".to_string(),
+            color: "".to_string(),
         }
     }
+}
+
+fn default_databases() -> HashMap<String, DatabaseSettings> {
+    let mut m = HashMap::new();
+    m.insert("gs".to_string(), DatabaseSettings {
+        auto_read_properties: true,
+        host: "".to_string(),
+        port: 3306,
+        user: "".to_string(),
+        password: "".to_string(),
+        database: "aionclassic_gs".to_string(),
+        properties_file: "GameServer/config/network/database.properties".to_string(),
+        label: "Game Server".to_string(),
+        color: "#32CD32".to_string(),
+    });
+    m.insert("ls".to_string(), DatabaseSettings {
+        auto_read_properties: true,
+        host: "".to_string(),
+        port: 3306,
+        user: "".to_string(),
+        password: "".to_string(),
+        database: "aionclassic_ls".to_string(),
+        properties_file: "LoginServer/config/network/database.properties".to_string(),
+        label: "Login Server".to_string(),
+        color: "#FFD700".to_string(),
+    });
+    m.insert("cs".to_string(), DatabaseSettings {
+        auto_read_properties: true,
+        host: "".to_string(),
+        port: 3306,
+        user: "".to_string(),
+        password: "".to_string(),
+        database: "aionclassic_cs".to_string(),
+        properties_file: "ChatServer/config/network/database.properties".to_string(),
+        label: "Chat Server".to_string(),
+        color: "#00CED1".to_string(),
+    });
+    m
 }
 
 impl Default for RootConfig {
@@ -237,8 +291,8 @@ impl Default for RootConfig {
                 tag: "GS".to_string(),
                 enabled: true,
                 color: "#32CD32".to_string(),
-                management_port: Some(18091),
-                shutdown_delay_seconds: 60,
+                management_port: None,
+                shutdown_delay_seconds: 5,
             },
         );
 
@@ -247,6 +301,7 @@ impl Default for RootConfig {
             paths: PathsSettings::default(),
             gui: GuiSettings::default(),
             database: DatabaseSettings::default(),
+            databases: default_databases(),
             servers,
         }
     }

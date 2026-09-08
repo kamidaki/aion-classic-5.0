@@ -28,11 +28,6 @@ __pycache__/
 scratch/
 **/scratch/
 
-# Preservar binários necessários do Client Patch (bin32 e bin64)
-!4 - Patch para o Client 5.0/bin32/
-!4 - Patch para o Client 5.0/bin64/
-!4 - Patch para o Client 5.0/bin32/**
-!4 - Patch para o Client 5.0/bin64/**
 
 # 2. Logs, Caches e Arquivos Temporários
 log/
@@ -79,6 +74,9 @@ cache/
 # 6. Client 5.0 - Dados Extraídos (Regras Específicas)
 # O diretório 'data' não deve ter seu conteúdo de arquivos versionado,
 # mas sua estrutura completa de 206 pastas deve ser preservada no Git via .gitkeep.
+5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/**
+!5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/**/
+!5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/**/.gitkeep
 5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**
 !5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/
 !5 - Documentação e Referências/4 - Client 5.0 - Dados Extraidos/data/**/.gitkeep
@@ -90,15 +88,3 @@ cache/
 # 8. Capturas Live / Sessões brutas de rede de grande porte (> 50MB)
 *_Live_*.pcapng
 **/Oficial_Live_Gameplay/**
-
-# 9. Arquivos de configuracao local (banco, rede e launcher)
-database.properties
-**/database.properties
-network.properties
-**/network.properties
-config.json
-**/config.json
-
-# 10. Backups Locais do Emulador
-7 - BACKUP EMULADOR/
-**/7 - BACKUP EMULADOR/**

@@ -270,20 +270,22 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         /* Main Layout */
         main {
             flex: 1;
-            padding: 10px 16px;
+            padding: 8px 14px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             width: 100%;
             max-width: 100%;
             min-height: 0;
+            height: calc(100vh - 48px);
             overflow: hidden;
+            box-sizing: border-box;
         }
 
-        /* 4 Top Cards Grid (Login, Game, Chat, Database) */
+        /* Top Cards Grid (Login, Game, Chat + 3 Databases: LS, GS, CS) */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             width: 100%;
             flex-shrink: 0;
@@ -316,6 +318,13 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         .card-game::before  { background: linear-gradient(90deg, transparent, var(--accent-game), transparent); }
         .card-chat::before  { background: linear-gradient(90deg, transparent, var(--accent-chat), transparent); }
         .card-db::before    { background: linear-gradient(90deg, transparent, var(--accent-db), transparent); }
+        .card-db-ls::before { background: linear-gradient(90deg, transparent, var(--accent-launcher), transparent); }
+        .card-db-gs::before { background: linear-gradient(90deg, transparent, var(--accent-game), transparent); }
+        .card-db-cs::before { background: linear-gradient(90deg, transparent, var(--accent-chat), transparent); }
+
+        .fill-db-ls { background: var(--accent-launcher); }
+        .fill-db-gs { background: var(--accent-game); }
+        .fill-db-cs { background: var(--accent-chat); }
 
         .card-header {
             display: flex;
@@ -409,16 +418,19 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
         /* Clean Real-Time Day-Trade Fibonacci Telemetry Section */
         .telemetry-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
+            background: rgba(10, 16, 31, 0.74);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
-            padding: 8px 12px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            padding: 6px 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             display: flex;
             flex-direction: column;
             gap: 6px;
             width: 100%;
             flex-shrink: 0;
+            box-sizing: border-box;
         }
 
         .telemetry-header {
@@ -426,16 +438,105 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
+            width: 100%;
         }
 
-        .telemetry-title-box {
+        .telemetry-server-bar {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.82rem;
+            flex-wrap: wrap;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .telemetry-server-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 0.7rem;
+            color: #cbd5e1;
+            transition: all 0.2s;
+        }
+        .telemetry-server-pill:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .telemetry-server-pill.srv-login { border-left: 3px solid var(--accent-login); }
+        .telemetry-server-pill.srv-game  { border-left: 3px solid var(--accent-game); }
+        .telemetry-server-pill.srv-chat  { border-left: 3px solid var(--accent-chat); }
+
+        .pill-srv-name {
             font-weight: 700;
-            color: var(--accent-login);
+            color: #fff;
+        }
+        .pill-port {
+            font-size: 0.62rem;
+            color: var(--text-muted);
+            margin-left: -3px;
+        }
+        .pill-uptime {
+            font-size: 0.66rem;
+            color: #94a3b8;
+            margin-left: 2px;
+        }
+        .pill-metrics {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.68rem;
+            color: #94a3b8;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+        .pill-metrics span { color: #f1f5f9; font-weight: 600; }
+
+        .pill-actions {
+            display: inline-flex;
+            gap: 2px;
+            margin-left: 3px;
+        }
+
+        .btn-micro {
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+            padding: 2px 5px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            line-height: 1;
+            transition: all 0.15s;
+        }
+        .btn-micro.btn-start {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        .btn-micro.btn-start:hover {
+            background: #10b981;
+            color: #fff;
+        }
+        .btn-micro.btn-stop {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+        }
+        .btn-micro.btn-stop:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+        .btn-micro.btn-restart {
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+        }
+        .btn-micro.btn-restart:hover {
+            background: #0284c7;
+            color: #fff;
         }
 
         .telemetry-controls-row {
@@ -444,7 +545,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             gap: 8px;
             flex-wrap: wrap;
         }
-
 
         .toggle-group {
             display: flex;
@@ -477,8 +577,8 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         .chart-visual-container {
             position: relative;
             width: 100%;
-            height: 125px;
-            background: #050810;
+            height: 115px;
+            background: rgba(4, 7, 15, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 6px;
             overflow: hidden;
@@ -507,15 +607,17 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
             border-radius: 10px;
-            padding: 10px 12px;
+            padding: 8px 12px 10px 12px;
             display: flex;
             flex-direction: column;
             gap: 6px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
             flex: 1;
             min-height: 0;
+            height: 100%;
             width: 100%;
             overflow: hidden;
+            box-sizing: border-box;
         }
 
         .log-header {
@@ -646,6 +748,24 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             color: #fbbf24;
             border: 1px solid rgba(234, 179, 8, 0.4);
         }
+
+        .log-sep {
+            color: #64748b;
+            font-weight: 600;
+            padding: 0 1px;
+            user-select: none;
+        }
+
+        .log-lvl {
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .log-lvl.lvl-info  { color: #38bdf8; }
+        .log-lvl.lvl-warn  { color: #fde047; }
+        .log-lvl.lvl-error { color: #f87171; }
+        .log-lvl.lvl-debug { color: #a78bfa; }
 
         .log-msg {
             white-space: pre-wrap;
@@ -1869,11 +1989,6 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 <div class="brand-text">Classic Emu</div>
                 <div class="brand-pill">Classic 5.0</div>
             </div>
-            <div class="header-status-pills">
-                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-login"></div> <span>Login</span></div>
-                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-game"></div> <span>Game</span></div>
-                <div class="mini-stat-label"><div class="mini-dot" id="hdr-dot-chat"></div> <span>Chat</span></div>
-            </div>
         </div>
 
         <div class="header-right">
@@ -1900,118 +2015,56 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
     <!-- Main Content -->
     <main>
-        <!-- Desktop 4 Cards (Login, Game, Chat, Database) -->
-        <div class="cards-grid">
-            <!-- Login Server -->
-            <div class="card card-login" id="card-login">
-                <div class="card-header">
-                    <div class="card-title-box">
-                        <div class="status-dot" id="dot-login"></div>
-                        <div class="card-title">Login-Server</div>
-                    </div>
-                    <div class="card-tag">Porta 2106</div>
-                </div>
-                <div class="metrics-box">
-                    <div class="metric-row"><span class="metric-label">Status / Uptime:</span><span class="metric-value" id="val-uptime-login">OFFLINE</span></div>
-                    <div class="metric-row"><span class="metric-label">CPU:</span><span class="metric-value" id="val-cpu-login">0.0%</span></div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-login" id="bar-cpu-login"></div></div>
-                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Memória RAM:</span><span class="metric-value" id="val-mem-login">0.0 MB</span></div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-login" id="bar-mem-login"></div></div>
-                </div>
-                <div class="card-actions">
-                    <button class="btn-start" onclick="controlServer('login', 'start')">Iniciar</button>
-                    <button class="btn-stop" onclick="controlServer('login', 'stop')">Parar</button>
-                    <button class="btn-restart" onclick="controlServer('login', 'restart')">Reiniciar</button>
-                </div>
-            </div>
-
-            <!-- Game Server -->
-            <div class="card card-game" id="card-game">
-                <div class="card-header">
-                    <div class="card-title-box">
-                        <div class="status-dot" id="dot-game"></div>
-                        <div class="card-title">Game-Server</div>
-                    </div>
-                    <div class="card-tag">Porta 7777</div>
-                </div>
-                <div class="metrics-box">
-                    <div class="metric-row"><span class="metric-label">Status / Uptime:</span><span class="metric-value" id="val-uptime-game">OFFLINE</span></div>
-                    <div class="metric-row"><span class="metric-label">CPU:</span><span class="metric-value" id="val-cpu-game">0.0%</span></div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-game" id="bar-cpu-game"></div></div>
-                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Memória RAM:</span><span class="metric-value" id="val-mem-game">0.0 MB</span></div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-game" id="bar-mem-game"></div></div>
-                </div>
-                <div class="card-actions">
-                    <button class="btn-start" onclick="controlServer('game', 'start')">Iniciar</button>
-                    <button class="btn-stop" onclick="controlServer('game', 'stop')">Parar</button>
-                    <button class="btn-restart" onclick="controlServer('game', 'restart')">Reiniciar</button>
-                </div>
-            </div>
-
-            <!-- Chat Server -->
-            <div class="card card-chat" id="card-chat">
-                <div class="card-header">
-                    <div class="card-title-box">
-                        <div class="status-dot" id="dot-chat"></div>
-                        <div class="card-title">Chat-Server</div>
-                    </div>
-                    <div class="card-tag">Porta 10241</div>
-                </div>
-                <div class="metrics-box">
-                    <div class="metric-row"><span class="metric-label">Status / Uptime:</span><span class="metric-value" id="val-uptime-chat">OFFLINE</span></div>
-                    <div class="metric-row"><span class="metric-label">CPU:</span><span class="metric-value" id="val-cpu-chat">0.0%</span></div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-chat" id="bar-cpu-chat"></div></div>
-                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Memória RAM:</span><span class="metric-value" id="val-mem-chat">0.0 MB</span></div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-chat" id="bar-mem-chat"></div></div>
-                </div>
-                <div class="card-actions">
-                    <button class="btn-start" onclick="controlServer('chat', 'start')">Iniciar</button>
-                    <button class="btn-stop" onclick="controlServer('chat', 'stop')">Parar</button>
-                    <button class="btn-restart" onclick="controlServer('chat', 'restart')">Reiniciar</button>
-                </div>
-            </div>
-
-            <!-- Database Card -->
-            <div class="card card-db" id="card-db">
-                <div class="card-header">
-                    <div class="card-title-box">
-                        <div class="status-dot online" id="dot-db"></div>
-                        <div class="card-title">Banco de Dados</div>
-                    </div>
-                    <div class="card-tag" id="tag-db">MySQL (aiondbls_gs)</div>
-                </div>
-                <div class="metrics-box">
-                    <div class="metric-row"><span class="metric-label">Engine / Host:</span><span class="metric-value" id="val-db-engine" style="color:var(--accent-game);">MySQL (192.168.3.29:3310)</span></div>
-                    <div class="metric-row"><span class="metric-label">Tabelas:</span><span class="metric-value" id="val-db-tables" style="color:var(--accent-db);">0 Tabelas</span></div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-db" style="width: 100%;"></div></div>
-                    <div class="metric-row" style="margin-top: 2px;"><span class="metric-label">Total de Registros:</span><span class="metric-value" id="val-db-size">0 Registros</span></div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fill-db" style="width: 100%;"></div></div>
-                </div>
-                <div class="card-actions">
-                    <button class="btn-db-studio" onclick="openDbStudio()">
-                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-                        <span>Abrir Estúdio</span>
-                    </button>
-                    <button class="btn-danger" onclick="openCleanAllModal()">
-                        <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
-                        <span>Limpar Tabelas</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Real-Time Day-Trade Fibonacci Multi-Curve Telemetry Section -->
+        <!-- Real-Time Telemetry Section with Integrated Server Controls & Stats -->
         <div class="telemetry-section" id="section-telemetry">
             <div class="telemetry-header">
-                <div class="telemetry-title-box">
-                    <span class="btn-svg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-                    <span>Telemetria em Tempo Real (Day-Trade Fibonacci)</span>
+                <!-- Server Stats & Quick Controls Bar -->
+                <div class="telemetry-server-bar">
+                    <!-- Login Server Pill -->
+                    <div class="telemetry-server-pill srv-login">
+                        <div class="status-dot" id="dot-login"></div>
+                        <span class="pill-srv-name">Login</span>
+                        <span class="pill-uptime" id="val-uptime-login">OFFLINE</span>
+                        <span class="pill-metrics">CPU <span id="val-cpu-login">0.0%</span> · RAM <span id="val-mem-login">0.0 MB</span></span>
+                        <div class="pill-actions">
+                            <button class="btn-micro btn-start" onclick="controlServer('login', 'start')" title="Iniciar Login">▶</button>
+                            <button class="btn-micro btn-stop" onclick="controlServer('login', 'stop')" title="Parar Login">■</button>
+                            <button class="btn-micro btn-restart" onclick="controlServer('login', 'restart')" title="Reiniciar Login">↻</button>
+                        </div>
+                    </div>
+
+                    <!-- Game Server Pill -->
+                    <div class="telemetry-server-pill srv-game">
+                        <div class="status-dot" id="dot-game"></div>
+                        <span class="pill-srv-name">Game</span>
+                        <span class="pill-uptime" id="val-uptime-game">OFFLINE</span>
+                        <span class="pill-metrics">CPU <span id="val-cpu-game">0.0%</span> · RAM <span id="val-mem-game">0.0 MB</span></span>
+                        <div class="pill-actions">
+                            <button class="btn-micro btn-start" onclick="controlServer('game', 'start')" title="Iniciar Game">▶</button>
+                            <button class="btn-micro btn-stop" onclick="controlServer('game', 'stop')" title="Parar Game">■</button>
+                            <button class="btn-micro btn-restart" onclick="controlServer('game', 'restart')" title="Reiniciar Game">↻</button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Server Pill -->
+                    <div class="telemetry-server-pill srv-chat">
+                        <div class="status-dot" id="dot-chat"></div>
+                        <span class="pill-srv-name">Chat</span>
+                        <span class="pill-uptime" id="val-uptime-chat">OFFLINE</span>
+                        <span class="pill-metrics">CPU <span id="val-cpu-chat">0.0%</span> · RAM <span id="val-mem-chat">0.0 MB</span></span>
+                        <div class="pill-actions">
+                            <button class="btn-micro btn-start" onclick="controlServer('chat', 'start')" title="Iniciar Chat">▶</button>
+                            <button class="btn-micro btn-stop" onclick="controlServer('chat', 'stop')" title="Parar Chat">■</button>
+                            <button class="btn-micro btn-restart" onclick="controlServer('chat', 'restart')" title="Reiniciar Chat">↻</button>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Telemetry Controls: CPU & RAM, CPU, RAM Switcher -->
                 <div class="telemetry-controls-row">
-                    <!-- Metric Switcher: CPU % vs RAM MB -->
                     <div class="toggle-group">
-                        <button class="mode-btn active" id="btn-mode-cpu" onclick="setChartMetric('cpu')">CPU (%)</button>
+                        <button class="mode-btn active" id="btn-mode-both" onclick="setChartMetric('both')">CPU & RAM</button>
+                        <button class="mode-btn" id="btn-mode-cpu" onclick="setChartMetric('cpu')">CPU (%)</button>
                         <button class="mode-btn" id="btn-mode-mem" onclick="setChartMetric('mem')">RAM (MB)</button>
                     </div>
                 </div>
@@ -2033,32 +2086,22 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         <!-- Central Live Logs Section -->
         <div class="log-center" id="section-logs">
             <div class="log-header">
-                <div class="log-header-top">
-                    <span style="font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 5px;">
-                        <span class="btn-svg" style="color: var(--accent-login);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
-                        LOGS UNIFICADOS (LOGIN, GAME, CHAT)
-                    </span>
-                    <div style="display: flex; gap: 5px;">
-                        <button class="filter-btn btn-fullscreen-logs" id="btn-fullscreen-logs" onclick="openFullscreenLogs()" title="Abrir Logs em Tela Cheia (F12 / ESC)">
-                            <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></span>
-                            <span>Tela Cheia</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="log-filter-scroll-row">
+                <div class="log-filter-scroll-row" style="width: 100%; display: flex; align-items: center; gap: 6px;">
                     <button class="filter-btn active" data-srv="all" onclick="setFilter('srv', 'all', this)">Todos</button>
                     <button class="filter-btn" data-srv="login" onclick="setFilter('srv', 'login', this)">Login</button>
                     <button class="filter-btn" data-srv="game" onclick="setFilter('srv', 'game', this)">Game</button>
                     <button class="filter-btn" data-srv="chat" onclick="setFilter('srv', 'chat', this)">Chat</button>
-                    <button class="filter-btn" id="copy-logs-btn" style="margin-left: auto; border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; display: inline-flex; align-items: center; gap: 5px;" onclick="copyVisibleLogs()">
+                    
+                    <input type="text" class="search-box" id="search-input" placeholder="Buscar nos logs em tempo real..." onkeyup="renderLogs()" style="flex: 1; min-width: 120px;">
+                    
+                    <button class="filter-btn" id="copy-logs-btn" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; display: inline-flex; align-items: center; gap: 5px;" onclick="copyVisibleLogs()" title="Copiar Logs">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                        Copiar Logs
+                        <span>Copiar</span>
                     </button>
-                </div>
-
-                <div class="log-controls-row">
-                    <input type="text" class="search-box" id="search-input" placeholder="Buscar nos logs em tempo real..." onkeyup="renderLogs()">
+                    <button class="filter-btn btn-fullscreen-logs" id="btn-fullscreen-logs" onclick="openFullscreenLogs()" title="Tela Cheia (F12 / ESC)">
+                        <span class="btn-svg"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></span>
+                        <span>Tela Cheia</span>
+                    </button>
                 </div>
             </div>
             <div class="log-console" id="log-console"></div>
@@ -2122,7 +2165,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     <span class="btn-svg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
                     Bancos de Dados (login / game / chat)
                 </div>
-                <div class="drawer-card">
+                <div class="drawer-card" style="margin-bottom: 8px;">
                     <div style="display: flex; gap: 6px;">
                         <button class="btn-db-studio" style="flex:1;" onclick="toggleDrawer(false); openDbStudio();">
                             <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
@@ -2132,6 +2175,72 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                             <span class="btn-svg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span>
                             <span>Limpar Tudo</span>
                         </button>
+                    </div>
+                </div>
+
+                <!-- Database LS Card (Login Server) -->
+                <div class="drawer-card" id="card-db-ls" style="margin-bottom: 8px;">
+                    <div class="drawer-row" style="margin-bottom: 4px;">
+                        <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <span class="status-dot online" id="dot-db-ls"></span>
+                            Banco Login (LS)
+                        </span>
+                        <span class="drawer-val" id="tag-db-ls" style="font-size: 0.7rem; color: var(--accent-launcher);">MySQL (aionclassic_ls)</span>
+                    </div>
+                    <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 2px;">
+                        <span>Host: <b id="val-db-engine-ls" style="color:var(--accent-launcher);">MySQL (--:--)</b></span>
+                        <span><b id="val-db-tables-ls" style="color:var(--accent-launcher);">0 Tabelas</b></span>
+                    </div>
+                    <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 6px;">
+                        <span>Registros: <b id="val-db-size-ls" style="color:#fff;">0 Registros</b></span>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <button class="btn-db-studio" style="flex:1; padding: 4px; font-size: 0.68rem;" onclick="openDbStudio('ls')">Abrir LS</button>
+                        <button class="btn-danger" style="flex:1; padding: 4px; font-size: 0.68rem;" onclick="openCleanAllModal('ls')">Limpar</button>
+                    </div>
+                </div>
+
+                <!-- Database GS Card (Game Server) -->
+                <div class="drawer-card" id="card-db-gs" style="margin-bottom: 8px;">
+                    <div class="drawer-row" style="margin-bottom: 4px;">
+                        <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <span class="status-dot online" id="dot-db-gs"></span>
+                            Banco Game (GS)
+                        </span>
+                        <span class="drawer-val" id="tag-db-gs" style="font-size: 0.7rem; color: var(--accent-game);">MySQL (aionclassic_gs)</span>
+                    </div>
+                    <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 2px;">
+                        <span>Host: <b id="val-db-engine-gs" style="color:var(--accent-game);">MySQL (--:--)</b></span>
+                        <span><b id="val-db-tables-gs" style="color:var(--accent-game);">0 Tabelas</b></span>
+                    </div>
+                    <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 6px;">
+                        <span>Registros: <b id="val-db-size-gs" style="color:#fff;">0 Registros</b></span>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <button class="btn-db-studio" style="flex:1; padding: 4px; font-size: 0.68rem;" onclick="openDbStudio('gs')">Abrir GS</button>
+                        <button class="btn-danger" style="flex:1; padding: 4px; font-size: 0.68rem;" onclick="openCleanAllModal('gs')">Limpar</button>
+                    </div>
+                </div>
+
+                <!-- Database CS Card (Chat Server) -->
+                <div class="drawer-card" id="card-db-cs" style="margin-bottom: 8px;">
+                    <div class="drawer-row" style="margin-bottom: 4px;">
+                        <span style="font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <span class="status-dot online" id="dot-db-cs"></span>
+                            Banco Chat (CS)
+                        </span>
+                        <span class="drawer-val" id="tag-db-cs" style="font-size: 0.7rem; color: var(--accent-chat);">MySQL (aionclassic_cs)</span>
+                    </div>
+                    <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 2px;">
+                        <span>Host: <b id="val-db-engine-cs" style="color:var(--accent-chat);">MySQL (--:--)</b></span>
+                        <span><b id="val-db-tables-cs" style="color:var(--accent-chat);">0 Tabelas</b></span>
+                    </div>
+                    <div class="drawer-row" style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 6px;">
+                        <span>Registros: <b id="val-db-size-cs" style="color:#fff;">0 Registros</b></span>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <button class="btn-db-studio" style="flex:1; padding: 4px; font-size: 0.68rem;" onclick="openDbStudio('cs')">Abrir CS</button>
+                        <button class="btn-danger" style="flex:1; padding: 4px; font-size: 0.68rem;" onclick="openCleanAllModal('cs')">Limpar</button>
                     </div>
                 </div>
             </div>
@@ -2160,7 +2269,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 </div>
                 <div class="drawer-card">
                     <div class="drawer-row"><span style="color: var(--text-muted);">Taxa de Tick (TPS):</span><span class="drawer-val" style="color: var(--accent-game);">20.0 / 20.0 TPS (Fixo)</span></div>
-                    <div class="drawer-row"><span style="color: var(--text-muted);">Banco de Dados:</span><span class="drawer-val" id="reg-db-size">MySQL (aiondbls_gs)</span></div>
+                    <div class="drawer-row"><span style="color: var(--text-muted);">Banco de Dados:</span><span class="drawer-val" id="reg-db-size">MySQL</span></div>
                     <div class="drawer-row"><span style="color: var(--text-muted);">Memória Total do SO:</span><span class="drawer-val" id="reg-os-mem">0.0 / 0.0 GB</span></div>
                     <div class="drawer-row"><span style="color: var(--text-muted);">Uptime do Launcher:</span><span class="drawer-val" id="reg-uptime">00:00:00</span></div>
                 </div>
@@ -2573,11 +2682,11 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         <div style="background:#0e1526; border:1px solid #ef4444; border-radius:12px; padding:20px; width:90%; max-width:440px; display:flex; flex-direction:column; gap:12px;">
             <div style="font-weight:700; font-size:0.95rem; color:#f87171; display:flex; align-items:center; gap:8px;">
                 <span class="btn-svg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-                <span>Limpar / Resetar Todas as Tabelas</span>
+                <span id="clean-modal-title">Limpar / Resetar Tabelas</span>
             </div>
             <div style="color:var(--text-muted); font-size:0.8rem; line-height:1.4;">
-                Tem certeza que deseja limpar completamente todas as tabelas em todos os bancos?<br><br>
-                <span style="color:#fca5a5;">Esta ação apagará todos os dados de login.db, game.db, chat.db e resetará as sequências.</span>
+                <span id="clean-modal-prompt">Tem certeza que deseja limpar as tabelas do banco selecionado?</span><br><br>
+                <span style="color:#fca5a5;" id="clean-modal-desc">Esta ação apagará dados de tabelas dinâmicas e resetará as sequências.</span>
             </div>
             <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top:4px;">
                 <button class="btn-secondary" onclick="closeCleanAllModal()">Cancelar</button>
@@ -2627,6 +2736,85 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 </div>
                 <div id="sd-step-cleanup" style="display:flex; align-items:center; gap:8px; color:#64748b;">
                     <span class="sd-dot"></span> <span>Desalocando portas e recursos do sistema...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dedicated MySQL Connection Error Modal -->
+    <div class="modal-overlay" id="db-conn-error-modal" style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(3,7,18,0.88); backdrop-filter:blur(14px); z-index:999999; align-items:center; justify-content:center;">
+        <div style="background:#0b1329; border:1px solid rgba(239,68,68,0.35); border-radius:14px; padding:24px 28px; width:92%; max-width:490px; box-shadow:0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(239,68,68,0.15); display:flex; flex-direction:column; gap:16px;">
+            <div style="font-weight:700; font-size:1.05rem; color:#f87171; display:flex; align-items:center; gap:10px;">
+                <span class="btn-svg"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+                <span id="db-conn-err-title">Falha de Conexão com o MySQL</span>
+            </div>
+            <div style="color:#cbd5e1; font-size:0.84rem; line-height:1.5;">
+                Não foi possível conectar ao servidor MySQL para validar o banco de dados do <b id="db-conn-err-srv" style="color:#f87171;">Servidor</b>.
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px; width:100%; background:rgba(0,0,0,0.45); padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); font-size:0.8rem;">
+                <div style="display:flex; justify-content:space-between;"><span style="color:#94a3b8;">Endereço (Host:Porta):</span><span style="color:#f8fafc; font-weight:600; font-family:monospace;" id="db-conn-err-host">127.0.0.1:3306</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:#94a3b8;">Usuário:</span><span style="color:#f8fafc; font-weight:600; font-family:monospace;" id="db-conn-err-user">root</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:#94a3b8;">Senha:</span><span style="color:#f8fafc; font-weight:600; font-family:monospace;" id="db-conn-err-pass">••••••</span></div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;"><span style="color:#94a3b8; white-space:nowrap;">Arquivo de Config:</span><span style="color:#38bdf8; font-weight:600; font-family:monospace; word-break:break-all; text-align:right;" id="db-conn-err-file">config/database.properties</span></div>
+                <div style="margin-top:4px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.06); color:#fca5a5; font-size:0.75rem; font-family:monospace; word-break:break-word;" id="db-conn-err-msg">Detalhes do erro...</div>
+            </div>
+            <div style="color:#94a3b8; font-size:0.78rem; line-height:1.4;">
+                Por favor, verifique se o serviço do MySQL está ativo e revise os parâmetros de conexão no arquivo indicado acima.
+            </div>
+            <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:4px;">
+                <button class="btn-secondary" style="padding:7px 16px; font-size:0.82rem;" onclick="closeDbConnErrModal()">Fechar</button>
+                <button class="btn-primary" style="padding:7px 18px; font-size:0.82rem; font-weight:700;" onclick="retryDbCheck()">Tentar Novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dedicated Database Missing & Auto-Creation Modal -->
+    <div class="modal-overlay" id="db-missing-modal" style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(3,7,18,0.88); backdrop-filter:blur(14px); z-index:999999; align-items:center; justify-content:center;">
+        <!-- Card 1: Confirmation Form -->
+        <div id="db-missing-card" style="background:#0b1329; border:1px solid rgba(56,189,248,0.3); border-radius:14px; padding:24px 28px; width:92%; max-width:490px; box-shadow:0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(56,189,248,0.12); display:flex; flex-direction:column; gap:16px;">
+            <div style="font-weight:700; font-size:1.05rem; color:#38bdf8; display:flex; align-items:center; gap:10px;">
+                <span class="btn-svg"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+                <span>Banco de Dados Ausente</span>
+            </div>
+            <div style="color:#cbd5e1; font-size:0.84rem; line-height:1.5;">
+                O banco de dados do <b id="db-missing-srv-name" style="color:#38bdf8;">Chat-Server</b> (<code id="db-missing-dbname" style="color:#a855f7; font-weight:bold;">aion_cs</code>) não foi encontrado no MySQL.
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px; width:100%; background:rgba(0,0,0,0.45); padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); font-size:0.8rem;">
+                <div style="display:flex; justify-content:space-between;"><span style="color:#94a3b8;">Banco de Dados:</span><span style="color:#10b981; font-weight:700; font-family:monospace;" id="db-missing-target-db">aion_cs</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:#94a3b8;">Servidor MySQL:</span><span style="color:#f8fafc; font-weight:600; font-family:monospace;" id="db-missing-host">127.0.0.1:3306</span></div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;"><span style="color:#94a3b8; white-space:nowrap;">Arquivo de Config:</span><span style="color:#38bdf8; font-weight:600; font-family:monospace; word-break:break-all; text-align:right;" id="db-missing-file">ChatServer/config/database.properties</span></div>
+            </div>
+            <div style="color:#94a3b8; font-size:0.80rem; line-height:1.4;">
+                Deseja que o inicializador crie o banco de dados e instale todas as tabelas e esquemas SQL preventivamente agora?
+            </div>
+            <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:4px;">
+                <button class="btn-secondary" style="padding:7px 16px; font-size:0.82rem;" onclick="closeDbMissingModal()">Cancelar</button>
+                <button class="btn-primary" style="padding:7px 18px; font-size:0.82rem; font-weight:700; background:linear-gradient(135deg, #0284c7, #2563eb); border-color:#38bdf8;" onclick="confirmCreateDb()">Criar Banco Automaticamente</button>
+            </div>
+        </div>
+
+        <!-- Card 2: Creation Progress Animation (Shown during execution) -->
+        <div id="db-creating-card" style="display:none; background:#0b1329; border:1px solid rgba(56,189,248,0.4); border-radius:16px; padding:32px 36px; width:92%; max-width:490px; box-shadow:0 30px 80px rgba(0,0,0,0.9), 0 0 45px rgba(56,189,248,0.2); flex-direction:column; align-items:center; text-align:center; gap:20px;">
+            <div class="shutdown-spinner" id="db-create-spinner" style="border-top-color:#38bdf8; width:44px; height:44px;"></div>
+            
+            <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="font-size:1.15rem; font-weight:800; color:#f8fafc; letter-spacing:0.3px;" id="db-create-title">Criando Banco de Dados...</div>
+                <div style="font-size:0.82rem; color:#94a3b8;" id="db-create-status-desc">Executando script SQL e criando tabelas no MySQL.</div>
+            </div>
+
+            <div style="width:100%; background:rgba(0,0,0,0.4); border-radius:8px; height:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); position:relative;">
+                <div id="db-create-progress-bar" style="height:100%; width:15%; background:linear-gradient(90deg, #0284c7, #38bdf8, #10b981); border-radius:8px; transition:width 0.4s ease;"></div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:8px; width:100%; text-align:left; background:rgba(0,0,0,0.35); padding:14px 18px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); font-size:0.78rem;">
+                <div id="db-step-1" style="display:flex; align-items:center; gap:8px; color:#e2e8f0;">
+                    <span class="sd-dot active" id="db-dot-1"></span> <span>Conectando ao MySQL e criando schema...</span>
+                </div>
+                <div id="db-step-2" style="display:flex; align-items:center; gap:8px; color:#64748b;">
+                    <span class="sd-dot" id="db-dot-2"></span> <span>Carregando arquivo SQL e executando tabelas...</span>
+                </div>
+                <div id="db-step-3" style="display:flex; align-items:center; gap:8px; color:#64748b;">
+                    <span class="sd-dot" id="db-dot-3"></span> <span>Validando tabelas e estabelecendo pool de conexões...</span>
                 </div>
             </div>
         </div>
@@ -2694,22 +2882,26 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         let logBuffer = [];
         let historyData = [];
         let rawDashboardState = null;
-        let chartMetric = 'cpu'; // 'cpu' or 'mem'
+        let chartMetric = 'both'; // 'both', 'cpu', or 'mem'
         let externalUrlStr = "http://127.0.0.1:18080";
 
         // Day-Trade Series Definitions
         const serverSeriesDefs = [
-            { key: 'total', name: 'Total', color: '#ffffff', dash: [4, 3], val: d => chartMetric === 'cpu' ? d.total_cpu : d.total_mem_mb },
-            { key: 'login', name: 'Login', color: '#38bdf8', dash: [], val: d => chartMetric === 'cpu' ? d.login_cpu : d.login_mem_mb },
-            { key: 'game',  name: 'Game',  color: '#10b981', dash: [], val: d => chartMetric === 'cpu' ? d.game_cpu : d.game_mem_mb },
-            { key: 'chat',  name: 'Chat',  color: '#a855f7', dash: [], val: d => chartMetric === 'cpu' ? d.chat_cpu : d.chat_mem_mb },
-            { key: 'launcher', name: 'Launcher', color: '#eab308', dash: [], val: d => chartMetric === 'cpu' ? d.launcher_cpu : d.launcher_mem_mb }
+            { key: 'total', name: 'Total', color: '#ffffff' },
+            { key: 'login', name: 'Login', color: '#38bdf8' },
+            { key: 'game',  name: 'Game',  color: '#10b981' },
+            { key: 'chat',  name: 'Chat',  color: '#a855f7' },
+            { key: 'launcher', name: 'Launcher', color: '#eab308' }
         ];
 
         function setChartMetric(metric) {
             chartMetric = metric;
-            document.getElementById('btn-mode-cpu').classList.toggle('active', metric === 'cpu');
-            document.getElementById('btn-mode-mem').classList.toggle('active', metric === 'mem');
+            const btnBoth = document.getElementById('btn-mode-both');
+            const btnCpu = document.getElementById('btn-mode-cpu');
+            const btnMem = document.getElementById('btn-mode-mem');
+            if (btnBoth) btnBoth.classList.toggle('active', metric === 'both');
+            if (btnCpu) btnCpu.classList.toggle('active', metric === 'cpu');
+            if (btnMem) btnMem.classList.toggle('active', metric === 'mem');
             drawDayTradeChart();
         }
 
@@ -2728,26 +2920,35 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
 
             const w = rect.width;
             const h = rect.height;
-            const padTop = 22;
+            const padTop = 10;
             const padBottom = 8;
             const plotH = h - padTop - padBottom;
 
             ctx.clearRect(0, 0, w, h);
 
-            let maxVal = chartMetric === 'cpu' ? 100.0 : 250.0;
-            if (chartMetric === 'mem') {
-                const maxInHist = Math.max(...historyData.map(d => {
-                    return Math.max(...serverSeriesDefs.map(s => s.val(d) || 0));
-                }));
-                maxVal = Math.max(maxInHist * 1.3, 50.0);
-            }
+            // Compute Max Value for RAM
+            const maxMemInHist = Math.max(...historyData.map(d => {
+                return Math.max(d.total_mem_mb || 0, d.login_mem_mb || 0, d.game_mem_mb || 0, d.chat_mem_mb || 0, d.launcher_mem_mb || 0);
+            }));
+            const maxMem = Math.max(maxMemInHist * 1.25, 50.0);
+            const maxCpu = 100.0;
 
             // 1. Fibonacci Guideline Levels
+            let topLabel = '100%';
+            let botLabel = '0.0%';
+            if (chartMetric === 'mem') {
+                topLabel = `${maxMem.toFixed(0)}MB`;
+                botLabel = '0 MB';
+            } else if (chartMetric === 'both') {
+                topLabel = `100% · ${maxMem.toFixed(0)}MB`;
+                botLabel = '0% · 0MB';
+            }
+
             const fibRatios = [
-                { r: 1.0, label: chartMetric === 'cpu' ? '100%' : `${maxVal.toFixed(0)}MB` },
+                { r: 1.0, label: topLabel },
                 { r: 0.618, label: '61.8%' },
                 { r: 0.382, label: '38.2%' },
-                { r: 0.0, label: '0.0%' }
+                { r: 0.0, label: botLabel }
             ];
 
             ctx.lineWidth = 1;
@@ -2766,88 +2967,71 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             });
             ctx.setLineDash([]);
 
-            // 2. Plot Curves
+            // 2. Plot Curves (Continuous Solid Lines for all metrics)
             const step = w / (historyData.length - 1);
+
             serverSeriesDefs.forEach(s => {
-                ctx.beginPath();
-                ctx.strokeStyle = s.color;
-                ctx.lineWidth = s.key === 'total' ? 2 : 1.7;
-                ctx.setLineDash(s.dash || []);
+                // Draw CPU line if 'cpu' or 'both' (Prominent continuous solid line)
+                if (chartMetric === 'cpu' || chartMetric === 'both') {
+                    ctx.beginPath();
+                    ctx.strokeStyle = s.color;
+                    ctx.lineWidth = s.key === 'total' ? 2.2 : 1.7;
+                    ctx.setLineDash([]);
 
-                historyData.forEach((d, i) => {
-                    const val = s.val(d) || 0;
-                    const norm = Math.min(Math.max(val / maxVal, 0), 1);
-                    const x = i * step;
-                    const y = h - padBottom - (norm * plotH);
+                    historyData.forEach((d, i) => {
+                        const val = d[`${s.key}_cpu`] || 0;
+                        const norm = Math.min(Math.max(val / maxCpu, 0), 1);
+                        const x = i * step;
+                        const y = h - padBottom - (norm * plotH);
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    });
+                    ctx.stroke();
+                }
 
-                    if (i === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                });
-                ctx.stroke();
+                // Draw RAM line if 'mem' or 'both' (Continuous solid line)
+                if (chartMetric === 'mem' || chartMetric === 'both') {
+                    ctx.beginPath();
+                    ctx.strokeStyle = s.color;
+                    ctx.lineWidth = chartMetric === 'both' ? (s.key === 'total' ? 1.5 : 1.2) : (s.key === 'total' ? 2.2 : 1.7);
+                    ctx.setLineDash([]);
+                    if (chartMetric === 'both') {
+                        ctx.globalAlpha = 0.78;
+                    }
+
+                    historyData.forEach((d, i) => {
+                        const val = d[`${s.key}_mem_mb`] || 0;
+                        const norm = Math.min(Math.max(val / maxMem, 0), 1);
+                        const x = i * step;
+                        const y = h - padBottom - (norm * plotH);
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    });
+                    ctx.stroke();
+                    ctx.globalAlpha = 1.0;
+                }
             });
             ctx.setLineDash([]);
 
-            // 3. In-Canvas Glass HUD Legend (Integrated inside the chart, Non-Clickable)
-            const latest = historyData[historyData.length - 1] || {};
-            const legendChips = [
-                { name: 'Total', color: '#ffffff', dash: [4, 3], val: chartMetric === 'cpu' ? `${(latest.total_cpu || 0).toFixed(1)}%` : `${(latest.total_mem_mb || 0).toFixed(0)} MB` },
-                { name: 'Login', color: '#38bdf8', dash: [], val: chartMetric === 'cpu' ? `${(latest.login_cpu || 0).toFixed(1)}%` : `${(latest.login_mem_mb || 0).toFixed(0)} MB` },
-                { name: 'Game', color: '#10b981', dash: [], val: chartMetric === 'cpu' ? `${(latest.game_cpu || 0).toFixed(1)}%` : `${(latest.game_mem_mb || 0).toFixed(0)} MB` },
-                { name: 'Chat', color: '#a855f7', dash: [], val: chartMetric === 'cpu' ? `${(latest.chat_cpu || 0).toFixed(1)}%` : `${(latest.chat_mem_mb || 0).toFixed(0)} MB` },
-                { name: 'Launcher', color: '#eab308', dash: [], val: chartMetric === 'cpu' ? `${(latest.launcher_cpu || 0).toFixed(1)}%` : `${(latest.launcher_mem_mb || 0).toFixed(0)} MB` },
-            ];
-
-            let chipX = 8;
-            const chipY = 11;
-            ctx.font = 'bold 8.5px ui-monospace, SFMono-Regular, Menlo, monospace';
-            ctx.textBaseline = 'middle';
-
-            legendChips.forEach(chip => {
-                const label = `${chip.name}: ${chip.val}`;
-                const textWidth = ctx.measureText(label).width;
-                const chipW = textWidth + 24;
-
-                // Glass Pill Background
-                ctx.fillStyle = 'rgba(7, 12, 23, 0.72)';
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                if (ctx.roundRect) {
-                    ctx.roundRect(chipX, chipY - 8, chipW, 16, 4);
-                } else {
-                    ctx.rect(chipX, chipY - 8, chipW, 16);
-                }
-                ctx.fill();
-                ctx.stroke();
-
-                // Color Indicator Line
-                ctx.strokeStyle = chip.color;
-                ctx.lineWidth = 2;
-                ctx.setLineDash(chip.dash || []);
-                ctx.beginPath();
-                ctx.moveTo(chipX + 5, chipY);
-                ctx.lineTo(chipX + 15, chipY);
-                ctx.stroke();
-                ctx.setLineDash([]);
-
-                // Text Label
-                ctx.fillStyle = chip.color;
-                ctx.textAlign = 'left';
-                ctx.fillText(label, chipX + 19, chipY);
-
-                chipX += chipW + 5;
-            });
-
-            // 4. Update Min/Max Stats
-            const totals = historyData.map(d => chartMetric === 'cpu' ? d.total_cpu : d.total_mem_mb);
-            const minV = Math.min(...totals);
-            const maxV = Math.max(...totals);
-            const unit = chartMetric === 'cpu' ? '%' : ' MB';
-
+            // 3. Update Min/Max Stats
             const minEl = document.getElementById('stat-min-val');
             const maxEl = document.getElementById('stat-max-val');
-            if (minEl) minEl.innerText = `${minV.toFixed(1)}${unit}`;
-            if (maxEl) maxEl.innerText = `${maxV.toFixed(1)}${unit}`;
+            if (minEl && maxEl) {
+                if (chartMetric === 'both') {
+                    const cpus = historyData.map(d => d.total_cpu || 0);
+                    const mems = historyData.map(d => d.total_mem_mb || 0);
+                    minEl.innerText = `${Math.min(...cpus).toFixed(1)}% · ${Math.min(...mems).toFixed(0)}MB`;
+                    maxEl.innerText = `${Math.max(...cpus).toFixed(1)}% · ${Math.max(...mems).toFixed(0)}MB`;
+                } else if (chartMetric === 'cpu') {
+                    const vals = historyData.map(d => d.total_cpu || 0);
+                    minEl.innerText = `${Math.min(...vals).toFixed(1)}%`;
+                    maxEl.innerText = `${Math.max(...vals).toFixed(1)}%`;
+                } else {
+                    const vals = historyData.map(d => d.total_mem_mb || 0);
+                    minEl.innerText = `${Math.min(...vals).toFixed(0)} MB`;
+                    maxEl.innerText = `${Math.max(...vals).toFixed(0)} MB`;
+                }
+            }
         }
 
         // Helper to format long uptime text: e.g. "2 minutos e 2 segundos" (sem parênteses)
@@ -2910,7 +3094,18 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                             uptimeFormatted = `<span class="status-dot" style="display:inline-block; width:8px; height:8px; margin-right:4px; vertical-align:middle;"></span> Offline`;
                         }
 
-                        if (uptimeVal) uptimeVal.innerHTML = uptimeFormatted;
+                        let plainUptime = '';
+                        if (s.status === 'Online') {
+                            plainUptime = formatLongUptime(s.uptime_secs);
+                        } else if (s.status === 'Starting') {
+                            plainUptime = 'Iniciando...';
+                        } else if (s.status === 'Crashed') {
+                            plainUptime = 'Falhou';
+                        } else {
+                            plainUptime = 'Offline';
+                        }
+
+                        if (uptimeVal) uptimeVal.innerText = plainUptime;
                         if (drawerUptime) drawerUptime.innerHTML = uptimeFormatted;
 
                         const clampedCpu = Math.min(100.0, Math.max(0.0, s.cpu_percent || 0));
@@ -2924,7 +3119,23 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                     });
                 }
 
-                // 2. Update Database Card & System Registers
+                // 2. Update Database Cards & System Registers
+                if (data.databases && Array.isArray(data.databases)) {
+                    data.databases.forEach(db => {
+                        const id = (db.id || '').toLowerCase();
+                        const dot = document.getElementById(`dot-db-${id}`);
+                        if (dot) dot.className = db.is_connected ? 'status-dot online' : 'status-dot offline';
+                        const tag = document.getElementById(`tag-db-${id}`);
+                        if (tag) tag.innerText = `${db.engine} (${db.db_name})`;
+                        const valEngine = document.getElementById(`val-db-engine-${id}`);
+                        if (valEngine) valEngine.innerText = db.host ? `${db.engine} (${db.host}:${db.port})` : `${db.engine} (--:--)`;
+                        const valTables = document.getElementById(`val-db-tables-${id}`);
+                        if (valTables) valTables.innerText = `${db.total_tables} Tabelas`;
+                        const valSize = document.getElementById(`val-db-size-${id}`);
+                        if (valSize) valSize.innerText = `${db.total_rows.toLocaleString()} Registros`;
+                    });
+                }
+
                 if (data.database) {
                     const db = data.database;
                     const dotDb = document.getElementById('dot-db');
@@ -3033,12 +3244,15 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             });
 
             const html = filtered.map(entry => {
-                const time = entry.timestamp.split('T')[1]?.split('.')[0] || entry.timestamp;
                 const srv = (entry.server || 'game').toLowerCase();
+                const srvUpper = (entry.server || 'GAME').toUpperCase();
                 const lvl = (entry.level || 'info').toLowerCase();
+                const lvlUpper = (entry.level || 'INFO').toUpperCase();
                 return `<div class="log-line">
-                    <span class="log-ts">[${time}]</span>
-                    <span class="log-badge badge-${srv}">${entry.server.toUpperCase()}</span>
+                    <span class="log-ts">[${entry.timestamp}]</span>
+                    <span class="log-badge badge-${srv}">${srvUpper}</span>
+                    <span class="log-sep">-</span>
+                    <span class="log-lvl lvl-${lvl}">${lvlUpper}:</span>
                     <span class="log-msg srv-${srv} lvl-${lvl}">${escapeHtml(entry.message)}</span>
                 </div>`;
             }).join('');
@@ -3236,15 +3450,244 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             });
         }
 
-        async function controlServer(server, action) {
-            if (action === 'start') {
-                const srv = rawDashboardState && rawDashboardState.servers ? rawDashboardState.servers.find(s => s.name === server) : null;
-                if (srv && (srv.status === 'Online' || srv.status === 'Starting')) {
-                    showToast(`O servidor ${server.toUpperCase()} já está em execução ou inicializando!`);
-                    return;
-                }
-            }
+        let currentDbCheckTarget = null;
+        let pendingStartServerAfterCreate = null;
+        let dbCheckQueue = [];
 
+        function showDbConnErrorModal(info) {
+            currentDbCheckTarget = info.id;
+            const modal = document.getElementById('db-conn-error-modal');
+            const titleEl = document.getElementById('db-conn-err-title');
+            const srvEl = document.getElementById('db-conn-err-srv');
+            const hostEl = document.getElementById('db-conn-err-host');
+            const userEl = document.getElementById('db-conn-err-user');
+            const passEl = document.getElementById('db-conn-err-pass');
+            const fileEl = document.getElementById('db-conn-err-file');
+            const msgEl = document.getElementById('db-conn-err-msg');
+
+            if (titleEl) titleEl.innerText = `Falha de Conexão com o MySQL (${info.server_name || info.id.toUpperCase()})`;
+            if (srvEl) srvEl.innerText = info.server_name || info.id.toUpperCase();
+            if (hostEl) hostEl.innerText = `${info.host || '127.0.0.1'}:${info.port || 3306}`;
+            if (userEl) userEl.innerText = info.user || 'root';
+            if (passEl) passEl.innerText = info.password ? '••••••••' : '(vazio)';
+            if (fileEl) fileEl.innerText = info.properties_file || 'database.properties';
+            if (msgEl) msgEl.innerText = info.error || 'Não foi possível conectar ao socket do MySQL ou as credenciais foram rejeitadas.';
+
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function closeDbConnErrModal() {
+            const modal = document.getElementById('db-conn-error-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        async function retryDbCheck() {
+            closeDbConnErrModal();
+            const target = currentDbCheckTarget || 'cs';
+            try {
+                const res = await fetch(`/api/db/check?db=${target}`);
+                const data = await res.json();
+                if (!data.connected) {
+                    showDbConnErrorModal(data);
+                } else if (!data.db_exists) {
+                    showDbMissingModal(data, pendingStartServerAfterCreate);
+                } else {
+                    showToast(`Conexão com MySQL estabelecida com sucesso para ${data.server_name}!`);
+                    if (pendingStartServerAfterCreate) {
+                        const srv = pendingStartServerAfterCreate;
+                        pendingStartServerAfterCreate = null;
+                        if (srv === 'all') await executeControlAll('start');
+                        else await executeControlServer(srv, 'start');
+                    }
+                }
+            } catch (e) {
+                console.error("Retry DB check error:", e);
+                showToast("Erro ao testar conexão com MySQL");
+            }
+        }
+
+        function showDbMissingModal(info, startServerOnSuccess = null) {
+            currentDbCheckTarget = info.id;
+            pendingStartServerAfterCreate = startServerOnSuccess;
+
+            const modal = document.getElementById('db-missing-modal');
+            const cardForm = document.getElementById('db-missing-card');
+            const cardProg = document.getElementById('db-creating-card');
+            const srvEl = document.getElementById('db-missing-srv-name');
+            const dbNameEl = document.getElementById('db-missing-dbname');
+            const targetDbEl = document.getElementById('db-missing-target-db');
+            const hostEl = document.getElementById('db-missing-host');
+            const fileEl = document.getElementById('db-missing-file');
+
+            if (srvEl) srvEl.innerText = info.server_name || info.id.toUpperCase();
+            if (dbNameEl) dbNameEl.innerText = info.db_name || info.id;
+            if (targetDbEl) targetDbEl.innerText = info.db_name || info.id;
+            if (hostEl) hostEl.innerText = `${info.host || '127.0.0.1'}:${info.port || 3306}`;
+            if (fileEl) fileEl.innerText = info.properties_file || 'database.properties';
+
+            if (cardForm) cardForm.style.display = 'flex';
+            if (cardProg) cardProg.style.display = 'none';
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function closeDbMissingModal() {
+            const modal = document.getElementById('db-missing-modal');
+            if (modal) modal.style.display = 'none';
+            pendingStartServerAfterCreate = null;
+        }
+
+        async function confirmCreateDb() {
+            const cardForm = document.getElementById('db-missing-card');
+            const cardProg = document.getElementById('db-creating-card');
+            const progBar = document.getElementById('db-create-progress-bar');
+            const statusDesc = document.getElementById('db-create-status-desc');
+            const titleEl = document.getElementById('db-create-title');
+            const dot1 = document.getElementById('db-dot-1');
+            const dot2 = document.getElementById('db-dot-2');
+            const dot3 = document.getElementById('db-dot-3');
+
+            if (cardForm) cardForm.style.display = 'none';
+            if (cardProg) cardProg.style.display = 'flex';
+
+            if (dot1) dot1.className = 'sd-dot active';
+            if (dot2) dot2.className = 'sd-dot';
+            if (dot3) dot3.className = 'sd-dot';
+            if (progBar) progBar.style.width = '25%';
+            if (statusDesc) statusDesc.innerText = 'Conectando ao MySQL e preparando schema...';
+            if (titleEl) titleEl.innerText = 'Criando Banco de Dados...';
+
+            const dbTarget = currentDbCheckTarget || 'cs';
+
+            try {
+                setTimeout(() => {
+                    if (dot1) dot1.className = 'sd-dot done';
+                    if (dot2) dot2.className = 'sd-dot active';
+                    if (progBar) progBar.style.width = '65%';
+                    if (statusDesc) statusDesc.innerText = 'Executando arquivo de schema SQL e criando tabelas...';
+                }, 400);
+
+                const res = await fetch('/api/db/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ db: dbTarget })
+                });
+                const data = await res.json();
+
+                if (data.status === 'ok') {
+                    if (dot2) dot2.className = 'sd-dot done';
+                    if (dot3) dot3.className = 'sd-dot done';
+                    if (progBar) progBar.style.width = '100%';
+                    if (titleEl) titleEl.innerText = 'Banco Criado com Sucesso!';
+                    if (statusDesc) statusDesc.innerHTML = `<span style="color:#10b981; font-weight:600;">Banco <b>${data.database || dbTarget}</b> criado com sucesso (${data.table_count || 0} tabelas criadas)!</span>`;
+
+                    setTimeout(async () => {
+                        closeDbMissingModal();
+                        showToast(`Banco de dados ${data.database || dbTarget} inicializado com sucesso!`);
+                        if (typeof loadDbSchema === 'function') loadDbSchema(true);
+
+                        if (pendingStartServerAfterCreate) {
+                            const srv = pendingStartServerAfterCreate;
+                            pendingStartServerAfterCreate = null;
+                            if (srv === 'all') {
+                                await executeControlAll('start');
+                            } else {
+                                await executeControlServer(srv, 'start');
+                            }
+                        } else if (dbCheckQueue && dbCheckQueue.length > 0) {
+                            const nextDb = dbCheckQueue.shift();
+                            setTimeout(() => showDbMissingModal(nextDb, null), 400);
+                        }
+                    }, 1200);
+                } else {
+                    if (titleEl) titleEl.innerText = 'Erro na Criação do Banco';
+                    if (statusDesc) statusDesc.innerHTML = `<span style="color:#ef4444;">${data.message || 'Falha ao executar script SQL'}</span>`;
+                    if (dot2) dot2.className = 'sd-dot';
+                    if (dot3) dot3.className = 'sd-dot';
+                    setTimeout(() => {
+                        if (cardForm) cardForm.style.display = 'flex';
+                        if (cardProg) cardProg.style.display = 'none';
+                    }, 3500);
+                }
+            } catch (e) {
+                console.error("Error creating database:", e);
+                if (titleEl) titleEl.innerText = 'Erro na Requisição';
+                if (statusDesc) statusDesc.innerHTML = `<span style="color:#ef4444;">Erro de comunicação: ${e.message}</span>`;
+                setTimeout(() => {
+                    if (cardForm) cardForm.style.display = 'flex';
+                    if (cardProg) cardProg.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        async function checkServerDatabaseBeforeStart(server) {
+            try {
+                const res = await fetch(`/api/db/check?db=${server}`);
+                const data = await res.json();
+                if (!data.connected) {
+                    showDbConnErrorModal(data);
+                    return false;
+                }
+                if (!data.db_exists) {
+                    showDbMissingModal(data, server);
+                    return false;
+                }
+                return true;
+            } catch (e) {
+                console.error("Database check failed:", e);
+                return true;
+            }
+        }
+
+        async function checkAllDatabasesBeforeStart() {
+            try {
+                const res = await fetch('/api/db/check_all');
+                const list = await res.json();
+                if (Array.isArray(list)) {
+                    for (const item of list) {
+                        if (!item.connected) {
+                            showDbConnErrorModal(item);
+                            return false;
+                        }
+                    }
+                    const missing = list.filter(item => !item.db_exists);
+                    if (missing.length > 0) {
+                        dbCheckQueue = missing.slice(1);
+                        showDbMissingModal(missing[0], 'all');
+                        return false;
+                    }
+                }
+                return true;
+            } catch (e) {
+                console.error("Database check_all failed:", e);
+                return true;
+            }
+        }
+
+        async function startupDbCheck() {
+            try {
+                const res = await fetch('/api/db/check_all');
+                const list = await res.json();
+                if (Array.isArray(list)) {
+                    // 1. Connection check first
+                    for (const item of list) {
+                        if (!item.connected) {
+                            showDbConnErrorModal(item);
+                            return;
+                        }
+                    }
+                    // 2. Missing database check (Chat Server is first in array)
+                    const missing = list.filter(item => !item.db_exists);
+                    if (missing.length > 0) {
+                        dbCheckQueue = missing.slice(1);
+                        showDbMissingModal(missing[0], null);
+                    }
+                }
+            } catch (e) {
+                console.warn("Startup database check warning:", e);
+            }
+        }
+
+        async function executeControlServer(server, action) {
             try {
                 const res = await fetch(`/api/control/${server}/${action}`, { method: 'POST' });
                 const json = await res.json();
@@ -3261,14 +3704,22 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             }
         }
 
-        async function controlAll(action) {
+        async function controlServer(server, action) {
             if (action === 'start') {
-                const anyRunning = rawDashboardState && rawDashboardState.servers && rawDashboardState.servers.some(s => s.status === 'Online' || s.status === 'Starting');
-                if (anyRunning) {
-                    showToast("Iniciando servidores pendentes em sequência...");
+                const srv = rawDashboardState && rawDashboardState.servers ? rawDashboardState.servers.find(s => s.name === server) : null;
+                if (srv && (srv.status === 'Online' || srv.status === 'Starting')) {
+                    showToast(`O servidor ${server.toUpperCase()} já está em execução ou inicializando!`);
+                    return;
                 }
+
+                const dbReady = await checkServerDatabaseBeforeStart(server);
+                if (!dbReady) return;
             }
 
+            await executeControlServer(server, action);
+        }
+
+        async function executeControlAll(action) {
             try {
                 const res = await fetch(`/api/control/all/${action}`, { method: 'POST' });
                 const json = await res.json();
@@ -3283,6 +3734,20 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
                 console.error(`Error controlling all servers (${action}):`, e);
                 showToast(`Erro ao controlar servidores`);
             }
+        }
+
+        async function controlAll(action) {
+            if (action === 'start') {
+                const anyRunning = rawDashboardState && rawDashboardState.servers && rawDashboardState.servers.some(s => s.status === 'Online' || s.status === 'Starting');
+                if (anyRunning) {
+                    showToast("Iniciando servidores pendentes em sequência...");
+                }
+
+                const allDbReady = await checkAllDatabasesBeforeStart();
+                if (!allDbReady) return;
+            }
+
+            await executeControlAll(action);
         }
 
         async function toggleFullscreen() {
@@ -3571,7 +4036,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         // DATABASE STUDIO WORKBENCH FULL LOGIC
         // ==========================================
         let dbDatabases = [];
-        let currentDbId = "aiondbls_gs";
+        let currentDbId = null;
         let currentDbTable = null;
         let currentDbPage = 1;
         let currentDbLimit = 50;
@@ -4576,6 +5041,7 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
         fetchMetrics();
         fetchLogs();
         loadDbSchema();
+        setTimeout(startupDbCheck, 600);
     </script>
 </body>
 </html>

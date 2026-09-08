@@ -17,8 +17,9 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo [*] Publicando binario em '..\2 - Emulador [Produto Final]\Aion Classic - EMU.exe'...
-if not exist "..\2 - Emulador [Produto Final]" mkdir "..\2 - Emulador [Produto Final]"
-copy /Y "target\release\aion-classic-emu.exe" "..\2 - Emulador [Produto Final]\Aion Classic - EMU.exe" >nul
+set "DEST=D:\AION CLASSIC 5.0 - BEYOND TESTE\EMULADOR FINAL\Aion Classic - EMU.exe"
+echo [*] Publicando binario em "%DEST%"...
+copy /Y "target\release\aion-classic-emu.exe" "%DEST%" >nul
 
-echo [OK] Aion Classic - EMU.exe publicado com sucesso em '2 - Emulador [Produto Final]'.
+echo [OK] Aion Classic - EMU.exe publicado com sucesso em EMULADOR FINAL.
+
