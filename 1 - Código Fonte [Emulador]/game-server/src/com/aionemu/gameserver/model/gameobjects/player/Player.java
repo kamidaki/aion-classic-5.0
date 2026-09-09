@@ -134,7 +134,6 @@ public class Player extends Creature {
 	private final Map<Integer, ItemCooldown> itemCoolDowns = new ConcurrentHashMap<>();
 	private final PortalCooldownList portalCooldownList;
 	private final Cooldowns craftCooldowns;
-	private final Cooldowns houseObjectCooldowns;
 	private long nextSkillUse;
 	private SkillTemplate lastSkill;
 	private long hitTimeBoostExpireTimeMillis;
@@ -201,7 +200,6 @@ public class Player extends Creature {
 			cabinets[i] = new PlayerStorage(this, StorageType.getStorageTypeById(StorageType.HOUSE_WH_MIN + i));
 		this.portalCooldownList = new PortalCooldownList(this);
 		this.craftCooldowns = new Cooldowns();
-		this.houseObjectCooldowns = new Cooldowns();
 		this.toyPetList = new PetList(this);
 		this.playerBattlePass = new PlayerBattlePass();
 		getController().setOwner(this);
@@ -1128,10 +1126,6 @@ public class Player extends Creature {
 
 	public Cooldowns getCraftCooldowns() {
 		return craftCooldowns;
-	}
-
-	public Cooldowns getHouseObjectCooldowns() {
-		return houseObjectCooldowns;
 	}
 
 	public Npc getPostman() {

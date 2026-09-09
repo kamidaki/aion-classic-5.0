@@ -55,8 +55,6 @@ public class RemoveCd extends AdminCommand {
 				}
 				PacketSendUtility.sendPacket(player, new SM_ITEM_COOLDOWN(dummyCds));
 
-				player.getHouseObjectCooldowns().clear();
-
 				if (player.equals(admin)) {
 					sendInfo(admin, "Your item and skill cooldowns were removed.");
 				} else {

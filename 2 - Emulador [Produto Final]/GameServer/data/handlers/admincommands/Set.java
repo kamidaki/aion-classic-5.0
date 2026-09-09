@@ -3,7 +3,6 @@ package admincommands;
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.services.ClassChangeService;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
@@ -35,10 +34,7 @@ public class Set extends AdminCommand {
 		}
 		Player target = admin.getTarget() instanceof Player player ? player : admin;
 
-		if (params[0].equals("class")) {
-			PlayerClass playerClass = PlayerClass.valueOf(params[1].toUpperCase());
-			ClassChangeService.setClass(target, playerClass, true, true);
-		} else if (params[0].equals("level")) {
+		if (params[0].equals("level")) {
 			int level = Math.min(GSConfig.PLAYER_MAX_LEVEL, Integer.parseInt(params[1]));
 			target.getCommonData().setLevel(level);
 			sendInfo(admin, "Set " + target.getName() + " level to " + target.getLevel());

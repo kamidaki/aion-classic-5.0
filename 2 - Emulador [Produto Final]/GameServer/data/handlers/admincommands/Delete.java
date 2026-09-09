@@ -2,7 +2,6 @@ package admincommands;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Gatherable;
-import com.aionemu.gameserver.model.gameobjects.HouseObject;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -47,14 +46,14 @@ public class Delete extends AdminCommand {
 	}
 
 	private boolean delete(Player admin, VisibleObject target, boolean notifyOnFail) {
-		if (!(target instanceof Npc) && !(target instanceof Gatherable) && !(target instanceof HouseObject)) {
+		if (!(target instanceof Npc) && !(target instanceof Gatherable)) {
 			if (notifyOnFail)
 				PacketSendUtility.sendPacket(admin, SM_SYSTEM_MESSAGE.STR_INVALID_TARGET());
 			return false;
 		}
 
 		SpawnTemplate spawn = target.getSpawn();
-		if (spawn != null) { // house objects have no spawn template
+		if (spawn != null) {
 			if (spawn.hasPool()) {
 				if (notifyOnFail)
 					sendInfo(admin, "Can't delete pooled spawn template.");
