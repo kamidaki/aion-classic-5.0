@@ -18,7 +18,6 @@ import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.riftspawns.RiftSpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.siegespawns.SiegeSpawnTemplate;
 import com.aionemu.gameserver.model.templates.spawns.vortexspawns.VortexSpawnTemplate;
-import com.aionemu.gameserver.services.HousingService;
 import com.aionemu.gameserver.services.rift.RiftManager;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.WorldMap;
@@ -182,8 +181,8 @@ public class SpawnEngine {
 			else
 				log.info('[' + eventTemplate.getName() + "] Spawned " + spawnedCounter + " event objects in " + instance);
 		}
-		if (eventTemplate == null)
-			HousingService.getInstance().spawnHouses(instance, ownerId);
+		if (eventTemplate == null) {
+		}
 	}
 
 	public static boolean checkPool(SpawnGroup spawn) {

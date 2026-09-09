@@ -132,9 +132,7 @@ public abstract class AbstractQuestHandler {
 		return HandlerResult.UNKNOWN;
 	}
 
-	public boolean onHouseItemUseEvent(QuestEnv env) {
-		return false;
-	}
+	
 
 	public boolean onGetItemEvent(QuestEnv env) {
 		return false;

@@ -49,9 +49,6 @@ import com.aionemu.gameserver.services.player.BattlePassService;
 import com.aionemu.gameserver.services.player.PlayerLimitService;
 import com.aionemu.gameserver.services.transfers.PlayerTransferService;
 import com.aionemu.gameserver.spawnengine.SpawnEngine;
-import com.aionemu.gameserver.taskmanager.tasks.housing.AuctionAutoFillTask;
-import com.aionemu.gameserver.taskmanager.tasks.housing.AuctionEndTask;
-import com.aionemu.gameserver.taskmanager.tasks.housing.MaintenanceTask;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.chathandlers.ChatProcessor;
 import com.aionemu.gameserver.utils.cron.ThreadPoolManagerRunnableRunner;
@@ -113,11 +110,6 @@ public class GameServer {
 		RiftService.getInstance().initRiftLocations();
 		LegionDominionService.getInstance().initLocations();
 
-		// HousingService.getInstance(); // 4.8 retail residue
-		// HousingBidService.getInstance(); // 4.8 retail residue
-		// AuctionEndTask.getInstance(); // 4.8 retail residue
-		// AuctionAutoFillTask.getInstance(); // 4.8 retail residue
-		// MaintenanceTask.getInstance(); // 4.8 retail residue
 		ChallengeTaskService.getInstance();
 
 		SpawnEngine.spawnAll();

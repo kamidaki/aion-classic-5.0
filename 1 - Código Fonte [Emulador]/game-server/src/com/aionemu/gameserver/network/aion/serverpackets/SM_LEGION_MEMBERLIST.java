@@ -3,11 +3,9 @@ package com.aionemu.gameserver.network.aion.serverpackets;
 import java.util.List;
 
 import com.aionemu.gameserver.configs.network.NetworkConfig;
-import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.team.legion.LegionMember;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
-import com.aionemu.gameserver.services.HousingService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -43,9 +41,8 @@ public class SM_LEGION_MEMBERLIST extends AionServerPacket {
 		writeS(legionMember.getSelfIntro());
 		writeS(legionMember.getNickname());
 		writeD(legionMember.isOnline() ? 0 : legionMember.getLastOnlineEpochSeconds());
-		House house = HousingService.getInstance().findActiveHouse(legionMember.getObjectId());
-		writeD(house == null ? 0 : house.getAddress().getId());
-		writeD(house == null ? 0 : house.getDoorState().getId());
+		writeD(0);
+writeD(0);
 		writeD(NetworkConfig.GAMESERVER_ID); // displays server number for each away player in region field
 	}
 }

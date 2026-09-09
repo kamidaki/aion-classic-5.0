@@ -215,9 +215,6 @@ public class StaticData {
 	@XmlElement(name = "instance_bonusattrs")
 	public InstanceBuffData instanceBuffData;
 
-	@XmlElement(name = "housing_objects")
-	public HousingObjectData housingObjectData;
-
 	@XmlElement(name = "instance_exits")
 	public InstanceExitData instanceExitData;
 
@@ -227,20 +224,8 @@ public class StaticData {
 	@XmlElement(name = "portal_templates2")
 	public Portal2Data portalTemplate2;
 
-	@XmlElement(name = "house_lands")
-	public HouseData houseData;
-
-	@XmlElement(name = "buildings")
-	public HouseBuildingData houseBuildingData;
-
-	@XmlElement(name = "house_parts")
-	public HousePartsData housePartsData;
-
 	@XmlElement(name = "curing_objects")
 	public CuringObjectsData curingObjectsData;
-
-	@XmlElement(name = "house_npcs")
-	public HouseNpcsData houseNpcsData;
 
 	@XmlElement(name = "assembly_items")
 	public AssemblyItemsData assemblyItemData;
@@ -376,14 +361,9 @@ public class StaticData {
 		log.info("Loaded " + eventData.size() + " events");
 		log.info("Loaded " + panelSkillsData.size() + " skill panel entries");
 		log.info("Loaded " + instanceBuffData.size() + " instance Buffs entries");
-		log.info("Loaded " + housingObjectData.size() + " housing object entries");
 		log.info("Loaded " + instanceExitData.size() + " instance exit entries");
 		log.info("Loaded " + portalLocData.size() + " portal loc entries");
 		log.info("Loaded " + portalTemplate2.size() + " portal templates2 entries");
-		log.info("Loaded " + houseData.size() + " housing lands");
-		log.info("Loaded " + houseBuildingData.size() + " house building styles");
-		log.info("Loaded " + housePartsData.size() + " house parts");
-		log.info("Loaded " + houseNpcsData.size() + " house spawns");
 		log.info("Loaded " + curingObjectsData.size() + " curing object entries");
 		log.info("Loaded " + assemblyItemData.size() + " assembly items entries");
 		log.info("Loaded " + challengeData.size() + " challenge tasks entries");

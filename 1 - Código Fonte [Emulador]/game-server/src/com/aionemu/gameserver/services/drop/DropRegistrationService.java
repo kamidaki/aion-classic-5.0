@@ -22,7 +22,6 @@ import com.aionemu.gameserver.model.items.ItemId;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.model.team.common.legacy.LootGroupRules;
 import com.aionemu.gameserver.model.templates.globaldrops.*;
-import com.aionemu.gameserver.model.templates.housing.HouseType;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.npc.AbyssNpcType;
 import com.aionemu.gameserver.model.templates.spawns.basespawns.BaseSpawnTemplate;
@@ -211,8 +210,6 @@ public class DropRegistrationService {
 		if (killer.getCommonData().getCurrentReposeEnergy() > 0) // EoR 5% Boost drop rate
 			boostDropRate += 5;
 		if (killer.getCommonData().getCurrentSalvationPercent() > 0) // EoS 5% Boost drop rate
-			boostDropRate += 5;
-		if (killer.getActiveHouse() != null && killer.getActiveHouse().getHouseType() == HouseType.PALACE) // Deed to Palace 5% Boost drop rate
 			boostDropRate += 5;
 
 		return Rates.get(killer, RatesConfig.DROP_RATES) * boostDropRate / 100f;

@@ -21,7 +21,7 @@ public class ChatChannels {
 
 	private static Channel addChannel(ChannelType ct, int gameServerId, Race race, String channelMeta) {
 		Channel channel = switch (ct) {
-			case REGION -> new RegionChannel(gameServerId, race, channelMeta);
+			case REGION, GOTCHA -> new RegionChannel(gameServerId, race, channelMeta);
 			case TRADE -> new TradeChannel(gameServerId, race, channelMeta);
 			case LFG -> new LfgChannel(gameServerId, race);
 			case JOB -> new JobChannel(gameServerId, race, channelMeta);
@@ -45,7 +45,7 @@ public class ChatChannels {
 
 	/**
 	 * @param identifier
-	 *          - the identifier of the requested channel, e.g. @trade_Housing_barrack1.0.AION.KOR
+	 *          - the identifier of the requested channel, e.g. @ trade_Housing_barrack 1.0.AION.KOR
 	 * @return Channel with this identifier or creates and returns a new channel if no channel with such identifier exists.<br>
 	 *         Null if no channel with this identifier exists and a new channel was not created.
 	 */
@@ -61,7 +61,11 @@ public class ChatChannels {
 		String[] channelRestrictions = parts[2].split("\\."); // { 1, 0, AION, KOR }
 
 		ChannelType ct = ChannelType.getByIdentifier(channelType[0]);
-		String channelMeta = channelType[1];
+		if (ct == null) {
+			log.warn("{} requested unknown channel type: {}", client, channelType[0]);
+			return null;
+		}
+		String channelMeta = channelType.length > 1 ? channelType[1] : "";
 		int gameServerId = Integer.parseInt(channelRestrictions[0]);
 		Race race = Race.getById(Integer.parseInt(channelRestrictions[1]));
 		if (client.getRace() != race && client.getAccessLevel() == 0) {

@@ -8,6 +8,7 @@ import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerAppearance;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
 import com.aionemu.gameserver.model.items.GodStone;
+import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.model.team.legion.LegionMember;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
@@ -138,7 +139,11 @@ public abstract class AbstractPlayerInfoPacket extends AionServerPacket {
 		int mask = 0;
 		if (items != null) {
 			for (Item item : items) {
-				mask |= item.getEquipmentSlot();
+				long slot = item.getEquipmentSlot();
+				if (item.getItemTemplate().isTwoHandWeapon()) {
+					slot = ItemSlot.MAIN_HAND.getSlotIdMask();
+				}
+				mask |= (int) slot;
 			}
 		}
 		writeD(mask);
@@ -148,7 +153,11 @@ public abstract class AbstractPlayerInfoPacket extends AionServerPacket {
 				Item matchedItem = null;
 				if (items != null) {
 					for (Item item : items) {
-						if ((item.getEquipmentSlot() & bit) != 0) {
+						long slot = item.getEquipmentSlot();
+						if (item.getItemTemplate().isTwoHandWeapon()) {
+							slot = ItemSlot.MAIN_HAND.getSlotIdMask();
+						}
+						if ((slot & bit) != 0) {
 							matchedItem = item;
 							break;
 						}

@@ -28,5 +28,6 @@ public class SM_ACTION_ANIMATION extends AionServerPacket {
 		writeD(targetObjectId);
 		writeH(actionAnimation.getId());
 		writeD(levelOrObjectId);
+		writeD(0);
 	}
 }

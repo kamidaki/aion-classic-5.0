@@ -74,6 +74,7 @@ public class CM_EMOTION extends AionClientPacket {
 			case NEUTRALMODE_IN_MOVE: // remove equip weapon
 			case NEUTRALMODE_IN_STANDING: // remove equip weapon
 			case END_SPRINT:
+			case DASH_END:
 				break;
 			case WINDSTREAM_STRAFE:
 				readC(); // unk 2
@@ -102,6 +103,10 @@ public class CM_EMOTION extends AionClientPacket {
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
 		if (player.isDead()) {
+			return;
+		}
+
+		if (emotionType == EmotionType.DASH_END) {
 			return;
 		}
 

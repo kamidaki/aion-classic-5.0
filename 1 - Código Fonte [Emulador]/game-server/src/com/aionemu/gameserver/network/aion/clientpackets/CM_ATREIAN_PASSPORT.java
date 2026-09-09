@@ -7,10 +7,8 @@ import java.util.Set;
 
 import org.slf4j.LoggerFactory;
 
-import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.services.AtreianPassportService;
 
 /**
  * @author Lost Academy Team & Durak

@@ -12,7 +12,8 @@ public enum ChannelType {
 	TRADE("trade"),
 	LFG("partyFind"),
 	JOB("job"),
-	LANG("User");
+	LANG("User"),
+	GOTCHA("gotcha");
 
 	private static final Map<String, ChannelType> channelByIdentifier = new HashMap<>();
 
@@ -20,7 +21,7 @@ public enum ChannelType {
 
 	static {
 		for (ChannelType ct : values())
-			channelByIdentifier.put(ct.getIdentifier(), ct);
+			channelByIdentifier.put(ct.getIdentifier().toLowerCase(), ct);
 	}
 
 	ChannelType(String identifier) {
@@ -32,6 +33,8 @@ public enum ChannelType {
 	}
 
 	public static ChannelType getByIdentifier(String identifier) {
-		return channelByIdentifier.get(identifier);
+		if (identifier == null)
+			return null;
+		return channelByIdentifier.get(identifier.toLowerCase());
 	}
 }

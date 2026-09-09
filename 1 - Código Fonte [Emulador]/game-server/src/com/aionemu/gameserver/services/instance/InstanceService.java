@@ -13,9 +13,7 @@ import com.aionemu.gameserver.instance.InstanceEngine;
 import com.aionemu.gameserver.instance.handlers.InstanceHandler;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.team.GeneralTeam;
-import com.aionemu.gameserver.model.templates.housing.BuildingType;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.AutoGroupService;
 import com.aionemu.gameserver.services.event.Event;
@@ -121,18 +119,7 @@ public class InstanceService {
 		return null;
 	}
 
-	/**
-	 * @return Instance for the given house or studio.
-	 */
-	public static WorldMapInstance getOrCreateHouseInstance(House house) {
-		WorldMapInstance instance = house.getPosition() == null ? null : house.getPosition().getWorldMapInstance();
-		if (instance == null && house.getBuilding().getType() == BuildingType.PERSONAL_INS) { // studio
-			instance = getOrCreatePersonalInstance(house.getAddress().getMapId(), house.getOwnerId());
-		}
-		if (instance == null) // should never happen since only studios are spawned on demand
-			throw new NullPointerException(house + " has no instance");
-		return instance;
-	}
+
 
 	private static WorldMapInstance getOrCreatePersonalInstance(int worldId, int ownerId) {
 		if (ownerId == 0 || !WorldMapType.getWorld(worldId).isPersonal())

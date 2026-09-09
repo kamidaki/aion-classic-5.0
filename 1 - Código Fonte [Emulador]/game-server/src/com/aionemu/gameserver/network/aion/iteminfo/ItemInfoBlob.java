@@ -62,7 +62,7 @@ public class ItemInfoBlob extends PacketWriteHelper {
 		if (item.getConditioningInfo() != null) {
 			blob.addBlobEntry(ItemBlobType.CONDITIONING_INFO);
 		}
-		if (item.hasFusionedItem() || itemTemplate.isTwoHandWeapon()) {
+		if (item.hasFusionedItem()) {
 			blob.addBlobEntry(ItemBlobType.COMPOSITE_ITEM);
 		}
 

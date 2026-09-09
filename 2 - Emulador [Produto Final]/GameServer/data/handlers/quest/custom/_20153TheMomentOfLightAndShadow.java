@@ -124,9 +124,14 @@ public class _20153TheMomentOfLightAndShadow extends AbstractQuestHandler {
 			return true;
 		}
 		QuestState qs = player.getQuestStateList().getQuestState(questId);
-		if (qs == null && player.getRace() == Race.ASMODIANS && player.getLevel() >= 1) {
-			env.setQuestId(questId);
-			return QuestService.startQuest(env);
+		if (player.getRace() == Race.ASMODIANS && player.getLevel() >= 1) {
+			if (qs == null) {
+				env.setQuestId(questId);
+				return QuestService.startQuest(env);
+			} else if (qs.getStatus() == QuestStatus.START) {
+				PacketSendUtility.sendPacket(player, new com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_ACTION(questId, qs.getStatus(), qs.getQuestVars().getQuestVars()));
+				return true;
+			}
 		}
 		return false;
 	}

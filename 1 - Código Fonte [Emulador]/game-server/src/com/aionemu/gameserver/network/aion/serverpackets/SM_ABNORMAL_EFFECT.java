@@ -45,19 +45,15 @@ public class SM_ABNORMAL_EFFECT extends AionServerPacket {
 		writeC(slots); // 4.5
 		writeH(filtered.size()); // effects size
 		for (Effect effect : filtered) {
-			switch (effectType) {
-				case 2:
-					writeD(effect.getEffectorId()); // fall-through on purpose
-				case 1:
-					writeH(effect.getSkillId());
-					writeC(effect.getSkillLevel());
-					writeC(effect.getTargetSlot().ordinal());
-					writeD(effect.getRemainingTimeToDisplay());
-					break;
-				default:
-					writeH(effect.getSkillId());
-					writeC(effect.getSkillLevel());
-			}
+			writeD(effected.getObjectId());
+			writeD(effect.getEffectorId());
+			writeH(effect.getSkillId());
+			writeC(effect.getSkillLevel());
+			writeC(effect.getTargetSlot().ordinal());
+			writeD(effect.getRemainingTimeToDisplay());
+			writeD(0);
+			writeH(0);
+			writeC(1);
 		}
 	}
 }

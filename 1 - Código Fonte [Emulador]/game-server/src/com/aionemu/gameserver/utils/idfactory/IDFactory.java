@@ -129,11 +129,9 @@ public class IDFactory {
 	private void initializeUsedIds() {
 		lockIds(PlayerDAO.getUsedIDs());
 		lockIds(InventoryDAO.getUsedIDs());
-		lockIds(PlayerRegisteredItemsDAO.getUsedIDs());
 		lockIds(LegionDAO.getUsedIDs());
 		lockIds(MailDAO.getUsedIDs());
 		lockIds(GuideDAO.getUsedIDs());
-		lockIds(HousesDAO.getUsedIDs());
 		lockIds(PlayerPetsDAO.getUsedIDs());
 		lockIds(PlayerWardrobeDAO.getUsedIDs());
 		lockIds(PlayerBattlePassDAO.getUsedIDs());

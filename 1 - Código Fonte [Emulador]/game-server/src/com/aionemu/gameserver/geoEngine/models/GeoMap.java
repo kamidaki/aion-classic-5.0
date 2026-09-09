@@ -19,7 +19,6 @@ import com.aionemu.gameserver.geoEngine.scene.DespawnableNode.DespawnableType;
 import com.aionemu.gameserver.geoEngine.scene.Geometry;
 import com.aionemu.gameserver.geoEngine.scene.Node;
 import com.aionemu.gameserver.geoEngine.scene.Spatial;
-import com.aionemu.gameserver.model.house.HouseDoorState;
 import com.aionemu.gameserver.world.RegionUtil;
 import com.aionemu.gameserver.world.WorldMapType;
 
@@ -38,8 +37,7 @@ public class GeoMap extends Node {
 
 	private final Map<Integer, DespawnableNode> despawnables = new HashMap<>();
 	private final Map<Integer, List<DespawnableNode>> despawnableTownObjects = new HashMap<>();
-	private final Map<Integer, DespawnableNode> despawnableHouseDoors = new HashMap<>();
-	private final Map<Integer, DespawnableNode[]> despawnableDoors = new HashMap<>();
+		private final Map<Integer, DespawnableNode[]> despawnableDoors = new HashMap<>();
 	private final int mapId;
 
 	public GeoMap(int mapId) {
@@ -59,11 +57,6 @@ public class GeoMap extends Node {
 					break;
 				case PLACEABLE: // placeable
 					despawnables.put(desp.id, desp);
-					break;
-				case HOUSE: // house
-					break;
-				case HOUSE_DOOR: // house door
-					despawnableHouseDoors.put(desp.id, desp);
 					break;
 				case TOWN_OBJECT: // town object
 					despawnableTownObjects.computeIfAbsent(desp.id, k -> new ArrayList<>()).add(desp);
@@ -304,11 +297,7 @@ public class GeoMap extends Node {
 		}
 	}
 
-	public void setHouseDoorState(int instanceId, int houseAddress, HouseDoorState state) {
-		DespawnableNode houseDoor = despawnableHouseDoors.get(houseAddress);
-		if (houseDoor != null)
-			houseDoor.setActive(instanceId, state != HouseDoorState.OPEN);
-	}
+	
 
 	public void setDoorState(int instanceId, int doorId, boolean open) {
 		DespawnableNode[] doors = despawnableDoors.get(doorId);
@@ -367,8 +356,7 @@ public class GeoMap extends Node {
 		super.cleanUp();
 		despawnables.clear();
 		despawnableTownObjects.clear();
-		despawnableHouseDoors.clear();
-		despawnableDoors.clear();
+				despawnableDoors.clear();
 		terrain = null;
 	}
 }

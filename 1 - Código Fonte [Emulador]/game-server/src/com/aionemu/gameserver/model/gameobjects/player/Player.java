@@ -39,7 +39,6 @@ import com.aionemu.gameserver.model.gameobjects.player.title.TitleList;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureVisualState;
 import com.aionemu.gameserver.model.gameobjects.state.FlyState;
-import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.items.ItemCooldown;
 import com.aionemu.gameserver.model.items.storage.*;
 import com.aionemu.gameserver.model.skill.PlayerSkillList;
@@ -65,7 +64,6 @@ import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.DuelService;
 import com.aionemu.gameserver.services.ExchangeService;
-import com.aionemu.gameserver.services.HousingService;
 import com.aionemu.gameserver.skillengine.condition.ChainCondition;
 import com.aionemu.gameserver.skillengine.effect.RebirthEffect;
 import com.aionemu.gameserver.skillengine.model.ChainSkills;
@@ -96,8 +94,7 @@ public class Player extends Creature {
 	private TitleList titleList;
 	private QuestStateList questStateList;
 	private RecipeList recipeList;
-	private List<House> houses;
-
+	
 	private ResponseRequester requester;
 	private boolean lookingForGroup = false;
 	private final Equipment equipment;
@@ -1565,23 +1562,9 @@ public class Player extends Creature {
 		return false;
 	}
 
-	public List<House> getHouses() {
-		if (houses == null)
-			resetHouses();
-		return houses;
-	}
+	public List<Object> getHouses() { return java.util.Collections.emptyList(); }
 
-	public void resetHouses() {
-		houses = HousingService.getInstance().findPlayerHouses(getObjectId());
-	}
-
-	public House getActiveHouse() {
-		for (House house : getHouses())
-			if (!house.isInactive())
-				return house;
-
-		return null;
-	}
+	public Object getActiveHouse() { return null; }
 
 	public float[] getBattleReturnCoords() {
 		return battleReturnCoords;

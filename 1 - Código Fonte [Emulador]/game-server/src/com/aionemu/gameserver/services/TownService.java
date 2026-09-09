@@ -11,9 +11,6 @@ import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TribeClass;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.house.House;
-import com.aionemu.gameserver.model.templates.housing.HouseAddress;
-import com.aionemu.gameserver.model.templates.housing.HousingLand;
 import com.aionemu.gameserver.model.templates.spawns.housing.TownSpawnTemplate;
 import com.aionemu.gameserver.model.town.Town;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_TOWNS_LIST;
@@ -41,28 +38,6 @@ public class TownService {
 	private TownService() {
 		elyosTowns = TownDAO.load(Race.ELYOS);
 		asmosTowns = TownDAO.load(Race.ASMODIANS);
-		if (elyosTowns.size() == 0 && asmosTowns.size() == 0) {
-			for (HousingLand land : DataManager.HOUSE_DATA.getLands()) {
-				for (HouseAddress address : land.getAddresses()) {
-					if (address.getTownId() == 0)
-						continue;
-					else {
-						Race townRace = DataManager.NPC_DATA.getNpcTemplate(land.getManagerNpcId()).getTribe() == TribeClass.GENERAL ? Race.ELYOS
-							: Race.ASMODIANS;
-						if ((townRace == Race.ELYOS && !elyosTowns.containsKey(address.getTownId()))
-							|| (townRace == Race.ASMODIANS && !asmosTowns.containsKey(address.getTownId()))) {
-							Town town = new Town(address.getTownId(), townRace);
-							if (townRace == Race.ELYOS)
-								elyosTowns.put(town.getId(), town);
-							else
-								asmosTowns.put(town.getId(), town);
-							TownDAO.store(town);
-						}
-
-					}
-				}
-			}
-		}
 		log.info("Loaded " + elyosTowns.size() + " elyos towns.");
 		log.info("Loaded " + asmosTowns.size() + " asmodian towns.");
 	}
@@ -75,11 +50,7 @@ public class TownService {
 	}
 
 	public int getTownResidence(Player player) {
-		House house = player.getActiveHouse();
-		if (house == null)
-			return 0;
-		else
-			return house.getAddress().getTownId();
+		return 0;
 	}
 
 	public int getTownIdByPosition(Creature creature) {

@@ -33,15 +33,12 @@ import com.aionemu.gameserver.model.gameobjects.player.emotion.Emotion;
 import com.aionemu.gameserver.model.gameobjects.player.motion.Motion;
 import com.aionemu.gameserver.model.gameobjects.player.title.Title;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
-import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.items.storage.IStorage;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.model.items.storage.StorageType;
 import com.aionemu.gameserver.model.siege.FortressLocation;
 import com.aionemu.gameserver.model.team.alliance.PlayerAllianceService;
 import com.aionemu.gameserver.model.team.group.PlayerGroupService;
-import com.aionemu.gameserver.model.templates.housing.HouseAddress;
-import com.aionemu.gameserver.model.templates.housing.HouseType;
 import com.aionemu.gameserver.model.vortex.VortexLocation;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
@@ -393,13 +390,7 @@ public final class PlayerEnterWorldService {
 		if (player.getCommonData().isReadyForReposeEnergy() && secondsOffline > 4 * 3600) {
 			double hours = secondsOffline / 3600d;
 			long addReposeEnergy = Math.round((hours / 48) * player.getCommonData().getMaxReposeEnergy());
-			House house = player.getActiveHouse();
-			if (house != null) {
-				HouseAddress hPos = house.getAddress();
-				if (player.getWorldId() == hPos.getMapId()
-					&& PositionUtil.isInRange(player.getX(), player.getY(), player.getZ(), hPos.getX(), hPos.getY(), hPos.getZ(), 7))
-					addReposeEnergy *= house.getHouseType() == HouseType.STUDIO ? 1.05f : 1.10f;
-			}
+			
 			player.getCommonData().addReposeEnergy(addReposeEnergy);
 		}
 	}
@@ -456,9 +447,7 @@ class GeneralUpdateTask implements Runnable {
 				PlayerSkillListDAO.storeSkills(player);
 				PlayerQuestListDAO.store(player);
 				PlayerDAO.storePlayer(player);
-				for (House house : player.getHouses())
-					house.save();
-			} catch (Exception ex) {
+							} catch (Exception ex) {
 				log.error("Exception during periodic saving of player " + player.getName(), ex);
 			}
 		}

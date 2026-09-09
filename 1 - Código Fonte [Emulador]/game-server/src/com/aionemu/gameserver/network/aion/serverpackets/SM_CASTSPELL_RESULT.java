@@ -117,6 +117,7 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 		}
 
 		writeH(effects.size());
+		writeH(0);
 		for (Effect effect : effects) {
 			Creature effected = effect.getOriginalEffected();
 

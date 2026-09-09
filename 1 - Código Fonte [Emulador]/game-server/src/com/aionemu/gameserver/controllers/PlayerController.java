@@ -30,7 +30,6 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureVisualState;
 import com.aionemu.gameserver.model.gameobjects.state.FlyState;
-import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.stats.container.PlayerGameStats;
 import com.aionemu.gameserver.model.summons.UnsummonType;
 import com.aionemu.gameserver.model.templates.QuestTemplate;
@@ -107,10 +106,6 @@ public class PlayerController extends CreatureController<Player> {
 			PacketSendUtility.sendPacket(getOwner(), new SM_PET(pet));
 			if (pet.getMaster().isInFlyingState())
 				PacketSendUtility.sendPacket(getOwner(), new SM_PET_EMOTE(pet, PetEmote.FLY_START));
-		} else if (object instanceof House) {
-			PacketSendUtility.sendPacket(getOwner(), new SM_HOUSE_RENDER((House) object));
-		} else if (object instanceof HouseObject) {
-			PacketSendUtility.sendPacket(getOwner(), new SM_HOUSE_OBJECT((HouseObject<?>) object));
 		}
 	}
 
@@ -128,10 +123,6 @@ public class PlayerController extends CreatureController<Player> {
 			return;
 		if (object instanceof Pet) {
 			PacketSendUtility.sendPacket(getOwner(), new SM_PET(object.getObjectId(), animation));
-		} else if (object instanceof House) {
-			PacketSendUtility.sendPacket(getOwner(), new SM_DELETE_HOUSE(((House) object).getAddress().getId()));
-		} else if (object instanceof HouseObject) {
-			PacketSendUtility.sendPacket(getOwner(), new SM_DELETE_HOUSE_OBJECT(object.getObjectId()));
 		} else if (object instanceof Npc && ((Npc) object).isFlag()) {
 			PacketSendUtility.sendPacket(getOwner(), new SM_DELETE(object, ObjectDeleteAnimation.DELAYED));
 		} else {
@@ -576,8 +567,6 @@ public class PlayerController extends CreatureController<Player> {
 		if (HTMLConfig.ENABLE_GUIDES && player.isSpawned())
 			HTMLService.sendGuideHtml(player, minNewLevel, newLevel);
 		SkillLearnService.learnNewSkills(player, minNewLevel, newLevel);
-		BonusPackService.getInstance().addPlayerCustomReward(player);
-		FactionPackService.getInstance().addPlayerCustomReward(player);
 	}
 
 	public void upgradePlayer() {
@@ -693,14 +682,6 @@ public class PlayerController extends CreatureController<Player> {
 
 	public void updateSoulSickness(int skillId) {
 		Player player = getOwner();
-		House house = player.getActiveHouse();
-		if (house != null)
-			switch (house.getHouseType()) {
-				case MANSION:
-				case ESTATE:
-				case PALACE:
-					return;
-			}
 
 		if (!player.hasPermission(MembershipConfig.DISABLE_SOULSICKNESS)) {
 			int deathCount = player.getCommonData().getDeathCount();

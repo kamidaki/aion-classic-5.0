@@ -7,7 +7,6 @@ import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.StaticObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.Rates;
-import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.recipe.RecipeTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_CRAFT_ANIMATION;
@@ -70,14 +69,7 @@ public class CraftingTask extends AbstractCraftTask {
 			chance = Rates.get(requester, RatesConfig.CRAFT_CRIT_CHANCES);
 		else
 			chance = Rates.get(requester, RatesConfig.CRAFT_COMBO_CHANCES);
-		House house = requester.getActiveHouse();
-		if (house != null)
-			switch (house.getHouseType()) {
-				case ESTATE:
-				case PALACE:
-					chance += 5;
-					break;
-			}
+		
 
 		if (Rnd.chance() >= chance)
 			return false;
