@@ -93,27 +93,21 @@ public class GameServer {
 
 		Stream.of(QuestEngine.getInstance(), AIEngine.getInstance(), InstanceEngine.getInstance(), ChatProcessor.getInstance(), ZoneService.getInstance(),
 			GeoService.getInstance()).parallel().forEach(GameEngine::init);
-		// ZoneService.getInstance().saveMaterialZones();
 
 		NavService.getInstance().initializeNav();
 
 		World.getInstance();
 		GameTimeService.getInstance();
-
 		DropRegistrationService.getInstance();
 
 		// This is loading only siege location data, no siege schedule or spawns
-		// BaseService.getInstance(); // 4.8 retail residue
 		SiegeService.getInstance();
-		// WorldRaidService.getInstance().initWorldRaidLocations(); // 4.8 retail residue
-		// VortexService.getInstance().initVortexLocations(); // 4.8 retail residue
 		RiftService.getInstance().initRiftLocations();
 		LegionDominionService.getInstance().initLocations();
 
 		ChallengeTaskService.getInstance();
 
 		SpawnEngine.spawnAll();
-		// TownService.getInstance(); // 4.8 retail residue
 		FlyRingService.getInstance();
 		RiftService.getInstance().initRifts();
 
@@ -129,13 +123,6 @@ public class GameServer {
 		// Init Sieges... It's separated due to spawn engine.
 		// It should not spawn siege NPCs
 		SiegeService.getInstance().initSieges();
-
-		// BaseService.getInstance().initBases(); // 4.8 retail residue
-
-		// WorldRaidService.getInstance().initWorldRaids(); // 4.8 retail residue
-
-		//AnnouncementService.getInstance();
-		// DebugService.getInstance();
 		WeatherService.getInstance();
 		BrokerService.getInstance();
 		Influence.getInstance();
