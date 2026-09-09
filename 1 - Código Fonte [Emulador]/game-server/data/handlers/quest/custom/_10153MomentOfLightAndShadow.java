@@ -129,7 +129,7 @@ public class _10153MomentOfLightAndShadow extends AbstractQuestHandler {
 				env.setQuestId(questId);
 				return QuestService.startQuest(env);
 			} else if (qs.getStatus() == QuestStatus.START) {
-				PacketSendUtility.sendPacket(player, new com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_ACTION(questId, qs.getStatus(), qs.getQuestVars().getQuestVars()));
+				PacketSendUtility.sendPacket(player, new com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_ACTION(com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_ACTION.ActionType.UPDATE, qs));
 				return true;
 			}
 		}

@@ -1556,10 +1556,6 @@ public class Player extends Creature {
 		return false;
 	}
 
-	public List<Object> getHouses() { return java.util.Collections.emptyList(); }
-
-	public Object getActiveHouse() { return null; }
-
 	public float[] getBattleReturnCoords() {
 		return battleReturnCoords;
 	}

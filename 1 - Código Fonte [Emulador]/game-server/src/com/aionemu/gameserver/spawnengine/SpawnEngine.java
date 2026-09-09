@@ -181,8 +181,6 @@ public class SpawnEngine {
 			else
 				log.info('[' + eventTemplate.getName() + "] Spawned " + spawnedCounter + " event objects in " + instance);
 		}
-		if (eventTemplate == null) {
-		}
 	}
 
 	public static boolean checkPool(SpawnGroup spawn) {

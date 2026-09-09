@@ -454577,12 +454577,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" delay="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730517" level="1" name="studio entrance" name_id="461469" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="studioportal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730517" level="1" name="studio entrance" name_id="461469" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_LIGHT" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="3.2" />
 		<talk_info distance="5" delay="2" is_dialog="true" func_dialogs="83" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="730518" level="1" name="studio entrance" name_id="461469" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="studioportal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="730518" level="1" name="studio entrance" name_id="461469" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_DARK" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="3.2" />
 		<talk_info distance="5" delay="2" is_dialog="true" func_dialogs="83" can_talk_invisible="false" />
@@ -461019,12 +461019,12 @@
 		</stats>
 		<bound_radius front="0.135" side="0.168" upper="2.106" />
 	</npc_template>
-	<npc_template npc_id="749246" level="1" name="homeward bound" name_id="462138" height="2.16" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL_TELEPORTER_LI" type="GENERAL" ai="housegate" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="749246" level="1" name="homeward bound" name_id="462138" height="2.16" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL_TELEPORTER_LI" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="1.47" side="0.06" upper="2.16" />
 		<talk_info distance="3" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="749247" level="1" name="homeward bound" name_id="462138" height="2.16" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL_TELEPORTER_DA" type="GENERAL" ai="housegate" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="749247" level="1" name="homeward bound" name_id="462138" height="2.16" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="USEALL_TELEPORTER_DA" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="1.47" side="0.06" upper="2.16" />
 		<talk_info distance="3" can_talk_invisible="false" />
@@ -529818,14 +529818,14 @@
 		<bound_radius front="0.25" side="0.35" upper="3.2" />
 		<talk_info distance="2" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810002" level="1" name="butler" name_id="461461" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810002" level="1" name="butler" name_id="461461" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
 		<bound_radius front="0.595" side="0.3774" upper="1.16875" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810003" level="1" name="relationship crystal" name_id="461462" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="friendportal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810003" level="1" name="relationship crystal" name_id="461462" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="3.2" />
 		<talk_info distance="2" is_dialog="true" can_talk_invisible="false" />
@@ -529855,7 +529855,7 @@
 		<bound_radius front="0.25" side="0.35" upper="3.2" />
 		<talk_info distance="2" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810009" level="1" name="test butler" name_id="461854" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810009" level="1" name="test butler" name_id="461854" height="2" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="9426">
 			<speeds walk="1.5" group_walk="1.5" run="6" run_fight="4.2" group_run_fight="4.2" />
 		</stats>
@@ -529933,7 +529933,7 @@
 		<bound_radius front="0.63" side="0.3996" upper="1.2375" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="26" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810017" level="1" name="palace butler" name_id="461896" height="1.375" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810017" level="1" name="palace butler" name_id="461896" height="1.375" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
@@ -529944,7 +529944,7 @@
 		<bound_radius front="0.7" side="0.444" upper="1.375" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810018" level="15" name="estate butler" name_id="461897" height="1.375" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810018" level="15" name="estate butler" name_id="461897" height="1.375" group_drop="LIGHT" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
@@ -529955,28 +529955,28 @@
 		<bound_radius front="0.7" side="0.444" upper="1.375" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810019" level="15" name="mansion butler" name_id="461898" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810019" level="15" name="mansion butler" name_id="461898" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
 		<bound_radius front="0.595" side="0.3774" upper="1.16875" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810020" level="15" name="house butler" name_id="461899" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810020" level="15" name="house butler" name_id="461899" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
 		<bound_radius front="0.595" side="0.3774" upper="1.16875" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810021" level="1" name="studio butler" name_id="461900" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810021" level="1" name="studio butler" name_id="461900" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
 		<bound_radius front="0.595" side="0.3774" upper="1.16875" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 86 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810022" level="1" name="palace butler" name_id="461901" height="1.375" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810022" level="1" name="palace butler" name_id="461901" height="1.375" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
@@ -529987,7 +529987,7 @@
 		<bound_radius front="0.7" side="0.444" upper="1.375" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810023" level="15" name="estate butler" name_id="461902" height="1.375" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810023" level="15" name="estate butler" name_id="461902" height="1.375" group_drop="DARK" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
@@ -529998,21 +529998,21 @@
 		<bound_radius front="0.7" side="0.444" upper="1.375" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810024" level="15" name="mansion butler" name_id="461903" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810024" level="15" name="mansion butler" name_id="461903" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
 		<bound_radius front="0.595" side="0.3774" upper="1.16875" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810025" level="15" name="house butler" name_id="461904" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810025" level="15" name="house butler" name_id="461904" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
 		<bound_radius front="0.595" side="0.3774" upper="1.16875" />
 		<talk_info distance="2" is_dialog="true" func_dialogs="88 84 85 86 87 98" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810026" level="15" name="studio butler" name_id="461905" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="butler" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810026" level="15" name="studio butler" name_id="461905" height="1.16875" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="2256">
 			<speeds walk="1.5" group_walk="1.5" run="4.23" run_fight="4.23" group_run_fight="4.23" />
 		</stats>
@@ -530039,7 +530039,7 @@
 		<bound_radius front="0.25" side="0.35" upper="3.2" />
 		<talk_info distance="1" is_dialog="true" func_dialogs="88 99 84 97 87" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="810031" level="1" name="relationship crystal" name_id="461462" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="friendportal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="810031" level="1" name="relationship crystal" name_id="461462" height="2" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="GENERAL_DARK" type="HOUSING" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="0.25" side="0.35" upper="3.2" />
 		<talk_info distance="2" is_dialog="true" can_talk_invisible="false" />
@@ -533446,12 +533446,12 @@
 		<bound_radius front="0.2625" side="0.3675" upper="2.1" />
 		<talk_info distance="5" is_dialog="true" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="830228" level="1" name="studio exit" name_id="461477" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="studioportal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="830228" level="1" name="studio exit" name_id="461477" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="125" />
 		<bound_radius front="5" side="1" upper="10" />
 		<talk_info distance="5" delay="2" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="830229" level="1" name="studio exit" name_id="461478" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="studioportal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="830229" level="1" name="studio exit" name_id="461478" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="117" />
 		<bound_radius front="5" side="1" upper="10" />
 		<talk_info distance="5" delay="2" can_talk_invisible="false" />
@@ -537796,12 +537796,12 @@
 		<bound_radius front="0.25" side="0.35" upper="2" />
 		<talk_info distance="5" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="830558" level="1" name="studio exit" name_id="461908" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="studioportal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="830558" level="1" name="studio exit" name_id="461908" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="5" side="1" upper="10" />
 		<talk_info distance="5" delay="2" can_talk_invisible="false" />
 	</npc_template>
-	<npc_template npc_id="830559" level="1" name="studio exit" name_id="461909" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="studioportal" sangle="0" attack_speed="2000" hpgauge="3">
+	<npc_template npc_id="830559" level="1" name="studio exit" name_id="461909" height="10" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" tribe="FIELD_OBJECT_ALL" type="GENERAL" ai="noaction" sangle="0" attack_speed="2000" hpgauge="3">
 		<stats maxHp="172" />
 		<bound_radius front="5" side="1" upper="10" />
 		<talk_info distance="5" delay="2" can_talk_invisible="false" />
