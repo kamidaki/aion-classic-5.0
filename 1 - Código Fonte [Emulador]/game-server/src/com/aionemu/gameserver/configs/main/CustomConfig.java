@@ -218,6 +218,14 @@ public class CustomConfig {
 	public static int CHARACTER_DELETION_TIME_MINUTES;
 
 	/**
+	 * Minimum level required to apply character deletion delay.
+	 * Characters below this level are deleted immediately.
+	 * Default: 20
+	 */
+	@Property(key = "character.deletion.min.level", defaultValue = "20")
+	public static int CHARACTER_DELETION_MIN_LEVEL;
+
+	/**
 	 * Don't consume potions when already at full HP/MP
 	 */
 	@Property(key = "gameserver.items.ignore_potions_at_full_health", defaultValue = "false")

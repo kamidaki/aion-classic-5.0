@@ -32,12 +32,17 @@ import com.aionemu.gameserver.model.stats.calc.functions.PlayerStatFunctions;
 import com.aionemu.gameserver.model.team.legion.LegionMember;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.item.actions.EmotionLearnAction;
+import com.aionemu.gameserver.network.aion.AionConnection;
+import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_DELETE_CHARACTER;
+import com.aionemu.gameserver.services.AccountService;
 import com.aionemu.gameserver.services.BrokerService;
 import com.aionemu.gameserver.services.HousingService;
 import com.aionemu.gameserver.services.LegionService;
 import com.aionemu.gameserver.services.PunishmentService.PunishmentType;
 import com.aionemu.gameserver.services.SkillLearnService;
 import com.aionemu.gameserver.services.item.ItemFactory;
+import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.knownlist.KnownList;
 
@@ -325,7 +330,8 @@ public class PlayerService {
 			return false;
 		}
 
-		if (CustomConfig.CHARACTER_DELETION_TIME_MINUTES == 0) {
+		if (CustomConfig.CHARACTER_DELETION_TIME_MINUTES == 0
+				|| accData.getPlayerCommonData().getLevel() < CustomConfig.CHARACTER_DELETION_MIN_LEVEL) {
 			deletePlayerFromDB(accData.getPlayerCommonData().getPlayerObjId());
 			return true;
 		}
@@ -333,6 +339,35 @@ public class PlayerService {
 		accData.setDeletionDate(new Timestamp(System.currentTimeMillis() + CustomConfig.CHARACTER_DELETION_TIME_MINUTES * 60 * 1000L));
 		storeDeletionTime(accData);
 		return false;
+	}
+
+	/**
+	 * Schedules character deletion in real time while player is in character selection (AUTHED state).
+	 * Automatically deletes from DB and notifies client via SM_DELETE_CHARACTER(chaOid, 0) upon expiry.
+	 */
+	public static void scheduleCharacterDeletion(AionConnection conn, int chaOid, long deletionTimeMs) {
+		long delayMs = Math.max(0, deletionTimeMs - System.currentTimeMillis());
+		ThreadPoolManager.getInstance().schedule(() -> {
+			try {
+				if (conn == null || conn.getState() != State.AUTHED) {
+					return;
+				}
+				Account acc = conn.getAccount();
+				if (acc == null) {
+					return;
+				}
+				PlayerAccountData pad = acc.getPlayerAccountData(chaOid);
+				if (pad != null && pad.getDeletionDate() != null && pad.getDeletionDate().getTime() <= System.currentTimeMillis()) {
+					deletePlayerFromDB(chaOid);
+					acc.removePlayerAccountData(chaOid);
+					AccountService.invalidateCache(acc.getId());
+					conn.sendPacket(new SM_DELETE_CHARACTER(chaOid, 0));
+					log.info("CM_DELETE_CHARACTER: Tempo expirado. O personagem {} foi deletado automaticamente.", chaOid);
+				}
+			} catch (Exception e) {
+				log.error("Erro ao processar delecao automatica de personagem " + chaOid, e);
+			}
+		}, delayMs);
 	}
 
 	/**

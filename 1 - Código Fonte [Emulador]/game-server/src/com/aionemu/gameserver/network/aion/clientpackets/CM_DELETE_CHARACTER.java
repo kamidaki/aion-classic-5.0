@@ -21,9 +21,6 @@ import com.aionemu.gameserver.services.player.PlayerService;
  */
 public class CM_DELETE_CHARACTER extends AionClientPacket {
 
-	/**
-	 * PlayOk2 - we dont care...
-	 */
 	@SuppressWarnings("unused")
 	private int playOk2;
 	/**
@@ -47,11 +44,11 @@ public class CM_DELETE_CHARACTER extends AionClientPacket {
 	protected void runImpl() {
 		Account account = getConnection().getAccount();
 		if (account == null) {
-			log.warn("[DELETE_CHARACTER] account e null!");
+			log.warn("CM_DELETE_CHARACTER: Account e null!");
 			return;
 		}
 
-		log.info("[DELETE_CHARACTER] Recebido pedido de delecao: playOk2={}, chaOid={}", playOk2, chaOid);
+		log.debug("CM_DELETE_CHARACTER: Recebido pedido de delecao: playOk2={}, chaOid={}", playOk2, chaOid);
 
 		PlayerAccountData playerAccData = account.getPlayerAccountData(chaOid);
 		if (playerAccData == null) {
@@ -61,12 +58,13 @@ public class CM_DELETE_CHARACTER extends AionClientPacket {
 				int tmp = chaOid;
 				chaOid = playOk2;
 				playOk2 = tmp;
-				log.info("[DELETE_CHARACTER] Inversao detectada: chaOid ajustado para {}", chaOid);
+				log.warn("CM_DELETE_CHARACTER: Inversao detectada: chaOid ajustado para {}", chaOid);
 			}
 		}
 
 		if (playerAccData == null) {
-			log.warn("[DELETE_CHARACTER] Personagem nao encontrado na conta {} para chaOid={} ou playOk2={}", account.getId(), chaOid, playOk2);
+			log.warn("CM_DELETE_CHARACTER: Personagem nao encontrado na conta {} para chaOid={} ou playOk2={}",
+					account.getId(), chaOid, playOk2);
 			return;
 		}
 
@@ -79,10 +77,11 @@ public class CM_DELETE_CHARACTER extends AionClientPacket {
 		if (isDeleted) {
 			account.removePlayerAccountData(chaOid);
 			sendPacket(new SM_DELETE_CHARACTER(chaOid, 0));
-			log.info("[DELETE_CHARACTER] Personagem {} deletado imediatamente.", chaOid);
+			log.info("CM_DELETE_CHARACTER: O personagem {} foi deletado imediatamente.", chaOid);
 		} else {
 			sendPacket(new SM_DELETE_CHARACTER(chaOid, playerAccData.getDeletionTimeInSeconds()));
-			log.info("[DELETE_CHARACTER] Personagem {} marcado para delecao em {} segundos.", chaOid, playerAccData.getDeletionTimeInSeconds());
+			log.info("CM_DELETE_CHARACTER: O personagem {} foi marcado para delecao com timer.", chaOid);
+			PlayerService.scheduleCharacterDeletion(getConnection(), chaOid, playerAccData.getDeletionDate().getTime());
 		}
 	}
 }

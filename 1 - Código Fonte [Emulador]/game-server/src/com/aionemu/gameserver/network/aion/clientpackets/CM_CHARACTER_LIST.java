@@ -3,10 +3,12 @@ package com.aionemu.gameserver.network.aion.clientpackets;
 import java.util.Set;
 
 import com.aionemu.gameserver.configs.administration.AdminConfig;
+import com.aionemu.gameserver.model.account.PlayerAccountData;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ACCOUNT_PROPERTIES;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_CHARACTER_LIST;
+import com.aionemu.gameserver.services.player.PlayerService;
 
 /**
  * In this packet aion client is requesting character list.
@@ -33,6 +35,13 @@ public class CM_CHARACTER_LIST extends AionClientPacket {
 		sendPacket(new SM_ACCOUNT_PROPERTIES(isGM));
 		sendPacket(new SM_CHARACTER_LIST(0, playOk2));
 		sendPacket(new SM_CHARACTER_LIST(2, playOk2));
+		if (getConnection().getAccount() != null) {
+			for (PlayerAccountData pad : getConnection().getAccount()) {
+				if (pad.getDeletionDate() != null && pad.getDeletionDate().getTime() > System.currentTimeMillis()) {
+					PlayerService.scheduleCharacterDeletion(getConnection(), pad.getPlayerCommonData().getPlayerObjId(), pad.getDeletionDate().getTime());
+				}
+			}
+		}
 	}
 }
 

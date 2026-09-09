@@ -114,6 +114,7 @@ public class CM_CHARACTER_PASSKEY extends AionClientPacket {
 								client.sendPacket(new SM_DELETE_CHARACTER(chaPasskey.getObjectId(), 0));
 							} else {
 								client.sendPacket(new SM_DELETE_CHARACTER(chaPasskey.getObjectId(), playerAccData.getDeletionTimeInSeconds()));
+								PlayerService.scheduleCharacterDeletion(client, chaPasskey.getObjectId(), playerAccData.getDeletionDate().getTime());
 							}
 						}
 					}
