@@ -42,9 +42,10 @@ public class DatabaseFactory {
 		if (DatabaseConfig.DATABASE_IDLE_TIMEOUT >= 10000) {
 			config.setIdleTimeout(DatabaseConfig.DATABASE_IDLE_TIMEOUT);
 		}
-		if (DatabaseConfig.DATABASE_KEEPALIVE >= 30000) {
+		if (DatabaseConfig.DATABASE_KEEPALIVE >= 10000) {
 			config.setKeepaliveTime(DatabaseConfig.DATABASE_KEEPALIVE);
 		}
+		config.setValidationTimeout(3000);
 
 		// Performance optimizations for MySQL / MariaDB over network
 		config.addDataSourceProperty("cachePrepStmts", "true");

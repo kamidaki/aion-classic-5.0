@@ -28,15 +28,24 @@ public class ServerVariablesDAO {
 	}
 
 	public static boolean store(String var, Object value) {
-		try (Connection con = DatabaseFactory.getConnection();
-				 PreparedStatement ps = con.prepareStatement("REPLACE INTO `server_variables` (`key`,`value`) VALUES (?,?)")) {
-			ps.setString(1, var);
-			ps.setString(2, value.toString());
-			return ps.executeUpdate() > 0;
-		} catch (SQLException e) {
-			log.error("Error storing " + value + " for variable " + var, e);
-			return false;
+		for (int attempt = 1; attempt <= 2; attempt++) {
+			try (Connection con = DatabaseFactory.getConnection();
+					 PreparedStatement ps = con.prepareStatement("REPLACE INTO `server_variables` (`key`,`value`) VALUES (?,?)")) {
+				ps.setString(1, var);
+				ps.setString(2, value.toString());
+				return ps.executeUpdate() > 0;
+			} catch (SQLException e) {
+				if (attempt == 2) {
+					log.error("Error storing " + value + " for variable " + var, e);
+					return false;
+				}
+				try {
+					Thread.sleep(250);
+				} catch (InterruptedException ignored) {
+				}
+			}
 		}
+		return false;
 	}
 
 	public boolean delete(String var) {

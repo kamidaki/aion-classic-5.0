@@ -31,25 +31,25 @@ public class DatabaseConfig {
 	/**
 	 * Maximum wait time when getting a DB connection, before throwing a timeout error
 	 */
-	@Property(key = "database.connectionpool.timeout", defaultValue = "5000")
+	@Property(key = "database.connectionpool.timeout", defaultValue = "30000")
 	public static int DATABASE_TIMEOUT;
 
 	/**
 	 * Maximum lifetime of a connection in milliseconds before it is retired (must be shorter than MySQL wait_timeout)
 	 */
-	@Property(key = "database.connectionpool.maxlifetime", defaultValue = "60000")
+	@Property(key = "database.connectionpool.maxlifetime", defaultValue = "300000")
 	public static long DATABASE_MAX_LIFETIME;
 
 	/**
 	 * Maximum idle time for connection in milliseconds
 	 */
-	@Property(key = "database.connectionpool.idletimeout", defaultValue = "30000")
+	@Property(key = "database.connectionpool.idletimeout", defaultValue = "120000")
 	public static long DATABASE_IDLE_TIMEOUT;
 
 	/**
 	 * Keepalive ping time for idle connections in milliseconds
 	 */
-	@Property(key = "database.connectionpool.keepalive", defaultValue = "20000")
+	@Property(key = "database.connectionpool.keepalive", defaultValue = "30000")
 	public static long DATABASE_KEEPALIVE;
 
 }
