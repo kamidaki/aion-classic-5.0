@@ -49,6 +49,7 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket {
 		for (Cooldown cooldown : cooldowns) {
 			writeH(cooldown.skillId);
 			writeD(cooldown.getRemainingSeconds());
+			writeD(cooldown.getDurationMillis()); // 0 also seems to always work
 		}
 	}
 

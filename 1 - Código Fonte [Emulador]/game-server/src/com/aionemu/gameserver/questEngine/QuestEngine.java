@@ -375,6 +375,17 @@ public class QuestEngine implements GameEngine {
 	}
 
 	public void onHouseItemUseEvent(QuestEnv env) {
+		try {
+			for (Integer questHouseItem : questHouseItems) {
+				AbstractQuestHandler questHandler = getQuestHandlerByQuestId(questHouseItem);
+				if (questHandler != null) {
+					env.setQuestId(questHouseItem);
+					questHandler.onHouseItemUseEvent(env);
+				}
+			}
+		} catch (Exception ex) {
+			log.error("QE: exception in onHouseItemUseEvent", ex);
+		}
 	}
 
 	public void onItemGet(Player player, int itemId) {
@@ -705,6 +716,8 @@ public class QuestEngine implements GameEngine {
 	}
 
 	public void registerQuestHouseItem(int questId) {
+		if (!questHouseItems.contains(questId))
+			questHouseItems.add(questId);
 	}
 
 	public void registerOnGetItem(int itemId, int questId) {

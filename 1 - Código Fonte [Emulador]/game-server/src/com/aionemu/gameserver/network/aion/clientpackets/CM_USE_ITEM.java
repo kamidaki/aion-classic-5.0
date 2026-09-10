@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import com.aionemu.gameserver.model.gameobjects.HouseObject;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.item.actions.AbstractItemAction;
@@ -62,10 +63,13 @@ public class CM_USE_ITEM extends AionClientPacket {
 			return;
 
 		Item targetItem = null;
+		HouseObject<?> targetHouseObject = null;
 		if (targetItemId != 0) {
 			targetItem = player.getInventory().getItemByObjId(targetItemId);
 			if (targetItem == null)
 				targetItem = player.getEquipment().getEquippedItemByObjId(targetItemId);
+			if (targetItem == null && player.getActiveHouse() != null)
+				targetHouseObject = player.getActiveHouse().getRegistry().getObjectByObjId(targetItemId);
 		}
 
 		// check use item multicast delay exploit cast (spam)
@@ -94,7 +98,7 @@ public class CM_USE_ITEM extends AionClientPacket {
 		for (AbstractItemAction itemAction : itemActions) {
 			// check if the item can be used before placing it on the cooldown list.
 			if (itemAction instanceof DyeAction) {
-				if (itemAction.canAct(player, item, targetItem))
+				if (itemAction.canAct(player, item, targetItem, targetHouseObject))
 					actions.add(itemAction);
 			} else if (itemAction instanceof MultiReturnAction) {
 				if (itemAction.canAct(player, item, targetItem, indexReturn))
@@ -112,7 +116,7 @@ public class CM_USE_ITEM extends AionClientPacket {
 
 		for (AbstractItemAction itemAction : actions) {
 			switch (itemAction) {
-				case DyeAction _ -> itemAction.act(player, item, targetItem);
+				case DyeAction _ -> itemAction.act(player, item, targetItem, targetHouseObject);
 				case MultiReturnAction _ -> itemAction.act(player, item, targetItem, indexReturn);
 				case InstanceTimeClear _ -> itemAction.act(player, item, targetItem, syncId);
 				default -> itemAction.act(player, item, targetItem);

@@ -559,7 +559,7 @@ public class Equipment implements Persistable {
 			}
 
 			item.setEquipped(false);
-			item.setEquipmentSlot(0);
+			item.setEquipmentSlot(com.aionemu.gameserver.model.items.storage.ItemStorage.FIRST_AVAILABLE_SLOT);
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
 			notifyItemUnequip(item);
 			owner.getLifeStats().updateCurrentStats();
@@ -584,7 +584,7 @@ public class Equipment implements Persistable {
 			}
 			updateStats = true;
 			item.setEquipped(false);
-			item.setEquipmentSlot(0);
+			item.setEquipmentSlot(com.aionemu.gameserver.model.items.storage.ItemStorage.FIRST_AVAILABLE_SLOT);
 			owner.getInventory().put(item);
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
 			notifyItemUnequip(item);

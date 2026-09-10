@@ -16,7 +16,7 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
  */
 public class CM_CASTSPELL extends AionClientPacket {
 
-	private long receiveTime;
+	private final long receiveTime = System.currentTimeMillis();
 	private int spellid;
 	// 0 - obj id, 1 - point location, 2 - unk, 3 - object not in sight(skill 1606)? 4 - unk
 	private int targetType;
@@ -35,7 +35,6 @@ public class CM_CASTSPELL extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		receiveTime = System.currentTimeMillis();
 		spellid = readUH();
 		level = readUC();
 

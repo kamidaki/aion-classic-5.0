@@ -1,687 +1,135 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
-    <spawn_map map_id="210040000">
-        <base_spawn id="2140">
-            <!-- Kishar Outpost -->
-            <occupier_template occupier="ELYOS">
-                <!-- Elyos Territory -->
-                <spawn handler="FLAG" npc_id="701799">
-                    <spot h="45" x="2117.1177" y="1475.6171" z="135.9242"/>
-                </spawn>
-                <!-- Territory Boss -->
-                <spawn handler="BOSS" npc_id="231562">
-                    <spot h="39" x="2118.7683" y="1466.9141" z="136.66391"/>
-                </spawn>
-                <!-- Elyos Heiron Inspector -->
-                <spawn handler="ATTACKER" npc_id="231622">
-                    <spot h="97" x="2106.4204" y="1505.787" z="133.4227"/>
-                </spawn>
-                <!-- Heiron Sentinel -->
-                <spawn handler="SENTINEL" npc_id="231583" respawn_time="295">
-                    <spot h="60" x="2103.0276" y="1468.8651" z="136.5206"/>
-                    <spot h="45" x="2107.003" y="1484.3868" z="132.54826"/>
-                    <spot h="30" x="2114.584" y="1488.7769" z="133.8219"/>
-                    <spot h="23" x="2128.4412" y="1484.6045" z="136.6227"/>
-                </spawn>
-                <!-- Anaxilas General Goods Merchant -->
-                <spawn handler="MERCHANT" npc_id="801180" respawn_time="295">
-                    <spot h="45" x="2125.8938" y="1475.2031" z="136.32527"/>
-                </spawn>
-                <!-- Chares Warehouse Manager -->
-                <spawn handler="MERCHANT" npc_id="801181" respawn_time="295">
-                    <spot h="30" x="2113.5986" y="1466.5072" z="136.22552"/>
-                </spawn>
-                <!-- Dinon Administration Officer -->
-                <spawn handler="MERCHANT" npc_id="801182" respawn_time="295">
-                    <spot h="45" x="2122.8694" y="1471.4498" z="137.00826"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="ASMODIANS">
-                <!-- Asmodians Territory -->
-                <spawn handler="FLAG" npc_id="701800">
-                    <spot h="45" x="2117.1177" y="1475.6171" z="135.9242"/>
-                </spawn>
-                <!-- Territory Boss -->
-                <spawn handler="BOSS" npc_id="231563">
-                    <spot h="39" x="2118.7683" y="1466.9141" z="136.66391"/>
-                </spawn>
-                <!-- Asmodian Heiron Inspector -->
-                <spawn handler="ATTACKER" npc_id="231623">
-                    <spot h="97" x="2106.4204" y="1505.787" z="133.4227"/>
-                </spawn>
-                <!-- Heiron Infiltrator -->
-                <spawn handler="SENTINEL" npc_id="231588" respawn_time="295">
-                    <spot h="60" x="2103.0276" y="1468.8651" z="136.5206"/>
-                    <spot h="45" x="2107.003" y="1484.3868" z="132.54826"/>
-                    <spot h="30" x="2114.584" y="1488.7769" z="133.8219"/>
-                    <spot h="23" x="2128.4412" y="1484.6045" z="136.6227"/>
-                </spawn>
-                <!-- Heiron Scout -->
-                <spawn handler="SENTINEL" npc_id="232068" respawn_time="295">
-                    <spot h="15" x="2081.1812" y="1439.8887" z="131.34332"/>
-                    <spot h="23" x="2082.3601" y="1436.9095" z="131.34332"/>
-                    <spot h="13" x="2085.4514" y="1453.0295" z="131.34332"/>
-                    <spot h="33" x="2087.3589" y="1449.5415" z="131.34332"/>
-                </spawn>
-                <!-- Rasiv General Goods Merchant -->
-                <spawn handler="MERCHANT" npc_id="801183" respawn_time="295">
-                    <spot h="45" x="2125.8938" y="1475.2031" z="136.32527"/>
-                </spawn>
-                <!-- Tullusso Warehouse Manager -->
-                <spawn handler="MERCHANT" npc_id="801184" respawn_time="295">
-                    <spot h="30" x="2113.5986" y="1466.5072" z="136.22552"/>
-                </spawn>
-                <!-- Gudrun Administration Officer -->
-                <spawn handler="MERCHANT" npc_id="801185" respawn_time="295">
-                    <spot h="45" x="2122.8694" y="1471.4498" z="137.00826"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="BALAUR">
-                <!-- Krall Territory -->
-                <spawn handler="FLAG" npc_id="701797">
-                    <spot h="45" x="2117.1177" y="1475.6171" z="135.9242"/>
-                </spawn>
-                <!-- Territory Boss -->
-                <spawn handler="BOSS" npc_id="231561">
-                    <spot h="39" x="2118.7683" y="1466.9141" z="136.66391"/>
-                </spawn>
-                <!-- Kishar Assassin -->
-                <spawn handler="ATTACKER" npc_id="231610">
-                    <spot h="90" x="2118.8901" y="1468.6146" z="136.57285"/>
-                </spawn>
-                <!-- Kishar Vanguard (Shieldcaptain) -->
-                <spawn handler="SENTINEL" npc_id="231602" respawn_time="295">
-                    <spot h="97" x="2106.4204" y="1505.787" z="133.4227"/>
-                </spawn>
-                <!-- Kishar Protector -->
-                <spawn handler="SENTINEL" npc_id="231580" respawn_time="295">
-                    <spot h="60" x="2103.0276" y="1468.8651" z="136.5206"/>
-                    <spot h="45" x="2107.003" y="1484.3868" z="132.54826"/>
-                    <spot h="30" x="2114.584" y="1488.7769" z="133.8219"/>
-                    <spot h="23" x="2128.4412" y="1484.6045" z="136.6227"/>
-                </spawn>
-            </occupier_template>
-        </base_spawn>
-        <base_spawn id="2141">
-            <!-- Research Center Outpost -->
-            <occupier_template occupier="ELYOS">
-                <spawn handler="FLAG" npc_id="701799">
-                    <spot h="34" x="416.4069" y="906.5590" z="122.5000"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235157">
-                    <spot h="34" x="416.4069" y="906.5590" z="122.5000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="21" x="432.1026" y="913.5029" z="122.5000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="41" x="436.4584" y="921.0112" z="122.2787"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="19" x="431.6470" y="925.7943" z="122.9283"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="87" x="424.6798" y="927.5723" z="124.6493"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="48" x="410.1373" y="924.6395" z="122.5486"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="38" x="405.0835" y="921.4708" z="122.2589"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802631">
-                    <spot h="41" x="411.2793" y="909.1309" z="122.5000"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802631">
-                    <spot h="47" x="425.4576" y="911.8110" z="122.5000"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="805275">
-                    <spot h="48" x="427.0684" y="914.0165" z="122.5000"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="ASMODIANS">
-                <spawn handler="FLAG" npc_id="701800">
-                    <spot h="34" x="416.4069" y="906.5590" z="122.5000"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235170">
-                    <spot h="34" x="416.4069" y="906.5590" z="122.5000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="21" x="432.1026" y="913.5029" z="122.5000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="41" x="436.4584" y="921.0112" z="122.2787"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="19" x="431.6470" y="925.7943" z="122.9283"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="87" x="424.6798" y="927.5723" z="124.6493"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="48" x="410.1373" y="924.6395" z="122.5486"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="38" x="405.0835" y="921.4708" z="122.2589"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802342">
-                    <spot h="41" x="411.2793" y="909.1309" z="122.5000"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802653">
-                    <spot h="47" x="425.4576" y="911.8110" z="122.5000"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="805288">
-                    <spot h="48" x="427.0684" y="914.0165" z="122.5000"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="BALAUR">
-                <spawn handler="FLAG" npc_id="701797">
-                    <spot h="34" x="416.4069" y="906.5590" z="122.5000"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235144">
-                    <spot h="34" x="416.4069" y="906.5590" z="122.5000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="21" x="432.1026" y="913.5029" z="122.5000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="41" x="436.4584" y="921.0112" z="122.2787"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235175">
-                    <spot h="19" x="431.6470" y="925.7943" z="122.9283"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="87" x="424.6798" y="927.5723" z="124.6493"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235175">
-                    <spot h="48" x="410.1373" y="924.6395" z="122.5486"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="38" x="405.0835" y="921.4708" z="122.2589"/>
-                </spawn>
-            </occupier_template>
-        </base_spawn>
-        <base_spawn id="2142">
-            <occupier_template occupier="ELYOS">
-                <spawn handler="FLAG" npc_id="701799">
-                    <spot h="23" x="1528.7773" y="188.1021" z="102.3750"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235157">
-                    <spot h="23" x="1528.7773" y="188.1021" z="102.3750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235184">
-                    <spot h="31" x="1551.6989" y="240.6940" z="103.2124"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="15" x="1542.5629" y="248.6003" z="102.6250"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="104" x="1531.8103" y="239.6413" z="102.4657"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="45" x="1547.4530" y="226.6211" z="102.7158"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="23" x="1523.4408" y="219.9701" z="102.4100"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="22" x="1534.8202" y="224.9792" z="102.3750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="33" x="1545.1426" y="211.0473" z="102.4464"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="26" x="1520.9731" y="195.4849" z="102.3108"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="39" x="1539.4218" y="192.8914" z="102.3750"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802334">
-                    <spot h="23" x="1553.6343" y="174.9121" z="102.3750"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802334">
-                    <spot h="49" x="1559.5789" y="176.1642" z="102.3750"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="ASMODIANS">
-                <spawn handler="FLAG" npc_id="701800">
-                    <spot h="23" x="1528.7773" y="188.1021" z="102.3750"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235170">
-                    <spot h="23" x="1528.7773" y="188.1021" z="102.3750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="31" x="1551.6989" y="240.6940" z="103.2124"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="15" x="1542.5629" y="248.6003" z="102.6250"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="104" x="1531.8103" y="239.6413" z="102.4657"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="45" x="1547.4530" y="226.6211" z="102.7158"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="23" x="1523.4408" y="219.9701" z="102.4100"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="22" x="1534.8202" y="224.9792" z="102.3750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="33" x="1545.1426" y="211.0473" z="102.4464"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="26" x="1520.9731" y="195.4849" z="102.3108"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="39" x="1539.4218" y="192.8914" z="102.3750"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802653">
-                    <spot h="23" x="1553.6343" y="174.9121" z="102.3750"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802653">
-                    <spot h="49" x="1559.5789" y="176.1642" z="102.3750"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="BALAUR">
-                <spawn handler="FLAG" npc_id="701797">
-                    <spot h="23" x="1528.7773" y="188.1021" z="102.3750"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235144">
-                    <spot h="23" x="1528.7773" y="188.1021" z="102.3750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="31" x="1551.6989" y="240.6940" z="103.2124"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="15" x="1542.5629" y="248.6003" z="102.6250"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235172">
-                    <spot h="104" x="1531.8103" y="239.6413" z="102.4657"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235172">
-                    <spot h="45" x="1547.4530" y="226.6211" z="102.7158"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235172">
-                    <spot h="23" x="1523.4408" y="219.9701" z="102.4100"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="22" x="1534.8202" y="224.9792" z="102.3750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="33" x="1545.1426" y="211.0473" z="102.4464"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="26" x="1520.9731" y="195.4849" z="102.3108"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="39" x="1539.4218" y="192.8914" z="102.3750"/>
-                </spawn>
-            </occupier_template>
-        </base_spawn>
-        <base_spawn id="2143">
-            <occupier_template occupier="ELYOS">
-                <spawn handler="FLAG" npc_id="701799">
-                    <spot h="38" x="1238.8171" y="1142.5941" z="101.8750"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235157">
-                    <spot h="38" x="1238.8171" y="1142.5941" z="101.8750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="37" x="1212.0609" y="1179.3729" z="103.5706"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="33" x="1221.1609" y="1187.0262" z="102.6891"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="37" x="1224.4719" y="1177.9274" z="102.0250"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="32" x="1219.1694" y="1162.6547" z="101.9159"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="42" x="1231.4875" y="1162.4862" z="102.0000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235184">
-                    <spot h="64" x="1239.1311" y="1168.2262" z="101.3400"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="41" x="1237.7445" y="1151.7745" z="101.7500"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="63" x="1255.8629" y="1158.6365" z="101.8750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="49" x="1259.6158" y="1145.4827" z="102.0407"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802631">
-                    <spot h="20" x="1207.8099" y="1143.7971" z="101.5380"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802631">
-                    <spot h="25" x="1214.4215" y="1138.1649" z="101.7603"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="ASMODIANS">
-                <spawn handler="FLAG" npc_id="701800">
-                    <spot h="38" x="1238.8171" y="1142.5941" z="101.8750"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235170">
-                    <spot h="38" x="1238.8171" y="1142.5941" z="101.8750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="37" x="1212.0609" y="1179.3729" z="103.5706"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="33" x="1221.1609" y="1187.0262" z="102.6891"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="37" x="1224.4719" y="1177.9274" z="102.0250"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="32" x="1219.1694" y="1162.6547" z="101.9159"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="42" x="1231.4875" y="1162.4862" z="102.0000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="64" x="1239.1311" y="1168.2262" z="101.3400"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="41" x="1237.7445" y="1151.7745" z="101.7500"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235196">
-                    <spot h="63" x="1255.8629" y="1158.6365" z="101.8750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="49" x="1259.6158" y="1145.4827" z="102.0407"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802342">
-                    <spot h="20" x="1207.8099" y="1143.7971" z="101.5380"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802342">
-                    <spot h="25" x="1214.4215" y="1138.1649" z="101.7603"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="BALAUR">
-                <spawn handler="FLAG" npc_id="701797">
-                    <spot h="38" x="1238.8171" y="1142.5941" z="101.8750"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235144">
-                    <spot h="38" x="1238.8171" y="1142.5941" z="101.8750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="37" x="1212.0609" y="1179.3729" z="103.5706"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="33" x="1221.1609" y="1187.0262" z="102.6891"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235175">
-                    <spot h="37" x="1224.4719" y="1177.9274" z="102.0250"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235172">
-                    <spot h="32" x="1219.1694" y="1162.6547" z="101.9159"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235172">
-                    <spot h="42" x="1231.4875" y="1162.4862" z="102.0000"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="64" x="1239.1311" y="1168.2262" z="101.3400"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="41" x="1237.7445" y="1151.7745" z="101.7500"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="63" x="1255.8629" y="1158.6365" z="101.8750"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="49" x="1259.6158" y="1145.4827" z="102.0407"/>
-                </spawn>
-            </occupier_template>
-        </base_spawn>
-        <base_spawn id="2144">
-            <occupier_template occupier="ELYOS">
-                <spawn handler="FLAG" npc_id="701799">
-                    <spot h="104" x="312.6490" y="2841.6667" z="102.9364"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235157">
-                    <spot h="104" x="312.6490" y="2841.6667" z="102.9364"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="64" x="332.1806" y="2839.8101" z="104.2613"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235184">
-                    <spot h="42" x="324.8070" y="2830.6851" z="104.1513"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="117" x="310.4106" y="2824.7410" z="104.0463"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235184">
-                    <spot h="3" x="321.9951" y="2819.9668" z="103.8747"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235184">
-                    <spot h="6" x="329.8087" y="2825.9153" z="104.8340"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235184">
-                    <spot h="14" x="336.8724" y="2823.3625" z="106.2089"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="0" x="335.9386" y="2830.9824" z="105.8043"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="18" x="347.7994" y="2826.8289" z="106.2233"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="12" x="345.5064" y="2832.0857" z="106.0159"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="1" x="341.3142" y="2837.9800" z="104.9617"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235185">
-                    <spot h="9" x="349.9331" y="2840.8474" z="105.6654"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="10" x="356.9880" y="2833.7039" z="105.5385"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802631">
-                    <spot h="86" x="322.1591" y="2849.9336" z="103.6465"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="805275">
-                    <spot h="101" x="316.4212" y="2849.1282" z="102.7585"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="ASMODIANS">
-                <spawn handler="FLAG" npc_id="701800">
-                    <spot h="104" x="312.6490" y="2841.6667" z="102.9364"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235170">
-                    <spot h="104" x="312.6490" y="2841.6667" z="102.9364"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="64" x="332.1806" y="2839.8101" z="104.2613"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="42" x="324.8070" y="2830.6851" z="104.1513"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="117" x="310.4106" y="2824.7410" z="104.0463"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="3" x="321.9951" y="2819.9668" z="103.8747"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235196">
-                    <spot h="6" x="329.8087" y="2825.9153" z="104.8340"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="14" x="336.8724" y="2823.3625" z="106.2089"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="0" x="335.9386" y="2830.9824" z="105.8043"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="18" x="347.7994" y="2826.8289" z="106.2233"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235196">
-                    <spot h="12" x="345.5064" y="2832.0857" z="106.0159"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="1" x="341.3142" y="2837.9800" z="104.9617"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="9" x="349.9331" y="2840.8474" z="105.6654"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="10" x="356.9880" y="2833.7039" z="105.5385"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="805288">
-                    <spot h="86" x="322.1591" y="2849.9336" z="103.6465"/>
-                </spawn>
-                <spawn handler="MERCHANT" npc_id="802653">
-                    <spot h="101" x="316.4212" y="2849.1282" z="102.7585"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="BALAUR">
-                <spawn handler="FLAG" npc_id="701797">
-                    <spot h="104" x="312.6490" y="2841.6667" z="102.9364"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235144">
-                    <spot h="104" x="312.6490" y="2841.6667" z="102.9364"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="64" x="332.1806" y="2839.8101" z="104.2613"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235172">
-                    <spot h="42" x="324.8070" y="2830.6851" z="104.1513"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="117" x="310.4106" y="2824.7410" z="104.0463"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235175">
-                    <spot h="3" x="321.9951" y="2819.9668" z="103.8747"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="6" x="329.8087" y="2825.9153" z="104.8340"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235175">
-                    <spot h="14" x="336.8724" y="2823.3625" z="106.2089"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="0" x="335.9386" y="2830.9824" z="105.8043"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="18" x="347.7994" y="2826.8289" z="106.2233"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="12" x="345.5064" y="2832.0857" z="106.0159"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="1" x="341.3142" y="2837.9800" z="104.9617"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="9" x="349.9331" y="2840.8474" z="105.6654"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="10" x="356.9880" y="2833.7039" z="105.5385"/>
-                </spawn>
-            </occupier_template>
-        </base_spawn>
-        <base_spawn id="2145">
-            <occupier_template occupier="ELYOS">
-                <spawn handler="FLAG" npc_id="701799">
-                    <spot h="30" x="1501.0223" y="1969.4202" z="111.2939"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235157">
-                    <spot h="111" x="1484.1293" y="1961.2948" z="111.0207"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="107" x="1495.8771" y="1962.9430" z="110.2429"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="109" x="1494.2737" y="1955.9454" z="109.7329"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="112" x="1487.5349" y="1951.3442" z="110.5157"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="14" x="1496.3237" y="1941.0322" z="109.7336"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="113" x="1505.0631" y="1949.2906" z="108.8307"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235188">
-                    <spot h="92" x="1507.4418" y="1961.8438" z="109.8555"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235186">
-                    <spot h="110" x="1519.6578" y="1951.2690" z="109.0579"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235184">
-                    <spot h="110" x="1512.3342" y="1937.7661" z="107.7709"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="ASMODIANS">
-                <spawn handler="FLAG" npc_id="701800">
-                    <spot h="30" x="1501.0223" y="1969.4202" z="111.2939"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235170">
-                    <spot h="111" x="1484.1293" y="1961.2948" z="111.0207"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="107" x="1495.8771" y="1962.9430" z="110.2429"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235196">
-                    <spot h="109" x="1494.2737" y="1955.9454" z="109.7329"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="112" x="1487.5349" y="1951.3442" z="110.5157"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235197">
-                    <spot h="14" x="1496.3237" y="1941.0322" z="109.7336"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235196">
-                    <spot h="113" x="1505.0631" y="1949.2906" z="108.8307"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235198">
-                    <spot h="92" x="1507.4418" y="1961.8438" z="109.8555"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235196">
-                    <spot h="110" x="1519.6578" y="1951.2690" z="109.0579"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235200">
-                    <spot h="110" x="1512.3342" y="1937.7661" z="107.7709"/>
-                </spawn>
-            </occupier_template>
-            <occupier_template occupier="BALAUR">
-                <spawn handler="FLAG" npc_id="701797">
-                    <spot h="30" x="1501.0223" y="1969.4202" z="111.2939"/>
-                </spawn>
-                <spawn handler="BOSS" npc_id="235144">
-                    <spot h="111" x="1484.1293" y="1961.2948" z="111.0207"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="107" x="1495.8771" y="1962.9430" z="110.2429"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="109" x="1494.2737" y="1955.9454" z="109.7329"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235176">
-                    <spot h="112" x="1487.5349" y="1951.3442" z="110.5157"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="14" x="1496.3237" y="1941.0322" z="109.7336"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235174">
-                    <spot h="113" x="1505.0631" y="1949.2906" z="108.8307"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="92" x="1507.4418" y="1961.8438" z="109.8555"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235173">
-                    <spot h="110" x="1519.6578" y="1951.2690" z="109.0579"/>
-                </spawn>
-                <spawn handler="SENTINEL" npc_id="235172">
-                    <spot h="110" x="1512.3342" y="1937.7661" z="107.7709"/>
-                </spawn>
-            </occupier_template>
-        </base_spawn>
-    </spawn_map>
+	<spawn_map map_id="210040000">
+		<base_spawn id="2140">
+			<!-- Kishar Outpost -->
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Territory -->
+				<!-- Territory Boss -->
+				<!-- Elyos Heiron Inspector -->
+				<!-- Heiron Sentinel -->
+				<!-- Anaxilas General Goods Merchant -->
+				<spawn handler="MERCHANT" npc_id="801180" respawn_time="295">
+					<spot h="45" x="2125.8938" y="1475.2031" z="136.32527" />
+				</spawn>
+				<!-- Chares Warehouse Manager -->
+				<spawn handler="MERCHANT" npc_id="801181" respawn_time="295">
+					<spot h="30" x="2113.5986" y="1466.5072" z="136.22552" />
+				</spawn>
+				<!-- Dinon Administration Officer -->
+				<spawn handler="MERCHANT" npc_id="801182" respawn_time="295">
+					<spot h="45" x="2122.8694" y="1471.4498" z="137.00826" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmodians Territory -->
+				<!-- Territory Boss -->
+				<!-- Asmodian Heiron Inspector -->
+				<!-- Heiron Infiltrator -->
+				<!-- Heiron Scout -->
+				<!-- Rasiv General Goods Merchant -->
+				<spawn handler="MERCHANT" npc_id="801183" respawn_time="295">
+					<spot h="45" x="2125.8938" y="1475.2031" z="136.32527" />
+				</spawn>
+				<!-- Tullusso Warehouse Manager -->
+				<spawn handler="MERCHANT" npc_id="801184" respawn_time="295">
+					<spot h="30" x="2113.5986" y="1466.5072" z="136.22552" />
+				</spawn>
+				<!-- Gudrun Administration Officer -->
+				<spawn handler="MERCHANT" npc_id="801185" respawn_time="295">
+					<spot h="45" x="2122.8694" y="1471.4498" z="137.00826" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Krall Territory -->
+				<!-- Territory Boss -->
+				<!-- Kishar Assassin -->
+				<!-- Kishar Vanguard (Shieldcaptain) -->
+				<!-- Kishar Protector -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="2141">
+			<!-- Research Center Outpost -->
+			<occupier_template occupier="ELYOS">
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="41" x="411.2793" y="909.1309" z="122.5000" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="47" x="425.4576" y="911.8110" z="122.5000" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn handler="MERCHANT" npc_id="802342">
+					<spot h="41" x="411.2793" y="909.1309" z="122.5000" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802653">
+					<spot h="47" x="425.4576" y="911.8110" z="122.5000" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+		<base_spawn id="2142">
+			<occupier_template occupier="ELYOS">
+				<spawn handler="MERCHANT" npc_id="802334">
+					<spot h="23" x="1553.6343" y="174.9121" z="102.3750" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802334">
+					<spot h="49" x="1559.5789" y="176.1642" z="102.3750" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn handler="MERCHANT" npc_id="802653">
+					<spot h="23" x="1553.6343" y="174.9121" z="102.3750" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802653">
+					<spot h="49" x="1559.5789" y="176.1642" z="102.3750" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+		<base_spawn id="2143">
+			<occupier_template occupier="ELYOS">
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="20" x="1207.8099" y="1143.7971" z="101.5380" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="25" x="1214.4215" y="1138.1649" z="101.7603" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn handler="MERCHANT" npc_id="802342">
+					<spot h="20" x="1207.8099" y="1143.7971" z="101.5380" />
+				</spawn>
+				<spawn handler="MERCHANT" npc_id="802342">
+					<spot h="25" x="1214.4215" y="1138.1649" z="101.7603" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+		<base_spawn id="2144">
+			<occupier_template occupier="ELYOS">
+				<spawn handler="MERCHANT" npc_id="802631">
+					<spot h="86" x="322.1591" y="2849.9336" z="103.6465" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<spawn handler="MERCHANT" npc_id="802653">
+					<spot h="101" x="316.4212" y="2849.1282" z="102.7585" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+		<base_spawn id="2145">
+			<occupier_template occupier="ELYOS">
+                </occupier_template>
+			<occupier_template occupier="ASMODIANS">
+                </occupier_template>
+			<occupier_template occupier="BALAUR">
+                </occupier_template>
+		</base_spawn>
+	</spawn_map>
 </spawns>

@@ -25,10 +25,12 @@ public class SM_INVENTORY_INFO extends AionServerPacket {
 
 	public SM_INVENTORY_INFO(boolean isFirstPacket, List<Item> items, int npcExpandsSize, int questExpandsSize, Player player) {
 		if (items != null) {
-			items.removeAll(Collections.singletonList(null));
+			this.items = new java.util.ArrayList<>(items);
+			this.items.removeAll(Collections.singletonList(null));
+		} else {
+			this.items = Collections.emptyList();
 		}
 		this.isFirstPacket = isFirstPacket;
-		this.items = items;
 		this.npcExpandsSize = npcExpandsSize;
 		this.questExpandsSize = questExpandsSize;
 		this.player = player;
@@ -77,8 +79,10 @@ public class SM_INVENTORY_INFO extends AionServerPacket {
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());
 
-		// In 5.0 Classic login packet, slot is always 0xFFFF for all items.
-		writeH(0xFFFF);
+		// In 5.0 Classic login packet:
+		// Equipped items have slot 0xFFFF (their slot is informed via EQUIPPED_SLOT in ItemInfoBlob).
+		// Unequipped items in inventory have their cube slot index.
+		writeH(item.isEquipped() ? 0xFFFF : (int) (item.getEquipmentSlot() & 0xFFFF));
 		writeC(itemTemplate.isCloth() ? 1 : 0);
 	}
 }

@@ -78,13 +78,13 @@ public class FortressSiege extends Siege<FortressLocation> {
 		if (getSiegeLocation().getRace() != SiegeRace.BALAUR) {
 			initMercenaryZones();
 			getSiegeLocation().forEachPlayer(p -> getSiegeLocation().checkForBalanceBuff(p, FortressLocation.SiegeBuffAction.ADD));
-			if (getBoss().getLevel() == 65) {
+			if (getBoss() != null && getBoss().getLevel() == 65) {
 				SiegeRace oppositeRace = getSiegeLocation().getRace() == SiegeRace.ELYOS ? SiegeRace.ASMODIANS : SiegeRace.ELYOS;
 				ThreadPoolManager.getInstance().schedule(() -> spawnFactionTroopAssault(oppositeRace), Rnd.get(600, 1800) * 1000); // Faction Balance NPCs
 			}
 		}
 		// Check for Balaur Assault
-		if (SiegeConfig.BALAUR_AUTO_ASSAULT)
+		if (SiegeConfig.BALAUR_AUTO_ASSAULT && getBoss() != null)
 			BalaurAssaultService.getInstance().onSiegeStart(this);
 	}
 

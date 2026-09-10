@@ -34,9 +34,10 @@ public class ItemRaceEntry implements Chance {
 	void afterUnmarshal(Unmarshaller u, Object parent) {
 		StaticData staticData = StaticDataListener.get(u);
 		ItemData itemData = staticData != null ? staticData.itemData : DataManager.ITEM_DATA;
-		ItemTemplate itemTemplate = itemData.getItemTemplate(id);
-		if (itemTemplate == null)
-			throw new IllegalArgumentException("BonusItemGroup item ID " + id + " is invalid");
+		ItemTemplate itemTemplate = itemData != null ? itemData.getItemTemplate(id) : null;
+		if (itemTemplate == null) {
+			return;
+		}
 		if (itemTemplate.getRace() != Race.PC_ALL && race != Race.PC_ALL && itemTemplate.getRace() != race)
 			throw new IllegalArgumentException("BonusItemGroup item " + id + " has invalid race " + race + ". Item is only for " + itemTemplate.getRace());
 	}

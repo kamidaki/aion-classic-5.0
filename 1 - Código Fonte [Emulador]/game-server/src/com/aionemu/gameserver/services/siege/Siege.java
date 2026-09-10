@@ -142,13 +142,15 @@ public abstract class Siege<SL extends SiegeLocation> {
 		for (SiegeNpc npc : npcs) {
 			if (npc.getObjectTemplate().getAbyssNpcType().equals(AbyssNpcType.BOSS)) {
 				if (boss != null)
-					throw new SiegeException("Found 2 siege bosses for outpost " + getSiegeLocationId());
+					log.warn("Found multiple siege bosses for siege " + getSiegeLocationId());
 
 				boss = npc;
 			}
 		}
-		if (boss == null)
-			throw new SiegeException("Siege Boss not found for siege " + getSiegeLocationId());
+		if (boss == null) {
+			log.warn("Siege Boss not found for siege " + getSiegeLocationId());
+			return;
+		}
 
 		setBoss(boss);
 	}

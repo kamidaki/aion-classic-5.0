@@ -11,8 +11,8 @@
 	</xs:complexType>
 	<xs:complexType name="WorldRaidLocation">
 		<xs:sequence>
-			<xs:element name="world_raid_npcs" type="WorldRaidNpcs" />
-			<xs:element name="location_markers" type="LocationMarkers" />
+			<xs:element name="world_raid_npcs" type="WorldRaidNpcs" minOccurs="0" />
+			<xs:element name="location_markers" type="LocationMarkers" minOccurs="0" />
 		</xs:sequence>
 		<xs:attribute name="location_id" type="xs:int" use="required" />
 		<xs:attribute name="map_id" type="xs:int" use="required" />
@@ -34,7 +34,7 @@
 	</xs:complexType>
 	<xs:complexType name="WorldRaidNpcs">
 		<xs:sequence>
-			<xs:element name="world_raid_npc" type="WorldRaidNpc" minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="world_raid_npc" type="WorldRaidNpc" minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="WorldRaidNpc">

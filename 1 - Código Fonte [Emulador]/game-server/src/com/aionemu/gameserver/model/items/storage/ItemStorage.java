@@ -98,7 +98,27 @@ public class ItemStorage {
 			return -1;
 	}
 
+	public long getNextFreeSlot() {
+		java.util.Set<Long> usedSlots = new java.util.HashSet<>();
+		for (Item it : items.values()) {
+			long s = it.getEquipmentSlot();
+			if (s >= 0 && s < FIRST_AVAILABLE_SLOT) {
+				usedSlots.add(s);
+			}
+		}
+		for (long i = 0; i < limit; i++) {
+			if (!usedSlots.contains(i)) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
 	public boolean putItem(Item item) {
+		boolean slotOccupied = items.values().stream().anyMatch(i -> i.getEquipmentSlot() == item.getEquipmentSlot() && i.getObjectId() != item.getObjectId());
+		if (item.getEquipmentSlot() == FIRST_AVAILABLE_SLOT || item.getEquipmentSlot() < 0 || item.getEquipmentSlot() >= FIRST_AVAILABLE_SLOT || slotOccupied) {
+			item.setEquipmentSlot(getNextFreeSlot());
+		}
 		return items.putIfAbsent(item.getObjectId(), item) == null;
 	}
 

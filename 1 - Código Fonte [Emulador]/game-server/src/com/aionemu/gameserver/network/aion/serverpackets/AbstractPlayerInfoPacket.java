@@ -135,15 +135,30 @@ public abstract class AbstractPlayerInfoPacket extends AionServerPacket {
 		writeD(accPlData.getDeletionTimeInSeconds());
 	}
 
+	private long getAppearanceSlotMask(Item item) {
+		if (item == null || item.getItemTemplate() == null) {
+			return 0L;
+		}
+		long slot = item.getEquipmentSlot();
+		if (item.getItemTemplate().isTwoHandWeapon()) {
+			// Armas de duas mãos ocupam apenas MAIN_HAND na máscara de aparência 3D.
+			// O bit SUB_HAND faria o cliente Classic 5.0 renderizar uma segunda arma na mão esquerda.
+			if ((slot & ItemSlot.MAIN_HAND.getSlotIdMask()) != 0) {
+				return ItemSlot.MAIN_HAND.getSlotIdMask();
+			}
+			return 0L;
+		}
+		if ((slot & ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask()) != 0) {
+			return 0L;
+		}
+		return slot;
+	}
+
 	protected void writeEquippedItems(List<Item> items) {
 		int mask = 0;
 		if (items != null) {
 			for (Item item : items) {
-				long slot = item.getEquipmentSlot();
-				if (item.getItemTemplate().isTwoHandWeapon()) {
-					slot = ItemSlot.MAIN_HAND.getSlotIdMask();
-				}
-				mask |= (int) slot;
+				mask |= (int) getAppearanceSlotMask(item);
 			}
 		}
 		writeD(mask);
@@ -153,11 +168,7 @@ public abstract class AbstractPlayerInfoPacket extends AionServerPacket {
 				Item matchedItem = null;
 				if (items != null) {
 					for (Item item : items) {
-						long slot = item.getEquipmentSlot();
-						if (item.getItemTemplate().isTwoHandWeapon()) {
-							slot = ItemSlot.MAIN_HAND.getSlotIdMask();
-						}
-						if ((slot & bit) != 0) {
+						if ((getAppearanceSlotMask(item) & bit) != 0) {
 							matchedItem = item;
 							break;
 						}

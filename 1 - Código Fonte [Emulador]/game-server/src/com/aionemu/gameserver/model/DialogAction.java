@@ -136,7 +136,6 @@ public final class DialogAction {
 	public static final int SELECTED_QUEST_AUTO_REWARD14 = 123;
 	public static final int SELECTED_QUEST_AUTO_REWARD15 = 124;
 	public static final int OPEN_STIGMA_ENCHANT = 125;
-	public static final int BIND = 128;
 	public static final int CUSTOM1 = 1000;
 	public static final int CUSTOM2 = 1001;
 	public static final int QUEST_ACCEPT_1 = 1002;

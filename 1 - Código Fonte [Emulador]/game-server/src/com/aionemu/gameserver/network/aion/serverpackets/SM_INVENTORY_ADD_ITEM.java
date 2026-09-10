@@ -28,15 +28,9 @@ public class SM_INVENTORY_ADD_ITEM extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		// TODO: Rework it, who knows where it could be bugged else.
-		int mask = addType.getMask();
-		if (addType == ItemAddType.ITEM_COLLECT) {
-			// TODO: if size != 1, then it's buy item, should not specify any slot in other places then !!!
-			if (items.size() == 1 && items.get(0).getEquipmentSlot() != ItemStorage.FIRST_AVAILABLE_SLOT)
-				mask = ItemAddType.PARTIAL_WITH_SLOT.getMask();
-		}
-		writeH(mask); //
-		writeH(items.size()); // number of entries
+		// Classic 5.0: 6 zero bytes header followed by count short
+		writeB(new byte[6]);
+		writeH(items.size());
 		for (Item item : items)
 			writeItemInfo(item);
 	}
@@ -46,11 +40,11 @@ public class SM_INVENTORY_ADD_ITEM extends AionServerPacket {
 
 		writeD(item.getObjectId());
 		writeD(itemTemplate.getTemplateId());
-		writeS(itemTemplate.getL10n());
 
+		// In 5.0 Classic, no string localization is written here!
 		ItemInfoBlob.getFullBlob(player, item).writeMe(getBuf());
 
-		writeH((int) (item.getEquipmentSlot() & 0xFFFF));
+		writeH(item.isEquipped() ? 0xFFFF : (int) (item.getEquipmentSlot() & 0xFFFF));
 		writeC(item.getItemTemplate().isCloth() ? 1 : 0);
 	}
 }

@@ -35,13 +35,20 @@ public class WeaponDualEffect extends BufEffect {
 	}
 
 	public static boolean hasDualWieldEffect(Player player) {
-		if (player.getPosition() == null || !player.isSpawned()) { // fallback for enterWorld and character creation (no position yet)
+		if (player == null) {
+			return false;
+		}
+		if (player.getPlayerClass() == com.aionemu.gameserver.model.PlayerClass.ASSASSIN) {
+			return true;
+		}
+		if (player.getSkillList() != null) {
 			for (PlayerSkillEntry skillEntry : player.getSkillList().getAllSkills()) {
-				Effects effects = DataManager.SKILL_DATA.getSkillTemplate(skillEntry.getSkillId()).getEffects();
-				if (effects != null && effects.hasAnyEffectType(EffectType.WEAPONDUAL))
+				com.aionemu.gameserver.skillengine.model.SkillTemplate st = DataManager.SKILL_DATA.getSkillTemplate(skillEntry.getSkillId());
+				if (st != null && st.getEffects() != null && st.getEffects().hasAnyEffectType(EffectType.WEAPONDUAL)) {
 					return true;
+				}
 			}
 		}
-		return player.getGameStats().getSkillEfficiency() != 0;
+		return player.getGameStats() != null && player.getGameStats().getSkillEfficiency() != 0;
 	}
 }

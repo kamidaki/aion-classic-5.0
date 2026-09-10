@@ -88,6 +88,11 @@
 	<import file="goodslists/goodslists.xml" />
 	<import file="guides/guide.xml" />
 	<import file="hotspot_template.xml" />
+	<import file="housing/house_buildings.xml" />
+	<import file="housing/house_npcs.xml" />
+	<import file="housing/house_parts.xml" />
+	<import file="housing/houses.xml" />
+	<import file="housing/housing_objects.xml" />
 	<import file="instance_bonusattr/instance_bonusattr.xml" />
 	<import file="instance_cooltimes/instance_cooltimes.xml" />
 	<import file="instance_exit/instance_exit.xml" />

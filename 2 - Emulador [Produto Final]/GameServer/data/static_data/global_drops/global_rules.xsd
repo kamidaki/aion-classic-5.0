@@ -41,7 +41,7 @@
 
 	<xs:complexType name="GlobalDropItems">
 		<xs:sequence>
-			<xs:element maxOccurs="unbounded" name="gd_item" type="GlobalDropItem" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="gd_item" type="GlobalDropItem" />
 		</xs:sequence>
 	</xs:complexType>
 

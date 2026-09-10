@@ -109,7 +109,10 @@ public class DialogService {
 				case INSTANCE_ENTRY: // (2.5)
 				case COMPOUND_WEAPON: // armsfusion (2.5)
 				case DECOMPOUND_WEAPON: // armsbreaking (2.5)
-																case CHARGE_ITEM_SINGLE: // condition an individual item
+				case HOUSING_BUILD: // housing build
+				case HOUSING_DESTRUCT: // housing destruct
+				case HOUSING_PERSONAL_AUCTION: // housing auction
+				case CHARGE_ITEM_SINGLE: // condition an individual item
 				case CHARGE_ITEM_SINGLE2: // augmenting an individual item
 				case TOWN_CHALLENGE: // town improvement
 					sendDialogWindow(dialogActionId, player, npc);
@@ -263,6 +266,9 @@ public class DialogService {
 					break;
 				case CHARGE_ITEM_MULTI2: // augmenting all equipped items
 					ItemChargeService.startChargingEquippedItems(player, targetObjectId, 2);
+					break;
+				case HOUSING_RECREATE_PERSONAL_INS: // recreate personal house instance (studio)
+					HousingService.getInstance().recreatePlayerStudio(player);
 					break;
 				default:
 					handleQuestDialogueOrSendNextPage(dialogActionId, player, npc, questId, extendedRewardIndex);

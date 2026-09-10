@@ -1,9 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
 <world_raid_locations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="world_raids.xsd">
 	<!-- Verteron -->
 	<world_raid_location location_id="1" map_id="210030000" x="1587.52" y="2078.81" z="155.85437" h="29">
 		<world_raid_npcs>
 			<!-- Third-rate Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234558" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1615.2394" y="2072.2388" z="160.26215" h="0" />
@@ -13,7 +13,6 @@
 	<world_raid_location location_id="2" map_id="210030000" x="2484.98" y="826.09" z="100.61937" h="29">
 		<world_raid_npcs>
 			<!-- Third-rate Bomb Tumon | STR_MSG_WORLDRAID_MESSAGE_DIE_04 -->
-			<world_raid_npc npc_id="234559" death_msg_id="1402390" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2481.6819" y="799.7156" z="99.375" h="0" />
@@ -29,7 +28,6 @@
 	<world_raid_location location_id="3" map_id="210030000" x="1703.98" y="1663.38" z="102.16375" h="29">
 		<world_raid_npcs>
 			<!-- Third-rate Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234560" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1730.2171" y="1671.1357" z="101.94258" h="0" />
@@ -46,7 +44,6 @@
 	<world_raid_location location_id="4" map_id="220030000" x="2893.61" y="1514.2" z="250.26312" h="28">
 		<world_raid_npcs>
 			<!-- Third-rate Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234561" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2895.3089" y="1540.4974" z="252.5075" h="0" />
@@ -62,7 +59,6 @@
 	<world_raid_location location_id="5" map_id="220030000" x="1868.05" y="1672.47" z="247.375" h="28">
 		<world_raid_npcs>
 			<!-- Third-rate Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234562" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1882.973" y="1652.2659" z="250.43655" h="0" />
@@ -78,7 +74,6 @@
 	<world_raid_location location_id="6" map_id="220030000" x="1759.48" y="504.17" z="247.2825" h="28">
 		<world_raid_npcs>
 			<!-- Third-rate Bomb Tumon | STR_MSG_WORLDRAID_MESSAGE_DIE_04 -->
-			<world_raid_npc npc_id="234563" death_msg_id="1402390" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1764.3008" y="529.6722" z="247.5" h="0" />
@@ -95,7 +90,6 @@
 	<world_raid_location location_id="7" map_id="210020000" x="256.04" y="2135.38" z="207.375" h="28">
 		<world_raid_npcs>
 			<!-- Second-rate Tarantum | STR_MSG_WORLDRAID_MESSAGE_DIE_02 -->
-			<world_raid_npc npc_id="234564" death_msg_id="1402388" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="278.2917" y="2135.9305" z="207.375" h="0" />
@@ -105,7 +99,6 @@
 	<world_raid_location location_id="8" map_id="210020000" x="859.62" y="1151.2" z="278.39874" h="28">
 		<world_raid_npcs>
 			<!-- Third-rate Tarantum | STR_MSG_WORLDRAID_MESSAGE_DIE_02 -->
-			<world_raid_npc npc_id="234565" death_msg_id="1402388" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="855.4946" y="1176.1031" z="278.7816" h="0" />
@@ -116,7 +109,6 @@
 	<world_raid_location location_id="9" map_id="210020000" x="1519.67" y="1911.02" z="289.54062" h="28">
 		<world_raid_npcs>
 			<!-- Third-rate Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234566" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1516.7855" y="1935.2955" z="287.38208" h="0" />
@@ -132,7 +124,6 @@
 	<world_raid_location location_id="10" map_id="220020000" x="575.64" y="361.32" z="484.0" h="26">
 		<world_raid_npcs>
 			<!-- Second-rate Tarantum | STR_MSG_WORLDRAID_MESSAGE_DIE_02 -->
-			<world_raid_npc npc_id="234567" death_msg_id="1402388" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="566.0052" y="383.6514" z="480.35287" h="0" />
@@ -148,7 +139,6 @@
 	<world_raid_location location_id="11" map_id="220020000" x="401.12" y="1722.09" z="441.11377" h="26">
 		<world_raid_npcs>
 			<!-- Third-rate Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234568" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="410.8052" y="1700.493" z="442.18192" h="0" />
@@ -158,7 +148,6 @@
 	<world_raid_location location_id="12" map_id="220020000" x="1050.08" y="1247.85" z="252.59625" h="26">
 		<world_raid_npcs>
 			<!-- Second-rate Tarantum | STR_MSG_WORLDRAID_MESSAGE_DIE_02 -->
-			<world_raid_npc npc_id="234569" death_msg_id="1402388" />
 		</world_raid_npcs>
 		<location_markers />
 	</world_raid_location>
@@ -166,7 +155,6 @@
 	<world_raid_location location_id="13" map_id="210060000" x="2429.27" y="2619.89" z="40.25" h="27">
 		<world_raid_npcs>
 			<!-- Second-rate Magnorion | STR_MSG_WORLDRAID_MESSAGE_DIE_01 -->
-			<world_raid_npc npc_id="234570" death_msg_id="1402387" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2430.3885" y="2591.3167" z="42.109695" h="0" />
@@ -182,7 +170,6 @@
 	<world_raid_location location_id="14" map_id="210060000" x="1771.8" y="1356.03" z="18.125" h="27">
 		<world_raid_npcs>
 			<!-- Third-rate Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234571" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1744.2679" y="1356.4266" z="18.733253" h="0" />
@@ -198,7 +185,6 @@
 	<world_raid_location location_id="15" map_id="210060000" x="556.65" y="2232.53" z="44.125" h="27">
 		<world_raid_npcs>
 			<!-- Third-rate Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234572" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="538.5178" y="2253.2461" z="43.95288" h="0" />
@@ -208,7 +194,6 @@
 	<world_raid_location location_id="16" map_id="220050000" x="419.54" y="2838.53" z="245.5875" h="24">
 		<world_raid_npcs>
 			<!-- Second-rate Magnorion | STR_MSG_WORLDRAID_MESSAGE_DIE_01 -->
-			<world_raid_npc npc_id="234573" death_msg_id="1402387" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="444.1619" y="2838.1832" z="242.592" h="0" />
@@ -223,7 +208,6 @@
 	<world_raid_location location_id="17" map_id="220050000" x="2480.16" y="1901.3" z="22.115005" h="24">
 		<world_raid_npcs>
 			<!-- Third-rate Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234574" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2481.1397" y="1876.6716" z="22.125" h="0" />
@@ -238,7 +222,6 @@
 	<world_raid_location location_id="18" map_id="220050000" x="336.69" y="369.99" z="5.248749" h="24">
 		<world_raid_npcs>
 			<!-- Third-rate Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234575" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="361.4136" y="369.5706" z="4.3671646" h="0" />
@@ -254,7 +237,6 @@
 	<world_raid_location location_id="19" map_id="210040000" x="382.86" y="2929.85" z="100.25" h="22">
 		<world_raid_npcs>
 			<!-- Third-rate Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234576" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="359.6381" y="2929.8174" z="100.375" h="0" />
@@ -270,7 +252,6 @@
 	<world_raid_location location_id="20" map_id="210040000" x="1470.21" y="1891.81" z="106.339386" h="22">
 		<world_raid_npcs>
 			<!-- Second-rate Magnorion | STR_MSG_WORLDRAID_MESSAGE_DIE_01 -->
-			<world_raid_npc npc_id="234577" death_msg_id="1402387" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1454.0606" y="1875.4946" z="108.031586" h="0" />
@@ -286,7 +267,6 @@
 	<world_raid_location location_id="21" map_id="210040000" x="540.81" y="2108.73" z="103.32938" h="22">
 		<world_raid_npcs>
 			<!-- Third-rate Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234578" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="563.9889" y="2108.4278" z="103.375" h="0" />
@@ -303,7 +283,6 @@
 	<world_raid_location location_id="22" map_id="220040000" x="2566.49" y="286.66" z="287.5" h="26">
 		<world_raid_npcs>
 			<!-- Third-rate Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234579" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2548.3511" y="306.5275" z="286.77194" h="0" />
@@ -319,7 +298,6 @@
 	<world_raid_location location_id="23" map_id="220040000" x="782.26" y="1239.65" z="224.11938" h="26">
 		<world_raid_npcs>
 			<!-- Second-rate Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234580" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="763.4625" y="1218.4397" z="222.13722" h="0" />
@@ -328,7 +306,6 @@
 	<world_raid_location location_id="24" map_id="220040000" x="467.31" y="1786.3" z="206.06813" h="26">
 		<world_raid_npcs>
 			<!-- Third-rate Magnorion | STR_MSG_WORLDRAID_MESSAGE_DIE_01 -->
-			<world_raid_npc npc_id="234581" death_msg_id="1402387" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="448.5095" y="1765.0893" z="205.85661" h="0" />
@@ -345,7 +322,6 @@
 	<world_raid_location location_id="25" map_id="210050000" x="2729.83" y="1874.37" z="189.625" h="27">
 		<world_raid_npcs>
 			<!-- Third-rate High-ranking Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234582" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2713.8726" y="1857.7796" z="189.625" h="0" />
@@ -361,7 +337,6 @@
 	<world_raid_location location_id="26" map_id="210050000" x="1904.77" y="1951.7" z="288.14374" h="27">
 		<world_raid_npcs>
 			<!-- Third-rate High-ranking Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234583" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1924.1064" y="1934.1696" z="291.6065" h="0" />
@@ -377,7 +352,6 @@
 	<world_raid_location location_id="27" map_id="210050000" x="2757.93" y="826.57" z="383.8394" h="27">
 		<world_raid_npcs>
 			<!-- Second-rate High-ranking Magnorion | STR_MSG_WORLDRAID_MESSAGE_DIE_01 -->
-			<world_raid_npc npc_id="234584" death_msg_id="1402387" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2759.6854" y="852.5345" z="383.9418" h="0" />
@@ -393,7 +367,6 @@
 	<world_raid_location location_id="28" map_id="220070000" x="598.19" y="1342.64" z="277.0" h="27">
 		<world_raid_npcs>
 			<!-- Third-rate High-ranking Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234585" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="615.4686" y="1326.2109" z="276.88818" h="0" />
@@ -406,7 +379,6 @@
 	<world_raid_location location_id="29" map_id="220070000" x="2180.12" y="934.13" z="185.36626" h="27">
 		<world_raid_npcs>
 			<!-- Third-rate High-ranking Aitos | STR_MSG_WORLDRAID_MESSAGE_DIE_03 -->
-			<world_raid_npc npc_id="234586" death_msg_id="1402389" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2182.0818" y="909.7434" z="187.13593" h="0" />
@@ -422,7 +394,6 @@
 	<world_raid_location location_id="30" map_id="220070000" x="1492.03" y="1254.61" z="298.1269" h="27">
 		<world_raid_npcs>
 			<!-- Second-rate High-ranking Magnorion | STR_MSG_WORLDRAID_MESSAGE_DIE_01 -->
-			<world_raid_npc npc_id="234587" death_msg_id="1402387" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1511.3609" y="1237.0759" z="298.46005" h="0" />
@@ -439,7 +410,6 @@
 	<world_raid_location location_id="31" map_id="400010000" x="808.98" y="848.8" z="1672.0626" h="32">
 		<world_raid_npcs>
 			<!-- Second-rate Elite Venoid | STR_MSG_WORLDRAID_MESSAGE_DIE_06 -->
-			<world_raid_npc npc_id="234588" death_msg_id="1402392" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="788.4415" y="835.0213" z="1670.1521" h="0" />
@@ -455,7 +425,6 @@
 	<world_raid_location location_id="32" map_id="400010000" x="2020.89" y="2833.78" z="2830.9448" h="32">
 		<world_raid_npcs>
 			<!-- Third-rate Cannon Tumon | STR_MSG_WORLDRAID_MESSAGE_DIE_04 -->
-			<world_raid_npc npc_id="234589" death_msg_id="1402390" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1996.4522" y="2831.7791" z="2830.9321" h="0" />
@@ -471,7 +440,6 @@
 	<world_raid_location location_id="33" map_id="400010000" x="2284.99" y="848.75" z="2831.5469" h="32">
 		<world_raid_npcs>
 			<!-- Third-rate Elite Cannon Tumon | STR_MSG_WORLDRAID_MESSAGE_DIE_04 -->
-			<world_raid_npc npc_id="234590" death_msg_id="1402390" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="2312.4405" y="859.7079" z="2831.5522" h="0" />
@@ -487,7 +455,6 @@
 	<world_raid_location location_id="34" map_id="400010000" x="1121.71" y="2097.28" z="2886.941" h="32">
 		<world_raid_npcs>
 			<!-- First-rate Elite Bomb Tumon | STR_MSG_WORLDRAID_MESSAGE_DIE_04 -->
-			<world_raid_npc npc_id="234591" death_msg_id="1402390" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="1142.4217" y="2101.8606" z="2887.0208" h="0" />
@@ -503,7 +470,6 @@
 	<world_raid_location location_id="35" map_id="400010000" x="3330.8" y="1338.18" z="2664.3855" h="32">
 		<world_raid_npcs>
 			<!-- First-rate Elite Bomb Tumon | STR_MSG_WORLDRAID_MESSAGE_DIE_04 -->
-			<world_raid_npc npc_id="234592" death_msg_id="1402390" />
 		</world_raid_npcs>
 		<location_markers>
 			<spot x="3354.9131" y="1318.4717" z="2665.066" h="0" />

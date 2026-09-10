@@ -44,8 +44,11 @@ cache/
 **/*.WebView2/
 
 # 3. Bancos de Dados Temporários e Arquivos de Lock
+*.db
 *.db-shm
 *.db-wal
+.geoip-cache/
+**/.geoip-cache/
 
 # 4. IDEs e Editores
 .idea/

@@ -32,6 +32,10 @@ public class ArtifactSiege extends Siege<ArtifactLocation> {
 	@Override
 	protected void onSiegeStart() {
 		initSiegeBoss();
+		if (getBoss() == null) {
+			log.warn("Artifact siege (artifactId:{}) started without a boss.", getSiegeLocationId());
+			return;
+		}
 		getSiegeLocation().setInitialDelay(getStartTime());
 		// Check for Balaur Assault
 		if (SiegeConfig.BALAUR_AUTO_ASSAULT)

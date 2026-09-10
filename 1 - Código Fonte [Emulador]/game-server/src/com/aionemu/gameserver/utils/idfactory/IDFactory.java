@@ -91,7 +91,7 @@ public class IDFactory {
 		lock.lock();
 		try {
 			if (!release(id)) {
-				log.warn("Couldn't release ID {} because it wasn't taken", id, new IllegalArgumentException());
+				log.debug("Couldn't release ID {} because it wasn't taken", id);
 			}
 		} finally {
 			lock.unlock();
@@ -106,7 +106,7 @@ public class IDFactory {
 		try {
 			unusedObjects.forEach(obj -> {
 				if (!release(obj.getObjectId())) {
-					log.warn("Couldn't release object ID of {} (ID wasn't taken)", obj, new IllegalArgumentException());
+					log.debug("Couldn't release object ID of {} (ID wasn't taken)", obj);
 				}
 			});
 		} finally {
@@ -129,9 +129,11 @@ public class IDFactory {
 	private void initializeUsedIds() {
 		lockIds(PlayerDAO.getUsedIDs());
 		lockIds(InventoryDAO.getUsedIDs());
+		lockIds(PlayerRegisteredItemsDAO.getUsedIDs());
 		lockIds(LegionDAO.getUsedIDs());
 		lockIds(MailDAO.getUsedIDs());
 		lockIds(GuideDAO.getUsedIDs());
+		lockIds(HousesDAO.getUsedIDs());
 		lockIds(PlayerPetsDAO.getUsedIDs());
 		lockIds(PlayerWardrobeDAO.getUsedIDs());
 		lockIds(PlayerBattlePassDAO.getUsedIDs());

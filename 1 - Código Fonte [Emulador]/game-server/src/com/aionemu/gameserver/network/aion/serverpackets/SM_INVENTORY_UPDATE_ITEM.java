@@ -37,19 +37,20 @@ public class SM_INVENTORY_UPDATE_ITEM extends AionServerPacket {
 			case EQUIP_UNEQUIP:
 				itemInfoBlob = new ItemInfoBlob(player, item);
 				itemInfoBlob.addBlobEntry(ItemBlobType.EQUIPPED_SLOT);
+				itemInfoBlob.writeMe(getBuf());
 				break;
 			case CHARGE:
 				itemInfoBlob = new ItemInfoBlob(player, item);
 				itemInfoBlob.addBlobEntry(ItemBlobType.CONDITIONING_INFO);
+				itemInfoBlob.writeMe(getBuf());
 				break;
 
 			default:
 				itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
+				itemInfoBlob.writeMe(getBuf());
+				// Classic 5.0 wire: 5 trailing zero bytes after full blob (verified in packets 3271, 5834, 7784)
+				writeB(new byte[5]);
 				break;
 		}
-		itemInfoBlob.writeMe(getBuf());
-
-		if (updateType.isSendable())
-			writeH(updateType.getMask());
 	}
 }

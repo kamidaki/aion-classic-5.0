@@ -29,17 +29,12 @@ public class SM_ABNORMAL_STATE extends AionServerPacket {
 		writeC(slot);
 		writeH(effects.size());
 
-		int targetId = con.getActivePlayer() != null ? con.getActivePlayer().getObjectId() : 0;
 		for (Effect effect : effects) {
-			writeD(targetId);
 			writeD(effect.getEffectorId());
 			writeH(effect.getSkillId());
 			writeC(effect.getSkillLevel());
 			writeC(effect.getTargetSlot().ordinal());
 			writeD(effect.getRemainingTimeToDisplay());
-			writeD(0);
-			writeH(0);
-			writeC(1);
 		}
 	}
 }

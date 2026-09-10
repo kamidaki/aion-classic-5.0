@@ -219,7 +219,7 @@ public class EnchantService {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_ENCHANT_ITEM_SUCCEED_NEW(targetItem.getL10n(), targetItem.getEnchantLevel()));
 		else {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ENCHANT_ITEM_FAILED(targetItem.getL10n()));
-			if (targetItem.getItemTemplate().getEnchantType() > 0) {
+			if (targetItem.getItemTemplate().getEnchantType() > 0 && !targetItem.getItemTemplate().isWeapon() && !targetItem.getItemTemplate().isArmor()) {
 				if (targetItem.isEquipped())
 					player.getEquipment().decreaseEquippedItemCount(targetItem.getObjectId(), 1);
 				else

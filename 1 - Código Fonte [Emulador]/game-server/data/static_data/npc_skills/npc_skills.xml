@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <npc_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="npc_skills.xsd">
 	<npc_skills npc_ids="201010">
 		<npc_skill id="17424" lv="9" prob="25" />
@@ -2567,7 +2567,7 @@
 	</npc_skills>
 	<!-- Heiron Elite Templar -->
 	<npc_skills npc_ids="209529">
-	  <npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
+		<npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
 		<npc_skill id="18317" lv="60" prob="1" min_hp="10" max_hp="25" cd="600000" />
 		<npc_skill id="18318" lv="60" prob="17" cd="30000" />
 		<npc_skill id="18319" lv="60" prob="17" cd="30000" />
@@ -2630,7 +2630,7 @@
 	</npc_skills>
 	<!-- Beluslan Elite Templar -->
 	<npc_skills npc_ids="209544">
-	  <npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
+		<npc_skill id="18315" lv="60" prob="100" min_hp="5" max_hp="50" cd="150000" />
 		<npc_skill id="18317" lv="60" prob="1" min_hp="10" max_hp="25" cd="600000" />
 		<npc_skill id="18318" lv="60" prob="17" cd="30000" />
 		<npc_skill id="18319" lv="60" prob="17" cd="30000" />
@@ -26536,15 +26536,24 @@
 	</npc_skills>
 	<!-- Debilkarim The Maker -->
 	<npc_skills npc_ids="215795">
-		<npc_skill id="18630" lv="1" prob="0" is_post_spawn="true" /><!-- Strong Shock Tolerance -->
-		<npc_skill id="18631" lv="1" prob="100" chain_id="1" cd="300000" next_skill_time="0" /><!-- Strong Magic Tolerance -->
-		<npc_skill id="18632" lv="46" prob="100" max_hp="80" cd="18000" /><!-- Seismic Wave -->
-		<npc_skill id="18633" lv="46" prob="100" cd="10000" /><!-- Rockfall -->
-		<npc_skill id="18634" lv="46" prob="100" cd="23000" /><!-- Stone Curse -->
-		<npc_skill id="18635" lv="46" prob="100" cd="30000" /><!-- Wave of Fear -->
-		<npc_skill id="18636" lv="46" prob="100" prio="1" max_hp="50" cd="300000" next_skill_time="0" next_chain_id="1" /><!-- Invoke Energy (Heal) -->
-		<npc_skill id="18637" lv="46" prob="100" max_hp="70" cd="30000" /><!-- Temblor -->
-		<npc_skill id="19000" lv="46" prob="100" prio="4" max_hp="10" cd="60000" /><!-- Infernal Rift -->
+		<npc_skill id="18630" lv="1" prob="0" is_post_spawn="true" />
+		<!-- Strong Shock Tolerance -->
+		<npc_skill id="18631" lv="1" prob="100" chain_id="1" cd="300000" next_skill_time="0" />
+		<!-- Strong Magic Tolerance -->
+		<npc_skill id="18632" lv="46" prob="100" max_hp="80" cd="18000" />
+		<!-- Seismic Wave -->
+		<npc_skill id="18633" lv="46" prob="100" cd="10000" />
+		<!-- Rockfall -->
+		<npc_skill id="18634" lv="46" prob="100" cd="23000" />
+		<!-- Stone Curse -->
+		<npc_skill id="18635" lv="46" prob="100" cd="30000" />
+		<!-- Wave of Fear -->
+		<npc_skill id="18636" lv="46" prob="100" prio="1" max_hp="50" cd="300000" next_skill_time="0" next_chain_id="1" />
+		<!-- Invoke Energy (Heal) -->
+		<npc_skill id="18637" lv="46" prob="100" max_hp="70" cd="30000" />
+		<!-- Temblor -->
+		<npc_skill id="19000" lv="46" prob="100" prio="4" max_hp="10" cd="60000" />
+		<!-- Infernal Rift -->
 	</npc_skills>
 	<npc_skills npc_ids="215796">
 		<npc_skill id="18638" lv="46" prob="25" />
@@ -35666,7 +35675,6 @@
 		<npc_skill id="21530" lv="1" prob="100" chain_id="1" next_skill_time="10000" target="NONE" />
 		<npc_skill id="21531" lv="1" prob="70" min_hp="50" next_chain_id="2" next_skill_time="0" cd="40000" />
 		<npc_skill id="21532" lv="1" chain_id="2" prob="100" cd="10000" next_skill_time="10000" />
-
 		<npc_skill id="21532" lv="1" prob="70" max_hp="50" next_chain_id="3" next_skill_time="0" cd="40000" />
 		<npc_skill id="21531" lv="1" chain_id="3" prob="100" next_skill_time="10000" cd="10000" />
 	</npc_skills>
@@ -35911,10 +35919,14 @@
 		<npc_skill id="19135" lv="65" prob="25" />
 	</npc_skills>
 	<npc_skills npc_ids="237174">
-		<npc_skill id="22717" lv="65" prob="75" /><!-- High-speed Freeze -->
-		<npc_skill id="19009" lv="60" prob="100" /><!-- Wide Area Pull -->
-		<npc_skill id="19155" lv="60" prob="100" /><!-- Aether Storm -->
-		<npc_skill id="19134" lv="60" prob="100" cd="10000" /><!-- Arcane Thunderbolt -->
+		<npc_skill id="22717" lv="65" prob="75" />
+		<!-- High-speed Freeze -->
+		<npc_skill id="19009" lv="60" prob="100" />
+		<!-- Wide Area Pull -->
+		<npc_skill id="19155" lv="60" prob="100" />
+		<!-- Aether Storm -->
+		<npc_skill id="19134" lv="60" prob="100" cd="10000" />
+		<!-- Arcane Thunderbolt -->
 	</npc_skills>
 	<npc_skills npc_ids="251001">
 		<npc_skill id="17829" lv="42" prob="25" />
@@ -35979,7 +35991,6 @@
 		<npc_skill id="17839" lv="60" prob="25" />
 		<npc_skill id="20888" lv="60" prob="25" />
 	</npc_skills>
-
 	<npc_skills npc_ids="252015">
 		<npc_skill id="17316" lv="65" prob="100" />
 	</npc_skills>
@@ -54734,8 +54745,8 @@
 	</npc_skills>
 	<!-- Dux Sillus -->
 	<npc_skills npc_ids="272000">
-	  <!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<!-- 10m range -->
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -54764,7 +54775,7 @@
 	<!-- Stallari Sillus -->
 	<npc_skills npc_ids="272005">
 		<!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -54793,7 +54804,7 @@
 	<!-- Ulsaruk Sillus -->
 	<npc_skills npc_ids="272010">
 		<!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -54822,7 +54833,7 @@
 	<!-- Dux Silona -->
 	<npc_skills npc_ids="272502">
 		<!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -54851,7 +54862,7 @@
 	<!-- Stallari Silon -->
 	<npc_skills npc_ids="272507">
 		<!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -54880,7 +54891,7 @@
 	<!-- Ulsaruk Silona -->
 	<npc_skills npc_ids="272512">
 		<!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -54909,7 +54920,7 @@
 	<!-- Dux Pradeth -->
 	<npc_skills npc_ids="273000">
 		<!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -54938,7 +54949,7 @@
 	<!-- Stallari Pradeth -->
 	<npc_skills npc_ids="273005">
 		<!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -54967,7 +54978,7 @@
 	<!-- Ulsaruk Pradeth -->
 	<npc_skills npc_ids="273010">
 		<!-- 10m range -->
-		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55"  />
+		<npc_skill id="19100" lv="46" prob="25" next_chain_id="1" next_skill_time="0" cd="120000" min_hp="55" />
 		<npc_skill id="19101" lv="46" prob="100" chain_id="1" next_skill_time="8000" cd="20000" target="NONE">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
@@ -60158,7 +60169,7 @@
 	<npc_skills npc_ids="700397">
 		<npc_skill id="18465" lv="41" prob="25" />
 	</npc_skills>
-  <npc_skills npc_ids="700437">
+	<npc_skills npc_ids="700437">
 		<npc_skill id="276" lv="16" prob="25" />
 	</npc_skills>
 	<npc_skills npc_ids="700439">
@@ -61585,7 +61596,7 @@
 	<npc_skills npc_ids="830171">
 		<npc_skill id="20045" lv="1" prob="100" />
 	</npc_skills>
-  <npc_skills npc_ids="830230">
+	<npc_skills npc_ids="830230">
 		<npc_skill id="4156" lv="3" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="830231">
@@ -61641,14 +61652,19 @@
 	</npc_skills>
 	<!-- Berserk Anoha -->
 	<npc_skills npc_ids="855263">
-		<npc_skill id="21761" lv="1" prob="70" cd="25000" next_skill_time="6000" /><!-- Heat Wave -->
-		<npc_skill id="21762" lv="1" prob="70" cd="30000" next_skill_time="6500" /><!-- Eruption -->
-		<npc_skill id="21763" lv="1" prob="70" cd="40000" next_skill_time="7500" /><!-- Flame Churn -->
-		<npc_skill id="21764" lv="1" prob="70" cd="25000" next_skill_time="6000" /><!-- Fire Strike -->
-		<npc_skill id="21765" lv="1" prob="70" max_hp="75" cd="30000" next_skill_time="8500"><!-- Infernal Flame -->
-			<spawn_npc npc_id="855265" min_distance="8" max_distance="30" min_count="2" max_count="6" />
+		<npc_skill id="21761" lv="1" prob="70" cd="25000" next_skill_time="6000" />
+		<!-- Heat Wave -->
+		<npc_skill id="21762" lv="1" prob="70" cd="30000" next_skill_time="6500" />
+		<!-- Eruption -->
+		<npc_skill id="21763" lv="1" prob="70" cd="40000" next_skill_time="7500" />
+		<!-- Flame Churn -->
+		<npc_skill id="21764" lv="1" prob="70" cd="25000" next_skill_time="6000" />
+		<!-- Fire Strike -->
+		<npc_skill id="21765" lv="1" prob="70" max_hp="75" cd="30000" next_skill_time="8500">
+			<!-- Infernal Flame -->
 		</npc_skill>
-		<npc_skill id="21766" lv="65" prob="70" cd="30000" next_skill_time="7500" /><!-- Suffocating Heat -->
+		<npc_skill id="21766" lv="65" prob="70" cd="30000" next_skill_time="7500" />
+		<!-- Suffocating Heat -->
 	</npc_skills>
 	<npc_skills npc_ids="855265">
 		<npc_skill id="21767" lv="1" prob="100" min_hp="95">
@@ -62762,39 +62778,39 @@
 	</npc_skills>
 	<!-- Vocolith Summons -->
 	<npc_skills npc_ids="235217">
-		<npc_skill id="21781" lv="65" prob="100" cd="15000" target="RANDOM"/>
+		<npc_skill id="21781" lv="65" prob="100" cd="15000" target="RANDOM" />
 		<npc_skill id="18770" lv="65" prob="100" cd="30000" target="ME" />
-		<npc_skill id="16519" lv="65" prob="100" cd="30000" target="RANDOM"/>
-		<npc_skill id="21790" lv="65" prob="100" cd="30000" target="RANDOM"/>
-		<npc_skill id="21783" lv="65" prob="100" cd="30000" target="ME"/>
+		<npc_skill id="16519" lv="65" prob="100" cd="30000" target="RANDOM" />
+		<npc_skill id="21790" lv="65" prob="100" cd="30000" target="RANDOM" />
+		<npc_skill id="21783" lv="65" prob="100" cd="30000" target="ME" />
 		<npc_skill id="21782" lv="65" prob="100" max_hp="50" cd="15000" target="RANDOM" />
 	</npc_skills>
 	<npc_skills npc_ids="235218">
-		<npc_skill id="19549" lv="40" prob="80" cd="15000" target="RANDOM"/>
-		<npc_skill id="19549" lv="60" prob="100" max_hp="55" cd="60000" target="RANDOM"/>
+		<npc_skill id="19549" lv="40" prob="80" cd="15000" target="RANDOM" />
+		<npc_skill id="19549" lv="60" prob="100" max_hp="55" cd="60000" target="RANDOM" />
 		<npc_skill id="19550" lv="25" prob="80" cd="30000" target="RANDOM" />
 		<npc_skill id="19552" lv="55" prob="100" max_hp="50" next_chain_id="1" cd="40000" next_skill_time="0" />
 		<npc_skill id="19553" lv="25" prob="100" max_hp="50" chain_id="1" cd="35000" prio="1">
 			<cond cond_type="TARGET_IS_AETHERS_HOLD" />
 		</npc_skill>
-		<npc_skill id="21780" lv="65" prob="80" cd="10000" target="RANDOM"/>
+		<npc_skill id="21780" lv="65" prob="80" cd="10000" target="RANDOM" />
 	</npc_skills>
 	<npc_skills npc_ids="235219">
-		<npc_skill id="21785" lv="65" prob="80" cd="20000" target="ME"/>
+		<npc_skill id="21785" lv="65" prob="80" cd="20000" target="ME" />
 		<npc_skill id="18770" lv="65" prob="80" cd="20000" target="ME" />
-		<npc_skill id="21786" lv="65" prob="100" max_hp="80" cd="30000" target="RANDOM"/>
+		<npc_skill id="21786" lv="65" prob="100" max_hp="80" cd="30000" target="RANDOM" />
 		<npc_skill id="21784" lv="65" prob="100" max_hp="65" cd="30000" />
 		<npc_skill id="16519" lv="65" prob="100" cd="30000" />
 	</npc_skills>
 	<npc_skills npc_ids="235220">
-		<npc_skill id="19555" lv="25" prob="100" cd="35000" target="RANDOM"/>
-		<npc_skill id="19556" lv="40" prob="100" max_hp="55" cd="45000" target="ME"/>
+		<npc_skill id="19555" lv="25" prob="100" cd="35000" target="RANDOM" />
+		<npc_skill id="19556" lv="40" prob="100" max_hp="55" cd="45000" target="ME" />
 		<npc_skill id="19557" lv="75" prob="100" cd="35000" target="RANDOM" />
-		<npc_skill id="19558" lv="15" prob="100" cd="35000" target="RANDOM"/>
+		<npc_skill id="19558" lv="15" prob="100" cd="35000" target="RANDOM" />
 		<npc_skill id="19560" lv="35" prob="100" cd="35000" />
-		<npc_skill id="19561" lv="35" prob="100" cd="35000" target="RANDOM"/>
-		<npc_skill id="19562" lv="25" prob="100" cd="35000" target="RANDOM"/>
-		<npc_skill id="19563" lv="20" prob="100" max_hp="40" cd="35000" target="RANDOM"/>
+		<npc_skill id="19561" lv="35" prob="100" cd="35000" target="RANDOM" />
+		<npc_skill id="19562" lv="25" prob="100" cd="35000" target="RANDOM" />
+		<npc_skill id="19563" lv="20" prob="100" max_hp="40" cd="35000" target="RANDOM" />
 	</npc_skills>
 	<!-- Tiamaranta's Eye -->
 	<!-- Ranger -->
@@ -63118,10 +63134,9 @@
 		<npc_skill id="21568" lv="65" prob="70" cd="20000" target="RANDOM" />
 		<npc_skill id="21569" lv="65" prob="80" max_hp="50" cd="24000" target="ME" />
 		<npc_skill id="21570" lv="65" prob="100" cd="24000" target="RANDOM" />
-		<npc_skill id="21573" lv="65" max_hp="75" prob="70" cd="24000" target="RANDOM" next_skill_time="9500"/>
+		<npc_skill id="21573" lv="65" max_hp="75" prob="70" cd="24000" target="RANDOM" next_skill_time="9500" />
 		<npc_skill id="21574" lv="65" prob="100" max_hp="35" prio="1" cd="60000" target="ME" next_skill_time="10000">
-			<spawn_npc npc_id="297195" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<npc_skills npc_ids="297195">
 		<npc_skill id="21575" lv="65" prob="100">
@@ -63154,17 +63169,13 @@
 		<npc_skill id="21702" lv="65" prob="60" cd="20000" next_skill_time="4000" />
 		<npc_skill id="22663" lv="1" prob="60" cd="40000" target="ME" next_skill_time="7000" max_hp="90" />
 		<npc_skill id="21708" lv="65" prob="60" cd="108000000" target="ME" next_skill_time="6000" max_hp="50">
-			<spawn_npc npc_id="856131" delay="2000" min_distance="1" max_distance="3" />
-		</npc_skill>
+			</npc_skill>
 		<npc_skill id="21708" lv="65" prob="60" cd="108000000" target="ME" next_skill_time="6000" max_hp="50">
-			<spawn_npc npc_id="856132" delay="2000" min_distance="1" max_distance="3" />
-		</npc_skill>
+			</npc_skill>
 		<npc_skill id="21765" lv="65" prob="50" cd="50000" target="ME" next_skill_time="6000" max_hp="90">
-			<spawn_npc npc_id="856129" delay="2000" min_distance="1" max_distance="3" min_count="3" max_count="5" />
-		</npc_skill>
+			</npc_skill>
 		<npc_skill id="21765" lv="65" prob="50" cd="50000" target="ME" next_skill_time="6000" max_hp="90">
-			<spawn_npc npc_id="856130" delay="2000" min_distance="1" max_distance="3" min_count="3" max_count="5" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Apparition of Lanmark-->
 	<npc_skills npc_ids="855799">
@@ -63195,8 +63206,7 @@
 		<npc_skill id="21759" lv="65" prob="60" cd="20000" max_hp="35" />
 		<!-- this skill spawns 855262, who use 21760 and despawn. -->
 		<npc_skill id="21755" lv="65" prob="70" cd="30000" max_hp="70">
-			<spawn_npc npc_id="855262" min_distance="5" max_distance="20" max_count="3" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Prectaz -->
 	<npc_skills npc_ids="219934">
@@ -63222,8 +63232,7 @@
 		<npc_skill id="21850" lv="65" prob="50" cd="10000" chain_id="1" target="ME" />
 		<npc_skill id="21851" lv="65" prob="60" cd="35000" target="RANDOM" max_hp="55" />
 		<npc_skill id="21852" lv="65" prob="60" cd="40000" target="ME" max_hp="40">
-			<spawn_npc npc_id="855913" min_distance="5" max_distance="20" min_count="3" max_count="6" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Frost Bomb -->
 	<npc_skills npc_ids="855913">
@@ -63239,8 +63248,7 @@
 		<npc_skill id="21850" lv="65" prob="50" cd="10000" chain_id="1" target="ME" />
 		<npc_skill id="21851" lv="65" prob="60" cd="35000" target="RANDOM" max_hp="55" />
 		<npc_skill id="21852" lv="65" prob="60" cd="40000" target="ME" max_hp="40">
-			<spawn_npc npc_id="855913" min_distance="5" max_distance="20" min_count="3" max_count="6" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Seized Danuar Sanctuary -->
 	<!-- Warmage Suyaroka -->
@@ -63262,13 +63270,11 @@
 		<npc_skill id="17700" lv="65" prob="50" cd="10000" chain_id="3" max_hp="40" target="RANDOM" />
 		<npc_skill id="17700" lv="65" prob="50" cd="10000" chain_id="4" max_hp="40" target="RANDOM" />
 		<npc_skill id="21189" lv="65" prob="100" cd="30000" max_hp="75" prio="1" target="ME">
-			<spawn_npc npc_id="235622" min_distance="3" max_distance="5" min_count="1" max_count="1" />
-		</npc_skill>
+			</npc_skill>
 		<npc_skill id="17700" lv="65" prob="70" cd="30000" max_hp="70" target="RANDOM" />
 		<npc_skill id="21799" lv="65" prob="100" cd="35000" max_hp="30" prio="2" next_chain_id="1" next_skill_time="0" target="ME" />
 		<npc_skill id="21184" lv="65" prob="100" cd="5000" chain_id="1" next_chain_id="2" next_skill_time="0">
-			<spawn_npc npc_id="235623" min_distance="3" max_distance="5" min_count="3" max_count="3" />
-		</npc_skill>
+			</npc_skill>
 		<npc_skill id="21778" lv="65" prob="100" cd="5000" chain_id="2" target="ME" />
 	</npc_skills>
 	<!-- Tagnu's Slashblade -->
@@ -63463,13 +63469,11 @@
 		<npc_skill id="17700" lv="65" prob="50" cd="10000" chain_id="3" max_hp="40" target="RANDOM" />
 		<npc_skill id="17700" lv="65" prob="50" cd="10000" chain_id="4" max_hp="40" target="RANDOM" />
 		<npc_skill id="21189" lv="65" prob="100" cd="30000" max_hp="75" prio="1" target="ME">
-			<spawn_npc npc_id="235627" min_distance="3" max_distance="5" min_count="1" max_count="1" />
-		</npc_skill>
+			</npc_skill>
 		<npc_skill id="17700" lv="65" prob="70" cd="30000" max_hp="70" target="RANDOM" />
 		<npc_skill id="21799" lv="65" prob="100" cd="35000" max_hp="30" prio="2" next_chain_id="1" next_skill_time="0" target="ME" />
 		<npc_skill id="21184" lv="65" prob="100" cd="5000" chain_id="1" next_chain_id="2" next_skill_time="0">
-			<spawn_npc npc_id="235628" min_distance="3" max_distance="5" min_count="3" max_count="3" />
-		</npc_skill>
+			</npc_skill>
 		<npc_skill id="21778" lv="65" prob="100" cd="5000" chain_id="2" target="ME" />
 	</npc_skills>
 	<!-- Tagnu's Slashblade -->
@@ -63656,8 +63660,7 @@
 		<npc_skill id="18114" lv="65" prob="70" cd="30000" />
 		<npc_skill id="20682" lv="65" prob="70" cd="30000" />
 		<npc_skill id="19053" lv="15" prob="70" cd="30000" prio="1">
-			<cond cond_type="NPC_IS_ALIVE" npc_id="856059" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Velkur Aetherpriest -->
 	<npc_skills npc_ids="235770">
@@ -63672,8 +63675,7 @@
 		<npc_skill id="18114" lv="65" prob="70" cd="30000" />
 		<npc_skill id="20682" lv="65" prob="70" cd="30000" />
 		<npc_skill id="19053" lv="15" prob="70" cd="30000" prio="1">
-			<cond cond_type="NPC_IS_ALIVE" npc_id="856059" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Velkur Aetherknife-->
 	<npc_skills npc_ids="235771">
@@ -63688,8 +63690,7 @@
 		<npc_skill id="18114" lv="65" prob="70" cd="30000" />
 		<npc_skill id="20682" lv="65" prob="70" cd="30000" />
 		<npc_skill id="19053" lv="15" prob="70" cd="30000" prio="1">
-			<cond cond_type="NPC_IS_ALIVE" npc_id="856059" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Hakara -->
 	<npc_skills npc_ids="235772">
@@ -63734,8 +63735,7 @@
 	<npc_skills npc_ids="235759">
 		<npc_skill id="17174" lv="65" prob="70" cd="35000" target="RANDOM" />
 		<npc_skill id="21134" lv="65" prob="100" cd="25000" prio="1">
-			<cond cond_type="NPC_IS_ALIVE" npc_id="856059" />
-		</npc_skill>
+			</npc_skill>
 		<npc_skill id="18025" lv="65" prob="100" cd="40000" />
 		<npc_skill id="17860" lv="65" prob="70" cd="30000" target="RANDOM" />
 		<npc_skill id="21288" lv="65" prob="70" cd="30000" />
@@ -63748,8 +63748,7 @@
 		<npc_skill id="17860" lv="65" prob="70" cd="25000" target="RANDOM" />
 		<npc_skill id="19075" lv="65" prob="100" cd="25000" />
 		<npc_skill id="21799" lv="65" prob="70" cd="35000" prio="1">
-			<cond cond_type="NPC_IS_ALIVE" npc_id="856059" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Escapee Asachin Leader -->
 	<npc_skills npc_ids="235767">
@@ -63759,8 +63758,7 @@
 		<npc_skill id="17332" lv="65" prob="70" cd="25000" />
 		<npc_skill id="18032" lv="65" prob="70" cd="100000" target="RANDOM" />
 		<npc_skill id="21801" lv="65" prob="70" cd="50000" prio="1">
-			<cond cond_type="NPC_IS_ALIVE" npc_id="856059" />
-		</npc_skill>
+			</npc_skill>
 	</npc_skills>
 	<!-- Escapee Asachin -->
 	<npc_skills npc_ids="235764">
@@ -63816,9 +63814,9 @@
 		<npc_skill id="17393" lv="65" prob="60" cd="30000" />
 	</npc_skills>
 	<npc_skills npc_ids="279644 279546 279448">
-		<npc_skill id="20373" lv="65" prob="100"/>
+		<npc_skill id="20373" lv="65" prob="100" />
 	</npc_skills>
 	<npc_skills npc_ids="279252 279154 279350">
-		<npc_skill id="20374" lv="65" prob="100"/>
+		<npc_skill id="20374" lv="65" prob="100" />
 	</npc_skills>
 </npc_skill_templates>

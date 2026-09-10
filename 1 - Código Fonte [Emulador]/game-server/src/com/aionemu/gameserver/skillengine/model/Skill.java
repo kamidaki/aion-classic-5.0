@@ -31,7 +31,6 @@ import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_CASTSPELL;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_CASTSPELL_RESULT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_COOLDOWN;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
@@ -325,11 +324,7 @@ public class Skill {
 		if (cooldown != 0) {
 			if (skillTemplate.getCooldownDeltaLv() != 0)
 				cooldown = cooldown + skillTemplate.getCooldownDeltaLv() * skillLevel;
-			long expirationTimeMillis = cooldown * 100L + System.currentTimeMillis();
-			effector.setSkillCoolDown(skillTemplate.getCooldownId(), expirationTimeMillis);
-			if (effector instanceof Player player) {
-				PacketSendUtility.sendPacket(player, new SM_SKILL_COOLDOWN(player, java.util.Map.of(skillTemplate.getCooldownId(), expirationTimeMillis), false));
-			}
+			effector.setSkillCoolDown(skillTemplate.getCooldownId(), cooldown * 100 + System.currentTimeMillis());
 		}
 	}
 

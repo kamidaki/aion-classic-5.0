@@ -1,5 +1,6 @@
 package com.aionemu.gameserver.model.templates.towns;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -30,6 +31,6 @@ public class TownLevel {
 	 * @return the spawn
 	 */
 	public List<Spawn> getSpawns() {
-		return spawns;
+		return spawns != null ? spawns : Collections.emptyList();
 	}
 }

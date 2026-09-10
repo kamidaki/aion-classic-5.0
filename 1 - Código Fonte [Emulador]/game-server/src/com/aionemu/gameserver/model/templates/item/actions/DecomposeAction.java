@@ -273,36 +273,46 @@ public class DecomposeAction extends AbstractItemAction {
 							break;
 						case CHUNK_EARTH:
 							int[] earth = chunkEarth.get(player.getRace());
-							randomId = Rnd.get(earth);
+							if (earth != null && earth.length > 0)
+								randomId = Rnd.get(earth);
 							break;
 						case CHUNK_SAND:
 							int[] sand = chunkSand.get(player.getRace());
-							randomId = Rnd.get(sand);
+							if (sand != null && sand.length > 0)
+								randomId = Rnd.get(sand);
 							break;
 						case PREMIUM_OPHIDAN_RECIPE:
 							int[] recipe = premiumOphidanRecipe.get(player.getRace());
-							randomId = Rnd.get(recipe);
+							if (recipe != null && recipe.length > 0)
+								randomId = Rnd.get(recipe);
 							break;
 						case CHUNK_ROCK:
-							randomId = Rnd.get(chunkRock);
+							if (chunkRock.length > 0)
+								randomId = Rnd.get(chunkRock);
 							break;
 						case CHUNK_GEMSTONE:
-							randomId = Rnd.get(chunkGemstone);
+							if (chunkGemstone.length > 0)
+								randomId = Rnd.get(chunkGemstone);
 							break;
 						case SCROLLS:
-							randomId = Rnd.get(scrolls);
+							if (scrolls.length > 0)
+								randomId = Rnd.get(scrolls);
 							break;
 						case POTION:
-							randomId = Rnd.get(potion);
+							if (potion.length > 0)
+								randomId = Rnd.get(potion);
 							break;
 						case LESSER_POTIONS:
-							randomId = Rnd.get(lesser_potions);
+							if (lesser_potions.length > 0)
+								randomId = Rnd.get(lesser_potions);
 							break;
 						case POTION_50:
-							randomId = Rnd.get(potion_50);
+							if (potion_50.length > 0)
+								randomId = Rnd.get(potion_50);
 							break;
 						case ILLUSION_GODSTONE:
-							randomId = Rnd.get(illusion_godstones);
+							if (illusion_godstones.length > 0)
+								randomId = Rnd.get(illusion_godstones);
 							break;
 						case ANCIENTITEMS:
 							do {
@@ -402,19 +412,28 @@ public class DecomposeAction extends AbstractItemAction {
 	}
 
 	public static void validateRandomItemIds() {
-		for (int[] itemIds : chunkEarth.values())
-			validateItemIds(itemIds);
-		for (int[] itemIds : chunkSand.values())
-			validateItemIds(itemIds);
-		validateItemIds(chunkRock, chunkGemstone, scrolls, potion, lesser_potions, potion_50, illusion_godstones);
+		for (Map.Entry<Race, int[]> entry : chunkEarth.entrySet()) {
+			entry.setValue(filterValidItemIds(entry.getValue()));
+		}
+		for (Map.Entry<Race, int[]> entry : chunkSand.entrySet()) {
+			entry.setValue(filterValidItemIds(entry.getValue()));
+		}
+		for (Map.Entry<Race, int[]> entry : premiumOphidanRecipe.entrySet()) {
+			entry.setValue(filterValidItemIds(entry.getValue()));
+		}
+		chunkRock = filterValidItemIds(chunkRock);
+		chunkGemstone = filterValidItemIds(chunkGemstone);
+		scrolls = filterValidItemIds(scrolls);
+		potion = filterValidItemIds(potion);
+		lesser_potions = filterValidItemIds(lesser_potions);
+		potion_50 = filterValidItemIds(potion_50);
+		illusion_godstones = filterValidItemIds(illusion_godstones);
 	}
 
-	private static void validateItemIds(int[]... itemIds) {
-		for (int[] ids : itemIds) {
-			for (int itemId : ids)
-				if (!isValidItemId(itemId))
-					throw new IllegalArgumentException("Decomposable random reward item ID is invalid: " + itemId);
-		}
+	private static int[] filterValidItemIds(int[] ids) {
+		if (ids == null || ids.length == 0)
+			return new int[0];
+		return Arrays.stream(ids).filter(DecomposeAction::isValidItemId).toArray();
 	}
 
 	private static boolean isValidItemId(int itemId) {

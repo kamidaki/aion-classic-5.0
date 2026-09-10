@@ -50,13 +50,15 @@ if hasattr(sys.stdout, 'reconfigure'):
 # Caminhos base
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 FERRAMENTAS_DIR = os.path.dirname(TOOLS_DIR)
-CLIENT_DATA_ROOT = r"D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\4 - Client 5.0 - Dados Extraidos"
+PROJECT_ROOT = os.path.dirname(FERRAMENTAS_DIR)
+
+CLIENT_DATA_ROOT = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos")
 CLIENT_DATA_DIR = os.path.join(CLIENT_DATA_ROOT, "data")
 STRINGS_DIR = os.path.join(CLIENT_DATA_ROOT, "Strings", "strings")
 
-GAME_SERVER_DIR = r"D:\AION CLASSIC 5.0 - BEYOND TESTE\game-server"
-COMMONS_DIR = r"D:\AION CLASSIC 5.0 - BEYOND TESTE\commons"
-EMULADOR_FINAL_DIR = r"D:\AION CLASSIC 5.0 - BEYOND TESTE\EMULADOR FINAL\GameServer"
+GAME_SERVER_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "game-server")
+COMMONS_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "commons")
+EMULADOR_FINAL_DIR = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer")
 
 sys.path.insert(0, FERRAMENTAS_DIR)
 sys.path.insert(0, TOOLS_DIR)

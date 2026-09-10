@@ -280,6 +280,6 @@ public class CustomConfig {
 	 * Undo the fusions stored by the pre 5.0 system on login, handing the secondary
 	 * weapon and its manastones back to the player.
 	 */
-	@Property(key = "gameserver.weapon.fusion.split.stored", defaultValue = "true")
+	@Property(key = "gameserver.weapon.fusion.split.stored", defaultValue = "false")
 	public static boolean SPLIT_STORED_WEAPON_FUSIONS;
 }

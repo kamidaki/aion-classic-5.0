@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <timed_events xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="timed_events.xsd">
 	<event name="Classic 5.0 Buffs">
 		<buffs>
-			<!-- Drop Rate Increase: 1h Drop Boost +10% -->
+			
 			<buff skill_ids="10408">
 				<trigger condition="PVE_KILL" chance="0.1" />
 			</buff>
-			<!-- AP Boost: 1h AP Boost +10% -->
+			
 			<buff skill_ids="10549">
 				<trigger condition="PVP_KILL" chance="2" />
 			</buff>
-			<!-- 18141 - Warrior's Courage I: Max HP +1500 -->
-			<!-- 21258 - Attack Boost: Phy./Mag. Atk. +15%, Mag. Boost +100 -->
+			
+			
 			<buff skill_ids="18141 21258" permanent="true" team="true">
 				<trigger condition="ENTER_MAP" />
 				<trigger condition="ENTER_TEAM" />
 				<restriction maps="GROUP_INSTANCE ALLIANCE_INSTANCE" team_size_max_percent="70" />
 			</buff>
-			<!-- [Event] Marvelous XP Energy: XP +100% -->
-			<!-- [Event] Marvelous Gathering Energy: Essence & Aether Tapping skill XP +100% -->
-			<!-- [Event] Celestial Crafting Energy: Crafting skill XP +100% -->
+			
+			
+			
 			<buff skill_ids="10821 10823 10824" pool="1" permanent="true">
 				<trigger condition="ENTER_MAP" />
 				<restriction random_days_per_month="1" />
@@ -29,7 +29,7 @@
 	<event name="Increased XP Rates" start="2026-08-03T00:00:00" end="2026-08-09T23:59:59">
 		<login_message>Benefit from increased XP until Sunday!</login_message>
 		<buffs>
-			<!-- [Event] Marvelous XP Energy (XP +100%) -->
+			
 			<buff skill_ids="10821" permanent="true">
 				<trigger condition="ENTER_MAP" />
 			</buff>
@@ -38,7 +38,7 @@
 	<event name="Increased AP Rates" start="2026-08-03T00:00:00" end="2026-08-09T23:59:59">
 		<login_message>Benefit from increased AP until Sunday!</login_message>
 		<buffs>
-			<!-- AP Boost Effect - 30% -->
+			
 			<buff skill_ids="10925" permanent="true">
 				<trigger condition="ENTER_MAP" />
 			</buff>
@@ -47,8 +47,8 @@
 	<event name="Increased Gathering &amp; Crafting XP Rates" start="2025-03-20T00:00:00" end="2025-03-21T23:59:59">
 		<login_message>Benefit from increased skill experience when gathering or crafting until Friday!</login_message>
 		<buffs>
-			<!-- [Event] Marvelous Gathering Energy (Gathering XP +100%) -->
-			<!-- [Event] Celestial Crafting Energy (Crafting XP +100%) -->
+			
+			
 			<buff skill_ids="10823 10824" permanent="true">
 				<trigger condition="ENTER_MAP" />
 			</buff>
@@ -57,7 +57,7 @@
 	<event name="Increased Drop Rates" start="2026-08-10T00:00:00" end="2026-08-16T23:59:59">
 		<login_message>Benefit from increased drop rates until Sunday!</login_message>
 		<buffs>
-			<!-- [Event] Marvelous Item Energy (Drop Boost +20%) -->
+			
 			<buff skill_ids="10822" permanent="true">
 				<trigger condition="ENTER_MAP" />
 			</buff>
@@ -66,7 +66,7 @@
 	<event name="Increased Drop Rates 50%" start="2025-08-08T00:00:00" end="2025-08-14T23:59:59">
 		<login_message>Benefit from increased drop rates until Sunday!</login_message>
 		<buffs>
-			<!-- [Event] Powerful Item Energy (Drop Boost +50%) -->
+			
 			<buff skill_ids="10826" permanent="true">
 				<trigger condition="ENTER_MAP" />
 			</buff>
@@ -102,15 +102,15 @@
 	<event name="April Fool's" start="2025-04-01T00:00:00" end="2025-04-01T23:59:59">
 		<spawns>
 			<spawn_map map_id="110010000">
-				<!-- Sematariux -->
+				
 				<spawn npc_id="216520" respawn_time="295">
 					<spot x="1513.6" y="1511.6" z="565.9311" h="60" ai="no_interaction" />
 				</spawn>
-				<!-- Strange Ribbit -->
+				
 				<spawn npc_id="203537">
 					<spot x="1732.2811" y="1512.7843" z="590.7" h="119" />
 				</spawn>
-				<!-- Creepy Ribbit -->
+				
 				<spawn npc_id="204416" respawn_time="295">
 					<spot x="1472.4578" y="1596.2433" z="572.872" h="30" ai="no_interaction" state="32" />
 					<spot x="1473.97" y="1599.8" z="572.996" h="76" ai="no_interaction" />
@@ -590,24 +590,24 @@
 					<spot x="1522.4258" y="1465.403" z="573.04016" ai="no_interaction" state="32" />
 					<spot x="1521.3754" y="1464.1309" z="573.0479" h="6" ai="no_interaction" state="32" />
 				</spawn>
-				<!-- Reian Sorcerer -->
+				
 				<spawn npc_id="800303" respawn_time="295" custom="true">
 					<spot x="1422.6129" y="1276.8706" z="564.1405" h="11" />
 					<spot x="1428.5359" y="1273.4788" z="564.1405" h="34" />
 				</spawn>
-				<!-- Reian Sorcerer -->
+				
 				<spawn npc_id="800304" respawn_time="295" custom="true">
 					<spot x="1432.9014" y="1280.5588" z="564.21027" h="69" ai="custom_instance_reian_teleport_shouter" />
 				</spawn>
-				<!-- Reian Sorcerer -->
+				
 				<spawn npc_id="800464" respawn_time="295" custom="true">
 					<spot x="1427.0742" y="1284.0087" z="564.1405" h="95" />
 				</spawn>
-				<!-- Elyos Teleporter -->
+				
 				<spawn npc_id="730578" respawn_time="295" custom="true">
 					<spot x="1427.5105" y="1278.7878" z="564.2" ai="custom_instance_teleporter" />
 				</spawn>
-				<!-- Info Board -->
+				
 				<spawn npc_id="700906" respawn_time="295" custom="true">
 					<spot x="1425.147" y="1284.7643" z="564.1405" h="16" ai="custom_instance_info_board" />
 				</spawn>
@@ -1385,7 +1385,8 @@
 				<spawn npc_id="203895" respawn_time="295" custom="true">
 					<spot x="1537.3132" y="1599.699" z="573.0308" h="90" />
 				</spawn>
-				<spawn npc_id="203899" respawn_time="295"><!-- tempoary spawn cannot be replaced, therefore not marked as custom -->
+				<spawn npc_id="203899" respawn_time="295">
+					
 					<spot x="1662.0312" y="1576.978" z="548.73676" h="60" />
 				</spawn>
 				<spawn npc_id="798022" respawn_time="295" custom="true">
@@ -1482,15 +1483,15 @@
 				</spawn>
 			</spawn_map>
 			<spawn_map map_id="120010000">
-				<!-- Sematariux -->
+				
 				<spawn npc_id="216520" respawn_time="295">
 					<spot x="1287.8453" y="1335.6992" z="203.6737" h="19" ai="no_interaction" />
 				</spawn>
-				<!-- Strange Ribbit -->
+				
 				<spawn npc_id="203537">
 					<spot x="1370.5" y="1395.3777" z="168.97" />
 				</spawn>
-				<!-- Creepy Ribbit -->
+				
 				<spawn npc_id="204416" respawn_time="295">
 					<spot x="1656.0603" y="1398.5239" z="194.66542" h="54" ai="no_interaction" random_walk="5" />
 					<spot x="1628.0487" y="1388.4897" z="193.12729" h="71" ai="no_interaction" random_walk="5" />
@@ -1997,24 +1998,24 @@
 					<spot x="793.32874" y="1286.9387" z="218.80585" h="43" ai="no_interaction" />
 					<spot x="792.6334" y="1287.667" z="218.80585" h="104" ai="no_interaction" />
 				</spawn>
-				<!-- Reian Sorcerer -->
+				
 				<spawn npc_id="800303" respawn_time="295" custom="true">
 					<spot x="954.9" y="1597.7" z="221.8" h="93" />
 					<spot x="950.4" y="1591.7" z="221.8" />
 				</spawn>
-				<!-- Reian Sorcerer -->
+				
 				<spawn npc_id="800304" respawn_time="295" custom="true">
 					<spot x="956.4" y="1587.4" z="221.7" h="33" ai="custom_instance_reian_teleport_shouter" />
 				</spawn>
-				<!-- Reian Sorcerer -->
+				
 				<spawn npc_id="800464" respawn_time="295" custom="true">
 					<spot x="961.1" y="1592.7" z="221.74" h="65" />
 				</spawn>
-				<!-- Asmodian Teleporter -->
+				
 				<spawn npc_id="730579" respawn_time="295" custom="true">
 					<spot x="955.6" y="1592.4" z="221.9" ai="custom_instance_teleporter" />
 				</spawn>
-				<!-- Info Board -->
+				
 				<spawn npc_id="700907" respawn_time="295" custom="true">
 					<spot x="963.5" y="1594.4" z="221.8" h="87" ai="custom_instance_info_board" />
 				</spawn>
@@ -2798,7 +2799,7 @@
 				<spawn npc_id="204136" respawn_time="295" custom="true">
 					<spot x="1387.7556" y="1201.5204" z="209.41872" h="114" />
 				</spawn>
-				<!-- workaround to remove spawns: -->
+				
 				<spawn npc_id="203361" respawn_time="295" custom="true">
 					<spot x="0" y="0" z="0" />
 				</spawn>
@@ -2959,7 +2960,8 @@
 					<gd_rating rating="LEGENDARY" />
 				</gd_ratings>
 				<gd_items>
-					<gd_item id="186000175" /><!-- [Event] Mottled Egg -->
+					<gd_item id="186000175" />
+					
 				</gd_items>
 			</gd_rule>
 		</event_drops>
@@ -2968,14 +2970,18 @@
 		<event_drops>
 			<gd_rule rule_name="Beritra Equipment Chest" chance="100" member_limit="12">
 				<gd_maps>
-					<gd_map map_id="301390000" /><!-- Drakenspire Depths -->
+					<gd_map map_id="301390000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="833012" /><!-- Beritra -->
-					<gd_npc npc_id="833013" /><!-- Cloak of Balaur Lord Beritra -->
+					<gd_npc npc_id="833012" />
+					
+					<gd_npc npc_id="833013" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188053728" /><!-- Beritra's Equipment Box -->
+					<gd_item id="188053728" />
+					
 				</gd_items>
 			</gd_rule>
 		</event_drops>
@@ -2994,15 +3000,20 @@
 					<gd_npc npc_id="219483" />
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="162000107" chance="25" min_count="10" /><!-- Saam King's Herbs -->
-					<gd_item id="162000137" chance="25" min_count="10" /><!-- Sublime Life Serum -->
-					<gd_item id="188053610" chance="15" /><!-- [Event] Level 70 Composite Manastone Bundle -->
-					<gd_item id="166200010" chance="10" /><!-- Mythic Armor Tuning Scroll -->
-					<gd_item id="166030007" chance="10" /><!-- [Event] Tempering Solution -->
-					<gd_item id="188052715" chance="5" /><!-- [Event] Summoning Stone Letter -->
-					<gd_item id="188051874" chance="6" /><!-- Harvest Revel Furniture Set Box -->
-					<gd_item id="169600218" chance="2" /><!-- [Emotion Card] Harvest Reveling -->
-					<gd_item id="125040111" chance="2" /><!-- Jack-o-Sorcerer Hat -->
+					<gd_item id="162000107" chance="25" min_count="10" />
+					
+					
+					<gd_item id="188053610" chance="15" />
+					
+					
+					
+					<gd_item id="188052715" chance="5" />
+					
+					
+					<gd_item id="169600218" chance="2" />
+					
+					<gd_item id="125040111" chance="2" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Large Pumpkin Loot" chance="100">
@@ -3010,20 +3021,22 @@
 					<gd_npc npc_id="219484" />
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="186000238" chance="20" min_count="400" /><!-- Conqueror's Mark -->
-					<gd_item id="166030007" chance="20" min_count="2" /><!-- [Event] Tempering Solution -->
-					<gd_item id="188053610" chance="20" min_count="2" /><!-- [Event] Level 70 Composite Manastone Bundle -->
-					<gd_item id="188053113" chance="10" /><!-- Ahserion's Flight Ancient Manastone Bundle -->
-					<gd_item id="166200009" chance="10" /><!-- Mythic Weapon Tuning Scroll -->
-					<gd_item id="164002193" chance="5" /><!-- Summoning Stone: Trade Broker (Group) -->
-					<gd_item id="164002197" chance="5" /><!-- Summoning Stone: General Goods Merchant (Group) -->
-					<gd_item id="164002201" chance="5" /><!-- Summoning Stone: Warehouse Manager (Group) -->
-					<gd_item id="164002262" chance="5" /><!-- Summoning Stone: Soul Healer (Group) -->
+					
+					
+					<gd_item id="188053610" chance="20" min_count="2" />
+					
+					<gd_item id="188053113" chance="10" />
+					
+					
+					
+					
+					
+					
 				</gd_items>
 			</gd_rule>
 		</event_drops>
 		<spawns>
-			<!-- Silentera Canyon -->
+			
 			<spawn_map map_id="600010000">
 				<spawn npc_id="219483" respawn_time="600" pool="20">
 					<spot x="472.9098" y="104.1949" z="324.6086" ai="halloween_pumpkin" />
@@ -3035,7 +3048,7 @@
 					<spot x="347.0037" y="380.5260" z="304.4483" ai="halloween_pumpkin" h="93" />
 					<spot x="348.7712" y="451.7081" z="305.1325" ai="halloween_pumpkin" />
 					<spot x="385.9296" y="535.4234" z="308.4309" ai="halloween_pumpkin" h="86" />
-					<spot x="465.0092" y="561.6548" z="311.5814" ai="halloween_pumpkin" h="73"/>
+					<spot x="465.0092" y="561.6548" z="311.5814" ai="halloween_pumpkin" h="73" />
 					<spot x="520.4226" y="556.1539" z="308.8846" ai="halloween_pumpkin" h="90" />
 					<spot x="581.9862" y="492.1039" z="310.0113" ai="halloween_pumpkin" h="70" />
 					<spot x="593.2884" y="464.6446" z="312.6568" ai="halloween_pumpkin" h="47" />
@@ -3162,7 +3175,7 @@
 					<spot x="415.4203" y="1275.082" z="309.1703" ai="halloween_pumpkin" h="26" />
 				</spawn>
 			</spawn_map>
-			<!-- GM Isle (TEST Purpose) -->
+			
 			<spawn_map map_id="900110000">
 				<spawn npc_id="219483" respawn_time="5" pool="3">
 					<spot x="2631.983" y="139.489" z="116.862" ai="halloween_pumpkin" h="98" />
@@ -3177,339 +3190,369 @@
 	</event>
 	<event name="Classic 5.0 Birthday Event" start="2025-11-15T00:00:00" end="2025-11-30T23:59:59">
 		<event_drops>
-			<gd_rule rule_name="Birthday Coins" chance="100">
-				<gd_maps>
-					<gd_map map_id="400020000" /><!-- Belus -->
-				</gd_maps>
-				<gd_npcs>
-					<!-- Fortress -->
-					<gd_npc npc_id="219166" /><!-- protectorate combat officer -->
-					<gd_npc npc_id="219167" /><!-- protectorate hunter -->
-					<gd_npc npc_id="219169" /><!-- protectorate corpsman -->
-					<gd_npc npc_id="219187" /><!-- protectorate fighter -->
-					<gd_npc npc_id="219188" /><!-- protectorate searcher -->
-					<gd_npc npc_id="219189" /><!-- protectorate mage -->
-					<gd_npc npc_id="219190" /><!-- protectorate healer -->
-					<gd_npc npc_id="219194" /><!-- protectorate myrmidon -->
-					<gd_npc npc_id="219195" /><!-- protectorate pathfinder -->
-					<gd_npc npc_id="219196" /><!-- protectorate magistrate -->
-					<gd_npc npc_id="219197" /><!-- protectorate surgeon -->
-					<gd_npc npc_id="219198" /><!-- protectorate special ops -->
-					<!-- Bases -->
-					<gd_npc npc_id="277696" /><!-- Belani Scout Infantry -->
-					<gd_npc npc_id="277720" /><!-- Belani Scout Patrol -->
-					<gd_npc npc_id="277744" /><!-- Belani Scout Slayer -->
-					<gd_npc npc_id="880314" /><!-- Belfarth Infantry -->
-					<gd_npc npc_id="880374" /><!-- Belfarth Patrol -->
-					<gd_npc npc_id="880496" /><!-- Belfarth Scout Infantry -->
-					<gd_npc npc_id="880395" /><!-- Beling Patrol -->
-					<gd_npc npc_id="880455" /><!-- Beling Slayer -->
-					<gd_npc npc_id="880524" /><!-- Beling Scout Infantry -->
-					<gd_npc npc_id="880552" /><!-- Belsal Scout Infantry -->
-					<gd_npc npc_id="880636" /><!-- Belsal Scout Patrol -->
-					<gd_npc npc_id="880720" /><!-- Belsal Scout Slayer -->
-				</gd_npcs>
-				<gd_items>
-					<gd_item id="186000409" /><!-- Daeva's Respite Coin -->
-				</gd_items>
-			</gd_rule>
-			<gd_rule rule_name="Birthday Coins" chance="30">
-				<gd_maps>
-					<gd_map map_id="400020000" /><!-- Belus -->
-				</gd_maps>
-				<gd_npcs>
-					<gd_npc npc_id="881025" /><!-- Aureolus Sparkie -->
-					<gd_npc npc_id="881027" /><!-- Aureolus Sparkie -->
-					<gd_npc npc_id="881004" /><!-- Candela Ksellid -->
-					<gd_npc npc_id="881005" /><!-- Candela Ksellid -->
-					<gd_npc npc_id="881006" /><!-- Candela Ksellid -->
-					<gd_npc npc_id="881007" /><!-- Candela Ksellid -->
-					<gd_npc npc_id="881069" /><!-- Forsaken Mugolem -->
-					<gd_npc npc_id="881071" /><!-- Forsaken Mugolem -->
-					<gd_npc npc_id="881056" /><!-- Glowing Natanis Spirit -->
-					<gd_npc npc_id="881058" /><!-- Glowing Natantis Spirit -->
-					<gd_npc npc_id="881077" /><!-- Ingotus Kirrin -->
-					<gd_npc npc_id="881079" /><!-- Ingotus Kirrin -->
-					<gd_npc npc_id="881036" /><!-- Landleap Snuffler -->
-					<gd_npc npc_id="881037" /><!-- Landleap Snuffler -->
-					<gd_npc npc_id="881038" /><!-- Landleap Snuffler -->
-					<gd_npc npc_id="881039" /><!-- Landleap Snuffler -->
-					<gd_npc npc_id="881045" /><!-- Lithe Wriggot -->
-					<gd_npc npc_id="881047" /><!-- Lithe Wriggot -->
-					<gd_npc npc_id="881052" /><!-- Lushtimber Fungie -->
-					<gd_npc npc_id="881053" /><!-- Lushtimber Fungie -->
-					<gd_npc npc_id="881054" /><!-- Lushtimber Fungie -->
-					<gd_npc npc_id="881055" /><!-- Lushtimber Fungie -->
-					<gd_npc npc_id="880988" /><!-- Natantis Crestlich -->
-					<gd_npc npc_id="880989" /><!-- Natantis Crestlich -->
-					<gd_npc npc_id="880990" /><!-- Natantis Crestlich -->
-					<gd_npc npc_id="880991" /><!-- Natantis Crestlich -->
-					<gd_npc npc_id="881072" /><!-- Ripclatter Worg -->
-					<gd_npc npc_id="881074" /><!-- Ripclatter Worg -->
-					<gd_npc npc_id="881061" /><!-- Ripplecleft Ametgolem -->
-					<gd_npc npc_id="881063" /><!-- Ripplecleft Ametgolem -->
-					<gd_npc npc_id="880977" /><!-- Rubycrest Bloodwing -->
-					<gd_npc npc_id="880979" /><!-- Rubycrest Bloodwing -->
-					<gd_npc npc_id="881020" /><!-- Ruddyclaw Sparkle -->
-					<gd_npc npc_id="881021" /><!-- Ruddyclaw Sparkle -->
-					<gd_npc npc_id="881022" /><!-- Ruddyclaw Sparkle -->
-					<gd_npc npc_id="881023" /><!-- Ruddyclaw Sparkle -->
-					<gd_npc npc_id="880972" /><!-- Sentio Bloodwing -->
-					<gd_npc npc_id="880974" /><!-- Sentio Bloodwing -->
-					<gd_npc npc_id="880980" /><!-- Splitwing Flavi -->
-					<gd_npc npc_id="880982" /><!-- Splitwing Flavi -->
-					<gd_npc npc_id="880984" /><!-- Thicket Sylphen -->
-					<gd_npc npc_id="880985" /><!-- Thicket Sylphen -->
-					<gd_npc npc_id="880986" /><!-- Thicket Sylphen -->
-					<gd_npc npc_id="880987" /><!-- Thicket Sylphen -->
-					<gd_npc npc_id="881016" /><!-- Tinderwood Dionae -->
-					<gd_npc npc_id="881017" /><!-- Tinderwood Dionae -->
-					<gd_npc npc_id="881018" /><!-- Tinderwood Dionae -->
-					<gd_npc npc_id="881019" /><!-- Tinderwood Dionae -->
-					<gd_npc npc_id="881012" /><!-- Tribal Malodor -->
-					<gd_npc npc_id="881013" /><!-- Tribal Malodor -->
-					<gd_npc npc_id="881014" /><!-- Tribal Malodor -->
-					<gd_npc npc_id="881015" /><!-- Tribal Malodor -->
-					<gd_npc npc_id="881029" /><!-- Vugkex Granker -->
-					<gd_npc npc_id="881031" /><!-- Vugkex Granker -->
-					<gd_npc npc_id="881032" /><!-- Whipmoss Oculis -->
-					<gd_npc npc_id="881033" /><!-- Whipmoss Oculis -->
-					<gd_npc npc_id="881034" /><!-- Whipmoss Oculis -->
-					<gd_npc npc_id="881035" /><!-- Whipmoss Oculis -->
-					<gd_npc npc_id="881411" /><!-- Fierce Gustafi -->
-					<gd_npc npc_id="881410" /><!-- Sharp Taipaum -->
-					<gd_npc npc_id="881406" /><!-- Temporal Dracoba -->
-					<gd_npc npc_id="881404" /><!-- Temporal Lupinium -->
-					<gd_npc npc_id="881407" /><!-- Temporal Mantuka -->
-					<gd_npc npc_id="881405" /><!-- Temporal Puncturous -->
-				</gd_npcs>
-				<gd_items>
-					<gd_item id="186000409" /><!-- Daeva's Respite Coin -->
-				</gd_items>
-			</gd_rule>
 			<gd_rule rule_name="Birthday Consumables" chance="15">
 				<gd_maps>
-					<gd_map map_id="400020000" /><!-- Belus -->
+					<gd_map map_id="400020000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="881025" /><!-- Aureolus Sparkie -->
-					<gd_npc npc_id="881027" /><!-- Aureolus Sparkie -->
-					<gd_npc npc_id="881004" /><!-- Candela Ksellid -->
-					<gd_npc npc_id="881005" /><!-- Candela Ksellid -->
-					<gd_npc npc_id="881006" /><!-- Candela Ksellid -->
-					<gd_npc npc_id="881007" /><!-- Candela Ksellid -->
-					<gd_npc npc_id="881069" /><!-- Forsaken Mugolem -->
-					<gd_npc npc_id="881071" /><!-- Forsaken Mugolem -->
-					<gd_npc npc_id="881056" /><!-- Glowing Natanis Spirit -->
-					<gd_npc npc_id="881058" /><!-- Glowing Natantis Spirit -->
-					<gd_npc npc_id="881077" /><!-- Ingotus Kirrin -->
-					<gd_npc npc_id="881079" /><!-- Ingotus Kirrin -->
-					<gd_npc npc_id="881036" /><!-- Landleap Snuffler -->
-					<gd_npc npc_id="881037" /><!-- Landleap Snuffler -->
-					<gd_npc npc_id="881038" /><!-- Landleap Snuffler -->
-					<gd_npc npc_id="881039" /><!-- Landleap Snuffler -->
-					<gd_npc npc_id="881045" /><!-- Lithe Wriggot -->
-					<gd_npc npc_id="881047" /><!-- Lithe Wriggot -->
-					<gd_npc npc_id="881052" /><!-- Lushtimber Fungie -->
-					<gd_npc npc_id="881053" /><!-- Lushtimber Fungie -->
-					<gd_npc npc_id="881054" /><!-- Lushtimber Fungie -->
-					<gd_npc npc_id="881055" /><!-- Lushtimber Fungie -->
-					<gd_npc npc_id="880988" /><!-- Natantis Crestlich -->
-					<gd_npc npc_id="880989" /><!-- Natantis Crestlich -->
-					<gd_npc npc_id="880990" /><!-- Natantis Crestlich -->
-					<gd_npc npc_id="880991" /><!-- Natantis Crestlich -->
-					<gd_npc npc_id="881072" /><!-- Ripclatter Worg -->
-					<gd_npc npc_id="881074" /><!-- Ripclatter Worg -->
-					<gd_npc npc_id="881061" /><!-- Ripplecleft Ametgolem -->
-					<gd_npc npc_id="881063" /><!-- Ripplecleft Ametgolem -->
-					<gd_npc npc_id="880977" /><!-- Rubycrest Bloodwing -->
-					<gd_npc npc_id="880979" /><!-- Rubycrest Bloodwing -->
-					<gd_npc npc_id="881020" /><!-- Ruddyclaw Sparkle -->
-					<gd_npc npc_id="881021" /><!-- Ruddyclaw Sparkle -->
-					<gd_npc npc_id="881022" /><!-- Ruddyclaw Sparkle -->
-					<gd_npc npc_id="881023" /><!-- Ruddyclaw Sparkle -->
-					<gd_npc npc_id="880972" /><!-- Sentio Bloodwing -->
-					<gd_npc npc_id="880974" /><!-- Sentio Bloodwing -->
-					<gd_npc npc_id="880980" /><!-- Splitwing Flavi -->
-					<gd_npc npc_id="880982" /><!-- Splitwing Flavi -->
-					<gd_npc npc_id="880984" /><!-- Thicket Sylphen -->
-					<gd_npc npc_id="880985" /><!-- Thicket Sylphen -->
-					<gd_npc npc_id="880986" /><!-- Thicket Sylphen -->
-					<gd_npc npc_id="880987" /><!-- Thicket Sylphen -->
-					<gd_npc npc_id="881016" /><!-- Tinderwood Dionae -->
-					<gd_npc npc_id="881017" /><!-- Tinderwood Dionae -->
-					<gd_npc npc_id="881018" /><!-- Tinderwood Dionae -->
-					<gd_npc npc_id="881019" /><!-- Tinderwood Dionae -->
-					<gd_npc npc_id="881012" /><!-- Tribal Malodor -->
-					<gd_npc npc_id="881013" /><!-- Tribal Malodor -->
-					<gd_npc npc_id="881014" /><!-- Tribal Malodor -->
-					<gd_npc npc_id="881015" /><!-- Tribal Malodor -->
-					<gd_npc npc_id="881029" /><!-- Vugkex Granker -->
-					<gd_npc npc_id="881031" /><!-- Vugkex Granker -->
-					<gd_npc npc_id="881032" /><!-- Whipmoss Oculis -->
-					<gd_npc npc_id="881033" /><!-- Whipmoss Oculis -->
-					<gd_npc npc_id="881034" /><!-- Whipmoss Oculis -->
-					<gd_npc npc_id="881035" /><!-- Whipmoss Oculis -->
-					<gd_npc npc_id="881411" /><!-- Fierce Gustafi -->
-					<gd_npc npc_id="881410" /><!-- Sharp Taipaum -->
-					<gd_npc npc_id="881406" /><!-- Temporal Dracoba -->
-					<gd_npc npc_id="881404" /><!-- Temporal Lupinium -->
-					<gd_npc npc_id="881407" /><!-- Temporal Mantuka -->
-					<gd_npc npc_id="881405" /><!-- Temporal Puncturous -->
+					<gd_npc npc_id="881025" />
+					
+					<gd_npc npc_id="881027" />
+					
+					<gd_npc npc_id="881004" />
+					
+					<gd_npc npc_id="881005" />
+					
+					<gd_npc npc_id="881006" />
+					
+					<gd_npc npc_id="881007" />
+					
+					<gd_npc npc_id="881069" />
+					
+					<gd_npc npc_id="881071" />
+					
+					<gd_npc npc_id="881056" />
+					
+					<gd_npc npc_id="881058" />
+					
+					<gd_npc npc_id="881077" />
+					
+					<gd_npc npc_id="881079" />
+					
+					<gd_npc npc_id="881036" />
+					
+					<gd_npc npc_id="881037" />
+					
+					<gd_npc npc_id="881038" />
+					
+					<gd_npc npc_id="881039" />
+					
+					<gd_npc npc_id="881045" />
+					
+					<gd_npc npc_id="881047" />
+					
+					<gd_npc npc_id="881052" />
+					
+					<gd_npc npc_id="881053" />
+					
+					<gd_npc npc_id="881054" />
+					
+					<gd_npc npc_id="881055" />
+					
+					<gd_npc npc_id="880988" />
+					
+					<gd_npc npc_id="880989" />
+					
+					<gd_npc npc_id="880990" />
+					
+					<gd_npc npc_id="880991" />
+					
+					<gd_npc npc_id="881072" />
+					
+					<gd_npc npc_id="881074" />
+					
+					<gd_npc npc_id="881061" />
+					
+					<gd_npc npc_id="881063" />
+					
+					<gd_npc npc_id="880977" />
+					
+					<gd_npc npc_id="880979" />
+					
+					<gd_npc npc_id="881020" />
+					
+					<gd_npc npc_id="881021" />
+					
+					<gd_npc npc_id="881022" />
+					
+					<gd_npc npc_id="881023" />
+					
+					<gd_npc npc_id="880972" />
+					
+					<gd_npc npc_id="880974" />
+					
+					<gd_npc npc_id="880980" />
+					
+					<gd_npc npc_id="880982" />
+					
+					<gd_npc npc_id="880984" />
+					
+					<gd_npc npc_id="880985" />
+					
+					<gd_npc npc_id="880986" />
+					
+					<gd_npc npc_id="880987" />
+					
+					<gd_npc npc_id="881016" />
+					
+					<gd_npc npc_id="881017" />
+					
+					<gd_npc npc_id="881018" />
+					
+					<gd_npc npc_id="881019" />
+					
+					<gd_npc npc_id="881012" />
+					
+					<gd_npc npc_id="881013" />
+					
+					<gd_npc npc_id="881014" />
+					
+					<gd_npc npc_id="881015" />
+					
+					<gd_npc npc_id="881029" />
+					
+					<gd_npc npc_id="881031" />
+					
+					<gd_npc npc_id="881032" />
+					
+					<gd_npc npc_id="881033" />
+					
+					<gd_npc npc_id="881034" />
+					
+					<gd_npc npc_id="881035" />
+					
+					<gd_npc npc_id="881411" />
+					
+					<gd_npc npc_id="881410" />
+					
+					<gd_npc npc_id="881406" />
+					
+					<gd_npc npc_id="881404" />
+					
+					<gd_npc npc_id="881407" />
+					
+					<gd_npc npc_id="881405" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="162002030" min_count="5" /><!-- [Event] Premium Restoration Serum -->
-					<gd_item id="166000195" /><!-- Epsilon Enchantment Stone -->
-					<gd_item id="186000237" /><!-- Ancient Coin -->
-					<gd_item id="188052722" /><!-- [Event] Daeva's Day Kisk Present -->
-					<gd_item id="188051784" /><!-- Birthday Cake Bundle -->
-					<gd_item id="169000011" min_count="40" /><!-- Ancient Power Shard -->
-					<gd_item id="188053628" /><!-- Pallasite Bundle -->
+					<gd_item id="162002030" min_count="5" />
+					
+					
+					
+					<gd_item id="188052722" />
+					
+					
+					<gd_item id="169000011" min_count="40" />
+					
+					<gd_item id="188053628" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Birthday MIX" chance="20">
 				<gd_maps>
-					<gd_map map_id="400020000" /><!-- Belus -->
+					<gd_map map_id="400020000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<!-- Fortress -->
-					<gd_npc npc_id="219166" /><!-- protectorate combat officer -->
-					<gd_npc npc_id="219167" /><!-- protectorate hunter -->
-					<gd_npc npc_id="219169" /><!-- protectorate corpsman -->
-					<gd_npc npc_id="219187" /><!-- protectorate fighter -->
-					<gd_npc npc_id="219188" /><!-- protectorate searcher -->
-					<gd_npc npc_id="219189" /><!-- protectorate mage -->
-					<gd_npc npc_id="219190" /><!-- protectorate healer -->
-					<gd_npc npc_id="219194" /><!-- protectorate myrmidon -->
-					<gd_npc npc_id="219195" /><!-- protectorate pathfinder -->
-					<gd_npc npc_id="219196" /><!-- protectorate magistrate -->
-					<gd_npc npc_id="219197" /><!-- protectorate surgeon -->
-					<gd_npc npc_id="219198" /><!-- protectorate special ops -->
-					<!-- Bases -->
-					<gd_npc npc_id="277696" /><!-- Belani Scout Infantry -->
-					<gd_npc npc_id="277720" /><!-- Belani Scout Patrol -->
-					<gd_npc npc_id="277744" /><!-- Belani Scout Slayer -->
-					<gd_npc npc_id="880314" /><!-- Belfarth Infantry -->
-					<gd_npc npc_id="880374" /><!-- Belfarth Patrol -->
-					<gd_npc npc_id="880496" /><!-- Belfarth Scout Infantry -->
-					<gd_npc npc_id="880395" /><!-- Beling Patrol -->
-					<gd_npc npc_id="880455" /><!-- Beling Slayer -->
-					<gd_npc npc_id="880524" /><!-- Beling Scout Infantry -->
-					<gd_npc npc_id="880552" /><!-- Belsal Scout Infantry -->
-					<gd_npc npc_id="880636" /><!-- Belsal Scout Patrol -->
-					<gd_npc npc_id="880720" /><!-- Belsal Scout Slayer -->
+					
+					<gd_npc npc_id="219166" />
+					
+					<gd_npc npc_id="219167" />
+					
+					<gd_npc npc_id="219169" />
+					
+					<gd_npc npc_id="219187" />
+					
+					<gd_npc npc_id="219188" />
+					
+					<gd_npc npc_id="219189" />
+					
+					<gd_npc npc_id="219190" />
+					
+					<gd_npc npc_id="219194" />
+					
+					<gd_npc npc_id="219195" />
+					
+					<gd_npc npc_id="219196" />
+					
+					<gd_npc npc_id="219197" />
+					
+					<gd_npc npc_id="219198" />
+					
+					
+					<gd_npc npc_id="277696" />
+					
+					<gd_npc npc_id="277720" />
+					
+					<gd_npc npc_id="277744" />
+					
+					<gd_npc npc_id="880314" />
+					
+					<gd_npc npc_id="880374" />
+					
+					<gd_npc npc_id="880496" />
+					
+					<gd_npc npc_id="880395" />
+					
+					<gd_npc npc_id="880455" />
+					
+					<gd_npc npc_id="880524" />
+					
+					<gd_npc npc_id="880552" />
+					
+					<gd_npc npc_id="880636" />
+					
+					<gd_npc npc_id="880720" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="186000236" chance="29.9" min_count="2" max_count="10" /><!-- Blood Mark -->
-					<gd_item id="186000243" chance="20" min_count="3" max_count="5" /><!-- Fragmented Ceramium -->
-					<gd_item id="162000137" chance="20" min_count="2" /><!-- Sublime Life Serum -->
-					<gd_item id="186000059" chance="10" /><!-- Major Ancient Seal -->
-					<gd_item id="166020000" chance="10" /><!-- Omega Enchantment Stone -->
-					<gd_item id="166030005" chance="10" /><!-- Tempering Solution -->
-					<gd_item id="190020091" chance="0.1" /><!-- Potbelly Inquin Egg -->
+					
+					
+					
+					<gd_item id="186000059" chance="10" />
+					
+					
+					
+					<gd_item id="190020091" chance="0.1" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Birthday Shugo Icebox" chance="3.5">
 				<gd_maps>
-					<gd_map map_id="400020000" /><!-- Belus -->
+					<gd_map map_id="400020000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="219166" /><!-- protectorate combat officer -->
-					<gd_npc npc_id="219167" /><!-- protectorate hunter -->
-					<gd_npc npc_id="219169" /><!-- protectorate corpsman -->
-					<gd_npc npc_id="219187" /><!-- protectorate fighter -->
-					<gd_npc npc_id="219188" /><!-- protectorate searcher -->
-					<gd_npc npc_id="219189" /><!-- protectorate mage -->
-					<gd_npc npc_id="219190" /><!-- protectorate healer -->
-					<gd_npc npc_id="219194" /><!-- protectorate myrmidon -->
-					<gd_npc npc_id="219195" /><!-- protectorate pathfinder -->
-					<gd_npc npc_id="219196" /><!-- protectorate magistrate -->
-					<gd_npc npc_id="219197" /><!-- protectorate surgeon -->
-					<gd_npc npc_id="219198" /><!-- protectorate special ops -->
+					<gd_npc npc_id="219166" />
+					
+					<gd_npc npc_id="219167" />
+					
+					<gd_npc npc_id="219169" />
+					
+					<gd_npc npc_id="219187" />
+					
+					<gd_npc npc_id="219188" />
+					
+					<gd_npc npc_id="219189" />
+					
+					<gd_npc npc_id="219190" />
+					
+					<gd_npc npc_id="219194" />
+					
+					<gd_npc npc_id="219195" />
+					
+					<gd_npc npc_id="219196" />
+					
+					<gd_npc npc_id="219197" />
+					
+					<gd_npc npc_id="219198" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188052936" /><!-- Shugo Icebox -->
+					<gd_item id="188052936" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Birthday SUPER_RARE" chance="1">
 				<gd_maps>
-					<gd_map map_id="400020000" /><!-- Belus -->
+					<gd_map map_id="400020000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="219166" /><!-- protectorate combat officer -->
-					<gd_npc npc_id="219167" /><!-- protectorate hunter -->
-					<gd_npc npc_id="219169" /><!-- protectorate corpsman -->
-					<gd_npc npc_id="219187" /><!-- protectorate fighter -->
-					<gd_npc npc_id="219188" /><!-- protectorate searcher -->
-					<gd_npc npc_id="219189" /><!-- protectorate mage -->
-					<gd_npc npc_id="219190" /><!-- protectorate healer -->
-					<gd_npc npc_id="219194" /><!-- protectorate myrmidon -->
-					<gd_npc npc_id="219195" /><!-- protectorate pathfinder -->
-					<gd_npc npc_id="219196" /><!-- protectorate magistrate -->
-					<gd_npc npc_id="219197" /><!-- protectorate surgeon -->
-					<gd_npc npc_id="219198" /><!-- protectorate special ops -->
+					<gd_npc npc_id="219166" />
+					
+					<gd_npc npc_id="219167" />
+					
+					<gd_npc npc_id="219169" />
+					
+					<gd_npc npc_id="219187" />
+					
+					<gd_npc npc_id="219188" />
+					
+					<gd_npc npc_id="219189" />
+					
+					<gd_npc npc_id="219190" />
+					
+					<gd_npc npc_id="219194" />
+					
+					<gd_npc npc_id="219195" />
+					
+					<gd_npc npc_id="219196" />
+					
+					<gd_npc npc_id="219197" />
+					
+					<gd_npc npc_id="219198" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188950019" chance="30" /><!-- Special Courier Pass (Mythic/Lv. 61-65) -->
-					<gd_item id="188052831" chance="30" /><!-- Dynatoum's Brazen Armor Box -->
-					<gd_item id="188052830" chance="15" /><!-- Dynatoum's Brazen Weapon Box -->
-					<gd_item id="190100156" chance="5" /><!-- Quick Frillneck -->
-					<gd_item id="187000151" chance="5" /><!-- Bright Wing Feather of Allure -->
-					<gd_item id="187000139" chance="5" /><!-- NPC General's Gallery Wings -->
-					<gd_item id="190020174" chance="5" /><!-- Traveling Kitter Egg -->
-					<gd_item id="190020234" chance="5" /><!-- Swordsman Ailu Egg -->
+					
+					<gd_item id="188052831" chance="30" />
+					
+					<gd_item id="188052830" chance="15" />
+					
+					
+					
+					
+					
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Birthday ULTRA_RARE" chance="0.1">
 				<gd_maps>
-					<gd_map map_id="400020000" /><!-- Belus -->
+					<gd_map map_id="400020000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="219166" /><!-- protectorate combat officer -->
-					<gd_npc npc_id="219167" /><!-- protectorate hunter -->
-					<gd_npc npc_id="219169" /><!-- protectorate corpsman -->
-					<gd_npc npc_id="219187" /><!-- protectorate fighter -->
-					<gd_npc npc_id="219188" /><!-- protectorate searcher -->
-					<gd_npc npc_id="219189" /><!-- protectorate mage -->
-					<gd_npc npc_id="219190" /><!-- protectorate healer -->
-					<gd_npc npc_id="219194" /><!-- protectorate myrmidon -->
-					<gd_npc npc_id="219195" /><!-- protectorate pathfinder -->
-					<gd_npc npc_id="219196" /><!-- protectorate magistrate -->
-					<gd_npc npc_id="219197" /><!-- protectorate surgeon -->
-					<gd_npc npc_id="219198" /><!-- protectorate special ops -->
+					<gd_npc npc_id="219166" />
+					
+					<gd_npc npc_id="219167" />
+					
+					<gd_npc npc_id="219169" />
+					
+					<gd_npc npc_id="219187" />
+					
+					<gd_npc npc_id="219188" />
+					
+					<gd_npc npc_id="219189" />
+					
+					<gd_npc npc_id="219190" />
+					
+					<gd_npc npc_id="219194" />
+					
+					<gd_npc npc_id="219195" />
+					
+					<gd_npc npc_id="219196" />
+					
+					<gd_npc npc_id="219197" />
+					
+					<gd_npc npc_id="219198" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188053109" /><!-- [Event] Ahserion's Equipment Box -->
+					<gd_item id="188053109" />
+					
 				</gd_items>
 			</gd_rule>
 		</event_drops>
 		<spawns>
-			<!-- Sanctum -->
+			
 			<spawn_map map_id="110010000">
-				<!-- <Daeva's Day Cake> -->
+				
 				<spawn npc_id="831921" respawn_time="295">
 					<spot x="1532.4474" y="1511.6154" z="565.8823" h="60" />
 				</spawn>
-				<!-- Advance Corridor -->
+				
 				<spawn npc_id="730946" respawn_time="295">
 					<spot x="1532.405" y="1496.739" z="565.919" h="60" />
 				</spawn>
 			</spawn_map>
-			<!-- Pandaemonium -->
+			
 			<spawn_map map_id="120010000">
-				<!-- <Daeva's Day Cake> -->
+				
 				<spawn npc_id="831922" respawn_time="295">
 					<spot x="1275.8658" y="1333.3451" z="204.42003" h="90" />
 				</spawn>
-				<!-- Advance Corridor -->
+				
 				<spawn npc_id="730950" respawn_time="295">
 					<spot x="1275.563" y="1350.907" z="204.461" h="30" />
 				</spawn>
 			</spawn_map>
-			<!-- Belus -->
+			
 			<spawn_map map_id="400020000">
-				<!-- Party Balaur -->
-				<spawn npc_id="219166" respawn_time="300"><!-- protectorate combat officer -->
+				
+				<spawn npc_id="219166" respawn_time="300">
+					
 					<spot x="976.52924" y="1138.133" z="1552.7639" h="37" />
 					<spot x="1038.3944" y="960.06396" z="1530.2195" h="91" />
 					<spot x="1028.0836" y="916.3543" z="1573.3844" h="49" />
@@ -3525,7 +3568,8 @@
 					<spot x="1009.4804" y="960.1382" z="1530.2195" h="94" />
 					<spot x="1129.0634" y="1129.3954" z="1530.0533" h="15" />
 				</spawn>
-				<spawn npc_id="219167" respawn_time="300"><!-- protectorate hunter -->
+				<spawn npc_id="219167" respawn_time="300">
+					
 					<spot x="977.4888" y="1011.1366" z="1571.475" h="17" />
 					<spot x="971.65173" y="970.6354" z="1551.7993" h="75" />
 					<spot x="1058.1006" y="875.282" z="1530.0533" h="32" />
@@ -3541,7 +3585,8 @@
 					<spot x="1024.647" y="1088.1693" z="1573.3844" h="30" />
 					<spot x="925.59906" y="975.2903" z="1529.944" h="16" />
 				</spawn>
-				<spawn npc_id="219169" respawn_time="300"><!-- protectorate corpsman -->
+				<spawn npc_id="219169" respawn_time="300">
+					
 					<spot x="932.70734" y="1086.0885" z="1552.0298" h="105" />
 					<spot x="1075.4072" y="969.7771" z="1551.8075" h="105" />
 					<spot x="1154.1871" y="1105.6235" z="1530.0533" h="75" />
@@ -3557,7 +3602,8 @@
 					<spot x="1081.7814" y="1023.9827" z="1551.8921" h="119" />
 					<spot x="942.9162" y="1153.24" z="1530.0533" h="106" />
 				</spawn>
-				<spawn npc_id="219187" respawn_time="300"><!-- protectorate fighter -->
+				<spawn npc_id="219187" respawn_time="300">
+					
 					<spot x="1008.7151" y="922.4994" z="1529.944" h="29" />
 					<spot x="918.6249" y="1128.848" z="1530.0533" h="45" />
 					<spot x="1128.1863" y="1086.2191" z="1530.0533" h="13" />
@@ -3573,7 +3619,8 @@
 					<spot x="1128.9591" y="1004.10724" z="1552.1978" h="89" />
 					<spot x="964.3683" y="1169.6774" z="1530.0533" h="100" />
 				</spawn>
-				<spawn npc_id="219188" respawn_time="300"><!-- protectorate searcher -->
+				<spawn npc_id="219188" respawn_time="300">
+					
 					<spot x="1023.55743" y="956.195" z="1573.3844" h="90" />
 					<spot x="1024.0975" y="900.29517" z="1530.1044" h="91" />
 					<spot x="1023.9237" y="1145.3087" z="1530.1044" h="31" />
@@ -3589,7 +3636,8 @@
 					<spot x="1037.4194" y="1071.1279" z="1571.4751" h="85" />
 					<spot x="1141.6313" y="1066.4152" z="1530.0533" h="3" />
 				</spawn>
-				<spawn npc_id="219189" respawn_time="300"><!-- protectorate mage -->
+				<spawn npc_id="219189" respawn_time="300">
+					
 					<spot x="955.32935" y="1059.3417" z="1551.7965" h="106" />
 					<spot x="976.1995" y="1036.411" z="1571.475" h="116" />
 					<spot x="912.4064" y="977.856" z="1552.7639" h="68" />
@@ -3605,7 +3653,8 @@
 					<spot x="1073.5459" y="1099.7947" z="1551.739" h="74" />
 					<spot x="1009.9967" y="975.4704" z="1571.4751" h="23" />
 				</spawn>
-				<spawn npc_id="219190" respawn_time="300"><!-- protectorate healer -->
+				<spawn npc_id="219190" respawn_time="300">
+					
 					<spot x="1038.4832" y="1113.9984" z="1551.7808" h="90" />
 					<spot x="1085.1661" y="992.7182" z="1551.8246" h="75" />
 					<spot x="1087.5817" y="1108.9442" z="1552.0713" h="105" />
@@ -3621,7 +3670,8 @@
 					<spot x="1087.4661" y="921.9042" z="1530.0533" h="105" />
 					<spot x="1109.55" y="938.43164" z="1549.5201" h="104" />
 				</spawn>
-				<spawn npc_id="219194" respawn_time="300"><!-- protectorate myrmidon -->
+				<spawn npc_id="219194" respawn_time="300">
+					
 					<spot x="1172.1953" y="1057.2523" z="1530.0533" h="61" />
 					<spot x="942.65717" y="894.34076" z="1530.0533" h="16" />
 					<spot x="1109.6901" y="1109.5132" z="1549.5201" h="20" />
@@ -3637,7 +3687,8 @@
 					<spot x="1073.6207" y="959.7604" z="1529.944" h="4" />
 					<spot x="1124.5663" y="1059.7306" z="1552.2728" h="10" />
 				</spawn>
-				<spawn npc_id="219195" respawn_time="300"><!-- protectorate pathfinder -->
+				<spawn npc_id="219195" respawn_time="300">
+					
 					<spot x="1115.8806" y="1085.9911" z="1552.0298" h="76" />
 					<spot x="1095.2191" y="981.8668" z="1529.944" h="107" />
 					<spot x="940.2568" y="965.6034" z="1552.0298" h="80" />
@@ -3653,7 +3704,8 @@
 					<spot x="874.7427" y="990.3932" z="1530.0533" h="119" />
 					<spot x="1128.6101" y="919.37164" z="1530.0533" h="104" />
 				</spawn>
-				<spawn npc_id="219196" respawn_time="300"><!-- protectorate magistrate -->
+				<spawn npc_id="219196" respawn_time="300">
+					
 					<spot x="1085.8098" y="932.3514" z="1552.0298" h="46" />
 					<spot x="937.71954" y="1110.6658" z="1530.2804" h="44" />
 					<spot x="1071.6226" y="1122.3519" z="1529.944" h="76" />
@@ -3669,7 +3721,8 @@
 					<spot x="906.1307" y="1053.09" z="1530.0533" h="62" />
 					<spot x="979.00183" y="941.7882" z="1551.7671" h="15" />
 				</spawn>
-				<spawn npc_id="219197" respawn_time="300"><!-- protectorate surgeon -->
+				<spawn npc_id="219197" respawn_time="300">
+					
 					<spot x="1097.4432" y="1076.3447" z="1551.9229" h="75" />
 					<spot x="916.0485" y="964.4931" z="1530.0533" h="73" />
 					<spot x="1041.8136" y="980.9006" z="1571.4751" h="37" />
@@ -3685,7 +3738,8 @@
 					<spot x="1169.9152" y="962.40936" z="1530.0533" h="51" />
 					<spot x="982.0637" y="1048.8574" z="1571.4751" h="110" />
 				</spawn>
-				<spawn npc_id="219198" respawn_time="300"><!-- protectorate special ops -->
+				<spawn npc_id="219198" respawn_time="300">
+					
 					<spot x="1045.9576" y="1127.2892" z="1573.3174" h="119" />
 					<spot x="920.09033" y="919.36084" z="1530.0533" h="74" />
 					<spot x="938.6569" y="1109.6198" z="1549.5201" h="44" />
@@ -3705,7 +3759,7 @@
 					<spot x="958.19855" y="1105.0513" z="1529.944" h="91" />
 					<spot x="1040.0308" y="1125.3003" z="1529.944" h="90" />
 				</spawn>
-				<!-- Cakes Outer Fortress Area -->
+				
 				<spawn npc_id="701952" respawn_time="300" pool="20">
 					<spot x="1037.1733" y="928.169" z="1489.0814" h="52" />
 					<spot x="1038.1992" y="910.4922" z="1489.0774" h="73" />
@@ -3788,7 +3842,7 @@
 					<spot x="513.56256" y="959.6936" z="1522.223" h="14" />
 					<spot x="957.31146" y="1533.2417" z="1523.4377" h="103" />
 				</spawn>
-				<!-- Cakes Inner Fortress Area -->
+				
 				<spawn npc_id="701983" respawn_time="300" pool="5">
 					<spot x="983.3415" y="991.6242" z="1553.2124" h="9" />
 					<spot x="1065.294" y="1057.0938" z="1553.1906" h="83" />
@@ -3840,106 +3894,172 @@
 		<event_drops>
 			<gd_rule rule_name="Agrint Event (Agrint)" chance="100" member_limit="24">
 				<gd_maps>
-					<gd_map map_id="110010000" /><!-- Sanctum -->
-					<gd_map map_id="120010000" /><!-- Pandaemonium -->
+					<gd_map map_id="110010000" />
+					
+					<gd_map map_id="120010000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="218850" /><!-- Spring Agrint -->
-					<gd_npc npc_id="218862" /><!-- Spring Agrint -->
+					<gd_npc npc_id="218850" />
+					
+					<gd_npc npc_id="218862" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188100060" /><!-- [Event] Smooth Eggshell -->
+					<gd_item id="188100060" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Agrint Event (Shared)" chance="30" member_limit="6">
 				<gd_maps>
-					<gd_map map_id="600100000" /><!-- Levinshor -->
+					<gd_map map_id="600100000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="235346" /><!-- Tomul Brawler -->
-					<gd_npc npc_id="235347" /><!-- Tomul Cutthroat -->
-					<gd_npc npc_id="235348" /><!-- Tomul Shaman -->
-					<gd_npc npc_id="235349" /><!-- Tomul Aquamancer -->
-					<gd_npc npc_id="235350" /><!-- Denku Feralclaw -->
-					<gd_npc npc_id="235351" /><!-- Denku Fang -->
-					<gd_npc npc_id="235352" /><!-- Denku Restorer -->
-					<gd_npc npc_id="235353" /><!-- Denku Feralmage -->
-					<gd_npc npc_id="235354" /><!-- Tomul Brawler -->
-					<gd_npc npc_id="235355" /><!-- Tomul Cutthroat -->
-					<gd_npc npc_id="235356" /><!-- Tomul Shaman -->
-					<gd_npc npc_id="235357" /><!-- Tomul Aquamancer -->
-					<gd_npc npc_id="235358" /><!-- Denku Feralclaw -->
-					<gd_npc npc_id="235359" /><!-- Denku Fang -->
-					<gd_npc npc_id="235360" /><!-- Denku Restorer -->
-					<gd_npc npc_id="235361" /><!-- Denku Feralmage -->
-					<gd_npc npc_id="235362" /><!-- Tomul Brawler -->
-					<gd_npc npc_id="235363" /><!-- Tomul Cutthroat -->
-					<gd_npc npc_id="235364" /><!-- Tomul Shaman -->
-					<gd_npc npc_id="235365" /><!-- Tomul Aquamancer -->
-					<gd_npc npc_id="235366" /><!-- Denku Feralclaw -->
-					<gd_npc npc_id="235367" /><!-- Denku Fang -->
-					<gd_npc npc_id="235368" /><!-- Denku Restorer -->
-					<gd_npc npc_id="235369" /><!-- Denku Feralmage -->
-					<gd_npc npc_id="235370" /><!-- Tomul Brawler -->
-					<gd_npc npc_id="235371" /><!-- Tomul Cutthroat -->
-					<gd_npc npc_id="235372" /><!-- Tomul Shaman -->
-					<gd_npc npc_id="235373" /><!-- Tomul Aquamancer -->
-					<gd_npc npc_id="235374" /><!-- Denku Feralclaw -->
-					<gd_npc npc_id="235375" /><!-- Denku Fang -->
-					<gd_npc npc_id="235376" /><!-- Denku Restorer -->
-					<gd_npc npc_id="235377" /><!-- Denku Feralmage -->
-					<gd_npc npc_id="235378" /><!-- Tomul Brawler -->
-					<gd_npc npc_id="235379" /><!-- Tomul Cutthroat -->
-					<gd_npc npc_id="235380" /><!-- Tomul Shaman -->
-					<gd_npc npc_id="235381" /><!-- Tomul Aquamancer -->
-					<gd_npc npc_id="235382" /><!-- Denku Feralclaw -->
-					<gd_npc npc_id="235383" /><!-- Denku Fang -->
-					<gd_npc npc_id="235384" /><!-- Denku Restorer -->
-					<gd_npc npc_id="235385" /><!-- Denku Feralmage -->
+					<gd_npc npc_id="235346" />
+					
+					<gd_npc npc_id="235347" />
+					
+					<gd_npc npc_id="235348" />
+					
+					<gd_npc npc_id="235349" />
+					
+					<gd_npc npc_id="235350" />
+					
+					<gd_npc npc_id="235351" />
+					
+					<gd_npc npc_id="235352" />
+					
+					<gd_npc npc_id="235353" />
+					
+					<gd_npc npc_id="235354" />
+					
+					<gd_npc npc_id="235355" />
+					
+					<gd_npc npc_id="235356" />
+					
+					<gd_npc npc_id="235357" />
+					
+					<gd_npc npc_id="235358" />
+					
+					<gd_npc npc_id="235359" />
+					
+					<gd_npc npc_id="235360" />
+					
+					<gd_npc npc_id="235361" />
+					
+					<gd_npc npc_id="235362" />
+					
+					<gd_npc npc_id="235363" />
+					
+					<gd_npc npc_id="235364" />
+					
+					<gd_npc npc_id="235365" />
+					
+					<gd_npc npc_id="235366" />
+					
+					<gd_npc npc_id="235367" />
+					
+					<gd_npc npc_id="235368" />
+					
+					<gd_npc npc_id="235369" />
+					
+					<gd_npc npc_id="235370" />
+					
+					<gd_npc npc_id="235371" />
+					
+					<gd_npc npc_id="235372" />
+					
+					<gd_npc npc_id="235373" />
+					
+					<gd_npc npc_id="235374" />
+					
+					<gd_npc npc_id="235375" />
+					
+					<gd_npc npc_id="235376" />
+					
+					<gd_npc npc_id="235377" />
+					
+					<gd_npc npc_id="235378" />
+					
+					<gd_npc npc_id="235379" />
+					
+					<gd_npc npc_id="235380" />
+					
+					<gd_npc npc_id="235381" />
+					
+					<gd_npc npc_id="235382" />
+					
+					<gd_npc npc_id="235383" />
+					
+					<gd_npc npc_id="235384" />
+					
+					<gd_npc npc_id="235385" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188100057" /><!-- [Event] Red Dye -->
-					<gd_item id="188100058" /><!-- [Event] Green Dye -->
-					<gd_item id="188100059" /><!-- [Event] Yellow Dye -->
+					<gd_item id="188100057" />
+					
+					<gd_item id="188100058" />
+					
+					<gd_item id="188100059" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Agrint Event (Boss)" chance="100" member_limit="12">
 				<gd_maps>
-					<gd_map map_id="300630000" /><!-- Anguished Dragon Lords Refuge -->
-					<gd_map map_id="301130000" /><!-- Sauro Supply Base -->
-					<gd_map map_id="300610000" /><!-- Raksang Ruins -->
-					<gd_map map_id="300700000" /><!-- The Hexway -->
-					<gd_map map_id="300800000" /><!-- Infinity Shard -->
-					<gd_map map_id="301360000" /><!-- Infernal Danuar Reliquary -->
+					<gd_map map_id="300630000" />
+					
+					<gd_map map_id="301130000" />
+					
+					<gd_map map_id="300610000" />
+					
+					<gd_map map_id="300700000" />
+					
+					<gd_map map_id="300800000" />
+					
+					<gd_map map_id="301360000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="702729" /><!-- Tiamat's Huge Treasure Crate -->
-					<gd_npc npc_id="230857" /><!-- Guard Captain Ahuradim -->
-					<gd_npc npc_id="230858" /><!-- Brigade General Sheba -->
-					<gd_npc npc_id="236306" /><!-- Reviver Nasto -->
-					<gd_npc npc_id="219610" /><!-- Adjutant Galamat -->
-					<gd_npc npc_id="231073" /><!-- Hyperion -->
-					<gd_npc npc_id="234691" /><!-- Crazed Modor -->
+					<gd_npc npc_id="702729" />
+					
+					<gd_npc npc_id="230857" />
+					
+					<gd_npc npc_id="230858" />
+					
+					<gd_npc npc_id="236306" />
+					
+					<gd_npc npc_id="219610" />
+					
+					<gd_npc npc_id="231073" />
+					
+					<gd_npc npc_id="234691" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188100060" /><!-- [Event] Smooth Eggshell -->
-					<gd_item id="188100057" /><!-- [Event] Red Dye -->
-					<gd_item id="188100058" /><!-- [Event] Green Dye -->
-					<gd_item id="188100059" /><!-- [Event] Yellow Dye -->
+					<gd_item id="188100060" />
+					
+					<gd_item id="188100057" />
+					
+					<gd_item id="188100058" />
+					
+					<gd_item id="188100059" />
+					
 				</gd_items>
 			</gd_rule>
 		</event_drops>
 		<spawns>
-			<!-- Sanctum -->
+			
 			<spawn_map map_id="110010000">
-				<!-- Spring Agrint -->
+				
 				<spawn npc_id="218850" respawn_time="14400">
 					<spot x="1532.3938" y="1511.6124" z="565.8824" h="60" />
 				</spawn>
 			</spawn_map>
-			<!-- Pandaemonium -->
+			
 			<spawn_map map_id="120010000">
-				<!-- Spring Agrint -->
+				
 				<spawn npc_id="218862" respawn_time="14400">
 					<spot x="1275.8656" y="1335.5107" z="204.4200" h="90" />
 				</spawn>
@@ -3948,27 +4068,27 @@
 	</event>
 	<event name="Dramata Trouble" start="2020-11-15T18:50:00" end="2020-11-15T20:00:00">
 		<spawns>
-			<!-- Kaisinel Academy -->
+			
 			<spawn_map map_id="110070000">
-				<!-- Dangerous Rift Gap -->
+				
 				<spawn npc_id="701133" respawn_time="295">
 					<spot x="485.69" y="407.96" z="126.79" />
 				</spawn>
 			</spawn_map>
-			<!-- Pandaemonium -->
+			
 			<spawn_map map_id="120080000">
-				<!-- Dangerous Rift Gap -->
+				
 				<spawn npc_id="701133" respawn_time="295">
 					<spot x="392.58" y="231.57" z="93.12" h="30" />
 				</spawn>
 			</spawn_map>
-			<!-- Inggison -->
+			
 			<spawn_map map_id="210050000">
-				<!-- Sematariux -->
+				
 				<spawn npc_id="216520">
 					<spot x="141.77" y="2142.31" z="440.0" h="90" />
 				</spawn>
-				<!-- Votaic Column -->
+				
 				<spawn npc_id="281829">
 					<spot x="101.301" y="2136.59" z="441.456" />
 					<spot x="117.882" y="2097.47" z="440.581" />
@@ -3978,9 +4098,9 @@
 					<spot x="187.129" y="2137.05" z="441.190" />
 				</spawn>
 			</spawn_map>
-			<!-- Gelkmaros -->
+			
 			<spawn_map map_id="220070000">
-				<!-- Padmarashka -->
+				
 				<spawn npc_id="216580">
 					<spot x="2940.20" y="851.29" z="35.29" h="30" />
 				</spawn>
@@ -3989,109 +4109,104 @@
 		<event_drops>
 			<gd_rule rule_name="Named Weapon Chest" chance="100">
 				<gd_maps>
-					<gd_map map_id="210050000" /><!-- Inggison -->
+					<gd_map map_id="210050000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="216520" /><!-- Sematariux -->
+					<gd_npc npc_id="216520" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188052947" /><!-- Sematariux's Weapon Chest -->
+					<gd_item id="188052947" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Named Weapon Chest" chance="100">
 				<gd_maps>
-					<gd_map map_id="220070000" /><!-- Gelkmaros -->
+					<gd_map map_id="220070000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="216580" /><!-- Padmarashka -->
+					<gd_npc npc_id="216580" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188052946" /><!-- Padmarashka's Raging Weapon Box -->
+					<gd_item id="188052946" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Named Wing Chest" chance="100">
 				<gd_maps>
-					<gd_map map_id="210050000" /><!-- Inggison -->
-					<gd_map map_id="220070000" /><!-- Gelkmaros -->
+					<gd_map map_id="210050000" />
+					
+					<gd_map map_id="220070000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="216520" /><!-- Sematariux -->
-					<gd_npc npc_id="216580" /><!-- Padmarashka -->
+					<gd_npc npc_id="216520" />
+					
+					<gd_npc npc_id="216580" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188052728" /><!-- [Event] Dramata Wing Chest -->
-				</gd_items>
-			</gd_rule>
-			<gd_rule rule_name="Named Wrapping Scroll" chance="100">
-				<gd_maps>
-					<gd_map map_id="210050000" /><!-- Inggison -->
-					<gd_map map_id="220070000" /><!-- Gelkmaros -->
-				</gd_maps>
-				<gd_npcs>
-					<gd_npc npc_id="216520" /><!-- Sematariux -->
-					<gd_npc npc_id="216580" /><!-- Padmarashka -->
-				</gd_npcs>
-				<gd_items>
-					<gd_item id="165020020" /><!-- Noble Weapon Wrapping Scroll (Mythic/Lv. 65 and lower) -->
-					<gd_item id="165020021" /><!-- Noble Armor Wrapping Scroll (Mythic/Lv. 65 and lower) -->
-				</gd_items>
-			</gd_rule>
-			<gd_rule rule_name="Named Special Courier Pass" chance="100">
-				<gd_maps>
-					<gd_map map_id="210050000" /><!-- Inggison -->
-					<gd_map map_id="220070000" /><!-- Gelkmaros -->
-				</gd_maps>
-				<gd_npcs>
-					<gd_npc npc_id="216520" /><!-- Sematariux -->
-					<gd_npc npc_id="216580" /><!-- Padmarashka -->
-				</gd_npcs>
-				<gd_items>
-					<gd_item id="188950017" /><!-- Special Courier Pass (Abyss Eternal/Lv. 61-65) -->
-					<gd_item id="188950015" /><!-- Special Courier Pass (Eternal/Lv.61-65) -->
+					<gd_item id="188052728" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Named Abyss Armor Chest" chance="100" member_limit="48" restriction_race="ASMODIANS">
 				<gd_maps>
-					<gd_map map_id="210050000" /><!-- Inggison -->
+					<gd_map map_id="210050000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="216520" /><!-- Sematariux -->
+					<gd_npc npc_id="216520" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188053366" /><!-- Archon Abyss Armor Box -->
+					<gd_item id="188053366" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Named Abyss Armor Chest" chance="100" member_limit="48" restriction_race="ELYOS">
 				<gd_maps>
-					<gd_map map_id="220070000" /><!-- Gelkmaros -->
+					<gd_map map_id="220070000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="216580" /><!-- Padmarashka -->
+					<gd_npc npc_id="216580" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188053364" /><!-- Guardian Abyss Armor Box -->
+					<gd_item id="188053364" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Named Consumable Chest" chance="100" member_limit="48" restriction_race="ASMODIANS">
 				<gd_maps>
-					<gd_map map_id="210050000" /><!-- Inggison -->
+					<gd_map map_id="210050000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="216520" /><!-- Sematariux -->
+					<gd_npc npc_id="216520" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188051461" /><!-- Box Blessed by Mastarius -->
+					<gd_item id="188051461" />
+					
 				</gd_items>
 			</gd_rule>
 			<gd_rule rule_name="Named Consumable Chest" chance="100" member_limit="48" restriction_race="ELYOS">
 				<gd_maps>
-					<gd_map map_id="220070000" /><!-- Gelkmaros -->
+					<gd_map map_id="220070000" />
+					
 				</gd_maps>
 				<gd_npcs>
-					<gd_npc npc_id="216580" /><!-- Padmarashka -->
+					<gd_npc npc_id="216580" />
+					
 				</gd_npcs>
 				<gd_items>
-					<gd_item id="188051460" /><!-- Box Blessed by Veille-->
+					<gd_item id="188051460" />
+					
 				</gd_items>
 			</gd_rule>
 		</event_drops>

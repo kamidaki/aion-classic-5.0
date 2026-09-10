@@ -54,6 +54,11 @@ public final class DataManager {
 	public static GlobalNpcExclusionData GLOBAL_EXCLUSION_DATA;
 	public static GoodsListData GOODSLIST_DATA;
 	public static HotspotData HOTSPOT_DATA;
+	public static HouseData HOUSE_DATA;
+	public static HouseBuildingData HOUSE_BUILDING_DATA;
+	public static HouseNpcsData HOUSE_NPCS_DATA;
+	public static HousePartsData HOUSE_PARTS_DATA;
+	public static HousingObjectData HOUSING_OBJECT_DATA;
 	public static KillBountyData KILL_BOUNTY_DATA;
 	public static InstanceBuffData INSTANCE_BUFF_DATA;
 	public static InstanceCooltimeData INSTANCE_COOLTIME_DATA;
@@ -189,10 +194,15 @@ public final class DataManager {
 		EVENT_DATA = data.eventData;
 		PANEL_SKILL_DATA = data.panelSkillsData;
 		INSTANCE_BUFF_DATA = data.instanceBuffData;
+		HOUSING_OBJECT_DATA = data.housingObjectData;
 		INSTANCE_EXIT_DATA = data.instanceExitData;
 		PORTAL_LOC_DATA = data.portalLocData;
 		PORTAL2_DATA = data.portalTemplate2;
+		HOUSE_DATA = data.houseData;
+		HOUSE_BUILDING_DATA = data.houseBuildingData;
+		HOUSE_PARTS_DATA = data.housePartsData;
 		CURING_OBJECTS_DATA = data.curingObjectsData;
+		HOUSE_NPCS_DATA = data.houseNpcsData;
 		SYSTEM_MAIL_TEMPLATES = data.systemMailTemplates;
 		CHALLENGE_DATA = data.challengeData;
 		TOWN_SPAWNS_DATA = data.townSpawnsData;

@@ -169,6 +169,8 @@
 			<xs:element name="instancetimeclear" type="InstanceTimeClear" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="cosmetic" type="CosmeticItemAction" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="charge" type="ChargeAction" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="houseobject" type="SummonHouseObjectAction" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="housedeco" type="DecorateAction" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="assemble" type="AssemblyItemAction" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="adoptpet" type="AdoptPetAction" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="apextract" type="ApExtractAction" minOccurs="0" maxOccurs="1"/>
@@ -322,6 +324,20 @@
 	<xs:complexType name="FireworksUseAction">
 		<xs:complexContent>
 			<xs:extension base="AbstractItemAction"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SummonHouseObjectAction">
+		<xs:complexContent>
+			<xs:extension base="AbstractItemAction">
+				<xs:attribute name="id" type="xs:int"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DecorateAction">
+		<xs:complexContent>
+			<xs:extension base="AbstractItemAction">
+				<xs:attribute name="id" type="xs:int"/>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="AdoptPetAction">

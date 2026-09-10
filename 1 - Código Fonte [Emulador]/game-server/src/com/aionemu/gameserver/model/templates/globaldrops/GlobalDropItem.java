@@ -31,8 +31,8 @@ public class GlobalDropItem implements Chance {
 	void afterUnmarshal(Unmarshaller u, Object parent) {
 		StaticData staticData = StaticDataListener.get(u);
 		ItemData itemData = staticData != null ? staticData.itemData : DataManager.ITEM_DATA;
-		if (itemData.getItemTemplate(itemId) == null)
-			throw new IllegalArgumentException("Global drop item ID " + itemId + " is invalid");
+		if (itemData != null && itemData.getItemTemplate(itemId) == null)
+			return;
 		if (minCount <= 0)
 			throw new IllegalArgumentException("Global drop item [" + itemId + "] min_count (" + minCount + ") must be greater than 0");
 		if (maxCount == 0)

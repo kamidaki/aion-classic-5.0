@@ -35,10 +35,18 @@ public class TownSpawnsData {
 
 	public int getSpawnsCount() {
 		int counter = 0;
-		for (TownSpawnMap spawnMap : spawnMapsData.values())
-			for (TownSpawn townSpawn : spawnMap.getTownSpawns())
-				for (TownLevel townLevel : townSpawn.getTownLevels())
-					counter += townLevel.getSpawns().size();
+		for (TownSpawnMap spawnMap : spawnMapsData.values()) {
+			if (spawnMap.getTownSpawns() == null)
+				continue;
+			for (TownSpawn townSpawn : spawnMap.getTownSpawns()) {
+				if (townSpawn.getTownLevels() == null)
+					continue;
+				for (TownLevel townLevel : townSpawn.getTownLevels()) {
+					if (townLevel != null && townLevel.getSpawns() != null)
+						counter += townLevel.getSpawns().size();
+				}
+			}
+		}
 		return counter;
 	}
 
@@ -46,23 +54,30 @@ public class TownSpawnsData {
 		for (TownSpawnMap spawnMap : spawnMapsData.values()) {
 			if (spawnMap.getTownSpawn(townId) != null) {
 				TownSpawn townSpawn = spawnMap.getTownSpawn(townId);
-				return townSpawn.getSpawnsForLevel(townLevel).getSpawns();
+				TownLevel level = townSpawn.getSpawnsForLevel(townLevel);
+				return level != null ? level.getSpawns() : java.util.Collections.emptyList();
 			}
 		}
-		return null;
+		return java.util.Collections.emptyList();
 	}
 
 	public int getWorldIdForTown(int townId) {
-		for (TownSpawnMap spawnMap : spawnMapsData.values())
+		for (TownSpawnMap spawnMap : spawnMapsData.values()) {
 			if (spawnMap.getTownSpawn(townId) != null)
 				return spawnMap.getMapId();
+		}
 		return 0;
 	}
 
 	public void addAllNpcIdsToSet(Set<Integer> npcIds) {
 		spawnMapsData.values().stream()
-			.flatMap(map-> map.getTownSpawns().stream())
-			.flatMap(ts -> ts.getTownLevels().stream().flatMap(tl -> tl.getSpawns().stream()))
+			.filter(map -> map != null && map.getTownSpawns() != null)
+			.flatMap(map -> map.getTownSpawns().stream())
+			.filter(ts -> ts != null && ts.getTownLevels() != null)
+			.flatMap(ts -> ts.getTownLevels().stream())
+			.filter(tl -> tl != null && tl.getSpawns() != null)
+			.flatMap(tl -> tl.getSpawns().stream())
+			.filter(java.util.Objects::nonNull)
 			.map(Spawn::getNpcId)
 			.forEach(npcIds::add);
 	}

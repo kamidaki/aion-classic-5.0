@@ -408,15 +408,6 @@
 	<siege_location id="1254" type="ARTIFACT" world="400010000">
 		<artifact_activation item_id="188020000" count="2" skill="12086" repeat_count="1" repeat_interval="1" cd="2700" />
 	</siege_location>
-	<siege_location id="1401" type="ARTIFACT" world="400010000">
-		<artifact_activation item_id="188020002" count="2" skill="12159" repeat_count="1" repeat_interval="1" cd="2700" />
-	</siege_location>
-	<siege_location id="1402" type="ARTIFACT" world="400010000">
-		<artifact_activation item_id="188020002" count="2" skill="12159" repeat_count="1" repeat_interval="1" cd="2700" />
-	</siege_location>
-	<siege_location id="1403" type="ARTIFACT" world="400010000">
-		<artifact_activation item_id="188020002" count="2" skill="12159" repeat_count="1" repeat_interval="1" cd="2700" />
-	</siege_location>
 	<siege_location id="2011" type="FORTRESS" world="210050000" name_id="401288" occupy_count="2" legion_gp="1000" siege_duration="2400" influence="8" kinah_rewards="50000000 40000000 30000000 10000000">
 		<artifact_activation item_id="188020001" count="3" skill="12155" cd="7200" />
 		<door_repair_data item_id="188030000" count="75" cd="30">
@@ -451,9 +442,6 @@
 	<siege_location id="2013" type="ARTIFACT" world="210050000">
 		<artifact_activation item_id="188020002" count="2" skill="12090" repeat_count="5" repeat_interval="3" cd="1800" />
 	</siege_location>
-	<siege_location id="2014" type="ARTIFACT" world="210050000">
-		<artifact_activation item_id="188020002" count="2" skill="12159" repeat_count="5" repeat_interval="3" cd="1800" />
-	</siege_location>
 	<siege_location id="2021" type="FORTRESS" world="210050000" name_id="401290" occupy_count="2" legion_gp="1000" siege_duration="2400" influence="8" kinah_rewards="50000000 40000000 30000000 10000000">
 		<artifact_activation item_id="188020001" count="2" skill="12156" cd="7200" />
 		<door_repair_data item_id="188030000" count="75" cd="30">
@@ -487,9 +475,6 @@
 	</siege_location>
 	<siege_location id="2023" type="ARTIFACT" world="210050000">
 		<artifact_activation item_id="188020002" count="2" skill="12090" repeat_count="5" repeat_interval="3" cd="1800" />
-	</siege_location>
-	<siege_location id="2024" type="ARTIFACT" world="210050000">
-		<artifact_activation item_id="188020002" count="2" skill="12159" repeat_count="5" repeat_interval="3" cd="1800" />
 	</siege_location>
 	<siege_location id="2111" type="OUTPOST" world="210050000" fortress_dependency="2011 2021" siege_duration="7200" kinah_rewards="400000000 300000000 200000000 100000000">
 		<siege_reward top="5" item_id="188050706" item_count="1" item_id_defeat="186000243" item_count_defeat="10" gp_win="300" gp_defeat="150" />
@@ -531,9 +516,6 @@
 	<siege_location id="3013" type="ARTIFACT" world="220070000">
 		<artifact_activation item_id="188020002" count="2" skill="12090" repeat_count="5" repeat_interval="3" cd="1800" />
 	</siege_location>
-	<siege_location id="3014" type="ARTIFACT" world="220070000">
-		<artifact_activation item_id="188020002" count="2" skill="12159" repeat_count="5" repeat_interval="3" cd="1800" />
-	</siege_location>
 	<siege_location id="3021" type="FORTRESS" world="220070000" name_id="401294" occupy_count="2" legion_gp="1000" siege_duration="2400" influence="8" kinah_rewards="50000000 40000000 30000000 10000000">
 		<artifact_activation item_id="188020001" count="3" skill="12158" cd="7200" />
 		<door_repair_data item_id="188030000" count="75" cd="30">
@@ -568,24 +550,10 @@
 	<siege_location id="3023" type="ARTIFACT" world="220070000">
 		<artifact_activation item_id="188020002" count="2" skill="12090" repeat_count="5" repeat_interval="3" cd="1800" />
 	</siege_location>
-	<siege_location id="3024" type="ARTIFACT" world="220070000">
-		<artifact_activation item_id="188020002" count="2" skill="12159" repeat_count="5" repeat_interval="3" cd="1800" />
-	</siege_location>
 	<siege_location id="3111" type="OUTPOST" world="220070000" fortress_dependency="3011 3021" siege_duration="7200" kinah_rewards="400000000 300000000 200000000 100000000">
 		<siege_reward top="5" item_id="188050702" item_count="1" item_id_defeat="186000243" item_count_defeat="10" gp_win="300" gp_defeat="150" />
 		<siege_reward top="11" item_id="188050703" item_count="1" gp_win="200" gp_defeat="100" />
 		<siege_reward top="22" item_id="188050704" item_count="1" gp_win="150" gp_defeat="75" />
 		<siege_reward top="50" item_id="188050705" item_count="1" gp_win="100" gp_defeat="50" />
-	</siege_location>
-	<siege_location id="4011" type="FORTRESS" world="800010000" name_id="403509" occupy_count="2" siege_duration="2400" influence="10">
-		<artifact_activation item_id="188020001" count="2" skill="12157" cd="7200" />
-		<siege_reward top="5" item_id="188053171" item_count="1" item_id_defeat="186000243" item_count_defeat="10" gp_win="200" gp_defeat="100" />
-		<siege_reward top="11" item_id="188053172" item_count="1" gp_win="175" gp_defeat="90" />
-		<siege_reward top="22" item_id="188053173" item_count="1" gp_win="150" gp_defeat="75" />
-		<siege_reward top="50" item_id="188053174" item_count="1" gp_win="100" gp_defeat="50" />
-		<legion_reward item_id="182400001" item_count="10000000" />
-		<legion_reward item_id="186000242" item_count="1" />
-		<legion_reward item_id="188052121" item_count="1" />
-		<legion_reward item_id="188053136" item_count="1" />
 	</siege_location>
 </siege_locations>

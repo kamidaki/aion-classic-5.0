@@ -78,6 +78,8 @@ public class SpawnsData {
 	}
 
 	public void addRegularSpawns(SpawnMap map) {
+		if (map.getSpawns() == null)
+			return;
 		allSpawnMaps.compute(map.getMapId(), (_, mapSpawns) -> {
 			if (mapSpawns == null)
 				mapSpawns = new HashMap<>();
@@ -97,10 +99,16 @@ public class SpawnsData {
 	}
 
 	private void addBaseSpawns(SpawnMap map) {
+		if (map.getBaseSpawns() == null)
+			return;
 		for (BaseSpawn baseSpawn : map.getBaseSpawns()) {
 			int baseId = baseSpawn.getId();
 			List<SpawnGroup> baseSpawns = baseSpawnMaps.computeIfAbsent(baseId, _ -> new ArrayList<>());
+			if (baseSpawn.getOccupierTemplates() == null)
+				continue;
 			for (BaseSpawn.BaseOccupierTemplate simpleRace : baseSpawn.getOccupierTemplates()) {
+				if (simpleRace == null || simpleRace.getSpawns() == null)
+					continue;
 				for (Spawn spawn : simpleRace.getSpawns())
 					baseSpawns.add(new SpawnGroup(map.getMapId(), spawn, baseId, simpleRace.getOccupier()));
 			}
@@ -108,18 +116,28 @@ public class SpawnsData {
 	}
 
 	private void addRiftSpawns(SpawnMap map) {
+		if (map.getRiftSpawns() == null)
+			return;
 		for (RiftSpawn rift : map.getRiftSpawns()) {
 			List<SpawnGroup> riftSpawns = riftSpawnMaps.computeIfAbsent(rift.getId(), _ -> new ArrayList<>());
+			if (rift.getSpawns() == null)
+				continue;
 			for (Spawn spawn : rift.getSpawns())
 				riftSpawns.add(new SpawnGroup(map.getMapId(), spawn, rift.getId()));
 		}
 	}
 
 	private void addSiegeSpawns(SpawnMap map) {
+		if (map.getSiegeSpawns() == null)
+			return;
 		for (SiegeSpawn siegeSpawn : map.getSiegeSpawns()) {
 			int siegeId = siegeSpawn.getSiegeId();
 			List<SpawnGroup> siegeSpawns = siegeSpawnMaps.computeIfAbsent(siegeId, _ -> new ArrayList<>());
+			if (siegeSpawn.getSiegeRaceTemplates() == null)
+				continue;
 			for (SiegeSpawn.SiegeRaceTemplate race : siegeSpawn.getSiegeRaceTemplates()) {
+				if (race.getSiegeModTemplates() == null)
+					continue;
 				for (SiegeSpawn.SiegeRaceTemplate.SiegeModTemplate mod : race.getSiegeModTemplates()) {
 					if (mod.getSpawns() == null)
 						continue;
@@ -131,10 +149,16 @@ public class SpawnsData {
 	}
 
 	private void addVortexSpawns(SpawnMap map) {
+		if (map.getVortexSpawns() == null)
+			return;
 		for (VortexSpawn vortexSpawn : map.getVortexSpawns()) {
 			int id = vortexSpawn.getId();
 			List<SpawnGroup> vortexSpawns = vortexSpawnMaps.computeIfAbsent(id, _ -> new ArrayList<>());
+			if (vortexSpawn.getStateTemplates() == null)
+				continue;
 			for (VortexSpawn.VortexStateTemplate type : vortexSpawn.getStateTemplates()) {
+				if (type.getSpawns() == null)
+					continue;
 				for (Spawn spawn : type.getSpawns())
 					vortexSpawns.add(new SpawnGroup(map.getMapId(), spawn, id, type.getStateType()));
 			}
@@ -142,10 +166,16 @@ public class SpawnsData {
 	}
 
 	private void addMercenarySpawns(SpawnMap map) {
+		if (map.getMercenarySpawns() == null)
+			return;
 		for (MercenarySpawn mercenarySpawn : map.getMercenarySpawns()) {
 			int id = mercenarySpawn.getSiegeId();
 			mercenarySpawns.put(id, mercenarySpawn);
+			if (mercenarySpawn.getMercenaryRaces() == null)
+				continue;
 			for (MercenaryRace mrace : mercenarySpawn.getMercenaryRaces()) {
+				if (mrace.getMercenaryZones() == null)
+					continue;
 				for (MercenaryZone mzone : mrace.getMercenaryZones()) {
 					mzone.setWorldId(map.getMapId());
 					mzone.setSiegeId(mercenarySpawn.getSiegeId());

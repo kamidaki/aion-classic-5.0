@@ -27,8 +27,10 @@ public class TownSpawn {
 
 	void afterUnmarshal(Unmarshaller u, Object parent) {
 		townLevelsData.clear();
-		for (TownLevel level : townLevels) {
-			townLevelsData.put(level.getLevel(), level);
+		if (townLevels != null) {
+			for (TownLevel level : townLevels) {
+				townLevelsData.put(level.getLevel(), level);
+			}
 		}
 		townLevels = null;
 	}

@@ -18,6 +18,7 @@ import com.aionemu.gameserver.model.gameobjects.player.PetCommonData;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.siege.SiegeNpc;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
+import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.rift.RiftLocation;
 import com.aionemu.gameserver.model.skill.NpcSkillEntry;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
@@ -70,7 +71,17 @@ public class VisibleObjectSpawner {
 		return npc;
 	}
 
-
+	public static SummonedHouseNpc spawnHouseNpc(SpawnTemplate spawn, int instanceIndex, House creator) {
+		int npcId = spawn.getNpcId();
+		NpcTemplate npcTemplate = DataManager.NPC_DATA.getNpcTemplate(npcId);
+		if (npcTemplate == null) {
+			log.warn("No template for House NPC {}", npcId);
+			return null;
+		}
+		SummonedHouseNpc npc = new SummonedHouseNpc(new NpcController(), spawn, creator);
+		SpawnEngine.bringIntoWorld(npc, spawn, instanceIndex);
+		return npc;
+	}
 
 	protected static VisibleObject spawnRiftNpc(RiftSpawnTemplate spawn, int instanceIndex) {
 		if (!CustomConfig.RIFT_ENABLED) {

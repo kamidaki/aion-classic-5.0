@@ -25198,7 +25198,19 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1401182);
 	}
 
+	/**
+	 * You cannot use it as you don't have enough %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_CANT_USE_HOUSE_OBJECT_ITEM_CHECK(String value0) {
+		return new SM_SYSTEM_MESSAGE(1401199, value0);
+	}
 
+	/**
+	 * Your cube is full.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_CANT_USE_HOUSE_OBJECT_INVENTORY_IS_FULL() {
+		return new SM_SYSTEM_MESSAGE(1401200);
+	}
 
 	/**
 	 * Defeating a higher rank player in this round will result in additional points.
@@ -25501,6 +25513,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1401298);
 	}
 
+	/**
+	 * You must equip %0 to use it.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_CANT_USE_HOUSE_OBJECT_ITEM_EQUIP(String value0) {
+		return new SM_SYSTEM_MESSAGE(1401294, value0);
+	}
 
 	/**
 	 * You have reached the maximum usage count.
@@ -25752,6 +25770,13 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_ERROR_CANNOTREMOVE() {
 		return new SM_SYSTEM_MESSAGE(1401440);
+	}
+
+	/**
+	 * There is no need to pay a maintenance fee for this house.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_F2P_CASH_HOUSE_FEE_FREE() {
+		return new SM_SYSTEM_MESSAGE(1401445);
 	}
 
 	/**

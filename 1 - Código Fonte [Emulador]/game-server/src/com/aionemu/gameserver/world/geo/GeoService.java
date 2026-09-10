@@ -20,6 +20,7 @@ import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.house.HouseDoorState;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
 import com.aionemu.gameserver.utils.PositionUtil;
 import com.aionemu.gameserver.world.WorldMapType;
@@ -226,7 +227,11 @@ public class GeoService implements GameEngine {
 			geoMap.updateTownToLevel(townId, level);
 	}
 
-	
+	public void setHouseDoorState(int worldId, int instanceId, int houseAddress, HouseDoorState state) {
+		GeoMap geoMap = geoMaps.get(worldId);
+		if (geoMap != null)
+			geoMap.setHouseDoorState(instanceId, houseAddress, state);
+	}
 
 	public void setDoorState(int worldId, int instanceId, int doorId, boolean open) {
 		GeoMap geoMap = geoMaps.get(worldId);

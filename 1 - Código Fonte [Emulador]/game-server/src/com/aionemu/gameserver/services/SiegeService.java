@@ -154,7 +154,11 @@ public class SiegeService {
 		for (ArtifactLocation artifact : artifacts.values()) {
 			if (artifact.isStandAlone()) {
 				log.debug("Starting siege of artifact #" + artifact.getLocationId());
-				startSiege(artifact.getLocationId());
+				try {
+					startSiege(artifact.getLocationId());
+				} catch (Exception e) {
+					log.error("Failed to start initial artifact siege for #" + artifact.getLocationId(), e);
+				}
 			} else {
 				log.debug("Artifact #{} siege was not started, it belongs to fortress", artifact.getLocationId());
 			}
@@ -220,7 +224,12 @@ public class SiegeService {
 		Siege<? extends SiegeLocation> siege = newSiege(siegeLocationId);
 		activeSieges.put(siegeLocationId, siege);
 
-		siege.startSiege();
+		try {
+			siege.startSiege();
+		} catch (Exception e) {
+			log.error("Error starting siege for location " + siegeLocationId, e);
+			return;
+		}
 
 		// certain sieges are endless
 		// should end only manually on siege boss death

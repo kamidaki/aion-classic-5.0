@@ -182,18 +182,19 @@ fn resolve_java_binary(candidate: &str) -> String {
         }
     }
 
-    // 3. Look for any other JDK installed in C:\Program Files\Java
-    if let Ok(entries) = std::fs::read_dir(r"C:\Program Files\Java") {
-        let mut candidates: Vec<PathBuf> = entries
-            .filter_map(|e| e.ok())
-            .filter(|e| e.file_type().map(|t| t.is_dir()).unwrap_or(false))
-            .map(|e| e.path().join("bin").join("java.exe"))
-            .filter(|p| p.exists())
-            .collect();
-        // Sort descending so newer versions (jdk-25 > jdk-21 > jdk-17) come first
-        candidates.sort_by(|a, b| b.cmp(a));
-        if let Some(best) = candidates.first() {
-            return best.to_string_lossy().to_string();
+    // 3. Look for any other JDK installed in common directories (Oracle/OpenJDK, Eclipse Adoptium, etc.)
+    for base in [r"C:\Program Files\Eclipse Adoptium", r"C:\Program Files\Java", r"C:\Program Files\Semeru"] {
+        if let Ok(entries) = std::fs::read_dir(base) {
+            let mut candidates: Vec<PathBuf> = entries
+                .filter_map(|e| e.ok())
+                .filter(|e| e.file_type().map(|t| t.is_dir()).unwrap_or(false))
+                .map(|e| e.path().join("bin").join("java.exe"))
+                .filter(|p| p.exists())
+                .collect();
+            candidates.sort_by(|a, b| b.cmp(a));
+            if let Some(best) = candidates.first() {
+                return best.to_string_lossy().to_string();
+            }
         }
     }
 

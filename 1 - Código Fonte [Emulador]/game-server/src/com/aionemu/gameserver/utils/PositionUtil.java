@@ -2,6 +2,7 @@ package com.aionemu.gameserver.utils;
 
 import com.aionemu.gameserver.controllers.movement.CreatureMoveController;
 import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.model.gameobjects.HouseObject;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -300,7 +301,10 @@ public class PositionUtil {
 		return isInRange(npc, creature, range, false);
 	}
 
-	
+	public static boolean isInTalkRange(Creature creature, HouseObject<?> houseObject) {
+		float range = houseObject.getObjectTemplate().getTalkingDistance() + 1;
+		return isInRange(houseObject, creature, range, false);
+	}
 
 	/**
 	 * This method tests if {@code obj2} is within a cylinder, originating from {@code obj1} with the given {@code length}.

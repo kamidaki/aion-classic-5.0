@@ -4,7 +4,6 @@ import java.util.Set;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.ReviveType;
-import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.services.player.PlayerReviveService;
@@ -34,7 +33,7 @@ public class CM_REVIVE extends AionClientPacket {
 	protected void runImpl() {
 		Player activePlayer = getConnection().getActivePlayer();
 
-		if (!activePlayer.isInState(CreatureState.DEAD) && !activePlayer.isInState(CreatureState.FLOATING_CORPSE) && !activePlayer.isDead())
+		if (!activePlayer.isDead())
 			return;
 
 		ReviveType reviveType = ReviveType.getReviveTypeById(reviveId);

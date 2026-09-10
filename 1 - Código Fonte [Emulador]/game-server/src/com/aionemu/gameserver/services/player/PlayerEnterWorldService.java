@@ -33,12 +33,15 @@ import com.aionemu.gameserver.model.gameobjects.player.emotion.Emotion;
 import com.aionemu.gameserver.model.gameobjects.player.motion.Motion;
 import com.aionemu.gameserver.model.gameobjects.player.title.Title;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
+import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.items.storage.IStorage;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.model.items.storage.StorageType;
 import com.aionemu.gameserver.model.siege.FortressLocation;
 import com.aionemu.gameserver.model.team.alliance.PlayerAllianceService;
 import com.aionemu.gameserver.model.team.group.PlayerGroupService;
+import com.aionemu.gameserver.model.templates.housing.HouseAddress;
+import com.aionemu.gameserver.model.templates.housing.HouseType;
 import com.aionemu.gameserver.model.vortex.VortexLocation;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
@@ -354,20 +357,32 @@ public final class PlayerEnterWorldService {
 		player.getInventory().setLimit(StorageType.CUBE.getLimit() + (questExpands + npcExpands) * 9);
 		player.getWarehouse().setLimit(StorageType.REGULAR_WAREHOUSE.getLimit() + player.getWarehouseExpansions() * 8);
 		Storage inventory = player.getInventory();
+		final int CHUNK_SIZE_EQUIP = 4;
+		final int CHUNK_SIZE_INVEN = 8;
+		boolean isFirstPacket = true;
+
 		List<Item> equipedItems = player.getEquipment().getEquippedItems();
-		client.sendPacket(new SM_INVENTORY_INFO(true, equipedItems, npcExpands, questExpands, player));
-		List<Item> unequipedItems = inventory.getItemsWithKinah();
-		int itemsSize = unequipedItems.size();
-		if (itemsSize != 0) {
-			int index = 0;
-			while (index + 10 < itemsSize) {
-				client.sendPacket(new SM_INVENTORY_INFO(false, unequipedItems.subList(index, index + 10), npcExpands,
-					questExpands, player));
-				index += 10;
-			}
-			client.sendPacket(new SM_INVENTORY_INFO(false, unequipedItems.subList(index, itemsSize), npcExpands,
+		int equipedSize = equipedItems.size();
+		for (int index = 0; index < equipedSize; index += CHUNK_SIZE_EQUIP) {
+			int end = Math.min(index + CHUNK_SIZE_EQUIP, equipedSize);
+			client.sendPacket(new SM_INVENTORY_INFO(isFirstPacket, equipedItems.subList(index, end), npcExpands,
 				questExpands, player));
+			isFirstPacket = false;
 		}
+
+		List<Item> unequipedItems = inventory.getItemsWithKinah();
+		int unequipedSize = unequipedItems.size();
+		for (int index = 0; index < unequipedSize; index += CHUNK_SIZE_INVEN) {
+			int end = Math.min(index + CHUNK_SIZE_INVEN, unequipedSize);
+			client.sendPacket(new SM_INVENTORY_INFO(isFirstPacket, unequipedItems.subList(index, end), npcExpands,
+				questExpands, player));
+			isFirstPacket = false;
+		}
+
+		if (isFirstPacket) {
+			client.sendPacket(new SM_INVENTORY_INFO(true, Collections.emptyList(), npcExpands, questExpands, player));
+		}
+
 		client.sendPacket(new SM_INVENTORY_INFO());
 		client.sendPacket(SM_CUBE_UPDATE.stigmaSlots(player.getCommonData().getAdvencedStigmaSlotSize()));
 	}
@@ -390,7 +405,13 @@ public final class PlayerEnterWorldService {
 		if (player.getCommonData().isReadyForReposeEnergy() && secondsOffline > 4 * 3600) {
 			double hours = secondsOffline / 3600d;
 			long addReposeEnergy = Math.round((hours / 48) * player.getCommonData().getMaxReposeEnergy());
-			
+			House house = player.getActiveHouse();
+			if (house != null) {
+				HouseAddress hPos = house.getAddress();
+				if (player.getWorldId() == hPos.getMapId()
+					&& PositionUtil.isInRange(player.getX(), player.getY(), player.getZ(), hPos.getX(), hPos.getY(), hPos.getZ(), 7))
+					addReposeEnergy *= house.getHouseType() == HouseType.STUDIO ? 1.05f : 1.10f;
+			}
 			player.getCommonData().addReposeEnergy(addReposeEnergy);
 		}
 	}
@@ -447,7 +468,9 @@ class GeneralUpdateTask implements Runnable {
 				PlayerSkillListDAO.storeSkills(player);
 				PlayerQuestListDAO.store(player);
 				PlayerDAO.storePlayer(player);
-							} catch (Exception ex) {
+				for (House house : player.getHouses())
+					house.save();
+			} catch (Exception ex) {
 				log.error("Exception during periodic saving of player " + player.getName(), ex);
 			}
 		}

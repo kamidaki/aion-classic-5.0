@@ -71,7 +71,7 @@ public class GlobalRule {
 	private boolean dynamicChance;
 
 	public List<GlobalDropItem> getDropItems() {
-		return gdItems;
+		return gdItems != null ? gdItems : java.util.Collections.emptyList();
 	}
 
 	public GlobalDropWorlds getGlobalRuleWorlds() {

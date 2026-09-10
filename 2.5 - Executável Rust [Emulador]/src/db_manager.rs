@@ -10,9 +10,9 @@ use std::sync::Arc;
 use std::time::Instant;
 use crate::config::DatabaseSettings;
 
-const EMBEDDED_SQL_CS: &str = include_str!("../../chat-server/sql/aion_cs.sql");
-const EMBEDDED_SQL_LS: &str = include_str!("../../login-server/sql/aion_ls.sql");
-const EMBEDDED_SQL_GS: &str = include_str!("../../game-server/sql/aion_gs.sql");
+const EMBEDDED_SQL_CS: &str = include_str!("../../2 - Emulador [Produto Final]/ChatServer/sql/aion_cs.sql");
+const EMBEDDED_SQL_LS: &str = include_str!("../../2 - Emulador [Produto Final]/LoginServer/sql/aion_ls.sql");
+const EMBEDDED_SQL_GS: &str = include_str!("../../2 - Emulador [Produto Final]/GameServer/sql/aion_gs.sql");
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DbCheckResult {

@@ -47,13 +47,19 @@ public class NpcEquippedGear implements Iterable<Entry<ItemSlot, ItemTemplate>> 
 		synchronized (this) {
 			if (items == null) {
 				items = new TreeMap<>();
-				for (ItemTemplate item : v.items) {
-					ItemSlot[] itemSlots = ItemSlot.getSlotsFor(item.getItemSlot());
-					for (ItemSlot itemSlot : itemSlots) {
-						if (items.get(itemSlot) == null) {
-							items.put(itemSlot, item);
-							mask |= itemSlot.getSlotIdMask();
-							break;
+				if (v != null && v.items != null) {
+					for (int itemId : v.items) {
+						ItemTemplate item = com.aionemu.gameserver.dataholders.DataManager.ITEM_DATA.getItemTemplate(itemId);
+						if (item == null) {
+							continue;
+						}
+						ItemSlot[] itemSlots = ItemSlot.getSlotsFor(item.getItemSlot());
+						for (ItemSlot itemSlot : itemSlots) {
+							if (items.get(itemSlot) == null) {
+								items.put(itemSlot, item);
+								mask |= itemSlot.getSlotIdMask();
+								break;
+							}
 						}
 					}
 				}

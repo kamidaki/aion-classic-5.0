@@ -70,6 +70,7 @@ public enum ItemGroup {
 	BELT(ItemSlot.WAIST.getSlotIdMask(), ArmorType.ACCESSORY),
 	WING(ItemSlot.WINGS.getSlotIdMask(), ItemSubType.WING),
 	PLUME(ItemSlot.PLUME.getSlotIdMask(), ItemSubType.PLUME),
+	ARCAMANT(ItemSlot.ARCAMANT.getSlotIdMask(), ItemSubType.NONE),
 
 	HEAD(ItemSlot.HELMET.getSlotIdMask(), ArmorType.ACCESSORY),
 	LT_HEADS(ItemSlot.HELMET.getSlotIdMask(), ItemSubType.LEATHER),

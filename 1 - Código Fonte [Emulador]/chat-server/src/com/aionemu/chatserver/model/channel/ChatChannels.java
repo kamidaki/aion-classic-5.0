@@ -21,7 +21,7 @@ public class ChatChannels {
 
 	private static Channel addChannel(ChannelType ct, int gameServerId, Race race, String channelMeta) {
 		Channel channel = switch (ct) {
-			case REGION, GOTCHA -> new RegionChannel(gameServerId, race, channelMeta);
+			case REGION -> new RegionChannel(gameServerId, race, channelMeta);
 			case TRADE -> new TradeChannel(gameServerId, race, channelMeta);
 			case LFG -> new LfgChannel(gameServerId, race);
 			case JOB -> new JobChannel(gameServerId, race, channelMeta);
@@ -45,7 +45,7 @@ public class ChatChannels {
 
 	/**
 	 * @param identifier
-	 *          - the identifier of the requested channel, e.g. @ trade_Housing_barrack 1.0.AION.KOR
+	 *          - the identifier of the requested channel, e.g. @trade_Housing_barrack1.0.AION.KOR
 	 * @return Channel with this identifier or creates and returns a new channel if no channel with such identifier exists.<br>
 	 *         Null if no channel with this identifier exists and a new channel was not created.
 	 */

@@ -33,8 +33,10 @@ public class OutpostSiege extends Siege<OutpostLocation> {
 		spawnNpcs(getSiegeLocationId(), getSiegeLocation().getRace(), SiegeModType.SIEGE);
 		initSiegeBoss();
 
-		PacketSendUtility.broadcastToWorld(
-			getSiegeLocationId() == 2111 ? SM_SYSTEM_MESSAGE.STR_FIELDABYSS_LIGHTBOSS_SPAWN() : SM_SYSTEM_MESSAGE.STR_FIELDABYSS_DARKBOSS_SPAWN());
+		if (getBoss() != null) {
+			PacketSendUtility.broadcastToWorld(
+				getSiegeLocationId() == 2111 ? SM_SYSTEM_MESSAGE.STR_FIELDABYSS_LIGHTBOSS_SPAWN() : SM_SYSTEM_MESSAGE.STR_FIELDABYSS_DARKBOSS_SPAWN());
+		}
 		broadcastUpdate(getSiegeLocation());
 	}
 

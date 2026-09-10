@@ -5,9 +5,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
+import com.aionemu.gameserver.model.gameobjects.HouseObject;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.Persistable.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_HOUSE_EDIT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_UPDATE_PLAYER_APPEARANCE;
 import com.aionemu.gameserver.services.item.ItemPacketService;
@@ -27,17 +29,31 @@ public class DyeAction extends AbstractItemAction {
 
 	@Override
 	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
-		if (targetItem == null) { // nothing to dye
+		HouseObject<?> targetHouseObject = (HouseObject<?>) params[0];
+		if (targetHouseObject == null && targetItem == null) { // nothing to dye
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_COLOR_ERROR());
 			return false;
+		}
+		if (targetHouseObject != null) {
+			if (color.equals("no") && targetHouseObject.getColor() == null) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_ITEM_PAINT_ERROR_CANNOTREMOVE());
+				return false;
+			}
+			if (!targetHouseObject.getObjectTemplate().getCanDye()) {
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_ITEM_PAINT_ERROR_CANNOTPAINT());
+				return false;
+			}
 		}
 		return true;
 	}
 
 	@Override
 	public void act(Player player, Item parentItem, Item targetItem, Object... params) {
-		if (targetItem != null)
+		HouseObject<?> targetHouseObject = (HouseObject<?>) params[0];
+		if (targetHouseObject == null)
 			dyeItem(player, parentItem, targetItem);
+		else
+			dyeHouseObject(player, parentItem, targetHouseObject);
 	}
 
 	private void dyeItem(Player player, Item parentItem, Item targetItem) {
@@ -72,4 +88,25 @@ public class DyeAction extends AbstractItemAction {
 	public Integer getColor() {
 		return color.equals("no") ? null : Integer.parseInt(color, 16);
 	}
+
+	private void dyeHouseObject(Player player, Item dyeItem, HouseObject<?> houseObject) {
+		if (!player.getInventory().decreaseByObjectId(dyeItem.getObjectId(), 1))
+			return;
+		houseObject.setColor(getColor());
+		float x = houseObject.getX();
+		float y = houseObject.getY();
+		float z = houseObject.getZ();
+		int rotation = houseObject.getRotation();
+		PacketSendUtility.sendPacket(player, new SM_HOUSE_EDIT(7, 0, houseObject.getObjectId()));
+		PacketSendUtility.sendPacket(player, new SM_HOUSE_EDIT(5, houseObject.getObjectId(), x, y, z, rotation));
+		houseObject.spawn();
+		String objectName = houseObject.getObjectTemplate().getL10n();
+		if (houseObject.getColor() == null) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_ITEM_PAINT_REMOVE_SUCCEED(objectName));
+		} else {
+			String paintName = dyeItem.getItemTemplate().getL10n();
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_ITEM_PAINT_SUCCEED(objectName, paintName));
+		}
+	}
+
 }

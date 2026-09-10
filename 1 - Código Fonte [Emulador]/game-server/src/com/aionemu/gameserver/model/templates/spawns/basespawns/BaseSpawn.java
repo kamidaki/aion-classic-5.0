@@ -1,5 +1,6 @@
 package com.aionemu.gameserver.model.templates.spawns.basespawns;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.bind.annotation.*;
@@ -30,7 +31,7 @@ public class BaseSpawn {
 	}
 
 	public List<BaseOccupierTemplate> getOccupierTemplates() {
-		return baseOccupierTemplates;
+		return baseOccupierTemplates != null ? baseOccupierTemplates : Collections.emptyList();
 	}
 
 	@XmlAccessorType(XmlAccessType.FIELD)
@@ -48,7 +49,7 @@ public class BaseSpawn {
 		private List<Spawn> spawns;
 
 		public List<Spawn> getSpawns() {
-			return spawns;
+			return spawns != null ? spawns : Collections.emptyList();
 		}
 
 	}

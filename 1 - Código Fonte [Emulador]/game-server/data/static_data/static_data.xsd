@@ -24,6 +24,11 @@
 	<xs:include schemaLocation="goodslists/goodslists.xsd" />
 	<xs:include schemaLocation="guides/guide.xsd" />
 	<xs:include schemaLocation="hotspot_template.xsd" />
+	<xs:include schemaLocation="housing/house_buildings.xsd" />
+	<xs:include schemaLocation="housing/house_npcs.xsd" />
+	<xs:include schemaLocation="housing/house_parts.xsd" />
+	<xs:include schemaLocation="housing/houses.xsd" />
+	<xs:include schemaLocation="housing/housing_objects.xsd" />
 	<xs:include schemaLocation="import.xsd" />
 	<xs:include schemaLocation="instance_bonusattr/instance_bonusattr.xsd" />
 	<xs:include schemaLocation="instance_cooltimes/instance_cooltimes.xsd" />
@@ -107,6 +112,7 @@
 					<xs:element ref="auto_groups" minOccurs="0" />
 					<xs:element ref="base_locations" minOccurs="0" />
 					<xs:element ref="bind_points" minOccurs="0" />
+					<xs:element ref="buildings" minOccurs="0" />
 					<xs:element ref="challenge_tasks" minOccurs="0" />
 					<xs:element ref="chest_templates" minOccurs="0" />
 					<xs:element ref="cosmetic_items" minOccurs="0" />
@@ -126,6 +132,10 @@
 					<xs:element ref="goodslists" minOccurs="0" />
 					<xs:element ref="guides" minOccurs="0" />
 					<xs:element ref="hotspot_template" minOccurs="0" />
+					<xs:element ref="house_lands" minOccurs="0" />
+					<xs:element ref="house_npcs" minOccurs="0" />
+					<xs:element ref="house_parts" minOccurs="0" />
+					<xs:element ref="housing_objects" minOccurs="0" />
 					<xs:element ref="instance_bonusattrs" minOccurs="0" />
 					<xs:element ref="instance_cooltimes" minOccurs="0" />
 					<xs:element ref="instance_exits" minOccurs="0" />

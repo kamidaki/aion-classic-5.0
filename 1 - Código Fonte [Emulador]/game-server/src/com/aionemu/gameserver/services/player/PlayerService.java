@@ -24,6 +24,7 @@ import com.aionemu.gameserver.model.gameobjects.Persistable.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.Mailbox;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
+import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.model.skill.PlayerSkillList;
@@ -36,6 +37,7 @@ import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_DELETE_CHARACTER;
 import com.aionemu.gameserver.services.AccountService;
 import com.aionemu.gameserver.services.BrokerService;
+import com.aionemu.gameserver.services.HousingService;
 import com.aionemu.gameserver.services.LegionService;
 import com.aionemu.gameserver.services.PunishmentService.PunishmentType;
 import com.aionemu.gameserver.services.SkillLearnService;
@@ -78,9 +80,15 @@ public class PlayerService {
 		var fInventory = CompletableFuture.supplyAsync(() -> InventoryDAO.store(player));
 
 		try {
-			return fAppearance.get() && fSkills.get() && fInventory.get();
+			boolean success = fAppearance.get() && fSkills.get() && fInventory.get();
+			if (!success) {
+				deletePlayerFromDB(player.getObjectId());
+				return false;
+			}
+			return true;
 		} catch (Exception e) {
 			log.error("Error storing new player subsystems for " + player.getName(), e);
+			deletePlayerFromDB(player.getObjectId());
 			return false;
 		}
 	}
@@ -99,11 +107,14 @@ public class PlayerService {
 		PlayerPunishmentsDAO.storePlayerPunishment(player, PunishmentType.PRISON);
 		PlayerPunishmentsDAO.storePlayerPunishment(player, PunishmentType.GATHER);
 		InventoryDAO.store(player);
-				ItemStoneListDAO.save(player);
+		for (House house : player.getHouses())
+			house.save();
+		ItemStoneListDAO.save(player);
 		MailDAO.storeMailbox(player);
 		PortalCooldownsDAO.storePortalCooldowns(player);
 		CraftCooldownsDAO.storeCraftCooldowns(player);
-				PlayerNpcFactionsDAO.storeNpcFactions(player);
+		HouseObjectCooldownsDAO.storeHouseObjectCooldowns(player);
+		PlayerNpcFactionsDAO.storeNpcFactions(player);
 		AccountPassportsDAO.storePassport(player.getAccount());
 	}
 
@@ -139,6 +150,7 @@ public class PlayerService {
 		player.setFlyController(new FlyController(player));
 		PlayerStatFunctions.addPredefinedStatFunctions(player);
 
+		player.setSkillList(skillFuture.join());
 		account.getAccountWarehouse().setOwner(player);
 		InventoryDAO.loadStorage(playerObjId, player.getInventory());
 		ItemStoneListDAO.load(player.getInventory().getItems());
@@ -157,7 +169,6 @@ public class PlayerService {
 		}
 
 		player.setMacros(macrosFuture.join());
-		player.setSkillList(skillFuture.join());
 		player.setFriendList(friendFuture.join());
 		player.setBlockList(blockFuture.join());
 		player.setTitleList(titleFuture.join());
@@ -177,7 +188,8 @@ public class PlayerService {
 		var playerCooldownsFuture = CompletableFuture.runAsync(() -> PlayerCooldownsDAO.loadPlayerCooldowns(player));
 		var itemCooldownsFuture = CompletableFuture.runAsync(() -> ItemCooldownsDAO.loadItemCooldowns(player));
 		var portalCooldownsFuture = CompletableFuture.runAsync(() -> PortalCooldownsDAO.loadPortalCooldowns(player));
-				var bindPointFuture = CompletableFuture.runAsync(() -> PlayerBindPointDAO.loadBindPoint(player));
+		var houseCooldownsFuture = CompletableFuture.runAsync(() -> HouseObjectCooldownsDAO.loadHouseObjectCooldowns(player));
+		var bindPointFuture = CompletableFuture.runAsync(() -> PlayerBindPointDAO.loadBindPoint(player));
 		var craftCooldownsFuture = CompletableFuture.runAsync(() -> CraftCooldownsDAO.loadCraftCooldowns(player));
 		var lifeStatsFuture = CompletableFuture.runAsync(() -> PlayerLifeStatsDAO.loadPlayerLifeStat(player));
 		var emotionsFuture = CompletableFuture.runAsync(() -> PlayerEmotionListDAO.loadEmotions(player));
@@ -187,7 +199,8 @@ public class PlayerService {
 		playerCooldownsFuture.join();
 		itemCooldownsFuture.join();
 		portalCooldownsFuture.join();
-				bindPointFuture.join();
+		houseCooldownsFuture.join();
+		bindPointFuture.join();
 		craftCooldownsFuture.join();
 		lifeStatsFuture.join();
 		emotionsFuture.join();
@@ -377,7 +390,8 @@ public class PlayerService {
 		InventoryDAO.deletePlayerOrLegionItems(playerId);
 		PlayerDAO.deletePlayer(playerId);
 		if (notifyServices) {
-						BrokerService.getInstance().onPlayerDeleted(playerId);
+			HousingService.getInstance().onPlayerDeleted(playerId);
+			BrokerService.getInstance().onPlayerDeleted(playerId);
 		}
 	}
 

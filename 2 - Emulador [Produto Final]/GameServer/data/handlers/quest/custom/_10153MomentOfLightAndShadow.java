@@ -124,14 +124,9 @@ public class _10153MomentOfLightAndShadow extends AbstractQuestHandler {
 			return true;
 		}
 		QuestState qs = player.getQuestStateList().getQuestState(questId);
-		if (player.getRace() == Race.ELYOS && player.getLevel() >= 1) {
-			if (qs == null) {
-				env.setQuestId(questId);
-				return QuestService.startQuest(env);
-			} else if (qs.getStatus() == QuestStatus.START) {
-				PacketSendUtility.sendPacket(player, new com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_ACTION(com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_ACTION.ActionType.UPDATE, qs));
-				return true;
-			}
+		if (qs == null && player.getRace() == Race.ELYOS && player.getLevel() >= 1) {
+			env.setQuestId(questId);
+			return QuestService.startQuest(env);
 		}
 		return false;
 	}

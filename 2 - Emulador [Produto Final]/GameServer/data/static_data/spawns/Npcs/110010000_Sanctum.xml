@@ -72,9 +72,6 @@
 			<spot x="1929.62" y="1428.31" z="590.242" h="113" />
 			<spot x="1586.5812" y="1585.4496" z="574.1387" h="0" />
 		</spawn>
-		<spawn npc_id="798462" respawn_time="295">
-			<spot x="1867.790" y="2062.195" z="517.907" h="53" />
-		</spawn>
 		<spawn npc_id="798439" respawn_time="295">
 			<spot x="1566.84" y="1431.76" z="573.037" h="40" />
 			<spot x="1560.3148" y="1429.14" z="574" h="0" />
@@ -221,9 +218,6 @@
 			<spot x="1624.85" y="1495.67" z="549.5507" h="90" walker_id="3C1E288F46F2F579A1B8B33BC040952B7924C96A" />
 			<spot x="1550.2617" y="1567.7603" z="573.5266" h="0" />
 		</spawn>
-		<spawn npc_id="205549" respawn_time="295">
-			<spot x="1899.64" y="1429.80" z="590.210" h="90" />
-		</spawn>
 		<spawn npc_id="203709" respawn_time="295">
 			<spot x="1871.21" y="1481.62" z="805.518" h="30" />
 			<spot x="1438.4304" y="1490.3406" z="574.4717" h="0" />
@@ -353,9 +347,6 @@
 			<spot x="1571.85" y="1511.36" z="572.506" />
 			<spot x="1580.6172" y="1560.5978" z="573.5056" h="0" />
 		</spawn>
-		<spawn npc_id="205552" respawn_time="295">
-			<spot x="1896.51" y="1425.92" z="590.210" h="75" />
-		</spawn>
 		<spawn npc_id="203813" respawn_time="295">
 			<spot x="1954.56" y="1482.52" z="590.365" h="60" />
 		</spawn>
@@ -476,9 +467,6 @@
 		<spawn npc_id="203838" respawn_time="295">
 			<spot x="1964.49" y="1786.41" z="576.759" h="90" />
 			<spot x="1530.7352" y="1426.7367" z="573.3267" h="0" />
-		</spawn>
-		<spawn npc_id="798458" respawn_time="295">
-			<spot x="1459.46" y="1496.17" z="573.072" h="53" />
 		</spawn>
 		<spawn npc_id="798011" respawn_time="295">
 			<spot x="1407.79" y="1434.3" z="573.483" h="98" />
@@ -689,9 +677,6 @@
 			<spot x="2053.6665" y="1495.1499" z="581.1387" static_id="1694" />
 			<spot x="1621.7073" y="1480.9539" z="575.9636" h="0" />
 		</spawn>
-		<spawn npc_id="798460" respawn_time="295">
-			<spot x="1564.27" y="1429.27" z="573.034" h="30" />
-		</spawn>
 		<spawn npc_id="203744" respawn_time="295">
 			<spot x="1580.88" y="1372.16" z="564.577" h="27" />
 			<spot x="1596.1559" y="1379.005" z="564.2934" h="0" />
@@ -746,12 +731,9 @@
 		<spawn npc_id="203773" respawn_time="295">
 			<spot x="1800.50" y="1495.92" z="579.06" />
 		</spawn>
-		<spawn npc_id="798451" respawn_time="295">
-			<spot x="1889.67" y="1483.31" z="590.158" h="60" />
-		</spawn>
 		<spawn npc_id="203868" respawn_time="295">
 			<spot x="1655.63" y="1649.91" z="548.73425" h="87" walker_id="5A23467206A49934755C510330016D5D2698909F" />
-			<spot x="1446.1637" y="1537.5582" z="569.50" h="0" />
+			<spot x="1446.1637" y="1537.5582" z="575.0741" h="0" />
 		</spawn>
 		<spawn npc_id="203758" respawn_time="295">
 			<spot x="1427.68" y="1614.14" z="573.706" h="40" />
@@ -806,9 +788,6 @@
 		<spawn npc_id="730126" respawn_time="295">
 			<spot x="1953.57" y="1746.3" z="578" />
 			<spot x="1605.2969" y="1474.0999" z="575.8762" h="0" />
-		</spawn>
-		<spawn npc_id="205551" respawn_time="295">
-			<spot x="1894.18" y="1425.89" z="590.210" h="90" />
 		</spawn>
 		<spawn npc_id="203857" respawn_time="295">
 			<spot x="1821.56" y="2195.40" z="528.766" h="93" />
@@ -885,9 +864,6 @@
 		</spawn>
 		<spawn npc_id="800446" respawn_time="295">
 			<spot x="1919.10" y="1404.69" z="590.3633" h="70" />
-		</spawn>
-		<spawn npc_id="205550" respawn_time="295">
-			<spot x="1897.30" y="1429.68" z="590.210" h="90" />
 		</spawn>
 		<spawn npc_id="203865" respawn_time="295">
 			<spot x="1787.93" y="2079.47" z="527.92944" h="30" walker_id="90DB30E57A5FABE649D38F8376D50F30387286F3" />
@@ -1014,18 +990,11 @@
 			<spot x="1364.5237" y="1477.1257" z="569.9698" h="0" />
 		</spawn>
 		<spawn npc_id="798447" respawn_time="295">
-			<spot x="1613.59" y="1531.59" z="549.84" h="15" />
-			<spot x="1548.5383" y="1567.8325" z="573.8697" h="0" />
-		</spawn>
-		<spawn npc_id="206335" respawn_time="295">
-			<spot x="1889.2756" y="1537.4435" z="590.1345" h="60" />
+			<spot x="1548.5383" y="1567.8325" z="573.8697" h="15" />
 		</spawn>
 		<spawn npc_id="203794" respawn_time="295">
 			<spot x="1889.2791" y="1538.3260" z="590.1345" h="60" />
 			<spot x="1327.8002" y="1412.1599" z="575.3549" h="0" />
-		</spawn>
-		<spawn npc_id="206334" respawn_time="295">
-			<spot x="1892.2487" y="1567.5554" z="590.1221" h="60" />
 		</spawn>
 		<spawn npc_id="203733" respawn_time="295">
 			<spot x="1518.87" y="1425.44" z="573.063" h="20" />
@@ -1102,6 +1071,14 @@
 		<spawn npc_id="798408" respawn_time="295">
 			<spot x="1738.34" y="2062.67" z="517.907" h="10" />
 			<spot x="1402.8922" y="1503.2277" z="573.6602" h="0" />
+		</spawn>
+		<spawn npc_id="213792" respawn_time="295">
+			<spot x="1368.19" y="1512.59" z="569.06744" random_walk="5" />
+			<spot x="1369.28" y="1513.1" z="569.06744" h="28" random_walk="5" />
+			<spot x="1368.99" y="1512.18" z="569.06744" h="76" random_walk="5" />
+			<spot x="1369.1" y="1510.2" z="569.06744" h="7" random_walk="5" />
+			<spot x="1572.05" y="1512.15" z="572.50555" h="105" random_walk="5" />
+			<spot x="1572.97" y="1510.72" z="572.50555" h="3" random_walk="5" />
 		</spawn>
 		<spawn npc_id="203815" respawn_time="295">
 			<spot x="1953.9" y="1539.11" z="590.365" h="60" />
@@ -1197,9 +1174,6 @@
 		<spawn npc_id="203723" respawn_time="295">
 			<spot x="1398.71" y="1512.01" z="572.99426" h="80" walker_id="B7035D40E51AB5562CA9A56DFC3D7695B32A63B9" />
 		</spawn>
-		<spawn npc_id="798450" respawn_time="295">
-			<spot x="1885.49" y="1479.16" z="590.158" h="60" />
-		</spawn>
 		<spawn npc_id="203721" respawn_time="295">
 			<spot x="1328.97" y="1517.59" z="569.062" h="60" />
 			<spot x="1355.5464" y="1520.7494" z="570" h="0" />
@@ -1254,26 +1228,8 @@
 			<spot x="1875.03" y="1595.38" z="590.015" h="30" />
 			<spot x="1459.2825" y="1443.3372" z="575.3117" h="0" />
 		</spawn>
-		<spawn npc_id="206332" respawn_time="295">
-			<spot x="1875.993" y="1541.537" z="805.5178" h="90" />
-		</spawn>
 		<spawn npc_id="205471" respawn_time="295">
 			<spot x="1364.333" y="1543.649" z="569.0381" h="86" />
-		</spawn>
-		<spawn npc_id="832826" respawn_time="295">
-			<spot x="1617.259" y="1552.892" z="573.3451" h="66" />
-		</spawn>
-		<spawn npc_id="804492" respawn_time="295">
-			<spot x="1877.748" y="1541.228" z="805.5178" h="60" />
-		</spawn>
-		<spawn npc_id="804493" respawn_time="295">
-			<spot x="1877.748" y="1538.369" z="805.5178" h="60" />
-		</spawn>
-		<spawn npc_id="804188" respawn_time="295">
-			<spot x="1623.732" y="1512.784" z="573.6294" h="60" />
-		</spawn>
-		<spawn npc_id="832843" respawn_time="295">
-			<spot x="1620.047" y="1521.449" z="573.6293" h="60" />
 		</spawn>
 		<spawn npc_id="730617" respawn_time="295">
 			<spot x="1603.42" y="1519.9279" z="574.6685" h="0" />
@@ -1286,6 +1242,9 @@
 		</spawn>
 		<spawn npc_id="730123" respawn_time="295">
 			<spot x="1622.0713" y="1541.0674" z="574.4137" h="0" />
+		</spawn>
+		<spawn npc_id="803571" respawn_time="295">
+			<spot x="1437.6" y="1524.2" z="574" h="0" />
 		</spawn>
 		<spawn npc_id="799069" respawn_time="295">
 			<spot x="1378.6887" y="1494.1526" z="570.397" h="0" />
@@ -1324,6 +1283,9 @@
 		<spawn npc_id="730661" respawn_time="295">
 			<spot x="1401.4606" y="1521.5402" z="574.0963" h="0" />
 		</spawn>
+		<spawn npc_id="803572" respawn_time="295">
+			<spot x="1437.9" y="1521.8" z="574" h="0" />
+		</spawn>
 		<spawn npc_id="730082" respawn_time="295">
 			<spot x="1605.12" y="1549.1763" z="576.8861" h="0" />
 		</spawn>
@@ -1353,6 +1315,9 @@
 		</spawn>
 		<spawn npc_id="748017" respawn_time="295">
 			<spot x="1608.6677" y="1563.6876" z="574.4859" h="0" />
+		</spawn>
+		<spawn npc_id="803575" respawn_time="295">
+			<spot x="1441.8" y="1526.1" z="574" h="0" />
 		</spawn>
 		<spawn npc_id="730081" respawn_time="295">
 			<spot x="1600.9595" y="1559.8878" z="573.7166" h="0" />
@@ -1450,6 +1415,9 @@
 		<spawn npc_id="203699" respawn_time="295">
 			<spot x="1323.2128" y="1385.6572" z="575.2104" h="0" />
 		</spawn>
+		<spawn npc_id="803574" respawn_time="295">
+			<spot x="1439.2" y="1525.4" z="574" h="0" />
+		</spawn>
 		<spawn npc_id="730116" respawn_time="295">
 			<spot x="1621.4342" y="1543.7118" z="576.8121" h="0" />
 		</spawn>
@@ -1543,14 +1511,6 @@
 		</spawn>
 		<spawn npc_id="730179" respawn_time="295">
 			<spot x="1618.9342" y="1467.0618" z="575.3335" h="0" />
-		</spawn>
-		<spawn npc_id="213792" respawn_time="295">
-			<spot x="1368.19" y="1512.59" z="569.06744" random_walk="5"/>
-			<spot x="1369.28" y="1513.1" z="569.06744" h="28" random_walk="5"/>
-			<spot x="1368.99" y="1512.18" z="569.06744" h="76" random_walk="5"/>
-			<spot x="1369.1" y="1510.2" z="569.06744" h="7" random_walk="5"/>
-			<spot x="1572.05" y="1512.15" z="572.50555" h="105" random_walk="5"/>
-			<spot x="1572.97" y="1510.72" z="572.50555" h="3" random_walk="5"/>
 		</spawn>
 	</spawn_map>
 </spawns>

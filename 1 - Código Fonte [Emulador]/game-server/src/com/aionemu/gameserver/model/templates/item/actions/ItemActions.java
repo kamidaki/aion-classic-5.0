@@ -21,7 +21,8 @@ public class ItemActions {
 		@XmlElement(name = "fireworkact", type = FireworksUseAction.class), @XmlElement(name = "instancetimeclear", type = InstanceTimeClear.class),
 		@XmlElement(name = "expandinventory", type = ExpandInventoryAction.class), @XmlElement(name = "animation", type = AnimationAddAction.class),
 		@XmlElement(name = "cosmetic", type = CosmeticItemAction.class), @XmlElement(name = "charge", type = ChargeAction.class),
-		@XmlElement(name = "assemble", type = AssemblyItemAction.class),
+		@XmlElement(name = "houseobject", type = SummonHouseObjectAction.class),
+		@XmlElement(name = "housedeco", type = DecorateAction.class), @XmlElement(name = "assemble", type = AssemblyItemAction.class),
 		@XmlElement(name = "adoptpet", type = AdoptPetAction.class), @XmlElement(name = "apextract", type = ApExtractAction.class),
 		@XmlElement(name = "remodel", type = RemodelAction.class), @XmlElement(name = "expextract", type = ExpExtractAction.class),
 		@XmlElement(name = "polish", type = PolishAction.class),
@@ -48,12 +49,32 @@ public class ItemActions {
 		return null;
 	}
 
+	public SummonHouseObjectAction getHouseObjectAction() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof SummonHouseObjectAction)
+				return (SummonHouseObjectAction) action;
+		}
+		return null;
+	}
+
 	public CraftLearnAction getCraftLearnAction() {
 		if (itemActions == null)
 			return null;
 		for (AbstractItemAction action : itemActions) {
 			if (action instanceof CraftLearnAction)
 				return (CraftLearnAction) action;
+		}
+		return null;
+	}
+
+	public DecorateAction getDecorateAction() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof DecorateAction)
+				return (DecorateAction) action;
 		}
 		return null;
 	}

@@ -26,7 +26,8 @@ public enum ItemSlot {
 	WAIST(1L << 16),
 	MAIN_OFF_HAND(1L << 17),
 	SUB_OFF_HAND(1L << 18),
-	PLUME(1L << 19),
+	PLUME(1L << 28),
+	ARCAMANT(1L << 19),
 
 	// combo
 	MAIN_OR_SUB(MAIN_HAND.slotIdMask | SUB_HAND.slotIdMask, true), // 3
@@ -49,8 +50,7 @@ public enum ItemSlot {
 					| PANTS.slotIdMask
 					| POWER_SHARD_RIGHT.slotIdMask
 					| POWER_SHARD_LEFT.slotIdMask
-					| WINGS.slotIdMask
-					| PLUME.slotIdMask,
+					| WINGS.slotIdMask,
 					true), // rings were designed to be visible (at the players thumbs), but they have no skins
 
 	// STIGMA slots

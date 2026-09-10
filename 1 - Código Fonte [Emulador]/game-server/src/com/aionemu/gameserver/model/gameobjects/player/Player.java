@@ -39,6 +39,7 @@ import com.aionemu.gameserver.model.gameobjects.player.title.TitleList;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureVisualState;
 import com.aionemu.gameserver.model.gameobjects.state.FlyState;
+import com.aionemu.gameserver.model.house.House;
 import com.aionemu.gameserver.model.items.ItemCooldown;
 import com.aionemu.gameserver.model.items.storage.*;
 import com.aionemu.gameserver.model.skill.PlayerSkillList;
@@ -64,6 +65,7 @@ import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.DuelService;
 import com.aionemu.gameserver.services.ExchangeService;
+import com.aionemu.gameserver.services.HousingService;
 import com.aionemu.gameserver.skillengine.condition.ChainCondition;
 import com.aionemu.gameserver.skillengine.effect.RebirthEffect;
 import com.aionemu.gameserver.skillengine.model.ChainSkills;
@@ -94,7 +96,8 @@ public class Player extends Creature {
 	private TitleList titleList;
 	private QuestStateList questStateList;
 	private RecipeList recipeList;
-	
+	private List<House> houses;
+
 	private ResponseRequester requester;
 	private boolean lookingForGroup = false;
 	private final Equipment equipment;
@@ -134,6 +137,7 @@ public class Player extends Creature {
 	private final Map<Integer, ItemCooldown> itemCoolDowns = new ConcurrentHashMap<>();
 	private final PortalCooldownList portalCooldownList;
 	private final Cooldowns craftCooldowns;
+	private final Cooldowns houseObjectCooldowns;
 	private long nextSkillUse;
 	private SkillTemplate lastSkill;
 	private long hitTimeBoostExpireTimeMillis;
@@ -200,6 +204,7 @@ public class Player extends Creature {
 			cabinets[i] = new PlayerStorage(this, StorageType.getStorageTypeById(StorageType.HOUSE_WH_MIN + i));
 		this.portalCooldownList = new PortalCooldownList(this);
 		this.craftCooldowns = new Cooldowns();
+		this.houseObjectCooldowns = new Cooldowns();
 		this.toyPetList = new PetList(this);
 		this.playerBattlePass = new PlayerBattlePass();
 		getController().setOwner(this);
@@ -1128,6 +1133,10 @@ public class Player extends Creature {
 		return craftCooldowns;
 	}
 
+	public Cooldowns getHouseObjectCooldowns() {
+		return houseObjectCooldowns;
+	}
+
 	public Npc getPostman() {
 		return postman;
 	}
@@ -1554,6 +1563,24 @@ public class Player extends Creature {
 			return true;
 		}
 		return false;
+	}
+
+	public List<House> getHouses() {
+		if (houses == null)
+			resetHouses();
+		return houses;
+	}
+
+	public void resetHouses() {
+		houses = HousingService.getInstance().findPlayerHouses(getObjectId());
+	}
+
+	public House getActiveHouse() {
+		for (House house : getHouses())
+			if (!house.isInactive())
+				return house;
+
+		return null;
 	}
 
 	public float[] getBattleReturnCoords() {
