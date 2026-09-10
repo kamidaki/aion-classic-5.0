@@ -22,10 +22,12 @@ public class ShieldInfoBlobEntry extends ItemBlobEntry {
 		writeC(buf, (color & 0xFF0000) >> 16);
 		writeC(buf, (color & 0xFF00) >> 8);
 		writeC(buf, (color & 0xFF));
+		// 5.0 Classic: 20 bytes (u64 slot + 4 bytes dye + 8 bytes padding).
+		writeB(buf, new byte[8]);
 	}
 
 	@Override
 	public int getSize() {
-		return 12;
+		return 20;
 	}
 }

@@ -15,12 +15,15 @@ public class WeaponInfoBlobEntry extends ItemBlobEntry {
 	@Override
 	public void writeThisBlob(ByteBuffer buf) {
 		Item item = ownerItem;
-		ItemSlot[] slots = ItemSlot.getSlotsFor(item.getItemTemplate().getItemSlot());
-		// 5.0 Classic: 16 bytes. Captura: 01 00 00 00 | 00 00 00 00 | 02 00 00 00 | 00 00 00 00
-		writeD(buf, (slots != null && slots.length > 0) ? (int) slots[0].getSlotIdMask() : (int) ItemSlot.MAIN_HAND.getSlotIdMask());
-		writeD(buf, 0);
-		writeD(buf, item.hasFusionedItem() ? 0x00 : 0x02);
-		writeD(buf, 0);
+		if (item.getItemTemplate().isTwoHandWeapon()) {
+			// Retail Classic 5.0: Two-handed weapons send MAIN_OR_SUB (3L) + 0L.
+			writeQ(buf, ItemSlot.MAIN_OR_SUB.getSlotIdMask());
+			writeQ(buf, 0L);
+		} else {
+			// Retail Classic 5.0: One-handed weapons send MAIN_HAND (1L) + SUB_HAND (2L).
+			writeQ(buf, ItemSlot.MAIN_HAND.getSlotIdMask());
+			writeQ(buf, ItemSlot.SUB_HAND.getSlotIdMask());
+		}
 	}
 
 	@Override

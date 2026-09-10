@@ -16,9 +16,18 @@ public class AccessoryInfoBlobEntry extends ItemBlobEntry {
 	public void writeThisBlob(ByteBuffer buf) {
 		Item item = ownerItem;
 		ItemSlot[] slots = ItemSlot.getSlotsFor(item.getItemTemplate().getItemSlot());
-		writeQ(buf, (slots != null && slots.length > 0) ? slots[0].getSlotIdMask() : 0);
-		// 5.0 Classic: a entrada de acessorio tem 16 bytes (u64 slot + 8 zeros).
-		writeB(buf, new byte[8]);
+		if (slots != null && slots.length > 1) {
+			// Retail Classic 5.0: For 2-slot accessories (Rings, Earrings),
+			// slot 1 is RIGHT (512 or 128) and slot 2 is LEFT (256 or 64).
+			writeQ(buf, slots[1].getSlotIdMask());
+			writeQ(buf, slots[0].getSlotIdMask());
+		} else if (slots != null && slots.length == 1) {
+			writeQ(buf, slots[0].getSlotIdMask());
+			writeQ(buf, 0L);
+		} else {
+			writeQ(buf, 0L);
+			writeQ(buf, 0L);
+		}
 	}
 
 	@Override

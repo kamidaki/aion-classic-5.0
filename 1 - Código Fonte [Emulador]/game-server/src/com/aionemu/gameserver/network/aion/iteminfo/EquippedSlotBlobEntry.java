@@ -15,14 +15,8 @@ public class EquippedSlotBlobEntry extends ItemBlobEntry {
 	@Override
 	public void writeThisBlob(ByteBuffer buf) {
 		Item item = ownerItem;
-		long slot = item.getEquipmentSlot();
-		if ((slot & ItemSlot.MAIN_OR_SUB.getSlotIdMask()) == ItemSlot.MAIN_OR_SUB.getSlotIdMask()) {
-			slot = ItemSlot.MAIN_HAND.getSlotIdMask();
-		} else if ((slot & ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask()) == ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask()) {
-			slot = ItemSlot.MAIN_OFF_HAND.getSlotIdMask();
-		}
-		// 5.0 Classic: a mascara de slot e u64 (8 bytes).
-		writeQ(buf, item.isEquipped() ? slot : 0);
+		// Classic 5.0: envia o slot completo em uint64 (ex: 3 para 2H Set 1, 0x60000 para 2H Set 2).
+		writeQ(buf, item.isEquipped() ? item.getEquipmentSlot() : 0L);
 	}
 
 	@Override

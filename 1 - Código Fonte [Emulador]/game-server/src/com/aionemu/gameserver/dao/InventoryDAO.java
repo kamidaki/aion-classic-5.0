@@ -34,8 +34,8 @@ public class InventoryDAO {
 	public static final String SELECT_QUERY = "SELECT * FROM `inventory` WHERE `item_owner`=? AND `item_location`=?";
 	public static final String SELECT_ALL_QUERY = "SELECT * FROM `inventory` WHERE `item_location`=?";
 	public static final String SELECT_EQUIPPED_QUERY = "SELECT i.item_skin, i.slot, i.item_color, s.item_id godstone_item_id FROM inventory i LEFT JOIN item_stones s ON s.item_unique_id = i.item_unique_id AND s.slot = 0 AND s.category = ? WHERE i.item_owner = ? AND i.item_location = ? AND i.is_equipped = 1";
-	public static final String INSERT_QUERY = "INSERT INTO `inventory` (`item_unique_id`, `item_id`, `item_count`, `item_color`, `color_expires`, `item_creator`, `expire_time`, `activation_count`, `item_owner`, `is_equipped`, is_soul_bound, `slot`, `item_location`, `enchant`, `enchant_bonus`, `item_skin`, `fusioned_item`, `optional_socket`, `optional_fusion_socket`, `charge`, `tune_count`, `rnd_bonus`, `fusion_rnd_bonus`, `tempering`, `pack_count`, `is_amplified`, `buff_skill`, `rnd_plume_bonus`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	public static final String UPDATE_QUERY = "UPDATE inventory SET item_count=?, item_color=?, color_expires=?, item_creator=?, expire_time=?, activation_count=?, item_owner=?, is_equipped=?, is_soul_bound=?, slot=?, item_location=?, enchant=?, enchant_bonus=?, item_skin=?, fusioned_item=?, optional_socket=?, optional_fusion_socket=?, charge=?, tune_count=?, rnd_bonus=?, fusion_rnd_bonus=?, tempering=?, pack_count=?, is_amplified=?, buff_skill=?, rnd_plume_bonus=? WHERE item_unique_id=?";
+	public static final String INSERT_QUERY = "INSERT INTO `inventory` (`item_unique_id`, `item_id`, `item_count`, `item_color`, `color_expires`, `item_creator`, `expire_time`, `activation_count`, `item_owner`, `is_equipped`, is_soul_bound, `slot`, `item_location`, `enchant`, `enchant_bonus`, `item_skin`, `fusioned_item`, `optional_socket`, `optional_fusion_socket`, `charge`, `tune_count`, `rnd_bonus`, `fusion_rnd_bonus`, `fusion_enchant`, `tempering`, `pack_count`, `is_amplified`, `buff_skill`, `rnd_plume_bonus`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String UPDATE_QUERY = "UPDATE inventory SET item_count=?, item_color=?, color_expires=?, item_creator=?, expire_time=?, activation_count=?, item_owner=?, is_equipped=?, is_soul_bound=?, slot=?, item_location=?, enchant=?, enchant_bonus=?, item_skin=?, fusioned_item=?, optional_socket=?, optional_fusion_socket=?, charge=?, tune_count=?, rnd_bonus=?, fusion_rnd_bonus=?, fusion_enchant=?, tempering=?, pack_count=?, is_amplified=?, buff_skill=?, rnd_plume_bonus=? WHERE item_unique_id=?";
 	public static final String DELETE_QUERY = "DELETE FROM inventory WHERE item_unique_id=?";
 	public static final String DELETE_CLEAN_QUERY = "DELETE FROM inventory WHERE item_owner=? AND item_location != 2"; // exclude acc wh since item_owner (acc id) is no idfactory id
 	public static final String SELECT_ACCOUNT_QUERY = "SELECT `account_id` FROM `players` WHERE `id`=?";
@@ -133,6 +133,7 @@ public class InventoryDAO {
 		int tuneCount = rset.getInt("tune_count");
 		int bonusStatsId = rset.getInt("rnd_bonus");
 		int fusionedItemBonusStatsId = rset.getInt("fusion_rnd_bonus");
+		int fusionedItemEnchant = rset.getInt("fusion_enchant");
 		int tempering = rset.getInt("tempering");
 		int packCount = rset.getInt("pack_count");
 		int isAmplified = rset.getInt("is_amplified");
@@ -141,7 +142,7 @@ public class InventoryDAO {
 
 		return new Item(itemUniqueId, itemId, itemCount, itemColor, colorExpireTime, itemCreator, expireTime, activationCount, isEquiped == 1,
 			isSoulBound == 1, slot, storage, enchant, enchantBonus, itemSkin, fusionedItem, optionalSocket, optionalFusionSocket, charge, tuneCount,
-			bonusStatsId, fusionedItemBonusStatsId, tempering, packCount, isAmplified == 1, buffSkill, rndPlumeBonusValue);
+			bonusStatsId, fusionedItemBonusStatsId, fusionedItemEnchant, tempering, packCount, isAmplified == 1, buffSkill, rndPlumeBonusValue);
 	}
 
 	private static int loadPlayerAccountId(int playerId) {
@@ -271,7 +272,11 @@ public class InventoryDAO {
 				stmt.setInt(1, item.getObjectId());
 				stmt.setInt(2, item.getItemTemplate().getTemplateId());
 				stmt.setLong(3, item.getItemCount());
-				stmt.setObject(4, item.getItemColor(), Types.INTEGER); // supports inserting null value
+				if (item.getItemColor() != null) {
+					stmt.setInt(4, item.getItemColor());
+				} else {
+					stmt.setNull(4, Types.INTEGER);
+				}
 				stmt.setInt(5, item.getColorExpireTime());
 				stmt.setString(6, item.getItemCreator());
 				stmt.setInt(7, item.getExpireTime());
@@ -291,11 +296,12 @@ public class InventoryDAO {
 				stmt.setInt(21, item.getTuneCount());
 				stmt.setInt(22, item.getBonusStatsId());
 				stmt.setInt(23, item.getFusionedItemBonusStatsId());
-				stmt.setInt(24, item.getTempering());
-				stmt.setInt(25, item.getPackCount());
-				stmt.setBoolean(26, item.isAmplified());
-				stmt.setInt(27, item.getBuffSkill());
-				stmt.setInt(28, item.getRndPlumeBonusValue());
+				stmt.setInt(24, item.getFusionedItemEnchant());
+				stmt.setInt(25, item.getTempering());
+				stmt.setInt(26, item.getPackCount());
+				stmt.setBoolean(27, item.isAmplified());
+				stmt.setInt(28, item.getBuffSkill());
+				stmt.setInt(29, item.getRndPlumeBonusValue());
 				stmt.addBatch();
 			}
 
@@ -317,7 +323,11 @@ public class InventoryDAO {
 		try (PreparedStatement stmt = con.prepareStatement(UPDATE_QUERY)) {
 			for (Item item : items) {
 				stmt.setLong(1, item.getItemCount());
-				stmt.setObject(2, item.getItemColor(), Types.INTEGER); // supports inserting null value
+				if (item.getItemColor() != null) {
+					stmt.setInt(2, item.getItemColor());
+				} else {
+					stmt.setNull(2, Types.INTEGER);
+				}
 				stmt.setInt(3, item.getColorExpireTime());
 				stmt.setString(4, item.getItemCreator());
 				stmt.setInt(5, item.getExpireTime());
@@ -337,12 +347,13 @@ public class InventoryDAO {
 				stmt.setInt(19, item.getTuneCount());
 				stmt.setInt(20, item.getBonusStatsId());
 				stmt.setInt(21, item.getFusionedItemBonusStatsId());
-				stmt.setInt(22, item.getTempering());
-				stmt.setInt(23, item.getPackCount());
-				stmt.setBoolean(24, item.isAmplified());
-				stmt.setInt(25, item.getBuffSkill());
-				stmt.setInt(26, item.getRndPlumeBonusValue());
-				stmt.setInt(27, item.getObjectId());
+				stmt.setInt(22, item.getFusionedItemEnchant());
+				stmt.setInt(23, item.getTempering());
+				stmt.setInt(24, item.getPackCount());
+				stmt.setBoolean(25, item.isAmplified());
+				stmt.setInt(26, item.getBuffSkill());
+				stmt.setInt(27, item.getRndPlumeBonusValue());
+				stmt.setInt(28, item.getObjectId());
 				stmt.addBatch();
 			}
 

@@ -2,6 +2,9 @@ package com.aionemu.gameserver.network.aion.clientpackets;
 
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Equipment;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -16,6 +19,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
  * @author Lost Academy Team & Durak
  */
 public class CM_EQUIP_ITEM extends AionClientPacket {
+
+	private static final Logger log = LoggerFactory.getLogger(CM_EQUIP_ITEM.class);
 
 	private long slotRead;
 	private int itemObjId;
@@ -44,6 +49,9 @@ public class CM_EQUIP_ITEM extends AionClientPacket {
 
 		if (!PlayerRestrictions.canChangeEquip(activePlayer))
 			return;
+
+		log.info("[EQUIP_ITEM] player={} action={} slotRead={} itemObjId={} subSlot={}",
+			activePlayer.getName(), action, slotRead, itemObjId, subSlot);
 
 		Equipment equipment = activePlayer.getEquipment();
 		Item resultItem = null;

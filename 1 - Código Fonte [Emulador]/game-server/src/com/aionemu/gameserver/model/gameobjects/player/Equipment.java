@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
 import com.aionemu.gameserver.dao.InventoryDAO;
+import com.aionemu.gameserver.dao.ItemStoneListDAO;
 import com.aionemu.gameserver.model.ActionState;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.Race;
@@ -32,6 +33,7 @@ import com.aionemu.gameserver.model.templates.itemset.ItemSetTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
+import com.aionemu.gameserver.services.ArmsfusionService;
 import com.aionemu.gameserver.services.StigmaService;
 import com.aionemu.gameserver.services.item.ItemFactory;
 import com.aionemu.gameserver.services.item.ItemPacketService;
@@ -72,6 +74,10 @@ public class Equipment implements Persistable {
 		if (item == null || item.isEquipped())
 			return null;
 
+		if (item.getTuneCount() < 0) {
+			item.setTuneCount(0);
+		}
+
 		ItemTemplate itemTemplate = item.getItemTemplate();
 
 		// Default slot if none specified
@@ -80,8 +86,12 @@ public class Equipment implements Persistable {
 		}
 
 		// Resolve combo slot masks to specific single slots:
-		if (itemTemplate.getItemGroup() == ItemGroup.POWER_SHARDS || (slot & ItemSlot.SHARD_RIGHT_OR_LEFT.getSlotIdMask()) != 0) {
-			if (subSlot == 1) {
+		if (itemTemplate.getItemGroup() == ItemGroup.POWER_SHARDS) {
+			if (slot == ItemSlot.POWER_SHARD_LEFT.getSlotIdMask()) {
+				slot = ItemSlot.POWER_SHARD_LEFT.getSlotIdMask();
+			} else if (slot == ItemSlot.POWER_SHARD_RIGHT.getSlotIdMask()) {
+				slot = ItemSlot.POWER_SHARD_RIGHT.getSlotIdMask();
+			} else if (subSlot == 1) {
 				slot = ItemSlot.POWER_SHARD_LEFT.getSlotIdMask();
 			} else if (getMainHandPowerShard() == null) {
 				slot = ItemSlot.POWER_SHARD_RIGHT.getSlotIdMask();
@@ -90,30 +100,48 @@ public class Equipment implements Persistable {
 			} else {
 				slot = ItemSlot.POWER_SHARD_RIGHT.getSlotIdMask();
 			}
-		} else if ((slot & ItemSlot.RING_RIGHT_OR_LEFT.getSlotIdMask()) == ItemSlot.RING_RIGHT_OR_LEFT.getSlotIdMask()) {
-			if (equipment.get(ItemSlot.RING_LEFT.getSlotIdMask()) == null) {
+		} else if ((slot & ItemSlot.RING_RIGHT_OR_LEFT.getSlotIdMask()) != 0) {
+			boolean hasLeftRing = equipment.get(ItemSlot.RING_LEFT.getSlotIdMask()) != null;
+			boolean hasRightRing = equipment.get(ItemSlot.RING_RIGHT.getSlotIdMask()) != null;
+			if (slot == ItemSlot.RING_RIGHT.getSlotIdMask() || subSlot == 1) {
+				slot = ItemSlot.RING_RIGHT.getSlotIdMask();
+			} else if (!hasLeftRing) {
 				slot = ItemSlot.RING_LEFT.getSlotIdMask();
-			} else if (equipment.get(ItemSlot.RING_RIGHT.getSlotIdMask()) == null) {
+			} else if (!hasRightRing) {
 				slot = ItemSlot.RING_RIGHT.getSlotIdMask();
 			} else {
 				slot = ItemSlot.RING_LEFT.getSlotIdMask();
 			}
-		} else if ((slot & ItemSlot.EARRING_RIGHT_OR_LEFT.getSlotIdMask()) == ItemSlot.EARRING_RIGHT_OR_LEFT.getSlotIdMask()) {
-			if (equipment.get(ItemSlot.EARRINGS_LEFT.getSlotIdMask()) == null) {
+		} else if ((slot & ItemSlot.EARRING_RIGHT_OR_LEFT.getSlotIdMask()) != 0) {
+			boolean hasLeftEar = equipment.get(ItemSlot.EARRINGS_LEFT.getSlotIdMask()) != null;
+			boolean hasRightEar = equipment.get(ItemSlot.EARRINGS_RIGHT.getSlotIdMask()) != null;
+			if (slot == ItemSlot.EARRINGS_RIGHT.getSlotIdMask() || subSlot == 1) {
+				slot = ItemSlot.EARRINGS_RIGHT.getSlotIdMask();
+			} else if (!hasLeftEar) {
 				slot = ItemSlot.EARRINGS_LEFT.getSlotIdMask();
-			} else if (equipment.get(ItemSlot.EARRINGS_RIGHT.getSlotIdMask()) == null) {
+			} else if (!hasRightEar) {
 				slot = ItemSlot.EARRINGS_RIGHT.getSlotIdMask();
 			} else {
 				slot = ItemSlot.EARRINGS_LEFT.getSlotIdMask();
 			}
+		} else if (itemTemplate.getItemGroup() == ItemGroup.ARCAMANT) {
+			slot = ItemSlot.ARCAMANT.getSlotIdMask();
+		} else if (itemTemplate.getItemGroup() == ItemGroup.SHIELD) {
+			slot = ItemSlot.SUB_HAND.getSlotIdMask();
 		} else if (itemTemplate.isWeapon()) {
 			boolean isDualWielder = WeaponDualEffect.hasDualWieldEffect(owner);
 			boolean is2H = itemTemplate.isTwoHandWeapon();
 			boolean isSubHandTarget = (subSlot == 1 || slot == ItemSlot.SUB_HAND.getSlotIdMask());
 
-			// Classic 5.0 Auto-Fusion:
-			if (isSubHandTarget && (is2H || (!isDualWielder && itemTemplate.isOneHandWeapon()))) {
-				return autoFuseWeapon(item);
+			// Classic 5.0 Auto-Fusion: Only two-handed weapons can be fused!
+			if (isSubHandTarget && is2H) {
+				Item mainWeapon = equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask());
+				if (mainWeapon == null) {
+					mainWeapon = equipment.get(ItemSlot.MAIN_OFF_HAND.getSlotIdMask());
+				}
+				if (mainWeapon != null && mainWeapon.getItemTemplate().isTwoHandWeapon()) {
+					return autoFuseWeapon(item);
+				}
 			}
 
 			if (is2H) {
@@ -231,9 +259,8 @@ public class Equipment implements Persistable {
 	}
 
 	private Item equip(long itemSlotToEquip, Item item) {
-		if (!item.isIdentified()) {
-			log.warn(item + " can't be equipped because it's not identified yet");
-			return null;
+		if (item.getTuneCount() < 0) {
+			item.setTuneCount(0);
 		}
 
 		ItemSlot[] targetSlots = ItemSlot.getSlotsFor(itemSlotToEquip);
@@ -263,19 +290,33 @@ public class Equipment implements Persistable {
 	private long getUnequipSlots(long itemSlotToEquip) {
 		if (itemSlotToEquip == ItemSlot.MAIN_HAND.getSlotIdMask() || itemSlotToEquip == ItemSlot.SUB_HAND.getSlotIdMask()) {
 			Item equippedItem = equipment.get(itemSlotToEquip);
-			if (equippedItem != null && equippedItem.getItemTemplate().isTwoHandWeapon())
+			if (equippedItem != null && equippedItem.getItemTemplate().isTwoHandWeapon()) {
 				return ItemSlot.MAIN_OR_SUB.getSlotIdMask(); // two-handed occupies two slots, so we need to unequip both
+			}
+			Item mainHand = equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask());
+			if (mainHand != null && mainHand.getItemTemplate().isTwoHandWeapon()) {
+				return ItemSlot.MAIN_OR_SUB.getSlotIdMask();
+			}
+		} else if (itemSlotToEquip == ItemSlot.MAIN_OFF_HAND.getSlotIdMask() || itemSlotToEquip == ItemSlot.SUB_OFF_HAND.getSlotIdMask()) {
+			Item equippedItem = equipment.get(itemSlotToEquip);
+			if (equippedItem != null && equippedItem.getItemTemplate().isTwoHandWeapon()) {
+				return ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask();
+			}
+			Item mainOff = equipment.get(ItemSlot.MAIN_OFF_HAND.getSlotIdMask());
+			if (mainOff != null && mainOff.getItemTemplate().isTwoHandWeapon()) {
+				return ItemSlot.MAIN_OFF_OR_SUB_OFF.getSlotIdMask();
+			}
 		}
 		return itemSlotToEquip;
 	}
 
-	private void notifyItemEquipped(Item item) {
+	public void notifyItemEquipped(Item item) {
 		ItemEquipmentListener.onItemEquipment(item, owner);
 		owner.getObserveController().notifyItemEquip(item, owner);
 		tryUpdateSummonStats();
 	}
 
-	private void notifyItemUnequip(Item item) {
+	public void notifyItemUnequip(Item item) {
 		ItemEquipmentListener.onItemUnequipment(item, owner);
 		owner.getObserveController().notifyItemUnEquip(item, owner);
 		tryUpdateSummonStats();
@@ -314,7 +355,11 @@ public class Equipment implements Persistable {
 			// Classic 5.0 Un-fuse:
 			if (subSlot == 1) {
 				Item mainWeapon = equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask());
-				if (mainWeapon != null && mainWeapon.hasFusionedItem() && (itemObjId == 0 || mainWeapon.getObjectId() == itemObjId)) {
+				if (mainWeapon == null) {
+					mainWeapon = equipment.get(ItemSlot.MAIN_OFF_HAND.getSlotIdMask());
+				}
+				if (mainWeapon != null && mainWeapon.hasFusionedItem() && (itemObjId == 0 || mainWeapon.getObjectId() == itemObjId
+					|| (mainWeapon.getFusionedItem() != null && mainWeapon.getFusionedItem().getObjectId() == itemObjId))) {
 					return autoUnfuseWeapon(mainWeapon);
 				}
 			}
@@ -323,14 +368,31 @@ public class Equipment implements Persistable {
 			if (itemToUnequip == null || !itemToUnequip.isEquipped())
 				return null;
 
-			// Looks very odd - but its retail like
+			// Classic 5.0: If main-hand weapon has a fused secondary weapon, un-fuse first so secondary weapon is restored to inventory!
+			if (itemToUnequip.hasFusionedItem()) {
+				if (owner.getInventory().getFreeSlots() < 2) {
+					PacketSendUtility.sendPacket(owner, STR_UI_INVENTORY_FULL());
+					return null;
+				}
+				autoUnfuseWeapon(itemToUnequip);
+			}
+
+			// Looks very odd - but its retail like: unequip off-hand weapon or shield when main hand is unequipped
 			if (itemToUnequip.getEquipmentSlot() == ItemSlot.MAIN_HAND.getSlotIdMask()) {
 				Item ohWeapon = equipment.get(ItemSlot.SUB_HAND.getSlotIdMask());
-				if (ohWeapon != null && ohWeapon.getItemTemplate().isWeapon()) {
+				if (ohWeapon != null && (ohWeapon.getItemTemplate().isWeapon() || ohWeapon.getItemTemplate().getItemGroup() == ItemGroup.SHIELD)) {
 					if (owner.getInventory().getFreeSlots() < 2) {
 						return null;
 					}
 					unEquip(ItemSlot.SUB_HAND.getSlotIdMask());
+				}
+			} else if (itemToUnequip.getEquipmentSlot() == ItemSlot.MAIN_OFF_HAND.getSlotIdMask()) {
+				Item ohWeapon = equipment.get(ItemSlot.SUB_OFF_HAND.getSlotIdMask());
+				if (ohWeapon != null && (ohWeapon.getItemTemplate().isWeapon() || ohWeapon.getItemTemplate().getItemGroup() == ItemGroup.SHIELD)) {
+					if (owner.getInventory().getFreeSlots() < 2) {
+						return null;
+					}
+					unEquip(ItemSlot.SUB_OFF_HAND.getSlotIdMask());
 				}
 			}
 
@@ -351,6 +413,9 @@ public class Equipment implements Persistable {
 
 	private Item autoFuseWeapon(Item fuseWeapon) {
 		Item mainWeapon = equipment.get(ItemSlot.MAIN_HAND.getSlotIdMask());
+		if (mainWeapon == null) {
+			mainWeapon = equipment.get(ItemSlot.MAIN_OFF_HAND.getSlotIdMask());
+		}
 		if (mainWeapon == null) {
 			PacketSendUtility.sendPacket(owner, STR_COMPOUND_ITEM_NO_TARGET_ITEM());
 			return null;
@@ -379,76 +444,33 @@ public class Equipment implements Persistable {
 
 		// Perform fusion directly without NPC and without Kinah
 		owner.getInventory().remove(fuseWeapon);
+		fuseWeapon.setPersistentState(PersistentState.DELETED);
+		InventoryDAO.store(fuseWeapon, owner);
 		ItemPacketService.sendItemDeletePacket(owner, StorageType.CUBE, fuseWeapon, ItemDeleteType.MOVE);
 
 		mainWeapon.setFusionedItem(fuseWeapon);
 		ItemSocketService.copyFusionStones(fuseWeapon, mainWeapon);
 		mainWeapon.setPersistentState(PersistentState.UPDATE_REQUIRED);
 		InventoryDAO.store(mainWeapon, owner);
+		if (mainWeapon.hasFusionStones()) {
+			ItemStoneListDAO.save(Collections.singletonList(mainWeapon));
+		}
 
 		notifyItemUnequip(mainWeapon);
 		notifyItemEquipped(mainWeapon);
 		owner.getLifeStats().updateCurrentStats();
 		owner.getGameStats().updateStatsAndSpeedVisually();
 
+		PacketSendUtility.sendPacket(owner, new SM_INVENTORY_UPDATE_ITEM(owner, mainWeapon, ItemUpdateType.EQUIP_UNEQUIP));
 		ItemPacketService.updateItemAfterInfoChange(owner, mainWeapon);
+		PacketSendUtility.sendPacket(owner, new SM_INVENTORY_UPDATE_ITEM(owner, mainWeapon, ItemUpdateType.EQUIP_UNEQUIP));
 		PacketSendUtility.sendPacket(owner, STR_COMPOUND_SUCCESS(mainWeapon.getL10n(), fuseWeapon.getL10n()));
 		PacketSendUtility.broadcastPacket(owner, new SM_UPDATE_PLAYER_APPEARANCE(owner.getObjectId(), getEquippedForAppearance()), true);
 		return mainWeapon;
 	}
 
 	private Item autoUnfuseWeapon(Item mainWeapon) {
-		if (owner.getInventory().isFull()) {
-			PacketSendUtility.sendPacket(owner, STR_UI_INVENTORY_FULL());
-			return null;
-		}
-
-		ItemTemplate fusedTemplate = mainWeapon.getFusionedItemTemplate();
-		if (fusedTemplate == null)
-			return null;
-
-		Item unfusedItem = mainWeapon.getFusionedItem();
-		if (unfusedItem == null) {
-			unfusedItem = ItemFactory.newItem(fusedTemplate.getTemplateId());
-			if (unfusedItem == null)
-				return null;
-			int fusedBonusStats = mainWeapon.getFusionedItemBonusStatsId();
-			int fusedSockets = mainWeapon.getFusionedItemOptionalSockets();
-			if (fusedBonusStats > 0) {
-				unfusedItem.setBonusStats(fusedBonusStats, false);
-			}
-			if (fusedSockets > 0) {
-				unfusedItem.setOptionalSockets(fusedSockets);
-			}
-			if (mainWeapon.hasFusionStones()) {
-				for (ManaStone ms : mainWeapon.getFusionStones()) {
-					ItemSocketService.addManaStone(unfusedItem, ms.getItemId(), false);
-				}
-			}
-		}
-
-		// Clear fusion from main weapon
-		mainWeapon.setFusionedItem(null);
-		mainWeapon.setPersistentState(PersistentState.UPDATE_REQUIRED);
-		InventoryDAO.store(mainWeapon, owner);
-
-		// Return secondary item to inventory
-		unfusedItem.setEquipped(false);
-		unfusedItem.setEquipmentSlot(0);
-		unfusedItem.setPersistentState(PersistentState.UPDATE_REQUIRED);
-		owner.getInventory().add(unfusedItem);
-		ItemPacketService.sendStorageUpdatePacket(owner, StorageType.CUBE, unfusedItem, ItemAddType.ITEM_COLLECT);
-
-		// Recalculate stats and visuals
-		notifyItemUnequip(mainWeapon);
-		notifyItemEquipped(mainWeapon);
-		owner.getLifeStats().updateCurrentStats();
-		owner.getGameStats().updateStatsAndSpeedVisually();
-
-		ItemPacketService.updateItemAfterInfoChange(owner, mainWeapon);
-		PacketSendUtility.broadcastPacket(owner, new SM_UPDATE_PLAYER_APPEARANCE(owner.getObjectId(), getEquippedForAppearance()), true);
-		PacketSendUtility.sendPacket(owner, STR_COMPOUNDED_ITEM_DECOMPOUND_SUCCESS(mainWeapon.getL10n()));
-		return unfusedItem;
+		return ArmsfusionService.unfuseWeapon(owner, mainWeapon);
 	}
 
 	public void equipItemForMacros(int itemUniqueId, long slot) {
@@ -557,6 +579,9 @@ public class Equipment implements Persistable {
 			Item item = equipment.remove(itemSlot.getSlotIdMask());
 			if (item == null || !item.isEquipped()) // check isEquipped to avoid duplicate notifyUnequip, since two handed weapons occupy two slots
 				continue;
+			if (item.hasFusionedItem()) {
+				autoUnfuseWeapon(item);
+			}
 			updateStats = true;
 			item.setEquipped(false);
 			item.setEquipmentSlot(0);

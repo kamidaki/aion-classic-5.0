@@ -62,7 +62,7 @@ public class ItemInfoBlob extends PacketWriteHelper {
 		if (item.getConditioningInfo() != null) {
 			blob.addBlobEntry(ItemBlobType.CONDITIONING_INFO);
 		}
-		if (item.hasFusionedItem()) {
+		if (item.hasFusionedItem() || itemTemplate.isTwoHandWeapon()) {
 			blob.addBlobEntry(ItemBlobType.COMPOSITE_ITEM);
 		}
 
@@ -73,8 +73,6 @@ public class ItemInfoBlob extends PacketWriteHelper {
 			// SLOT INFO
 			if (itemTemplate.getItemGroup() == ItemGroup.WING) {
 				blob.addBlobEntry(ItemBlobType.SLOTS_WING);
-			} else if (itemTemplate.getItemGroup() == ItemGroup.SHIELD) {
-				blob.addBlobEntry(ItemBlobType.SLOTS_SHIELD);
 			} else if (itemTemplate.isArmor()) {
 				if (itemTemplate.getItemGroup().getArmorType() == ArmorType.ACCESSORY) {
 					blob.addBlobEntry(ItemBlobType.SLOTS_ACCESSORY);
