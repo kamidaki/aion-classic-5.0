@@ -66,7 +66,10 @@ public class ItemInfoBlob extends PacketWriteHelper {
 			blob.addBlobEntry(ItemBlobType.COMPOSITE_ITEM);
 		}
 
-		if (itemTemplate.getItemGroup().getValidEquipmentSlots() != 0 || item.getEquipmentSlot() != 0) {
+		boolean isEquipable = itemTemplate.isArmor() || itemTemplate.isWeapon() || itemTemplate.isStigma()
+			|| (itemTemplate.getItemGroup() != null && itemTemplate.getItemGroup().getValidEquipmentSlots() != 0);
+
+		if (isEquipable || item.isEquipped()) {
 			// 0x06 EQUIPPED_SLOT
 			blob.addBlobEntry(ItemBlobType.EQUIPPED_SLOT);
 

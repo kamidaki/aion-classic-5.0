@@ -73,34 +73,27 @@ public class ManaStoneInfoBlobEntry extends ItemBlobEntry {
 
 	private void writeItemStones(ByteBuffer buf) {
 		Item item = ownerItem;
-		int count = 0;
 
 		if (item.hasManaStones()) {
 			Set<ManaStone> itemStones = item.getItemStones();
-
-			for (ManaStone itemStone : itemStones) {
-				if (count == 6)
-					break;
-
-				StatFunction modifier = itemStone.getFirstModifier();
-				if (modifier != null) {
-					count++;
-					writeH(buf, modifier.getName().getItemStoneMask());
+			ManaStone[] slots = new ManaStone[6];
+			for (ManaStone ms : itemStones) {
+				if (ms.getSlot() >= 0 && ms.getSlot() < 6) {
+					slots[ms.getSlot()] = ms;
 				}
 			}
-			skip(buf, (6 - count) * 2);
-			count = 0;
-			for (ManaStone itemStone : itemStones) {
-				if (count == 6)
-					break;
 
-				StatFunction modifier = itemStone.getFirstModifier();
-				if (modifier != null) {
-					count++;
-					writeH(buf, modifier.getValue());
-				}
+			for (int i = 0; i < 6; i++) {
+				StatFunction modifier = slots[i] != null ? slots[i].getFirstModifier() : null;
+				int mask = modifier != null ? modifier.getName().getItemStoneMask() : 0;
+				writeH(buf, mask);
 			}
-			skip(buf, (6 - count) * 2);
+
+			for (int i = 0; i < 6; i++) {
+				StatFunction modifier = slots[i] != null ? slots[i].getFirstModifier() : null;
+				int value = modifier != null ? modifier.getValue() : 0;
+				writeH(buf, value);
+			}
 		} else {
 			skip(buf, 24);
 		}

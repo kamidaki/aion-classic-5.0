@@ -170,16 +170,13 @@ public class ArmsfusionService {
 			if (fusedSockets > 0) {
 				unfusedItem.setOptionalSockets(fusedSockets);
 			}
-			if (mainWeapon.hasFusionStones()) {
-				for (ManaStone ms : mainWeapon.getFusionStones()) {
-					ItemSocketService.addManaStone(unfusedItem, ms.getItemId(), false);
-				}
-			}
-		} else {
-			if (!unfusedItem.hasManaStones() && mainWeapon.hasFusionStones()) {
-				for (ManaStone ms : mainWeapon.getFusionStones()) {
-					ItemSocketService.addManaStone(unfusedItem, ms.getItemId(), false);
-				}
+		}
+
+		// Clear any existing stones on unfusedItem and synchronize with mainWeapon's current fusion stones
+		ItemSocketService.removeAllManastone(player, unfusedItem);
+		if (mainWeapon.hasFusionStones()) {
+			for (ManaStone ms : mainWeapon.getFusionStones()) {
+				ItemSocketService.addManaStone(unfusedItem, ms.getItemId(), false);
 			}
 		}
 

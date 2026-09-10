@@ -12,7 +12,6 @@ import com.aionemu.gameserver.model.stats.calc.functions.StatFunction;
 import com.aionemu.gameserver.model.stats.calc.functions.StatRateFunction;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.iteminfo.ItemInfoBlob.ItemBlobType;
-import com.aionemu.gameserver.services.item.ItemFactory;
 import com.aionemu.gameserver.utils.idfactory.IDFactory;
 
 /**
@@ -62,21 +61,6 @@ public class CompositeItemBlobEntry extends ItemBlobEntry {
 		}
 
 		Item fusionedItem = item.getFusionedItem();
-		if (fusionedItem == null) {
-			fusionedItem = ItemFactory.newItem(fusionTemplate.getTemplateId());
-			if (fusionedItem != null) {
-				if (item.getFusionedItemBonusStatsId() > 0) {
-					fusionedItem.setBonusStats(item.getFusionedItemBonusStatsId(), false);
-				}
-				if (item.getFusionedItemOptionalSockets() > 0) {
-					fusionedItem.setOptionalSockets(item.getFusionedItemOptionalSockets());
-				}
-				if (item.getFusionedItemEnchant() > 0) {
-					fusionedItem.setEnchantLevel(item.getFusionedItemEnchant());
-				}
-				item.setFusionedItem(fusionedItem);
-			}
-		}
 		int fusionObjId = fusionedItem != null ? fusionedItem.getObjectId() : IDFactory.getInstance().nextId();
 		int fusionSkinId = fusionedItem != null && fusionedItem.getItemSkinTemplate() != null
 			? fusionedItem.getItemSkinTemplate().getTemplateId()
@@ -103,34 +87,29 @@ public class CompositeItemBlobEntry extends ItemBlobEntry {
 
 	private void writeFusionStones(ByteBuffer buf) {
 		Item item = ownerItem;
-		int count = 0;
 
 		if (item.hasFusionStones()) {
 			Set<ManaStone> itemStones = item.getFusionStones();
-
-			for (ManaStone itemStone : itemStones) {
-				if (count == 6)
-					break;
-
-				StatFunction modifier = itemStone.getFirstModifier();
-				if (modifier != null) {
-					count++;
-					writeH(buf, modifier.getName().getItemStoneMask());
+			ManaStone[] slots = new ManaStone[6];
+			for (ManaStone ms : itemStones) {
+				if (ms.getSlot() >= 0 && ms.getSlot() < 6) {
+					slots[ms.getSlot()] = ms;
 				}
 			}
-			skip(buf, (6 - count) * 2);
-			count = 0;
-			for (ManaStone itemStone : itemStones) {
-				if (count == 6)
-					break;
 
-				StatFunction modifier = itemStone.getFirstModifier();
-				if (modifier != null) {
-					count++;
-					writeH(buf, modifier.getValue());
-				}
+			// 6 shorts para máscaras das manastones da arma secundária (Big-Endian canônico Classic 5.0)
+			for (int i = 0; i < 6; i++) {
+				StatFunction modifier = slots[i] != null ? slots[i].getFirstModifier() : null;
+				int mask = modifier != null ? modifier.getName().getItemStoneMask() : 0;
+				buf.putShort(Short.reverseBytes((short) mask));
 			}
-			skip(buf, (6 - count) * 2);
+
+			// 6 shorts para valores das manastones da arma secundária (Big-Endian canônico Classic 5.0)
+			for (int i = 0; i < 6; i++) {
+				StatFunction modifier = slots[i] != null ? slots[i].getFirstModifier() : null;
+				int value = modifier != null ? modifier.getValue() : 0;
+				buf.putShort(Short.reverseBytes((short) value));
+			}
 		} else {
 			skip(buf, 24);
 		}

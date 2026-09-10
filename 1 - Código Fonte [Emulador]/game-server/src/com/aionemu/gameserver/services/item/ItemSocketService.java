@@ -30,9 +30,11 @@ public class ItemSocketService {
 	public static ManaStone addManaStone(Item item, int manaStoneItemId, boolean useFusionSlots) {
 		if (item == null)
 			return null;
+		if (useFusionSlots && !item.hasFusionedItem())
+			return null;
 		int maxSlots = item.getSockets(useFusionSlots);
 		Set<ManaStone> manaStones = useFusionSlots ? item.getFusionStones() : item.getItemStones();
-		if (manaStones.size() > maxSlots)
+		if (manaStones.size() >= maxSlots)
 			return null;
 		ItemGroup manaStoneCategory = DataManager.ITEM_DATA.getItemTemplate(manaStoneItemId).getItemGroup();
 		int specialSlotCount = useFusionSlots ? item.getFusionedItemTemplate().getSpecialSlots() : item.getItemTemplate().getSpecialSlots();
@@ -103,6 +105,9 @@ public class ItemSocketService {
 		Storage inventory = player.getInventory();
 		Item item = inventory.getItemByObjId(itemObjId);
 		if (item == null) {
+			item = player.getEquipment().getEquippedItemByObjId(itemObjId);
+		}
+		if (item == null) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REMOVE_ITEM_OPTION_NO_TARGET_ITEM());
 			return;
 		}
@@ -131,6 +136,12 @@ public class ItemSocketService {
 			itemStones.remove(manaStoneToRemove);
 
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REMOVE_ITEM_OPTION_SUCCEED(item.getL10n()));
+			if (item.isEquipped()) {
+				player.getEquipment().notifyItemUnequip(item);
+				player.getEquipment().notifyItemEquipped(item);
+				player.getLifeStats().updateCurrentStats();
+				player.getGameStats().updateStatsAndSpeedVisually();
+			}
 			ItemPacketService.updateItemAfterInfoChange(player, item);
 		} else {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REMOVE_ITEM_OPTION_NOT_ENOUGH_GOLD(item.getL10n()));

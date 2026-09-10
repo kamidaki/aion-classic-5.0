@@ -335,18 +335,26 @@ public class Equipment implements Persistable {
 	 * @return item or null in case of failure
 	 */
 	public Item unEquipItem(int itemObjId, byte subSlot) {
-		return unEquipItem(itemObjId, true, subSlot);
+		return unEquipItem(itemObjId, 0, true, subSlot);
 	}
 
 	public Item unEquipItem(int itemObjId) {
-		return unEquipItem(itemObjId, true, (byte) 0);
+		return unEquipItem(itemObjId, 0, true, (byte) 0);
 	}
 
 	public Item unEquipItem(int itemObjId, boolean checkFullInventory) {
-		return unEquipItem(itemObjId, checkFullInventory, (byte) 0);
+		return unEquipItem(itemObjId, 0, checkFullInventory, (byte) 0);
 	}
 
 	public Item unEquipItem(int itemObjId, boolean checkFullInventory, byte subSlot) {
+		return unEquipItem(itemObjId, 0, checkFullInventory, subSlot);
+	}
+
+	public Item unEquipItem(int itemObjId, long slot, byte subSlot) {
+		return unEquipItem(itemObjId, slot, true, subSlot);
+	}
+
+	public Item unEquipItem(int itemObjId, long slot, boolean checkFullInventory, byte subSlot) {
 		// if inventory is full unequip action is disabled
 		if (checkFullInventory && owner.getInventory().isFull())
 			return null;
@@ -365,6 +373,9 @@ public class Equipment implements Persistable {
 			}
 
 			Item itemToUnequip = getEquippedItemByObjId(itemObjId);
+			if (itemToUnequip == null && slot > 0) {
+				itemToUnequip = equipment.get(slot);
+			}
 			if (itemToUnequip == null || !itemToUnequip.isEquipped())
 				return null;
 
@@ -625,6 +636,8 @@ public class Equipment implements Persistable {
 		synchronized (equipment) {
 			for (Item item : equipment.values()) {
 				if (item.getObjectId() == itemObjId)
+					return item;
+				if (item.hasFusionedItem() && item.getFusionedItem() != null && item.getFusionedItem().getObjectId() == itemObjId)
 					return item;
 			}
 		}

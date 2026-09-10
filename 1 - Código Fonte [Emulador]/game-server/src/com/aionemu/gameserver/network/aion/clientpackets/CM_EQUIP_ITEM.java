@@ -60,7 +60,7 @@ public class CM_EQUIP_ITEM extends AionClientPacket {
 				resultItem = equipment.equipItem(itemObjId, slotRead, subSlot);
 				break;
 			case 1:
-				resultItem = equipment.unEquipItem(itemObjId, subSlot);
+				resultItem = equipment.unEquipItem(itemObjId, slotRead, subSlot);
 				if (resultItem == null)
 					PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_UI_INVENTORY_FULL());
 				break;

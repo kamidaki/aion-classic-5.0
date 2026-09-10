@@ -63,7 +63,7 @@ public class CM_MANASTONE extends AionClientPacket {
 
 		switch (actionType) {
 			case 1: // enchant stone
-			case 2: // add manastone
+			case 2: { // add manastone
 				Item stone = player.getInventory().getItemByObjId(stoneUniqueId);
 				if (stone == null)
 					return;
@@ -76,6 +76,10 @@ public class CM_MANASTONE extends AionClientPacket {
 				if (stone.getItemTemplate().isStigma() && targetItem.getItemTemplate().isStigma()) {
 					StigmaService.chargeStigma(player, targetItem, stone);
 				} else {
+					boolean isFusionSlot = (targetFusedSlot == 1);
+					if (targetItem.hasFusionedItem() && targetItem.getFusionedItem() != null && targetItem.getFusionedItem().getObjectId() == targetItemUniqueId) {
+						isFusionSlot = true;
+					}
 					EnchantItemAction action = new EnchantItemAction();
 					if (action.canAct(player, stone, targetItem)) {
 						Item supplement = player.getInventory().getItemByObjId(supplementUniqueId);
@@ -83,15 +87,27 @@ public class CM_MANASTONE extends AionClientPacket {
 							if (supplement.getItemId() / 100000 != 1661) // suppliment id check
 								return;
 						}
-						action.act(player, stone, targetItem, supplement, targetFusedSlot);
+						action.act(player, stone, targetItem, supplement, isFusionSlot ? 1 : 0);
 					}
 				}
 				break;
-			case 3: // remove manastone
+			}
+			case 3: { // remove manastone
 				VisibleObject visibleObject = player.getTarget();
-				if (visibleObject.getObjectId() == npcObjId && visibleObject instanceof Npc npc && PositionUtil.isInTalkRange(player, npc))
-					ItemSocketService.removeManastone(player, targetItemUniqueId, slotNum, targetFusedSlot != 1);
+				if (visibleObject.getObjectId() == npcObjId && visibleObject instanceof Npc npc && PositionUtil.isInTalkRange(player, npc)) {
+					boolean isFusionSlot = (targetFusedSlot == 1);
+					Item targetItem = player.getEquipment().getEquippedItemByObjId(targetItemUniqueId);
+					if (targetItem == null) {
+						targetItem = player.getInventory().getItemByObjId(targetItemUniqueId);
+					}
+					if (targetItem != null && targetItem.hasFusionedItem() && targetItem.getFusionedItem() != null
+						&& targetItem.getFusionedItem().getObjectId() == targetItemUniqueId) {
+						isFusionSlot = true;
+					}
+					ItemSocketService.removeManastone(player, targetItemUniqueId, slotNum, isFusionSlot);
+				}
 				break;
+			}
 			case 4: // add godstone
 				Item weaponItem = player.getInventory().getItemByObjId(targetItemUniqueId);
 				if (weaponItem == null) {

@@ -1,8 +1,11 @@
 package com.aionemu.gameserver.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import com.aionemu.gameserver.dao.ItemStoneListDAO;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.configs.administration.AdminConfig;
@@ -289,15 +292,17 @@ public class EnchantService {
 		targetItem.setEnchantEffect(new EnchantEffect(targetItem, owner, stats));
 	}
 
-	public static boolean socketManastone(Player player, Item manastone, Item targetItem, Item supplementItem, int fusionedWeaponLevel) {
+	public static boolean socketManastone(Player player, Item manastone, Item targetItem, Item supplementItem, int targetWeapon) {
+		boolean isFusion = (targetWeapon == 1);
 		int targetItemLevel;
 
-		// Fusioned weapon. Primary weapon level.
-		if (fusionedWeaponLevel == 1)
+		if (!isFusion) {
 			targetItemLevel = targetItem.getItemTemplate().getLevel();
-		// Fusioned weapon. Secondary weapon level.
-		else
+		} else {
+			if (!targetItem.hasFusionedItem())
+				return false;
 			targetItemLevel = targetItem.getFusionedItemTemplate().getLevel();
+		}
 
 		int stoneLevel = manastone.getItemTemplate().getLevel();
 		int slotLevel = (int) (10 * Math.ceil((targetItemLevel + 10) / 10d));
@@ -310,28 +315,22 @@ public class EnchantService {
 		if (stoneLevel > slotLevel)
 			return false;
 
-		// Fusioned weapon. Primary weapon slots.
-		if (fusionedWeaponLevel == 1)
+		if (!isFusion) {
 			// Count the inserted stones in the primary weapon
 			stoneCount = targetItem.getItemStones().size();
-		// Fusioned weapon. Secondary weapon slots.
-		else
-			// Count the inserted stones in the secondary weapon
-			stoneCount = targetItem.getFusionStones().size();
-
-		// Fusioned weapon. Primary weapon slots.
-		if (fusionedWeaponLevel == 1) {
-			// Find all free slots in the primary weapon
 			if (stoneCount >= targetItem.getSockets(false)) {
 				AuditLogger.log(player, "Manastone socket overload");
 				return false;
 			}
-		}
-		// Fusioned weapon. Secondary weapon slots.
-		else if (!targetItem.hasFusionedItem() || stoneCount >= targetItem.getSockets(true)) {
-			// Find all free slots in the secondary weapon
-			AuditLogger.log(player, "Manastone socket overload");
-			return false;
+		} else {
+			if (!targetItem.hasFusionedItem())
+				return false;
+			// Count the inserted stones in the secondary weapon
+			stoneCount = targetItem.getFusionStones().size();
+			if (stoneCount >= targetItem.getSockets(true)) {
+				AuditLogger.log(player, "Manastone socket overload");
+				return false;
+			}
 		}
 
 		// Start value of success
@@ -351,13 +350,7 @@ public class EnchantService {
 			int supplementUseCount = 0;
 			ItemTemplate manastoneTemplate = manastone.getItemTemplate();
 
-			int manastoneCount;
-			// Not fusioned
-			if (fusionedWeaponLevel == 1)
-				manastoneCount = targetItem.getItemStones().size() + 1;
-			// Fusioned
-			else
-				manastoneCount = targetItem.getFusionStones().size() + 1;
+			int manastoneCount = (!isFusion ? targetItem.getItemStones().size() : targetItem.getFusionStones().size()) + 1;
 
 			// Additional success rate for the supplement
 			ItemTemplate supplementTemplate = supplementItem.getItemTemplate();
@@ -402,8 +395,11 @@ public class EnchantService {
 		player.updateSupplements();
 		if (result) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_OPTION_SUCCEED(targetItem.getL10n()));
-
-			ManaStone manaStone = ItemSocketService.addManaStone(targetItem, parentItem.getItemTemplate().getTemplateId(), targetWeapon != 1);
+			boolean isFusion = (targetWeapon == 1);
+			ManaStone manaStone = ItemSocketService.addManaStone(targetItem, parentItem.getItemTemplate().getTemplateId(), isFusion);
+			if (manaStone != null) {
+				ItemStoneListDAO.save(Collections.singletonList(targetItem));
+			}
 			if (targetItem.isEquipped()) {
 				ItemEquipmentListener.addStoneStats(targetItem, manaStone, player.getGameStats());
 				player.getGameStats().updateStatsAndSpeedVisually();

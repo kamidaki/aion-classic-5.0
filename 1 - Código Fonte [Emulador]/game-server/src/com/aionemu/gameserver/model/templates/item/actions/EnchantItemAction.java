@@ -79,7 +79,7 @@ public class EnchantItemAction extends AbstractItemAction {
 
 	@Override
 	public void act(final Player player, final Item parentItem, final Item targetItem, Object... params) {
-		act(player, parentItem, targetItem, null, 1);
+		act(player, parentItem, targetItem, null, 0);
 	}
 
 	// necessary overloading to not change AbstractItemAction

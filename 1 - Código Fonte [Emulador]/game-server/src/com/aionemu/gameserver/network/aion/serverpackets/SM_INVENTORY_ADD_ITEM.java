@@ -44,7 +44,11 @@ public class SM_INVENTORY_ADD_ITEM extends AionServerPacket {
 		// In 5.0 Classic, no string localization is written here!
 		ItemInfoBlob.getFullBlob(player, item).writeMe(getBuf());
 
-		writeH(item.isEquipped() ? 0xFFFF : (int) (item.getEquipmentSlot() & 0xFFFF));
+		// Classic 5.0 wire verified (pacotes oficiais S_ADD_INVENTORY):
+		// O tail_slot enviado ao adicionar itens ao cubo é sempre 0xFFFF (65535).
+		// Se o servidor enviar um número de slot diferente de 0xFFFF (como 2 para o 2º slot do cubo),
+		// o cliente Aion interpreta como slot de equipamento (2 = SUB_HAND), substituindo a Off-Hand!
+		writeH(0xFFFF);
 		writeC(item.getItemTemplate().isCloth() ? 1 : 0);
 	}
 }
