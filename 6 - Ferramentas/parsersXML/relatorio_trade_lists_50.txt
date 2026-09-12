@@ -1,0 +1,18 @@
+Cadeia de comercio canonizada pelo cliente 5.0: goodslists.xml (o que cada lista tem) e
+npc_trade_list.xml (quem vende o que). Os dois vao juntos: o id da lista e a unica coisa que o
+servidor manda, e o cliente desenha a aba com o conteudo que ele mesmo tem para esse id.
+
+== npc_trade_list ==
+venda  : 1011 -> 1011 | criados 0 | removidos 0 | ids corrigidos 0 | ja estavam certos 1011
+troca  : 67 -> 67 | criados 0 | removidos 0 | ids corrigidos 0 | ja estavam certos 67
+compra : 17 -> 17 | criados 0 | removidos 0 | ids corrigidos 0 | ja estavam certos 17
+
+== goodslists ==
+list          : 2221 -> 2221 | criadas 0 | removidas 0 | conteudo corrigido 0 | ja estavam certas 2221
+in_list       : 166 -> 166 | criadas 0 | removidas 0 | conteudo corrigido 0 | ja estavam certas 166
+purchase_list : 13 -> 13 | criadas 0 | removidas 0 | conteudo corrigido 0 | ja estavam certas 13
+
+== pendencias ==
+itens que o client_items.xml nao conhece e ficaram de fora (22): list #89 rec_D_as_ch_head_n_l1_s_51a, list #89 rec_D_as_pl_head_n_l1_s_51a, list #90 rec_D_ta_lt_head_n_l1_s_51a, list #90 rec_D_ta_belt_n_l1_s_51a, list #90 rec_D_ta_rb_head_n_l1_s_51a, list #90 rec_D_ta_belt_n_l1_s_51b, list #90 rec_D_ta_ta_part_cloth6_03a, list #90 rec_D_ta_ta_part_cloth6_01a, list #90 rec_D_ta_ta_part_cloth6_02a, list #93 rec_D_co_food_3stats_60i, list #93 rec_D_co_food_3stats_60j, list #89 rec_D_as_ch_head_n_l1_s_51a, list #89 rec_D_as_pl_head_n_l1_s_51a, list #90 rec_D_ta_lt_head_n_l1_s_51a, list #90 rec_D_ta_belt_n_l1_s_51a
+abas que o proprio client_npc_goodslist nao tem (6): 203387 sale_l_abyss_captain_proto_wp_seller, 204288 sale_d_abyss_captain_proto_wp_seller, 798918 sale_l_abyss_captain_proto_wp_seller, 799204 sale_df4_gathering_dimit_01, 799221 sale_d_abyss_captain_proto_wp_seller, 802087 sale_wind_cash_NPC_Skateboard_shop_02
+npc 802087 (wind_cash_NPC_Skateboard_shop_02) faz venda no cliente e ficou sem template: nenhuma aba dele existe

@@ -50,8 +50,40 @@ ALVOS = {
     "220832": (75, 317470, "281418", "general", {"group_drop": "NONE"}),   # Tiamat_Crack_EarthQuake_invisible
     "220834": (75, 317470, "281418", "general", {"group_drop": "NONE"}),   # Tiamat_Crack_BrokenGround_invisible
 }
+
+# Os vendedores que o npc_trade_list canonizado aponta e que nao tinham template: sem eles o template de
+# comercio fica sem dono. Nao combatem, entao nao ha irmao de familia a copiar -- level e maxHp sao os que o
+# usuario definiu (60 / 20000, em 2026-09-12) e o resto sai do padrao medido no gabarito para esse perfil
+# (npc_type general + ai_name NPC): rank DISCIPLINED em 586 de 629, rating NORMAL em 561, group_drop NONE em
+# 390. race vem do race_type do cliente pela tabela aprendida e fica de fora em quem nao tem race_type, que e
+# o que metade do gabarito com esse perfil faz.
+PERFIL_VENDEDOR = (60, 20000, None, "general", {"rank": "DISCIPLINED", "rating": "NORMAL", "group_drop": "NONE"})
+VENDEDORES = (
+    # com lugar certo, pelo spawn no cliente ou pelo prefixo do nome interno (ver relatorio_npc_dialogs_50.txt)
+    "750059", "800468", "800469", "800480", "800485",  # Sanctum
+    "750060", "800470", "800471", "800472", "800473", "800481", "800486",  # Pandaemonium
+    "750061", "750062", "750063", "750064",  # Tiamaranta_Mesa, os mercadores negros
+    "799994", "799998", "799999",  # Reshanta
+    "800482", "800483",  # Abyssal_Splinter
+    "800498", "800499",  # Kaisinel_Academy e Marchutan_Priory, os vendedores de gloria da arena
+    "780105",  # Arena_of_Discipline
+    # de evento: o cliente nao lhes da posicao nenhuma, quem os coloca no mundo e o evento
+    "780001", "780002", "780031", "780034", "780038", "780060", "780067", "780068", "780069", "780070",
+    "780074", "780075", "780086", "780087", "780088", "780097", "780098", "780099", "780100", "780101",
+    "780103", "780106", "780107", "780108", "780109", "780110", "780111", "780112", "780116", "780117",
+    "780118", "780122", "780123", "780124", "780125", "780127", "780128", "780130", "780149", "780150",
+    "780180", "780182", "800494", "800495", "800496", "800497",
+)
+ALVOS.update({i: PERFIL_VENDEDOR for i in VENDEDORES})
+
 # Atributos que nenhuma fonte do cliente cobre: saem do irmao da mesma familia, salvo ajuste explicito.
+# Sem irmao (os vendedores acima), o que o cliente resolve vale -- hoje so race.
 DA_FAMILIA = ("rank", "rating", "race", "group_drop")
+
+# Tamanho de quem tem mesh unico, que nao aparece 2x no gabarito e por isso nao tem base medida. So vale para
+# os vendedores: com scale 100, e a mediana E a moda dos 3953 npcs desse perfil no gabarito (1689 deles tem
+# exatamente esse bound_radius). Sem isso o template sai com height 0, algo que 38322 dos 38323 nao tem.
+BASE_VENDEDOR = {"height": 2.0, "front": 0.25, "side": 0.35, "upper": 2.0}
 
 
 def render(npc_id, d, irmao, level, hp, ai_fallback, ajustes, tabs, base, n2id, n2b):
@@ -62,13 +94,17 @@ def render(npc_id, d, irmao, level, hp, ai_fallback, ajustes, tabs, base, n2id, 
     if chave in n2id:
         a.append(("name_id", n2id[chave]))
 
+    sc, mesh = R.fnum(d.get("scale")), d.get("mesh")
+    b = base.get(mesh or "") or (BASE_VENDEDOR if not irmao else {})
     doCliente = R.novos_atributos(d, tabs, base)
     doCliente.setdefault("ai", ai_fallback)
+    if "height" not in doCliente and sc and b.get("height"):
+        doCliente["height"] = R.limpa(b["height"] * sc / 100)
     for k in ("height", "tribe", "type", "ai", "srange", "arange", "attack_speed", "hpgauge"):
         if k in doCliente:
             a.append((k, doCliente[k]))
     for k in DA_FAMILIA:
-        v = ajustes.get(k, irmao.get(k))
+        v = ajustes[k] if k in ajustes else (irmao.get(k) or doCliente.get(k))
         if v:
             a.append((k, v))
 
@@ -81,8 +117,6 @@ def render(npc_id, d, irmao, level, hp, ai_fallback, ajustes, tabs, base, n2id, 
         filhos.append("\t\t</stats>")
     else:
         filhos.append("\t\t<stats maxHp=\"{}\" />".format(hp))
-    sc, mesh = R.fnum(d.get("scale")), d.get("mesh")
-    b = base.get(mesh or "", {})
     if sc and all(e in b for e in R.EIXOS):
         filhos.append("\t\t<bound_radius " + " ".join('{}="{}"'.format(e, R.limpa(b[e] * sc / 100)) for e in R.EIXOS) + " />")
     return cabeca + NL + NL.join(filhos) + NL + "\t</npc_template>" + NL
@@ -125,8 +159,8 @@ def main():
     blocos = []
     for i in sorted(pendentes, key=int):
         level, hp, irmao_id, ai_fb, ajustes = ALVOS[i]
-        irmao = srv.get(irmao_id, {}).get("attrs", {})
-        if not irmao:
+        irmao = srv.get(irmao_id, {}).get("attrs", {}) if irmao_id else {}
+        if irmao_id and not irmao:
             sys.exit("NPC irmao {} nao existe no servidor; sem ele nao ha de onde tirar {}.".format(irmao_id, ", ".join(DA_FAMILIA)))
         bloco = render(i, cli[i], irmao, level, hp, ai_fb, ajustes, tabs, base, n2id, n2b)
         blocos.append((i, bloco))
