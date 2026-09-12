@@ -60,6 +60,8 @@ if (-not (Test-Path $baseDir)) {
     New-Item -ItemType Directory -Path $baseDir -Force | Out-Null
 }
 
+$projectRoot = Split-Path (Split-Path (Resolve-Path $baseDir).Path -Parent) -Parent
+
 $interfaceIndex = "4" # Padrao Ethernet identificado
 $interfaceOutput = & $dumpcapExe -D 2>&1
 $ethernetLine = $interfaceOutput | Where-Object { $_ -match "Ethernet" -or $_ -match "Intel" -or $_ -match "Realtek" } | Select-Object -First 1
@@ -71,31 +73,171 @@ if ($ethernetLine -and ($ethernetLine -match "^(\d+)\.")) {
     Write-Host "[*] Usando interface padrao ID: $interfaceIndex" -ForegroundColor Green
 }
 
+# Funcao auxiliar para carregar mapas do world_maps.xml
+function Get-WorldMaps {
+    param([string]$ProjectRoot)
+    $mapsXmlPath = Join-Path $ProjectRoot "2 - Emulador [Produto Final]\GameServer\data\static_data\world_maps.xml"
+    $maps = @()
+    if (Test-Path -LiteralPath $mapsXmlPath) {
+        try {
+            [xml]$xml = Get-Content -LiteralPath $mapsXmlPath -Encoding UTF8
+            $seen = @{}
+            foreach ($m in $xml.world_maps.map) {
+                $name = $m.name
+                $mid = [int]$m.id
+                $wtype = if ($m.world_type) { $m.world_type } else { "" }
+                $instance = ($m.instance -eq "true")
+                if ($name -and -not $seen.ContainsKey($name)) {
+                    $seen[$name] = $true
+                    $maps += [PSCustomObject]@{
+                        Id = $mid
+                        Name = $name
+                        WorldType = $wtype
+                        IsInstance = $instance
+                    }
+                }
+            }
+        } catch {
+            Write-Host "[AVISO] Nao foi possivel carregar world_maps.xml: $_" -ForegroundColor Yellow
+        }
+    }
+    return $maps
+}
+
 if ($TestOnly) {
-    Write-Host "[OK] Teste de ambiente concluido com sucesso!" -ForegroundColor Green
+    $testMaps = Get-WorldMaps -ProjectRoot $projectRoot
+    Write-Host "[OK] Teste de ambiente concluido com sucesso! ($($testMaps.Count) mapas oficiais carregados de world_maps.xml)" -ForegroundColor Green
     exit 0
 }
 
-# 3. Menu Interativo de Modulos (caso nao tenha passado por parametro)
+# Funcao do Seletor de Mapas (08_Spawns_Mapas)
+function Select-SpawnMap {
+    param([array]$Maps)
+    while ($true) {
+        Write-Header
+        Write-Host "08_Spawns_Mapas - SELECAO DE MAPA PARA CAPTURA DE SPAWNS:" -ForegroundColor Green
+        Write-Host "------------------------------------------------------------------------------" -ForegroundColor DarkGray
+        Write-Host " [1] Elysea             - Cidades e Mundo Aberto Elyos (Sanctum, Poeta, Verteron...)" -ForegroundColor Cyan
+        Write-Host " [2] Asmodae            - Cidades e Mundo Aberto Asmodians (Pandaemonium, Ishalgen...)" -ForegroundColor White
+        Write-Host " [3] Balaurea & Abyss   - Zonas de Conflito (Inggison, Gelkmaros, Reshanta...)" -ForegroundColor Yellow
+        Write-Host " [4] Instancias PvE     - Dungeons e Cavernas (Dark Poeta, Fire Temple, Beshmundir...)" -ForegroundColor Blue
+        Write-Host " [5] Arenas & PvP       - Dredgions e Campos de Batalha (Chaos, Discipline, Dranium...)" -ForegroundColor Magenta
+        Write-Host " [6] Busca por Nome     - Digite qualquer parte do nome do mapa (Instantaneo)" -ForegroundColor Green
+        Write-Host " [7] Listar Todos (A-Z) - Visualizacao completa de todos os 145 mapas oficiais" -ForegroundColor DarkYellow
+        Write-Host " [0] Voltar ao Menu Principal" -ForegroundColor Red
+        Write-Host "------------------------------------------------------------------------------" -ForegroundColor DarkGray
+
+        $subOpt = Read-Host "Opcao (0-7) [Padrao: 1]"
+        if ([string]::IsNullOrWhiteSpace($subOpt)) { $subOpt = "1" }
+
+        if ($subOpt -eq "0") { return $null }
+
+        if ($subOpt -eq "1") {
+            # Elysea
+            $subMaps = $Maps | Where-Object { $_.WorldType -eq "ELYSEA" -or $_.Name -in @("Sanctum", "Poeta", "Verteron", "Eltnen", "Heiron", "Theobomos", "Telos", "Lacrima") } | Sort-Object Name
+            $chosen = Show-MapList -List $subMaps -Title "Mapas de Elysea"
+            if ($chosen) { return $chosen }
+        }
+        elseif ($subOpt -eq "2") {
+            # Asmodae
+            $subMaps = $Maps | Where-Object { $_.WorldType -eq "ASMODAE" -or $_.Name -in @("Pandaemonium", "Ishalgen", "Altgard", "Morheim", "Beluslan", "Brusthonin", "Gelkmaros") } | Sort-Object Name
+            $chosen = Show-MapList -List $subMaps -Title "Mapas de Asmodae"
+            if ($chosen) { return $chosen }
+        }
+        elseif ($subOpt -eq "3") {
+            # Balaurea / Abyss
+            $subMaps = $Maps | Where-Object { $_.WorldType -in @("BALAUREA", "ABYSS") -or $_.Name -in @("Reshanta", "Silentera_Canyon", "Tiamaranta_Mesa", "Apheta_Beluslan", "Laphsaran", "Inggison", "Gelkmaros") } | Sort-Object Name
+            $chosen = Show-MapList -List $subMaps -Title "Balaurea & Abyss"
+            if ($chosen) { return $chosen }
+        }
+        elseif ($subOpt -eq "4") {
+            # Instancias PvE
+            $subMaps = $Maps | Where-Object { $_.IsInstance -and $_.Name -notmatch "Arena|Battlefield|Chaos|Discipline|Harmony|Glory|Dredgion" } | Sort-Object Name
+            $chosen = Show-MapList -List $subMaps -Title "Instancias PvE (Dungeons)"
+            if ($chosen) { return $chosen }
+        }
+        elseif ($subOpt -eq "5") {
+            # Arenas & PvP
+            $subMaps = $Maps | Where-Object { $_.Name -match "Arena|Battlefield|Chaos|Discipline|Harmony|Glory|Dredgion|War" } | Sort-Object Name
+            $chosen = Show-MapList -List $subMaps -Title "Arenas e Campos de Batalha (PvP)"
+            if ($chosen) { return $chosen }
+        }
+        elseif ($subOpt -eq "6") {
+            # Busca por Nome
+            Write-Header
+            Write-Host "BUSCA DE MAPA POR NOME:" -ForegroundColor Green
+            Write-Host "------------------------------------------------------------------------------" -ForegroundColor DarkGray
+            $query = Read-Host "Digite parte do nome do mapa (ex: poeta, sanctum, fire, inggi)"
+            if ([string]::IsNullOrWhiteSpace($query)) { continue }
+            $matched = $Maps | Where-Object { $_.Name -like "*$query*" } | Sort-Object Name
+            if ($matched.Count -eq 0) {
+                Write-Host "`n[AVISO] Nenhum mapa encontrado com o termo '$query'." -ForegroundColor Yellow
+                Start-Sleep -Seconds 2
+                continue
+            }
+            $chosen = Show-MapList -List $matched -Title "Resultados da Busca por '$query'"
+            if ($chosen) { return $chosen }
+        }
+        elseif ($subOpt -eq "7") {
+            # Listar Todos
+            $sortedAll = $Maps | Sort-Object Name
+            $chosen = Show-MapList -List $sortedAll -Title "Todos os 145 Mapas Oficiais"
+            if ($chosen) { return $chosen }
+        }
+    }
+}
+
+function Show-MapList {
+    param([array]$List, [string]$Title)
+    if ($List.Count -eq 0) { return $null }
+    Write-Header
+    Write-Host "$Title (Total: $($List.Count)):" -ForegroundColor Yellow
+    Write-Host "------------------------------------------------------------------------------" -ForegroundColor DarkGray
+
+    for ($i = 0; $i -lt $List.Count; $i++) {
+        $idx = $i + 1
+        $m = $List[$i]
+        $padIdx = "$idx".PadLeft(3)
+        $padName = "$($m.Name)".PadRight(32)
+        Write-Host " [$padIdx] $padName (ID: $($m.Id))" -ForegroundColor Cyan
+    }
+    Write-Host " [  0] Voltar" -ForegroundColor Red
+    Write-Host "------------------------------------------------------------------------------" -ForegroundColor DarkGray
+
+    $selection = Read-Host "Selecione o mapa (1-$($List.Count)) ou 0 para voltar"
+    if ($selection -eq "0" -or [string]::IsNullOrWhiteSpace($selection)) {
+        return $null
+    }
+    $num = [int]$selection
+    if ($num -ge 1 -and $num -le $List.Count) {
+        return $List[$num - 1]
+    }
+    return $null
+}
+
+# 3. Menu Interativo Principal (caso nao tenha passado por parametro)
 if ([string]::IsNullOrWhiteSpace($TargetSubDir)) {
+    $allMaps = Get-WorldMaps -ProjectRoot $projectRoot
+
     while ($true) {
         Write-Header
         Write-Host "SELECIONE A CATEGORIA DE CAPTURA QUE DESEJA GRAVAR:" -ForegroundColor White
         Write-Host "------------------------------------------------------------------------------" -ForegroundColor DarkGray
         Write-Host " [1]  01_Login_World              - Login e Entrada no Mundo (Elyos / Asmodians)" -ForegroundColor Cyan
-        Write-Host " [2]  02_Character_Creation       - Criacao de Personagem (Classes / Aparência)" -ForegroundColor White
+        Write-Host " [2]  02_Character_Creation       - Criacao de Personagem (Classes / Aparencia)" -ForegroundColor White
         Write-Host " [3]  03_Tutorial - ELYOS         - Tutorial Inicial Elyos (13 Classes + Deslogue)" -ForegroundColor Yellow
         Write-Host " [4]  03_Tutorial - ASMODIANS     - Tutorial Inicial Asmodians (13 Classes + Deslogue)" -ForegroundColor Yellow
         Write-Host " [5]  04_Realizando_Missoes       - Campanhas, Quests, Locate/Teleport e NPCs" -ForegroundColor Blue
         Write-Host " [6]  05_Combate_Skills           - Rotacoes, Habilidades e Combate" -ForegroundColor Magenta
-        Write-Host " [7]  06_Sistemas_Novos_5.0       - Instancias, Daeva Pass e Sistemas 5.0" -ForegroundColor Green
-        Write-Host " [8]  07_Deletar_Char_Voltar_Lobby- Deletar Personagem e Voltar pra Tela de Servidores" -ForegroundColor Red
-        Write-Host " [9]  Digitar Nome / Pasta Personalizada" -ForegroundColor DarkYellow
+        Write-Host " [7]  06_Sistemas_Novos_5.0       - Instancias, Daeva Pass e Sistemas 5.0" -ForegroundColor DarkGreen
+        Write-Host " [8]  08_Spawns_Mapas             - Coleta de Spawns de Monstros/NPCs (145 Mapas)" -ForegroundColor Green -BackgroundColor Black
+        Write-Host " [9]  07_Deletar_Char_Voltar_Lobby- Deletar Personagem e Voltar pra Tela de Servidores" -ForegroundColor Red
+        Write-Host " [10] Digitar Nome / Pasta Personalizada" -ForegroundColor DarkYellow
         Write-Host " [0]  Sair" -ForegroundColor Red
         Write-Host "------------------------------------------------------------------------------" -ForegroundColor DarkGray
 
-        $catChoice = Read-Host "Digite a categoria desejada (0-9) [Padrao: 3]"
-        if ([string]::IsNullOrWhiteSpace($catChoice)) { $catChoice = "3" }
+        $catChoice = Read-Host "Digite a categoria desejada (0-10) [Padrao: 8]"
+        if ([string]::IsNullOrWhiteSpace($catChoice)) { $catChoice = "8" }
 
         if ($catChoice -eq "0") {
             Write-Host "Operacao cancelada pelo usuario." -ForegroundColor Yellow
@@ -230,6 +372,14 @@ if ([string]::IsNullOrWhiteSpace($TargetSubDir)) {
         }
 
         if ($catChoice -eq "8") {
+            # 08_Spawns_Mapas - Menu de Mapas
+            $selectedMapObj = Select-SpawnMap -Maps $allMaps
+            if (-not $selectedMapObj) { continue }
+            $TargetSubDir = "08_Spawns_Mapas\$($selectedMapObj.Name)"
+            break
+        }
+
+        if ($catChoice -eq "9") {
             Write-Header
             Write-Host "07_Deletar_Personagem_Voltar_Servidores - Selecione a Raca:" -ForegroundColor Red
             Write-Host " [1] Elyos" -ForegroundColor Cyan
@@ -241,8 +391,8 @@ if ([string]::IsNullOrWhiteSpace($TargetSubDir)) {
             else { $TargetSubDir = "07_Deletar_Personagem_Voltar_Servidores\Elyos"; break }
         }
 
-        if ($catChoice -eq "9") {
-            $custom = Read-Host "Digite o caminho relativo da pasta (ex: 03_Tutorial\Elyos\01_Soul_Reaper)"
+        if ($catChoice -eq "10") {
+            $custom = Read-Host "Digite o caminho relativo da pasta (ex: 08_Spawns_Mapas\Poeta)"
             if ([string]::IsNullOrWhiteSpace($custom)) { $custom = "Outros" }
             $TargetSubDir = $custom
             break
@@ -252,7 +402,7 @@ if ([string]::IsNullOrWhiteSpace($TargetSubDir)) {
 
 # 4. Preparar Diretorio e Nome de Arquivo
 $fullSaveDir = Join-Path $baseDir $TargetSubDir
-if (-not (Test-Path $fullSaveDir)) {
+if (-not (Test-Path -LiteralPath $fullSaveDir)) {
     New-Item -ItemType Directory -Path $fullSaveDir -Force | Out-Null
 }
 
@@ -266,7 +416,7 @@ Write-Header
 Write-Host "==============================================================================" -ForegroundColor Green
 Write-Host "                   CONFIGURACAO DA SESSAO DE GRAVACAO                         " -ForegroundColor White
 Write-Host "==============================================================================" -ForegroundColor Green
-Write-Host "  * Modulo Selecionado : $TargetSubDir" -ForegroundColor Cyan
+Write-Host "  * Modulo / Mapa      : $TargetSubDir" -ForegroundColor Cyan
 Write-Host "  * Pasta de Gravacao  : $fullSaveDir" -ForegroundColor Cyan
 Write-Host "  * Prefixo do Arquivo : $pcapFileName" -ForegroundColor Cyan
 Write-Host "  * Divisao de Arquivo : Maximo de ${MaxFileMB} MB por chunk (.pcapng)" -ForegroundColor Yellow
@@ -275,6 +425,7 @@ Write-Host "====================================================================
 Write-Host ""
 Write-Host "  >>> [o] GRAVANDO TRAFEGO DE REDE EM TEMPO REAL... <<<" -ForegroundColor Yellow -BackgroundColor Black
 Write-Host "  >>> Abra o Aion Classic 5.0 oficial e jogue normalmente. <<<" -ForegroundColor White
+Write-Host "  >>> Se for coletar spawns, relogue ou entre no mapa com o gravador ativo. <<<" -ForegroundColor Cyan
 Write-Host "  >>> Para FINALIZAR a gravacao, pressione [Ctrl + C] nesta janela. <<<" -ForegroundColor Red -BackgroundColor Black
 Write-Host ""
 
@@ -292,7 +443,7 @@ Write-Host "====================================================================
 Write-Host "Arquivos salvos em: $fullSaveDir" -ForegroundColor Cyan
 Write-Host ""
 
-$generatedFiles = Get-ChildItem -Path $fullSaveDir -Filter "*.pcapng" | Sort-Object LastWriteTime -Descending | Select-Object -First 5
+$generatedFiles = Get-ChildItem -LiteralPath $fullSaveDir -Filter "*.pcapng" | Sort-Object LastWriteTime -Descending | Select-Object -First 5
 if ($generatedFiles) {
     foreach ($file in $generatedFiles) {
         $sizeMB = [math]::Round($file.Length / 1MB, 2)
@@ -302,11 +453,30 @@ if ($generatedFiles) {
     Write-Host "  [AVISO] Nenhum pacote foi capturado nos filtros especificados durante esta sessao." -ForegroundColor Yellow
 }
 
-Write-Host ""
-Write-Host "Dica de Analise: Para decodificar e listar os opcodes desta captura:" -ForegroundColor White
-if ($generatedFiles -and $generatedFiles.Count -gt 0) {
-    $latest = $generatedFiles[0].FullName
-    Write-Host "  python ""6 - Ferramentas\aion_pcap.py"" ""$latest"" --opcodes" -ForegroundColor Yellow
+# 6. Extracao Automatica de Spawns se gravou em 08_Spawns_Mapas
+if ($TargetSubDir -like "08_Spawns_Mapas*" -and $generatedFiles -and $generatedFiles.Count -gt 0) {
+    Write-Host ""
+    Write-Host "==============================================================================" -ForegroundColor Green
+    Write-Host "                EXTRACAO AUTOMATICA DE SPAWNS DE NPCS / MOBS                  " -ForegroundColor White
+    Write-Host "==============================================================================" -ForegroundColor Green
+    $runExtract = Read-Host "Deseja processar esta gravacao e extrair os Spawns para XML e CSV agora? (S/N) [Padrao: S]"
+    if ([string]::IsNullOrWhiteSpace($runExtract) -or $runExtract -match "^[sSyY]") {
+        $extractorPy = Join-Path $projectRoot "6 - Ferramentas\extract_spawns_from_pcap.py"
+        if (Test-Path -LiteralPath $extractorPy) {
+            $latestFile = $generatedFiles[0].FullName
+            Write-Host "`n[*] Executando extrator oficial de spawns..." -ForegroundColor Cyan
+            python $extractorPy $latestFile
+        } else {
+            Write-Host "[AVISO] Extrator nao encontrado em $extractorPy" -ForegroundColor Yellow
+        }
+    }
+} else {
+    Write-Host ""
+    Write-Host "Dica de Analise: Para decodificar e listar os opcodes desta captura:" -ForegroundColor White
+    if ($generatedFiles -and $generatedFiles.Count -gt 0) {
+        $latest = $generatedFiles[0].FullName
+        Write-Host "  python ""6 - Ferramentas\aion_pcap.py"" ""$latest"" --opcodes" -ForegroundColor Yellow
+    }
 }
 
 Write-Host ""
