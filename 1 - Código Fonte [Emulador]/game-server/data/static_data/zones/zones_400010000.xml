@@ -1,31 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <zones>
-    <zone mapid="400010000" name="AB1_1011_CASTLE_AREA_400010000" siege_id="1011" area_type="POLYGON" zone_type="FORT">
-        <points bottom="2110.4504" top="2550.4504">
-            <point x="1990.2394" y="2002.6202"/>
-            <point x="1972.344" y="1931.2152"/>
-            <point x="2004.3729" y="1833.646"/>
-            <point x="2007.7826" y="1775.4425"/>
-            <point x="2069.736" y="1746.3519"/>
-            <point x="2117.0566" y="1755.2002"/>
-            <point x="2164.4163" y="1724.5178"/>
-            <point x="2197.982" y="1759.7538"/>
-            <point x="2243.139" y="1774.0903"/>
-            <point x="2253.5632" y="1795.503"/>
-            <point x="2292.8345" y="1863.7074"/>
-            <point x="2301.2603" y="1933.9136"/>
-            <point x="2278.0706" y="2014.8662"/>
-            <point x="2246.492" y="2054.9243"/>
-            <point x="2219.672" y="2092.6409"/>
-            <point x="2204.576" y="2119.0159"/>
-            <point x="2191.2505" y="2133.7117"/>
-            <point x="2180.6646" y="2139.6782"/>
-            <point x="2119.6265" y="2153.124"/>
-            <point x="2075.3389" y="2105.9998"/>
-            <point x="2068.876" y="2090.2834"/>
-            <point x="2023.7756" y="2058.0593"/>
-        </points>
-    </zone>
     <zone mapid="400010000" name="AB1_1011_LIMITAREA_ALL_400010000" area_type="POLYGON" zone_type="LIMIT" priority="16" flags="60">
         <points bottom="2266.8096" top="2466.8096">
             <point x="2005.7628" y="1868.1318"/>
@@ -62,35 +36,6 @@
             <point x="1108.415" y="2520.8438"/>
         </points>
     </zone>
-    <zone mapid="400010000" name="AB1_1131_CASTLE_AREA_400010000" siege_id="1131" area_type="POLYGON" zone_type="FORT">
-        <points bottom="1212.509" top="1712.509">
-            <point x="2602.75" y="2551.88"/>
-            <point x="2586.125" y="2636.13"/>
-            <point x="2656.75" y="2664.13"/>
-            <point x="2702.5" y="2671.505"/>
-            <point x="2728.5" y="2691.255"/>
-            <point x="2758.75" y="2755.63"/>
-            <point x="2801.5" y="2764.63"/>
-            <point x="2856.5" y="2745.63"/>
-            <point x="2956.25" y="2750.005"/>
-            <point x="3011.75" y="2751.38"/>
-            <point x="3084.5" y="2791.13"/>
-            <point x="3177.75" y="2812.255"/>
-            <point x="3310.25" y="2674.005"/>
-            <point x="3376.375" y="2550.88"/>
-            <point x="3340.625" y="2512.505"/>
-            <point x="3255.375" y="2551.63"/>
-            <point x="3226.125" y="2527.88"/>
-            <point x="3254.375" y="2404.755"/>
-            <point x="3213.5" y="2372.63"/>
-            <point x="3101.375" y="2447.505"/>
-            <point x="3029.0" y="2386.505"/>
-            <point x="2915.0" y="2338.255"/>
-            <point x="2770.75" y="2364.38"/>
-            <point x="2641.25" y="2446.38"/>
-            <point x="2635.375" y="2540.505"/>
-        </points>
-    </zone>
     <zone mapid="400010000" name="AB1_1131_LIMITAREALIMIT_RECALL_400010000" area_type="POLYGON" zone_type="LIMIT" priority="16" flags="60">
         <points bottom="1433.4208" top="1633.4208">
             <point x="2719.7932" y="2550.792"/>
@@ -113,30 +58,6 @@
             <point x="2867.203" y="2574.055"/>
             <point x="2819.6643" y="2532.0442"/>
             <point x="2756.648" y="2533.1497"/>
-        </points>
-    </zone>
-    <zone mapid="400010000" name="AB1_1132_CASTLE_AREA_400010000" siege_id="1132" area_type="POLYGON" zone_type="FORT">
-        <points bottom="1150.0" top="1800.0">
-            <point x="2566.75" y="2668.12"/>
-            <point x="2663.625" y="2745.87"/>
-            <point x="2741.375" y="2738.995"/>
-            <point x="2755.0" y="2768.995"/>
-            <point x="2742.75" y="2834.495"/>
-            <point x="2801.375" y="2928.62"/>
-            <point x="2836.875" y="3009.12"/>
-            <point x="2903.625" y="3036.37"/>
-            <point x="2924.125" y="3118.245"/>
-            <point x="2777.125" y="3365.62"/>
-            <point x="2712.625" y="3472.995"/>
-            <point x="2673.125" y="3346.12"/>
-            <point x="2519.0" y="3341.995"/>
-            <point x="2521.75" y="3243.745"/>
-            <point x="2424.875" y="3198.745"/>
-            <point x="2448.0" y="3103.245"/>
-            <point x="2349.125" y="3069.495"/>
-            <point x="2421.375" y="2911.245"/>
-            <point x="2407.75" y="2744.745"/>
-            <point x="2522.375" y="2731.12"/>
         </points>
     </zone>
     <zone mapid="400010000" name="AB1_1132_LIMITAREA_NOBIND_400010000" area_type="POLYGON" zone_type="LIMIT" priority="15" flags="60">
@@ -193,21 +114,6 @@
             <point x="1575.0654" y="2902.8064"/>
         </points>
     </zone>
-    <zone mapid="400010000" name="AB1_1141_CASTLE_AREA_400010000" siege_id="1141" area_type="POLYGON" zone_type="FORT">
-        <points bottom="1115.1598" top="1665.1598">
-            <point x="1252.4897" y="1107.2762"/>
-            <point x="1254.2534" y="1157.6914"/>
-            <point x="1247.6968" y="1216.0922"/>
-            <point x="1261.2104" y="1276.8662"/>
-            <point x="1355.9941" y="1320.6952"/>
-            <point x="1430.6248" y="1307.0682"/>
-            <point x="1498.8964" y="1277.8418"/>
-            <point x="1519.8766" y="1209.6356"/>
-            <point x="1508.099" y="1134.5634"/>
-            <point x="1438.0222" y="1025.5356"/>
-            <point x="1303.8364" y="1077.4142"/>
-        </points>
-    </zone>
     <zone mapid="400010000" name="AB1_1141_LIMITAREA_NOBIND_400010000" area_type="POLYGON" zone_type="LIMIT" priority="15" flags="60">
         <points bottom="1466.0618" top="1499.0618">
             <point x="1362.2423" y="1200.6101"/>
@@ -260,25 +166,6 @@
             <point x="2169.1572" y="637.88776"/>
             <point x="2115.46" y="574.12225"/>
             <point x="2087.4927" y="574.12225"/>
-        </points>
-    </zone>
-    <zone mapid="400010000" name="AB1_1211_CASTLE_AREA_400010000" siege_id="1211" area_type="POLYGON" zone_type="FORT">
-        <points bottom="2680.0" top="3080.0">
-            <point x="2794.63" y="526.07"/>
-            <point x="2747.1692" y="454.38748"/>
-            <point x="2660.3167" y="447.8124"/>
-            <point x="2549.0261" y="500.4355"/>
-            <point x="2500.6118" y="583.8482"/>
-            <point x="2501.8806" y="700.1504"/>
-            <point x="2534.6328" y="773.46014"/>
-            <point x="2518.731" y="865.3299"/>
-            <point x="2540.1282" y="909.5615"/>
-            <point x="2685.923" y="950.557"/>
-            <point x="2812.007" y="881.23047"/>
-            <point x="2853.964" y="853.0077"/>
-            <point x="2858.3074" y="797.6905"/>
-            <point x="2886.3193" y="760.9802"/>
-            <point x="2879.8467" y="666.2034"/>
         </points>
     </zone>
     <zone mapid="400010000" name="AB1_1211_LIMITAREA_NOBIND_400010000" area_type="POLYGON" zone_type="LIMIT" priority="15" flags="60">
@@ -341,17 +228,6 @@
             <point x="2059.111" y="623.1639"/>
         </points>
     </zone>
-    <zone mapid="400010000" name="AB1_1221_CASTLE_AREA_400010000" siege_id="1221" area_type="POLYGON" zone_type="FORT">
-        <points bottom="2751.084" top="3151.084">
-            <point x="1852.1876" y="1323.0392"/>
-            <point x="1955.387" y="1124.5791"/>
-            <point x="2048.6633" y="1069.0103"/>
-            <point x="2187.5854" y="1198.0093"/>
-            <point x="2187.5854" y="1400.4387"/>
-            <point x="2078.4324" y="1465.9305"/>
-            <point x="1957.3716" y="1442.1154"/>
-        </points>
-    </zone>
     <zone mapid="400010000" name="AB1_1221_LIMITAREA_NOBIND_400010000" area_type="POLYGON" zone_type="LIMIT" priority="15" flags="60">
         <points bottom="2914.8188" top="2947.8188">
             <point x="2058.7134" y="1266.8035"/>
@@ -399,17 +275,6 @@
             <point x="2036.4896" y="1168.9733"/>
         </points>
     </zone>
-    <zone mapid="400010000" name="AB1_1231_CASTLE_AREA_400010000" siege_id="1231" area_type="POLYGON" zone_type="FORT">
-        <points bottom="2820.0" top="3220.0">
-            <point x="2373.34" y="2205.69"/>
-            <point x="2353.0645" y="2082.193"/>
-            <point x="2440.6182" y="1975.2854"/>
-            <point x="2556.7422" y="1982.6583"/>
-            <point x="2659.9634" y="2105.2336"/>
-            <point x="2615.7256" y="2226.8872"/>
-            <point x="2494.072" y="2275.7332"/>
-        </points>
-    </zone>
     <zone mapid="400010000" name="AB1_1231_LIMITAREA_NOBIND_400010000" area_type="POLYGON" zone_type="LIMIT" priority="15" flags="60">
         <points bottom="3001.1914" top="3034.1914">
             <point x="2464.8577" y="2136.4897"/>
@@ -449,17 +314,6 @@
             <point x="2593.8442" y="2097.3733"/>
             <point x="2549.963" y="2031.0505"/>
             <point x="2481.627" y="2019.7838"/>
-        </points>
-    </zone>
-    <zone mapid="400010000" name="AB1_1241_CASTLE_SAREA_400010000" siege_id="1241" area_type="POLYGON" zone_type="FORT">
-        <points bottom="2760.0" top="3110.0">
-            <point x="1665.76" y="2332.14"/>
-            <point x="1675.3617" y="2242.1245"/>
-            <point x="1753.375" y="2188.1155"/>
-            <point x="1827.7877" y="2176.1133"/>
-            <point x="1898.5999" y="2273.3298"/>
-            <point x="1866.1943" y="2372.947"/>
-            <point x="1764.1769" y="2404.1523"/>
         </points>
     </zone>
     <zone mapid="400010000" name="AB1_1241_LIMITAREA_NOBIND_400010000" area_type="POLYGON" zone_type="LIMIT" priority="15" flags="60">
@@ -502,18 +356,6 @@
             <point x="1878.3945" y="2256.2"/>
             <point x="1833.154" y="2200.188"/>
             <point x="1757.7534" y="2191.5708"/>
-        </points>
-    </zone>
-    <zone mapid="400010000" name="AB1_1251_CASTLE_AREA_400010000" siege_id="1251" area_type="POLYGON" zone_type="FORT">
-        <points bottom="2580.5" top="3160.5">
-            <point x="669.49" y="3060.12"/>
-            <point x="623.74634" y="3015.3708"/>
-            <point x="643.6349" y="2918.9114"/>
-            <point x="692.3618" y="2875.1565"/>
-            <point x="781.8603" y="2880.1287"/>
-            <point x="815.67084" y="2923.8835"/>
-            <point x="804.7321" y="3001.4487"/>
-            <point x="736.11664" y="3059.1257"/>
         </points>
     </zone>
     <zone mapid="400010000" name="AB1_1251_LIMITAREA_NOBIND_400010000" area_type="POLYGON" zone_type="LIMIT" priority="15" flags="60">

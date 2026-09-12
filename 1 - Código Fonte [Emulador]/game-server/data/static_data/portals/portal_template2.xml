@@ -215,19 +215,19 @@
 	</portal_use>
 	<!-- Left Wing Chamber Elyos Entrance -->
 	<portal_use npc_id="700454">
-		<portal_path loc_id="3000800" race="ELYOS" siege_id="1131" />
+		<portal_path loc_id="3000800" race="ELYOS" />
 	</portal_use>
 	<!-- Left Wing Chamber Asmodians Entrance -->
 	<portal_use npc_id="700530">
-		<portal_path loc_id="3000800" race="ASMODIANS" siege_id="1131" />
+		<portal_path loc_id="3000800" race="ASMODIANS" />
 	</portal_use>
 	<!-- Right Wing Chamber Elyos Entrance -->
 	<portal_use npc_id="700456">
-		<portal_path loc_id="3000900" race="ELYOS" siege_id="1132" />
+		<portal_path loc_id="3000900" race="ELYOS" />
 	</portal_use>
 	<!-- Right Wing Chamber Asmodians Entrance -->
 	<portal_use npc_id="700531">
-		<portal_path loc_id="3000900" race="ASMODIANS" siege_id="1132" />
+		<portal_path loc_id="3000900" race="ASMODIANS" />
 	</portal_use>
 	<!-- Right Wing Chamber Exit -->
 	<portal_use npc_id="700457">
@@ -235,11 +235,11 @@
 	</portal_use>
 	<!-- Sulfur Tree Nest Elyos Entrance -->
 	<portal_use npc_id="700452">
-		<portal_path loc_id="3000600" race="ELYOS" siege_id="1141" />
+		<portal_path loc_id="3000600" race="ELYOS" />
 	</portal_use>
 	<!-- Sulfur Tree Nest Asmodians Entrance -->
 	<portal_use npc_id="700529">
-		<portal_path loc_id="3000600" race="ASMODIANS" siege_id="1141" />
+		<portal_path loc_id="3000600" race="ASMODIANS" />
 	</portal_use>
 	<!-- Sulfur Tree Nest Exit -->
 	<portal_use npc_id="700453">
@@ -247,11 +247,11 @@
 	</portal_use>
 	<!-- Chamber Of Roah Elyos Entrance -->
 	<portal_use npc_id="700479">
-		<portal_path loc_id="3000700" race="ELYOS" siege_id="1211" />
+		<portal_path loc_id="3000700" race="ELYOS" />
 	</portal_use>
 	<!-- Chamber Of Roah Asmodians Entrance -->
 	<portal_use npc_id="700532">
-		<portal_path loc_id="3000700" race="ASMODIANS" siege_id="1211" />
+		<portal_path loc_id="3000700" race="ASMODIANS" />
 	</portal_use>
 	<!-- Chamber Of Roah Exit -->
 	<portal_use npc_id="700480">
@@ -271,11 +271,11 @@
 	</portal_use>
 	<!-- Asteria Chamber Elyos Entrance -->
 	<portal_use npc_id="700460">
-		<portal_path loc_id="3000500" race="ELYOS" siege_id="1251" />
+		<portal_path loc_id="3000500" race="ELYOS" />
 	</portal_use>
 	<!-- Asteria Chamber Asmodians Entrance -->
 	<portal_use npc_id="700533">
-		<portal_path loc_id="3000500" race="ASMODIANS" siege_id="1251" />
+		<portal_path loc_id="3000500" race="ASMODIANS" />
 	</portal_use>
 	<!-- Asteria Chamber Exit -->
 	<portal_use npc_id="700461">
@@ -1255,10 +1255,10 @@
 	<!-- Unstable Splinterpath -->
 	<!-- Abyssal Splinter Entrance -->
 	<portal_dialog npc_id="730316">
-		<portal_path dialog="10000" loc_id="3002200" siege_id="1011" race="ELYOS" />
+		<portal_path dialog="10000" loc_id="3002200" race="ELYOS" />
 	</portal_dialog>
 	<portal_dialog npc_id="730356">
-		<portal_path dialog="10000" loc_id="3002200" siege_id="1011" race="ASMODIANS" />
+		<portal_path dialog="10000" loc_id="3002200" race="ASMODIANS" />
 	</portal_dialog>
 	<!-- Nightmare Circus Entrances -->
 	<!-- Saia (Pandaemonium) -->

@@ -24,40 +24,6 @@
             <point x="1438.86" y="1229.8726"/>
         </points>
     </zone>
-    <zone mapid="210050000" name="ABYSS_CASTLE_AREA_2011_210050000" siege_id="2011" area_type="POLYGON" zone_type="FORT" flags="55">
-        <points bottom="268.39053" top="418.39053">
-            <point x="1657.869" y="2043.565"/>
-            <point x="1684.884" y="2036.0708"/>
-            <point x="1728.2899" y="2027.779"/>
-            <point x="1767.7334" y="2028.0455"/>
-            <point x="1797.4248" y="2033.6124"/>
-            <point x="1824.1481" y="2050.2864"/>
-            <point x="1860.801" y="2100.3184"/>
-            <point x="1877.1542" y="2144.6125"/>
-            <point x="1891.2626" y="2215.1099"/>
-            <point x="1802.853" y="2366.877"/>
-            <point x="1623.1838" y="2281.8186"/>
-            <point x="1607.159" y="2190.6501"/>
-            <point x="1620.2245" y="2098.7625"/>
-        </points>
-    </zone>
-    <zone mapid="210050000" name="ABYSS_CASTLE_AREA_2021_210050000" siege_id="2021" area_type="POLYGON" zone_type="FORT" flags="55">
-        <points bottom="299.64825" top="379.64825">
-            <point x="736.8055" y="1885.9633"/>
-            <point x="743.94574" y="1838.8848"/>
-            <point x="789.84033" y="1784.0238"/>
-            <point x="809.9607" y="1774.474"/>
-            <point x="876.09436" y="1778.4288"/>
-            <point x="913.1543" y="1815.2098"/>
-            <point x="938.5024" y="1867.3773"/>
-            <point x="963.69836" y="1957.4031"/>
-            <point x="952.62286" y="2021.2411"/>
-            <point x="876.1232" y="2057.6326"/>
-            <point x="818.77075" y="2028.1112"/>
-            <point x="746.7958" y="1986.4537"/>
-            <point x="729.31146" y="1925.3813"/>
-        </points>
-    </zone>
     <zone mapid="210050000" name="ABYSS_CASTLE_AREA_2111_210050000" siege_id="2111" area_type="POLYGON" zone_type="FORT" flags="55">
         <points bottom="362.54324" top="462.54324">
             <point x="932.516" y="1491.2137"/>

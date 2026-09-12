@@ -1,34 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <zones>
-    <zone mapid="220070000" name="ABYSS_CASTLE_AREA_3011_220070000" siege_id="3011" area_type="POLYGON" zone_type="FORT" flags="55">
-        <points bottom="264.8648" top="464.8648">
-            <point x="1078.1573" y="799.89386"/>
-            <point x="1078.6666" y="922.461"/>
-            <point x="1102.6201" y="998.4922"/>
-            <point x="1170.6099" y="1026.7874"/>
-            <point x="1231.1979" y="1028.0571"/>
-            <point x="1320.4701" y="968.7539"/>
-            <point x="1338.996" y="910.82416"/>
-            <point x="1325.9385" y="784.0504"/>
-            <point x="1198.7515" y="705.3204"/>
-            <point x="1114.6034" y="727.1176"/>
-        </points>
-    </zone>
-    <zone mapid="220070000" name="ABYSS_CASTLE_AREA_3021_220070000" siege_id="3021" area_type="POLYGON" zone_type="FORT" flags="55">
-        <points bottom="307.25336" top="427.25336">
-            <point x="1733.8046" y="1031.4283"/>
-            <point x="1739.2461" y="1191.9775"/>
-            <point x="1852.5396" y="1254.6195"/>
-            <point x="1856.1198" y="1277.8215"/>
-            <point x="1906.3423" y="1277.8058"/>
-            <point x="1906.7439" y="1251.0059"/>
-            <point x="1978.4485" y="1224.1185"/>
-            <point x="1995.8868" y="1187.3137"/>
-            <point x="1989.7242" y="1039.6162"/>
-            <point x="1963.4618" y="975.54474"/>
-            <point x="1853.9362" y="951.9162"/>
-        </points>
-    </zone>
     <zone mapid="220070000" name="ABYSS_CASTLE_AREA_3111_220070000" siege_id="3111" area_type="POLYGON" zone_type="FORT" flags="55">
         <points bottom="373.27808" top="453.27808">
             <point x="1669.7885" y="1840.3186"/>

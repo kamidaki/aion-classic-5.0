@@ -5,7 +5,7 @@
 	<xs:element name="siege_schedule" type="siegeSchedule"/>
 	<xs:complexType name="siegeSchedule">
 		<xs:sequence>
-			<xs:choice maxOccurs="unbounded">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="fortress" minOccurs="1" maxOccurs="unbounded"/>
 				<xs:element ref="agent_fight" minOccurs="1" maxOccurs="unbounded"/>
 			</xs:choice>
