@@ -28,9 +28,11 @@ public class OptionClearData {
 
 	void afterUnmarshal(Unmarshaller u, Object parent) {
 		templatesByStoneId.clear();
-		for (OptionClearTemplate template : templates)
-			templatesByStoneId.put(template.getItemId(), template);
-		templates = null;
+		if (templates != null) { // um arquivo sem nenhuma regra e valido para o JAXB e nao pode derrubar o boot
+			for (OptionClearTemplate template : templates)
+				templatesByStoneId.put(template.getItemId(), template);
+			templates = null;
+		}
 	}
 
 	public int size() {

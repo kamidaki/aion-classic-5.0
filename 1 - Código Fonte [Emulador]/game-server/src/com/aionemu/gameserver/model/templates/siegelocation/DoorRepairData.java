@@ -24,10 +24,14 @@ public class DoorRepairData {
     private Map<Integer, DoorRepairStone> doorRepairStones = new HashMap<>();
 
     void afterUnmarshal(Unmarshaller u, Object parent) {
-        for (DoorRepairStone repairStone : doorRepairTemplates) {
-            doorRepairStones.put(repairStone.staticId, repairStone);
+        // door_repair_stone e minOccurs="0" no xsd: uma fortaleza pode declarar o custo de reparo sem ter
+        // pedra de reparo mapeada ainda. Sem esta guarda o servidor nao sobe, com NPE no carregamento.
+        if (doorRepairTemplates != null) {
+            for (DoorRepairStone repairStone : doorRepairTemplates) {
+                doorRepairStones.put(repairStone.staticId, repairStone);
+            }
+            doorRepairTemplates = null;
         }
-        doorRepairTemplates = null;
     }
 
     public int getItemId() {

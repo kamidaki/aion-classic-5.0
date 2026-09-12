@@ -60,41 +60,55 @@ public class SummonGameStats extends CreatureGameStats<Summon> {
 			case PARALYZE_RESISTANCE:
 			case SLEEP_RESISTANCE:
 			case POISON_RESISTANCE:
-				if ("lava spirit".equals(owner.getObjectTemplate().getName()) || "tempest spirit".equals(owner.getObjectTemplate().getName())) {
+				if (isMagmaSpirit() || isSpirit("tempest")) {
 					stat.addToBase(100);
 				}
 				break;
 			case EARTH_RESISTANCE:
-				if ("lava spirit".equals(owner.getObjectTemplate().getName())) {
+				if (isMagmaSpirit()) {
 					stat.addToBase(200);
-				} else if ("wind spirit".equals(owner.getObjectTemplate().getName())) {
+				} else if (isSpirit("wind")) {
 					stat.addToBase(-200);
 				}
 				break;
 			case FIRE_RESISTANCE:
-				if ("lava spirit".equals(owner.getObjectTemplate().getName())) {
+				if (isMagmaSpirit()) {
 					stat.addToBase(200);
-				} else if ("water spirit".equals(owner.getObjectTemplate().getName())) {
+				} else if (isSpirit("water")) {
 					stat.addToBase(-200);
 				}
 				break;
 			case WIND_RESISTANCE:
-				if ("tempest spirit".equals(owner.getObjectTemplate().getName())) {
+				if (isSpirit("tempest")) {
 					stat.addToBase(200);
-				} else if ("earth spirit".equals(owner.getObjectTemplate().getName())) {
+				} else if (isSpirit("earth")) {
 					stat.addToBase(-200);
 				}
 				break;
 			case WATER_RESISTANCE:
-				if ("tempest spirit".equals(owner.getObjectTemplate().getName())) {
+				if (isSpirit("tempest")) {
 					stat.addToBase(200);
-				} else if ("fire spirit".equals(owner.getObjectTemplate().getName())) {
+				} else if (isSpirit("fire")) {
 					stat.addToBase(-200);
 				}
 				break;
 
 		}
 		return stat;
+	}
+
+	/**
+	 * Elemental spirits are told apart by name, which is the only thing that distinguishes them. The 5.0 client renamed
+	 * them to title case, so the comparison ignores case.
+	 */
+	private boolean isSpirit(String element) {
+		String name = owner.getObjectTemplate().getName();
+		return name != null && name.equalsIgnoreCase(element + " spirit");
+	}
+
+	/** The lava spirit of the 4.8 data is the magma spirit of the 5.0 client. */
+	private boolean isMagmaSpirit() {
+		return isSpirit("magma") || isSpirit("lava");
 	}
 
 	private Stat2 getStatWithBonusRate(StatEnum statEnum, Stat2 stat, float bonusRate) {
