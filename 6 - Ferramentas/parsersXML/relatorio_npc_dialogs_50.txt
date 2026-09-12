@@ -1,0 +1,389 @@
+func_dialogs canonizado pelo cliente 5.0. As regras reproduzem 29886 de 30240 (98.8%) do gabarito
+-- os npcs cujo id nao mudou de dono --, que e de onde elas saem.
+
+1838 npcs mudam, 195 deles ganham um talk_info que nao existia.
+
+ posto  tirado  saldo  codigo
+   425    581   -156  2
+   310    417   -107  3
+    14     31    -17  4
+    27    101    -74  26
+    48     74    -26  35
+     2      0     +2  41
+     9      5     +4  42
+     6      0     +6  43
+    45    125    -80  44
+     5      0     +5  45
+    12      0    +12  46
+     5      0     +5  47
+     9     36    -27  53
+    16      4    +12  63
+     1      0     +1  66
+     1      0     +1  67
+     8     32    -24  75
+     8     32    -24  76
+    59     52     +7  78
+    16    137   -121  103
+    14     31    -17  125
+
+15 npcs perderam o voo (44) e continuam no npc_teleporter.xml, que ainda e 4.8:
+a rota deles fica pendurada em NPC que nao voa mais. 205847 800245 800395 800396 800397 800398 800399 802443 802444 802445 802446 802447 802448 804486 804487
+
+1484 das mudancas sao em npc cujo id mudou de dono na 5.0 (o menu era do NPC antigo);
+354 sao em npc de identidade preservada, que e onde vale olhar duas vezes:
+
+  npc_id  nome                      antes                   depois
+  203065  melampus                  -                       35
+  203081  oz                        -                       2 3
+  203082  tula                      -                       2 3
+  203161  eninte                    -                       2 3
+  203200  weapon emporium           -                       2 3
+  203204  test give proc            -                       41
+  203205  test remove option        -                       42
+  203206  test change skin          -                       43
+  203208  test ground collecting e  -                       45
+  203209  test air collecting expe  -                       45
+  203210  test armorsmith expert    -                       46
+  203211  test weaponsmith expert   -                       46
+  203212  test cooking expert       -                       46
+  203213  test tailoring expert     -                       46
+  203214  test handicrafting maste  -                       46
+  203215  test alchemy expert       -                       46
+  203218  test cube upgrade level   -                       47
+  203219  test cube upgrade level   -                       47
+  203221  rebecca3 private warehou  -                       26
+  203224  cloth, leather emporium   -                       2 3
+  203225  chain, plate emporium     -                       2 3
+  203226  weapon emporium           -                       2 3
+  203227  cloth, leather emporium   -                       2 3
+  203228  chain, plate emporium     -                       2 3
+  203230  test soul healer          -                       35
+  203232  test remodel merchant     -                       41 42 43
+  203233  test teleport             -                       44
+  203234  collecting material empo  -                       2 3
+  203235  crafting parts emporium   -                       2 3
+  203236  collecting material empo  -                       2 3
+  203237  crafting parts emporium   -                       2 3
+  203240  test asmodian air collec  -                       45
+  203241  test asmodian ground col  -                       45
+  203242  test asmodian weaponsmit  -                       46
+  203243  test asmodian armorsmith  -                       46
+  203244  test asmodian alchemy ex  -                       46
+  203245  test asmodian handicraft  -                       46
+  203246  test asmodian tailoring   -                       46
+  203247  test asmodian cooking ex  -                       46
+  203248  test asmodian weaponsmit  -                       2 3
+  203249  test asmodian armorsmith  -                       2 3
+  203250  test asmodian alchemy me  -                       2 3
+  203251  test asmodian handicraft  -                       2 3
+  203252  test asmodian tailoring   -                       2 3
+  203253  test asmodian cooking me  -                       2 3
+  203254  test elyos monster drop   -                       2 3
+  203255  test elyos monster drop   -                       2 3
+  203256  test elyos monster drop   -                       2 3
+  203257  test elyos monster drop   -                       2 3
+  203258  test elyos monster drop   -                       2 3
+  203259  test elyos monster drop   -                       2 3
+  203260  test elyos monster drop   -                       2 3
+  203261  test elyos monster drop   -                       2 3
+  203262  test elyos monster drop   -                       2 3
+  203263  test elyos monster drop   -                       2 3
+  203264  test elyos monster drop   -                       2 3
+  203265  test elyos monster drop   -                       2 3
+  203266  test asmodian monster dr  -                       2 3
+  203267  test asmodian monster dr  -                       2 3
+  203268  test asmodian monster dr  -                       2 3
+  203269  test asmodian monster dr  -                       2 3
+  203270  test asmodian monster dr  -                       2 3
+  203271  test asmodian monster dr  -                       2 3
+  203272  test asmodian monster dr  -                       2 3
+  203273  test asmodian monster dr  -                       2 3
+  203274  test asmodian monster dr  -                       2 3
+  203275  test asmodian monster dr  -                       2 3
+  203276  test elyos monster drop   -                       2 3
+  203277  test asmodian monster dr  -                       2 3
+  203288  gladiator skill book mer  -                       2 3
+  203289  templar skill book merch  -                       2 3
+  203290  ranger skill book mercha  -                       2 3
+  203291  assassin skill book merc  -                       2 3
+  203292  sorcerer skill book merc  -                       2 3
+  203293  spiritmaster skill book   -                       2 3
+  203294  cleric skill book mercha  -                       2 3
+  203295  chanter skill book merch  -                       2 3
+  203296  gladiator skill book mer  -                       2 3
+  203297  templar skill book merch  -                       2 3
+  203298  ranger skill book mercha  -                       2 3
+  203299  assassin skill book merc  -                       2 3
+  203300  sorcerer skill book merc  -                       2 3
+  203301  spiritmaster skill book   -                       2 3
+  203302  cleric skill book mercha  -                       2 3
+  203303  chanter skill book merch  -                       2 3
+  203304  cooking skill merchant (  -                       2 3
+  203305  weaponsmithing skill mer  -                       2 3
+  203306  armorsmithing skill merc  -                       2 3
+  203307  handicrafting skill merc  -                       2 3
+  203308  alchemy skill merchant (  -                       2 3
+  203309  tailoring skill merchant  -                       2 3
+  203310  cooking skill merchant (  -                       2 3
+  203311  weaponsmithing skill mer  -                       2 3
+  203312  armorsmithing skill merc  -                       2 3
+  203313  handicrafting skill merc  -                       2 3
+  203314  alchemy skill merchant (  -                       2 3
+  203315  tailoring skill merchant  -                       2 3
+  203339  lv10 average equipment    -                       2 3
+  203340  lv20 average equipment    -                       2 3
+  203341  lv30 average equipment    -                       2 3
+  203342  lv40 average equipment    -                       2 3
+  203343  lv50 average equipment    -                       2 3
+  203344  lv10 average equipment    -                       2 3
+  203345  lv20 average equipment    -                       2 3
+  203346  lv30 average equipment    -                       2 3
+  203347  lv40 average equipment    -                       2 3
+  203348  lv50 average equipment    -                       2 3
+  203387  alcyone                   2                       2 3
+  203388  ocarino                   2 3                     2
+  203389  telephus                  2 3                     2
+  203605  loriniah                  -                       2 3
+  203671  altgard teleport device   44                      -
+  203672  altgard teleport device   44                      -
+  203708  iocaste                   2                       -
+  203709  clymene                   -                       2 3
+  203710  dairos                    2                       -
+  203889  zeidi                     -                       53
+  203891  karon                     2 3                     -
+  203892  elephenor                 2 3                     -
+  203895  lamid                     44                      -
+  204050  tragi                     2                       -
+  204051  vergelmir                 -                       2 3
+  204060  genoveva                  2                       -
+  204062  groa                      2 3                     -
+  204084  vidarini                  2 3                     -
+  204177  malfaisante               2 3                     -
+  204268  gaminart                  44                      -
+  204288  riegle                    2                       2 3
+  204289  giles                     2 3                     2
+  204290  sinamara                  2 3                     2
+  204435  purra?                    -                       42
+  204634  lepharist revolutionary   -                       2 3
+  204646  protector phobos          -                       42
+  204649  reaper squad              -                       42
+  204800  hammel                    -                       26
+  204802  svera                     -                       42
+  205310  howkis                    2                       -
+  205311  kirroy                    2                       -
+  205315  perbano                   78                      2 3
+  205323  reigar                    78                      2 3
+  205324  seknard                   2                       -
+  205325  verthen                   2                       -
+  207021  liyre                     78                      -
+  207022  marion                    78                      -
+  207027  nodor                     78                      -
+  207028  dorsi                     78                      -
+  207031  sutien                    2                       2 78
+  207032  nualia                    2                       2 78
+  216527  lupukin                   2 3                     -
+  217586  miriya                    -                       4 125
+  217587  aud                       -                       4 125
+  250097  inner castle vendor prot  -                       53
+  250098  inner castle vendor prot  -                       53
+  250099  inner castle gossip prot  -                       35
+  250100  inner castle gossip prot  -                       35
+  260233  smintian                  2 3                     -
+  260234  bumkae                    2 3                     -
+  263264  kercopes                  2 3                     -
+  263265  lote                      2 3                     -
+  263526  ab1_1132_island of stalk  -                       44
+  263566  cachus                    2 3                     -
+  263567  ahsur                     2 3                     -
+  264726  ab1_1141_island of stalk  -                       44
+  264766  proserpine                2 3                     -
+  264767  naun                      2 3                     -
+  264888  artifact teleporter       44                      -
+  266526  ab1_1211_island of stalk  -                       44
+  266551  semelle                   2 3                     -
+  266552  tazze                     2 3                     -
+  268049  sirapos                   2 3                     -
+  268050  egir                      2 3                     -
+  269249  igistus                   2 3                     -
+  269250  varna                     2 3                     -
+  270149  arketer                   2 3                     -
+  270150  ahnaare                   2 3                     -
+  271026  ab1_1251_island of stalk  -                       44
+  271051  pherdix                   2 3                     -
+  271052  acetlar                   2 3                     -
+  278005  keffin                    44                      -
+  278007  siana                     2 3                     -
+  278008  koag                      2 3                     -
+  278010  fraiban                   2 3                     -
+  278011  bacht                     2 3                     -
+  278012  lawusan                   2 3                     -
+  278021  bihugud                   2 3                     -
+  278054  spyr                      2 3                     -
+  278144  byrgafa                   103                     -
+  278145  bakan                     103                     -
+  278146  tiele                     103                     -
+  278147  juergen                   103                     -
+  278148  nenekunerk                2 3                     -
+  278149  paranerk                  2 3                     -
+  278150  gadorunerk                2 3                     -
+  278505  izelda                    44                      -
+  278507  denegos                   2 3                     -
+  278508  zeth                      2 3                     -
+  278510  lucius                    2 3                     -
+  278511  minon                     2 3                     -
+  278512  flavius                   2 3                     -
+  278521  tenoeril                  2 3                     -
+  278554  claudia                   2 3                     -
+  278644  iacchus                   103                     -
+  278645  ceres                     103                     -
+  278646  philemon                  103                     -
+  278647  bergila                   103                     -
+  278648  kuponerk                  2 3                     -
+  278649  nonorerk                  2 3                     -
+  278650  kukurunerk                2 3                     -
+  279020  chieninenerk              2 3                     -
+  279025  guuminerk                 2 3                     -
+  279026  sienrurerk                2 3                     -
+  279048  teucer                    2 3                     2
+  279049  monitan                   2 3                     2
+  279052  sirr                      2 3                     2
+  279053  warberg                   2 3                     2
+  279058  amarunerk                 103                     -
+  279059  momorinrinerk             103                     -
+  730040  secret passage of indrat  44                      -
+  730073  verteron teleport tower   -                       44
+  730074  eltnen teleport tower     -                       44
+  730075  heiron teleport tower     -                       44
+  730076  altgard teleport device   -                       44
+  730077  morheim teleport device   -                       44
+  730078  beluslan teleport device  -                       44
+  730218  aerolink to inggison      -                       44
+  730219  aerolink to gelkmaros     -                       44
+  730220  aerolink to sanctum       -                       44
+  730221  aerolink to pandaemonium  -                       44
+  750055  Black Cloud Secret Emiss  -                       2 3
+  750056  Black Cloud Secret Emiss  -                       2 3
+  750059  Dungeoninerk              -                       2 3
+  750060  Dungeoninerk              -                       2 3
+  750061  Camouflinerk              -                       2 3
+  750062  Hoodinerk                 -                       2 3
+  750063  Camouflinerk              -                       2 3
+  750064  Hoodinerk                 -                       2 3
+  780001  Kearinerk                 -                       2
+  780002  Kearinerk                 -                       2
+  780031  Tevarunerk                -                       2
+  780034  Tevamon, Culinary Resear  -                       2 3
+  780038  Identinerk                -                       78
+  780060  Hunterinerk               -                       2 3
+  780067  Challenge                 -                       2 3
+  780068  Manastone Specialist      -                       2 3
+  780069  Manastone Specialist      -                       2 3
+  780070  Mavrok                    -                       2 3
+  780074  Klidik                    -                       2 3
+  780075  Klidik                    -                       2 3
+  780086  Pungti Demon              -                       2 3
+  780087  Pungti Demon              -                       2 3
+  780088  Shugoling                 -                       2 3
+  780097  Zodiakinerk               -                       2 3
+  780098  Fire Dragon King’s Drago  -                       78
+  780099  Godstoninerk              -                       2 3
+  780100  Godstonunerk              -                       2 3
+  780101  Smartinerk                -                       2 3
+  780103  Fillrinerk                -                       2 3
+  780105  Warrior Legend            -                       2 3
+  780106  Daeva Ranger              -                       2 3
+  780107  Robo Shugo                -                       2 3
+  780108  Glowinerk                 -                       2 3
+  780109  Full Kumiho               -                       78
+  780110  Full Kumiho               -                       2 3 78
+  780111  Sweetrinerk               -                       2 3
+  780112  Powerful Mage             -                       2 78
+  780116  Latest Emote Trader       -                       2 3
+  780117  Blueminerk                -                       2 3
+  780118  Goldbarrinerk             -                       2 3
+  780122  Tantuka the Blacksmith    -                       2 3
+  780123  Daevansinnrinerk          -                       2 3
+  780124  Daevarok                  -                       2
+  780125  Daevarok                  -                       2
+  780127  Nodepaninerk              -                       2 3
+  780128  Sellinerk                 -                       2 3
+  780130  Shurokeninerk             -                       2 3
+  780149  Puzzlinerk                -                       2 3
+  780150  Puzzlinerk                -                       2 3
+  780180  Flamesteed Gift Shop      -                       2 3
+  780182  Dark Dragon King’s Drago  -                       2 3
+  790004  hannet                    -                       2 3
+  798008  baevrunerk                47                      2 3 47
+  798037  bacorerk                  47                      2 3 47
+  798056  paepaerunerk              33                      2 3 33
+  798076  shoranarerk               -                       2 3
+  798080  sarinerk                  -                       2 3
+  798088  mogironerk                3                       -
+  798089  gamorinerk                3                       -
+  798091  naironerk                 3                       -
+  798129  special administrator     -                       2 3
+  798130  special administrator     -                       2 3
+  798357  shoshinerk                2                       2 3
+  798387  test merchant             -                       2
+  798389  test function             -                       66 67
+  798394  dianara                   2 3                     2 43
+  798395  hilara                    2 3                     2 43
+  798396  gustori                   44                      -
+  798399  marcelo                   2 3                     2 43
+  798400  storari                   2 3                     2 43
+  798401  bellaid                   44                      -
+  798436  tacitus                   2 3 44                  2 3
+  798509  papinius                  2 3                     -
+  798510  ecocia                    2 3                     -
+  798709  rodrigo                   2 3                     -
+  798710  imever                    2 3                     -
+  798918  pilipides                 2                       2 3
+  798925  paulina                   2 3                     2
+  799221  beldeg                    2                       2 3
+  799224  camila                    2 3                     2
+  799366  shulack refugee           -                       47
+  799714  smootinerk                2 3                     2
+  799715  bloitinerk                2 3                     2
+  799802  favonius                  2                       2 3
+  799808  loyaad                    2                       -
+  799812  ryolion                   2                       -
+  799818  argote                    2                       -
+  799821  roukianos                 2                       -
+  799825  meletos                   -                       2 3
+  799844  dens                      2                       2 3
+  799852  pavo                      2                       -
+  799858  rhynnus                   2                       -
+  799862  pulmo                     2                       -
+  799863  holothurion               2                       -
+  799865  eruca                     -                       2 3
+  799948  serooth                   59                      59 103
+  799949  frigga                    59                      59 103
+  799953  eare                      103                     -
+  799954  raria                     103                     -
+  799955  risoneus                  103                     -
+  799956  othrys                    103                     -
+  799957  denil                     103                     -
+  799958  donelpe                   103                     -
+  799959  econe                     103                     -
+  799960  ewein                     103                     -
+  799994  Duonerkrinerk             -                       2 3
+  799998  Domurinerk                -                       2 3
+  799999  Dobirinerk                -                       2 3
+  800468  천족 한정 판매 서버 저장 테스트 슈고_03  -                       2 3
+  800469  마족 한정 판매 서버 저장 테스트 슈고_04  -                       2 3
+  800470  마족 한정 판매 서버 저장 테스트 슈고_01  -                       2 3
+  800471  천족 한정 판매 서버 저장 테스트 슈고_02  -                       2 3
+  800472  마족 한정 판매 서버 저장 테스트 슈고_03  -                       2 3
+  800473  마족 한정 판매 서버 저장 테스트 슈고_04  -                       2 3
+  800480  Kinahrunerk               -                       2 3
+  800481  Kinahrunerk               -                       2 3
+  800482  Dominerk                  -                       2 3
+  800483  Doshinerk                 -                       2 3
+  800485  패스룽                       -                       2
+  800486  패스룽                       -                       2
+  800494  Bomishung                 -                       2
+  800495  Bomishung                 -                       2
+  800496  Ailinerk                  -                       2
+  800497  Ailinerk                  -                       2
+  800498  Scorpia                   -                       78
+  800499  Baeksaek                  -                       78
