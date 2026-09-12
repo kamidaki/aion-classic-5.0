@@ -1,7 +1,12 @@
 package com.aionemu.gameserver.services.item;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
@@ -14,6 +19,8 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.ManaStone;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
+import com.aionemu.gameserver.model.templates.item.OptionClearTemplate;
+import com.aionemu.gameserver.model.templates.item.OptionClearType;
 import com.aionemu.gameserver.model.templates.item.enums.ItemGroup;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
@@ -133,19 +140,147 @@ public class ItemSocketService {
 			} else {
 				ItemStoneListDAO.storeManaStones(Collections.singleton(manaStoneToRemove));
 			}
+			// stone stats are keyed by the stone object itself, so they must be ended before the stone is dropped
+			if (item.isEquipped())
+				player.getGameStats().endEffect(manaStoneToRemove);
 			itemStones.remove(manaStoneToRemove);
 
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REMOVE_ITEM_OPTION_SUCCEED(item.getL10n()));
-			if (item.isEquipped()) {
-				player.getEquipment().notifyItemUnequip(item);
-				player.getEquipment().notifyItemEquipped(item);
-				player.getLifeStats().updateCurrentStats();
-				player.getGameStats().updateStatsAndSpeedVisually();
-			}
 			ItemPacketService.updateItemAfterInfoChange(player, item);
 		} else {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REMOVE_ITEM_OPTION_NOT_ENOUGH_GOLD(item.getL10n()));
 		}
+	}
+
+	/**
+	 * Removal through the Classic 5.0 option clear window, which is opened from the game menu and takes several slots at
+	 * once. Cost and destination of each stone (given back as a non-tradeable stone or destroyed) come from option_clear.xml.
+	 */
+	public static void clearManastones(Player player, Item item, boolean isFusionSocket, List<Integer> slots) {
+		if (item.getTemporaryExchangeTimeRemaining() > 0) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_TEMPORARY_EXCHANGE_TIME());
+			return;
+		}
+
+		Set<ManaStone> itemStones = isFusionSocket ? item.getFusionStones() : item.getItemStones();
+		if (itemStones.isEmpty()) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_MSG_NO_OPTION(item.getL10n()));
+			return;
+		}
+
+		Map<ManaStone, OptionClearTemplate> stonesToRemove = new LinkedHashMap<>();
+		long price = 0;
+		for (ManaStone stone : itemStones) {
+			if (slots == null || !slots.contains(stone.getSlot()))
+				continue;
+			OptionClearTemplate rule = DataManager.OPTION_CLEAR_DATA.getByStoneId(stone.getItemId());
+			if (rule == null) { // the window only lists stones the client has a removal rule for
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_NOT_ITEM(item.getL10n()));
+				AuditLogger.log(player, "tried to remove stone " + stone.getItemId() + " without option clear rule from item " + item.getItemId());
+				return;
+			}
+			stonesToRemove.put(stone, rule);
+			price += rule.getKinah();
+		}
+		if (stonesToRemove.isEmpty()) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_EQUIP_NOT_PROC());
+			return;
+		}
+		if (!player.getInventory().tryDecreaseKinah(price)) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_HAVE_NOT_KINA(item.getL10n()));
+			return;
+		}
+
+		for (Map.Entry<ManaStone, OptionClearTemplate> entry : stonesToRemove.entrySet()) {
+			ManaStone stone = entry.getKey();
+			stone.setPersistentState(PersistentState.DELETED);
+			// stone stats are keyed by the stone object itself, so they must be ended before the stone is dropped
+			if (item.isEquipped())
+				player.getGameStats().endEffect(stone);
+			itemStones.remove(stone);
+			OptionClearTemplate rule = entry.getValue();
+			if (rule.getType() == OptionClearType.RETURN && rule.getReturnItemId() != 0)
+				ItemService.addItem(player, rule.getReturnItemId(), 1);
+		}
+		storeStones(stonesToRemove.keySet(), isFusionSocket);
+		repackSlots(item, itemStones, isFusionSocket);
+
+		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_MSG_SUCCEED(item.getL10n()));
+		ItemPacketService.updateItemAfterInfoChange(player, item);
+	}
+
+	private static void storeStones(Set<ManaStone> stones, boolean isFusionSocket) {
+		if (isFusionSocket)
+			ItemStoneListDAO.storeFusionStone(stones);
+		else
+			ItemStoneListDAO.storeManaStones(stones);
+	}
+
+	/**
+	 * Closes the gaps a removal leaves behind, so the remaining stones sit in the first slots of their category. The
+	 * official 5.0 server does this (measured), and it has to: the client numbers the rows of the removal window from
+	 * the sockets it gets in the item info, so a hole would shift every row after it and remove the wrong stone next
+	 * time.
+	 */
+	private static void repackSlots(Item item, Set<ManaStone> stones, boolean isFusionSocket) {
+		int specialSlots = isFusionSocket ? item.getFusionedItemTemplate().getSpecialSlots() : item.getItemTemplate().getSpecialSlots();
+		List<ManaStone> ordered = new ArrayList<>(stones);
+		ordered.sort(Comparator.comparingInt(ManaStone::getSlot));
+
+		Map<ManaStone, Integer> moved = new LinkedHashMap<>();
+		int nextSpecial = 0, nextNormal = specialSlots;
+		for (ManaStone stone : ordered) {
+			boolean isSpecial = DataManager.ITEM_DATA.getItemTemplate(stone.getItemId()).getItemGroup() == ItemGroup.SPECIAL_MANASTONE;
+			int slot = isSpecial ? nextSpecial++ : nextNormal++;
+			if (slot != stone.getSlot())
+				moved.put(stone, slot);
+		}
+		if (moved.isEmpty())
+			return;
+
+		// the row is keyed by slot and ItemStoneListDAO's update ignores it, so a moved stone is deleted and re-inserted
+		for (ManaStone stone : moved.keySet())
+			stone.setPersistentState(PersistentState.DELETED);
+		storeStones(moved.keySet(), isFusionSocket);
+		for (Map.Entry<ManaStone, Integer> entry : moved.entrySet()) {
+			entry.getKey().setSlot(entry.getValue());
+			entry.getKey().setPersistentState(PersistentState.NEW);
+		}
+		storeStones(moved.keySet(), isFusionSocket);
+	}
+
+	/**
+	 * Godstone removal through the Classic 5.0 option clear window: one godstone per item, so the client sends only the
+	 * item. Cost and destination come from option_clear.xml, where every godstone of the 5.0 client is DELETE.
+	 */
+	public static void clearGodstone(Player player, Item item) {
+		if (item.getTemporaryExchangeTimeRemaining() > 0) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_PROC_CLEAR_TEMPORARY_EXCHANGE_TIME());
+			return;
+		}
+		if (!item.hasGodStone()) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_PROC_CLEAR_EQUIP_NOT_PROC());
+			return;
+		}
+
+		int godstoneId = item.getGodStoneId();
+		OptionClearTemplate rule = DataManager.OPTION_CLEAR_DATA.getByStoneId(godstoneId);
+		if (rule == null) { // the window only lists items whose godstone the client has a removal rule for
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_PROC_CLEAR_NOT_ITEM(item.getL10n()));
+			AuditLogger.log(player, "tried to remove godstone " + godstoneId + " without option clear rule from item " + item.getItemId());
+			return;
+		}
+		if (!player.getInventory().tryDecreaseKinah(rule.getKinah())) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_PROC_CLEAR_HAVE_NOT_KINA(item.getL10n()));
+			return;
+		}
+
+		item.setGodStone(null); // marks it deleted and persists it before dropping the reference
+		if (rule.getType() == OptionClearType.RETURN && rule.getReturnItemId() != 0)
+			ItemService.addItem(player, rule.getReturnItemId(), 1);
+
+		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_GIVE_ITEM_PROC_CLEAR_COMPLETE(item.getL10n()));
+		ItemPacketService.updateItemAfterInfoChange(player, item);
 	}
 
 	public static void removeAllManastone(Player player, Item item) {

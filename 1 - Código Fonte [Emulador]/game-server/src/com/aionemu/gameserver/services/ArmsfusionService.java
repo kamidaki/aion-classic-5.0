@@ -185,6 +185,10 @@ public class ArmsfusionService {
 			unfusedItem.setEnchantLevel(fusedEnchant);
 		}
 
+		// Fusion stone and fused bonus stats can only be ended while the fusion data below is still intact
+		if (mainWeapon.isEquipped())
+			player.getEquipment().notifyItemUnequip(mainWeapon);
+
 		// Clear fusion stones from main weapon
 		ItemSocketService.removeAllFusionStone(player, mainWeapon);
 
@@ -205,7 +209,6 @@ public class ArmsfusionService {
 
 		// Recalculate stats and visuals if equipped
 		if (mainWeapon.isEquipped()) {
-			player.getEquipment().notifyItemUnequip(mainWeapon);
 			player.getEquipment().notifyItemEquipped(mainWeapon);
 			player.getLifeStats().updateCurrentStats();
 			player.getGameStats().updateStatsAndSpeedVisually();

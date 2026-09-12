@@ -41,6 +41,7 @@
 	<xs:include schemaLocation="items/item_restriction_cleanups.xsd" />
 	<xs:include schemaLocation="items/item_templates.xsd" />
 	<xs:include schemaLocation="items/multi_return_item.xsd" />
+	<xs:include schemaLocation="items/option_clear.xsd" />
 	<xs:include schemaLocation="legion_dominion_template.xsd" />
 	<xs:include schemaLocation="mail_templates.xsd" />
 	<xs:include schemaLocation="mesh_materials/material_templates.xsd" />
@@ -158,6 +159,7 @@
 					<xs:element ref="npc_templates" minOccurs="0" />
 					<xs:element ref="npc_trade_list" minOccurs="0" />
 					<xs:element ref="npc_walker" minOccurs="0" />
+					<xs:element ref="option_clears" minOccurs="0" />
 					<xs:element ref="pet_buffs" minOccurs="0" />
 					<xs:element ref="pet_feed" minOccurs="0" />
 					<xs:element ref="pet_skill_templates" minOccurs="0" />

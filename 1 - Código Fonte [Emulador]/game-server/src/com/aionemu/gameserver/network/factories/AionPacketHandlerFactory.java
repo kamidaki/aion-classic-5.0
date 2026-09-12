@@ -187,6 +187,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_PET_EMOTE.class, 0x9E, State.IN_GAME); // PET_EMOTE
 		addPacket(CM_CUBE_EXPAND.class, 0x1BB, State.IN_GAME); // CUBE_EXPAND
 		addPacket(CM_MANASTONE.class, 0x128, State.IN_GAME); // MANASTONE / ENCHANMENT_STONES
+		addPacket(CM_GODSTONE_SOCKET.class, 0x2D9, State.IN_GAME); // 0x022B GIVE_ITEM_PROC
+		addPacket(CM_GODSTONE_CLEAR.class, 0x1F9, State.IN_GAME); // 0x010B GIVE_ITEM_PROC_CLEAR
 		addPacket(CM_GATHER.class, 0xE1, State.IN_GAME); // GATHER
 		addPacket(CM_MACRO_DELETE.class, 0x142, State.IN_GAME); // MACRO_DELETE
 		addPacket(CM_MACRO_CREATE.class, 0x145, State.IN_GAME); // MACRO_CREATE

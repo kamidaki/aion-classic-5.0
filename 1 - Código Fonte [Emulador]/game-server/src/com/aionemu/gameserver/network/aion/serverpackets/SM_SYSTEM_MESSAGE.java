@@ -11121,6 +11121,104 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
+	 * %0 is not socketed with a manastone.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ITEM_OPTION_CLEAR_MSG_NO_OPTION(String value0) {
+		return new SM_SYSTEM_MESSAGE(1403966, value0);
+	}
+
+	/**
+	 * You have removed the manastone from %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ITEM_OPTION_CLEAR_MSG_SUCCEED(String value0) {
+		return new SM_SYSTEM_MESSAGE(1403967, value0);
+	}
+
+	/**
+	 * You have removed the godstone from %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_PROC_CLEAR_COMPLETE(String value0) {
+		return new SM_SYSTEM_MESSAGE(1403970, value0);
+	}
+
+	/**
+	 * No item found to remove manastones from.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ITEM_OPTION_CLEAR_NOT_FIND() {
+		return new SM_SYSTEM_MESSAGE(1403971);
+	}
+
+	/**
+	 * Manastones cannot be removed from wrapped items.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ITEM_OPTION_CLEAR_PACKAGING_ITEM() {
+		return new SM_SYSTEM_MESSAGE(1403972);
+	}
+
+	/**
+	 * You cannot remove manastones from %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ITEM_OPTION_CLEAR_NOT_ITEM(String value0) {
+		return new SM_SYSTEM_MESSAGE(1403973, value0);
+	}
+
+	/**
+	 * No manastones to remove.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ITEM_OPTION_CLEAR_EQUIP_NOT_PROC() {
+		return new SM_SYSTEM_MESSAGE(1403974);
+	}
+
+	/**
+	 * You cannot remove manastones from items that can only temporarily be traded.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ITEM_OPTION_CLEAR_TEMPORARY_EXCHANGE_TIME() {
+		return new SM_SYSTEM_MESSAGE(1403975);
+	}
+
+	/**
+	 * You do not have enough Kinah to remove the manastone from %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ITEM_OPTION_CLEAR_HAVE_NOT_KINA(String value0) {
+		return new SM_SYSTEM_MESSAGE(1403976, value0);
+	}
+
+	/**
+	 * No item found to remove godstones from.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_PROC_CLEAR_NOT_FIND() {
+		return new SM_SYSTEM_MESSAGE(1403977);
+	}
+
+	/**
+	 * You cannot remove godstones from %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_PROC_CLEAR_NOT_ITEM(String value0) {
+		return new SM_SYSTEM_MESSAGE(1403979, value0);
+	}
+
+	/**
+	 * No godstones to remove.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_PROC_CLEAR_EQUIP_NOT_PROC() {
+		return new SM_SYSTEM_MESSAGE(1403980);
+	}
+
+	/**
+	 * You cannot remove godstones from items that can only temporarily be traded.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_PROC_CLEAR_TEMPORARY_EXCHANGE_TIME() {
+		return new SM_SYSTEM_MESSAGE(1403981);
+	}
+
+	/**
+	 * You do not have enough Kinah to remove the godstone from %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_PROC_CLEAR_HAVE_NOT_KINA(String value0) {
+		return new SM_SYSTEM_MESSAGE(1403982, value0);
+	}
+
+	/**
 	 * You are too far from the NPC to modify the appearance of the item.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_CHANGE_ITEM_SKIN_FAR_FROM_NPC() {

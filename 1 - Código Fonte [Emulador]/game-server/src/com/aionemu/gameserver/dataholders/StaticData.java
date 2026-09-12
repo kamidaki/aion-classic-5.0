@@ -281,6 +281,9 @@ public class StaticData {
 	@XmlElement(name = "item_purifications")
 	public ItemPurificationData itemPurificationData;
 
+	@XmlElement(name = "option_clears")
+	public OptionClearData optionClearData;
+
 	@XmlElement(name = "arcadelist")
 	public UpgradeArcadeData upgradeArcadeData;
 
@@ -393,6 +396,7 @@ public class StaticData {
 		log.info("Loaded " + multiReturnItem.size() + " multi return item entries");
 		log.info("Loaded " + hotspotData.size() + " hotspot entries");
 		log.info("Loaded " + itemPurificationData.size() + " item purifications entries");
+		log.info("Loaded " + optionClearData.size() + " option clear entries");
 		log.info("Loaded " + upgradeArcadeData.size() + " upgrade arcade entries");
 		log.info("Loaded " + atreianPassportData.size() + " atreian passports");
 		log.info("Loaded " + worldRaidData.size() + " world raid locations");

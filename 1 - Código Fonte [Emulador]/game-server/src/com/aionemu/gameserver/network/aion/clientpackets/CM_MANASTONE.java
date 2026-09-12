@@ -1,10 +1,10 @@
 package com.aionemu.gameserver.network.aion.clientpackets;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
-import com.aionemu.gameserver.model.gameobjects.Npc;
-import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.item.actions.EnchantItemAction;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
@@ -13,20 +13,20 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.EnchantService;
 import com.aionemu.gameserver.services.StigmaService;
 import com.aionemu.gameserver.services.item.ItemSocketService;
-import com.aionemu.gameserver.utils.PositionUtil;
 
 /**
  * @author Lost Academy Team & Durak
  */
 public class CM_MANASTONE extends AionClientPacket {
 
-	private int npcObjId;
-	private int slotNum;
+	private static final int SOCKET_FLAGS = Item.MAX_BASIC_STONES;
+
 	private int actionType;
 	private int targetFusedSlot;
 	private int stoneUniqueId;
 	private int targetItemUniqueId;
 	private int supplementUniqueId;
+	private List<Integer> slotsToClear;
 
 	/**
 	 * @param opcode
@@ -49,10 +49,13 @@ public class CM_MANASTONE extends AionClientPacket {
 				supplementUniqueId = readD();
 				break;
 			case 3:
-				slotNum = readUC();
-				readC();
-				readH();
-				npcObjId = readD();
+				// Classic 5.0 removal window (game menu, no NPC). Body measured on the official server is 26 bytes:
+				// the 6 read above, an unused int, then a flag per socket slot, of which only MAX_BASIC_STONES can be set.
+				readD();
+				slotsToClear = new ArrayList<>();
+				for (int slot = 0; slot < SOCKET_FLAGS; slot++)
+					if (readUC() != 0)
+						slotsToClear.add(slot);
 				break;
 		}
 	}
@@ -76,7 +79,7 @@ public class CM_MANASTONE extends AionClientPacket {
 				if (stone.getItemTemplate().isStigma() && targetItem.getItemTemplate().isStigma()) {
 					StigmaService.chargeStigma(player, targetItem, stone);
 				} else {
-					boolean isFusionSlot = (targetFusedSlot == 1);
+					boolean isFusionSlot = (targetFusedSlot != 1); // the 5.0 client sends 1 for the main item (seen on armor)
 					if (targetItem.hasFusionedItem() && targetItem.getFusionedItem() != null && targetItem.getFusionedItem().getObjectId() == targetItemUniqueId) {
 						isFusionSlot = true;
 					}
@@ -92,20 +95,15 @@ public class CM_MANASTONE extends AionClientPacket {
 				}
 				break;
 			}
-			case 3: { // remove manastone
-				VisibleObject visibleObject = player.getTarget();
-				if (visibleObject.getObjectId() == npcObjId && visibleObject instanceof Npc npc && PositionUtil.isInTalkRange(player, npc)) {
-					boolean isFusionSlot = (targetFusedSlot == 1);
-					Item targetItem = player.getEquipment().getEquippedItemByObjId(targetItemUniqueId);
-					if (targetItem == null) {
-						targetItem = player.getInventory().getItemByObjId(targetItemUniqueId);
-					}
-					if (targetItem != null && targetItem.hasFusionedItem() && targetItem.getFusionedItem() != null
-						&& targetItem.getFusionedItem().getObjectId() == targetItemUniqueId) {
-						isFusionSlot = true;
-					}
-					ItemSocketService.removeManastone(player, targetItemUniqueId, slotNum, isFusionSlot);
+			case 3: { // remove manastones
+				Item targetItem = player.getEquipment().getEquippedItemByObjId(targetItemUniqueId);
+				if (targetItem == null && (targetItem = player.getInventory().getItemByObjId(targetItemUniqueId)) == null) {
+					sendPacket(SM_SYSTEM_MESSAGE.STR_ITEM_OPTION_CLEAR_NOT_FIND());
+					return;
 				}
+				boolean isFusionSlot = targetFusedSlot != 1 || (targetItem.hasFusionedItem() && targetItem.getFusionedItem() != null
+					&& targetItem.getFusionedItem().getObjectId() == targetItemUniqueId);
+				ItemSocketService.clearManastones(player, targetItem, isFusionSlot, slotsToClear);
 				break;
 			}
 			case 4: // add godstone

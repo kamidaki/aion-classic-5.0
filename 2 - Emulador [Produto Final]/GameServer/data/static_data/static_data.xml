@@ -64,6 +64,7 @@
 	<import file="items/item_random_bonuses.xml" />
 	<import file="items/item_restriction_cleanups.xml" />
 	<import file="items/multi_return_item.xml" />
+	<import file="items/option_clear.xml" />
 	<import file="item_sets/item_sets.xml" />
 	<import file="ai" singleRootTag="true" />
 	<import file="assembled_npcs/assembled_npcs.xml" />
