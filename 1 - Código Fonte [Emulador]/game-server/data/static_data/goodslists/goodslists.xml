@@ -52157,6 +52157,14 @@
 		<item buy_limit="1" sell_limit="0" id="188054099" />
 		<item buy_limit="10" sell_limit="0" id="188054109" />
 	</list>
+	<list id="5267">
+		<!-- Conquest Recruiter Liahon (Elyos) -->
+		<item buy_limit="1" id="188056100" />
+	</list>
+	<list id="5268">
+		<!-- Conquest Recruiter Harbon (Asmodae) -->
+		<item buy_limit="1" id="188056100" />
+	</list>
 	<in_list id="1">
 		<item id="100001174" />
 		<item id="100201139" />

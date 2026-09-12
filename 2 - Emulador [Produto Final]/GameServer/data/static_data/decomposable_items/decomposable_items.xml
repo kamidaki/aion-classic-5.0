@@ -30348,4 +30348,17 @@
 	<!-- [Event] Enchanting Sorcerer Robe Set Bundle (6 hours) -->
 	<!-- [Event] Velvet Sorcerer Clothes Bundle (6 hours) -->
 	<!-- Coin Crate -->
+	<decomposable item_id="188056100" selectable="true">
+		<!-- Incarnate Conquest Warrant Selection Box -->
+		<items>
+			<item id="186020379" />
+			<!-- Gravity Incarnate Conquest Warrant (grade 1) -->
+			<item id="186020380" />
+			<!-- Petrification Incarnate Conquest Warrant (grade 2) -->
+			<item id="186020381" />
+			<!-- Wrath Incarnate Conquest Warrant (grade 3) -->
+			<item id="186020382" />
+			<!-- Fissure Incarnate Conquest Warrant (grade 4) -->
+		</items>
+	</decomposable>
 </decomposable_items>

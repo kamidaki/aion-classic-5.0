@@ -503186,7 +503186,11 @@
 	<item_template id="188056097" name="[Event] +10 Battle Commander’s Foot Armour Selection Box" level="1" cName="wrap_wind_event_boost_enchant_abyss_shoes_e_55_box_01" mask="3708" item_group="COMBINATION" quality="EPIC" price="5" desc="808843" race="PC_ALL" max_stack_count="100" item_type="NORMAL" />
 	<item_template id="188056098" name="[Event] Prefect’s Weapon Selection Box" level="1" cName="wrap_wind_event_weapon_a_u2_50a_box_01" mask="3708" item_group="PACK_SCROLL" quality="UNIQUE" price="5" desc="808845" race="PC_ALL" max_stack_count="100" item_type="NORMAL" />
 	<item_template id="188056099" name="[Event] Prefect’s Armour Selection Box" level="1" cName="wrap_wind_event_armor_a_u2_50a_box_01" mask="3708" item_group="COMBINATION" quality="UNIQUE" price="5" desc="808847" race="PC_ALL" max_stack_count="100" item_type="NORMAL" />
-	<item_template id="188056100" name="Incarnate Conquest Warrant Selection Box" level="10" cName="wrap_castle_grade_ticket_select_box" mask="3708" item_group="PACK_SCROLL" quality="RARE" price="40000" desc="808851" race="PC_ALL" max_stack_count="100" item_type="NORMAL" />
+	<item_template id="188056100" name="Incarnate Conquest Warrant Selection Box" level="10" cName="wrap_castle_grade_ticket_select_box" mask="3708" item_group="PACK_SCROLL" quality="RARE" price="40000" desc="808851" race="PC_ALL" max_stack_count="100" item_type="NORMAL">
+		<actions>
+			<decompose />
+		</actions>
+	</item_template>
 	<item_template id="188056101" name="[Event] Archon/Guardian Fleet Admiral’s Weapon Selection Box" level="1" cName="world_wrap_TW_new_sword_a_e1_60a_select" mask="3708" item_group="DROP_MATERIAL" quality="EPIC" price="5" desc="808853" race="PC_ALL" max_stack_count="1" item_type="NORMAL" />
 	<item_template id="188056102" name="[Event] Storm Wave Crystal" level="1" cName="world_wrap_TW_april_randombox" mask="3708" item_group="COMBINATION" quality="EPIC" price="5" desc="808855" race="PC_ALL" max_stack_count="1000" item_type="NORMAL" />
 	<item_template id="188056103" name="Lady Triniel’s Glory Chest" level="1" cName="wrap_event_classic_shugoping_triniel_box_01" mask="3708" item_group="COMBINATION" quality="EPIC" price="1" desc="808859" race="PC_ALL" max_stack_count="1" item_type="NORMAL" />

@@ -5233,8 +5233,13 @@
 		<tradelist id="1766" />
 		<tradelist id="1757" />
 	</tradelist_template>
-	<tradelist_template npc_id="802578">
-		<tradelist id="2291" />
+	<tradelist_template npc_id="802578" buy_price_rate="200">
+		<!-- Conquest Recruiter Liahon (Elyos): Incarnate Conquest Warrant Selection Box -->
+		<tradelist id="5267" />
+	</tradelist_template>
+	<tradelist_template npc_id="802580" buy_price_rate="200">
+		<!-- Conquest Recruiter Harbon (Asmodae): Incarnate Conquest Warrant Selection Box -->
+		<tradelist id="5268" />
 	</tradelist_template>
 	<tradelist_template npc_id="802581">
 		<tradelist id="1764" />
@@ -6772,9 +6777,6 @@
 		<tradelist id="95" />
 	</purchase_template>
 	<purchase_template npc_id="802576" buy_price_rate="170">
-		<tradelist id="95" />
-	</purchase_template>
-	<purchase_template npc_id="802580" buy_price_rate="170">
 		<tradelist id="95" />
 	</purchase_template>
 	<purchase_template npc_id="802593" buy_price_rate="170">
