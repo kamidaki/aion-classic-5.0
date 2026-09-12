@@ -20,12 +20,12 @@ TOOLS_DIR = os.path.dirname(PARSERS_DIR)
 PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
 
 # Pastas padrão de dados do servidor
-SERVER_DATA_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data")
+SERVER_DATA_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "game-server", "data", "static_data")
 PRODUTO_FINAL_DATA_DIR = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 
 # Pastas de destino dos backups (armazenados em tools/parsersXML/backups e GameServer/data/static_data_backups)
 BACKUPS_DIR = os.path.join(PARSERS_DIR, "backups")
-SERVER_BACKUPS_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "GameServer", "data", "static_data_backups")
+SERVER_BACKUPS_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "game-server", "data", "static_data_backups")
 
 _CURRENT_SESSION_DIR = None
 _CURRENT_SESSION_NAME = None
