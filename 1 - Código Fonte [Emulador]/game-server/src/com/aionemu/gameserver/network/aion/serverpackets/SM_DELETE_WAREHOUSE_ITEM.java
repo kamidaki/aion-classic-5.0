@@ -23,7 +23,7 @@ public class SM_DELETE_WAREHOUSE_ITEM extends AionServerPacket {
 	protected void writeImpl(AionConnection con) {
 		writeC(warehouseType);
 		writeD(itemObjId);
-		writeC(deleteType.getMask());
+		writeD(deleteType.getMask()); // 5.0: tipo em D, 9 bytes no total (captura oficial de warehouse)
 	}
 
 }

@@ -113,7 +113,8 @@ public final class DialogAction {
 	public static final int TOWN_CHALLENGE = 100;
 	public static final int AP_SELL = 101;
 	// 102 doesn't exist
-	public static final int TRADE_SELL_LIST = 103;
+	// 103 na 4.8; o cliente 5.0 abre a lista de compra do NPC com 10256 (Frigga 799949 -> S_STORE_PURCHASE_INFO na captura oficial)
+	public static final int TRADE_SELL_LIST = 10256;
 	public static final int TELEPORT_SIMPLE = 104;
 	public static final int OPEN_INSTANCE_RECRUIT = 105;
 	public static final int MOVE_ITEM_SKIN = 106;

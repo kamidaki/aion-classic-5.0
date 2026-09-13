@@ -14,7 +14,6 @@ import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
-import com.aionemu.gameserver.services.TownService;
 
 /**
  * @author Lost Academy Team & Durak
@@ -92,11 +91,12 @@ public class SM_NPC_INFO extends AionServerPacket {
 			for (Entry<ItemSlot, ItemTemplate> item : gear) {
 				if (!hasWeapon)
 					hasWeapon = item.getValue().isWeapon();
+				// 5.0: 20 bytes por item, [D item][16 bytes zerados] em todos os 9907 itens das capturas oficiais
 				writeD(item.getValue().getTemplateId());
 				writeD(0x00);
 				writeD(0x00);
-				writeH(0x00);
-				writeH(0x00); // 4.7
+				writeD(0x00);
+				writeD(0x00);
 			}
 		}
 		writeF(npcTemplate.getBoundRadius().getMaxOfFrontAndSide());
@@ -122,7 +122,6 @@ public class SM_NPC_INFO extends AionServerPacket {
 		writeH(npc.getNpcObjectType().getId());
 		writeC(0x00); // unk
 		writeD(npc.getTarget() == null ? 0 : npc.getTarget().getObjectId());
-		writeD(TownService.getInstance().getTownIdByPosition(npc));
-		writeD(0);// unk 4.7.5
+		// 5.0: o pacote acaba no alvo; sem o townId e o D da 4.7.5 (cauda de 48 bytes em 5343 pacotes oficiais)
 	}
 }

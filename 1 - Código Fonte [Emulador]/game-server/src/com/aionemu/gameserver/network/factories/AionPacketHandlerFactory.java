@@ -150,7 +150,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_PING_REQUEST.class, 0x158, State.IN_GAME); // 0x00AA CUR_STATUS
 		addPacket(CM_REPLACE_ITEM.class, 0x140, State.IN_GAME); // 0x00B2 REPLACE_ITEM
 		addPacket(CM_BLOCK_SET_REASON.class, 0x141, State.IN_GAME); // 0x00B3 BLOCK_SET_REASON
-		addPacket(CM_QUEST_SHARE.class, 0x14E, State.IN_GAME); // 0x00B4 QUEST_SHARE
+		addPacket(CM_MOVE_ITEM.class, 0x14E, State.IN_GAME); // 0x00B4 MOVE_ITEM (5.0 Classic: [D obj][C origem][C destino][H slot], 366 pacotes de 8 b nas capturas)
 		addPacket(CM_BLOCK_DEL.class, 0x14D, State.IN_GAME); // 0x00B7 BLOCK_DEL
 		addPacket(CM_FRIEND_STATUS.class, 0x148, State.IN_GAME); // 0x00BA FRIEND_STATUS
 		addPacket(CM_INSTANCE_INFO.class, 0x1B3, State.IN_GAME); // 0x00C1 INSTANCE_DUNGEON_COOLTIMES
@@ -169,9 +169,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_TELEPORT_ANIMATION_DONE.class, 0x9D, State.IN_GAME); // 0xFFE7 TELEPORT_ANIMATION_DONE
 		addPacket(CM_TITLE_SET.class, 0x169, State.IN_GAME); // 0x009B TITLE_SET
 		addPacket(CM_QUESTIONNAIRE.class, 0x163, State.IN_GAME); // 0x0091 QUESTIONNAIRE
-		addPacket(CM_MOVE_ITEM.class, 0x156, State.IN_GAME); // 0x009C MOVE_ITEM (5.0 Classic)
-		addPacket(CM_MOVE_ITEM.class, 0x9C, State.IN_GAME); // Alias dec opcode
-		addPacket(CM_SPLIT_ITEM.class, 0x157, State.IN_GAME); // 0x009D SPLIT_ITEM (0x157)
+		// MOVE_ITEM e SPLIT_ITEM da 5.0 sao dec 0x00B4/0x00B5 (registrados acima e abaixo); dec 0x009C/0x009D nunca aparecem nas capturas
 		addPacket(CM_DELETE_ITEM.class, 0x10E, State.IN_GAME); // DELETE_ITEM (0x10E)
 		addPacket(CM_DELETE_QUEST.class, 0x122, State.IN_GAME); // DELETE_QUEST
 		addPacket(CM_REVIVE.class, 0x00FF, State.IN_GAME); // 0x0005 C_DEAD_RESTART (5.0 Classic)
@@ -216,7 +214,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_SERVER_PVP_ACK.class, 0x03DC, State.IN_GAME); // 0x0326 SERVER_PVP_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_SYNC_ACTION.class, 0x00F0, State.IN_GAME, State.AUTHED); // 0x0002 CLIENT_SYNC_ACTION (5.0 Classic)
 		addPacket(CM_CLIENT_PING_SYNC.class, 0x0151, State.IN_GAME, State.AUTHED); // 0x00A3 CLIENT_PING_SYNC (5.0 Classic)
-		addPacket(CM_CLIENT_ENV_REPORT.class, 0x014F, State.IN_GAME); // 0x00B5 CLIENT_ENV_REPORT (5.0 Classic)
+		addPacket(CM_SPLIT_ITEM.class, 0x014F, State.IN_GAME); // 0x00B5 SPLIT_ITEM (5.0 Classic: [D origem][Q qtd][C armazem][D destino][C armazem][H slot], 20 b)
 		addPacket(CM_CLIENT_SCENE_ACK.class, 0x01A7, State.IN_GAME); // 0x00CD CLIENT_SCENE_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_MOTION_ACK.class, 0x0181, State.IN_GAME); // 0x00F3 CLIENT_MOTION_ACK (5.0 Classic)
 		addPacket(CM_CLIENT_WORLD_EVENT_ACK.class, 0x01E4, State.IN_GAME); // 0x010E CLIENT_WORLD_EVENT_ACK (5.0 Classic)
@@ -228,7 +226,7 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_CHAT_AUTH.class, 0x017C, State.IN_GAME); // 0x0086 SIGN_CLIENT
 		addPacket(CM_CHAT_AUTH.class, 0x0086, State.IN_GAME);
 		addPacket(CM_INSTANCE_INFO.class, 0x01B3, State.IN_GAME); // 0x00C1 INSTANCE_INFO
-		addPacket(CM_INSTANCE_INFO.class, 0x00C1, State.IN_GAME);
+		// sem alias em 0x00C1: esse e o cru do CM_BUY_ITEM (dec 0x0033) e o registro por ultimo apagava a compra e a venda
 		addPacket(CM_MAY_QUIT.class, 0x00FE, State.IN_GAME); // 0x0004 READY_TO_QUIT
 		addPacket(CM_MAY_QUIT.class, 0x0004, State.IN_GAME);
 		addPacket(CM_RECONNECT_AUTH.class, 0x014A, State.AUTHED); // 0x00B8 RECONNECT_AUTH

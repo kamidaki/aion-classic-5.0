@@ -1,7 +1,7 @@
 package com.aionemu.gameserver.network.aion;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.aionemu.gameserver.network.aion.serverpackets.*;
 
@@ -10,7 +10,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.*;
  */
 public class ServerPacketsOpcodes {
 
-	private static Map<Class<? extends AionServerPacket>, Integer> opcodes = new HashMap<>();
+	private static final Map<Class<? extends AionServerPacket>, Integer> opcodes = new ConcurrentHashMap<>();
 
 	static {
 		addPacketOpcode(0, SM_VERSION_CHECK.class); // [S_VERSION_CHECK]
@@ -318,14 +318,13 @@ public class ServerPacketsOpcodes {
 	static int getOpcode(Class<? extends AionServerPacket> packetClass) {
 		Integer opcode = opcodes.get(packetClass);
 		if (opcode == null) {
-			for (Map.Entry<Class<? extends AionServerPacket>, Integer> entry : opcodes.entrySet()) {
-				if (entry.getKey().isAssignableFrom(packetClass)) {
-					opcode = entry.getValue();
-					opcodes.put(packetClass, opcode);
-					return opcode;
-				}
-			}
-			throw new IllegalArgumentException("There is no opcode for " + packetClass + " defined.");
+			// subclasse nao registrada (ex.: S_MOVE_NEW) usa o opcode do ancestral registrado mais proximo; o mapa e consultado
+			// por varias threads ao mesmo tempo, entao nada de iterar e gravar num HashMap (CME no MoveTaskManager)
+			for (Class<?> c = packetClass.getSuperclass(); c != null && opcode == null; c = c.getSuperclass())
+				opcode = opcodes.get(c);
+			if (opcode == null)
+				throw new IllegalArgumentException("There is no opcode for " + packetClass + " defined.");
+			opcodes.putIfAbsent(packetClass, opcode);
 		}
 
 		return opcode;

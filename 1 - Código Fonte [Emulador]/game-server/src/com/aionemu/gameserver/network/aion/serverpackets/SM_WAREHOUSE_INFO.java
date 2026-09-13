@@ -49,11 +49,11 @@ public class SM_WAREHOUSE_INFO extends AionServerPacket {
 
 		writeD(item.getObjectId());
 		writeD(itemTemplate.getTemplateId());
+		writeC(0); // 5.0: categoria do item no warehouse antes do blob (origem nao identificada; 0 tambem aparece no oficial)
 
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());
 
-		writeH((int) (item.getEquipmentSlot() & 0xFFFF));
-		writeC(itemTemplate.isCloth() ? 1 : 0);
+		writeH((int) (item.getEquipmentSlot() & 0xFFFF)); // 5.0: sem o byte de isCloth no item de warehouse
 	}
 }

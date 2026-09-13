@@ -61,9 +61,13 @@ public class CM_BUY_ITEM extends AionClientPacket {
 			tradeList = new TradeList(sellerObjId);
 		}
 
+		// 5.0: cada item vem com 16 bytes, [D itemId/objId][Q quantidade][D aba da loja] (compra e venda na captura oficial)
+		boolean comAba = amount > 0 && getRemainingBytes() >= amount * 16;
 		for (int i = 0; i < amount; i++) {
 			itemId = readD();
 			count = readQ();
+			if (comAba)
+				readD(); // aba de onde o item saiu; 0 na venda
 
 			// prevent exploit packets
 			if (count < 0 || (itemId <= 0 && tradeActionId != 0) || count > 20000) {

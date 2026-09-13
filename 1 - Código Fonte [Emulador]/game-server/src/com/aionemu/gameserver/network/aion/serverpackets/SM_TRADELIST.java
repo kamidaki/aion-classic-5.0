@@ -53,12 +53,14 @@ public class SM_TRADELIST extends AionServerPacket {
 			this.limitedItems.addAll(limitedTradeNpc.getLimitedItems());
 	}
 
+	/**
+	 * Layout 5.0 medido nas capturas oficiais (9 lojas): sem o D 100 da 4.5, e cada item limitado ocupa 16 bytes.
+	 */
 	@Override
 	protected void writeImpl(AionConnection con) {
 		writeD(targetObjId);
 		writeC(tradeNpcType.index()); // reward, abyss or normal
 		writeD(buyPriceModifier); // Vendor Buy Price Modifier
-		writeD(100);// new aion 4.5
 		writeC(showBuyTab ? 1 : 0);
 		writeC(showSellTab ? 1 : 0);
 		writeH(tradeTablist.size());
@@ -67,8 +69,18 @@ public class SM_TRADELIST extends AionServerPacket {
 		writeH(limitedItems.size());
 		for (LimitedItem limitedItem : limitedItems) {
 			writeD(limitedItem.getItemId());
-			writeH(limitedItem.getBuyCount(playerObjId));
-			writeH(limitedItem.getSellLimit());
+			writeD(limitedItem.getBuyCount(playerObjId)); // no oficial vai de 0 para 1 depois de comprar um
+			writeD(limitedItem.getSellLimit()); // 0 em todas as capturas; significado nao confirmado
+			writeD(tabDoItem(limitedItem.getItemId()));
 		}
+	}
+
+	private int tabDoItem(int itemId) {
+		for (TradeTab tab : tradeTablist) {
+			GoodsList goodsList = DataManager.GOODSLIST_DATA.getGoodsListById(tab.getId());
+			if (goodsList != null && goodsList.getItemIdList().contains(itemId))
+				return tab.getId();
+		}
+		return tradeTablist.isEmpty() ? 0 : tradeTablist.get(0).getId();
 	}
 }

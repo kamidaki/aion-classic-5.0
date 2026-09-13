@@ -28,10 +28,14 @@ public class SM_WAREHOUSE_ADD_ITEM extends AionServerPacket {
 		this.addType = addType;
 	}
 
+	/**
+	 * Layout 5.0 medido na captura oficial de warehouse: cabecalho de 8 bytes e item com um byte de categoria antes do blob, sem isCloth.
+	 */
 	@Override
 	protected void writeImpl(AionConnection con) {
 		writeC(warehouseType);
-		writeH(addType.getMask());
+		writeC(addType.getMask()); // 0x13 ao depositar
+		writeD(0);
 		writeH(items.size());
 
 		for (Item item : items)
@@ -43,10 +47,10 @@ public class SM_WAREHOUSE_ADD_ITEM extends AionServerPacket {
 
 		writeD(item.getObjectId());
 		writeD(itemTemplate.getTemplateId());
+		writeC(0); // categoria do item no warehouse (0x09 stigma, 0x17 enchant...); origem nao identificada, 0 tambem aparece no oficial
 
 		ItemInfoBlob.getFullBlob(player, item).writeMe(getBuf());
 
 		writeH((int) (item.getEquipmentSlot() & 0xFFFF));
-		writeC(itemTemplate.isCloth() ? 1 : 0);
 	}
 }

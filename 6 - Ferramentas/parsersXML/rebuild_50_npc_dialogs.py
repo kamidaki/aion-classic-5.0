@@ -9,7 +9,7 @@ lojistas na 5.0 nao oferecem nada.
 
 Nao e cosmetico: CM_DIALOG_SELECT recusa a acao e loga tentativa de abuso quando o codigo nao esta no func_dialogs
 do NPC (o conjunto de "dialogos de funcao" e a uniao do que todos os templates declaram). Sem o bit 2, o
-tradelist_template canonizado nao abre loja nenhuma; sem o 78 e o 103, Npc.canTradeIn e canPurchase sao falsos.
+tradelist_template canonizado nao abre loja nenhuma; sem o 78 e o 10256, Npc.canTradeIn e canPurchase sao falsos.
 
 Como se sabe o que cada NPC faz: o proprio client_npcs.xml tem um campo por funcao (recovery, remove_item_option,
 airlines_name, func_itemcharge, ...). As regras abaixo foram medidas contra o gabarito -- os npcs cujo id NAO
@@ -17,7 +17,7 @@ mudou de dono na 5.0, listados por exclusao no relatorio do rebuild_50_npc_templ
 func_dialogs que o servidor ja tem hoje nesse gabarito. E so dai que elas saem; nada e suposto pelo nome.
 
 Codigos governados (o cliente decide, tanto para por quanto para tirar):
-      2 BUY / 78 TRADE_IN / 103 TRADE_SELL_LIST   tem o template correspondente no npc_trade_list.xml
+      2 BUY / 78 TRADE_IN / 10256 TRADE_SELL_LIST tem o template correspondente no npc_trade_list.xml
       3 SELL                                      trade_info (loja de kinah; coin_merchant so compra)
     4+125 estigma                                 npc_function_type Stigma_master, ou o titulo Stigma_Master
      26 deposito pessoal                          extendcharwarehouse_start
@@ -32,9 +32,18 @@ Codigos governados (o cliente decide, tanto para por quanto para tirar):
      63 casamenteiro       66+67 fusao de armas   match_maker / compound_weapon
     71+72 pets            75+76 recarga de item   func_pet_manage / func_itemcharge
 
+A lista de compra do NPC era 103 na 4.8. Na 5.0 o cliente manda 10256 (captura oficial: Frigga 799949 responde com
+S_STORE_PURCHASE_INFO), e o 103 nao aparece em captura nenhuma -- entao o 103 sai de todo template.
+
 Fora do alcance do cliente e por isso preservados como estao: 5, 6, 7, 50, 52 (legiao), 33, 36, 37, 59, 65, 68,
 69, 94, 95, 107. Para esses o client_npcs nao tem campo que separe quem tem de quem nao tem -- medido, nao
 chutado: a melhor condicao que achei erra em mais da metade dos casos do gabarito.
+
+is_dialog: sem ele (e sem funcao) DialogPage.getStartPageId responde a pagina 0 e o dialogo fecha na hora. O
+cursor_type do client_npcs diz se o NPC conversa: talk e trade. Nas capturas oficiais bate nos 23 NPCs clicados
+(804135, trocado na 5.0, responde 1011 e o servidor mandava 0); no gabarito, 98,1%. As divergencias do gabarito
+se concentram em objetos que a AI conduz (book, portal, quest_use_item, useitem), que tem is_dialog com cursor
+action -- por isso a regra so acrescenta, e so nos npcs cujo id mudou de dono, onde o talk_info e de outra criatura.
 
 Uso (a pasta do cliente e a que contem data/ e Strings/):
     python rebuild_50_npc_dialogs.py --cliente "<pasta dos XMLs do cliente 5.0>"            (mostra e gera relatorio)
@@ -72,12 +81,15 @@ CAMPO_CODIGOS = {
 }
 # gather_skill_levelup serve as duas escolas e o valor diz qual: coleta sobe com 45, oficio com 46
 COLETA = ("gathering", "aerial_gathering")
-GOVERNADOS = {2, 3, 4, 26, 45, 46, 53, 125, 78, 103} | {c for cs in CAMPO_CODIGOS.values() for c in cs}
+TRADE_SELL_LIST = 10256
+GOVERNADOS = {2, 3, 4, 26, 45, 46, 53, 125, 78, TRADE_SELL_LIST} | {c for cs in CAMPO_CODIGOS.values() for c in cs}
+OBSOLETOS = {103}  # codigo 4.8 da lista de compra, trocado pelo 10256 no cliente 5.0
 WAREHOUSE = ("warehouse",)  # npc_function_type, comparado em minusculas
+CURSOR_CONVERSA = ("talk", "trade")
 
 
 def le_cliente(path):
-    """npc_id -> campos presentes, npc_function_type, titulo e talking_distance."""
+    """npc_id -> campos presentes, npc_function_type, titulo, talking_distance e cursor_type."""
     txt = open(path, encoding="utf-8", errors="replace").read()
     out = {}
     for m in re.finditer(r"<npc_client>(.*?)</npc_client>", txt, re.S):
@@ -92,7 +104,7 @@ def le_cliente(path):
 
         out[i.group(1)] = {"campos": set(re.findall(r"<([a-z_0-9]+)>", b)), "ft": campo("npc_function_type").lower(),
                            "titulo": campo("npc_title").lower(), "distancia": campo("talking_distance"),
-                           "escola": campo("gather_skill_levelup").lower()}
+                           "escola": campo("gather_skill_levelup").lower(), "cursor": campo("cursor_type").lower()}
     return out
 
 
@@ -104,7 +116,8 @@ def ids_trocados(path):
 
 
 def le_servidor(path):
-    text = open(path, encoding="utf-8").read()
+    with open(path, encoding="utf-8", newline="") as f:  # preserva o fim de linha do arquivo
+        text = f.read()
     srv = {}
     for m in BLOCK_RE.finditer(text):
         a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))
@@ -114,14 +127,16 @@ def le_servidor(path):
         talk = TALK_RE.search(inner)
         fd = re.search(r'func_dialogs="([^"]*)"', talk.group(2)) if talk else None
         srv[a["npc_id"]] = {"span": m.span(3) if m.group(3) is not None else None, "inner": inner,
-                            "talk": talk, "codigos": {int(x) for x in fd.group(1).split()} if fd else set()}
+                            "talk": talk, "codigos": {int(x) for x in fd.group(1).split()} if fd else set(),
+                            "dialogo": bool(talk and 'is_dialog="true"' in talk.group(2))}
     return text, srv
 
 
 def le_trade(path):
     raiz = ET.parse(path).getroot()
     return {codigo: {el.get("npc_id") for el in raiz.findall(tag)}
-            for tag, codigo in (("tradelist_template", 2), ("trade_in_list_template", 78), ("purchase_template", 103))}
+            for tag, codigo in (("tradelist_template", 2), ("trade_in_list_template", 78),
+                                ("purchase_template", TRADE_SELL_LIST))}
 
 
 def codigos_do_cliente(npc, d, trade):
@@ -146,8 +161,8 @@ def codigos_do_cliente(npc, d, trade):
     return out
 
 
-def render_talk(talk, codigos):
-    """Troca so o func_dialogs do talk_info que ja existe; quem passa a ter funcao ganha is_dialog junto."""
+def render_talk(talk, codigos, dialogo):
+    """Troca so o func_dialogs do talk_info que ja existe; quem passa a ter funcao ou a conversar ganha is_dialog."""
     attrs = talk.group(2)
     valor = " ".join(str(c) for c in sorted(codigos))
     if re.search(r'func_dialogs="[^"]*"', attrs):
@@ -156,19 +171,20 @@ def render_talk(talk, codigos):
         alvo = re.search(r'\s(subdialog_type|can_talk_invisible)=', attrs)
         pos = alvo.start() if alvo else len(attrs.rstrip())
         attrs = attrs[:pos] + ' func_dialogs="' + valor + '"' + attrs[pos:]
-    if codigos and 'is_dialog="true"' not in attrs:  # sem isso o cliente nao abre a janela de dialogo
+    if (codigos or dialogo) and 'is_dialog="true"' not in attrs:  # sem isso o cliente nao abre a janela de dialogo
         attrs = re.sub(r'\s*is_dialog="[^"]*"', "", attrs)
-        alvo = re.search(r'\sfunc_dialogs=', attrs)
-        attrs = attrs[:alvo.start()] + ' is_dialog="true"' + attrs[alvo.start():]
-    return talk.group(1) + "<talk_info" + attrs + "/>\n"
+        alvo = re.search(r'\s(func_dialogs|subdialog_type|can_talk_invisible)=', attrs)
+        pos = alvo.start() if alvo else len(attrs.rstrip())
+        attrs = attrs[:pos] + ' is_dialog="true"' + attrs[pos:]
+    return talk.group(1) + "<talk_info" + attrs + "/>" + talk.group(0)[len(talk.group(0).rstrip("\r\n \t")):]
 
 
-def novo_inner(s, codigos, distancia):
+def novo_inner(s, codigos, distancia, dialogo, nl):
     inner = s["inner"]
     if s["talk"]:
         t = s["talk"]
-        return inner[:t.start()] + render_talk(t, codigos) + inner[t.end():]
-    if not codigos:
+        return inner[:t.start()] + render_talk(t, codigos, dialogo) + inner[t.end():]
+    if not codigos and not dialogo:
         return inner
     # nao tinha talk_info: sem ele NpcTemplate.canInteract() e falso e o NPC nao conversa. O xsd exige que ele
     # venha depois de bound_radius e antes de massive_loot.
@@ -176,8 +192,8 @@ def novo_inner(s, codigos, distancia):
     # cliente sem valor (ou com 0) cai no 5, que e o que 7449 dos talk_info ja usam
     dist = int(float(distancia)) if distancia else 0
     dist = str(dist if dist > 0 else 5)
-    novo = '\t\t<talk_info distance="{}" is_dialog="true" func_dialogs="{}" can_talk_invisible="false" />\n'.format(
-        dist, " ".join(str(c) for c in sorted(codigos)))
+    funcoes = ' func_dialogs="{}"'.format(" ".join(str(c) for c in sorted(codigos))) if codigos else ""
+    novo = '\t\t<talk_info distance="{}" is_dialog="true"{} can_talk_invisible="false" />{}'.format(dist, funcoes, nl)
     ml = re.search(r"[ \t]*<massive_loot\b", inner)
     if ml:
         return inner[:ml.start()] + novo + inner[ml.start():]
@@ -198,38 +214,49 @@ def main():
     cli = le_cliente(npcs_xml)
     trade = le_trade(os.path.join(backup_manager.SERVER_DATA_DIR, REL_TRADE))
     text, srv = le_servidor(os.path.join(backup_manager.SERVER_DATA_DIR, REL_XML))
+    nl = "\r\n" if "\r\n" in text[:4096] else "\n"
     trocados = ids_trocados(RELATORIO_TEMPLATES)
     gabarito = [i for i in srv if i in cli and i not in trocados]
     print("   cliente: {} | servidor: {} | gabarito (id nao trocado): {}".format(len(cli), len(srv), len(gabarito)))
 
     print("2. Conferindo as regras contra o gabarito...")
     ok = sum(1 for i in gabarito if (srv[i]["codigos"] & GOVERNADOS) == codigos_do_cliente(i, cli[i], trade))
-    print("   {} de {} batem sem mudar nada ({:.1f}%)".format(ok, len(gabarito), 100 * ok / max(len(gabarito), 1)))
+    print("   func_dialogs: {} de {} batem sem mudar nada ({:.1f}%)".format(ok, len(gabarito), 100 * ok / max(len(gabarito), 1)))
+    ok_dlg = sum(1 for i in gabarito if srv[i]["dialogo"] == (cli[i]["cursor"] in CURSOR_CONVERSA))
+    print("   is_dialog pelo cursor_type: {} de {} ({:.1f}%)".format(ok_dlg, len(gabarito), 100 * ok_dlg / max(len(gabarito), 1)))
 
-    print("3. Reescrevendo o func_dialogs...")
+    print("3. Reescrevendo o func_dialogs e o is_dialog...")
     edits, posto, tirado, linhas = [], collections.Counter(), collections.Counter(), []
     novos_talk = 0
+    conversa = []
     for npc in sorted(srv, key=int):
         if npc not in cli:  # o cliente 5.0 nao conhece esse npc: nao ha o que provar, fica como esta
             continue
         s, d = srv[npc], cli[npc]
         atual = s["codigos"]
-        codigos = codigos_do_cliente(npc, d, trade) | (atual - GOVERNADOS)
-        if codigos == atual:
+        codigos = codigos_do_cliente(npc, d, trade) | (atual - GOVERNADOS - OBSOLETOS)
+        # so acrescenta, e so onde o talk_info veio de outra criatura (ver docstring)
+        dialogo = npc in trocados and d["cursor"] in CURSOR_CONVERSA and not s["dialogo"]
+        if codigos == atual and not dialogo:
             continue
-        if not s["talk"] and codigos:
+        if not s["talk"] and (codigos or dialogo):
             novos_talk += 1
         for c in codigos - atual:
             posto[c] += 1
         for c in atual - codigos:
             tirado[c] += 1
-        inner = novo_inner(s, codigos, d["distancia"])
+        inner = novo_inner(s, codigos, d["distancia"], dialogo, nl)
         if s["span"]:
             edits.append((s["span"][0], s["span"][1], inner))
-        linhas.append((npc, npc in trocados, sorted(atual), sorted(codigos)))
-    print("   {} npcs mudam | {} ganham talk_info novo".format(len(linhas), novos_talk))
+        if codigos != atual:
+            linhas.append((npc, npc in trocados, sorted(atual), sorted(codigos)))
+        if dialogo and not codigos and not s["dialogo"]:
+            conversa.append((npc, d["cursor"], "talk_info novo" if not s["talk"] else "is_dialog"))
+    print("   func_dialogs: {} npcs mudam | {} ganham talk_info novo".format(len(linhas), novos_talk))
     print("   posto : {}".format(dict(posto.most_common())))
     print("   tirado: {}".format(dict(tirado.most_common())))
+    print("   is_dialog: {} npcs sem funcao passam a conversar ({})".format(
+        len(conversa), dict(collections.Counter(c[2] for c in conversa))))
 
     out, pos = [], 0
     for a, b, novo in sorted(edits):
@@ -253,6 +280,9 @@ def main():
     for c, ids in sorted(faltando.items()):
         if ids:
             sys.exit("codigo {} ficou faltando em {} npcs ({}): nada foi gravado.".format(c, len(ids), ids[:10]))
+    sobra = sorted(i for i, cs in final.items() if cs & OBSOLETOS)
+    if sobra:
+        sys.exit("codigo obsoleto {} ficou em {} npcs ({}): nada foi gravado.".format(sorted(OBSOLETOS), len(sobra), sobra[:10]))
     print("   todos destravados. {} npcs que negociam na 5.0 nao tem npc_template no servidor (ficam no relatorio).".format(
         len(sem_template)))
 
@@ -264,8 +294,8 @@ def main():
         sys.exit("XSD invalido: nada foi gravado.")
     print("   XSD valido.")
 
-    if linhas:
-        relatorio(linhas, posto, tirado, novos_talk, ok, len(gabarito), novo_texto, sem_template, cli)
+    if linhas or conversa:
+        relatorio(linhas, posto, tirado, novos_talk, ok, len(gabarito), novo_texto, sem_template, cli, conversa, ok_dlg)
     else:  # rodar de novo depois de aplicar nao acha mais nada: nao apagar o relatorio bom
         print("   nada a mudar; relatorio anterior mantido.")
 
@@ -280,7 +310,7 @@ def main():
         print("Gravado: " + p)
 
 
-def relatorio(linhas, posto, tirado, novos_talk, ok, total_gab, novo_texto, sem_template, cli):
+def relatorio(linhas, posto, tirado, novos_talk, ok, total_gab, novo_texto, sem_template, cli, conversa, ok_dlg):
     from collections import Counter
     nomes = {}
     for m in BLOCK_RE.finditer(novo_texto):
@@ -291,13 +321,15 @@ def relatorio(linhas, posto, tirado, novos_talk, ok, total_gab, novo_texto, sem_
     restantes = Counter()
     for v in re.findall(r'func_dialogs="([^"]*)"', novo_texto):
         restantes.update(int(x) for x in v.split())
-    sumiram = sorted(c for c in tirado if not restantes[c])
+    sumiram = sorted(c for c in tirado if not restantes[c] and c not in OBSOLETOS)
 
     with open(RELATORIO, "w", encoding="utf-8") as f:
         f.write("func_dialogs canonizado pelo cliente 5.0. As regras reproduzem {} de {} ({:.1f}%) do gabarito\n".format(
             ok, total_gab, 100 * ok / max(total_gab, 1)))
         f.write("-- os npcs cujo id nao mudou de dono --, que e de onde elas saem.\n\n")
-        f.write("{} npcs mudam, {} deles ganham um talk_info que nao existia.\n\n".format(len(linhas), novos_talk))
+        f.write("{} npcs mudam de funcao, {} ganham um talk_info que nao existia.\n".format(len(linhas), novos_talk))
+        f.write("{} npcs sem funcao passam a conversar (is_dialog pelo cursor_type, {} de {} no gabarito).\n\n".format(
+            len(conversa), ok_dlg, total_gab))
         f.write("{:>6}  {:>5}  {:>5}  codigo\n".format("posto", "tirado", "saldo"))
         for c in sorted(set(posto) | set(tirado)):
             f.write("{:>6}  {:>5}  {:>+5}  {}\n".format(posto[c], tirado[c], posto[c] - tirado[c], c))
@@ -327,7 +359,8 @@ def relatorio(linhas, posto, tirado, novos_talk, ok, total_gab, novo_texto, sem_
                 f.write("  {:>8}  {}\n".format(i, cli.get(i, {}).get("titulo", "")))
 
         trocados = [r for r in linhas if r[1]]
-        f.write("\n{} das mudancas sao em npc cujo id mudou de dono na 5.0 (o menu era do NPC antigo);\n".format(len(trocados)))
+        f.write("\n{} das mudancas de funcao sao em npc cujo id mudou de dono na 5.0 (o menu era do NPC antigo);\n".format(
+            len(trocados)))
         f.write("{} sao em npc de identidade preservada, que e onde vale olhar duas vezes:\n\n".format(len(linhas) - len(trocados)))
         f.write("{:>8}  {:24}  {:22}  {}\n".format("npc_id", "nome", "antes", "depois"))
         for npc, troc, antes, depois in linhas:
@@ -336,6 +369,11 @@ def relatorio(linhas, posto, tirado, novos_talk, ok, total_gab, novo_texto, sem_
             f.write("{:>8}  {:24}  {:22}  {}\n".format(npc, nomes.get(npc, "")[:24],
                                                        " ".join(map(str, antes)) or "-",
                                                        " ".join(map(str, depois)) or "-"))
+        if conversa:
+            f.write("\nNpcs trocados na 5.0 que o cliente mostra com cursor de conversa e o servidor deixava mudos:\n\n")
+            f.write("{:>8}  {:24}  {:7}  {}\n".format("npc_id", "nome", "cursor", "o que muda"))
+            for npc, cursor, oque in conversa:
+                f.write("{:>8}  {:24}  {:7}  {}\n".format(npc, nomes.get(npc, "")[:24], cursor, oque))
     print("   relatorio: " + RELATORIO)
 
 

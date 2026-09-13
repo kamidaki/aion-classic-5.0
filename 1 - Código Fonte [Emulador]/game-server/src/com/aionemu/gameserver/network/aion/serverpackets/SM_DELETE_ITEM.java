@@ -23,6 +23,6 @@ public class SM_DELETE_ITEM extends AionServerPacket {
 	@Override
 	protected void writeImpl(AionConnection con) {
 		writeD(itemObjectId);
-		writeC(deleteType.getMask());
+		writeD(deleteType.getMask()); // 5.0: tipo em D, 8 bytes no total (70 pacotes nas capturas oficiais)
 	}
 }
