@@ -353,6 +353,13 @@ public class EffectController {
 		removeEffects(abnormalEffectMap, Effect::isStunEffect);
 	}
 
+	public void removeBlendingNoteEffects() {
+		removeEffects(abnormalEffectMap, effect -> {
+			String stack = effect.getStack();
+			return stack != null && (stack.startsWith("LU_BLEND") || stack.startsWith("LU_BURSTE"));
+		});
+	}
+
 	/**
 	 * Removes Transform effects from owner. For more info see {@link TransformEffect} it doesn't remove Avatar transforms (TODO find out on retail)
 	 */

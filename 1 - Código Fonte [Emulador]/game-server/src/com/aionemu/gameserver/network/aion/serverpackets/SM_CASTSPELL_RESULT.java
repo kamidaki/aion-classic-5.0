@@ -79,7 +79,7 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 				break;
 		}
 		writeH(skill.getSkillTemplate().getSkillId());
-		writeC(skill.getSkillTemplate().getLvl());
+		writeC(skill.getSkillLevel());
 		writeD(cooldown);
 		writeH(hitTime);
 		writeC(0); // unk

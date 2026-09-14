@@ -25,6 +25,10 @@ public final class BlendingResolver {
 	}
 
 	public static Integer resolve(Collection<BlendingNote> notes) {
+		return resolve(notes, 2);
+	}
+
+	public static Integer resolve(Collection<BlendingNote> notes, int liStacks) {
 		if (notes == null || notes.size() != 3) {
 			return null;
 		}
@@ -50,7 +54,12 @@ public final class BlendingResolver {
 		if (c == 3) return BlendingCombo.CCC.getSkillId();
 		if (c == 2 && a == 1) return BlendingCombo.CCA.getSkillId();
 		if (c == 2 && b == 1) return BlendingCombo.CCB.getSkillId();
-		if (e == 2 && seal == 1) return BlendingCombo.DO.getSkillId();
+		if (e >= 2 && seal >= 1) return resolveDoSkillId(liStacks);
 		return null;
+	}
+
+	public static int resolveDoSkillId(int liStacks) {
+		int level = Math.max(2, Math.min(15, liStacks));
+		return 9007 + level;
 	}
 }

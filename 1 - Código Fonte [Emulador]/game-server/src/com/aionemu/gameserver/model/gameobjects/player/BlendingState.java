@@ -38,13 +38,17 @@ public class BlendingState {
 	}
 
 	public synchronized Integer resolveCombo() {
+		return resolveCombo(2);
+	}
+
+	public synchronized Integer resolveCombo(int liStacks) {
 		long now = System.currentTimeMillis();
 		if (lastNoteTime > 0 && (now - lastNoteTime > NOTE_TIMEOUT_MS)) {
 			notes.clear();
 			return null;
 		}
 		if (notes.size() == 3) {
-			return BlendingResolver.resolve(notes);
+			return BlendingResolver.resolve(notes, liStacks);
 		}
 		return null;
 	}
