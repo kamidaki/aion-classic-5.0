@@ -60,6 +60,20 @@ public class EffectController {
 				existingEffect.endEffect();
 				useEffectId = false;
 			}
+		if (nextEffect.getStack() != null && nextEffect.getStack().startsWith("LU_BLENDE")) {
+			Effect existingSameStack;
+			long stamp = lock.readLock();
+			try {
+				existingSameStack = mapToUpdate.get(nextEffect.getStack());
+			} finally {
+				lock.unlockRead(stamp);
+			}
+			if (existingSameStack != null) {
+				int nextStacks = Math.min(15, Math.max(nextEffect.getCarvedSignet(), existingSameStack.getCarvedSignet() + 1));
+				nextEffect.setCarvedSignet(nextStacks);
+			} else if (nextEffect.getCarvedSignet() <= 0) {
+				nextEffect.setCarvedSignet(1);
+			}
 		}
 
 		if (useEffectId) {
@@ -152,8 +166,13 @@ public class EffectController {
 		} finally {
 			lock.unlockRead(stamp);
 		}
-		if (effectToEnd != null)
+		if (effectToEnd != null) {
+			if (nextEffect.getStack() != null && nextEffect.getStack().startsWith("LU_BLENDE")) {
+				int nextStacks = Math.min(15, Math.max(nextEffect.getCarvedSignet(), effectToEnd.getCarvedSignet() + 1));
+				nextEffect.setCarvedSignet(nextStacks);
+			}
 			effectToEnd.endEffect(effectToEnd.getTargetSlot() != nextEffect.getTargetSlot());
+		}
 		return false;
 	}
 

@@ -123292,15 +123292,15 @@
 			<mpuse value="328" delta="1" />
 		</actions>
 	</skill_template>
-	<skill_template skill_id="3426" name="Forte I" nameId="2284373" delayId="876" stack="LU_FORTES_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3426" name="Forte I" nameId="2284373" delayId="876" stack="LU_FORTES_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="BUFF" req_dispel_level="5" penalty_skill_id="9097">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
 	
 		<effects>
 			<boostcontextskill duration2="20000" effectid="133911" condition="LuminesBless" e="1" noresist="true" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3427" name="Mezzo Forte I" nameId="2284376" delayId="874" stack="LU_FORTEP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="1800" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3427" name="Mezzo Forte I" nameId="2284376" delayId="874" stack="LU_FORTEP_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1800" duration="0" dispel_category="BUFF" req_dispel_level="5" penalty_skill_id="9023">
+		<properties first_target="ME" first_target_range="1" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" target_distance="20" />
 	
 		<effects>
 			<boostcontextskill duration2="20000" effectid="133911" condition="LuminesBless" e="1" noresist="true" />
@@ -127844,8 +127844,8 @@
 			<mpuse value="338" delta="1" />
 		</actions>
 	</skill_template>
-	<skill_template skill_id="3775" name="Mezzo Forte II" nameId="2285752" delayId="874" stack="LU_FORTEP_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="1800" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3775" name="Mezzo Forte II" nameId="2285752" delayId="874" stack="LU_FORTEP_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1800" duration="0" dispel_category="BUFF" req_dispel_level="5" penalty_skill_id="9024">
+		<properties first_target="ME" first_target_range="1" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" target_distance="20" />
 	
 		<effects>
 			<boostcontextskill duration2="20000" effectid="133911" condition="LuminesBless" e="1" noresist="true" />
@@ -130613,8 +130613,8 @@
 			<provoker e="1" skill_id="9177" provoke_target="ME" effectid="109582" basiclvl="100" noresist="true" hittypeprob2="1000" element="WIND" hoptype="SKILLLV" hopb="705" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3993" name="Fortissimo" nameId="2286903" delayId="876" stack="LU_FORTES_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3993" name="Fortissimo" nameId="2286903" delayId="876" stack="LU_FORTES_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="BUFF" req_dispel_level="5" penalty_skill_id="9178">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
 	
 		<effects>
 			<boostcontextskill duration2="20000" effectid="133911" condition="LuminesBless" e="1" noresist="true" />
@@ -133609,8 +133609,8 @@
 			<mpuse value="295" delta="1" />
 		</actions>
 	</skill_template>
-	<skill_template skill_id="4242" name="Molto Forte" nameId="2287565" delayId="879" stack="LU_FORTEP_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="1800" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4242" name="Molto Forte" nameId="2287565" delayId="879" stack="LU_FORTEP_AD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1800" duration="0" dispel_category="BUFF" req_dispel_level="5" penalty_skill_id="9250">
+		<properties first_target="ME" first_target_range="1" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" target_distance="20" />
 	
 		<effects>
 			<boostcontextskill duration2="20000" effectid="133911" condition="LuminesBless" e="1" noresist="true" />
@@ -136346,8 +136346,8 @@
 			<mpuse value="295" delta="1" />
 		</actions>
 	</skill_template>
-	<skill_template skill_id="4523" name="Molto Forte" nameId="2287565" delayId="879" stack="LU_FORTEP_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="1800" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4523" name="Molto Forte" nameId="2287565" delayId="879" stack="LU_FORTEP_AD_G1_EVT" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1800" duration="0" dispel_category="BUFF" req_dispel_level="5" penalty_skill_id="9250">
+		<properties first_target="ME" first_target_range="1" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" target_distance="20" />
 	
 		<effects>
 			<boostcontextskill duration2="20000" effectid="133911" condition="LuminesBless" e="1" noresist="true" />
@@ -139052,8 +139052,8 @@
 			</statdown>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9023" name="Forte Effect" nameId="2284426" delayId="9023" stack="LU_FORTEP_PROC_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="9023" name="Forte Effect" nameId="2284426" delayId="9023" stack="LU_FORTEP_PROC_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="1" target_distance="25" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" />
 	
 		<effects>
 			<statup duration2="120000" effectid="190241" e="1" noresist="true">
@@ -139064,8 +139064,8 @@
 			</boostskillcastingtime>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9024" name="Forte Effect" nameId="2284426" delayId="9024" stack="LU_FORTEP_PROC_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="9024" name="Forte Effect" nameId="2284426" delayId="9024" stack="LU_FORTEP_PROC_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="1" target_distance="25" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" />
 	
 		<effects>
 			<statup duration2="120000" effectid="190241" e="1" noresist="true">
@@ -141389,9 +141389,9 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9250" name="Molto Forte Effect" nameId="2287568" delayId="9250" stack="LU_FORTEP_AD_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
-	</skill_template>
+	<skill_template skill_id="9250" name="Molto Forte Effect" nameId="2287568" delayId="9250" stack="LU_FORTEP_AD_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="1" target_distance="25" target_relation="MYPARTY" target_type="PARTY" target_maxcount="6" />
+	<effects><statup duration2="120000" effectid="190241" e="1" basiclvl="30" noresist="true" /><boostskillcastingtime duration2="120000" effectid="190242" e="2" basiclvl="30" noresist="true" preeffect="1" preeffect_prob="100" /></effects></skill_template>
 	<skill_template skill_id="9251" name="Surprise Attack Bonus Effect" nameId="2287603" delayId="9251" stack="AS_RE_BLINDSIDE_AD_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>

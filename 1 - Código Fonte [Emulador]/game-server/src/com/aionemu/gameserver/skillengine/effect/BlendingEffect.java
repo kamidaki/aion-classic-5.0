@@ -35,23 +35,25 @@ public class BlendingEffect extends EffectTemplate {
 
 		// 1. Gerenciar acúmulos (carvedSignet) no efeito aplicado ao alvo
 		if (target != null) {
-			String currentStack = effect.getStack();
-			String stackPrefix = getStackPrefix(currentStack);
-			int count = 1;
+			if (effect.getCarvedSignet() <= 0) {
+				String currentStack = effect.getStack();
+				String stackPrefix = getStackPrefix(currentStack);
+				int count = 1;
 
-			if (stackPrefix != null) {
-				for (Effect active : target.getEffectController().getAbnormalEffects()) {
-					if (active != effect && active.getStack() != null && active.getStack().startsWith(stackPrefix)) {
-						count = active.getCarvedSignet() + 1;
-						break;
+				if (stackPrefix != null) {
+					for (Effect active : target.getEffectController().getAbnormalEffects()) {
+						if (active != effect && active.getStack() != null && active.getStack().startsWith(stackPrefix)) {
+							count = active.getCarvedSignet() + 1;
+							break;
+						}
 					}
 				}
-			}
 
-			if ("E".equals(note)) {
-				count = Math.min(15, count);
+				if ("E".equals(note)) {
+					count = Math.min(15, count);
+				}
+				effect.setCarvedSignet(count);
 			}
-			effect.setCarvedSignet(count);
 
 			// Verificar quantidade de Li acumulados no alvo para o combo Do
 			for (Effect active : target.getEffectController().getAbnormalEffects()) {
@@ -60,7 +62,7 @@ public class BlendingEffect extends EffectTemplate {
 				}
 			}
 			if ("E".equals(note)) {
-				targetLiStacks = Math.max(targetLiStacks, count);
+				targetLiStacks = Math.max(targetLiStacks, effect.getCarvedSignet());
 			}
 		}
 
@@ -95,6 +97,27 @@ public class BlendingEffect extends EffectTemplate {
 	@Override
 	public void calculate(Effect effect) {
 		effect.addSuccessEffect(this);
+
+		Creature target = effect.getEffected();
+		if (target != null) {
+			String currentStack = effect.getStack();
+			String stackPrefix = getStackPrefix(currentStack);
+			int count = 1;
+
+			if (stackPrefix != null) {
+				for (Effect active : target.getEffectController().getAbnormalEffects()) {
+					if (active != effect && active.getStack() != null && active.getStack().startsWith(stackPrefix)) {
+						count = active.getCarvedSignet() + 1;
+						break;
+					}
+				}
+			}
+
+			if ("E".equals(note)) {
+				count = Math.min(15, count);
+			}
+			effect.setCarvedSignet(count);
+		}
 	}
 
 	public String getNote() {
