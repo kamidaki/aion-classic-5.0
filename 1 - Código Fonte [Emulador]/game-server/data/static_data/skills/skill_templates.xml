@@ -120313,9 +120313,11 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3213" name="Le-La-Fa Luminance I" nameId="2284435" delayId="919" stack="LU_TELE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="300" duration="0">
-		<properties first_target="TARGET" />
-	
+	<skill_template skill_id="3213" name="Le-La-Fa Luminance I" nameId="2284435" delayId="919" stack="LU_TELE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NOSHOW" activation="ACTIVE" cooldown="300" duration="0" penalty_skill_id="3214" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="LU_CHAIND_1TH" time="10000" selfcount="3" />
+		</startconditions>
 		<effects>
 			<movelocation distance="25" e="1" noresist="true" />
 			<spellatkinstant value="157" delta="3" e="2" element="WATER" preeffect="1" preeffect_prob="100" />
@@ -135036,8 +135038,16 @@
 			<mpuse value="275" delta="1" />
 		</actions>
 	</skill_template>
-	<skill_template skill_id="4366" name="Le-La-Fa Luminance I" nameId="2284435" delayId="1995" stack="LU_TELE_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="300" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4366" name="Le-La-Fa Luminance I" nameId="2284435" delayId="1995" stack="LU_TELE_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NOSHOW" activation="ACTIVE" cooldown="300" duration="0" penalty_skill_id="3214" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="LU_CHAIND_1TH" time="10000" selfcount="3" />
+		</startconditions>
+		<effects>
+			<movelocation distance="25" e="1" noresist="true" />
+			<spellatkinstant value="157" delta="3" e="2" element="WATER" preeffect="1" preeffect_prob="100" />
+			<stun duration2="1000" effectid="20000" e="3" accmod2="200" critprobmod2="100" element="WATER" preeffect="2" preeffect_prob="100" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4367" name="Phoenix Transformation" nameId="2288041" delayId="309" stack="GU_L_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
 		<properties first_target="TARGET" />

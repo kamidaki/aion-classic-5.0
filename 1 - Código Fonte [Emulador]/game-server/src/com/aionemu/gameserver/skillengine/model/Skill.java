@@ -43,6 +43,7 @@ import com.aionemu.gameserver.skillengine.action.Actions;
 import com.aionemu.gameserver.skillengine.condition.Conditions;
 import com.aionemu.gameserver.skillengine.condition.SkillChargeCondition;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
+import com.aionemu.gameserver.skillengine.effect.BoostContextSkillEffect;
 import com.aionemu.gameserver.skillengine.properties.FirstTargetAttribute;
 import com.aionemu.gameserver.skillengine.properties.Properties;
 import com.aionemu.gameserver.skillengine.properties.Properties.CastState;
@@ -624,6 +625,14 @@ public class Skill {
 
 		boolean setCooldowns = true;
 		if (effector instanceof Player playerEffector) {
+			if (skillTemplate.isForteSkill()) {
+				for (Effect effect : playerEffector.getEffectController().getAbnormalEffects()) {
+					if (BoostContextSkillEffect.grants(effect, "LuminesBless")) {
+						effect.endEffect();
+					}
+				}
+			}
+
 			if (skillTemplate.isStance() && !blockedStance && skillMethod == SkillMethod.CAST)
 				playerEffector.getController().startStance(skillTemplate.getSkillId());
 			if (getMultiCastCount() > 0)

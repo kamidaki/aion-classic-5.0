@@ -27,7 +27,7 @@ public class ChainSkills {
 	 * @return Number of activations for the current chain skill. 0 if chain skill category doesn't match the current one, or no chain is active.
 	 */
 	public int getCurrentChainCount(String category) {
-		return chainSkill.getCategory().equals(category) ? chainSkill.getUseCount() : 0;
+		return chainSkill.getCategory().equalsIgnoreCase(category) ? chainSkill.getUseCount() : 0;
 	}
 
 	public void updateChain(String category, int duration) {

@@ -371,6 +371,21 @@ public class SkillTemplate implements L10n {
 		return chainCondition != null && chainCondition.getAllowedActivations() > 1;
 	}
 
+	public boolean isForteSkill() {
+		if (stack != null && (stack.startsWith("LU_FORTES") || stack.startsWith("LU_FORTEP")))
+			return false;
+		if (name != null && name.contains("(Forte)"))
+			return true;
+		if (stack != null) {
+			String upper = stack.toUpperCase();
+			if (upper.contains("_FORTE_"))
+				return true;
+			if (upper.startsWith("LU_") && upper.contains("_HIGH_"))
+				return true;
+		}
+		return false;
+	}
+
 	public ChainCondition getChainCondition() {
 		if (startconditions != null) {
 			for (Condition cond : startconditions.getConditions()) {

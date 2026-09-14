@@ -38,10 +38,10 @@ public class ChainCondition extends Condition {
 				chain.resetChain();
 
 			if (preCategory != null) {
-				if (currentSkill.getCategory().equals(preCategory)) {
+				if (currentSkill.getCategory().equalsIgnoreCase(preCategory)) {
 					if (currentSkill.getUseCount() < preCount) // preCategory skill must have been activated x times
 						return false;
-				} else if (!chain.getPreviousChainSkill().getCategory().equals(preCategory)) { // previously activated skill must match
+				} else if (!chain.getPreviousChainSkill().getCategory().equalsIgnoreCase(preCategory)) { // previously activated skill must match
 					return false;
 				}
 			}
@@ -58,8 +58,8 @@ public class ChainCondition extends Condition {
 			if (chain.isChainExpired()) // check max allowed use time
 				return true;
 
-			if (preCategory == null && category.contains("_1TH")) { // first skill of a chain
-				if (!currentSkill.getCategory().equals(category)) // other skill
+			if (preCategory == null && category.toUpperCase().contains("_1TH")) { // first skill of a chain
+				if (!currentSkill.getCategory().equalsIgnoreCase(category)) // other skill
 					return true;
 				if (currentSkill.getUseCount() == selfCount) // same skill
 					return true;
