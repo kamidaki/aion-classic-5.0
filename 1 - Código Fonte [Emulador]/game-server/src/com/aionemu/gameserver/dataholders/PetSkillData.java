@@ -41,11 +41,17 @@ public class PetSkillData {
 		return petSkillData.containsKey(orderSkill);
 	}
 
+	/**
+	 * @return id da skill que o pet usa para a ordem, 0 quando o par ordem/pet não existe
+	 */
 	public int getPetOrderSkill(int orderSkill, int petNpcId) {
-		return petSkillData.get(orderSkill).get(petNpcId);
+		Map<Integer, Integer> skillsByPet = petSkillData.get(orderSkill);
+		Integer skillId = skillsByPet == null ? null : skillsByPet.get(petNpcId);
+		return skillId == null ? 0 : skillId;
 	}
 
 	public boolean petHasSkill(int petNpcId, int skillId) {
-		return petSkillsMap.get(petNpcId).contains(skillId);
+		List<Integer> skills = petSkillsMap.get(petNpcId);
+		return skills != null && skills.contains(skillId);
 	}
 }

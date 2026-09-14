@@ -78,7 +78,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 		Stat2 concentration = pgs.getStat(StatEnum.CONCENTRATION, 0);
 		Stat2 mBoost = pgs.getMBoost();
 		Stat2 healBoost = pgs.getStat(StatEnum.HEAL_BOOST, 0);
-		Stat2 pCritResist = pgs.getStat(StatEnum.PHYSICAL_CRITICAL_RESIST, 0);
+		Stat2 mSkillBoostResist = pgs.getStat(StatEnum.MAGIC_SKILL_BOOST_RESIST, 0);
 		Stat2 mCritResist = pgs.getStat(StatEnum.MAGICAL_CRITICAL_RESIST, 0);
 		Stat2 pCritDamReduce = pgs.getStat(StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE, 0);
 		Stat2 mCritDamReduce = pgs.getStat(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, 0);
@@ -161,8 +161,8 @@ public class SM_STATS_INFO extends AionServerPacket {
 
 		writeH(safeCurrent(concentration)); // 148
 		writeH(totalBoostMagicalSkill); // 150
-		writeH(safeCurrent(healBoost)); // 152
-		writeH(safeCurrent(pCritResist)); // 154
+		writeH(safeCurrent(mSkillBoostResist)); // 152 supressão mágica (5.0 oficial: +68 ao vestir um torso com 68)
+		writeH(safeCurrent(healBoost)); // 154 heal boost (5.0 oficial: acompanha as peças, 21/36/50/65/96)
 		writeH(safeCurrent(mCritResist)); // 156
 		writeH(safeCurrent(pCritDamReduce)); // 158
 		writeH(safeCurrent(mCritDamReduce)); // 160
@@ -238,8 +238,8 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(safeBase(mAcc)); // 352
 		writeH(safeBase(concentration)); // 354
 		writeH(safeBase(mBoost)); // 356
-		writeH(safeBase(healBoost)); // 358
-		writeH(safeBase(pCritResist)); // 360
+		writeH(safeBase(mSkillBoostResist)); // 358 base da supressão mágica (5.0 oficial: os 68 sem bônus do torso e1)
+		writeH(safeBase(healBoost)); // 360 base do heal boost (0 em todas as capturas)
 		writeH(safeBase(mCritResist)); // 362
 		writeH(safeBase(pCritDamReduce)); // 364
 		writeH(safeBase(mCritDamReduce)); // 366

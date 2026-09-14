@@ -9,8 +9,10 @@ import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.NpcObjectType;
+import com.aionemu.gameserver.model.gameobjects.Servant;
 import com.aionemu.gameserver.model.skill.NpcSkillEntry;
 import com.aionemu.gameserver.skillengine.SkillEngine;
+import com.aionemu.gameserver.skillengine.condition.HpCondition;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.skillengine.model.SkillType;
@@ -48,7 +50,7 @@ public class ServantNpcAI extends GeneralNpcAI {
 				else
 					AIActions.targetSelf(ServantNpcAI.this);
 				healOrAttack();
-			}, 200);
+			}, 0);
 		}
 	}
 
@@ -57,8 +59,9 @@ public class ServantNpcAI extends GeneralNpcAI {
 		if (skill == null)
 			return;
 		getOwner().getGameStats().setLastSkill(skill);
-		int duration = getOwner().getNpcObjectType() == NpcObjectType.TOTEM ? 3000 : 5000;
-		int startDelay = 1000;
+		// 5.0 oficial: a 1ª skill sai junto com o S_PUT_NPC; totem repete a cada ~3 s, servant a cada ~6,3 s
+		int duration = getOwner().getNpcObjectType() == NpcObjectType.TOTEM ? 3000 : 6300;
+		int startDelay = 0;
 		switch (getOwner().getNpcId()) {
 			// Taunting Spirit
 			case 833403, 833404, 833478, 833479, 833480, 833481 -> duration = 5000;
@@ -69,6 +72,8 @@ public class ServantNpcAI extends GeneralNpcAI {
 			}
 		}
 		final Creature target = (Creature) getOwner().getTarget();
+		// 5.0 oficial: a skill sai no nível da skill que invocou o servant (Holy Servant IV nv 9 -> 17590 nv 9)
+		final int skillLevel = getOwner() instanceof Servant servant && servant.getSkillLevel() > 0 ? servant.getSkillLevel() : skill.getSkillLevel();
 		skillTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(() -> {
 			if (target == null || target.isDead()) {
 				AIActions.deleteOwner(ServantNpcAI.this);
@@ -79,7 +84,14 @@ public class ServantNpcAI extends GeneralNpcAI {
 					&& (template.getType() != SkillType.PHYSICAL || !getOwner().getEffectController().isAbnormalSet(AbnormalState.BIND))
 					&& (!getOwner().getEffectController().isInAnyAbnormalState(AbnormalState.CANT_ATTACK_STATE))
 					&& (!getOwner().isTransformed() || !getOwner().getTransformModel().cantUseSkills())) {
-					SkillEngine.getInstance().getSkill(getOwner(), skill.getSkillId(), skill.getSkillLevel(), getOwner().getTarget()).useSkill();
+					HpCondition hpCost = template.getStartconditions() == null ? null : template.getHpCondition();
+					// 5.0 oficial: sem HP para o custo, o servant ataca uma última vez e some logo depois do resultado
+					// (Holy Servant IV com 810 de HP: 3º ataque com 210 para um custo de 300, removido 0,22 s depois)
+					boolean lastAttack = hpCost != null && getOwner().getLifeStats().getCurrentHp() <= hpCost.getHpValue();
+					if (SkillEngine.getInstance().getSkill(getOwner(), skill.getSkillId(), skillLevel, getOwner().getTarget()).useSkill() && lastAttack) {
+						ThreadPoolManager.getInstance().schedule(() -> AIActions.deleteOwner(ServantNpcAI.this), template.getDuration() + 200);
+						cancelTask();
+					}
 				}
 			}
 		}, startDelay, duration);

@@ -69,7 +69,8 @@ public class CM_SUMMON_CASTSPELL extends AionClientPacket {
 		if (summonOrMercenary instanceof Summon summon) {
 			final SkillOrder order = summon.retrieveNextSkillOrder();
 			if (order != null && order.getTarget().equals(target)) {
-				if (order.getSkillId() != skillId || order.getSkillLevel() != skillLvl)
+				// 5.0 oficial: o cliente devolve sempre nível 1 aqui, então só a skill é comparada
+				if (order.getSkillId() != skillId)
 					log.warn(player + " used summon order with a different skill: skillId {}->{}; skillLvl {}->{}.", skillId, order.getSkillId(), skillLvl,
 						order.getSkillLevel());
 				summon.getController().useSkill(order);

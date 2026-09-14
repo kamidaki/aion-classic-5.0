@@ -5,9 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
-import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -28,12 +26,9 @@ public class HpCondition extends Condition {
 
 	@Override
 	public boolean validate(Skill skill) {
-		if (!canValidate(skill))
-			return false;
-		Creature effector = skill.getEffector();
-		// npcs pass the check even when they cannot afford it and then pay what they have, down to 1 hp (example: skillId 18304)
-		effector.getLifeStats().reduceHp(SM_ATTACK_STATUS.TYPE.USED_HP, getCost(skill), 0, SM_ATTACK_STATUS.LOG.REGULAR, effector);
-		return true;
+		// só confere: quem cobra é o <hpuse> no fim do cast. Todo template com <hp> também tem <hpuse>, e cobrar aqui pagava o custo duas vezes
+		// (5.0 oficial: um único -300 por ataque do servant, junto do resultado)
+		return canValidate(skill);
 	}
 
 	@Override

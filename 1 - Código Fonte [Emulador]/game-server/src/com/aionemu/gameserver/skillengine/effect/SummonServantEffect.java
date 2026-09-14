@@ -31,6 +31,9 @@ import com.aionemu.gameserver.world.geo.GeoService;
 public class SummonServantEffect extends SummonEffect {
 
 	private final static int INITIAL_SPAWN_DELAY = 3000; // Seems to be around 2.5s
+	// 5.0 oficial: o servant some time + 4,9 s depois do spawn (21,9 s em duas capturas) e o totem time + 4,2 s (70,2 s)
+	private final static int SERVANT_EXTRA_LIFETIME = 4900;
+	private final static int TOTEM_EXTRA_LIFETIME = 4200;
 
 	@Override
 	public void applyEffect(Effect effect) {
@@ -52,7 +55,12 @@ public class SummonServantEffect extends SummonEffect {
 		SpawnTemplate spawn = SpawnEngine.newSingleTimeSpawn(effector.getWorldId(), npcId, x, y, z, effector.getHeading());
 		final Servant servant = VisibleObjectSpawner.spawnServant(spawn, effector.getInstanceId(), effector, effect.getSkillLevel(), npcObjectType);
 
-		Future<?> task = ThreadPoolManager.getInstance().schedule(() -> servant.getController().delete(), spawnDuration * 1000L + INITIAL_SPAWN_DELAY);
+		int extraLifetime = switch (npcObjectType) {
+			case SERVANT -> SERVANT_EXTRA_LIFETIME;
+			case TOTEM -> TOTEM_EXTRA_LIFETIME;
+			default -> INITIAL_SPAWN_DELAY;
+		};
+		Future<?> task = ThreadPoolManager.getInstance().schedule(() -> servant.getController().delete(), spawnDuration * 1000L + extraLifetime);
 		servant.getController().addTask(TaskId.DESPAWN, task);
 		return servant;
 	}

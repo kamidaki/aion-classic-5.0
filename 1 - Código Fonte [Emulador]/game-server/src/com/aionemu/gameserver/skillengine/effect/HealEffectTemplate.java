@@ -25,7 +25,8 @@ public interface HealEffectTemplate {
 				int healBoost = effect.getEffector().getGameStats().getStat(StatEnum.HEAL_BOOST, 0).getCurrent();
 				// caster's heal related effects (passive boosts, active buffs e.g. blessed shield)
 				int healSkillBoost = effect.getEffector().getGameStats().getStat(StatEnum.HEAL_SKILL_BOOST, 1000).getCurrent() - 1000;
-				healValue += Math.round(healValue * Math.min(2000, healBoost + healSkillBoost) / 1000f);
+				// 5.0 oficial trunca: o totem com 377 de base e boost 10 (calça de 21) cura 380, não 381
+				healValue += healValue * Math.min(2000, healBoost + healSkillBoost) / 1000;
 			}
 			// apply target's heal related effects (e.g. brilliant protection)
 			if (allowHpHealSkillDeboost(effect))

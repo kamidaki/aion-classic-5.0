@@ -31,14 +31,12 @@ public class SM_SUMMON_UPDATE extends AionServerPacket {
 		Stat2 mainHandPAttack = summon.getGameStats().getMainHandPAttack(CalculationType.DISPLAY);
 		writeD(mainHandPAttack.getCurrent());
 
+		// 5.0 oficial (S_CHANGE_PET_STATUS, 71 b): defesa em H e sem o campo de defesa mágica, nos dois blocos
 		Stat2 pDef = summon.getGameStats().getPDef();
-		writeD(pDef.getCurrent());
+		writeH(pDef.getCurrent());
 
 		Stat2 mResist = summon.getGameStats().getMResist();
 		writeH(mResist.getCurrent());
-
-		Stat2 mDef = summon.getGameStats().getMDef();
-		writeD(mDef.getCurrent());
 
 		Stat2 accuracy = summon.getGameStats().getMainHandPAccuracy();
 		writeH(accuracy.getCurrent());
@@ -66,9 +64,8 @@ public class SM_SUMMON_UPDATE extends AionServerPacket {
 
 		writeD(maxHp.getBase());
 		writeD(mainHandPAttack.getBase());
-		writeD(pDef.getBase());
+		writeH(pDef.getBase());
 		writeH(mResist.getBase());
-		writeD(mDef.getBase());
 		writeH(accuracy.getBase());
 		writeH(mainHandPCritical.getBase());
 		writeH(mBoost.getBase());

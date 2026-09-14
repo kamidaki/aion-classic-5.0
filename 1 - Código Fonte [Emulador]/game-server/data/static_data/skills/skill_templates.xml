@@ -21682,7 +21682,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="3" time="2" npc_id="749046" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749046" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="127" delta="3" />
@@ -21698,7 +21698,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="3" time="2" npc_id="749047" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749047" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="175" delta="4" />
@@ -21714,7 +21714,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="1" time="2" npc_id="749048" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749048" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="117" delta="3" />
@@ -21730,7 +21730,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="1" time="2" npc_id="749049" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749049" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="159" delta="3" />
@@ -21746,7 +21746,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="1" time="2" npc_id="749050" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749050" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="204" delta="4" />
@@ -22231,7 +22231,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="1" npc_count="7" time="4" npc_id="749175" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="1" npc_count="4" time="4" npc_id="749175" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="290" delta="5" />
@@ -22247,7 +22247,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="1" npc_count="7" time="4" npc_id="749176" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="1" npc_count="4" time="4" npc_id="749176" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="290" delta="5" />
@@ -22263,7 +22263,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="3" time="2" npc_id="749055" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749055" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="127" delta="3" />
@@ -22279,7 +22279,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="3" time="2" npc_id="749056" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749056" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="175" delta="4" />
@@ -22295,7 +22295,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="1" time="2" npc_id="749057" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749057" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="117" delta="3" />
@@ -22311,7 +22311,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="1" time="2" npc_id="749058" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749058" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="159" delta="3" />
@@ -22327,7 +22327,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="1" time="2" npc_id="749059" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749059" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="204" delta="4" />
@@ -23205,7 +23205,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="4" time="2" npc_id="749102" e="1" noresist="true" element="FIRE" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749102" e="1" noresist="true" element="FIRE" />
 		</effects>
 		<actions>
 			<mpuse value="617" delta="12" />
@@ -23221,7 +23221,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="4" time="2" npc_id="749103" e="1" noresist="true" element="FIRE" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749103" e="1" noresist="true" element="FIRE" />
 		</effects>
 		<actions>
 			<mpuse value="617" delta="12" />
@@ -23303,7 +23303,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="1" time="2" npc_id="749104" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749104" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="258" delta="6" />
@@ -23319,7 +23319,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="1" time="2" npc_id="749105" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749105" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="258" delta="6" />
@@ -23956,7 +23956,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="5" time="2" npc_id="749133" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749133" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="94" delta="2" />
@@ -23972,7 +23972,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="5" time="2" npc_id="749134" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749134" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="127" delta="3" />
@@ -23988,7 +23988,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="5" time="2" npc_id="749135" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749135" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="175" delta="4" />
@@ -24004,7 +24004,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="5" time="2" npc_id="749136" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749136" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="94" delta="2" />
@@ -24020,7 +24020,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="5" time="2" npc_id="749137" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749137" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="127" delta="3" />
@@ -24036,7 +24036,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="5" time="2" npc_id="749138" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749138" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="175" delta="4" />
@@ -24052,7 +24052,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="6" time="2" npc_id="749139" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749139" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="159" delta="3" />
@@ -24068,7 +24068,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="6" time="2" npc_id="749140" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749140" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="159" delta="3" />
@@ -24587,7 +24587,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="6" time="2" npc_id="749156" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749156" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="208" delta="4" />
@@ -24603,7 +24603,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="6" time="2" npc_id="749153" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749153" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="208" delta="4" />
@@ -24731,7 +24731,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="5" time="2" npc_id="749154" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749154" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="230" delta="3" />
@@ -24747,7 +24747,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="5" time="2" npc_id="749151" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749151" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="230" delta="3" />
@@ -24800,7 +24800,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="3" time="2" npc_id="749155" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749155" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="232" delta="3" />
@@ -24816,7 +24816,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="3" time="2" npc_id="749152" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749152" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="232" delta="3" />
@@ -26147,7 +26147,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="3" time="2" npc_id="749055" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749055" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<motion name="elsummon1" />
 	</skill_template>
@@ -30393,7 +30393,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="1" npc_count="7" time="4" npc_id="749202" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="1" npc_count="4" time="4" npc_id="749202" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="305" delta="7" />
@@ -30409,7 +30409,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="1" npc_count="7" time="4" npc_id="749203" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="1" npc_count="4" time="4" npc_id="749203" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="305" delta="7" />
@@ -30510,7 +30510,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="1" npc_count="7" time="4" npc_id="749204" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="1" npc_count="4" time="4" npc_id="749204" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="325" delta="8" />
@@ -30526,7 +30526,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="1" npc_count="7" time="4" npc_id="749205" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="1" npc_count="4" time="4" npc_id="749205" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="325" delta="8" />
@@ -30773,7 +30773,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="1" npc_count="7" time="4" npc_id="749206" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="1" npc_count="4" time="4" npc_id="749206" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="354" delta="8" />
@@ -30789,7 +30789,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="1" npc_count="7" time="4" npc_id="749207" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="1" npc_count="4" time="4" npc_id="749207" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="354" delta="8" />
@@ -30873,7 +30873,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="6" time="2" npc_id="749208" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749208" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="263" delta="5" />
@@ -30889,7 +30889,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="3" npc_count="6" time="2" npc_id="749209" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="3" npc_count="2" time="2" npc_id="749209" e="1" noresist="true" element="WATER" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<actions>
 			<mpuse value="263" delta="5" />
@@ -42658,7 +42658,7 @@
 			<playermove allow="false" />
 		</useconditions>
 		<effects>
-			<summonhoming attack_count="10" npc_count="9" time="1" npc_id="749210" skill_id="19276" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
+			<summonhoming attack_count="10" npc_count="1" time="1" npc_id="749210" skill_id="19276" e="1" noresist="true" element="WIND" hoptype="SKILLLV" hopb="1" />
 		</effects>
 		<motion name="pointfire" />
 	</skill_template>
@@ -115809,11 +115809,33 @@
 	<skill_template skill_id="3658" name="Call Lightning III" nameId="2285359" delayId="3658" stack="PR_CALLLIGHTNING_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="3659" name="Summon Noble Energy III" nameId="2285360" delayId="3659" stack="PR_LIGHT_ETERNALSERVENT_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3659" name="Summon Noble Energy III" nameId="2285360" delayId="414" stack="PR_LIGHT_ETERNALSERVENT_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="228" delta="5" />
+			<selfflying restriction="GROUND" />
+		</startconditions>
+		<effects>
+			<summonservant skill_id="21050" time="17" npc_id="750027" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="2966" />
+		</effects>
+		<actions>
+			<mpuse value="228" delta="5" />
+		</actions>
+		<motion name="alterfire" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="3660" name="Summon Noble Energy III" nameId="2285361" delayId="3660" stack="PR_DARK_ETERNALSERVENT_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3660" name="Summon Noble Energy III" nameId="2285361" delayId="414" stack="PR_DARK_ETERNALSERVENT_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="228" delta="5" />
+			<selfflying restriction="GROUND" />
+		</startconditions>
+		<effects>
+			<summonservant skill_id="21050" time="17" npc_id="750028" e="1" noresist="true" element="FIRE" hoptype="SKILLLV" hopb="2966" />
+		</effects>
+		<actions>
+			<mpuse value="228" delta="5" />
+		</actions>
+		<motion name="alterfire" instant_skill="true" />
 	</skill_template>
 	<skill_template skill_id="3661" name="Summon Holy Servant V" nameId="2285362" delayId="3661" stack="PR_LIGHT_HOLYSERVENT_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />

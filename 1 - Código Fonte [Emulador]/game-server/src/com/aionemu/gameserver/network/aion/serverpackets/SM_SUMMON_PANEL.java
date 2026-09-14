@@ -25,10 +25,11 @@ public class SM_SUMMON_PANEL extends AionServerPacket {
 		writeD(summon.getLifeStats().getCurrentHp());
 		writeD(summon.getGameStats().getMaxHp().getCurrent());
 		writeD(summon.getGameStats().getMainHandPAttack(CalculationType.DISPLAY).getCurrent());
-		writeD(summon.getGameStats().getPDef().getCurrent());
-		writeD(summon.getGameStats().getMDef().getCurrent());
-		writeH(0);// unk
+		// 5.0 oficial (S_ADD_PET, 36 b): defesa e resistência mágica em H, depois [D tempo de vida][H 0]
+		writeH(summon.getGameStats().getPDef().getCurrent());
+		writeH(summon.getGameStats().getMResist().getCurrent());
 		writeD(summon.getLiveTime()); // life time
+		writeH(0);// unk
 	}
 
 }

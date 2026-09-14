@@ -13,6 +13,7 @@ import com.aionemu.gameserver.world.knownlist.NpcKnownList;
 public class Servant extends SummonedObject<Creature> {
 
 	private NpcObjectType objectType;
+	private int skillLevel;
 
 	public Servant(NpcController controller, SpawnTemplate spawnTemplate, byte level, Creature creator) {
 		super(controller, spawnTemplate, level, creator);
@@ -38,6 +39,17 @@ public class Servant extends SummonedObject<Creature> {
 
 	public void setUpStats() {
 		((ServantGameStats) getGameStats()).setUpStats();
+	}
+
+	/**
+	 * @return nível da skill que invocou o servant, 0 quando ele não veio de uma skill
+	 */
+	public int getSkillLevel() {
+		return skillLevel;
+	}
+
+	public void setSkillLevel(int skillLevel) {
+		this.skillLevel = skillLevel;
 	}
 
 }

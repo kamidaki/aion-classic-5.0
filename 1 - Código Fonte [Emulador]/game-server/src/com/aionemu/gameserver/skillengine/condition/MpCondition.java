@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -29,10 +28,9 @@ public class MpCondition extends Condition {
 
 	@Override
 	public boolean validate(Skill skill) {
-		if (!canValidate(skill))
-			return false;
-		skill.getEffector().getLifeStats().reduceMp(SM_ATTACK_STATUS.TYPE.USED_MP, getCost(skill), 0, SM_ATTACK_STATUS.LOG.REGULAR);
-		return true;
+		// só confere: quem cobra é o <mpuse> no fim do cast. Todo template com <mp> também tem <mpuse>, e cobrar aqui pagava o custo duas vezes
+		// (5.0 oficial: Healing Light VI nv 5 tira 111 de MP uma vez, depois do resultado)
+		return canValidate(skill);
 	}
 
 	@Override

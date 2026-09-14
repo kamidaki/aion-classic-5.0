@@ -146,7 +146,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_SELECT_DECOMPOSABLE.class, 0xEC, State.IN_GAME); // Raw alias
 		addPacket(CM_BLACKCLOUD_MAIL_OPEN.class, 0x15B, State.IN_GAME); // 0x00A9 BLACKCLOUD_MAIL_OPEN
 		addPacket(CM_BLACKCLOUD_MAIL.class, 0x15F, State.IN_GAME); // 0x00A5 BLACKCLOUD_MAIL
-		addPacket(CM_BLACKCLOUD_MAIL_CLAIM.class, 0x15C, State.IN_GAME); // 0x00A6 BLACKCLOUD_MAIL_CLAIM
+		// 0x00A6 não é BLACKCLOUD_MAIL_CLAIM na 5.0: é o cast do summon (C_CLIENTSIDE_NPC_USE_SKILL), 25 pacotes de 15 b nas capturas do Spirit Master
+		// addPacket(CM_BLACKCLOUD_MAIL_CLAIM.class, 0x15C, State.IN_GAME);
 		addPacket(CM_PING_REQUEST.class, 0x158, State.IN_GAME); // 0x00AA CUR_STATUS
 		addPacket(CM_REPLACE_ITEM.class, 0x140, State.IN_GAME); // 0x00B2 REPLACE_ITEM
 		addPacket(CM_BLOCK_SET_REASON.class, 0x141, State.IN_GAME); // 0x00B3 BLOCK_SET_REASON
@@ -156,8 +157,8 @@ public class AionPacketHandlerFactory {
 		addPacket(CM_INSTANCE_INFO.class, 0x1B3, State.IN_GAME); // 0x00C1 INSTANCE_DUNGEON_COOLTIMES
 		addPacket(CM_BOARD_BUSINESS.class, 0x1BE, State.IN_GAME); // 0x00C4 BOARD_BUSINESS
 		addPacket(CM_QUEST_TELEPORT.class, 0x1BF, State.IN_GAME); // 0x00C5 REQUEST_GUILD_HISTORY / QUEST_TELEPORT
-		addPacket(CM_SUMMON_ATTACK.class, 0x1A6, State.IN_GAME); // 0x00CC SUMMON_ATTACK
-		addPacket(CM_SUMMON_CASTSPELL.class, 0x1A4, State.IN_GAME); // 0x00CE SUMMON_CASTSPELL
+		addPacket(CM_SUMMON_ATTACK.class, 0x15E, State.IN_GAME); // 0x00A4 SUMMON_ATTACK (5.0 Classic: [D summon][D alvo][C][H tempo][C], 43 pacotes de 12 b nas capturas do Spirit Master)
+		addPacket(CM_SUMMON_CASTSPELL.class, 0x15C, State.IN_GAME); // 0x00A6 SUMMON_CASTSPELL (5.0 Classic: [D summon][H skill][C 1][D alvo][F], 25 pacotes de 15 b)
 		addPacket(CM_SHOW_MAP.class, 0x1AF, State.IN_GAME); // 0x00D5 SHOW_MAP
 		addPacket(CM_AUTO_GROUP.class, 0x1AB, State.IN_GAME); // 0x00D9 AUTO_GROUP
 		addPacket(CM_SUMMON_MOVE.class, 0x1A8, State.IN_GAME); // 0x00DA SUMMON_MOVE

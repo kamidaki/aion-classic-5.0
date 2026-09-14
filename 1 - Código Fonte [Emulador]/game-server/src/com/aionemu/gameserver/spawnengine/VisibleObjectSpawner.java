@@ -204,8 +204,12 @@ public class VisibleObjectSpawner {
 	}
 
 	public static Servant spawnServant(SpawnTemplate spawn, int instanceIndex, Creature creator, int level, NpcObjectType objectType) {
-		Servant servant = new Servant(new NpcController(), spawn, creator.getLevel(), creator);
+		// 5.0 oficial: servant e totem usam o nível do template (70 e 55 com o cleric no 60), não o do dono
+		byte servantLevel = objectType == NpcObjectType.SERVANT || objectType == NpcObjectType.TOTEM
+			? DataManager.NPC_DATA.getNpcTemplate(spawn.getNpcId()).getLevel() : creator.getLevel();
+		Servant servant = new Servant(new NpcController(), spawn, servantLevel, creator);
 		servant.setNpcObjectType(objectType);
+		servant.setSkillLevel(level); // 5.0 oficial: a skill do servant sai no nível da invocação (1132 nv 9 -> 17590 nv 9)
 		servant.setUpStats();
 		SpawnEngine.bringIntoWorld(servant, spawn, instanceIndex);
 		if (servant.getSkillList() != null) {

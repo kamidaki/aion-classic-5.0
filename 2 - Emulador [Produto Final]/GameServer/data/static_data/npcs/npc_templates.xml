@@ -313532,11 +313532,11 @@
 		<bound_radius front="0.6" side="1.728" upper="3" />
 	</npc_template>
 	<npc_template npc_id="749098" level="59" name="holy servant" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
-		<stats maxHp="2000" />
+		<stats maxHp="810" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
 	<npc_template npc_id="749099" level="59" name="holy servant" name_id="392005" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
-		<stats maxHp="2000" />
+		<stats maxHp="810" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
 	<npc_template npc_id="749100" level="45" name="ice sheet" name_id="392036" height="3" group_drop="NONE" rank="NOVICE" rating="JUNK" race="ELYOS" tribe="GENERAL" type="ABYSS_GUARD" ai="skillarea" srange="15" sangle="240" attack_speed="2000" hpgauge="1">
@@ -314007,6 +314007,14 @@
 	</npc_template>
 	<npc_template npc_id="749199" level="53" name="noble energy" name_id="392054" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
 		<stats maxHp="2700" />
+		<bound_radius front="0.45" side="0.56" upper="2.82" />
+	</npc_template>
+	<npc_template npc_id="750027" level="70" name="noble energy" name_id="392054" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+		<stats maxHp="8073" />
+		<bound_radius front="0.45" side="0.56" upper="2.82" />
+	</npc_template>
+	<npc_template npc_id="750028" level="70" name="noble energy" name_id="392054" height="1.02" group_drop="NONE" rank="DISCIPLINED" rating="NORMAL" race="MAGICALMONSTER" tribe="GENERAL_DARK" type="ABYSS_GUARD" ai="servant" srange="10" sangle="240" attack_speed="3000" hpgauge="3">
+		<stats maxHp="8073" />
 		<bound_radius front="0.45" side="0.56" upper="2.82" />
 	</npc_template>
 	<npc_template npc_id="749200" level="54" name="ice sheet" name_id="392036" height="3" group_drop="NONE" rank="NOVICE" rating="JUNK" race="ELYOS" tribe="GENERAL" type="ABYSS_GUARD" ai="skillarea" srange="15" sangle="240" attack_speed="2000" hpgauge="1">

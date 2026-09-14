@@ -38,13 +38,16 @@ public class PetOrderUseUltraSkillEffect extends EffectTemplate {
 		int orderSkillId = effect.getSkillId();
 
 		int petUseSkillId = DataManager.PET_SKILL_DATA.getPetOrderSkill(orderSkillId, npcId);
-		SkillTemplate skillTemplate = DataManager.SKILL_DATA.getSkillTemplate(petUseSkillId);
+		SkillTemplate skillTemplate = petUseSkillId == 0 ? null : DataManager.SKILL_DATA.getSkillTemplate(petUseSkillId);
 		if (skillTemplate == null) {
 			LoggerFactory.getLogger(PetOrderUseUltraSkillEffect.class)
-				.warn("Couldn't find summon skill template for ID {} (summon order skill ID {})", petUseSkillId, orderSkillId);
+				.warn("Couldn't find summon skill template for ID {} (summon order skill ID {}, pet {})", petUseSkillId, orderSkillId, npcId);
 			return;
 		}
-		int skillLvl = skillTemplate.getLvl();
+		// 5.0 oficial: a skill do espírito sai no nível da skill que o invocou (Fire Spirit I nv 7 -> 7, Wind Spirit I nv 4 -> 4), qualquer que seja a ordem
+		int summonSkillId = effector.getSummon().getSummonedBySkillId();
+		int skillLvl = summonSkillId > 0 && effector.getSkillList().isSkillPresent(summonSkillId) ? effector.getSkillList().getSkillLevel(summonSkillId)
+			: skillTemplate.getLvl();
 		int targetId = effect.getEffected().getObjectId();
 		int hate = effect.getEffectHate() > 1 ? effect.getEffectHate() : 0;
 		effector.getSummon().addSkillOrder(petUseSkillId, skillLvl, effect.getEffected(), hate, release);

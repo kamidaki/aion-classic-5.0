@@ -30,7 +30,7 @@ public class SM_SUMMON_USESKILL extends AionServerPacket {
 	protected void writeImpl(AionConnection con) {
 		writeD(summonId);
 		writeH(skillId);
-		writeC(skillLvl);
+		writeC(1); // 5.0 oficial (S_ALLOW_PET_USE_SKILL): sempre 1, mesmo com a skill do espírito no nível 4 ou 7
 		writeD(targetId);
 	}
 
