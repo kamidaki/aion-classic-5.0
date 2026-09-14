@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
 import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.skillengine.model.DashStatus;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.utils.PositionUtil;
@@ -26,7 +27,8 @@ public class DashEffect extends DamageEffect {
 			effect.setDashStatus(DashStatus.DASH);
 			byte h = PositionUtil.getHeadingTowards(effect.getEffector(), effected);
 			double radian = Math.toRadians(PositionUtil.convertHeadingToAngle(h));
-			float distance = effect.getEffector().getObjectTemplate().getBoundRadius().getMaxOfFrontAndSide() + effected.getObjectTemplate().getBoundRadius().getMaxOfFrontAndSide() + 1;
+			float distance = effect.getEffector() instanceof Player ? MoveLocationEffect.stopDistance(effected)
+				: effect.getEffector().getObjectTemplate().getBoundRadius().getMaxOfFrontAndSide() + effected.getObjectTemplate().getBoundRadius().getMaxOfFrontAndSide() + 1;
 			final float x1 = (float) Math.cos(Math.PI + radian) * distance;
 			final float y1 = (float) Math.sin(Math.PI + radian) * distance;
 			Vector3f closestCollision = GeoService.getInstance().getClosestCollision(effect.getEffected(),effected.getX() + x1, effected.getY() + y1, effected.getZ());

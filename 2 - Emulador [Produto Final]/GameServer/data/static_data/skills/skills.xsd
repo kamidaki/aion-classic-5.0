@@ -1518,8 +1518,15 @@
 	<xs:complexType name="SkillCooltimeResetEffect">
 		<xs:complexContent>
 			<xs:extension base="Effect">
-				<xs:attribute name="first_cd" type="xs:int" use="required" />
-				<xs:attribute name="last_cd" type="xs:int" use="required" />
+				<!-- Delay_ID_Range do cliente -->
+				<xs:attribute name="first_cd" type="xs:int" />
+				<xs:attribute name="last_cd" type="xs:int" />
+				<!-- Delay_ID do cliente: lista separada por espaço -->
+				<xs:attribute name="delay_ids">
+					<xs:simpleType>
+						<xs:list itemType="xs:int" />
+					</xs:simpleType>
+				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>

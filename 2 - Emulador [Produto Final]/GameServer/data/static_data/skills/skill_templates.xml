@@ -115279,26 +115279,75 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2768" name="Moonshine Kick I" nameId="2282387" delayId="775" stack="ST_SMALLKICK_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2768" name="Moonshine Kick I" nameId="2282387" delayId="775" stack="ST_SMALLKICK_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="152" delta="15" e="1" noresist="true" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2769" name="Moonshine Kick II" nameId="2282388" delayId="775" stack="ST_SMALLKICK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2769" name="Moonshine Kick II" nameId="2282388" delayId="775" stack="ST_SMALLKICK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="167" delta="15" e="1" noresist="true" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2770" name="Moonshine Kick III" nameId="2282389" delayId="775" stack="ST_SMALLKICK_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2770" name="Moonshine Kick III" nameId="2282389" delayId="775" stack="ST_SMALLKICK_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="183" delta="15" e="1" noresist="true" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2771" name="Moonshine Kick IV" nameId="2282390" delayId="775" stack="ST_SMALLKICK_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2771" name="Moonshine Kick IV" nameId="2282390" delayId="775" stack="ST_SMALLKICK_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="202" delta="15" e="1" noresist="true" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2772" name="Moonshine Kick V" nameId="2282391" delayId="775" stack="ST_SMALLKICK_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2772" name="Moonshine Kick V" nameId="2282391" delayId="775" stack="ST_SMALLKICK_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="222" delta="15" e="1" noresist="true" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2773" name="Moonshine Kick VI" nameId="2282392" delayId="775" stack="ST_SMALLKICK_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2773" name="Moonshine Kick VI" nameId="2282392" delayId="775" stack="ST_SMALLKICK_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="244" delta="15" e="1" noresist="true" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2774" name="Moonshine Kick VII" nameId="2282393" delayId="775" stack="ST_SMALLKICK_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2774" name="Moonshine Kick VII" nameId="2282393" delayId="775" stack="ST_SMALLKICK_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="280" delta="22" e="1" noresist="true" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="2775" name="Solar Plexus I" nameId="2282395" delayId="758" stack="ST_JAB_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="10" chain_skill_prob="100" penalty_skill_id="8800">
 		<properties first_target="TARGET" awr="true" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE" />
@@ -115810,53 +115859,153 @@
 			<spellatkinstant e="1" value="2387" delta="10" accmod2="2000" element="WIND" hoptype="DAMAGE" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="2826" name="Heavenly Qigong I" nameId="2282460" delayId="767" stack="ST_GIGONG_HIGH_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="60" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2826" name="Heavenly Qigong I" nameId="2282460" delayId="767" stack="ST_GIGONG_HIGH_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="10" chain_skill_prob="100" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" penalty_skill_id="8811">
+		<properties first_target="TARGET" effective_angle="120" awr="true" first_target_range="25" target_distance="8" target_relation="ENEMY" target_type="AREA" target_maxcount="6" />
 		<startconditions>
+			<chain category="ST_CHAINA_5TH_2_HIGH" precategory="ST_CHAINA_4TH_2" time="2000" />
 			<contextskill condition="FeverCondition" />
 		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="415" delta="5" accmod2="2000" element="WIND" hoptype="DAMAGE" />
+			<root duration2="8000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="3758" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2827" name="Heavenly Qigong II" nameId="2282461" delayId="767" stack="ST_GIGONG_HIGH_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="60" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2827" name="Heavenly Qigong II" nameId="2282461" delayId="767" stack="ST_GIGONG_HIGH_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="10" chain_skill_prob="100" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" penalty_skill_id="8812">
+		<properties first_target="TARGET" effective_angle="120" awr="true" first_target_range="25" target_distance="8" target_relation="ENEMY" target_type="AREA" target_maxcount="6" />
 		<startconditions>
+			<chain category="ST_CHAINA_5TH_2_HIGH" precategory="ST_CHAINA_4TH_2" time="2000" />
 			<contextskill condition="FeverCondition" />
 		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="538" delta="5" accmod2="2000" element="WIND" hoptype="DAMAGE" />
+			<root duration2="8000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="3758" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2828" name="Heavenly Qigong III" nameId="2282462" delayId="767" stack="ST_GIGONG_HIGH_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="60" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2828" name="Heavenly Qigong III" nameId="2282462" delayId="767" stack="ST_GIGONG_HIGH_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="10" chain_skill_prob="100" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" penalty_skill_id="8813">
+		<properties first_target="TARGET" effective_angle="120" awr="true" first_target_range="25" target_distance="8" target_relation="ENEMY" target_type="AREA" target_maxcount="6" />
 		<startconditions>
+			<chain category="ST_CHAINA_5TH_2_HIGH" precategory="ST_CHAINA_4TH_2" time="2000" />
 			<contextskill condition="FeverCondition" />
 		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1030" delta="5" accmod2="2000" element="WIND" hoptype="DAMAGE" />
+			<root duration2="8000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="3758" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2829" name="Heavenly Qigong IV" nameId="2282463" delayId="767" stack="ST_GIGONG_HIGH_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="60" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2829" name="Heavenly Qigong IV" nameId="2282463" delayId="767" stack="ST_GIGONG_HIGH_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="10" chain_skill_prob="100" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" penalty_skill_id="8814">
+		<properties first_target="TARGET" effective_angle="120" awr="true" first_target_range="25" target_distance="8" target_relation="ENEMY" target_type="AREA" target_maxcount="6" />
 		<startconditions>
+			<chain category="ST_CHAINA_5TH_2_HIGH" precategory="ST_CHAINA_4TH_2" time="2000" />
 			<contextskill condition="FeverCondition" />
 		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1591" delta="10" accmod2="2000" element="WIND" hoptype="DAMAGE" />
+			<root duration2="8000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="3758" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2830" name="Heavenly Qigong V" nameId="2282464" delayId="767" stack="ST_GIGONG_HIGH_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="60" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2830" name="Heavenly Qigong V" nameId="2282464" delayId="767" stack="ST_GIGONG_HIGH_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="60" duration="0" cancel_rate="10" chain_skill_prob="100" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" penalty_skill_id="8815">
+		<properties first_target="TARGET" effective_angle="120" awr="true" first_target_range="25" target_distance="8" target_relation="ENEMY" target_type="AREA" target_maxcount="6" />
 		<startconditions>
+			<chain category="ST_CHAINA_5TH_2_HIGH" precategory="ST_CHAINA_4TH_2" time="2000" />
 			<contextskill condition="FeverCondition" />
 		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="2387" delta="10" accmod2="2000" element="WIND" hoptype="DAMAGE" />
+			<root duration2="8000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="3758" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2831" name="Flying Kick I" nameId="2282471" delayId="768" stack="ST_FLYINGKICK_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2831" name="Flying Kick I" nameId="2282471" delayId="768" stack="ST_FLYINGKICK_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="ST_CHAINB_1TH" time="2000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="204" delta="2" e="1" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2832" name="Flying Kick II" nameId="2282472" delayId="768" stack="ST_FLYINGKICK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2832" name="Flying Kick II" nameId="2282472" delayId="768" stack="ST_FLYINGKICK_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="ST_CHAINB_1TH" time="2000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="224" delta="3" e="1" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2833" name="Flying Kick III" nameId="2282473" delayId="768" stack="ST_FLYINGKICK_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2833" name="Flying Kick III" nameId="2282473" delayId="768" stack="ST_FLYINGKICK_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="ST_CHAINB_1TH" time="2000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="270" delta="4" e="1" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2834" name="Flying Kick IV" nameId="2282474" delayId="768" stack="ST_FLYINGKICK_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2834" name="Flying Kick IV" nameId="2282474" delayId="768" stack="ST_FLYINGKICK_G4" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="ST_CHAINB_1TH" time="2000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="350" delta="5" e="1" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2835" name="Flying Kick V" nameId="2282475" delayId="768" stack="ST_FLYINGKICK_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2835" name="Flying Kick V" nameId="2282475" delayId="768" stack="ST_FLYINGKICK_G5" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="ST_CHAINB_1TH" time="2000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="490" delta="5" e="1" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="2836" name="Flying Kick VI" nameId="2282476" delayId="768" stack="ST_FLYINGKICK_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2836" name="Flying Kick VI" nameId="2282476" delayId="768" stack="ST_FLYINGKICK_G6" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" penalty_skill_id="8800" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="ST_CHAINB_1TH" time="2000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="1338" delta="6" e="1" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="2837" name="Right Kick I" nameId="2282478" delayId="769" stack="ST_KICKR_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="110" duration="0" cancel_rate="10" chain_skill_prob="100" penalty_skill_id="8800">
 		<properties first_target="TARGET" awr="true" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
@@ -132277,8 +132426,18 @@
 	<skill_template skill_id="4349" name="Brawler Transformation" nameId="2288039" delayId="309" stack="BM_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="4350" name="Flying Kick I" nameId="2282471" delayId="1991" stack="ST_FLYINGKICK_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4350" name="Flying Kick I" nameId="2282471" delayId="1991" stack="ST_FLYINGKICK_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" chain_skill_prob="100">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<chain category="ST_CHAINB_1TH_START" time="2000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="204" delta="2" e="1" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4351" name="Right Kick I" nameId="2282478" delayId="1992" stack="ST_KICKR_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="110" duration="0" cancel_rate="10" chain_skill_prob="100">
 		<properties first_target="TARGET" awr="true" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
@@ -132317,8 +132476,15 @@
 			<stun duration2="1500" effectid="20000" e="2" accmod2="2000" preeffect="1" hoptype="SKILLLV" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4354" name="Moonshine Kick I" nameId="2282387" delayId="1995" stack="ST_SMALLKICK_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4354" name="Moonshine Kick I" nameId="2282387" delayId="1995" stack="ST_SMALLKICK_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="120" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<dash value="152" delta="15" e="1" noresist="true" critprobmod2="100" hoptype="DAMAGE" />
+			<root duration2="2000" effectid="20003" e="2" accmod2="2000" critprobmod2="100" element="WATER" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="1211" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4355" name="Fists of Fire I" nameId="2282668" delayId="1996" stack="ST_SIGPUNCH1_START_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="10" chain_skill_prob="100">
 		<properties first_target="TARGET" effective_angle="120" awr="true" first_target_range="25" target_distance="8" target_relation="ENEMY" target_type="AREA" target_maxcount="6" />
@@ -134363,38 +134529,110 @@
 	<skill_template skill_id="8804" name="Eclipse Strike Effect" nameId="2282693" delayId="8804" stack="ST_BUKDU_BUFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="8805" name="Flying Dragon Fists I" nameId="2282695" delayId="8805" stack="ST_UPPER_HIGH_BUFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8805" name="Flying Dragon Fists I" nameId="2282695" delayId="8805" stack="ST_UPPER_HIGH_BUFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188041" e="1" basiclvl="10" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="50" />
+				<change stat="PHYSICAL_ATTACK" func="PERCENT" value="20" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 764 765 766 767" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8806" name="Flying Dragon Fists II Effect" nameId="2282696" delayId="8806" stack="ST_UPPER_HIGH_BUFF_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8806" name="Flying Dragon Fists II Effect" nameId="2282696" delayId="8806" stack="ST_UPPER_HIGH_BUFF_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188041" e="1" basiclvl="20" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="70" />
+				<change stat="PHYSICAL_ATTACK" func="PERCENT" value="20" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 764 765 766 767" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8807" name="Flying Dragon Fists III Effect" nameId="2282697" delayId="8807" stack="ST_UPPER_HIGH_BUFF_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8807" name="Flying Dragon Fists III Effect" nameId="2282697" delayId="8807" stack="ST_UPPER_HIGH_BUFF_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188041" e="1" basiclvl="30" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="100" />
+				<change stat="PHYSICAL_ATTACK" func="PERCENT" value="20" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 764 765 766 767" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8808" name="Flying Dragon Fists IV Effect" nameId="2282698" delayId="8808" stack="ST_UPPER_HIGH_BUFF_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8808" name="Flying Dragon Fists IV Effect" nameId="2282698" delayId="8808" stack="ST_UPPER_HIGH_BUFF_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188041" e="1" basiclvl="40" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="130" />
+				<change stat="PHYSICAL_ATTACK" func="PERCENT" value="20" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 764 765 766 767" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8809" name="Flying Dragon Fists V Effect" nameId="2282699" delayId="8809" stack="ST_UPPER_HIGH_BUFF_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8809" name="Flying Dragon Fists V Effect" nameId="2282699" delayId="8809" stack="ST_UPPER_HIGH_BUFF_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188041" e="1" basiclvl="50" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="200" />
+				<change stat="PHYSICAL_ATTACK" func="PERCENT" value="20" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 764 765 766 767" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8810" name="Flying Dragon Fists VI Effect" nameId="2282700" delayId="8810" stack="ST_UPPER_HIGH_BUFF_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8810" name="Flying Dragon Fists VI Effect" nameId="2282700" delayId="8810" stack="ST_UPPER_HIGH_BUFF_G6" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188041" e="1" basiclvl="60" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PHYSICAL_ACCURACY" func="ADD" value="300" />
+				<change stat="PHYSICAL_ATTACK" func="PERCENT" value="20" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 764 765 766 767" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8811" name="Heavenly Qigong I Effect" nameId="2282707" delayId="8811" stack="ST_GIGONG_HIGH_BUFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8811" name="Heavenly Qigong I Effect" nameId="2282707" delayId="8811" stack="ST_GIGONG_HIGH_BUFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188101" e="1" basiclvl="10" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PARRY" func="ADD" value="100" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 760 761 762 763" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8812" name="Heavenly Qigong II Effect" nameId="2282708" delayId="8812" stack="ST_GIGONG_HIGH_BUFF_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8812" name="Heavenly Qigong II Effect" nameId="2282708" delayId="8812" stack="ST_GIGONG_HIGH_BUFF_G2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188101" e="1" basiclvl="20" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PARRY" func="ADD" value="200" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 760 761 762 763" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8813" name="Heavenly Qigong III Effect" nameId="2282709" delayId="8813" stack="ST_GIGONG_HIGH_BUFF_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8813" name="Heavenly Qigong III Effect" nameId="2282709" delayId="8813" stack="ST_GIGONG_HIGH_BUFF_G3" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188101" e="1" basiclvl="30" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PARRY" func="ADD" value="300" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 760 761 762 763" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8814" name="Heavenly Qigong IV Effect" nameId="2282710" delayId="8814" stack="ST_GIGONG_HIGH_BUFF_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8814" name="Heavenly Qigong IV Effect" nameId="2282710" delayId="8814" stack="ST_GIGONG_HIGH_BUFF_G4" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188101" e="1" basiclvl="40" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PARRY" func="ADD" value="400" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 760 761 762 763" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="8815" name="Heavenly Qigong V Effect" nameId="2282711" delayId="8815" stack="ST_GIGONG_HIGH_BUFF_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="8815" name="Heavenly Qigong V Effect" nameId="2282711" delayId="8815" stack="ST_GIGONG_HIGH_BUFF_G5" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<effects>
+			<statup duration2="10000" effectid="188101" e="1" basiclvl="50" noresist="true" hoptype="SKILLLV" hopb="1000" hopa="100">
+				<change stat="PARRY" func="ADD" value="500" />
+			</statup>
+			<skillcooltimereset delay_ids="758 759 760 761 762 763" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="8816" name="Spinning High Kick I Effect" nameId="2282717" delayId="8816" stack="ST_SPINK_HIGH_BUFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
@@ -134470,6 +134708,9 @@
 	</skill_template>
 	<skill_template skill_id="8822" name="스킬 쿨타임 초기화" nameId="2281710" delayId="8822" stack="BM_RESET_LOWLEG" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
+		<effects>
+			<skillcooltimereset first_cd="768" last_cd="772" delta="100" e="1" noresist="true" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="8823" name="Apply Lethal Venom V Effect" nameId="2282307" delayId="8823" stack="AS_EXPLOSIONPOISON_G5_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE" />
@@ -136434,6 +136675,9 @@
 	</skill_template>
 	<skill_template skill_id="9119" name="Reset Effect" nameId="2284434" delayId="9119" stack="ST_UPPERHIT_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
+		<effects>
+			<skillcooltimereset delay_ids="784 791 936" delta="100" e="1" noresist="true" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="9120" name="Confident Defence Effect" nameId="2286173" delayId="9120" stack="CH_STEELSTANCE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
@@ -136473,6 +136717,10 @@
 	</skill_template>
 	<skill_template skill_id="9123" name="Reset Effect" nameId="2284434" delayId="9123" stack="TH_ELECTRICBURST_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
+		<effects>
+			<sphealinstant value="60" e="1" noresist="true" />
+			<skillcooltimereset delay_ids="35 36 41 22" delta="100" e="2" noresist="true" preeffect="1" preeffect_prob="100" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="9124" name="Reset Effect" nameId="2284434" delayId="9124" stack="RA_SEALINGARROW_SYS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />

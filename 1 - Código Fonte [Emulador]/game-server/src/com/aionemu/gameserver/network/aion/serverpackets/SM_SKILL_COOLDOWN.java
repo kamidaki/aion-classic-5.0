@@ -47,9 +47,9 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket {
 		writeH(cooldowns.size());
 		writeC(notify ? 1 : 0); // 1 will trigger a notification sound and animation on all sent skills
 		for (Cooldown cooldown : cooldowns) {
+			// 5.0 oficial: 6 b por skill (92 pacotes 0x33 de 33 capturas, sempre 3 + 6n, D sempre 0 nelas); o D da duração da 4.x desalinhava a lista
 			writeH(cooldown.skillId);
 			writeD(cooldown.getRemainingSeconds());
-			writeD(cooldown.getDurationMillis()); // 0 also seems to always work
 		}
 	}
 

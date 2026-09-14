@@ -25,10 +25,18 @@ import com.aionemu.gameserver.world.geo.GeoService;
 public class MoveLocationEffect extends EffectTemplate {
 
 	/**
-	 * 5.0 oficial (ST_tele_G1 duas vezes, de lados diferentes): o Brawler para a 1,6 m do alvo, na linha até ele, virado para o alvo. Não sai do
-	 * bound_radius do alvo (0,25/0,35 no boneco de treino).
+	 * Quanto o jogador para antes do centro do alvo, somado ao raio do alvo.
 	 */
-	public static final float STOP_DISTANCE = 1.6f;
+	public static final float STOP_GAP = 1.25f;
+
+	/**
+	 * 5.0 oficial: dash e flash do jogador param a max(front, side) do alvo + 1,25 m, sem depender do raio de quem avança. Fecha com ~60 medidas em 33
+	 * NPCs (subida 1-60 e combate do Brawler): boneco de treino 1,60, Naga_EleAir 1,85, Drakan_Sc_F 1,77, Lizard_Fi_Armor 4,15, PagatiStrider 5,45. O
+	 * npc_templates guarda o raio do cliente × scale / 200.
+	 */
+	public static float stopDistance(Creature target) {
+		return target.getObjectTemplate().getBoundRadius().getMaxOfFrontAndSide() + STOP_GAP;
+	}
 
 	@XmlAttribute
 	protected float distance;
@@ -44,9 +52,11 @@ public class MoveLocationEffect extends EffectTemplate {
 		boolean hasTarget = target != null && !target.equals(effector);
 		float x, y;
 		if (hasTarget) {
+			// 5.0 oficial (ST_tele_G1): na linha até o alvo, virado para ele
 			double radian = Math.toRadians(PositionUtil.calculateAngleFrom(target, effector));
-			x = target.getX() + (float) Math.cos(radian) * STOP_DISTANCE;
-			y = target.getY() + (float) Math.sin(radian) * STOP_DISTANCE;
+			float stop = stopDistance(target);
+			x = target.getX() + (float) Math.cos(radian) * stop;
+			y = target.getY() + (float) Math.sin(radian) * stop;
 		} else {
 			double radian = Math.toRadians(PositionUtil.convertHeadingToAngle(effector.getHeading()));
 			float dist = distance > 0 ? distance : 20f;

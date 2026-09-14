@@ -24,11 +24,6 @@ import com.aionemu.gameserver.world.geo.GeoService;
 @XmlType(name = "ShadowMoveEffect")
 public class ShadowMoveEffect extends EffectTemplate {
 
-	/**
-	 * 5.0 oficial (TH_MoveShadow_G1 duas vezes, de lados diferentes): o Revenant cai sempre no mesmo ponto, 1,6 m atrás do alvo e com o heading dele.
-	 */
-	public static final float BEHIND_DISTANCE = 1.6f;
-
 	@XmlAttribute
 	protected int direction;
 	@XmlAttribute
@@ -45,9 +40,11 @@ public class ShadowMoveEffect extends EffectTemplate {
 		float x, y, z;
 		byte h;
 		if (target != null && !target.equals(effector)) {
+			// 5.0 oficial (TH_MoveShadow_G1 duas vezes, de lados diferentes): sempre o mesmo ponto atrás do alvo, com o heading dele, à distância do dash
 			double radian = Math.toRadians(PositionUtil.convertHeadingToAngle(target.getHeading()));
-			x = target.getX() - (float) Math.cos(radian) * BEHIND_DISTANCE;
-			y = target.getY() - (float) Math.sin(radian) * BEHIND_DISTANCE;
+			float behind = MoveLocationEffect.stopDistance(target);
+			x = target.getX() - (float) Math.cos(radian) * behind;
+			y = target.getY() - (float) Math.sin(radian) * behind;
 			z = target.getZ();
 			h = target.getHeading();
 		} else {
