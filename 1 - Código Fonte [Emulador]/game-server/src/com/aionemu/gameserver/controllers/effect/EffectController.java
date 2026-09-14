@@ -60,6 +60,8 @@ public class EffectController {
 				existingEffect.endEffect();
 				useEffectId = false;
 			}
+		}
+
 		if (nextEffect.getStack() != null && nextEffect.getStack().startsWith("LU_BLENDE")) {
 			Effect existingSameStack;
 			long stamp = lock.readLock();
