@@ -45,7 +45,7 @@ public class SM_ATTACK_STATUS extends AionServerPacket {
 		ABSORBED_MP(20),
 		MP(21),
 		NATURAL_MP(22),
-		USED_MP(23), // when skill uses mp as cost parameter
+		FP_HEAL(23),
 		FP_RINGS(24),
 		FP(26),
 		FP_DAMAGE(26),
@@ -132,7 +132,6 @@ public class SM_ATTACK_STATUS extends AionServerPacket {
 				writeD(-value);
 				hpOrMp = creature.getLifeStats().getHpPercentage();
 				break;
-			case USED_MP:
 			case DAMAGE_MP:
 				writeD(-value);
 				hpOrMp = creature.getLifeStats().getMpPercentage();

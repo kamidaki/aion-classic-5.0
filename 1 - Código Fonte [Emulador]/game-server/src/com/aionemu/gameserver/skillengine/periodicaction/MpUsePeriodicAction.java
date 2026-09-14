@@ -3,7 +3,6 @@ package com.aionemu.gameserver.skillengine.periodicaction;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS;
 import com.aionemu.gameserver.skillengine.model.Effect;
 
 /**
@@ -26,7 +25,7 @@ public class MpUsePeriodicAction extends PeriodicAction {
 			effect.endEffect();
 			return;
 		}
-		effected.getLifeStats().reduceMp(SM_ATTACK_STATUS.TYPE.USED_MP, requiredMp, 0, SM_ATTACK_STATUS.LOG.REGULAR);
+		effected.getLifeStats().reduceMp(requiredMp);
 	}
 
 }

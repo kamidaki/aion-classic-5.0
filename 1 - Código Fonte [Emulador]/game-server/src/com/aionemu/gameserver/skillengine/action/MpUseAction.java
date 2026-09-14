@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -31,7 +30,7 @@ public class MpUseAction extends Action {
 	public boolean act(Skill skill) {
 		if (!canAct(skill))
 			return false;
-		skill.getEffector().getLifeStats().reduceMp(SM_ATTACK_STATUS.TYPE.USED_MP, getCost(skill), 0, SM_ATTACK_STATUS.LOG.REGULAR);
+		skill.getEffector().getLifeStats().reduceMp(getCost(skill));
 		return true;
 	}
 

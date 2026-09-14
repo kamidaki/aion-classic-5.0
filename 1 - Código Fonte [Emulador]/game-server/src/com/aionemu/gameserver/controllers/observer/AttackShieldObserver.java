@@ -109,8 +109,7 @@ public class AttackShieldObserver extends AttackCalcObserver {
 
 				if (mpValue != 0) {
 					int mp = (int) (absorbedDamage * 0.01f * mpValue);
-					// TODO recheck sm_attack_status
-					effect.getEffected().getLifeStats().reduceMp(SM_ATTACK_STATUS.TYPE.USED_MP, mp, 0, SM_ATTACK_STATUS.LOG.REGULAR);
+					effect.getEffected().getLifeStats().reduceMp(mp);
 					attackResult.setMpAbsorbed(mp);
 					attackResult.setMpShieldSkillId(effect.getSkillId());
 				}

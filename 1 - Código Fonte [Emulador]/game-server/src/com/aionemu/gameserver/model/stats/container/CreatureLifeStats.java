@@ -110,6 +110,16 @@ public abstract class CreatureLifeStats<T extends Creature> {
 	}
 
 	/**
+	 * Consumes creature's MP for costs (skills, shields, etc.) without sending SM_ATTACK_STATUS.
+	 * 
+	 * @param value - MP to subtract
+	 * @return The MP that this creature has left.
+	 */
+	public int reduceMp(int value) {
+		return reduceMp(null, value, 0, null);
+	}
+
+	/**
 	 * This method is called whenever caller wants to absorb creatures's MP
 	 * 
 	 * @param type
