@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.configs.main.MembershipConfig;
+import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.account.Account;
 import com.aionemu.gameserver.model.account.PlayerAccountData;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -46,6 +47,9 @@ public class CM_CREATE_CHARACTER extends AbstractCharacterEditPacket {
 		}
 
 		AccountService.removeDeletedCharacters(account);
+		if (playerClass == PlayerClass.ORCHESTRATOR) {
+			playerClass = PlayerClass.LUMINESS;
+		}
 		int responseCode = validateBasicInfo(account);
 		if (responseCode != SM_CREATE_CHARACTER.RESPONSE_OK) {
 			sendPacket(new SM_CREATE_CHARACTER(null, responseCode));

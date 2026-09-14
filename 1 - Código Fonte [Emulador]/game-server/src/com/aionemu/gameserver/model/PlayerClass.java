@@ -29,7 +29,7 @@ public enum PlayerClass implements L10n {
 	STRIKER(15, 908460, false, 115, 115, 100, 100, 90, 90, 440, 400, 0),
 	BRAWLER(16, 908461, true, 115, 115, 100, 100, 90, 90, 440, 400, 0),
 	ORCHESTRATOR(18, 909301, false, 90, 90, 100, 100, 120, 110, 320, 520, 50),
-	LUMINESS(19, 909302, false, 90, 90, 100, 100, 120, 110, 320, 520, 50),
+	LUMINESS(19, 909302, true, 90, 90, 100, 100, 120, 110, 320, 520, 50),
 	ENGINEER(21, 913661, false, 100, 100, 110, 110, 90, 90, 360, 400, 0),
 	PHOENIX(22, 913662, true, 100, 105, 100, 105, 100, 100, 360, 400, 0),
 	REAPER(24, 914615, false, 115, 115, 100, 100, 120, 110, 360, 520, 50),
@@ -176,6 +176,7 @@ public enum PlayerClass implements L10n {
 		if ("MARTIAL_ARTIST".equalsIgnoreCase(fieldName) || "BATTLE_MASTER".equalsIgnoreCase(fieldName)) return BRAWLER;
 		if ("GUNNER".equalsIgnoreCase(fieldName) || "ENGINEER".equalsIgnoreCase(fieldName)) return PHOENIX;
 		if ("REAPER".equalsIgnoreCase(fieldName) || "RUNEBLADE".equalsIgnoreCase(fieldName)) return SOUL_REAPER;
+		if ("ORCHESTRATOR".equalsIgnoreCase(fieldName) || "LUMINES".equalsIgnoreCase(fieldName) || "ARTIST".equalsIgnoreCase(fieldName)) return LUMINESS;
 		return null;
 	}
 
