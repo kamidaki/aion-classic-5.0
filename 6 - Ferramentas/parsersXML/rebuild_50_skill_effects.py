@@ -313,7 +313,9 @@ class Estrutura:
 # ---------------------------------------------------------------- efeitos
 
 def campos_efeito(c, n):
-    return {k.replace("effect%d_" % n, "effect_"): v for k, v in c.items() if k.startswith("effect%d_" % n)}
+    d = {k.replace("effect%d_" % n, "effect_"): v for k, v in c.items() if k.startswith("effect%d_" % n)}
+    d["_skill_name"] = c.get("name", "")
+    return d
 
 
 def tipos_do_cliente(c):
@@ -539,7 +541,7 @@ class ModeloEfeito:
                     filhos.append([("stat", s), ("func", func), ("value", valor), ("delta", nz(g.get("effect_reserved1")))])
         return attrs, filhos
 
-    def xml(self, g, n):
+    def xml(self, g, n, c=None):
         r = self.gera(g)
         if r is None:
             return None
@@ -548,6 +550,25 @@ class ModeloEfeito:
         pos = next((i for i, (k, _) in enumerate(pares) if k not in ("duration1", "duration2", "effectid")), len(pares))
         pares.insert(pos, ("e", str(n)))
         return pares, filhos
+
+
+class ModeloBlending:
+    tag = "blending"
+
+    def xml(self, g, n, c=None):
+        name = (c.get("name") if c else g.get("_skill_name", "")).lower()
+        if "blenda" in name or "bursta" in name:
+            note = "A"
+        elif "blendb" in name or "burstb" in name:
+            note = "B"
+        elif "blendc" in name or "burstc" in name:
+            note = "C"
+        elif "blende" in name or "burste" in name:
+            note = "E"
+        else:
+            note = "A"
+        pares = [("note", note), ("e", str(n))]
+        return pares, []
 
 
 def mede_efeito(modelo, g, el):
@@ -726,6 +747,7 @@ def main():
     EFEITOS_EXATOS = {"root", "carvesignet", "protect", "randommoveloc", "alwaysparry", "movebehindatk"}
     aprovados = {t for t, (tag, total, est, pres, num) in medicao.items()
                  if tag and total >= 2 and est >= args.limiar and (pres >= args.limiar_presenca or t in EFEITOS_EXATOS) and num >= args.limiar_numeros}
+    aprovados.add("blending")
     print("   tipos de efeito dos stubs: {} | aprovados (enums+stats >= {:.0%}, presenca >= {:.0%}, numeros >= {:.0%}, n >= 2): {}".format(
         len(stub_tipos), args.limiar, args.limiar_presenca, args.limiar_numeros, len(aprovados)))
 
@@ -734,8 +756,11 @@ def main():
     por_todo, tags_todo = instancias_por_tipo(gabarito)
     modelos = {}
     for t in aprovados:
-        tag = tags_todo[t].most_common(1)[0][0]
-        modelos[t] = ModeloEfeito(tag, [(g, a, ch) for g, a, ch, _el in por_todo[(t, tag)]], lookups)
+        if t == "blending":
+            modelos[t] = ModeloBlending()
+        elif tags_todo.get(t):
+            tag = tags_todo[t].most_common(1)[0][0]
+            modelos[t] = ModeloEfeito(tag, [(g, a, ch) for g, a, ch, _el in por_todo[(t, tag)]], lookups)
 
     def grupo_de(sid):
         cs = classes.get(sid, set())
@@ -753,7 +778,7 @@ def main():
             continue
         efeitos = []
         for num, t in tipos:
-            r = modelos[t].xml(campos_efeito(c, num), num)
+            r = modelos[t].xml(campos_efeito(c, num), num, c)
             if r is None:
                 pulados[t + " (stat ou valor que o gabarito nao tem)"] += 1
                 efeitos = None

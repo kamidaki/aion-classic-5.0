@@ -244,6 +244,7 @@
 				<xs:element name="alwayshit" type="AlwaysHitEffect" />
 				<xs:element name="alwaysnoresist" type="AlwaysNoResistEffect" />
 				<xs:element name="utility" type="UtilityEffect" />
+				<xs:element name="blending" type="BlendingEffect" />
 			</xs:choice>
 		</xs:sequence>
 	</xs:complexType>
@@ -1616,6 +1617,13 @@
 	<xs:complexType name="UtilityEffect">
 		<xs:complexContent>
 			<xs:extension base="Effect" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BlendingEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect">
+				<xs:attribute name="note" type="xs:string" />
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<!-- MISC -->

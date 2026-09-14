@@ -28,6 +28,7 @@ public enum EffectType {
 	BACKDASH,
 	BIND,
 	BLEED,
+	BLENDING,
 	BLIND,
 	BOOSTDROPRATE,
 	BOOSTHATE,

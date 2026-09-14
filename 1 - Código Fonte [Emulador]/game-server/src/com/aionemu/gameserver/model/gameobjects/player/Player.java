@@ -185,6 +185,7 @@ public class Player extends Creature {
 	private Map<Integer, EquipmentSetting> playerEquipSettingList = new ConcurrentHashMap<>();
 	private long lastEquipTime;
 	private PlayerBattlePass playerBattlePass;
+	private final BlendingState blendingState = new BlendingState();
 
 	public Player(PlayerAccountData playerAccountData, Account account) {
 		super(playerAccountData.getPlayerCommonData().getPlayerObjId(), new PlayerController(), null, playerAccountData.getPlayerCommonData(),
@@ -1652,5 +1653,9 @@ public class Player extends Creature {
 
 	public boolean isInCustomState(CustomPlayerState state) {
 		return (customStates & state.getMask()) == state.getMask();
+	}
+
+	public BlendingState getBlendingState() {
+		return blendingState;
 	}
 }

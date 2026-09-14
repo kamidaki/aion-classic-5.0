@@ -114880,8 +114880,21 @@
 		</actions>
 		<motion name="elsummon2" />
 	</skill_template>
-	<skill_template skill_id="2702" name="스킬 쿨타임 초기화" nameId="2281710" delayId="727" stack="SKILLCOOLTIMERESET_TEST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="2702" name="스킬 쿨타임 초기화" nameId="2281710" delayId="727" stack="SKILLCOOLTIMERESET_TEST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="5" duration="0" cancel_rate="20">
+		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="58" delta="2" />
+		</startconditions>
+		<effects>
+			<skillcooltimereset e="1" delta="100" noresist="true" />
+			<dphealinstant e="2" value="0" delta="4000" noresist="true" />
+			<healinstant e="3" percent="true" value="100" noresist="true" preeffect="1" />
+			<mphealinstant e="4" percent="true" value="100" noresist="true" preeffect="1" />
+		</effects>
+		<actions>
+			<mpuse value="58" delta="2" />
+		</actions>
+		<motion name="radpatk" />
 	</skill_template>
 	<skill_template skill_id="2703" name="Power Circuit I" nameId="2281728" delayId="209" stack="TH_RETURNSHADOW_NEW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="120" duration="0">
 		<properties first_target="TARGET" />
@@ -120359,95 +120372,527 @@
 			</wpnmastery>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3221" name="Le I" nameId="2284113" delayId="841" stack="LU_BLENDA_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3221" name="Le I" nameId="2284113" delayId="841" stack="LU_BLENDA_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="22" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="37" delta="10" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="300" hopa="30" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="10" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="227">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="22" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3222" name="Le II" nameId="2284114" delayId="841" stack="LU_BLENDA_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3222" name="Le II" nameId="2284114" delayId="841" stack="LU_BLENDA_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="28" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="51" delta="12" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="330" hopa="33" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="20" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="250">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="28" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3223" name="Le III" nameId="2284115" delayId="841" stack="LU_BLENDA_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3223" name="Le III" nameId="2284115" delayId="841" stack="LU_BLENDA_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="34" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="23" delta="15" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="363" hopa="36" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="30" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="274">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="34" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3224" name="Le IV" nameId="2284116" delayId="841" stack="LU_BLENDA_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3224" name="Le IV" nameId="2284116" delayId="841" stack="LU_BLENDA_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="69" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="102" delta="18" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="400" hopa="40" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="40" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="301">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="69" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3225" name="Le V" nameId="2284117" delayId="841" stack="LU_BLENDA_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3225" name="Le V" nameId="2284117" delayId="841" stack="LU_BLENDA_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="115" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="141" delta="20" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="440" hopa="44" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="50" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="332">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="115" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3226" name="Le VI" nameId="2284118" delayId="841" stack="LU_BLENDA_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3226" name="Le VI" nameId="2284118" delayId="841" stack="LU_BLENDA_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="147" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="198" delta="22" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="60" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="147" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3227" name="La I" nameId="2284121" delayId="842" stack="LU_BLENDB_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3227" name="La I" nameId="2284121" delayId="842" stack="LU_BLENDB_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="5" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="24" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="41" delta="10" critprobmod2="80" element="EARTH" hoptype="DAMAGE" hopb="300" hopa="30" />
+			<statdown duration2="12000" effectid="132272" e="2" basiclvl="10" accmod2="200" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="227">
+				<change stat="EVASION" func="ADD" value="-50" />
+				<change stat="MAGICAL_RESIST" func="ADD" value="-50" />
+			</statdown>
+			<blending note="B" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="24" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3228" name="La II" nameId="2284122" delayId="842" stack="LU_BLENDB_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3228" name="La II" nameId="2284122" delayId="842" stack="LU_BLENDB_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="5" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="31" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="56" delta="12" critprobmod2="80" element="EARTH" hoptype="DAMAGE" hopb="330" hopa="33" />
+			<statdown duration2="12000" effectid="132272" e="2" basiclvl="20" accmod2="200" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="250">
+				<change stat="EVASION" func="ADD" value="-50" />
+				<change stat="MAGICAL_RESIST" func="ADD" value="-50" />
+			</statdown>
+			<blending note="B" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="31" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3229" name="La III" nameId="2284123" delayId="842" stack="LU_BLENDB_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3229" name="La III" nameId="2284123" delayId="842" stack="LU_BLENDB_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="5" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="42" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="79" delta="15" critprobmod2="80" element="EARTH" hoptype="DAMAGE" hopb="363" hopa="36" />
+			<statdown duration2="12000" effectid="132272" e="2" basiclvl="30" accmod2="200" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="274">
+				<change stat="EVASION" func="ADD" value="-50" />
+				<change stat="MAGICAL_RESIST" func="ADD" value="-50" />
+			</statdown>
+			<blending note="B" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="42" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3230" name="La IV" nameId="2284124" delayId="842" stack="LU_BLENDB_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3230" name="La IV" nameId="2284124" delayId="842" stack="LU_BLENDB_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="5" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="75" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="110" delta="18" critprobmod2="80" element="EARTH" hoptype="DAMAGE" hopb="400" hopa="40" />
+			<statdown duration2="12000" effectid="132272" e="2" basiclvl="40" accmod2="200" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="301">
+				<change stat="EVASION" func="ADD" value="-50" />
+				<change stat="MAGICAL_RESIST" func="ADD" value="-50" />
+			</statdown>
+			<blending note="B" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="75" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3231" name="La V" nameId="2284125" delayId="842" stack="LU_BLENDB_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3231" name="La V" nameId="2284125" delayId="842" stack="LU_BLENDB_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="5" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="96" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="155" delta="20" critprobmod2="80" element="EARTH" hoptype="DAMAGE" hopb="440" hopa="44" />
+			<statdown duration2="12000" effectid="132272" e="2" basiclvl="50" accmod2="200" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="332">
+				<change stat="EVASION" func="ADD" value="-50" />
+				<change stat="MAGICAL_RESIST" func="ADD" value="-50" />
+			</statdown>
+			<blending note="B" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="96" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3232" name="La VI" nameId="2284126" delayId="842" stack="LU_BLENDB_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3232" name="La VI" nameId="2284126" delayId="842" stack="LU_BLENDB_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="5" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="126" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="217" delta="22" critprobmod2="80" element="EARTH" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132272" e="2" basiclvl="60" accmod2="200" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="EVASION" func="ADD" value="-50" />
+				<change stat="MAGICAL_RESIST" func="ADD" value="-50" />
+			</statdown>
+			<blending note="B" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="126" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3233" name="Fa I" nameId="2284129" delayId="843" stack="LU_BLENDC_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="7" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3233" name="Fa I" nameId="2284129" delayId="843" stack="LU_BLENDC_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="7" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="24" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="44" delta="11" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="300" hopa="30" />
+			<statdown duration2="12000" effectid="132332" e="2" basiclvl="10" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="227">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="-50" />
+			</statdown>
+			<blending note="C" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="24" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3234" name="Fa II" nameId="2284130" delayId="843" stack="LU_BLENDC_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="7" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3234" name="Fa II" nameId="2284130" delayId="843" stack="LU_BLENDC_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="7" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="33" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="63" delta="13" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="330" hopa="33" />
+			<statdown duration2="12000" effectid="132332" e="2" basiclvl="20" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="250">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="-50" />
+			</statdown>
+			<blending note="C" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="33" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3235" name="Fa III" nameId="2284131" delayId="843" stack="LU_BLENDC_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="7" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3235" name="Fa III" nameId="2284131" delayId="843" stack="LU_BLENDC_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="7" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="43" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="87" delta="16" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="363" hopa="36" />
+			<statdown duration2="12000" effectid="132332" e="2" basiclvl="30" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="274">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="-50" />
+			</statdown>
+			<blending note="C" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="43" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3236" name="Fa IV" nameId="2284132" delayId="843" stack="LU_BLENDC_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="7" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3236" name="Fa IV" nameId="2284132" delayId="843" stack="LU_BLENDC_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="7" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="84" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="121" delta="19" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="400" hopa="40" />
+			<statdown duration2="12000" effectid="132332" e="2" basiclvl="40" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="301">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="-50" />
+			</statdown>
+			<blending note="C" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="84" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3237" name="Fa V" nameId="2284133" delayId="843" stack="LU_BLENDC_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="7" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3237" name="Fa V" nameId="2284133" delayId="843" stack="LU_BLENDC_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="7" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="108" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="171" delta="21" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="440" hopa="44" />
+			<statdown duration2="12000" effectid="132332" e="2" basiclvl="50" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="332">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="-50" />
+			</statdown>
+			<blending note="C" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="108" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3238" name="Fa VI" nameId="2284134" delayId="843" stack="LU_BLENDC_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="7" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3238" name="Fa VI" nameId="2284134" delayId="843" stack="LU_BLENDC_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="7" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="141" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="240" delta="23" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132332" e="2" basiclvl="60" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="-50" />
+			</statdown>
+			<blending note="C" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="141" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3239" name="Li I" nameId="2284137" delayId="844" stack="LU_BLENDE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="12" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3239" name="Li I" nameId="2284137" delayId="844" stack="LU_BLENDE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="12" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="26" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="43" delta="12" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="300" hopa="30" />
+			<statdown duration2="10000" effectid="132392" e="2" basiclvl="10" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="227">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="100" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="26" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3240" name="Li II" nameId="2284138" delayId="844" stack="LU_BLENDE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="12" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3240" name="Li II" nameId="2284138" delayId="844" stack="LU_BLENDE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="12" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="29" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="61" delta="14" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="330" hopa="33" />
+			<statdown duration2="10000" effectid="132392" e="2" basiclvl="20" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="250">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="100" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="29" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3241" name="Li III" nameId="2284139" delayId="844" stack="LU_BLENDE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="12" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3241" name="Li III" nameId="2284139" delayId="844" stack="LU_BLENDE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="12" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="35" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="85" delta="17" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="363" hopa="36" />
+			<statdown duration2="10000" effectid="132392" e="2" basiclvl="30" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="274">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="100" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="35" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3242" name="Li IV" nameId="2284140" delayId="844" stack="LU_BLENDE_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="12" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3242" name="Li IV" nameId="2284140" delayId="844" stack="LU_BLENDE_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="12" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="54" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="118" delta="20" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="400" hopa="40" />
+			<statdown duration2="10000" effectid="132392" e="2" basiclvl="40" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="301">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="100" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="54" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3243" name="Li V" nameId="2284141" delayId="844" stack="LU_BLENDE_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="12" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3243" name="Li V" nameId="2284141" delayId="844" stack="LU_BLENDE_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="12" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="58" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="165" delta="22" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="440" hopa="44" />
+			<statdown duration2="10000" effectid="132392" e="2" basiclvl="50" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="332">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="100" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="58" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3244" name="Li VI" nameId="2284142" delayId="844" stack="LU_BLENDE_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="12" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3244" name="Li VI" nameId="2284142" delayId="844" stack="LU_BLENDE_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="12" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="64" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="231" delta="25" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="10000" effectid="132392" e="2" basiclvl="60" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="100" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="64" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3245" name="Seal I" nameId="2284145" delayId="845" stack="LU_BURSTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="100" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3245" name="Seal I" nameId="2284145" delayId="845" stack="LU_BURSTE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="100" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="42" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="250" delta="11" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="300" hopa="30" />
+			<statdown duration2="7000" effectid="132452" e="2" basiclvl="10" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="227">
+				<change stat="WATER_RESISTANCE" func="ADD" value="-50" />
+				<change stat="WIND_RESISTANCE" func="ADD" value="-50" />
+				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
+				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="42" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3246" name="Seal II" nameId="2284146" delayId="845" stack="LU_BURSTE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="100" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3246" name="Seal II" nameId="2284146" delayId="845" stack="LU_BURSTE_G2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="100" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="56" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="325" delta="13" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="330" hopa="33" />
+			<statdown duration2="7000" effectid="132452" e="2" basiclvl="20" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="250">
+				<change stat="WATER_RESISTANCE" func="ADD" value="-50" />
+				<change stat="WIND_RESISTANCE" func="ADD" value="-50" />
+				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
+				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="56" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3247" name="Seal III" nameId="2284147" delayId="845" stack="LU_BURSTE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="100" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3247" name="Seal III" nameId="2284147" delayId="845" stack="LU_BURSTE_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="100" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="72" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="425" delta="16" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="363" hopa="36" />
+			<statdown duration2="7000" effectid="132452" e="2" basiclvl="30" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="274">
+				<change stat="WATER_RESISTANCE" func="ADD" value="-50" />
+				<change stat="WIND_RESISTANCE" func="ADD" value="-50" />
+				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
+				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="72" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3248" name="Seal IV" nameId="2284148" delayId="845" stack="LU_BURSTE_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="100" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3248" name="Seal IV" nameId="2284148" delayId="845" stack="LU_BURSTE_G4" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="100" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="94" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="553" delta="19" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="400" hopa="40" />
+			<statdown duration2="7000" effectid="132452" e="2" basiclvl="40" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="301">
+				<change stat="WATER_RESISTANCE" func="ADD" value="-50" />
+				<change stat="WIND_RESISTANCE" func="ADD" value="-50" />
+				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
+				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="94" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3249" name="Seal V" nameId="2284149" delayId="845" stack="LU_BURSTE_G5" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="100" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3249" name="Seal V" nameId="2284149" delayId="845" stack="LU_BURSTE_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="100" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="124" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="719" delta="21" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="440" hopa="44" />
+			<statdown duration2="7000" effectid="132452" e="2" basiclvl="50" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="332">
+				<change stat="WATER_RESISTANCE" func="ADD" value="-50" />
+				<change stat="WIND_RESISTANCE" func="ADD" value="-50" />
+				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
+				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="124" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3250" name="Seal VI" nameId="2284150" delayId="845" stack="LU_BURSTE_G6" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="100" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3250" name="Seal VI" nameId="2284150" delayId="845" stack="LU_BURSTE_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="100" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="160" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="935" delta="23" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="7000" effectid="132452" e="2" basiclvl="60" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="WATER_RESISTANCE" func="ADD" value="-50" />
+				<change stat="WIND_RESISTANCE" func="ADD" value="-50" />
+				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
+				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="160" delta="0" />
+		</actions>
 	</skill_template>
 	<skill_template skill_id="3251" name="Attack Speed Boost I" nameId="2284186" delayId="3251" stack="LU_P_ATKSPEED_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" />
@@ -125265,8 +125710,23 @@
 		</actions>
 		<motion name="heal" speed="50" />
 	</skill_template>
-	<skill_template skill_id="3621" name="Cursecloud III" nameId="2285323" delayId="657" stack="EL_PLAGUESWAM_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="18000" duration="1500">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3621" name="Cursecloud III" nameId="2285323" delayId="657" stack="EL_PLAGUESWAM_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="18000" duration="1500" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20" ammospeed="25">
+		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_distance="25" target_relation="ENEMY" target_maxcount="18" target_type="AREA" />
+		<startconditions>
+			<dp value="4000" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1007" delta="45" element="EARTH" hoptype="SKILLLV" hopb="7022" hopa="161" />
+			<spellatk e="2" checktime="6000" value="1007" delta="45" duration2="54000" effectid="117742" basiclvl="20" noresist="true" element="EARTH" preeffect="1" />
+			<magiccounteratk e="3" maxdmg="1000" value="6" duration2="54000" effectid="203" basiclvl="20" noresist="true" element="EARTH" preeffect="1" />
+		</effects>
+		<actions>
+			<dpuse value="4000" />
+		</actions>
+		<motion name="Pointfire4" />
 	</skill_template>
 	<skill_template skill_id="3622" name="Weaken Spirit VI" nameId="2285324" delayId="622" stack="EL_DIMISSPOLYMORPH_G6" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="2000" cancel_rate="20">
 		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
@@ -125503,8 +125963,18 @@
 		</actions>
 		<motion name="Pointfire4" />
 	</skill_template>
-	<skill_template skill_id="3638" name="Curse of Weakness IV" nameId="2285339" delayId="598" stack="WI_COUNTERMAGIC_G4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="1800" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3638" name="Curse of Weakness IV" nameId="2285339" delayId="598" stack="WI_COUNTERMAGIC_G4" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="1800" duration="0" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_maxcount="1" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="201" delta="0" />
+		</startconditions>
+		<effects>
+			<magiccounteratk e="1" maxdmg="1400" value="14" duration2="60000" effectid="203" basiclvl="50" element="FIRE" hoptype="SKILLLV" hopb="3015" />
+		</effects>
+		<actions>
+			<mpuse value="201" delta="0" />
+		</actions>
+		<motion name="debuff" />
 	</skill_template>
 	<skill_template skill_id="3639" name="Lightburst III" nameId="2285340" delayId="608" stack="WI_DIVINESTALKER_G3" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="18000" duration="2000" cancel_rate="20" ammospeed="35">
 		<properties first_target="TARGET" revision_distance="12" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
@@ -126926,20 +127396,92 @@
 			<reflector e="1" radius="30" value="0" duration2="4500" effectid="155" basiclvl="200" noresist="true" hittypeprob2="1000" hoptype="SKILLLV" hopb="512" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="3748" name="Le VII" nameId="2285725" delayId="841" stack="LU_BLENDA_G7" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3748" name="Le VII" nameId="2285725" delayId="841" stack="LU_BLENDA_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="207" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="237" delta="25" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="70" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="207" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3749" name="La VII" nameId="2285726" delayId="842" stack="LU_BLENDB_G7" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3749" name="La VII" nameId="2285726" delayId="842" stack="LU_BLENDB_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="5" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="151" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="243" delta="25" critprobmod2="80" element="EARTH" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132272" e="2" basiclvl="70" accmod2="200" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="EVASION" func="ADD" value="-50" />
+				<change stat="MAGICAL_RESIST" func="ADD" value="-50" />
+			</statdown>
+			<blending note="B" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="151" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3750" name="Fa VII" nameId="2285727" delayId="843" stack="LU_BLENDC_G7" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="7" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3750" name="Fa VII" nameId="2285727" delayId="843" stack="LU_BLENDC_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="7" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="180" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="269" delta="25" critprobmod2="80" element="WATER" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132332" e="2" basiclvl="70" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="-50" />
+			</statdown>
+			<blending note="C" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="180" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3751" name="Li VII" nameId="2285728" delayId="844" stack="LU_BLENDE_G7" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="12" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3751" name="Li VII" nameId="2285728" delayId="844" stack="LU_BLENDE_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="12" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="79" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="232" delta="54" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="10000" effectid="132392" e="2" basiclvl="70" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="MAGIC_SKILL_BOOST_RESIST" func="ADD" value="100" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="79" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="3752" name="Seal VII" nameId="2285729" delayId="845" stack="LU_BURSTE_G7" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="100" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3752" name="Seal VII" nameId="2285729" delayId="845" stack="LU_BURSTE_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="100" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="40">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="189" delta="0" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="1047" delta="50" critprobmod2="80" element="WIND" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="7000" effectid="132452" e="2" basiclvl="70" accmod2="200" element="WIND" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="WATER_RESISTANCE" func="ADD" value="-50" />
+				<change stat="WIND_RESISTANCE" func="ADD" value="-50" />
+				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
+				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
+			</statdown>
+			<blending note="E" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="189" delta="0" />
+		</actions>
 	</skill_template>
 	<skill_template skill_id="3753" name="Attack Speed Boost VII" nameId="2285730" delayId="3753" stack="LU_P_ATKSPEED_G7" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" />
@@ -128073,8 +128615,21 @@
 	<skill_template skill_id="3841" name="Spiral Strike" nameId="2286284" delayId="782" stack="ST_BSPIN_AD_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="300" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="3842" name="Lover’s Le VII" nameId="2286286" delayId="841" stack="SKILLSKIN_LU_BLENDA_G7" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3842" name="Lover’s Le VII" nameId="2286286" delayId="841" stack="SKILLSKIN_LU_BLENDA_G7" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10" ammospeed="30">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="207" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="237" delta="25" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="70" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="207" delta="0" />
+		</actions>
 	</skill_template>
 	<skill_template skill_id="3843" name="Death’s Judgement V" nameId="2286287" delayId="873" stack="SKILLSKIN_LU_RAINTHUNDER_G5" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10" pvp_damage="80" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="15" target_distance="5" target_relation="ENEMY" target_type="AREA" target_maxcount="6" />
@@ -133244,11 +133799,38 @@
 			<provoker e="1" skill_id="9266" provoke_target="ME" effectid="129471" basiclvl="50" noresist="true" hittypeprob2="1000" element="WIND" hoptype="SKILLLV" hopb="705" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4266" name="La VIII" nameId="2288089" delayId="842" stack="LU_BLENDB_G8" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4266" name="La VIII" nameId="2288089" delayId="842" stack="LU_BLENDB_G8" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="5" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="151" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="290" delta="29" critprobmod2="80" element="EARTH" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132272" e="2" basiclvl="80" accmod2="200" element="EARTH" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="EVASION" func="ADD" value="-50" />
+				<change stat="MAGICAL_RESIST" func="ADD" value="-50" />
+			</statdown>
+			<blending note="B" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="151" delta="0" />
+		</actions>
 	</skill_template>
-	<skill_template skill_id="4267" name="Le VIII" nameId="2288074" delayId="841" stack="LU_BLENDA_G8" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4267" name="Le VIII" nameId="2288074" delayId="841" stack="LU_BLENDA_G8" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="207" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="295" delta="30" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="484" hopa="50" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="80" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="365">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="207" delta="0" />
+		</actions>
 	</skill_template>
 	<skill_template skill_id="4268" name="Judgement Day II" nameId="2288075" delayId="1868" stack="GU_JUDGMENTDAY_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="600" duration="1500" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" cancel_rate="10" ammospeed="45">
 		<properties first_target="TARGET" effective_angle="40" first_target_range="40" target_distance="5" target_relation="ENEMY" target_type="AREA" target_maxcount="10" />
@@ -134289,8 +134871,21 @@
 	<skill_template skill_id="4361" name="Luminess Transformation" nameId="2288040" delayId="309" stack="LU_D_START" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="4362" name="Le I" nameId="2284113" delayId="1991" stack="LU_BLENDA_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="3" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4362" name="Le I" nameId="2284113" delayId="1991" stack="LU_BLENDA_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="3" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="10">
+		<properties first_target="TARGET" first_target_range="5" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="22" delta="0" />
+		</startconditions>
+		<effects>
+			<spellatkinstant e="1" value="37" delta="10" critprobmod2="80" element="FIRE" hoptype="DAMAGE" hopb="300" hopa="30" />
+			<statdown duration2="12000" effectid="132212" e="2" basiclvl="10" accmod2="200" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="227">
+				<change stat="MAGICAL_ACCURACY" func="ADD" value="-70" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<actions>
+			<mpuse value="22" delta="0" />
+		</actions>
 	</skill_template>
 	<skill_template skill_id="4363" name="Lume’s Gift I" nameId="2284355" delayId="1992" stack="LU_RAINSWORD_START_G1" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="10" pvp_damage="80">
 		<properties first_target="TARGET" first_target_range="15" target_distance="5" target_relation="ENEMY" target_type="AREA" target_maxcount="6" />
@@ -134918,10 +135513,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4446" name="Spirit Light I" nameId="2287928" delayId="4446" stack="RB_HEAL_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9604" provoke_target="ME" effectid="144401" basiclvl="10" noresist="true" hittype="NMLATK" hittypeprob2="50" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4447" name="Impregnable I" nameId="2287929" delayId="4447" stack="RB_ARALLUP_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9605" provoke_target="ME" effectid="144411" basiclvl="10" noresist="true" hittype="NMLATK" hittypeprob2="50" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4448" name="Life Oath I" nameId="2287930" delayId="4448" stack="RB_P_MAXHPUP_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -134936,10 +135545,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4450" name="Baleful Whisper I" nameId="2287932" delayId="4450" stack="RB_DARK_WEAKENING_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9607" provoke_target="OPPONENT" effectid="144441" basiclvl="10" noresist="true" hittype="NMLATK" hittypeprob2="50" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4451" name="Covenant of Silence I" nameId="2287933" delayId="4451" stack="RB_SILENCE_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9608" provoke_target="OPPONENT" effectid="144451" basiclvl="10" noresist="true" hittype="NMLATK" hittypeprob2="20" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4452" name="Blood and Runes I" nameId="2287934" delayId="4452" stack="RB_P_MAGICALSKILLBOOSTUP_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -134954,10 +135577,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4454" name="Soul Strike I" nameId="2287936" delayId="4454" stack="RB_DISPEL_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9610" provoke_target="OPPONENT" effectid="144481" basiclvl="10" noresist="true" hittype="NMLATK" hittypeprob2="50" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4455" name="No Escape I" nameId="2287937" delayId="4455" stack="RB_BIND_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9611" provoke_target="OPPONENT" effectid="144491" basiclvl="10" noresist="true" hittype="NMLATK" hittypeprob2="20" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4456" name="Sardonic Laughter I" nameId="2287938" delayId="4456" stack="RB_P_PHYATTACKUP_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -135011,10 +135648,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4462" name="Spirit Light II" nameId="2287944" delayId="4462" stack="RB_HEAL_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9616" provoke_target="ME" effectid="144401" basiclvl="20" noresist="true" hittype="NMLATK" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4463" name="Impregnable II" nameId="2287945" delayId="4463" stack="RB_ARALLUP_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9617" provoke_target="ME" effectid="144411" basiclvl="20" noresist="true" hittype="NMLATK" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4464" name="Life Oath II" nameId="2287946" delayId="4464" stack="RB_P_MAXHPUP_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -135029,10 +135680,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4466" name="Baleful Whisper II" nameId="2287948" delayId="4466" stack="RB_DARK_WEAKENING_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9619" provoke_target="OPPONENT" effectid="144441" basiclvl="20" noresist="true" hittype="NMLATK" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4467" name="Covenant of Silence II" nameId="2287949" delayId="4467" stack="RB_SILENCE_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9620" provoke_target="OPPONENT" effectid="144451" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="40" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4468" name="Blood and Runes II" nameId="2287950" delayId="4468" stack="RB_P_MAGICALSKILLBOOSTUP_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -135047,10 +135712,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4470" name="Soul Strike II" nameId="2287952" delayId="4470" stack="RB_DISPEL_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9622" provoke_target="OPPONENT" effectid="144481" basiclvl="20" noresist="true" hittype="NMLATK" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4471" name="No Escape II" nameId="2287953" delayId="4471" stack="RB_BIND_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9623" provoke_target="OPPONENT" effectid="144491" basiclvl="20" noresist="true" hittype="NMLATK" hittypeprob2="40" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4472" name="Sardonic Laughter II" nameId="2287954" delayId="4472" stack="RB_P_PHYATTACKUP_G2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -135104,10 +135783,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4478" name="Spirit Light III" nameId="2288083" delayId="4478" stack="RB_HEAL_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9628" provoke_target="ME" effectid="144401" basiclvl="30" noresist="true" hittype="NMLATK" hittypeprob2="150" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4479" name="Impregnable III" nameId="2288084" delayId="4479" stack="RB_ARALLUP_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9629" provoke_target="ME" effectid="144411" basiclvl="30" noresist="true" hittype="NMLATK" hittypeprob2="150" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4480" name="Life Oath III" nameId="2288085" delayId="4480" stack="RB_P_MAXHPUP_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -135122,10 +135815,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4482" name="Baleful Whisper III" nameId="2288088" delayId="4482" stack="RB_DARK_WEAKENING_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9631" provoke_target="OPPONENT" effectid="144441" basiclvl="30" noresist="true" hittype="NMLATK" hittypeprob2="150" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4483" name="Covenant of Silence III" nameId="2288096" delayId="4483" stack="RB_SILENCE_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9632" provoke_target="OPPONENT" effectid="144451" basiclvl="30" noresist="true" hittype="NMLATK" hittypeprob2="60" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4484" name="Blood and Runes III" nameId="2288097" delayId="4484" stack="RB_P_MAGICALSKILLBOOSTUP_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -135140,10 +135847,24 @@
 		</effects>
 	</skill_template>
 	<skill_template skill_id="4486" name="Soul Strike III" nameId="2288100" delayId="4486" stack="RB_DISPEL_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9634" provoke_target="OPPONENT" effectid="144481" basiclvl="30" noresist="true" hittype="NMLATK" hittypeprob2="150" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4487" name="No Escape III" nameId="2288101" delayId="4487" stack="RB_BIND_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+		<properties first_target="ME" first_target_range="2" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<provoker e="1" skill_id="9635" provoke_target="OPPONENT" effectid="144491" basiclvl="30" noresist="true" hittype="NMLATK" hittypeprob2="60" />
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="4488" name="Sardonic Laughter III" nameId="2288102" delayId="4488" stack="RB_P_PHYATTACKUP_G3" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PASSIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -139481,8 +140202,21 @@
 			<procatk_instant e="1" value="0" delta="1000" accmod2="3000" element="WIND" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="9135" name="Weaken" nameId="2286760" delayId="9135" stack="ITEM_SKILL_PROC_ARMORBREAK_E1_60A" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="9135" name="Weaken" nameId="2286760" delayId="9135" stack="ITEM_SKILL_PROC_ARMORBREAK_E1_60A" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="20000" effectid="191351" e="1" basiclvl="200" accmod2="300" element="FIRE">
+				<change stat="CONCENTRATION" func="ADD" value="-1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="9136" name="Silence and Bind" nameId="2286761" delayId="9136" stack="ITEM_SKILL_PROC_SILENCE_BIND_E1_60A" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="DEBUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
 		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE" />
@@ -139866,20 +140600,56 @@
 	<skill_template skill_id="9179" name="Vitality Boost Effect" nameId="2286911" delayId="9179" stack="FI_VIGORBODY_UP_AD_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="9185" name="Overcharge Energy I" nameId="2287339" delayId="9185" stack="GU_ARCANEDISCHARGE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="9185" name="Overcharge Energy I" nameId="2287339" delayId="9185" stack="GU_ARCANEDISCHARGE_G1_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statup duration2="60000" effectid="191851" e="1" basiclvl="1" element="FIRE">
+				<change stat="CONCENTRATION" func="ADD" value="1" />
+			</statup>
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="9186" name="Fire Frenzy I" nameId="2287343" delayId="9186" stack="GU_ARCANEDISCHARGE_G1_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="9187" name="Overcharge Energy II" nameId="2287340" delayId="9187" stack="GU_ARCANEDISCHARGE_G2_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="9187" name="Overcharge Energy II" nameId="2287340" delayId="9187" stack="GU_ARCANEDISCHARGE_G2_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statup duration2="60000" effectid="191871" e="1" basiclvl="2" element="FIRE">
+				<change stat="CONCENTRATION" func="ADD" value="1" />
+			</statup>
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="9188" name="Fire Frenzy II" nameId="2287344" delayId="9188" stack="GU_ARCANEDISCHARGE_G2_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="9189" name="Overcharge Energy III" nameId="2287341" delayId="9189" stack="GU_ARCANEDISCHARGE_G3_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="9189" name="Overcharge Energy III" nameId="2287341" delayId="9189" stack="GU_ARCANEDISCHARGE_G3_PROC" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statup duration2="60000" effectid="191891" e="1" basiclvl="3" element="FIRE">
+				<change stat="CONCENTRATION" func="ADD" value="1" />
+			</statup>
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="9190" name="Fire Frenzy III" nameId="2287345" delayId="9190" stack="GU_ARCANEDISCHARGE_G3_PROC_BLENDING" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -140920,8 +141690,20 @@
 	<skill_template skill_id="9643" name="Final Execution Bonus Effect" nameId="2288137" delayId="9643" stack="RB_PROC_EXECUTION_G3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="9644" name="Rocksteady I stack(s)" nameId="2288148" delayId="9644" stack="RB_PROC_STONEBODY" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="PROVOKED" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="9644" name="Rocksteady I stack(s)" nameId="2288148" delayId="9644" stack="RB_PROC_STONEBODY" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="PROVOKED" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statup duration2="60000" effectid="196441" e="1" noresist="true" element="FIRE">
+				<change stat="REGEN_MP" func="ADD" value="1" />
+			</statup>
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="9645" name="Soul Rest I" nameId="2288005" delayId="9645" stack="RB_SOULREMNANT_G1_HEAL" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" />
@@ -151476,8 +152258,23 @@
 	<skill_template skill_id="19917" name="Cry of Terror" nameId="2287868" delayId="19917" stack="IDDRAGONLORD_SADHA_AREAATK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="19918" name="Fire Seal" nameId="2287869" delayId="19918" stack="IDDRAGONLORD_TAHABATA_POWERATK" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="3000">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="19918" name="Fire Seal" nameId="2287869" delayId="19918" stack="IDDRAGONLORD_TAHABATA_POWERATK" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="3000" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="5" target_distance="4" target_relation="ENEMY" target_maxcount="3" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="20000" delta="10" noresist="true" element="FIRE" hoptype="DAMAGE" />
+			<statdown duration2="60000" e="2" noresist="true" element="EARTH" preeffect="1">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="MAGICAL_DEFEND" func="PERCENT" value="1" />
+			</statdown>
+			<blending note="A" e="3" />
+		</effects>
+		<motion name="PowerATK" />
 	</skill_template>
 	<skill_template skill_id="19919" name="Lava Lake" nameId="2287870" delayId="19919" stack="IDDRAGONLORD_TAHABATA_POINTFIRE2" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="ME" first_target_range="2" target_relation="ALL" target_type="ONLYONE" target_maxcount="1" />
@@ -151769,8 +152566,20 @@
 			<spellatkinstant e="1" value="1000" delta="100" noresist="true" element="FIRE" hoptype="DAMAGE" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="19945" name="Ignite" nameId="2287907" delayId="19945" stack="IDDRAGONLORD_NOSHOWNPC_TAHABATA_POINTFIRE2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="19945" name="Ignite" nameId="2287907" delayId="19945" stack="IDDRAGONLORD_NOSHOWNPC_TAHABATA_POINTFIRE2" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="TARGET" first_target_range="35" target_relation="ENEMY" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="3000" delta="100" noresist="true" element="FIRE" hoptype="DAMAGE" />
+			<spellatk e="2" checktime="2000" value="2000" delta="1" duration2="60000" effectid="1019945" noresist="true" element="FIRE" preeffect="1" hoptype="DAMAGE" />
+			<blending note="A" e="3" />
+		</effects>
+		<motion name="PointFire2" />
 	</skill_template>
 	<skill_template skill_id="19946" name="Scorch Wound" nameId="2287908" delayId="19946" stack="IDDRAGONLORD_NOSHOWNPC_TAHABATA_NORMALFIRE2" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="35" target_relation="ENEMY" target_type="ONLYONE" />
@@ -152909,8 +153718,19 @@
 	<skill_template skill_id="20585" name="Forced Restraint" nameId="2281136" delayId="20585" stack="LF5_ITEM24_SATKTA_PULL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="1000">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="20586" name="Flight Heal" nameId="2281193" delayId="20586" stack="LDF3_01_FP_PLUS" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20586" name="Flight Heal" nameId="2281193" delayId="20586" stack="LDF3_01_FP_PLUS" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
+		<properties first_target="TARGET" target_species="PC" first_target_range="5" target_distance="10" target_relation="ALL" target_maxcount="12" target_type="AREA" />
+		<startconditions>
+			<target value="PC" />
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<fphealinstant e="1" value="20" noresist="true" element="WIND" hoptype="DAMAGE" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="20587" name="Mighty Energy Explosion" nameId="2281288" delayId="1" stack="BNFI_SPELL_TA_MORTAL_IDRW" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="4000" ammospeed="25">
 		<properties first_target="TARGET" first_target_range="25" target_distance="7" target_relation="ENEMY" target_type="AREA" target_maxcount="24" />
@@ -156288,8 +157108,25 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="20907" name="Yaksha’s Brand" nameId="2283714" delayId="20907" stack="TWIN_DRAGON_SALVATION1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20907" name="Yaksha’s Brand" nameId="2283714" delayId="20907" stack="TWIN_DRAGON_SALVATION1" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="25" target_distance="6" target_relation="ALL" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="15000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="WATER_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="WIND_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="FIRE_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="EARTH_RESISTANCE" func="PERCENT" value="-1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="20908" name="Yaksha’s Brand" nameId="2283715" delayId="20908" stack="TWIN_DRAGON_CURSE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" />
@@ -156333,14 +157170,65 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="20912" name="Yaksha’s Brand" nameId="2283714" delayId="20912" stack="TWIN_DRAGON_SALVATION2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20912" name="Yaksha’s Brand" nameId="2283714" delayId="20912" stack="TWIN_DRAGON_SALVATION2" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="25" target_distance="6" target_relation="ALL" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="15000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="WATER_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="WIND_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="FIRE_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="EARTH_RESISTANCE" func="PERCENT" value="-1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="20913" name="Yaksha’s Brand" nameId="2283714" delayId="20913" stack="TWIN_DRAGON_SALVATION3" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20913" name="Yaksha’s Brand" nameId="2283714" delayId="20913" stack="TWIN_DRAGON_SALVATION3" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="25" target_distance="6" target_relation="ALL" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="15000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="WATER_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="WIND_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="FIRE_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="EARTH_RESISTANCE" func="PERCENT" value="-1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="20914" name="Yaksha’s Brand" nameId="2283714" delayId="20914" stack="TWIN_DRAGON_SALVATION4" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20914" name="Yaksha’s Brand" nameId="2283714" delayId="20914" stack="TWIN_DRAGON_SALVATION4" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="25" target_distance="6" target_relation="ALL" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="15000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="WATER_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="WIND_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="FIRE_RESISTANCE" func="PERCENT" value="-1" />
+				<change stat="EARTH_RESISTANCE" func="PERCENT" value="-1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="20915" name="Yaksha’s Brand" nameId="2283715" delayId="20915" stack="TWIN_DRAGON_CURSE2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" />
@@ -156518,17 +157406,85 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="20931" name="Yaksha’s Light" nameId="2283749" delayId="20931" stack="TWIN_DRAGON_SALVATION_E" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20931" name="Yaksha’s Light" nameId="2283749" delayId="20931" stack="TWIN_DRAGON_SALVATION_E" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="60" target_distance="6" target_relation="ALL" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="1000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-2000" />
+				<change stat="WATER_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="WIND_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="FIRE_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="EARTH_RESISTANCE" func="PERCENT" value="-2000" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="20932" name="Yaksha’s Light" nameId="2283750" delayId="20932" stack="TWIN_DRAGON_SALVATION_W" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20932" name="Yaksha’s Light" nameId="2283750" delayId="20932" stack="TWIN_DRAGON_SALVATION_W" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="60" target_distance="6" target_relation="ALL" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="1000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-2000" />
+				<change stat="WATER_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="WIND_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="FIRE_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="EARTH_RESISTANCE" func="PERCENT" value="-2000" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="20933" name="Yaksha’s Light" nameId="2283751" delayId="20933" stack="TWIN_DRAGON_SALVATION_S" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20933" name="Yaksha’s Light" nameId="2283751" delayId="20933" stack="TWIN_DRAGON_SALVATION_S" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="60" target_distance="6" target_relation="ALL" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="1000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-2000" />
+				<change stat="WATER_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="WIND_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="FIRE_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="EARTH_RESISTANCE" func="PERCENT" value="-2000" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="20934" name="Yaksha’s Light" nameId="2283752" delayId="20934" stack="TWIN_DRAGON_SALVATION_N" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20934" name="Yaksha’s Light" nameId="2283752" delayId="20934" stack="TWIN_DRAGON_SALVATION_N" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" first_target_range="60" target_distance="6" target_relation="ALL" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="1000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-2000" />
+				<change stat="WATER_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="WIND_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="FIRE_RESISTANCE" func="PERCENT" value="-2000" />
+				<change stat="EARTH_RESISTANCE" func="PERCENT" value="-2000" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="20935" name="Relic" nameId="2283753" delayId="20935" stack="IDTWIN_DRAGON_AREAHEAL_E" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="50" target_relation="ALL" target_type="ONLYONE" target_maxcount="24" />
@@ -157182,8 +158138,23 @@
 	<skill_template skill_id="20987" name="Infernal Stealth" nameId="2283832" delayId="2" stack="IDDOKKAEBI_HIDE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="20988" name="Calling" nameId="2283829" delayId="20988" stack="IDDOKKAEBI_D2_AREAFIRE2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20988" name="Calling" nameId="2283829" delayId="20988" stack="IDDOKKAEBI_D2_AREAFIRE2" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="TARGET" effective_angle="0" target_species="PC" first_target_range="60" target_distance="10" target_relation="ENEMY" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<target value="PC" />
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="200000" effectid="10209071" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="MAGICAL_DEFEND" func="PERCENT" value="1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="AreaFire" />
 	</skill_template>
 	<skill_template skill_id="20989" name="Thrice the Name" nameId="2283831" delayId="2" stack="IDDOKKAEBI_D2_AREAFIRE2_3" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="12" />
@@ -157216,8 +158187,22 @@
 	<skill_template skill_id="20995" name="Devious" nameId="2283841" delayId="20995" stack="IDDOKKAEBI_CURSE2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="20996" name="Melee" nameId="2283843" delayId="20996" stack="IDDOKKAEBI_BLOODCUT" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="20996" name="Melee" nameId="2283843" delayId="20996" stack="IDDOKKAEBI_BLOODCUT" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="DEBUFF">
+		<properties first_target="TARGET" effective_angle="30" first_target_range="10" target_distance="180" target_relation="ENEMY" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="200000" effectid="10209961" e="1" basiclvl="1" noresist="true" element="EARTH" hoptype="SKILLLV">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="MAGICAL_DEFEND" func="PERCENT" value="1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="PowerATK3" />
 	</skill_template>
 	<skill_template skill_id="20997" name="I’m Only a Totem Pole" nameId="2283856" delayId="100" stack="IDDOKKAEBI_SACRIFICE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="4000">
 		<properties first_target="TARGET" />
@@ -157238,8 +158223,21 @@
 	<skill_template skill_id="20999" name="Alienation" nameId="2283868" delayId="20999" stack="IDDOKKAEBI_D2_AREAFIRE" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="21000" name="Melee" nameId="2283843" delayId="21000" stack="IDDOKKAEBI_BLOODCUT2" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21000" name="Melee" nameId="2283843" delayId="21000" stack="IDDOKKAEBI_BLOODCUT2" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="DEBUFF">
+		<properties first_target="TARGET" effective_angle="30" first_target_range="10" target_distance="180" target_relation="ENEMY" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="200000" effectid="10209961" e="1" basiclvl="2" noresist="true" element="EARTH" hoptype="SKILLLV">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="MAGICAL_DEFEND" func="PERCENT" value="1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="21001" name="Berserk" nameId="2283875" delayId="1" stack="IDDOKKAEBI_BERSERKER" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="2" target_distance="180" target_relation="FRIEND" target_type="AREA" target_maxcount="24" />
@@ -157257,8 +158255,19 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="21002" name="Qooqoo You" nameId="291707" delayId="10" stack="IDEVENT_DRAINDEQOOSDHPTA_PO_NC" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21002" name="Qooqoo You" nameId="291707" delayId="10" stack="IDEVENT_DRAINDEQOOSDHPTA_PO_NC" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="30">
+		<properties first_target="ME" first_target_range="25" target_distance="20" target_relation="ENEMY" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<effects>
+			<spellatkdraininstant e="1" hp_percent="100" value="181" element="WATER" hoptype="DAMAGE" />
+			<statup duration2="30000" effectid="10178943" e="2" noresist="true" element="WATER" hoptype="SKILLLV" preeffect="1" hopb="60" hopa="60">
+				<change stat="MAXHP" func="ADD" value="150000" />
+			</statup>
+			<blending note="A" e="3" />
+		</effects>
+		<motion name="PowerATK" />
 	</skill_template>
 	<skill_template skill_id="21003" name="Bleeding" nameId="2283877" delayId="11" stack="IDDOKKAEBI_BLOOD_SWORD1" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="DEBUFF_PHYSICAL" cancel_rate="35">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1" />
@@ -157419,20 +158428,58 @@
 	<skill_template skill_id="21014" name="Alienation" nameId="2283868" delayId="21014" stack="IDDOKKAEBI_D2_AREAFIRE_SP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="21015" name="Calling" nameId="2283829" delayId="21015" stack="IDDOKKAEBI_D2_AREAFIRE2_SP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="2000">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21015" name="Calling" nameId="2283829" delayId="21015" stack="IDDOKKAEBI_D2_AREAFIRE2_SP" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2000" dispel_category="DEBUFF_PHYSICAL">
+		<properties first_target="ME" effective_angle="0" target_species="PC" first_target_range="1" target_distance="12" target_relation="ENEMY" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<target value="PC" />
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statdown duration2="200000" effectid="10210151" e="1" noresist="true" element="EARTH">
+				<change stat="PHYSICAL_DEFENSE" func="PERCENT" value="-1" />
+				<change stat="MAGICAL_DEFEND" func="PERCENT" value="1" />
+			</statdown>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="21016" name="Gwisin’s Lament" nameId="2283885" delayId="12" stack="WATERGHOST_FEAR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="21017" name="Bhulra’s Blessing" nameId="2283886" delayId="727" stack="IDDOKKAEBI_SKILLCOOLTIMERESET" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="5" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21017" name="Bhulra’s Blessing" nameId="2283886" delayId="727" stack="IDDOKKAEBI_SKILLCOOLTIMERESET" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="5" duration="0" cancel_rate="20">
+		<properties first_target="TARGET" first_target_range="10" target_relation="FRIEND" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<skillcooltimereset e="1" delta="100" noresist="true" />
+			<dphealinstant e="2" value="0" delta="4000" noresist="true" />
+		</effects>
+		<motion name="radpatk" />
 	</skill_template>
 	<skill_template skill_id="21018" name="Battleship Blessing" nameId="2283887" delayId="21018" stack="HP_MOVESPEED_STATUP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="10" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="21019" name="Enhanced Intelligence" nameId="2286400" delayId="1" stack="BLDF4B_BOSSHEXAD_STATUP1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21019" name="Enhanced Intelligence" nameId="2286400" delayId="1" stack="BLDF4B_BOSSHEXAD_STATUP1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="NPC_BUFF">
+		<properties first_target="TARGET" target_species="PC" first_target_range="10" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<target value="PC" />
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statup duration2="600000" effectid="10215041" e="1" noresist="true">
+				<change stat="PVP_ATTACK_RATIO" func="ADD" value="40" delta="10" />
+				<change stat="PVP_DEFEND_RATIO" func="ADD" value="40" delta="10" />
+			</statup>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="Normalfire" />
 	</skill_template>
 	<skill_template skill_id="21020" name="Indomitable Spirit" nameId="2286402" delayId="1" stack="BLDF4B_BOSSHEXAD_STATUP1_B" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="NPC_BUFF">
 		<properties first_target="TARGET" target_species="PC" first_target_range="10" target_relation="FRIEND" target_type="ONLYONE" />
@@ -157451,8 +158498,22 @@
 		</effects>
 		<motion name="Normalfire" />
 	</skill_template>
-	<skill_template skill_id="21024" name="Drakscale Activation" nameId="2283906" delayId="21024" stack="TWIN_DRAGON_TA_BOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21024" name="Drakscale Activation" nameId="2283906" delayId="21024" stack="TWIN_DRAGON_TA_BOOST" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+		<properties first_target="ME" first_target_range="10" target_distance="10" target_relation="FRIEND" target_maxcount="6" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statup duration2="3600000" effectid="10210241" e="1" noresist="true" hoptype="SKILLLV" hopb="60" hopa="60">
+				<change stat="ATTACK_SPEED" func="PERCENT" value="-50" />
+				<change stat="MAGICAL_ATTACK" func="PERCENT" value="100" />
+			</statup>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="21025" name="Drakscale Activation" nameId="2283908" delayId="21025" stack="TWIN_DRAGON_TA_BOOST1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -157533,8 +158594,22 @@
 	<skill_template skill_id="21037" name="Inferno" nameId="2283818" delayId="100" stack="HAETAERAID_METEOR" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="3000">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="21038" name="Attack Vulnerability" nameId="2283942" delayId="21038" stack="TWIN_DRAGON_TA_PCBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21038" name="Attack Vulnerability" nameId="2283942" delayId="21038" stack="TWIN_DRAGON_TA_PCBOOST" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" target_species="PC" first_target_range="60" target_distance="50" target_relation="FRIEND" target_maxcount="6" target_type="AREA" />
+		<startconditions>
+			<target value="PC" />
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<statup duration2="3600000" effectid="111152" e="1" noresist="true" element="EARTH">
+				<change stat="REGEN_MP" func="ADD" value="1" />
+			</statup>
+			<blending note="A" e="2" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="21039" name="Attack Vulnerability" nameId="2283942" delayId="21039" stack="TWIN_DRAGON_TA_PCBOOST1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
