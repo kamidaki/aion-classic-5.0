@@ -122,6 +122,12 @@ public class SM_EMOTION extends AionServerPacket {
 			case WINDSTREAM_STRAFE:
 			case STOP_GLIDE:
 			case STOP_FLY:
+			case FLY_SPRINT_END:
+				break;
+			case FLY_SPRINT:
+				// 5.0 oficial: 15 b, [H 0][H skill do Quick Glide] (2669 em Gelkmaros)
+				writeH(0);
+				writeH(emotion);
 				break;
 			case DIE: // die
 			case START_LOOT: // looting start
@@ -166,10 +172,9 @@ public class SM_EMOTION extends AionServerPacket {
 				writeC(1);
 				break;
 			case CHANGE_SPEED:
-				// emote startloop
+				// 5.0 oficial: 15 b em 97 de 97, sem o C 0 que a 4.0 tinha no fim
 				writeH(baseAttackSpeed);
 				writeH(currentAttackSpeed);
-				writeC(0);// new 4.0
 				break;
 			default:
 				if (targetObjectId != 0) {

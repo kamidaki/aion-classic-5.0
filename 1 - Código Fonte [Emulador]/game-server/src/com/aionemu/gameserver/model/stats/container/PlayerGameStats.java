@@ -4,6 +4,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.configs.main.CustomConfig;
+import com.aionemu.gameserver.controllers.FlyController;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.actions.PlayerMode;
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -102,7 +103,9 @@ public class PlayerGameStats extends CreatureGameStats<Player> {
 	public Stat2 getMovementSpeed() {
 		Stat2 movementSpeed;
 		StatsTemplate pst = getStatsTemplate();
-		if (owner.isInFlyingState())
+		if (owner.getFlyController() != null && owner.getFlyController().isFlySprinting()) // Quick Glide: 18,00 fixos, sem modificador nem cap
+			movementSpeed = new AdditionStat(StatEnum.FLY_SPEED, FlyController.FLY_SPRINT_SPEED, owner);
+		else if (owner.isInFlyingState())
 			movementSpeed = getStat(StatEnum.FLY_SPEED, Math.round(pst.getFlySpeed() * 1000));
 		else if (owner.isInState(CreatureState.FLYING) && !owner.isInState(CreatureState.RESTING))
 			movementSpeed = getStat(StatEnum.SPEED, 12000);

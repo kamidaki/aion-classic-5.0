@@ -19,14 +19,60 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
 public class FlyController {
 
 	private static final long FLY_REUSE_TIME = 10000;
+	/**
+	 * Quick Glide (ALL_FlyBoost), medido na 5.0 oficial em Gelkmaros: a velocidade vai a 18,00 fixos, planando do chão (7,68) ou do voo (14,49),
+	 * sem modificador. O G2 não foi medido e usa o mesmo valor.
+	 */
+	public static final int FLY_SPRINT_SPEED = 18000;
+	private static final int[] FLY_SPRINT_SKILLS = { 3180, 2669 }; // ALL_FlyBoost_G2, ALL_FlyBoost_G1
 	private Player player;
+	private volatile int flySprintSkillId;
 
 	public FlyController(Player player) {
 		this.player = player;
 	}
 
+	/**
+	 * CM_EMOTION FLY_SPRINT. O oficial responde CHANGE_SPEED e depois FLY_SPRINT com o id da skill; o fim vem do cliente (FLY_SPRINT_END) antes de
+	 * pousar.
+	 */
+	public boolean startFlySprint() {
+		if (isFlySprinting() || !player.isInGlidingState())
+			return false;
+		int skillId = 0;
+		for (int id : FLY_SPRINT_SKILLS) {
+			if (player.getSkillList().isSkillPresent(id)) {
+				skillId = id;
+				break;
+			}
+		}
+		if (skillId == 0)
+			return false;
+		flySprintSkillId = skillId;
+		player.getGameStats().updateStatsAndSpeedVisually();
+		PacketSendUtility.broadcastToSightedPlayers(player, new SM_EMOTION(player, EmotionType.FLY_SPRINT, skillId, 0), true);
+		return true;
+	}
+
+	public boolean endFlySprint() {
+		if (flySprintSkillId == 0)
+			return false;
+		flySprintSkillId = 0;
+		player.getGameStats().updateStatsAndSpeedVisually();
+		PacketSendUtility.broadcastToSightedPlayers(player, new SM_EMOTION(player, EmotionType.FLY_SPRINT_END), true);
+		return true;
+	}
+
+	/**
+	 * Só vale planando: morte e windstream tiram o GLIDING sem passar por aqui, e o flag que sobra não pode mexer na velocidade.
+	 */
+	public boolean isFlySprinting() {
+		return flySprintSkillId != 0 && player.isInGlidingState();
+	}
+
 	public void onStopGliding() {
 		if (player.isInGlidingState()) {
+			flySprintSkillId = 0;
 			player.unsetFlyState(FlyState.GLIDING);
 			player.unsetState(CreatureState.GLIDING);
 			if (!player.isInFlyState(FlyState.FLYING)) {
@@ -44,6 +90,7 @@ public class FlyController {
 	 * when FP is decreased to 0
 	 */
 	public void endFly(boolean broadcastPacket) {
+		flySprintSkillId = 0;
 		player.unsetFlyState(FlyState.FLYING);
 		player.unsetFlyState(FlyState.GLIDING);
 		player.unsetState(CreatureState.FLYING);
@@ -115,6 +162,7 @@ public class FlyController {
 			}
 			player.setFlyReuseTime(System.currentTimeMillis() + FLY_REUSE_TIME);
 		}
+		flySprintSkillId = 0;
 		player.setFlyState(FlyState.GLIDING);
 		player.setState(CreatureState.GLIDING);
 		player.getLifeStats().triggerFpReduce();

@@ -74,11 +74,13 @@ public class CM_EMOTION extends AionClientPacket {
 			case NEUTRALMODE_IN_MOVE: // remove equip weapon
 			case NEUTRALMODE_IN_STANDING: // remove equip weapon
 			case END_SPRINT:
+			case FLY_SPRINT_END:
 				break;
 			case WINDSTREAM_STRAFE:
 				readC(); // unk 2
 				break;
 			case START_SPRINT:
+			case FLY_SPRINT:
 				readD(); // unk 1
 				break;
 			case EMOTE:
@@ -203,6 +205,12 @@ public class CM_EMOTION extends AionClientPacket {
 			case START_SPRINT:
 				return;
 			case END_SPRINT:
+				return;
+			case FLY_SPRINT: // o FlyController responde com CHANGE_SPEED + FLY_SPRINT, nessa ordem
+				player.getFlyController().startFlySprint();
+				return;
+			case FLY_SPRINT_END:
+				player.getFlyController().endFlySprint();
 				return;
 		}
 
