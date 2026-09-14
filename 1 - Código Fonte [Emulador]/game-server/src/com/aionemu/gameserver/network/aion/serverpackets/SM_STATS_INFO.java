@@ -124,8 +124,8 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(safeCurrent(maxDp)); // 084
 		writeH(pcd.getDp()); // 086
 
-		writeD(100); // 088 maxSp (constant 100 on 5.0 wire)
-		writeD(0); // 092 sp (constant 0 on 5.0 wire)
+		writeD(PlayerLifeStats.MAX_SP); // 088 maxSp (5.0 oficial: 100)
+		writeD(pls.getCurrentSp()); // 092 sp do Revenant (5.0 oficial: 0, 20, 70 durante o combate; o Ki do Brawler não passa por aqui)
 
 		writeD(safeCurrent(flyTime)); // 096
 		writeD(pls.getCurrentFp()); // 100
@@ -208,7 +208,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeD(safeBase(maxHp)); // 288
 		writeD(safeBase(maxMp)); // 292
 		writeD(safeBase(maxDp)); // 296
-		writeD(100); // 300 base maxSp (constant 100 on 5.0 wire)
+		writeD(PlayerLifeStats.MAX_SP); // 300 base maxSp (5.0 oficial: 100)
 		writeD(safeBase(flyTime)); // 304
 		writeD(100); // 308
 		writeD(0); // 312

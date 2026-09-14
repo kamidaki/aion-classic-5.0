@@ -111,6 +111,9 @@
 				<xs:element name="procfphealinstant" type="ProcFPHealInstantEffect" />
 				<xs:element name="procsphealinstant" type="ProcSPHealInstantEffect" />
 				<xs:element name="sphealinstant" type="SPHealInstantEffect" />
+				<xs:element name="classpointhealinstant" type="ClassPointHealInstantEffect" />
+				<xs:element name="boostcontextskill" type="BoostContextSkillEffect" />
+				<xs:element name="movelocation" type="MoveLocationEffect" />
 				<xs:element name="shadowmove" type="ShadowMoveEffect" />
 				<xs:element name="timefreezing" type="TimeFreezingEffect" />
 				<xs:element name="carvesignet" type="CarveSignetEffect" />
@@ -723,6 +726,25 @@
 	<xs:complexType name="SPHealInstantEffect">
 		<xs:complexContent>
 			<xs:extension base="AbstractHealEffect" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ClassPointHealInstantEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BoostContextSkillEffect">
+		<xs:complexContent>
+			<xs:extension base="BufEffect">
+				<xs:attribute name="condition" type="xs:string" use="required" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MoveLocationEffect">
+		<xs:complexContent>
+			<xs:extension base="Effect">
+				<xs:attribute name="distance" type="xs:float" />
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="ShadowMoveEffect">

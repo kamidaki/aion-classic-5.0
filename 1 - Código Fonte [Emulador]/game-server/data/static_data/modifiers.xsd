@@ -269,9 +269,17 @@
 			<xs:element name="chargearmor" type="ChargeArmorCondition" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="polishchargeweapon" type="PolishChargeCondition" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="skillcharge" type="SkillChargeCondition" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contextskill" type="ContextSkillCondition" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="Condition" abstract="true"/>
+	<xs:complexType name="ContextSkillCondition">
+		<xs:complexContent>
+			<xs:extension base="Condition">
+				<xs:attribute name="condition" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="MpCondition">
 		<xs:complexContent>
 			<xs:extension base="Condition">

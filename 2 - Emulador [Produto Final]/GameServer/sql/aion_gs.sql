@@ -685,6 +685,8 @@ CREATE TABLE `player_life_stats` (
   `hp` int NOT NULL DEFAULT '1',
   `mp` int NOT NULL DEFAULT '1',
   `fp` int NOT NULL DEFAULT '1',
+  `sp` int NOT NULL DEFAULT '0',
+  `ep` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`player_id`),
   CONSTRAINT `FK_player_life_stats` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

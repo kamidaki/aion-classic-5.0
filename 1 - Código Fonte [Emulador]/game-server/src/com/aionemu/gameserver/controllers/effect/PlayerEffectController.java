@@ -88,7 +88,8 @@ public class PlayerEffectController extends EffectController {
 	public void updatePlayerEffectIcons(Effect effect) {
 		int slot = effect != null ? effect.getTargetSlot().getId() : SkillTargetSlot.FULLSLOTS;
 		Collection<Effect> effects = getAbnormalEffectsToShow();
-		PacketSendUtility.sendPacket(getOwner(), new SM_ABNORMAL_STATE(effects, getAbnormals(), slot));
+		// 5.0 oficial: o último byte de cada efeito vale 1 só no que acabou de entrar (0 em todos depois de uma remoção)
+		PacketSendUtility.sendPacket(getOwner(), new SM_ABNORMAL_STATE(effects, getAbnormals(), slot, effect));
 	}
 
 	/**

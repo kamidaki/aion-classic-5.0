@@ -46,18 +46,25 @@ def parse_skills():
         name_id = common_bxml.resolve_name_id(desc_str, int(skill_id) if skill_id.isdigit() else 0)
         real_name = common_bxml.resolve_body(desc_str, code_name)
         lvl = c_sk.findtext("level", "1")
-        skilltype = c_sk.findtext("skilltype", "PHYSICAL").upper()
-        activation = c_sk.findtext("activation", "ACTIVE").upper()
-        cooldown = c_sk.findtext("cooldown", "0")
-        duration = c_sk.findtext("duration", "0")
-        
+        # tags reais do client_skills 5.0; skilltype/activation/cooldown/duration nao existem no cliente e o default era
+        # gravado em toda skill (tudo PHYSICAL, tudo ACTIVE, cast e cooldown 0). Campo ausente no cliente nao sobrescreve.
+        skilltype = (c_sk.findtext("type") or "").upper()
+        activation = (c_sk.findtext("activation_attribute") or "").upper()
+        cooldown = str(int(float(c_sk.findtext("delay_time") or 0)) // 100)  # servidor em 1/10 s, cliente em ms
+        duration = str(int(float(c_sk.findtext("casting_delay") or 0)))
+        delay_id = c_sk.findtext("delay_id") or ""
+
         if skill_id in server_skills:
             elem = server_skills[skill_id]
             elem.set("name", real_name)
             elem.set("nameId", name_id)
             elem.set("lvl", lvl)
-            elem.set("skilltype", skilltype)
-            elem.set("activation", activation)
+            if skilltype:
+                elem.set("skilltype", skilltype)
+            if activation:
+                elem.set("activation", activation)
+            if delay_id:
+                elem.set("delayId", delay_id)
             elem.set("cooldown", cooldown)
             elem.set("duration", duration)
             updated_count += 1
@@ -66,13 +73,13 @@ def parse_skills():
             elem.set("skill_id", skill_id)
             elem.set("name", real_name)
             elem.set("nameId", name_id)
-            elem.set("delayId", skill_id)
+            elem.set("delayId", delay_id or skill_id)
             elem.set("stack", code_name.upper())
             elem.set("lvl", lvl)
-            elem.set("skilltype", skilltype)
+            elem.set("skilltype", skilltype or "PHYSICAL")
             elem.set("skillsubtype", "NONE")
             elem.set("tslot", "NOSHOW")
-            elem.set("activation", activation)
+            elem.set("activation", activation or "ACTIVE")
             elem.set("cooldown", cooldown)
             elem.set("duration", duration)
             

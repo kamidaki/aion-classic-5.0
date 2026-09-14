@@ -26,15 +26,19 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 	private List<Effect> effects;
 	private int dashStatus;
 	private int targetType;
-	private boolean chainSuccess;
+	private final int multiCastStep;
 
+	/**
+	 * @param chainSuccess
+	 *          nao vai no pacote: na 5.0 o byte de flags e 32 em todo acerto, inclusive de NPC (794 pacotes oficiais)
+	 */
 	public SM_CASTSPELL_RESULT(Skill skill, List<Effect> effects, int hitTime, boolean chainSuccess, int dashStatus) {
 		this.skill = skill;
 		this.effector = skill.getEffector();
 		this.target = skill.getFirstTarget();
 		this.effects = effects;
 		this.cooldown = skill.getCooldown();
-		this.chainSuccess = chainSuccess;
+		this.multiCastStep = Math.max(1, skill.getMultiCastCount()); // o ChainSkills ja contou este uso antes do pacote sair
 		this.targetType = 0;
 		this.hitTime = hitTime;
 		this.dashStatus = dashStatus;
@@ -80,16 +84,17 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 		writeH(hitTime);
 		writeC(0); // unk
 
-		/**
-		 * 0 : no chain skill 16 : no damage to all target like dodge, resist or effect size is 0 32 : regular Seen: 0xA0 for skill 2723, 0x22 for skill
-		 * 1169; Skill id doesn't fit to this structure: 2395
-		 */
-		if (effects.isEmpty())
-			writeC(16);
-		else if (chainSuccess)
-			writeC(32);
+		// 5.0 (794 pacotes oficiais): 32 acerto, 16 sem efeito ou tudo esquivado/resistido, 0 skill de penalidade; 0x80 da 2a execucao do multicast
+		int flags;
+		if (skill.getSkillMethod() == Skill.SkillMethod.PENALTY)
+			flags = 0;
+		else if (effects.stream().allMatch(e -> e.getEffectResult() == EffectResult.DODGE || e.getEffectResult() == EffectResult.RESIST))
+			flags = 16;
 		else
-			writeC(0);
+			flags = 32;
+		if (multiCastStep > 1)
+			flags |= 0x80;
+		writeC(flags);
 
 		if (skill.getItemTemplate() != null && skill.getItemTemplate().isCombatActivated()) {
 			writeC(2);
@@ -116,6 +121,7 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 			}
 		}
 
+		writeD(multiCastStep); // 5.0: 1, 2 e 3 nas execucoes seguidas da mesma skill multicast
 		writeH(effects.size());
 		for (Effect effect : effects) {
 			Creature effected = effect.getOriginalEffected();
@@ -204,7 +210,7 @@ public class SM_CASTSPELL_RESULT extends AionServerPacket {
 						writeD(effect.getMpShieldSkillId()); // skill id
 						break;
 				}
-				writeB(new byte[] { 0x00, 0x00, 0x0A, 0x00 });
+				// 5.0: o efeito acaba no shield; o 00 00 0A 00 da 4.x desalinhava a lista (20 bytes por efeito nas capturas)
 			}
 		}
 	}

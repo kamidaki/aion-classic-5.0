@@ -8,17 +8,30 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.zone.ZoneType;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.LOG;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.TYPE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_EP_UPDATE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_EP_UPDATE_OTHER;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_FLY_TIME;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SP_UPDATE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SP_UPDATE_OTHER;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_STATUPDATE_HP;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_STATUPDATE_MP;
 import com.aionemu.gameserver.services.LifeStatsRestoreService;
+import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.taskmanager.tasks.TeamStatUpdater;
 import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.utils.ThreadPoolManager;
 
 /**
  * @author Lost Academy Team & Durak
  */
 public class PlayerLifeStats extends CreatureLifeStats<Player> {
+
+	/** SP do Revenant (TH_/MO_): 5.0 oficial satura em 100 sem aviso */
+	public static final int MAX_SP = 100;
+	/** EP (Ki) do Brawler (ST_): ao chegar a 100 vira 0 e entra o Fever */
+	public static final int MAX_EP = 100;
+	/** Fever_Check: buff de 20 s com BoostContextSkill FeverCondition, que libera as skills _high */
+	public static final int FEVER_SKILL_ID = 3148;
 
 	private final Object fpLock = new Object();
 	private int flightReducePeriod = 2;
@@ -26,6 +39,14 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 	private int currentFp;
 	private Future<?> flyRestoreTask;
 	private Future<?> flyReduceTask;
+
+	private final Object classPointLock = new Object();
+	private final long classPointTickAnchor = System.currentTimeMillis();
+	private int currentSp;
+	private int currentEp;
+	private int sentSp;
+	private int sentEp;
+	private Future<?> classPointFlushTask;
 
 	public PlayerLifeStats(Player owner) {
 		super(owner, owner.getGameStats().getMaxHp().getCurrent(), owner.getGameStats().getMaxMp().getCurrent());
@@ -260,11 +281,110 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 		return getMaxFp() == currentFp;
 	}
 
+	public int getCurrentSp() {
+		return currentSp;
+	}
+
+	public int getCurrentEp() {
+		return currentEp;
+	}
+
+	/**
+	 * Valor lido do banco no login. Não gera pacote: o SP sai no S_STATUS e o 5.0 oficial não manda 0x175 no login.
+	 */
+	public void setCurrentSp(int sp) {
+		synchronized (classPointLock) {
+			currentSp = sentSp = Math.clamp(sp, 0, MAX_SP);
+		}
+	}
+
+	public void setCurrentEp(int ep) {
+		synchronized (classPointLock) {
+			currentEp = sentEp = Math.clamp(ep, 0, MAX_EP);
+		}
+	}
+
+	public void increaseSp(int value) {
+		changeSp(value);
+	}
+
+	public void reduceSp(int value) {
+		changeSp(-value);
+	}
+
+	private void changeSp(int delta) {
+		synchronized (classPointLock) {
+			int newSp = Math.clamp((long) currentSp + delta, 0, MAX_SP);
+			if (newSp == currentSp)
+				return;
+			currentSp = newSp;
+		}
+		scheduleClassPointFlush();
+	}
+
+	/**
+	 * 5.0 oficial (duas capturas do Brawler): +10 por golpe com EP_Recover_10; o golpe que leva o Ki a 100 aplica o Fever_Check no mesmo instante e o Ki
+	 * vai a 0 no tick seguinte; durante o Fever nenhum golpe enche o Ki.
+	 */
+	public void increaseEp(int value) {
+		if (value <= 0 || owner.getEffectController().hasAbnormalEffect(FEVER_SKILL_ID))
+			return;
+		boolean fever;
+		synchronized (classPointLock) {
+			int newEp = Math.min(MAX_EP, currentEp + value);
+			fever = newEp == MAX_EP;
+			currentEp = fever ? 0 : newEp;
+		}
+		if (fever)
+			SkillEngine.getInstance().applyEffectDirectly(FEVER_SKILL_ID, owner, owner);
+		scheduleClassPointFlush();
+	}
+
+	/**
+	 * 5.0 oficial: 0x14B/0x166 e 0x175/0x176 saem num tick de 1 s com fase fixa por sessão, e só quando o valor mudou desde o último envio.
+	 */
+	private void scheduleClassPointFlush() {
+		synchronized (classPointLock) {
+			if (classPointFlushTask != null)
+				return;
+			long sinceAnchor = System.currentTimeMillis() - classPointTickAnchor;
+			classPointFlushTask = ThreadPoolManager.getInstance().schedule(this::flushClassPoints, 1000 - sinceAnchor % 1000);
+		}
+	}
+
+	private void flushClassPoints() {
+		int sp, ep;
+		boolean sendSp, sendEp;
+		synchronized (classPointLock) {
+			classPointFlushTask = null;
+			sp = currentSp;
+			ep = currentEp;
+			sendSp = sp != sentSp;
+			sendEp = ep != sentEp;
+			sentSp = sp;
+			sentEp = ep;
+		}
+		if (sendSp) {
+			PacketSendUtility.sendPacket(owner, new SM_SP_UPDATE(sp));
+			PacketSendUtility.broadcastPacket(owner, new SM_SP_UPDATE_OTHER(owner.getObjectId(), sp), true);
+		}
+		if (sendEp) {
+			PacketSendUtility.sendPacket(owner, new SM_EP_UPDATE(ep));
+			PacketSendUtility.broadcastPacket(owner, new SM_EP_UPDATE_OTHER(owner.getObjectId(), ep), true);
+		}
+	}
+
 	@Override
 	public void cancelAllTasks() {
 		super.cancelAllTasks();
 		cancelFpReduce();
 		cancelFpRestore();
+		synchronized (classPointLock) {
+			if (classPointFlushTask != null) {
+				classPointFlushTask.cancel(false);
+				classPointFlushTask = null;
+			}
+		}
 	}
 
 	public int getFlightReducePeriod() {

@@ -304,7 +304,7 @@ public class EffectController {
 	public void broadCastEffects(Effect effect) {
 		int slot = effect != null ? effect.getTargetSlot().getId() : SkillTargetSlot.FULLSLOTS;
 		List<Effect> effects = getAbnormalEffects();
-		PacketSendUtility.broadcastPacket(getOwner(), new SM_ABNORMAL_EFFECT(getOwner(), abnormals, effects, slot));
+		PacketSendUtility.broadcastPacket(getOwner(), new SM_ABNORMAL_EFFECT(getOwner(), abnormals, effects, slot, effect));
 	}
 
 	public void clearEffect(Effect effect, boolean broadCastEffects) {

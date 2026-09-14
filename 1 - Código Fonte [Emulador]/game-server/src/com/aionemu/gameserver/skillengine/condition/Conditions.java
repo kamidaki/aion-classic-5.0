@@ -30,7 +30,7 @@ public class Conditions {
 		@XmlElement(name = "selfflying", type = SelfFlyingCondition.class), @XmlElement(name = "combatcheck", type = CombatCheckCondition.class),
 		@XmlElement(name = "chain", type = ChainCondition.class), @XmlElement(name = "front", type = FrontCondition.class),
 		@XmlElement(name = "back", type = BackCondition.class), @XmlElement(name = "form", type = FormCondition.class),
-		@XmlElement(name = "race", type = RaceCondition.class)
+		@XmlElement(name = "race", type = RaceCondition.class), @XmlElement(name = "contextskill", type = ContextSkillCondition.class)
 
 	})
 	protected List<Condition> conditions;

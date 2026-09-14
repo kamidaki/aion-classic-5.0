@@ -7907,6 +7907,13 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
+	 * You do not have enough Ion Flux to use that skill.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_SKILL_NOT_ENOUGH_SP() {
+		return new SM_SYSTEM_MESSAGE(1401856);
+	}
+
+	/**
 	 * You do not have enough DP to use that skill.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_SKILL_NOT_ENOUGH_DP() {
