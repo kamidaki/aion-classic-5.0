@@ -12,6 +12,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 
 import ai.GeneralNpcAI;
 
+import com.aionemu.gameserver.model.siege.SiegeLocation;
+
 /**
  * @author Source
  */
@@ -41,9 +43,17 @@ public class SiegeTeleporterAI extends GeneralNpcAI {
 	}
 
 	private void canTeleport(final boolean status) {
-		final int id = ((SiegeNpc) getOwner()).getSiegeId();
+		if (!(getOwner() instanceof SiegeNpc)) {
+			return;
+		}
 
-		SiegeService.getInstance().getSiegeLocation(id).setCanTeleport(status);
+		final int id = ((SiegeNpc) getOwner()).getSiegeId();
+		SiegeLocation siegeLocation = SiegeService.getInstance().getSiegeLocation(id);
+		if (siegeLocation == null) {
+			return;
+		}
+
+		siegeLocation.setCanTeleport(status);
 
 		getPosition().getWorldMapInstance().forEachPlayer(new Consumer<Player>() {
 
