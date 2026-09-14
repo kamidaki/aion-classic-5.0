@@ -5830,17 +5830,14 @@
 	<skill name="cl_heal_g1" skillId="965" skillLevel="7" minLevel="7" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_smite_g1" skillId="975" skillLevel="7" minLevel="7" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_soniceruption_g1" skillId="979" skillLevel="3" minLevel="7" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
-	<skill name="cl_conversionenergy_g1" skillId="958" skillLevel="6" minLevel="8" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_hallowswing_g1" skillId="962" skillLevel="6" minLevel="8" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_heal_g1" skillId="965" skillLevel="8" minLevel="8" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_smite_g1" skillId="975" skillLevel="8" minLevel="8" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
-	<skill name="cl_conversionenergy_g1" skillId="958" skillLevel="7" minLevel="9" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_hallowswing_g1" skillId="962" skillLevel="7" minLevel="9" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_heal_g1" skillId="965" skillLevel="9" minLevel="9" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_smite_g1" skillId="975" skillLevel="9" minLevel="9" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="p_healmastery_g1" skillId="108" skillLevel="1" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="p_statboostresist_g1" skillId="123" skillLevel="1" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
-	<skill name="cl_conversionenergy_g1" skillId="958" skillLevel="8" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_hallowswing_g1" skillId="962" skillLevel="8" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_heal_g2" skillId="966" skillLevel="1" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_imbuewind_g1" skillId="969" skillLevel="2" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
@@ -5849,7 +5846,6 @@
 	<skill name="pr_seraphicaffection_g1" skillId="1146" skillLevel="1" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_seraphicvoice_g1" skillId="1290" skillLevel="1" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="p_statboostmsbr_g1" skillId="3796" skillLevel="1" minLevel="10" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
-	<skill name="cl_conversionenergy_g1" skillId="958" skillLevel="9" minLevel="11" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_hallowswing_g1" skillId="962" skillLevel="9" minLevel="11" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_heal_g2" skillId="966" skillLevel="2" minLevel="11" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_imbuewind_g1" skillId="969" skillLevel="3" minLevel="11" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
@@ -5860,6 +5856,7 @@
 	<skill name="pr_root_g1" skillId="1099" skillLevel="2" minLevel="11" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_repentance_g1" skillId="1170" skillLevel="2" minLevel="11" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_violentswing_g1" skillId="1249" skillLevel="2" minLevel="11" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
+	<skill name="cl_conversionenergy_g1" skillId="958" skillLevel="6" minLevel="12" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_heal_g2" skillId="966" skillLevel="3" minLevel="12" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_imbuewind_g1" skillId="969" skillLevel="4" minLevel="12" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_smite_g2" skillId="976" skillLevel="3" minLevel="12" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
@@ -5869,6 +5866,7 @@
 	<skill name="pr_root_g1" skillId="1099" skillLevel="3" minLevel="12" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_repentance_g1" skillId="1170" skillLevel="3" minLevel="12" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_violentswing_g1" skillId="1249" skillLevel="3" minLevel="12" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
+	<skill name="cl_conversionenergy_g1" skillId="958" skillLevel="7" minLevel="13" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_heal_g2" skillId="966" skillLevel="4" minLevel="13" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_imbuewind_g1" skillId="969" skillLevel="5" minLevel="13" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_smite_g2" skillId="976" skillLevel="4" minLevel="13" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
@@ -5919,6 +5917,7 @@
 	<skill name="pr_punishinglight_g1" skillId="2281" skillLevel="1" minLevel="13" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_sageswisdom_new_g1" skillId="3817" skillLevel="1" minLevel="13" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_improvedalldefend_new_g1" skillId="3821" skillLevel="1" minLevel="13" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
+	<skill name="cl_conversionenergy_g1" skillId="958" skillLevel="8" minLevel="14" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_heal_g2" skillId="966" skillLevel="5" minLevel="14" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_imbuewind_g1" skillId="969" skillLevel="6" minLevel="14" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_smite_g2" skillId="976" skillLevel="5" minLevel="14" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
@@ -5930,6 +5929,7 @@
 	<skill name="ch_sonicswing_g1" skillId="1242" skillLevel="2" minLevel="14" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_violentswing_g1" skillId="1249" skillLevel="5" minLevel="14" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_rejuvenation_g1" skillId="1306" skillLevel="2" minLevel="14" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
+	<skill name="cl_conversionenergy_g1" skillId="958" skillLevel="9" minLevel="15" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_heal_g2" skillId="966" skillLevel="6" minLevel="15" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_imbuewind_g1" skillId="969" skillLevel="7" minLevel="15" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="cl_smite_g2" skillId="976" skillLevel="6" minLevel="15" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
@@ -6554,7 +6554,6 @@
 	<skill name="pr_rapidregeneration_g3" skillId="1097" skillLevel="8" minLevel="41" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_skinofthorn_g2" skillId="1104" skillLevel="2" minLevel="41" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_greatheal_g3" skillId="1114" skillLevel="2" minLevel="41" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
-	<skill name="p_statboostkdkbsp_g2" skillId="1172" skillLevel="1" minLevel="41" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_imbueearth_g3" skillId="1222" skillLevel="2" minLevel="41" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_parryingstrike_g2" skillId="1228" skillLevel="5" minLevel="41" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="ch_sonicgenoside_g1" skillId="1235" skillLevel="8" minLevel="41" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
@@ -6684,6 +6683,7 @@
 	<skill name="pr_greatheal_g3" skillId="1114" skillLevel="6" minLevel="45" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_lightningbolt_g4" skillId="1117" skillLevel="1" minLevel="45" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_rapidregeneration_g4" skillId="1118" skillLevel="1" minLevel="45" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
+	<skill name="p_statboostkdkbsp_g2" skillId="1172" skillLevel="1" minLevel="45" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="p_boosthatedown_g2" skillId="1173" skillLevel="1" minLevel="45" race="PC_ALL" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_abysalbolt_g1" skillId="1177" skillLevel="4" minLevel="45" race="ASMODIANS" classId="CHANTER" autoLearn="true"/>
 	<skill name="pr_divinebolt_g1" skillId="1178" skillLevel="4" minLevel="45" race="ELYOS" classId="CHANTER" autoLearn="true"/>
@@ -24947,7 +24947,6 @@
 	<skill name="wa_rage_g1" skillId="161" skillLevel="4" minLevel="10" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_robustblow_g1" skillId="165" skillLevel="8" minLevel="10" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_robusthit_g2" skillId="170" skillLevel="1" minLevel="10" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
-	<skill name="p_statboostphysicaloffense_g2" skillId="358" skillLevel="1" minLevel="10" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_seraphicdefence_g1" skillId="480" skillLevel="1" minLevel="10" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_re_tripleslash_g1" skillId="3853" skillLevel="1" minLevel="10" race="PC_ALL" classId="TEMPLAR" skillBook="true"/>
 	<skill name="fi_re_wingblade_g1" skillId="3854" skillLevel="1" minLevel="10" race="PC_ALL" classId="TEMPLAR" skillBook="true"/>
@@ -25004,6 +25003,7 @@
 	<skill name="fi_vigorbody_g1" skillId="290" skillLevel="1" minLevel="13" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_divinerage_g1" skillId="348" skillLevel="4" minLevel="13" race="ELYOS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_seismicshock_g1" skillId="353" skillLevel="1" minLevel="13" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
+	<skill name="p_statboostphysicaldefense_g2" skillId="359" skillLevel="1" minLevel="13" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_abysalrage_g1" skillId="362" skillLevel="4" minLevel="13" race="ASMODIANS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_energywing_g1" skillId="383" skillLevel="1" minLevel="13" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_avengingblade_g1" skillId="403" skillLevel="1" minLevel="13" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -25057,6 +25057,7 @@
 	<skill name="kn_legbreak_g1" skillId="519" skillLevel="6" minLevel="15" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_abysaljudgement_g1" skillId="520" skillLevel="6" minLevel="15" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_jumpingcut_g1" skillId="2264" skillLevel="6" minLevel="15" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
+	<skill name="p_statboostblock_g1" skillId="111" skillLevel="1" minLevel="16" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_armorbreak_g2" skillId="152" skillLevel="1" minLevel="16" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_provoke_g1" skillId="158" skillLevel="7" minLevel="16" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_rage_g2" skillId="162" skillLevel="1" minLevel="16" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -25116,7 +25117,6 @@
 	<skill name="fi_robustcrash_g1" skillId="273" skillLevel="7" minLevel="19" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_robustsmash_g1" skillId="278" skillLevel="4" minLevel="19" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_seismicimpact_g1" skillId="355" skillLevel="2" minLevel="19" race="PC_ALL" classId="TEMPLAR" skillBook="true"/>
-	<skill name="p_statboostphysicaloffense_g3" skillId="361" skillLevel="1" minLevel="19" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shineslash_g1" skillId="445" skillLevel="4" minLevel="19" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_brainbreak_g1" skillId="503" skillLevel="4" minLevel="19" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_avengingbash_g1" skillId="507" skillLevel="7" minLevel="19" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -25206,7 +25206,6 @@
 	<skill name="kn_abysaljudgement_g2" skillId="521" skillLevel="3" minLevel="24" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_frozingshield_g1" skillId="529" skillLevel="4" minLevel="24" race="ELYOS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shieldswing_g1" skillId="1970" skillLevel="2" minLevel="24" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
-	<skill name="p_statboostblock_g1" skillId="111" skillLevel="1" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_avengingcrash_g2" skillId="155" skillLevel="7" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_provoke_g2" skillId="159" skillLevel="4" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_robustblow_g3" skillId="167" skillLevel="1" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -25226,10 +25225,12 @@
 	<skill name="fi_divinerage_g2" skillId="349" skillLevel="4" minLevel="25" race="ELYOS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_powerslash_g1" skillId="351" skillLevel="4" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_seismicimpact_g1" skillId="355" skillLevel="8" minLevel="25" race="PC_ALL" classId="TEMPLAR" skillBook="true"/>
+	<skill name="p_statboostphysicaloffense_g2" skillId="358" skillLevel="1" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_abysalrage_g2" skillId="363" skillLevel="4" minLevel="25" race="ASMODIANS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_avengingblade_g1" skillId="403" skillLevel="4" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shieldcharge_g2" skillId="442" skillLevel="4" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_knightgift_g1" skillId="487" skillLevel="1" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
+	<skill name="p_statboostphysicaldefense_g3" skillId="496" skillLevel="1" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_divinejudgement_g2" skillId="501" skillLevel="4" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_avengingbash_g2" skillId="508" skillLevel="1" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shineblade_g1" skillId="511" skillLevel="7" minLevel="25" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -25281,7 +25282,6 @@
 	<skill name="kn_abysaljudgement_g2" skillId="521" skillLevel="6" minLevel="27" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_frozingshield_g1" skillId="529" skillLevel="7" minLevel="27" race="ELYOS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shieldswing_g1" skillId="1970" skillLevel="5" minLevel="27" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
-	<skill name="p_statboostphysicaloffense_g4" skillId="138" skillLevel="1" minLevel="28" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_armorbreak_g3" skillId="153" skillLevel="1" minLevel="28" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_provoke_g2" skillId="159" skillLevel="7" minLevel="28" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_rage_g3" skillId="163" skillLevel="1" minLevel="28" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -25430,7 +25430,6 @@
 	<skill name="fi_divinerage_g3" skillId="350" skillLevel="1" minLevel="34" race="ELYOS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_powerslash_g2" skillId="352" skillLevel="1" minLevel="34" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_seismicshock_g1" skillId="353" skillLevel="7" minLevel="34" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
-	<skill name="p_statboostphysicaldefense_g2" skillId="359" skillLevel="1" minLevel="34" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_abysalrage_g3" skillId="364" skillLevel="1" minLevel="34" race="ASMODIANS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_avengingblade_g2" skillId="404" skillLevel="1" minLevel="34" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shieldcharge_g3" skillId="443" skillLevel="1" minLevel="34" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -25648,9 +25647,9 @@
 	<skill name="fi_seismicshock_g2" skillId="354" skillLevel="2" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_gustblade_g1" skillId="356" skillLevel="2" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_stormblade_g1" skillId="357" skillLevel="2" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
+	<skill name="p_statboostphysicaloffense_g3" skillId="361" skillLevel="1" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_abysalrage_g3" skillId="364" skillLevel="8" minLevel="41" race="ASMODIANS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_whirlwind_g1" skillId="365" skillLevel="2" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
-	<skill name="p_boosthate_g2" skillId="366" skillLevel="1" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_avengingblade_g2" skillId="404" skillLevel="8" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_judgement_g1" skillId="427" skillLevel="5" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shieldcharge_g3" skillId="443" skillLevel="8" minLevel="41" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -25782,7 +25781,7 @@
 	<skill name="fi_gustblade_g1" skillId="356" skillLevel="6" minLevel="45" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_stormblade_g1" skillId="357" skillLevel="6" minLevel="45" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_whirlwind_g1" skillId="365" skillLevel="6" minLevel="45" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
-	<skill name="p_statboostphysicaloffense_g5" skillId="367" skillLevel="1" minLevel="45" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
+	<skill name="p_boosthate_g2" skillId="366" skillLevel="1" minLevel="45" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_heavyswing_g1" skillId="374" skillLevel="4" minLevel="45" race="ASMODIANS" classId="TEMPLAR" skillBook="true"/>
 	<skill name="fi_divinerage_g4" skillId="377" skillLevel="1" minLevel="45" race="ELYOS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_abysalrage_g4" skillId="378" skillLevel="1" minLevel="45" race="ASMODIANS" classId="TEMPLAR" autoLearn="true"/>
@@ -26002,7 +26001,6 @@
 	<skill name="kn_avengingblade_g3" skillId="405" skillLevel="5" minLevel="49" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shieldimpact_g2" skillId="449" skillLevel="7" minLevel="49" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_shieldcharge_g4" skillId="465" skillLevel="5" minLevel="49" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
-	<skill name="p_statboostphysicaldefense_g3" skillId="496" skillLevel="1" minLevel="49" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_bleedingsword_g1" skillId="528" skillLevel="8" minLevel="49" race="ASMODIANS" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_divinejudgement_g4" skillId="532" skillLevel="5" minLevel="49" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_abysaljudgement_g4" skillId="533" skillLevel="5" minLevel="49" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -26049,6 +26047,7 @@
 	<skill name="kn_shineblade_g3" skillId="545" skillLevel="9" minLevel="50" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="kn_cryinginsult_g2" skillId="2270" skillLevel="5" minLevel="50" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="p_statboosthitaccuracy_g2" skillId="131" skillLevel="1" minLevel="51" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
+	<skill name="p_statboostphysicaloffense_g4" skillId="138" skillLevel="1" minLevel="51" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_provoke_g4" skillId="176" skillLevel="7" minLevel="51" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_robusthit_g5" skillId="177" skillLevel="8" minLevel="51" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="wa_rage_g5" skillId="179" skillLevel="2" minLevel="51" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
@@ -26238,6 +26237,7 @@
 	<skill name="fi_robustsmash_g4" skillId="298" skillLevel="6" minLevel="56" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_forceblast_g1" skillId="320" skillLevel="7" minLevel="56" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_shockimpulse_g1" skillId="321" skillLevel="7" minLevel="56" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
+	<skill name="p_statboostphysicaloffense_g5" skillId="367" skillLevel="1" minLevel="56" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_dropimpact_g3" skillId="384" skillLevel="9" minLevel="56" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>
 	<skill name="fi_seismicimpact_g2" skillId="387" skillLevel="8" minLevel="56" race="PC_ALL" classId="TEMPLAR" skillBook="true"/>
 	<skill name="wa_armorbreak_g5" skillId="388" skillLevel="7" minLevel="56" race="PC_ALL" classId="TEMPLAR" autoLearn="true"/>

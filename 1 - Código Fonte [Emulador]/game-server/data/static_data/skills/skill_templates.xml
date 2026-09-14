@@ -34825,7 +34825,7 @@
 		</actions>
 		<motion name="ElecATK1" />
 	</skill_template>
-	<skill_template skill_id="2472" name="Loaded Slash I" nameId="2280697" stack="TH_RECOVERSLASH_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="160" duration="0" penalty_skill_id="8762" cancel_rate="10">
+	<skill_template skill_id="2472" name="Loaded Slash I" nameId="2280697" delayId="730" stack="TH_RECOVERSLASH_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="160" duration="0" penalty_skill_id="8762" cancel_rate="10">
 		<properties first_target="TARGET" first_target_range="15" target_relation="ENEMY" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<weapon weapon="CHAINBLADE" />
@@ -34891,7 +34891,7 @@
 		</actions>
 		<motion name="THBuff" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2476" name="Charge Ion Flux I" nameId="2280705" stack="TH_LIGHTNINGCHARGE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
+	<skill_template skill_id="2476" name="Charge Ion Flux I" nameId="2280705" delayId="731" stack="TH_LIGHTNINGCHARGE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="NONE" activation="ACTIVE" cooldown="300" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<weapon weapon="CHAINBLADE" />
@@ -34901,7 +34901,7 @@
 		</effects>
 		<motion name="THBurst" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2477" name="Superconductor I" nameId="2280707" stack="TH_ELECTRICPOWER_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="3000" duration="0" cancel_rate="20">
+	<skill_template skill_id="2477" name="Superconductor I" nameId="2280707" delayId="73" stack="TH_ELECTRICPOWER_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="3000" duration="0" cancel_rate="20">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<weapon weapon="CHAINBLADE" />
@@ -34914,7 +34914,7 @@
 		</effects>
 		<motion name="THAreafire" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2478" name="Capacitor I" nameId="2280709" stack="MO_ELECTRICPARRY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="2478" name="Capacitor I" nameId="2280709" delayId="732" stack="MO_ELECTRICPARRY_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<weapon weapon="CHAINBLADE" />
@@ -34924,7 +34924,7 @@
 		</effects>
 		<motion name="Thparry" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2479" name="Reserve Mode I" nameId="2280712" stack="TH_POWEROFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="2479" name="Reserve Mode I" nameId="2280712" delayId="733" stack="TH_POWEROFF_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<weapon weapon="CHAINBLADE" />
@@ -34934,7 +34934,7 @@
 		</effects>
 		<motion name="THBurst2" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2480" name="Ion Flux Concentration I" nameId="2280715" stack="TH_OVERLOAD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="20">
+	<skill_template skill_id="2480" name="Ion Flux Concentration I" nameId="2280715" delayId="734" stack="TH_OVERLOAD_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="900" duration="0" cancel_rate="20">
 		<properties first_target="ME" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<weapon weapon="CHAINBLADE" />
@@ -34948,7 +34948,7 @@
 		</effects>
 		<motion name="THBurst2" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2481" name="Magnetic Discharge I" nameId="2280718" stack="TH_SWIFTRESIST_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="2481" name="Magnetic Discharge I" nameId="2280718" delayId="735" stack="TH_SWIFTRESIST_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<weapon weapon="CHAINBLADE" />
@@ -34958,7 +34958,7 @@
 		</effects>
 		<motion name="THBurst2" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2482" name="Tonic Flash I" nameId="2280721" stack="TH_SWIFTRECOVER_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="2482" name="Tonic Flash I" nameId="2280721" delayId="736" stack="TH_SWIFTRECOVER_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="NONE" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<sp value="30" />
@@ -34972,7 +34972,7 @@
 		</actions>
 		<motion name="THBurst" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2483" name="Flash Shield I" nameId="2280723" stack="TH_THUNDERREFLECT_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
+	<skill_template skill_id="2483" name="Flash Shield I" nameId="2280723" delayId="64" stack="TH_THUNDERREFLECT_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="600" duration="0" cancel_rate="20">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<weapon weapon="CHAINBLADE" />
@@ -35081,7 +35081,7 @@
 		</actions>
 		<motion name="SlashATK1" />
 	</skill_template>
-	<skill_template skill_id="2489" name="Ionic Insight I" nameId="2280732" stack="TH_ELECKNOWLEDGE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="18000" duration="0" cancel_rate="10">
+	<skill_template skill_id="2489" name="Ionic Insight I" nameId="2280732" delayId="737" stack="TH_ELECKNOWLEDGE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="18000" duration="0" cancel_rate="10">
 		<properties first_target="ME" first_target_range="1" target_relation="FRIEND" target_type="ONLYONE" awr="true" />
 		<startconditions>
 			<dp value="4000" />
@@ -35367,7 +35367,7 @@
 		</actions>
 		<motion name="FrontDash" />
 	</skill_template>
-	<skill_template skill_id="2509" name="Surge Sprint I" nameId="2280761" stack="TH_MOVESHADOW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="80" duration="0" ground="true" cancel_rate="30" chain_skill_prob="100">
+	<skill_template skill_id="2509" name="Surge Sprint I" nameId="2280761" delayId="738" stack="TH_MOVESHADOW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="80" duration="0" ground="true" cancel_rate="30" chain_skill_prob="100">
 		<properties first_target="TARGET" first_target_range="20" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
 			<sp value="10" />
@@ -35387,7 +35387,7 @@
 		</actions>
 		<motion instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="2510" name="Power Circuit I" nameId="2280763" stack="TH_RETURNSHADOW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="30">
+	<skill_template skill_id="2510" name="Power Circuit I" nameId="2280763" delayId="209" stack="TH_RETURNSHADOW_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="30">
 		<properties first_target="TARGET" first_target_range="100" target_relation="ENEMY" target_type="ONLYONE" />
 		<startconditions>
 			<sp value="10" />
@@ -60574,7 +60574,7 @@
 		</effects>
 		<motion name="normalfire" />
 	</skill_template>
-	<skill_template skill_id="16393" name="Blessing of Rock" nameId="287635" stack="NKN_GUARDIANR_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="PROVOKED" cooldown="40" duration="1000" cancel_rate="40">
+	<skill_template skill_id="16393" name="Blessing of Rock" nameId="287635" delayId="0" stack="NKN_GUARDIANR_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="PROVOKED" cooldown="40" duration="1000" cancel_rate="40">
 		<properties first_target="TARGET" first_target_range="15" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -65617,7 +65617,7 @@
 		</effects>
 		<motion name="pointfire" />
 	</skill_template>
-	<skill_template skill_id="16733" name="Clear Focus" nameId="282781" stack="IDF6_LF1_STATDOWN_FORACT" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="BUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="16733" name="Clear Focus" nameId="282781" delayId="2" stack="IDF6_LF1_STATDOWN_FORACT" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="BUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ALL" target_type="AREA" target_maxcount="6" target_distance="8" target_species="PC" />
 		<startconditions>
 			<target value="PC" />
@@ -66671,7 +66671,7 @@
 		</effects>
 		<motion name="chainatk1" speed="70" />
 	</skill_template>
-	<skill_template skill_id="16799" name="Test_SkillMotionSpeed_30" nameId="287515" stack="IDETERNITY_02_NEPILIM_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="0">
+	<skill_template skill_id="16799" name="Test_SkillMotionSpeed_30" nameId="287515" delayId="1" stack="IDETERNITY_02_NEPILIM_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -66699,7 +66699,7 @@
 		</effects>
 		<motion name="poweratk" />
 	</skill_template>
-	<skill_template skill_id="16801" name="Test_NormalFire" nameId="287531" stack="IDETERNITY_02_SNAKEM_FEAR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
+	<skill_template skill_id="16801" name="Test_NormalFire" nameId="287531" delayId="1" stack="IDETERNITY_02_SNAKEM_FEAR" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="12" target_distance="50" />
 		<useconditions>
 			<playermove allow="false" />
@@ -66726,7 +66726,7 @@
 		</effects>
 		<motion name="poweratk" />
 	</skill_template>
-	<skill_template skill_id="16803" name="Test_MultiAttack" nameId="287529" stack="IDETERNITY_02_POLYMORPH_DISPEL" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
+	<skill_template skill_id="16803" name="Test_MultiAttack" nameId="287529" delayId="1" stack="IDETERNITY_02_POLYMORPH_DISPEL" lvl="1" skilltype="PHYSICAL" skillsubtype="NONE" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="50" target_relation="ALL" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -66752,7 +66752,7 @@
 		</effects>
 		<motion name="pointfire" />
 	</skill_template>
-	<skill_template skill_id="16805" name="Test_ChainAttack1" nameId="287525" stack="TEST_STATUS_FX_RADAR" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500">
+	<skill_template skill_id="16805" name="Test_ChainAttack1" nameId="287525" delayId="1" stack="TEST_STATUS_FX_RADAR" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -66763,7 +66763,7 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="16806" name="Test_ChainAttack2" nameId="287527" stack="DREADGIION_SANCTUARY" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
+	<skill_template skill_id="16806" name="Test_ChainAttack2" nameId="287527" delayId="1" stack="DREADGIION_SANCTUARY" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -67713,7 +67713,7 @@
 		</effects>
 		<motion name="pointfire" />
 	</skill_template>
-	<skill_template skill_id="16868" name="Soul Block" nameId="288013" stack="DREADGIION_SANCTUARY" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="9999">
+	<skill_template skill_id="16868" name="Soul Block" nameId="288013" delayId="5" stack="DREADGIION_SANCTUARY" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000" cancel_rate="9999">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -68122,7 +68122,7 @@
 		</effects>
 		<motion name="poweratk" />
 	</skill_template>
-	<skill_template skill_id="16897" name="Taunt I" nameId="283316" stack="SHUTDOWN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="0">
+	<skill_template skill_id="16897" name="Taunt I" nameId="283316" delayId="16" stack="SHUTDOWN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="ALL" target_type="AREA" target_maxcount="96" target_distance="8" target_species="PC" />
 		<startconditions>
 			<target value="PC" />
@@ -68513,7 +68513,7 @@
 		</effects>
 		<motion name="pointfire" />
 	</skill_template>
-	<skill_template skill_id="16924" name="Earth Spirit: Special Attack I" nameId="284104" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="16924" name="Earth Spirit: Special Attack I" nameId="284104" delayId="18" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -68532,7 +68532,7 @@
 		</effects>
 		<motion name="NormalFire" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="16926" name="Earth Spirit: Special Attack II" nameId="284108" stack="AB1_GUARDIAN_ICESTORM" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NONE" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="16926" name="Earth Spirit: Special Attack II" nameId="284108" delayId="18" stack="AB1_GUARDIAN_ICESTORM" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="NONE" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="255" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -68547,7 +68547,7 @@
 		</effects>
 		<motion name="NormalFire1" />
 	</skill_template>
-	<skill_template skill_id="16927" name="Wind Spirit: Special Attack II" nameId="284110" stack="AB1_GUARDIAN_ICESTORM" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="16927" name="Wind Spirit: Special Attack II" nameId="284110" delayId="18" stack="AB1_GUARDIAN_ICESTORM" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="255" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -68936,7 +68936,7 @@
 		</effects>
 		<motion name="normalfire" />
 	</skill_template>
-	<skill_template skill_id="16953" name="Test_Flying_DelayDD" nameId="288613" stack="SKILL_IDSWEEP_02_KN1_BASE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
+	<skill_template skill_id="16953" name="Test_Flying_DelayDD" nameId="288613" delayId="11" stack="SKILL_IDSWEEP_02_KN1_BASE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_angle="4" target_distance="7" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -68951,7 +68951,7 @@
 		</actions>
 		<motion name="sweepkn1" />
 	</skill_template>
-	<skill_template skill_id="16954" name="Test_Flying_NoFly" nameId="288616" stack="SKILL_IDSWEEP_02_KN2_HATE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
+	<skill_template skill_id="16954" name="Test_Flying_NoFly" nameId="288616" delayId="1" stack="SKILL_IDSWEEP_02_KN2_HATE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_angle="4" target_distance="7" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -68966,7 +68966,7 @@
 		</actions>
 		<motion name="sweepkn2" speed="70" />
 	</skill_template>
-	<skill_template skill_id="16955" name="Test_Flying_AntiFlying" nameId="288617" stack="SKILL_IDSWEEP_02_KN3_SNATCH" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
+	<skill_template skill_id="16955" name="Test_Flying_AntiFlying" nameId="288617" delayId="1" stack="SKILL_IDSWEEP_02_KN3_SNATCH" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="10" revision_distance="12" effective_angle="4" target_distance="8" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -68983,7 +68983,7 @@
 		</actions>
 		<motion name="sweepkn3" />
 	</skill_template>
-	<skill_template skill_id="16956" name="Powerful Left Stomp" nameId="288629" stack="SKILL_IDSWEEP_02_KN4_PROTECT" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="300" duration="3000">
+	<skill_template skill_id="16956" name="Powerful Left Stomp" nameId="288629" delayId="1" stack="SKILL_IDSWEEP_02_KN4_PROTECT" lvl="1" skilltype="MAGICAL" skillsubtype="HEAL" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="300" duration="3000">
 		<properties first_target="TARGETORME" first_target_range="25" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -68999,7 +68999,7 @@
 		</actions>
 		<motion name="sweepkn4" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="16957" name="Powerful Right Stomp" nameId="288630" stack="SKILL_IDSWEEP_02_KN6_ULTIMATE_DEFENSE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="300" toggle_timer="12000" duration="3000">
+	<skill_template skill_id="16957" name="Powerful Right Stomp" nameId="288630" delayId="1" stack="SKILL_IDSWEEP_02_KN6_ULTIMATE_DEFENSE" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" req_dispel_level="1" activation="ACTIVE" cooldown="300" toggle_timer="12000" duration="3000">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<startconditions>
 			<dp value="1000" />
@@ -69017,7 +69017,7 @@
 		</actions>
 		<motion name="SweepKN4" instant_skill="true" />
 	</skill_template>
-	<skill_template skill_id="16958" name="Hand Force Propagation" nameId="288631" stack="SKILL_IDSWEEP_02_FI1_BASE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="4000">
+	<skill_template skill_id="16958" name="Hand Force Propagation" nameId="288631" delayId="2" stack="SKILL_IDSWEEP_02_FI1_BASE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="300" duration="4000">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_angle="4" target_distance="7" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -69032,7 +69032,7 @@
 		</actions>
 		<motion name="sweepfi1" />
 	</skill_template>
-	<skill_template skill_id="16959" name="Gigantic Motion" nameId="288632" stack="SKILL_IDSWEEP_02_FI2_DASH_ATK" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="16959" name="Gigantic Motion" nameId="288632" delayId="3" stack="SKILL_IDSWEEP_02_FI2_DASH_ATK" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="5" target_distance="7" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -69051,7 +69051,7 @@
 		</actions>
 		<motion name="SweepFi2" />
 	</skill_template>
-	<skill_template skill_id="16960" name="Right Hand Force Wave" nameId="288650" stack="SKILL_IDSWEEP_02_FI3_TURN" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000">
+	<skill_template skill_id="16960" name="Right Hand Force Wave" nameId="288650" delayId="11" stack="SKILL_IDSWEEP_02_FI3_TURN" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="3000">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_angle="4" target_distance="7" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -69069,7 +69069,7 @@
 		</actions>
 		<motion name="sweepfi3" />
 	</skill_template>
-	<skill_template skill_id="16961" name="Left Hand Force Wave" nameId="288651" stack="SKILL_IDSWEEP_02_FI4_AERIAL" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="3000">
+	<skill_template skill_id="16961" name="Left Hand Force Wave" nameId="288651" delayId="11" stack="SKILL_IDSWEEP_02_FI4_AERIAL" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="3000">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_angle="4" target_distance="7" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -69088,7 +69088,7 @@
 		</actions>
 		<motion name="sweepfi4" />
 	</skill_template>
-	<skill_template skill_id="16962" name="Right Hand Strike Down" nameId="288652" stack="SKILL_IDSWEEP_02_FI5_RAGE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2000">
+	<skill_template skill_id="16962" name="Right Hand Strike Down" nameId="288652" delayId="12" stack="SKILL_IDSWEEP_02_FI5_RAGE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="12" effective_angle="4" target_distance="10" />
 		<startconditions>
 			<dp value="2000" />
@@ -69104,7 +69104,7 @@
 		</actions>
 		<motion name="sweepfi5" />
 	</skill_template>
-	<skill_template skill_id="16963" name="Taunt III" nameId="284296" stack="SKILL_IDSWEEP_02_WI1_BASE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0">
+	<skill_template skill_id="16963" name="Taunt III" nameId="284296" delayId="16" stack="SKILL_IDSWEEP_02_WI1_BASE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_angle="4" target_distance="5" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -69119,7 +69119,7 @@
 		</actions>
 		<motion name="sweepwi1" />
 	</skill_template>
-	<skill_template skill_id="16964" name="Shock of Wind III" nameId="284298" stack="SKILL_IDSWEEP_02_WI2_STORM" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0">
+	<skill_template skill_id="16964" name="Shock of Wind III" nameId="284298" delayId="15" stack="SKILL_IDSWEEP_02_WI2_STORM" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" revision_distance="12" effective_angle="4" target_distance="8" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -69134,7 +69134,7 @@
 		</actions>
 		<motion name="sweepwi2" />
 	</skill_template>
-	<skill_template skill_id="16965" name="Earth Spirit: Special Attack III" nameId="284300" stack="SKILL_IDSWEEP_02_WI3_LASER" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="16965" name="Earth Spirit: Special Attack III" nameId="284300" delayId="18" stack="SKILL_IDSWEEP_02_WI3_LASER" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="8" effective_angle="4" target_distance="10" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -69149,7 +69149,7 @@
 		</actions>
 		<motion name="areafire" />
 	</skill_template>
-	<skill_template skill_id="16966" name="Wind Spirit: Special Attack III" nameId="284302" stack="SKILL_IDSWEEP_02_WI4_FROST" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="16966" name="Wind Spirit: Special Attack III" nameId="284302" delayId="18" stack="SKILL_IDSWEEP_02_WI4_FROST" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="10" effective_angle="4" target_distance="8" />
 		<startconditions>
 			<mp value="10" delta="0" />
@@ -72469,7 +72469,7 @@
 		</effects>
 		<motion name="chainatk2" />
 	</skill_template>
-	<skill_template skill_id="17188" name="Stun Test" nameId="290642" stack="IDSWEEP_02_WI5_FIRESHORK_MOB" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" pvp_damage="50" ammospeed="35">
+	<skill_template skill_id="17188" name="Stun Test" nameId="290642" delayId="13" stack="IDSWEEP_02_WI5_FIRESHORK_MOB" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" pvp_damage="50" ammospeed="35">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="12" revision_distance="12" effective_angle="4" target_distance="10" />
 		<startconditions>
 			<dp value="2000" />
@@ -72498,7 +72498,7 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="17190" name="Aerial Snare Test" nameId="290644" stack="IDF7_WEAPON_EXPLOSION" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="17190" name="Aerial Snare Test" nameId="290644" delayId="13" stack="IDF7_WEAPON_EXPLOSION" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -73146,7 +73146,7 @@
 		</effects>
 		<motion name="poweratk" />
 	</skill_template>
-	<skill_template skill_id="17236" name="Test_StuckAttack" nameId="289847" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
+	<skill_template skill_id="17236" name="Test_StuckAttack" nameId="289847" delayId="1" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -73156,7 +73156,7 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="17237" name="Test_AreaAttack" nameId="289849" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
+	<skill_template skill_id="17237" name="Test_AreaAttack" nameId="289849" delayId="1" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -73166,7 +73166,7 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="17238" name="Test_AreaFire" nameId="289851" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
+	<skill_template skill_id="17238" name="Test_AreaFire" nameId="289851" delayId="1" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -73176,7 +73176,7 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="17239" name="Test_PHBuff" nameId="289853" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
+	<skill_template skill_id="17239" name="Test_PHBuff" nameId="289853" delayId="1" stack="AB1_DRCASTLE_SHIELD" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -73186,7 +73186,7 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="17240" name="Test_PHBurst" nameId="289855" stack="AB1_WEAPON" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
+	<skill_template skill_id="17240" name="Test_PHBurst" nameId="289855" delayId="1" stack="AB1_WEAPON" lvl="1" skilltype="PHYSICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2500" cancel_rate="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -73498,7 +73498,7 @@
 		</effects>
 		<motion name="normalfire" />
 	</skill_template>
-	<skill_template skill_id="17262" name="Flame Slash" nameId="285433" stack="LDF5_FORTRESS_GUARDIANHEAD_NORMALFIRE2" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" cooldown="100" duration="0">
+	<skill_template skill_id="17262" name="Flame Slash" nameId="285433" delayId="15" stack="LDF5_FORTRESS_GUARDIANHEAD_NORMALFIRE2" lvl="1" skilltype="PHYSICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_MENTAL" activation="ACTIVE" cooldown="100" duration="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -73514,7 +73514,7 @@
 		</effects>
 		<motion name="Debuff" />
 	</skill_template>
-	<skill_template skill_id="17263" name="Flame Slash" nameId="285435" stack="LDF5_FORTRESS_GUARDIANHEAD_NORMALFIRE3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" ammospeed="45" cancel_rate="0">
+	<skill_template skill_id="17263" name="Flame Slash" nameId="285435" delayId="15" stack="LDF5_FORTRESS_GUARDIANHEAD_NORMALFIRE3" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" ammospeed="45" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="50" target_relation="ENEMY" target_type="AREA" target_maxcount="150" effective_width="20" target_distance="12" />
 		<useconditions>
 			<playermove allow="false" />
@@ -73524,7 +73524,7 @@
 		</effects>
 		<motion name="PointFire" />
 	</skill_template>
-	<skill_template skill_id="17264" name="Water Spirit: Special Attack I" nameId="285437" stack="AB1_WEAPON_ATK" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="17264" name="Water Spirit: Special Attack I" nameId="285437" delayId="18" stack="AB1_WEAPON_ATK" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="70" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1" />
 		<useconditions>
 			<playermove allow="false" />
@@ -73538,7 +73538,7 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="17265" name="Water Spirit: Special Attack II" nameId="285439" name_desc="LDF7_Named_LockOn" stack="LDF7_NAMED_LOCKON" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" ammospeed="80" cancel_rate="0">
+	<skill_template skill_id="17265" name="Water Spirit: Special Attack II" nameId="285439" delayId="18" name_desc="LDF7_Named_LockOn" stack="LDF7_NAMED_LOCKON" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" ammospeed="80" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="96" target_distance="5" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -73556,7 +73556,7 @@
 		</effects>
 		<motion name="poweratk" />
 	</skill_template>
-	<skill_template skill_id="17266" name="Fire Spirit: Special Attack I" nameId="285441" name_desc="LDF7_Named_LightingBolt" stack="LDF7_NAMED_LIGHTINGBOLT" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="17266" name="Fire Spirit: Special Attack I" nameId="285441" delayId="18" name_desc="LDF7_Named_LightingBolt" stack="LDF7_NAMED_LIGHTINGBOLT" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="96" target_distance="5" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -73569,7 +73569,7 @@
 		</effects>
 		<motion name="poweratk2" />
 	</skill_template>
-	<skill_template skill_id="17267" name="Fire Spirit: Special Attack II" nameId="285447" name_desc="LDF7_Named_Pulled" stack="LDF7_NAMED_PULLED" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="17267" name="Fire Spirit: Special Attack II" nameId="285447" delayId="18" name_desc="LDF7_Named_Pulled" stack="LDF7_NAMED_PULLED" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" req_dispel_level="1" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="AREA" target_maxcount="96" target_distance="5" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -73597,7 +73597,7 @@
 		</effects>
 		<motion name="areafire" />
 	</skill_template>
-	<skill_template skill_id="17269" name="Abnormal Circuit" nameId="285490" stack="LDF7_NAMED_FIREBALL" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
+	<skill_template skill_id="17269" name="Abnormal Circuit" nameId="285490" delayId="10" stack="LDF7_NAMED_FIREBALL" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="0" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="50" target_relation="ENEMY" target_type="AREA" target_maxcount="96" revision_distance="15" />
 		<useconditions>
 			<playermove allow="false" />
@@ -77919,7 +77919,7 @@
 		</effects>
 		<motion name="poweratk" speed="70" />
 	</skill_template>
-	<skill_template skill_id="17560" name="Bless of Guardian Spring" nameId="287615" stack="HPSPRING_REGENERATION" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="2000">
+	<skill_template skill_id="17560" name="Bless of Guardian Spring" nameId="287615" delayId="775" stack="HPSPRING_REGENERATION" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" first_target_range="15" target_relation="FRIEND" target_type="AREA" target_maxcount="255" target_species="PC" />
 		<startconditions>
 			<target value="PC" />
@@ -95661,7 +95661,7 @@
 		</effects>
 		<motion name="PowerATK" />
 	</skill_template>
-	<skill_template skill_id="18767" name="Protective Down" nameId="294766" stack="BNPR_PHYDEFENDUP_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="1500" cancel_rate="40">
+	<skill_template skill_id="18767" name="Protective Down" nameId="294766" delayId="0" stack="BNPR_PHYDEFENDUP_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="1500" cancel_rate="40">
 		<properties first_target="TARGET" first_target_range="15" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -95825,7 +95825,7 @@
 		</effects>
 		<motion name="areaatk" />
 	</skill_template>
-	<skill_template skill_id="18778" name="Ranged Protection" nameId="294797" stack="NKN_PHYDEFENUPSUM_LR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="40">
+	<skill_template skill_id="18778" name="Ranged Protection" nameId="294797" delayId="0" stack="NKN_PHYDEFENUPSUM_LR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="40">
 		<properties first_target="TARGET" first_target_range="15" target_relation="FRIEND" target_type="AREA" target_maxcount="3" target_distance="5" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
@@ -96786,7 +96786,7 @@
 		</effects>
 		<motion name="pointfire" />
 	</skill_template>
-	<skill_template skill_id="18843" name="AbsoluteValueSlow_Test_Integer" nameId="294997" stack="D2_COMMON_STUMBLE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="0">
+	<skill_template skill_id="18843" name="AbsoluteValueSlow_Test_Integer" nameId="294997" delayId="1" stack="D2_COMMON_STUMBLE" lvl="1" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="DEBUFF" dispel_category="STUN" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -96798,14 +96798,14 @@
 		</effects>
 		<motion name="PowerAtk" />
 	</skill_template>
-	<skill_template skill_id="18844" name="AbsoluteValueSlow_Test_Percentage" nameId="295000" stack="D2_COMMON_SHORT_POISON" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="0">
+	<skill_template skill_id="18844" name="AbsoluteValueSlow_Test_Percentage" nameId="295000" delayId="1" stack="D2_COMMON_SHORT_POISON" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2000" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="2" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
 		</useconditions>
 		<motion name="PowerAtk" />
 	</skill_template>
-	<skill_template skill_id="18845" name="AbsoluteValueSnare_Test_Integer" nameId="295003" stack="D2_COMMON_LONG_POISON" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2000" ammospeed="30" cancel_rate="0">
+	<skill_template skill_id="18845" name="AbsoluteValueSnare_Test_Integer" nameId="295003" delayId="1" stack="D2_COMMON_LONG_POISON" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" dispel_category="DEBUFF_PHYSICAL" activation="ACTIVE" cooldown="0" duration="2000" ammospeed="30" cancel_rate="0">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
 		<useconditions>
 			<playermove allow="false" />
@@ -102082,7 +102082,7 @@
 		</effects>
 		<motion name="areaatk" />
 	</skill_template>
-	<skill_template skill_id="19216" name="Cool Water" nameId="296564" stack="CROMEDE_BUFF1_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+	<skill_template skill_id="19216" name="Cool Water" nameId="296564" delayId="7" stack="CROMEDE_BUFF1_NR" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" dispel_category="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" first_target_range="15" target_relation="FRIEND" target_type="ONLYONE" target_maxcount="1" />
 		<startconditions>
 			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />

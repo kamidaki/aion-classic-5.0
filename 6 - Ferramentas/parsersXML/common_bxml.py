@@ -19,8 +19,17 @@ PROJECT_ROOT = os.path.dirname(TOOLS_DIR)
 import aion_bxml
 import backup_manager
 
-CLIENT_DATA_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos", "data")
-CLIENT_STRINGS_DIR = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos", "Strings", "strings")
+# Dynamic Client Directory resolution (supports AION_CLIENT_XML_DIR, workspace XMLS AION CLASSIC, or docs)
+ALT_CLIENT_DIR = os.path.join(os.path.dirname(PROJECT_ROOT), "XMLS AION CLASSIC")
+if os.environ.get("AION_CLIENT_XML_DIR") and os.path.exists(os.environ.get("AION_CLIENT_XML_DIR")):
+    BASE_CLIENT = os.environ.get("AION_CLIENT_XML_DIR")
+elif os.path.exists(os.path.join(ALT_CLIENT_DIR, "data", "skills", "client_skills.xml")):
+    BASE_CLIENT = ALT_CLIENT_DIR
+else:
+    BASE_CLIENT = os.path.join(PROJECT_ROOT, "5 - Documentação e Referências", "3 - Client 5.0 - Dados Extraidos")
+
+CLIENT_DATA_DIR = os.path.join(BASE_CLIENT, "data")
+CLIENT_STRINGS_DIR = os.path.join(BASE_CLIENT, "Strings", "strings")
 SERVER_DATA_DIR = os.path.join(PROJECT_ROOT, "1 - Código Fonte [Emulador]", "game-server", "data", "static_data")
 PRODUTO_FINAL_DATA_DIR = os.path.join(PROJECT_ROOT, "2 - Emulador [Produto Final]", "GameServer", "data", "static_data")
 

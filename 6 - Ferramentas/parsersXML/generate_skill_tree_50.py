@@ -51,6 +51,16 @@ RACE_MAP = {
     'PC_DARK': 'ASMODIANS',
 }
 
+# Precedência determinística: Classe Específica (30) > Intermediária (20) > Classe Base (10) > ALL (0)
+CLASS_PRIORITY = {
+    'KNIGHT': 30, 'WIZARD': 30, 'ELEMENTALLIST': 30, 'ASSASSIN': 30, 'RANGER': 30,
+    'CLERIC': 30, 'CHANTER': 30, 'BATTLEMASTER': 30, 'STRIKER': 30, 'LUMINES': 30,
+    'GUNNER': 30, 'RUNEBLADE': 30, 'REAPER': 30, 'MONK': 30,
+    'THUNDERER': 20,
+    'FIGHTER': 10, 'WARRIOR': 10, 'SCOUT': 10, 'MAGE': 10, 'PRIEST': 10,
+    'ALL': 0
+}
+
 
 def generate_skill_tree():
     print("=== [Gerador 5.0] Construindo skill_tree.xml canônico oficial ===")
@@ -72,9 +82,8 @@ def generate_skill_tree():
     client_learns = common_bxml.read_client_xml("skills/client_skill_learns.xml")
     print(f"     Carregadas {len(client_learns)} regras de aprendizado do cliente.")
 
-    # 3. Processar e estruturar
-    skill_entries = []
-    seen = set()
+    # 3. Processar e estruturar com precedência determinística
+    best_entries = {}
 
     for l in client_learns:
         raw_skill = l.findtext("skill", "")
@@ -86,6 +95,7 @@ def generate_skill_tree():
 
         raw_class = (l.findtext("class") or "").upper()
         targets = CLASS_EXPANSION.get(raw_class, [raw_class])
+        prio = CLASS_PRIORITY.get(raw_class, 15)
 
         raw_race = l.findtext("race") or "All"
         race = RACE_MAP.get(raw_race, "PC_ALL")
@@ -103,10 +113,6 @@ def generate_skill_tree():
 
         for target_class in targets:
             key = (target_class, skill_id, skill_level, race)
-            if key in seen:
-                continue
-            seen.add(key)
-
             entry = {
                 'name': raw_skill.lower(),
                 'skillId': str(skill_id),
@@ -122,7 +128,11 @@ def generate_skill_tree():
             if is_skillbook:
                 entry['skillBook'] = 'true'
 
-            skill_entries.append(entry)
+            # Sobrescreve se a nova definição tiver maior precedência
+            if key not in best_entries or prio > best_entries[key][0]:
+                best_entries[key] = (prio, entry)
+
+    skill_entries = [v[1] for v in best_entries.values()]
 
     # 4. Ordenar deterministicamente
     skill_entries.sort(key=lambda x: (x['classId'], int(x['minLevel']), int(x['skillId']), int(x['skillLevel'])))
