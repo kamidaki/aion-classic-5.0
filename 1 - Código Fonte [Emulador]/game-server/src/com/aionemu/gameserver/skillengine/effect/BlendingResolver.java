@@ -28,7 +28,7 @@ public final class BlendingResolver {
 		if (notes == null || notes.size() != 3) {
 			return null;
 		}
-		int a = 0, b = 0, c = 0;
+		int a = 0, b = 0, c = 0, e = 0, seal = 0;
 		for (BlendingNote note : notes) {
 			if (note == null) {
 				return null;
@@ -37,7 +37,8 @@ public final class BlendingResolver {
 				case A -> a++;
 				case B -> b++;
 				case C -> c++;
-				default -> {}
+				case E -> e++;
+				case SEAL -> seal++;
 			}
 		}
 		if (a == 3) return BlendingCombo.AAA.getSkillId();
@@ -49,6 +50,7 @@ public final class BlendingResolver {
 		if (c == 3) return BlendingCombo.CCC.getSkillId();
 		if (c == 2 && a == 1) return BlendingCombo.CCA.getSkillId();
 		if (c == 2 && b == 1) return BlendingCombo.CCB.getSkillId();
+		if (e == 2 && seal == 1) return BlendingCombo.DO.getSkillId();
 		return null;
 	}
 }

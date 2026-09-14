@@ -120778,7 +120778,7 @@
 				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
 				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
 			</statdown>
-			<blending note="E" e="3" />
+			<blending note="SEAL" e="3" />
 		</effects>
 		<actions>
 			<mpuse value="42" delta="0" />
@@ -120800,7 +120800,7 @@
 				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
 				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
 			</statdown>
-			<blending note="E" e="3" />
+			<blending note="SEAL" e="3" />
 		</effects>
 		<actions>
 			<mpuse value="56" delta="0" />
@@ -120822,7 +120822,7 @@
 				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
 				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
 			</statdown>
-			<blending note="E" e="3" />
+			<blending note="SEAL" e="3" />
 		</effects>
 		<actions>
 			<mpuse value="72" delta="0" />
@@ -120844,7 +120844,7 @@
 				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
 				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
 			</statdown>
-			<blending note="E" e="3" />
+			<blending note="SEAL" e="3" />
 		</effects>
 		<actions>
 			<mpuse value="94" delta="0" />
@@ -120866,7 +120866,7 @@
 				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
 				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
 			</statdown>
-			<blending note="E" e="3" />
+			<blending note="SEAL" e="3" />
 		</effects>
 		<actions>
 			<mpuse value="124" delta="0" />
@@ -120888,7 +120888,7 @@
 				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
 				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
 			</statdown>
-			<blending note="E" e="3" />
+			<blending note="SEAL" e="3" />
 		</effects>
 		<actions>
 			<mpuse value="160" delta="0" />
@@ -127477,7 +127477,7 @@
 				<change stat="FIRE_RESISTANCE" func="ADD" value="-50" />
 				<change stat="EARTH_RESISTANCE" func="ADD" value="-50" />
 			</statdown>
-			<blending note="E" e="3" />
+			<blending note="SEAL" e="3" />
 		</effects>
 		<actions>
 			<mpuse value="189" delta="0" />
@@ -130096,8 +130096,18 @@
 	<skill_template skill_id="3948" name="[Reboot] Shadow Walk I" nameId="2286771" delayId="345" stack="AS_RE_STIGMA_SHADOWWALK_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="600" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="3949" name="[Reboot] All-Seeing Eye I" nameId="2286778" delayId="364" stack="AS_RE_SIXSENSE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="TOGGLE" cooldown="50" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="3949" name="[Reboot] All-Seeing Eye I" nameId="2286778" delayId="364" stack="AS_RE_SIXSENSE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="TOGGLE" cooldown="50" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="100" delta="0" />
+		</startconditions>
+		<effects>
+			<search e="1" state="SEARCH2" effectid="166" noresist="true" hoptype="SKILLLV" hopb="628" />
+		</effects>
+		<actions>
+			<mpuse value="100" delta="0" />
+		</actions>
+		<motion name="PhBuff" />
 	</skill_template>
 	<skill_template skill_id="3950" name="[Reboot] Throw Dagger I" nameId="2286781" delayId="70" stack="AS_RE_FLYINGDAGGER_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="DEBUFF" activation="ACTIVE" cooldown="600" duration="0" dispel_category="STUN" req_dispel_level="1" cancel_rate="10" ammospeed="40">
 		<properties first_target="TARGET" first_target_range="25" target_distance="2" target_relation="ENEMY" target_maxcount="3" target_type="AREA" />
@@ -130652,8 +130662,18 @@
 			</statboost>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="4004" name="Magic Eye of Clarity I" nameId="2286932" delayId="1800" stack="GU_MAGICALSEARCHEYE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="1200" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="4004" name="Magic Eye of Clarity I" nameId="2286932" delayId="1800" stack="GU_MAGICALSEARCHEYE_G1" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="1200" duration="0" dispel_category="BUFF" req_dispel_level="1" cancel_rate="20">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<mp value="152" delta="0" />
+		</startconditions>
+		<effects>
+			<search e="1" state="SEARCH2" duration2="30000" effectid="166" basiclvl="1" noresist="true" hoptype="SKILLLV" hopb="467" />
+		</effects>
+		<actions>
+			<mpuse value="152" delta="0" />
+		</actions>
+		<motion name="buff2" />
 	</skill_template>
 	<skill_template skill_id="4005" name="Heavy Projectile I" nameId="2286935" delayId="1801" stack="GU_HEAVYFIRECHAIN_G1" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="10" duration="0" cancel_rate="10" ammospeed="40" chain_skill_prob="100">
 		<properties first_target="TARGET" awr="true" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" />
@@ -142102,8 +142122,17 @@
 	<skill_template skill_id="10660" name="Greater Collector’s Insight" nameId="791497" delayId="10660" stack="GATHER_BOOST_SHORT_200" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="10661" name="Keen Eyes" nameId="791537" delayId="10661" stack="ITEM_SEED_OF_SEARCH2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="10661" name="Keen Eyes" nameId="791537" delayId="10661" stack="ITEM_SEED_OF_SEARCH2" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<search e="1" state="SEARCH2" duration2="10000" effectid="166" basiclvl="20" noresist="true" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="10662" name="All Damage Absorption" nameId="2281465" delayId="126" stack="SHIELD_ALL_IDPHAISTOS" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" />
@@ -142117,11 +142146,29 @@
 			<shield e="1" hitvalue="5500" value="5500" duration2="2000" effectid="154" noresist="true" hittypeprob2="1000" element="FIRE" />
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10663" name="Trap: Hide Detection Effect" nameId="791614" delayId="10663" stack="POTION_OF_SEARCH_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="10663" name="Trap: Hide Detection Effect" nameId="791614" delayId="10663" stack="POTION_OF_SEARCH_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<search e="1" state="SEARCH1" duration2="10000" effectid="166" noresist="true" />
+		</effects>
 	</skill_template>
-	<skill_template skill_id="10664" name="Keen Eyes" nameId="791615" delayId="10664" stack="POTION_OF_SEARCH_02" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="10664" name="Keen Eyes" nameId="791615" delayId="10664" stack="POTION_OF_SEARCH_02" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<search e="1" state="SEARCH2" duration2="10000" effectid="166" basiclvl="20" noresist="true" />
+		</effects>
 	</skill_template>
 	<skill_template skill_id="10665" name="[테스트] 변신 -&amp;gt; 캔디 폴리모프 남" nameId="2281686" delayId="10665" stack="CLASSIC_TEST_ITEM_SKILL_TRANS_CANDY_M" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
@@ -143258,8 +143305,15 @@
 			</statup>
 		</effects>
 	</skill_template>
-	<skill_template skill_id="10774" name="Dokkaebi Eye" nameId="2283835" delayId="10774" stack="ITEM_IDDOKKAEBI_DOKKAEBIGAMTU_01" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="10774" name="Dokkaebi Eye" nameId="2283835" delayId="10774" stack="ITEM_IDDOKKAEBI_DOKKAEBIGAMTU_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" />
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<search e="1" state="SEARCH5" duration2="15000" effectid="166" basiclvl="160" noresist="true" />
+		</effects>
+		<motion name="alterfire" />
 	</skill_template>
 	<skill_template skill_id="10775" name="Breath of Pearl" nameId="2283837" delayId="10775" stack="ITEM_IDDOKKAEBI_PEARL_01" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_type="ONLYONE" />
@@ -151265,8 +151319,15 @@
 		</effects>
 		<motion name="PowerATK" />
 	</skill_template>
-	<skill_template skill_id="19829" name="All-Seeing Eye" nameId="2286406" delayId="12" stack="PALLOW_ZAIF_PLANT_SEARCH" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="19829" name="All-Seeing Eye" nameId="2286406" delayId="12" stack="PALLOW_ZAIF_PLANT_SEARCH" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" ammospeed="25">
+		<properties first_target="ME" first_target_range="20" target_distance="10" target_relation="FRIEND" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<effects>
+			<search e="1" state="SEARCH2" duration2="12000" effectid="166" basiclvl="20" noresist="true" hoptype="SKILLLV" hopb="628" />
+		</effects>
+		<motion name="PointFire" />
 	</skill_template>
 	<skill_template skill_id="19830" name="Nimble Footwork" nameId="2286409" delayId="19830" stack="PALLOW_KUILLUS_DYN_MINI_SPEEDUP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" ammospeed="30">
 		<properties first_target="ME" target_species="PC" first_target_range="20" target_distance="10" target_relation="FRIEND" target_type="AREA" target_maxcount="24" />
@@ -151281,8 +151342,15 @@
 		</effects>
 		<motion name="PointFire" />
 	</skill_template>
-	<skill_template skill_id="19831" name="All-Seeing Eye" nameId="2286412" delayId="12" stack="PALLOW_KUILLUS_DYN_MINI_SEARCH" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="19831" name="All-Seeing Eye" nameId="2286412" delayId="12" stack="PALLOW_KUILLUS_DYN_MINI_SEARCH" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" ammospeed="30">
+		<properties first_target="ME" first_target_range="20" target_distance="10" target_relation="FRIEND" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<effects>
+			<search e="1" state="SEARCH2" duration2="12000" effectid="166" basiclvl="20" noresist="true" hoptype="SKILLLV" hopb="628" />
+		</effects>
+		<motion name="PointFire" />
 	</skill_template>
 	<skill_template skill_id="19832" name="Nimble Footwork" nameId="2286415" delayId="19832" stack="PALLOW_KUILLUS_DYN_PD_SPEEDUP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" ammospeed="30">
 		<properties first_target="ME" target_species="PC" first_target_range="20" target_distance="10" target_relation="FRIEND" target_type="AREA" target_maxcount="24" />
@@ -151297,8 +151365,15 @@
 		</effects>
 		<motion name="PointFire" />
 	</skill_template>
-	<skill_template skill_id="19833" name="All-Seeing Eye" nameId="2286418" delayId="12" stack="PALLOW_KUILLUS_DYN_PD_SEARCH" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="19833" name="All-Seeing Eye" nameId="2286418" delayId="12" stack="PALLOW_KUILLUS_DYN_PD_SEARCH" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF" ammospeed="30">
+		<properties first_target="ME" first_target_range="20" target_distance="10" target_relation="FRIEND" target_maxcount="24" target_type="AREA" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<effects>
+			<search e="1" state="SEARCH2" duration2="12000" effectid="166" basiclvl="20" noresist="true" hoptype="SKILLLV" hopb="628" />
+		</effects>
+		<motion name="PointFire" />
 	</skill_template>
 	<skill_template skill_id="19834" name="Discombobulate" nameId="2286421" delayId="12" stack="PALLOW_SEIREN_QUEEN_STUN" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="2500" dispel_category="STUN" cancel_rate="40" ammospeed="25">
 		<properties first_target="TARGET" first_target_range="25" target_distance="18" target_relation="ENEMY" target_type="AREA" target_maxcount="24" />
@@ -161228,8 +161303,15 @@
 		</effects>
 		<motion name="NormalFire" />
 	</skill_template>
-	<skill_template skill_id="21258" name="Keen Eyes" nameId="299344" delayId="12" stack="LDF4B_D2_SEARCH_WAKEUP" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21258" name="Keen Eyes" nameId="299344" delayId="12" stack="LDF4B_D2_SEARCH_WAKEUP" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" first_target_range="2" target_relation="FRIEND" target_maxcount="1" target_type="ONLYONE" />
+		<startconditions>
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<effects>
+			<search duration2="86400000" effectid="166" e="1" basiclvl="60" noresist="true" hoptype="SKILLLV" hopb="1" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="21259" name="Power Attack" nameId="299310" delayId="1" stack="LDF4B_D2_ONLYONE_MELEEATK" lvl="1" skilltype="PHYSICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="0" duration="2000">
 		<properties first_target="TARGET" first_target_range="25" target_relation="ENEMY" target_type="ONLYONE" target_maxcount="1" />
@@ -161305,8 +161387,22 @@
 	<skill_template skill_id="21266" name="Emergency Rations" nameId="299587" delayId="21266" stack="LDF4B_GURURU_SANCTUARYHEAL" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
 		<properties first_target="TARGET" />
 	</skill_template>
-	<skill_template skill_id="21267" name="Burning Eyes" nameId="299105" delayId="1" stack="LDF4B_GOLDENTATAR_SEARCH" lvl="1" skilltype="MAGICAL" skillsubtype="NONE" tslot="NOSHOW" activation="ACTIVE" cooldown="0" duration="0">
-		<properties first_target="TARGET" />
+	<skill_template skill_id="21267" name="Burning Eyes" nameId="299105" delayId="1" stack="LDF4B_GOLDENTATAR_SEARCH" lvl="1" skilltype="MAGICAL" skillsubtype="BUFF" tslot="BUFF" activation="ACTIVE" cooldown="0" duration="0" dispel_category="BUFF">
+		<properties first_target="ME" target_species="PC" first_target_range="2" target_distance="100" target_relation="ENEMY" target_maxcount="16" target_type="AREA" />
+		<startconditions>
+			<target value="PC" />
+			<weapon weapon="GREATSWORD SPELLBOOK BOW DAGGER MACE ORB POLEARM STAFF SWORD CHAINBLADE" />
+		</startconditions>
+		<useconditions>
+			<playermove allow="false" />
+		</useconditions>
+		<effects>
+			<spellatkinstant e="1" value="350" delta="10" critprobmod2="50" element="FIRE" hoptype="SKILLLV" hopb="1" />
+			<spellatk e="2" checktime="4000" value="650" duration2="40000" effectid="10202122" noresist="true" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="1" />
+			<provoker e="3" provoke_target="OPPONENT" duration2="40000" effectid="10202123" noresist="true" hittype="NMLATK" hittypeprob2="1000" element="FIRE" preeffect="1" hoptype="SKILLLV" hopb="1" />
+			<search e="4" state="SEARCH10" duration2="40000" effectid="166" noresist="true" preeffect="1" hoptype="SKILLLV" hopb="1" />
+		</effects>
+		<motion name="NormalFire" />
 	</skill_template>
 	<skill_template skill_id="21268" name="Chaos" nameId="299112" delayId="2" stack="LDF4B_GOLDENTATAR_AREACONFUSE" lvl="1" skilltype="MAGICAL" skillsubtype="DEBUFF" tslot="DEBUFF" activation="ACTIVE" cooldown="0" duration="3000" dispel_category="DEBUFF_PHYSICAL">
 		<properties first_target="ME" target_species="PC" first_target_range="25" target_distance="100" target_relation="ENEMY" target_type="AREA" target_maxcount="96" />

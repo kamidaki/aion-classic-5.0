@@ -563,7 +563,9 @@ class ModeloBlending:
             note = "B"
         elif "blendc" in name or "burstc" in name:
             note = "C"
-        elif "blende" in name or "burste" in name:
+        elif "burste" in name:
+            note = "SEAL"
+        elif "blende" in name:
             note = "E"
         else:
             note = "A"

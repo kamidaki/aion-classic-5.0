@@ -8,7 +8,9 @@ package com.aionemu.gameserver.skillengine.effect;
 public enum BlendingNote {
 	A,
 	B,
-	C;
+	C,
+	E,
+	SEAL;
 
 	public static BlendingNote fromString(String value) {
 		if (value == null || value.isEmpty()) {

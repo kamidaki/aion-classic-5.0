@@ -14,7 +14,8 @@ public enum BlendingCombo {
 	BBC(9005),
 	CCC(9006),
 	CCA(9007),
-	CCB(9008);
+	CCB(9008),
+	DO(9022);
 
 	private final int skillId;
 
