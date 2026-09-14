@@ -626,11 +626,7 @@ public class Skill {
 		boolean setCooldowns = true;
 		if (effector instanceof Player playerEffector) {
 			if (skillTemplate.isForteSkill()) {
-				for (Effect effect : playerEffector.getEffectController().getAbnormalEffects()) {
-					if (BoostContextSkillEffect.grants(effect, "LuminesBless")) {
-						effect.endEffect();
-					}
-				}
+				playerEffector.getEffectController().removeForteBlessEffects();
 			}
 
 			if (skillTemplate.isStance() && !blockedStance && skillMethod == SkillMethod.CAST)

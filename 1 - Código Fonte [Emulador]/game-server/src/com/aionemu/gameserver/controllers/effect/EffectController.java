@@ -381,6 +381,15 @@ public class EffectController {
 		});
 	}
 
+	public void removeForteBlessEffects() {
+		removeEffects(abnormalEffectMap, effect -> {
+			String stack = effect.getStack();
+			if (stack != null && (stack.startsWith("LU_FORTES_G") || stack.startsWith("LU_FORTEP_G") || stack.startsWith("LU_FORTES_AD") || stack.startsWith("LU_FORTEP_AD")))
+				return true;
+			return BoostContextSkillEffect.grants(effect, "LuminesBless");
+		});
+	}
+
 	/**
 	 * Removes Transform effects from owner. For more info see {@link TransformEffect} it doesn't remove Avatar transforms (TODO find out on retail)
 	 */
