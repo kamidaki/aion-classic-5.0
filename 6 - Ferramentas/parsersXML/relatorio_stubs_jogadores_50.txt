@@ -2,39 +2,38 @@
 RELATÓRIO FORENSE DE HABILIDADES JOGÁVEIS SEM EFEITO FUNCIONAL (STUBS) — AION CLASSIC 5.0
 ====================================================================================================
 
-Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> sem <effects>): 206
+Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> sem <effects>): 187
 
 --- DISTRIBUIÇÃO POR CLASSE AFETADA ---
   SOUL_REAPER    :   33 skills sem efeito
-  CHANTER        :   29 skills sem efeito
+  CHANTER        :   28 skills sem efeito
   ALL            :   27 skills sem efeito
-  BRAWLER        :   25 skills sem efeito
-  CLERIC         :   25 skills sem efeito
-  PRIEST         :   25 skills sem efeito
-  PHOENIX        :   23 skills sem efeito
-  ASSASSIN       :   22 skills sem efeito
-  RANGER         :   17 skills sem efeito
-  SPIRIT_MASTER  :   17 skills sem efeito
-  LUMINESS       :   17 skills sem efeito
-  SORCERER       :   13 skills sem efeito
-  REVENANT       :   11 skills sem efeito
-  THUNDERER      :   11 skills sem efeito
-  TEMPLAR        :    9 skills sem efeito
-  GLADIATOR      :    6 skills sem efeito
-  WARRIOR        :    6 skills sem efeito
-  SCOUT          :    4 skills sem efeito
+  PRIEST         :   24 skills sem efeito
+  BRAWLER        :   24 skills sem efeito
+  CLERIC         :   24 skills sem efeito
+  PHOENIX        :   21 skills sem efeito
+  ASSASSIN       :   20 skills sem efeito
+  RANGER         :   16 skills sem efeito
+  SPIRIT_MASTER  :   16 skills sem efeito
+  SORCERER       :   12 skills sem efeito
+  REVENANT       :   10 skills sem efeito
+  THUNDERER      :   10 skills sem efeito
+  TEMPLAR        :    8 skills sem efeito
+  GLADIATOR      :    5 skills sem efeito
+  WARRIOR        :    5 skills sem efeito
   MONK           :    4 skills sem efeito
+  SCOUT          :    4 skills sem efeito
   MAGE           :    4 skills sem efeito
 
 --- EFEITOS DO CLIENTE PRESENTES NESSAS SKILLS ---
-  StatUp                   :  74 skills | Causa: Parte de skill composta com outro efeito barrado
+  StatUp                   :  73 skills | Causa: Parte de skill composta com outro efeito barrado
   SkillATK_Instant         :  25 skills | Causa: Parte de skill composta com outro efeito barrado
-  SpellATK_Instant         :  25 skills | Causa: Parte de skill composta com outro efeito barrado
   WeaponStatBoost          :  23 skills | Causa: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
   BoostSkillCastingTime    :  21 skills | Causa: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
-  MoveLocation             :  14 skills | Causa: Presença 0% no gabarito
+  SpellATK_Instant         :  17 skills | Causa: Parte de skill composta com outro efeito barrado
   ShapeChange              :  14 skills | Causa: Parte de skill composta com outro efeito barrado
   DeboostHealAmount        :  13 skills | Causa: Enums 0% e presença 36.4% no gabarito
+  MoveLocation             :  12 skills | Causa: Presença 0% no gabarito
   SkillLauncher            :  10 skills | Causa: Parte de skill composta com outro efeito barrado
   Deform                   :   9 skills | Causa: Parte de skill composta com outro efeito barrado
   SummonSkillArea          :   8 skills | Causa: Parte de skill composta com outro efeito barrado
@@ -50,8 +49,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   Fear                     :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   Snare                    :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   DeBoostHealAmount        :   6 skills | Causa: Enums 0% e presença 36.4% no gabarito
-  BlinkAtk                 :   6 skills | Causa: Parte de skill composta com outro efeito barrado
-  BoostContextSkill        :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   statup                   :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   Absolutesnare            :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   MPATKDrain_Instant       :   6 skills | Causa: Parte de skill composta com outro efeito barrado
@@ -69,18 +66,16 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   Provoker                 :   4 skills | Causa: Parte de skill composta com outro efeito barrado
   Dispel                   :   3 skills | Causa: Parte de skill composta com outro efeito barrado
   OneTimeBoostHealEffect   :   3 skills | Causa: Parte de skill composta com outro efeito barrado
-  Evade                    :   3 skills | Causa: Parte de skill composta com outro efeito barrado
   control                  :   3 skills | Causa: Parte de skill composta com outro efeito barrado
   MoveBehindATK            :   3 skills | Causa: Parte de skill composta com outro efeito barrado
   NoReduceSpellATK_Instant :   3 skills | Causa: Enums 12.5% e presença 37.5% no gabarito
   Hide                     :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   flyboost                 :   2 skills | Causa: Parte de skill composta com outro efeito barrado
-  Stun                     :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   Root                     :   2 skills | Causa: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
   SummonTrap               :   2 skills | Causa: Presença no gabarito 10.8% (estrutura de armadilha mudou na 5.0)
   ResurrectBase            :   2 skills | Causa: Parte de skill composta com outro efeito barrado
+  Evade                    :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   WeaponStatUp             :   2 skills | Causa: Parte de skill composta com outro efeito barrado
-  Search                   :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   Statboost                :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   DeathTriggerBuff         :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   NoResurrectPenalty       :   2 skills | Causa: Parte de skill composta com outro efeito barrado
@@ -88,6 +83,7 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   stun                     :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   AlwaysResist             :   1 skills | Causa: Presença 0% no gabarito
   ConvertHeal              :   1 skills | Causa: Parte de skill composta com outro efeito barrado
+  Stun                     :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   Blind                    :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   DispelBuff               :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   ShadowMove               :   1 skills | Causa: Parte de skill composta com outro efeito barrado
@@ -95,9 +91,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   BuffBind                 :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   BuffSilence              :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   Curse                    :   1 skills | Causa: Parte de skill composta com outro efeito barrado
-  BoostSpellAttackEffect   :   1 skills | Causa: Parte de skill composta com outro efeito barrado
-  CondSkillLauncher        :   1 skills | Causa: Parte de skill composta com outro efeito barrado
-  Paralyze                 :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   HostileUp                :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   Slow                     :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   TargetLock               :   1 skills | Causa: Parte de skill composta com outro efeito barrado
@@ -261,42 +254,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3186  Rage of Suffering               SPIRIT_MASTER (Nv.60)           MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, DeboostHealAmount
         Nome Interno: EL_HellFlame_G1                                                         Motivo: Enums 0% e presença 36.4% no gabarito
 ----------------------------------------------------------------------------------------------------
-  3213  Le-La-Fa Luminance I            LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: MoveLocation, SpellATK_Instant, Stun
-        Nome Interno: LU_tele_G1                                                              Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
-  3215  Winged Magic I                  LUMINESS (Nv.10)                PHYSICAL / PASSIVE    Efeitos: BoostSpellAttackEffect
-        Nome Interno: LU_SeraphicEnergy_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3217  Transcendence I                 LUMINESS (Nv.1)                 MAGICAL / PASSIVE     Efeitos: CondSkillLauncher
-        Nome Interno: LU_P_Exceed_G1                                                          Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3219  Mortal Storm                    LUMINESS (Nv.58)                PHYSICAL / ACTIVE     Efeitos: MoveLocation, SpellATK_Instant, Paralyze
-        Nome Interno: ALL_GlideATK_LU                                                         Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
-  3371  Instant Leap I                  LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BlinkAtk, SpellATK_Instant
-        Nome Interno: LU_BackAttack_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3372  Instant Leap II                 LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BlinkAtk, SpellATK_Instant
-        Nome Interno: LU_BackAttack_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3373  Instant Leap III                LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BlinkAtk, SpellATK_Instant
-        Nome Interno: LU_BackAttack_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3374  Instant Leap IV                 LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BlinkAtk, SpellATK_Instant
-        Nome Interno: LU_BackAttack_G4                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3375  Instant Leap V                  LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BlinkAtk, SpellATK_Instant
-        Nome Interno: LU_BackAttack_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3376  Instant Leap VI                 LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BlinkAtk, SpellATK_Instant
-        Nome Interno: LU_BackAttack_G6                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3426  Forte I                         LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BoostContextSkill
-        Nome Interno: LU_ForteS_G1                                                            Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3427  Mezzo Forte I                   LUMINESS (Nv.45)                MAGICAL / ACTIVE      Efeitos: BoostContextSkill
-        Nome Interno: LU_ForteP_G1                                                            Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   3436  Slayer Form I (Forte)           ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: ShapeChange, StatUp, MPHeal, WeaponStatBoost
         Nome Interno: AS_AttackRoar_L_forte_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
 ----------------------------------------------------------------------------------------------------
@@ -363,9 +320,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3742  Whirling Blow VII               BRAWLER (Nv.1)                  PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, DeboostHealAmount
         Nome Interno: ST_bspin_G7                                                             Motivo: Enums 0% e presença 36.4% no gabarito
 ----------------------------------------------------------------------------------------------------
-  3775  Mezzo Forte II                  LUMINESS (Nv.45)                MAGICAL / ACTIVE      Efeitos: BoostContextSkill
-        Nome Interno: LU_ForteP_G2                                                            Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   3778  Seal Arrow I                    RANGER (Nv.1)                   MAGICAL / ACTIVE      Efeitos: SkillATK_Instant, BoostSkillCastingTime, Slow
         Nome Interno: RA_SealingArrow_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
 ----------------------------------------------------------------------------------------------------
@@ -420,9 +374,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3948  [Reboot] Shadow Walk I          ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: Hide
         Nome Interno: AS_Re_Stigma_ShadowWalk_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  3949  [Reboot] All-Seeing Eye I       ASSASSIN (Nv.10)                MAGICAL / TOGGLE      Efeitos: Search
-        Nome Interno: AS_Re_SixSense_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   3957  [Reboot] Slayer Form I          ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: ShapeChange, StatUp, StatUp, WeaponStatBoost
         Nome Interno: AS_Re_AttackRoar_L_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
 ----------------------------------------------------------------------------------------------------
@@ -450,14 +401,8 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3985  Intense Pain                    BRAWLER (Nv.69)                 PHYSICAL / ACTIVE     Efeitos: MoveLocation, SkillATK_Instant, Root
         Nome Interno: ST_flyingkick_AD_G1                                                        Motivo: Presença 0% no gabarito; Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
 ----------------------------------------------------------------------------------------------------
-  3993  Fortissimo                      LUMINESS (Nv.69)                MAGICAL / ACTIVE      Efeitos: BoostContextSkill
-        Nome Interno: LU_ForteS_AD_G1                                                         Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   3996  Dominating Oath                 SPIRIT_MASTER (Nv.69)           MAGICAL / PASSIVE     Efeitos: BoostSkillCastingTime, BoostSkillCastingTime
         Nome Interno: EL_ElementalCall_AD_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares); Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
-----------------------------------------------------------------------------------------------------
-  4004  Magic Eye of Clarity I          PHOENIX (Nv.28)                 MAGICAL / ACTIVE      Efeitos: Search
-        Nome Interno: Gu_MagicalSearchEye_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   4044  Fissure Cannonball I            PHOENIX (Nv.1)                  PHYSICAL / ACTIVE     Efeitos: SpellATK_Instant, StatDown, DeBoostHealAmount
         Nome Interno: Gu_ArmorBreak_G1                                                        Motivo: Enums 0% e presença 36.4% no gabarito
@@ -516,14 +461,8 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4235  Executioner’s Stance            BRAWLER (Nv.1)                  MAGICAL / ACTIVE      Efeitos: OneTimeBoostSkillCritical
         Nome Interno: ST_SuperCritical_AD_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4237  Remove Shock – Tornado          ASSASSIN (Nv.40), BRAWLER (Nv.  MAGICAL / ACTIVE      Efeitos: Evade, StatUp
-        Nome Interno: SkillSkin_ALL_ShockReflect_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   4239  Proficient Dragon Claw Trainin  BRAWLER (Nv.1)                  MAGICAL / PASSIVE     Efeitos: Wpn_Mastery, BoostHate, StatUp, WeaponStatBoost
         Nome Interno: P_EQUIP_Gauntlet_AD_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
-----------------------------------------------------------------------------------------------------
-  4242  Molto Forte                     LUMINESS (Nv.45)                MAGICAL / ACTIVE      Efeitos: BoostContextSkill
-        Nome Interno: LU_ForteP_AD_G1                                                         Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   4244  Rapid Fire Readiness            PHOENIX (Nv.1)                  MAGICAL / PASSIVE     Efeitos: Statboost, Provoker, WeaponStatBoost
         Nome Interno: Gu_RapidStance_AD_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
@@ -635,9 +574,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
   4520  Proficient Dragon Claw Trainin  BRAWLER (Nv.66)                 MAGICAL / PASSIVE     Efeitos: Wpn_Mastery, BoostHate, StatUp, WeaponStatBoost
         Nome Interno: P_EQUIP_Gauntlet_AD_G1_EVT                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
-----------------------------------------------------------------------------------------------------
-  4523  Molto Forte                     LUMINESS (Nv.66)                MAGICAL / ACTIVE      Efeitos: BoostContextSkill
-        Nome Interno: LU_ForteP_AD_G1_EVT                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   4525  Rapid Fire Readiness            PHOENIX (Nv.66)                 MAGICAL / PASSIVE     Efeitos: Statboost, Provoker, WeaponStatBoost
         Nome Interno: Gu_RapidStance_AD_G1_EVT                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)

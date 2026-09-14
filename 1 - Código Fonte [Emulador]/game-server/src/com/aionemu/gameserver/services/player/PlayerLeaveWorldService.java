@@ -101,6 +101,9 @@ public class PlayerLeaveWorldService {
 		} else if (DuelService.getInstance().isDueling(player)) {
 			DuelService.getInstance().loseDuel(player);
 		}
+		if (player.getBlendingState() != null) {
+			player.getBlendingState().clear();
+		}
 		player.getEffectController().removeNonStorableEffectsForLogout();
 		PlayerEffectsDAO.storePlayerEffects(player);
 		ItemCooldownsDAO.storeItemCooldowns(player);

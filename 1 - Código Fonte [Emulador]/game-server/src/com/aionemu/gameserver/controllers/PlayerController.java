@@ -255,6 +255,9 @@ public class PlayerController extends CreatureController<Player> {
 	@Override
 	public void onDie(Creature lastAttacker) {
 		Player player = getOwner();
+		if (player.getBlendingState() != null) {
+			player.getBlendingState().clear();
+		}
 		player.getController().cancelCurrentSkill(null);
 		RecallService.getInstance().cancel(player, CancelReason.CANCELLED);
 		setRebirthReviveInfo();
