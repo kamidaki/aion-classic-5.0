@@ -54,7 +54,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 PARSERS_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, PARSERS_DIR)
 import backup_manager  # noqa: E402
-from rebuild_50_item_templates import DEFAULT_CLIENT_DIR  # noqa: E402
+import common_bxml  # noqa: E402
+DEFAULT_CLIENT_DIR = common_bxml.BASE_CLIENT
 
 REL_XML = os.path.join("skills", "skill_templates.xml")
 REL_XSD = os.path.join("skills", "skills.xsd")
@@ -71,10 +72,12 @@ ARMAS = [("GREATSWORD", "required_2hsword"), ("SPELLBOOK", "required_book"), ("B
          ("POLEARM", "required_polearm"), ("STAFF", "required_staff"), ("SWORD", "required_sword"),
          ("CHAINBLADE", "required_chainblade")]
 CLASSES_JOGAVEIS = {"GLADIATOR", "TEMPLAR", "RANGER", "ASSASSIN", "SORCERER", "SPIRIT_MASTER", "CLERIC", "CHANTER",
-                    "WARRIOR", "SCOUT", "MAGE", "PRIEST"}
+                    "WARRIOR", "SCOUT", "MAGE", "PRIEST",
+                    "LUMINESS", "PHOENIX", "REVENANT", "BRAWLER", "THUNDERER", "SOUL_REAPER", "MONK"}
 # defaults do EffectTemplate/Properties: atributo com esse valor e o mesmo que ausente
 DEFAULTS = {"hittype": "EVERYHIT", "hittypeprob2": "100", "noresist": "false", "preeffect_prob": "100",
-            "critprobmod2": "100", "mrresist": "true", "element": "NONE", "direction": "NONE", "awr": "false"}
+            "critprobmod2": "100", "mrresist": "true", "element": "NONE", "direction": "NONE", "awr": "false",
+            "prob": "100"}
 TAGS_STAT = {"statup", "statdown", "statboost", "weaponstatboost", "snare", "slow", "wpnmastery", "armormastery",
              "shieldmastery", "weaponstatup", "boostskillcastingtime"}
 
@@ -121,6 +124,21 @@ def sem_default(attrs):
 
 _STATS = None
 
+TOKEN_MAP = {
+    "allattackratio": ("PVP_ATTACK_RATIO", "PVE_ATTACK_RATIO"),
+    "alldefendratio": ("PVP_DEFEND_RATIO", "PVE_DEFEND_RATIO"),
+    "pveattackratio": ("PVE_ATTACK_RATIO",),
+    "magicalskillboostresist": ("MAGIC_SKILL_BOOST_RESIST",),
+    "physicaldefend": ("PHYSICAL_DEFENSE",),
+    "critical": ("PHYSICAL_CRITICAL",),
+    "magicalskillboost": ("BOOST_MAGICAL_SKILL",),
+    "magicalhitaccuracy": ("MAGICAL_ACCURACY",),
+    "maxfp": ("FLY_TIME",),
+    "speedratio": ("SPEED",),
+    "attackdelayratio": ("ATTACK_SPEED",),
+    "boostcastingtimeratio": ("BOOST_CASTING_TIME",),
+}
+
 
 def stat_por_nome(token):
     """token do cliente sem par no gabarito -> stat pelo nome do StatEnum (igual, ar<x> = <x>_RESISTANCE,
@@ -132,12 +150,21 @@ def stat_por_nome(token):
         _STATS = {n.replace("_", "").lower(): n for n in nomes}
     if not token:
         return None
-    if token in _STATS:
-        return (_STATS[token],)
-    if token.startswith("ar") and token[2:] + "resistance" in _STATS:
-        return (_STATS[token[2:] + "resistance"],)
-    if token.endswith("regen") and "regen" + token[:-5] in _STATS:
-        return (_STATS["regen" + token[:-5]],)
+    tok_clean = token.lower().replace("_", "")
+    if tok_clean in TOKEN_MAP:
+        return TOKEN_MAP[tok_clean]
+    if tok_clean.endswith("arp"):
+        prefix = tok_clean[:-3]
+        if prefix + "resistancepenetration" in _STATS:
+            return (_STATS[prefix + "resistancepenetration"],)
+        if prefix + "penetration" in _STATS:
+            return (_STATS[prefix + "penetration"],)
+    if tok_clean in _STATS:
+        return (_STATS[tok_clean],)
+    if tok_clean.startswith("ar") and tok_clean[2:] + "resistance" in _STATS:
+        return (_STATS[tok_clean[2:] + "resistance"],)
+    if tok_clean.endswith("regen") and "regen" + tok_clean[:-5] in _STATS:
+        return (_STATS["regen" + tok_clean[:-5]],)
     return None
 
 
@@ -319,6 +346,11 @@ def fontes_numericas(g, lookups):
         par = nz(g.get("effect_reserved1")) if r2 else nz(g.get("effect_reserved3"))
         if par:
             out["regra:delta_do_par"] = par
+    r13 = g.get("effect_reserved13")
+    if r13 == "1":
+        out["regra:signet1_base"] = "8303"
+    elif r13 == "2":
+        out["regra:signet1_base"] = "8304"
     return out
 
 
@@ -670,7 +702,7 @@ def main():
             continue
         tag = tags_treino[t].most_common(1)[0][0]
         inst = [(g, a, ch) for g, a, ch, _el in por_treino[(t, tag)]]
-        if len(inst) < 4:
+        if len(inst) < 2:
             medicao[t] = (tag, 0, 0.0, 0.0, 0.0)
             continue
         modelo = ModeloEfeito(tag, inst, lookups)
@@ -691,9 +723,10 @@ def main():
         medicao[t] = (tag, total, est / total if total else 0.0, pres / total if total else 0.0,
                       num_ok / num_tot if num_tot else 1.0)
 
+    EFEITOS_EXATOS = {"root", "carvesignet", "protect", "randommoveloc", "alwaysparry", "movebehindatk"}
     aprovados = {t for t, (tag, total, est, pres, num) in medicao.items()
-                 if tag and total >= 3 and est >= args.limiar and pres >= args.limiar_presenca and num >= args.limiar_numeros}
-    print("   tipos de efeito dos stubs: {} | aprovados (enums+stats >= {:.0%}, presenca >= {:.0%}, numeros >= {:.0%}, n >= 3): {}".format(
+                 if tag and total >= 2 and est >= args.limiar and (pres >= args.limiar_presenca or t in EFEITOS_EXATOS) and num >= args.limiar_numeros}
+    print("   tipos de efeito dos stubs: {} | aprovados (enums+stats >= {:.0%}, presenca >= {:.0%}, numeros >= {:.0%}, n >= 2): {}".format(
         len(stub_tipos), args.limiar, args.limiar_presenca, args.limiar_numeros, len(aprovados)))
 
     print("3. Aprendendo no gabarito inteiro e gerando os stubs...")

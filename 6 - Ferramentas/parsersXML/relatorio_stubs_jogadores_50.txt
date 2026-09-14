@@ -2,69 +2,59 @@
 RELATÓRIO FORENSE DE HABILIDADES JOGÁVEIS SEM EFEITO FUNCIONAL (STUBS) — AION CLASSIC 5.0
 ====================================================================================================
 
-Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> sem <effects>): 446
+Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> sem <effects>): 258
 
 --- DISTRIBUIÇÃO POR CLASSE AFETADA ---
-  LUMINESS       :   87 skills sem efeito
-  ALL            :   78 skills sem efeito
-  ASSASSIN       :   60 skills sem efeito
-  SOUL_REAPER    :   50 skills sem efeito
-  PHOENIX        :   39 skills sem efeito
-  CHANTER        :   37 skills sem efeito
-  BRAWLER        :   32 skills sem efeito
-  CLERIC         :   31 skills sem efeito
-  PRIEST         :   31 skills sem efeito
-  TEMPLAR        :   29 skills sem efeito
-  SORCERER       :   28 skills sem efeito
-  SPIRIT_MASTER  :   27 skills sem efeito
-  WARRIOR        :   21 skills sem efeito
-  GLADIATOR      :   21 skills sem efeito
-  RANGER         :   20 skills sem efeito
-  THUNDERER      :   18 skills sem efeito
-  REVENANT       :   18 skills sem efeito
-  SCOUT          :    6 skills sem efeito
-  MAGE           :    6 skills sem efeito
-  MONK           :    6 skills sem efeito
+  LUMINESS       :   55 skills sem efeito
+  SOUL_REAPER    :   45 skills sem efeito
+  CHANTER        :   29 skills sem efeito
+  ALL            :   27 skills sem efeito
+  BRAWLER        :   25 skills sem efeito
+  PRIEST         :   25 skills sem efeito
+  CLERIC         :   25 skills sem efeito
+  PHOENIX        :   23 skills sem efeito
+  ASSASSIN       :   22 skills sem efeito
+  SPIRIT_MASTER  :   18 skills sem efeito
+  RANGER         :   17 skills sem efeito
+  SORCERER       :   14 skills sem efeito
+  THUNDERER      :   11 skills sem efeito
+  REVENANT       :   11 skills sem efeito
+  TEMPLAR        :    9 skills sem efeito
+  GLADIATOR      :    6 skills sem efeito
+  WARRIOR        :    6 skills sem efeito
+  MONK           :    4 skills sem efeito
+  SCOUT          :    4 skills sem efeito
+  MAGE           :    4 skills sem efeito
 
 --- EFEITOS DO CLIENTE PRESENTES NESSAS SKILLS ---
-  StatUp                   : 191 skills | Causa: Parte de skill composta com outro efeito barrado
-  SpellATK_Instant         :  82 skills | Causa: Parte de skill composta com outro efeito barrado
+  StatUp                   :  74 skills | Causa: Parte de skill composta com outro efeito barrado
+  SpellATK_Instant         :  64 skills | Causa: Parte de skill composta com outro efeito barrado
   Blending                 :  55 skills | Causa: Efeito novo da 5.0 (sem mapeamento de atributos no emulador / 0% gabarito)
-  StatDown                 :  48 skills | Causa: Parte de skill composta com outro efeito barrado
-  StatBoost                :  33 skills | Causa: Parte de skill composta com outro efeito barrado
-  SkillATK_Instant         :  29 skills | Causa: Parte de skill composta com outro efeito barrado
-  Root                     :  28 skills | Causa: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
+  StatDown                 :  45 skills | Causa: Parte de skill composta com outro efeito barrado
+  SkillATK_Instant         :  25 skills | Causa: Parte de skill composta com outro efeito barrado
   WeaponStatBoost          :  23 skills | Causa: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
   BoostSkillCastingTime    :  21 skills | Causa: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
-  Provoker                 :  20 skills | Causa: Parte de skill composta com outro efeito barrado
-  CarveSignet              :  17 skills | Causa: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-  Dispel                   :  17 skills | Causa: Parte de skill composta com outro efeito barrado
-  SkillLauncher            :  17 skills | Causa: Parte de skill composta com outro efeito barrado
-  ShapeChange              :  16 skills | Causa: Parte de skill composta com outro efeito barrado
-  RandomMoveLoc            :  14 skills | Causa: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
+  Provoker                 :  16 skills | Causa: Parte de skill composta com outro efeito barrado
   MoveLocation             :  14 skills | Causa: Presença 0% no gabarito
+  ShapeChange              :  14 skills | Causa: Parte de skill composta com outro efeito barrado
   DeboostHealAmount        :  13 skills | Causa: Enums 0% e presença 36.4% no gabarito
-  Reflector                :  12 skills | Causa: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
-  AlwaysResist             :   9 skills | Causa: Presença 0% no gabarito
+  SkillLauncher            :  10 skills | Causa: Parte de skill composta com outro efeito barrado
   Deform                   :   9 skills | Causa: Parte de skill composta com outro efeito barrado
-  Stun                     :   9 skills | Causa: Parte de skill composta com outro efeito barrado
-  MoveBehindATK            :   9 skills | Causa: Parte de skill composta com outro efeito barrado
-  statup                   :   8 skills | Causa: Parte de skill composta com outro efeito barrado
   SummonSkillArea          :   8 skills | Causa: Parte de skill composta com outro efeito barrado
   SummonServant            :   8 skills | Causa: Parte de skill composta com outro efeito barrado
-  Snare                    :   7 skills | Causa: Parte de skill composta com outro efeito barrado
   Silence                  :   7 skills | Causa: Parte de skill composta com outro efeito barrado
   Bind                     :   7 skills | Causa: Parte de skill composta com outro efeito barrado
   BoostHate                :   7 skills | Causa: Parte de skill composta com outro efeito barrado
+  StatBoost                :   7 skills | Causa: Parte de skill composta com outro efeito barrado
   MPHeal                   :   7 skills | Causa: Parte de skill composta com outro efeito barrado
   MPAttack_Instant         :   7 skills | Causa: Parte de skill composta com outro efeito barrado
   StatSynergy              :   7 skills | Causa: Parte de skill composta com outro efeito barrado
   Fear                     :   6 skills | Causa: Parte de skill composta com outro efeito barrado
+  Snare                    :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   DeBoostHealAmount        :   6 skills | Causa: Enums 0% e presença 36.4% no gabarito
   BlinkAtk                 :   6 skills | Causa: Parte de skill composta com outro efeito barrado
-  AlwaysDodge              :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   BoostContextSkill        :   6 skills | Causa: Parte de skill composta com outro efeito barrado
-  Statup                   :   6 skills | Causa: Parte de skill composta com outro efeito barrado
+  statup                   :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   Absolutesnare            :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   MPATKDrain_Instant       :   6 skills | Causa: Parte de skill composta com outro efeito barrado
   OneTimeBoostSkillCritical:   5 skills | Causa: Parte de skill composta com outro efeito barrado
@@ -75,83 +65,58 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   Shield                   :   4 skills | Causa: Parte de skill composta com outro efeito barrado
   DispelBuffCounterATK     :   4 skills | Causa: Parte de skill composta com outro efeito barrado
   BoostSkillCost           :   4 skills | Causa: Parte de skill composta com outro efeito barrado
-  Heal_Instant             :   4 skills | Causa: Parte de skill composta com outro efeito barrado
   OneTimeBoostSkillAttack  :   4 skills | Causa: Parte de skill composta com outro efeito barrado
   RadarAngle               :   4 skills | Causa: Parte de skill composta com outro efeito barrado
-  HostileUp                :   3 skills | Causa: Parte de skill composta com outro efeito barrado
+  Dispel                   :   3 skills | Causa: Parte de skill composta com outro efeito barrado
   OneTimeBoostHealEffect   :   3 skills | Causa: Parte de skill composta com outro efeito barrado
   Evade                    :   3 skills | Causa: Parte de skill composta com outro efeito barrado
   control                  :   3 skills | Causa: Parte de skill composta com outro efeito barrado
+  MoveBehindATK            :   3 skills | Causa: Parte de skill composta com outro efeito barrado
   NoReduceSpellATK_Instant :   3 skills | Causa: Enums 12.5% e presença 37.5% no gabarito
   Hide                     :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   flyboost                 :   2 skills | Causa: Parte de skill composta com outro efeito barrado
+  Stun                     :   2 skills | Causa: Parte de skill composta com outro efeito barrado
+  Root                     :   2 skills | Causa: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
   SummonTrap               :   2 skills | Causa: Presença no gabarito 10.8% (estrutura de armadilha mudou na 5.0)
-  Protect                  :   2 skills | Causa: Presença 0% no gabarito (mecanismo de proteção de dano não mapeado)
   ResurrectBase            :   2 skills | Causa: Parte de skill composta com outro efeito barrado
-  MPHeal_Instant           :   2 skills | Causa: Parte de skill composta com outro efeito barrado
-  SkillCooltimeReset       :   2 skills | Causa: Presença 0% no gabarito (reset de cooldown de skills)
   MagicCounterATK          :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   WeaponStatUp             :   2 skills | Causa: Parte de skill composta com outro efeito barrado
-  DashATK                  :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   Search                   :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   Statboost                :   2 skills | Causa: Parte de skill composta com outro efeito barrado
-  DispelDebuffPhysical     :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   DeathTriggerBuff         :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   NoResurrectPenalty       :   2 skills | Causa: Parte de skill composta com outro efeito barrado
   NoDeathPenalty           :   2 skills | Causa: Parte de skill composta com outro efeito barrado
-  Poison                   :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   stun                     :   1 skills | Causa: Parte de skill composta com outro efeito barrado
+  AlwaysResist             :   1 skills | Causa: Presença 0% no gabarito
   ConvertHeal              :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   Blind                    :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   DispelBuff               :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   ShadowMove               :   1 skills | Causa: Parte de skill composta com outro efeito barrado
+  MPHeal_Instant           :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   BuffBind                 :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   BuffSilence              :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   Curse                    :   1 skills | Causa: Parte de skill composta com outro efeito barrado
-  SPHeal_Instant           :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   BoostSpellAttackEffect   :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   CondSkillLauncher        :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   Paralyze                 :   1 skills | Causa: Parte de skill composta com outro efeito barrado
-  DispelDebuff             :   1 skills | Causa: Parte de skill composta com outro efeito barrado
+  HostileUp                :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   Slow                     :   1 skills | Causa: Parte de skill composta com outro efeito barrado
-  AlwaysParry              :   1 skills | Causa: Parte de skill composta com outro efeito barrado
   TargetLock               :   1 skills | Causa: Parte de skill composta com outro efeito barrado
 
 ====================================================================================================
     ID  NOME NO EMULADOR                CLASSE(S) / NÍVEL               TIPO / ATIVAÇÃO       EFEITOS NO CLIENTE / MOTIVO DO STUB
 ====================================================================================================
-  2553  Reaper’s Victory II             ASSASSIN (Nv.55), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet, HostileUp
-        Nome Interno: AS_Glory_TigerBeat_G2                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
   2568  Nimble Breath I                 RANGER (Nv.58), RANGER (Nv.59)  MAGICAL / ACTIVE      Efeitos: BoostSkillCastingTime
         Nome Interno: RA_QuickSetting_UP_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
 ----------------------------------------------------------------------------------------------------
-  2569  Obliteration I                  ASSASSIN (Nv.58), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet, Poison, Snare
-        Nome Interno: AS_GenocidalSword_UP_G1                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
   2570  Temperature Drop I              SORCERER (Nv.58), SORCERER (Nv  MAGICAL / ACTIVE      Efeitos: stun, AlwaysResist, ConvertHeal
         Nome Interno: WI_Hibernation_UP_G1                                                        Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
-  2571  Horror Shackles I               SPIRIT_MASTER (Nv.58), SPIRIT_  MAGICAL / ACTIVE      Efeitos: Root
-        Nome Interno: EL_NightmareRoot_UP_G1                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  2597  Rune Slash IV                   ASSASSIN (Nv.57), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_SignetAssault_G4                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  2602  Rune Knife V                    ASSASSIN (Nv.1)                 PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_SignetWave_G5                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  2656  Flash Shield II                 REVENANT (Nv.1), THUNDERER (Nv  MAGICAL / ACTIVE      Efeitos: Reflector, Provoker, StatUp
-        Nome Interno: TH_ThunderReflect_G2                                                        Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
 ----------------------------------------------------------------------------------------------------
   2662  Shadow Walk                     ASSASSIN (Nv.60), BRAWLER (Nv.  MAGICAL / ACTIVE      Efeitos: Hide
         Nome Interno: AS_Stigma_ShadowWalk_pvp                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   2664  Curse of Fire                   ASSASSIN (Nv.60), BRAWLER (Nv.  MAGICAL / ACTIVE      Efeitos: Deform, Fear, Snare
         Nome Interno: EL_FireFear_pvp                                                         Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  2668  Teleport                        ASSASSIN (Nv.60), BRAWLER (Nv.  MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel
-        Nome Interno: WI_DimensionDoor_pvp                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
 ----------------------------------------------------------------------------------------------------
   2669  Quick Glide I                   ALL (Nv.58)                     MAGICAL / PASSIVE     Efeitos: flyboost
         Nome Interno: ALL_FlyBoost_G1                                                         Motivo: Efeito composto não certificado pelo gabarito
@@ -222,38 +187,11 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   2928  Combat Stance I                 BRAWLER (Nv.1)                  MAGICAL / ACTIVE      Efeitos: OneTimeBoostSkillCritical
         Nome Interno: ST_SuperCritical_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  2960  Teleport Counter I              BRAWLER (Nv.60)                 MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel
-        Nome Interno: ST_Ptele_G1                                                             Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
-  2961  Eternal Corridor I              BRAWLER (Nv.45)                 MAGICAL / ACTIVE      Efeitos: Reflector
-        Nome Interno: ST_reflect_G1                                                           Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  2962  Eternal Corridor II             BRAWLER (Nv.45)                 MAGICAL / ACTIVE      Efeitos: Reflector
-        Nome Interno: ST_reflect_G2                                                           Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  2994  Rune Carve V                    ASSASSIN (Nv.59), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_CarveSignet_G5                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  2996  Sigil Strike VIII               ASSASSIN (Nv.1)                 PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_CarveSignetChain_G8                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  3000  Beastly Scar V                  ASSASSIN (Nv.45)                PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_TigerAssault_G5                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
   3004  Slayer Form II                  ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: ShapeChange, StatUp, MPHeal, WeaponStatBoost
         Nome Interno: AS_AttackRoar_L_G2                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
 ----------------------------------------------------------------------------------------------------
   3005  Slayer Form II                  ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: ShapeChange, StatUp, MPHeal, WeaponStatBoost
         Nome Interno: AS_AttackRoar_D_G2                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
-----------------------------------------------------------------------------------------------------
-  3006  Bursting Flame Strike II        ASSASSIN (Nv.60), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_ReflectSignet_G2                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  3017  Tendon Slice III                GLADIATOR (Nv.45), TEMPLAR (Nv  PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, Root
-        Nome Interno: FI_KneeCrash_G3                                                         Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3027  Counter Armour II               GLADIATOR (Nv.1), TEMPLAR (Nv.  MAGICAL / ACTIVE      Efeitos: Provoker, Reflector
-        Nome Interno: FI_Counterchain_G2                                                        Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
 ----------------------------------------------------------------------------------------------------
   3041  Fighting Withdrawal II          RANGER (Nv.59)                  PHYSICAL / ACTIVE     Efeitos: BackDashATK
         Nome Interno: RA_CrisisCounter_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
@@ -269,12 +207,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
   3054  Unyielding Armour II            TEMPLAR (Nv.1)                  MAGICAL / ACTIVE      Efeitos: DeBoostHealAmount, Shield
         Nome Interno: KN_DefendShield_G2                                                        Motivo: Enums 0% e presença 36.4% no gabarito
-----------------------------------------------------------------------------------------------------
-  3056  Punishing Wave III              TEMPLAR (Nv.45)                 PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, Root
-        Nome Interno: KN_FortitudeWave_G3                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3059  Bodyguard II                    TEMPLAR (Nv.1)                  MAGICAL / MAINTAIN    Efeitos: Protect, StatUp
-        Nome Interno: KN_GrandProtection_G2                                                        Motivo: Presença 0% no gabarito (mecanismo de proteção de dano não mapeado)
 ----------------------------------------------------------------------------------------------------
   3066  Chain of Suffering V            CHANTER (Nv.45), CLERIC (Nv.45  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, SpellATK, ResurrectBase, StatDown
         Nome Interno: PR_PainLinks_G5                                                         Motivo: Efeito composto não certificado pelo gabarito
@@ -294,14 +226,8 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3082  Prayer of Destruction I         CHANTER (Nv.1), CLERIC (Nv.1)   MAGICAL / ACTIVE      Efeitos: StatUp, StatUp, BoostSkillCastingTime
         Nome Interno: PR_OffensiveMode_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
 ----------------------------------------------------------------------------------------------------
-  3100  Unstoppable I                   CHANTER (Nv.60)                 MAGICAL / ACTIVE      Efeitos: StatUp
-        Nome Interno: CH_FrontalAttack_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   3102  Rise I                          CHANTER (Nv.1)                  MAGICAL / ACTIVE      Efeitos: Evade, StatUp
         Nome Interno: CH_PhoenixStep_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3115  Wind Robes I                    SORCERER (Nv.60)                MAGICAL / ACTIVE      Efeitos: StatUp
-        Nome Interno: WI_DefendSeal_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   3118  Magic Implosion V               SPIRIT_MASTER (Nv.45)           MAGICAL / ACTIVE      Efeitos: DispelBuffCounterATK, SkillLauncher
         Nome Interno: EL_ManaReverse_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
@@ -318,26 +244,11 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3135  Ion Flux Concentration II       REVENANT (Nv.45), THUNDERER (N  MAGICAL / ACTIVE      Efeitos: BoostSkillCost, StatUp
         Nome Interno: TH_Overload_G2                                                          Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  3143  Ion Flux Regeneration I         REVENANT (Nv.60), THUNDERER (N  MAGICAL / ACTIVE      Efeitos: SPHeal_Instant, Heal_Instant, Dispel
-        Nome Interno: TH_StormRecover_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3162  Storm Cover                     SORCERER (Nv.60)                MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel
-        Nome Interno: WI_GlideBackDash                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
-  3164  Eternal Corridor                ASSASSIN (Nv.60), BRAWLER (Nv.  MAGICAL / ACTIVE      Efeitos: Reflector
-        Nome Interno: ST_reflect_pvp                                                          Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
   3172  Fist of War                     BRAWLER (Nv.60)                 MAGICAL / ACTIVE      Efeitos: control, Deform
         Nome Interno: BM_Control_G1                                                           Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   3173  Uncontrollable                  CHANTER (Nv.60)                 MAGICAL / ACTIVE      Efeitos: control, Deform
         Nome Interno: CH_Control_G1                                                           Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3174  Sigil Strike VIII               ASSASSIN (Nv.59)                PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_CarveSignetChain_G8_new                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  3175  Air Shackle I                   BRAWLER (Nv.40)                 MAGICAL / ACTIVE      Efeitos: Root
-        Nome Interno: ST_airgrab_G1                                                           Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
 ----------------------------------------------------------------------------------------------------
   3178  Shriek of Terror                ASSASSIN (Nv.60), BRAWLER (Nv.  MAGICAL / ACTIVE      Efeitos: Fear, Deform, Snare
         Nome Interno: EL_TerrorSpirit_pvp                                                        Motivo: Efeito composto não certificado pelo gabarito
@@ -347,9 +258,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
   3181  Uncontrollable                  ASSASSIN (Nv.60), BRAWLER (Nv.  MAGICAL / ACTIVE      Efeitos: control, Deform
         Nome Interno: CH_Control_pvp                                                          Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3183  Flight Blessing                 ALL (Nv.80)                     PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: ALL_SeraphicGift_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   3186  Rage of Suffering               SPIRIT_MASTER (Nv.60)           MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, DeboostHealAmount
         Nome Interno: EL_HellFlame_G1                                                         Motivo: Enums 0% e presença 36.4% no gabarito
@@ -456,87 +364,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3250  Seal VI                         LUMINESS (Nv.58), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, StatDown, Blending
         Nome Interno: LU_BurstE_G6                                                            Motivo: Efeito novo da 5.0 (sem mapeamento de atributos no emulador / 0% gabarito)
 ----------------------------------------------------------------------------------------------------
-  3257  Additional Attack Boost I       LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPAttack_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3258  Additional Attack Boost II      LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPAttack_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3259  Additional Attack Boost III     LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPAttack_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3260  Additional Attack Boost IV      LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPAttack_G4                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3261  Additional Attack Boost V       LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPAttack_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3262  Additional Attack Boost VI      LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPAttack_G6                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3263  Additional Defence Boost I      LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPDefence_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3264  Additional Defence Boost II     LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPDefence_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3265  Additional Defence Boost III    LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPDefence_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3266  Additional Defence Boost IV     LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPDefence_G4                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3267  Additional Defence Boost V      LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPDefence_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3268  Additional Defence Boost VI     LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPDefence_G6                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3329  Ray of Binding I                LUMINESS (Nv.1), LUMINESS (Nv.  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_G1                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3330  Ray of Binding II               LUMINESS (Nv.16), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_G2                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3331  Ray of Binding III              LUMINESS (Nv.21), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_G3                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3332  Ray of Binding IV               LUMINESS (Nv.36), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_G4                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3333  Ray of Binding V                LUMINESS (Nv.45), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_G5                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3334  Ray of Binding VI               LUMINESS (Nv.59), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_G6                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3335  Ray of Binding I (Forte)        LUMINESS (Nv.1), LUMINESS (Nv.  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_high_G1                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3336  Ray of Binding II (Forte)       LUMINESS (Nv.16), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_high_G2                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3337  Ray of Binding III (Forte)      LUMINESS (Nv.21), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_high_G3                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3338  Ray of Binding IV (Forte)       LUMINESS (Nv.36), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_high_G4                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3339  Ray of Binding V (Forte)        LUMINESS (Nv.45), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_high_G5                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3340  Ray of Binding VI (Forte)       LUMINESS (Nv.59), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: LU_SlashCross_high_G6                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3359  Time Lapse I                    LUMINESS (Nv.40)                MAGICAL / ACTIVE      Efeitos: SkillCooltimeReset, DispelDebuff, Heal_Instant, MPHeal_Instant
-        Nome Interno: LU_Reset_G1                                                             Motivo: Presença 0% no gabarito (reset de cooldown de skills)
-----------------------------------------------------------------------------------------------------
-  3369  Advancing Light I               LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: RandomMoveLoc
-        Nome Interno: LU_FrontDash_G1                                                         Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
-  3370  Returning Light I               LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: RandomMoveLoc
-        Nome Interno: LU_BackDash_G1                                                          Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
   3371  Instant Leap I                  LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BlinkAtk, SpellATK_Instant
         Nome Interno: LU_BackAttack_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
@@ -554,12 +381,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
   3376  Instant Leap VI                 LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BlinkAtk, SpellATK_Instant
         Nome Interno: LU_BackAttack_G6                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3377  Time Portal I                   LUMINESS (Nv.40)                MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel
-        Nome Interno: LU_OpenPortal_G1                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
-  3424  Astral Blessing I               LUMINESS (Nv.45)                MAGICAL / ACTIVE      Efeitos: StatUp, AlwaysDodge, AlwaysResist
-        Nome Interno: LU_TransPower_G1                                                        Motivo: Presença 0% no gabarito
 ----------------------------------------------------------------------------------------------------
   3426  Forte I                         LUMINESS (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BoostContextSkill
         Nome Interno: LU_ForteS_G1                                                            Motivo: Efeito composto não certificado pelo gabarito
@@ -588,20 +409,8 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3455  Prayer of Destruction I (Forte  CHANTER (Nv.1), CLERIC (Nv.1)   MAGICAL / ACTIVE      Efeitos: StatUp, StatUp, BoostSkillCastingTime
         Nome Interno: PR_OffensiveMode_forte_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
 ----------------------------------------------------------------------------------------------------
-  3508  Tendon Slice IV                 GLADIATOR (Nv.45), TEMPLAR (Nv  PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, Root
-        Nome Interno: FI_KneeCrash_G4                                                         Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
   3533  Provoking Severe Blow V         TEMPLAR (Nv.62), TEMPLAR (Nv.6  PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, HostileUp, StatDown, BoostSkillCastingTime
         Nome Interno: KN_BrainBreak_G5                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
-----------------------------------------------------------------------------------------------------
-  3537  Barricade of Steel II           TEMPLAR (Nv.1)                  PHYSICAL / TOGGLE     Efeitos: Reflector, StatBoost, StatBoost, StatBoost
-        Nome Interno: KN_ReflectShield_G2                                                        Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3542  Punishing Wave IV               TEMPLAR (Nv.45)                 PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, Root
-        Nome Interno: KN_FortitudeWave_G4                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3546  Bodyguard III                   TEMPLAR (Nv.1)                  MAGICAL / MAINTAIN    Efeitos: Protect, StatUp
-        Nome Interno: KN_GrandProtection_G3                                                        Motivo: Presença 0% no gabarito (mecanismo de proteção de dano não mapeado)
 ----------------------------------------------------------------------------------------------------
   3562  Fleshcutter Arrow III           RANGER (Nv.61), RANGER (Nv.62)  PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, StatDown, DeBoostHealAmount
         Nome Interno: RA_WoundingArrow_G3                                                        Motivo: Enums 0% e presença 36.4% no gabarito
@@ -609,35 +418,11 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3570  Calming Whisper IV              RANGER (Nv.57), RANGER (Nv.58)  MAGICAL / ACTIVE      Efeitos: BoostHate
         Nome Interno: RA_BreezeofCalm_G4                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  3579  Beast Kick IV                   ASSASSIN (Nv.62), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_TigerKick_G4                                                         Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  3584  Beast Swipe III                 ASSASSIN (Nv.62), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_TigerUpper_G3                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  3585  Fang Strike V                   ASSASSIN (Nv.62), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_TigerFang_G5                                                         Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  3586  Beastly Scar VI                 ASSASSIN (Nv.45)                PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_TigerAssault_G6                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  3587  Ambush VII                      ASSASSIN (Nv.1)                 PHYSICAL / ACTIVE     Efeitos: MoveBehindATK, Stun
-        Nome Interno: AS_Blindside_G7                                                         Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3589  Rune Knife VI                   ASSASSIN (Nv.1)                 PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: AS_SignetWave_G6                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
   3598  Magic Implosion VI              SPIRIT_MASTER (Nv.45)           MAGICAL / ACTIVE      Efeitos: DispelBuffCounterATK, SkillLauncher
         Nome Interno: EL_ManaReverse_G6                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   3621  Cursecloud III                  SPIRIT_MASTER (Nv.62), SPIRIT_  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, SpellATK, MagicCounterATK
         Nome Interno: EL_PlagueSwam_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3626  Winter Binding V                SORCERER (Nv.62), SORCERER (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, Root
-        Nome Interno: WI_FrozenField_G5                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3634  Wintry Armour II                SORCERER (Nv.45)                MAGICAL / ACTIVE      Efeitos: Reflector, Provoker
-        Nome Interno: Wi_IcyShield_G2                                                         Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
 ----------------------------------------------------------------------------------------------------
   3635  Ice Sheet V                     SORCERER (Nv.1)                 MAGICAL / ACTIVE      Efeitos: SummonSkillArea
         Nome Interno: WI_Light_FrostPillar_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
@@ -647,9 +432,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
   3638  Curse of Weakness IV            SORCERER (Nv.1)                 MAGICAL / ACTIVE      Efeitos: MagicCounterATK
         Nome Interno: WI_CounterMagic_G4                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3652  Thorny Skin IV                  CHANTER (Nv.62), CHANTER (Nv.6  MAGICAL / ACTIVE      Efeitos: Reflector
-        Nome Interno: PR_SkinOfThorn_G4                                                        Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
 ----------------------------------------------------------------------------------------------------
   3653  Chain of Suffering VI           CHANTER (Nv.45), CLERIC (Nv.45  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, SpellATK, ResurrectBase, StatDown
         Nome Interno: PR_PainLinks_G6                                                         Motivo: Efeito composto não certificado pelo gabarito
@@ -675,14 +457,8 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3698  Ion Flux Concentration III      REVENANT (Nv.45), THUNDERER (N  MAGICAL / ACTIVE      Efeitos: BoostSkillCost, StatUp
         Nome Interno: TH_Overload_G3                                                          Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  3705  Flash Shield III                REVENANT (Nv.1), THUNDERER (Nv  MAGICAL / ACTIVE      Efeitos: Reflector, Provoker, StatUp
-        Nome Interno: TH_ThunderReflect_G3                                                        Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
   3742  Whirling Blow VII               BRAWLER (Nv.1)                  PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, DeboostHealAmount
         Nome Interno: ST_bspin_G7                                                             Motivo: Enums 0% e presença 36.4% no gabarito
-----------------------------------------------------------------------------------------------------
-  3747  Eternal Corridor III            BRAWLER (Nv.45)                 MAGICAL / ACTIVE      Efeitos: Reflector
-        Nome Interno: ST_reflect_G3                                                           Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
 ----------------------------------------------------------------------------------------------------
   3748  Le VII                          LUMINESS (Nv.60), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, StatDown, Blending
         Nome Interno: LU_BlendA_G7                                                            Motivo: Efeito novo da 5.0 (sem mapeamento de atributos no emulador / 0% gabarito)
@@ -699,65 +475,17 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3752  Seal VII                        LUMINESS (Nv.62), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, StatDown, Blending
         Nome Interno: LU_BurstE_G7                                                            Motivo: Efeito novo da 5.0 (sem mapeamento de atributos no emulador / 0% gabarito)
 ----------------------------------------------------------------------------------------------------
-  3754  Additional Attack Boost VII     LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPAttack_G7                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3755  Additional Defence Boost VII    LUMINESS (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: LU_P_PvePvPDefence_G7                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3773  Astral Blessing II              LUMINESS (Nv.45)                MAGICAL / ACTIVE      Efeitos: StatUp, AlwaysDodge, AlwaysResist
-        Nome Interno: LU_TransPower_G2                                                        Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
   3775  Mezzo Forte II                  LUMINESS (Nv.45)                MAGICAL / ACTIVE      Efeitos: BoostContextSkill
         Nome Interno: LU_ForteP_G2                                                            Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3776  Magic Defence I                 GLADIATOR (Nv.1), TEMPLAR (Nv.  MAGICAL / ACTIVE      Efeitos: StatUp
-        Nome Interno: FI_MagicalBarrier_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   3778  Seal Arrow I                    RANGER (Nv.1)                   MAGICAL / ACTIVE      Efeitos: SkillATK_Instant, BoostSkillCastingTime, Slow
         Nome Interno: RA_SealingArrow_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
 ----------------------------------------------------------------------------------------------------
-  3779  Instant Sprint I                RANGER (Nv.1)                   MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel
-        Nome Interno: RA_InstantSprint_G1                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
-  3793  Sneak Ambush I                  ASSASSIN (Nv.40)                PHYSICAL / ACTIVE     Efeitos: MoveBehindATK, Stun
-        Nome Interno: AS_BlindStrike_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3796  Boost Magic Suppression I       CHANTER (Nv.10), CLERIC (Nv.10  PHYSICAL / PASSIVE    Efeitos: StatBoost
-        Nome Interno: P_StatBoostMSBR_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3797  Boost Magic Suppression II      CHANTER (Nv.34), CLERIC (Nv.34  PHYSICAL / PASSIVE    Efeitos: StatBoost
-        Nome Interno: P_StatBoostMSBR_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3798  Boost Magic Suppression III     CHANTER (Nv.60), CLERIC (Nv.60  PHYSICAL / PASSIVE    Efeitos: StatBoost
-        Nome Interno: P_StatBoostMSBR_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3799  Boost Magic Suppression IV      SORCERER (Nv.48), SPIRIT_MASTE  PHYSICAL / PASSIVE    Efeitos: StatBoost
-        Nome Interno: P_StatBoostMSBR_G4                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3800  Boost Magic Suppression V       SORCERER (Nv.60), SPIRIT_MASTE  PHYSICAL / PASSIVE    Efeitos: StatBoost
-        Nome Interno: P_StatBoostMSBR_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3801  Curse of Magic Power I          SPIRIT_MASTER (Nv.40)           MAGICAL / ACTIVE      Efeitos: StatDown
-        Nome Interno: EL_MagicalBreakdown_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3803  Graspbreaker I                  SORCERER (Nv.40), SORCERER (Nv  MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel
-        Nome Interno: WI_CrystalMirror_G1                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
   3808  Stunning Hammer I               CHANTER (Nv.40), CLERIC (Nv.40  PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, BoostSkillCastingTime
         Nome Interno: PR_RaiseRepentance_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
 ----------------------------------------------------------------------------------------------------
-  3811  Space-Time Escape I             CHANTER (Nv.40)                 MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel
-        Nome Interno: CH_SpaceEscape_G1                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
   3817  Sage’s Wisdom I                 CHANTER (Nv.13), CLERIC (Nv.13  MAGICAL / ACTIVE      Efeitos: BoostSkillCastingTime
         Nome Interno: PR_SagesWisdom_new_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
-----------------------------------------------------------------------------------------------------
-  3819  Aethertwisting I                ASSASSIN (Nv.13)                MAGICAL / ACTIVE      Efeitos: AlwaysResist
-        Nome Interno: AS_WhisperofGale_new_G1                                                        Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
-  3826  Magnetic Discharge I            REVENANT (Nv.13), THUNDERER (N  MAGICAL / ACTIVE      Efeitos: AlwaysResist
-        Nome Interno: TH_SwiftResist_new_G1                                                        Motivo: Presença 0% no gabarito
 ----------------------------------------------------------------------------------------------------
   3827  Rise I                          CHANTER (Nv.40)                 MAGICAL / ACTIVE      Efeitos: Evade, StatUp
         Nome Interno: CH_PhoenixStep_new_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
@@ -786,83 +514,8 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3847  Life Blessing                   CHANTER (Nv.1), CLERIC (Nv.1)   MAGICAL / ACTIVE      Efeitos: DeBoostHealAmount
         Nome Interno: PR_HealingGrace_AD_G1                                                        Motivo: Enums 0% e presença 36.4% no gabarito
 ----------------------------------------------------------------------------------------------------
-  3849  Breath of the Wind              SORCERER (Nv.1)                 MAGICAL / ACTIVE      Efeitos: StatUp, StatUp, StatUp, StatUp
-        Nome Interno: WI_DefendSeal_AD_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3856  [Reboot] Springing Slice I      GLADIATOR (Nv.10), GLADIATOR (  PHYSICAL / ACTIVE     Efeitos: DashATK, StatDown, Root
-        Nome Interno: FI_Re_JumpingCut_G1                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3859  [Reboot] Wall of Steel I        GLADIATOR (Nv.10), TEMPLAR (Nv  MAGICAL / ACTIVE      Efeitos: AlwaysParry, StatUp
-        Nome Interno: FI_Re_ParryFocus_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3868  [Reboot] Additional Attack Boo  GLADIATOR (Nv.1), TEMPLAR (Nv.  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: FI_Re_P_PvePvPAttack_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3869  [Reboot] Additional Attack Boo  GLADIATOR (Nv.1), TEMPLAR (Nv.  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: FI_Re_P_PvePvPAttack_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3870  [Reboot] Additional Attack Boo  GLADIATOR (Nv.1), TEMPLAR (Nv.  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: FI_Re_P_PvePvPAttack_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3871  [Reboot] Additional Defence Bo  GLADIATOR (Nv.1), TEMPLAR (Nv.  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: FI_Re_P_PvePvPDefence_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3872  [Reboot] Additional Defence Bo  GLADIATOR (Nv.1), TEMPLAR (Nv.  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: FI_Re_P_PvePvPDefence_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3873  [Reboot] Additional Defence Bo  GLADIATOR (Nv.1), TEMPLAR (Nv.  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: FI_Re_P_PvePvPDefence_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3884  [Level 5] Destruction Incarnat  ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Physical_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3885  [Level 6] Destruction Incarnat  ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Physical_G6                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3886  [Level 7] Destruction Incarnat  ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Physical_G7                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3887  [Level 8] Destruction Incarnat  ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Physical_G8                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3888  [Level 9] Destruction Incarnat  ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Physical_G9                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   3889  [Level 10] Destruction Incarna  ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, WeaponStatBoost
         Nome Interno: All_P_Physical_G10                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
-----------------------------------------------------------------------------------------------------
-  3894  [Level 5] Abyssal Oath          ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Magical_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3895  [Level 6] Abyssal Oath          ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Magical_G6                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3896  [Level 7] Abyssal Oath          ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Magical_G7                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3897  [Level 8] Abyssal Oath          ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Magical_G8                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3898  [Level 9] Abyssal Oath          ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp
-        Nome Interno: All_P_Magical_G9                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3899  [Level 10] Abyssal Oath         ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp
-        Nome Interno: All_P_Magical_G10                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3932  [Level 5] Guardian’s Will       ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp
-        Nome Interno: All_P_Defense_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3933  [Level 6] Guardian’s Will       ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp
-        Nome Interno: All_P_Defense_G6                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3934  [Level 7] Guardian’s Will       ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp
-        Nome Interno: All_P_Defense_G7                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3935  [Level 8] Guardian’s Will       ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp
-        Nome Interno: All_P_Defense_G8                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3936  [Level 9] Guardian’s Will       ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp
-        Nome Interno: All_P_Defense_G9                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   3937  [Level 10] Guardian’s Will      ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp, DeboostHealAmount
         Nome Interno: All_P_Defense_G10                                                        Motivo: Enums 0% e presença 36.4% no gabarito
@@ -879,32 +532,11 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3941  Radar Expansion IV              ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: RadarAngle
         Nome Interno: All_P_Rader_360                                                         Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  3944  [Reboot] Devotion I             ASSASSIN (Nv.10)                MAGICAL / ACTIVE      Efeitos: StatUp, StatUp
-        Nome Interno: SC_Re_InvokePower_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3946  [Reboot] Deadly Focus I         ASSASSIN (Nv.10)                MAGICAL / ACTIVE      Efeitos: StatUp
-        Nome Interno: AS_Re_RaidStance_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3947  [Reboot] Flash of Speed I       ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel
-        Nome Interno: AS_Re__ShadowDodge_G1                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
   3948  [Reboot] Shadow Walk I          ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: Hide
         Nome Interno: AS_Re_Stigma_ShadowWalk_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   3949  [Reboot] All-Seeing Eye I       ASSASSIN (Nv.10)                MAGICAL / TOGGLE      Efeitos: Search
         Nome Interno: AS_Re_SixSense_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3950  [Reboot] Throw Dagger I         ASSASSIN (Nv.10), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet, Stun, Dispel
-        Nome Interno: AS_Re_FlyingDagger_G1                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
-----------------------------------------------------------------------------------------------------
-  3951  [Reboot] Ambush I               ASSASSIN (Nv.1)                 PHYSICAL / ACTIVE     Efeitos: MoveBehindATK, Stun
-        Nome Interno: AS_Re_Blindside_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3952  [Reboot] Aethertwisting I       ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: AlwaysDodge, AlwaysResist
-        Nome Interno: AS_RE_WhisperofGale_G1                                                        Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
-  3954  [Reboot] Swift Edge I           ASSASSIN (Nv.10), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet
-        Nome Interno: SC_Re_SwiftEdge_G1                                                        Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
 ----------------------------------------------------------------------------------------------------
   3957  [Reboot] Slayer Form I          ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: ShapeChange, StatUp, StatUp, WeaponStatBoost
         Nome Interno: AS_Re_AttackRoar_L_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
@@ -918,12 +550,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   3960  [Reboot] Slayer Form I (Forte)  ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: ShapeChange, StatUp, StatUp, WeaponStatBoost
         Nome Interno: AS_Re_AttackRoar_D_forte_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
 ----------------------------------------------------------------------------------------------------
-  3962  Tiger Leap                      GLADIATOR (Nv.10), GLADIATOR (  PHYSICAL / ACTIVE     Efeitos: DashATK, StatDown, Root
-        Nome Interno: New_FI_Re_JumpingCut_G1                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  3963  Wolf Assault                    ASSASSIN (Nv.1)                 PHYSICAL / ACTIVE     Efeitos: MoveBehindATK, Stun
-        Nome Interno: New_AS_Re_Blindside_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   3964  Werewolf Form                   ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: ShapeChange, StatUp, StatUp, WeaponStatBoost
         Nome Interno: New_AS_Re_AttackRoar_L_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
 ----------------------------------------------------------------------------------------------------
@@ -935,24 +561,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
   3967  Werewolf Form (Forte)           ASSASSIN (Nv.1)                 MAGICAL / ACTIVE      Efeitos: ShapeChange, StatUp, StatUp, WeaponStatBoost
         Nome Interno: New_AS_Re_AttackRoar_D_forte_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
-----------------------------------------------------------------------------------------------------
-  3972  [Reboot] Additional Attack Boo  ASSASSIN (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: Statup
-        Nome Interno: AS_Re_P_PvePvPAttack_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3973  [Reboot] Additional Attack Boo  ASSASSIN (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: Statup
-        Nome Interno: AS_Re_P_PvePvPAttack_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3974  [Reboot] Additional Attack Boo  ASSASSIN (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: Statup
-        Nome Interno: AS_Re_P_PvePvPAttack_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3975  [Reboot] Additional Defence Bo  ASSASSIN (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: Statup
-        Nome Interno: AS_Re_P_PvePvPDefence_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3976  [Reboot] Additional Defence Bo  ASSASSIN (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: Statup
-        Nome Interno: AS_Re_P_PvePvPDefence_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  3977  [Reboot] Additional Defence Bo  ASSASSIN (Nv.1)                 PHYSICAL / PASSIVE    Efeitos: Statup
-        Nome Interno: AS_Re_P_PvePvPDefence_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   3985  Intense Pain                    BRAWLER (Nv.69)                 PHYSICAL / ACTIVE     Efeitos: MoveLocation, SkillATK_Instant, Root
         Nome Interno: ST_flyingkick_AD_G1                                                        Motivo: Presença 0% no gabarito; Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
@@ -966,38 +574,14 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4004  Magic Eye of Clarity I          PHOENIX (Nv.28)                 MAGICAL / ACTIVE      Efeitos: Search
         Nome Interno: Gu_MagicalSearchEye_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4017  Controlled Evasion I            PHOENIX (Nv.1)                  MAGICAL / ACTIVE      Efeitos: AlwaysDodge, AlwaysResist
-        Nome Interno: GU_CheckingToAvoid_G1                                                        Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
   4044  Fissure Cannonball I            PHOENIX (Nv.1)                  PHYSICAL / ACTIVE     Efeitos: SpellATK_Instant, StatDown, DeBoostHealAmount
         Nome Interno: Gu_ArmorBreak_G1                                                        Motivo: Enums 0% e presença 36.4% no gabarito
 ----------------------------------------------------------------------------------------------------
   4060  Enhance Magic Projectile I      PHOENIX (Nv.45)                 MAGICAL / ACTIVE      Efeitos: Provoker, StatUp, OneTimeBoostSkillAttack
         Nome Interno: Gu_EmpowerAmmo_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4062  Insert Magic Projectile I       PHOENIX (Nv.1)                  MAGICAL / ACTIVE      Efeitos: SkillCooltimeReset
-        Nome Interno: Gu_FireChainReload_G1                                                        Motivo: Presença 0% no gabarito (reset de cooldown de skills)
-----------------------------------------------------------------------------------------------------
   4063  Load Magic Projectile I         PHOENIX (Nv.1)                  MAGICAL / ACTIVE      Efeitos: OneTimeBoostSkillCritical
         Nome Interno: Gu_FireChainRefresh_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4110  Encircling Bomb I               PHOENIX (Nv.1), PHOENIX (Nv.2)  PHYSICAL / ACTIVE     Efeitos: SpellATK_Instant, Root, SkillLauncher
-        Nome Interno: En_AnkleSnipe_G1                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  4111  Encircling Bomb II              PHOENIX (Nv.16), PHOENIX (Nv.1  PHYSICAL / ACTIVE     Efeitos: SpellATK_Instant, Root, SkillLauncher
-        Nome Interno: En_AnkleSnipe_G2                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  4112  Encircling Bomb III             PHOENIX (Nv.31), PHOENIX (Nv.3  PHYSICAL / ACTIVE     Efeitos: SpellATK_Instant, Root, SkillLauncher
-        Nome Interno: En_AnkleSnipe_G3                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  4113  Encircling Bomb IV              PHOENIX (Nv.46), PHOENIX (Nv.4  PHYSICAL / ACTIVE     Efeitos: SpellATK_Instant, Root, SkillLauncher
-        Nome Interno: En_AnkleSnipe_G4                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  4114  Encircling Bomb V               PHOENIX (Nv.60), PHOENIX (Nv.6  PHYSICAL / ACTIVE     Efeitos: SpellATK_Instant, Root, SkillLauncher
-        Nome Interno: En_AnkleSnipe_G5                                                        Motivo: Presença no gabarito 4.8 foi de 60.6% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  4122  Emergency Escape I              PHOENIX (Nv.40)                 MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel, StatUp
-        Nome Interno: Gu_LightningMovement_G1                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
 ----------------------------------------------------------------------------------------------------
   4132  Rapid Soul Fire I               PHOENIX (Nv.28), PHOENIX (Nv.2  PHYSICAL / ACTIVE     Efeitos: SpellATK_Instant, MPAttack_Instant, BoostSkillCastingTime
         Nome Interno: Gu_MentalicRapidFire_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
@@ -1029,9 +613,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4169  Retreat Shot III                PHOENIX (Nv.58), PHOENIX (Nv.5  PHYSICAL / ACTIVE     Efeitos: BackDashATK
         Nome Interno: Gu_BacksteppingSnipe_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4184  Flight Instinct I               PHOENIX (Nv.1)                  MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel, StatUp
-        Nome Interno: EV_SurvivalInstinct_G1                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
-----------------------------------------------------------------------------------------------------
   4187  Summon Auto-Cannons I           PHOENIX (Nv.1)                  PHYSICAL / ACTIVE     Efeitos: SummonServant
         Nome Interno: Gu_Light_CannonServant_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
@@ -1044,29 +625,8 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4191  Gravity Bomb I                  PHOENIX (Nv.1)                  PHYSICAL / ACTIVE     Efeitos: SummonSkillArea
         Nome Interno: Gu_Dark_BlackHall_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4193  Phoenix Awakening I             PHOENIX (Nv.50)                 MAGICAL / TOGGLE      Efeitos: ShapeChange, StatUp, statup, Reflector
-        Nome Interno: Gu_Light_AvatarOfFireGod_G1                                                        Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  4194  Phoenix Awakening I             PHOENIX (Nv.50)                 MAGICAL / TOGGLE      Efeitos: ShapeChange, StatUp, statup, Reflector
-        Nome Interno: Gu_Dark_AvatarOfFireGod_G1                                                        Motivo: Presença no gabarito 68.0% (abaixo do limiar de segurança de 70%)
-----------------------------------------------------------------------------------------------------
-  4208  Additional Attack Boost I       PHOENIX (Nv.1)                  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: GU_P_PvePvPAttack_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4209  Additional Attack Boost II      PHOENIX (Nv.1)                  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: GU_P_PvePvPAttack_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4210  Additional Defence Boost I      PHOENIX (Nv.1)                  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: GU_P_PvePvPDefence_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4211  Additional Defence Boost II     PHOENIX (Nv.1)                  PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: GU_P_PvePvPDefence_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   4233  Ion Flux Overload               REVENANT (Nv.45), THUNDERER (N  MAGICAL / ACTIVE      Efeitos: BoostSkillCost, StatUp, StatUp
         Nome Interno: TH_Overload_AD_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4234  Ion Flux Overload (Forte)       REVENANT (Nv.45), THUNDERER (N  MAGICAL / ACTIVE      Efeitos: StatUp, StatUp
-        Nome Interno: TH_Overload_forte_AD_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   4235  Executioner’s Stance            BRAWLER (Nv.1)                  MAGICAL / ACTIVE      Efeitos: OneTimeBoostSkillCritical
         Nome Interno: ST_SuperCritical_AD_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
@@ -1086,26 +646,14 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4245  Unwavering Eye                  PHOENIX (Nv.1)                  MAGICAL / ACTIVE      Efeitos: StatUp, StatUp, BoostHate
         Nome Interno: Gu_MindReading_AD_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4246  Tenacious                       ASSASSIN (Nv.1)                 MAGICAL / PASSIVE     Efeitos: StatUp, StatUp
-        Nome Interno: SC_Re_InvokePower_AD_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4247  Surprise Attack                 ASSASSIN (Nv.1)                 PHYSICAL / ACTIVE     Efeitos: MoveBehindATK, Stun, SkillLauncher
-        Nome Interno: AS_Re_Blindside_AD_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   4249  Magic Boost                     SORCERER (Nv.1)                 MAGICAL / ACTIVE      Efeitos: BoostSkillCastingTime, statup, StatUp, statup
         Nome Interno: WI_ManaBoost_AD_G1                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
-----------------------------------------------------------------------------------------------------
-  4255  Beast Fang III                  ASSASSIN (Nv.65), ASSASSIN (Nv  PHYSICAL / ACTIVE     Efeitos: CarveSignet, HostileUp
-        Nome Interno: AS_TigerBeat_G3                                                         Motivo: Presença no gabarito 0% (atributos de gravação de selo divergem da 4.8)
 ----------------------------------------------------------------------------------------------------
   4266  La VIII                         LUMINESS (Nv.65), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, StatDown, Blending
         Nome Interno: LU_BlendB_G8                                                            Motivo: Efeito novo da 5.0 (sem mapeamento de atributos no emulador / 0% gabarito)
 ----------------------------------------------------------------------------------------------------
   4267  Le VIII                         LUMINESS (Nv.65), LUMINESS (Nv  MAGICAL / ACTIVE      Efeitos: SpellATK_Instant, StatDown, Blending
         Nome Interno: LU_BlendA_G8                                                            Motivo: Efeito novo da 5.0 (sem mapeamento de atributos no emulador / 0% gabarito)
-----------------------------------------------------------------------------------------------------
-  4269  Flight Instinct II              PHOENIX (Nv.65)                 MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel, StatUp
-        Nome Interno: EV_SurvivalInstinct_G2                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
 ----------------------------------------------------------------------------------------------------
   4404  Blade Avalanche I               SOUL_REAPER (Nv.1), SOUL_REAPE  PHYSICAL / ACTIVE     Efeitos: SkillATK_Instant, Absolutesnare, Blending, SkillLauncher
         Nome Interno: RB_BladeAssault_G1                                                        Motivo: Efeito novo da 5.0 (sem mapeamento de atributos no emulador / 0% gabarito)
@@ -1136,12 +684,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
   4423  Soul Devourer V                 SOUL_REAPER (Nv.61), SOUL_REAP  MAGICAL / ACTIVE      Efeitos: MPATKDrain_Instant, Silence, Bind
         Nome Interno: RB_SoulDevour_G5                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4430  Evading Shadow I                SOUL_REAPER (Nv.1)              MAGICAL / ACTIVE      Efeitos: DispelDebuffPhysical, AlwaysDodge, AlwaysResist, Heal_Instant
-        Nome Interno: RB_ShadowEvasion_G1                                                        Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
-  4431  Penumbra I                      SOUL_REAPER (Nv.1)              MAGICAL / ACTIVE      Efeitos: RandomMoveLoc, Dispel, StatUp
-        Nome Interno: RB_OblivionDash_G1                                                        Motivo: Presença no gabarito 0% (atributos de teletransporte aleatório não mapeados)
 ----------------------------------------------------------------------------------------------------
   4432  Final Execution I               SOUL_REAPER (Nv.18)             MAGICAL / ACTIVE      Efeitos: MoveBehindATK, NoReduceSpellATK_Instant, SkillLauncher
         Nome Interno: RB_Execution_G1                                                         Motivo: Enums 12.5% e presença 37.5% no gabarito
@@ -1218,9 +760,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4472  Sardonic Laughter II            SOUL_REAPER (Nv.1)              PHYSICAL / PASSIVE    Efeitos: StatUp, StatSynergy
         Nome Interno: RB_P_PhyAttackUp_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4489  Flying Soulblade                SOUL_REAPER (Nv.1)              MAGICAL / ACTIVE      Efeitos: DispelDebuffPhysical, AlwaysDodge, AlwaysResist, Heal_Instant
-        Nome Interno: RB_ShadowEvasion_AD_G1                                                        Motivo: Presença 0% no gabarito
-----------------------------------------------------------------------------------------------------
   4490  Proficient Soulblade Training   SOUL_REAPER (Nv.1)              PHYSICAL / PASSIVE    Efeitos: Wpn_Mastery, Provoker, WeaponStatBoost
         Nome Interno: P_EQUIP_RuneSword_AD_G1                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
 ----------------------------------------------------------------------------------------------------
@@ -1245,9 +784,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4509  Life Blessing                   CHANTER (Nv.66), CLERIC (Nv.66  MAGICAL / ACTIVE      Efeitos: DeBoostHealAmount
         Nome Interno: PR_HealingGrace_AD_G1_EVT                                                        Motivo: Enums 0% e presença 36.4% no gabarito
 ----------------------------------------------------------------------------------------------------
-  4511  Breath of the Wind              SORCERER (Nv.66)                MAGICAL / ACTIVE      Efeitos: StatUp, StatUp, StatUp, StatUp
-        Nome Interno: WI_DefendSeal_AD_G1_EVT                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   4517  Ion Flux Overload               REVENANT (Nv.66), THUNDERER (N  MAGICAL / ACTIVE      Efeitos: BoostSkillCost, StatUp, StatUp
         Nome Interno: TH_Overload_AD_G1_EVT                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
@@ -1266,20 +802,11 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4526  Unwavering Eye                  PHOENIX (Nv.66)                 MAGICAL / ACTIVE      Efeitos: StatUp, StatUp, BoostHate
         Nome Interno: Gu_MindReading_AD_G1_EVT                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4527  Tenacious                       ASSASSIN (Nv.66)                MAGICAL / PASSIVE     Efeitos: StatUp, StatUp
-        Nome Interno: SC_Re_InvokePower_AD_G1_EVT                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4528  Surprise Attack                 ASSASSIN (Nv.66)                PHYSICAL / ACTIVE     Efeitos: MoveBehindATK, Stun, SkillLauncher
-        Nome Interno: AS_Re_Blindside_AD_G1_EVT                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
   4530  Magic Boost                     SORCERER (Nv.66)                MAGICAL / ACTIVE      Efeitos: BoostSkillCastingTime, statup, StatUp, statup
         Nome Interno: WI_ManaBoost_AD_G1_EVT                                                        Motivo: Enums+stats 52.9% e presença 35.3% no gabarito (abaixo dos limiares)
 ----------------------------------------------------------------------------------------------------
   4534  [Level 10] Destruction Incarna  ALL (Nv.66)                     PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, WeaponStatBoost
         Nome Interno: All_P_Physical_G10_EVT                                                        Motivo: Apenas 2 casos de teste no gabarito (amostragem insuficiente)
-----------------------------------------------------------------------------------------------------
-  4535  [Level 10] Abyssal Oath         ALL (Nv.66)                     PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp
-        Nome Interno: All_P_Magical_G10_EVT                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
   4536  [Level 10] Guardian’s Will      ALL (Nv.66)                     PHYSICAL / PASSIVE    Efeitos: StatBoost, StatUp, StatUp, DeboostHealAmount
         Nome Interno: All_P_Defense_G10_EVT                                                        Motivo: Enums 0% e presença 36.4% no gabarito
@@ -1302,30 +829,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
   4546  Icestorm Illusion II            SOUL_REAPER (Nv.61)             MAGICAL / ACTIVE      Efeitos: SummonSkillArea
         Nome Interno: RB_Dark_IceAge_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
-  4552  Additional Attack Boost I       SOUL_REAPER (Nv.1)              PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: RB_P_PvePvPAttack_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4554  Additional Defence Boost I      SOUL_REAPER (Nv.1)              PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: RB_P_PvePvPDefence_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4607  Walk on Wings                   ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: All_passive_speed_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4608  Lightning Attack                ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: All_passive_attackDelay_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4609  Mental Block                    ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: All_passive_BoostCastingTime_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4610  Battle-Hardened                 ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: All_passive_allattackratio_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4611  Defensive Instinct              ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: All_passive_alldefendratio_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
-  4616  (미사용) 마법 상쇄 I                   ALL (Nv.1)                      PHYSICAL / PASSIVE    Efeitos: StatUp
-        Nome Interno: All_passive_magicalskillboostresist_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
  10827  Break Limit I                   ALL (Nv.1)                      MAGICAL / ACTIVE      Efeitos: StatUp
         Nome Interno: Classic_Wind_ShoulderFlySpeed_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
@@ -1334,18 +837,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
  10840  Break Limit III                 ALL (Nv.1)                      MAGICAL / ACTIVE      Efeitos: StatUp
         Nome Interno: Classic_Wind_ShoulderFlySpeed_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 10861  HP 182, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_S_HPMagDefMagAcc                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 10872  HP 89, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_A_HPMagDef                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 10931  HP 178, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_S_HPMagDefMagAcc                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 10943  HP 72, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
  10979  Break Limit I                   ALL (Nv.1)                      MAGICAL / ACTIVE      Efeitos: StatUp
         Nome Interno: Classic_Wind_ShoulderFlySpeed_glove_G1                                                        Motivo: Efeito composto não certificado pelo gabarito
@@ -1382,75 +873,6 @@ Total de habilidades na skill_tree dos jogadores que são stubs (<properties /> 
 ----------------------------------------------------------------------------------------------------
  10990  Break Limit III                 ALL (Nv.1)                      MAGICAL / ACTIVE      Efeitos: StatUp
         Nome Interno: Classic_Wind_ShoulderFlySpeed_shoes_G3                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11071  HP 182, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_S_HPMagDefMagAcc_glove                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11072  HP 182, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_S_HPMagDefMagAcc_shoulder                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11073  HP 182, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_S_HPMagDefMagAcc_pants                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11074  HP 182, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_S_HPMagDefMagAcc_shoes                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11115  HP 89, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_A_HPMagDef_glove                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11116  HP 89, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_A_HPMagDef_shoulder                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11117  HP 89, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_A_HPMagDef_pants                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11118  HP 89, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_A_HPMagDef_shoes                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11151  HP 178, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_S_HPMagDefMagAcc_glove                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11152  HP 178, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_S_HPMagDefMagAcc_shoulder                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11153  HP 178, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_S_HPMagDefMagAcc_pants                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11154  HP 178, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_S_HPMagDefMagAcc_shoes                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11199  HP 72, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_glove                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11200  HP 72, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_shoulder                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11201  HP 72, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_pants                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11202  HP 72, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_shoes                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11251  HP 182, Magic Suppression 22,   ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_S_HPMagDefMagAcc_torso                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11262  HP 89, Magic Suppression 20     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_Wind_A_HPMagDef_torso                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11638  HP 90, Magic Suppression 25     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_torso_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11639  HP 90, Magic Suppression 25     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_pants_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11640  HP 90, Magic Suppression 25     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_glove_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11641  HP 90, Magic Suppression 25     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_shoulder_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
-----------------------------------------------------------------------------------------------------
- 11642  HP 90, Magic Suppression 25     ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: StatUp
-        Nome Interno: Classic_A_HPMagDef_shoes_G2                                                        Motivo: Efeito composto não certificado pelo gabarito
 ----------------------------------------------------------------------------------------------------
  11648  Soul Healing                    ALL (Nv.1)                      MAGICAL / PASSIVE     Efeitos: NoResurrectPenalty, NoDeathPenalty
         Nome Interno: Item_Skill_gunner_belt_01                                                        Motivo: Efeito composto não certificado pelo gabarito
