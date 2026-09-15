@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos são instruídos a trabalhar em conjunto no desenvolvimento da aldeia.</p>
+          <p>Esperamos que a maioria das pessoas participe para tornar a aldeia um lugar encantador e hospitaleiro.</p>
+          <p> </p>
+          <p>Missão da aldeia:</p>
+          <p>Para deixar o poço ainda mais bonito, está prevista a criação de um pódio. Junte [%dic:STR_DIC_E_junk_town_upgrade_seasonlight] para dar um ar mais sazonal à decoração e leve para [%dic:STR_DIC_N_Town_shugo_Worker_05].</p>
+          <p> </p>
+          <p>- Administração da aldeia -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Precisamos de um palco para deixar a fonte ainda mais bonita.</p>
+          <p> </p>
+          <p>Vamos dar uma olhada mais de perto. Colocaremos um pilar no meio, adicionaremos um pódio e cultivaremos algumas lindas flores.</p>
+          <p> </p>
+          <p>Mas as flores que crescem no pódio são diferentes das flores que crescem nos canteiros, akakak.</p>
+          <p> </p>
+          <p>Elas não são como as plantas do dia a dia que você planta e depois rega. Precisamos daquelas que florescem majestosamente o ano todo.</p>
+          <p> </p>
+          <p>Mais precisamente, precisamos da Luz das Estações...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Luz das Estações.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essa é... essa é a Luz das Estações! Esse é realmente o item valioso que você só pode obter no Agrint of the Seasons?</p>
+          <p> </p>
+          <p>Impressionante!</p>
+          <p> </p>
+          <p>Eu tinha ouvido falar que uma tarefa da aldeia havia sido emitida, mas não esperava muito. Muito obrigado, akakak.</p>
+          <p> </p>
+          <p>Em breve poderei maravilhar-me com uma aldeia transformada, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_E_junk_town_upgrade_seasonlight] e leve para [%dic:STR_DIC_N_Town_shugo_Worker_05].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Precisamos da Luz das Estações para erguer uma bela coluna perto do poço da aldeia e fazer as plantas crescerem. A Luz das Estações precisa ser coletada e levada ao capataz da aldeia para terminar a tarefa da aldeia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Anúncio de tarefa da aldeia. Precisamos da Luz das Estações para erguer uma bela coluna perto do poço da aldeia e fazer crescer as plantas.</p>
+          <p> </p>
+          <p>As pessoas estão gratas por vocês estarem participando da missão da aldeia de reunir a Luz das Estações para desenvolver a aldeia e levá-la ao capataz da aldeia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

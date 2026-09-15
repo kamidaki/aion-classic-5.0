@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username].</p>
+          <p> </p>
+          <p>Estamos fazendo grandes progressos em Signia graças aos esforços de muitos Daevas.</p>
+          <p> </p>
+          <p>Mas agora é hora do próximo passo.</p>
+          <p> </p>
+          <p>Temos que estabelecer observatórios em Signia.</p>
+          <p> </p>
+          <p>Alguns membros já receberam a missão de procurar locais. Por favor, dê uma olhada neles.</p>
+          <p> </p>
+          <p>Encontre [%dic:STR_DIC_N_LF5_Milliard_E] e deixe-o atualizá-lo sobre o estado atual das coisas. Então vá para [%dic:STR_DIC_N_LF5_Laysean_E] e dê um relatório a ele.</p>
+          <p> </p>
+          <p>E lembre-se de que você deve agir rápido e ao mesmo tempo proceder com extrema cautela!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você aceita a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que traz você até mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você explica seu negócio.</Act>
+    </Selects>
+  </HtmlPage> 
+ 
+<HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acabei de receber o pedido e estava prestes a lê-lo. Não parece que possamos construir observatórios aqui neste momento.</p>
+          <p> </p>
+          <p>Este lugar já pertence aos Balaur há muito tempo...</p>
+          <p> </p>
+          <p>Enquanto houver vestígios da energia Balaur aqui, a construção dos observatórios será um problema. Por favor, passe isso adiante.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+ 
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho o prazer de conhecer um colega da ordem em [%dic:STR_DIC_W_LF5].</p>
+          <p> </p>
+          <p>Você falou com [%dic:STR_DIC_N_LF5_Milliard_E]?</p>
+          <p> </p>
+          <p>O que ele disse?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Exatamente como eu esperava. Sempre pensei que seria difícil estabelecer observatórios em[%dic:STR_DIC_W_LF5].</p>
+          <p> </p>
+          <p>Ainda existem vestígios de Balaur por todo o lado.</p>
+          <p> </p>
+          <p>Não podemos estabelecer observatórios sagrados num lugar tão instável.</p>
+          <p> </p>
+          <p>Mas muito obrigado por seus esforços. Vou repassar este relatório aos meus superiores.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LF5_Milliard_E].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LF5_Laysean_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Um apelo à ação chegou da Ordem do Alabastro. Siga suas instruções.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo a Ordem do Alabastro, chegou a hora de construir observatórios em Signia. Você foi convidado a ir até Milar e se informar sobre a situação.</p>
+          <p> </p>
+          <p>Você se encontrou com Milar e ele lhe explicou que era impossível estabelecer observatórios nessas condições. Você transmitiu o que ele disse a Rayin, que queria informar seus superiores.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41500</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você! Sim, preciso da sua ajuda! Uma tarefa, na verdade. Geologia... muita diversão, essas pedras. Tão interessante de assistir, e... ah...</p>
+          <p> </p>
+          <p>Olha, eu realmente não sei do que estou falando. Só preciso que alguém vá até Fissure Barrens e se encontre com um dos meus homens. [%dic:STR_DIC_N_Grido] é o nome dele. Homem adorável.</p>
+          <p> </p>
+          <p>Então, ah... interessado?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você parece confuso o suficiente para ter sido enviado aqui por Grandia.</p>
+          <p> </p>
+          <p>Eu sabia que ela estava desesperada para me ajudar, mas ela pediu a um Daeva? Grandia, você se superou!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Ela era certamente interessante."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você não precisa me contar, meu amigo. Mas mostra o poder das relações, hein? Aquela mulher deve tudo ao pai.</p>
+          <p> </p>
+          <p>Mas, já que você está aqui, certamente precisaria da sua ajuda. Do ponto de vista geológico, há muitas coisas que valem a pena estudar aqui, e não estou dizendo isso apenas para parecer chato.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Grido].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary"> Aparentemente são necessárias mãos extras em Fissure Barrens para um estudo geológico. Vá lá e encontre Grido.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Grandia contou a você sobre Fissure Barrens e como era necessária ajuda para iniciar vários projetos de pesquisa. Embora confuso, você viajou para Barrens e se encontrou com Grido, que lhe disse que havia muito o que fazer.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

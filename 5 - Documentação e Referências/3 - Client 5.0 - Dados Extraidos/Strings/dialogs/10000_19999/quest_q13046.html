@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Assim como em Atreia, aqui os Skurv e Kobolds trabalham para os Shugos.</p>
+          <p> </p>
+          <p>Os Skurv e Kobolds desapareceram recentemente e de repente e deixaram sua tenda feia.</p>
+          <p> </p>
+          <p>Se não fizermos nada, os Skurv e os Kobolds poderão voltar, então estou pedindo para você matar [%dic:STR_DIC_N_LDF5b_FOBJ_E2_Pondok].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para onde o Skurv e o Kobold poderiam ter ido?</p>
+          <p> </p>
+          <p>Espero que eles não voltem...</p>
+          <p> </p>
+          <p>Mas eles partirão de qualquer maneira assim que as tendas forem desmontadas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você nos salvou de um problema. Obrigado.</p>
+          <p> </p>
+          <p>Ah, me desculpe. Devo pedir que você se lave.</p>
+          <p> </p>
+          <p>Você cheira a mofo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Limpe o [%dic:STR_DIC_N_LDF5b_FOBJ_E2_Pondok] ([%2]/6)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Rebos_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Desmonte as tendas onde os trabalhadores Skurv e Kobold moravam.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Skurv e os Kobolds que trabalhavam como trabalhadores de Shugo desapareceram.</p>
+          <p> </p>
+          <p>Rebos pediu para você se livrar das tendas sujas.</p>
+          <p> </p>
+          <p>Depois que você se desfez das barracas, ele disse que as coisas fediam e desejou que os Skurv e os Kobolds não voltassem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

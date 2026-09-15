@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Saudações. Sou responsável por avaliar os Ícones Antigos e compensar os Daevas que os trouxerem para mim.</p>
+          <p> </p>
+          <p>Estes são objetos sagrados, como você deve saber. É um sacrilégio deixar os Balaur ou seus demônios ficarem com eles.</p>
+          <p> </p>
+          <p>Não tenha medo. Serei imparcial e sua recompensa será justa.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+        <exchange_coin>Exchange Ancient Relics</exchange_coin>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Me desculpe, você me confundiu com alguém que lida com outro tipo de item Antigo?</p>
+          <p> </p>
+          <p>Eu só lido com Ícones Antigos e você não tem nenhum.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ah, erro meu."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

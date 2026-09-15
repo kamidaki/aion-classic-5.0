@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Ordem de Operação -</p>
+          <p/>
+          <p>De: Sede da Radiant Ops</p>
+          <p/>
+          <p>Para: Agente [%username]</p>
+          <p/>
+          <p>A filial da Radiant Ops em Reshanta quer derrubar os arrogantes Asmodianos de uma vez por todas e, portanto, está convocando todas as regiões de Vengar para iniciar a guerra. Que nossas lâminas estejam encharcadas no sangue dos Asmodianos... em todos os momentos.</p>
+          <p/>
+          <p>Por favor, execute o seguinte pedido sem demora.</p>
+          <p/>
+          <p>1. Infiltre-se em Vengar e descubra os esconderijos dos Asmodianos da forma mais discreta possível.</p>
+          <p/>
+          <p>2. Se você encontrar Asmodianos, mate cinco deles. O método que você usa não tem consequências.</p>
+          <p/>
+          <p>3. No entanto, pode danificar a imagem do Radiant Ops se você matar inimigos fracos.</p>
+          <p/>
+          <p>4. Reporte-se a [%dic:STR_DIC_N_LF5_Niman_E] assim que tiver eliminado o inimigo.</p>
+          <p/>
+          <p>Que a luz de Aion brilhe sobre você na batalha!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Salve, [%username].</p>
+          <p> </p>
+          <p>Quantos inimigos você derrotou hoje?</p>
+          <p> </p>
+          <p>Você matou os Asmodianos e trouxe honra ao Radiant Ops?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Verifiquei se você completou a missão, [%username].</p>
+          <p> </p>
+          <p>Aqui está uma recompensa Radiant Ops.</p>
+          <p> </p>
+          <p>Para a glória do santuário!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os inimigos em [%dic:STR_DIC_W_DF5] ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LF5_Niman_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordem diária: Mate os Asmodianos que invadiram Vengar e depois reporte ao agente Niman.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Radiant Ops emitiu a ordem para matar os Asmodianos que invadiram Vengar.</p>
+          <p> </p>
+          <p>Você cumpriu a missão e depois reportou ao agente Niman, que lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

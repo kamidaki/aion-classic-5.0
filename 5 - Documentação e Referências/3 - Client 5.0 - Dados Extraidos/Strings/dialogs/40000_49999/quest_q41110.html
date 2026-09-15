@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41110</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, é um prazer conhecê-la, um verdadeiro prazer! Não consigo expressar o quanto estou feliz por ter você e seus amigos aqui em Sarpan.</p>
+          <p> </p>
+          <p>Podemos ter nossas diferenças, mas ei, tudo bem! Há uma coisa que todos podemos apoiar. Você sabe o que é isso? Paz! Paz em Sarpan! É bom para todos, não é mesmo?</p>
+          <p> </p>
+          <p>Vou colocar você em contato com alguém com quem acho que você realmente se dará bem. O nome dela é [%dic:STR_DIC_N_Olibaia]. Ela pode introduzi-lo na Tempestade de Areia Sarpan, nosso grande esforço de manutenção da paz. O que você diz?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Tempestade de Areia está comprometida com a paz, sim. Mas em Sarpan a paz não surge espontaneamente.</p>
+          <p> </p>
+          <p>Aqui devemos lutar pela nossa paz. Uma causa nobre, não acha?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">"Nobre, claro. E a parte da luta?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sarpan está repleto de Sapiens guerreiros - o Humnaz Calydon de um lado, o Urugugu Strigik do outro, e inúmeras criaturas no meio.</p>
+          <p> </p>
+          <p>Os Balaur, é claro, são os piores de todos, e todos os Reianos aprenderam a temer os sons dos motores Dredgion.</p>
+          <p> </p>
+          <p>Contamos com Daevas como você para manter nosso mundo em equilíbrio, então estou feliz que [%dic:STR_DIC_N_Ajenos] tenha recrutado você. Agradeça a ele, sim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Eu vou."</Act>
+    </Selects>
+    <CutScene id="712"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Baia não é ótima?</p>
+          <p> </p>
+          <p>Ela realmente entende, sabe? Então, sobre o que vocês dois conversaram?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Matar coisas. Pela paz."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ei, isso não parece divertido! Sim, aquela Baia - ela realmente entende a paz!</p>
+          <p> </p>
+          <p>É ótimo ver você defendendo a causa da Tempestade de Areia, Daeva. Você vai se encaixar perfeitamente com eles, posso garantir.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Olibaia].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Ajenos].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ajenos quer que você fale com Baia sobre a tempestade de areia Sarpan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ajenos enviou você para encontrar Baia e aprender sobre a Tempestade de Areia, a força de manutenção da paz de Sarpan.</p>
+          <p> </p>
+          <p>Baia explicou que a Tempestade de Areia mantém a paz matando criaturas problemáticas.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

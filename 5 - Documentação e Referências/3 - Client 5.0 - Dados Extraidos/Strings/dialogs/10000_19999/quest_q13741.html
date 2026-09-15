@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma tarefa para [%username]. É sobre a conquista de Akaron.</p>
+          <p> </p>
+          <p>As perturbações devem ser eliminadas desta região para proteger o Campo de Barreira de Fissuras.</p>
+          <p> </p>
+          <p>Portanto, elimine [plur][%dic:STR_DIC_M_LDF4_Advance_Baku_65_n], [plur][%dic:STR_DIC_M_LDF4_Advance_Zaif_65_An] e [plur][%dic:STR_DIC_M_LDF4_Advance_Saam_65_n], bem como [plur][%dic:STR_DIC_M_LDF4_Advance_Rafflesia_65_An]. E colete provas enquanto você faz isso.</p>
+          <p> </p>
+          <p>Quanto mais missões você realizar para conquistar Akaron, mais rápido alcançaremos nosso objetivo.</p>
+          <p> </p>
+          <p>Por favor, faça um esforço!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A presença dos Balaur e dos Asmodianos é a que mais nos causa problemas aqui em Akaron. No entanto, seria imprudente enviar as nossas tropas, uma vez que ainda não estamos familiarizados com o terreno.</p>
+          <p> </p>
+          <p>Então, antes de mais nada, devemos nos familiarizar com o terreno.</p>
+          <p> </p>
+          <p>Você protegeu o Campo de Barreira de Fissuras?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as evidências que confirmam o Campo de Barreira de Fissuras.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As evidências do Campo de Barreira de Fissuras foram todas confirmadas.</p>
+          <p> </p>
+          <p>Tenho a sensação de que já estamos um passo mais perto de conquistar Akaron.</p>
+          <p> </p>
+          <p>Agora que o Campo da Barreira de Fissuras foi assegurado, podemos concentrar-nos em confrontar os Balaur e os Asmodianos.</p>
+          <p> </p>
+          <p>Muito bem feito. Obrigado!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue [%dic:STR_DIC_I_LDF4_Advance_Q13741_all] e traga tudo para [%dic:STR_DIC_N_LDF4_Advance_Elger_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o Campo de Barreira de Fissuras e mate Longhorn Basin Bakus, Mane Malodors, Mane Basin Worgs e Millennium Ginsengs. E colete provas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Elger convenceu você da urgência de proteger o Campo da Barreira de Fissuras em Akaron.</p>
+          <p> </p>
+          <p>Você eliminou Longhorn Basin Bakus, Mane Malodors, Mane Basin Worgs e Millennium Saams, e então apresentou a Elger evidências do Campo de Barreira de Fissuras.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

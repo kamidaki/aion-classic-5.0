@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O sacerdote chamado Philipemos veio aqui para explorar o Templo Kyola.</p>
+          <p> </p>
+          <p>Ele era um especialista nas áreas de arqueologia e geologia. Ele queria pesquisar o Templo Kyola enquanto guardava a Fonte Mística.</p>
+          <p> </p>
+          <p>Mas quando cheguei para ajudar Philipemos, a primavera estava seca e Philipemos... havia desaparecido!</p>
+          <p> </p>
+          <p>Um pouco mais tarde, fiquei horrorizado ao encontrar os restos mortais de Philipemos perto do Templo Kyola. Acredite em mim, essa visão foi difícil de suportar.</p>
+          <p> </p>
+          <p>Acredite em mim, essa visão foi simplesmente difícil de suportar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mas encontrei outra coisa no templo.</p>
+          <p> </p>
+          <p>Era o seu Antigo Diário. Nele ele descreveu suas observações detalhadas na Fonte Mística.</p>
+          <p> </p>
+          <p>Infelizmente, o Antigo Diário foi ligeiramente danificado, tornando algumas passagens ilegíveis. Felizmente, graças à ajuda de vários Daevas, consegui restaurar o Antigo Diário.</p>
+          <p> </p>
+          <p>Li sobre Hipólito, o Mercador, neste Antigo Diário restaurado.</p>
+          <p> </p>
+          <p>Por que um comerciante deveria ir ao Observatório, já que não pode fazer nenhum negócio lá? Isso me pareceu muito estranho.</p>
+          <p> </p>
+          <p>No Antigo Diário, finalmente descobri que Hipólito destruiu a Fonte Mística e que queria reivindicar para si a Conta da Vida dada por Lorde Yustiel.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Suspeitei que ele pretende fazer algo no Observatório além de fechar negócios.</p>
+          <p> </p>
+          <p>Antes que ele possa causar estragos, [%dic:STR_DIC_M_hippolyta_Q14123] deve ser eliminado.</p>
+          <p> </p>
+          <p>Claro, os Guardiões do Observatório não vão deixar você matá-lo.</p>
+          <p> </p>
+          <p>Portanto, vá até [%dic:STR_DIC_N_Dionera], guarda de [%dic:STR_DIC_W_LF2_SZ_E2_SUB_1], e explique a situação para ela.</p>
+          <p> </p>
+          <p>Dionera certamente não irá rejeitá-lo se você mencionar a Sombra.</p>
+          <p> </p>
+          <p>Não sei o que significa o Comando da Sombra, mas [%dic:STR_DIC_N_Dionera] poderá ajudá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vingue o Padre Philipemos matando Hipólito.</p>
+          <p> </p>
+          <p>Este comerciante desprezível pretende roubar a Life Bead presenteada por Lorde Yustiel.</p>
+          <p> </p>
+          <p>A segurança do Observatório e de Eltnen depende de suas ações, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tudo bem, fique à vontade. A decisão é sua.</p>
+          <p> </p>
+          <p>Apenas me prometa que não contará a mais ninguém as coisas que eu lhe contei.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você está fazendo aqui no Observatório?</p>
+          <p> </p>
+          <p>Para garantir a segurança deste local especial, devo verificar a identidade de cada visitante.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você diz que só veio para se livrar de Hipólito, o Mercador.</Act>
+    </Selects>
+  </HtmlPage>
+
+<HtmlPage name="select2_1">
+  <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você quer dizer? Acho que ouvi errado.</p>
+          <p> </p>
+          <p>Você deseja eliminar [%dic:STR_DIC_M_hippolyta_Q14123]? Ele é apenas um simples comerciante.</p>
+          <p> </p>
+          <p>Por que diabos você quer matá-lo?</p>
+        </body>
+        </html>
+  </Contents>
+  <Selects>
+    <Act href="HACTION_SELECT2_1_1">Você diz que a Sombra comandou isso.</Act>
+  </Selects>
+</HtmlPage>
+
+  <HtmlPage name="select2_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Sombra comandou isso?</p>
+          <p> </p>
+          <p>(Depois de um breve silêncio.) Entendido.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_hippolyta_Q14123] está por trás do Observatório.</p>
+          <p> </p>
+          <p>Os outros Guardiões estão ocupados no momento e não notarão você.</p>
+          <p> </p>
+          <p>Conclua sua tarefa imediatamente.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  <Voice file="Q1038-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você eliminou [%dic:STR_DIC_M_hippolyta_Q14123]?</p>
+          <p> </p>
+          <p>Agora que penso nisso, tem havido muitos acontecimentos estranhos no Observatório recentemente. E tudo de alguma forma parece ser por causa dele.</p>
+          <p> </p>
+          <p>Achei que ele fosse apenas um comerciante comum tentando ganhar a vida.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta sobre sua recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado pela sua ajuda.</p>
+          <p> </p>
+          <p>Tenho mais um pedido para lhe fazer. Por favor, não conte a ninguém que você matou Hipólito, o Mercador, e nunca fale sobre o Comando da Sombra.</p>
+          <p> </p>
+          <p>Você parece uma pessoa razoável, então não acredito que não contará a ninguém.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LF2_SZ_E2_SUB_1] e fale com [%dic:STR_DIC_N_Dionera].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Elimine [%dic:STR_DIC_M_hippolyta_Q14123] ([%11]/1) atrás do Observatório.</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Volte para [%dic:STR_DIC_W_LF2_SZ_E2_SUB_1] e reporte para [%dic:STR_DIC_N_Dionera].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Pare Hipólito, que está tramando um plano perverso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Actéon lhe contou sobre o Diário de Philipemos e pediu que você punisse Hipólito, o Mercador.</p>
+          <p> </p>
+          <p>Você e Dionera lidaram com Hipólito, o Mercador, mas ainda estão curiosos para descobrir o que significa "Sombra".</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

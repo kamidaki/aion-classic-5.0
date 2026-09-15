@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não confio em você.</p>
+          <p> </p>
+          <p>Infelizmente, porém, não tenho outra escolha.</p>
+          <p> </p>
+          <p>Traga meu relatório de pesquisa antes que o Serviço de Inteligência do Exército de Beritra o encontre.</p>
+          <p> </p>
+          <p>O relatório da pesquisa está na caixa oculta.</p>
+          <p> </p>
+          <p>Provavelmente isso é do interesse para você e seu pessoal.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você levou com você?</p>
+          <p> </p>
+          <p>Você já viu o relatório da pesquisa?</p>
+          <p> </p>
+          <p>Se você conhece o sistema de escrita Balaur, poderá lê-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Diário de Pesquisa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você parece ter me trazido as coisas certas.</p>
+          <p> </p>
+          <p>Você receberá seus itens como recompensa.</p>
+          <p> </p>
+          <p>Nosso acordo é válido.</p>
+          <p> </p>
+          <p>Por agora.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre [%dic:STR_DIC_I_quest_13554a] e vá para [%dic:STR_DIC_N_LDF5A_Akad_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre o relatório de pesquisa do Mysterious Lockbox de Akad e traga-o de volta.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akard pode não ter fé, mas como não havia outra escolha, ele lhe contou sobre a caixa que continha o relatório da pesquisa. Você trouxe o relatório da pesquisa para Akard, que ficou aliviado e disse que a negociação era válida.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

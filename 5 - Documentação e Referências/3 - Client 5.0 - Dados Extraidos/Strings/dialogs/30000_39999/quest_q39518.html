@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39518</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Boletim de atualização para membros do comerciante Black Cloud -</p>
+          <p> </p>
+          <p>Os comerciantes da Nuvem Negra lembram que Slimy Sludgers no Pântano Gurriki são muito difíceis de subjugar quando estão com raiva.</p>
+          <p> </p>
+          <p>Os comerciantes devem observar que Brax andando pelo ninho de Sludger é muito irritante para os Sludgers, e a natureza viscosa da criatura torna difícil retirá-los de Brax.</p>
+          <p> </p>
+          <p>Esteja ciente também de que as antenas do Sludger se soltam se usadas como alças e ficam difíceis de sair do pelo.</p>
+          <p> </p>
+          <p>Pedido: Assistência para subjugar [%dic:STR_DIC_M_LDF4b_C1_Slime_Snail_58_An]s no Pântano Gurriki.</p>
+          <p> </p>
+          <p>- Vanguarda Comerciante da Nuvem Negra Zorinerk -</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Bruto."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olá, Daeva! Olá!</p>
+          <p> </p>
+          <p>Venha apresentar um relatório sobre um excelente trabalho?</p>
+          <p> </p>
+          <p>O Conselho de Administração do Black Cloud Merchant disse: "O trabalho excepcional dura mais, então é melhor Shugo não bagunçar as coisas se quiser ser pago."</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Aqueles Sludgers foram eliminados."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! O trabalho de Daeva é realmente excelente!</p>
+          <p> </p>
+          <p>A diretoria ficará muito satisfeita!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF4b_C1_Slime_Snail_58_An]s ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Arquive seu relatório com [%dic:STR_DIC_N_Shugo_LDF4b_10].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Black Cloud Merchants precisavam de ajuda com Slimy Sludgers no Gurriki Swamp.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um Boletim de Atualização dos Comerciantes da Nuvem Negra, que precisavam desesperadamente de ajuda.</p>
+          <p> </p>
+          <p>Você matou Slimy Sludgers no Gurriki Swamp e Garinrinerk o recompensou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

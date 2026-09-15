@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q11516</QuestId>
+    <QuestName>제작 단체 주간 1</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muitos Reianos podem ser hostis aos Elyos, mas não nós, artesãos. Na verdade, muitas das técnicas que usamos hoje são baseadas nas técnicas Elyos, pensadas antes do Cataclismo, quando as duas culturas diferentes começaram a se formar, e desde a nossa reconexão.</p>
+          <p> </p>
+          <p>Mais recentemente, tenho tentado aprender como incorporar aqueles [%dic:STR_DIC_I_QUEST_11516A]s que os artesãos Elyos são tão hábeis em usar em seus designs.</p>
+          <p> </p>
+          <p>O único problema que tenho é que não consigo obter fontes suficientes e não sou forte o suficiente para lutar contra os Calydons do [%dic:STR_DIC_E_LDF4a_calydon_fam] que os cultivam em seus estômagos.</p>
+          <p> </p> 
+          <p>Você poderia ajudar, amigo? Eu pagaria bem pelo seu tempo.</p>
+          <p> </p> 
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! [%username]! Como você se saiu?</p>
+          <p> </p>
+          <p>As bolas de cristal são extremamente delicadas. Espero que você tenha sido gentil quando enviou os Calydons para o Éter.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Tão gentil quanto eu poderia ser. Aqui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hum. Sim, essas bolas de cristal estão bem preservadas. Obrigado, [%username]. Só espero poder justificar seu tempo agora! Não sou do tipo que lida bem com a pressão...</p>
+          <p> </p>
+          <p>Aqui está a recompensa que prometi a você.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Recupere [%dic:STR_DIC_I_QUEST_11516A]s de Calydons do [%dic:STR_DIC_E_LDF4a_calydon_fam].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Traga os [%dic:STR_DIC_I_QUEST_11516A]s para [%dic:STR_DIC_N_Salomone].</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Solomon, um arquiteto Reian, falou sobre seu gosto pelo artesanato Elyos e contou como ele esperava aprender mais técnicas Elyos, mas não conseguiu depois de ficar sem as bolas de cristal de que precisava. Ele lhe ofereceu dinheiro para reabastecer seus estoques, o que você fez prontamente.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

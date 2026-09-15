@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Goldrinyerk Limited e Steel Rose foram parceiros comerciais por muito tempo.</p>
+          <p> </p>
+          <p>Mas isto foi mantido estritamente confidencial porque poderia ter causado danos consideráveis à reputação da Goldrinyerk Limited se se soubesse que estava a negociar com os notórios piratas.</p>
+          <p> </p>
+          <p>Mas, a longo prazo, é difícil negociar secretamente com piratas em quem você não pode confiar.</p>
+          <p> </p>
+          <p>Akakak, então o chefe da Goldrinyerk Limited, Sandarinerk, fez uma sugestão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pergunta que tipo de método era.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sandarinerk enviou o auditor Goldrinyerk para a Rosa de Aço, akakak. Ele deveria garantir a transferência tranquila de mercadorias e ficar de olho nos piratas Rumakiki, ak.</p>
+          <p> </p>
+          <p>No entanto, Kanerunerk, o auditor, passou para o lado de Rumakiki, traindo Goldrinerk AG, e planejou um ataque a Sandarinerk, nyerk!</p>
+          <p> </p>
+          <p>Sandarinerk, agora decepcionado e extremamente irritado, pediu agora a destituição do auditor Kanerunerk, ak. Pobre Sandarinerk...</p>
+          <p> </p>
+          <p>Entre furtivamente na Steel Rose Cabin e mate o contador Kanerunerk, ak.</p>
+          <p> </p>
+          <p>Mostre a ele que no mundo dos negócios onde vivemos a crédito não há nada pior do que traição, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kanerunerk ainda não viu nada sobre a traição de Sandarinerk. Esta é a oportunidade!</p>
+          <p> </p>
+          <p>Kanerunerk deve ser morto antes de poder fugir.</p>
+          <p> </p>
+          <p>Mate o contador Kanerunerk, que traiu Goldrinyerk, o mais rápida e silenciosamente possível na Cabine da Rosa de Aço!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o sucesso da missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! Como foi a morte de Kanerunerk, ok?</p>
+          <p> </p>
+          <p>Espero que ele tenha tido um fim trágico, para que qualquer segundo ou terceiro Kanerunerk em potencial fique desanimado, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [Kanerunerk, o Contador] na [Cabine do Navio Rosa de Aço].</font></p></step>
+                     <p visible="[%0]"><font color="[%1]">Kanerunerk, o Contador ([%2]/1)</font></p>
+               <step><p visible="[%15]"><font color="[%16]">Apresente-se a [Hurinerk] na [Cidade Brilhante de Shugo].</font></p></step>
+   	    </steps>
+          <p><font font_xml="quest_summary">Primeiro, você deve entrar no domínio da Rosa de Aço e retribuir Kanerunerk, o Contador, por sua traição.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hurinerk de Bright Town guarda rancor de Kanerunerk, o contador da Rosa de Aço, e de sua traição à Goldrinyerk Limited.</p>
+          <p> </p>
+          <p>Kanerunerk teve que aguentar muita coisa por causa de seu engano.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

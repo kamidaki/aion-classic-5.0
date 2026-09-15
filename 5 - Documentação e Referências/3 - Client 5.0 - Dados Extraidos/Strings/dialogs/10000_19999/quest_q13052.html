@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Finalmente chegou a hora de mostrar o verdadeiro poder da Ordem dos Cavaleiros da Expedição do Santuário.</p>
+          <p> </p>
+          <p>Segundo minhas informações, o Exército Beritra trará uma enorme tropa de suprimentos para a linha de defesa.</p>
+          <p> </p>
+          <p>Se conseguirmos impedir o fornecimento de suprimentos ao Exército de Beritra atacando a tropa de suprimentos, poderemos mudar a situação com um único ataque.</p>
+          <p> </p>
+          <p>[%username], você poderia eliminar o [%dic:STR_DIC_E_LDF5b_F123_Vri] imediatamente e trazer o [%dic:STR_DIC_I_QUEST_13052A] como prova.</p>
+          <p> </p>
+          <p>Se pudermos adquirir mérito através desta operação, o Quartel-General do Comando terá que reconhecer as habilidades da Ordem dos Cavaleiros.</p>        
+	</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como vão as lutas contra os soldados Beritra?</p>
+          <p> </p>
+          <p>Se forem coletados [%dic:STR_DIC_I_QUEST_13052A] suficientes, desta vez terei uma excelente oportunidade de obter grande aclamação.</p>
+          <p> </p>
+          <p>Claro que você também ficará famoso, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você alcançou um sucesso notável.</p>
+          <p> </p>
+          <p>Com este sucesso podemos escrever um excelente relatório.</p>
+          <p> </p>
+          <p>Agora todo o destacamento me notará para a glória de Heres.</p>
+          <p> </p>
+          <p>Muito bom trabalho!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha [%dic:STR_DIC_I_QUEST_13052A] e leve-o para [%dic:STR_DIC_N_LDF5b_Heres_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Ataque a Unidade de Abastecimento de Beritra e reporte-se a Heres.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Heres disse que o poder dos Elyos realmente precisava ser posto à prova desta vez, e que ele tinha que eliminar todas as tropas de suprimentos de Beritra.</p>
+          <p> </p>
+          <p>Heres ficou muito satisfeito com a eliminação das Tropas de Suprimentos de Beritra e a coleta das insígnias, e disse que teria que escrever um relatório agora.</p>
+          <p> </p>
+          <p>Heres parece ter esquecido tudo sobre o pedido da Tropa Escoteira por causa de todo o caos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

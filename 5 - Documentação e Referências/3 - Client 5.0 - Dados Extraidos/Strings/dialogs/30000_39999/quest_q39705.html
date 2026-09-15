@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- A Carta Verde -</p>
+          <p> </p>
+          <p>Prezados membros da Green Hat Alliance,</p>
+          <p/>
+          <p>Nossa área de atuação desta vez é o *** local de desmatamento.</p>
+          <p/>
+          <p>Mate os Kobolds que estão derrubando as árvores e destruindo a floresta e reporte-se à filial do Norte de Katalam.</p>
+          <p/>
+          <p>Por favor, tenha em mente que não podemos existir sem a natureza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde a carta no bolso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se livrou dos Kobolds lenhadores?</p>
+          <p> </p>
+          <p>É triste, mas não havia outro jeito.</p>
+          <p> </p>
+          <p>Afinal, eles aceitaram dinheiro de Silverine e destruíram o meio ambiente de Katalam.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nunca houve nenhum Kobold em Katalam.</p>
+          <p> </p>
+          <p>Silverine os trouxe de Elysea para cá.</p>
+          <p> </p>
+          <p>Em breve seus cargos serão preenchidos novamente.</p>
+          <p> </p>
+          <p>De qualquer forma, as árvores do local do desmatamento ganharam uma nova vida graças a você. A Green Hat Alliance tem uma grande dívida com você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o lenhador Kobold ([%2]/7).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para a filial North Katalam da Green Hat Alliance.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Uma carta verde veio da Green Hat Alliance. Leia e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma carta verde da Green Hat Alliance foi entregue.</p>
+          <p> </p>
+          <p>Depois de matar os lenhadores Kobolds que estavam destruindo a floresta ao derrubar árvores impensadamente, e reportar-se ao ramo North Katalam da Green Hat Alliance, você foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

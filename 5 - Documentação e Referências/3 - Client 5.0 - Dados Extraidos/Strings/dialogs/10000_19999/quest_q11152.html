@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho um favor pessoal a lhe pedir, [%username].</p>
+          <p> </p>
+          <p>Se você for para a Fazenda Mephistis, você poderia matar alguns [plur][%dic:STR_DIC_M_LF4_B4_Agrint_Drana_54_An] e obter o [plur][%dic:STR_DIC_I_quest_11152a] deles para mim?</p>
+          <p> </p>
+          <p>Não consigo descrever a tensão que todos aqui no Posto Avançado de Inggison sentem na luta contra os Balaur.</p>
+          <p> </p>
+          <p>É a razão pela qual cada vez mais Guardiões sofrem de dores nas costas e nos ombros.</p>
+          <p> </p>
+          <p>Se você pegar Raízes Brancas, que você pode colher de Dragrints de Raiz Errante, esmagá-las e depois comê-las, a dor diminuirá. É por isso que sempre faço questão de pedir a cada Daeva que vai até a Fazenda Mephistis que me traga alguns.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você sabe, a situação aqui no Posto Avançado está em constante mudança, e é por isso que os Guardiões estão tão tensos.</p>
+          <p> </p>
+          <p>Eles ficam rigidamente em guarda o dia todo, então não é de admirar que tenham dores nas costas e nos ombros.</p>
+          <p> </p>
+          <p>Muitos deles odeiam as Raízes Brancas porque cheiram muito mal, mas são extremamente eficazes contra a dor. Talvez seja porque crescem em um ambiente tão hostil.</p>
+          <p> </p>
+          <p>Você me trouxe as ervas medicinais?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as raízes.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(segura o nariz) Eca, que cheiro nojento.</p>
+          <p> </p>
+          <p>Tem um cheiro horrível, mas ajuda a aliviar a dor, então acho que teremos que aguentar o fedor.</p>
+          <p> </p>
+          <p>De qualquer forma, se isso ajuda os Guardiões a administrar melhor a situação, então o cheiro não deveria ser uma prioridade.</p>
+          <p> </p>
+          <p>Deixe-me saber se você precisar de algum também, Daeva. Conheço um Daeva que pode fazer remédios se você levar as ervas para ele.</p>
+          <p> </p>
+          <p>Por favor, receba esta recompensa pelos seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [plur][%dic:STR_DIC_I_quest_11152a] e leve-os para [%dic:STR_DIC_N_Harmonia].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha Raízes Brancas dos Dragrints de Raiz Errante para curar os Guardiões.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Legionário Hushblade Auralia pediu sua ajuda.</p>
+          <p> </p>
+          <p>Muitos Guardiões em Inggison reclamaram de dores nas costas, e então Auralia pediu que você obtivesse raízes de Dragrints de Raiz Errante.</p>
+          <p> </p>
+          <p>Quando você trouxe as raízes para Auralia, ele agradeceu e disse que os Guardiões conseguiram aliviar a dor com o remédio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Bem-vindo, [%username].</p>
+		<p> </p>
+		<p>Dou-lhe as boas-vindas ao Hall da Fama em nome dos cinco Lordes.</p>
+		<p> </p>
+		<p>Você deseja entrar no Santuário da Glória?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_TELEPORT_SIMPLE">Teleporte para o Santuário da Glória.</Act>
+	  <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>O Santuário da Glória só pode ser acessado por aqueles que possuem o posto de general.</p>
+		<p> </p>
+		<p>Somente aqueles a quem o Senhor concedeu a mais alta honra dos Elyos podem passar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage> 
+  
+  
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, espere um momento.</p>
+		<p> </p>
+		<p>O Santuário da Glória só pode ser acessado por aqueles que possuem o posto de general.</p>
+		<p> </p>
+		<p>Somente aqueles a quem o Senhor concedeu a mais alta honra dos Elyos podem passar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

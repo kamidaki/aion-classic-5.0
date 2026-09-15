@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Proteger o Observatório Theobomos é uma tarefa sem fim.</p>
+		  <p> </p>
+		  <p>Afinal, ainda é um local perigoso.</p>
+		  <p> </p>
+		  <p>Então, gostaria de pedir que você elimine o [plur][%dic:STR_DIC_M_LF2A_Rhinoce_48_An] ou [%dic:STR_DIC_LF2a_SalivadoSalt_48_An], Daeva.</p>
+		  <p> </p>
+		  <p>Elimine os monstros perigosos e procure a Protetora do Campo Etérico [%dic:STR_DIC_N_Atropos] para receber um [%dic:STR_DIC_I_key_returnbox_s_01] como recompensa.</p>
+		  <p> </p>
+		  <p>Use esta chave para abrir o [%dic:STR_DIC_I_returnbox_s_01]. Você encontrará um item que será útil em suas aventuras.</p>
+		  <p> </p>
+		  <p>Por favor, ajude-nos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Arieluma!</p>
+		  <p> </p>
+		  <p>Posso ajudar?</p>
+		  <p> </p>
+		  <p>Por favor, me diga do que se trata.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que eliminou os monstros perigosos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado, Retornado.</p>
+          <p> </p>
+		  <p>Graças a você agora podemos garantir a segurança do Observatório, [%username].</p>
+		  <p> </p>
+		  <p>Aqui está a chave do Baú dos Retornados, conforme prometido.</p>
+		  <p> </p>
+		  <p>Se você encontrar um Baú dos Retornados em suas aventuras, poderá usá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para Theobomos e elimine o [plur][%dic:STR_DIC_M_LF2A_Rhinoce_48_An] ou o [plur][%dic:STR_DIC_LF2a_SalivadoSalt_48_An] ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Atropos] no [%dic:STR_DIC_W_LF2B_SZ_A_Town].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os monstros perigosos em Theobomos e depois vá para Átropos para receber a chave do Baú dos Retornados.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Jenny pediu para você ir até Theobomos e eliminar Sea Rynoces ou Florescent Hornskulls lá.</p>
+          <p> </p>
+          <p>Depois de eliminar os monstros e procurar Átropos, você recebeu a chave do Baú dos Retornados.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

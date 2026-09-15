@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Galam. Tenho armaduras potentes disponíveis para aqueles que trabalham na Tempestade de Areia.</p>
+          <p> </p>
+          <p>Se você me trouxer seu equipamento antigo e o Símbolo de Kahrun, posso trocá-los.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_in>Atualizar equipamento Tempestade de Areia</trade_in>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tem certeza de que possui o Símbolo de Kahrun?</p>
+          <p> </p>
+          <p>Ou talvez você tenha procurado o oficial de recompensa errado ou confundido a recompensa.</p>
+          <p> </p>
+          <p>Para obter detalhes sobre a Tempestade de areia, vá para Eyan ou Umarrion em vez de mim.</p>
+          <p> </p>
+          <p>Não sou muito falador e não estou neste trabalho há muito tempo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Entendi."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

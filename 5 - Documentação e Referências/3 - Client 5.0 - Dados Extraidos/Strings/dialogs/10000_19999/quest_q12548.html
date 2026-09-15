@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], Shugo pede outra entrega a Daeva.</p>
+          <p> </p>
+          <p>Daeva não precisa saber de nenhum detalhe, apenas que esta nota deve ser entregue.</p>
+          <p> </p>
+          <p>A entrega vai para[%dic:STR_DIC_N_LDF5a_Mycenae_E].</p>
+          <p> </p>
+          <p>E outro conselho. Durante a entrega, Daeva não deve olhar para o bilhete em hipótese alguma.</p>
+          <p> </p>
+          <p>Por favor, por favor, prometa que não vai!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como muitas coisas estão iminentes, muito está sendo feito de uma só vez.</p>
+          <p> </p>
+          <p>Dizem que tudo vem de uma vez, e só posso concordar com isso.</p>
+          <p> </p>
+          <p>Por que você está aqui?</p>
+          <p> </p>
+          <p>Você tem algo a relatar sobre os resultados?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega os registros de Perinerk.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você pode em vez de [%username].</p>
+          <p> </p>
+          <p>Achei que isso seria sobre outra coisa...</p>
+          <p> </p>
+          <p>Muito obrigado por entregar os registros com segurança.</p>
+          <p> </p>
+          <p>Eu realmente precisava deles.</p>
+          <p> </p>
+          <p>Eu ia solicitá-los. Que bom momento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Relate para [%dic:STR_DIC_N_LDF5a_Mycenae_E] sobre [%dic:STR_DIC_I_doc_quest_12548a].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Entregar os registros de Perinerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perinerk pediu que você entregasse algo para Mikene com as tropas. Ele não forneceu detalhes.</p>
+          <p> </p>
+          <p>De acordo com o pedido dele, você trouxe os registros de Mikene Perinerk.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

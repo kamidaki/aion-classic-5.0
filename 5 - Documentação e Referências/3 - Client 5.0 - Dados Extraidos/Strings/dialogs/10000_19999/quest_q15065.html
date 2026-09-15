@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15065</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um grupo de Nagarants se esconde na ala sul do Templo do Pôr do Sol.</p>
+          <p> </p>
+          <p>Eles são lutadores duros e assustadoramente agressivos. Eles são os culpados pelas perdas crescentes da nossa Guilda.</p>
+          <p> </p>
+          <p>Por favor, vá para [%dic:STR_DIC_W_LF5_SZ_F_01] e elimine o [plur][%dic:STR_DIC_M_LF5_F_NagaMage_60_An] e o [plur][%dic:STR_DIC_M_LF5_F_NagaWarrior_60_An] que estão interferindo no trabalho da Guilda.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É difícil acreditar que esses monstros horríveis possam ser um perigo para seres divinos como nós, Daevas.</p>
+          <p> </p>
+          <p>Você ensinou uma lição difícil a esses Nagarants sem cérebro?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho! Você garantiu que a Guilda está segura.</p>
+          <p> </p>
+          <p>Suas ações, [%username], nos livraram dos problemáticos Nagarants.</p>
+          <p> </p>
+          <p>Obrigado. Compartilhe conosco um chá quente e descanse um pouco.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para o [%dic:STR_DIC_W_LF5_SZ_F_01] e derrote o [plur][%dic:STR_DIC_M_LF5_F_NagaWarrior_60_An] e o [plur][%dic:STR_DIC_M_LF5_F_NagaMage_60_An] ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Averse_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vanquise os Nagarants no Templo do Pôr do Sol.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aver lhe disse que foi culpa dos Nagarants que a Guilda tenha sofrido ainda mais baixas.</p>
+          <p> </p>
+          <p>Por esse motivo, você derrotou os Nagarants no Templo do Pôr do Sol. Aver agradeceu e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41512</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olhe para este lugar. Você acha que é fácil coordenar as linhas de abastecimento, garantindo que cada uma esteja protegida e funcionando de forma eficiente?</p>
+          <p> </p>
+          <p>Claro que não! E o [%dic:STR_DIC_M_LDF4b_T1_Dionaea_58_An] só piora as coisas!</p>
+          <p> </p>
+          <p>A parte mais irritante é que eles são apenas monstros idiotas! Eles apenas roubam nossos suprimentos porque são brilhantes!</p>
+          <p> </p>
+          <p>Cada entrega é preciosa. Posso contar com você para recuperar o [%dic:STR_DIC_I_QUEST_41512a] roubado das Dionae?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Entre supervisão, direção e planejamento, cada segundo disponível do meu dia é ocupado. É um dever exaustivo.</p>
+          <p> </p>
+          <p>É por isso que eu precisava de alguém para fazer essa tarefa por mim. Você recuperou os suprimentos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Peguei todos."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, excelente, excelente. Eles serão enviados para seus destinos apropriados imediatamente.</p>
+          <p> </p>
+          <p>Não são apenas os refugiados que precisam disso - os Daevas também obtêm grande parte de seus bens daqui.</p>
+          <p> </p>
+          <p>Bom trabalho, [%username]. Se mais alguma besta-planta começar a invadir meus suprimentos, eu avisarei você</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre [%dic:STR_DIC_I_QUEST_41512a] roubado e leve-os para [%dic:STR_DIC_N_Aius].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o ladrão Sawjaw Dionae e recupere os suprimentos que eles roubaram.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aius reclamou que Sawjaw Dionae estava levando suprimentos valiosos só porque eram brilhantes.</p>
+          <p> </p>
+          <p>Você recuperou os bens roubados, para grande alívio de Aius.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

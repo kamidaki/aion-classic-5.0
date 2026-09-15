@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, destrua todos os [%dic:STR_DIC_M_LDF5_Recon_v07_D_all]!</p>
+          <p> </p>
+          <p>Deixei o Grupo de Busca Asmodiana em paz durante este período de guerra porque queríamos manter as batalhas confinadas a esta região.</p>
+          <p> </p>
+          <p>Mas é hora de começarmos uma grande guerra.</p>
+          <p> </p>
+          <p>Devemos matar todos eles na próxima batalha aberta para que a força de combate Asmodiana seja paralisada.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O 77º Grupo de Busca Asmodiano não é um adversário fácil.</p>
+          <p> </p>
+          <p>Mas uma vitória contra esta tropa facilitará as próximas batalhas.</p>
+          <p> </p>
+          <p>Deixamos isso passar por tanto tempo que o espírito de luta deles deve ter sido enorme. Aguardo seu relatório.</p>
+          <p> </p>
+          <p>Por favor, relate o resultado da batalha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É exatamente como eu esperava!</p>
+          <p> </p>
+          <p>Eu sabia que você iria dominar isso, [%username].</p>
+          <p> </p>
+          <p>Não deve ter sido um adversário fácil, obrigado pelos seus esforços. Muito obrigado.</p>
+          <p> </p>
+          <p>Agora devemos nos concentrar na preparação para as próximas batalhas abertas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5_Recon_v07_D_all] que aparece se os Elyos conquistarem [%dic:STR_DIC_W_LDF5a_B9_7] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard07_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra a ordem de Basarian e mate o 77º Grupo de Busca Asmodiano.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Basarian, chegou a hora de destruir a 77ª Tropa Escoteira Asmodiana e esperar pela vitória.</p>
+          <p> </p>
+          <p>Você eliminou o 77º Grupo de Busca Asmodiano e recebeu agradecimentos ao retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12032</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É uma grande vantagem daqui, hein, [%username]? Sinto que quase consigo ver o nosso futuro.</p>
+          <p> </p>
+          <p>Deixe-me contar o que vejo: as Legiões do Protetorado? Eles estão gritando de terror e dor enquanto as adagas de Elyos arrancam seus corações imundos e animais, e aqueles malditos Orbes do Senhor Dragão que jazem em pilhas fumegantes.</p>
+          <p> </p>
+          <p>Essas coisas canalizam o poder de Tiamat para as Legiões do Protetorado e as tornam muito mais difíceis de matar. Esmague os [%dic:STR_DIC_OBJ_TDown_FOBJ_DrakanTotem]s e você destruirá a linha direta da Guilda com Tiamat. Você está disposto a fazer bagunça, [%username]?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Posso ver a fumaça daqui, [%username].</p>
+          <p> </p>
+          <p>Presumo que isso significa que posso considerar sua missão cumprida.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Com entusiasmo."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente.</p>
+          <p> </p>
+          <p>Quanto mais minarmos os Balaur, mais fácil será nossa tarefa quando chegar a hora de esmagar aqueles lagartos nojentos para sempre.</p>
+          <p> </p>
+          <p>Bom trabalho, [%username]. Este é um sinal do meu agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua os [%dic:STR_DIC_OBJ_TDown_FOBJ_DrakanTotem]s ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Marmara].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Orbes do Senhor Dragão canalizam o poder de Tiamat para o Protetorado no Olho de Tiamaranta. Destrua-os e a ligação entre Balaur e Tiamat será enfraquecida.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Marmara enviou você para destruir os Orbes do Senhor Dragão, que canalizam o poder de Tiamat para as legiões Balaur dentro do Olho.</p>
+          <p> </p>
+          <p>Você destruiu Orbs, deixando montes de sucata fumegantes em seu rastro e ganhando elogios de Marmara - e uma recompensa generosa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

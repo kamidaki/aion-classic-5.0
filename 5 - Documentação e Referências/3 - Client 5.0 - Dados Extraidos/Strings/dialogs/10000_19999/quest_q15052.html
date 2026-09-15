@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15052</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Diz-se que Tiamat submergiu esta região para esconder um tesouro, ak.</p>
+          <p> </p>
+          <p>Um tesouro do Senhor Dragão...! Deve ser de valor inestimável, ak. Shugo está tremendo de excitação, ak!</p>
+          <p> </p>
+          <p>Os Jardineiros Nephilim estão guardando uma caixa suspeita no Jardim Central de Balaur. Talvez seja a Caixa do Tesouro do Lorde Dragão Tiamat, ok?</p>
+          <p> </p>
+          <p>Daeva iria até o [%dic:STR_DIC_W_LF5_SZ_E_01] e examinaria o [%dic:STR_DIC_OBJ_LF5_FOBJ_Nephilim_Box_Q15052a] em busca de Shugo? Seria maravilhoso se Daeva encontrasse o [%dic:STR_DIC_I_quest_15052a] dentro, ak. Chairunerk daria metade do tesouro para Daeva, é claro, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um tesouro pertencente ao ganancioso Dragon Lorde Tiamat...</p>
+          <p> </p>
+          <p>Chairunerk acredita que este tesouro é extremamente valioso, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Tesouro Nephilim.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, a caça ao tesouro de Daeva foi um sucesso, ak! Mostre ao Shugo o que estava na caixa, ak!</p>
+          <p> </p>
+          <p>(Remexer nos objetos.) Um torrão de terra seco, uma carapaça de inseto, meia bolinha de vidro...</p>
+          <p> </p>
+          <p>Esse é realmente o tesouro, ok?</p>
+          <p> </p>
+          <p>É isso, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que é todo o tesouro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que Daeva não leva Shugo a sério, ok?</p>
+          <p> </p>
+          <p>Quando Shugos fica com raiva, Shugos são assustadores, ak!</p>
+          <p> </p>
+          <p>Então Daeva deveria levar Shugo a sério, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um pedaço de terra seca, uma carapaça de inseto, metade de uma bolinha de vidro...</p>
+          <p> </p>
+          <p>Isso é realmente todo o tesouro da Caixa Nephilim, ok?</p>
+          <p> </p>
+          <p>Ou Daeva pegou o tesouro, deixando lixo para Shugo, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que é todo o tesouro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakakak... Dói Chairunerk, mas uma promessa é uma promessa...</p>
+          <p> </p>
+          <p>Chairunerk dará a Daeva metade do tesouro como recompensa, ak.</p>
+          <p> </p>
+          <p>Afinal, o negócio de sucesso da Chairunerk baseia-se na justiça e na honestidade, ak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre o [%dic:STR_DIC_I_quest_15052a] e reporte para [%dic:STR_DIC_N_LF5_Chairun_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Chairun_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Recupere o Tesouro Nephilim do Jardim Central de Balaur.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chairunerk pediu que você procurasse o Tesouro Nephilim no Jardim Central de Balaur.</p>
+          <p> </p>
+          <p>Você recuperou o Tesouro Nephilim, mas infelizmente não continha nada de valor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

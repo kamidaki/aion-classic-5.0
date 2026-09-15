@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41309</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui em Sarpan temos um ditado: "Por falta de um prego, a roda foi perdida. Por falta de uma roda, a carroça foi perdida. Por falta de uma carroça, os suprimentos foram perdidos. Por falta de suprimentos, a batalha foi perdida - e tudo pelo custo de um prego de carrinho de Brax."</p>
+          <p> </p>
+          <p>Ok, talvez eu tenha tomado algumas liberdades com o ditado, mas é verdade. Soldados devidamente abastecidos podem fazer ou destruir uma batalha. É por isso que [%dic:STR_DIC_W_LDF4a_SZ_D] é a parte estrategicamente mais importante de Sarpan - é a única linha de abastecimento para Tiamaranta.</p>
+          <p> </p>
+          <p>Nós realmente não temos problemas em perder unhas. Em vez disso, temos problemas com [%dic:STR_DIC_M_LDF4A_D_DragonSnake_58_An]s mordendo as rodas de nossos carrinhos de suprimentos. Acha que poderia ajudar?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esses Serrators são verdadeiros monstros. Outro dia vi um deles arrancar uma tábua de um carrinho de suprimentos e comê-la.</p>
+          <p> </p>
+          <p>Comeu uma prancha! Como você mastiga isso?</p>
+          <p> </p>
+          <p>Quer dizer, não há muito o que comer por aqui, então suponho que eles se adaptaram ao ambiente... mas uma tábua? Especialmente quando poderia ter ido atrás do Brax!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eles estão comendo corvo agora."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ha! Bem, ótimo trabalho!</p>
+          <p> </p>
+          <p>A abertura das linhas de abastecimento poderia ter um efeito decisivo na nossa guerra em Tiamaranta.</p>
+          <p> </p>
+          <p>Temos um ditado em Sarpan que diz: "De pequenas ações nascem grandes nomes". Pode parecer insignificante para você, mas seu trabalho aqui é apreciado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF4A_D_DragonSnake_58_An]s em [%dic:STR_DIC_W_LDF4a_SZ_D] ([%2]/11).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Shemion].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Serrators violentos estão interrompendo as linhas de abastecimento através de Sabat's End.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Zayedan Shemion está preocupado que os ataques violentos do Serrator nas linhas de abastecimento através de Sabat's End afetem a batalha em Tiamaranta.</p>
+          <p> </p>
+          <p>Para garantir que os soldados de Tiamarantan estejam bem abastecidos para a luta, você eliminou os Serrators da área.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

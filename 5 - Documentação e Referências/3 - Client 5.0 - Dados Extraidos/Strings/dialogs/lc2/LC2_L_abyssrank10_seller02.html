@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>[%username], as notícias de seus feitos chegaram até Santuário.</p>
+		<p> </p>        
+		<p>Dizem que você foi cercado por inimigos no campo de batalha e então mostrou a todos o significado do verdadeiro valor.</p>
+		<p> </p>
+		<p>As autoridades do Santuário disponibilizam uma variedade de itens para lutadores como você, [%username]. Você traz grande honra aos Elyos e será recompensado na mesma moeda.</p>
+		<p> </p>
+		<p>Por favor, dê uma olhada.</p>
+		</body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Sinto muito, mas não tenho nada para lhe oferecer agora.</p>
+		<p> </p>
+		<p>Meus itens são apenas para aqueles que honraram os Elyos e alcançaram uma determinada classificação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

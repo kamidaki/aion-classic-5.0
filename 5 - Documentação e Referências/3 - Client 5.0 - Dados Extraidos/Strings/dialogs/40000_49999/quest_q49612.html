@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q49612</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>1. Destinatário: Funcionário [%username]</p>
+          <p> </p>
+          <p>2. Tarefa: Os Alitaurs do Pântano aparentemente estão atrasando o refinamento da água do pântano. Você deve ir para [%dic:STR_DIC_W_LDF5b_SZ_G1], matar o [%dic:STR_DIC_M_LDF5B_G_Alligator_65_An] e reportar-se ao escritório administrativo.</p>
+          <p> </p>
+          <p>3. Escritório administrativo: [%dic:STR_DIC_E_LDF5b_Silverlin_BA]</p>
+          <p> </p>
+          <p>Assim que a tarefa for concluída, você receberá uma recompensa. Por favor, faça um trabalho bom e limpo, ak.</p>
+          <p> </p>
+          <p>- Danurinerk, gerente de recursos de equipe da Silverine Limited</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você eliminou todos os Swamp Alitaur?</p>
+          <p> </p>
+          <p>Dizem que as feras estão mastigando o tanque de água e destruindo-o, ak. É por isso que durante dias não conseguimos bombear a água do pântano e sofremos grandes danos, akak.</p>
+          <p> </p>
+          <p>Não podemos ficar parados de braços cruzados, akakak?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças a Deus os monstros que mordem a mangueira foram eliminados, ak.</p>
+          <p> </p>
+          <p>Alguns parecem ter conseguido entrar no tanque de água, mas não tem jeito, ak. Acho que tenho que começar a limpar o pântano novamente.</p>
+          <p> </p>
+          <p>[%username], bom trabalho!</p>
+          <p> </p>
+          <p>Shugo relatou que Daeva também completou essa tarefa com maestria, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5B_G_Alligator_65_An], que está mordendo as mangueiras do tanque de água ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_E_LDF5b_Silverlin_BA].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">As instruções chegaram da Silverine Limited. Leia a tarefa e execute-a.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As instruções vieram da Silverine Limited.</p>
+          <p> </p>
+          <p>Depois de matar o Swamp Alitaur que estava mastigando uma mangueira do tanque de água e reportar-se à filial de Silverine em South Katalam, você recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

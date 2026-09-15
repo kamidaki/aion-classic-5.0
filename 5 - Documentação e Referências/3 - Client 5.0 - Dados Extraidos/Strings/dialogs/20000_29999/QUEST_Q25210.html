@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se [%username] tiver Shattered Ceranium, Mezirinerk pode transformá-lo em algo.</p>
+          <p> </p>
+          <p>Mezirinerk encontrou um novo método para convertê-lo, também conhecido como.</p>
+          <p> </p>
+          <p>Mas Mezirinerk não pode garantir que funcionará, também.</p>
+          <p> </p>
+          <p>Shugo espera que você entenda, ak. O método ainda não foi totalmente aperfeiçoado, mas se Daeva trouxer para Shugo um pouco de Cerânio Estilhaçado, Shugo pode tentar, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva trouxe o Shattered Ceranium, ok?</p>
+          <p> </p>
+          <p>Mas Mezirinerk precisa de mais do que apenas uma peça, ak.</p>
+          <p> </p>
+          <p>Daeva deveria verificar os itens de Daeva, ak.</p>
+          <p> </p>
+          <p>Mezirinerk precisa de uma certa quantidade de Shattered Ceranium para tentar a transformação, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Ceranium quebrado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito bem, ok.</p>
+          <p> </p>
+          <p>Mas Daeva não deveria ficar decepcionado se a transformação não for bem sucedida, ak. Daeva sempre pode tentar novamente mais tarde, ak.</p>
+          <p> </p>
+          <p>Não é tão fácil obter uma Medalha Ceranium, também.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga o Cerânio Estilhaçado para Mezirinerk.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Traga para Mezirinerk um pouco de Cerânio Estilhaçado para que ele possa tentar converter o material em uma Medalha de Cerânio.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mezirinerk lhe disse que havia uma maneira de reutilizar Cerânio Estilhaçado.</p>
+          <p> </p>
+          <p>Você trouxe Ceranium Estilhaçado para ele e Mezirinerk o transformou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

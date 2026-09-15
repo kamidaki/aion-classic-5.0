@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gostaria que mamãe e papai tivessem mais tempo para brincar. Os adultos estão sempre tão ocupados! Muitas das mães e pais dos meus amigos estão em lugares como Gee-kel-ma-roos.</p>
+          <p> </p>
+          <p>Mas meu pai está sempre em casa. Ele trabalha como... o que foi? Oh! Comerciante de Construção! Aprendi isso sozinho!</p>
+          <p> </p>
+          <p>Ele trabalha no estúdio o dia todo, depois chega em casa e depois tocamos!</p>
+          <p> </p>
+          <p>Aposto que ele adoraria receber visitantes! Mamãe disse que o nome dele é [%dic:STR_DIC_N_Gapion]. Quer ir vê-lo? Por favor, por favor?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oho, então você conheceu Marizia, não é? Uma garota tão doce; me lembra muito a mãe dela.</p>
+          <p> </p>
+          <p>Estou feliz por podermos criá-la aqui, longe das preocupações da guerra. Esperamos que possamos apresentá-la à realidade com delicadeza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Ela disse que você trabalha na construção?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh sim! É muito mais do que apenas móveis, você sabe. Qualquer coisa que entre ou entre em uma casa é meu trabalho.</p>
+          <p> </p>
+          <p>Na verdade, o estúdio está fazendo uma pequena promoção. Você ganha um presente grátis apenas por passar por aqui, para incentivá-lo a voltar.</p>
+          <p> </p>
+          <p>É um Fluxo de Construção Hearthbloom. Aumente-o com fertilizante e você obterá material de construção. Experimente, com as bênçãos de Azphel.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Gapion].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Marizia pediu para você visitar o pai dela, um comerciante de construção, em seu estúdio de construção.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma criança chamada Marizia lhe contou que o pai dela era comerciante de construção e pediu que você o visitasse.</p>
+          <p> </p>
+          <p>Acontece que o estúdio dele estava fazendo uma promoção, então você ganhou um presente grátis em sua visita.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

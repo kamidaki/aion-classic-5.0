@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+          <p> </p>
+          <p>Você deseja entrar no Templo do Fogo?</p>
+          <p> </p>
+          <p>Então abrirei o portão para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <enter_pvp>Entrance to the Underground Temple</enter_pvp>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O portão que leva ao Templo do Fogo.)</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra no Templo do Fogo.</Act>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH">Você procura amigos para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O portão que leva ao Templo do Fogo.)</p>
+          <p> </p>
+          <p>(Está bem trancado e não abre)</p>
+          <p> </p>
+          <p>(Você precisa de uma chave)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

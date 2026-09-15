@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um portão enorme que emana uma energia poderosa)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um portão enorme que emana uma energia poderosa)</p>
+          <p> </p>
+          <p>(Parece o portão para a Arena da Glória no Coliseu do Crisol.)</p>
+          <p> </p>
+          <p>(Você descobre um sinal.)</p>
+          <p> </p>
+          <p>(1. São necessários 3 ingressos para a Arena da Glória para entrar de cada vez. Você pode obtê-los na Arena da Veemência e na Arena da Cooperação.)</p>
+          <p> </p>
+          <p>(2. Itens obtidos com o Token de Oportunidade não podem ser usados na Arena da Glória.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH">Procura-se parceiro de combate.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O Guarda do Crisol bloqueia a entrada.)</p>
+          <p> </p>
+          <p>(Se desejar entrar, você deve ter pelo menos nível 56, não deve fazer parte de grupo e precisa de 3 ingressos para a Arena da Glória.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

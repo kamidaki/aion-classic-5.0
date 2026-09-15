@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10064</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Finalmente. Finalmente estamos prontos.</p>
+          <p> </p>
+          <p>Mal posso acreditar que esse dia chegou. Parece... irreal. Mas lutamos tanto por isso e por tanto tempo. [%username], merecemos uma vida livre da tirania Balaur! Todos nós fazemos.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">"Então os Balaur devem ser exterminados."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta primeira incursão não será um ataque total. É uma missão de reconhecimento. Sabemos muito pouco sobre o Olho.</p>
+          <p> </p>
+          <p>Cada facção está enviando uma força de tropas de elite para o Olho de Tiamaranta. A empresa Elyos acabou de sair, mas você ainda pode alcançá-los. As empresas Asmodiano e Reian estão a caminho. Em breve me juntarei a eles.</p>
+          <p> </p>
+          <p>Você está preparado, [%username]? Eu lhe enviarei quando estiver pronto.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Estou preparado. Vamos."</Act>
+    </Selects>
+    <Voice file="Q10064-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito pouco movimento até agora, [%userclass].</p>
+          <p> </p>
+          <p>O plano é seguir para o norte ao longo das paredes do Olho, rastreando os movimentos de quaisquer patrulhas enquanto obtemos o layout do Olho.</p>
+          <p> </p>
+          <p>O objetivo principal é localizar o Dragon Lorde. Mantenha os olhos abertos e as armas em punho.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Vamos sair."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que é isso? Onde estão os Asmodianos?</p>
+          <p> </p>
+          <p>O que aconteceu aqui, [%username]?</p>
+          <p> </p>
+          <p>Diga-me imediatamente, eu te ordeno!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">"Os Asmodianos imploraram para provar nossas lâminas e nós os atendemos."</Act>
+      <Act href="HACTION_SELECT3_2">"Os Balaur estavam esperando... Chegamos tarde demais para salvar os Asmodianos."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seus tolos! Seus desgraçados venenosos e cegos pelo orgulho! Você cuspirá em nossa aliança quando estivermos tão perto da vitória? Se Kahrun descobrir... Se os Asmodianos descobrirem! [%username], você nos condenou!</p>
+          <p> </p>
+          <p>Não... ainda há uma chance... se simplesmente nunca mais falarmos sobre isso. Culparemos o Balaur e eu segurarei minha língua mentirosa. Agora sei que não devo confiar em um Elyos e sei que não devo confiar em você.</p>
+          <p> </p>
+          <p>Os Balaur estão chegando, então não tenho mais tempo para falar... Mas seu povo VAI sentir as consequências disso.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">"Não tanto quanto os Asmodianos fizeram agora."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Balaur? Mas como? Como eles poderiam saber? E os Asmodianos eram uma força bem preparada e altamente treinada...</p>
+          <p> </p>
+          <p>A guerra quebra o coração com sua ferocidade imprevisível. As suas legiões devem ser ainda mais fortes do que pensávamos.</p>
+          <p> </p>
+          <p>Precisamos traçar estratégias. Mantenha sua companhia próxima da nossa, [%username], e enfrentaremos os Balaur juntos, como amigos.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">"Como... amigos."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você está aqui para relatar a situação no Olho de Tiamaranta?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Tivemos que recuar..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu temia isso. Nós os subestimamos mais uma vez.</p>
+          <p> </p>
+          <p>Precisaremos retirar, reagrupar e preparar uma força maior. Isso levará mais tempo do que eu esperava.</p>
+          <p> </p>
+          <p>Ah... Antes de você ir, [%username], quero te dar uma coisa. Esta arma é feita de acordo com padrões exigentes. É mortal e, em suas mãos capazes, significará a matança dos Balaur. O pessoal Reian aprecia seu serviço, [%username]. Você está demitido.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Relatório para [%dic:STR_DIC_W_LDF4b_SZ_OP_A4].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Encontre-se com [%dic:STR_DIC_N_LDF4b_Q10064_Boss_Light] da Guilda Hushblade no Olho de Tiamaranta.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Mate os Legionários do Destino [%8].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_Garnon].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Mate o Protetorado Drakan [%14].</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Lute contra o guarda-costas Capitão Cartuan.</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Relate para [%dic:STR_DIC_N_Adela].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tarefa: Garnon tem os detalhes do primeiro grupo a se infiltrar no Olho de Tiamaranta.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Garnon enviou você para conhecer a Guilda Hushblade enviada em uma missão de reconhecimento no Olho de Tiamaranta.</p>
+          <p> </p>
+          <p>A Guilda Asmodiana apareceu e você descobriu que a paz temporária não curou feridas antigas. Você lutou contra os Asmodianos e os massacrou.</p>
+          <p> </p>
+          <p>Quando Garnon e a companhia Reian chegaram, ela mal teve tempo de registrar seu choque antes que Elyos e Reians fossem forçados a bater em retirada apressada diante de um ataque repentino de Balaur.</p>
+          <p> </p>
+          <p>Você relatou a Adella, que percebeu que o ataque ao Olho de Tiamaranta levaria mais tempo do que o planejado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso da Missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

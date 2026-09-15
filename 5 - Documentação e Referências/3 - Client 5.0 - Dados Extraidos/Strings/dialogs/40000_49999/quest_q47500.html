@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para: [%username]</p>
+          <p>De: Os Moldadores do Crepúsculo</p>
+          <p> </p>
+          <p>Todos os membros da guilda que possuem o título de Especialista ou superior atendem a este pedido.</p>
+          <p> </p>
+          <p>Crie um [%dic:STR_DIC_I_QUEST_47500A] para homenagear os heróis de nossas campanhas do Abismo.</p>
+          <p> </p>
+          <p>Compre um design de um comerciante de artesanato no Templo dos Artesãos e leve sua criação para um [%dic:STR_DIC_E_Quest_47500a].</p>
+          <p> </p>
+          <p>Espera-se que você siga os altos padrões que mantemos. Crie com amor, crie com excelência.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Mal posso esperar para começar!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqueles que lutam por Asmodae no Abismo merecem tudo o que pudermos derramar sobre eles.</p>
+          <p> </p>
+          <p>É por isso que fazer um [%dic:STR_DIC_I_QUEST_47500A] é uma grande honra, tanto para o artesão quanto para o destinatário.</p>
+          <p> </p>
+          <p>Espero que você tenha levado esta tarefa a sério e feito algo digno de um membro dos Shapers of Dusk.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Eu acredito que sim."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Receio que você esteja errado. Se você criou um [%dic:STR_DIC_I_QUEST_47500A], ele não está no seu Cubo.</p>
+          <p> </p>
+          <p>Por favor, perceba que tudo o que nossos membros fazem reflete no resto da organização. Não podemos afrouxar nossos padrões.</p>
+          <p> </p>
+          <p>Não apresse seu trabalho; você tem muito tempo. É mais importante que você faça seu [%dic:STR_DIC_I_QUEST_47500A] bem do que rapidamente.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou manter isso em mente."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Deixa eu dar uma olhada... ah, que maravilha!</p>
+          <p> </p>
+          <p>Isso não apenas atende às expectativas que normalmente temos em relação a esses itens, mas também as excede!</p>
+          <p> </p>
+          <p>Você deixou os Shapers of Dusk orgulhosos, [%username]. Os soldados no Abismo ficarão bastante impressionados.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Crie um [%dic:STR_DIC_I_QUEST_47500A] e entregue-o a um [%dic:STR_DIC_E_Quest_47500a].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Shapers of Dusk cobraram de você a criação de um item. Compre o design de um comerciante de artesanato e entregue os resultados a um Aprendiz de Artesanato Asmodiano.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Shapers of Dusk solicitaram que você criasse um Prêmio Supremo do Abismo para os heróis do Abismo.</p>
+          <p> </p>
+          <p>Você fez o item conforme solicitação e entregou a um representante do grupo, que recompensou seu trabalho artesanal.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

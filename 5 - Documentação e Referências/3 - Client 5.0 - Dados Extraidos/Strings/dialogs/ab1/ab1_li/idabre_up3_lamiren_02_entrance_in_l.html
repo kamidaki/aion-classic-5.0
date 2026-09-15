@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Ainda há um grupo de soldados Balaur na Fortaleza da Guilda Miren.</p>
+		  <p> </p>
+		  <p>O Governador decretou que apenas Daevas que conquistaram a Fortaleza podem juntar-se à batalha.</p>
+          <p> </p>
+		  <p>Você, [%username], é membro da Guilda [%userguildname]. Você conquistou a fortaleza. Então vou guiá-lo até a Fortaleza da Guilda Miren.</p>
+		  <p> </p>
+		  <p>No entanto, você não pode entrar sozinho. Você deve convocar seus camaradas de armas.</p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra na Fortaleza da Guilda Miren.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+		  <p> </p>
+		  <p>Por ordem do Governador de Reshanta, sou responsável pelo acesso das Legiões à Fortaleza Miren.</p>
+		  <p> </p>
+		  <p>Você só terá acesso a membros de uma legião que participou da captura da fortaleza. Essas são as ordens do Governador.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+		  <p> </p>
+		  <p>Por ordem do Governador de Reshanta, sou responsável pelo acesso das Legiões à Fortaleza Miren.</p>
+		  <p> </p>
+		  <p>Você só terá acesso a membros de uma legião que participou da captura da fortaleza. Essas são as ordens do Governador.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

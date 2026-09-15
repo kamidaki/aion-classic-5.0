@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vá em frente, [%username] e mate um [%dic:STR_DIC_M_LDF5A_A2_Fana] ou um [%dic:STR_DIC_M_LDF5A_A4_Fana]. Você pode obter o [%dic:STR_DIC_I_quest_13550a] deles.</p>
+          <p> </p>
+          <p>Incontáveis Reianos sofreram lavagem cerebral pelos Balaur.</p>
+          <p> </p>
+          <p>Com o pacote de incenso de Jormungand deveria ser possível reverter a lavagem cerebral.</p>
+          <p> </p>
+          <p>Não sei se realmente funciona, mas tendo em conta a situação desesperadora em que nos encontramos, vale a pena tentar.</p>
+          <p> </p>
+          <p>Depois de obter um pacote de incenso, leve-o para Laten, que já está sofrendo os efeitos da lavagem cerebral.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, ah, ah... (As pupilas estão muito dilatadas.)</p>
+          <p> </p>
+          <p>(O corpo está assolado por cólicas.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o saco de incenso de Jormungand.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gemido... (Ele finalmente acorda.) Onde...</p>
+          <p> </p>
+          <p>Onde estou...?</p>
+          <p> </p>
+          <p>Estou com uma dor de cabeça terrível...</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrote [%dic:STR_DIC_M_LDF5A_A2_Fana] ou [%dic:STR_DIC_M_LDF5A_A4_Fana] e obtenha [%dic:STR_DIC_I_quest_13550a]. Leve para [%dic:STR_DIC_N_LDF5A_Raten_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">A lavagem cerebral pode ser removida com o Pacote de Incenso Vinculado de Dragão. Elimine os batedores ou soldados Vinculados de Dragão e obtenha o Pacote de Incenso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Asir disse que os Vinculados de Dragão estão forçando muitos Reianos a sofrer lavagem cerebral e que pode haver uma possibilidade de neutralizar os efeitos da lavagem cerebral com um Saco de Incenso Jormungard.</p>
+          <p> </p>
+          <p>Depois de matar o Jormungand Vinculado de Dragão de alto escalão, você trouxe para Laten o Saco de Incenso de Jormungand quando Laten sofreu uma lavagem cerebral e viu um sinal de que os efeitos da lavagem cerebral estavam desaparecendo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

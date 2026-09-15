@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A situação no Bastião Parede de Aço não permite atrasos. Mas primeiro é mais importante reunir mais informações.</p>
+          <p> </p>
+          <p>Fizemos prisioneiro um membro incomum do Exército de Beritra por tentar nos espionar. Ele parece pertencer à tropa que deveria atacar o Steel Wall Bastion.</p>
+          <p> </p>
+          <p>Se interrogarmos o preso [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter], descobriremos mais sobre os planos do Exército Beritra e seu ataque ao Bastião da Parede de Aço.</p>
+          <p> </p>
+          <p>Interrogue o [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A situação no Bastião Parede de Aço não permite atrasos, mas primeiro é mais importante reunir mais informações.</p>
+          <p> </p>
+          <p>Fizemos prisioneiro um membro do Exército de Beritra por tentar nos espionar. Ele parece pertencer à tropa que deveria atacar o Steel Wall Bastion.</p>
+          <p> </p>
+          <p>Se interrogarmos o preso [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter], descobriremos mais sobre os planos do Exército Beritra e seu ataque ao Bastião da Parede de Aço.</p>
+          <p> </p>
+          <p>Interrogue o [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter] está sendo mantido no assentamento Saphirunerk.</p>
+          <p> </p>
+          <p>Ele tentou escapar no início, então tivemos que construir uma prisão separada para ele. Mas ele parece ter se acalmado.</p>
+          <p> </p>
+          <p>Você não deverá ter problemas em interrogá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh, você está ocupado com outra missão no momento?</p>
+          <p> </p>
+          <p>Esta é uma tarefa muito importante, pois precisamos de mais informações sobre o Steel Wall Bastion o mais rápido possível. Se você estiver ocupado com outra coisa, termine o mais rápido que puder e depois volte para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acha que me segurar aqui tem alguma consequência?!</p>
+          <p> </p>
+          <p>Não demorará muito até que Beritra execute seu plano.</p>
+          <p> </p>
+          <p>É apenas uma questão de tempo até que esmaguemos vocês, Daevas fracos.</p>
+          <p> </p>
+          <p>Viva Beritra! Muwahaha!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você pergunta sobre o Bastião Parede de Aço.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você falou com o prisioneiro do Exército Beritra?</p>
+          <p> </p>
+          <p>Tive a impressão de que ele era um pouco maluco. Como foi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você transmite o que Kvash lhe disse.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Está certo?</p>
+          <p> </p>
+          <p>Parece que o Exército Beritra está bem preparado desta vez.</p>
+          <p> </p>
+          <p>A situação no Steel Wall Bastion é preocupante. Sua tarefa é perigosa, então prepare-se bem.</p>
+	  <p> </p>
+          <p>Os Daevas de Zephyr dão o seu melhor enquanto defendem o Steel Wall Bastion. A má execução, apesar da preparação detalhada, não ajuda ninguém.</p>
+	  <p> </p>
+          <p>Encontre alguns camaradas confiáveis e vão juntos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter_Da].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relate para [%dic:STR_DIC_N_LDF5b_Demades_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Interrogue o Kvash cativo do Exército Beritra e depois relate.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Demades pediu que você interrogasse Kvash preso e descobrisse mais sobre o Esquadrão de Ataque do Exército Beritra.</p>
+          <p> </p>
+          <p>Kvash estava convencido de que seu lado seria vitorioso. Ele lhe deu informações detalhadas sobre a Guilda Pashid do Exército Beritra.</p>
+          <p> </p>
+          <p>Você reportou a Demades, que queria se preparar para o perigo imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], posso te pedir uma coisa?</p>
+          <p> </p>
+          <p>Meu colega [%dic:STR_DIC_N_LDF5b_Phobos_E] parece ter muitos problemas.</p>
+          <p> </p>
+          <p>Ele realmente se meteu em uma situação difícil.</p>
+          <p> </p>
+          <p>Mas pode parecer inapropriado que eu, como membro de outro esquadrão, fale diretamente com ele.</p>
+		  <p> </p>
+          <p>Desculpe. Mas estou pedindo que você faça isso.</p>
+          <p> </p>
+          <p>Então, por favor.</p>
+	  </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Meu amigo Obius lhe contou sobre mim?</p>
+          <p> </p>
+          <p>Algo realmente terrível aconteceu com esse meu amigo. Hum.</p>
+          <p> </p>
+          <p>Não pode ser mudado e agora tudo é diferente de como costumava ser. Não estou em posição de lhe contar mais nada no momento.</p>
+          <p> </p>
+          <p>Tenha um pouco de paciência.</p>
+	  </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A sorte é como uma bola.</p>
+          <p> </p>
+          <p>Se eu soubesse, não teria abandonado meus camaradas do Esquadrão de Assalto... agora passo meus dias arrependido.</p>
+          <p> </p>
+          <p>É difícil Converse com você agora por causa de outro problema.</p>
+          <p> </p>
+          <p>Muito obrigado pela sua discrição.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Phobos_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Obius disse que seu antigo companheiro Fobos parecia cansado de preocupação e pediu que você o ouvisse.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Óbio disse que seu antigo companheiro Fobos parecia exausto de preocupação e pediu que você o ouvisse.</p>
+          <p> </p>
+          <p>Você viu Phobos e contou a ele sobre isso, mas ele mal respondeu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é membro da Guilda [%userguildname].</p>
+		  <p> </p>
+		  <p>Por ordem do Governador de Reshanta, sou responsável pelo acesso à Fortaleza da Guilda Krotan.</p>
+		  <p> </p>
+		  <p>Deixe-me saber se você deseja entrar.</p>
+		  <p> </p>
+		  <p>Lembre-se, você não tem permissão para entrar na fortaleza sozinho, apenas com outros camaradas de armas da sua legião.</p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra na Fortaleza da Guilda Krotan.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra!</p>
+		  <p> </p>
+		  <p>Por ordem do Governador de Reshanta, sou responsável pelo acesso à Fortaleza da Guilda Krotan.</p>
+		  <p> </p>
+		  <p>O Governador ordenou que o acesso só possa ser concedido aos membros da legião que participou na captura da fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra!</p>
+		  <p> </p>
+		  <p>Por ordem do Governador de Reshanta, sou responsável pelo acesso à Fortaleza da Guilda Krotan.</p>
+		  <p> </p>
+		  <p>O Governador ordenou que o acesso só possa ser concedido aos membros da legião que participou na captura da fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

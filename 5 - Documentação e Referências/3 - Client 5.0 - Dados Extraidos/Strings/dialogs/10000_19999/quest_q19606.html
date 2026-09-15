@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gostaria de apresentar a vocês o caçador de recompensas [%dic:STR_DIC_N_Rovilance] de Theobomos.</p>
+          <p> </p>
+		  <p>Você deve estar se perguntando por que um Líder de Despacho está apresentando você a um caçador de recompensas. Ele foi o primeiro a entrar na Fortaleza Adma.</p>
+		  <p> </p>
+		  <p>A Fortaleza Adma em Brusthonin já pertenceu a Asmodianos de alto escalão. Rovilance disse que Lorde Lannok queria conquistar Theobomos.</p>
+		  <p> </p>
+		  <p>Não sei se isso é verdade, mas o que sei é que Lorde Lannok deixou muitos tesouros que poderiam ajudar os Elyos.</p>
+          <p> </p>		  
+		  <p>Você pode conhecer Rovilance no Campo de Escavação Anangke em Theobomos. Vá até ele e descubra a verdade.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É uma honra, Daeva.</p>
+          <p> </p>
+		  <p>A Fenda ao meu lado é o melhor caminho para entrar na fortaleza Asmodiana.</p>
+		  <p> </p>
+		  <p>Tenho certeza que você já sabe que Lorde Lannok acumulou tesouros de riqueza inimaginável em sua fortaleza.</p>
+		  <p> </p>
+		  <p>Essa é a verdade! Você pode tirar isso de mim. Ele tinha muitos acessórios e armas valiosos.</p>
+		  <p> </p>
+		  <p>No entanto, os mortos-vivos estão dificultando um pouco a busca por esse tesouro. Portanto, tenha cuidado!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Não é um problema.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito bom! Eu poderia dizer à primeira vista que você está determinado a realizar grandes feitos.</p>
+          <p> </p>
+		  <p>Se você estiver junto com companheiros até a Adma de Fortaleza, tenho certeza de que encontrará muitas coisas úteis.</p>
+		  <p> </p>
+		  <p>Por que você não me traz uma pequena lembrança? Afinal, fui eu quem te deu a ideia.</p>
+		  <p> </p>
+		  <p>Haha, isso foi só uma piada!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Rovilance] no [%dic:STR_DIC_W_LF2B_SZ_B4_2] em Theobomos.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o acampamento de escavação Anangke em Theobomos e encontre-se com Rovilance.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Martine sugeriu enviar alguém para a Fortaleza Adma.</p>
+          <p> </p>
+          <p>O caçador de recompensas Rovilance de Theobomos contou sobre os inúmeros tesouros que você pode encontrar na área ao redor da Fortaleza Adma. Ele recomendou que você fosse lá junto com alguns aliados.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

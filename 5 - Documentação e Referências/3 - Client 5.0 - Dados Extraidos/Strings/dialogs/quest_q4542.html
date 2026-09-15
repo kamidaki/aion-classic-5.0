@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acontece que tenho uma carta escrita pelo capitão Hinden.</p>
+          <p> </p>
+          <p>A carta é quase ininteligível, mas acredito que essas partes ilegíveis possam conter informações importantes.</p>
+          <p> </p>
+          <p>Ah, o que diz aqui?</p>
+          <p> </p>
+          <p>"Querido Esnu"?</p>
+		 <p> </p>
+		 <p>Preciso descobrir o que o capitão Hinden escreveu.</p>
+          <p> </p>
+		  <p>O arqueólogo [%dic:STR_DIC_N_Rubelik] é aparentemente um especialista em restauração de documentos antigos. Você poderia trazer a carta para ele?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você quer que eu trabalhe nesta carta para torná-la legível novamente?</p>
+          <p> </p>
+          <p>A carta está manchada, mas o papel ainda parece estar em boas condições.</p>
+          <p> </p>
+          <p>Isso deve facilitar a restauração. Só preciso remover as manchas para tornar a letra legível novamente.</p>
+          <p> </p>
+          <p>Por favor, espere um momento.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Vou esperar aqui.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmm... Este documento parece ser uma carta que o Capitão Hinden endereçou a um Seiren chamado Esnu.</p>
+          <p> </p>
+          <p>Então é verdade que o capitão pirata estava apaixonado por uma Seiren?</p>
+          <p> </p>
+          <p>Muito interessante. A propósito, algo me parece estranho.</p>
+          <p> </p>
+          <p>Por que Sleipnir queria que esta carta fosse restaurada?</p>
+          <p> </p>
+          <p>Isso é muito suspeito.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+       <Act href="HACTION_SELECT1_2">Por que?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Diz-se que este documento foi adquirido para localizar a lente de quartzo do farol. [%username], você encontrou a lente, não foi?</p>
+          <p> </p>
+          <p>Se você já cumpriu sua missão, por que Sleipnir ainda está interessado na carta?</p>
+          <p> </p>
+          <p>Parece que a lente de quartzo do farol nunca foi o verdadeiro alvo de Sleipnir...</p>
+          <p> </p>
+          <p>Francamente, não estou satisfeito com o facto de Sleipnir ter colocado as mãos neste documento. Mas não cabe a mim dizer-lhe o que fazer. Meu trabalho era tornar a carta legível novamente.</p>
+          <p> </p>
+          <p>Eu confio em você, [%username]. Aqui, aceite isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+       <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2055-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você está de volta.</p>
+          <p> </p>
+          <p>Você conheceu Rubelik?</p>
+          <p> </p>
+          <p>Você consegue ler tudo na carta agora?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="PLAYEMOTION_surprise;HACTION_SELECT2_1">Você mostra a ele a carta restaurada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Lê a carta.) Hm, entendo...</p>
+          <p> </p>
+          <p>Isso é incrível! Diz aqui que uma Seiren chamada Aika fez um acordo com os piratas para conseguir a chave do Templo da Trombeta Dourada.</p>
+          <p> </p>
+          <p>Ela iria eliminar Esnu para confiscar a chave do Templo da Trombeta Dourada e saquear os tesouros do templo.</p>
+          <p> </p>
+          <p>O capitão Hinden devia saber disso. Por isso roubou a Lente de Quartzo, para bloquear a entrada do Palácio de Alukina e proteger Esnu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+       <Act href="HACTION_SELECT2_2">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Talvez Esnu não tenha conhecimento deste assunto.</p>
+          <p> </p>
+          <p>Que Aika queria matá-la e que foi apenas devido ao Capitão Hinden que ela foi poupada.</p>
+          <p> </p>
+          <p>Esta carta é um documento muito precioso. Poderemos usá-lo para obter a Chave do Templo da Trombeta Dourada.</p>
+          <p> </p>
+          <p>[%username], eu imploro, mostre a carta para [%dic:STR_DIC_N_Esnu].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+       <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2055-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Humano ou Daeva, não importa - não quero mais nada com Asmodianos.</p>
+          <p> </p>
+          <p>Asmodianos são um bando vil!</p>
+          <p> </p>
+          <p>Saia daqui se não quiser ser amaldiçoado.</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Talvez esta carta possa fazer você mudar de ideia.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está tentando me impressionar com um pedaço de papel velho e surrado?</p>
+          <p> </p>
+          <p>(Lê a carta.)</p>
+          <p> </p>
+          <p>Isso é... verdade? Hinden realmente fez isso por mim?</p>
+          <p> </p>
+          <p>Ele não me traiu?!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_2">Estou procurando uma chave...</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você quer ter a Chave do Templo da Trombeta Dourada?</p>
+          <p> </p>
+          <p>Bom. Eu entregaria a chave para você quando você me trouxe esta importante carta.</p>
+          <p> </p>
+          <p>Estou, no entanto, impondo uma condição.</p>
+          <p> </p>
+          <p>Aika tentou me matar, não posso perdoar isso. Elimine [%dic:STR_DIC_M_SeirenNamedDQ_44_Ae] e me traga a chave dela.</p>
+          <p> </p>
+          <p>Você vai precisar da chave de Aika e também da minha para abrir o templo, entende.</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aika sabia que eu lhe dei uma missão?</p>
+          <p> </p>
+          <p>Ela foi cuidada. Isso não importa mais.</p>
+          <p> </p>
+          <p>Dê-me [%dic:STR_DIC_I_QUEST_4542c].</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a chave de Aika.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Espere um momento.</p>
+          <p> </p>
+          <p>Eu criarei a chave do Templo da Trombeta Dourada para você.</p>
+          <p> </p>
+          <p>Isso vai demorar um pouco. Volte mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não eliminou Aika?</p>
+          <p> </p>
+          <p>Mas você e eu concordamos que você faria isso.</p>
+          <p> </p>
+          <p>Só lhe darei a chave do Templo da Trombeta Dourada se você cuidar de [%dic:STR_DIC_M_SeirenNamedDQ_44_Ae].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está impaciente.</p>
+          <p> </p>
+          <p>Quase pronto.</p>
+          <p> </p>
+          <p>Espere um minuto.</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1">Só mais um pouquinho...</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, pegue isso. É a chave do Templo da Trombeta Dourada.</p>
+          <p> </p>
+          <p>Mas preciso te contar mais uma coisa.</p>
+          <p> </p>
+          <p>Existem várias salas no templo nas quais você não tem permissão para entrar.</p>
+          <p> </p>
+          <p>Depois de tudo o que você me contou, suspeito que Sleipnir esteja escondendo alguma coisa. Ele não deve estar tramando nada de bom.</p>
+          <p> </p>
+          <p>Então, por favor, não dê a chave a ele.</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2055-5.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta.</p>
+          <p> </p>
+          <p>Estou esperando que você me traga a Chave do Templo da Trombeta Dourada, [%username].</p>
+          <p> </p>
+          <p>Você pegou a chave de Esnu?</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a chave para ele.</Act>
+      <Act href="HACTION_SELECT6_1">Você não entrega a chave a ele.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você está dizendo?</p>
+          <p> </p>
+          <p>Você não comprou a chave?</p>
+          <p> </p>
+          <p>Ou será que você simplesmente não quer me dar a chave?</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO6">Você diz que não tem a chave.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hahaha, finalmente tenho a chave do Templo da Trombeta Dourada</p>
+          <p> </p>
+          <p>Toda essa longa espera valeu a pena.</p>
+          <p> </p>
+          <p>Gostaria agora de recompensá-lo, [%username].</p>
+          <p> </p>
+          <p>Aqui, aceite isso. Esta é uma recompensa pelos seus esforços.</p>
+         </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Rubelik].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Sleipnirr].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Vá para [%dic:STR_DIC_N_Esnu] e negocie com ela.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Mate [%dic:STR_DIC_M_SeirenNamedDQ_44_Ae] e traga a chave para [%dic:STR_DIC_N_Esnu].</font></p>[%collectitem]</step>
+               <step><p visible="[%12]"><font color="[%13]">Fale com [%dic:STR_DIC_N_Esnu] novamente para obter a chave do Templo da Trombeta Dourada.</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Sleipnirr].</font></p></step>
+</steps> 
+          <p><font font_xml="quest_summary">Ajude Sleipnir a aprender mais sobre a Carta do Capitão Hinden.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sleipnir suspeitou que a carta do capitão Hinden pudesse conter informações valiosas. Então ele mandou você para Rubelik para tornar o documento legível novamente.</p>
+          <p> </p>
+          <p>Rubelik devolveu a carta, tal como Sleipnir havia solicitado. Mas Rubelik suspeitava de Sleipnir.</p>
+          <p> </p>
+          <p>Depois que Sleipnir leu a carta e descobriu que o Capitão Hinden havia se apaixonado por uma Seiren, ele pediu que você mostrasse a carta a Esnu e obtivesse dela a Chave do Templo da Trombeta Dourada.</p>
+          <p> </p>
+          <p>Esnu leu a carta e descobriu que o capitão Hinden não a traiu, mas na verdade a protegeu de Aika. Esnu pediu para você derrotar Aika.</p>
+          <p> </p>
+          <p>Esnu lhe deu a chave do Templo da Trombeta Dourada. Ela também pediu para você não dar a chave para Sleipnir. Mas você entregou a chave para Sleipnir de qualquer maneira.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

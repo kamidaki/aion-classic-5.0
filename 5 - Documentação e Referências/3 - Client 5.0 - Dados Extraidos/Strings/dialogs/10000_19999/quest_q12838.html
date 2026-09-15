@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O tempo está se esgotando até a batalha com o Grupo de Busca Asmodiano.</p>
+          <p> </p>
+          <p>Por favor, mate o [%dic:STR_DIC_M_LDF5_Recon_v08_D_all] em preparação para a batalha aberta perto da base.</p>
+          <p> </p>
+          <p>Eu sei que esta não é uma tarefa fácil, mas é extremamente importante reduzir a força de combate dos Asmodianos.</p>
+          <p> </p>
+          <p>Por favor, lidere a destruição da Vanguarda Asmodiana como parte da nossa vitória.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os movimentos dos Asmodianos são suspeitos.</p>
+          <p> </p>
+          <p>Parece que poderá haver uma guerra total em breve.</p>
+          <p> </p>
+          <p>Temos que sair vitoriosos de qualquer confronto.</p>
+          <p> </p>
+          <p>Claro, isso nos ajudará nas próximas batalhas se a Vanguarda Asmodiana for eliminada.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], suas habilidades são realmente incríveis.</p>
+          <p> </p>
+          <p>Como você completou a missão tão rapidamente, você será recompensado de acordo.</p>
+          <p> </p>
+          <p>Agora só temos que nos concentrar na guerra contra os Asmodianos.</p>
+          <p> </p>
+          <p>Obrigado por dar o primeiro passo para a vitória.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5_Recon_v08_D_all] que aparece se os Elyos conquistarem o [%dic:STR_DIC_W_LDF5a_E1_8] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard08_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra a ordem de Sallin e mate o 78º Grupo de Busca Asmodiano.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Salin, o 78º Grupo de Busca Asmodiano deve ser exterminado para reduzir sua força de combate.</p>
+          <p> </p>
+          <p>Você matou o 78º Grupo de Busca Asmodiano e recebeu agradecimentos ao retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

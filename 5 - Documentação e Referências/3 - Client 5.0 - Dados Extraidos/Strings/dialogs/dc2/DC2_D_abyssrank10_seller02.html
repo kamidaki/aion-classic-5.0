@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há muito tempo que espero alguém que traga honra e glória aos Asmodianos.</p>
+          <p> </p>
+          <p>Ir para a batalha é difícil, mas sobreviver à batalha com a dignidade intacta é ainda mais difícil.</p>
+          <p> </p>
+          <p>No entanto, você parece ter dominado este difícil desafio, [%username].</p>
+          <p> </p>
+          <p>Deixe-me saber se você gostaria de uma recompensa. Se você realizou um feito adequadamente glorioso, então posso lhe dar uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você ainda não realizou ações suficientes.</p>
+          <p> </p>
+          <p>Sinto muito, mas receio não poder ajudá-lo.</p>
+          <p> </p>
+          <p>Se você provar sua coragem na batalha, um dia terá em suas mãos a recompensa que cobiça.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

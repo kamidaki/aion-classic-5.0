@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Ordem de Operação Urgente -</p>
+          <p/>
+          <p>Remetente: Alto Comando Pandaemonium</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Pedidos:</p>
+          <p/>
+          <p>Pare os Elyos que estão atacando o [%dic:STR_DIC_W_DF2B_SZ_A_Town] em Brusthonin.</p>
+          <p/>
+          <p>Vá imediatamente para o teatro de operações. Reporte-se a [%dic:STR_DIC_N_Sala] no Priorado de Marchutan após a conclusão da missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você embolsa a Ordem de Operação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu já ouvi. Foi dito que os Elyos atacaram o [%dic:STR_DIC_W_DF2B_SZ_A_Town] em Brusthonin.</p>
+          <p> </p>
+          <p>Os Mortos-Vivos já haviam dizimado nossas tropas lá, as coisas quase deram terrivelmente errado.</p>
+          <p> </p>
+          <p>Por favor, dê-me seu relatório para que eu possa lhe dar uma recompensa apropriada.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Venho por este meio confirmar que você cumpriu sua missão, [%username].</p>
+          <p> </p>
+          <p>Aqui está sua recompensa do nosso Alto Comando.</p>
+          <p> </p>
+          <p>E muito obrigado novamente por seus esforços.</p>
+          <p> </p>
+          <p>[%username], não consigo nem expressar o quanto estou grato por sua ajuda em Brusthonin.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Elyos que estão atacando Brusthonin ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_Sala].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordem de Operação Urgente: Mate os Elyos que estão atacando Baltasar Hill Village em Brusthonin e relate os resultados para Sala.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou a missão urgente do Alto Comando Pandaemonium e eliminou os Elyos que estavam atacando Baltasar Hill Village.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

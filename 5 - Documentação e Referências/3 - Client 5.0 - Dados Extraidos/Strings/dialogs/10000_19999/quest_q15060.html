@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15060</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A New Start Legião está relatando um número crescente de pessoas desaparecidas.</p>
+          <p> </p>
+          <p>O que ainda não se sabe é se nossos legionários estão sofrendo acidentes ou simplesmente desertando por causa do ambiente hostil. De qualquer forma, a situação é alarmante.</p>
+          <p> </p>
+          <p>Quanto menos Legionários tivermos aqui, mais difícil será tomar medidas para evitar a perda de ainda mais membros da Guilda.</p>
+          <p> </p>
+          <p>[%username], estou feliz que você ainda esteja conosco. Você assumiria a responsabilidade de tornar a área um pouco mais segura?</p>
+          <p> </p>
+          <p>Por favor, vá para [%dic:STR_DIC_W_LF5_SZ_F_01] e limpe o [plur][%dic:STR_DIC_M_LF5_F_Drakan_60_An], colocando em risco a segurança dos Legionários.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você teve sucesso?</p>
+          <p> </p>
+          <p>Temia ter que colocar o nome [%username] na lista de pessoas desaparecidas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que poderia contar com você.</p>
+          <p> </p>
+          <p>Espero que os membros desaparecidos retornem rapidamente agora...</p>
+          <p> </p>
+          <p>Não é muito, mas aqui está uma recompensa para você. Por favor, pegue isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para o [%dic:STR_DIC_W_LF5_SZ_F_01] e lute contra o [plur][%dic:STR_DIC_M_LF5_F_Drakan_60_An] ([%2]/8).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Averse_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o Templo do Pôr do Sol e derrote os Lutadores Drakan lá. Reporte para Aver.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aver está preocupado, pois mais e mais membros da Guilda New Start estão sendo dados como desaparecidos.</p>
+          <p> </p>
+          <p>Você derrotou o lutador Drakan no Templo do Pôr do Sol para garantir a segurança dos membros da legião. Aver elogiou sua lealdade e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

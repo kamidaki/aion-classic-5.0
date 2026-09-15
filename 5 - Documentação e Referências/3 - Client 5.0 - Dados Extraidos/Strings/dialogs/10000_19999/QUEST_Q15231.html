@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15231</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tiamaranta não existe mais. No entanto, Daevas que lutou contra os seguidores de Tiamat lá e obteve a chave da caixa do Protetorado de Tiamat merece uma recompensa.</p>
+          <p> </p>
+          <p>Se você tiver um [%dic:STR_DIC_I_Key_tiamatdown_l_01], eu lhe darei uma recompensa em troca dele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A chave da caixa do Protetorado de Tiamat é a prova de seus feitos na batalha contra os seguidores de Tiamat.</p>
+          <p> </p>
+          <p>Se você possui essa chave, por favor, mostre-a para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a chave.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! É uma verdadeira Chave do Protetorado!</p>
+          <p> </p>
+          <p>Obrigado, [%username]. A glória é toda sua.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pede sua recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu adoraria te dar uma recompensa, mas...</p>
+          <p> </p>
+          <p>Sem Chave do Protetorado, sem recompensa. Desculpe.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmm... Você tem uma Chave do Protetorado!</p>
+          <p> </p>
+          <p>Isso significa que você deve ser um lutador incrível, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pede sua recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], foi a sua ajuda na batalha por Tiamaranta que nos permitiu derrotar Tiamat.</p>
+          <p> </p>
+          <p>Por favor, continue com o bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga o [%dic:STR_DIC_I_Key_tiamatdown_l_01] para [%dic:STR_DIC_N_LF5_op_h_Exchange_tiamatdown_key].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_op_h_Exchange_tiamatdown_key].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Dê a Rymus a chave da caixa do Protetorado de Tiamat.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rymus precisava da chave da caixa do Protetorado de Tiamat.</p>
+          <p> </p>
+          <p>Você trouxe a chave para ele e ele lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

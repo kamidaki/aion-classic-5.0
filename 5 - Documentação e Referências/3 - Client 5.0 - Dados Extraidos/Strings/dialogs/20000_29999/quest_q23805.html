@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Balaur apareceu no [%dic:STR_DIC_W_LDF5_Fortress_SZ_B3].</p>
+          <p> </p>
+          <p>Eles querem vasculhar os arredores da base.</p>
+          <p> </p>
+          <p>Por favor, vá até o [%dic:STR_DIC_W_LDF5_Fortress_SZ_B3] rapidamente e derrote o [%dic:STR_DIC_E_LDF5_Fortress_Recon_V02_DR].</p>
+          <p> </p>
+          <p>Não podemos permitir que os Balaur tomem a base.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não importa se eles vieram aqui apenas para explorar ou para realmente atacar, os Balaur devem ser eliminados.</p>
+          <p> </p>
+          <p>Eles são nossos piores inimigos.</p>
+          <p> </p>
+          <p>Não podemos permitir que nos prejudiquem.</p>
+          <p> </p>
+          <p>Seria melhor se você eliminasse todos eles para proteger a base.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este problema foi finalmente esclarecido.</p>
+          <p> </p>
+          <p>Não posso acreditar que os Balaur tenham sido tolerados nesta área durante tanto tempo. Portanto, estou muito grato a você, [%username].</p>
+          <p> </p>
+          <p>Você não apenas evitou esta ameaça à base, mas também demonstrou admirável espírito de luta e coragem a todos os nossos aliados.</p>
+          <p> </p>
+          <p>Quero fazer de você meu modelo e defender a base com a mesma coragem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF5_Fortress_SZ_B3] e elimine [%dic:STR_DIC_E_LDF5_Fortress_Recon_V02_DR] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Se os Asmodianos ocuparem o [%dic:STR_DIC_W_LDF5_Fortress_SZ_A2_v02], [%dic:STR_DIC_N_LDF5_Fortress_Village_Guard02_D] aparecerá. Fale com ele.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra o pedido de Tiros e elimine o 702º Balaur Vanguard.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tiros pediu para você eliminar o ameaçador 702º Balaur Vanguard.</p>
+          <p> </p>
+          <p>Depois de completar a missão com sucesso, ele agradeceu repetidamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

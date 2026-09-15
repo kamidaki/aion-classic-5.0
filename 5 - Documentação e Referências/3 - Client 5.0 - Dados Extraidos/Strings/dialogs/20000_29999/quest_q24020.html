@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta deve ser sua primeira vez em Morheim. Bem-vindo.</p>
+          <p> </p>
+          <p>Seu rosto me diz que você conseguiu ganhar muita experiência como Daeva.</p>
+          <p> </p>
+          <p>E precisamos desta experiência aqui em Morheim. Porque há muito o que fazer aqui.</p>
+          <p> </p>
+          <p>Você aceitaria uma missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que aceita a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que sorte que você deseja realizar a tarefa.</p>
+          <p> </p>
+          <p>Esta tarefa não só nos ajudará, mas também a você.</p>
+          <p> </p>
+          <p>Pois bem, divirta-se!</p>
+          <p> </p>
+          <p>Desejo-lhe sorte e sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Conheça o General da Brigada [%dic:STR_DIC_N_Aegir] de Morheim.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Conheça Aegir, o Brigada General da Fortaleza de Gelo de Morheim, e aceite sua missão.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aegir, o General da Brigada da Fortaleza de Gelo de Morheim, disse que a fortaleza precisava de ajuda. Ele lhe deu várias tarefas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+
+</HtmlPages>
+

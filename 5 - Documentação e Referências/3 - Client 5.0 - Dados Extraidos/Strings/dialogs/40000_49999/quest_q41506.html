@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41506</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Antes de podermos lutar contra eles, devemos explorar o [%dic:STR_DIC_W_LDF4b_SZ_T1_A3].</p>
+          <p> </p>
+          <p>Já sabemos muito sobre as suas defesas, mas não o suficiente. Se tivermos alguma esperança de sucesso, precisamos conhecer o nosso inimigo como conhecemos a nós mesmos.</p>
+          <p> </p>
+          <p>Gostaria que você fosse até a Base de Cavalaria de Balaur e observasse seu treinamento e rotina. Relate todos os detalhes para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu se infiltrar na Base de Cavalaria Balaur?</p>
+          <p> </p>
+          <p>Quais são os seus números? Como eles treinam? Que armamentos e apoio eles podem recorrer?</p>
+          <p> </p>
+          <p>Pela Lança de Siel, o que podemos explorar em nosso favor?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu estudei o inimigo..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vejo que eles estão organizados. Khapseb! Isso é mais sério do que eu imaginava.</p>
+          <p> </p>
+          <p>E o número de Pagatis e Sikaras treinados é preocupante.</p>
+          <p> </p>
+          <p>Devo levar este assunto ao Tenente Hiroten.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Olhe o [%dic:STR_DIC_W_LDF4b_SZ_T1_A3].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relate para [%dic:STR_DIC_N_Karlsruh].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary"> São necessárias informações detalhadas sobre a Base de Cavalaria Balaur. Vá e explore o campo de treinamento.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kalsruhi lhe disse que são necessárias informações detalhadas sobre a Base de Cavalaria de Balaur.</p>
+          <p> </p>
+          <p>Você explorou o Campo de Treinamento e relatou suas descobertas. Ele disse que parecia mais sistemático do que pensava e disse que teria que discutir as coisas com Hiroten.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

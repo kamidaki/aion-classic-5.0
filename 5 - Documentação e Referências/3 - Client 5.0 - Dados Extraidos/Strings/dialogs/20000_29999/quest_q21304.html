@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Existem algumas coisas neste mundo que não têm sentido se você simplesmente as possuir.</p>
+          <p> </p>
+          <p>E o que acabei de lhe dar é uma coisa dessas. O material deve ser utilizado para despertar o verdadeiro potencial da arma.</p>
+          <p> </p>
+          <p>Infelizmente, não estou em condições de fazê-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa de habilidades especiais para transferir os poderes dos materiais para a Chave do Éter.</p>
+          <p> </p>
+          <p>Para ser honesto, não tenho essas habilidades.</p>
+          <p> </p>
+          <p>Somente mestres que praticam seu ofício há muito tempo podem usar os materiais de maneira adequada.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Usener], que está no Pandemônio, pode usar esses materiais para melhorar a arma.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Tenho certeza que você já ouviu falar dela. Sua habilidade na fabricação de armas é incomparável e ela também sabe como usá-las.</p>
+          <p> </p>
+          <p>Não seria uma má ideia se você se encontrasse com [%dic:STR_DIC_N_Usener] e desse uma olhada no trabalho dela.</p>
+          <p> </p>
+          <p>Você quer levar a Chave do Éter e os materiais para ela?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você iria.</p>
+          <p> </p>
+          <p>Um Daeva sábio nunca perde a oportunidade de adquirir uma boa arma.</p>
+          <p> </p>
+          <p>Ah, sim, certifique-se de não esquecer a Chave do Éter ou os materiais! Coisas assim podem acontecer rapidamente quando você está viajando.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você não quiser ir para lá, não posso forçá-lo.</p>
+          <p> </p>
+          <p>É porque você ouviu que Usener é muito exigente?</p>
+          <p> </p>
+          <p>Ela trata a todos com muita condescendência, mas se você pedir com educação, ela atenderá seu pedido... Continue pensando em sua decisão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que está acontecendo?</p>
+          <p> </p>
+          <p>Muitos Daevas vieram me ver ultimamente, então estou muito ocupado. Seja rápido e me diga o que você quer.</p>
+          <p> </p>
+          <p>Você deve saber que o tempo de um gênio é mais precioso do que o das pessoas comuns.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4">Você compartilha suas preocupações.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você pergunta não é fácil.</p>
+		  <p> </p>
+		  <p>Está realmente certo aceitar tudo isso?</p>
+          <p> </p>
+          <p>8 milhões de Kinah... Realmente não é uma quantia pequena. Então pense nisso com muito cuidado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega 8 milhões de Kinah e os materiais.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você considera isso novamente.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não disse que estava ocupado?</p>
+          <p> </p>
+          <p>Você vem até mim com um pedido sem estar devidamente preparado... Inacreditável!</p>
+          <p> </p>
+          <p>Vamos, vá embora! Você está perdendo meu tempo falando comigo.</p>
+          <p> </p>
+          <p>Oh sim. Tenha em mente que você deve primeiro retirar uma arma equipada e depois colocá-la em seu Cubo para que eu possa modificá-la.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É interessante. As armas e materiais são da melhor qualidade.</p>
+          <p> </p>
+          <p>São itens especiais que podem tocar o coração de um gênio.</p>
+          <p> </p>
+          <p>Pegue isso. É uma das minhas obras-primas e as pessoas em todos os lugares irão elogiá-lo por isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve a Chave de Éter de Athana, o material e 8 milhões de Kinah para [%dic:STR_DIC_N_Usener].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Se você levar para Usener, ela melhorará sua Éter Key. Então vá para Userer.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Athana lhe disse que habilidades especiais eram necessárias para liberar o poder da Chave do Éter de Athana.</p>
+          <p> </p>
+          <p>Você levou a Éter Key, o material e 8 milhões de Kinah para Usener em Pandemônio. Ela uniu os dois e entregou a você uma Chave de Éter mais poderosa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

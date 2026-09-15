@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15002</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não importa quão cuidadosamente você se prepare, assim que chegar ao destino da expedição, você perceberá que algo está faltando... Nossos Legionários New Start precisam de algo para gerar calor.</p>
+          <p> </p>
+          <p>Esta região é um pouco fria, porque ficou muito tempo submersa no mar. Nossos membros mais sensíveis já estão congelando.</p>
+          <p> </p>
+          <p>Felizmente aprendi que os Vespines desta região carregam um líquido luminescente que emite calor. Talvez possamos usá-los como luzes.</p>
+          <p> </p>
+          <p>Você poderia ir até o [%dic:STR_DIC_W_LF5_SZ_A_01], caçar [plur][%dic:STR_DIC_M_LF5_A_Vespa_55_An] lá e me trazer [plur][%dic:STR_DIC_I_quest_15002a]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que as Vespines Luciferins não apenas trazem luz às trevas da terra, mas também brilharam nas profundezas do mar.</p>
+          <p> </p>
+          <p>Tenho certeza de que as Vespines Luciferins seriam muito valiosas para os membros da nossa Guilda.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Vespines Luciferin.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hm, então este é o notório Vespines Luciferin.</p>
+          <p> </p>
+          <p>Uma luz suave que não esquenta muito. Você me trouxe algo realmente especial. Muito obrigado!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O frio confundiu seus sentidos?</p>
+          <p> </p>
+          <p>Então foi você, [%username], quem precisa do Vespines Luciferin para se aquecer[f:"ela mesma"].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hm, então este é o notório Vespines Luciferin.</p>
+          <p> </p>
+          <p>Uma luz suave que não esquenta muito. Você me trouxe algo realmente especial. Muito obrigado!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem sido extremamente útil. Vou usar bem a Luciferina que você me trouxe.</p>
+          <p> </p>
+          <p>Por favor, continuem a fazer o seu melhor pela New Start Legião.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Procure [plur][%dic:STR_DIC_I_quest_15002a] e reporte para [%dic:STR_DIC_N_LF5_Nubes_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Nubes_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Traga Luciferinas de Vespines para Nuves.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nuves reclamava do ambiente frio, que também era fonte de problemas para os integrantes da Guilda New Start. Ele pediu que você conseguisse Vespines Luciferins para os membros trabalhadores da Guilda.</p>
+          <p> </p>
+          <p>Quando você trouxe para ele os Vespines Luciferins, ele ficou muito grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

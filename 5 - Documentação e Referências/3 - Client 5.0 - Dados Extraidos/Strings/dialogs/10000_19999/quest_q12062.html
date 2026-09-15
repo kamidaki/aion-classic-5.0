@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12062</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui está um fato: os Gurriki são na verdade uma raça pacífica. Se você já esteve no coração da casa deles, você sabe disso.</p>
+          <p> </p>
+          <p>No entanto, o poder de Tiamat corrompeu suas mentes ou os atraiu com promessas de recompensas futuras. Assim, muitos são agora nossos inimigos.</p>
+          <p> </p>
+          <p>Precisamos de alguém para matar [%dic:STR_DIC_M_LDF4b_C1_GururuFi_57_An]s e [%dic:STR_DIC_M_LDF4b_C1_GururuWi_57_An]s para ajudar a evitar que mais pessoas se voltem para os Balaur. Eu gostaria que você fosse esse alguém.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A terra natal dos Gurriki já esteve sob a proteção do Testamento de Kahrun, mas não está mais.</p>
+          <p> </p>
+          <p>Eu me pergunto se essa explosão do poder de Tiamat que corrompeu os Gurrikis tem algo a ver com isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Por favor, não questione minha diligência."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, minhas desculpas. Não quis dizer que você não era um trabalhador incansável para Elysea.</p>
+          <p> </p>
+          <p>Obrigado pela sua ajuda. Felizmente, os Gurrikis restantes não serão tão suscetíveis à influência de Tiamat, querendo ou não.</p>
+          <p> </p>
+          <p>Use esta recompensa do Santuário para se fortalecer ainda mais e trazer mais glória para Elysea. Fé e armas!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_LDF4b_C1_GururuFi_57_An]s e [%dic:STR_DIC_M_LDF4b_C1_GururuWi_57_An]s no Pântano Gurriki ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Karuti].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate guerreiros Gurriki e xamãs Gurriki corruptos para reduzir a ameaça que eles representam.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Karuti disse que o poder de Tiamat transformou o Pântano Gurriki em um campo de batalha que os Elyos não podiam ignorar.</p>
+          <p> </p>
+          <p>Então você matou alguns dos guerreiros Gurriki e xamãs Gurriki que foram corrompidos pelos Balaur. Karuti esperava que isso aumentasse as chances de o Gurriki puro permanecer assim.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

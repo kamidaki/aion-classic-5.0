@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q11525</QuestId>
+    <QuestName/>
+    <QuestType>지휘관 처치</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Tribo Reian não pode permanecer entre nós e os Asmodianos para sempre. Certamente Kahrun verá a nossa justiça, mais cedo ou mais tarde.</p>
+          <p> </p>
+          <p>Precisamos estar preparados quando essa hora chegar. Precisamos mostrar a Kahrun que os Elyos são um aliado poderoso e leal, digno deles.</p>
+          <p> </p>
+          <p>Vá para um [%dic:STR_DIC_E_Q41189_publicall]. Espere até que o [%dic:STR_DIC_E_LDF4a_Dredgion] apareça e mate um [%dic:STR_DIC_E_Q11525a].</p>
+          <p> </p>
+          <p>Dessa forma, ambos repelimos uma ameaça a esta região e provamos a qualquer um que tenha olhos que os Elyos são a maior força em Atreia.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Já tive Escoteiros rastreando o [%dic:STR_DIC_E_LDF4a_Dredgion], mas é difícil, por razões óbvias.</p>
+          <p> </p>
+          <p>Assim, os [%dic:STR_DIC_E_Q11525a]s também são difíceis de rastrear. Mas tenho plena confiança de que você pode fazer isso.</p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sua confiança foi justificada."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, eu sabia que você ajudaria seu povo. Assim que Kahrun souber disso, como ele poderá não nos conceder sua graça sobre os Asmodianos?</p>
+          <p> </p>
+          <p>Só espero estar presente para ver a expressão nos rostos dos trogs quando Kahrun soltar a coleira. Será glorioso!</p>
+          <p> </p>
+          <p>Até lá, devemos fazer o que pudermos. Esta recompensa é um pálido reflexo dos seus feitos, mas é tudo o que posso conceder no momento.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate um dos [%dic:STR_DIC_E_Q11525a]s ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF4a_L_boss].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate um comandante Zorshiv Dredgion em uma zona de infiltração de Dredgion para provar a superioridade de Elyos sobre Kahrun.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Centurião Palenon da Guilda Hushblade queria que você provasse a superioridade de Elyo sobre Kahrun no momento em que ele inevitavelmente escolheu um lado entre você e os Asmodianos.</p>
+          <p> </p>
+          <p>Para fazer isso, você foi a uma zona de infiltração de Dredgion e matou um comandante Zorshiv Dredgion. Você voltou com uma grande recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

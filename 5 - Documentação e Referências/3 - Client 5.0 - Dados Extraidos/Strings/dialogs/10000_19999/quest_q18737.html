@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar das atividades perturbadoras do Exército Beritra?</p>
+          <p> </p>
+          <p>Segundo nossas informações, Beritra acumulou um enorme exército.</p>
+          <p> </p>
+          <p>Eu secretamente enviei um pesquisador ao campo para investigar isso.</p>
+          <p> </p>
+          <p>Normalmente, eu já teria ouvido falar dele, mas ele não fez contato.</p>
+          <p> </p>
+          <p>Eu sei que você está ocupado, mas poderia ir até Mantor e ver se [%dic:STR_DIC_N_IDRaksha_Solo_StageStart] está bem?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O fato de Beritra ter escondido tropas em tal lugar foi um grande choque.</p>
+          <p> </p>
+          <p>Quase me desesperei porque mal consigo lidar com isso sozinho. Mas como estou sendo apoiado por uma celebridade como você, me sinto aliviado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você passa a mensagem de Aver.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh, Aver provavelmente estava preocupado.</p>
+          <p> </p>
+          <p>Devo enviar-lhe um relatório o mais rápido possível, para que ele pare de se preocupar.</p>
+          <p> </p>
+          <p>Considere isso como um agradecimento por me entregar a mensagem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_IDRaksha_Solo_StageStart], que se infiltrou na Mantor.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Descubra para Aver se Aviso, que se infiltrou na Mantor, está bem.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aver lhe contou que o contato com Aviso, membro da Tropa de Pesquisa, havia sido perdido e pediu sua ajuda.</p>
+          <p> </p>
+          <p>Você encontrou Aviso em Mantor e reportou a Aver.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

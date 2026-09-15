@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O documento foi escrito em uma escrita antiga.)</p>
+          <p> </p>
+          <p>(Você mal consegue decifrar a escrita e não tem certeza do conteúdo.)</p>
+          <p> </p>
+          <p>(Seria melhor ir ver Shumir e pedir ajuda.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você terminou a pesquisa sobre o Fio da Espada?</p>
+          <p> </p>
+          <p>Você encontrou alguma pista?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o pergaminho.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que está acontecendo? Você queria me dar alguma coisa!</p>
+	  <p> </p>
+          <p>Achei que você teria trazido algo para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso não pode ser! Você por acaso conheceu um homem chamado Bedin no Fio da Espada?</p>
+          <p> </p>
+          <p>(O rosto de Shumir perde a cor enquanto ele lê o pergaminho.)</p>
+          <p> </p>
+          <p>Você cometeu um grande erro!</p>
+          <p> </p>
+          <p>Você ao menos sabe quem é esse Bedin?</p>
+          <p> </p>
+          <p>Bedin é um vilão malvado que quer aproveitar o poder dos Balaur e usá-los para tornar os Elyos e Asmodianos inimigos para sempre.</p>
+          <p> </p>
+          <p>A ajuda que você deu a ele é para a pesquisa que ele está fazendo para adquirir o poder do Balaur.</p>
+          <p> </p>
+          <p>A espada em Espada's Edge pertence a ele.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga o pergaminho para Shumir.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Entregue a Shumir o pergaminho escrito em uma escrita antiga.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shumir está muito preocupado porque a pesquisa de Bedin sobre Balaur chegou ao fim.</p>
+          <p> </p>
+          <p>Você conta a Shumir o que Bedin disse a você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

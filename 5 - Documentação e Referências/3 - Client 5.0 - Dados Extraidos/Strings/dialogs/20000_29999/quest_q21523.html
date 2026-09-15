@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21523</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Com licença, [%userclass]. Você poderia me fazer um favor se não estiver muito ocupado?</p>
+          <p> </p>
+          <p>Por favor, pergunte ao Warehouse Keeper [%dic:STR_DIC_N_Vort] onde está o Éter Mágico Brilhante que eu pedi.</p>
+          <p> </p>
+          <p>Solicitei há três dias para consertar o motor do navio, mas ainda não o tenho. Você pode perguntar enquanto cuido do meu trabalho?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Brilhante Éter Mágico? Enviei do Pandemônio por mensageiro há dois dias. Quer dizer que não chegou?</p>
+          <p> </p>
+          <p>Meu mensageiro também não tem sido visto ultimamente. Oh, querido... algo terrível deve ter acontecido com ele.</p>
+          <p> </p>
+          <p>Não que esta resposta ajude Riger... mas pergunte à Corretor Comercial [%dic:STR_DIC_N_Shugo_LDF4a_08] se ela pode ajudar. E dê minhas desculpas a Riger.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Eu farei isso, obrigado."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, olá! O que Daeva deseja negociar hoje?</p>
+          <p> </p>
+          <p>Éter Mágico Brilhante? Oooh, que demanda muito valiosa e muito alta. Berinerk não é visto há muito tempo.</p>
+          <p> </p>
+          <p>Melhor procurar no Pandemônio. Não há muita chance de aparecer aqui.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Fragmentos! Obrigado de qualquer maneira."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmmm... você não parece muito feliz.</p>
+          <p> </p>
+          <p>Também notei que você não parece estar carregando meu Éter Mágico Brilhante. O que aconteceu?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Tenho más notícias..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é lamentável. Eu me pergunto o que aconteceu com o mensageiro. Ele foi vítima de monstros? O Balaur? Ou outra pessoa?</p>
+          <p> </p>
+          <p>Entrarei em contato com Pandemônio - tanto para relatar este incidente quanto para obter o Éter Mágico Brilhante.</p>
+          <p> </p>
+          <p>Você fez o que pôde, então ganhou a recompensa. Por favor, pegue.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com o responsável pelo armazém [%dic:STR_DIC_N_Vort].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com o corretor comercial [%dic:STR_DIC_N_Shugo_LDF4a_08].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relatório para [%dic:STR_DIC_N_Rigr].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Riger não recebeu seu Éter Mágico Brilhante do armazém. Descubra o que aconteceu.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Riger pediu para você descobrir por que ele não conseguiu o Éter Mágico Brilhante necessário para consertar a nave no armazém.</p>
+          <p> </p>
+          <p>Você soube por Vord que o mensageiro enviado com o item havia desaparecido. Você tentou o Corretor Comercial mas sem sucesso.</p>
+          <p> </p>
+          <p>Riger ficou decepcionado, mas decidiu entrar em contato com Pandemônio para relatar o desaparecimento do mensageiro e para obter outro Éter Mágico Brilhante.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

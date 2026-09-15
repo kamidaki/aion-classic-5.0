@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22023</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gurr, gurr. Com muita fome.</p>
+          <p> </p>
+          <p>Com tanta fome, gurrp gurrp, eu poderia comer brax inteiro! [%dic:STR_DIC_M_LDF4b_C1_Brax_57_An]! Lumpbrow [%dic:STR_DIC_I_quest_22023a] em gordura Nokara com granulado de Drupa, que bom! Gurururu...</p>
+          <p> </p>
+          <p>Morrendo de fome agora! Traga-me Brax Brisket, Daeva, e talvez eu compartilhe!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gurrp gurrp, quase posso sentir o gosto do peito agora!</p>
+          <p> </p>
+          <p>Você me trouxe peito?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Você ainda vai compartilhar?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu disse que talvez eu compartilhe! Talvez eu mude de ideia! Gurururu...</p>
+          <p> </p>
+          <p>Eu mudei de ideia! Com muita fome. Você pega isso em vez disso!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Cace [%dic:STR_DIC_M_LDF4b_C1_Brax_57_An] e leve [%dic:STR_DIC_I_quest_22023a] para [%dic:STR_DIC_N_NPC_Gururu_07].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Rukikor está com fome. Cace Lumpbrow Brax em busca de Brax Brisket e leve-o para ele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rukikor estava com fome de um suculento Brax Brisket. Ele ficou tão animado quando você trouxe para ele que se recusou a compartilhar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

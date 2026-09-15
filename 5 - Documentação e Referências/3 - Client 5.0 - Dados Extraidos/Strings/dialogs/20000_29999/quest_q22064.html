@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22064</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando nossas forças chegaram, alguns legionários decidiram fazer um jogo de caçar criaturas na Floresta de Enos para manter suas habilidades.</p>
+          <p> </p>
+          <p>Mas agora que a Vontade de Kahrun enfraqueceu nessa área, os jogos devem ser interrompidos. Muitos Daevas estão sendo atacados pelos Elyos.</p>
+          <p> </p>
+          <p>No entanto, isso também significa que a contagem de vida selvagem local aumentará com menos Daevas caçando-os. Isso também seria perigoso.</p>
+          <p> </p>
+          <p>Continue de onde os legionários pararam e livre-se de [%dic:STR_DIC_M_LDF4b_C2_Enos_59_An]s, [%dic:STR_DIC_M_LDF4b_C2_Enos_Baby_59_An]s e [%dic:STR_DIC_M_LDF4b_C2_Fethlot_59_An]es.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Daevas participantes dos jogos da Floresta de Enos contribuiriam para um pool, que seria ganho por aquele que matasse mais criaturas.</p>
+          <p> </p>
+          <p>Você pode não estar jogando ou buscando uma bolsa grande, mas garanto que será bem recompensado por seus esforços.</p>
+          <p> </p>
+          <p>Claro, isso pressupõe que você tenha feito o que eu pedi.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Mas é claro."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom. Precisamos estar vigilantes no que diz respeito a essa área de agora em diante, graças ao enfraquecimento da Vontade de Kahrun.</p>
+          <p> </p>
+          <p>Eu me pergunto se Tiamat sabia que seu poder faria tal coisa e planejou isso, ou se é apenas uma feliz coincidência para ela?</p>
+          <p> </p>
+          <p>De qualquer forma, prometi-lhe uma recompensa. Aqui está.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrote [%dic:STR_DIC_E_Q12064All] na Floresta Enos ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Kusir].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote Enos Destroyers, Young Enos Destroyers e Ice Mane Lindises na Floresta de Enos para manter seus números sob controle.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kusir disse que o poder de Tiamat removeu a Vontade de Kahrun da Floresta Enos, forçando-o a interromper os jogos de caça na área.</p>
+          <p> </p>
+          <p>No entanto, esses jogos também mantiveram baixa a população de monstros na área, então você concordou em ajudar a criá-los você mesmo. Kusir ficou grato pela sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

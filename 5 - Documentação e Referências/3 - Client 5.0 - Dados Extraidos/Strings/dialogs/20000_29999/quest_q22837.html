@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]! Estou implorando para que você mate [%dic:STR_DIC_M_LDF5a_E1_Vri_Post_2nd_Q_As_Nmd_65_Ah] como nosso representante.</p>
+          <p> </p>
+          <p>Talvez você já tenha ouvido falar de [%dic:STR_DIC_M_LDF5a_E1_Vri_Post_2nd_Q_As_Nmd_65_Ah]?</p>
+          <p> </p>
+          <p>Ele deve ser morto por todos os meios para o futuro.</p>
+          <p> </p>
+          <p>Ele é tão forte quanto dizem, então você deveria levar alguns camaradas com você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o capitão Bashid?</p>
+          <p> </p>
+          <p>Os rumores dizem que ele é muito perigoso. Como foi?</p>
+          <p> </p>
+          <p>Se ele liderava a 2ª Tropa como capitão, certamente deveria ter sido um adversário forte?</p>
+          <p> </p>
+          <p>Muitas perguntas. Eu estava preocupado com você.</p>
+          <p> </p>
+          <p>Por favor, me conte como foi.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você eliminou Bashid, o infame líder do 2º Esquadrão?!</p>
+          <p> </p>
+          <p>Você realmente é incrível.</p>
+          <p> </p>
+          <p>Eu já sabia disso, mas isso me fez perceber novamente.</p>
+          <p> </p>
+          <p>A história do seu feito heróico, como você conquistou o Capitão Bashid, será contada nos próximos anos, [%username].</p>
+          <p> </p>
+          <p>Quero agradecer do fundo do meu coração por matar esse inimigo por nós.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5a_E1_Vri_Post_2nd_Q_As_Nmd_65_Ah] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard08_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o infame Capitão Bashid.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Travin pediu para você matar o capitão Bashid, que tem má reputação, em nome dele.</p>
+          <p> </p>
+          <p>Você matou Bashid, o líder da 2ª Unidade, conforme as instruções. Travin ficou muito emocionado e agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

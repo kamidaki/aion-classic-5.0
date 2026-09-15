@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A situação é tão crítica que não há tempo para longas explicações.</p>
+          <p> </p>
+          <p>A Fortaleza Kysis é um dos pontos mais importantes, junto com o Refúgio Krotan e a Fortaleza Miren. Portanto, não podemos permitir que sejam tomadas pelo adversário.</p>
+          <p> </p>
+          <p>Quero iniciar um ataque em grande escala imediatamente, mas a guerra é difícil para nós por causa dos danos da última batalha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para ganhar tempo para o grande ataque, nossos guardiões e Daevas estão tentando realizar ataques menores como forma de diversão.</p>
+          <p> </p>
+          <p>Primeiro queremos lidar com os guardiões próximos à fortaleza. Eles são relativamente fáceis de matar e enfraquecerão o inimigo. Esta estratégia é de baixo risco, mas pode causar danos significativos ao inimigo.</p>
+          <p> </p>
+          <p>Felizmente, muitos Elyos Daevas estão vindo aqui para nos ajudar. E você, [%username]? Você quer lutar conosco?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. Você tomou uma decisão sábia.</p>
+          <p> </p>
+          <p>Por favor, reúna seus camaradas de armas e vá para a Fortaleza Kysis. Mate o [%dic:STR_DIC_E_1231_Defender_Dr] ou o [%dic:STR_DIC_E_1231_Defender_Da].</p>
+          <p> </p>
+          <p>A Guilda dos Protetores de Teminon está sendo reestruturada para prepará-la para a batalha e a captura da fortaleza.</p>
+          <p> </p>
+          <p>Eu sei o quão forte você é. Mas aconselho você a não entrar sozinho na fortaleza. Isso não seria sensato.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não pensei que você recusaria esta missão. Pena, mas não posso forçá-lo a fazer nada.</p>
+          <p> </p>
+          <p>No entanto, peço-lhe que pense novamente sobre por que vale a pena lutar.</p>
+          <p> </p>
+          <p>Se mudar de ideia, você pode voltar para me ver a qualquer momento.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], ouvi dizer que você eliminou com sucesso as forças de combate de nossos oponentes.</p>
+          <p> </p>
+          <p>Um legionário em missão de reconhecimento na fortaleza me contou sobre sua bravura e habilidade em batalha, [%username].</p>
+          <p> </p>
+          <p>Você pode me dizer qual era a situação? Você está ferido?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Embora houvesse muitos Balaur na área, você concluiu a tarefa sem problemas. Isso foi bem feito.</p>
+          <p> </p>
+          <p>[%username], só foi possível porque você aceitou a tarefa.</p>
+          <p> </p>
+          <p>Contarei ao Governador Michalis sobre suas realizações, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_1231_Defender_Dr] ou o [%dic:STR_DIC_E_1231_Defender_Da] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Bellona].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Apresente-se a Bellona assim que tiver derrotado o Esquadrão de Defesa Asmodiano Kysis ou o Esquadrão de Conquista Balaur Kysis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bellona pediu que você ajudasse a recapturar a Fortaleza Kysis.</p>
+          <p> </p>
+          <p>Você concordou e derrotou o Esquadrão de Defesa Asmodiano Kysis ou o Esquadrão de Conquista Balaur Kysis. Bellona elogiou sua ação.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

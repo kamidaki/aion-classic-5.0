@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+	<HtmlPage name="select1">
+	<Contents cdata="true">
+		<html>
+		<body>
+		<p>Recentemente, cada vez mais Pergaminhos Misteriosos têm aparecido em Asmodae.</p>
+		<p> </p>
+		<p>Eles precisam ser levados aos estudiosos para que possam ser estudados.</p>
+		<p> </p>
+		<p>Não sabemos nada sobre sua proveniência. Quem os escreveu? Quem os espalhou por Asmodae? Qual é o seu propósito? Estamos, portanto, recompensando todos os Daevas que coletam esses pergaminhos para nós.</p>
+		<p> </p>
+		<p>Quando você tiver algum [plur][%dic:STR_DIC_I_Pccafe_eventitem], traga-o para mim.</p>
+		<p> </p>
+		<p>Há uma recompensa para cada pergaminho que você trouxer. Traga três de uma vez e você receberá um item muito valioso.</p>
+		</body>
+		</html>
+	</Contents>
+	<Selects>
+		<Act href="HACTION_SELECT1">Eu tenho um pergaminho para você.</Act>
+		<Act href="HACTION_SELECT2">Eu coletei três pergaminhos para você.</Act>
+	</Selects>
+	</HtmlPage>
+
+	<HtmlPage name="select_quest_reward1">
+	<Contents cdata="true">
+		<html>
+		<body>
+		<p>Excelente, você tem um pergaminho!</p>
+		<p> </p>
+		<p>Aceite esta recompensa.</p>
+		<p> </p>
+		<p>Se acontecer de você receber um [%dic:STR_DIC_I_Pccafe_eventitem] novamente, volte e me veja.</p>
+		</body>
+		</html>
+	</Contents>
+	</HtmlPage>
+
+	<HtmlPage name="select_quest_reward2">
+	<Contents cdata="true">
+		<html>
+		<body>
+		<p>Excelente, você tem três [plur][%dic:STR_DIC_I_Pccafe_eventitem] de uma vez!</p>
+		<p> </p>
+		<p>Obrigado.</p>
+		<p> </p>
+		<p>Me avise assim que tiver mais para mim.</p>
+		</body>
+		</html>
+	</Contents>
+	</HtmlPage>
+    
+	<HtmlPage name="quest_complete">
+	<Contents cdata="true">
+		<html>
+		<body>
+		<p>Os [plur][%dic:STR_DIC_I_Pccafe_eventitem] parecem todos iguais à primeira vista, mas diferem no conteúdo.</p>
+		<p> </p>
+		<p>Ainda não está claro quem os escreveu e como foram distribuídos, então continuarei minha pesquisa.</p>
+		<p> </p>
+		<p>Espero que você me ajude.</p>
+		</body>
+		</html>
+	</Contents>
+    	<Selects>
+     	  <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+   	</Selects>
+	</HtmlPage>
+
+	<HtmlPage name="quest_failed_1">
+	<Contents cdata="true">
+		<html>
+		<body>
+		<p>Desculpe, [%username], não consigo encontrar nenhum [plur][%dic:STR_DIC_I_Pccafe_eventitem] em seu cubo.</p>
+		<p> </p>
+		<p>Volte assim que tiver algum.</p>
+		</body>
+		</html>
+	</Contents>
+    	<Selects>
+     	  <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+   	</Selects>
+	</HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Entregue seu [plur][%dic:STR_DIC_I_Pccafe_eventitem] para Findley e receba uma recompensa.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Leve os pergaminhos que você coletou para Findley para receber uma bela recompensa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+	
+</HtmlPages>
+

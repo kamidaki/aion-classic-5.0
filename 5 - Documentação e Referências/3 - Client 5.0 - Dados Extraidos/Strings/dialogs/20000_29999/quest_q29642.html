@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Richelle me pediu para lhe dar a tarefa final assim que você concluir a quinta tarefa. Destrua o [plur][%dic:STR_DIC_DF4_Merdion_DR_54_n] ou o [plur][%dic:STR_DIC_M_DF4_StatueMM_53_An].</p>
+		  <p> </p>
+		  <p>Esta é a sua sexta tarefa.</p>
+		  <p> </p>
+		  <p>Vá para [%dic:STR_DIC_N_Hler] quando tiver concluído a tarefa.</p>
+		  <p> </p>
+		  <p>A menos que você queira lutar contra o Vinculado de Dragão perto do Templo Udas. Haha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo, Daeva. Eu estava esperando por você.</p>
+          <p> </p>
+		  <p>Espero que essas seis tarefas tenham levado você a uma realização.</p>
+		  <p> </p>
+		  <p>Mesmo que inicialmente parecessem inúteis para você, eles eram muito importantes.</p>
+		  <p> </p>
+		  <p>Você protegeu locais importantes em Gelkmaros ao completar suas tarefas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que realizou a sexta tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você não iria me decepcionar.</p>
+          <p> </p>
+		  <p>Estou feliz que o Iluminismo de Marchutan tenha ajudado você.</p>
+		  <p> </p>
+		  <p>Graças a você, o futuro de Asmodae está brilhando intensamente, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_DF4_Merdion_DR_54_n] ou o [plur][%dic:STR_DIC_M_DF4_StatueMM_53_An] em Gelkmaros ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Hler] na Fortaleza Gelkmaros.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Execute a sexta tarefa e encontre Richelle.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A sexta tarefa que Fjoelnir lhe deu foi destruir Sand Snufflers ou Impassive Nagolems em Gelkmaros.</p>
+          <p> </p>
+          <p>Depois de eliminar os monstros, você encontrou Richelle e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

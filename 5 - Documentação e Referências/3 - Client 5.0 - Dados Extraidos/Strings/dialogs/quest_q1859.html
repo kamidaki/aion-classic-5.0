@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou preocupado que a situação possa piorar.</p>
+          <p> </p>
+          <p>O centurião Menelau suspirou ontem. Então perguntei a ele se estávamos preocupados. Depois disse que o número de territórios ocupados pelos Asmodianos em Reshanta aumentou.</p>
+          <p> </p>
+          <p>Depois disso eu o vi chorando ao dizer que não tínhamos mais chance de conquistar a fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hoje foi a primeira vez que vi o Centurião se comportando assim. Eu queria dizer a ele para não se preocupar, mas não consegui.</p>
+          <p> </p>
+          <p>Na verdade, estamos tendo muita dificuldade em eliminar o Klaw. Simplesmente temos poucos soldados aqui.</p>
+          <p> </p>
+          <p>Ouvi falar de suas habilidades incríveis, [%username].</p>
+          <p> </p>
+          <p>Você poderia matar alguns [plur][%dic:STR_DIC_E_1221_guard_Da_fi]?</p>
+          <p> </p>
+          <p>Eu te imploro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado! Muito obrigado!</p>
+          <p> </p>
+          <p>O centurião Menelau também ficará satisfeito.</p>
+          <p> </p>
+          <p>A nossa maior prioridade é impedir a continuação da influência Asmodiana em Reshanta. Comece o ataque assim que os Asmodianos tomarem a fortaleza.</p>
+          <p> </p>
+          <p>Assim que a fortaleza puder ser capturada, ocupe-a. Então mate o [%dic:STR_DIC_E_1221_guard_Da_fi] e traga-me o [plur][%dic:STR_DIC_I_QUEST_1859a].</p>
+          <p> </p>
+          <p>Cuide-se.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Deixa para lá. Foi apenas um pensamento.</p>
+          <p> </p>
+          <p>Esta tarefa é difícil para os Guardiões. Mas duvido que você também ache isso fácil, [%username].</p>
+          <p> </p>
+          <p>Eu entendo. Esqueça meu pedido.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Descanse um pouco.</p>
+          <p> </p>
+          <p>Você está todo suado. Acho que foi uma batalha intensa.</p>
+          <p> </p>
+          <p>Talvez a tarefa que lhe dei tenha sido muito difícil.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega as Bandeiras do Arconte.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estamos contando com você, [%username]. Já disse a Menelau que você nos ajudará.</p>
+          <p> </p>
+          <p>O Centurião quer uma prova do seu sucesso.</p>
+          <p> </p>
+          <p>Por favor, traga para ele o [plur][%dic:STR_DIC_I_QUEST_1859a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pedir sua ajuda foi uma decisão sábia, [%username]. Você é muito valioso para os Elyos.</p>
+          <p> </p>
+          <p>Por favor, aceite isso. Não tenho mais nada que possa lhe dar.</p>
+          <p> </p>
+          <p>Espero que gostem desta pequena recompensa.</p>
+          <p> </p>
+          <p>Agora tenho que relatar ao centurião sobre o seu sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_1221_guard_Da_fi], colete evidências e leve-as para [%dic:STR_DIC_N_Mors].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Guardião Asmodiano Krotan e assim que os Asmodianos capturarem o Refúgio Krotan, colete Bandeiras Arconte e leve-as para Mors.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mors lhe contou que o Centurião Menelau ficava frequentemente chateado com a força crescente dos Asmodianos em Reshanta. Ele pediu para você matar os Guardiões Krotan Asmodianos para renovar a coragem do Centurião.</p>
+          <p> </p>
+          <p>Você eliminou os Guardiões Asmodiano Krotan e pegou suas bandeiras. Então você trouxe as bandeiras para Mors. Ele ficou encantado e quis mostrá-los imediatamente ao Centurião.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio para ajudar! [%username].</p>
+          <p> </p>
+          <p>Que sorte que existam Daevas valentes como você que fazem a sua parte para proteger Asmodae.</p>
+          <p> </p>
+          <p>Daeva! Por favor, vá e veja [%dic:STR_DIC_W_IDLF1]!</p>
+          <p> </p>
+          <p>O futuro de Atreia não parece muito brilhante. Precisamos de apoio e precisamos dele com urgência.</p>
+          <p> </p>
+          <p>Por favor, elimine Marabata, o Fantasma Vingativo e o Verme em [%dic:STR_DIC_W_IDLF1] perto do Lago Marabata, na Floresta Fantasma Vingativo e nos Campos de Drana.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi?</p>
+          <p> </p>
+          <p>Você eliminou Marabata, os Elim Ghosts e os Worms?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que executou a tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você cuidaria de tudo!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine Marabata, os Fantasmas Vingativos e os Vermes.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Marabata ([%2]/3)</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elim Fantasmas ([%5]/2)</font></p>
+                     <p visible="[%0]"><font color="[%1]">Vermes ([%8]/3)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_EVENT_GUARD_MIRAN].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">[%dic:STR_DIC_N_EVENT_GUARD_MIRAN] pediu para você eliminar [%dic:STR_DIC_M_IDLF1_NM_WaterGolem1_50_Ah], [%dic:STR_DIC_M_IDLF1_NM_WaterGolem2_50_Ah], [%dic:STR_DIC_M_IDLF1_NM_WaterGolem3_50_Ah], bem como Noah's Angry Shade, den Eldest Elim Spectre, [%dic:STR_DIC_M_IDLF1_F_Spaller_50_Ah], [%dic:STR_DIC_M_STR_IDLF1_F_Spaller2_50_Ah] e [%dic:STR_DIC_M_STR_IDLF1_F_Spaller3_50_Ah] no Lago Marabata, na Floresta Fantasma Vingativa e nos Campos de Drana em [%dic:STR_DIC_W_IDLF1] .</font></p>
+          <p><font font_xml="quest_summary">Elimine Marabata, os Espíritos Elim e os Vermes</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_N_EVENT_GUARD_MIRAN] pediu para você eliminar [%dic:STR_DIC_M_IDLF1_NM_WaterGolem1_50_Ah], [%dic:STR_DIC_M_IDLF1_NM_WaterGolem2_50_Ah], [%dic:STR_DIC_M_IDLF1_NM_WaterGolem3_50_Ah] bem como Noah's Angry Shade, den Eldest Elim Spectre, [%dic:STR_DIC_M_IDLF1_F_Spaller_50_Ah], [%dic:STR_DIC_M_STR_IDLF1_F_Spaller2_50_Ah] e [%dic:STR_DIC_M_STR_IDLF1_F_Spaller3_50_Ah] no Lago Marabata, na Floresta Fantasma Vingativa e nos Campos Drana em [%dic:STR_DIC_W_IDLF1] .</p>
+          <p> </p>
+          <p>Você eliminou Marabata, os Elim Ghosts e os Worms a pedido de [%dic:STR_DIC_N_EVENT_GUARD_MIRAN].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

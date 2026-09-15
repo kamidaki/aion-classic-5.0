@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], entre! Eu convoquei você porque você conseguiu não envergonhar completamente a si mesmo ou a mim recentemente!</p>
+          <p> </p>
+          <p>Enquanto eu reclamava dos meus alunos insolentes, preguiçosos e inúteis para o Sumo Sacerdote Eremitia, seu nome de alguma forma conseguiu entrar na conversa.</p>
+          <p> </p>
+          <p>Ela é muito mais gentil do que eu, novato, porque ela acha que você realmente merece o teste de Mestre de Construção!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">"Eu... estou honrado!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu deveria ESPERAR que sim! No que me diz respeito, você não está nem perto de estar pronto, mas nem mesmo eu vou anular o Sumo Sacerdote de Kaisinel!</p>
+          <p> </p>
+          <p>É melhor você lembrar que MINHA reputação está em jogo, assim como a sua! Mas se algum dos Elrocos que chamo de meu aluno pode fazer isso, suponho que seja você.</p>
+          <p> </p>
+          <p>Você não será um Mestre como eu, mas quem pode? É melhor você não aceitar este desafio a menos que esteja pronto - mente, corpo e alma!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você acha que pode ser um Mestre de Construção, não é? Bem, LA-DEE-FRICKING-DA! Você tem que PROVAR!</p>
+          <p> </p>
+          <p>Você ganha [%dic:STR_DIC_E_QUEST_SKILL_MENUI_500] e talvez se prove melhor do que um balde de esterco de Dramata!</p>
+          <p> </p>
+          <p>Fale com [%dic:STR_DIC_N_Lurine] para o design. NÃO estrague tudo!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Lembre-me por que estou fazendo isso de novo?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, bem! Você está realmente mostrando algum bom senso pela primeira vez!</p>
+          <p> </p>
+          <p>Na verdade, você está reconhecendo que suas habilidades PATÉTICAS precisam ser aprimoradas antes mesmo de PENSAR em tentar fazer algo para o Sumo Sacerdote!</p>
+          <p> </p>
+          <p>Mas, ao mesmo tempo, é melhor não deixá-la esperando! Se ela ficar chateada... você sabe o que vai acontecer comigo!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Mas... você SEMPRE está chateado..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ei, o que você está olhando, seu cabeçudo?</p>
+          <p> </p>
+          <p>Ah, caramba, ainda não sou tão bom nessa coisa toda de motivação. Então, o que você precisa? Sempre feliz em ajudar!</p> 
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">"Estou fazendo o teste de Mestre de Construção..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau, isso é brilhante! Quero dizer, uh... é melhor você fazer um bom trabalho, então, você... não é um bom trabalho... executor...</p>
+          <p> </p>
+          <p>De qualquer forma, você tem duas opções de design para [%dic:STR_DIC_E_QUEST_SKILL_MENUI_500], como o primeiro teste Expert.</p>
+          <p> </p>
+          <p>Tem-se mais chances de sucesso, mas também é mais caro. Em qual você está interessado?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_2">"O desenho da Cadeira de Eremitia."</Act>
+      <Act href="HACTION_SELECT1_3">"O design da cadeira de pelúcia da Eremitia."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>OK! Tenha em mente, porém, que este é um design muito incompleto. Você precisa investir muito de seu próprio talento e habilidade.</p>
+          <p> </p>
+          <p>Você pode não conseguir a Cadeira de Pelúcia de Eremitia que precisa. Caso contrário, você precisará comprar este design novamente.</p>
+          <p> </p>
+          <p>Por outro lado, se você está confiante na sua sorte, não precisa se preocupar com isso! Tem certeza que é esse que você quer?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO10">"Sim, eu aceito."</Act>
+      <Act href="HACTION_SELECT1_1">"Quais são minhas opções mesmo?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau, você realmente conhece suas coisas! Há tantos detalhes neste design que você com certeza receberá a Cadeira de Pelúcia da Eremitia!</p>
+          <p> </p>
+          <p>Ainda assim, é meio caro. Tem certeza de que tem o Kinah? Você... pessoa desagradável e desagradável?</p>
+          <p> </p>
+          <p>Mestre Undin não permite reembolsos, então tem certeza de que deseja o design da Cadeira de Pelúcia de Eremitia?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO20">"Sim, eu aceito."</Act>
+      <Act href="HACTION_SELECT1_1">"Quais são minhas opções mesmo?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]! Dez-HUT!</p>
+          <p> </p>
+          <p>À vontade! Qual é o seu progresso no teste Construction Master? Relatório!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Senhor, meus resultados, SENHOR!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já começou? O que você tem feito com seu tempo, brincando com seu animal de estimação Mookie?</p>
+          <p> </p>
+          <p>Você acha que o Sumo Sacerdote Eremitia chegou onde está por ficar sentado sobre as mãos? NÃO!</p>
+          <p> </p>
+          <p>Acha que [%dic:STR_DIC_E_QUEST_SKILL_MENUI_500] vai se produzir sozinho? Você está esperando que eu segure sua mão enquanto você faz isso?!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Não, SENHOR!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você está esperando? Acha que aquele design [%dic:STR_DIC_E_QUEST_SKILL_MENUI_500] vai Converse com você?</p>
+          <p> </p>
+          <p>Caso você não tenha notado, [%username]... designs NÃO FALAM!</p>
+          <p> </p>
+          <p>A única coisa que serve é guiar um Construtor! Você é um Construtor ou um covarde?!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Um Construtor, SENHOR!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select8">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, então você não conseguiu fazer um [%dic:STR_DIC_E_QUEST_SKILL_MENUI_500], não é?</p>
+          <p> </p>
+          <p>Estou tão arrasado com isso! Olhe as lágrimas no meu maldito rosto!</p>
+          <p> </p>
+          <p>Então você estragou tudo - ninguém se IMPORTA! Levante-se e tente novamente! Se não, tenho vergonha de te conhecer!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Aqui vamos nós outra vez..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select10">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa de outro design? Isso significa que você falhou em sua última tentativa?</p>
+          <p> </p>
+          <p>Eu sinto muuuito pena de você! Eu realmente quero. Estou fazendo o meu melhor para não chorar. Mestre Undin ficaria muito orgulhoso!</p>
+          <p> </p>
+          <p>Você pode tentar novamente com o design normal ou pode tentar o design avançado, se puder pagar. Alegrar!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">"Quais são minhas opções mesmo?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select10_4_4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hum... você não tem Kinah suficiente.</p>
+          <p> </p>
+          <p>Como você ousa tentar me pregar uma peça, sua pessoa não rica! Sua mãe ficaria tão envergonhada!</p>
+          <p> </p>
+          <p>Uau, essa foi boa! De qualquer forma, volte quando tiver mais Kinah. Estou torcendo por você!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Continue praticando sua conversa fiada..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vamos dar uma olhada... dê um puxão... hmmm, nada mal. A escultura é adequada. Parece equilibrado.</p>
+          <p> </p>
+          <p>Tenho que admitir, você mostrou mais atenção aos detalhes do que a maioria dos cabeças-duras que tentam isso.</p>
+          <p> </p>
+          <p>Você realmente fez... bem. Estou tão surpreso quanto qualquer um! Talvez você esteja ouvindo meu treinamento, afinal!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha os itens necessários para o teste Master em [%dic:STR_DIC_N_Lurine].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Crie [%dic:STR_DIC_E_QUEST_SKILL_MENUI_500] e mostre para [%dic:STR_DIC_N_Undin].</font></p>[%collectitem]</step>
+               <step><p visible="[%6]"><font color="[%7]">Obtenha os itens necessários para o teste Master de [%dic:STR_DIC_N_Lurine] novamente.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você está qualificado para fazer o teste para ser um Mestre de Construção. Faça o item de teste para provar que você merece a honra.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Undin disse que o Sumo Sacerdote Eremitia achou que você estava pronto para fazer o teste de Mestre de Construção. Ele disse quais itens você precisava para criar.</p>
+          <p> </p>
+          <p>O teste consistia em fabricar uma Cadeira de Pelúcia de Eremitia. Você comprou materiais de Lurine, fabricou a cadeira com sucesso e a mostrou para Undin.</p>
+          <p> </p>
+          <p>Undin te deu uma quantidade surpreendentemente efusiva (para ele) de elogios pelos resultados.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

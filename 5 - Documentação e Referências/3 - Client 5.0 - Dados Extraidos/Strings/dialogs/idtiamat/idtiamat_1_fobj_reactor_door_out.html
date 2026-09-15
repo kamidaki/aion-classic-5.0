@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(A energia Asmodiana emana do Centro.)</p>
+          <p> </p>
+          <p>(Um portão que sai do Laboratório de Pesquisa de Controle de Gravidade.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(A energia Asmodiana emana do Centro.)</p>
+          <p> </p>
+          <p>(Um portão que sai da Sala de Controle de Gravidade.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você sai do Laboratório de Pesquisa de Controle de Gravidade.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma saída que sai do Laboratório de Pesquisa de Controle de Gravidade.)</p>
+          <p> </p>
+          <p>(Você ainda não está pronto para ir lá.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina suas investigações.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

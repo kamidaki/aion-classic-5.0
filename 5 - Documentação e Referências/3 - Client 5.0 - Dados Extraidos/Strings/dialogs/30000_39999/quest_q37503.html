@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para: [%username]</p>
+          <p>De: Os Wrights do Amanhecer</p>
+          <p> </p>
+          <p>Para todos os membros da guilda que são Mestres talentosos, sua habilidade ilimitada é solicitada.</p>
+          <p> </p>
+          <p>Uma grande cerimônia para homenagear os Senhores Serafins será realizada em breve. A peça central será a[%dic:STR_DIC_I_QUEST_37503A].</p>
+          <p> </p>
+          <p>Compre um design de um comerciante de artesanato no Santuário dos Mestres e leve sua criação para um [%dic:STR_DIC_E_Quest_37500a].</p>
+          <p> </p>
+          <p>Somente o seu trabalho da mais alta qualidade é apropriado. Honre seus irmãos e irmãs, honre seu ofício.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Esta é uma grande oportunidade."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um [%dic:STR_DIC_I_QUEST_37503A]! Isso não é pouca coisa. Naturalmente, as expectativas são incrivelmente altas.</p>
+          <p> </p>
+          <p>Este não é um prêmio para qualquer Daeva. Esta é uma das maiores honrarias que os Elyos podem conceder.  Este é o momento de levar suas habilidades ao limite... e além.</p>
+          <p> </p>
+          <p>Esta deve ser uma honra digna da própria Senhora Ariel! Eu sei que você não irá decepcionar.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Com tudo que tenho..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um [%dic:STR_DIC_I_QUEST_37503A] é difícil de fazer bem. Eu sei. Mas tem que ser assim, pois a maior honra não vem sem o maior esforço.</p>
+          <p> </p>
+          <p>Encontre algo que inspire você. Qualquer coisa. Então pegue essa inspiração e coloque-a em seu trabalho.</p>
+          <p> </p>
+          <p>Coloque-se no trabalho. Acredite em mim, isso vai aparecer. Agora, tente novamente e se esforce ainda mais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Isso é mais difícil do que eu esperava."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está pronto para mostrar seu trabalho? Uau... você se superou. Esta é facilmente uma das melhores peças que já vi.</p>
+          <p> </p>
+          <p>Você certamente é um Mestre muito talentoso. Você se esforçou tanto e isso fica evidente.</p>
+          <p> </p>
+          <p>Temos sorte de ter você em Wrights of Dawn. Os elogios são seus para se deleitar!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Crie um [%dic:STR_DIC_I_QUEST_37503A] e entregue-o a um [%dic:STR_DIC_E_Quest_37500a].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Wrights of Dawn cobraram de você a criação de um item. Compre o design de um comerciante da guilda de artesanato e entregue os resultados a um Elyos Crafting Associate.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Wrights of Dawn solicitaram que você criasse uma Oferenda Suprema dos Serafins para uma cerimônia especial em homenagem aos Senhores Serafins.</p>
+          <p> </p>
+          <p>Você fez o item conforme solicitação e entregou a um representante do grupo, que recompensou seu trabalho artesanal.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

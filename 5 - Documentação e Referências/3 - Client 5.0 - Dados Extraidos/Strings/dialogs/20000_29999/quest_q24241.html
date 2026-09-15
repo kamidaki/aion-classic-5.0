@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acabei de lembrar que um Daeva chamado [%dic:STR_DIC_N_DF2_Kelmar] estava procurando por você há pouco tempo.</p>
+          <p> </p>
+          <p>Ele estava procurando por alguém que chegou aqui recentemente. Se eu pensar bem, fica claro que ele estava falando de você.</p>
+          <p> </p>
+          <p>Acho que ele mencionou a Fortaleza Morheim. Talvez seja melhor você ir andando.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Finalmente, nos encontramos.</p>
+          <p> </p>
+          <p>Saudação. Sou Kelmar, da Legião Rothasia.</p>
+          <p> </p>
+          <p>Vim do Abismo porque precisamos de ajuda em uma missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta do que se trata.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Trata-se do ataque ao Balaur[%dic:STR_DIC_W_IDAb1_MiniCastle_SZ_D].</p>
+          <p> </p>
+          <p>Assim como apenas concedemos aos Daevas qualificados acesso ao Abismo e os treinamos, eles também têm seu próprio campo de treinamento.</p>
+          <p> </p>
+          <p>Os Draconutes no campo de treinamento podem não ser tão fortes ainda, mas assim que completarem o treinamento, eles representarão uma séria ameaça para nós.</p>
+          <p> </p>
+          <p>Eles precisam ser eliminados antes que se tornem um problema, e esperávamos que você ajudasse, [%username].</p>
+          <p> </p>
+          <p>Você não precisa tomar uma decisão imediatamente. Pense nisso e depois venha nos encontrar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_DF2_Kelmar].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O instrutor Kelmar está procurando por você. Vá para a Fortaleza de Gelo Morheim e encontre-se com ele.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lif lhe disse que Kelmar estava procurando por você.</p>
+          <p> </p>
+          <p>Kelmar disse que queria lhe dar uma tarefa importante que tinha a ver com o campo de treinamento de Balaur.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

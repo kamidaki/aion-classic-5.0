@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39501</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Boletim de atualização para membros do comerciante Black Cloud -</p>
+          <p> </p>
+          <p>Os companheiros Comerciantes da Nuvem Negra devem estar alertas contra Plumas ladrões cruéis na Vila Urugugu.</p>
+          <p> </p>
+          <p>Plumas roubaram rações de grãos da caravana Brax. Também mordi minha pata com bicos afiados.</p>
+          <p> </p>
+          <p>Brax está em greve até que as rações de grãos sejam restauradas. A pata está muito dolorida.</p>
+          <p> </p>
+          <p>Solicitação: Assistência na eliminação de [%dic:STR_DIC_M_LDF4A_A3_Lupyllini_DR_56_n]s na Vila Urugugu.</p>
+          <p> </p>
+          <p>- Zorinerk, Vanguarda Mercante da Nuvem Negra -</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Urugugu Plumas, ok."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Afaste-se, Daeva!</p>
+          <p> </p>
+          <p>Não chegue muito perto de Jeparinerk, o Selvagem!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu, uh... ataquei algumas Plumas."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah? O vil ladrão Urugugu Periwinkle Plumas?</p>
+          <p> </p>
+          <p>Devo enviar um Boletim de Atualização para Membros imediatamente! A pata de Zorinerk foi vingada!</p>
+          <p> </p>
+          <p>Jeparinerk, o Selvagem, poderia ter vingado a pata de Zorinerk, sim, sim, mas teve reuniões de marketing o dia todo. Muito ruim!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Caçar [%dic:STR_DIC_M_LDF4A_A3_Lupyllini_DR_56_n]s ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Arquive seu relatório com [%dic:STR_DIC_N_Shugo_LDF4a_01].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Comerciantes da Nuvem Negra precisam de ajuda com Periwinkle Plumas na Vila Urugugu.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um boletim de atualização dos comerciantes da Black Cloud. Parecia que eles estavam tendo alguns problemas.</p>
+          <p> </p>
+          <p>Você matou as Plumas Pervinca na Vila Urugugu que estavam comendo as rações de grãos Brax, e Jeparinerk recompensou você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

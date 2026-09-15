@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Balaur são todos ladrões, ak!</p>
+          <p> </p>
+          <p>Clirinerk reuniu suprimentos militares com muito esforço! E os Desertores de Tiamat roubaram tudo, ak!</p>
+          <p> </p>
+          <p>É difícil para Shugo suportar, mas Clirinerk é fraco e não é um lutador, ak! Akakak!</p>
+          <p> </p>
+          <p>Shugo ficaria grato pela ajuda de Daeva, ak. Mate [%dic:STR_DIC_E_LDF5b_F4_TR] e reúna [%dic:STR_DIC_I_QUEST_13057A], ok!</p>
+          <p> </p>
+          <p>Shugo também oferecerá uma recompensa por isso, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Ele sorri enquanto verifica os livros contábeis.)</p>
+          <p> </p>
+          <p>Então... Se os itens vendidos entre os desertores forem devolvidos, isso gera o dobro do lucro, também...</p>
+          <p> </p>
+          <p>(Totalmente surpreso)</p>
+          <p> </p>
+          <p>Ah, há quanto tempo você está aí, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega os recursos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mãe... muito obrigado, ak. Que sorte que você conseguiu encontrar o item perdido, akakak.</p>
+          <p> </p>
+          <p>Aqui, tome isso como compensação, ak. Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue [%dic:STR_DIC_I_QUEST_13057A] e dê para [%dic:STR_DIC_N_LDF5b_Kliring_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Devolva os materiais de guerra que os desertores de Tiamat roubaram para Goldrinyerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Klirinerk, os suprimentos foram arrancados de Tiamat e devolvidos a Klirinerk.</p>
+          <p> </p>
+          <p>Se você conhece Klirinerk, saberá que as coisas não foram roubadas de Tiamat e que ele as vendeu para ela.</p>
+          <p> </p>
+          <p>Aqueles Shugo...</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

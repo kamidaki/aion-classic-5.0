@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você quer um [%dic:STR_DIC_I_Q18813_detail]! É muito fofo, né?</p>
+          <p> </p>
+          <p>Se você tiver 1 [%dic:STR_DIC_I_junk_od_fragment_happy_01], 50 [%dic:STR_DIC_I_junk_od_fragment_amazing_01]s e 50 [%dic:STR_DIC_I_junk_od_fragment_lonely_01]s, eu lhe darei a estátua.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu os conto um por um, quer você traga 50 fragmentos ou mais de 9.000.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Não tenha pressa contando isso."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Correto!</p>
+          <p> </p>
+          <p>Aqui está a estátua de Shugo Lad que você deseja.</p>
+          <p> </p>
+          <p>Se quiser outro, basta trazer materiais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga materiais para [%dic:STR_DIC_N_Shugo_housing_49] para um [%dic:STR_DIC_I_Q18813_detail].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Traga materiais para Spirerinerk e receba uma estátua de Shugo Lad em troca.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Spirerinerk prometeu dar a você uma estátua super fofa de Shugo Lad se você trouxesse minérios e fragmentos.</p>
+          <p> </p>
+          <p>E ela fez.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q20082</QuestId>
+    <QuestName>속박이 풀린 이유</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_LDF5a_Apolis_E], um membro da Tribo Reian, me pediu ajuda, mas infelizmente tive que recusar.</p>
+          <p> </p>
+          <p>[%username], você poderia ajudar Aporis em meu lugar? Não posso sair daqui porque tenho que vigiar o território ocupado.</p>
+          <p> </p>
+          <p>Aparentemente existem dificuldades na luta contra o Vinculado de Dragão.</p>
+          <p> </p>
+		  <p>Honestamente, não sei muito sobre a base da Tribo Reian em Katalam. Mas não podemos ignorá-los, por isso peço que os apoiem.</p> 
+		  <p> </p>
+		  <p>O que aconteceria aos Elyos e aos Asmodianos se outra força de ligação fosse formada, tão poderosa como tinha sido no passado?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q20082-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Você veio ajudar a consertar a Estátua da Vinculação?</p>
+		  <p> </p>
+          <p>Ah, você não fez? Espere, eu nunca vi você aqui antes?</p>
+		  <p> </p>
+		  <p>Por que você veio até mim então?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você diz que Abus enviou você?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+	     <p>Ah! Eu entendo.</p>
+	     <p> </p>
+	     <p>Aparentemente o Capitão Abus está ocupado. É por isso que ele enviou você, [%username].</p>
+	     <p> </p>
+		 <p>Eu temia que ele me considerasse um incômodo. Felizmente ele enviou você, Daeva.</p>
+		 <p> </p>
+	     <p>Quais são suas habilidades?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1_1">Por que você pergunta isso?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Preciso de alguém que me ajude a matar [%dic:STR_DIC_LDF5A_A2_Fana_Wi_QN_61_An] e me trazer [%dic:STR_DIC_I_quest_20082a].</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_LDF5a_Gurd_E] me deu essa missão, mas continuo falhando continuamente. Até agora só consegui reparar a Estátua da Vinculação. Como devo completar esta missão?</p>
+          <p> </p>
+          <p>Conversei com Gurd sobre isso e ele me aconselhou a pedir a um habilidoso Asmodiano Daeva para completar esta missão. Foi por isso que perguntei a Abus no posto.</p>
+          <p> </p>
+          <p>Você tem coragem de completar esta missão, [%username]? Se você levar o Cinturão de Ellotum para Gurd, ele irá recompensá-lo por isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q20082-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você parece familiar.</p>
+          <p> </p>
+          <p>Onde nos conhecemos antes?</p> 
+          <p> </p>
+          <p>Sim, exatamente! Você apareceu há três meses, quando impedi o Governador Bardo de lutar na entrada do Templo Rúnico.</p>
+          <p> </p>
+          <p>Presumi que você tivesse sido derrotado no ataque a Elyos.</p>
+		  <p> </p>
+		  <p>O que traz você até mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Cinto de Ellotum.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você ajudou Aporis?</p>
+          <p> </p>
+          <p>Eu vi como você estava inconsciente há três meses. É por isso que eu não teria imaginado que você seria capaz de fazer algo assim.</p> 
+          <p> </p>
+          <p>Então você eliminou Ellotum dos Vinculados de Dragão, o arquiinimigo da tribo Reian. Incrível.</p>
+          <p> </p>
+          <p>É claro que nunca esperei que Aporis matasse Ellotum pessoalmente.</p> 
+          <p> </p>
+          <p>Eu secretamente esperava que um Asmodiano capaz como você fosse enviado para cá. Sem que Bardo ou Rimo fiquem sabendo disso, é claro.</p>
+          <p> </p>
+          <p>Sou o líder da tribo Reian e tenho um pedido urgente para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você pede a ele para continuar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, eu confio em você.</p>
+          <p> </p>
+          <p>Não tenha medo, mas Kahrun desapareceu.</p>
+          <p> </p>
+          <p>O poder de vinculação desapareceu um dia. O Poder de Vinculação, criado por Kahrun, desapareceu.</p>
+          <p> </p>
+          <p>Os Reian ficaram horrorizados e procuraram em vão por Kahrun, mas ele não foi encontrado em lugar nenhum. Senti que algo aconteceu com Kahrun.</p>
+          <p> </p>
+          <p>As tropas aliadas também notaram a mudança. Quando o Poder de Vinculação desapareceu, eles começaram a lutar entre si. Além disso, o Exército Beritra apareceu. Como se soubessem que algo assim iria acontecer.</p>
+		  <p> </p>
+          <p>Sem Kahrun, não poderíamos fazer nada.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1_1">Você diz que está muito surpreso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Eu entendo você. Mas essa é a verdade e devemos aceitá-la.</p>
+         <p> </p>
+         <p>O mais importante agora é encontrar Kahrun. Ficou claro que os Elyos e Asmodianos se tornariam mais agressivos quando percebessem que Kahrun havia partido. Foi por isso que enviamos um grupo de busca para o sul.</p>
+         <p> </p>
+         <p>Mas estamos muito fracos. Os Asmodianos estão lutando contra os Elyos por toda parte. Além disso, o Exército Beritra está em movimento e os Vinculados de Dragão estão nos causando muitos problemas.</p>
+         <p> </p>
+		 <p>Foi por isso que chamei Aporis. Eu esperava que os Asmodianos enviassem um herói que procurasse secretamente por Kahrun em nome da Tribo Reian.</p>
+		 <p> </p>
+		 <p>[%username], podemos confiar em você? Você nos ajudará a procurar Kahrun?</p>
+		 <p> </p>
+         <p>Encontre-se com [%dic:STR_DIC_LDF5a_Nani_E] se quiser nos ajudar. Ela é a última pessoa a ver Kahrun.</p>
+         <p> </p>
+         <p>Você é um bravo guerreiro e lutou contra os inimigos dos Reians. Eu confio em você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q20082-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não se esqueça da tribo Reian.</p>
+          <p> </p>
+          <p>A Tribo Reian desempenhou um papel fundamental na destruição de Tiamat.</p>
+          <p> </p>
+          <p>Somos mais fortes do que você imagina.</p>
+          <p> </p>
+          <p>Se os Asmodianos se voltarem contra a Tribo Reian, ficaremos lado a lado com os Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é o Asmodiano enviado por Gurd?</p>
+          <p> </p>
+          <p>Vou te contar tudo que vi. Por favor, não deixe a batalha chegar ao território Reian.</p>
+		  <p> </p>
+		  <p>Era a vontade de Kahrun que a paz reinasse.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vi Kahrun pela última vez há cerca de três meses.</p>
+          <p> </p>
+          <p>Ele acabara de chegar a Katalam para matar o último soldado de Tiamat.</p>
+          <p> </p>
+          <p>Todo mundo estava desfazendo suas coisas, mas ele apenas pegou suas malas e passou por mim. Como se ele estivesse partindo em uma viagem.</p>
+          <p> </p>
+          <p>Ele seguiu para o sul.</p>
+          <p> </p>
+          <p>Kahrun discutiu algo importante com seu acompanhante. A escolta de Kahrun o seguiu discretamente.</p>
+          <p> </p>
+          <p>Como a escolta estava com ele, não pensei duas vezes e voltei minha atenção para minhas malas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Depois que soube do desaparecimento de Kahrun, contei a Gurd tudo o que tinha visto.</p>
+          <p> </p>
+          <p>Gurd reuniu o Grupo de Busca Reian Kahrun e os enviou para o sul.</p>
+          <p> </p>
+		  <p>Foi difícil porque os Elyos e os Asmodianos não deveriam descobrir sobre o Grupo de Busca.</p>
+		  <p> </p>
+          <p>Isso é tudo que posso lhe dizer.</p>
+          <p> </p>
+          <p>[%username], me dê uma resposta honesta. Você realmente quer ajudar os Reians?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1_1_1">Você diz que ela deveria deixar isso para os Asmodianos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vou acreditar no que você me diz e tenho mais alguns conselhos para você. Vá para [%dic:STR_DIC_LDF5a_Latte_E] próximo às Ruínas da Tristeza.</p>
+          <p> </p>
+          <p>Conheço Lahte desde que cheguei a Katalam. Já contei a ele que Kahrun desapareceu.</p>
+          <p> </p>
+          <p>Graças a Leyte, o Grupo de Busca Reian agora pode vasculhar as Ruínas da Tristeza. Estou muito grato por isso.</p>
+          <p> </p>
+          <p>Ele lhe dirá onde o Grupo de Busca Reian está localizado, [%username]. Por favor, ajude com a pesquisa.</p>
+          <p> </p>
+          <p>Parece que existem dificuldades porque a busca por Kahrun não deve ser tornada pública.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você diz que vai lidar com isso.</Act>
+    </Selects>
+	<Voice file="Q20082-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não te conheço.</p>
+          <p> </p>
+          <p>Saudação. Sou Lahte, centurião do posto de escoteiros.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre seu encontro com Nania.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio ajudar Nania.</p>
+          <p> </p>
+          <p>É uma pena para a Tribo Reian que Kahrun tenha desaparecido.</p>
+          <p> </p>
+          <p>Então estamos ajudando o Grupo de Busca Reian.</p>
+          <p> </p>
+          <p>Não foi difícil ajudar a Tribo Reian a examinar as Ruínas da Tristeza.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_LDF5_Village_Guard01_D]. Ele aparecerá assim que o [%dic:STR_DIC_W_LDF5a_A2_1] para conquistado.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_LDF5a_Apolis_E] em [%dic:STR_DIC_W_LDF5a_A2].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Leve [%dic:STR_DIC_I_quest_20082a] para [%dic:STR_DIC_LDF5a_Gurd_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%9]"><font color="[%10]">Vá para [%dic:STR_DIC_W_LDF5a_SensoryArea_Q10082].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Fale com [%dic:STR_DIC_LDF5a_Nani_E].</font></p></step>        
+               <step><p visible="[%15]"><font color="[%16]">Encontre-se com [%dic:STR_DIC_LDF5a_Latte_E] perto de [%dic:STR_DIC_W_LDF5A_B6].</font></p></step>          
+    </steps>
+          <p><font font_xml="quest_summary">Pedidos: Descubra como estão os Reianos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Abus pediu que você ajudasse um Reian chamado Aporis, que havia pedido ajuda a ele.</p>
+		  <p> </p>
+		  <p>Aporis disse que Gurd, o Representante dos Anciões Reian, confiou nele a destruição de Ellotum. Como suas próprias habilidades não eram poderosas o suficiente, ele pediu ajuda a você.</p>
+		  <p> </p>
+		  <p>Você conquistou Ellotun e trouxe seu cinturão para Gurd como prova.</p> 
+		  <p> </p>
+		  <p>Gurd lembrou-se de sua infância em Katalam e pareceu surpreso ao ver o Cinturão de Ellotum.</p>
+		  <p> </p>
+		  <p>Ele disse que você merece saber a verdade e revelou que Kahrun desapareceu.</p>
+		  <p> </p>
+		  <p>Gurd sugeriu que você procurasse a última testemunha, Nania. Nania contou tudo o que viu.</p>
+		  <p> </p>
+		  <p>Você sugeriu que Nania deixasse a busca por Kahrun para os Asmodianos. Depois ela mandou você para Lahte, para as Ruínas da Tristeza.</p>
+		  <p> </p>
+		  <p>Você conheceu Leyte e disse a ele que está procurando o Grupo de Busca Reian.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

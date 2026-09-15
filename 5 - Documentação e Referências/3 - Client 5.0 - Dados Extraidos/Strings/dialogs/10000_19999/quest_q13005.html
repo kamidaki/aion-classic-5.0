@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você poderia me ajudar?</p>
+          <p> </p>
+          <p>Recebi a tarefa de investigar o Wailing Snowfield, que é o que estou fazendo.</p>
+          <p> </p>
+          <p>Mas [%dic:STR_DIC_M_LDF5B_A3_SoulStone_63_An] está me interrompendo tanto em minha investigação que não consigo ir mais longe.</p>
+          <p> </p>
+          <p>Se você se livrar de [%dic:STR_DIC_M_LDF5B_A3_SoulStone_63_An], eu poderia completar minha tarefa, [%username].</p>
+          <p> </p>
+          <p>Você poderia me ajudar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu tinha acabado de me acostumar com Balaurea e agora Katalam está bem diferente novamente.</p>
+          <p> </p>
+          <p>A função da força expedicionária é investigar a região, mas a área é tão diferente que sou cauteloso.</p>
+          <p> </p>
+          <p>Se você eliminar o Ametgolem das Muralhas por aqui, poderei realizar a tarefa sozinho.</p>
+          <p> </p>
+          <p>Como vai o assunto [%dic:STR_DIC_M_LDF5B_A3_SoulStone_63_An]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Tudo resolvido.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado por se envolver, mesmo que tudo tenha sido devido à minha falta de habilidade.</p>
+          <p> </p>
+          <p>Sempre tive confiança em explorar áreas não civilizadas, mas Katalam realmente não é fácil.</p>
+          <p> </p>
+          <p>Graças a você agora posso cumprir minha missão sem complicações. Obrigado novamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5B_A3_SoulStone_63_An] ([%2]/10)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Tes_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Para ajudar a solitária Tess, o baluarte Ametgolem que está no caminho deve ser removido.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tes, que faz parte da Tropa de Expedição, pediu para você eliminar os durões Ametgolems das Muralhas que estavam interferindo na investigação.</p>
+          <p> </p>
+          <p>Depois de matar os Ametgolems, Tes agradeceu pela sua ajuda, o que significava que agora ele poderia realizar a tarefa sozinho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

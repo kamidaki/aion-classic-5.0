@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12045</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Podemos controlar o Coração da Fissura agora, mas não há garantias na guerra.</p>
+          <p> </p>
+          <p>Agora, ouça. As Estátuas da Fúria da Pedra Branca têm atacado particularmente forte ultimamente. Suspeito que os Balaur tenham algo a ver com isso.</p>
+          <p> </p>
+          <p>Mesmo que eu esteja errado, eles são uma distração perigosa. Quero que você os destrua onde quer que os veja.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Relatei minhas suspeitas ao Santuário. Eles concordam que posso estar no caminho certo, mas ainda preciso de provas.</p>
+          <p> </p>
+          <p>Ainda assim, isso não é da sua conta. Contanto que você destrua as Estátuas da Fúria da Pedra Branca, estou satisfeito.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Você ficará feliz com meu relatório, então."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De fato. Pedirei aos meus escoteiros que reúnam as provas de que preciso. Então poderei conseguir mais reforços do Santuário.</p>
+          <p> </p>
+          <p>Mas você fez sua parte me dando tempo para que isso acontecesse. Você ganhou esta recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua as Estátuas de Stonefury Brancas ([%2]/n).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para Lilia.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Destrua as Estátuas da Fúria da Pedra Branca que estão assolando Elyos Daevas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lilia suspeita que os ataques recentes das Estátuas da Fúria da Pedra Branca estão sendo instigados pelos Balaur.</p>
+          <p> </p>
+          <p>A pedido dela, você destruiu muitos deles, dando-lhe tempo para reunir as provas que precisava de sua teoria para o Santuário.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

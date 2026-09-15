@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30610</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>O Terath Dredgion foi originalmente usado por Tiamat para o avanço para Tiamaranta.</p>
+		  <p> </p>
+		  <p>Quando Tiamaranta caiu, a Guilda Terath decidiu conquistar o último território de Tiamat.</p>
+		  <p> </p>
+		  <p>O Dredgion é incrivelmente forte.</p>
+		  <p> </p>
+		  <p>Você tem que se infiltrar e torná-lo inútil.</p>
+		  <p> </p>
+		  <p>O Corredor o levará diretamente ao interior de Terath Dredgion.</p>
+		  <p> </p>
+		  <p>Mas por favor fale com Alluna com antecedência.</p>
+		  <p> </p>
+		  <p>Ela é a responsável e dirá o que você deve fazer, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que você estava vindo.</p>
+          <p> </p>
+          <p>A construção do Terath Dredgion não é fundamentalmente diferente de outros Dredgions.</p>
+          <p> </p>
+          <p>Primeiro, mate [%dic:STR_DIC_M_IDDreadgion_03_DrakanFiNamedAA_60_Ae] ou [%dic:STR_DIC_M_IDDreadgion_03_DrakanFiNamedAB_60_Ae] na Sala de Máquinas.</p>
+          <p> </p>
+          <p>Então junte-se a [%dic:STR_DIC_M_IDDreadgion_03_DrakanWi_Boss_Ah] na outra extremidade do Dredgion.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Ande na sombra de Azphel."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você finalmente está de volta, [%username].</p>
+          <p> </p>
+          <p>Você incapacitou o Terath Dredgion?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu fiz..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que estava certo em dar essa tarefa a você, [%username].</p>
+          <p> </p>
+          <p>Não precisamos nos preocupar com o Terath Dredgion no momento.</p>
+          <p> </p>
+          <p>Mas isto ainda não é o fim.</p>
+          <p> </p>
+          <p>Quando chegar a hora, espero que você lute na frente mais uma vez.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Aluna].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Mate o [%dic:STR_DIC_E_Q30600a] no Terath Dredgion ([%11]/1).</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Mate o [%dic:STR_DIC_M_IDDreadgion_03_DrakanWi_Boss_Ah] no Terath Dredgion ([%11]/1).</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Relatório para [%dic:STR_DIC_N_Astella].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O Terath Dredgion apareceu. Fale com Alluna sobre a infiltração.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Asthella lhe contou que a Guilda Terath apareceu com um Dredgion. Ela pediu para você se infiltrar neles e colocá-los fora de ação.</p>
+          <p> </p>
+          <p>Você se encontrou com Alluna e então se infiltrou no Dredgion e matou o Capitão Anusa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q51035</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva sabe sobre sopa de bolo de arroz dourado, ok?</p>
+          <p> </p>
+          <p>Numa terra que fica bem a leste, a sopa de bolo de arroz dourado é preparada no início do ano para pedir saúde e sucesso.</p>
+          <p> </p>
+          <p>Agora Mandrunerk quer preparar sopa de bolo de arroz dourado para orar pela vitória da Revolução Violeta, ak.</p>
+          <p> </p>
+          <p>Daeva só precisa trazer caldo de carne e bolos de arroz para Mandrunerk para que Mandrunerk possa preparar a sopa de bolo de arroz dourado, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O caldo e os bolos de arroz estão prontos, ok?</p>
+          <p> </p>
+          <p>Então Daeva só precisa dar os ingredientes a Shugo, ficar confortável e esperar.</p>
+          <p> </p>
+          <p>Mandrunerk vai preparar a sopa de bolo de arroz dourado agora, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega os ingredientes e espera um pouco.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! A sopa de bolo de arroz dourado para Daeva está pronta, ak!</p>
+          <p> </p>
+          <p>Daeva não precisa agradecer a Shugo, ak. Shugo ainda tem alguns ingredientes que Daeva trouxe. Então Shugo não teve prejuízo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve caldo de carne e bolos de arroz para Mandrunerk em Pandemônio.</font></p>[%collectitem]</step>
+           </steps>
+          <p><font font_xml="quest_summary">Leve caldo de carne e bolos de arroz para Mandrunerk em Pandemônio e peça a ele para preparar uma sopa de bolo de arroz dourado.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mandrunerk em Pandemônio queria preparar uma sopa de bolo de arroz dourado, para rezar pela vitória da Revolução Violeta.</p>
+          <p> </p>
+          <p>Você trouxe para ele o caldo de carne e os bolos de arroz e recebeu em troca uma sopa dourada de bolo de arroz.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pessoas como você são sempre bem-vindas aqui, [%username].</p>
+          <p> </p>
+          <p>O agente Mastarius não se esqueceu de você.</p>
+          <p> </p>
+          <p>Ele disse que você conseguiu expulsar os Elyos e que ele estava muito grato a você.</p>
+          <p> </p>
+          <p>Ele elogiou sua coragem, sua sabedoria e suas habilidades: isso é algo que nem todo Daeva possui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você pergunta do que se trata.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gostaria de lhe pedir algo em sigilo.</p>
+          <p> </p>
+          <p>Você pode pensar que é notícia velha, mas os Elyos ainda aguardam uma oportunidade para invadir nosso território.</p>
+          <p> </p>
+          <p>Podemos não ser fracos a ponto de sermos facilmente derrotados... mas nos preocupamos.</p>
+          <p> </p>
+          <p>Não podemos ficar parados sem fazer nada, sabe?</p>
+          <p> </p>
+          <p>Seria ótimo se você pudesse dar uma verdadeira surra naquelas pessoas que guardam a fortaleza de Elyos.</p>
+          <p> </p>
+          <p>Isso levará algum tempo, mas se você me ajudar, equiparei a Chave de Éter de Athana com um poder especial.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado, [%username].</p>
+          <p> </p>
+          <p>Mate rapidamente o Guardian General perto de [%dic:STR_DIC_W_LF4_SZ_2011_A] e aquele em [%dic:STR_DIC_W_LF4_SZ_2021_A].</p>
+          <p> </p>
+          <p>É um assunto perigoso, mas confio que alguém como você conseguirá realizar o trabalho.</p>
+          <p> </p>
+          <p>Eu gostaria de ir lá e matá-los eu mesmo, mas não posso sair deste lugar.</p>
+          <p> </p>
+          <p>Rezarei pela sua vitória.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu entendo. E você também não deseja ir para o campo inimigo.</p>
+          <p> </p>
+          <p>Mas você sempre pode reconsiderar, [%username].</p>
+          <p> </p>
+          <p>Se não os matarmos, eles se tornarão um perigo ainda maior.</p>
+          <p> </p>
+          <p>Volte se mudar de ideia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estava esperando por você, [%username].</p>
+          <p> </p>
+          <p>Acho que você atendeu meu pedido satisfatoriamente.</p>
+          <p> </p>
+          <p>Mesmo que sejam fortes, definitivamente não são adversários para você.</p>
+          <p> </p>
+          <p>Mostre-me o Éter Revolver depois de concluir a tarefa. Uma promessa é algo de grande importância para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você entrega a arma.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Meu pedido só poderá ser atendido por alguém que carregue uma arma com meus poderes.</p>
+          <p> </p>
+          <p>Não que eu duvide da sua força.</p>
+          <p> </p>
+          <p>É um assunto muito perigoso... Não posso dar esta tarefa a alguém que não tenha o poder da Chave do Éter de Athana.</p>
+          <p> </p>
+          <p>Tenho certeza que você entende que minhas mãos estão atadas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Huh? O que está acontecendo com a Éter Key de Athana?</p>
+          <p> </p>
+          <p>Não adianta ter guarnição se não tiver os ingredientes principais.</p>
+          <p> </p>
+          <p>Que pena. Eu gostaria de lhe dar algo especial...</p>
+          <p> </p>
+          <p>Mas não há nada que eu possa fazer se você não tiver uma Chave do Éter.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você lutar contra os Generais Guardiões pela vitória Asmodiana, eu lhe darei o presente que prometi.</p>
+          <p> </p>
+          <p>O material que pode ser usado para dar mais poder à Éter Key.</p>
+          <p> </p>
+          <p>Alguém com habilidades como as suas saberá como usá-lo.</p>
+          <p> </p>
+          <p>Será de grande ajuda para você em suas batalhas futuras.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Infiltre-se nas fortalezas Elyos e mate os Generais Guardiões.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Mate o Guardião Geral em [%dic:STR_DIC_W_LF4_SZ_2011_A] ([%5]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Mate o Guardião Geral em [%dic:STR_DIC_W_LF4_SZ_2021_A] ([%8]/1).</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Relatório para [%dic:STR_DIC_N_Vedrfonir].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote os Generais Guardiões que guardam o Templo das Balanças e o Altar da Avareza e reporte-se a Athana.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Athana, uma das ajudantes de Mastarius, disse que os Elyos sempre quiseram o território dos Asmodianos e por isso pediu ajuda a você.</p>
+          <p> </p>
+          <p>A pedido dela, você foi até a Fortaleza Elyos e matou o Guardião Geral lá. Quando você voltou, foi recompensado com um material com o qual a energia poderia ser carregada em uma Chave de Éter.</p>   
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

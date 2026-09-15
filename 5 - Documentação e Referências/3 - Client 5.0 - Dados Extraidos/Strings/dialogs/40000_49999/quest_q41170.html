@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41170</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na verdade, agora que você definiu a estratégia de saída, está preparado para o resgate real do [%dic:STR_DIC_N_Iayos].</p>
+          <p> </p>
+          <p>Meu? Peguei uma flecha nas tripas em minha última missão. Negócio desagradável. Preciso ficar aqui, entediado. Nada a fazer senão polir minha lança brilhante.</p>
+          <p> </p>
+          <p>Você iria até [%dic:STR_DIC_W_LDF4a_SZ_A2_02] novamente e o acompanharia para casa?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ele... ajuda. Ajuda?!</p>
+          <p> </p>
+          <p>Ajuda! Balaur me arrastou até aqui.</p>
+          <p> </p>
+          <p>Estou mais do que pronto para ir para casa.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"E estou pronto para levá-lo até lá."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shhh. Fale baixinho para que Ayos não possa ouvir você. Não queremos incomodá-lo.</p>
+          <p> </p>
+          <p>O que aconteceu lá fora? Ele parece um pouco vazio, como se o Balaur tivesse sugado todos os seus miolos e os colocado de volta em um ângulo diferente.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Toda vez que ele foi fugir: Shulack!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então é assim. Liberdade à vista, mas para sempre indisponível. Pobre Ayos.</p>
+          <p> </p>
+          <p>Tenho certeza que ele agradeceria se fosse coerente. Farei isso em seu lugar.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre [%dic:STR_DIC_N_Iayos].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Acompanhe [%dic:STR_DIC_N_Iayos] para [%dic:STR_DIC_N_Honoos].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_Honoos].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Resgate Ayos na vila de Menin.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hanis foi ferido em batalha, então você foi resgatar Ayos sozinho.</p>
+          <p> </p>
+          <p>Ayos foi solto, mas incapaz de escapar de seus muitos captores.</p>
+          <p> </p>
+          <p>Naturalmente, Shulacks atrapalhou seu resgate, mas você conseguiu colocar Ayos em segurança.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

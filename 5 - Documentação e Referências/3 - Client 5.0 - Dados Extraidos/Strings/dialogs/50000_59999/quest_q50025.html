@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Esta Love Letterbox praticamente exala alegria presunçosa. Uma pequena placa de latão diz:)</p>
+          <p> </p>
+          <p>("[%dic:STR_DIC_I_Heart2] procurando pela outra metade.")</p>
+          <p> </p>
+          <p>("Cada coração é um tesouro.")</p>
+          <p> </p>
+          <p>(Tesouro? Parece bom!)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Meio coração não vale muito por si só, não é?)</p>
+          <p> </p>
+          <p>(Coloque seus [%dic:STR_DIC_I_Heart2]s extras aqui.)</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Não estava realmente usando, de qualquer maneira."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Mesmo um coração partido vale alguma coisa!)</p>
+          <p> </p>
+          <p>(Que poético.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Coloque seus [%dic:STR_DIC_I_Heart2]s extras na caixa de cartas do amor.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">The Love Letterbox afirma que cada coração é um tesouro. Então, que tal a metade esquerda do coração?</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrou uma Love Letterbox, que afirmava que cada coração era um tesouro.</p>
+          <p> </p>
+          <p>Você ainda tinha algumas partes de Copas, então você as trocou!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q14275</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É meu trabalho como General de Brigada monitorar a situação dentro e fora da fortaleza.</p>
+          <p> </p>
+          <p>É por isso que sempre procuro prestar atenção a cada pequeno detalhe em Eltnen.</p>
+          <p> </p>
+          <p>Mas é difícil cuidar de cada assunto sozinho. É por isso que gostaria de pedir que você faça algo.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Hagne] me pediu ajuda. Aparentemente, ela está procurando por seu filho. Você poderia, por favor, ir ao Templo Kyola em meu nome?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Telêmaco enviou você? Daeva, posso te pedir uma coisa?</p>
+          <p> </p>
+          <p>Acho que não me resta muito tempo. Mas há algo que está me pesando.</p>
+          <p> </p>
+          <p>Até concluir isso, não poderei dormir em paz.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que aconteceu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu tive um filho. Eu o criei com o máximo cuidado. Ele se tornou um Guardião após sua ascensão.</p>
+          <p> </p>
+          <p>Ele sempre me mandava notícias de suas operações em diversas regiões. Ele às vezes até me visitava. Mas faz muito tempo que não ouço nada dele.</p>
+          <p> </p>
+          <p>No começo tive medo que ele pudesse ter ido para o Abismo. Mas isso foi há décadas.</p>
+          <p> </p>
+          <p>Quero ver o rosto do meu filho mais uma vez antes de deixar este mundo...</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Conheça [%dic:STR_DIC_N_Hagne] em [%dic:STR_DIC_W_LF2_SZ_D_SUB_1].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Fale com Hannet no Templo Kyola.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Devido à sua posição como General de Brigada, Telêmaco tinha muito que fazer. Então ele pediu que você cumprisse uma missão para ele. Ele disse para você ir ao Templo Kyola em nome dele e encontrar Hannet lá.</p>
+          <p> </p>
+          <p>Hannet estava procurando por seu filho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

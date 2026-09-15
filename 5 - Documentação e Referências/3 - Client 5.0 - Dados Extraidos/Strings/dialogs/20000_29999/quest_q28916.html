@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recebi uma mensagem do comando.</p>
+          <p> </p>
+          <p>Menciona um selo que só é concedido a membros de alto escalão do Exército Beritra.</p>
+          <p> </p>
+          <p>Aparentemente o selo é muito valioso. A ordem é eliminar o alto escalão Balaur no Sauro War Depot.</p>
+          <p> </p>
+          <p>Elimine [%dic:STR_DIC_M_IDVritra_Base_Drakan_Guardian_65_Ae2_Nmd] para que você possa pegar o [%dic:STR_DIC_I_quest_28916a] dele.</p>
+          <p> </p>
+          <p>Será mais fácil para nós tomarmos o depósito se você negociar com o Chefe de Gabinete.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estive esperando por você.</p>
+          <p> </p>
+          <p>[%username], você conseguiu o selo?</p>
+          <p> </p>
+          <p>Não é tarefa fácil derrotar soldados Balaur de tão alto calibre.</p>
+          <p> </p>
+          <p>Informe-me se achar que precisa de mais tempo para obter o selo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o selo detalhado do Chefe de Gabinete.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Basta olhar para o fino acabamento! É realmente o selo de que tanto ouvi falar.</p>
+          <p> </p>
+          <p>Você cairia se soubesse quanto os Shugos estariam dispostos a pagar por este selo.</p>
+          <p> </p>
+          <p>Não sei o que pode ser feito com ele, mas como este objeto é reservado apenas para Balaur de alto escalão, é muito raro.</p>
+          <p> </p>
+          <p>Muito obrigado por trazer isso para mim.</p>
+          <p> </p>
+          <p>Posso muito bem pedir ajuda novamente na próxima vez. Afinal, você nunca se cansa disso, não é?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_IDVritra_Base_Drakan_Guardian_65_Ae2_Nmd] e obtenha o [%dic:STR_DIC_I_quest_28916a]. Leve-o para [%dic:STR_DIC_N_LDF5_Giriltia_E] em [%dic:STR_DIC_W_LDF4_Advance_SZ_F_01].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Chefe do Estado Maior Moriata e obtenha o selo ornamentado do Chefe do Estado Maior.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Giriltia ordenou que você obtivesse o selo ornamentado do chefe de gabinete.</p>
+          <p> </p>
+          <p>Você derrotou o Chefe do Estado-Maior Moriata e depois trouxe o selo para Giriltia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

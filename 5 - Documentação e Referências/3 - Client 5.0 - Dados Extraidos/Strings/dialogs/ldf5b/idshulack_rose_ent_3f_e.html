@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>E</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva queria ir para o Steel Rose Deck, ok?</p>
+          <p> </p>
+          <p>Tocharunerk recebeu ordens superiores e agora está investigando secretamente a Rosa de Aço, também conhecida como Steel Rose.</p>
+          <p> </p>
+          <p>Se Daeva quiser ajudar na investigação, é de graça! Shugo levará Daeva para [%dic:STR_DIC_W_IDShulackShip_02_SZ_3F], ak.</p>   
+          <p> </p>
+          <p>Podemos ir imediatamente se Daeva estiver pronto, ak. Certifique-se de que Daeva não se esqueceu de nada!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pisa no convés da Rosa de Aço.</Act>
+      <Act href="HACTION_OPEN_INSTANCE_RECRUIT">Você procura um companheiro para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva queria ir para o Convés da Rosa de Aço, ok?</p>
+          <p> </p>
+          <p>Tocharunerk recebeu ordens do topo e agora está investigando secretamente o Steel Rose, também conhecido como Steel Rose.</p>
+          <p> </p>
+          <p>É de graça se Daeva quiser ajudar na investigação! Shugo levará Daeva para [%dic:STR_DIC_W_IDShulackShip_02_SZ_3F], ak.</p>   
+          <p> </p>
+          <p>Assim que os preparativos estiverem concluídos, podemos partir. Certifique-se de ter tudo, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pisa no convés da Rosa de Aço.</Act>
+      <Act href="HACTION_OPEN_INSTANCE_RECRUIT">Você procura um camarada com quem possa colaborar.</Act>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! O lugar que você quer ir é um lugar que você só consegue acessar com dificuldade se não tiver acompanhante, ak.</p>
+          <p> </p>
+          <p>A coragem de Daeva é louvável, mas Shugo não quer conduzir Daeva por um caminho tão difícil, ak.</p>
+          <p> </p>
+          <p>Se Daeva ainda quiser ir, então leve companheiros junto, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! Daeva já tem companheiros e está procurando avidamente por novos, ok?</p>
+          <p> </p>
+          <p>Se Daeva quiser novos companheiros, Daeva deveria deixar o grupo atual e voltar novamente, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo sente muito, mas Shugo não pode levar Daeva para o convés da Rosa de Aço, ak.</p>
+          <p> </p>
+          <p>É melhor para Daeva treinar ou ganhar mais experiência, obter uma qualificação e depois retornar para Tocharunerk, AK.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>

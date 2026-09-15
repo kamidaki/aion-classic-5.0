@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Katalam Patrol, [%dic:STR_DIC_N_LDF5_Village_Guard16_L] do [%dic:STR_DIC_W_LDF5b_D1_v16]</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Ordens: Mate o Asmodiano que se infiltrou no [%dic:STR_DIC_W_LDF5b_SZ_D1_1] em South Katalam.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A notícia chegou do destacamento na hora certa.</p>
+          <p> </p>
+          <p>Eu pedi apoio porque somos muito poucos para prevalecer neste lugar ferozmente disputado.</p>
+          <p> </p>
+          <p>Com você do nosso lado, [%username], não precisamos temer uma invasão Asmodiana.</p>
+          <p> </p>
+          <p>Você lidou com os intrusos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], sempre ouço boas notícias sobre você.</p>
+          <p> </p>
+          <p>Será uma grande ajuda na defesa do vale Bassen.</p>
+          <p> </p>
+          <p>Por favor, continue ajudando no futuro.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Asmodiano que se infiltrou no [%dic:STR_DIC_W_LDF5b_SZ_D1_1] em South Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LDF5_Village_Guard16_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens urgentes: Mate o Asmodiano que se infiltrou no reservatório Bassen em South Katalam e reporte-se a Kilon.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O infiltrado Asmodiano tinha como alvo o reservatório Bassen em South Katalam.</p>
+          <p> </p>
+          <p>Você matou o invasor Asmodiano e relatou isso a Kilon.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

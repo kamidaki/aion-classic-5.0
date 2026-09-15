@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]! Espere um momento!</p>
+          <p> </p>
+          <p>[%username], por acaso você não tem [%dic:STR_DIC_I_ASSEMBLY_WORLD_EVENT_MATERIAL_WORLD_02A] ou um [%dic:STR_DIC_I_ASSEMBLY_WORLD_EVENT_MATERIAL_WORLD_01A] em seu cubo, tem? Por favor, dê uma olhada.</p>
+          <p> </p>
+          <p>Suspirar. Um furacão destruiu toda a nossa colheita este ano. Agora não temos ração para a nossa Gacka, que põe ovos de ouro.</p>
+          <p> </p>
+          <p>E se não puder botar ovos de ouro, então Aion nos ajude...</p>
+          <p> </p>
+          <p>[%username], você poderia obter um [%dic:STR_DIC_I_ASSEMBLY_WORLD_EVENT_MATERIAL_WORLD_01A] e [%dic:STR_DIC_I_ASSEMBLY_WORLD_EVENT_MATERIAL_WORLD_02A]?</p>
+          <p>Você pode fazer um [%dic:STR_DIC_I_WORLD_WRAP_EVENT_HCOIN202A_BOX_04] usando esses dois ingredientes.</p> 
+          <p> </p>
+          <p>E se você me trouxer o [%dic:STR_DIC_I_WORLD_EVENT_COIN_AU_CCU_WORLD_01] contido dentro, você receberá uma recompensa adequada.</p>
+          <p> </p>
+          <p>Por favor me ajude!</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Negociar</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estamos com pouca comida e estou preocupado.</p>
+          <p> </p>
+          <p>Por favor, ajude! Traga-me [%dic:STR_DIC_I_WORLD_EVENT_COIN_AU_CCU_WORLD_01]. É para Gilda.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Não se preocupe."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

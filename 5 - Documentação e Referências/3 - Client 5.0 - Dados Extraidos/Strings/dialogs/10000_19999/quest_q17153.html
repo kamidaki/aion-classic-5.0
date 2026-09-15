@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Queremos trazer algumas pessoas importantes para a aldeia para o benefício comum dos aldeões.</p>
+          <p>Se esta missão for bem-sucedida, os cuidadores serão convidados. Eles darão uma recompensa a Daevas, que coletou os cálices e coroas divinos.</p>
+          <p> </p>
+          <p>Missão da aldeia:</p>
+          <p>Reúna o [%dic:STR_DIC_E_junk_town_upgrade_flower_soul], que é um requisito para os cuidadores virem à aldeia, e leve-o para o [%dic:STR_DIC_N_Town_SZtownC11].</p>
+          <p> </p>
+          <p>- Administração da aldeia -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que os zeladores, para quem a aldeia Daeva está reunindo o Cálice e a Coroa, serão chamados à aldeia, akakak?</p>
+          <p> </p>
+          <p>Cálice e Coroa... são itens que sempre foram de grande valor para os Daeva, akakak.</p>
+          <p> </p>
+          <p>Mas para o Shugo... eles significam ouro puro!</p>
+          <p> </p>
+          <p>Hahaha, dediquei minha vida inteira à jardinagem, mas esses itens despertam algo não muito diferente da ganância dentro de mim mais uma vez, akakak!</p>
+          <p> </p>
+          <p>Mas eles não são importantes agora. Rapidamente, traga-me a linda Floral Soul.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Alma Floral.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Alma Floral, muito mais bela que o Cálice dourado ou a Coroa dourada.</p>
+          <p> </p>
+          <p>Esta planta está repleta de Éter e, quando floresce, tem lindos botões, akakak.</p>
+          <p> </p>
+          <p>É algo muito especial para os administradores do cálice e da coroa ficarem tão fascinados por este item, akakak.</p>
+          <p> </p>
+          <p>Esqueci completamente de contar quantos recebi! De qualquer forma, espero que você possa ir ver os zeladores sobre uma pequena recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_E_junk_town_upgrade_flower_soul] e leve-os para [%dic:STR_DIC_N_Town_SZtownC11].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">A Alma Floral é necessária para que os zeladores que receberão o Cálice e a Coroa e distribuam recompensas venham para a aldeia. Você precisa reunir a Alma Floral e levá-la ao jardineiro para o benefício comum da aldeia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Anúncio de Tarefa da Aldeia. A Alma Floral é necessária para que os administradores que receberão o cálice e a coroa e distribuam as recompensas venham à aldeia.</p>
+          <p> </p>
+          <p>As pessoas estão gratas por você estar participando da missão da aldeia de coletar a Alma Floral e trazê-la ao jardineiro para o benefício comum dos moradores.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30708</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é o Daeva que trouxe o caos ao meu laboratório.</p>
+          <p> </p>
+          <p>Hmm... tenho vergonha de perguntar, mas... você poderia me ajudar?</p>
+          <p> </p>
+          <p>Após o colapso do laboratório, planejei matar Tiamat e me tornar um Senhor dos Dragões.</p>
+          <p> </p>
+          <p>Mas fui enganado por Rakshaka.</p>
+          <p> </p>
+          <p>Por favor, Daeva.</p>
+          <p> </p>
+          <p>Liberte [%dic:STR_DIC_N_IDTiamat_Drakan_Surama_1] em [%dic:STR_DIC_W_IDTiamat_SZ_S4_1] e ajude-me a me vingar de [%dic:STR_DIC_M_IDTiamat_Rakshaka_Named_60_Ah].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sem Surama, qual é o sentido de viver...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, você se vingou de Surama.</p>
+          <p> </p>
+          <p>Sem Rakshaka, Surama já teria se tornado um Senhor Dragão!</p>
+          <p> </p>
+          <p>Sob...</p>
+          <p> </p>
+          <p>Obrigado, Daeva. Muito obrigado ...</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Grátis [%dic:STR_DIC_N_IDTiamat_Drakan_Surama_1] em[%dic:STR_DIC_W_IDTiamat_SZ_S4_1]([%2]/5)</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Ajude Surama a matar [%dic:STR_DIC_M_IDTiamat_Rakshaka_Named_60_Ah] ([%5]/1)</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_IDTiamat_Murugan_1].</font></p></step>
+     </steps>
+          <p><font font_xml="quest_summary">Liberte os soldados de Surama e mate Rakshaka.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Surama, que está na prisão, pediu que você libertasse seus soldados e se vingasse do General da Brigada Rakshaka.</p>
+          <p> </p>
+          <p>Mas Surama estava fraco demais para lutar contra Rakshaka e morreu.</p>
+          <p> </p>
+          <p>Quando você matou Rakshaka, Murugan, o soldado de Surama, agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

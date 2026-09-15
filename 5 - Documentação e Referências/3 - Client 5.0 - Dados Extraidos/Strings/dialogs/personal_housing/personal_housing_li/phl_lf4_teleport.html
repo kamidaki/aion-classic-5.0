@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Esteja preparado.)</p>
+          <p> </p>
+          <p>(É necessária autorização para viajar.)</p>
+          <p> </p>
+          <p>(O pagamento deverá ser feito no embarque.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Para Inggison: 9.800 Kinah</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>(É necessária autorização e pagamento antecipado para viagem.)</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Para Inggison: 9.800 Kinah</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O portão de embarque permanece fechado.)</p>
+          <p> </p>
+          <p>(Sua autorização para a zona de destino ou seu Kinah foram rejeitados por serem insuficientes.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Estúpido Aerolink. Tenho circunstâncias especiais."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

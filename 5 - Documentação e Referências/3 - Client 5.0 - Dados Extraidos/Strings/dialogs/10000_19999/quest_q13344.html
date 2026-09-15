@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Espero que você aceite a tarefa de eliminar o [%dic:STR_DIC_E_LDF5_Recon_v18_DR].</p>
+          <p> </p>
+          <p>Eliminar o Balaur Vanguard atrasará seu ciclo subsequente de ataques.</p>
+          <p> </p>
+          <p>Devemos mostrar que uma raça como a Balaur nunca poderia nos deter.</p>
+          <p> </p>
+          <p>Por favor, demonstre o verdadeiro poder dos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O envio de uma Vanguarda pode ser diretamente equiparado a uma declaração de guerra.</p>
+          <p> </p>
+          <p>Isso significa que um ataque é iminente.</p>
+          <p> </p>
+          <p>[%username], mate o [%dic:STR_DIC_E_LDF5_Recon_v18_DR]. Você estaria nos ajudando muito se fizesse isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora os Balaur saberão o quão fortes são os Elyos.</p>
+          <p> </p>
+          <p>Mesmo que os ataques deles não possam ser atrasados, seremos capazes de vencer com esta energia.</p>
+          <p> </p>
+          <p>[%username], agradecemos todos os seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_LDF5_Recon_v18_DR] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard18_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o 88º Balaur Vanguard perto da 88ª Guarnição.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Knemus queria que os próximos ataques de Balaur fossem prolongados e queria que as pessoas mantivessem a força dos Elyos em mente.</p>
+          <p> </p>
+          <p>Conforme ordenado, você matou o Balaur Vanguard e foi agradecido por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

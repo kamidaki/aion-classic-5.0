@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A esta altura, a vida do espírito é semelhante a uma vela ao vento. Esta fórmula de transformação tem simplesmente de ser bem sucedida.</p>
+          <p> </p>
+          <p>Já testei a fórmula várias vezes desde que cheguei em Asmodae, e esses testes foram bem-sucedidos até certo ponto.</p>
+          <p> </p>
+          <p>Mas tornei-me muito cauteloso, porque existe a possibilidade de eu acabar com a Vida do Grande Espírito do Fogo por acidente.</p>
+          <p> </p>
+          <p>Necessito da Essência da Vida, para poder ter ainda mais certeza dessa tarefa realizando novos experimentos.</p>
+          <p> </p>
+          <p>Se você me trouxer 5 [plur][%dic:STR_DIC_I_event_worlddrop_2], eu lhe darei uma receita de alquimia em troca.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Preciso do conhecimento antigo e da Essência da Vida para meu experimento.</p>
+          <p> </p>
+          <p>Os restantes ingredientes são... secretos. A única coisa que direi é que posso obtê-los sozinho.</p>
+          <p> </p>
+          <p>Definitivamente preciso do 5 [plur][%dic:STR_DIC_I_event_worlddrop_2]. Você os trouxe?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Essência da Vida.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. É verdadeiramente a essência da vida pura.</p>
+          <p> </p>
+          <p>Com isso posso testar a fórmula em meu experimento.</p>
+          <p> </p>
+          <p>Espero que minha experiência seja bem-sucedida e reanime o espírito. O espírito moribundo receberá então a vida eterna através do experimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o [plur][%dic:STR_DIC_I_event_worlddrop_2] para [%dic:STR_DIC_N_event_Loylung].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Loylung pediu que você obtivesse os ingredientes para a fórmula de transformação para fortalecer a vitalidade do Grande Espírito para ele. Traga a ele a Essência da Vida.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Loylung pediu que você obtivesse os ingredientes para sua fórmula de transformação para fortalecer a vitalidade do Grande Espírito.</p>
+          <p> </p>
+          <p>Quando você trouxe a Essência da Vida para ele, ele lhe deu uma Receita de Alquimia em agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você planeja fazer com isso?</p>
+          <p> </p>
+          <p>Sim, quero dizer a Chama de Cromede.</p>
+          <p> </p>
+          <p>Você poderia usá-lo como um colar, mas isso seria um desperdício.</p>
+          <p> </p>
+          <p>Se você derretê-lo e cobrir o instrumento de cordas do juiz com ele, poderá aumentar significativamente seu desempenho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você pergunta sobre o método.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se quiser aprimorar o Instrumento de Cordas do Juiz, você precisará de três coisas.</p>
+          <p> </p>
+          <p>A Lágrima de Cromede, o Instrumento de Cordas do Juiz e um ferreiro talentoso.</p>
+          <p> </p>
+          <p>Você já tem o primeiro, então agora só precisa do Instrumento de Cordas do Juiz. Quando você trouxer para mim, irei trabalhar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Saiba que a fortuna está com você.</p>
+          <p> </p>
+          <p>Não quero dar tapinhas aqui, mas não há muitos em Elysea que possam trabalhar nesta arma. É muito sensível. É por isso que mesmo um pequeno erro pode arruinar tudo.</p>
+          <p> </p>
+          <p>De qualquer forma, obtenha rapidamente o Instrumento de Cordas do Juiz.</p>
+          <p> </p>
+          <p>Os rumores dizem que [%dic:STR_DIC_M_FireSanctuaryQueenBoss_37_Ae] no Templo do Fogo está com ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que as pessoas simplesmente não confiam em mim?</p>
+          <p> </p>
+          <p>Quer dizer, sou um ferreiro renomado em Elysea...</p>
+          <p> </p>
+          <p>Pense nisso de novo, em troca farei para você um instrumento de cordas muito bom.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio? Você trouxe o Instrumento de Cordas do Juiz com você?</p>
+          <p> </p>
+          <p>Dê-me o Instrumento de Cordas do Juiz e a Chama de Cromede.</p>
+          <p> </p>
+          <p>Vou derreter o instrumento de cordas imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Chama e a Arma de Cromede.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu já não disse isso? A Chama de Kromedes e o Instrumento de Cordas do Juiz são necessários para processar a arma.</p>
+          <p> </p>
+          <p>Você não tem o Instrumento de Cordas do Juiz com você?</p>
+          <p> </p>
+          <p>Ho ho ho, como posso começar meu trabalho se você o tem com você?</p>
+          <p> </p>
+          <p>Você talvez esteja preocupado que eu possa danificar o instrumento de cordas do juiz?</p>
+          <p> </p>
+          <p>Ouça, sou um ferreiro muito aclamado em Elysea. Tenho essa reputação por um motivo.</p>
+          <p> </p>
+          <p>Então confie em mim e me dê o Instrumento de Cordas do Juiz e a Chama de Cromede.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Enxuga o suor.) Ufa, é um trabalho árduo.</p>
+          <p> </p>
+          <p>Aqui, pegue isso. Seu instrumento de cordas.</p>
+          <p> </p>
+          <p>Garanto que você vai gostar.</p>
+          <p> </p>
+          <p>Ah, faz muito tempo que não me concentro tanto. Estou cansado agora.</p>
+          <p> </p>
+          <p>Preciso descansar agora e você deveria ir.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete os materiais necessários para fazer o Instrumento de Cordas do Juiz e leve-os para [%dic:STR_DIC_N_Ukon].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Ukon concordou em trabalhar no Instrumento de Cordas do Juiz. Pegue o Instrumento de Cordas do Juiz e a Chama de Cromede.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ukon disse que a Arma do Juiz poderia ser fortalecida pela Chama de Cromede e pediu para você obter o Instrumento de Cordas do Juiz.</p>
+          <p> </p>
+          <p>Você confiou a ele a Chama de Cromede e o Instrumento de Cordas do Juiz e, como prometido, Ukon criou um Instrumento de Cordas do Juiz mais poderoso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Salve, [%username].</p>
+          <p> </p>
+          <p>Há uma tarefa em [%dic:STR_DIC_W_IDVritra_Base_all] que precisa ser concluída.</p>
+          <p> </p>
+          <p>Foi ocupado pelo Exército Beritra. Eles armazenam seus materiais de guerra lá e realizam pesquisas de armas, de modo que o depósito é rigorosamente monitorado.</p>
+          <p> </p>
+          <p>É por isso que estabelecemos uma nova rota de infiltração para [%dic:STR_DIC_W_LDF4_Advance].</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_LDF4_Advance] e fale com [%dic:STR_DIC_N_LDF4_Advance_Elger_E].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], estava esperando por você.</p>
+          <p> </p>
+          <p>Você está aqui porque recebeu ordens para a operação de infiltração do Sauro War Depot?</p>
+          <p> </p>
+          <p>Aparentemente, o Sauro War Depot foi construído há muito tempo pela Rune Tribe como um santuário. Mas agora é um lugar perigoso onde os Balaur realizam pesquisas sobre armas.</p>
+          <p> </p>
+          <p>Não temos tempo a perder. Você descobrirá mais em [%dic:STR_DIC_N_LDF5_Kanix_E].</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_LDF5_Kanix_E] está em [%dic:STR_DIC_W_LDF4_Advance_SZ_A_01] na frente de [%dic:STR_DIC_N_OBJ_IDVritra_Base_Enter]. Você não pode sentir falta dele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que traz você aqui?</p>
+          <p> </p>
+          <p>Se não houver nada urgente, por favor volte.</p>
+          <p> </p>
+          <p>Não estou me sentindo muito bem agora, então gostaria de ficar sozinho.</p>
+          <p> </p>
+          <p>Perdoe minha grosseria.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que veio porque recebeu ordens para se infiltrar no depósito de guerra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu a ordem de se infiltrar no War Depot.</p>
+          <p> </p>
+          <p>O Depósito de Guerra de Sauro é atualmente ocupado pela 40ª unidade, cuja Tropa de Reconhecimento é notória, inclusive dentro do Exército de Beritra.</p>
+          <p> </p>
+          <p>Recebemos informações secretas de que recentemente houve mais pesquisas sobre armas no Sauro War Depot.</p>
+          <p> </p>
+          <p>Temos que descobrir o segredo deles e impedir o plano deles.</p>
+		  <p> </p>
+		  <p>Por favor, não desista, [%username]. Ajude-nos!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4_Advance] e fale com[%dic:STR_DIC_N_LDF4_Advance_Elger_E].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para [%dic:STR_DIC_W_LDF4_Advance_SZ_A_01] e fale com [%dic:STR_DIC_N_LDF5_Kanix_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para Akaron e descubra algo sobre o Sauro War Depot.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O tribuno Pepe disse que você deveria se infiltrar no Sauro War Depot, que está sob o controle do Exército Beritra. Ele falou sobre a nova rota de infiltração e instruiu você a ir até lá.</p>
+          <p> </p>
+          <p>Você partiu e conheceu o Tribune Elger e o informante Kanix. Eles relataram que o Exército Beritra está atualmente concentrado na pesquisa de armas. Você recebeu a tarefa de revelar seus segredos militares e arruinar seus planos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

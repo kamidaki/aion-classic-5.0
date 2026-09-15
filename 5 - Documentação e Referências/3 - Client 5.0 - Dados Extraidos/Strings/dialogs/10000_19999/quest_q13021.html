@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sempre achei isso estranho, e agora descobri que Kuretes foi o responsável por esse caso de mau agouro.</p>
+          <p> </p>
+          <p>Por causa dos experimentos, as florestas próximas são agora habitadas exclusivamente por criaturas contaminadas.</p>
+          <p> </p>
+          <p>O [plur][%dic:STR_DIC_M_LDF5B_C2_ShellizardID_63_An] e o [plur][%dic:STR_DIC_M_LDF5B_C2_KuillusID_63_An] são os piores.</p>
+          <p> </p>
+          <p>Ksellids e Klox vagam com frequência. Estas criaturas podem espalhar a contaminação se não fizermos nada.</p>
+          <p> </p>
+          <p>Mate os contaminados Canyon Ksellid e Klox antes que eles sigam para outro lugar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Canyon Ksellids vivem em South Katalam desde antes de nossa chegada.</p>
+          <p> </p>
+          <p>Eles podem ser agressivos, mas é uma pena que tenham que acabar assim. Afinal, eles moram aqui há muito tempo.</p>
+          <p> </p>
+          <p>Mas o mais importante é fazer algo antes que [plur][%dic:STR_DIC_M_LDF5B_C2_ShellizardID_63_An] e [plur][%dic:STR_DIC_M_LDF5B_C2_KuillusID_63_An] espalhem a contaminação para outras regiões.</p>
+          <p> </p>
+          <p>Como podemos resolver este problema?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou realmente aliviado.</p>
+          <p> </p>
+          <p>Sem o seu apoio, nunca seríamos capazes de eliminar estas criaturas. Muito obrigado!</p>
+          <p> </p>
+          <p>Agora descobriremos como o experimento de Kurete poderia ter causado tal situação.</p>
+          <p> </p>
+          <p>Bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_M_LDF5B_C2_ShellizardID_63_An] e o [plur][%dic:STR_DIC_M_LDF5B_C2_KuillusID_63_An] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Arodos_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Evite a propagação da contaminação matando Canyon Ksellids e Klox que foram contaminados por Kuretes devido ao experimento.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arodos explicou que os Canyon Ksellids nesta área foram contaminados por causa do experimento fracassado de Kuretes. A contaminação poderia se espalhar para outras áreas se nada fosse feito em relação aos Canyon Ksellids contaminados e ao Klox contaminado.</p>
+          <p> </p>
+          <p>Você eliminou as criaturas contaminadas. Quando você voltou, Arodos lamentou que as criaturas tivessem que ser eliminadas, pois elas viviam em Katalam há muito tempo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

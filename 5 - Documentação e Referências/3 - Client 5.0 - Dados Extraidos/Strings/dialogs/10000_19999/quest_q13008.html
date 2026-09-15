@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho que escrever um relatório rapidamente, mas não consegui me concentrar a noite toda por causa dos gritos do [%dic:STR_DIC_M_LDF5B_A3_Direbeast_63_An], ak.</p>
+          <p> </p>
+          <p>É impossível afastar a Snow Mountain Taiga com a força fraca dos Shugos, ak.</p>
+          <p> </p>
+          <p>Por favor, mate [%dic:STR_DIC_M_LDF5B_A3_Direbeast_63_An] e as feras errantes da área, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os [%dic:STR_DIC_M_LDF5B_A3_Direbeast_63_An] estão gritando o tempo todo.</p>
+          <p> </p>
+          <p>Não é mais possível descobrir a causa porque eles gritam sem parar.</p>
+          <p> </p>
+          <p>Não consigo mais me concentrar no meu relatório por causa daquelas feras barulhentas.</p>
+          <p> </p>
+          <p>Isso me preocupa, pois terei que apresentar o relatório em breve.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você matou uma Taiga da Montanha de Neve.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh, está um pouco mais silencioso agora, ak.</p>
+          <p> </p>
+          <p>Aqueles que estão no topo reclamam muito deles, ak. Eu tenho que escrever um relatório rápido, ak.</p>
+          <p> </p>
+          <p>Muito obrigado, ah! Estou ocupado, ok!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar [%dic:STR_DIC_M_LDF5B_A3_Direbeast_63_An] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Kaberinrin_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Por favor, mate as Taigas selvagens da Montanha de Neve próximas para Kaberinerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kaberinerk disse que precisava escrever um relatório, mas não conseguia se concentrar porque a Taiga da Montanha Nevada uivava muito alto. Então ele pediu para você eliminá-los.</p>
+          <p> </p>
+          <p>Depois que você matou os selvagens Snow Mountain Taigas, ele agradeceu, pois agora ele poderia trabalhar corretamente novamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

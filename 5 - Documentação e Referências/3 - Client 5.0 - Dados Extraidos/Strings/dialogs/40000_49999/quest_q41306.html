@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou tão furioso quanto um Leowasp imobilizado.</p>
+          <p> </p>
+          <p>Eu estava desempacotando a remessa de suprimentos e fui guardar os suprimentos médicos. Quando voltei, havia um bando de [%dic:STR_DIC_M_LDF4A_D_Merdion_DR_58_n] arrastando nossos vegetais frescos para o deserto!</p>
+          <p> </p>
+          <p>Aqueles pequeninos... ooh! Eu poderia simplesmente matá-los! Mas eu não devo sair do posto... [%username], você sai!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqueles Snufflers estúpidos. Se eu pudesse colocar minhas mãos neles, eu bateria em suas carinhas pontudas!</p>
+          <p> </p>
+          <p>Eu torceria seus pescoços magros e escamosos! Eu... ah, [%username], você está de volta!</p>
+          <p> </p>
+          <p>Você os pegou?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Seus vegetais estão vingados."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom! Isso vai mostrar a eles!</p>
+          <p> </p>
+          <p>Isso não traz meus vegetais de volta, mas pelo menos eles não escaparam impunes.</p>
+          <p> </p>
+          <p>Obrigado, [%username], você é um verdadeiro amigo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Livre-se de [%dic:STR_DIC_M_LDF4A_D_Merdion_DR_58_n] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com Emetis.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Emetis está furioso porque os Snufflers Bladescale fugiram com o carregamento de vegetais frescos do Selo Gaurdian do Sul.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Emetis ficou furioso quando Bladescale Snufflers fugiu com o recente carregamento de vegetais frescos do Seal.</p>
+          <p> </p>
+          <p>Ela exigiu vingança, o que você exigiu dela.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

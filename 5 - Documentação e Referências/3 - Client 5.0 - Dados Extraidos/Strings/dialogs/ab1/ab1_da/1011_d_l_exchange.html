@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+
+          <p>Ah, você deve ser [%username] da Guilda [%userguildname]!</p>
+          <p> </p>
+          <p>Embora trabalhe com relíquias todos os dias, ainda fico fascinado por descobrir o seu valor inerente.</p>
+          <p> </p>
+          <p>Algumas relíquias parecem inúteis à primeira vista. Mas depois de restaurados adequadamente, você encontrará uma ou duas verdadeiras joias entre eles.</p>
+          <p> </p>
+          <p>Você tem alguma relíquia que gostaria de me mostrar?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_sell_list>Reward for Ancient Relics.</trade_sell_list>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não é membro da Guilda que capturou a fortaleza, [%username].</p>
+          <p> </p>
+          <p>Sinto muito, mas não posso ajudá-lo porque estou ocupado servindo a Guilda que capturou a fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

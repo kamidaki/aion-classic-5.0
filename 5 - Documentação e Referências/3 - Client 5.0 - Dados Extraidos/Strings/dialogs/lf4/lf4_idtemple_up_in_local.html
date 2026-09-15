@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este portão leva ao Templo Udas.)</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra no Templo Udas.</Act>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH">Você procura amigos para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Nada acontece.)</p>
+          <p> </p>
+          <p>(Parece que uma certa condição precisa ser cumprida.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

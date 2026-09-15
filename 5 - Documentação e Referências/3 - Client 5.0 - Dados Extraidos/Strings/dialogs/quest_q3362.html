@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A situação aqui é pior do que eu pensava. A Caverna Marla é um covil de criminosos e toda a área foi tomada pelos Calydons.</p>
+          <p> </p>
+          <p>Eu deveria ter feito algo antes que ficasse tão ruim. Eu olhei para o outro lado por muito tempo. É hora de corrigir isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">"O que você vai fazer?"</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho que os caçadores de recompensas locais podem lidar com os criminosos da Caverna Marla. Alguns pôsteres de procurados resolverão o problema. Mas não sei o que fazer com os Calydons.</p>
+          <p> </p>
+          <p>Minha primeira inclinação é contratar você para cuidar disso. Você está procurando algo para fazer?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. Confiarei em você para cuidar da Vila Calydon.</p>
+          <p> </p>
+          <p>As incursões parecem estar piorando, então desta vez ataque a base deles e mostre-lhes uma ou duas coisas.</p>
+          <p> </p>
+          <p>Traga-me Calydon Hair como prova e eu o recompensarei bem.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Fé e armas!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tem certeza? Estou autorizado a dar uma moeda de platina como recompensa por esta missão.</p>
+          <p> </p>
+          <p>Se você reconsiderar, me avise.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Eu vou."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que bom ver você de volta em segurança. Você não é o primeiro a quem pedi para lidar com os Calydons, mas nenhum dos outros retornou.</p>
+          <p> </p>
+          <p>Talvez eles tenham desistido no meio e ido para outro lugar... sim, tenho certeza que é isso.</p>
+          <p> </p>
+          <p>Você trouxe o Calydon Hair como eu pedi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Eu tenho isso aqui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou feliz que você tenha voltado em segurança, mas mesmo que você mate cem Calydons, não adianta se você não tiver nenhuma evidência.</p>
+          <p> </p>
+          <p>Para receber a recompensa, traga-me as evidências.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Eu vou."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Calydons devem ter ficado bastante surpresos quando você apareceu, não é?</p>
+          <p> </p>
+          <p>Nossa, esse cabelo tem um cheiro horrível! Eles não lavam o cabelo? Eu nunca senti um cheiro tão nojento, talvez nunca!</p>
+          <p> </p>
+          <p>Eca!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Livre-se dos Calydons, recolha seus cabelos e leve-os para Illithyia.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Livre-se dos Calydons, colete seus cabelos como prova e leve-os para Illithyia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Illithyia estava preocupada que o número de Calydons estivesse crescendo descontroladamente. Ela pediu para você invadir a Vila Calydon e reduzir seu número.</p>
+          <p> </p>
+          <p>Você matou Calydons na vila e trouxe seus cabelos como prova. Ela disse que estava feliz por você ter voltado em segurança e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>

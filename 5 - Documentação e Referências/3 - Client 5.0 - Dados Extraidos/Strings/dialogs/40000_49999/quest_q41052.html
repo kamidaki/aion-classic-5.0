@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Avançamos para o Território Aspida e ocupamos a 21ª Guarnição após uma luta acirrada.</p>
+          <p> </p>
+          <p>A guarnição é uma base fundamental para impedir qualquer avanço dos inimigos da Fortaleza de Ferro e impedir que a 42ª Guilda recapture a Fortaleza Pangea.</p>
+          <p> </p>
+          <p>Não devemos permitir que tal localização estratégica caia em mãos inimigas.</p>
+          <p> </p>
+          <p>[%username], por favor proteja a 21ª Guarnição e mate o [%dic:STR_DIC_E_pangaea_enemy_all] vagando pelo [%dic:STR_DIC_W_GAb1_02_Filed01].</p>
+          <p> </p>
+          <p>Quem sabe o que aconteceria se o inimigo ocupasse a guarnição.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava esperando por você.</p>
+          <p> </p>
+          <p>Recentemente fomos atacados por um [%userrace], que murmurou algo ininteligível.</p>
+          <p> </p>
+          <p>Não deixe que as aparências externas o enganem na Pangéia.</p>
+          <p> </p>
+          <p>Você matou o inimigo que estava ameaçando a guarnição?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você fez um ótimo trabalho nesta missão.</p>
+          <p> </p>
+          <p>Eles podem não entregar a guarnição, mas com a sua ajuda podemos pelo menos relaxar um pouco, [%username].</p>
+          <p> </p>
+          <p>Mas defender a Pangea contra a 42ª Guilda e outros inimigos é apenas o começo.</p>
+          <p> </p>
+          <p>Por favor, continue nos apoiando.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_pangaea_enemy_all] em [%dic:STR_DIC_W_GAb1_02_Filed01], que está de olho na 21ª Guarnição ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_E_GAb1_02_Village01_Guard]. Ele aparecerá se a guarnição estiver sob controle de aliados.</font></p></step>
+          </steps>
+          <p><font font_xml="quest_summary">Elimine o inimigo no 1º Distrito de Aspida, que está de olho na 21ª Guarnição.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Capitão da 42ª Tropa de Ocupação pediu que você eliminasse o inimigo do 1º Distrito de Aspida para defender a guarnição, que exigiu muito esforço para ser capturada.</p>
+          <p> </p>
+          <p>Depois que você matou o inimigo invasor e voltou para o Capitão, ele agradeceu, dizendo que a batalha estava apenas começando.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

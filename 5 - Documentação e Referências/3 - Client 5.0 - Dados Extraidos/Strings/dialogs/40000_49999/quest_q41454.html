@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41454</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você passou nos três testes magnificamente.</p>
+          <p> </p>
+          <p>Mas ainda há alguns idosos que não concordam com o acordo.</p>
+          <p> </p>
+          <p>Por favor, entenda que não pretendemos excluir pessoas de fora, mas que a Guilda de [%dic:STR_DIC_E_spearofCiel] tem um lugar de destaque em nossa consciência.</p>
+          <p> </p>        
+          <p>É claro que eu poderia simplesmente ignorar as opiniões dos mais velhos, mas confio neles e respeito os seus pontos de vista.</p>
+          <p> </p>
+          <p>Para mudar de ideia, peço que você faça e complete um teste final, que é muito diferente dos outros testes...</p>
+          <p> </p>
+          <p>Obtenha 10 [%dic:STR_DIC_I_Q41454a_01]s e 10 [%dic:STR_DIC_I_Q41454a_02], bem como 1 [%dic:STR_DIC_I_Q60devanion_03].</p>
+          <p> </p>
+          <p>Se você for para [%dic:STR_DIC_N_Oddone] e [%dic:STR_DIC_N_Pasquale], descobrirá como poderá receber Insígnias.</p>
+          <p> </p>
+          <p>Peço desculpas pela dificuldade da tarefa, mas não vejo outro caminho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho que a tarefa de obter 10 de [%dic:STR_DIC_I_Q41454a_02] e [%dic:STR_DIC_I_Q41454a_01] foi muito difícil.</p>
+          <p> </p>
+          <p>Mas se alguém conseguir algo assim para Sarpan e Tiamaranta, apenas para se juntarem à legião, ninguém mais terá escrúpulos.</p>
+          <p> </p>
+          <p>Espero que você entenda.</p>
+          <p> </p>
+          <p>Então vamos dar uma olhada no Insignia que você trouxe.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">(Você passa os itens.)</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que esforço incrível!</p>
+          <p> </p>
+          <p>Normalmente tal tarefa só seria possível para uma grande força de ataque, mas você cuidou dela sozinho. Isso mudará a opinião até do adversário mais difícil.</p>
+          <p> </p>
+          <p>Hahaha!</p>
+          <p> </p>
+          <p>Finalmente temos alguém com talentos e habilidades incríveis em nossas fileiras!</p>
+          <p> </p>
+          <p>Você fez um ótimo trabalho!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha 10 [%dic:STR_DIC_I_Q41454a_02]s, 10 [%dic:STR_DIC_I_Q41454a_01]s e 1 [%dic:STR_DIC_I_Q60devanion_03]. Em seguida, leve-os de volta para [%dic:STR_DIC_N_Kahrun].</font></p>[%collectitem]</step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Kahrun].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Complete a última tarefa difícil para se juntar à Guilda da Lança de Siel.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kahrun lhe disse que mesmo que você tenha passado nos testes padrão para entrar na Guilda da Lança de Siel, muitos ainda se recusaram a permitir sua entrada. Finalmente, Kahrun fez um acordo: você faria um antigo teste Reian conhecido como Koligran. Somente depois de passar você teria acesso.</p>
+          <p> </p>
+          <p>Você saiu e trabalhou com Orn e Pascal na coleta dos itens necessários para passar no Koligran. O trabalho foi árduo, mas eventualmente você teve tudo o que era necessário.</p>
+          <p> </p>
+          <p>Kahrun ficou visivelmente aliviado com seu retorno e lhe deu as boas-vindas na legião. Agora havia apenas uma simples questão de cerimônia....</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

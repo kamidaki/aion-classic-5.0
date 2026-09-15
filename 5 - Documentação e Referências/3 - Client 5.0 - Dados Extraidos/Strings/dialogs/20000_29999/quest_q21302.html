@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Existem coisas neste mundo que são inúteis se você simplesmente as possui.</p>
+          <p> </p>
+          <p>E o que acabei de lhe dar é uma coisa dessas. O material deve ser utilizado para despertar o verdadeiro potencial da arma.</p>
+          <p> </p>
+          <p>Infelizmente, não estou em condições de fazê-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa de habilidades especiais para transferir os poderes dos materiais para o Instrumento de Cordas.</p>
+          <p> </p>
+          <p>Para ser honesto, não tenho essas habilidades.</p>
+          <p> </p>
+          <p>Somente mestres que praticam seu ofício há muito tempo podem usar os materiais de maneira adequada.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Usener], que está no Pandemônio, pode usar esses materiais para melhorar a arma.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Tenho certeza que você já ouviu falar dela. Sua habilidade em fabricar armas é incomparável e ela também sabe como usá-las.</p>
+          <p> </p>
+          <p>Não seria uma má ideia se você se encontrasse com [%dic:STR_DIC_N_Usener] e desse uma olhada no trabalho dela.</p>
+          <p> </p>
+          <p>Quer levar o Instrumento de Cordas e os materiais para ela?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você iria.</p>
+          <p> </p>
+          <p>Um Daeva sábio nunca perde a oportunidade de adquirir uma boa arma.</p>
+          <p> </p>
+          <p>Ah, sim, e certifique-se de não esquecer o instrumento de cordas ou os materiais! Essas coisas podem acontecer facilmente quando você está viajando.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você não quiser ir para lá, não posso forçá-lo.</p>
+          <p> </p>
+          <p>É porque você ouviu que Usener é muito exigente?</p>
+          <p> </p>
+          <p>Ela trata a todos com muita condescendência, mas se você pedir com educação, ela atenderá seu pedido... Talvez você deva reconsiderar sua decisão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que está acontecendo?</p>
+          <p> </p>
+          <p>Muitos Daevas estão vindo até mim neste momento, e é por isso que estou muito ocupado. Diga-me rapidamente o que você quer.</p>
+          <p> </p>
+          <p>Você deve saber que o tempo de um gênio é mais precioso do que o das pessoas comuns.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4">Você entrega a arma, os materiais e o Kinah.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É realmente certo aceitar tudo isso?</p>
+          <p> </p>
+          <p>8.000.000 Kinah... Realmente não é uma quantia pequena. Então pense nisso com muito cuidado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a arma, os materiais e o Kinah.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você considera isso novamente.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não disse que estava ocupado?</p>
+          <p> </p>
+          <p>Você vem até mim com um pedido sem estar devidamente preparado... Inacreditável!</p>
+          <p> </p>
+          <p>Agora, vá então. Você está perdendo meu tempo falando comigo.</p>
+          <p> </p>
+          <p>Oh sim. Esteja ciente de que você deve primeiro remover uma arma equipada e depois colocá-la em seu Cubo para que eu possa modificá-la.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É interessante. A arma e os materiais são muito refinados.</p>
+          <p> </p>
+          <p>São itens especiais que podem tocar o coração de um gênio.</p>
+          <p> </p>
+          <p>Pegue isso. É uma obra-prima que criei e pessoas de todos os lugares irão elogiá-lo por isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve [%dic:STR_DIC_I_BOOK_D_N_U0_Q_54A] e os materiais para [%dic:STR_DIC_N_Usener].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Traga os materiais e o instrumento de cordas de Athana para o usuário.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Athana lhe disse que habilidades especiais são necessárias para desbloquear o poder do Instrumento de Cordas de Athana.</p>
+          <p> </p>
+          <p>Você levou o instrumento de cordas e o material para Usener no Pandemônio. Ela uniu os dois e lhe entregou um instrumento de cordas mais poderoso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

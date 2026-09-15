@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p> </p>
+          <p>Remetente: Katalam Patrol, [%dic:STR_DIC_N_LDF5_Village_Guard05_L] do [%dic:STR_DIC_W_LDF5a_B9_5]</p>
+          <p> </p>
+          <p>Destinatário: [%username]</p>
+          <p> </p>
+          <p>Ordens: Derrote o Asmodiano que se infiltrou no [%dic:STR_DIC_W_LDF5a_B6] em North Katalam.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você nunca sabe quando os Asmodianos irão reunir seus recursos e atacar.</p>
+          <p> </p>
+          <p>Precisamos lidar com a causa raiz do mal perpetrado por este bando de Asmodianos.</p>
+          <p> </p>
+          <p>Você matou os Asmodianos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+		  <p>É claro que os Asmodianos devem ser eliminados.</p>
+		  <p> </p>
+          <p>Desde que você matou os Asmodianos, me sinto um pouco aliviado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Asmodiano que se infiltrou no [%dic:STR_DIC_W_LDF5a_B6] em North Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LDF5_Village_Guard05_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Mate o Asmodiano que se infiltrou nas Ruínas da Tristeza em North Katalam e reporte-se a Lanzen.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agindo sob ordens urgentes de Lanzen, você eliminou os Asmodianos que invadiram as Ruínas da Tristeza no Norte de Katalam.</p>
+          <p> </p>
+          <p>Lanzen então lhe contou que sentiu um enorme alívio, e que era natural caçar os Asmodianos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

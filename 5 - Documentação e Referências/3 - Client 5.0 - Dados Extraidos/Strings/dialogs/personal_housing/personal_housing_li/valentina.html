@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A alquimia é chamada de estudo dos sábios.</p>
+          <p> </p>
+          <p>Mas prefiro chamá-lo de estudo do tolo. Pois a pura paixão de um tolo torna possíveis milagres.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <combine_skill_levelup>Learn Alquimia</combine_skill_levelup>
+      <combine_task>Work Order</combine_task>
+      <giveup_craft_expert>Relinquish Expert Status</giveup_craft_expert>
+      <giveup_craft_master>Relinquish Master Status</giveup_craft_master>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select_task">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os tolos podem entrar correndo, mas eu os manterei no caminho certo.</p>
+          <p> </p>
+          <p>Vamos começar devagar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não vale a pena deixar a paixão ultrapassar a capacidade.</p>
+          <p> </p>
+          <p>Comece aprendendo um pouco de Alquimia básica e depois veremos como posso orientar seu progresso.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ah, é preciso."</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

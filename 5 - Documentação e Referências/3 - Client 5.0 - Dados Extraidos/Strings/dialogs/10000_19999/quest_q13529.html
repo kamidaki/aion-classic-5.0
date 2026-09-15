@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mate [%dic:STR_DIC_M_LDF5_Under_Rune_FrostNmd_2_N_Ma_65_Ah] em Runadium, [%dic:STR_DIC_M_IDRuneWP_AncientArm_N_65_Al] em Katalamize, [%dic:STR_DIC_M_IDF5_U1_UltimateSW_N_65_Ae] na Ponte de Jormungand e [%dic:STR_DIC_M_IDF5_U2_P_VriIU_Wi_N_65_Ah] no Refúgio da Tribo Rúnica. Você deve então coletar [%dic:STR_DIC_I_quest_13529a], [%dic:STR_DIC_I_quest_13529b], [%dic:STR_DIC_I_quest_13529c] e [%dic:STR_DIC_I_quest_13529d] como prova.</p>
+          <p> </p>
+          <p>De acordo com Kurius, o Exército Beritra parece ter como alvo as relíquias da Tribo Rúnica no Subterrâneo Katalam.</p>
+          <p> </p>
+          <p>Aqui no subterrâneo de Katalam há muitas relíquias rúnicas a caminho do posto estratégico do Exército Beritra: como Hyperion.</p>
+          <p> </p>
+          <p>Se você for o primeiro a completar esta missão, também será mais difícil para o Exército Beritra encontrar relíquias rúnicas e elas não serão capazes de agir tão rapidamente.</p>
+          <p> </p>
+          <p>Assim que o trabalho estiver concluído, leve o comprovante para [%dic:STR_DIC_N_LDF5_Under_Kurius_E]. Por favor, eu imploro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Exército Beritra tem como alvo muitas relíquias da Tribo Rúnica no Subterrâneo Katalam, bem como túneis para as bases do Exército Beritra.</p>
+          <p> </p>
+          <p>É por isso que é importante que eles sejam derrotados antes desse ponto e para garantir as relíquias rúnicas [%dic:STR_DIC_I_quest_13529a], [%dic:STR_DIC_I_quest_13529b], [%dic:STR_DIC_I_quest_13529c] e [%dic:STR_DIC_I_quest_13529d].</p>
+          <p> </p>
+          <p>Como vai o pedido de Hadius?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as relíquias rúnicas coletadas.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você antecipou com sucesso a Tropa de Inteligência do Exército Beritra. Você realmente fez isso bem.</p>
+          <p> </p>
+          <p>Você completou com sucesso uma missão que teria dificultado até mesmo os Daevas experientes.</p>
+          <p> </p>
+          <p>Você sempre tem um desempenho excepcional, mas desta vez você se superou.</p>
+          <p> </p>
+          <p>Meus superiores certamente desejarão se encontrar com você em breve. Esse foi um bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_E_quest_13529all] e dê tudo para [%dic:STR_DIC_N_LDF5_Under_Kurius_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Colete as relíquias da Tribo Rúnica escondidas no subterrâneo de Katalam.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Hadius, a Inteligência Beritra quer proteger os restos de Runas, bem como a entrada para a base estratégica no Subterrâneo Katalam, e ele desafiou você a ser o primeiro a tomar a iniciativa e obter evidências.</p>
+          <p> </p>
+          <p>Você reuniu as evidências e as entregou a Kurius. Você foi elogiado por completar com sucesso uma missão tão difícil e ele levantou a perspectiva de que seus superiores logo se encontrariam com você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

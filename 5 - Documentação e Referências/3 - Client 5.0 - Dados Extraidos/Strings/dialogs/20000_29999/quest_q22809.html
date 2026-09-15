@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você eliminaria os [%dic:STR_DIC_M_LDF5A_A1_Agrint_62_An] que estão tornando a área insegura?</p>
+          <p> </p>
+          <p>Temos que estar preparados para a batalha o tempo todo, mas os Drytwig Agrints estão vagando por este lugar e atacando tropas amigas.</p>
+          <p> </p>
+          <p>Você já sabe o quanto a concentração é importante na batalha, não é?</p>
+          <p> </p>
+          <p>Será um grande problema se Drytwig Agrints estiver atacando tropas amigas enquanto lutamos contra nossos inimigos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Irritante Drytwig Agrint!</p>
+          <p> </p>
+          <p>Só de ver o Drytwig Agrint balançando seus galhos ali me deixa enjoado.</p>
+          <p> </p>
+          <p>Não estou exagerando quando digo que estou perto de ter um colapso nervoso.</p>
+          <p> </p>
+          <p>Por favor, informe quando terminar a tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvir que o violento Drytwig Agrint foi eliminado me tira um peso da cabeça.</p>
+          <p> </p>
+          <p>Talvez não precisemos nos preocupar com o Drytwig Agrint por um tempo.</p>
+          <p> </p>
+          <p>Congratulo-me por podermos agora reforçar a nossa monitorização do ambiente.</p>
+          <p> </p>
+          <p>Muito obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os [%dic:STR_DIC_M_LDF5A_A1_Agrint_62_An] que estão interferindo na batalha. ([%2]/12)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard03_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate todos os Agrints Drytwig que se tornaram um obstáculo na batalha.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Savankel pediu para você matar o Drytwig Agrint que estava atacando os aliados e interferindo na batalha.</p>
+          <p> </p>
+          <p>Depois que você matou o Drytwig Agrint e voltou, ele disse que a guarda agora poderia ser reforçada e agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

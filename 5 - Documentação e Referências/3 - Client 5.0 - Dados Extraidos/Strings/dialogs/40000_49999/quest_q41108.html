@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41108</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Balaur são realmente muito orgulhosos.</p>
+          <p> </p>
+          <p>[%username], recebi uma lista de Balaur de alto escalão e gostaria de lhe pedir um favor.</p>
+          <p> </p>
+          <p>Mate um destes três Balaur: [%dic:STR_DIC_M_LDF4A_C1_DrakanAs_noble_Nmd_58_Ae], [%dic:STR_DIC_M_LDF4A_C2_DrakanWi_noble_Nmd_58_Ae] ou [%dic:STR_DIC_M_LDF4A_C2_DrakanFi_Noweapon_Nmd_58_Ae].</p>
+          <p> </p>
+          <p>Dizem que eles são tão fortes que apenas um Daeva corajoso como você, [%username], poderia derrotá-los.</p>
+          <p> </p>
+          <p>Eu pediria que você matasse um dos [%dic:STR_DIC_M_Q41108_All] junto com seus companheiros.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shumira Glasseye é tão suculenta! A mistura perfeita de carne suave e sucos picantes.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Você pode riscar um nome da sua lista."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Minha lista? O que você--</p>
+          <p> </p>
+          <p>Oh! Minha lista de Balaur de alto escalão! Você o encurtou tão cedo.</p>
+          <p> </p>
+          <p>Eu sabia que você e sua equipe poderiam causar a destruição necessária.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate um dos [%dic:STR_DIC_M_Q41108_All] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Umarrion].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Umarion pediu para você eliminar um líder Balaur de alto escalão com seus colegas lutadores.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Umarrion deu a você uma pequena lista de Balaur poderosos e de alto escalão.</p>
+          <p> </p>
+          <p>Você reuniu seus aliados, escolheu um nome da lista dele e eliminou o Drakan.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Ajudante do Protetorado [%dic:STR_DIC_N_LDF4_Advance_Sopeia_E] do [%dic:STR_DIC_W_LDF4_Advance_SZ_V01]</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Comando: Mate os 12 Asmodianos que estão assediando o Agente ascendido de Kaisinel, Veille.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nossos métodos de comunicação rápidos nos permitem reagir às ações dos Asmodianos a qualquer momento.</p>
+          <p> </p>
+          <p>Tudo graças a você, [%username].</p>
+          <p> </p>
+          <p>Você matou os Asmodianos e deu um pouco de paz a Veille?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fiquei preocupado que algo acontecesse com Veille, porque os Asmodianos são uma ameaça constante.</p>
+          <p> </p>
+          <p>Obrigado por lidar com todos eles.</p>
+          <p> </p>
+          <p>Não posso agradecer o suficiente, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Asmodianos que estão ameaçando o Agente de Kaisinel ([%2]/12).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relate para [%dic:STR_DIC_N_LDF4_Advance_Sopeia_E]. Ela aparece se você vencer a Agent Battle.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Urgent Orders: Kill the Asmodianos who are threatening Veille, Kaisinel's awakened Agent, and report to Sopheia. A ajudante Sopheia aparece se você vencer a batalha.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Asmodianos queriam eliminar o Agente de Kaisinel.</p>
+          <p> </p>
+          <p>Você derrotou os Asmodianos e reportou-se a Sopheia.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

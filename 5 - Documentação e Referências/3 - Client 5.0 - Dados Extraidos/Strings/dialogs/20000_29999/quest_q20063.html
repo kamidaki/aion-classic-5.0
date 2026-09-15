@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q20063</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Finalmente! Esse monitor que você instalou nos deu informações úteis. Acabei de receber o primeiro relatório. Deixe-me dizer: é uma leitura e tanto.</p>
+          <p> </p>
+          <p>Parece que se um coração estiver em perigo, uma das Encarnações de Tiamat aparecerá. Esse alter ego deve ser morto antes que o próprio coração fique incapacitado.</p>
+          <p> </p>
+          <p>Ah não... eu interpretei mal! A Encarnação de Tiamat é o próprio coração!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">"Tem certeza?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há uma Encarnação em cada fonte. O Coração da Fissura tem a Fissura Encarnada e o Coração da Petrificação tem a Petrificação Encarnada.</p>
+          <p> </p>
+          <p>[%username], como você não pode assumir todos os Corações, peço-lhe que assuma o Coração da Petrificação.</p>
+          <p> </p>
+          <p>Não se preocupe, os membros da tropa de expedição enfrentarão os outros Corações.</p>
+          <p> </p>
+          <p>O Coração da Petrificação só aparece quando o [%dic:STR_DIC_E_LDF4B_Occupation_Combat] começa. Você não será capaz de fazer isso sozinho, portanto, reúna algum apoio antes de começar.</p>
+          <p> </p>
+          <p>Ah, também ouvi dizer que o Fatebound Centurião [%dic:STR_DIC_N_Benjal] já está lá. Encontre-o quando o cerco começar e preste atenção em seus conselhos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Boa sorte para você também, Garnon."</Act>
+    </Selects>
+    <Voice file="Q20063-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O [%dic:STR_DIC_M_LDF4b_T4_Tiamat_Crystal_Named_60_Af] apareceu. O ataque deve ser agora, Asmodiano!</p>
+          <p> </p>
+          <p>Ataque a estrutura, entre e destrua o ser Encarnado que está dentro dela! Garnon precisará de uma prova de sua escritura, então traga o [%dic:STR_DIC_I_QUEST_10063a] para ela.</p>
+          <p> </p>
+          <p>Agora é sua chance, Asmodiano! Pegue!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">"Sangue por sangue!"</Act>
+    </Selects>
+    <Voice file="Q20063-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]!</p>
+          <p> </p>
+          <p>Você fez isso? Acabou?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"O fim começou. Eu tenho a garra."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então o Coração da Petrificação foi incapacitado! Excelente trabalho!</p>
+          <p> </p>
+          <p>Os outros corações cairão um por um, e em breve você poderá entrar no Olho de Tiamaranta! Você prestou um ótimo serviço hoje. Obrigado, em nome de todo o povo Reian.</p>
+          <p> </p>
+          <p>Ah, antes que eu esqueça, [%dic:STR_DIC_N_Adela] está esperando para Converse com você.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou vê-la agora."</Act>
+    </Selects>
+    <Voice file="Q20063-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mas... onde está?</p>
+          <p> </p>
+          <p>Você fez o que disse, [%username]? Por mais que eu adorasse acreditar na sua palavra, essas apostas não são aquelas com as quais eu possa apostar. Mate o [%dic:STR_DIC_M_LDF4b_T4_Tiamat_Crystal_Named_60_Af] e traga-me o [%dic:STR_DIC_I_QUEST_10063a] como prova!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Eu pensei que tinha conseguido..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi falar do seu trabalho árduo, [%username]. Chamei você aqui para poder parabenizá-lo.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Não foi nada, Adella."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nada? Haha! Você é muito modesto, Asmodiano. Outros têm músicas escritas para se vestir.</p>
+          <p> </p>
+          <p>Assim que todas as encarnações forem derrotadas, poderemos entrar no Olho de Tiamaranta. Então... então começa a verdadeira guerra, [%username].</p>
+          <p> </p>
+          <p>É melhor nos prepararmos agora. Por mais difíceis que as coisas tenham sido, esta é uma batalha difícil.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4b_SZ_OP_A4] e fale com Garnon.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para o Coração da Petrificação assim que [%dic:STR_DIC_E_LDF4B_Occupation_Combat] explodir. [%5].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_Benjal].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Destrua o [%dic:STR_DIC_M_LDF4b_T4_Tiamat_Crystal_Named_60_Af] e traga seu [%dic:STR_DIC_I_QUEST_10063a] para Garnon como prova de seu trabalho.</font></p>[%collectitem]</step>
+               <step><p visible="[%12]"><font color="[%13]">Fale com [%dic:STR_DIC_N_Adela].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tarefa: O Núcleo de Vigilância que você colocou relatou resultados! Fale com Garnon.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Garnon disse a você que destruir o Alter Ego de Tiamat (a besta encarnada da Petrificação no Coração da Petrificação, neste caso) concederia ao seu vencedor o controle sobre o coração.</p>
+          <p> </p>
+          <p>Você testou a teoria, matou a Petrificação Encarnada e retornou. Garnon ficou surpreso com seu progresso e enviou você para conhecer Adella, que lhe disse que a luta mais difícil ainda estava por vir, já que o Olho de Tiamaranta logo estaria acessível.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso da Missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, vá para [%dic:STR_DIC_W_LDF5_Fortress_SZ_B1] e investigue [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_a], [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_b] e [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_c].</p>
+          <p> </p>
+          <p>Recebi um relatório de [%dic:STR_DIC_N_LDF5_Fortress_Naiya_E] sobre a causa da explosão que destruiu Kaldor há muito tempo. É possível que a explosão tenha algo a ver com Fregion e com Id?</p>
+          <p> </p>
+          <p>Se fosse esse o caso, a explosão não seria nada comum.</p>
+          <p> </p>
+          <p>Então começamos a investigar e descobrimos que o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_a], o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_b] e o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_c] poderiam nos dar evidências do que aconteceu no passado.</p>
+          <p> </p>
+          <p>Os vestígios nestas árvores são diferentes daqueles que normalmente se encontram em árvores queimadas. Por favor, investigue essas árvores e preste atenção às evidências de eventos que ocorreram há muito tempo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma árvore danificada por um grande incêndio.)</p>
+          <p> </p>
+          <p>(Você descobre as marcas pretas das chamas por toda a árvore.)</p>
+          <p> </p>
+          <p>(Olhando mais de perto, parte da casca parece incomum, de alguma forma.)</p>
+          <p> </p>
+          <p>(Aparentemente, estava muito chamuscado.)</p>
+          <p> </p>
+          <p>(É melhor você aceitar.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Os restos de uma árvore totalmente queimada por um incêndio terrível.)</p>
+          <p> </p>
+          <p>(Os restos mostram claramente os danos infligidos pelas chamas.)</p>
+          <p> </p>
+          <p>(Olhando mais de perto, parte da casca parece incomum, de alguma forma.)</p>
+          <p> </p>
+          <p>(Aparentemente, foi fortemente queimado pelo fogo.)</p>
+          <p> </p>
+          <p>(É melhor você aceitar.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma árvore danificada por um grande incêndio.)</p>
+          <p> </p>
+          <p>(Os vestígios das chamas são claramente visíveis nos restos mortais, que ainda brilham ligeiramente.)</p>
+          <p> </p>
+          <p>(Ao olhar mais de perto, você pode ver algo vermelho escuro na casca.)</p>
+          <p> </p>
+          <p>(Foi fortemente carbonizado pelo fogo, mas parece sangue.)</p>
+          <p> </p>
+          <p>(É melhor você aceitar, mesmo que seja apenas uma pequena quantidade.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já investigou o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_a], o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_b] e o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_c]?</p>
+          <p> </p>
+          <p>Na minha opinião, o conhecimento do passado é extremamente importante para o presente.</p>
+          <p> </p>
+          <p>Embora não tenha o conhecimento de Naiya, tenho um pouco de compreensão de ecologia.</p>
+          <p> </p>
+          <p>Se eu tivesse algumas pistas, poderia descobrir o que aconteceu em Kaldor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega os itens coletados e dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um [%dic:STR_DIC_I_quest_23809a], um [%dic:STR_DIC_I_quest_23809b] e um [%dic:STR_DIC_I_quest_23809c]... Posso sentir claramente a energia do Balaur.</p>
+          <p> </p>
+          <p>Deve ser Lorde Fregion. As quantidades de energia que contêm podem ser mínimas, mas são terrivelmente poderosas e só podem ser comparadas com certos poderes de tempos passados.</p>
+          <p> </p>
+          <p>É possível que Fregion tenha sido ferido pela explosão que ocorreu aqui há muito tempo. A mancha de sangue parece ser uma prova disso.</p>
+          <p> </p>
+          <p>Acho que podemos assumir que uma explosão de Id nesta região feriu Dragon Lorde Fregion.</p>
+          <p> </p>
+          <p>Os vestígios da explosão indicam realmente a presença do Id? As suposições decorrentes disso podem ser chocantes, mas são plausíveis.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Investigar o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_a] e coletar [%dic:STR_DIC_I_quest_23809a].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Investigar o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_b] e coletar [%dic:STR_DIC_I_quest_23809b].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Investigar o [%dic:STR_DIC_OBJ_LDF5_Fortress_FOBJ_B1_DeadTree_c] e coletar [plur][%dic:STR_DIC_I_quest_23809c].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Relatório assim que os Asmodianos conquistaram [%dic:STR_DIC_W_LDF5_Fortress_SZ_A1_v01] e [%dic:STR_DIC_N_LDF5_Fortress_Village_Guard01_D] apareceu.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Investigar a Árvore Carbonizada, a Árvore Queimada e a Árvore Queimada.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Belnoth, o Capitão do Esquadrão de Limpeza Asmodiano, pediu que você investigasse a Árvore Carbonizada, a Árvore Queimada e a Árvore Queimada nas Ruínas Heroicas. Você deve prestar atenção aos vestígios de eventos que ocorreram há muito tempo.</p>
+          <p> </p>
+          <p>Você examinou os restos mortais e encontrou Casca Queimada, Casca Queimada e uma mancha de Sangue Vermelho Escuro. Você pegou amostras de cada um e as trouxe para Belnoth. Ele disse que pode sentir uma poderosa energia Balaur e que a explosão que ocorreu há muito tempo em Kaldor poderia ter ferido Fregion.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

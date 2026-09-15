@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então o Kaidan Krall de Eltnen está em movimento. Kaidan Krall está atualmente trabalhando na construção de uma base para a ofensiva.</p>
+          <p> </p>
+          <p>Parta imediatamente em direção à Sede de Eltnen Kaidan através da Fenda Espaço-Tempo.</p>
+          <p> </p>
+          <p>Depois de encontrar o [%dic:STR_DIC_W_LF2_Village_02] construído pelo Krall, mate [%dic:STR_DIC_M_LF2_2_Dark_Raider] e capture a base.</p>
+          <p> </p>
+          <p>Então, se você conseguir colocar a área de Kaidan Krall sob seu controle após a fortaleza do Deserto de Eracus, não será mais tão fácil para os Elyos invadirem.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Kaidan-Krall são Sapiens que se opõem aos Elyos há muito tempo.</p>
+          <p> </p>
+          <p>A batalha já dura há muito tempo, mas ultimamente os Elyos parecem ter saído vitoriosos.</p>
+          <p> </p>
+          <p>Mas independentemente de como possa parecer a situação de Elyos, o posto avançado construído pelos Kaiden-Krall é importante para nós.</p>
+          <p> </p>
+          <p>Se conseguirmos conquistar o [%dic:STR_DIC_W_LF2_Village_02], teremos garantido uma base onde o Arconte poderá atuar em Eltnen.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega seu relatório sobre a conclusão da tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho. Conseguimos garantir dois postos em Eltnen para as atividades do Arconte Asmodiano.</p>
+          <p> </p>
+          <p>Já disse isso antes, a melhor defesa é o ataque.</p>
+          <p> </p>
+          <p>A tropa guerrilheira Eltnen se encarrega de defender o posto, mas como há muitos perigos aqui, seria ótimo se você pudesse apoiar a tropa guerrilheira também.</p>
+          <p> </p>
+          <p>Bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Atravesse Eltnen e mate [%dic:STR_DIC_M_LF2_2_Dark_Raider] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Aegir] em [%dic:STR_DIC_W_DF2_SUB_OP].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Atravesse Eltnen usando a Fenda e ocupe [%dic:STR_DIC_W_LF2_Village_02] na entrada do Posto Avançado Kaidan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Brigadeiro General Aegir da Fortaleza Morheim Aegir pediu para você capturar o posto Krall, que fica na entrada do Quartel-General Eltnen Kaidan.</p>
+          <p> </p>
+          <p>Você repeliu a defesa dos Guardas Elyos e dos Guerrilhadores dos Revolucionários Lefaristas e ocupou o posto.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

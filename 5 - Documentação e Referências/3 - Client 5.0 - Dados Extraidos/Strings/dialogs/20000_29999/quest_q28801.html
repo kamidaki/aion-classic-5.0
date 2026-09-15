@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você gosta de Pernon, então é hora do nosso agradecimento, do nosso presente para você: sua própria casa.</p>
+          <p> </p>
+          <p>Seu [%dic:STR_DIC_E_Housing_Townhouse_D] espera por você em Sierra State. Quando estiver pronto, diga-me que deseja ir para Zephyr Village.</p>
+          <p> </p>
+          <p>Pergunte a [%dic:STR_DIC_N_Asnin] sobre moradia lá.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo ao Sierra State, onde você poderá conhecer muitas pessoas que possuem estúdios e casas muito maiores.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sou novo e estou feliz por estar aqui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, pegue isso. É o nosso presente de boas-vindas para você.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Asnin].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Teletransportador Hemenlin disse para você ir até Zephyr Village e perguntar a Alnin sobre a compra de uma casa. Vá conhecer Alnin.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O teletransportador Hemenlin explicou que Alnin lhe contaria sobre a compra de uma casa se você fosse para Zephyr Village.</p>
+          <p> </p>
+          <p>Quando você conheceu Alnin, ele lhe deu as boas-vindas em Sierra State e lhe deu um pequeno presente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

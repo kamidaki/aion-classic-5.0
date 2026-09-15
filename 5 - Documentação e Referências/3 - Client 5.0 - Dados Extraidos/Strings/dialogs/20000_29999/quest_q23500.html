@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q23500</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você fez muito por Katalam.</p>
+          <p> </p>
+          <p>Ouvi muito sobre seus famosos feitos.</p>
+          <p> </p>
+          <p>Suas realizações são verdadeiramente extraordinárias!</p>
+          <p> </p>
+          <p>Agora chegou a hora de conquistar todos os territórios de Katalam de uma vez por todas.</p>
+          <p> </p>
+          <p>Precisamos da sua ajuda para fazer isso, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pergunta sobre a tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso não é tão difícil.</p>
+          <p> </p>
+          <p>Vá até a base mais próxima e verifique a situação lá. Se uma base foi capturada pelo inimigo, você deve retomá-la!</p>
+          <p> </p>
+          <p>Entregue minha carta de ordem ao respectivo capitão da base.</p>
+          <p> </p>
+          <p>Se nós, Asmodianos, quisermos conquistar mais territórios em Katalam, as bases próximas ao Templo Rúnico devem ser asseguradas primeiro, você não concorda?</p>
+          <p> </p>
+          <p>Portanto, devemos verificar se essas bases próximas ao Templo Rúnico ainda estão sob nosso controle.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1_1">Você diz que cumprirá o pedido.</Act>
+      <Act href="HACTION_SELECT1_1_2">Você diz que não está preparado para executar a ordem.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você é incrível!</p>
+          <p> </p>
+          <p>Estou muito impressionado com suas capacidades.</p>
+          <p> </p>
+          <p>Qual fortaleza você deseja investigar?</p>
+          <p> </p>
+          <p>Entregar o pedido a uma base já controlada por nós não deve ser muito difícil.</p>
+          <p> </p>
+          <p>Mas se uma fortaleza foi perdida, deve ser retomada. É por isso que precisamos de você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você quer ir para a 71ª Guarnição.</Act>
+      <Act href="HACTION_SETPRO2">Você quer ir para a 73ª Guarnição.</Act>
+      <Act href="HACTION_SETPRO3">Você quer ir para a 76ª Guarnição.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você tem?</p>
+          <p> </p>
+          <p>Você está se comportando de maneira tão estranha comparado ao que sei sobre você.</p>
+          <p> </p>
+          <p>Devo lembrar que estamos numa fase que é muito importante para os Asmodianos?</p>
+          <p> </p>
+          <p>Por favor, reconsidere.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A guarnição imediatamente próxima ao Templo Rúnico deve ser verificada primeiro.</p>
+          <p> </p>
+          <p>E se a 71ª Guarnição estiver em perigo, peço o seu apoio.</p>
+          <p> </p>
+          <p>Ah, e por favor entregue esta ordem ao Capitão. Contém instruções para uma operação futura.</p>
+          <p> </p>
+          <p>Por favor, leve-o pessoalmente ao Capitão da 71ª Guarnição [%dic:STR_DIC_N_LDF5_Village_Guard01_D].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O menor descuido pode nos fazer perder a 73ª Guarnição.</p>
+          <p> </p>
+          <p>Se a 73ª Guarnição já foi tomada pelo inimigo, você deverá retomá-la.</p>
+          <p> </p>
+          <p>Porque a futura conquista de Katalam será baseada nesta guarnição.</p>
+          <p> </p>
+          <p>Agora, por favor, vá em frente e leve esta ordem para [%dic:STR_DIC_N_LDF5_Village_Guard03_D], o Capitão da 73ª Guarnição.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A luta pela 76ª Guarnição é muito acirrada.</p>
+          <p> </p>
+          <p>Se a 76ª Guarnição estiver sob o domínio Asmodiano, por favor dê este comando ao Capitão [%dic:STR_DIC_N_LDF5_Village_Guard06_D].</p>
+          <p> </p>
+          <p>A sua escolha da 76ª Guarnição é admirável, porque esta base pode ser mais perigosa do que qualquer uma das outras.</p>
+          <p> </p>
+          <p>Sua ajuda será muito útil para nós, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está aqui para verificar a situação desta base?</p>
+          <p> </p>
+          <p>Eu sei que você lutou muito por esta base, [%username].</p>
+          <p> </p>
+          <p>Admiro sua atitude. Mesmo depois de conquistar a base, você ainda está altamente comprometido.</p>
+          <p> </p>
+          <p>Mas não esqueça que ainda temos muito a fazer.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a ordem do comandante militar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você pode imaginar, não podemos baixar a guarda aqui nem por um momento.</p>
+          <p> </p>
+          <p>Gerenciar uma base é como lutar em um campo de batalha - você sempre precisa estar alerta.</p>
+          <p> </p>
+          <p>Pela expressão em seu rosto, você deve ter me procurado para tratar de um assunto importante, [%username].</p>
+          <p> </p>
+          <p>Na verdade, prefiro adiar você para outro momento, pois estou muito ocupado no momento. Mas já que você fez tanto por nós, vou lhe poupar um momento.</p>
+          <p> </p>
+          <p>Por favor, seja breve.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega as ordens do comandante militar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você assumiu muitas responsabilidades para chegar a este lugar perigoso.</p>
+          <p> </p>
+          <p>Perdoe esta recepção informal, mas esta base exige muito de mim, seja durante a conquista ou na posterior manutenção da base.</p>
+          <p> </p>
+          <p>Presumo corretamente que o fato de você ter feito essa jornada árdua significa que a situação é grave, [%username]?</p>
+          <p> </p>
+          <p>Por favor, diga-me claramente qual é o problema.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a ordem do comandante militar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Ele dá uma rápida olhada no pedido e depois o coloca no bolso.)</p>
+          <p> </p>
+          <p>Estou muito consciente da importância da minha tarefa.</p>
+          <p> </p>
+          <p>Esta ordem parece bastante inadequada, especialmente porque temos muitas outras coisas para fazer.</p>
+          <p> </p>
+          <p>Mas não esquecerei a ordem e enviarei um relatório correspondente a Bardo mais tarde.</p>
+          <p> </p>
+          <p>Muito obrigado por assumir esta tarefa tão difícil. Você pode ir agora.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Ele escaneia o pedido e o coloca no bolso.)</p>
+          <p> </p>
+          <p>Não posso simplesmente ignorar que se trata de uma ordem, mas considero-a um tanto inapropriada num momento tão caótico.</p>
+          <p> </p>
+          <p>Cuidarei disso assim que assuntos mais urgentes forem resolvidos.</p>
+          <p> </p>
+          <p>Obrigado por me trazer o pedido do Bardo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Ele lê a ordem com atenção.)</p>
+          <p> </p>
+          <p>Eu entendo. Se eu realizar esta operação, o funcionamento desta base ficará significativamente mais fácil.</p>
+          <p> </p>
+          <p>É claro que precisamos de muito mais apoio, pois esta base está rodeada de perigos.</p>
+          <p> </p>
+          <p>E isso levará muito tempo.</p>
+          <p> </p>
+          <p>Mas tentarei cumprir minha tarefa como Capitão.</p>
+          <p> </p>
+          <p>Estou muito grato por você ter me trazido uma ordem tão importante de Bardo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o [%dic:STR_DIC_I_quest_23500a] para [%dic:STR_DIC_N_LDF5_Village_Guard01_D].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Leve o [%dic:STR_DIC_I_quest_23500a] para [%dic:STR_DIC_N_LDF5_Village_Guard03_D].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Leve o [%dic:STR_DIC_I_quest_23500a] para [%dic:STR_DIC_N_LDF5_Village_Guard06_D].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard01_D].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard03_D].</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard06_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Verifique as bases próximas ao Templo Rúnico e dê as ordens de Bardo ao respectivo Capitão.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Governador Bardo me disse que as bases próximas ao Templo Rúnico devem ser protegidas antes que qualquer outro território em Katalam possa ser conquistado.</p>
+          <p> </p>
+          <p>Você atendeu ao pedido dele e verificou a localização de uma das bases próximas ao Templo Rúnico e passou as ordens de Bardo ao Capitão desta base.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você chegou bem a tempo de defender a Torre do Escudo.</p>
+          <p> </p>
+          <p>O Escudo Protetor para a região rica em Id em Balaurea pode ser ativado em [%dic:STR_DIC_W_ZONE_NAME_IDLDF5_Under_03].</p>
+          <p> </p>
+          <p>O Exército Beritra destruiu a entrada da torre, mas você ainda pode usar o corredor em Akaron.</p>
+          <p> </p>
+          <p>Os Balaur presumiram que poderiam colocar a torre fora de ação fazendo isso, mas estavam errados.</p>
+          <p> </p>
+          <p>Vá para a Rune Escudo Tower e conheça o Pesquisador [%dic:STR_DIC_N_IDLDF5_Under_03_Tonda_E].</p>
+          <p> </p>
+          <p>Você pode alcançá-la se passar pelo [%dic:STR_DIC_W_IDF5_U3_FOBJ_Entrance] no assentamento Chapir ou na Floresta do Silêncio.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Rune Escudo Tower foi construída pela Rune Tribe para proteger o campo Id no Katalam Underground.</p>
+          <p> </p>
+          <p>Eles ativaram um escudo protetor para afastar ataques externos, pois o solo era altamente instável.</p>
+          <p> </p>
+          <p>Originalmente, a energia Id que alimentava o Escudo Protetor era reunida da área circundante em uma instalação na parte inferior da Torre do Escudo.</p>
+          <p> </p>
+          <p>Mas os últimos ataques do 43º Esquadrão de Destruição danificaram uma parte da instalação, então agora Daevas tem que alimentá-la manualmente para sustentar o Escudo Protetor.</p>
+          <p> </p>
+          <p>O problema é que o 43º Esquadrão de Destruição agora espera que o Escudo Protetor enfraqueça para poder invadir.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para defender a Torre do Escudo Rúnico, os Geradores de Escudo precisam ser abastecidos manualmente com energia para reativar o escudo enfraquecido.</p>
+          <p> </p>
+          <p>O 43º Esquadrão de Destruição tentará frustrá-lo a cada passo, mas você deve tentar reunir os Fragmentos de Idio transparentes perto do [%dic:STR_DIC_E_IDF5_U3_FOBJ_Box_Fill] e usá-los para atacar os quatro [%dic:STR_DIC_E_IDF5_U3_Defence_all].</p>
+          <p> </p>
+          <p>Se você não conseguir carregar a instalação antes que o Escudo Protetor fique ainda mais fraco, os atacantes destruirão a Torre do Escudo.</p>
+          <p> </p>
+          <p>Se uma Rune Escudo Tower for destruída, todo o Katalam Underground estará em risco.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <CutScene id="894"/>
+  </HtmlPage> 
+
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], sua missão é parar o 43º Esquadrão de Destruição e reativar o Escudo Protetor enfraquecido.</p>
+          <p> </p>
+          <p>O 43º Esquadrão de Destruição atacará de diferentes direções para destruir os Geradores de Escudo, então você e seus camaradas devem se dividir de forma eficaz para detê-los.</p>
+          <p> </p>
+          <p>Mas deter os atacantes não é a única coisa importante. O que é ainda mais importante é recarregar os quatro [%dic:STR_DIC_E_IDF5_U3_Defence_all], que reativarão o Escudo Protetor.</p>
+          <p> </p>
+          <p>Use os projetos da arma de defesa rúnica, que podem ser encontrados ao redor da Torre do Escudo, para repelir os atacantes por um tempo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que fará o seu melhor.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mesmo que os quatro geradores estejam carregados e o Escudo Protetor esteja ativo, não podemos ficar muito complacentes.</p>
+          <p> </p>
+          <p>Afinal, nunca se sabe qual contra-ataque o inimigo utilizará.</p>
+          <p> </p>
+          <p>Portanto, é preciso estar sempre atento, mesmo que o Escudo Protetor esteja ativo na Câmara de Escudos da Torre do Escudo Rúnico.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre [%dic:STR_DIC_N_IDLDF5_Under_03_Tonda_E] no [%dic:STR_DIC_W_ZONE_NAME_IDLDF5_Under_03] e peça para ela explicar a Torre do Escudo Rúnico para você.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_IDLDF5_Under_03_Tonda_E] novamente.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Rune Escudo Tower, conheça Tonda e ouça seu representante.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Florik contou a você sobre uma tarefa na Rune Escudo Tower e recomendo que você encontre Tonda na Rune Escudo Tower.</p>
+          <p> </p>
+          <p>Tonda explicou o significado da Torre do Escudo Rúnico e disse que o 43º Esquadrão de Destruição estava esperando que o Escudo Protetor enfraquecesse ainda mais para que eles pudessem invadir.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

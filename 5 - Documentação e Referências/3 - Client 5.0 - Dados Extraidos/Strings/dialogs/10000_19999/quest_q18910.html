@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar do [%dic:STR_DIC_W_IDVritra_Base_all]?</p>
+          <p> </p>
+          <p>O Sauro War Depot é um acampamento controlado pelo Exército Beritra.</p>
+          <p> </p>
+          <p>O 40º Exército está guarnecido lá e também é conhecido como Tropa de Reconhecimento do Exército Beritra.</p>
+          <p> </p>
+          <p>Se quisermos derrotá-los, alguém precisará se infiltrar no campo para descobrir seus segredos militares.</p>
+          <p> </p>
+          <p>Se você estiver disposto a aceitar esta missão, reporte-se a [%dic:STR_DIC_N_LDF5_Kanix_E].</p>
+          <p> </p>
+          <p>Kanix irá informá-lo melhor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio por um motivo específico?</p>
+          <p> </p>
+          <p>Se não, por favor, vire à direita.</p>
+          <p> </p>
+          <p>Não me sinto bem agora e gostaria de ficar sozinho.</p>
+          <p> </p>
+          <p>Por favor, desculpe minha falta de educação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que Amalde te enviou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então Amalde mandou você para mim.</p>
+          <p> </p>
+          <p>Antes de realizar a missão, gostaria de lhe dar algumas informações adicionais sobre o Sauro War Depot.</p>
+          <p> </p>
+          <p>O Sauro War Depot já foi um local sagrado da Tribo Rúnica, ao mesmo tempo que serviu como refúgio para eles.</p>
+          <p> </p>
+          <p>Agora, porém, o Exército Beritra utiliza-o para armazenar os seus suprimentos de guerra.</p>
+          <p> </p>
+          <p>Não sabemos exatamente o que o Exército Beritra descobriu no depósito de guerra, mas de acordo com as nossas últimas informações eles estão pesquisando armas lá.</p>
+          <p> </p>
+          <p>É por isso que nosso Alto Comando providenciou para que alguém se infiltrasse no Sauro War Depot.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5_Kanix_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Conheça Kanix para obter informações mais detalhadas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Amalde lhe contou sobre a missão de se infiltrar no Depósito de Guerra Sauro e espionar os segredos militares que o Exército Beritra guarda lá. Isso significa que você deveria ir ver Kanix.</p>
+          <p> </p>
+          <p>Kanix disse que o Exército Beritra estava realizando pesquisas de armas no Sauro War Depot e descreveu os detalhes da missão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

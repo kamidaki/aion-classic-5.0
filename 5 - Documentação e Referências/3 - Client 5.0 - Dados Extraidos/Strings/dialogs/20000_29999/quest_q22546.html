@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este sempre foi o nosso país.</p>
+          <p> </p>
+          <p>Os Kobolds e os Supervisores Shulack invadiram repentinamente.</p>
+          <p> </p>
+          <p>Eles estão derrubando as árvores e destruindo nosso país.</p>
+          <p> </p>
+          <p>Bata o [%dic:STR_DIC_M_LDF5A_C3_Brownie_Axe_63_n], [%dic:STR_DIC_M_LDF5A_C3_Brownie_Off_63_n] e também o [%dic:STR_DIC_M_LDF5A_C3_Shulack_Keep_63_An].</p>
+          <p> </p>
+          <p>Por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode roubar nossas terras.</p>
+          <p> </p>
+          <p>Você não pode confiar em ninguém.</p>
+          <p> </p>
+          <p>Espero que o desmatamento possa ser interrompido.</p>
+          <p> </p>
+          <p>Os Trabalhadores Mukuki e o supervisor do Campo Madeireiro Rubininerk devem ser eliminados.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que o matou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado por estar do nosso lado agora.</p>
+          <p> </p>
+          <p>Você pode não acreditar, mas há outra coisa pela qual sou grato.</p>
+          <p> </p>
+          <p>Vamos recuperar nossas terras, não importa o que aconteça.</p>
+          <p> </p>
+          <p>Você verá em breve.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Kobold e o Supervisor Shulack para Aulaki.</font></p>
+                        <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_C3_Brownie_all]([%2]/8)</font></p>
+                        <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_C3_Shulack_Keep_63_An]([%5]/4)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Aulraky_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Lenhador Mukuki, o Trabalhador Mukuki e o supervisor do Acampamento Madeireiro Rubirinerk, que estão arruinando as árvores e o solo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Aulaki, os Lenhadores Mukuki, os Trabalhadores Mukuki e o Supervisor do Acampamento Madeireiro Rubininerk estavam destruindo a terra do Strigik e derrubando as árvores.</p>
+          <p> </p>
+          <p>Você matou os Lenhadores Mukuki, os Trabalhadores Mukuki e o Supervisor do Acampamento Madeireiro Rubininerk a pedido dele. Ele agradeceu pela sua ajuda quando você voltou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

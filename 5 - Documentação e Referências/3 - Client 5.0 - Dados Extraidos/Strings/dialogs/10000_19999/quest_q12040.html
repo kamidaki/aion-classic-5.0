@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12040</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mal posso acreditar que conquistamos esta fortaleza. Estamos agora um passo mais perto do próprio Tiamat e destruindo um Dragon Lorde.</p>
+          <p> </p>
+          <p>Mas, é claro, o custo foi caro. Precisamos de mais fornecimentos e a sua entrega a partir de outras regiões é demasiado lenta e arriscada. É por isso que precisamos de [%dic:STR_DIC_I_quest_12040a]s. Eles são usados para fazer uma grande variedade de itens de cura.</p>
+          <p> </p>
+          <p>Aparentemente, você pode obtê-los aqui matando [%dic:STR_DIC_M_LDF4b_T1_Fungy_58_An]s, [%dic:STR_DIC_M_LDF4b_T2_Sam_58_An]s, [%dic:STR_DIC_M_LDF4b_T3_Xipeto_Rage_58_An]s e [%dic:STR_DIC_M_LDF4b_T4_Twister_Aurora_60_An]s. Essa é a sua missão.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Manteremos esta fortaleza a todo custo, não importa o que Tiamat jogue contra nós. É nosso dever como Elyos.</p>
+          <p> </p>
+          <p>Os Fragmentos de Vitalidade que lhe enviei são uma parte vital desse esforço. Espero que você não tenha afrouxado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Eu não fiz isso, e aqui está a prova."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, sim... Vou entregar isso aos alquimistas imediatamente.</p>
+          <p> </p>
+          <p>Com estes, os Balaur acharão muito mais difícil recuperar este Coração.</p>
+          <p> </p>
+          <p>Se todos os nossos Daevas fossem como você, [%username]. Tanto Balaur quanto Asmodianos já estariam derrotados há muito tempo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_quest_12040a]s e leve-os para [%dic:STR_DIC_N_Levis].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Desert Mookies, Ruins Mugolems, Rock Gnarls e Shimmering Twisters para obter seus Fragmentos de Vitalidade, importantes na preparação de poções.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Depois de conquistar o Heart of Fissure, Levis pediu que você coletasse Fragmentos de Vitalidade de monstros locais.</p>
+          <p> </p>
+          <p>Você fez isso, já que os Fragmentos eram ingredientes-chave na preparação de poções que ajudariam os Elyos a manter a fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

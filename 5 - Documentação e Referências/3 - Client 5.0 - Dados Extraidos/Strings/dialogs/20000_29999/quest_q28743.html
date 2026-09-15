@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Descobri quem é o responsável pelas tropas de Beritra.</p>
+          <p> </p>
+          <p>Mas não será fácil chegar até ele.</p>
+          <p> </p>
+          <p>Se eliminarmos Nasto, poderemos impedi-los de reforçar ainda mais as suas tropas.</p>
+          <p> </p>
+          <p>Não temos certeza, mas pode ser que os recrutas consigam se libertar do controle mental assim que Nasto não estiver mais com eles.</p>
+          <p> </p>
+          <p>Mate [%dic:STR_DIC_M_IDRaksha_Re_Boss_Named_63_An] e depois reporte-se a [%dic:STR_DIC_N_DF5_Cnut_E]. Acompanharei pessoalmente as mudanças após a queda de Nasto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que Nasto foi quem criou o plano.</p>
+          <p> </p>
+          <p>Estou preocupado. Não contávamos com um inimigo assim.</p>
+          <p> </p>
+          <p>Não temos absolutamente nenhuma informação sobre ele. Não tenho ideia de como devemos proceder.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que? Você derrotou Nasto?</p>
+          <p> </p>
+          <p>Se isso é verdade, então isso é realmente uma boa notícia.</p>
+          <p> </p>
+          <p>A Procura não faz check-in há tanto tempo que fiquei preocupado.</p>
+          <p> </p>
+          <p>Bom trabalho. Aqui está um sinal da minha estima.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDRaksha_Re_Boss_Named_63_An] ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_DF5_Cnut_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumprir o pedido da Procura, matar Nasto e depois reportar-se a Knut.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Procura disse que todos os problemas seriam resolvidos se Nasto fosse derrotado.</p>
+          <p> </p>
+          <p>Você derrotou Nasto e reportou a Knut. Ele ficou satisfeito e agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

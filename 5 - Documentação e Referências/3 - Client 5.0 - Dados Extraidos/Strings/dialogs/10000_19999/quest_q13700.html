@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar de [%dic:STR_DIC_W_LDF4_Advance] talvez?</p>
+          <p> </p>
+          <p>Este é um território novo, que foi descoberto entre Inggison e Gelkmaros.</p>
+          <p> </p>
+          <p>Para ser mais específico, esta área não é realmente nova. Mas ninguém pôde entrar até agora por causa da barreira de Tiamat.</p>
+          <p> </p>
+          <p>Há muito para descobrir neste novo território. Que tal? Você gostaria de se inscrever na missão em Akaron?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+    
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os reforços finalmente chegaram. Eu estive esperando por você.</p>
+          <p> </p>
+          <p>Conquistar Akaron faz parte da estratégia para conquistar toda Balaurea.</p>
+          <p> </p>
+          <p>De Akaron, não podemos apenas avançar para Gelkmaros; também podemos impedir que os Asmodianos invadam através de Inggison.</p>
+          <p> </p>
+          <p>Ainda há muito trabalho a ser feito. Vou explicar tudo para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Precisamos das fortalezas e bases de invasão que estão espalhadas pela região de Akaron para afirmar a nossa supremacia.</p>
+          <p> </p>
+          <p>Se pessoas como você, [%username], nos ajudarem, sem dúvida alcançaremos nosso objetivo...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <CutScene id="716"/>
+  </HtmlPage>
+ 
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem uma longa jornada atrás de você. Descanse um pouco antes de iniciar suas novas tarefas.</p>
+          <p> </p>
+          <p>Está longe e ainda há muito trabalho a ser feito.</p>
+          <p> </p>
+          <p>A única maneira de garantir a vitória em Akaron é descansar o suficiente e preparar-se minuciosamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta sobre sua recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando todos os preparativos terminarem, por favor, encontre-me novamente.</p>
+          <p> </p>
+          <p>Não fomos capazes de seguir a nossa estratégia porque não tínhamos forças de combate suficientes. Mas quando os nossos reforços chegarem, expulsaremos os Asmodianos e os Balaur de Akaron.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF4_Advance_Elger_E] em [%dic:STR_DIC_W_LDF4_Advance].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LDF4_Advance_Elger_E] novamente.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Teleporte-se para Akaron para apoiar a expedição.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como Atmos ordenou, você viajou para Akaron, a terra recém-descoberta dos Balaur.</p>
+          <p> </p>
+          <p>Lá, você se encontrou com o Tribune Helgund.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

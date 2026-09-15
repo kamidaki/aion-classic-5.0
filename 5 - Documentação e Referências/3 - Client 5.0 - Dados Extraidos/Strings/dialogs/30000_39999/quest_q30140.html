@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]!</p>
+          <p> </p>
+          <p>Estou enganado ou essa é a Chave Soberana do Éter de Siel?</p>
+          <p> </p>
+          <p>Por Aion... Onde você encontrou isso?</p>
+          <p> </p>
+          <p>Sua reputação está diante de você e, pela primeira vez, parece que os rumores são verdadeiros, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Posso dar uma olhada mais de perto na Sovereign Éter Key de Siel?</p>
+          <p> </p>
+          <p>(Examine atentamente a Chave do Éter.) Meu Deus... uma excelente Chave do Éter... mas, infelizmente! Parece estar muito danificado.</p>
+          <p> </p>
+          <p>O poder da Chave do Éter seria muito maior se ela fosse restaurada à sua condição original.</p>
+          <p> </p>
+          <p>Você deseja que sua Chave Éter seja restaurada? Posso ajudá-lo a fazer isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sei que concordei em ajudá-lo, mas não quis dizer que eu mesmo iria restaurá-lo. Não tenho as habilidades necessárias.</p>
+          <p> </p>
+          <p>Mas eu sei quem pode restaurá-lo para você, [%username].</p>
+          <p> </p>
+          <p>Encontre-se com o ferreiro Kobold [%dic:STR_DIC_N_DF4_NPC_Nehmatan] na Vila de Refugiados de Rhonnam. Ele pode ser um Kobold, mas tem um domínio incrível de armas.</p>
+          <p> </p>
+          <p>Ele sempre fica preso quando se trata de consertar armas. Ele certamente ajudará você também.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está um pouco cheio de si, não é?</p>
+          <p> </p>
+          <p>Você acha que as armas não são mais tão importantes quando você tem habilidades como as suas, [%username]?</p>
+          <p> </p>
+          <p>Não vou pedir que você faça nada se não estiver interessado.</p>
+          <p> </p>
+          <p>Mesmo uma excelente Chave de Éter só será útil para aqueles que reconhecem seu valor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você quer de mim, Daeva?</p>
+          <p> </p>
+          <p>Isso é sobre uma arma? Diga-me qual é o problema.</p>
+          <p> </p>
+          <p>Kobold irá consertar isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que deseja que a Chave Soberana do Éter de Siel seja restaurada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chave Soberana do Éter de Siel!</p>
+          <p> </p>
+          <p>Essa é uma boa arma. Kobold sabe disso.</p>
+          <p> </p>
+          <p>Mas a arma está em mau estado. Não pode ser usado corretamente assim.</p>
+          <p> </p>
+          <p>Kobold irá ajudá-lo a restaurá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_DF4_NPC_Nehmatan].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Há rumores de que Tataka pode restaurar o poder da Chave Soberana do Éter de Siel. Vá encontrá-lo na Vila de Refugiados Rhonnam.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando Ipses viu a Chave Soberana do Éter de Siel, ela disse que era uma boa arma, mas que deveria ser restaurada à sua condição original primeiro.</p>
+          <p> </p>
+          <p>Ela enviou você para um ferreiro Kobold chamado Tataka, que concordou em restaurar a arma para você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+ 
+<HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

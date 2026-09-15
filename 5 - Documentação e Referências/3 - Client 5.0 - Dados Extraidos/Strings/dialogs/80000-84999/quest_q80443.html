@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio para ajudar! [%username].</p>
+          <p> </p>
+          <p>Que sorte que existam Daevas valentes como você que fazem a sua parte para proteger Asmodae.</p>
+          <p> </p>
+          <p>Daeva! Por favor, elimine [%dic:STR_DIC_M_DF2A_BrohumMFiD_50_An], bem como o Brohum Hunter e o Brohum Guerreiro em [%dic:STR_DIC_W_DF2B_SZ_C3].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi?</p>
+          <p> </p>
+          <p>Você eliminou os [%dic:STR_DIC_M_DF2A_BrohumMFiD_50_An] Brohum Hunters e os Brohum Guerreiros?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que executou a tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você cuidaria de tudo!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_M_DF2A_BrohumMFiD_50_An], Caçadores de Brohum e Guerreiros de Brohum. ([%2]/4)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_EVENT_GUARD_PESHA].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">[%dic:STR_DIC_N_EVENT_GUARD_PESHA] pediu para você derrubar [%dic:STR_DIC_M_DF2A_BrohumMFiD_50_An], bem como o Brohum Hunter e o Brohum Guerreiro em [%dic:STR_DIC_W_DF2B_SZ_C3].</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_N_EVENT_GUARD_PESHA] pediu para você derrubar [%dic:STR_DIC_M_DF2A_BrohumMFiD_50_An], bem como o Brohum Hunter e o Brohum Guerreiro em [%dic:STR_DIC_W_DF2B_SZ_C3].</p>
+          <p> </p>
+          <p>Você os eliminou a pedido de [%dic:STR_DIC_N_EVENT_GUARD_PESHA].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

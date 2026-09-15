@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Esquadrão de Limpeza Katalam, [%dic:STR_DIC_N_LDF5_Village_Guard18_D] do [%dic:STR_DIC_W_LDF5b_F4_v18]</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Ordens: Punir os Elyos que avançaram para [%dic:STR_DIC_W_LDF5b_SZ_F4_2] em South Katalam.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Elyos que invadem implacavelmente as Planícies de Prades estão me dando dor de cabeça.</p>
+          <p> </p>
+          <p>Se ninguém fizer nada só porque o problema parece menor, tudo acabará em lágrimas.</p>
+          <p> </p>
+          <p>É tão bom que haja Daevas prestativos como você por perto, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau, posso relaxar um pouco.</p>
+          <p> </p>
+          <p>Eu sabia que isso poderia ser feito se perguntássemos a você, [%username].</p>
+          <p> </p>
+          <p>Então eu pediria mais ajuda.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Elyos que avançaram para [%dic:STR_DIC_W_LDF5b_SZ_F4_2] em South Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LDF5_Village_Guard18_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Mate os Elyos que avançaram para o Caminho de Abastecimento das Planícies em South Katalam e reporte-se a Rorik.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O infiltrado Elyos tinha como alvo o Caminho de Abastecimento das Planícies em South Katalam.</p>
+          <p> </p>
+          <p>Você destruiu os Elyos infiltrados e reportou a Rorik.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

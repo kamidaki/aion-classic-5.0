@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Pashid mais uma vez reuniu uma tropa de cerco ao seu redor para atacar o Bastião da Parede de Aço.</p>
+		<p> </p>
+		<p>Não falta muito até que o Exército Beritra comece o ataque.</p>
+		<p> </p>
+		<p>O Bastião da Parede de Aço é uma base estratégica importante e deve, portanto, ser defendido por todos nós, Asmodianos, com todas as nossas forças e meios. [%username], precisamos da sua ajuda para fazer isso.</p>
+		<p> </p>
+		<p>Por favor, pare o ataque do Exército Beritra e elimine [%dic:STR_DIC_M_IDF5_TD_DragonRider_Chief_N_65_Al].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Bem-vindo, [%username].</p>
+		<p> </p>
+		<p>Ouvi dizer que o Exército Beritra realizou mais uma vez um ataque impiedoso ao Bastião da Muralha de Aço.</p>
+		<p> </p>
+		<p>Não consigo dormir, estou tão preocupado com o Bastião Parede de Aço.</p>
+		<p> </p>
+		<p>O que aconteceu com o Bastião da Parede de Aço? Você eliminou [%dic:STR_DIC_M_IDF5_TD_DragonRider_Chief_N_65_Al]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você responde que sim.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você fez isso?</p>
+		<p> </p>
+		<p>[%username], nunca conheci um Daeva como você antes.</p>
+		<p> </p>
+		<p>Todos os nossos camaradas ficarão gratos pelos seus feitos heróicos, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_IDF5_TD_DragonRider_Chief_N_65_Al] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Latkel_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote o Comandante Supremo Pashid no Bastião da Parede de Aço.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>O ataque do Exército Beritra ao Bastião Parede de Aço simplesmente não terá fim.</p>
+		<p> </p>
+		<p>Latkel disse que o Comandante Supremo Pashid iria atacá-lo novamente. Ele pediu para você destruir Pashid.</p>
+		<p> </p>
+		<p>Você atendeu ao pedido dele para impedir o ataque do Exército Beritra.</p>
+		<p> </p>
+		<p>Você então voltou para Latkel. Ele agradeceu e disse que você realizou um grande feito.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

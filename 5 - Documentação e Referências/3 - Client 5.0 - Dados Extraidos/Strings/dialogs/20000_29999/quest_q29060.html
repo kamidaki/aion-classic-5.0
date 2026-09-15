@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava esperando por você.</p>
+          <p> </p>
+          <p>Esta é uma carta de recomendação para [%dic:STR_DIC_N_Garvan], na qual peço que ele ajude você, [%username].</p>
+          <p> </p>
+          <p>Não é diferente da carta de recomendação que Kalsten lhe deu quando o enviou para mim.</p>
+          <p> </p>
+          <p>Leve esta carta de recomendação para Garvan. Ele é melhor do que eu e irá ajudá-lo a progredir como [%userclass], [%username].</p>
+          <p> </p>
+          <p>Estou muito satisfeito com seu trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você não é [%username]?</p>
+          <p> </p>
+          <p>Já ouvi falar de seus feitos.</p>
+          <p> </p>
+          <p>Suas conquistas trouxeram glória e honra ao [%userclass].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a carta de recomendação de Traufnir.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Dobrando a carta de recomendação) Incrível que o próprio Traufnir tenha escrito uma carta de recomendação para você!</p>
+          <p> </p>
+          <p>Uma carta de recomendação dele já é uma garantia de suas proezas.</p>
+          <p> </p>
+          <p>Espero uma boa colaboração. Na minha opinião, o ensino é marcado por um sistema contínuo de dar e receber. Eu mesmo posso aprender muito ensinando.</p>
+          <p> </p>
+          <p>Tenho a sensação de que aprenderei muito com você, [%username]. Hahaha!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve a carta de recomendação de Traufnir para [%dic:STR_DIC_N_Garvan] no templo Marchutan.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mostrar a carta de recomendação de Garvan Traufnir.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Traufnir escreveu uma carta de recomendação para você e mandou você entregá-la a Garvan.</p>
+          <p> </p>
+          <p>Depois de ler a carta de recomendação, Garvan disse que não duvidava do julgamento de Traufnir e que compartilharia seu conhecimento com você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41171</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Chegou a hora de você fazer um teste para demonstrar suas habilidades artesanais.</p>
+         <p> </p>
+         <p>Se você quer se tornar um Templário Sagrado Miragente, você deve ser bom em tudo que faz. Daevas que só são bons em luta ou bons em ciências são fáceis de encontrar.</p>
+         <p> </p>
+	<p>Os Miragentes Santos Templários não podem aceitar membros que sejam bons apenas em um campo.</p>
+         <p> </p>
+        <p>Mas não se preocupe, não exigimos que você conheça todas as formas de artesanato.</p>
+        <p> </p>
+         <p>Se você deseja fazer o Teste de Artesanato de Móveis, recomendo que consulte [%dic:STR_DIC_N_Undin] no [%dic:STR_DIC_FLA36].</p>
+        <p> </p>
+	<p>Ele lhe dará os detalhes do teste.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está fazendo um teste de Habilidades Artesanais; isso é realmente maravilhoso.</p>
+         <p> </p>
+         <p>Foi uma boa decisão você escolher o Artesanato de Móveis. Pelo que eu sei, as outras Habilidades de Artesanato são testadas através da elaboração de um Coração de Magia.</p>
+         <p> </p>
+	<p>Mas se você for bom em Artesanato de Móveis, poderá criar você mesmo a Insígnia do Templário Miraju necessária para a cerimônia.</p>
+         <p> </p>
+	<p>Vou te dar um padrão. Acho que você mesmo conseguirá criar a Insígnia se segui-la e com um pouco de paciência.</p>
+         <p> </p>
+	<p>Depois de criar a Insígnia, você obtém um [%dic:STR_DIC_I_relic_02] e leva-o para [%dic:STR_DIC_N_Jucleas]. Ele então realizará uma cerimônia sagrada para você.</p>
+         <p> </p>
+         <p>Desejo muito sucesso a você!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo, [%username].</p>
+          <p> </p>
+          <p>Eu estava esperando por você.</p>
+          <p> </p>
+          <p>Quanto mais você avança em seu teste, mais urgentemente espero por você.</p>
+          <p> </p>
+          <p>Agora, dê-me a Insígnia Miragente do Santo Templário e a Pedra do Juramento.</p>
+          <p> </p>
+          <p>Realizarei a cerimônia sagrada imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você pede a ele para realizar a cerimônia sagrada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+	<p>Tudo bem, a cerimônia sagrada acabou.</p>
+	<p> </p>
+	<p>Espero que você também passe nos testes restantes.</p>
+	<p> </p>
+	<p>Pois eles não servem apenas para avaliá-los, mas, em vez disso, dão-lhes a oportunidade de melhorar e crescer com o desafio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Undin] no [%dic:STR_DIC_FLA36].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Leve a Insígnia Miragente do Santo Templário e um [%dic:STR_DIC_I_relic_02] com você e fale com [%dic:STR_DIC_N_Jucleas].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Faça o teste de habilidades artesanais de Lavirintos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lavirintos disse que desta vez você deveria fazer o teste de habilidade artesanal.</p>
+          <p> </p>
+          <p>Você criou a Insígnia da Ordem Sagrada dos Templários Miragentes de acordo com o padrão que o mestre lhe deu. Depois que você trouxe a Insígnia e a Pedra do Juramento Nobre para Jucleas, ele realizou uma cerimônia sagrada.</p>
+	 </body>
+	</html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

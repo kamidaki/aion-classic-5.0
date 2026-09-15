@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15222</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está ciente de que Beritra e Balaur não são nossos únicos inimigos em Signia?</p>
+          <p> </p>
+          <p>Fendas aparecem regularmente em Signia. Os traiçoeiros Asmodianos usam essas Fendas para chegar aqui. Eles acham que somos derrotados tão facilmente?</p>
+          <p> </p>
+          <p>Devemos enviar-lhes uma mensagem inequívoca de que nunca entregaremos Signia sem lutar.</p>
+          <p> </p>
+          <p>Certamente você concorda, não é? Certo, então equipe-se e puna dois dos Asmodianos que invadiram o [%dic:STR_DIC_E_LF5_Vil3_Area_All] em Signia!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Claro, precisamos frustrar os planos de Beritra, é importante, mas também temos que garantir que os Elyos estejam seguros e nos defender contra a ameaça Asmodiana.</p>
+          <p> </p>
+          <p>Não podemos simplesmente confiar na nossa vigilância da área se pretendemos impedir os Asmodianos de tomarem a região da Ática.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente.</p>
+          <p> </p>
+          <p>Você defendeu Attica contra os Asmodianos.</p>
+          <p> </p>
+          <p>Mas você não pode parar agora. Por favor, continuem a garantir que Attica esteja bem defendida.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine os Asmodianos que representam um perigo para o [%dic:STR_DIC_E_LF5_Vil3_Area_All] ([%2]/2).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LF5_Averse_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Derrotar os Asmodianos que avançaram para Attica em Signia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aver ordenou que você expulsasse os Asmodianos que invadiram a região da Ática em Signia, então você cuidou do assunto.</p>
+          <p> </p>
+          <p>Aver elogiou você e pediu que continuasse a defender a região da Ática.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Temos um problema! A Tropa Mercenária Tigran está roubando os Núcleos Idgel que se formaram quando o experimento Idgel deu errado.</p>
+          <p> </p>
+          <p>Você poderia acabar com o [%dic:STR_DIC_E_LDF5b_B3_Wildlycan] que está roubando o [plur][%dic:STR_DIC_I_quest_23017a] espalhado pelo local perto da Guarnição de Phon e reunir os Núcleos Idgel?</p>
+          <p> </p>
+          <p>Teremos um problema sério em nossas mãos se a Tropa Mercenária Tigran os entregar a outro grupo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que aconteceu com o Idgel Core destruído?</p>
+          <p> </p>
+          <p>Se por uma questão de dinheiro, você nunca sabe que a Tropa Mercenária Tigran é capaz.</p>
+          <p> </p>
+          <p>Temos que recuperar o Idgel Core destruído, antes que alguém coloque as mãos nele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega os Idgel Cores destruídos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aion seja louvado! Você não tem ideia de como estou aliviado em ouvir isso, [%username].</p>
+          <p> </p>
+          <p>Teria havido uma catástrofe se os Núcleos Idgel tivessem caído em mãos erradas.</p>
+          <p> </p>
+          <p>Devemos garantir que isso não possa acontecer novamente no futuro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [plur][%dic:STR_DIC_I_quest_23017a] e leve-o para [%dic:STR_DIC_N_LDF5b_Peniun_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Pegue os Núcleos Idgel destruídos da Tropa Mercenária Tigran perto da Guarnição de Phon.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Peniun, você pegou os Núcleos Idgel destruídos da Tropa Mercenária Tigran.</p>
+          <p> </p>
+          <p>Peniun prometeu garantir que algo assim não aconteça novamente durante experimentos futuros.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

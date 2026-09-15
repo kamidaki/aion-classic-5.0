@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>Não se mova!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>Não se mova!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pergunta do que se trata.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você recusa e encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este é o último ponto de observação Asmodiano para South Katalam.</p>
+          <p> </p>
+          <p>Então o que precisamos é de uma investigação completa. Espero que você entenda.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1_1">Você diz que entendeu.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você recusa e encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Ele examina você minuciosamente.)</p>
+          <p> </p>
+          <p>Muito obrigado!</p>          
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

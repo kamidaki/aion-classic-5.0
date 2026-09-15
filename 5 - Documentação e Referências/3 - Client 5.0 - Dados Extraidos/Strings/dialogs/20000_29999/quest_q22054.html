@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22054</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Devo informá-lo sobre a situação na Caverna Basilika, [%username]. Se você já esteve lá, já sabe que um longo túnel vai do Vale do Quartzo Azul até a Gruta Gurriki.</p>
+          <p> </p>
+          <p>Onde o túnel passa abaixo do Olho, ele se abre para uma enorme caverna. Existem artefatos poderosos lá embaixo, sob a guarda pesada de Balaur.</p>
+          <p> </p>
+          <p>Queremos controlar esses artefatos, mas eles estão atualmente em poder dos Elyos [%dic:STR_DIC_M_Q22054all]s. Quero que você vá até lá e arranque os Artefatos de suas mãos macias e sem garras.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Retornando da Caverna Basilika, triunfante, presumo?</p>
+          <p> </p>
+          <p>Conte-me como aqueles Ellies se encolheram e choraram sob a ponta de sua lâmina.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Os Artefatos estão nas mãos dos Asmodianos, Comandante."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é o que eu queria ouvir.</p>
+          <p> </p>
+          <p>Manter uma posição dominante sobre os Elyos é vital para o nosso sucesso final em Tiamaranta. Quanto mais Artefatos tivermos, mais controle teremos sobre a batalha.</p>
+          <p> </p>
+          <p>Garantirei que os superiores ouçam seu nome, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os [%dic:STR_DIC_M_ldf4b_4051_guard_Li_Fi_1]s, [%dic:STR_DIC_M_ldf4b_4051_guard_Li_As_1]s, [%dic:STR_DIC_M_ldf4b_4051_guard_Li_Ra_1]s, [%dic:STR_DIC_M_ldf4b_4051_guard_Li_Wi_1]s e [%dic:STR_DIC_M_ldf4b_4051_guard_Li_Pr_1]s ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Hindla].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os artefatos na Caverna Basilika são mantidos pelos veteranos Elyos Artefact Fighters, Assassinos, Archers, Magos e Sacerdotes. É vital que os Artefatos estejam nas mãos dos Asmodianos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hindla informou você sobre a situação na Caverna Basilika e falou sobre a importância dos artefatos lá.</p>
+          <p> </p>
+          <p>Você foi enviado para a Caverna Basilika para assumir o controle do Artefato dos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

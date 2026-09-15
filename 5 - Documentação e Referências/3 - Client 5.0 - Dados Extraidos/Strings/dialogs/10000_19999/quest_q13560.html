@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você viu o [%dic:STR_DIC_M_LDF5A_E6_Mosbear_Dark_64_An] por aqui, ok?</p>
+          <p> </p>
+          <p>Achei que meu rabo já tinha encolhido, ak.</p>
+          <p> </p>
+          <p>Porque tenho medo do Mosbear selvagem, ak.</p>
+          <p> </p>
+          <p>Se você, [%username], matá-lo, isso ajudaria nosso negócio e Krerunerk também se sentiria mais seguro, ak.</p>
+          <p> </p>
+          <p>Por favor, ok.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Krerunerk trabalha em um ambiente muito perigoso, ak.</p>
+          <p> </p>
+          <p>Mas os selvagens Mosbears não farão Shugo desistir de seus negócios, ak.</p>
+          <p> </p>
+          <p>Um verdadeiro comerciante sobrevive até mesmo a crises como essas, ak.</p>
+          <p> </p>
+          <p>Krerunerk é um verdadeiro comerciante e não desistirá, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que matou o Violento Mosbear.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é um fardo para a mente de Krerunerk, ak!</p>
+          <p> </p>
+          <p>Agora que não há mais Mosbears selvagens, meu pelo não está mais em pé, ak!</p>
+          <p> </p>
+          <p>Muito obrigado, de fato, ak.</p>
+          <p> </p>
+          <p>[%username] salvou Krerunerk, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_E6_Mosbear_Dark_64_An], que se tornou uma ameaça. ([%2]/10)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Krering_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Mosbears selvagens que estão fazendo com que o Krerunerk se sinta ameaçado.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Krerunerk tinha muito medo dos violentos Mosbears, então você os matou. Krerunerk ficou muito aliviado e muito grato a você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

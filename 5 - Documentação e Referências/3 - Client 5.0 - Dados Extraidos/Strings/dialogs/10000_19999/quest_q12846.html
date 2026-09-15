@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p> </p>
+          <p>Remetente: Katalam Patrol, [%dic:STR_DIC_N_LDF5_Village_Guard03_L] do [%dic:STR_DIC_W_LDF5a_A1_3]</p>
+          <p> </p>
+          <p>Destinatário: [%username]</p>
+          <p> </p>
+          <p>Ordens: Derrote o Asmodiano que entrou sorrateiramente no [%dic:STR_DIC_W_LDF5a_A1_A6] em North Katalam.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você não conseguir formar uma linha de batalha adequada, poderá facilmente cair em uma armadilha.</p>
+          <p> </p>
+          <p>Você sempre tem que estar atento para evitar cair na armadilha.</p>
+          <p> </p>
+          <p>O que você acha? Você matou os Asmodianos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>O plano Asmodiano para massacrar os Elyos parece ter virado fumaça.</p>
+          <p> </p>
+          <p>Graças a você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Asmodiano que se infiltrou no [%dic:STR_DIC_W_LDF5a_A1_A6] em North Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LDF5_Village_Guard03_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Mate o Asmodiano que se infiltrou na região de Stelman em North Katalam e reporte-se a Seras.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu ordens urgentes de Seras para matar os Asmodianos que invadiram a região de Stelman no norte de Katalam, e então você os eliminou.</p>
+          <p> </p>
+          <p>Seras agradeceu e disse que o plano Asmodiano de massacrar os Elyos parece ter virado fumaça.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

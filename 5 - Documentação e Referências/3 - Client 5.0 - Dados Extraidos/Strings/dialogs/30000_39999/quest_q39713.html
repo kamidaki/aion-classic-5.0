@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- A Carta Verde -</p>
+          <p> </p>
+          <p>Prezados membros da Green Hat Alliance,</p>
+          <p> </p>
+          <p>Desta vez nossas operações ocorrerão em [%dic:STR_DIC_W_LDF5b_SZ_G1].</p>
+          <p> </p>
+          <p>A poluição está piorando no Pântano Esquecido. Use [%dic:STR_DIC_I_quest_39713a], que você pode obter em [%dic:STR_DIC_E_LDF5a_Greenhat_BA], para evitar que a contaminação se espalhe ainda mais. Relate o resultado ao [%dic:STR_DIC_E_LDF5a_Greenhat_BA].</p>
+          <p> </p>
+          <p>Que a natureza seja a nossa força.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde a carta no bolso.</Act>
+    </Selects>
+  </HtmlPage>
+
+<HtmlPage name="select2">
+  <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu uma carta, ok?</p>
+          <p> </p>
+          <p>A contaminação no Pântano Esquecido progrediu tanto que a Natureza não consegue mais se curar.</p>
+          <p> </p>
+          <p>Pegue o pó de limpeza e vá para [%dic:STR_DIC_W_LDF5b_SZ_G1_001]. Espalhe o pó nas áreas especialmente contaminadas.</p>
+          <p> </p>
+          <p>Por favor, ajude-nos a ajudar a Mãe Natureza!</p>
+        </body>
+        </html>
+  </Contents>
+  <Selects>
+    <Act href="HACTION_SETPRO1">Você recebeu Pó de Limpeza.</Act>
+  </Selects>
+</HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então Daeva está retornando do Pântano Esquecido.</p>
+          <p> </p>
+          <p>Diz-se que a contaminação naquele local é tão grave que ninguém sabe realmente o que mais pode ser feito a respeito.</p>
+          <p> </p>
+          <p>Acho que o pó de limpeza é a única coisa que pode ajudar, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O pó de limpeza é altamente eficiente, mas a Green Hat Alliance hesita muito em usá-lo. As propriedades de autolimpeza da natureza devem continuar a fortalecer-se.</p>
+          <p> </p>
+          <p>Mas pelo menos a contaminação não vai piorar graças ao pó de limpeza.</p>
+          <p> </p>
+          <p>A Green Hat Alliance tem uma grande dívida com [%username], ak.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_E_LDF5a_Greenhat_BA].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Espalhe o [%dic:STR_DIC_I_quest_39713a] no [%dic:STR_DIC_W_LDF5b_SZ_G1_001].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relatório para [%dic:STR_DIC_E_LDF5a_Greenhat_BA].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você recebeu uma carta verde da Green Hat Alliance. Leia e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu uma carta verde da Green Hat Alliance.</p>
+          <p> </p>
+          <p>Depois de espalhar o pó de limpeza no Pântano Esquecido e reportar-se à filial da Green Hat Alliance em South Katalam, você foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10092</QuestId>
+    <QuestName>학자와 재회</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acabei de receber a notícia que tanto esperava! Eles encontraram Laio.</p>
+          <p> </p>
+          <p>A autoridade militar tem uma missão para você. Você deveria parar de procurar Kahrun temporariamente.</p>
+          <p> </p>
+		  <p>Aparentemente, a busca pela arma antiga é mais importante.</p>
+		  <p> </p>
+		  <p>Agora que estamos cientes do enorme poder de Idgel, devemos avançar mais rápido que os Asmodianos para descobrir mais sobre os núcleos de Idgel.</p>
+          <p> </p>
+          <p>Encontre-se com Laio. Ele está hospedado em Pandarung. Fale com [%dic:STR_DIC_N_LDF5b_Erireung_E] para localizar Laius.</p>
+          <p> </p>
+          <p>Fale com ele sobre como compartilhar os resultados de sua pesquisa conosco. Como você o conhece, ele será convencido por você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10092-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você quer dizer [%dic:STR_DIC_N_LDF5b_Scholar4L_E], akakak?</p>
+          <p> </p>
+          <p>Ele recentemente veio para Pandarung e pediu instruções a Erirunerk, akakak.</p>
+          <p> </p>
+          <p>Ele perguntou sobre um edifício Elyos. Então ele provavelmente terá ido para lá, certo? Ak!</p>
+          <p> </p>
+          <p>De qualquer forma, seja bem-vindo ao Pandarung, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+	<Voice file="Q10092-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você iria me procurar.</p>
+          <p> </p>
+          <p>Agora que você conhece o poder do Idgel, deve querer saber mais.</p>
+          <p> </p>
+          <p>Vim para Pandarung para lhe mostrar uma coisa.</p>
+          <p> </p>
+          <p>É um poder que não pode ser comparado ao Canhão de Éter modificado.</p>
+          <p> </p>
+          <p>Mas preciso de algumas coisas para isso. Você poderia obtê-los para mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você pergunta o que ele precisa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa de duas coisas.</p>
+          <p> </p>
+          <p>Eu preciso do [%dic:STR_DIC_I_quest_10092a] e do [%dic:STR_DIC_I_quest_10092b].</p>
+          <p> </p>
+          <p>Você encontrará [%dic:STR_DIC_I_quest_10092a] perto de [%dic:STR_DIC_W_LDF5b_SZ_E2]. Ela tem o [%dic:STR_DIC_E_LDF5b_E_Shulack].</p>
+          <p> </p>
+          <p>O [%dic:STR_DIC_I_quest_10092b] pode ser encontrado em [%dic:STR_DIC_W_LDF5b_SZ_E1_1]. O [%dic:STR_DIC_E_LDF5b_E_Vri_Fanatic] tem.</p>
+          <p> </p>
+		  <p>Vá e me traga os itens.</p>
+		  <p> </p>
+          <p>Então lhe mostrarei o verdadeiro poder do Idgel.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10092-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, aí está você de novo!</p>
+          <p> </p>
+          <p>Você me trouxe os itens?</p>
+          <p> </p>
+          <p>Dê-os para mim.</p>
+          <p> </p>
+          <p>Estou falando sobre o [%dic:STR_DIC_I_quest_10092a] e o [%dic:STR_DIC_I_quest_10092b].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você dá a ele os itens.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você trouxe o que eu precisava. Posso usar isso para reparar o Hyperion.</p>
+          <p> </p>
+          <p>Você viu isso na praça? Essa é Hyperion, a antiga arma da Tribo Rúnica.</p>
+          <p> </p>
+          <p>Shugos trouxe aqui sem saber o que era. E eu vou consertar isso.</p>
+          <p> </p>
+          <p>Coloque o Idgel Core no [%dic:STR_DIC_N_LDF5b_PlazaUltimate_Q10092], assim como você fez com o Éter Canhão modificado.</p>
+          <p> </p>
+          <p>Basta inseri-lo. Simples, não é?</p>
+          <p> </p>
+          <p>Aqui. Vou te dar um Idgel Core completo.</p> 
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você obtém um núcleo Idgel.</Act>
+    </Selects>
+	<Voice file="Q10092-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu disse que queria te mostrar uma coisa.</p>
+          <p> </p>
+          <p>Traga-me um [%dic:STR_DIC_I_quest_10092a] e um [%dic:STR_DIC_I_quest_10092b]. Uma tarefa simples como essa é demais para você?</p>
+          <p> </p>
+          <p>Por favor, não me decepcione. Vá e me traga esses dois itens.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(É um item enorme e esmagador.)</p>
+          <p> </p>
+          <p>(Parece um Golem ou um Krall.)</p>
+          <p> </p>
+          <p>(Você pode ver uma ranhura após uma inspeção mais detalhada. Parece exatamente com a do Canhão de Éter da Tribo Rúnica.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você insere o Idgel Core preenchido.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é impressionante! É realmente ótimo!</p>
+          <p> </p>
+          <p>Mal posso acreditar nos meus olhos!</p>
+          <p> </p>
+          <p>Você conseguiu!</p>
+          <p> </p>
+          <p>O teste agora está concluído!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que o teste significa e exatamente que tipo de arma é.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não se preocupe com o motivo pelo qual esse experimento está sendo realizado.</p>
+          <p> </p>
+          <p>Tudo o que importa é que você consegue.</p>
+          <p> </p>
+          <p>Agora vou lhe mostrar algo grandioso.</p>
+          <p> </p>
+          <p>Não é um Hyperion danificado, é uma antiga arma operacional da Tribo Rúnica.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Garn_E] em [%dic:STR_DIC_W_LDF5b_SZ_C3].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Pergunte a [%dic:STR_DIC_N_LDF5b_Erireung_E] em [%dic:STR_DIC_W_LDF5b_SZ_E3] sobre o paradeiro de Laio.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_LDF5b_Scholar4L_E] em [%dic:STR_DIC_W_LDF5b_SZ_E3].</font></p></step>        
+               <step><p visible="[%9]"><font color="[%10]">Leve o [%dic:STR_DIC_I_quest_10092a] e o [%dic:STR_DIC_I_quest_10092b] para [%dic:STR_DIC_N_LDF5b_Scholar4L_E]. Você o encontrará em [%dic:STR_DIC_W_LDF5b_SZ_E3].</font></p>[%collectitem]</step>   
+               <step><p visible="[%12]"><font color="[%13]">[%dic:STR_DIC_N_LDF5b_PlazaUltimate_Q10092] está lá. Insira o núcleo Idgel nele.</font></p></step>   
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Scholar5L_E] no [%dic:STR_DIC_W_LDF5b_SZ_D3].</font></p></step>   
+    </steps>
+          <p><font font_xml="quest_summary">Pedidos: Encontre Laius. Ele está em algum lugar em Pandarung. Descubra mais sobre a arma da antiga Tribo Rúnica com ele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo Gan, alguém disse que Laius estava em Pandarung. Você foi até Erirunerk e perguntou a ele sobre Laius. Você também recebeu ordem de parar de procurar Kahrun por enquanto.</p>
+          <p> </p>
+          <p>Erirunerk lhe disse o nome de um lugar onde você encontrou Laio. Ele disse que queria mostrar a você o poder do Idgel. Então você conseguiu alguns materiais para ele.</p>
+          <p> </p>
+          <p>Depois de trazer tudo para ele, você foi até o Hyperion danificado na praça principal de Pandarung. Lá, Laius lhe deu o Idgel Core e disse para você ativar a arma.</p>
+          <p> </p>
+          <p>Você seguiu as instruções dele. O sistema começou a acender e começou a se mover. Ele disse que o Hyperion era uma arma desenvolvida pela antiga Tribo Runa.</p>
+          <p> </p>
+          <p>Ele ficou muito feliz e disse que o experimento estava completo. Você não entendeu o que ele quis dizer. Porém, ele não daria uma resposta clara, apenas diria que em breve revelaria o verdadeiro poder do Idgel.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Floresta das Sombras é um lugar misterioso.</p>
+          <p> </p>
+          <p>A natureza Katalam não mudou desde os tempos antigos.</p>
+          <p> </p>
+          <p>Mas por que existem Nevilim nesta floresta remota e profunda?</p>
+          <p> </p>
+          <p>[%username], eu imploro, derrote o [%dic:STR_DIC_M_LDF5A_C2_Nebilim_63_An] e obtenha o [%dic:STR_DIC_I_quest_22537a] que é urgentemente necessário para descobrir a verdade sobre a Floresta das Sombras.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estive esperando por você.</p>
+          <p> </p>
+          <p>Eu adoraria saber mais sobre Shadow Forest.</p>
+          <p> </p>
+          <p>Nevilim na Floresta das Sombras? Isso dispara minha imaginação.</p>
+          <p> </p>
+          <p>Você conseguiu encontrar os Fragmentos de Nevilim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega Fragmentos de Nevilim usados.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esses são os Fragmentos de Nevilim que eu tanto preciso!</p>
+          <p> </p>
+          <p>Deixe-me arriscar uma olhada neles. Não tenho certeza, mas aparentemente os Nevilim estão na Floresta das Sombras para guardar alguma coisa lá.</p>
+          <p> </p>
+          <p>O que eles estão guardando? Eles estão de alguma forma protegendo a floresta?</p>
+          <p> </p>
+          <p>É isso que precisamos descobrir agora.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrote o [%dic:STR_DIC_M_LDF5A_C2_Nebilim_63_An]. Obtenha [%dic:STR_DIC_I_quest_22537a] e leve-os para [%dic:STR_DIC_N_LDF5a_Pahel_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha Fragmentos de Nevilim usados para pesquisa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pahel pediu para você descobrir o que os Guardiões Nevilim na Floresta das Sombras estavam fazendo.</p>
+          <p> </p>
+          <p>Seguindo o pedido de Pahel, você obteve Fragmentos de Nevilim usados dos Nevilim. Pahel ficou muito satisfeito e descobriu que os Guardiões Nevilim estavam protegendo algo na floresta.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

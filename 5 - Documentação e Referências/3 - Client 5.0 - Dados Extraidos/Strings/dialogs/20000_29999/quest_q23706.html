@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O [%dic:STR_DIC_W_LDF4_Advance_SZ_V03] é maior e portanto mais importante que as outras bases.</p>
+          <p> </p>
+          <p>É por isso que é fortemente vigiado. Precisaríamos de um exército inteiro para fazer qualquer coisa.</p>
+          <p> </p>
+          <p>O Corredor Avançado que leva a [%dic:STR_DIC_W_LDF5_Fortress] pode ser encontrado na base.</p>
+          <p> </p>
+          <p>Nosso espião foi feito em pedaços por Mosbears quando ele quis nos trazer o [%dic:STR_DIC_I_quest_23706a].</p>
+          <p> </p>
+          <p>É um documento importante. Talvez os Mosbears rapidamente tenham perdido o interesse neles...</p>
+          <p> </p>
+          <p>Você poderia obter a Ordem de Infiltração para nós? Ele está no [%dic:STR_DIC_OBJ_LDF4_Advance_FOBJ_Q23706].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A luta em Akaron influenciará o curso da guerra entre os Asmodianos e os Elyos.</p>
+          <p> </p>
+          <p>O conquistador de Akaron dominará os campos de batalha futuros.</p>
+          <p> </p>
+          <p>Você trouxe a Ordem de Infiltração?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Ordem de Infiltração.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem a Ordem de Infiltração? Vamos dar uma olhada mais de perto...</p>
+          <p> </p>
+          <p>(Abre os Pedidos.)</p>
+          <p> </p>
+          <p>Eles conseguiram penetrar pelo Corredor Avançado até a Planície Queimada, mas foram parados pelos Elyos que os esperavam.</p>
+          <p> </p>
+          <p>[%username], prepare-se bem se quiser ir para Kaldor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4_Advance_SZ_V03] e adquira o [%dic:STR_DIC_I_quest_23706a]. Pegue e vá para [%dic:STR_DIC_N_LDF4_Advance_Village_Guard11_D].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre a Ordem de Infiltração perdida e leve-a para Muth.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muth pediu para você procurar a Ordem de Infiltração perdida.</p>
+          <p> </p>
+          <p>Você encontrou e trouxe para Muth.</p>
+          <p> </p>
+          <p>Segundo o relatório, a infiltração falhou por causa dos Elyos. Muth sugeriu que você se preparasse bem se quiser viajar para Kaldor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

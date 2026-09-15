@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41598</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Esta é uma fonte de moedas.)</p>
+          <p> </p>
+          <p>(A superstição local diz que ganhar uma medalha de platina e alguns [%dic:STR_DIC_I_coin_medal_03] mudará sua vida.)</p>
+          <p> </p>
+          <p>(Vale a pena tentar?)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(A fonte brilha com expectativa.)</p>
+          <p> </p>
+          <p>(Você adiciona uma medalha de platina e um pouco de soro Balaur e espera para ver o que acontece.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">(Você joga uma medalha de platina e um pouco de soro Balaur na fonte.)</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um presente se manifesta só para você. Sorte!)</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Jogue uma medalha de platina e um pouco de [%dic:STR_DIC_I_coin_medal_03] na fonte de moedas.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Jogue uma medalha de platina e um pouco de soro Balaur na fonte. Deseje sorte.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você jogou uma medalha de platina e um pouco de soro Balaur na fonte de moedas para dar sorte.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

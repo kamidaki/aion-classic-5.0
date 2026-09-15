@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As estações em Pernon são realmente lindas, não são?</p>
+          <p> </p>
+          <p>Todas as coisas em Pernon crescem e morrem ao longo do ciclo das estações. Você pode criar coisas incríveis quando sabe disso. Por exemplo, estou colhendo folhas de plantas que aproveitam a energia das quatro estações.</p>
+          <p> </p>
+          <p>Infelizmente, não tenho uma maneira fácil de coletá-los, pois preciso esperar a virada de cada estação. Se você me trouxer folhas de primavera, verão, outono e inverno, eu o recompensarei bem.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora, deixe-me falar sobre as folhas. Eles são todos diferentes, você vê.</p>
+          <p> </p>
+          <p>A Folha da Primavera tem a energia da esperança, a Folha do Verão tem uma energia nutritiva, a Folha do Outono tem a energia da mudança, enquanto a Folha do Inverno possui a energia da sabedoria.</p>
+          <p> </p>
+          <p>Na verdade, estou trabalhando em uma maneira de combinar essas quatro folhas em uma. Imagine: as energias de todas as quatro estações equilibradas em uma única folha!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Eu trouxe uma coisa para você."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sua paciência é notável. Você esperou que cada estação passasse e coletou uma folha para cada uma.</p>
+          <p> </p>
+          <p>Eles serão de grande ajuda para minha pesquisa. Espero que esta recompensa seja útil para você, principalmente quando você busca outras descobertas.</p>
+          <p> </p>
+          <p>Darei a você a mesma recompensa sempre que você me trouxer as Folhas das Quatro Estações, e ficarei grato pela sua ajuda novamente, no próximo ano.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete o [%dic:STR_DIC_I_Q28816_detail] e leve-os para [%dic:STR_DIC_N_Darina].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Darina está estudando as folhas da primavera, verão, outono e inverno. Colete-os para ela.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Darina estuda as folhas da primavera, verão, outono e inverno.</p>
+          <p> </p>
+          <p>Você esperou a chegada de cada estação e coletou as folhas de cada estação. Darina lhe deu asas especiais como recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

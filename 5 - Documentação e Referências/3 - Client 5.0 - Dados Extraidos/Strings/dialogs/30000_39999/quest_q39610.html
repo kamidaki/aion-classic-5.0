@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>1. Destinatário: Funcionário [%username]</p>
+          <p> </p>
+          <p>2. Tarefa: Matar os [%dic:STR_DIC_E_LDF5b_B2_VriZomb] que estão interferindo na limpeza do pântano, reunir [%dic:STR_DIC_I_quest_39610a] como evidência e reportar ao escritório administrativo relevante.</p>
+          <p> </p>
+          <p>3. Escritório administrativo: [%dic:STR_DIC_E_LDF5b_Silverlin_BA]</p>
+          <p> </p>
+          <p>Assim que a tarefa for concluída, você receberá uma recompensa. Por favor, faça um trabalho bom e limpo, ak.</p>
+          <p> </p>
+          <p>- Danurinerk, gerente de recursos de equipe da Silverine Limited</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que esta tarefa envolve matar os zumbis Drakan contaminados, ak.</p>
+          <p> </p>
+          <p>Você conseguiu fazer o trabalho bem, ok?</p>
+          <p> </p>
+          <p>E você trouxe o comprovante que estava exigido na ordem de serviço, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega as armas dos soldados Beritra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Os cabelos de sua barba se arrepiam) Daeva veio de mãos vazias?</p>
+          <p> </p>
+          <p>Daeva leu as instruções, ok?</p>
+          <p> </p>
+          <p>Sem provas, como Shugo saberá se [%username] eliminou os zumbis Drakan contaminados ou não, ok?</p>
+          <p> </p>
+          <p>Daeva não deixou apenas aquelas armas requintadas no campo de batalha, certo?! Ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(abana o rabo.) Ak, isso pode custar um preço alto...</p>
+          <p> </p>
+          <p>Ah, Daeva fez um bom trabalho, ak.</p>
+          <p> </p>
+          <p>Os zumbis Drakan envenenados estavam interferindo nas atividades de limpeza do pântano, mas agora o trabalho pode continuar em paz, ak.</p>
+          <p> </p>
+          <p>O que Daeva ainda está fazendo aqui? O relatório está feito e Daeva foi recompensado então tudo é feito aqui, ak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_LDF5b_B2_VriZomb] e reúna [%dic:STR_DIC_I_quest_39610a] para obter evidências e leve-os para [%dic:STR_DIC_E_LDF5b_Silverlin_BA].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">As instruções vieram da Silverine Limited. Leia a tarefa e execute-a.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As instruções chegaram da Silverine Limited.</p>
+          <p> </p>
+          <p>Você matou os zumbis Drakan infectados que atrapalharam as atividades de limpeza do pântano e coletou a arma, que então levou para a filial de Silverine em South Katalam. Você recebeu agradecimentos e foi recompensado por isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

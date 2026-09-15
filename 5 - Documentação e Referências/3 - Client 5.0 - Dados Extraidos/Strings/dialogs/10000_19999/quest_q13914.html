@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Exército Beritra iniciou sua Grande Invasão.</p>
+          <p> </p>
+          <p>A Grande Invasão do Exército Beritra em Elysea e Asmodae, Kaldor, Akaron e o Abismo coloca os Elyos em perigo.</p>
+          <p> </p>
+          <p>[%username], posso pedir para você participar da batalha e impedir a Grande Invasão de Beritra?</p>
+          <p> </p>
+          <p>Agora é a hora de precisarmos de um herói[f:"heroína"] para nos ajudar. Por favor, pare a Grande Invasão e traga-me o [%dic:STR_DIC_I_quest_13914a] como prova.</p>
+          <p> </p>
+          <p>Você pode obter o [%dic:STR_DIC_I_quest_13914a] combinando cinco orbes. Você recebe os orbes após derrotar os inimigos que aparecem em Elysea e Asmodae, Kaldor, Akaron e o Abismo nas Ofensivas Principais.</p>
+          <p> </p>
+          <p>Aquele que deter a Grande Ofensiva do Exército Beritra será celebrado como um verdadeiro herói[f:"heroína"] dos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você juntou todas as peças do Orbe da Grande Invasão?</p>
+          <p> </p>
+          <p>Se você não conseguiu, não precisa ter vergonha. A tarefa foi tão difícil que o simples fato de você ter tentado já é digno de elogio.</p>
+          <p> </p>
+          <p>[%username], agradeço seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Orbe da Grande Invasão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você realmente completou o Orbe da Grande Invasão! Que realização magnífica!</p>
+          <p> </p>
+          <p>Você não tem ideia de como estou satisfeito em saber que existem Daevas como você, [%username].</p>
+          <p> </p>
+          <p>Gostaria de lhe oferecer minha mais calorosa gratidão por impedir a invasão, [%username].</p>
+          <p> </p>
+          <p>Mesmo assim, embora tenhamos conseguido fazer recuar o Exército Beritra, eles não desistirão tão facilmente. Espero poder contar com você também no futuro.</p> 
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Forma o [%dic:STR_DIC_I_quest_13914a] e leva para [%dic:STR_DIC_N_Corridor_L_PangeaQuest_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Impedir a invasão do Exército Beritra e completar o Orbe da Grande Invasão.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pernas pediu a você o Orbe da Grande Invasão completo para provar que você é o herói dos Elyos.</p>
+          <p> </p>
+          <p>Pernas ficou muito feliz quando você mostrou a ele o Orbe completo e ele lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

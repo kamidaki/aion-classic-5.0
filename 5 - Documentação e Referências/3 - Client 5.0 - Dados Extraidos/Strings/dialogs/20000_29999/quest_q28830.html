@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos esses móveis novos deveriam decorar uma casa linda, Daeva!</p>
+          <p> </p>
+          <p>Seu [%dic:STR_DIC_E_Housing_Butler] pode ajudá-lo a decorar. Ele lhe dará alguns bons conselhos, Nyerk.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você visitou Chuchurinerk, nyerk?</p>
+          <p> </p>
+          <p>Chuchurinerk vê todos os Daevas como seus melhores clientes - é por isso que ela é tão receptiva com presentes, nyerk!</p>
+          <p> </p>
+          <p>Você conseguiu alguma coisa também?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">"Talvez eu goste assim."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perdoe minha presunção. Eu percebo que os Daevas têm orgulho. Mas eu... eu simplesmente vivo para servir.</p>
+          <p> </p>
+          <p>O pequeno ícone de casa vermelha próximo às suas habilidades permite [%dic:STR_DIC_E_Housing_FurnitureArrangement]. É bem fácil, você se acostuma.</p>
+          <p> </p>
+          <p>Se me permitem dar uma opinião, ela é um pouco esparsa aqui. Utilitário, talvez? Um [%dic:STR_DIC_E_Housing_Pot] do estoque de [%dic:STR_DIC_N_Mireni] pode ajudar!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Boa ideia!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Prazer em conhecê-lo! Muitos [%dic:STR_DIC_E_Housing_Pot]s novos foram entregues ontem à tarde.</p>
+          <p> </p>
+          <p>Não acredito que nos conhecemos, [%username]. É a primeira vez que você visita minha loja, certo? Tenho certeza de que você encontrará aqui algo para refrescar sua casa e encher sua vida de bênçãos.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Estou aqui para olhar as plantas, na verdade."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh meu Deus! Espere! [%username]! Você sabe sobre [%dic:STR_DIC_E_Housing_Pot]s, certo?</p>
+          <p> </p>
+          <p>Eles não são apenas itens decorativos. Você pode se relacionar com seus amigos por meio de suas plantas e obter algumas coisas boas de seus próprios vasos quando seus amigos os regarem.</p>
+          <p> </p>
+          <p>Aqui, leve este vaso de flores como presente. Espero que você aprenda como um vaso de flores é lindo e útil!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com seu [%dic:STR_DIC_E_Housing_Butler].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Inicie a função [%dic:STR_DIC_E_Housing_FurnitureArrangement]. Depois de arrumar seus móveis, converse com o comerciante de vasos de flores, [%dic:STR_DIC_N_Mireni].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">[%dic:STR_DIC_E_Housing_FurnitureArrangement] sua casa. Depois de arrumar seus móveis, fale com Bloom Merchant, [%dic:STR_DIC_N_Mireni].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Seu mordomo sugeriu que você arrumasse os móveis de sua casa antes de conhecer Mireni e aprender sobre vasos de flores.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seu mordomo ajudou você a arrumar os novos móveis da sua casa.</p>
+          <p> </p>
+          <p>Você se encontrou com Mireni, uma Bloom Merchant, que lhe deu um Bloom como presente de boas-vindas e explicou como eles proporcionaram bênçãos para você e seus amigos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

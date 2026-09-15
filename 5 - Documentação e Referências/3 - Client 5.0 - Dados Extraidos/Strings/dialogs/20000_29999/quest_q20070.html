@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q20070</QuestId>
+    <QuestName>용계 진격</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Em breve o exército Reian avançará para atacar a Fortaleza de Tiamat.</p>
+          <p> </p>
+	  <p>O plano original era que os Asmodianos e os Elyos unissem forças na batalha, mas vocês quebraram a aliança e viraram suas espadas um contra o outro.</p>
+          <p> </p>
+          <p>Agora que a batalha final contra Tiamat está próxima, vocês brigam... os Balaur estarão gargalhando.</p>
+          <p> </p>
+          <p>Nós, Reian, não esperaremos ajuda de pessoas como você no futuro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Retomar a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os governadores Asmodianos, entretanto, se opuseram à decisão de Reian.</p>
+          <p> </p>
+          <p>Como podem eles não compreender que tais decisões se devem aos erros dos Elyos e dos Asmodianos!</p>
+          <p> </p>
+          <p>Então vá para [%dic:STR_DIC_W_DC2] e diga a [%dic:STR_DIC_N_Agehia] o que é o quê, em termos muito claros!</p>
+          <p> </p>
+          <p>Matar Tiamat é responsabilidade de Reian e Kahrun, podemos fazer isso sem a ajuda dos Asmodianos, ou de qualquer outra pessoa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa terminou</Act>
+    </Selects>
+    <Voice file="Q20070-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso quer dizer que agora só vamos enfrentar Tiamat com a ajuda dos Reianos...</p>
+          <p> </p>
+          <p>Não podemos permitir isso de forma alguma. Afinal, se Kahrun derrotar Tiamat, a Relíquia de Siel cairá nas mãos dos Reians.</p>
+          <p> </p>
+          <p>De qualquer forma, eu pretendia ligar para você aqui por causa desse problema, mas não é um sinal de Marchutan de que você está aqui antes de mim agora?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">O que você quer?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_LA478] está esperando para lhe entregar pessoalmente uma missão especial.</p>
+          <p> </p>
+          <p>Então arrume suas roupas e prepare-se para se encontrar com o Senhor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_2">"Preparativos concluídos"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve se lembrar que é uma honra inacreditável receber uma missão especial de Marchutan.</p>
+          <p> </p>
+          <p>Vá e informe [%dic:STR_DIC_N_Kahrun] sobre os desejos de Marchutan. Ele irá ajudá-lo a matar Tiamat.</p>
+          <p> </p>
+	  <p>Você deve tentar se lembrar das palavras do Senhor. Sob nenhuma circunstância a Relíquia de Siel deve cair nas mãos do Reian!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você responde que entendeu.</Act>
+    </Selects>
+ <CutScene id="492"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O próprio Lorde Marchutan disse que você deveria me ajudar... Mmh...</p>
+          <p> </p>
+          <p>Se essas foram as palavras do Senhor, então suponho que não posso recusar...</p>
+          <p> </p>
+	  <p>Mas quero deixar uma coisa clara.</p>
+          <p> </p>
+	  <p>Meu plano era encontrar o Trono Sangrento e matar Tiamat enquanto os soldados Reian atacavam a Fortaleza de Tiamat. Afinal, menos forças significam menos vítimas.</p>
+          <p> </p>
+	  <p>Você pode perder sua vida se algo der errado, você sabe.</p>
+          <p> </p>
+	  <p>[%username]! Responda-me! Então você não vacilará quando a situação chegar e arriscará sua vida?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">"Juro."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom. Posso ter perdido a fé nos Asmodianos, mas você está disposto a lutar pela paz para Sarpan e Tiamaranta, e eu acredito em você.</p>
+          <p> </p>
+	  <p>Certo, o tempo é essencial, estamos indo embora. Os soldados Reian começarão em breve o ataque à Fortaleza de Tiamat.</p>
+          <p> </p>
+          <p>Primeiro irei para [%dic:STR_DIC_W_IDTiamat_SZ_T6_D] e tentarei derrotar Tiamat. Então prepare-se e vá para [%dic:STR_DIC_N_Udvi].</p>
+          <p> </p>
+ 	  <p>Lá você descobrirá como chegar a [%dic:STR_DIC_W_IDTiamat_SZ_T6_D].</p>
+          <p> </p>
+          <p>Lembre-se: a briga pode começar a qualquer momento, então você não tem um minuto de sobra.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">A conversa terminou</Act>
+    </Selects>
+    <Voice file="Q20070-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é incrível!</p>
+          <p> </p>
+          <p>Você quer ir ao Trono Sangrento junto com Kahrun?</p>
+          <p> </p>
+          <p>Por que o teimoso Kahrun mudou de ideia?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">"Recebi uma missão especial de Marchutan."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Do próprio Senhor?</p>
+          <p> </p>
+	  <p>Isso não pode ser... não, não é hora de ficar surpreso.</p>
+          <p> </p>
+	  <p>Vá para [%dic:STR_DIC_W_Tiamat_down_start_D] dentro de[%dic:STR_DIC_W_ZONE_NAME_IDLDF4b_Tiamat]!</p>
+          <p> </p>
+	  <p>Os feiticeiros Reian pensaram ter criado com sucesso um [%dic:STR_DIC_E_IDTiamat_solo_entrance_D] lá!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">A conversa terminou</Act>
+    </Selects>
+    <Voice file="Q20070-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Quem sabe se Kahrun, que entrou primeiro, bateu em alguma coisa)</p>
+          <p> </p>
+          <p>(Provavelmente será melhor chegar lá rapidamente e se juntar a Kahrun)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você vai para o Trono Sangrento.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Se você segurar a joia brilhante vermelho-sangue contra ela, talvez você consiga chegar lá.)</p>
+          <p> </p>
+          <p>(Agora é melhor você seguir Kahrun escada acima rapidamente.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO6">Eu estou subindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você confiou naquele fracote do Kahrun e veio até aqui...</p>
+          <p> </p>
+          <p>Agora você está sozinho e esperando pela sua morte. Que Daeva tolo e patético.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO7">Você olha para Tiamat.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select8">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>E o que Lorde Marchutan, que se recusou a participar da luta, está fazendo aqui...</p>
+          <p> </p>
+          <p>Espere um momento...</p>
+          <p> </p>
+	  <p>Não pode ser! Esta farsa de má qualidade é apenas sobre a Relíquia de Siel?</p>
+          <p> </p>
+          <p>E Israphel está em conluio com os Asmodianos, não é?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT8_1">"Não, não é assim."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select8_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mesmo que eu acredite em você, uma coisa é certa. Mesmo que Marchutan tivesse conseguido lutar com você desde o início, ele teria avaliado a situação primeiro.</p>
+          <p> </p>
+          <p>Eliminei Tiamat, e se Israphel não tivesse aparecido, então Marchutan definitivamente teria levado a Relíquia de Siel para si, certo?</p>
+          <p> </p>
+          <p>Ah, assim se abusa da confiança, que decepção...</p>
+          <p> </p>
+          <p>Estou tão confuso e exausto que não consigo tomar uma decisão agora...</p>
+          <p> </p>
+    	  <p>A primeira coisa que farei é voltar para Kamar e contar ao mundo a morte do Balaur.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO8">A conversa terminou</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select9">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Israphel... que destino você está planejando, eu me pergunto...</p>
+          <p> </p>
+          <p>Isso só vai causar dificuldades...</p>
+          <p> </p>
+	        <p>Não há mais nada que eu possa fazer a não ser retornar e convocar uma grande reunião de senhores.</p>
+          <p> </p>
+          <p>Quem sabe o que acontecerá se os outros Balaur souberem da morte de Tiamat.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT9_1">Retomar a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select9_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]. Tenho outra missão especial para você.</p>
+          <p> </p>
+          <p>Um representante em breve nos dará notícias do paradeiro de Israphel. É por isso que você deve procurar por [%dic:STR_DIC_N_Israphel] e colocar as mãos na Relíquia de Siel.</p>
+          <p> </p>
+          <p>Se você é um Daeva com poder suficiente para enfrentar Tiamat, então acredito que não terá problemas com isso.</p>
+          <p> </p>
+          <p>Primeiro, relate a morte de Tiamat ao Governador Hushblade [%dic:STR_DIC_N_Udvi] e depois espere o representante entrar em contato.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">A conversa terminou</Act>
+    </Selects>
+    <Voice file="Q20070-5.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]! Ah, aí está você de novo!</p>
+          <p> </p>
+          <p>Eu não acredito nisso...</p>
+          <p> </p>
+          <p>Então você realmente matou Tiamat!</p>
+          <p> </p>
+          <p>Relíquia de Siel, e a Relíquia de Siel?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relatou o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seguir você não é tarefa fácil.</p>
+          <p> </p>
+          <p>Quando os Balaures morreram, Israphel fugiu com a Relíquia de Siel.</p>
+          <p> </p>
+          <p>(perdido em pensamentos por um tempo)</p>
+          <p> </p>
+	  <p>[%username]. Seria melhor ficar calado sobre Israphel por enquanto.</p>
+          <p> </p>
+          <p>Enviarei pessoalmente uma mensagem ao Pandemônio e buscarei uma solução.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+                   <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Kahrun].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Agehia] em [%dic:STR_DIC_W_DC2].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relate para [%dic:STR_DIC_N_Kahrun] sobre [%dic:STR_DIC_I_quest_20070a].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_Udvi].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Avançar para [%dic:STR_DIC_W_IDTiamat_SZ_T6_D] até [%dic:STR_DIC_E_IDTiamat_solo_entrance_D]%.</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Use o [%dic:STR_DIC_E_IDTiamat_2_FOBJ_teleport]% para chegar lá.</font></p></step>
+      	       <step><p visible="[%18]"><font color="[%19]">Fale com [%dic:STR_DIC_N_IDTiamat_NPC_Tiamat].</font></p></step>
+               <step><p visible="[%21]"><font color="[%22]">Fale com Kahrun, que pode ser encontrado em [%dic:STR_DIC_W_IDTiamat_SZ_T6_D].</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Fale com Marchutan, que pode ser encontrado em [%dic:STR_DIC_W_IDTiamat_SZ_T6_D].</font></p></step>
+               <step><p visible="[%27]"><font color="[%28]">Relatório para [%dic:STR_DIC_N_Udvi].</font></p></step>               
+    </steps>
+          <p><font font_xml="quest_summary">Instruções: Cumpra a ordem de Marchutan e vá com Kahrun para matar Tiamat.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kahrun disse que ficou desapontado com os Elyos e os Asmodianos e que apenas os Reianos foram capazes de matar Tiamat.</p>
+          <p> </p>
+          <p>Agehia, representante de Marchutan, disse que isso não poderia acontecer e que deveriam ser feitos preparativos para receber Marchutan. Logo Marchutan apareceu e deu ordem para ajudar Kahrun e destruir Tiamat.</p>
+          <p> </p>
+          <p>Kahrun foi informado sobre o testamento de Marchutan e não teve escolha a não ser permitir que eles entrassem na batalha.</p>
+          <p> </p>
+          <p>Você foi ao Trono Sangrento junto com Kahrun e enfrentou Tiamat. Mas todas as tentativas de negociação falharam, você foi atacado e ele voou para o passado.</p>
+          <p> </p>
+          <p>Diante da morte, Marchutan apareceu e apoiou você na batalha contra Tiamat.</p>
+          <p> </p>          
+          <p>Apesar de sua força inacreditável como Senhor Dragão, Tiamat conheceu seu criador no final.</p>
+          <p> </p>          
+          <p>Só então Kahrun retornou, mas então Israphel apareceu de repente, atacou todos e roubou a Relíquia de Siel.</p>
+          <p> </p>
+          <p>Quando você voltou para Tiamaranta e contou a Udvi sobre os acontecimentos, ele ficou indignado e imediatamente ordenou que o assunto com Israphel permanecesse em segredo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

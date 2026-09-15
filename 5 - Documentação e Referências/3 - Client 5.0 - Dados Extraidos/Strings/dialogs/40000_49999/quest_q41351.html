@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41351</QuestId>
+    <QuestName>용족 재료</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Adoro ironia! Aqui está um exemplo: os próprios Drakan podem fornecer os meios para derrotá-los! Falo de [%dic:STR_DIC_I_QUEST_41351A]s!</p>
+          <p> </p>
+          <p>São escamas mutantes no pescoço de certos [%dic:STR_DIC_E_Q41351all_1_1]. Aion os colocou lá para torná-los mais resistentes na batalha.</p>
+          <p> </p>
+          <p>Mas se tirarmos isso de seus corpos, eles formam armaduras que mesmo as armas Drakan dificilmente conseguem penetrar! Que tal isso para ironia?! Na verdade, quero fazer essa armadura agora... mas preciso da balança. Quer matar alguns Drakan? Claro que sim!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, trabalhar com [%dic:STR_DIC_I_QUEST_41351A]s é tão revigorante. É um desafio tão grande, e um material tão raro, que me sinto honrado.</p>
+          <p> </p>
+          <p>Além disso, cada um me lembra que há mais um Drakan morto por aí!</p>
+          <p> </p>
+          <p>Ah, você deve ser um dos Daevas que pedi para me ajudar. Como você se saiu no departamento de esfola de Drakan?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Muito bem. Veja por si mesmo."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, sim, entendo! Isso é exatamente o que eu precisava!</p>
+          <p> </p>
+          <p>Não sei dizer quantas escalas normais recebi de Daevas inexperientes que não sabiam a diferença. Que bom que temos alguém como você ao nosso lado.</p>
+          <p> </p>
+          <p>Agora estou um passo mais perto de terminar essa armadura! Será meu melhor trabalho até agora, graças a vocês!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p> 
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Arranque os [%dic:STR_DIC_I_QUEST_41351A]s de [%dic:STR_DIC_E_Q41351all_1_1].</font></p>[%collectitem]</step>
+               <step><p visible="[%15]"><font color="[%16]">Entregue a balança para [%dic:STR_DIC_N_Seles].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Colete escamas de Drakan para Seres para que ele possa fazer armaduras.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seres pediu que você conseguisse Escamas Invertidas especiais dos combatentes Drakan para que ele pudesse fazer uma armadura especial.</p>
+          <p> </p>
+          <p>Você arrancou as escamas invertidas encontradas sob o pescoço de alguns Drakan e as trouxe para ele. Ele estava grato por esse progresso em direção à sua obra-prima.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

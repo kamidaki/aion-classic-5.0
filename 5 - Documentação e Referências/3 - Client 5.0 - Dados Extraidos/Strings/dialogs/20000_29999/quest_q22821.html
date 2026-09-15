@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você pode me trazer de volta o [%dic:STR_DIC_M_LDF5A_B6_Baku_NamedQ_62_An] que [%dic:STR_DIC_I_quest_22821a] pegou?</p>
+          <p> </p>
+          <p>Triniel me deu esse item quando fui mandado para outro local.</p>
+          <p> </p>
+          <p>É valioso e agora não consigo encontrá-lo.</p>
+          <p> </p>
+          <p>Mas descobri que o Raging Banaku o havia levado.</p>
+          <p> </p>
+          <p>Ele é tão selvagem que ainda não consegui recuperá-lo. Vejo que é muito difícil.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fiquei com a consciência pesada porque perdi o item de Triniel.</p>
+          <p> </p>
+          <p>Quem poderia imaginar que o furioso Banaku levaria a caixa de música?</p>
+          <p> </p>
+          <p>Eu trouxe tanta culpa para mim - a caixa de música deve ser absolutamente recuperada.</p>
+          <p> </p>
+          <p>Se isso não acontecer, nunca mais poderei olhar Triniel de frente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Caixa de Música da Memória.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, pegue uma caixa de música do Wild Banaku!</p>
+          <p> </p>
+          <p>Que sorte que você encontrou a tempo.</p>
+          <p> </p>
+          <p>Vou me certificar de não perdê-lo novamente.</p>
+          <p> </p>
+          <p>Agora finalmente não preciso mais me sentir culpado. Muito obrigado, de fato.</p>
+          <p> </p>
+          <p>Por favor, pegue isso. É um sinal do meu agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga de volta o que [%dic:STR_DIC_M_LDF5A_B6_Baku_NamedQ_62_An] levou. Então leve [%dic:STR_DIC_I_quest_22821a] para [%dic:STR_DIC_N_LDF5_Village_Guard05_D].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Banaku Selvagem e traga de volta a Caixa de Música da Memória.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Naat disse que perdeu um presente importante de Triniel.</p>
+          <p> </p>
+          <p>Quando você matou Raging Banaku e devolveu a Caixa de Música da Memória para Naat, ele ficou muito grato a você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

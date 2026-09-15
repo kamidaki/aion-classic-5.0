@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A maior ameaça em Eltnen é a invasão inexorável do deserto. Isso torna a terra fértil estéril.</p>
+          <p> </p>
+          <p>É por isso que muitos deixaram Eltnen. Mas ainda há alguns que se recusam terminantemente a deixar esta área.</p>
+          <p> </p>
+          <p>Lord Yustiel criou a Fonte Mística aqui apenas para eles.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Éter está ficando mais fraco e o deserto está engolindo cada vez mais terras.</p>
+          <p> </p>
+          <p>Lady Yustiel criou Mystic Springs para que a vida pudesse florescer mesmo nas regiões áridas de Eltnen.</p>
+          <p> </p>
+          <p>Nós, Daevas da Terra, devemos administrar as Fontes Místicas, mas não somos suficientes para resistir ao próprio deserto.</p>
+          <p> </p>
+          <p>Para restaurar as Mystic Springs secas, precisamos da sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+    <CutScene id="180"/>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_N_Ophelos] no [%dic:STR_DIC_W_LF2_SZ_G2_SUB_1] pediu ajuda.</p>
+          <p> </p>
+          <p>Vá até a Fonte Mística de Laquepin e verifique a situação lá. Você encontrará a Fonte Mística de Laquepin depois de passar pela Floresta Manduri e pelas Ruínas do Posto Avançado.</p>
+          <p> </p>
+          <p>Ophelos irá informá-lo sobre a situação na fonte mística.</p>
+          <p> </p>
+          <p>Aqui, pegue esta Conta da Vida. Se você descobrir algo sobre a fonte, me avise.</p>
+          <p> </p>
+          <p>Sei que será uma jornada difícil, mas tenho fé que você conseguirá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], eu sabia que você ficaria feliz em aceitar a tarefa.</p>
+          <p> </p>
+          <p>Mas a princípio não tive certeza porque se trata do Daeva da Vida.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está realmente tão ocupado?</p>
+          <p> </p>
+          <p>Então não tenho outra escolha a não ser pedir ajuda a outro Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve ser [%username]. Gaia mandou você aqui também?</p>
+          <p> </p>
+          <p>Água cristalina brota do [%dic:STR_DIC_W_LF2_SZ_G2_SUB_1] graças à magia da Pedra da Vida.</p>
+          <p> </p>
+          <p>A Pedra da Vida contém [plur][%dic:STR_DIC_I_QUEST_1035a] - eles são a fonte de seu poder.</p>
+          <p> </p>
+          <p>Um Drake recentemente roubou o Life Bead. Assim, a Primavera Mística permaneceu seca por algum tempo. Mas um Daeva nos devolveu a Life Bead.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O problema do qual Gaia falou foi resolvido. Por favor, vá até Heratos e verifique a situação.</p>
+          <p> </p>
+          <p>A Legião do Ramo Dourado nos informou recentemente que houve alguns problemas na fonte mística localizada ali.</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_N_NPC_Heratos] e verifique a situação lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A ajuda está aqui! Afinal!</p>
+          <p> </p>
+          <p>Os Revolucionários Lefaristas apareceram de repente há alguns dias. Eles atacaram as pessoas e a Fonte Mística, e então roubaram a Conta da Vida também.</p>
+          <p> </p>
+          <p>Eu era o único Daeva na área, não pude nem pedir ajuda à Legião Pena Dourada próxima. Fiquei indefeso e exposto a ataques de todos os lados.</p>
+          <p> </p>
+          <p>Desde que os Revolucionários Lefaristas tomaram [%dic:STR_DIC_E_LF2_Fountain_Q1300], a Primavera Mística secou completamente.</p>
+          <p> </p>
+          <p>Nesta condição, provavelmente não será possível revitalizar a Fonte Mística.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Infelizmente, não há mais nada que você possa fazer aqui. Mas talvez haja melhores oportunidades na Fonte Mística em frente ao Templo Kyola.</p>
+          <p> </p>
+          <p>Recebi uma mensagem informando que a Fonte Mística em frente ao Templo Kyola também está seca. Se a área ao redor do templo não receber mais água, ela estará condenada com certeza.</p>
+          <p> </p>
+          <p>Você deve pegar a Life Bead que você tem para [%dic:STR_DIC_N_Sirinks].</p>
+          <p> </p>
+          <p>Estou mandando você para Sirink. Você está pronto?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não teria uma Life Bead, teria?</p>
+          <p> </p>
+          <p>Parece que Heratos recebeu minha mensagem. Mas como não tive notícias dele desde então, fiquei preocupado.</p>
+          <p> </p>
+          <p>Como estão as coisas nas outras fontes místicas? Ouvi dizer que a Primavera Mística de Laquepin foi revitalizada.</p>
+          <p> </p>
+          <p>Se você tiver uma Life Bead, por favor, dê-ma para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a Conta da Vida que Gaia lhe deu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. Por sua causa, a Primavera Mística foi salva.</p>
+          <p> </p>
+          <p>Ouvi dizer que você também melhorou significativamente as condições das outras nascentes.</p>
+          <p> </p>
+          <p>Elogiarei seus serviços em meu relatório, [%username].</p>
+          <p> </p>
+          <p>Obrigado novamente por tudo que você fez.</p>
+          <p> </p>
+          <p>Por favor, aceite esta recompensa. Você realmente merece.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LF2_SZ_G2_SUB_1] e fale com [%dic:STR_DIC_N_Ophelos].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para [%dic:STR_DIC_W_LF2_SZ_C2] e fale com [%dic:STR_DIC_N_NPC_Heratos].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Conheça [%dic:STR_DIC_N_Sirinks] perto de [%dic:STR_DIC_W_LF2_SZ_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">A Fonte Mística que o Senhor criou está ameaçando secar. Saiba mais sobre esta situação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gaia lhe disse que a Fonte Mística criada por Lord Yustiel havia secado. Então você conversou com Ophelos para saber mais. Então a tarefa de guardar a localização de Mystic Springs foi confiada a você.</p>
+          <p> </p>
+          <p>Você visitou a Fonte Mística de Laquepin. Então, Ophelos contou por que a Primavera Mística do Deserto de Eracus havia secado. Você trouxe Sirink, a Conta da Vida, para salvar a Fonte Mística do Templo Kyola.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

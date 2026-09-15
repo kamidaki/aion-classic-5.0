@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41105</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau, você sentiu isso? O tremor sob nossos pés? Não é Tiamat que está causando esses rumores. É o Garras.</p>
+          <p> </p>
+          <p>Eles têm se multiplicado, cavando novas tocas no subsolo. Eles já causaram problemas nas masmorras e, se continuarem assim, poderão minar os próprios alicerces da cidade.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF4A_OP_Neut_Queen_Nmd_55_An] governa esta ninhada em particular. Se ela morresse, não haveria ninguém para botar mais ovos de Klaw. A colméia inteira morreria.</p>
+          <p> </p>
+          <p>O ninho deles está nas Cavernas Mephitic. Mate a rainha antes que seja tarde demais para todos nós.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para ser franco, Klaws me dá arrepios. Qualquer inimigo que se multiplique tão rapidamente é digno de aversão.</p>
+          <p> </p>
+          <p>Os pesquisadores afirmam que a fundação da cidade ainda está estável, mas isso é só por enquanto. A morte da Rainha Klawtiar tiraria um peso da minha cabeça.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Então você pode relaxar."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, finalmente. Chega daqueles tremores sinistros.</p>
+          <p> </p>
+          <p>Vou deixar passar algum tempo para que os números de Klaw diminuam. Depois enviarei Legionários da Tempestade de Areia para varrer o resto.</p>
+          <p> </p>
+          <p>Não acho que seja exagero dizer que você pode muito bem ter salvado a cidade inteira de uma só vez. Siel te abençoe, [%username].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_LDF4A_OP_Neut_Queen_Nmd_55_An] nas Cavernas Mefíticas ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Olibaia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Para salvar a cidade, mate a Rainha Klawtiar, a líder de Sarpan Klaw.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Baia estava preocupada com a colmeia de Sarpan Klaws escavando tocas sob Kamar.</p>
+          <p> </p>
+          <p>Você fez um favor a ela ao matar a Rainha Klawtiar, a única Klaw que põe ovos na área, para que o resto do enxame morresse.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

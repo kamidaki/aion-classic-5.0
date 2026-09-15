@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Venha, Daeva.</p>
+          <p> </p>
+		  <p>Vou apresentar a vocês os Líderes de Despacho Simona, Christian, Lethanhia e Pascal.</p>
+		  <p> </p>
+		  <p>Eles o ajudarão a se orientar nas diversas regiões.</p>
+		  <p> </p>
+		  <p>Vá primeiro para Simona.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra.</p>
+          <p> </p>
+		  <p>Meu nome é Simona. Eu ajudo Daevas a se orientar em Brusthonin.</p>
+		  <p> </p>
+		  <p>Precisamos urgentemente de ajuda aqui.</p>
+		  <p> </p>
+		  <p>Contamos com sua ajuda, Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo, [%username].</p>
+          <p> </p>
+		  <p>Sou o líder da expedição, Christian.</p>
+		  <p> </p>
+		  <p>Posso levá-lo aos postos avançados em Gelkmaros que são importantes para o ataque a Balaurea, [%username].</p>
+		  <p> </p>
+		  <p>Espero que você cumpra bem suas tarefas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra! Bem-vindo ao Refúgio dos Retornados.</p>
+          <p> </p>
+		  <p>Sou Lethanhia e sou responsável pelo envio para Enschar.</p>
+		  <p> </p>
+		  <p>Com a sua ajuda poderemos concluir com sucesso a expedição a Enschar, [%username].</p>
+		  <p> </p>
+		  <p>Já estou ansioso para ver você mais vezes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Saudação. Meu nome é Pascal.</p>
+		  <p> </p>
+		  <p>Eu informo Daevas sobre Akaron e Kaldor.</p>
+		  <p> </p>
+		  <p>O quarto Senhor Dragão, Beritra, é ainda mais perigoso que Tiamat.</p>
+		  <p> </p>
+		  <p>Sua sede de poder não conhece limites. Ele até destruiria toda Atreia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Precisamos da sua ajuda para garantir riqueza e paz para todos os Asmodianos, [%username].</p>
+		  <p> </p>
+		  <p>Que a proteção do Empíreo Lorde Marchutan esteja com todos os Daevas que lutarão pelos Asmodianos no futuro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com Simona.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com Christian.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com Lethanhia.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com Pascal.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Fale com os Líderes de Despacho.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Janette, a oficial de boas-vindas, apresentou você aos líderes de despacho.</p>
+          <p> </p>
+          <p>Você se encontrou com os Líderes de Despacho de todas as regiões e depois foi procurar Pascal.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

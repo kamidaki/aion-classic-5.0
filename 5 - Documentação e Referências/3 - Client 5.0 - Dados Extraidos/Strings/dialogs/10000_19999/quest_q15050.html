@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15050</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta região já foi o Jardim do Senhor Dragão Tiamat. Mas depois que a região foi selada e seu Senhor desapareceu, os jardineiros aliaram-se a um novo Senhor.</p>
+          <p> </p>
+          <p>Eles não são particularmente fortes, mas sempre viajam em pares, por isso são uma ameaça para a nossa legião.</p>
+          <p> </p>
+          <p>Por favor, vá para [%dic:STR_DIC_W_LF5_SZ_E_01] e elimine o [plur][%dic:STR_DIC_M_LF5_E_Nepilim_59_An] que está interferindo na investigação da Guilda.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você derrotou os jardineiros?</p>
+          <p> </p>
+          <p>Você está ileso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado, [%username]!</p>
+          <p> </p>
+          <p>Agora podemos continuar nossa investigação sem mais interrupções.</p>
+          <p> </p>
+          <p>Obrigado por se preocupar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_M_LF5_E_Nepilim_59_An] no [%dic:STR_DIC_W_LF5_SZ_E_01] ([%2]/7).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Astrape_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Jardineiros Nephilim no Jardim Central de Balaur.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Astrop pediu para você matar os Jardineiros Nephilim no Jardim Central de Balaur. Os Jardineiros Nephilim estavam interferindo na investigação da Guilda.</p>
+          <p> </p>
+          <p>Depois de derrotar os Jardineiros Nephilim, Astrop lhe deu uma recompensa e agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

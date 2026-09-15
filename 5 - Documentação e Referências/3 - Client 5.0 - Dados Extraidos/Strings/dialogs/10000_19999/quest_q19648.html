@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>O objetivo de Beritra parece estar próximo do [%dic:STR_DIC_W_LF5_SZ_OP_03].</p>
+		  <p> </p>
+		  <p>Não há dúvida disso porque Beritra ordenou que todas as suas tropas estivessem lá.</p>  
+		  <p> </p>
+		  <p>Precisaremos da ajuda de um Daeva para deter o quarto Lorde Dragão Beritra.</p>
+		  <p> </p>
+		  <p>Por favor, vá até [%dic:STR_DIC_W_LF5_SZ_OP_03] e fale com [%dic:STR_DIC_N_LF5_Brontte_E], um dos comandantes da New Start Legião.</p>
+		  <p> </p>
+		  <p>É hora de você entrar na luta, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma. É bom te ver.</p>
+          <p> </p>
+		  <p>Nicolas já me informou que enviaria um Daeva capaz. Presumo que ele se referia a você.</p>
+		  <p> </p>
+		  <p>Você provavelmente nem imagina o quão perto Beritra está.</p>
+		  <p> </p>
+		  <p>Você está bem preparado?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que fará o seu melhor.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não parece um Daeva que comete erros.</p>
+          <p> </p>
+		  <p>Tudo bem. Espero que você nos ajude a deter Beritra e frustrar seus planos.</p>
+		  <p> </p>
+		  <p>Beritra e o poder que ele busca podem ser encontrados ao norte daqui.</p>
+		  <p> </p>
+		  <p>Temos que destruir todos os nossos inimigos e reivindicar a vitória!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LF5_Brontte_E] no [%dic:STR_DIC_W_LF5_SZ_OP_03].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para [%dic:STR_DIC_W_LF5_SZ_OP_03] e encontre Branth.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nicolas sugeriu enviar alguém para a nova região.</p>
+          <p> </p>
+          <p>Branth, Comandante da Guilda New Start, pediu que você os ajudasse a frustrar os planos de Beritra.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você quer uma refeição elegante? Infelizmente, não tenho formação em culinária. Não consigo nem assar Conides sem queimá-los.</p>
+          <p> </p>
+          <p>Eu sou muito melhor em jardinagem! Posso te mostrar como cuidar das suas Blooms, é claro!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui, tenha alguns materiais de jardinagem.</p>
+          <p> </p>
+          <p>Eles serão muito úteis, tenho certeza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Obrigado! Vou fazer bom uso deles."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não? Muito ocupado para jardinagem, suponho.</p>
+          <p> </p>
+          <p>Tudo bem, então. Vou guardá-los para mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Obrigado mesmo assim."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim, sim, de nada.</p>
+          <p> </p>
+          <p>De acordo com as Diretrizes do Administrador da Casa, todos os mordomos devem dar um presente a seus senhores todos os dias.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Hum... é realmente um presente se for obrigatório?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Também sou obrigado pelas Diretrizes do Gerente da Casa a concluir esta conversa com "Foi um prazer atendê-lo".</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Seu mordomo lhe oferece um presente uma vez por dia.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Aceite o presente diário do seu mordomo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seu mordomo lhe oferece um presente uma vez por dia.</p>
+          <p> </p>
+          <p>Você recebeu o presente de hoje do seu mordomo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

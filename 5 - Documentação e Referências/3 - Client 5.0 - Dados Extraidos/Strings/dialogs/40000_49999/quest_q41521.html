@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41521</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Onde, oh, onde você está, pequeno Marble? Saia, saia...</p>
+          <p> </p>
+          <p>Não consigo desvendar os segredos do Vórtice sem aquele incômodo Mármore da Transfiguração. Ele continua vagando...</p>
+          <p> </p>
+          <p>Oh! Olá, estranho. Você pegou meu rebelde Mármore da Transfiguração, pelo que vejo. Amável! Bem, então, já que você já o possui, por que não se transforma em um Drakan e explora o [%dic:STR_DIC_W_LDF4b_SZ_T2_S4]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De fato. Há muito tempo que espero que alguma alma venha até aqui. Na verdade, devo confessar... não te esperava.</p>
+          <p> </p>
+          <p>Não importa. Pois tudo o que preciso agora é de um corpo.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF4b_T2_Rottentree_58_An]s e [%dic:STR_DIC_M_LDF4b_T2_Bat_Dolphin_Red_58_An]s arruinam meu jardim. Vai e livra-me daquela peste infecciosa.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Mas... sim."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você retorna. Talvez você tenha cumprido o que foi ordenado?</p>
+          <p> </p>
+          <p>Lembro-me de não ter solicitado seu retorno. Você está aqui para realizar outro serviço?</p>
+          <p> </p>
+          <p>Fora contigo! Da próxima vez que vier, é melhor se preparar para o sangue, seu vira-lata.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Oh, estarei preparado-est... -eth."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olá, estranho. Por acaso você notou o Vórtice na beira do jardim ali? Tenho certeza que está conectado a algum lugar...</p>
+          <p> </p>
+          <p>Por que um olhar tão exasperado?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Coincidentemente, já visitei o Vortex..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você está dizendo que o Vortex se conecta a uma pequena caverna ocupada por um misterioso Drakan?</p>
+          <p> </p>
+          <p>E ela sabia quem você era, embora nunca a tivesse conhecido antes? Mesmo que você estivesse na forma de um Drakan?</p>
+          <p> </p>
+          <p>Eu esperava simplesmente explorar o mistério do Vórtice, mas acho que estou no meio de um labirinto inteiro de mistério - camada após camada de segredos. Meu muito obrigado... [%userclass].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Transforme-se em um Drakan usando o Mármore da Transfiguração e insira o [%dic:STR_DIC_W_LDF4b_SZ_T2_S4] [%2].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_M_Miss_drakan].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Eliminar monstros que estão arruinando o jardim.</font></p>
+                         <p visible="[%9]"><font color="[%10]">[%dic:STR_DIC_M_LDF4b_T2_Rottentree_58_An] ([%11]/6)</font></p>
+                         <p visible="[%12]"><font color="[%13]">[%dic:STR_DIC_M_LDF4b_T2_Bat_Dolphin_Red_58_An] ([%14]/8)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Retornar para [%dic:STR_DIC_M_Miss_drakan].</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Relate os resultados para [%dic:STR_DIC_N_Kiriyu].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você deve examinar o Vortex em Edendell. Transforme-se em um Drakan e desvende seus segredos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kiriyu queria investigar os mistérios do Vórtice Gravitacional. Você concordou em explorar o Vortex para ele, mesmo que ele nunca conseguisse lembrar seu nome.</p>
+          <p> </p>
+          <p>Você se transformou em um Drakan usando o Marble of Transfiguration que ele lhe deu e entrou no Vortex. Dentro havia uma pequena caverna que levava você à Dell Witch.</p>
+          <p> </p>
+          <p>O Drakan pediu para você remover os Rotrons e Murmúrios que estavam arruinando o jardim. Depois que você se livrou deles, o Drakan deixou claro que você não era bem-vindo de volta.</p>
+          <p> </p>
+          <p>Depois de ouvir sua história, Kiriyu sugeriu que agora ele tinha mais mistérios para descobrir do que antes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

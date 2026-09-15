@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Darei a você a segunda tarefa em nome de Richelle.</p>
+		  <p> </p>
+		  <p>(Pensa um pouco.) Ah! Eu lembro! É sobre o [plur][%dic:STR_DIC_DF4_Shellizard_DR_52_An] e o [plur][%dic:STR_DIC_DF4_mammoth_DR_baby_51_n].</p>
+		  <p> </p>
+		  <p>Existem monstros perigosos ao norte do acampamento do Grupo de Pesquisa Éter.</p>
+		  <p> </p>
+		  <p>Elimine-os e depois volte para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Olha para a água.)</p>
+          <p> </p>
+		  <p>(Percebe que alguém está lá.) Ah, acabei de assistir aos Mookies.</p>
+		  <p> </p>
+		  <p>Você acha que algum dia eles serão resolvidos?</p>
+		  <p> </p>
+		  <p>O que aconteceu com os Gloshroom Ksellids e os Swamp Mamooties?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que realizou a segunda tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+		  <p>Quero agradecer do fundo do meu coração por toda a sua ajuda.</p>
+		  <p> </p>
+		  <p>Recebi a tarefa de limpar a área ao redor da Bacia Krug. Mas há tanta coisa para fazer.</p>
+		  <p> </p>
+		  <p>Como prova da minha gratidão, darei a vocês a Ajuda Alimentar que Richelle me deu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_DF4_Shellizard_DR_52_An] ou o [plur][%dic:STR_DIC_DF4_mammoth_DR_baby_51_n] em Gelkmaros ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Vesvola] no acampamento do Grupo de Pesquisa Éter.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Execute a segunda tarefa e encontre Vesvola.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A segunda tarefa que Vesvola lhe deu foi destruir Gloshroom Ksellids ou Swamp Mamooties em Gelkmaros.</p>
+          <p> </p>
+          <p>Depois de eliminar os monstros, você encontrou Vesvola e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

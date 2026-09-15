@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, eu só estava procurando um Daeva que pudesse me ajudar.</p>
+          <p> </p>
+          <p>Há algum tempo, todos os aldeões adoeceram repentinamente, com dores de estômago e febre.</p>
+          <p> </p>
+          <p>Como presumimos que eles comeram ou beberam algo contaminado, iniciamos uma investigação e identificamos o riacho perto da aldeia como a causa. Desde que o poço secou, os aldeões têm obtido água daquele riacho.</p>
+          <p> </p>
+          <p>Coletamos amostras de água e as enviamos para Jumentis em Santuário para determinar a causa de uma vez por todas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mas recebemos uma resposta inesperada do Santuário.</p>
+          <p> </p>
+          <p>Foi o mesmo veneno que contaminou Verteron. Pode muito bem ser o Sangue de Meslamtaeda... Felizmente, Jumentis prometeu enviar um antídoto. Ainda estou esperando por isso.</p>
+          <p> </p>
+          <p>Como determinamos a causa tão rapidamente, os aldeões não sofrerão mais danos.</p>
+          <p> </p>
+          <p>Também encontramos os autores que contaminaram o riacho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você pergunta quem são os perpetradores.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não sei quem contaminou Verteron. Mas este rio está claramente nas mãos dos Revolucionários Lefaristas.</p>
+          <p> </p>
+          <p>Eu os vi despejando algo no rio com meus próprios olhos. Quando os Guardiões tentaram detê-los, eles fugiram.</p>
+          <p> </p>
+          <p>O acampamento deles fica em algum lugar perto da Fonte Mística da Vila Agairon. Mate o [plur][%dic:STR_DIC_M_LehparAs_33_An] e o [plur][%dic:STR_DIC_M_LehparWa_33_An] lá.</p>
+          <p> </p>
+          <p>Eles devem estar tramando alguma coisa. Temos que fazer algo o mais rápido possível para impedir o sofrimento dos aldeões.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  <Voice file="Q1039-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As más ações que os Revolucionários Lefaristas estão a perpetrar estão a piorar a cada dia.</p>
+          <p> </p>
+          <p>Agora eles envenenaram a água potável. Devemos ensinar-lhes uma lição que não esquecerão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se Daeva está tão ocupado, não há nada que possamos fazer.</p>
+          <p> </p>
+          <p>Vou ter que encontrar outra pessoa então.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos os aldeões foram curados com o antídoto que Jumentis nos enviou.</p>
+          <p> </p>
+          <p>Agora só nos resta descontaminar o riacho.</p>
+          <p> </p>
+          <p>Você eliminou os revolucionários lefaristas?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. Isto evitará que os Revolucionários Lefaristas cometam mais crimes por algum tempo.</p>
+          <p> </p>
+          <p>Seria bom se pudéssemos expulsá-los da área ao redor da vila, mas isso não é possível agora.</p>
+          <p> </p>
+          <p>Primeiro precisamos cuidar da administração da Fonte de Água Doce. Essa é a coisa mais importante para os aldeões neste momento.</p>
+          <p> </p>
+          <p>Obrigado por executar tão bem a tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine os Revolucionários Lefaristas.</font></p>
+                     <p visible="[%0]"><font color="[%1]">[plur][%dic:STR_DIC_M_LehparAs_33_An] ([%2]/3)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[plur][%dic:STR_DIC_M_LehparWa_33_An] ([%5]/3)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Apresente-se para [%dic:STR_DIC_N_Asclepius] em [%dic:STR_DIC_W_LF2_SZ_G3_SUB_1].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Revolucionários Lefaristas que estão contaminando a fonte de água doce na vila de Agairon.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Asclépio, que foi enviado para a Vila Agairon, pediu que você eliminasse os Revolucionários Lefaristas que estão envenenando a fonte de água dos moradores.</p>
+          <p> </p>
+          <p>A pedido dele, você foi ao Acampamento Lefarista e os eliminou para evitar que contaminassem ainda mais a nascente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

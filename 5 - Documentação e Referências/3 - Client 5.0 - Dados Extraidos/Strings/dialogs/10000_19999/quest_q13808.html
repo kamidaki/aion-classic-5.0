@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que há um problema e devemos encontrar a solução imediatamente.</p>
+          <p> </p>
+          <p>Você provavelmente sabe que devemos ocupar as fortalezas para conquistar Kaldor.</p>
+          <p> </p>
+          <p>Infelizmente, o [%dic:STR_DIC_E_LDF5_Fortress_ShadowStalker_65_An] e o [plur][%dic:STR_DIC_M_LDF5_Fortress_D1_Rottentree_BurnRe_65_An] são fatores perturbadores que não devemos subestimar.</p>
+          <p> </p>
+          <p>Estas criaturas estão bloqueando o caminho para a fortaleza. Isto criará sérios problemas para as nossas tropas.</p>
+          <p> </p>
+          <p>Pesquise minuciosamente a área ao redor da fortaleza e em breve você verá esses distúrbios. Você poderia eliminá-los, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve saber o quanto é importante eliminar os fatores perturbadores no caminho para a fortaleza o mais cedo possível.</p>
+          <p> </p>
+          <p>Se a entrada da Fortaleza não estiver mais bloqueada, a Batalha da Fortaleza poderá ser vencida com muito mais facilidade. Isso também nos pouparia muitos recursos.</p>
+          <p> </p>
+          <p>Por favor, abra o caminho para a fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Meus sinceros agradecimentos. Você concluiu a tarefa de forma confiável.</p>
+          <p> </p>
+          <p>Agora podemos nos dedicar totalmente à batalha.</p>
+          <p> </p>
+          <p>Não duvido mais que conseguiremos a vitória para Elysea.</p>
+          <p> </p>
+          <p>Você conseguiu tudo isso, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate a Obscura da Planície Queimada e os Rotrons de Fogo.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_LDF5_Fortress_ShadowStalker_65_An] ([%2]/5)</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_M_LDF5_Fortress_D1_Rottentree_BurnRe_65_An] ([%5]/3).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5_Fortress_Alphion_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os elementos perturbadores.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Alphion encarregou você de abrir caminho para a fortaleza.</p>
+          <p> </p>
+          <p>Você derrotou Rotrons e Obscura. Alphion agradeceu pela sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

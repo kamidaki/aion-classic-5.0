@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva quer ir para Kaldor, ok?</p>
+          <p> </p>
+          <p>Shugo pode levar Daeva até lá, mas não de graça.</p>
+          <p> </p>
+          <p>Daeva deve pagar 29.500 Kinah para viajar para Kaldor, Ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva quer ser transportado para Kaldor, ok?</p>
+          <p> </p>
+          <p>Daeva tem Kinah suficiente?</p>
+          <p> </p>
+          <p>Daeva deve pagar 29.500 Kinah para viajar para Kaldor.</p>
+          <p> </p>
+          <p>Shugo não funciona de graça, ok.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_TELEPORT_SIMPLE">Teleporte para Kaldor</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva não tem Kinah suficiente, ok?</p>
+          <p> </p>
+          <p>O Daeva deve voltar quando Daeva tiver 29.500 Kinah.</p>
+          <p> </p>
+          <p>A propósito, Daeva só pode ser teletransportado se Daeva estiver no nível 65 ou superior, mesmo que Daeva tenha Kinah suficiente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

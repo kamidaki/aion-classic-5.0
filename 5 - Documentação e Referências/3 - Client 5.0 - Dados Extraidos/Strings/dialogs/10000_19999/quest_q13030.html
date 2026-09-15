@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você pode ver, aqui em [%dic:STR_DIC_W_LDF5b_SZ_D1] tudo está flutuando no ar.</p>
+          <p> </p>
+          <p>O vôo foi possível graças à sua ajuda. Mas como este fenómeno não está presente noutras regiões, muitos estão agora interessados.</p>
+          <p> </p>
+          <p>Acredita-se que um acidente nos tempos antigos tenha causado essa falta de peso.</p>
+          <p> </p>
+          <p>A sede construiu instrumentos especiais para examinar isso e está atualmente coletando materiais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para determinar se este fenômeno está relacionado à fonte de energia chamada Id, o que é frequentemente o caso atualmente, realizamos análises usando [%dic:STR_DIC_N_LDF5b_FOBJ_D1_Idgear_L_all]. Infelizmente, esses dispositivos quebram com frequência.</p>
+          <p> </p>
+          <p>Nosso problema é que esses dispositivos estão instalados em uma área bastante perigosa, então não podemos consertá-los até que a situação aqui esteja sob controle.</p>
+          <p> </p>
+          <p>Então seria bom se você pudesse levar este equipamento para manutenção, [%username]. O que você diz?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Muito obrigado.</p>
+          <p> </p>
+          <p>Existem [%dic:STR_DIC_N_LDF5b_FOBJ_D1_Idgear_L01], [%dic:STR_DIC_N_LDF5b_FOBJ_D1_Idgear_L02] e [%dic:STR_DIC_N_LDF5b_FOBJ_D1_Idgear_L03] dos 3 dispositivos de pesquisa.</p>
+          <p> </p>
+          <p>Inspecione o dispositivo de pesquisa correspondente e reative-o.</p>
+          <p> </p>
+          <p>Então, por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você parece estar ocupado com outra missão no momento.</p>
+          <p> </p>
+          <p>Não há nada que possa ser feito.</p>
+          <p> </p>
+          <p>Mas eu não poderia dar esta missão a mais ninguém, então, por favor, volte e me veja assim que completar sua missão atual, [%username].</p>
+          <p> </p>
+          <p>Por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Você voltou!</p>
+          <p> </p>
+          <p>E as máquinas?</p>
+          <p> </p>
+          <p>Você fez tudo funcionar novamente?</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Tudo foi ativado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou a tarefa! Impressionante!</p>
+          <p> </p>
+          <p>Agora que todos os dispositivos de pesquisa foram reparados, podemos aprender mais sobre o Idgel que foi encontrado na base de Bassen.</p>
+          <p> </p>
+          <p>Realmente bom trabalho!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É ótimo que todos os dispositivos tenham sido consertados, mas não sei por que eles continuam parando.</p>
+          <p> </p>
+          <p>Acho que deveríamos chamar um engenheiro Shugo habilidoso, já que a causa da falha não foi identificada.</p>
+          <p> </p>
+          <p>De qualquer forma, quero agradecer sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Ativar [%dic:STR_DIC_N_LDF5b_FOBJ_D1_Idgear_L_all] ([%2]/3).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LDF5b_Mele_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ative os dispositivos de pesquisa de identificação para a investigação perto da Fortaleza Bassen.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Melle disse que os dispositivos de investigação instalados perto da Fortaleza Bassen não funcionam mais e pediu que você os iniciasse novamente.</p>
+          <p> </p>
+          <p>Depois que você reiniciasse todos os dispositivos, ele disse que agora precisaria descobrir por que eles quebraram.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

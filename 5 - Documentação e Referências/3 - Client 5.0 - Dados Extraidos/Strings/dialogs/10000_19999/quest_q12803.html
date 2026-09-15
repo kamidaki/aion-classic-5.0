@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A operação para derrotar o Grupo de Busca Asmodiano deve começar agora.</p>
+          <p> </p>
+          <p>[%username], por favor mate o [%dic:STR_DIC_M_LDF5_Recon_v01_D_all].</p>
+          <p> </p>
+          <p>Um confronto frontal com o Grupo de Busca Asmodiana seria preferível a uma batalha regional.</p>
+          <p> </p>
+          <p>Primeiro você deve destruir tudo para que a força de combate Asmodiana sofra grandes danos. Será então fácil reivindicar a vitória na batalha frontal.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como era a força de combate do 71º Grupo de Busca Asmodiano?</p>
+          <p> </p>
+          <p>Eles se autodenominam um grupo de busca, mas dizem que nem chegam perto do nosso grupo de treinamento para o Crisol de Elyos. Isso é verdade?</p>
+          <p> </p>
+          <p>Eles não são lutadores particularmente bons, mas se não os eliminarmos agora, isso poderá voltar para nos assombrar em batalha aberta.</p>
+          <p> </p>
+          <p>Não devemos nos expor a tal risco.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado. Os serviços de [%username] brilharão como um farol na guerra iminente.</p>
+          <p> </p>
+          <p>Estou intrigado em ver quão fraco será o ataque Asmodiano agora que eles perderam seu grupo de busca.</p>
+          <p> </p>
+          <p>Acredito que agora podemos começar a falar de uma vitória certa do Elyos.</p>
+          <p> </p>
+          <p>Leve isso para seus esforços, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5_Recon_v01_D_all] que aparece se os Elyos conquistarem o [%dic:STR_DIC_W_LDF5a_A2_1] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard01_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra a ordem de Arandel e mate o 71º Grupo de Busca Asmodiano.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Arandel, você poderia ganhar uma posição favorável em batalha aberta se eliminar o 71º Grupo de Busca Asmodiano, infligindo, portanto, grandes danos às forças Asmodianas.</p>
+          <p> </p>
+          <p>Você matou o 71º Grupo de Busca Asmodiano e recebeu agradecimentos ao retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

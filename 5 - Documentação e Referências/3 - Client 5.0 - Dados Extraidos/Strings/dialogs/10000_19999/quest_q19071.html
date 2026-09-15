@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parabenizo você pelo seu despertar como Daeva.</p>
+          <p> </p>
+          <p>Mas li mais em seus olhos do que nos de um Daeva recém-desperto.</p>
+          <p> </p>
+          <p>Eles parecem refletir a experiência de muitas batalhas e o longo caminho que você percorreu.</p>
+          <p> </p>
+          <p>Conheci muitos Daevas novos, mas isso é algo que nunca vi antes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você fala do passado que Pernos lhe mostrou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você lutou em Karamatis no Abismo com os Balaur.</p>
+          <p> </p>
+          <p>Posso não saber muito sobre o Abismo, mas ouvi dizer que Karamatis é controlado pelos Balaur...</p>
+          <p> </p>
+          <p>Nunca ouvi falar de uma guerra por este site estourando com os Balaur.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você diz que não é mentira.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta é a primeira vez que ouço falar de um Daeva perdendo suas memórias e habilidades e se tornando humano.</p>
+          <p> </p>
+          <p>Se as memórias de Pernos forem realmente verdadeiras, isso pode ser uma informação importante sobre o Abismo e os Balaur.</p>
+          <p> </p>
+          <p>Perguntarei a Jucleas se algo assim é possível e direi a você assim que descobrir mais.</p>
+          <p> </p>
+          <p>Independentemente do passado, você agora é um Daeva e deve levar a sério seu papel como Daeva.</p>
+          <p> </p>
+          <p>Chegou um pedido da Fortaleza Verteron para enviar um Daeva para ajudá-los.</p>
+          <p> </p>
+          <p>Acho que você é a pessoa certa para isso. Vá até lá e ajude os guardas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Verteron está atualmente em guerra com Tursin Krall, o que afetou a força de suas tropas.</p>
+          <p> </p>
+          <p>E há relatos de que uma tropa suspeita, talvez os Revolucionários Lefaristas, está ativa.</p>
+          <p> </p>
+          <p>Se você demonstrar suas habilidades lá, poderei reconhecer que você é um Daeva capaz.</p>
+          <p> </p>
+          <p>Leve esta carta de recomendação para a Fortaleza Verteron e procure pelo Centurião [%dic:STR_DIC_LA18].</p>
+          <p> </p>
+          <p>Peça [%dic:STR_DIC_N_Polyidus] na entrada do Santuário para chegar à Fortaleza Verteron.</p>
+          <p> </p>
+          <p>Você pode chegar diretamente à Fortaleza Verteron usando o transportador aéreo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+    <Voice file="Q19071-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que você não quer sair do Santuário tão cedo.</p>
+          <p> </p>
+          <p>Entendido. De qualquer forma, não é tão urgente assim.</p>
+          <p> </p>
+          <p>Se você quiser entrar como Daeva posteriormente, basta ir até a Fortaleza Verteron.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você veio. Eu estive esperando por você.</p>
+          <p> </p>
+          <p>Recebi ordens para mandá-lo para a Fortaleza Verteron se você aparecesse aqui.</p>
+          <p> </p>
+          <p>Você pode pedir um teletransporte a qualquer momento quando estiver pronto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa termina.</Act>
+    </Selects>
+    <Voice file="Q1913-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que posso fazer para você?</p>
+          <p> </p>
+          <p>Estou um pouco ocupado agora.</p>
+          <p> </p>
+          <p>Não posso conversar com calma com você porque estou esperando por alguém que deveria estar aqui há muito tempo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que veio com uma carta de recomendação de Aspásia.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, então Aspásia enviou você.</p>
+          <p> </p>
+          <p>Bem-vindo à Cidadela de Verteron.</p>
+          <p> </p>
+          <p>Você já recebeu uma missão do Comandante da Fortaleza Spatalos? Caso contrário, você deverá vê-lo imediatamente. Ele lhe dará missões que você pode completar aqui.</p>
+          <p> </p>
+          <p>Que a luz de Aion guie o seu caminho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para o Caminho da Honra e fale com [%dic:STR_DIC_N_Polyidus].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Teleporte-se para a Fortaleza Verteron e encontre-se com [%dic:STR_DIC_LA18].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Fale com Aspásia e aceite sua missão como um Daeva recém-ascendido.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ele disse que lhe parecia que Aspásia não tinha ascendido apenas para se tornar um Daeva, então você contou a ele sobre o passado, como Pernos lhe mostrou, mas ele não acreditou.</p>
+          <p> </p>
+          <p>Como ele pensou que você tinha que completar suas tarefas como Daeva, você foi para a Fortaleza Verteron com uma carta de recomendação dele de qualquer maneira e encontrou o Centurião Hyacinte lá.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

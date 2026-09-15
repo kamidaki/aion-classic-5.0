@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41253</QuestId>
+    <QuestName>헌화</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], enquanto você lutava contra os Balaur, fiquei perdido em pensamentos.</p>
+          <p> </p>
+          <p>Já mencionei como meu marido não era o melhor dos cônjuges, mas também não o valorizei desde que ele faleceu.</p>
+          <p> </p>
+          <p>Verdade seja dita, praticamente me esqueci dele desde então. Todo esse negócio de escultura me deixou com vontade de fazer as pazes. Mas não sei como.</p>
+          <p> </p>
+          <p>Por favor, você poderia me ajudar? Fale com um padre, descubra o que devo fazer para prestar homenagem ao meu marido? Tente [%dic:STR_DIC_N_Ulstia].</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+ </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sei por que você está aqui; Eu ouvi tudo sobre a situação. A verdade é que os mortos não se importam se são homenageados ou não. Eles estão mortos.</p>
+          <p> </p>
+          <p>No entanto, isso não significa que o ato de homenageá-los seja inútil. Cura aqueles que ficam para trás e reconecta as crianças com os mais velhos.</p>
+          <p> </p>
+          <p>Minha sugestão? Coloque algo no túmulo de Pytean. O [%dic:STR_DIC_I_Q41253b] é uma escolha comum e pode ser comprado em [%dic:STR_DIC_N_Aughoetia]. Se você comprar um, traga-o aqui para que eu possa abençoá-lo.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Eu vou agora."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Você trouxe o [%dic:STR_DIC_I_Q41253b]?</p>
+         <p> </p>
+         <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Eu fiz. Aqui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então é hora de ir ao túmulo de Pytean. Saia agora para [%dic:STR_DIC_W_LDF4a_SZ_D_03]. Pytean foi enterrado em seu ponto mais alto.</p>
+          <p> </p>
+          <p>Mantenha os olhos abertos para um [%dic:STR_DIC_ILDF4a_Tomb_Q41253]. A maioria dos outros foi reduzida a nada, mas a fama de Pytean era tamanha que seus aprendizes ainda mantêm seu túmulo.</p>
+          <p> </p>
+          <p>Depois de encontrá-lo, coloque o [%dic:STR_DIC_I_Q41253a_flaower] nele. Então Moraitia estará pronta para voltar à sua vida.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Obrigado pela ajuda."</Act>
+    </Selects>
+  </HtmlPage>
+
+ <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você volta, e sem o [%dic:STR_DIC_I_Q41253b]? É um pedido simples; se você estiver muito ocupado para me ajudar, por favor, diga.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Aughoetia] vende as flores.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Sinto muito. Voltarei com a flor."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(A lápide jaz orgulhosamente, olhando para o mundo abaixo. Mesmo morto, você ainda sente a força de Pytean emanando de baixo de você.)</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">"Fique tranquilo, Pytean."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]! Você falou com Ulstia? O que ela disse?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Bem..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então está feito! Ah... obrigado!</p>     
+          <p> </p>     
+          <p>Vou me lembrar do seu trabalho para mim, amigo. Mais importante ainda, manterei a memória do meu marido mais perto do meu coração também. Mais uma vez, obrigado.</p>
+          <p> </p>     
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Ulstia].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Compre um [%dic:STR_DIC_I_Q41253b] de [%dic:STR_DIC_N_Aughoetia] e retorne para [%dic:STR_DIC_N_Ulstia].</font></p>[%collectitem]</step>
+               <step><p visible="[%6]"><font color="[%7]">Coloque seu [%dic:STR_DIC_I_Q41253a_flaower] no [%dic:STR_DIC_ILDF4a_Tomb_Q41253] em [%dic:STR_DIC_W_LDF4a_SZ_D_03].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Retornar para [%dic:STR_DIC_N_Moraytia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Moraitia deseja fazer as pazes com o marido. Descubra se é possível.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Moraitia basicamente se esqueceu de prestar homenagem ao marido falecido durante anos. Depois de ver a escultura que ele havia feito para ela antes de sua morte, ela se arrependeu e quis descobrir se ainda era possível fazer as pazes.</p>
+          <p> </p>
+          <p>Você saiu e se encontrou com um padre chamado Ulstia, que disse que um simples buquê em seu túmulo simbolizaria o amor dela por ele.</p>
+          <p> </p>
+          <p>Então você foi ao Cemitério Sabat's End e colocou um buquê de flores. Quando você voltou, Moraitia agradeceu o gesto e disse que nunca mais esqueceria o marido.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

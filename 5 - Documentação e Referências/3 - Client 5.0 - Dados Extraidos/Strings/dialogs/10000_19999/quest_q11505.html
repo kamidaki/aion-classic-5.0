@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q11505</QuestId>
+    <QuestName>독뿌리 펑기</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mais um refugiado adoeceu ontem devido a um Poisonroot Fungie. Eu disse a eles repetidamente para tomarem cuidado, mas é facilmente confundido com Seeleaf Fungies. Não consigo ficar de olho em todos.</p>
+          <p> </p>
+          <p>Você poderia realmente se tornar útil e se livrar de alguns [%dic:STR_DIC_M_LDF4A_A2_Fungy_Flower_57_n]s. Descendo a estrada a leste de [%dic:STR_DIC_W_LDF4a_SZ_A2_01] - você pode encontrá-los em todos os lugares.</p>
+          <p> </p>
+          <p>Não passaria pela minha cabeça pedir um favor a um [%userrace]... mas estou com muita falta de mão de obra.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Voltar tão cedo? Eu sabia que não poderia contar com alguém de fora...</p>
+          <p> </p>
+          <p>Baah, a culpa é minha por pensar que você poderia se importar.</p>
+          <p> </p>
+          <p> </p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Obrigado pela sua fé ilimitada em mim..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você terminou!? Realmente. Hmph... perdoe meus modos.</p>
+          <p> </p>
+          <p>Por favor, entenda. Muitos fizeram promessas e não cumpriram. Talvez eu tenha julgado com muita severidade.</p>
+          <p> </p>
+          <p>Ou talvez você seja apenas a exceção à regra. De qualquer forma, obrigado.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+             
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_M_LDF4A_A2_Fungy_Flower_57_n]s em [%dic:STR_DIC_W_LDF4a_SZ_A2] ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Retornar para [%dic:STR_DIC_N_Tymoios].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Fungos Poisonroot que os refugiados facilmente confundem com os Fungos Folhas Sementes.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Tymios, o extremamente perigoso Poisonroot Fungie é muito semelhante ao Seedleaf Fungies, que é comestível.</p>
+          <p> </p>
+          <p>Os refugiados continuaram a adoecer por confundirem os dois. Tymios pediu que você se livrasse da variedade perigosa para evitar ainda mais doenças.</p>
+          <p> </p>
+          <p>Você não gostou da atitude dele em relação aos estranhos, mas fez o possível para dar o exemplo e mudou a opinião dele para melhor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

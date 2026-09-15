@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seu timing é perfeito. Precisamos desesperadamente de um [%userclass] capaz aqui.</p>
+          <p> </p>
+          <p>Você já ouviu falar dos rebeldes chamados Revolucionários Lefaristas?</p>
+          <p> </p>
+          <p>Alguns querem fazer você acreditar que eles são apenas um bando comum de ladrões, mas esses desordeiros são claramente uma séria ameaça ao Sanctum.</p>
+          <p> </p>
+          <p>[%username], gostaria de te pedir uma coisa porque parece que você nasceu para essa tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Revolucionários Lefaristas são a gangue mais perigosa nas proximidades da Vila Tolbas.</p>
+          <p> </p>
+          <p>Quando tomaram a Fazenda Belbua pela primeira vez, as pessoas pensaram que eram apenas saqueadores comuns.</p>
+		  <p> </p>
+		  <p>Todos pensavam que estavam apenas atrás das provisões.</p>
+          <p> </p>
+          <p>Mas agora os Revolucionários Lefaristas transformaram a quinta no seu reduto.</p>
+          <p> </p>
+          <p>E os Revolucionários Lefaristas, sedentos de poder, estão tentando atrair os aldeões para o seu lado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+    <CutScene id="25"/>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não podemos apenas assistir e deixá-los fazer o que quiserem.</p>
+          <p> </p>
+          <p>Portanto, será seu trabalho eliminar [plur][%dic:STR_DIC_MLA122] e seus [%dic:STR_DIC_MLA123], [%username].</p>
+          <p> </p>
+          <p>O Guardião Leto também está aqui, mas é impossível para ela enfrentar essa gangue sozinha. Além disso, como Guardiã ela tem mais a fazer do que apenas defender a aldeia.</p>
+          <p> </p>
+          <p>Como não temos chance contra os Revolucionários Lefaristas por conta própria, queremos pedir sua ajuda, [%username].</p>
+          <p> </p>
+          <p>Aliás, Cavil, o líder dos Revolucionários Lefaristas, está supostamente escondido em um prédio [%dic:STR_DIC_FLA24] próximo. Você poderia eliminá-lo, por favor?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  <Voice file="Q1013-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você ficaria feliz em aceitar esta tarefa, [%username].</p>
+          <p> </p>
+          <p>Só fiquei preocupado por causa do grande número de adversários.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você poderia ter provado suas habilidades para Leto nesta ocasião...</p>
+          <p> </p>
+          <p>Então suponho que não tenho outra escolha senão pedir a outro Daeva para realizar esta tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Revolucionários Lefaristas não apenas persuadiram os aldeões; eles os forçaram a aderir, ameaçando os aldeões.</p>
+          <p> </p>
+          <p>Primeiro eles tomam a fazenda de um homem honesto e agora tentam aumentar suas fileiras pela força!</p>
+          <p> </p>
+          <p>Você eliminou o líder dos Revolucionários Lefaristas?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou aliviado por você ter cuidado dele!</p>
+          <p> </p>
+          <p>Os Revolucionários Lefaristas nunca mais poderão exercer poder sobre a Vila Tolbas novamente.</p>
+          <p> </p>
+          <p>Graças a você, os aldeões estão livres do reinado de terror dos Revolucionários Lefaristas.</p>
+          <p> </p>
+          <p>Agradeço em nome de todos da Vila Tolbas, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar os Revolucionários Lefaristas que ocupam [%dic:STR_DIC_FLA24].</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_MLA122] ([%2]/9).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Derrote [%dic:STR_DIC_MLA123] ([%5]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Vá para a vila de [%dic:STR_DIC_FLA10] e fale com [%dic:STR_DIC_LA24] lá.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ajude Abolos a varrer os Revolucionários Lefaristas da Fazenda de Belbua.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Em nome de Abolos, você varreu os Revolucionários Lefaristas e seu líder Cavil da Fazenda Belbua.</p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

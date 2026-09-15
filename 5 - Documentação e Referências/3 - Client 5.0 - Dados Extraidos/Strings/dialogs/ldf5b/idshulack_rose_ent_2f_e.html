@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>E</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está aqui porque quer ir para a Steel Rake Cabin, ok?</p>
+          <p> </p>
+          <p>Se sim, então você veio ao lugar certo, ak. Kikorinerk recebeu ordens superiores e agora está investigando secretamente a Rosa de Aço, ak.</p>
+          <p> </p>
+          <p>Se Daeva quiser ajudar na investigação, é de graça! Shugo levará Daeva para [%dic:STR_DIC_W_IDShulackShip_02_SZ_2F], ak.</p>   
+          <p> </p>
+          <p>Podemos ir imediatamente se Daeva estiver pronto, ak. Certifique-se de que Daeva não se esqueceu de nada!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você entra na Cabine da Rosa de Aço que só pode ser acessada sozinho.</Act>
+      <Act href="HACTION_SELECT1_2">Você entra na Cabine da Rosa de Aço que só pode ser acessada com acompanhantes.</Act>
+      <Act href="HACTION_OPEN_INSTANCE_RECRUIT">Você procura um camarada com quem possa colaborar.</Act>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está aqui porque quer ir para a Steel Rake Cabin, ok?</p>
+          <p> </p>
+          <p>Se sim, então você veio ao lugar certo, ak. Kikorinerk recebeu ordens superiores e agora está investigando secretamente a Rosa de Aço, ak.</p>
+          <p> </p>
+          <p>Se Daeva quiser ajudar na investigação, é de graça! Shugo levará Daeva para [%dic:STR_DIC_W_IDShulackShip_02_SZ_2F], ak.</p>   
+          <p> </p>
+          <p>Podemos ir imediatamente se Daeva estiver pronto, ak. Certifique-se de que Daeva não se esqueceu de nada!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você entra na Cabine da Rosa de Aço, onde pode entrar sozinho.</Act>
+      <Act href="HACTION_SELECT1_2">Você entra na Cabana da Rosa de Aço onde pode entrar com companheiros.</Act>
+      <Act href="HACTION_OPEN_INSTANCE_RECRUIT">Você procura um camarada com quem possa cooperar.</Act>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! Se Daeva deseja ir para lá, Daeva deve entrar sozinho, sem camaradas, ak.</p>
+          <p> </p>
+          <p>Se Daeva quiser ficar com seus camaradas, vá para a Cabana da Rosa de Aço, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! O lugar para onde você quer ir é um lugar onde as coisas serão difíceis se você não tiver companheiros.</p>
+          <p> </p>
+          <p>Reconheço a coragem de Daeva. Mas se você quiser ir sozinho, eu recomendo a Cabana da Rosa de Aço, que você pode entrar sozinho, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1_1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! Você está procurando camaradas, mesmo já tendo um? Daeva quer muito.</p>
+          <p> </p>
+          <p>Primeiro dissolva o grupo e depois volte se quiser novos companheiros.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ak! Shugo lamenta, mas não é possível transportar nada para a cabine do Steel Rose.</p>
+          <p> </p>
+          <p>Daeva precisa de mais treinamento ou certificado; então Daeva pode voltar, ak. Kikorinerk vai esperar, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>

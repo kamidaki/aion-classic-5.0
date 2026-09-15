@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não acha que deveria reforçar sua força de combate?</p>
+          <p> </p>
+          <p>Uma vitória na batalha depende de uma força de combate robusta.</p>
+          <p> </p>
+          <p>Você pode convocar Mercenários ou Dispositivos Explosivos Automáticos se tiver Medalhas de Batalha. [%userguildname] poderá conquistar a vitória mais facilmente com este apoio.</p>
+          <p> </p>   
+          <p>Se você quiser convocar Mercenários ou Dispositivos Explosivos Automáticos para a Base Defensiva das Ruínas Heroicas, para as Ruínas de Anoha ou para a entrada das Ruínas de Anoha, é só me avisar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+	<Act href="HACTION_SELECT1_2">Mercenários e dispositivos explosivos automáticos são necessários na Base Defensiva das Ruínas Heroicas.</Act>
+	<Act href="HACTION_SELECT1_3">Mercenários e Dispositivos Explosivos Automáticos são necessários na rampa para as Ruínas de Anoha.</Act>
+	<Act href="HACTION_FINISH_DIALOG">Não, nem Mercenários nem Dispositivos Explosivos Automáticos são necessários.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ajudo a legião que capturou a fortaleza a convocar Mercenários e Dispositivos Explosivos Automáticos.</p> 
+          <p> </p> 
+          <p>Infelizmente, você não é membro da legião no momento, [%username], então não posso ajudá-lo.</p>
+          <p> </p> 
+          <p>Ajudarei você assim que você se juntar à legião que capturou a fortaleza.</p>  
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você é membro da legião [%userguildname].</p>
+          <p> </p>
+		  <p>Peço desculpas, mas você precisa de mais medalhas de batalha.</p>
+		  <p> </p>
+		  <p>Você só pode convocar Mercenários, Cercas e Dispositivos Explosivos Automáticos com Medalhas de Batalha.</p>
+		  <p> </p>
+		  <p>Por favor, vá e colete Medalhas de Batalha suficientes primeiro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você selecionou a Base Defensiva das Ruínas Heroicas.</p>
+          <p> </p>
+          <p>Você pode efetivamente impedir que o inimigo capture as Ruínas Heroicas aumentando as forças na Base Defensiva das Ruínas Heroicas.</p>
+          <p> </p>
+          <p>Você precisa de 29 Medalhas de Batalha para convocar Mercenários e Dispositivos Explosivos Automáticos lá.</p>
+          <p> </p>
+          <p>Um Templário, um Feiticeiro, quatro Gladiadores, quatro Caçadores e um Dispositivo Explosivo Automático serão convocados.</p>
+          <p> </p>
+          <p>O que você acha? Você deseja convocar nessas condições?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que deseja convocá-los na Base Defensiva das Ruínas Heroicas.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A entrada para as Ruínas de Anoha?</p>
+          <p> </p>
+          <p>Sem dúvida será excelente para defesa contra os inimigos invasores.</p>
+          <p> </p>
+          <p>Um Templário, um Feiticeiro, quatro Gladiadores, quatro Caçadores e um Dispositivo Explosivo Automático podem ser convocados na entrada das Ruínas de Anoha.</p>
+          <p> </p>
+          <p>Você precisa de 29 medalhas de batalha para a convocação.</p>
+          <p> </p>
+          <p>É uma oferta muito boa, não é? O que você acha?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você diz que deseja convocá-los na entrada das Ruínas de Anoha.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A convocação foi bem-sucedida.</p>
+          <p> </p>
+          <p>Que sua Guilda [%userguildname] seja vitoriosa, [%username].</p>
+          <p> </p>
+          <p>Boa sorte!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22001</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fragmentos! Estamos sem poções de novo?! Alguém deve usá-los para dores de estômago e pequenos cortes!</p>
+          <p> </p>
+          <p>Nesse ritmo, seremos inúteis na batalha. Felizmente, posso fazer mais até conseguirmos reabastecer, mas precisarei de ajuda.</p>
+          <p> </p>
+          <p>Posso usar [%dic:STR_DIC_I_quest_22001a] de [%dic:STR_DIC_M_LDF4b_T1_Scorpion_Giant_58_An]s para fazer poções. Eu sei que não parece que deveria funcionar, mas funciona. Se você pudesse ajudar a conseguir o veneno, eu realmente apreciaria.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Juro por Aion, se eu colocar as mãos em quem está bebendo nossas poções, eu irei...!</p>
+          <p> </p>
+          <p>Ok, uma coisa de cada vez. Primeiro, faça poções. Então, encontre e estrangule o desperdiçador de poções.</p>
+          <p> </p>
+          <p>Tenho tudo sob controle, exceto o Veneno Scolopen. Você trouxe alguns?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Eu tenho. E isso fede!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mmm, sim, é um pouco obsceno, não é? Mas isso significa apenas que é potente!</p>
+          <p> </p>
+          <p>O cheiro vai embora assim que eu diluir e misturar os outros ingredientes. O que farei agora.</p>
+          <p> </p>
+          <p>Obrigado, [%username]. Ah, e se você pegar o desperdiçador de poções... desloque-o para mim, sim?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_quest_22001a] e leve para [%dic:STR_DIC_N_Tokoma].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Tokoma tem poucas poções para combate. Obtenha veneno de Huge Desert Scolopens para ajudá-lo a ganhar mais.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Legionário Fatebound Tokoma disse que alguém está desperdiçando suas poções e agora ele está quase acabando.</p>
+          <p> </p>
+          <p>Você matou Huge Desert Scolopens por causa do veneno e o trouxe para Tokoma para misturá-lo em poções. Ele substituiu o estoque perdido, mas ainda guardava rancor de quem havia desperdiçado poções.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

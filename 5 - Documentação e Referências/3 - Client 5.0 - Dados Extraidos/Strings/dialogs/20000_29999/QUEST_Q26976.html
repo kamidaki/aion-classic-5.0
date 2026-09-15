@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Exército Beritra abriu a entrada para a Ponte de Jormungand, que leva aos seus territórios.</p>
+          <p> </p>
+          <p>Temos que fazer algo rápido, então pedimos ajuda a Daevas e também enviamos um agente para lá.</p>
+          <p> </p>
+          <p>[%username], por favor vá até lá com seus camaradas e estabeleça contato com [%dic:STR_DIC_N_IDLDF5_Under_01_Rohellein_E].</p>
+          <p> </p>
+	  <p>Por favor, ajude-nos. Nós confiamos em você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É bom ver você aqui.</p>
+          <p> </p>
+          <p>Após a destruição de Katalam, o Exército de Beritra quer usar a ponte para chegar aos territórios de Beritra.</p>
+          <p> </p>
+          <p>Como não temos artilharia, temos de fazer alguma coisa em relação aos Balaur na ponte de Jormungand o mais rápido possível.</p>
+          <p> </p>
+          <p>Segundo minhas informações, Belkur possui um objeto importante. Analisei isso com muita atenção e consegui descobrir qual é o item.</p>
+          <p> </p>
+          <p>Derrote Belkur e pegue o [%dic:STR_DIC_I_quest_26976a] dele. Em seguida, leve-o para [%dic:STR_DIC_N_LDF5_Under_Undgankt_E] para que ele possa investigar mais detalhadamente.</p>
+          <p> </p>
+          <p>Você vai nos ajudar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio da ponte de Jormungand?</p>
+          <p> </p>
+          <p>Você obteve [%dic:STR_DIC_I_quest_26976a]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Fragmento de Belkur.</Act>
+    </Selects>
+  </HtmlPage>
+
+ <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>Você tem algo que parece muito incomum.</p>
+          <p> </p>
+	  <p>O que você pretende fazer com isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que vai acontecer com isso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não é fácil obter [%dic:STR_DIC_I_quest_26976a].</p>
+          <p> </p>
+          <p>Este fragmento é muito importante para o Exército Beritra, por isso temos que examiná-lo imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>Você tem algo que parece muito incomum.</p>
+          <p> </p>
+	  <p>O que você pretende fazer com isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O fragmento deverá ser enviado para Pandemônio.</p>
+          <p> </p>
+	  <p>Se não me engano, este é um item muito importante.</p>
+	  <p> </p>
+	  <p>Vou mandar para a capital.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_IDLDF5_Under_01_Rohellein_E].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Obtenha [%dic:STR_DIC_I_quest_26976a] e leve-o para [%dic:STR_DIC_N_LDF5_Under_Undgankt_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Ponte de Jormungand, pegue o Fragmento de Belkur e leve-o para Ungand, um Arconte do Anoitecer.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ungand lhe contou que o Exército Beritra abriu a entrada para a Ponte de Jormungand. Ele pediu que você fosse até o pesquisador Rohellein.</p>
+          <p> </p>
+          <p>Rohellein estava preocupado porque nesta situação não havia artilharia disponível. Ela queria deter o Balaur o mais rápido possível.</p>
+          <p> </p>
+          <p>Você derrotou Belkur e encontrou um fragmento estranho que trouxe para Ungand. Ele disse que queria enviá-lo para a capital para análise mais aprofundada.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

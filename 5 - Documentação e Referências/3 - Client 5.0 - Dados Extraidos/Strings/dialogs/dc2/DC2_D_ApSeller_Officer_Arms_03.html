@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para a glória e honra dos Asmodianos!</p>
+          <p> </p>
+          <p>Você defendeu a causa Asmodiana em batalha, [%username].</p>
+          <p> </p>
+          <p>É óbvio, mesmo à distância. Você emana uma energia especial.</p>
+          <p> </p>
+          <p>Essa energia só irradia de lutadores experientes.</p>
+          <p> </p>
+          <p>Ofereço recompensas adequadas à sua posição, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh céus! Desculpe.</p>
+          <p> </p>
+          <p>Meus serviços estão disponíveis apenas para Daevas com o posto de General, no mínimo.</p>
+          <p> </p>
+          <p>Se você se mostrar digno em encontros no campo de batalha, então um dia você também alcançará os escalões mais altos, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

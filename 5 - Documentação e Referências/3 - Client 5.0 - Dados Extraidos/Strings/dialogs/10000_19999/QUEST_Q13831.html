@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava esperando por você, [%username].</p>
+          <p> </p>
+          <p>Ainda me lembro do momento em que você passou pela primeira vez pelo Novo Portão Heiron. Fico orgulhoso de ver como você se desenvolveu desde então, [%userclass].</p>
+          <p> </p>
+          <p>[%username], ver você me inspira a me dedicar ainda mais à pesquisa do Estigma.</p>
+          <p> </p>
+          <p>Em última análise, a fortaleza se tornará mais segura quanto mais os Daevas fizerem uso de seu poder e explorarem todo o seu potencial.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu preparei algo para você, [%username].</p>
+          <p> </p>
+          <p>Este pacote contém estigmas normais para seu uso, [%username]. Você pode selecionar um Estigma do pacote.</p>
+          <p> </p>
+          <p>Você pode ir a um Estigma Master para equipar ou remover Estigmas. Os estigmas equipados podem ser visualizados abrindo a janela Estigma em seu perfil (P).</p>
+          <p> </p>
+          <p>Você pode usar estigmas equipados como habilidades e vinculá-los a teclas de atalho.</p>
+          <p> </p>
+          <p>Por favor, use-os com sabedoria.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Pelias].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Conheça Pelias e receba um pacote Estigma.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você visitou Pelias e lhe explicaram os estigmas. Depois disso, você recebeu um pacote de estigmas úteis.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

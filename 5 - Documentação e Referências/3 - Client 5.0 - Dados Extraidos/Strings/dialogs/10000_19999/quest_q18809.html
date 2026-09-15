@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acha que fica lindo se tiver uma casa? Ridículo! Ninguém vê a casa enquanto você corre por Balaurea. Akakak!</p>
+          <p> </p>
+          <p>Eu sei o que faz você parecer brilhante. É uma montagem rápida e sofisticada, sim!</p>
+          <p> </p>
+          <p>Pegue emprestado este modelo especial e visite [%dic:STR_DIC_N_Tenicion] e [%dic:STR_DIC_N_Morodea], árbitros da moda.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se eu fosse um Daeva rico, construiria uma casa grande e alta e passearia pela cidade em minha montaria.</p>
+          <p> </p>
+          <p>Se eu fosse um homem rico.</p>
+          <p> </p>
+          <p>E eu começaria com uma montaria como a sua, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Tarorunerk conhece suas montarias."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está aqui para conhecer Tarorunerk?</p>
+          <p> </p>
+          <p>Ele está vendendo montarias.</p>
+          <p> </p>
+          <p>Ele emprestar suas montarias a outros é uma boa propaganda para ele, eu acho.</p>
+          <p> </p>
+          <p>Eu deveria experimentar um também.</p>
+          <p> </p>
+          <p>Muito rápido, certo? Já estou animado!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Eu vou demonstrar."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você achou? Como foi o passeio?</p>
+          <p> </p>
+          <p>E os outros Daevas não admiravam você, hein?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Isso foi incrível. E tão rápido."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Montarias são uma necessidade para os bravos Daevas.</p>
+          <p> </p>
+          <p>Tarorunerk tem uma ampla variedade disponível para compra. Akakak!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Salte na montaria e fale com [%dic:STR_DIC_N_Tenicion].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Salte na montaria e fale com [%dic:STR_DIC_N_Morodea].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Salte na montaria e fale com [%dic:STR_DIC_N_Shugo_housing_41].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tarorunerk te emprestou uma montaria. Faça um teste para conhecer algumas pessoas da cidade.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tarorunerk vende montarias no Oriel Plaza e deixou você fazer um test drive. Você pulou e partiu, verificando as reações das pessoas elegantes da cidade, nomeadamente Tenison e Morodea.</p>
+          <p> </p>
+          <p>Tarorunerk insistiu que as montarias são necessárias e sugeriu que você deveria comprar uma dele.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

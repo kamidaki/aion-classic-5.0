@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tivemos problemas ao investigar as Ruínas das Muralhas.</p>
+          <p> </p>
+          <p>O [%dic:STR_DIC_M_LDF5A_E7_Element3_air_63_an] definitivamente precisa ser eliminado.</p>
+          <p> </p>
+          <p>Estamos tendo problemas para cumprir o cronograma porque somos constantemente interrompidos no momento em que queremos iniciar as investigações.</p>
+          <p> </p>
+          <p>Não queremos destruir nada, apenas realizar nossas investigações.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se as coisas continuarem assim, não haverá pesquisas ou descobertas de nada.</p>
+          <p> </p>
+          <p>Esses fantasmas incômodos!</p>
+          <p> </p>
+          <p>O que fizemos com eles para que nos atacassem?</p>
+          <p> </p>
+          <p>Comecei a odiar fantasmas desde que cheguei aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado pela sua resposta rápida.</p>
+          <p> </p>
+          <p>Ainda não acabou; Posso pedir seu apoio novamente na próxima vez.</p>
+          <p> </p>
+          <p>Os Espíritos do Vento Frio costumam ser bastante persistentes.</p>
+          <p> </p>
+          <p>Aqui, aceite isso como sua ajuda para completar nossa missão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_M_LDF5A_E7_Element3_air_63_an] que está interferindo na pesquisa ([%2]/9).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Killros_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Espíritos do Vento de Outono atrapalhando a busca.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kilon está preocupado por não conseguir cumprir o cronograma de investigação de Ramparts porque os Espíritos do Vento Solitário de Outono estão causando problemas.</p>
+          <p> </p>
+          <p>Depois que você eliminou os Espíritos do Vento Solitário de Outono conforme solicitado, ele agradeceu e pediu que você o visitasse novamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

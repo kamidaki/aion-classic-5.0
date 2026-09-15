@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41100</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]! Eu esperava não ter que arrastar você para mais um dos meus problemas. Mas simplesmente não temos ninguém disponível com sua habilidade na legião.</p>
+          <p> </p>
+          <p>Estou envergonhado, mas pelo bem da paz, devo pedir-lhe outro favor. Os [%dic:STR_DIC_E_Q41118a] ceifaram inúmeras vidas. Por favor, cuide deles.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF4A_A3_Owllau_El_57_Nmd_Ah] da Tribo Urugugu, [%dic:STR_DIC_M_LDF4A_A4_CalydonPr_57_Nmd_Ah] da Tribo Humnaz e [%dic:STR_DIC_M_LDF4A_D_Raidmonster_58_Al] da Tribo Sand Bug. Pacificar qualquer um deles evitaria um grande número de vítimas.</p>
+          <p> </p>
+          <p>Eles não são nada como você já lidou antes. Você precisará levar muitos colegas com você desta vez.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta! Eu sei o quão bom você é, [%username], mas esta missão envolve os inimigos mais poderosos, então não posso deixar de me preocupar.</p>
+          <p> </p>
+          <p>Os Notorious Shadow Targets são assim chamados por boas razões, como tenho certeza que você pode atestar agora.</p>
+          <p> </p>
+          <p>Bem, então? Não me deixe esperando - estou morrendo de vontade de saber! Com qual você lidou?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Não se preocupe mais..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mais incrível! O que você fez é verdadeiramente magnífico. Deve ser relatado a Kahrun!</p>
+          <p> </p>
+          <p>Ah, deixe-me fazer o relatório. Você deveria descansar muito merecido, [%username].</p>
+          <p> </p>
+          <p>Obrigado pelo seu problema. Obrigado, obrigado!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate um dos [%dic:STR_DIC_E_Q41118a] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Retornar para [%dic:STR_DIC_N_Olibaia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Lide com os notórios alvos das sombras que são responsáveis por tirar tantas vidas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Baia disse que os Notorious Shadow Targets são responsáveis por tirar inúmeras vidas e pediu que você lidasse com eles.</p>
+          <p> </p>
+          <p>Eles eram todos inimigos formidáveis. Você reuniu muitos colegas para enfrentá-los e, após uma dura batalha, se livrou de um.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

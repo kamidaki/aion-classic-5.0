@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se o espírito outrora selado fala dela dessa maneira, Grendal deve ter sido uma pessoa importante no Submundo Katalam.</p>
+          <p> </p>
+          <p>Isto me faz pensar nas tábuas de pedra que continham uma história estranha. Não tive tempo de examiná-los mais de perto, por isso é difícil lembrar.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_OBJ_LDF5_Under_FOBJ_RuneSlate_1] e[%dic:STR_DIC_N_OBJ_LDF5_Under_FOBJ_RuneSlate_2] estavam lá.</p>
+          <p> </p>
+          <p>Talvez o conteúdo destas tábuas de pedra possa nos ajudar. Por favor, examine o conteúdo cuidadosamente e informe-me.</p>
+          <p> </p>
+          <p>Talvez isso nos permita descobrir um segredo importante sobre a Tribo Rúnica.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma antiga laje de pedra da Tribo Rúnica.)</p>
+          <p> </p>
+          <p>(Retrata uma bruxa da Tribo Rúnica e uma pessoa sendo revivida dentre os mortos.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você examina o conteúdo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma laje de pedra da Tribo Rúnica que deve ter centenas de anos.)</p>
+          <p> </p>
+          <p>(Retrata uma máquina poderosa e uma explosão.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você examina o conteúdo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você examinou as lajes de pedra? O que você descobriu?</p>
+          <p> </p>
+          <p>Se interpretarmos corretamente os símbolos nas lajes de pedra, poderemos encontrar pistas sobre os sobreviventes da Tribo Rúnica.</p>
+          <p> </p>
+          <p>Este é o momento mais emocionante da minha vida!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre as fotos na laje de pedra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O nome Grendal está escrito nessas tábuas de pedra.</p>
+          <p> </p>
+          <p>Parece que ela tentou usar a Energia Id para ressuscitar seu amante morto. Suas tentativas foram em vão.</p>
+          <p> </p>
+          <p>Ela foi provavelmente a primeira pessoa a pesquisar mais de perto o poder do Id.</p>
+          <p> </p>
+          <p>Se Grendal, a Bruxa, ainda estiver viva, ela ainda pode estar tentando usar o poder do Id.</p>
+          <p> </p>
+          <p>Que sorte descobrir uma história tão interessante!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Examine o [%dic:STR_DIC_N_OBJ_LDF5_Under_FOBJ_RuneSlate_1].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Examine o [%dic:STR_DIC_N_OBJ_LDF5_Under_FOBJ_RuneSlate_2].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_LDF5_Under_Liponia_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Olhe atentamente para as lajes de pedra da Tribo Rúnica e informe Liponia sobre elas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Liponia acha que as lajes de pedra podem fornecer descobertas importantes sobre a antiga Tribo Rúnica. Liponia, portanto, pediu que você examinasse essas lajes de pedra.</p>
+          <p> </p>
+          <p>Você examinou as lajes de pedra e relatou suas descobertas a Liponia. Isso deixou Liponia toda animada porque ela agora suspeita que Grendal, a bruxa da Tribo Rúnica, ainda pode estar viva. Grendal aparentemente queria usar a energia do Id para reviver seu falecido amado.</p>
+          <p> </p>
+          <p>A ideia de conhecer um sobrevivente da Tribo Rúnica que queria ressuscitar os mortos faz você estremecer.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

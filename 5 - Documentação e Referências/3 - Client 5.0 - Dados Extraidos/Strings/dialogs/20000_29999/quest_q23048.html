@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], tenho um pedido! Você poderia trazer minha irmã, que está em [%dic:STR_DIC_W_LDF5b_SZ_E1_1], aqui para mim?</p>
+          <p> </p>
+          <p>O nome dela é [%dic:STR_DIC_N_LDF5b_Sister01_E].</p>
+          <p> </p>
+          <p>Na verdade, Klara me seguiu porque queria olhar para Klara, mas ela desapareceu num piscar de olhos. Agora ela foi encontrada perto de [%dic:STR_DIC_W_LDF5b_SZ_E1_1].</p>
+          <p> </p>
+          <p>Eu ficaria feliz em buscá-la pessoalmente, mas não posso sair daqui agora. Então, gostaria de confiar esta tarefa a você, [%username].</p>
+          <p> </p>
+          <p>Seus pais a mimavam demais, por isso seus modos são um pouco deficientes, mas ela não é uma criança má.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Resmunga) Como devo avaliar essa pessoa...</p>
+          <p> </p>
+          <p>Ah, não é fácil ver Katalam de uma só vez.</p>
+          <p> </p>
+          <p>É uma oportunidade que eu esperava há muito tempo e agora estou sendo atraída novamente.</p>
+          <p> </p>
+          <p>Supõe-se que haja muitos monstros aqui. Por favor, me acompanhe até [%dic:STR_DIC_W_LDF5b_SensoryArea_Q13048a], é onde meu irmão está.</p>
+          <p> </p>
+          <p>Depois disso poderei continuar sozinho. Devemos sair imediatamente!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você começa a acompanhá-lo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Onde se encontra Clara? Você a conduziu bem até aqui?</p>
+          <p> </p>
+          <p>Ela não está murmurando coisas estranhas sozinha em algum lugar?</p>
+          <p> </p>
+          <p>Ela é uma criança estranha e me dá grandes dores de cabeça.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eles disseram a ele que a criança poderia encontrar o caminho de volta sozinha pela entrada da aldeia, e ele simplesmente a deixou ir?</p>
+          <p> </p>
+          <p>Que confiança!</p>
+          <p> </p>
+          <p>A criança não voltou. Deve ter fugido para algum lugar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Sister01_E]%.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Acompanhe Klara até [%dic:STR_DIC_W_LDF5b_SensoryArea_Q13048a].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relatório para [%dic:STR_DIC_N_LDF5b_Phone_E].</font></p></step>
+
+    </steps>
+          <p><font font_xml="quest_summary">Certifique-se de que a irmã de Phon, Klara, chegue a Bright Town com segurança.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Phon disse que sua irmã Klara, que havia desaparecido durante uma viagem a Katalam, foi encontrada. Ele pediu para você ir buscá-la.</p>
+          <p> </p>
+		  <p>Quando você chegou na entrada de Bright Town, ela insistiu teimosamente que poderia ir sozinha. Então você voltou sozinho.</p>
+          <p> </p>
+          <p>Mas assim que você voltou, Phon disse que Klara, de fato, não havia chegado.</p>
+          <p> </p>
+          <p>Acho que Klara mentiu para você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma pequena insígnia.)</p>
+          <p> </p>
+          <p>(Observando mais de perto, parece o símbolo dos Revolucionários Lefaristas.)</p>
+          <p> </p>
+          <p>(A melhor coisa seria levá-lo para [%dic:STR_DIC_N_LF3_Leif_G], o Chiliarch do Comando de Assalto em Heiron.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este posto é uma base importante para garantir uma cabeça de ponte em Heiron.</p>
+          <p> </p>
+          <p>Portanto, tanto os Elyos como os Revolucionários Lefaristas querem recuperá-lo.</p>
+          <p> </p>
+          <p>Além do mais, aqueles que mais contribuem para a defesa do posto geralmente recebem [%dic:STR_DIC_I_quest_26904a].</p>
+          <p> </p>
+          <p>Este símbolo prova que o portador desempenhou um papel importante na operação e, portanto, representa uma recompensa para quem influenciou significativamente a operação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">(Você entrega a insígnia.)</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então, você tinha [%dic:STR_DIC_I_quest_26904a]?</p>
+          <p> </p>
+          <p>[%username], você é um[f:"a"] ótimo[f:"ótimo"] Daeva.</p>
+          <p> </p>
+          <p>Espero que você continue realizando grandes feitos na batalha contra os Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LF3_Leif_G]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Troque o [%dic:STR_DIC_I_quest_26904a] que você recebeu como recompensa após matar os protetores Elyos e os Revolucionários Lefaristas que atacaram os postos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você trocou as moedas obtidas em batalhas com os Revolucionários Lefaristas, o Esquadrão Guerrilha e o Esquadrão de Proteção Heiron por uma Insígnia Lefarista.</p>
+          <p> </p>
+          <p>Quando você entregou esta insígnia ao Tribuno Leif, ele o elogiou, dizendo que esta insígnia representa os méritos que foram adquiridos nas conquistas pós-batalha com os Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

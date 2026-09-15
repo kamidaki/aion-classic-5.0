@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+ 
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mate os vice-líderes [%dic:STR_DIC_NPC_DirectPortal_Giel] e [%dic:STR_DIC_NPC_DirectPortal_Dinos], bem como o líder [%dic:STR_DIC_N_Surt].</p>
+          <p> </p>
+          <p>Matar os vice-líderes e o líder do esquadrão de limpeza desmoralizará os Asmodianos. Eles não ousarão mais atacar os Elyos depois disso.</p>
+          <p> </p>
+          <p>[%username], por favor, eu imploro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mesmo uma legião forte estará condenada em breve se perder a sua Torre de Comando.</p>
+          <p> </p>
+          <p>Os vice-líderes Giel e Dinos, assim como o líder Surt compõem a estrutura de comando do Esquadrão de Limpeza Brusthonin.</p>
+          <p> </p>
+          <p>Isso significa que eles devem ser mortos a todo custo.</p>
+          <p> </p>
+          <p>[%username], você fez a missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que o matou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>A morte dela pode ter fortalecido a agressividade dos Elyos.</p>
+          <p> </p>
+          <p>Os Asmodianos poderiam ter fugido às pressas depois que seu capitão foi morto.</p>
+          <p> </p>
+          <p>Peço-lhe mais esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Vice-General da Brigada e o Brigada General do Esquadrão Reaper</font></p>
+               <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_NPC_DirectPortal_Giel]([%2]/1)</font></p>               
+               <p visible="[%3]"><font color="[%4]">[%dic:STR_DIC_NPC_DirectPortal_Dinos]([%5]/1)</font></p>
+               <p visible="[%6]"><font color="[%7]">[%dic:STR_DIC_N_Surt]([%8]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_NPC_Arena_Geniki_E_LHM].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ginikki pediu para você matar o Brigada General do Esquadrão Reaper para continuar a Operação. Elimine Geil, Dinos e Surt.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ginikki, do Santuário Central Operations, pediu para você matar os líderes do Esquadrão de Limpeza. Quando você voltou, depois de matar três líderes do Esquadrão de Limpeza, Ginikki lhe deu uma recompensa.</p>
+          <p> </p>
+         </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

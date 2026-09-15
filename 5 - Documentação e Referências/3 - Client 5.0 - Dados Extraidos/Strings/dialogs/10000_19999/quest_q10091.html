@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10091</QuestId>
+    <QuestName>이드겔의 힘</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, você deve estar chocado porque um Balaur está pedindo ajuda.</p>
+          <p> </p>
+          <p>Sei que você contribuiu para a vitória contra Tiamat.</p>
+          <p> </p>
+          <p>Não é verdade?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pergunta se ele quer se vingar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essa não é a razão.</p>
+          <p> </p>
+          <p>Gostaria de lhe pedir um favor, mesmo que seja vergonhoso para mim.</p>
+          <p> </p>
+          <p>Os sobreviventes da Guilda Tiamat podem ser encontrados em diferentes lugares de Katalam. Eles sonham em se tornar uma legião novamente usando o poder da Tribo Rúnica.</p>
+          <p> </p>
+          <p>Mas Beritra quer o poder para si e, portanto, está lutando contra sua própria espécie!</p>
+          <p> </p>
+          <p>Até a minha unidade foi atacada pelo Exército Beritra. Eu sou o único sobrevivente.</p>
+          <p> </p>
+          <p>Está claro agora. Não existe mais Guilda Tiamat...</p>
+          <p> </p>
+          <p>Mas meus camaradas na fortaleza destruída ainda sonham com uma nova Guilda Tiamat. Que triste.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_2">Você retoma a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há pouco tempo, um [%dic:STR_DIC_M_LDF5B_c3_Vri_Tanker_Fi_DD_NmdM_65_An] apareceu nas montanhas Sauro...</p>
+          <p> </p>
+          <p>É provável que planejem atacar a fortaleza destruída.</p>
+          <p> </p>
+          <p>Mate-o e pegue seu [%dic:STR_DIC_I_quest_10091a].</p>
+          <p> </p>          
+          <p>Eu gostaria de manter vivos meus poucos camaradas restantes.</p>
+          <p> </p>
+          <p>Tenha simpatia por um homem derrotado e me ajude.</p>
+          <p> </p>
+          <p>Por favor, eu lhe imploro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+	<Voice file="Q10091-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Exército Beritra me feriu gravemente.</p>
+          <p> </p>
+          <p>Não viverei muito mais.</p>
+          <p> </p>
+          <p>Mas o Arunt Messenger provavelmente está muito pior...</p>
+          <p> </p>
+          <p>Você o encontrou?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Ordem do Exército Beritra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado, do fundo do meu coração.</p>
+          <p> </p>
+          <p>(Ele lê a ordem escrita.)</p>
+          <p> </p>
+          <p>Assim como eu pensei. É um pedido de permissão para atacar a fortaleza destruída.</p>
+          <p> </p>
+          <p>Isso teria sido o fim dos nossos camaradas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não encontrou o Arunt Messenger?</p>
+          <p> </p>
+          <p>Eu não posso acreditar!</p>
+          <p> </p>
+          <p>(Ele tosse um pouco.)</p>
+          <p> </p>
+          <p>Ele provavelmente ainda está perto da fortaleza destruída.</p>
+          <p> </p>
+          <p>Vá novamente e tente encontrá-lo. Por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O sonho dos meus camaradas na fortaleza destruída nunca se tornará realidade.</p>
+          <p> </p>
+          <p>Tiamat não está mais entre nós...</p>
+          <p> </p>
+          <p>Mas não posso permitir que todos os Soldados Remanescentes sejam mortos.</p>
+          <p> </p>
+          <p>Daeva, posso te pedir outro favor?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você retoma a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vá para a terra disputada pelos Balaur.</p>
+          <p> </p>
+          <p>Destrua o [plur][%dic:STR_DIC_M_LDF5B_c3_SWHowitzer_Gu_NmdM_65_Ae] e mate [%dic:STR_DIC_M_LDF5B_c3_Vri_Confuse_El_SN_NmdM_65_Ae], cuja espécie está pesando em sua consciência!</p>
+          <p> </p>
+          <p>Na verdade, você não tem nenhum motivo para me ajudar.</p>
+          <p> </p>
+          <p>Mas isso também enfraquecerá o Exército Beritra.</p>
+          <p> </p>
+          <p>Isso também é benéfico para os Elyos.</p>
+          <p> </p>
+          <p>Ajude-me só mais uma vez.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você encerra a conversa.</Act>
+    </Selects>
+	<Voice file="Q10091-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, aí está você.</p>
+          <p> </p>
+          <p>Não tenho muito mais tempo de vida.</p>
+          <p> </p>
+          <p>Conte-me tudo.</p>
+          <p> </p>
+          <p>O que aconteceu com o Exército Beritra que traiu o seu?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado, agora posso encontrar paz.</p>
+          <p> </p>
+          <p>Muito obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5a_Drakan_Harmekun_E] em [%dic:STR_DIC_W_LDF5b_SZ_C3].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Roube o [%dic:STR_DIC_I_quest_10091a] de [plur][%dic:STR_DIC_M_LDF5B_c3_Vri_Tanker_Fi_DD_NmdM_65_An] e dê para [%dic:STR_DIC_N_LDF5a_Drakan_Harmekun_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_LDF5a_Drakan_Harmekun_E] em [%dic:STR_DIC_W_LDF5b_SZ_C3].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Destrua o [plur][%dic:STR_DIC_M_LDF5B_c3_SWHowitzer_Gu_NmdM_65_Ae] ([%11]/3).</font></p></step>        
+               <step><p visible="[%12]"><font color="[%13]">Mate o [%dic:STR_DIC_M_LDF5B_c3_Vri_Confuse_El_SN_NmdM_65_Ae] ([%14]/1).</font></p></step>   
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Drakan_Harmekun_E] em [%dic:STR_DIC_W_LDF5b_SZ_C3].</font></p></step>   
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Um sobrevivente da Guilda Tiamat está pedindo sua ajuda. Vá conhecê-lo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você procurou Harmekun, a Guilda Tiamat que permaneceu, e descobriu que ele estava gravemente ferido.</p>
+          <p> </p>
+		  <p>Ele lhe contou que seus camaradas corriam o risco de serem exterminados pelas forças armadas de Beritra e pediu sua ajuda.</p>
+          <p> </p>
+		  <p>Você não poderia ignorar seu apelo e, como os Elyos também estavam se esforçando para eliminar os seguidores de Beritra, você decidiu ajudá-lo.</p>
+          <p> </p>
+		  <p>Depois que você eliminou os soldados Beritra e voltou para ele, ele agradeceu e disse que agora poderia descansar em paz.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

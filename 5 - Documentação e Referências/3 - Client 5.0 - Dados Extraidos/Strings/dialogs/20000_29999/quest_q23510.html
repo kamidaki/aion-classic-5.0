@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Katalam ainda está em alvoroço e os Asmodianos precisam de sua ajuda.</p>
+          <p> </p>
+          <p>Complete o [%dic:STR_DIC_I_quest_23510a] e o [%dic:STR_DIC_I_quest_fortress_04] mais uma vez e traga os dois para mim.</p>
+          <p> </p>
+          <p>Você pode combinar o [%dic:STR_DIC_I_quest_23510a] de relatórios individuais. Você receberá participando das Batalhas de Fortaleza em North Katalam e South Katalam. Você vai se lembrar?</p>
+          <p> </p>
+          <p>Você pode obter os relatórios individuais de Stelman ou Phon do Katalam Cleanup Squad.</p>
+          <p> </p>
+          <p>Você pode obter o [%dic:STR_DIC_I_quest_fortress_04] se completar um feito particularmente extraordinário nas batalhas pelas fortalezas.</p>
+          <p> </p>
+          <p>A batalha continua.</p>
+          <p> </p>
+          <p>Quer tentar novamente?</p>
+          <p> </p>
+          <p>Eu estive esperando por você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou o Diário de Conquista Katalam e o Mármore do Caos?</p>
+          <p> </p>
+          <p>Você voltou mais rápido do que eu pensava.</p>
+          <p> </p>
+          <p>Acredito que você tenha provado o espírito de luta dos Asmodianos em todo Katalam.</p>
+          <p> </p>
+          <p>Conte-me cada detalhe do que você fez.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Diário da Conquista Katalam e o Mármore do Caos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu mais uma vez e, assim, mostrou sua força de vontade e perseverança.</p>
+          <p> </p>
+          <p>[%username], você está realmente fazendo jus ao seu nome.</p>
+          <p> </p>
+          <p>Estou enviando este diário para o Pandemônio para que ele possa ser mantido em segurança.</p>
+          <p> </p>
+          <p>Parabéns pelo seu sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga [%dic:STR_DIC_I_quest_23510a] e[%dic:STR_DIC_I_quest_fortress_04] para[%dic:STR_DIC_LDF5a_Bard_Commander].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Tente obter o Mármore do Caos e o Diário de Conquista Katalam mais uma vez.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Governador do Esquadrão de Limpeza de Katalam encorajou você a obter o Mármore do Caos e o Diário de Conquista de Katalam mais uma vez.</p>
+          <p> </p>
+          <p>Você completou o Diário da Conquista Katalam e o Mármore do Caos e Bardo, o Governador, agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

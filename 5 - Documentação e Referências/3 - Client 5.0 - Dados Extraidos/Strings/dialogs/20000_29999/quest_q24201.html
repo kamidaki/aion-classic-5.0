@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+    <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>[%username], você deve ir ao [%dic:STR_DIC_W_DF2B_SZ_A2] e encontrar-se com [%dic:STR_DIC_N_DF2a_Ghost_Theia].</p> 
+		<p> </p>
+		<p>Os túmulos da Red Sky Legião estão neste cemitério. Os membros da Guilda lutaram por Brusthonin antes da Grande Catástrofe.</p>
+		<p> </p>
+		<p>Brusthonin já foi conhecido por fornecer grãos para toda Atreia. É por isso que a região precisava de tanta proteção.</p>
+		<p> </p>
+		<p>Senhora Triniel despachou a Guilda do Céu Vermelho para defender Brusthonin por esse motivo.</p>
+		<p> </p>
+		<p>O General da Brigada da Guilda do Céu Vermelho era um homem chamado Virkel. Ele garantiu que os humanos e Daevas de Brusthonin estivessem a salvo dos Balaur.</p>
+		<p> </p>
+		<p>Os nove Legionários da Red Sky Legião deram suas vidas em uma terrível batalha contra os Balaur.</p>
+		<p> </p>
+		<p>Infelizmente, seu sacrifício altruísta foi em vão, pois Brusthonin foi contaminado a tal ponto que ninguém mais poderia viver lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1_1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>No Cemitério de Baltasar foi construído um santuário em homenagem aos nove Legionários.</p>
+		<p> </p>
+		<p>É onde podem ser encontrados os túmulos dos Legionários do Céu Vermelho.</p>
+		<p> </p>
+		<p>No entanto, de acordo com os relatórios mais recentes do Esquadrão de Limpeza, houve alguns problemas envolvendo as sepulturas.</p>
+		<p> </p>
+		<p>O que aconteceu?</p>
+		<p> </p>
+		<p>A única maneira de esclarecer este assunto é uma investigação completa no local.</p>
+		<p> </p>
+		<p>[%username], fale com [%dic:STR_DIC_N_DF2a_Ghost_Theia] e descubra a verdade.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Já faz muito tempo que não falo com uma pessoa viva.</p>
+		<p> </p>
+		<p>Por que, ah, por que todos fogem assim que eu me aproximo deles?</p>
+		<p> </p>
+		<p>Mas você veio me ver por sua própria escolha.</p>
+		<p> </p>
+		<p>O que traz você até mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você pergunta sobre o sarcófago destruído.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Esse é o sarcófago de Villaire.</p>
+		<p> </p>
+		<p>O Fluxo de Éter é irregular. Eu me pergunto se Villaire tem algo a ver com isso...</p>
+		<p> </p>
+		<p>Ou talvez haja outra explicação?</p>
+		<p> </p>
+		<p>Você se importaria de me fazer um favor?</p>
+		<p> </p>
+		<p>Sinto a energia contaminada de Balaur por perto. Você iria ver se os Balaur também se tornaram mortos-vivos?</p>
+		<p> </p>
+		<p>Você poderia eliminar o [plur][%dic:STR_DIC_M_DF2A_UndeadLizardmanFi_47_An]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>[%username], estava esperando por você.</p>
+		<p> </p>
+		<p>Você foi ao Santuário da Lenda e inspecionou o sarcófago destruído?</p>
+		<p> </p>
+		<p>Como isso aconteceu?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o que experimentou no Santuário da Lenda.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Então, o sarcófago foi danificado há muito tempo.</p>
+		<p> </p>
+		<p>E o corpo de Villaire também desapareceu.</p>
+		<p> </p>
+		<p>Ninguém sabe por que...</p>
+		<p> </p>
+		<p>Obrigado por seus esforços. Enviarei o Esquadrão Reaper para reparar o sarcófago destruído mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_DF2B_SZ_A2] e fale com o Fantasma Errante [%dic:STR_DIC_N_DF2a_Ghost_Theia].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Elimine o [plur][%dic:STR_DIC_M_DF2A_UndeadLizardmanFi_47_An] ([%11]/12).</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Relatório para [%dic:STR_DIC_N_Surt] em [%dic:STR_DIC_W_DF2B_SZ_A_Town].</font></p></step>
+    </steps>
+		<p><font font_xml="quest_summary">Surt pediu para você inspecionar os túmulos da Red Sky Legião. Vá conhecer Theia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Surt explicou que o sarcófago da Guilda do Céu Vermelho foi danificado.</p>
+		<p> </p>
+		<p>Você perguntou ao fantasma Theia sobre isso e se livrou dos Legionários Mortos-Vivos por ela.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

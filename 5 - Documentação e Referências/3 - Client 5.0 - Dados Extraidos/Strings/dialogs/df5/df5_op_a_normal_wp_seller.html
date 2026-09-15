@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para a glória das trevas!</p>
+          <p> </p>
+          <p>Você precisa de uma nova arma? Recebi um novo carregamento de armas há pouco tempo.</p>
+          <p> </p>
+          <p>Dê uma olhada, [%username]. Tenho certeza que você encontrará uma arma melhor para você do que [%mainslotitem].</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Buy items</trade_buy>
+      <trade_sell>Sell items</trade_sell>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando esta mensagem aparecer,</p>
+          <p> </p>
+          <p>um NPC de função foi trocado por um NPC normal.</p>
+          <p> </p>
+          <p>Isso significa que ocorreu um problema.</p>
+          <p> </p>
+          <p>Por favor, digite /petição na janela de bate-papo e informe um GM sobre o problema.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

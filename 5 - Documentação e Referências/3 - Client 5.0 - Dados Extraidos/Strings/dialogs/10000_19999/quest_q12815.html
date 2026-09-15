@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A parede do lado do perímetro está sendo ampliada. [%dic:STR_DIC_I_quest_12815a] de [%dic:STR_DIC_M_LDF5A_A5_Startutle_62_n] seria muito útil para isso.</p>
+          <p> </p>
+          <p>Usamos muitos materiais para a restauração do perímetro, mas o Ironback Startturtle é particularmente valioso.</p>
+          <p> </p>
+          <p>Nada é mais importante do que proteger o posto.</p>
+          <p> </p>
+          <p>Ampliar a área da base é benéfico tanto em termos de estratégia como de segurança.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você obteve o couro traseiro do Rynoce?</p>
+          <p> </p>
+          <p>A parede externa do componente desmontado está danificada. Agora estou procurando material apropriado.</p>
+          <p> </p>
+          <p>A Starturtle Hard Carapace é adequada porque é bastante dura, mas fácil de trabalhar.</p>
+          <p> </p>
+          <p>Se você usar esta Carapaça Dura não haverá problemas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Carapaça Dura de Ferro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você obteve a Carapaça de Ferro rapidamente, embora eu a tenha pedido há pouco tempo.</p>
+          <p> </p>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>[%username], você prestou um ótimo serviço ao nosso posto e aos Elyos. Muito obrigado!</p>
+          <p> </p>
+          <p>Por favor, aceite este pequeno sinal de nosso agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue o [%dic:STR_DIC_I_quest_12815a] do [%dic:STR_DIC_M_LDF5A_A5_Startutle_62_n] para [%dic:STR_DIC_N_LDF5_Village_Guard04_L].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Ironback Startturtle e recupere a concha.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Diena disse que precisava da Carapaça de Ferro da Tartaruga para renovar as paredes externas ao estender o posto.</p>
+          <p> </p>
+          <p>Ela agradeceu calorosamente quando você matou a Tartaruga-de-Ferro e trouxe para ela sua Carapaça de Ferro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

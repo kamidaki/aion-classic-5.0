@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve ir para Taloc's Hollow.</p>
+          <p> </p>
+          <p>Nosso Esquadrão de Investigação localizou Elim suspeito e agora a tropa está em apuros.</p>
+          <p> </p>
+          <p>Todos os Daevas que ousaram entrar na Floresta de Taloc ficaram gravemente feridos.</p>
+          <p> </p>
+          <p>Podemos servir a diferentes Senhores, mas precisamos permanecer unidos aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como Taloc corrigiu nossa deficiência de Éter, o problema deverá ser resolvido em breve.</p>
+          <p> </p>
+          <p>Visto que você não pertence a nenhum lado, sua ajuda certamente será aceita. Então vá agora, analise a situação e ajude quando necessário.</p>
+          <p> </p>
+          <p>A tropa de pesquisa Taloc está sendo liderada por um Daeva chamado [%dic:STR_DIC_N_Dorsia]. Vá e encontre-a.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10021-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim, eu já sei. Versetti te mandou, certo? Crosia não me deixou em paz e acabou avisando o General da Brigada.</p>
+          <p> </p>
+          <p>Bom. Precisamos urgentemente de ajuda.</p>
+          <p> </p>
+          <p>Talvez você já saiba que uma poderosa energia do Éter está sendo emitida de Taloc's Hollow. Se for usado com sabedoria, a deficiência de Éter em Inggison poderá ser resolvida sem Obeliscos. Pelo menos foi o que pensamos.</p>
+          <p> </p>
+          <p>Durante nossa pesquisa sobre Taloc, conhecemos um Elim chamado [%dic:STR_DIC_N_Elim_DF4_01]. Na verdade, é mais um ramo do Taloc que teve um pouco de vida, e esse ramo pediu ajuda porque um grande problema surgiu em Taloc's Hollow.</p>
+          <p> </p>
+          <p>Se você quiser ajudar Taloc, vá para [%dic:STR_DIC_N_Elim_DF4_01].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10021-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sinto a dor, a dor insuportável de Taloc.</p>
+          <p> </p>
+          <p>Coisas terríveis acontecerão se nada for feito a respeito.</p>
+          <p> </p>
+          <p>Livra Taloc de seu sofrimento antes que a floresta seja ainda mais prejudicada.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pegue isso, [%dic:STR_DIC_I_L_SHAPE_IDELIM_LGUARDIANCHIEF] e [%dic:STR_DIC_I_KASPA_GODSKILL_ITEM].</p>
+          <p> </p>
+          <p>Você pode usar a Fruta Taloc para aumentar seus poderes.</p>
+          <p> </p>
+          <p>Mas só use as Lágrimas de Taloc em caso de emergência.</p>
+          <p> </p>
+          <p>Agora vou levá-los ao lugar onde tudo está acontecendo, bem no centro.</p>
+          <p> </p>
+          <p>Pegue meu galho quando estiver pronto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você alcança o galho de Lothas.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quem é você, Daeva? Você usa o Poder do Senhor.</p>
+          <p> </p>
+          <p>Tal coisa nunca existiu antes - um Daeva com o poder da Fruta Taloc.</p>
+          <p> </p>
+          <p>Você encontrou a causa dos sofrimentos de Taloc?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Coração de Celéstio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então foi isso que torturou Taloc e obstruiu o Fluxo de Éter.</p>
+          <p> </p>
+          <p>Tudo ficará bem se você confiar em Taloc.</p>
+          <p> </p>
+          <p>Taloc fala com você.</p>
+          <p> </p>
+          <p>Obrigado, amigo dos Elim e poderoso Daeva.</p>
+          <p> </p>
+          <p>Sua ação hoje nunca será esquecida.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Algo está causando grande dor a Taloc. Algo que está absorvendo a energia do Éter.</p>
+          <p> </p>
+          <p>Destruirá a floresta se não for eliminada logo.</p>
+          <p> </p>
+          <p>Por favor, ajude-nos, ó poderoso Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10021-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você teve sucesso!</p>
+          <p> </p>
+          <p>Como um Daeva da Vida, eu soube disso imediatamente.</p>
+          <p> </p>
+          <p>[%username], logo depois que você saiu, o Fluxo Etérico da floresta foi regenerado.</p>
+          <p> </p>
+          <p>Você veio de Taloc's Hollow? Você pode me dizer o que aconteceu lá?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT7_1">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Um fragmento da Torre de Aion estava em Taloc's Hollow?</p>
+          <p> </p>
+          <p>Fiquei me perguntando como uma floresta dessas poderia crescer em Balaurea. Agora eu entendo o porquê.</p>
+          <p> </p>
+          <p>Graças a Deus. O monstro que sugou o poder de Taloc foi morto! Se o poder roubado por este monstro não for recuperado, o equilíbrio da floresta será perturbado e outro monstro será criado.</p>
+          <p> </p>
+          <p>Graças aos seus esforços, [%username], agora podemos contar com a ajuda do Taloc.</p>
+          <p> </p>
+          <p>Contarei ao Sanctum sobre isso e pedirei o apoio deles.</p>
+          <p> </p>
+          <p>[%username], por favor encontre a Fortaleza das Ilusões também. Tenho certeza que o Brigada General [%dic:STR_DIC_N_Versetti] já está esperando por você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10021-5.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você está de volta.</p>
+          <p> </p>
+          <p>Tialla me contou. Você completou com sucesso uma missão para o Daeva da Vida?</p>
+          <p> </p>
+          <p>Estou aguardando seu retorno desde que ouvi que você entrou em Taloc's Hollow.</p>
+          <p> </p>
+          <p>O que aconteceu em Taloc's Hollow? Por favor, conte-me tudo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então, o poder em Taloc's Hollow era um fragmento de Aion? Isso também explica porque a energia do Éter foi interrompida.</p>
+          <p> </p>
+          <p>Eu entendo. Você completou a tarefa de maneira brilhante.</p>
+          <p> </p>
+          <p>Mas tenho mais um pedido. [%username], por favor, não conte a ninguém o que aconteceu em Taloc's Hollow.</p>
+          <p> </p>
+          <p>Ninguém ficará satisfeito em saber que o poder divino foi usado. Muita gente ficaria com inveja se isso se tornasse de conhecimento público. Portanto, é melhor guardar isso para você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LF4_SZ_OP] e fale com [%dic:STR_DIC_N_Versetti].</font></p></step>
+	       <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Dorsia].</font></p></step>
+	       <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_Elim_DF4_01].</font></p></step>
+	       <step><p visible="[%9]"><font color="[%10]">Aproveite [plur][%dic:STR_DIC_I_L_SHAPE_IDELIM_LGUARDIANCHIEF] e aumente suas habilidades.</font></p></step>
+	       <step><p visible="[%12]"><font color="[%13]">Use [%dic:STR_DIC_I_KASPA_GODSKILL_ITEM] e limpe Taloc's Hollow ([%14]/20).</font></p></step>
+	       <step><p visible="[%15]"><font color="[%16]">Mate o [%dic:STR_DIC_M_IDElim_3F_KomadeNM_53_Ae], obtenha o coração e leve-o para [%dic:STR_DIC_N_Elim_DF4_01].</font></p>[%collectitem]</step>
+	       <step><p visible="[%18]"><font color="[%19]">Relatar para [%dic:STR_DIC_N_Dorsia].</font></p></step>
+	       <step><p visible="[%21]"><font color="[%22]">Vá para [%dic:STR_DIC_W_LF4_SZ_OP] e reporte para [%dic:STR_DIC_N_Versetti].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: A Tropa de Pesquisa que partiu para investigar Taloc está em dificuldades. Vá para a Floresta de Taloc e resolva o problema.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O General de Brigada Versetti está preocupado com a Tropa de Pesquisa em Taloc's Hollow. Então ele pediu para você encontrar Tialla.</p>
+          <p> </p>
+          <p>Tialla lhe contou que todos os Daevas que entraram na floresta foram feridos e impedidos pelo Fluxo de Éter localizado ali.</p>
+          <p> </p>
+          <p>Com a ajuda do Guardião Lothas de Taloc e graças aos poderes de fortalecimento das Frutas Taloc, você conseguiu entrar em Taloc's Hollow. Lá você derrotou Celestius e descobriu que um fragmento da Torre da Eternidade está em Taloc.</p>
+          <p> </p>
+          <p>Você relatou isso a Tialla e Versetti, que o elogiaram por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Pedido: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

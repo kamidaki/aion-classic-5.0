@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], por favor mate [%dic:STR_DIC_M_LDF5A_B5_Fana] e [%dic:STR_DIC_M_LDF5A_B5_Fana_Kn_SN_63_An].</p>
+          <p> </p>
+          <p>Eles devem ser mortos imediatamente para destruir o acampamento Vinculado de Dragão.</p>
+          <p> </p>
+          <p>Os Vinculados de Dragão estão constantemente capturando cidadãos Reian para torná-los cidadãos Vinculados de Dragão.</p>
+          <p> </p>
+          <p>Você deve matá-los para que o número de cidadãos Vinculados de Dragão não aumente ainda mais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o Vinculado de Dragão e o líder Ellohum?</p>
+          <p> </p>
+          <p>Não foi difícil determinar o líder do Vinculado de Dragão.</p>
+          <p> </p>
+          <p>Aquele diante de quem todos os membros do Vinculado de Dragão se curvaram deve ser seu líder.</p>
+          <p> </p>
+          <p>Que idiotas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que matou o oponente.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Graças à sua ajuda, este assentamento Vinculado de Dragão será destruído em breve[%username].</p>
+          <p> </p>
+          <p>Mesmo que não imediatamente.</p>
+		  <p> </p>
+          <p>Quero aproveitar esta oportunidade para me estabelecer na vila submersa, onde posso estudar as ações do Vinculado de Dragão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Limpe o Vinculado de Dragão!</font></p>
+			         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_B5_Fana]([%2]/12)</font></p>
+			         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_B5_Fana_Kn_SN_63_An] ([%5]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5A_Raky_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine o Vinculado de Dragão na Vila Abandonada.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Laki disse que para destruir o Abrigo Vinculado de Dragão, é preciso eliminar os seguidores do Vinculado de Dragão junto com Ellohum, seu líder.</p> 
+		  <p> </p>
+		  <p>Você eliminou os seguidores Vinculados de Dragão e Ellohum. Quando você voltou, Laki disse que o abrigo Vinculado de Dragão foi completamente destruído e ele lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

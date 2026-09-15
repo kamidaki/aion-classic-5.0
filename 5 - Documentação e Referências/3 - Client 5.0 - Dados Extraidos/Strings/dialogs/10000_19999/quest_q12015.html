@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12015</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Explodir esses [%dic:STR_DIC_M_LDF4b_T3_Troll_Rage_58_An]s! Espero que eles fiquem presos na lava! O que eles poderiam querer com meus seismonitores?</p>
+          <p> </p>
+          <p>Não consigo imaginar o que estão fazendo com eles, mas sempre que instalo um seismonitor, eles mastigam os invólucros.</p>
+          <p> </p>
+          <p>Pelo menos posso consertar isso - são os que eles roubam que realmente me irritam. O que eles estão fazendo com eles, afinal? Eles não podem ter um gosto bom!</p>
+          <p> </p>
+          <p>Sou um cientista, não um velocista, e estou cansado de perseguir aqueles Trollpins idiotas. Você poderia me fazer um favor e se livrar deles?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ugh, ele atravessou os pinos de inclinação neste aqui... Isso vai levar uma eternidade para recalibrar.</p>
+          <p> </p>
+          <p>Ah, [%username], você está de volta. Por favor, me diga que você tem boas notícias.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Você não deveria ter mais problemas."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Espero que sim.</p>
+          <p> </p>
+          <p>Agora posso tentar obter alguns dados decentes antes que algo dê errado.</p>
+          <p> </p>
+          <p>Obrigado, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_M_LDF4b_T3_Troll_Rage_58_An]s ([%2]/7).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Viaus].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Trollpins Fora da Lei estão roubando dispositivos de monitoramento da Expedição de Pesquisa Vulcânica, interferindo no trabalho de Viaus.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Viaus reclamou que Outlaw Trollpins estava quebrando e roubando seus seismonitores, impossibilitando seu trabalho.</p>
+          <p> </p>
+          <p>Você eliminou os Trollpins para que Vaius pudesse coletar dados sobre o vulcão em paz.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

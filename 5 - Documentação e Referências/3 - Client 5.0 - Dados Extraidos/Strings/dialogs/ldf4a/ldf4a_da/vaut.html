@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deseja usar o poder de um [%dic:STR_DIC_ELA31], [%username]?</p>
+          <p> </p>
+          <p>Apenas me dê seu Estigma e Fragmento e eu os equiparei. Também posso remover o Estigma que já está equipado.</p>
+          <p> </p>
+          <p>Tome cuidado, pois o poder do Estigma deve ser respeitado - caso contrário, ele poderá consumir você.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <stigma_open>Equip/Remove Estigma</stigma_open>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deseja usar o poder de um [%dic:STR_DIC_ELA31], [%username]?</p>
+          <p> </p>
+          <p>Apenas me dê seu Estigma e Fragmento e eu os equiparei. Também posso remover o Estigma que já está equipado.</p>
+          <p> </p>
+          <p>Tome cuidado, pois o poder do Estigma deve ser respeitado - caso contrário, ele poderá consumir você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Terminar o diálogo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você deseja usar o Estigma, sua habilidade deve ser comprovada posteriormente.</p>
+          <p> </p>
+          <p>Parece um pouco estranho ter suas habilidades reconhecidas por outra pessoa quando você já é excepcionalmente talentoso, mas tenho que respeitar os sistemas e regras.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Voltarei quando estiver mais forte."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12022</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A verdadeira missão aqui é derrotar as legiões de Tiamat, embora seria bom enfiar uma faca em uma ou duas Ellie.</p>
+          <p> </p>
+          <p>Não tenho dúvidas de que a batalha se voltará contra os Elyos em breve. Eles são orgulhosos demais para ver como os Reianos se ressentem de sua postura pomposa.</p>
+          <p> </p>
+          <p>Quando as coisas começarem a acontecer, quero que os Reianos pensem que somos seus velhos amigos confiáveis. Preciso que você colete [%dic:STR_DIC_I_tiamat_banner_01]s como prova do Balaur que derrotamos. Vá tirá-los das Legiões no Olho de Tiamaranta.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom, você está de volta. Você não parece pior pelo desgaste.</p>
+          <p> </p>
+          <p>Quantos Balaur você destruiu?</p>
+          <p> </p>
+          <p>Entregue as Dragonas do Legionário e vamos ver.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Perdi a conta depois de um tempo."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, bem, [%username], este é um bom resultado.</p>
+          <p> </p>
+          <p>Ainda posso sentir o cheiro do sangue de lagarto neles. Me deixa com fome de briga.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_tiamat_banner_01]s para [%dic:STR_DIC_N_Alpen].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote o máximo de Balaur das Legiões Naduka, Basrasa e Satra que puder e colete as Dragonas do Legionário como evidência.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Alpen queria eliminar Balaur como prova do poder Asmodiano.</p>
+          <p> </p>
+          <p>Você matou Balaur na Guilda Naduka, Guilda Basrasa e Guilda Satra, e coletou Dragonas do Legionário como prova das vitórias de seu povo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

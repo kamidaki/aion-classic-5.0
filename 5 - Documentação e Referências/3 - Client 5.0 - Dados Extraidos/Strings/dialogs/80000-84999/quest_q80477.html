@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Saudação. Meu nome é Rowena.</p>
+          <p> </p>
+          <p>Você tem alguma coisa para vestir no Festival Ivankufalla?</p>
+          <p> </p>
+          <p>Se não, talvez eu possa ajudá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você pergunta que tipo de ajuda.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recolho brasas mágicas que podem ser usadas para acender a fogueira sagrada.</p>
+          <p> </p>
+          <p>Se você me ajudar a coletar brasas mágicas, eu lhe darei um manto branco que você poderá usar em festivais e uma coroa de flores silvestres como recompensa.</p>
+          <p> </p>
+          <p>Eu precisaria de 10 deles... Que tal? Você estaria interessado?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você diz que receberá 10 brasas mágicas.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau, muito obrigado. A fogueira sagrada continuará acesa por ainda mais tempo graças à sua ajuda.</p>
+          <p> </p>
+          <p>Por favor, traga-me as brasas mágicas agora.</p>
+          <p> </p>
+          <p>Prepararei o manto branco e a coroa de flores silvestres.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tudo bem, acho que não há nada que possa ser feito então. vou ter que procurar outra pessoa...</p>
+          <p> </p>
+          <p>Espero que vocês gostem do festival.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau, você está de volta.</p>
+          <p> </p>
+          <p>Você me trouxe as 10 brasas mágicas?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega 10 brasas mágicas.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim, é isso. É exatamente isso!</p>
+          <p> </p>
+          <p>Isso manterá a fogueira sagrada acesa por mais tempo.</p>
+          <p> </p>
+          <p>Muito obrigado, de verdade.</p>
+          <p> </p>
+          <p>Aqui, o manto branco e a coroa de flores silvestres que prometi. Vá em frente, experimente-os.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você parece não ter tudo ainda.</p>
+          <p> </p>
+          <p>Não há necessidade de pressa. Não tenha pressa e reúna tudo, depois traga para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna 10 brasas mágicas e leve tudo para Rowena.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Leve 10 brasas mágicas para Rowena.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você trouxe para Rowena, que cuida da fogueira sagrada, algumas brasas mágicas.</p>
+          <p> </p>
+          <p>Rowena lhe deu em troca um manto branco e uma coroa de flores silvestres.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

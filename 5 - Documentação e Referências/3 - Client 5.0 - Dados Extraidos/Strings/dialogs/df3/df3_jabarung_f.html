@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak, muito o que fazer, muito o que fazer!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito o que fazer, muito o que fazer, ak!</p>
+          <p> </p>
+          <p>Daeva queria ir para o Steel Rake, ok?</p>
+          <p> </p>
+          <p>Então Daeva está no lugar certo, ak. Os Mercadores da Nuvem Negra cobrirão todos os custos no caminho para o Steel Rake, então algo será feito em relação aos Piratas Shulack.</p>
+          <p> </p>
+          <p>Daeva pode alcançar o [%dic:STR_DIC_E_Ship_Da2] teletransportando-se. O caminho até lá está resolvido, mas quando o trabalho estiver concluído, Daeva terá que voltar por conta própria.</p>
+          <p> </p>
+          <p>Diga-me quando Daeva estiver pronto e embarcaremos imediatamente, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você embarca no Steel Rake.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ak, Shugo acha que Daeva não pode ir.</p>
+          <p> </p>
+          <p>Não é nada contra Daeva, mas Daeva ainda não está pronto, akakak.</p>
+          <p> </p>
+          <p>O Steel Rake é um lugar muito perigoso. É por isso que a ordem de cima é permitir a entrada apenas de Daevas suficientemente experientes.</p>
+          <p> </p>
+          <p>Os comerciantes Shugo não dão esmolas a ninguém. Sem exceções, nem mesmo para Daeva que está condenado a morrer. Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mas onde estão os outros, akakak? Daeva está realmente pensando em ir sem mais ninguém?</p>
+          <p> </p>
+          <p>O navio Steel Rake é um lugar muito, muito perigoso.</p>
+          <p> </p>
+          <p>Principalmente o lugar onde estão os líderes, ak. Akakak! Daeva deveria trazer companheiros.</p>
+          <p> </p>
+          <p>Mas se Daeva insiste em ir sozinho[f:"ela mesma"], então Daeva deveria encontrar Deirinrinerk. Ele levará Daeva ao [%dic:STR_DIC_W_ShulackShip_D2_2F], que Daeva pode acessar sozinho[f:"ela mesma"], ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH">Você procura amigos para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva já tem aliados, por que Daeva precisa de mais?</p>
+          <p> </p>
+          <p>Se Daeva está procurando novos aliados, então Daeva deve deixar o grupo, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+</HtmlPages>
+

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>1. Destinatário: Funcionário [%username]</p>
+          <p> </p>
+          <p>2. Tarefa: A gestão precisa de [%dic:STR_DIC_I_quest_39601a] de [%dic:STR_DIC_E_LDF5a_Idgel_Q39601]. Por favor, obtenha-os e entregue-os no escritório administrativo, ak.</p>
+          <p> </p>
+          <p>3. Escritório administrativo: [%dic:STR_DIC_E_LDF5a_Silverlin_BL]</p>
+          <p> </p>
+          <p>Assim que a tarefa for concluída, você receberá uma recompensa. Por favor, faça um trabalho bom e limpo, ak.</p>
+          <p> </p>
+          <p>- Danurinerk, gerente de recursos de equipe da Silverine Limited</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você dobra e embolsa as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não foi uma tarefa fácil?</p>
+          <p> </p>
+          <p>Daeva deve simplesmente encontrar [plur][%dic:STR_DIC_I_quest_39601a].</p>
+          <p> </p>
+          <p>[%username], quando Shugo estava no lugar de Daeva, Shugo teve que encontrar 100 Diamantes Grandes, ak.</p>
+          <p> </p>
+          <p>Deixe Shugo dar uma olhada no fragmento de Idium distorcido.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Fragmento de Idium.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que Daeva estava fazendo o tempo todo, ok?</p>
+          <p> </p>
+          <p>Se Daeva continuar assim, Daeva receberá uma recompensa!</p>
+          <p> </p>
+          <p>Shugo será tolerante desta vez. Basta pegar o [plur][%dic:STR_DIC_I_quest_39601a] como indicado na missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vejamos... esses são os produtos certos e também na quantidade certa.</p>
+          <p> </p>
+          <p>O nome de Daeva é [%username]?</p>
+          <p> </p>
+          <p>Se Daeva continuar trabalhando tanto, talvez Daeva seja promovido.</p>
+          <p> </p>
+          <p>Mas por que as ordens vieram de cima para coletar essas coisas permanece um mistério para Shugo, ak.</p>
+          <p> </p>
+          <p>De qualquer forma, eles parecem muito bonitos, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [plur][%dic:STR_DIC_I_quest_39601a] e leve-os para [%dic:STR_DIC_E_LDF5a_Silverlin_BL].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Você recebeu instruções da Silverine Limited. Leia-os e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu instruções da Silverine Limited.</p>
+          <p> </p>
+          <p>Depois de trazer os Fragmentos de Idium para a filial da Silverine Limited em North Katalam, você foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

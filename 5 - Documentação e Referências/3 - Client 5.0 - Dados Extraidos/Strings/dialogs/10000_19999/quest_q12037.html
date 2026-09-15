@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12037</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que faz você se sentir mais vivo? Que tal lutar contra os inimigos mais fortes que encontrar?</p>
+          <p> </p>
+          <p>O Protetorado de Tiamat é a legião mais forte de Tiamaranta.</p>
+          <p> </p>
+          <p>Você poderia ir atrás de seus líderes: [%dic:STR_DIC_M_TDown_DrakanWi_Noble_Named_60_Ae], [%dic:STR_DIC_M_TDown_Drakan_PagatiDrop_Named_60_Ae] e [%dic:STR_DIC_M_TDown_DrakanCl_Noble_Named_60_Ae].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Apenas respire esse éter de Tiamaranta! Isso empurra energia em minhas veias.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu matei aqueles caras do Protetorado mais bem classificados."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estamos quase prontos para derrotar Dragon Lorde Tiamat. Imaginando como isso será emocionante!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os líderes do Protetorado.</font></p>
+                         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_TDown_DrakanWi_Noble_Named_60_Ae] ([%2]/1)</font></p>
+                         <p visible="[%3]"><font color="[%4]">[%dic:STR_DIC_M_TDown_Drakan_PagatiDrop_Named_60_Ae] ([%5]/1)</font></p>
+                         <p visible="[%6]"><font color="[%7]">[%dic:STR_DIC_M_TDown_DrakanCl_Noble_Named_60_Ae] ([%8]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Erephe].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os líderes do Protetorado e depois conte tudo a Erephe.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Erephe sugeriu que você poderia desferir um golpe em Elysea E se divertir se derrotasse o vice-governador Brilla, o assessor Iranati e o capitão Granta do Protetorado.</p>
+          <p> </p>
+          <p>Erephe estava certo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho um pedido urgente para você, [%username].</p>
+          <p> </p>
+          <p>Preciso de alguns [plur][%dic:STR_DIC_I_quest_25012a] e [plur][%dic:STR_DIC_I_quest_25012b] o mais rápido possível.</p>
+		  <p> </p>
+		  <p>Os estudiosos de Reian pediram para pesquisarmos o ecossistema local junto conosco, e que deveríamos obter amostras dessas escalas para esse fim.</p>
+          <p> </p>
+          <p>É claro que os estudiosos Asmodianos possuem um vasto conhecimento, mas não sabemos muito sobre o conhecimento dos cientistas Reianos.</p>
+          <p> </p>
+		  <p>Uma cooperação como esta poderia levar a insights magníficos. E como bônus secundário, fortaleceríamos os laços de amizade entre os Asmodianos e os Reian.</p>
+		  <p> </p>
+		  <p>Por favor, reúna essas amostras e leve-as para [%dic:STR_DIC_N_DF5_Lastavan_E], o estudioso Reian.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é um Asmodiano.</p>
+          <p> </p>
+          <p>O que traz você até mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a balança e conta o que Matti lhe contou.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você diz que Matti enviou você? Vamos ver aqui.</p>
+          <p> </p>
+		  <p>Sim, era exatamente isso que estávamos procurando. Por favor, espere um momento.</p>
+		  <p> </p>
+          <p>(Compara as escalas com outras amostras.)</p>
+          <p> </p>
+		  <p>Verdadeiramente notável... Estas criaturas têm uma capacidade fenomenal de adaptação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que isso significa.</Act>
+    </Selects>
+  </HtmlPage> 
+
+<HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho certeza de que os Asmodianos não perderão tempo.</p>
+          <p> </p>
+          <p>Se você vir Matti, pergunte a ele o que aconteceu com nosso pedido.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+		<Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects> 
+ </HtmlPage>
+   
+     <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você diz que Matti enviou você? Vamos ver aqui.</p>
+          <p> </p>
+		  <p>Sim, era exatamente isso que estávamos procurando. Por favor, espere um momento.</p>
+		  <p> </p>
+          <p>(Compara as escalas com outras amostras.)</p>
+          <p> </p>
+		  <p>Verdadeiramente notável... Estas criaturas têm uma capacidade fenomenal de adaptação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que isso significa.</Act>
+    </Selects>
+  </HtmlPage> 
+
+  
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_W_DF5] parece ter passado por grandes convulsões no passado.</p>
+          <p> </p>
+		  <p>Normalmente, as formas de vida são incapazes de se adaptar tão rapidamente. Eles se extinguem, abrindo caminho para novas formas de vida...</p>
+		  <p> </p>
+		  <p>Mas essas criaturas... Elas parecem ser capazes de se adaptar com facilidade.</p>
+		  <p> </p>
+		  <p>É... difícil de explicar. Neste aspecto eles parecem semelhantes ao nosso próprio povo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga [plur][%dic:STR_DIC_I_quest_25012a] e [plur][%dic:STR_DIC_I_quest_25012b] para [%dic:STR_DIC_N_DF5_Lastavan_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Matti pediu para você obter Escamas de Vespines e Escamas de Korarico e trazê-las para Rastavan. Atenda ao pedido de Matti.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Matti pediu que você obtivesse Escamas de Vespines e Escamas de Korarico para auxiliar no projeto de pesquisa conjunto com Reian.</p>
+          <p> </p>
+          <p>Você obteve amostras de ambos os tipos de escamas e as trouxe para Rastavan, o Reian Scholar, que ficou muito surpreso com a capacidade de adaptação das criaturas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41273</QuestId>
+    <QuestName>드래곤플라이 사냥</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho tido problemas para conseguir suprimentos aqui. As entregas são sempre escoltadas, claro, mas os ataques estão piorando.</p>
+          <p> </p>
+          <p>O principal problema são os Defensores Elite Satra. Eles protegem as tropas mais agressivas, que causam mais danos.</p>
+          <p> </p>
+          <p>Não posso fazer negócios assim. Além disso, os soldados aqui acabam ficando constantemente sem os bens necessários, que é o propósito dos Balaur, tenho certeza.</p>
+          <p> </p>
+           <p>Um Daeva poderia fazer muito bem indo para [%dic:STR_DIC_W_LDF4a_SZ_C2] e matando [%dic:STR_DIC_M_LDF4A_C2_DrakanFi_Noweapon_58_An]s, eu aposto....</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este último lote de suprimentos foi atacado de forma bastante violenta. Quase nada chegou aqui intacto.</p>
+          <p> </p>
+          <p>Se não fosse pelos [%dic:STR_DIC_M_LDF4A_C2_DrakanFi_Noweapon_58_An]s, a escolta poderia resolver o resto com mais facilidade.</p>
+          <p> </p>
+          <p>Presumo que você tenha recebido minha... dica sutil sobre o que poderia ser feito a respeito.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sutil?! Uh... sim."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, bom. Estou feliz por ter me comunicado de forma eficaz. No meu mundo, às vezes é difícil dizer.</p>
+          <p> </p>
+          <p>De qualquer forma, você não apenas prestou um serviço a mim, mas a todos os Daeva estacionados aqui. Você tem o meu e o deles, obrigado.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4a_SZ_C2] e mate [%dic:STR_DIC_M_LDF4A_C2_DrakanFi_Noweapon_58_An]s ([%2]/11).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Ledios].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Defensores Satra de Elite que estão protegendo os invasores de caravanas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças aos Defensores de Elite Satra, os Balaur atacaram com sucesso os fornecedores de Ledios, privando a todos de bens tão necessários.</p>
+          <p> </p>
+          <p>Você foi para Satrakand e matou os Defensores para que Ledios e os soldados pudessem conseguir o que precisavam com segurança.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

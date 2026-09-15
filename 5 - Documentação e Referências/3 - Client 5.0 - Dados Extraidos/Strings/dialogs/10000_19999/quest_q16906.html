@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com o último relatório, os Mist Mane Mau de Morheim estão ajudando os Revolucionários Lefaristas e lançaram um ataque.</p>
+          <p> </p>
+          <p>Agora que a luta começou, não será tão fácil parar, não é mesmo?</p>
+          <p> </p>
+          <p>[%username], vá até o Fenda até [%dic:STR_DIC_W_DF2_SUB_E3] em Morheim e ocupe o posto de Mist Mane Mau.</p>
+          <p> </p>
+          <p>Depois de pegar o [%dic:STR_DIC_W_DF2_Village_02], mate [%dic:STR_DIC_M_DF2_2_Light_Raider].</p>
+          <p> </p>
+          <p>Você pode me contar como foi a missão quando fizer o relatório. Espero que você retorne em segurança.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que está acontecendo com a situação de conquista do posto avançado?</p>
+          <p> </p>
+          <p>[%username], acredito que você concluiu a tarefa com sucesso. O posto na entrada da Vila Mist Mane é um local importante para sitiar os Asmodianos em Morheim.</p>
+          <p> </p>
+          <p>O local deveria estar caótico por causa da batalha entre os Asmodianos e os Mau. Mas se você matar [%dic:STR_DIC_M_DF2_2_Light_Raider], que está ocupando o local, a guerrilha cuidará do resto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">A missão foi concluída com sucesso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Realmente? Bom trabalho para assumir o cargo.</p>
+          <p> </p>
+          <p>Agora só nos resta torcer para que o Esquadrão de Guerrilha despachado aguente o maior tempo possível.</p>
+          <p> </p>
+          <p>Esta operação envolve muitos fatores diferentes e perigosos, por isso é quase certo que não será uma vitória fácil.</p>
+          <p> </p>
+          <p>Chegará o dia em que você terá que ajudar mais uma vez.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Atravesse Morheim e mate [%dic:STR_DIC_M_DF2_2_Light_Raider] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_W_LF2_SZ_OP] [%dic:STR_DIC_N_Telemachus].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Atravesse Morheim usando o Fenda e ocupe [%dic:STR_DIC_W_DF2_Village_02] na entrada da vila Mist Mane.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O General de Brigada Telemakos da Fortaleza Eltnen comandou que o Posto de Guarda Mist Mane, localizado na entrada da Vila Mist Mane, fosse capturado como vingança contra os Asmodianos.</p>
+          <p> </p>
+          <p>Os Guerrilhadores Elyos apareceram depois que você repeliu os defensores Asmodianos e os Guerrilhadores Revolucionários Lefaristas e ocupou o posto.</p>
+          <p> </p>
+          <p>Esta deve ser uma longa batalha.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

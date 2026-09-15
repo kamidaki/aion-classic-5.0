@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, destrua o Exército Beritra [%dic:STR_DIC_M_IDF5_U2_P_Vri_N_65_all] vindo do Refúgio da Tribo Rúnica e reporte-se a [%dic:STR_DIC_N_LDF5_Under_Nibella_E].</p>
+          <p> </p>
+          <p>Algo tem que ser feito porque a Tropa Especial de Pesquisa recuará imediatamente assim que terminar a tarefa de obter o método de utilização do Idgel.</p>
+          <p> </p>
+          <p>E outra coisa deve ser levada em consideração para detê-los.</p>
+          <p> </p>
+          <p>As informações adicionais dos Shugos subornados.</p>
+          <p> </p>
+          <p>Diz-se que a Unidade de Comando de Tropas de Pesquisa Especial está em um só lugar. Para avançar até esse ponto, os dispositivos deixados pela Tribo Rúnica precisam ser operados, mas não vamos muito longe nisso.</p>
+          <p> </p>
+          <p>Será necessário se dividir e seguir em três direções e operar cada dispositivo para encontrar a Unidade de Comando da Tropa Especial de Pesquisa.</p>
+          <p> </p>
+          <p>E antes de enfrentá-los, você encontrará a liderança dos Chira Grave Robbers, então fique alerta.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recebi o relatório de Dintanum, mas não sabia que você viria tão rápido.</p>
+          <p> </p>
+          <p>Ouvi dizer que precisávamos controlar a situação rapidamente.</p>
+          <p> </p>
+          <p>O assunto foi tratado?</p>
+          <p> </p>
+          <p>Tenho certeza de que não foi fácil enfrentar os três Balaur.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Concluí a tarefa em tempo útil.</p>
+          <p> </p>
+          <p>Não vale a pena pensar o que teria acontecido se o método de utilização do Idgel tivesse caído nas mãos dos Balaur...</p>
+          <p> </p>
+          <p>Que maravilha poder dar boas notícias a Brif.</p>
+          <p> </p>
+          <p>Bom trabalho!</p>
+          <p> </p>
+          <p>[%username], aqui, por favor, aceite isso como uma recompensa por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDF5_U2_P_Vri_N_65_all] em [%dic:STR_DIC_W_IDLDF5_Under_02_all]!</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_IDF5_U2_P_VriIU_Wi_N_65_Ah] ([%2]/1)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_IDF5_U2_P_VriRP_Ri_N_65_Ae2] ([%5]/1)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_IDF5_U2_P_VriRP_As_N_65_Ae2] ([%8]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Under_Nibella_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine a Unidade de Comando da Tropa Especial de Pesquisa do Exército Beritra no Refúgio da Tribo Runa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para garantir que o método de uso do Idgel não caia nas mãos do Exército Beritra, Dintanum pediu que você encontrasse a Unidade de Comando da Tropa Especial de Pesquisa e destruísse todos eles.</p>
+          <p> </p>
+          <p>Depois de matar o Oficial de Estado-Maior Suyaroka, o Médico Chefe Tagnus e Blade Terror Ukahim da Unidade de Comando da Tropa de Pesquisa Especial conforme instruído por Dintanum, você se reportou a Nivella e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

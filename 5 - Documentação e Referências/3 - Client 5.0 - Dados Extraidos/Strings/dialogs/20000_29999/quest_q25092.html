@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma fonte de energia muito fácil de encontrar nesta região são as chamas.</p>
+          <p> </p>
+          <p>Nosso pessoal encarregado da investigação contínua desta região determinou que o [plur][%dic:STR_DIC_I_quest_25092a] emite muito calor.</p>
+          <p> </p>
+		  <p>Alguns dos técnicos da Asmodae ainda não chegaram aqui, mas, surpreendentemente, os Shugos já estão aqui.</p>
+		  <p> </p>
+          <p>Tenho certeza de que os Shugos podem lhe mostrar como usar essa energia. Obtenha um [%dic:STR_DIC_I_quest_25092a] e leve-o para [%dic:STR_DIC_N_DF5_Bakring_E].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que Daeva tem aí?</p>
+          <p> </p>
+          <p>Daeva não está aqui por causa dos Daemons, certo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Monitor Heart.</Act>
+    </Selects>
+  </HtmlPage>
+
+ <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Está quente, querido...</p>
+          <p> </p>
+          <p>Será que Daeva encontrou, talvez? Aposto que você pode usá-lo para gerar muita energia.</p>
+          <p> </p>
+          <p>Parece que você poderia vendê-lo por um bom preço, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta se ele está interessado.</Act>
+    </Selects> 
+  </HtmlPage>	
+
+ 
+<HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que Daeva está fazendo aqui, ok?</p>
+          <p> </p>
+          <p>Primeiro, Daeva precisa conseguir o que Shugo precisa, ak.</p>
+		  <p> </p>
+		  <p>E imediatamente!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+		<Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects> 
+ </HtmlPage>
+   
+ <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Está quente, querido...</p>
+          <p> </p>
+          <p>Será que Daeva encontrou, talvez? Aposto que você pode usá-lo para gerar muita energia.</p>
+          <p> </p>
+          <p>Parece que você poderia vendê-lo por um bom preço, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta se ele está interessado.</Act>
+    </Selects> 
+  </HtmlPage>	
+	
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que bom, Daeva!</p>
+          <p> </p>
+          <p>Bekrinerk vai comprá-lo.</p>
+          <p> </p>
+          <p>Este é um bom negócio, ok.</p>
+          <p> </p>
+          <p>Shugo pode usá-lo para fazer um gerador realmente bom, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga [%dic:STR_DIC_N_DF5_Bakring_E] e [%dic:STR_DIC_I_quest_25092a].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Theodricus contou a você sobre um Shugo que pode transformar um Coração Monitor em uma fonte de energia. Obtenha um Monitor Heart em chamas e leve-o para Bekrinerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Theodricus contou a você sobre um Shugo que pode criar uma fonte de energia se você conseguir um Monitor Heart.</p>
+          <p> </p>
+          <p>Você trouxe para Bekrinerk um Monitor Heart em chamas. Ele queria usá-lo para criar uma fonte de energia incrível.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, o que devo fazer agora?</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF5B_B1_Lupyllini_63_n] retirou a ordem de ataque que eu deveria dar a Lingermun.</p>
+          <p> </p>
+          <p>Por favor, recupere-o para mim, é uma ordem vital que devo transmitir.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects> 
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essas Plumas que têm que ser mortas!</p>
+          <p> </p>
+          <p>Quero arrancar todos eles quando os vir...</p>
+          <p> </p>
+          <p>Ah, você está de volta!</p>
+          <p> </p>
+          <p>As ordens, o que aconteceu com as ordens?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eles desapareceram? Isso é um problema enorme!</p>
+          <p> </p>
+          <p>Um momento por favor!</p>
+          <p> </p>
+          <p>Poderíamos ir direto para lá e repassar as ordens, não é?</p>
+          <p> </p>
+          <p>Oh, eu fui tão estúpido.</p>
+          <p> </p>
+          <p>Agora tenho que sair rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF5B_B1_Lupyllini_63_n] ([%2]/4).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Gael_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ajude Gael a encontrar os pedidos perdidos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Gael, você matou o animado Dark Red Pluma, mas não conseguiu encontrar a ordem importante.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com nossas informações, nossos inimigos estão planejando um ataque total por todo o Abismo após capturarem a Fortaleza Miren.</p>
+          <p> </p>
+          <p>Tal ataque devastaria os Elyos.</p>
+          <p> </p>
+          <p>Mas nós da Guilda Vento Cinzento não permitiremos isso.</p>
+          <p> </p>
+          <p>Iremos capturar a fortaleza, parar o ataque e alterar a situação de guerra a nosso favor!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os oponentes protegem suas fortalezas colocando muitos guardas em campo.</p>
+          <p> </p>
+          <p>Então está claro que temos que atacar a fortaleza!</p>
+          <p> </p>
+          <p>Mas será difícil causar qualquer dano sério porque há muitos deles. É por isso que deveríamos enfraquecê-los através de ataques repetidos.</p>
+          <p> </p>
+          <p>Esta fortaleza é importante para rompermos as linhas inimigas... mas não podemos fazer isso sozinhos.</p>    
+          <p> </p>
+          <p>E você, [%username]? Você poderia eliminar o [%dic:STR_DIC_E_1241_Defender_Dr] ou o [%dic:STR_DIC_E_1241_Defender_Da]?</p>    
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito bom. Reúna seus amigos e vá para a Fortaleza Miren.</p>
+          <p> </p>
+          <p>A fortaleza é fortemente guardada, [%username], então você deve ter cuidado. Leve apenas aqueles que são pelo menos tão fortes quanto você.</p>
+          <p> </p>
+          <p>Reporte assim que tiver concluído a missão.</p>
+          <p> </p>
+          <p>[%username], quando você retornar poderemos iniciar a próxima operação imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Fortaleza Miren deve ser capturada.</p>
+          <p> </p>
+          <p>[%username], esperava que você nos ajudasse...</p>
+          <p> </p>
+          <p>Eu imploro que você reconsidere.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estava esperando por você, [%username].</p>
+          <p> </p>
+          <p>O ataque à Fortaleza Miren foi bem-sucedido?</p>
+          <p> </p>
+          <p>Qual é a situação da fortaleza?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmm, a situação é pior do que eu pensava.</p>
+          <p> </p>
+          <p>A missão foi concluída com sucesso. Agora podemos realizar a operação sem dificuldades.</p>
+          <p> </p>
+          <p>Devo transmitir as próximas ordens ao meu pessoal.</p>
+          <p> </p>
+          <p>Lealdade e armas!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_1241_Defender_Dr] ou o [%dic:STR_DIC_E_1241_Defender_Da] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Monerva].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote o Esquadrão de Defesa Asmodiano Miren ou o Esquadrão de Conquista Balaur Miren para completar a missão de Minerva.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Minerva planejou uma operação para recapturar a Fortaleza Miren.</p>
+          <p> </p>
+          <p>Você derrotou o Esquadrão de Defesa Asmodiano Miren ou o Esquadrão de Conquista Balaur Miren. Minerva ficou encantada com o seu sucesso e pôde prosseguir com a próxima fase do seu plano.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

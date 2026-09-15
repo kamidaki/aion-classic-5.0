@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Arieluma!</p>
+		<p> </p>
+		<p>Nem sei se esta saudação é adequada...</p>
+		<p> </p>
+		<p>Sarpan, Tiamaranta e Katalam foram destruídos pela Grande Ofensiva de Beritra.</p>
+		<p> </p>
+		<p>Você estava em uma das regiões que foi destruída, [%username]. Mas você foi salvo pela bênção do Senhor e embarcou neste navio.</p>
+		<p> </p>
+		<p>Eu sei que tudo é muito confuso, mas deixe-me explicar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Beritra mobilizou toda a sua força militar para destruir Sarpan, Tiamaranta e Katalam.</p>
+          <p> </p>
+		  <p>Havia selos especiais lá.</p>
+		  <p> </p>
+		  <p>Depois que ele destruiu tudo naquelas regiões, a Luz do Selo brilhou e subiu aos céus. Então houve apenas escuridão.</p>
+		  <p> </p>
+		  <p>Então veio um tsunami e essas regiões afundaram no mar. Agora não conseguimos mais encontrar vestígios de Sarpan, Tiamaranta e Katalam.</p>
+		  <p> </p>
+		  <p>Muitos seres foram mortos.</p>
+		  <p> </p>
+		  <p>Nunca mais poderemos ir a Sarpan, Tiamaranta e Katalam.</p>
+		  <p> </p>
+		  <p>Mas em seu lugar, uma nova região surgiu das ondas.</p>
+		  <p> </p>
+		  <p>Esta nova região foi provavelmente a razão pela qual Beritra destruiu os habitats de tantas criaturas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que tudo isso parece muito confuso para você.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Posso entender que você esteja confuso.</p>
+          <p> </p>
+		  <p>Tenho que admitir que, embora seja eu quem esteja explicando isso para você, também estou confuso.</p>
+		  <p> </p>
+		  <p>Mas não temos tempo a perder agora.</p>
+		  <p> </p>
+		  <p>Temos de reconstruir as nossas legiões e impedir os Balaur de levarem a cabo a sua campanha de conquista.</p>
+		  <p> </p>
+		  <p>Além disso, seria interessante descobrir como esta nova região conseguiu surgir do oceano.</p>
+		  <p> </p>
+		  <p>Suponho que Beritra tenha algo a ver com isso.</p>
+		  <p> </p>
+		  <p>Estou enviando Daevas para Santuário e para a nova região.</p>
+		  <p> </p>
+		  <p>Você pode escolher um dos dois destinos.</p>
+		  <p> </p>
+		  <p>Que nós, Elyos, desafiemos todos os perigos e provemos nosso poder a toda Balaurea!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com Gremas.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Descubra o que aconteceu com a ajuda do Teletransportador Gremas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Teletransportador Gremas explicou como você de repente acabou no navio.</p>
+          <p> </p>
+          <p>Vá para a nova região e descubra o que aconteceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

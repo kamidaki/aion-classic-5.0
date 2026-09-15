@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você chegou bem na hora, [%username].</p>
+          <p> </p>
+          <p>Posso pedir que você vá em meu lugar e informe [%dic:STR_DIC_N_LDF5b_Phone_E] sobre o status do expurgo Vinculado de Dragão nas Montanhas Sauro?</p>
+          <p> </p>
+          <p>[%username], eu deveria visitá-lo pessoalmente e contar a ele sobre seus feitos, mas algo aconteceu e não posso sair daqui.</p>
+          <p> </p>
+          <p>Por favor, conheça Phon e transmita minhas palavras a ele. Por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você vê pessoas do Vinculado de Dragão com asas em todos os lugares agora.</p>
+          <p> </p>
+          <p>A situação não é diferente no território autónomo de Goldrinyerk.</p>
+          <p> </p>
+          <p>Como isso vai acabar...</p>
+          <p> </p>
+          <p>O que traz você aqui?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você passa as palavras adiante.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+
+
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Assim, o assunto na Serra do Sauro foi esclarecido.</p>
+          <p> </p>
+          <p>Que sorte, não houve boas notícias.</p>
+          <p> </p>
+          <p>Há tantas coisas para fazer que não sei onde está minha cabeça.</p>
+          <p> </p>
+          <p>Bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Phone_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Relate para Phon sobre a operação de limpeza Vinculado de Dragão nas Montanhas Sauro.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Fiona, você relatou a Phon, da Presa Vermelha, no Distrito Autônomo de Goldrinyerk, sobre os expurgos nas Montanhas Sauro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

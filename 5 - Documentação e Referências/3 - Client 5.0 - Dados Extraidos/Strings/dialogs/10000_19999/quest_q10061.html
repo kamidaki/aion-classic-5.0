@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10061</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Garnon fala muito bem de você, Elyos.</p>
+          <p> </p>
+          <p>Espero que você tenha mais do que lindas asas brancas e elogios de outras pessoas, [%userclass]. Não haverá espaço para erros quando avançarmos para os Corações de Tiamat.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">"Vou tentar ganhar o seu respeito, então."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estamos trabalhando na logística de um ataque ao Coração da Gravidade agora, e Garnon está resolvendo algum tipo de plano.</p>
+          <p> </p>
+          <p>Até então, você pode começar a trabalhar provando que é tão bom quanto ela diz. Existem três criaturas na Fenda do Lunático que continuam roubando suprimentos de nossos transportes. Saia e destrua [%dic:STR_DIC_M_LDF4b_T2_Monster_M_ElementalAir1], [%dic:STR_DIC_M_LDF4b_T2_Monster_M_ElementalAir2] e [%dic:STR_DIC_M_LDF4b_T2_Monster_M_ElementalAir3].</p>
+          <p> </p>
+          <p>Quando você despachar todos os três, Garnon deverá estar pronto. Ela encontrará você em [%dic:STR_DIC_W_LDF4b_SZ_T2_S12], perto do Coração da Gravidade. Você acha que pode lidar com isso?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Tenho certeza que vou sobreviver de alguma forma."</Act>
+    </Selects>
+    <Voice file="Q10061-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username]. Bom.</p>
+          <p> </p>
+          <p>Obtivemos algumas informações úteis do Monitor Aetheric no Coração da Fissura. O poder flutua dramaticamente, alternando entre os quatro Corações.</p>
+          <p> </p>
+          <p>Tudo o que precisamos fazer é programar nosso ataque para quando o poder deste Coração estiver mais fraco.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">"Parece bastante fácil."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, veremos. Pretendo usar minha própria magia contra o Coração da Gravidade como uma espécie de teste, para ver se consigo ultrapassar as defesas do Coração.</p>
+          <p> </p>
+          <p>O Balaur, é claro, notará, e enquanto eu estiver ocupado com meu feitiço, precisarei de um guarda.</p>
+          <p> </p>
+          <p>É aí que você entra, [%username]. Proteja-me dos Balaur enquanto lanço meu feitiço.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">"Eles não vão tocar em você. Lance sua magia."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Argh! Eu mal conseguia tocar naquela coisa!</p>
+          <p> </p>
+          <p>Não é sua culpa, [%username]. Foi mais forte do que eu pensava... Bem, eu deveria saber que não devo subestimar Tiamat, não deveria?</p>
+          <p> </p>
+          <p>Ai, e houve algum tipo de recuo também. Dói!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Você está bem?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou bem. Bem, acho que esse é o fim do nosso teste.</p>
+          <p> </p>
+          <p>Parecia estar funcionando no início, mas assim que minha magia atravessou as barreiras externas, o poder surgiu para me encontrar.</p>
+          <p> </p>
+          <p>Estamos entendendo algo errado... É evidente que um ataque direto não funcionará aqui. Obrigado pela sua ajuda, mas você pode voltar para a Fortaleza Rancora, [%username].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Relatório para [%dic:STR_DIC_N_Adela].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Prove seu valor matando as criaturas problemáticas em Lunatic's Fenda.</font></p>
+                         <p visible="[%6]"><font color="[%7]">[%dic:STR_DIC_M_LDF4b_T2_Monster_M_ElementalAir1] ([%8]/1)</font></p>
+                         <p visible="[%9]"><font color="[%10]">[%dic:STR_DIC_M_LDF4b_T2_Monster_M_ElementalAir2] ([%11]/1)</font></p>
+                         <p visible="[%12]"><font color="[%13]">[%dic:STR_DIC_M_LDF4b_T2_Monster_M_ElementalAir3] ([%14]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Conheça Garnon em [%dic:STR_DIC_W_LDF4b_SZ_T2_S12].</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Proteja Garnon do Balaur enquanto ela tenta atacar o Coração da Gravidade magicamente.</font></p></step>
+               <step><p visible="[%21]"><font color="[%22]">Fale com [%dic:STR_DIC_N_Garnon2].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tarefa: Os Reians estão desenvolvendo um plano para atacar o Coração da Gravidade. Reporte para Adella.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Reians desenvolveram um plano para atacar o Coração da Gravidade.</p>
+          <p> </p>
+          <p>Garnon recomendou você para Adella, que não tinha certeza se confiava em você. Você matou Quixoren, o Evasivo, Sanstorn, o Persistente, e Dulsina, o Tufão, para provar suas habilidades.</p>
+          <p> </p>
+          <p>Depois, você conheceu Garnon no mirante acima do Coração da Gravidade, onde ela estava preparando um teste contra o campo mágico ao redor do Coração. Ela pediu para você protegê-la enquanto ela lançava seu feitiço.</p>
+          <p> </p>
+          <p>O ataque de Garnon foi ineficaz, provando que o ataque mágico direto aos Hearts não funcionaria.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso da Missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

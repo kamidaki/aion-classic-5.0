@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, mate o [%dic:STR_DIC_M_LDF5A_A2_Cockatrice_D_61_An].</p>
+          <p> </p>
+          <p>Por causa do [%dic:STR_DIC_M_LDF5A_A2_Cockatrice_D_61_An] ao redor do posto avançado, a expansão da base foi interrompida.</p>
+          <p> </p>
+          <p>Antes da construção da base, este local parece ter sido o seu ninho.</p>
+          <p> </p>
+          <p>Cada vez que viam Daeva, eles atacavam e provocavam o caos.</p>
+          <p> </p>
+          <p>Você vai me ajudar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mais de um ou dois Daevas decidiram matar Rockwing Pecku.</p>
+          <p> </p>
+          <p>Quando você considera que eles são sempre tão ativos, eles são mais fortes do que você imagina.</p>
+          <p> </p>
+          <p>Eles são uns desgraçados persistentes...</p>
+          <p> </p>
+          <p>Você matou tantos quanto eu pedi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado por ajudar.</p>
+          <p> </p>
+          <p>Na verdade, você conclui tarefas mais rápido do que qualquer outra pessoa.</p>
+          <p> </p>
+          <p>Acho que você trabalha melhor do que vários homens juntos.</p>
+          <p> </p>
+          <p>Obrigado, [%username], você facilitou a extensão do posto avançado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_A2_Cockatrice_D_61_An] ([%2]/7).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard01_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Rockwing Peckus que estão impedindo a expansão do posto.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Abus estava à beira das lágrimas porque o Rockwing Pecku interferiu na expansão do posto.</p>
+          <p> </p>
+          <p>Depois de matar o Rockwing Pecku e retornar, você aceitou alegremente uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

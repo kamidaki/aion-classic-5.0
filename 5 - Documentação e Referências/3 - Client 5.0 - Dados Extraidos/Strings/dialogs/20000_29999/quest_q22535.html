@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Testemunhei muitas batalhas desde que cheguei aqui em Katalam.</p>
+          <p> </p>
+          <p>Batalhas por este pedaço de terra, bem como pela honra e pela morte dos Asmodianos.</p>
+          <p> </p>
+          <p>Meu coração fica pesado quando penso nos muitos Elyos Daevas que encontraram seu fim em Balaurea.</p>
+          <p> </p>
+          <p>Lembremo-nos por um momento das vítimas.</p>
+          <p> </p>
+          <p>[%username]. Ajude-me a espalhar [%dic:STR_DIC_I_quest_22535a] sobre [%dic:STR_DIC_E_LDF5a_FOBJ_C2_DeadArchon], para que suas almas encontrem paz.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por causa da proteção do Senhor, das orações dos sacerdotes e das vítimas dos Daeva, os Asmodianos conseguiram se estabelecer em Katalam.</p>
+          <p> </p>
+          <p>É uma questão de respeito apaziguar as almas dos Daeva com flores brancas frescas.</p>
+          <p> </p>
+          <p>Tenha muito respeito pelas almas dos caídos.</p>
+          <p> </p>
+          <p>Os Arcontes eram todos camaradas caídos.</p>
+          <p> </p>
+          <p>Eu imploro que você não se esqueça disso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pode ser um lugar estranho, mas devemos pelo menos homenagear os caídos com a flor branca e fresca.</p>
+          <p> </p>
+          <p>Acredito que mesmo aqueles que agora retornarem ao Fluxo do Éter compreenderão.</p>
+          <p> </p>
+          <p>Obrigado.</p>
+          <p> </p>
+          <p>Que a proteção do Senhor esteja com eles.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve [%dic:STR_DIC_I_quest_22535a] para [%dic:STR_DIC_E_LDF5a_FOBJ_C2_DeadArchon] ([%2]/3)</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LDF5a_Daltra_E].</font></p></step>
+
+    </steps>
+          <p><font font_xml="quest_summary">Lamente a morte dos Arcontes caídos levando flores brancas perfumadas para seus corpos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daltra sugeriu lamentar a morte dos arcontes falecidos com flores brancas. Você doou flores brancas frescas para os caídos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

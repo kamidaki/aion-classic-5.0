@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- A Carta Verde -</p>
+          <p> </p>
+          <p>Caros membros da Green Hat Alliance!</p>
+          <p/>
+          <p>Esta missão envolve a Plantação de Coco.</p>
+          <p/>
+          <p>Mate os Skurv que estão cortando árvores na floresta e arruinando o ambiente de Katalam cultivando coqueiros. Reporte à filial da Green Hat Alliance em North Katalam.</p>
+          <p/>
+          <p>E não se esqueça, a natureza é essencial para nossas vidas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde a carta no bolso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou os trabalhadores Skurv na plantação de coco?</p>
+          <p> </p>
+          <p>É triste, mas não havia outro jeito.</p>
+          <p> </p>
+          <p>A plantação de coco teria continuado a funcionar enquanto eles estivessem vivos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nunca houve Skurv em Katalam.</p>
+          <p> </p>
+          <p>Silverine os trouxe de Asmodae para cá como trabalhadores.</p>
+          <p> </p>
+          <p>Você pode ter matado alguns deles agora, mas novos trabalhadores serão empregados na plantação.</p>
+          <p> </p>
+          <p>Não importa, a plantação de coco foi revitalizada com a sua ajuda. A Green Hat Alliance tem uma grande dívida com você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os trabalhadores Skurv na plantação de coco ([%2]/7).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para a filial North Katalam da Green Hat Alliance.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Chegou uma carta da Green Hat Alliance. Leia e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chegou uma carta da Green Hat Alliance.</p>
+          <p> </p>
+          <p>Depois de matar os trabalhadores Skurv e reportar-se à filial North Katalam da Green Hat Alliance, você foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

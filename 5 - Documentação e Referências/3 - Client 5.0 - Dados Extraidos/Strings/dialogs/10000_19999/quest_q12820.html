@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O mensageiro enviado por Nezekan correu perigo!</p>
+          <p> </p>
+          <p>Aparentemente Nezekan ordenou que um mensageiro chamado [%dic:STR_DIC_N_LDF5a_Lettering_E] entregasse uma carta.</p>
+          <p> </p>
+          <p>Mas ele parece ter desaparecido no caminho para cá.</p>
+          <p> </p>
+          <p>[%username], você poderia procurar por Letterinerk e me trazer a carta que Nezekan me enviou.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não se preocupe, ah!</p>
+          <p> </p>
+          <p>Fui forçado a ficar na defensiva por um breve período, mas pelo menos posso me proteger, akakak.</p>
+          <p> </p>
+          <p>Tome isso primeiro, ak! É uma carta de Nezekan, akakak.</p>
+          <p> </p>
+          <p>Vou fugir, por favor, entregue esta carta a Lanzen.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nezekan não terá dado a carta a qualquer um. O mensageiro desapareceu e isso é preocupante.</p>
+          <p> </p>
+          <p>Além do mais, a carta pode conter algo importante.</p>
+          <p> </p>
+          <p>Você já tentou encontrar o mensageiro Letterinerk?</p>
+          <p> </p>
+          <p>Pareceria melhor fazer uma busca intensiva na floresta.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a carta.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Você trouxe a carta!</p>
+          <p> </p>
+          <p>Graças ao Senhor! Meu coração quase parou. Eu estava tão preocupado por ter perdido uma carta importante.</p>
+          <p> </p>
+          <p>(Examina a carta) Mas... o que é isso? Quem é Niel?</p>
+          <p> </p>
+          <p>Temos um problema aqui. Esta não é uma carta de Nezekan, foi escrita por alguém chamado Niel. Acho que Letterinerk cometeu um erro.</p>
+          <p> </p>
+          <p>Obrigado por me trazer a carta, mas não sei como vou resolver a situação.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Procure [%dic:STR_DIC_N_LDF5a_Lettering_E].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Leve [%dic:STR_DIC_I_quest_12820a] para [%dic:STR_DIC_N_LDF5_Village_Guard05_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure Letterinerk que desapareceu enquanto entregava a carta de Nezekan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Assim que soube que o mensageiro Letterinerk, que deveria entregar a carta de Nezakan, havia desaparecido, você lançou uma campanha de busca.</p>
+          <p> </p>
+          <p>Você encontrou Letterinerk e trouxe a carta para Lanzen. Mas não era a carta de Nezakan.</p>
+          <p> </p>
+          <p>Lanzen ficou confuso, mas disse que estava grato de qualquer maneira por você ter trazido para ele uma carta de Letterinerk.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

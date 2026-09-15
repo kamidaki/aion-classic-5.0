@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22016</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está pronto? Estou tão pronto!</p>
+          <p> </p>
+          <p>Vou destruir toda a Guilda Basrasa sozinho. Kahrun ouvirá meu nome e ficará surpreso.</p>
+          <p> </p>
+          <p>Mas... na verdade... preciso de um pouco de ajuda. Certos Drakan têm sido problemas reais. Você acha que poderia ir atrás de qualquer [%dic:STR_DIC_M_LDF4b_T3_DrakanFi_Noble_58_An], [%dic:STR_DIC_M_LDF4b_T3_DrakanSc_Noble_58_An], [%dic:STR_DIC_M_LDF4b_T3_DrakanWi_Noble_58_An] ou [%dic:STR_DIC_M_LDF4b_T3_DrakanCl_Noble_58_An] que encontrar?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kahrun não é tão bom?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Claro. Além disso, Basrasa é deadrasa."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Olho Que Tudo Vê de Kahrun! Você é muito melhor nisso do que eu.</p>
+          <p> </p>
+          <p>Mas não podemos eliminar toda a legião numa única missão. Mas vamos nos livrar deles, você e eu.</p>
+          <p> </p>
+          <p>Nós apenas temos que continuar matando.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_Q22016_All] ([%2]/6).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Poin].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Oficiais de Combate Basrasa, Especialistas em Busca, Negociadores da Morte e Oficiais de Cura.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Porin estava animado para começar a lutar e queria sair e matar todos os Legionários Basrasa de todos os tempos!</p>
+          <p> </p>
+          <p>Você o ajudou a matar alguns, e ele garantiu que você soubesse que haveria mais viúvas Basrasa no futuro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

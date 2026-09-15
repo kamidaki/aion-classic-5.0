@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este espelho leva à fortaleza.</p>
+          <p> </p>
+          <p>Tenho certeza que você sabe que a contraparte está localizada em [%dic:STR_DIC_W_LF5], onde residem os Elyos.</p>
+          <p> </p>
+          <p>Quando os Elyos usaram o espelho para chegar à fortaleza, eles coletaram energia instável e criaram uma entrada para o Abrigo de Tiamat.</p>
+          <p> </p>
+          <p>O estranho é que existe um feitiço nesta entrada.</p>
+          <p> </p>
+          <p>Tenho certeza que isso lhe interessa, não é? Você poderia ir até [%dic:STR_DIC_W_LF5_SZ_ID_03] e investigar a entrada, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você viu a entrada com seus próprios olhos? Como foi?</p>
+          <p> </p>
+          <p>Não parece ser muito diferente daquele criado pelo feiticeiro.</p>
+          <p> </p>
+          <p>Mas você precisa de mais poder e melhores habilidades para abrir a entrada na região de Elyos.</p>
+          <p> </p>
+          <p>Mas você ainda poderá fazer isso se se unir a aliados, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve reunir alguns aliados antes de entrar em [%dic:STR_DIC_W_IDTiamat_2_F5_FOBJ_Entrance].</p>
+          <p> </p>
+          <p>Os Elyos também têm isso em mente, então pode ficar difícil se você não estiver preparado.</p>
+          <p> </p>
+          <p>Gostaria de recompensá-lo com um presente pelo seu esforço.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LF5_SZ_ID_03] e investigue [%dic:STR_DIC_OBJ_IDTiamat_2_F5_FOBJ_Entrance].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_magician_apprentice].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra o pedido do mago Reian Ginie e investigue a entrada do Abrigo de Tiamat.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O mago Reian Ginie pediu que você investigasse a entrada do Abrigo de Tiamat.</p>
+          <p> </p>
+          <p>Você atendeu ao pedido de Ginie, foi até as Ruínas da Fortaleza e investigou a entrada do Abrigo de Tiamat. Você encontrou o Mago Aprendiz, que recomendou que você se preparasse antes de entrar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Shhh. Daeva deve falar suavemente. [%dic:STR_DIC_N_LDF5a_Sapparing_E] ordenou uma missão secreta para expulsar os mercenários Shulack da Fazenda Saphirunerk.</p>
+		<p> </p>
+		<p>Daeva deve ir até o [%dic:STR_DIC_W_LDF5a_G1] e afugentar o [plur][%dic:STR_DIC_M_LDF5A_G1_Shulack_63_An], o [plur][%dic:STR_DIC_M_LDF5A_G1_Shulack_Keep_63_An] e o [plur][%dic:STR_DIC_M_LDF5A_G1_Shulack_TankS_Fi_62_An]. Akakak.</p>
+		<p> </p>
+		<p>Obviamente os mercenários da Rosa de Aço querem assumir o controle da Fazenda Saphirunerk, ak.</p>
+		<p> </p>
+		<p>Se Daeva atender ao pedido de Saphirunerk, Saphirunerk dará a Daeva uma moeda antiga do Katalam Underground. Akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>A Fazenda Saphirunerk é tão magnífica que a Fazenda Rubininerk simplesmente não pode ser comparada, ak.</p>
+		<p> </p>
+		<p>E tudo graças a Saphirunerk, ak.</p>
+		<p> </p>
+		<p>Os Elyos ficarão muito satisfeitos com os produtos que receberão da Saphirunerk.</p>
+		<p> </p>
+		<p>Mas o que traz Daeva aqui, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que expulsou os mercenários Shulack.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Como Daeva sabia que os supervisores estavam perturbando Saphirunerk?</p>
+		<p> </p>
+		<p>Shugo os contratou como soldados para a Fazenda Saphirunerk, mas eles começaram a atrapalhar cada vez mais o trabalho, ak.</p>
+		<p> </p>
+		<p>Saphirunerk não se atreveu a fazer nada a respeito deles, porque faziam parte da assustadora tripulação do Steel Rose.</p>
+		<p> </p>
+		<p>Shugo está muito grato a Daeva pela ajuda, ak.</p>
+		<p> </p>
+		<p>Mas Daeva não deve contar a ninguém, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine os mercenários Shulack na Fazenda Saphirunerk.</font></p>
+                     <p visible="[%0]"><font color="[%1]">[plur][%dic:STR_DIC_M_LDF5A_G1_Shulack_63_An] ([%2]/3)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[plur][%dic:STR_DIC_M_LDF5A_G1_Shulack_Keep_63_An] ([%5]/3)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[plur][%dic:STR_DIC_M_LDF5A_G1_Shulack_TankS_Fi_62_An] ([%8]/3)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Sapparing_E].</font></p></step>
+    </steps>
+		<p><font font_xml="quest_summary">Perechinerk passou para você a missão secreta que exigia a eliminação dos mercenários Shulack na Fazenda Saphirunerk. Vá até a Fazenda Saphirunerk e elimine os mercenários Shulack.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Perechinerk contou a você sobre o pedido secreto de Saphirunerk para eliminar os mercenários Shulack na Fazenda Saphirunerk.</p>
+		<p> </p>
+		<p>Depois que você expulsou os mercenários Shulack da Fazenda Saphirunerk, Saphirunerk ficou muito grato a você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

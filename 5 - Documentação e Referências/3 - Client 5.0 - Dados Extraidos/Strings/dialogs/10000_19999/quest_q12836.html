@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor mate [%dic:STR_DIC_M_LDF5A_E1E2_Vri_all].</p>
+          <p> </p>
+          <p>Agora que estabeleceram a guarnição, provavelmente querem iniciar suas atividades.</p>
+          <p> </p>
+          <p>Em breve haverá uma grande batalha. Portanto, temos de enfraquecer as forças Balaur sempre que possível.</p>
+          <p> </p>
+          <p>Sem dúvida não são adversários fáceis. Leve seus camaradas com você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você voltou da 78ª Base Sillus?</p>
+          <p> </p>
+          <p>Se quisermos reduzir o seu poder de combate, temos de nos apressar.</p>
+          <p> </p>
+          <p>Se se tratar de uma batalha maior numa fase posterior, poderemos estar em desvantagem.</p>
+          <p> </p>
+          <p>Não os subestime em hipótese alguma!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você aniquilou as tropas de ocupação da 78ª Base Sillus.</p>
+          <p> </p>
+          <p>Não foi difícil matar as tropas de ocupação do Exército Beritra?</p>
+          <p> </p>
+          <p>De qualquer forma, sem eles agora há uma coisa a menos com que se preocupar na grande batalha que se aproxima.</p>
+          <p> </p>
+          <p>Muito obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF5A_E1E2_Vri_all] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard08_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os soldados da ocupação da 78ª Base Sillus.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Salin estava preocupado com a possibilidade de uma guerra estourar em breve, já que os soldados Beritra mantinham uma guarnição.</p>
+          <p> </p>
+          <p>Você atendeu ao seu pedido e matou as tropas de ocupação da 78ª Base Sillus, reduzindo assim sua força de combate. Salin ficou muito grato por isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio. Como você não acordou imediatamente, fiquei preocupado com a possibilidade de perdermos um guerreiro importante na batalha contra os Elyos.</p>
+          <p> </p>
+          <p>Muita coisa mudou enquanto você estava inconsciente.</p>
+          <p> </p>
+          <p>Inesperadamente, o Esquadrão Beritra apareceu e a proibição de Kahrun foi suspensa. Então começou o tumulto da batalha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Foi, de facto, o ataque dos Elyos que causou o caos que desfez a aliança.</p>
+          <p> </p>
+          <p>Ouvi dizer que você se machucou por causa dos Elyos.</p>
+          <p> </p>
+          <p>Você matou Tiamat. É por isso que deixo claro que nunca mais formarei uma aliança com os Elyos.</p>
+          <p> </p>
+          <p>A propósito, como você está?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você estiver se sentindo razoavelmente bem, você deve conhecer [%dic:STR_DIC_N_LDF5A_Stelman_E] do 1º Esquadrão e [%dic:STR_DIC_N_LDF5A_Phone_E] do 2º Esquadrão.</p>
+          <p> </p>
+          <p>E outra coisa. Como você já está indo, você também pode visitar o Sumo Sacerdote [%dic:STR_DIC_N_LDF5A_Delnutan_E].</p>
+          <p> </p>
+          <p>Certamente o ajudará a fazer um levantamento da situação atual e permitirá que você se acostume com ela.</p> 
+          <p> </p>
+          <p>Você provavelmente está confuso no momento, mas vai melhorar com o tempo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você fez uma boa escolha.</p>
+          <p> </p>
+          <p>Se você ouvir agora, se sentirá muito melhor mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você disse que estava se sentindo bem, mas não parece que está melhor.</p>
+          <p> </p>
+          <p>Volte quando estiver completamente curado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fui informado do seu despertar.</p>
+          <p> </p>
+          <p>Posso imaginar que você esteja confuso depois de ficar inconsciente por tanto tempo...</p>
+          <p> </p>
+          <p>Vou te contar as coisas mais importantes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>As tropas não tiveram um minuto de silêncio desde que fomos enviados para Katalam.</p>
+          <p> </p>
+          <p>Katalam é um lugar importante que precisa ser conquistado pelo valor estratégico.</p>
+          <p> </p>
+          <p>[%username], este lugar deveria se tornar um ponto de apoio da conquista Katalam logo após o seu despertar.</p>
+          <p> </p>
+          <p>Tudo ainda está caótico, mas se a tropa e eu trabalharmos duro, em breve tudo estará seguro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que Stelman disse?</p>
+          <p> </p>
+          <p>Você também, [%username], deveria fazer amizade comigo se quiser ganhar elogios em Katalam.</p>
+          <p> </p>
+          <p>Eu conheço muitas pessoas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu cuido de muitas coisas para fazer melhorias no futuro.</p>
+          <p> </p>
+          <p>Se eu cuidar do meu povo e usar a cabeça, conseguiremos muitas coisas notáveis, como a conquista de Katalam.</p>
+          <p> </p>
+          <p>É por isso que estou aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é [%username]?</p>
+          <p> </p>
+          <p>Eu sei tudo sobre você. Afinal, já ouvi muitas histórias.</p>
+          <p> </p>
+          <p>O fato de você ter ressuscitado praticamente ileso é a vontade dos Senhores.</p>
+          <p> </p>
+          <p>Espero que você continue ativo em Katalam em nome dos Asmodianos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você também ouviu atentamente o que Stelman e Phon disseram?</p>
+          <p> </p>
+          <p>Você também terá se reportado a Delnutan, não é?</p>
+          <p> </p>
+          <p>É importante pelo menos mostrar a sua cara ao Esquadrão de Limpeza Katalam.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que foi bem informado lá.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seria bom se você pudesse ajudar no trabalho de Stelman e Phon.</p>
+          <p> </p>
+          <p>Os principais objetivos que perseguimos neste local são a tomada do Katalam e a punição dos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5A_Stelman_E]%.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LDF5A_Phone_E]%.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_LDF5A_Delnutan_E].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Relatório para [%dic:STR_DIC_LDF5a_Bard_Commander].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá ver Stelman, Phon e Delnutan e discuta a situação com eles para entender a situação em Katalam.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bardo, o Comandante Supremo dos Destacamentos Katalam, diz que você deveria se encontrar com Stelman e Phon para examinar a situação atual assim que se recuperar.</p>
+          <p> </p>
+          <p>Durante sua conversa com Stelman da 1ª Tropa e Phon da 2ª Tropa, você percebeu que será necessário ocupar Katalam antes dos Elyos, e que este local será a ponte para a conquista de Katalam.</p>
+          <p> </p>
+          <p>O Sumo Sacerdote Delnutan disse que espera grandes coisas de você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

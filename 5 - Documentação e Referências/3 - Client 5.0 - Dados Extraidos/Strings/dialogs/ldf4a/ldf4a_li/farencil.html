@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Saudação. Você veio receber uma recompensa?</p>
+          <p> </p>
+          <p>Tenho Estigmas para Gladiadores, Templários, Assassinos, Caçadores e Artilheiros. Qual recompensa você tinha em mente?</p>
+          <p> </p>
+          <p>Um Daeva acabou de chegar querendo trocar uma recompensa, mas infelizmente isso não é possível. Portanto, recomendo que você escolha com sabedoria.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Reward for Contribution</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um portão que leva a outra área.)</p>
+          <p> </p>
+          <p>(Você pode chegar a outra área através deste portão.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Você pode ver o Território Deylon à distância.)</p>
+          <p> </p>
+          <p>(Este portão leva você ao Território Deylon.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_TELEPORT_SIMPLE">Teletransporte para o Território Deylon</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Você não consegue ver aonde o portão leva porque a névoa é muito espessa.)</p>
+          <p> </p>
+          <p>(Talvez você deva tentar novamente mais tarde).</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

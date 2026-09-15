@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], até que ponto você aperfeiçoou suas habilidades?</p>
+          <p> </p>
+          <p>O mais importante para você, [%userclass], é um alto nível de concentração e resistência.</p>
+          <p> </p>
+          <p>Um Artilheiro deve ter a habilidade de localizar seu alvo com rapidez e precisão.</p>
+          <p> </p>
+          <p>Você pode ainda não ser muito proficiente nesta técnica, mas depois que seu corpo se acostumar com ela através da experiência, você acabará descobrindo que ela é fácil.</p>
+          <p> </p>
+          <p>Que tal participar da prova DP para praticar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">"Isso é um teste de DP?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Claro que você não sabia disso.</p>
+          <p> </p>
+          <p>Apenas Daevas pode usar habilidades de DP.</p>
+          <p> </p>
+          <p>Mas, ao contrário de outras habilidades, existem muitas limitações e não podem ser usadas com frequência. É por isso que às vezes vejo Daevas que ainda não têm experiência no uso de habilidades de DP.</p>
+          <p> </p>
+          <p>O Comandante Supremo quer resolver este problema e organizar um teste de DP.</p>
+          <p> </p>
+          <p>Mas é mais uma sessão de treinamento do que um teste. Você só precisa usar a habilidade selecionada 10 vezes para passar neste teste simples.</p>
+          <p> </p>
+          <p>O que você acha? Você participará do teste DP?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você diz que é um artilheiro? Então você terá aprendido [%dic:STR_DIC_E_DP_Gu].</p>
+          <p> </p>
+          <p>Desta vez o teste DP consistirá em usar [%dic:STR_DIC_E_DP_Gu] 10 vezes.</p>
+          <p> </p>
+          <p>O DP é obtido automaticamente e pode ser usado durante a batalha, mas é muito difícil, você pode usar a ajuda do Jelly para restaurar o DP.</p>
+          <p> </p>
+          <p>Então, vá embora. Rapidamente!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chance.</p>
+          <p> </p>
+          <p>A tarefa não é difícil, mas você parece estar empenhado em outras coisas.</p>
+          <p> </p>
+          <p>Você pode fazer o teste DP em outro momento. Volte se mudar de ideia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já voltou?</p>
+          <p> </p>
+          <p>Então suponho que você tenha lidado bem com a tarefa de melhoria técnica da última vez.</p>
+          <p> </p>
+          <p>Vamos ver se você usou o [%dic:STR_DIC_E_DP_Gu] mais de 10 vezes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você se aproxima.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Coloca a mão na cabeça.) Você completou bem a tarefa.</p>
+          <p> </p>
+          <p>(Tira a mão da cabeça.) O teste DP foi aprovado!</p>
+          <p> </p>
+          <p>Não vou mais esquecer [%dic:STR_DIC_E_DP_Gu]. Este teste será de grande ajuda para você decidir seu destino no futuro.</p>
+          <p> </p>
+          <p>Desde que você passou no teste, você recebe uma recompensa. Espero que isso ajude você no Caminho do Artilheiro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Use [%dic:STR_DIC_E_DP_Gu] ([%2]/10).</font></p></step>               
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_DC1_Hadubrand_M].</font></p></step>               
+    </steps>
+          <p><font font_xml="quest_summary">O teste DP deve ocorrer sob a liderança do Comandante-em-Chefe. Use uma habilidade DP "Magic Power" 10 vezes para passar no teste DP.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hadubrand disse que há um teste de DP incluído no treinamento para Daevas inexperientes em DP e convidou você a participar.</p>
+          <p> </p>
+          <p>Ao usar a habilidade DP de acordo com as instruções de Hadubrand, usando Energia da Magia I 10 vezes, você foi parabenizado por passar no teste.</p>
+	</body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

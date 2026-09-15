@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Revolucionários Lefaristas tornaram-se cada vez mais ameaçadores ultimamente.</p>
+          <p> </p>
+          <p>Como foram expulsos da Fazenda Belbua, pensei que iriam desistir... mas agora as coisas são diferentes.</p>
+          <p> </p>
+          <p>Recebemos uma mensagem do Sanctum. Tudo está calmo na vila de Tolbas, mas os Revolucionários Lefaristas têm causado problemas em outros lugares recentemente.</p>
+          <p> </p>
+          <p>Você já derrotou essa gangue sem escrúpulos. Por isso, gostaria de lhe pedir que fique ao nosso lado mais uma vez na batalha contra os Revolucionários Lefaristas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_NONE_1">O que precisa ser feito?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_none_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Revolucionários Lefaristas avançaram para a Costa das Cantas.</p>
+          <p> </p>
+          <p>Como vocês sabem, a Costa das Cantas é uma área importante porque é onde está localizado o Observatório Verteron.</p>
+          <p> </p>
+          <p>Se os Revolucionários Lefaristas estão tramando algum tipo de intriga, digamos, explodindo o Observatório, não é uma questão trivial.</p>
+          <p> </p>
+          <p>Temos que fazer alguma coisa antes que causem estragos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Primeiro, vá para [%dic:STR_DIC_FLA21_1] e encontre [%dic:STR_DIC_LA38] lá.</p>
+          <p> </p>
+          <p>Há muitos anos que vigia o Observatório e conhece intimamente a Costa das Cantas.</p>
+          <p> </p>
+          <p>Se algo estiver errado com o Fluxo de Éter, Khidia saberá. Ela pode detectar a menor mudança no Éter.</p>
+          <p> </p>
+          <p>Então vá para Khidia. Ela irá informá-lo melhor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+    <Voice file="Q1023-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito bom!</p>
+          <p> </p>
+          <p>Estou aliviado por você estar aceitando esta tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Costa das Cantas é uma área importante, pois é onde está localizado o Observatório Verteron.</p>
+          <p> </p>
+          <p>É uma pena que você esteja recusando esta tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um Daeva enviado por Spatalos! Isto é sobre nossos convidados indesejados no Naufrágio Misterioso, não é?</p>
+          <p> </p>
+          <p>Tentei explicar ao Sanctum várias vezes que o Fluxo de Éter é muito incomum neste Naufrágio Misterioso.</p>
+          <p> </p>
+          <p>Vejo que sua ascensão ocorreu recentemente, meu querido amigo.</p>
+          <p> </p>
+          <p>Spatalos deve ter grande confiança em você se encarregou um Daeva tão jovem de vir aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você poderia iniciar um tour de exploração e investigar o [%dic:STR_DIC_FLA21_2]?</p>
+          <p> </p>
+          <p>Será invadido por Revolucionários Lefaristas. Portanto, devo prepará-lo para esta tarefa perigosa.</p>
+          <p> </p>
+          <p>Vou transformar você em Kaylelini. Investigue o Naufrágio Misterioso nesta forma e retorne o mais rápido que puder.</p>
+          <p> </p>
+          <p>Ah, mais uma coisa: na sua forma transformada, você só pode se mover, observar e ouvir. Você não pode falar e lutar será impossível.</p>
+          <p> </p>
+          <p>Me avise quando estiver pronto. Vou transformar você em Kaylelini imediatamente.</p>
+          <p> </p>
+          <p>É melhor você ter cuidado. A transformação não durará muito e também haverá efeitos colaterais. Não chame atenção, caso contrário você será descoberto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Estou pronto.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma onda no Éter, de sabor elétrico, como penas prateadas...</p>
+          <p> </p>
+          <p>Você completou seu tour de exploração?</p>
+          <p> </p>
+          <p>Relate tudo o que você viu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é verdade? Eles querem destruir o Observatório?</p>
+          <p> </p>
+          <p>Agora são necessários métodos mais drásticos! Temos que descobrir quais são os detalhes do plano deles a qualquer custo.</p>
+          <p> </p>
+          <p>Vá e elimine [%dic:STR_DIC_MLA34], o líder desses canalhas. Talvez você possa encontrar vestígios que nos digam mais sobre suas intenções.</p>
+          <p> </p>
+          <p>Por ser o líder, o capitão certamente saberá mais sobre o plano.</p>
+          <p> </p>
+          <p>Os Revolucionários Lefaristas estão à espreita por toda parte. Mas você, a grande esperança do Sanctum, certamente completará esta tarefa com sucesso.</p>          
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q1023-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Fluxo do Éter mudou.</p>
+          <p> </p>
+          <p>Você eliminou [%dic:STR_DIC_MLA34]?</p>
+          <p> </p>
+          <p>Você descobriu detalhes do plano dos Revolucionários Lefaristas?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega os pedidos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu isso depois de derrotar o líder?</p>
+          <p> </p>
+          <p>(Lê a ordem.)</p>
+          <p> </p>
+          <p>Pela Torre de Aion! Não falta muito tempo até o dia em que querem explodir o Observatório com uma grande explosão!</p>
+          <p> </p>
+          <p>Mas porquê visar o Observatório? O desaparecimento da barreira não lhes dará nenhum tipo de vantagem.</p>
+          <p> </p>
+          <p>O Abismo!</p>
+          <p> </p>
+          <p>Aparentemente, eles causaram desastres em Sanctum também... Os Revolucionários Lefaristas são aliados de Balaur, certamente. Não... Ou talvez os Asmodianos os tenham instigado?</p>
+          <p> </p>
+          <p>Dê essas ordens a [%dic:STR_DIC_LA19], o Comandante da Cidadela de Verteron.</p>
+          <p> </p>
+          <p>Devemos impedi-los de destruir o Observatório.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não encontrou nada?</p>
+          <p> </p>
+          <p>Não importa quão difícil seja a tarefa, você deve concluir o que começou.</p>
+          <p> </p>
+          <p>Os Revolucionários Lefaristas cercam o Observatório; como você pode ficar calmo?</p>
+          <p> </p>
+          <p>Vá imediatamente e cumpra a missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou com sucesso a missão no Observatório Verteron?</p>
+          <p> </p>
+          <p>Eu queria saber o que aconteceu com isso.</p>
+          <p> </p>
+          <p>Conte-me tudo o que você viu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esses criminosos inescrupulosos ousam sonhar em destruir o Observatório?</p>
+          <p> </p>
+          <p>Selecionar você para esta missão foi a decisão certa. Não pensei que tivessem planejado uma intriga como essa...</p>
+          <p> </p>
+          <p>Tenho que notificar o Sanctum imediatamente. Devemos impedir imediatamente os planos deste bandido.</p>
+          <p> </p>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Esta recompensa é muito menor do que você merece, mas espero que a aceite.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_FLA21_1] e fale com [%dic:STR_DIC_LA38].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Examine o interior do [%dic:STR_DIC_FLA21_2].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Observação concluída! Volte para [%dic:STR_DIC_FLA21_1] e fale com [%dic:STR_DIC_LA38].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Vá para [%dic:STR_DIC_FLA21_2]. Uma vez lá, elimine [%dic:STR_DIC_MLA34] e espere para ver se você ouve um comando. Volte para [%dic:STR_DIC_FLA21_1] e fale com [%dic:STR_DIC_LA38].</font></p>[%collectitem]</step>
+               <step><p visible="[%12]"><font color="[%13]">Encontre o [%dic:STR_DIC_FLA09] e fale com [%dic:STR_DIC_LA19].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Investigar os Revolucionários Lefaristas da Costa das Cantas.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_LA19] está preocupado com as ações dos Revolucionários Lefaristas. Então ele pediu para você encontrar o [%dic:STR_DIC_FLA21_1].</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_LA38] transformou você em Kaylelini. Você explorou [%dic:STR_DIC_FLA21_2] neste formulário. Você eliminou [%dic:STR_DIC_MLA34] e recebeu a Ordem dos Revolucionários Lefaristas.</p>
+          <p> </p>
+          <p>Os Revolucionários Lefaristas planejavam destruir o Observatório. Você comunicou esta notícia a [%dic:STR_DIC_LA19] na Cidadela de Verteron.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

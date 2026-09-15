@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Katalam Patrol, [%dic:STR_DIC_N_LDF5_Village_Guard12_L] do [%dic:STR_DIC_W_LDF5b_C1_v12]</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Ordens: Derrote o Asmodiano que avançou para [%dic:STR_DIC_W_LDF5b_SZ_C1] em South Katalam.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>No campo de batalha, uma resposta precoce é crucial.</p>
+          <p> </p>
+          <p>É melhor prevenir do que remediar. Se você não responder rapidamente, terá que trabalhar muito mais depois.</p>
+          <p> </p>
+          <p>Você ainda precisa se defender do ataque Asmodiano antecipadamente para que o poder dos Elyos seja mantido nesta região.</p>
+          <p> </p>
+          <p>Como está a situação?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta invasão dos Asmodianos não será a última.</p>
+          <p> </p>
+          <p>Quero agradecer-lhe por reagir adequadamente em uma situação difícil.</p>
+          <p> </p>
+          <p>Estou pedindo que você continue ajudando.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Asmodiano que avançou para [%dic:STR_DIC_W_LDF5b_SZ_C1] em South Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LDF5_Village_Guard12_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Mate o Asmodiano que avançou para o Lago Id em South Katalam e reporte-se a Konon.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os invasores Asmodianos atacaram o Lago Id no sul de Katalam.</p>
+          <p> </p>
+          <p>Você destruiu os Asmodianos invasores e reportou a Konon.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

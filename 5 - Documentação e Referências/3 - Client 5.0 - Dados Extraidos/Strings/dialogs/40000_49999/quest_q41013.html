@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Alguns Balaur foram observados espionando a base.</p>
+          <p> </p>
+          <p>Você poderia derrotar o [%dic:STR_DIC_M_GAb1_02_Recon07_DR_all] que está explorando nosso acampamento, [%username]?</p>
+          <p> </p>
+          <p>Eles estão explorando a base que poderia servir como ponto de partida para um ataque à fortaleza depois de conquistarem a 23ª Guarnição.</p>
+          <p> </p>
+          <p>Como você sabe, a 23ª Guarnição é uma base importante para manter os inimigos nas regiões vizinhas sob controle e garantir que os Balaur fiquem longe da fortaleza.</p>
+          <p> </p>
+          <p>Então siga seu caminho agora e destrua os soldados Balaur Vanguard que estão correndo perto da base.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se permitirmos, a Vanguarda Balaur em breve causará grandes problemas.</p>
+          <p> </p>
+          <p>Eles estão de olho na 23ª Guarnição porque precisam de um ponto de partida para o ataque à Fortaleza de Ferro.</p>
+          <p> </p>
+          <p>Tenho certeza que um Daeva com suas habilidades, [%username], poderia cumprir esta missão sem dificuldades.</p>
+          <p> </p>
+          <p>Como foi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora que o Balaur Vanguard se foi, isso é uma preocupação a menos para mim.</p>
+          <p> </p>
+          <p>É um alívio não ter esses canalhas constantemente se esgueirando pela área e espionando a base.</p>
+          <p> </p>
+          <p>Mas sei que posso contar com você, [%username].</p>
+          <p> </p>
+          <p>Estou muito grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_M_GAb1_02_Recon07_DR_all] ([%2]/2).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com o [%dic:STR_DIC_E_GAb1_02_Village03_Guard]. Ele aparece se uma base para controlada por aliados.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Atenda ao pedido do capitão da 23ª Tropa de Ocupação e elimine a 23ª Vanguarda Balaur que está espionando a base</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um dos capitães da 23ª Tropa de Ocupação pediu para você eliminar a 23ª Vanguarda Balaur porque eles estavam explorando a base.</p>
+          <p> </p>
+          <p>Após retornar da eliminação do Balaur Vanguard, você foi agradecido por seu trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

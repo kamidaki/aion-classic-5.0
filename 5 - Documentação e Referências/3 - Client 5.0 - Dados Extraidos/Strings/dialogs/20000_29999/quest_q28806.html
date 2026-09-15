@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se me permite.... Você conhece um Daeva chamado [%dic:STR_DIC_N_Prakon]?</p>
+          <p> </p>
+          <p>Ela vende flores. Éramos amigos íntimos antes de ela se juntar aos comerciantes do Pernon Plaza. Quase nunca a vejo agora.</p>
+          <p> </p>
+          <p>Ouvi dizer que ela tinha um namorado chique, mas hoje ouvi dizer que eles terminaram. Talvez [%dic:STR_DIC_N_Prakon] não seja bom demais para eu ser um amigo agora? Daeva, você pode enviar meus cumprimentos a ela?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Durante toda a minha vida, tive cuidado com meu Kinah.</p>
+          <p> </p>
+          <p>Todos os móveis da minha casa são do Vintage Grabs, eu andei em vez de me teletransportar, cozinhei minha própria comida em vez de comprar coisas de comerciantes. Isso é barato? Achei que estava apenas sendo cuidadoso.</p>
+          <p> </p>
+          <p>Mas outro dia recebi uma carta do meu namorado - não, do meu ex-namorado. Ele me chamou de mesquinho e disse que queria viver a vida em vez de apenas sobreviver, então ele terminou comigo. Aquele mimado... ah, estou tão bravo!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">"Conheço um mordomo que está preocupado com você."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh. Sim, tive muitos amigos que são empregados. They never quite understood me; eles estão todos tão preocupados com o dever.</p>
+          <p> </p>
+          <p>Meu ex-namorado estúpido e fraco não sabia que eu estava guardando meu Kinah para o nosso casamento. Bem, acho que não preciso fazer isso agora. Vou gastar Kinah como se fossem poções de mana baratas!</p>
+          <p> </p>
+          <p>Vou encher meu estúdio com móveis novos. Faça-me um favor e diga a [%dic:STR_DIC_N_Katenon] que estarei aí em breve, ok? Quero que ele me leve às compras - aos melhores comerciantes, às melhores coisas.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"É o seu Kinah."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não acredito que não ganhei o leilão da casa. Quanto preciso para comprar uma bela casa?</p>
+          <p> </p>
+          <p>Não tenho muito dinheiro porque comprei recentemente móveis novos... Eu deveria pedir um aumento ao Tezz.</p>
+          <p> </p>
+          <p>Se ele disser não, devo pedir um bônus.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Prakon me enviou..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, o que eu faria com minha própria casa. Eu decoraria o quintal como... Espere, Prakon? Vai fazer compras? Ouvi dizer que ela terminou com o namorado. É por isso?</p>
+          <p> </p>
+          <p>Nunca entendi como ela conseguia contar Kinah daquele jeito. Ela nunca teve uma moeda sobrando.</p>
+          <p> </p>
+          <p>Que bom que ela está explorando um pouco as maravilhas da decoração. Você deveria tentar você mesmo; realmente faz de uma casa um lar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Prakon].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Katenon].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Seu mordomo, preocupado com Prakon, pediu para você ver como ela estava. Prakon atua na Área Comercial Residencial.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seu mordomo, preocupado com Prakon (que recentemente terminou com o namorado), pediu para você dar uma olhada nela.</p>
+          <p> </p>
+          <p>Quando você a conheceu, ela disse que o namorado dela foi embora porque ela vivia como uma avarenta.</p>
+          <p> </p>
+          <p>Ela pediu que você falasse com Katenon, um aparente perdulário, e o convidasse para comprar móveis com ela. Então você conheceu Katenon, que admitiu que também não gostava de avareza (e ainda aprendeu um pouco sobre decoração de casa).</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

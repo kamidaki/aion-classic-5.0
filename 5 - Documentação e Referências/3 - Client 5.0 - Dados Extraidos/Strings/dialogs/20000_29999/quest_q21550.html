@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21550</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], acho que agora você está pronto para um Estigma Maior.</p>
+          <p> </p>
+          <p>Mas... como você sabe, esta é uma força extremamente poderosa.</p>
+          <p> </p>
+          <p>Dar poderes como esses a alguém que não consegue controlá-los pode ser perigoso. Os Balaur deram um bom exemplo disso.</p>
+          <p> </p>
+          <p>Então vá e junte-se ao [%dic:STR_DIC_E_LDF4B_Occupation_Combat] em Tiamaranta, ao [%dic:STR_DIC_W_LDF4a_SZ_B1_08] ou ao [%dic:STR_DIC_W_IDArena_pvp_D] e prove que você é digno deste poder.</p>
+          <p> </p>
+          <p>Você também pode provar sua força de combate caçando.</p>
+          <p> </p>
+          <p>Deixe-me saber qual local combina com você. Em seguida, expandirei seu slot Estigma usando [%dic:STR_DIC_I_Q11550_stigma].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora me devolva o [%dic:STR_DIC_I_Q11550_stigma] que eu te dei.</p>
+          <p> </p>
+          <p>[%username], você participou do [plur][%dic:STR_DIC_E_LDF4B_Occupation_Combat]?</p>
+          <p> </p>
+          <p>Ou com o [%dic:STR_DIC_W_IDArena_pvp_D] ...?</p>
+          <p> </p>
+          <p>Talvez você tenha ido ao [%dic:STR_DIC_W_LDF4a_SZ_B1_08] em vez disso?</p>
+          <p> </p>
+          <p>De qualquer forma, se você me der o Estigma Misterioso, usarei sua energia, [%username], que se manifestou no Estigma, para expandir seu Espaço de Estigma Maior.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Obrigado, Mestre."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De nada, [%username]. Agora você tem um slot extra do Greater Estigma! Confira e capacite-se.</p>
+          <p> </p>
+          <p>Espero que você lute ao lado da Tribo Reian até que Tiamat e os Balaur se ajoelhem diante de nós!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Prove que você é capaz de lidar com [%dic:STR_DIC_N_Vaut] [%dic:STR_DIC_I_Q11550_stigma].</font></p>[%collectitem]</step>
+               <step><p visible="[%15]"><font color="[%16]">Traga o [%dic:STR_DIC_I_Q11550_stigma] de volta para [%dic:STR_DIC_N_Vaut].</font></p></step>             
+    </steps>
+          <p><font font_xml="quest_summary">Prove seu valor na Guerra de Cerco em Tiamaranta, no Coliseu do Crisol ou na Colina Macori e mostre que você está qualificado para lidar com um Estigma Maior.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vaut diz que agora é hora de usar outro Estigma Maior.</p>
+          <p> </p>
+          <p>No entanto, ele avisou que em breve você teria que fornecer evidências de que pode lidar com esse tipo de poder imenso. É por isso que você deve ir ao Guerra de Cerco, ao Crucible Coliseum ou à Macori Hill para provar suas habilidades.</p>
+          <p> </p>
+          <p>Não foi particularmente difícil e depois que você apresentou sua qualificação, ele usou o Estigma Misterioso para expandir suas vagas de Estigma.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

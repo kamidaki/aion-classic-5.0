@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Em Katalam, você tem que ocupar cargos.</p>
+          <p> </p>
+		  <p>Se ocupar um posto poderá expandir o território asmodiano e garantir rotas de transporte de bens militares.</p>
+		  <p> </p>
+          <p>[%dic:STR_DIC_LDF5a_Bilveo_E] lhe dirá como ocupar um cargo.</p>
+          <p> </p>
+          <p>Estou lhe contando isso para que você tenha alguma ideia. Agora vá e descubra mais sobre isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Eu ouvi o que você está me contando sobre o que Bardo tem a dizer. Vou falar sobre o ponto crucial, como conquistar o posto avançado.</p>
+          <p> </p>
+          <p>A destruição do Legado hostil ou dos comandantes de batalha que ocupam a base é crucial para a conquista do posto avançado.</p>
+          <p> </p>
+          <p>O Legado e os comandantes de batalha que lideram a unidade inimiga estão localizados na base em Katalam.</p>
+          <p> </p>
+          <p>Quando o Legado e os comandantes de batalha estiverem mortos, o resto fugirá.</p>
+          <p> </p>
+          <p>O Legado e os Comandantes de Batalha nem sempre estão visíveis. É preciso prestar muita atenção, pois eles só aparecem em determinados intervalos.</p>
+		  <p> </p>
+		  <p>Como é absolutamente necessário avaliar a situação antes de atacar a base, seria bom você dar uma olhada.</p>
+		  <p> </p>
+		  <p>Fique de olho no tempo; se o Legado e os Comandantes de Batalha aparecerem, você ataca rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Expliquei os pontos-chave da captura de uma postagem e agora falarei sobre os métodos de defesa de uma postagem.</p>
+          <p> </p>
+          <p>Mesmo depois de nós, Asmodianos, termos conquistado um posto, isso não significa o fim da guerra.</p>
+          <p> </p>
+          <p>O inimigo está constantemente mirando no posto. É por isso que devemos permanecer alertas e defendê-lo.</p>
+          <p> </p>
+          <p>É claro que devemos estar sempre alertas contra o inimigo que apenas espera pela oportunidade certa para atacar. Mas o que você mais deve tomar cuidado são os assassinos.</p>
+          <p> </p>
+          <p>O inimigo está constantemente tentando saquear nossos postos usando assassinos.</p>
+		  <p> </p>
+		  <p>Por essa razão, todo assassino deve ser morto imediatamente.</p>
+		  <p> </p>
+		  <p>Agora volte para Bardo e informe que você sabe como conquistar postos.</p>
+		  <p> </p>
+		  <p>E que você entendeu os pontos principais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta. As palavras de Bilveo para você chegaram até mim.</p>
+          <p> </p>
+          <p>E nenhum deles era falso. Remover os Legatus hostis ou comandantes de batalha que ocupam a base é crucial para conquistar o posto avançado.</p>
+          <p> </p>
+          <p>E você sempre tem que estar vigilante e matar qualquer assassino que aparecer se quiser proteger a base.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não saberá tudo de uma vez, mas acho que entendeu os pontos principais.</p>
+          <p> </p>
+          <p>Tudo ficará mais claro com a experiência.</p>
+		  <p> </p>
+		  <p>Espero que esse dia chegue logo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Ouça o método de [%dic:STR_DIC_LDF5a_Bilveo_E] para conquistar a base.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Retornar para [%dic:STR_DIC_LDF5a_Bard_Commander].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá até Bilveo e ouça o ponto crucial de como conquistar a base.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo Bardo, a conquista das bases em Katalam tem um papel importante e ele pediu que você procurasse Bilveo para obter mais informações.</p>
+          <p> </p>
+          <p>Bilveo explicou os pontos vitais para a conquista de bases. Se você matasse o oficial de combate ou comandante inimigo na base, os soldados restantes se retirariam.</p>
+          <p> </p>
+          <p>Depois que a base estiver ocupada, você deve ficar de olho no inimigo e matar qualquer assassino que aparecer de repente.</p>
+          <p> </p>
+          <p>Depois que você ouviu a explicação de Bilveo e voltou para Bardo, Bardo o instruiu novamente nos pontos mais importantes, expressando também o desejo de que o dia em que ele conquistaria uma base chegasse em breve.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

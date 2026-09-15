@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma ordem veio de Portis.</p>
+          <p> </p>
+          <p>A ordem é não só matar o Sheluk, de quem foi feito exemplo, mas também os demais.</p>
+          <p> </p>
+          <p>Uma vez ladrão, sempre ladrão. É por isso que todos eles precisam ser mortos.</p>
+          <p> </p>
+          <p>[%username], você pode cumprir a missão de matar o [%dic:STR_DIC_M_LDF5A_G2_Sheluk_63_An]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou todos os Sheluks lentos?</p>
+          <p> </p>
+          <p>Portis tem razão.</p>
+          <p> </p>
+          <p>Uma vez ladrão, sempre ladrão.</p>
+          <p> </p>
+          <p>Seu personagem nunca mudará.</p>
+          <p> </p>
+          <p>Eles vão roubar nossos produtos novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Começarei relatando que você concluiu bem a tarefa.</p>
+          <p> </p>
+          <p>Isso agradará Portis.</p>
+          <p> </p>
+          <p>Mas como nem todos os Sheluks preguiçosos foram eliminados, peço-lhe que ajude também na próxima vez.</p>
+          <p> </p>
+          <p>Por favor, aceite isso como uma recompensa por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Kill [%dic:STR_DIC_M_LDF5A_G2_Sheluk_63_An] ([%2]/9) conforme ordenado por Portis</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Rasir_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Shulack conforme ordenado por Portis!</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rasir disse que chegou uma instrução de Portis dizendo que deveríamos matar todos os outros Scheluk preguiçosos.</p>
+          <p> </p>
+          <p>Quando você matou o preguiçoso Scheluk, você foi recompensado. E ele disse que você o ajudará novamente mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

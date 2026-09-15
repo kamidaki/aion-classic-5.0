@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A magia possui um poder enorme.</p>
+          <p> </p>
+          <p>Mas também é lindo ao mesmo tempo.</p>
+          <p> </p>
+          <p>Eu adoraria deixar você compartilhar o poder da magia, Daeva, mas primeiro você precisa fazer algo em troca.</p>
+          <p> </p>
+          <p>Por favor, derrote 15 Elyos em [%dic:STR_DIC_W_DF5].</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você derrotou os Elyos, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você realmente é especial!</p>
+          <p> </p>
+          <p>Ótimo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Elyos que invadiram [%dic:STR_DIC_W_DF5] e defenda Vengar ([%2]/15).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Reporte ao Mestre Espiritual Rolly.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Elyos que invadiram Vengar e depois reporte-se ao Mestre Espiritual Rolly.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com as instruções do Mestre Espiritual Rolly, você matou os Elyos que invadiram Vengar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

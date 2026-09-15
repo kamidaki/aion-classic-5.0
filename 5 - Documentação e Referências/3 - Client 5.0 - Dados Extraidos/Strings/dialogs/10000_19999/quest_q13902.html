@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora é hora de limpar Balaurea.</p>
+          <p> </p>
+          <p>Você já provou seu valor. Agora é hora de você ir para Balaurea e ajudar a limpar tudo.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Cainus] na Inggison Illusion Fortaleza ficará feliz em vê-lo.</p>
+          <p> </p>
+          <p>Por favor, vá para a Fortaleza da Ilusão Inggison imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você provou suas habilidades! Eu estava certo em colocar minha esperança em você.</p>
+          <p> </p>
+          <p>Muita coisa mudou em Inggison e Balaurea desde que lutamos contra Tiamat.</p>
+          <p> </p>
+          <p>Eu chamei você para que possa combater o novo perigo trazido pelos Asmodianos em Balaurea e conquistar a vitória dos Elyos.</p>
+          <p> </p>
+          <p>A partir de agora nosso objetivo é capturar Inggison, Gelkmaros e Akaron.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não será fácil, mas suas habilidades e experiência o ajudarão a dominar as tarefas.</p>
+          <p> </p>
+          <p>Por favor, faça o seu melhor para impedir a invasão de Beritra aqui em Balaurea e para alcançar a vitória sobre os Asmodianos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Cainus] na Fortaleza da Ilusão Inggison.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá até o Agente Outremus na Fortaleza da Ilusão Inggison.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Adras disse que você provou suas habilidades o suficiente e o enviou para a Fortaleza da Ilusão Inggison para ajudar a limpar Balaurea.</p>
+          <p> </p>
+          <p>Quando você visitou o Agente Outremus, ele disse que a situação mudou drasticamente desde a batalha contra Tiamat.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

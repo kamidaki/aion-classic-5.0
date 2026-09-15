@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41546</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que? Não, não! Transforme, exploda você!</p>
+          <p> </p>
+          <p>Bebi a dose inteira, gurururu, mas ainda assim eu gurrp gurrp estou neste miserável gurrp guurp gurrp...</p>
+          <p> </p>
+          <p>Desisto. Sonho era mentira, gururururu.  Não adianta viver... Desejo a morte! Não tente me impedir!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que? Bem, é claro que ele não se transformou em Daeva! Ele é o Gurriki! Eu o conheço há anos!</p>
+          <p> </p>
+          <p>É por isso que eu disse para você não ceder a ele! Ah, a culpa também é minha, por entrar no jogo... Temos que fazer alguma coisa.</p>
+          <p> </p>
+          <p>Aqui, leve este colar para ele. Diga a ele que se ele usar isso por, digamos, dez anos, isso o mudará de volta à sua verdadeira forma. É mentira, claro, mas Gurriki tem péssimas memórias de longo prazo. Ele vai esquecer para que serve o colar em alguns meses.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Espero que isso funcione."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que você está aqui, gurrp gurrp? Vá embora para que eu possa morrer em paz.</p>
+          <p> </p>
+          <p>Eu não quero viver, gurururu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu tenho algo para você..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Dez anos?</p>
+          <p> </p>
+          <p>É muito tempo... mas se ao final de dez anos minha verdadeira forma voltar para mim, então valerá a pena!</p>
+          <p> </p>
+          <p>Eu... vou valorizar isso, Daeva, e nunca tirar isso. Aion te abençoe, meu amigo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pergunte a [%dic:STR_DIC_N_Ioran] o que fazer com Davikik.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Dê o colar de Ioran para [%dic:STR_DIC_N_NPC_Gururu_05].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">A dose de Davidik não o transformou, e ele está desesperado. Pergunte a Ioran o que fazer para ajudá-lo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A bebida de Davikik não o transformou em um Daeva, deixando-o em profundo desespero.</p>
+          <p> </p>
+          <p>Você fez uma visita a Ioran, que se sentiu culpado por participar do delírio de Davikik. Ela lhe entregou um colar e disse para você trazê-lo para Davikik, dizendo que isso o transformaria novamente em humano depois de dez anos. Gurriki tem memórias terríveis, o que significa que era provável que Davikik esquecesse o incidente muito antes disso.</p>
+          <p> </p>
+          <p>Você trouxe o colar para Davikik, que instantaneamente se animou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

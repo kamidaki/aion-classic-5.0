@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21516</QuestId>
+    <QuestName>제작 단체 주간 2</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você viu as ruínas ao redor do [%dic:STR_DIC_W_LDF4a_SZ_B2]? Esses são antigos locais Jotun. Esses Jotun costumavam ser alguns dos maiores arquitetos do mundo.</p>
+          <p> </p>
+          <p>Mas os Jotun do [%dic:STR_DIC_W_LDF4a_SZ_B2_09] parecem ter perdido qualquer interesse em construir. Uma pena, hein?</p>
+          <p> </p>
+          <p>Eu adoraria descobrir seus segredos, [%username]. Disseram-me que [%dic:STR_DIC_M_LDF4A_B2_Nepilim_R_58_Ae]s ainda carregam [%dic:STR_DIC_I_QUEST_11517A]s que detalham sua história arquitetônica. Esse prato valeria uma recompensa considerável, hein?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A cidade de Kamar é maravilhosamente equilibrada, não acha?</p>
+          <p> </p>
+          <p>Os Jotun, porém, sua arquitetura é sempre ligeiramente... oblíqua.</p>
+          <p> </p>
+          <p>Tentei imitá-lo, mas não vi exemplos suficientes.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Este prato pode ajudar."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username]! Você não decepciona, né?</p>
+          <p> </p>
+          <p>Isso é simplesmente maravilhoso. Embora...</p>
+          <p> </p>
+          <p>É apenas um fragmento de um texto maior. Não, não, é ótimo - mas se você quiser um emprego, adoraria ver mais desses.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Roube o [%dic:STR_DIC_I_QUEST_11517A] de [%dic:STR_DIC_M_LDF4A_B2_Nepilim_R_58_Ae] e leve-o para [%dic:STR_DIC_N_Salomone].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha a placa de registro Jotun que Solomon deseja.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Solomon queria investigar o segredo do estilo arquitetônico Jotun e pediu que você trouxesse para ele uma Placa de Registro Jotun.</p>
+          <p> </p>
+          <p>Roubar os registros da Jotun Handicrafters não foi fácil. Você não pode dizer se algum desses registros contém o que Salomão queria.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

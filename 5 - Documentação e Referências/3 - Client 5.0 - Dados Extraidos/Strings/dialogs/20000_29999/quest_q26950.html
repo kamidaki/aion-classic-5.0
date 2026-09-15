@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q26950</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username]! Que bom que você está aqui.</p>
+          <p> </p>
+          <p>Um agente Shugo atribuiu uma missão secreta, mas todos estão tão ocupados que não há mais ninguém a quem eu possa perguntar.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_LDF5a_Damiring_E] é o cliente.</p>
+          <p> </p>
+          <p>Vá vê-la, se tiver tempo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Psiu, você aí! Kirik enviou Daeva, ok? Então Daeva chegou bem na hora. Shugo é Damirinerk da Goldrinyerk Limited.</p>
+          <p> </p>
+          <p>Os piratas têm atacado um importante Shugo da Goldrinyerk Limited há algum tempo, ak. Shugo acredita que o assassino é alguém de dentro que fez um acordo com os piratas.</p>
+          <p> </p>
+          <p>Shugo descobriu que Bosaraki da Rosa de Aço recebeu uma ordem de morte do traidor. Se Shugo conseguisse aquela ordem de matar, Shugo poderia descobrir quem é o traidor, ak!</p>
+          <p> </p>
+          <p>Pegue o [%dic:STR_DIC_I_quest_26950a] de Bosaraki no [%dic:STR_DIC_W_IDShulackShip_02_SZ_1F] e depois retorne para Shugo, ak.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_IDShulack_Rose_Ent_1FD_E] em North Katalam dirá a Daeva como encontrar a Rosa de Aço, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você encontrar as ordens planejando o engano, poderá descobrir o traidor entre nós, também.</p>
+          <p> </p>
+          <p>Uma investigação indica que Bosaraki da Rosa de Aço tem as ordens, ak.</p>
+          <p> </p>
+          <p>Mate-a e traga provas da traição, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">A missão é emitida.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! Mas isso é uma ordem de morte, ak!</p>
+          <p> </p>
+          <p>Damirinerk pode usar o selo na missão para descobrir quem é o traidor, ak.</p>
+          <p> </p>
+          <p>Damirinerk está preocupado com Sandarinerk, nyerk.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5a_Damiring_E] em North Katalam.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Obtenha o [%dic:STR_DIC_I_quest_26950a] e reporte para [%dic:STR_DIC_N_LDF5a_Damiring_E].</font></p>[%collectitem]</step>
+    	    </steps>
+          <p><font font_xml="quest_summary">Elimine o Encantador Bosaraki no Estágio de Pouso da Rosa de Aço e obtenha a ordem de matar.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recuperou um contrato de assassinato que trazia o selo do traidor do enfeitiçado Bosaraki na Rosa de Aço.</p>
+          <p> </p>
+          <p>A Goldrinyerk Limited decidiu pensar no traidor interno e no futuro relacionamento com a Rosa de Aço.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

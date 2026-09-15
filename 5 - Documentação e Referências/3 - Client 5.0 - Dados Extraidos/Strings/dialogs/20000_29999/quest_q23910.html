@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A batalha que decidirá o destino dos Asmodianos está acontecendo em Kaldor.</p>
+          <p> </p>
+          <p>Só poderemos virar a maré da batalha a nosso favor se colocarmos os artefatos e a Fortaleza Anoha sob nosso controle.</p>
+          <p> </p>
+          <p>Se você quiser ajudar nesta missão, vá e derrote o [%dic:STR_DIC_E_LDF5_Fortress_7011_Boss_Li_all] e o [%dic:STR_DIC_E_LDF5_Fortress_7012_Boss_Li_all], bem como o [%dic:STR_DIC_E_LDF5_Fortress_7013_Boss_Li_all] e o [%dic:STR_DIC_E_LDF5_Fortress_7014_Boss_Li_all].</p>
+          <p> </p>
+          <p>Para eliminar o Guardião Geral da Fortaleza Anoha, você deve primeiro ocupar três bases de defesa em Kaldor.</p>
+          <p> </p>
+          <p>Depois de cuidar do Guardian General e dos Artefact Guardians, ajude a eliminar [%dic:STR_DIC_M_LDF5_Fortress_Boss_Anoha_65_Al] também. Você será o glorioso conquistador de toda Kaldor.</p>
+          <p> </p>
+          <p>[%username], estou convencido de que você terá sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tantas coisas dependem das batalhas em Kaldor... Não consigo enfatizar o suficiente o quão importante é que sejamos vitoriosos em Kaldor.</p>
+          <p> </p>
+          <p>Se tomarmos a região, a nossa vitória sobre os Elyos em Balaurea estará assegurada.</p>
+          <p> </p>
+          <p>Você derrotou o Guardian General, todos os Artefact Guardians e Raging Anoha também?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você também realizou esta tarefa com sucesso. Isso é ótimo!</p>
+          <p> </p>
+          <p>E isso nos torna os governantes de Kaldor. Se conseguirmos evitar os ataques de Elyos no futuro, seremos os vencedores finais.</p>
+          <p> </p>
+          <p>Essa foi uma conquista notável. Obrigado!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o inimigo que ocupa a Fortaleza Anoha e livre-se dos Guardiões do Artefato.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Derrote o [%dic:STR_DIC_E_LDF5_Fortress_7011_Boss_Li_all] ([%2]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Livre-se do [%dic:STR_DIC_E_LDF5_Fortress_7012_Boss_Li_all] ([%5]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_LDF5_Fortress_7013_Boss_Li_all] ([%8]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_LDF5_Fortress_7014_Boss_Li_all] ([%11]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Eliminar [%dic:STR_DIC_M_LDF5_Fortress_Boss_Anoha_65_Al] ([%14]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Corridor_D_MainQuest_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote os Guardiões do Artefato, o Guardião Geral e Raging Anoha, que foi convocado pela Brigada General da legião invasora.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hallia encarregou você de eliminar os Guardiões do Artefato, o Guardião Geral e o Raging Anoha para que os Asmodianos pudessem exercer mais influência sobre Kaldor.</p>
+          <p> </p>
+          <p>Você seguiu as ordens e eliminou todos os inimigos, abrindo caminho para uma vitória Asmodiana em Kaldor no processo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

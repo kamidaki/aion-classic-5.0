@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Kahrun pode ser muito poderoso, mas mesmo ele pode não ser capaz de vencer um Senhor Dragão.</p>
+           <p> </p>
+           <p>Mas então foi ele quem esteve na frente durante a batalha contra Tiamat. É basicamente uma pena... Mas naquela época todo mundo só estava interessado na Relíquia de Siel.</p>
+           <p> </p>
+           <p>[%username], por favor viaje para [%dic:STR_DIC_W_IDTiamat_SZ_T1] e ajude Kahrun a derrotar Dragon Lorde [%dic:STR_DIC_M_IDTiamat_Tiamat_Drakan_Named_60_Al].</p>
+           <p> </p>
+           <p>Talvez a dor do passado que o tortura desapareça se você participar pessoalmente da batalha contra Tiamat...</p>
+           <p> </p>
+           <p>Esta batalha pode ser mais difícil do que qualquer outra até agora, mas sei que você conseguirá.</p>
+           <p> </p>
+           <p>Você só deve levar camaradas confiáveis com você. Você tem que vencer esta batalha imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>E o que Lorde Marchutan, que se recusou a participar da luta, está fazendo aqui...</p>
+           <p> </p>
+           <p>Espere um momento...</p>
+           <p> </p>
+           <p>Não pode ser! Esta farsa de má qualidade é apenas sobre a Relíquia de Siel?</p>
+           <p> </p>
+           <p>E Israphel está em conluio com os Elyos, não é?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">"Não, não é assim."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Acredito em você, mas uma coisa é certa: embora Lorde Marchutan pudesse lutar com você desde o início, ele teria observado a situação primeiro.</p>
+           <p> </p>
+           <p>Se Israphel não tivesse aparecido quando matei Tiamat, então Marchutan definitivamente teria levado a Relíquia de Siel para si, certo?</p>
+           <p> </p>
+           <p>Ah, é assim que a confiança é abusada. Que decepção...</p>
+           <p> </p>
+           <p>Estou tão confuso e exausto que não sou capaz de fazer uma avaliação agora...</p>
+           <p> </p>
+           <p>A primeira coisa que farei agora é contar ao mundo sobre a morte do Senhor Dragão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Israphel... que destino você está planejando, eu me pergunto...</p>
+           <p> </p>
+           <p>Isso só vai causar dificuldades...</p>
+           <p> </p>
+           <p>Não há mais nada que eu possa fazer a não ser retornar e convocar uma grande reunião de senhores.</p>
+           <p> </p>
+           <p>Quem sabe o que acontecerá se os outros Balaur souberem da morte de Tiamat.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você continua conversando com ele.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>[%username], estarei entregando a você uma missão especial em breve.</p>
+           <p> </p>
+           <p>Um Daeva que consegue enfrentar Tiamat não deveria ter nenhum problema com isso.</p>
+          <p> </p>
+          <p>Relate a morte de Tiamat ao mundo e espere que eu o convoque novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>[%username], você voltou em segurança!</p>
+           <p> </p>
+           <p>Naturalmente eu esperava que você voltasse, Daeva... Mas ainda estava preocupado com você.</p>
+           <p> </p>
+           <p>Como você se saiu? Sua cabeça está melhor agora?</p>
+           <p> </p>
+           <p>Por favor, me conte o que aconteceu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que a dor desapareceu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Eu sabia!</p>
+           <p> </p>
+           <p>Obviamente há uma conexão entre a sua aparição aqui e a morte do Senhor Dragão no passado.</p>
+           <p> </p>
+           <p>O que trouxe você aqui? O que está causando isso... É por causa de sua morte miserável?</p>
+           <p> </p>
+           <p>A morte de um Lorde Dragão não é uma questão simples. A sua raiva e o seu desespero ficaram para trás.</p>
+           <p> </p>
+           <p>A Relíquia de Siel também estava localizada no local onde o Senhor Dragão morreu. Talvez você já saiba que esta relíquia contém o poder de Senhora Siel.</p>
+           <p> </p>
+           <p>Siel era o Senhor do Tempo. Na verdade, pensei que esse poder também teria desaparecido com a morte dela. Mas a poderosa relíquia de Siel deve ter chegado às mãos de Tiamat.</p>
+           <p> </p>
+           <p>Algum tempo depois da morte de Siel... Os Elyos, os Asmodianos, os Senhores dos Dragões e até mesmo Israphel estavam de olho neste item para que cada um deles pudesse alcançar seus objetivos.</p>
+           <p> </p>
+           <p>Mas, independentemente disso, estou muito satisfeito por você não sofrer mais dessas dores de cabeça.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o Senhor Dragão [%dic:STR_DIC_M_IDTiamat_Tiamat_Drakan_Named_60_Al] em [%dic:STR_DIC_W_IDTiamat_SZ_T1] ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_IDTiamat_Kahrun_1] em [%dic:STR_DIC_W_IDTiamat_SZ_T1].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_IDTiamat_Marchutan_1] em [%dic:STR_DIC_W_IDTiamat_SZ_T1].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Relatório para [%dic:STR_DIC_N_DF5_Ginie_E].</font></p></step>
+    </steps>
+           <p><font font_xml="quest_summary">Infiltre-se no Abrigo de Tiamat junto com Kahrun e destrua o Senhor Dragão.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Ginie disse que seu destino aparentemente estava ligado ao passado e que, portanto, você provavelmente teve que lutar contra Tiamat no passado.</p>
+           <p> </p>
+           <p>Você seguiu as instruções dela e viajou para o Abrigo de Tiamat, onde se juntou a Kahrun na batalha contra Tiamat. Você conseguiu destruí-la com a ajuda de Marchutan.</p>
+           <p> </p>
+           <p>Ginie lhe disse que a raiva e o desespero do Senhor Dragão morto atrairiam muitos Daevas para este lugar.</p>
+           <p> </p>
+           <p>Nesse contexto, Ginie abordou o assunto da Relíquia de Siel e finalmente parabenizou você por não ter mais dores de cabeça.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

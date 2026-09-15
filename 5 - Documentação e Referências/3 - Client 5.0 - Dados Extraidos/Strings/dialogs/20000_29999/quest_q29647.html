@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Você já ouviu falar de [%dic:STR_DIC_W_DF5] em [%dic:STR_DIC_W_DF5_SZ_OP_02]?</p>
+          <p> </p>
+		  <p>É um lugar perigoso habitado por criaturas terríveis.</p>
+		  <p> </p>
+		  <p>Gostaria de pedir-lhe que elimine essas criaturas terríveis.</p>
+		  <p> </p>
+		  <p>Por favor, mate os Sunset Hornskulls e os Coral Shell Ettins. Então vá até Grangund, o comandante interino da Floresta Crepuscular. Ele lhe dará um [%dic:STR_DIC_I_key_returnbox_b_01] como recompensa.</p>
+		  <p> </p>
+		  <p>Você pode usar a chave para abrir o [%dic:STR_DIC_I_returnbox_b_01] e receber um item que o ajudará em suas viagens.</p>
+		  <p> </p>
+		  <p>Por favor, cuide desta missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra.</p>
+          <p> </p>
+		  <p>Janette mandou você?</p>
+		  <p> </p>
+		  <p>Eu pedi a Janette que me enviasse um Daeva que fosse forte o suficiente para derrotar os Hornskulls e os Ettins.</p>
+		  <p> </p>
+		  <p>Como não tive notícias dela, duvidei que alguém cumprisse a missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que executou a tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Você mal chegou aqui e já se livrou de algumas dessas criaturas.</p>
+          <p> </p>
+		  <p>Você parece ser realmente muito confiável, a julgar pela forma como realiza essas tarefas.</p>
+		  <p> </p>
+		  <p>Aqui está a Chave da Caixa Nobre dos Retornados, conforme prometido. Este presente é apenas para Daevas tão eficientes quanto você.</p>
+		  <p> </p>
+		  <p>Se você encontrar uma Caixa Nobre do Retornado em suas aventuras, você definitivamente deveria usá-la.</p>
+		  <p> </p>
+		  <p>Tenho certeza que vai ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_DF5] e mate o [plur][%dic:STR_DIC_M_DF5_D_Salivado_58_n] ou [plur][%dic:STR_DIC_M_DF5_E2_Ettin_60_An] ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_DF5_Grangund_E] em [%dic:STR_DIC_W_DF5_SZ_OP_02].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine as criaturas e depois vá para Grangund para receber a Chave da Caixa Nobre dos Retornados.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Janette deu a você a missão de visitar a nova região e lutar contra as criaturas de lá.</p>
+          <p> </p>
+          <p>Depois de derrotar as criaturas, você foi até Grangund, que lhe entregou a Chave da Caixa Nobre dos Retornados.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

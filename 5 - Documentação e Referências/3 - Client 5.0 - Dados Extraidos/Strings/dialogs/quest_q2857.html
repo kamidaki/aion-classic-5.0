@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+		<body>
+		<p>A sede da Reshanta deu ordem para matar [%dic:STR_DIC_M_Lamiren_DrakanBossNamed_65_Ah].</p>
+		<p> </p>
+		<p>Aparentemente, há sinais de que a legião Ereshkigal na Fortaleza de Guerra Miren se submeteu a Beritra. A sede gostaria que você tivesse certeza.</p>
+		<p> </p>
+		<p>Poderia ter consequências devastadoras se a legião do terceiro Senhor Dragão se juntasse à legião do quarto Senhor Dragão.</p>
+		<p> </p>
+		<p>Segundo outra fonte, os Balaur guardam tesouros na fortaleza de guerra.</p>
+		<p> </p>
+		<p>Se você se apressar, poderá roubar tesouros valiosos durante o ataque à fortaleza.</p>
+		</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Azfelumbra.</p>
+		<p> </p>
+		<p>Vendo que você retornou em segurança, presumo que completou a missão com sucesso.</p>
+		<p> </p>
+		<p>Você matou [%dic:STR_DIC_M_Lamiren_DrakanBossNamed_65_Ah]?</p>
+		<p> </p>
+		<p>O que aconteceu com a Guilda Ereshkigal?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você fala sobre o que você experimentou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>É surpreendente que a Guilda Ereshkigal tenha se juntado ao Beritra.</p>
+		<p> </p>
+		<p>Devo contar ao comando sobre isso imediatamente. O poder do Exército Beritra no Abismo continua crescendo.</p>
+		<p> </p>
+          <p>Bom trabalho. Esta é uma recompensa da Sede da Reshanta.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_Lamiren_DrakanBossNamed_65_Ah] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Ab1_1241_TreasureGate_Da].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Fortaleza de Guerra Miren ou para a Fortaleza da Guilda Miren e mate o furioso Príncipe Miren.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Quartel-General de Reshanta pediu para você eliminar o furioso Príncipe Miren na Fortaleza de Guerra Miren e descobrir se a Guilda Ereshkigal uniu forças com o Exército Beritra.</p>
+          <p> </p>
+          <p>Você e seus camaradas de armas derrotaram o Príncipe na Fortaleza de Guerra Miren e descobriram que a Guilda Ereshkigal havia se juntado a Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

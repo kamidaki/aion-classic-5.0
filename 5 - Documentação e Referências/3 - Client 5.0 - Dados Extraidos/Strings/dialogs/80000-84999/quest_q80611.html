@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Enchemos nossos armazéns no outono para podermos sobreviver ao inverno.</p>
+          <p>Na primavera, nossos suprimentos</p>
+	  <p>já se foram há muito tempo.</p>
+          <p>É por isso que temos que comer tanto na primavera!</p>
+          <p>Então você poderia dizer que só vivemos para comer. Haha!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hum... Bem...</p>
+          <p>Talvez meu filho tenha comido demais.</p>
+	  <p>Ele se sente cansado e fraco, não importa o que coma...</p>
+	  <p>Se você tiver tempo, poderá encontrar o Doutor Mugura.</p>
+	  <p>Você perguntaria a ele o que devo fazer agora?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você diz que entendeu.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você diz que não quer fazer isso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você contar ao Doutor Mugura o que eu lhe contei, ele certamente ajudará.</p>
+          <p>Vou te mostrar onde o médico está no mapa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é um Daeva de coração muito frio!</p>
+          <p>Você está me ignorando porque acha que não valho nada?</p>
+	  <p>Hum?!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você o ignora.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+<HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hum? Cheirar...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você conta a história de Gungun.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>O filho de Gungun está cansado e fraco?</p>
+          <p>Então ele deveria comer Ginseng! Idealmente, Ginseng muito velho!</p>
+          <p>Se ele comer, ele realmente recuperará as forças! Cheire, cheire</p>
+          <p>Vou desenhar um mapa para você encontrar o Ginseng...</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+                             <step><p visible="[%0]"><font color="[%1]">Diga ao Doutor Mugura o que Gungun disse.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O doutor Mugura parece saber onde encontrar alimentos nutritivos. Vá até o Doutor Mugura e fale com ele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gungun estava preocupado porque seu filho estava muito fraco.</p>
+          <p/>
+          <p>Como o Doutor Mugura sabe muito sobre alimentação nutritiva, você deveria conversar com ele.</p>
+          <p/>
+          <p>Você conversou com o Doutor Mugura e ele lhe deu um mapa no qual marcou o paradeiro aproximado do Ginseng.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

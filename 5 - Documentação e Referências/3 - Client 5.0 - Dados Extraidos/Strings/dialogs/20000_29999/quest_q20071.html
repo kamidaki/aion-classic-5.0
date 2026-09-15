@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q20071</QuestId>
+    <QuestName>용계 진격</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Ancião Reian e eu ficamos extremamente decepcionados com a conduta de Kahrun no Trono Sangrento.</p>
+          <p> </p>
+          <p>Eu preferiria expulsá-lo das terras Reian, mas depois de consultar os anciões, decidimos não dizer mais nada sobre isso agora.</p>
+          <p> </p>
+          <p>O mais importante para os Reian, mas também para os Asmodianos, é trabalhar juntos e recuperar a Relíquia de Siel.</p>
+          <p> </p>
+          <p>Afinal, ninguém sabe onde Israphel queria usar a Relíquia de Siel, certo?</p>
+          <p> </p>
+          <p>Afinal, não podemos permitir que ele, que compartilha a posição de lorde, escape impune de tudo. Especialmente quando ele se esconde disfarçado de Lephar e volta à vida.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Retomar a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Relíquia de Siel deve ser absolutamente recuperada.</p>
+          <p> </p>
+          <p>Lembre-se: a Relíquia de Siel pertence tanto aos Reian quanto aos Elyos. Nenhum dos lados tem o direito de reivindicar propriedade exclusiva.</p>
+          <p> </p>
+          <p>[%username]. Tenho certeza que você, que conta com a confiança do Reian, não estará pensando apenas nos seus próprios interesses, como fazem os Asmodianos.</p>
+          <p> </p>
+          <p>Peço que você compartilhe todo o progresso com os Reian e trabalhe em estreita colaboração com eles.</p>
+          <p> </p>
+          <p>Eu disse ao agente que enviarei a ele um rastro de Marchutan do Trono Sangrento, então você deve ir primeiro para [%dic:STR_DIC_N_Aimah].</p>
+          <p> </p>
+          <p>Nós, Reian, também faremos tudo ao nosso alcance para descobrir o paradeiro de [%dic:STR_DIC_N_Israphel].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa terminou</Act>
+    </Selects>
+    <Voice file="Q20071-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], estava esperando por você.</p>
+          <p> </p>
+          <p>De qualquer forma, o [%dic:STR_DIC_I_quest_10071a] que Marchutan extraiu do templo chegou.</p>
+          <p> </p>
+          <p>Diz-se que é possível rastrear Israphel usando esses rastros do Abismo.</p>
+          <p> </p>
+          <p>É por isso que... há algo a fazer por você, que ainda não perdeu a fé nos Reianos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você pergunta do que se trata.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Leve [%dic:STR_DIC_I_quest_10071a] para [%dic:STR_DIC_N_Garnon2] e peça a ele para investigar a energia desse traço.</p>
+          <p> </p>
+          <p>Se ele quiser saber mais detalhes sobre o rastreamento, basta dizer o mínimo e dizer que nada mais se sabe ainda.</p>
+          <p> </p>
+	  <p>Na verdade, eu não queria usar as forças Reian se possível, queria cuidar das coisas silenciosamente... mas como preciso da ajuda de um feiticeiro Reian de alto escalão, parece que isso não pode ser mudado.</p>
+          <p> </p>
+          <p>Terminada a investigação, você deve procurar [%dic:STR_DIC_I_quest_10071a] novamente. Entendido?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você responde que entendeu.</Act>
+    </Selects>
+    <Voice file="Q20071-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vestígios do Abismo... Isso significa que vestígios foram extraídos do local onde Israphel desapareceu.</p>
+          <p> </p>
+          <p>Já havia passado pela minha cabeça que tal coisa era possível em teoria, mas o fato de que isso agora poderia ser confirmado na realidade... As habilidades do Senhor são desprovidas de qualquer imaginação.</p>
+          <p> </p>
+          <p>Entendido. Vou mandar examinar esse traço rapidamente pelo consultor da Associação dos Feiticeiros Reian.</p>
+          <p> </p>
+          <p>Mas o que você está pensando em fazer com o rastro do Abismo quando os exames forem concluídos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você responde que não sabe.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu entendo ...</p>
+          <p> </p>
+          <p>(Garnon fica perdido em pensamentos por um momento.)</p>
+          <p> </p>
+          <p>Certo, [%username]. Você poderia inspecionar o local onde Israphel costumava ficar com [%dic:STR_DIC_ILDF4a_FOBJ_Q10051]?</p>
+          <p> </p>
+          <p>Ele não estará lá agora, é claro... mas talvez haja mais pistas para encontrarmos.</p>
+          <p> </p>
+          <p>Enquanto isso, ajudarei os Feiticeiros a examinar os vestígios do Abismo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">A conversa terminou</Act>
+    </Selects>
+    <Voice file="Q20071-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você tivesse chegado um pouco mais tarde, teria ficado preso a essa maldição pelo resto da vida. Isso foi quase um erro.</p>
+          <p> </p>
+          <p>Uma maldição tão forte... talvez seja uma das de Lorde Israphel.</p>
+          <p> </p>
+          <p>Então todo mundo que vai procurá-lo vira pedra...</p>
+          <p> </p>
+          <p>Israphel... que esquema você está tramando, eu me pergunto...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">A conversa terminou</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ufa! Temos que nos apressar e encontrar a Relíquia de Siel!</p>
+          <p> </p>
+          <p>De qualquer forma, estávamos quase no final de nossa busca por vestígios do Abismo.</p>
+          <p> </p>
+	  <p>Estranhamente, eles contêm a mesma energia que na época de [%dic:STR_DIC_W_LDF4a_SZ_B1].</p>
+          <p> </p>
+          <p>Hmm... O que isso significa, entretanto, é impossível dizer neste momento.</p>
+          <p> </p>
+          <p>Podemos, Reian, talvez continuar examinando os vestígios por mais um pouco?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT6_1">Você responde que precisa levá-lo com você.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Realisticamente, não há nada que possa ser feito.</p>
+          <p> </p>
+          <p>Eu devolverei os rastros para você então. Por favor, relate os resultados da investigação para [%dic:STR_DIC_N_Aimah], sim.</p>
+          <p> </p>
+          <p>Ah... [%username].</p>
+          <p> </p>
+          <p>Como confio em você, [%username], há mais uma coisa que preciso lhe contar. Se os Asmodianos estão escondendo alguma coisa do Reian, você deve me avisar.</p>
+          <p> </p>
+          <p>Se a confiança mútua for traída novamente, as relações entre os Asmodianos e os Reia serão danificadas irreparavelmente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">A conversa terminou</Act>
+    </Selects>
+    <Voice file="Q20071-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username], aí está você!</p>
+          <p> </p>
+          <p>Como foi?</p>
+          <p> </p>
+          <p>Minha palavra! E você também não esqueceu de trazer o [%dic:STR_DIC_I_quest_10071a]!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relatou o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A mesma energia da Floresta Anaz, você diz?</p>
+          <p> </p>
+          <p>Bom trabalho. Agora a busca pela Relíquia de Israphel e Siel é apenas uma questão de tempo!</p>
+          <p> </p>
+          <p>Não precisamos mais da ajuda dos Reianos agora e o trabalho ficou significativamente mais fácil.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Kahrun].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Aimah].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relate para [%dic:STR_DIC_N_Garnon] sobre [%dic:STR_DIC_I_quest_10071a].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Use o [%dic:STR_DIC_ILDF4a_FOBJ_Q10051] para encontrar vestígios de [%dic:STR_DIC_N_Israphel].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Volte para [%dic:STR_DIC_N_Garnon] antes que seu corpo congele.</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Garnon].</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Relatório para [%dic:STR_DIC_N_Aimah].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Procure sinais de Israphel, que desapareceu.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kahrun disse que a cooperação terminaria se os Reians fossem traídos novamente, e que vocês deveriam procurar pelas Relíquias de Israphel e Siel juntos.</p>
+          <p> </p>
+          <p>No entanto, Aimah proibiu você de revelar a verdadeira identidade de Marchutan à tribo Reian e ordenou que você retornasse imediatamente após uma breve investigação.</p>
+          <p> </p>
+          <p>Após a investigação, você relatou a Aimah as pistas, e ela lhe disse que a ajuda da tribo Reian não era necessária e que tudo ficaria bem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

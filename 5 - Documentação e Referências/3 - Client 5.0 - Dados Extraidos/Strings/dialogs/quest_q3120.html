@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q3120</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu descobri alguém chamado Guionbark durante minhas observações da Fortaleza Adma...</p>
+          <p> </p>
+          <p>Ele parecia muito desconfiado, então verifiquei os últimos cartazes de procurados. E ele é de fato procurado!</p>
+          <p> </p>
+          <p>Você poderia se infiltrar na fortaleza e eliminar [%dic:STR_DIC_E_L_DF2a_Q3120]?</p>
+          <p> </p>
+          <p>Compartilharei a recompensa com você, é claro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou apenas examinando os últimos cartazes de procurados.</p>
+          <p> </p>
+          <p>Você poderia voltar mais tarde?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, é você, Daeva! Você eliminou Bardo Guionbark?</p>
+          <p> </p>
+          <p>Espere um momento... Bardo...</p>
+          <p> </p>
+          <p>(Remexer na carta de investigação.)</p>
+          <p> </p>
+          <p>Aqui está! A pessoa que eliminar Bardo Guionbark receberá... um milhão de Kinah!</p>
+          <p> </p>
+          <p>Insano!</p>
+          <p> </p>
+          <p>(Limpa a garganta e lança um olhar furtivo.)</p>
+          <p> </p>
+          <p>Quero dizer que a tarefa nem foi tão difícil. Aqui, esse valor parece uma recompensa adequada.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_E_L_DF2a_Q3120] na Fortaleza Adma ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Rovilance].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você derrotou o bardo a pedido de Rovilance.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rovilance encontrou o pôster de "procurado" de Bardo Guionbark e pediu para você eliminá-lo.</p>
+          <p> </p>
+          <p>Você executou a tarefa, mas Rovilance ficou com a maior parte da recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

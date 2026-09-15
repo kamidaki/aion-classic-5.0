@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q16952</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tripulação da Rosa de Aço comandada pelo Capitão Rumakiki é na verdade uma gangue de mulheres piratas, mas Shulacks homens também fazem parte dela, ak.</p>
+          <p> </p>
+          <p>E corre o boato de que eles foram cativados pela magia de Rumakiki e levados a bordo como seus escravos, onde se tornaram marinheiros, ak. Como diabos Rumakiki conseguiu encantá-los, certo?</p>
+          <p> </p>
+          <p>Todos os marinheiros do Steel Rose usam um pequeno cristal vermelho em seus corpos, ak. Eu me pergunto se isso está de alguma forma ligado ao segredo de como Rumakiki encanta os homens, ak.</p>
+          <p> </p>
+          <p>Por favor, mate os Steel Rake Exploradores, Fighters e Snipers a bordo do [%dic:STR_DIC_W_IDShulackShip_02_SZ_2F] e traga-me seu [%dic:STR_DIC_I_quest_16952a], ak.</p>
+          <p> </p>
+          <p>Se você quiser chegar às cabines precisa da ajuda do agente secreto [%dic:STR_DIC_N_IDShulack_Rose_Ent_2F_E], ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se investigarmos o cristal dos marinheiros encantados, poderemos descobrir como Rumakiki os enfeitiçou, ak.</p>
+          <p> </p>
+          <p>Mate os marinheiros Shulack encantados na Rosa de Aço, pegue o Song Crystal e leve-o para Shugo, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Entregue o cristal.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este é o segredo para seduzir os homens Shulack! As leves vibrações do cristal não soam como uma espécie de música?</p>
+          <p> </p>
+          <p>Os tons mágicos do Cristal encantam quem o usa. Ah, o doce som que escapa daquele cristal...</p>
+          <p> </p>
+          <p>Não! Isto não deve continuar! Se eu ouvir por muito mais tempo, vou me apaixonar por Rumakiki contra a minha vontade!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha [plur][%dic:STR_DIC_I_quest_16952a] e níveis para [%dic:STR_DIC_N_LDF5b_Huwooring_E] em North Katalam.</font></p>[%collectitem]</step>
+    	    </steps>
+          <p><font font_xml="quest_summary">Elimine os encantados Steel Rake Sailors e obtenha o Magic Crystal of Song.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você subiu a bordo do Steel Rose, matou a tripulação do navio enfeitiçado e examinou o cristal roubado.</p>
+          <p> </p>
+          <p>Você percebeu que Rumakiki capturou sua canção em um cristal para enfeitiçar os homens e usá-los indevidamente como marinheiros de seu navio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

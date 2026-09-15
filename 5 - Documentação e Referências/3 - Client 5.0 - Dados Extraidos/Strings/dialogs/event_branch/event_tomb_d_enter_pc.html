@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um tesouro valioso! Só de pensar nisso o coração de Shugo bate mais rápido, ak.</p>
+          <p> </p>
+          <p>[%username] ouviu o boato?</p>
+          <p> </p>
+          <p>O boato sobre a Tumba do Imperador, akakak.</p>
+          <p> </p>
+          <p>Se Daeva estiver interessado na Tumba Imperial, Shugo abrirá uma exceção e ajudará Daeva, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra na Tumba do Imperador.</Act>
+      <Act href="HACTION_OPEN_INSTANCE_RECRUIT">Você procura amigos para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo sente muito, akakak.</p>
+          <p> </p>
+          <p>Shugo é responsável apenas por Daevas que receberam permissão especial, ak.</p>
+          <p> </p>
+          <p>Se Daeva quiser ir ao Túmulo do Imperador, Daeva deveria perguntar a outro Shugo.</p>
+          <p> </p>
+          <p>Mas Daeva pode voltar quando Daeva cumprir os requisitos especiais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você ainda não pode entrar na Tumba do Imperador.</p>
+          <p> </p>
+          <p>Por favor, espere um momento, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

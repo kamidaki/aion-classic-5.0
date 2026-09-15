@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Notícias de Pernon trouxeram Daevas em bando. E por um bom motivo! Quem pode resistir ao fascínio de um lugar só seu?</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Sarrik], na entrada dos estúdios, é responsável pela distribuição.</p>
+          <p> </p>
+          <p>Somente aqueles que serviram Asmodae com dedicação têm esta oportunidade. Você deve ter impressionado algumas pessoas poderosas!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra. Vejo que você ouviu falar da provisão do Pandemônio para nossos melhores Daevas.</p>
+          <p> </p>
+          <p>Designarei um estúdio para você, a menos que você esteja incapacitado ou desqualificado. Deixe-me verificar nossa lista de novos proprietários de casa e ter certeza de que você a mereceu.</p>
+          <p> </p>
+          <p>[%username]... [%username]... [%username]... Ah! Aqui está!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Estou altamente condecorado, como você pode ver."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parabéns, [%username], você agora é um residente oficial de Pernon!</p>
+          <p> </p>
+          <p>Este livro, apenas um pequeno presente de inauguração, deve ajudá-lo a se acomodar confortavelmente. Que a escuridão lhe conceda paz.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha um [%dic:STR_DIC_E_Housing_Townhouse_D] de [%dic:STR_DIC_N_Sarrik].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Pernon está oferecendo estúdios gratuitos para Daevas. Fale com Sarrik para saber mais.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O teletransportador Alnin disse para você visitar Sarrik e realizar seu sonho de ter uma casa própria.</p>
+          <p> </p>
+          <p>Sarrik verificou seu nome em sua lista de Daevas qualificados e então lhe deu um estúdio.</p>
+          <p> </p>
+          <p>Ele também lhe deu um livro com dicas para morar em Pernon.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

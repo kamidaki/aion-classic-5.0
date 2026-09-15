@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Isto estava na posse de um dos fugitivos.)</p>
+		  <p> </p>
+		  <p>(Está cercado por uma luz especial e não parece ter pertencido originalmente aos Shulacks.)</p>
+		  <p> </p>
+		  <p>(Você deve levar sua descoberta para [%dic:STR_DIC_N_IDLDF5_Under_01_Rohellein_E] para que ela possa dar uma olhada.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que é?</p>
+          <p> </p>
+		  <p>Espere um momento! Você tem algo que parece muito incomum...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que o encontrou em um fugitivo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho que enviar sua descoberta para Pandemônio.</p>
+          <p> </p>
+		  <p>Se não me engano, esta peça contém o poder do Senhor.</p>
+		  <p> </p>
+		  <p>Lorde Marchutan teve que gastar grande parte de seu poder para salvar os Daevas durante a Grande Ofensiva de Beritra em Balaurea e a destruição da terra.</p>
+		  <p> </p>
+		  <p>E depois a batalha com o Exército Beritra também...</p>
+		  <p> </p>
+		  <p>Ah, eu já falei demais.</p>
+		  <p> </p>
+		  <p>Tenho que enviar sua descoberta para a capital imediatamente.</p>
+		  <p> </p>
+		  <p>Muito obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o item que você encontrou no fugitivo para [%dic:STR_DIC_N_IDLDF5_Under_01_Rohellein_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Leve o item que você encontrou no fugitivo para Rohellein.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Depois de derrotar um fugitivo na Ponte de Jormungand, você encontrou algo nele que estava cercado por luz.</p>
+          <p> </p>
+          <p>Como não parecia pertencer aos Shulacks, você o trouxe para Rohellein. Ela lhe contou sobre o Senhor e disse que precisava enviar sua descoberta para a capital.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Enquanto estou aqui, estou ocupado tentando proteger a passagem subterrânea principal.</p>
+          <p> </p>
+          <p>Sem passagens seguras no metrô Katalam, você não pode operar com segurança.</p>
+          <p> </p>
+          <p>Mas devido à falta de pessoal e de bens, será mais difícil do que pensei garantir a passagem.</p>
+          <p> </p>
+          <p>[%username], por favor, vá até [%dic:STR_DIC_W_ZONE_NAME_LDF5_SZ_M1] para[%dic:STR_DIC_N_LDF5_Under_Oturu_E] e relate a situação aqui e peça suporte.</p>
+          <p> </p>
+          <p>Otur atualmente ocupa a função de consultor no Katalam Cleanup Squad.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perdoe-me, mas se não for importante, volte.</p>
+          <p> </p>
+          <p>Tenho alguns negócios muito importantes para tratar.</p>
+          <p> </p>
+          <p>Negócio importante que afeta vidas no metrô Katalam.</p>
+          <p> </p>
+          <p>Não posso me preocupar com mais nada agora, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você atende ao pedido de Brif.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu entendo. Então essas foram as palavras de Bother Brif.</p>
+          <p> </p>
+          <p>Que desagradável.</p>
+          <p> </p>
+          <p>Isso realmente chega em um momento inoportuno.</p>
+          <p> </p>
+          <p>Veja, há muitas outras coisas que precisam ser feitas agora e que têm precedência.</p>
+          <p> </p>
+          <p>Enviarei uma carta ao irmão Brif e pedir-lhe-ei clemência. [%username], por favor retorne agora.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Por favor, passe a solicitação de [%dic:STR_DIC_N_LDF5_Under_Brief_E] para [%dic:STR_DIC_N_LDF5_Under_Oturu_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Passe o pedido de Brif ao Conselheiro da Tropa do Comando Katalam, Otur.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Brif está lá para garantir a passagem para o metrô Katalam. Brif precisa de apoio, entretanto, e pediu que você comunicasse a situação a Otur.</p>
+          <p> </p>
+          <p>Depois de transmitir o pedido de Brif a Otur, conselheiro do Esquadrão de Limpeza Katalam, você recebeu a resposta de que muitas outras coisas importantes estavam em andamento e que você deveria retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

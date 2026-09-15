@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Feliz Dia das Heroínas, akakak.</p>
+          <p> </p>
+          <p>Todas as mulheres Daevas deveriam estar felizes hoje.</p>
+          <p> </p>
+          <p>Eles recebem flores, akakak.</p>
+          <p> </p>
+          <p>Florinerk acha que Daevas homens também deveriam receber presentes, akakak.</p>
+          <p> </p>
+          <p>Daeva aceitaria um [%dic:STR_DIC_l_world_wrap_event_wday_chocobox] como recompensa pelos Daevas masculinos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, espere um momento, Daeva.</p>
+          <p> </p>
+          <p>Vou encerrar para você, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pegue esta caixa de chocolates.</p>
+          <p> </p>
+          <p>Será um presente adequado, akakak.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Receba um [%dic:STR_DIC_l_world_wrap_event_wday_chocobox] de [%dic:STR_DIC_N_event_FlowerShugo].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Receba um [%dic:STR_DIC_l_world_wrap_event_wday_chocobox] de [%dic:STR_DIC_N_event_FlowerShugo].</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um [%dic:STR_DIC_l_world_wrap_event_wday_chocobox] como recompensa pelas lindas flores que deu de presente para as mulheres Daevas.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

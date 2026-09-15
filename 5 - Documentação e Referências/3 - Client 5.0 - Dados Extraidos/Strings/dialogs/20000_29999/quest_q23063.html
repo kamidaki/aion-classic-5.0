@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O relatório de Wallinerk, responsável pela restauração do muro em Eremion, está atrasado, ak.</p>
+          <p> </p>
+          <p>Daeva, você poderia ir até [%dic:STR_DIC_N_LDF5b_wallring_E] e perguntar por que o relatório está atrasado?</p>
+          <p> </p>
+          <p>A Goldrinyerk Limited está realizando diversas obras de construção. Entre eles, a restauração do muro de Eremion é um projeto muito importante.</p>
+          <p> </p>
+          <p>O facto de um relatório sobre um projecto tão importante chegar atrasado é um enorme problema.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Wallinerk está ocupado preparando a construção, ak!</p>
+          <p> </p>
+          <p>O material desapareceu e o guarda empregado aqui é preguiçoso. É tudo tão complicado, ok.</p>
+          <p> </p>
+          <p>Já estou sob pressão por causa do trabalho na minha empresa. O que você quer de mim, akakak?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você fala sobre o relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Relatório? Acabei de escrever o relatório, ak.</p>
+          <p> </p>
+          <p>Não foi fácil escrever a reportagem com o barulho dos animais.</p>
+          <p> </p>
+          <p>Houve muitas dificuldades, mas o trabalho está avançando, ak.</p>
+          <p> </p>
+          <p>Espero que você tenha conseguido repassar para [%dic:STR_DIC_N_LDF5b_Devring_E] sem problemas, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então, você trouxe o relatório, ok?</p>
+          <p> </p>
+          <p>Worlinerk talvez esteja preguiçoso, ok?</p>
+          <p> </p>
+          <p>Worlinerk não pode ficar preguiçoso, mesmo que esteja longe da sede, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem o relatório.</p>
+          <p> </p>
+          <p>Não precisaríamos de nada assim se todos os relatórios fossem enviados dentro do prazo, ak.</p>
+          <p> </p>
+          <p>Obrigado por seus esforços, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_wallring_E]%.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LDF5b_Devring_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre Wallinerk no Planalto Congelante e obtenha o relatório.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Debrinerk, você procurou por Wallinerk, que está ocupado consertando as Muralhas no Planalto Congelante, e ouviu o motivo pelo qual o trabalho estava demorando mais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

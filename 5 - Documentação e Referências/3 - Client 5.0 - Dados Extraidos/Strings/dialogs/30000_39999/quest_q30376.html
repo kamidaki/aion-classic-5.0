@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que bom ver você, [%username]. Tenho uma tarefa para você.</p>
+          <p> </p>
+          <p>Eu estava apenas procurando um Daeva adequado para esta tarefa. Mas graças a você posso economizar esse tempo agora.</p>
+          <p> </p>
+          <p>Primeiro de tudo, vá ao Russet Plaza no [%dic:STR_DIC_W_AB1_3] e encontre [%dic:STR_DIC_N_Vare]% lá.</p>
+          <p> </p>
+          <p>Vare irá informá-lo sobre esta missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo, [%username]. Faz muito tempo que não vejo você.</p>
+          <p> </p>
+          <p>Presumo que você tenha negócios comigo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você diz que Crispin enviou você.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é [%username], o Daeva que Crispin iria enviar para mim.</p>
+          <p> </p>
+          <p>Eu descobri que o [%dic:STR_DIC_W_IDAbRe_Core_02_SZ_All] é aparentemente a causa do pequeno Abismo que apareceu na Fortaleza Divina.</p>
+          <p> </p>
+          <p>Algo precisa ser feito, o fluxo do Éter é altamente instável lá.</p>
+          <p> </p>
+          <p>Vá imediatamente para a Fortaleza Divina e procure por [%dic:STR_DIC_NPC_Ab1_1011_TreasureGate_Da]!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa terminou</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou esperando por você desde que Vare me disse que você havia chegado, [%username].</p>
+          <p> </p>
+          <p>Estou satisfeito por você ter vindo.</p>
+          <p> </p>
+          <p>Preciso de sua ajuda novamente. Você vai me ajudar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que tem certeza disso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado pela sua disposição em aceitar esta missão.</p>
+          <p> </p>
+          <p>Esta missão não é fácil, mas tenho certeza que você a completará com sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Vare].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_NPC_Ab1_1011_TreasureGate_Da]% na Fortaleza Divina.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você diz que tem uma missão importante. Vá para Primeiro pouso para conhecer Vare.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O centurião Fatebound Crispin lhe disse que irá para Vare para uma missão importante.</p>
+          <p> </p>
+          <p>Quando você foi ver Vare, ele disse que era necessário alguém para uma missão relacionada a Abyssal Splinters of the Shattered Abismo. Assim você foi para a Fortaleza Divina e se encontrou com Gwal.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

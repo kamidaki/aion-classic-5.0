@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tribo Tauraks aliou-se aos Balaur e está nos atacando.</p>
+          <p> </p>
+          <p>Precisamos matar o líder tribal [%dic:STR_DIC_M_DF5_J_QuestTauric_64_An] para colocá-los fora de ação.</p>
+          <p> </p>
+          <p>Você poderia cuidar disso, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A defesa do Exército Beritra está cada vez mais forte.</p>
+          <p> </p>
+          <p>Provavelmente deveríamos nos apressar.</p>
+          <p> </p>
+          <p>Você cuidou do líder tribal dos Tauraks?</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que o eliminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você realmente fez um trabalho incrível.</p>
+          <p> </p>
+          <p>Eu me pergunto se o Exército Beritra pensa que vai nos deter agora.</p>
+          <p> </p>
+          <p>Seja o que for, não vamos recuar diante disso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+		     <step><p visible="[%0]"><font color="[%1]">Derrote [%dic:STR_DIC_M_DF5_J_QuestTauric_64_An], o líder tribal dos Tauraks ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_DF5_Stelman_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Stelman disse a você que a tribo dos Tauraks se aliou aos Balaur e começou a atacar os Asmodianos. Ele pediu para você derrotar o líder tribal deles. Atenda ao pedido de Stelman.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Stelman lhe contou que a tribo dos Tauraks se aliou aos Balaur e começou a atacar os Asmodianos. Ele pediu para você derrotar o líder tribal deles.</p>
+          <p> </p>
+          <p>Você derrotou Galtamar, o líder tribal dos Tauraks, e foi elogiado por Stelman ao retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+   <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Enviei um espião ao porto dos Revolucionários Lefaristas. Ela está escondida em Malek Diggings.</p>
+		<p> </p>
+		<p>Ela se disfarçou de lefarista e agora está cumprindo sua missão. Stua nos disse que em breve irá para a base dos Revolucionários Lefaristas.</p>
+		<p> </p>
+		<p>Vá ver [%dic:STR_DIC_N_Stua]. Apenas tenha em mente que você precisará de um disfarce sólido. Se os Revolucionários Lefaristas descobrirem você, tudo terá sido em vão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Vá lidar com os Revolucionários Lefaristas no Centro de Pesquisa Alquimia. Devo avisá-lo, no entanto. Eles estão conduzindo alguns experimentos horríveis em humanos naquele lugar.</p>
+		<p> </p>
+		<p>Depois de se infiltrar no centro de pesquisa, destrua o [%dic:STR_DIC_OBJ_DF3_powerplant_Q2058] para que eles não possam mais fazer experiências em humanos.</p>
+		<p> </p>
+		<p>Além disso, basta fazer o que [%dic:STR_DIC_N_Stua] lhe disser. Ah, e pegue isso. Aconselho você a fazer bom uso dele. É um pergaminho que você pode usar para convocar alguém para ajudá-lo. Espero que seja útil para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage> 
+   
+      <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Obrigado. Agora, por favor, vá ver [%dic:STR_DIC_N_Stua] imediatamente.</p>
+		<p> </p>
+		<p>Boa sorte.</p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+    <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Bem, ninguém está forçando você a assumir esta missão.</p>
+		<p> </p>
+		<p>Mas você não diria que é dever de todo Arconte fazer qualquer coisa pela vitória de Asmodae?</p>
+		<p> </p>
+		<p>Venha Converse comigo quando estiver pronto para cumprir a missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você quer nos ajudar? Então você veio na hora certa.</p>
+		<p> </p>
+		<p>Preciso que um Arconte vá ao Centro de Pesquisa Alquimia e dê um sinal aos outros Arcontes. Pretendemos destruir o centro de pesquisa de uma vez por todas, entende?</p>
+		<p> </p>
+		<p>Na verdade, eu queria fazer isso sozinho, mas não quero me disfarçar de lefarista.</p>
+		<p> </p>
+		<p>Então estou pedindo a você, [%username], que execute esta tarefa em meu lugar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você terá que vestir um disfarce de Lefarista para chegar ao interior do Alquimia Research Center.</p>
+		<p> </p>
+		<p>Essa é a única maneira de embarcar na aeronave. Você não quer ser encontrado e acabar como cobaia para seus experimentos agora, não é?</p>
+		<p> </p>
+		<p>Preparei um Uniforme Lefarista para você.</p>
+		<p> </p>
+		<p>Coloque-o e vá em frente.</p>
+		<p> </p>
+		<p>Você pode obter uma chave com [%dic:STR_DIC_M_IDDF3LP_LehparKnResearchNmdDQ_43_An] que lhe dará entrada na parte do Centro de Pesquisa Alquimia onde eles estão conduzindo todos aqueles experimentos horríveis.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+       <Act href="HACTION_SETPRO2">É melhor que esse disfarce funcione.</Act>
+    </Selects>
+    <Voice file="Q2058-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Eu também vi o sinalizador que você enviou.</p>
+		<p> </p>
+		<p>Graças à sua ajuda, os Arcontes conseguiram destruir com sucesso o centro de pesquisa dos Revolucionários Lefaristas.</p>
+		<p> </p>
+		<p>Obrigado por cumprir esta importante missão de forma tão confiável.</p>
+		<p> </p>
+		<p>Eu já sei que você conseguiu. Por favor, me diga exatamente o que aconteceu.</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Stua fez muito para garantir que esta missão fosse bem-sucedida.</p>
+		<p> </p>
+		<p>Graças a você, [%username], Stua conseguiu completar sua missão de espionagem.</p>
+		<p> </p>
+		<p>[%username], você destruiu o Centro de Pesquisa Alquimia e garantiu que os Revolucionários Lefaristas não pudessem mais fazer experiências em pessoas. Você com certeza é ótimo!</p>
+		<p> </p>
+		<p>[%username], você sabe quantas pessoas você salvou do perigo? Lembraremos para sempre o nome [%username]... e meus superiores também. Obrigado pelo seu trabalho duro.</p>
+         </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%3]"><font color="[%4]">Vá para [%dic:STR_DIC_W_STR_DF3_SZ_C6_5] e fale com [%dic:STR_DIC_N_Stua].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Obtenha um disfarce Lefarista. Use o [%dic:STR_DIC_OBJ_DF3_Airportdoor_In] para chegar ao [%dic:STR_DIC_SEN_DF3_SensoryArea_Q2058].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Passe pelo [%dic:STR_DIC_OBJ_DF3_AlquimiaDoor_In], entre no centro de pesquisa e destrua o [%dic:STR_DIC_OBJ_DF3_powerplant_Q2058] ([%11]/1).</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Saia do centro de pesquisa e dê um sinal aos Arcontes acionando o [%dic:STR_DIC_I_QUEST_2058a].</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Vá para [%dic:STR_DIC_W_STR_DF3_SZ_A] e reporte para [%dic:STR_DIC_N_Trista].</font></p></step>
+</steps> 
+		<p><font font_xml="quest_summary">Há ordens para você lidar com os Revolucionários Lefaristas. Obtenha mais informações com Stua.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Tristran lhe contou sobre o porto dos Revolucionários Lefaristas que só recentemente foi descoberto. Um espião já havia sido enviado para lá.</p>
+		<p> </p>
+		<p>Você recebeu ordens de se infiltrar no Centro de Pesquisa Alquimia e lidar com os Revolucionários Lefaristas.</p>
+		<p> </p>
+		<p>Você se disfarçou de Lefarista e se encontrou com o espião Stua nas Escavações de Malek. Então você usou a aeronave para entrar no centro de pesquisa.</p>
+		<p> </p>
+		<p>Você destruiu o gerador de energia no centro de pesquisa e enviou um sinal aos Arcontes que aguardavam.</p>
+		<p> </p>
+		<p>Você mal acionou o sinalizador e os Arcontes atacaram o Centro de Pesquisa Alquimia para destruí-lo e pôr fim permanente aos experimentos desumanos dos Revolucionários Lefaristas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

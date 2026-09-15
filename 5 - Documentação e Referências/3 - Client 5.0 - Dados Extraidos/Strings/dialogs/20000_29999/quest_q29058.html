@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parabéns por provar que é um Mestre. Aos meus olhos, você é um neste exato momento.</p>
+          <p> </p>
+          <p>Você é meu legado e o melhor exemplo do trabalho da Construção Asmodiana.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">"Seu elogio e consideração significam muito."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Senhores Empíreos cuidaram de você a cada passo.</p>
+          <p> </p>
+          <p>Você está pronto para receber formalmente o título?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Leve esta carta de recomendação ao Sumo Sacerdote do Destino [%dic:STR_DIC_N_Agehia].</p>
+          <p> </p>
+          <p>Ela ficará feliz em ter outro Mestre de Construção trabalhando para o futuro poderoso do Pandemônio.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Obrigado por tudo que você fez."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aconteceu alguma coisa entre você e o Sumo Sacerdote?</p>
+          <p> </p>
+          <p>Esta é a oportunidade perfeita para impressioná-la, para consertar as coisas.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Por que você acha que a culpa é minha?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio aproveitar a sabedoria de Lorde Marchutan?</p>
+          <p> </p>
+          <p>Infelizmente, ele está em Gelkmaros. Em vez disso, conte-me suas novidades.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Darfen acredita que sou um mestre da construção."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem predestinado e bem conhecido!</p>
+          <p> </p>
+          <p>Agora você é um orgulhoso Mestre do Pandemônio. Todos os Asmodae se beneficiam de sua arte.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para o Convento de Marchutan onde o Sumo Sacerdote [%dic:STR_DIC_N_Agehia] conferirá sua classificação de Mestre.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Darfen recomendou você ao Sumo Sacerdote Agehia como Mestre de Construção. Receba formalmente seu novo título.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Mestre da Construção Darfen disse que sua habilidade já fez de você um Mestre aos olhos dela. Então ela escreveu para você uma carta de recomendação nesse sentido.</p>
+          <p> </p>
+          <p>Você levou a carta ao Sumo Sacerdote Agehia, e ela lhe concedeu formalmente o posto de Mestre. Ela também abençoou o seu trabalho futuro em nome de Lorde Marchutan.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

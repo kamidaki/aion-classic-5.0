@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Temos que começar o ataque o mais rápido possível. Portanto, só posso lhe dar uma explicação rápida.</p>
+          <p> </p>
+          <p>A Fortaleza Kysis, o Refúgio Krotan e a Fortaleza Miren são importantes para a nossa vitória. Portanto, não podemos permitir que sejam tomadas pelo adversário.</p>
+          <p> </p>
+          <p>Eu adoraria lançar uma grande ofensiva imediatamente, mas as últimas batalhas nos enfraqueceram demais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para ganhar tempo para um grande ataque, nossos Daevas sempre iniciam os ataques em uma emboscada.</p>
+          <p> </p>
+          <p>Mas os Asmodianos enviaram mais forças para a fortaleza, o que torna a nossa situação ainda pior.</p>
+          <p> </p>
+          <p>Felizmente, muitos Elyos estão vindo em nosso auxílio. [%username]? Você quer ir para a batalha ao nosso lado?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. Você tomou uma decisão sábia.</p>
+          <p> </p>
+          <p>Você deve partir assim que o inimigo tomar a fortaleza. Quando você chegar lá, mate [%dic:STR_DIC_E_1231_guard_Da_fi] e traga [plur][%dic:STR_DIC_I_QUEST_1861a] de volta.</p>
+          <p> </p>
+          <p>Enquanto isso, nos prepararemos para tomar a fortaleza para nossos próprios propósitos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não esperava que você recusasse assim. É uma pena, mas não posso mudar sua opinião.</p>
+          <p> </p>
+          <p>Mas, por favor, pense por que tantos Daevas lutam por nós.</p>
+          <p> </p>
+          <p>Se mudar de ideia, você pode voltar para mim a qualquer momento.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], ouvi dizer que você matou os Asmodianos.</p>
+          <p> </p>
+          <p>Um soldado em missão de reconhecimento na fortaleza me contou o quão corajosamente você lutou, [%username].</p>
+          <p> </p>
+          <p>Estou curioso para saber como a batalha terminou. Mostre-me o [%dic:STR_DIC_I_QUEST_1861a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">De nada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não reuniu as armas?</p>
+          <p> </p>
+          <p>Isso também faz parte da sua tarefa.</p>
+          <p> </p>
+          <p>Traga-me o [%dic:STR_DIC_I_QUEST_1861a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Deve ter havido muitos Balaur na área. É um milagre que você tenha conseguido em tal situação.</p>
+          <p> </p>
+          <p>Foi uma escolha sábia confiar esta tarefa a você, [%username].</p>
+          <p> </p>
+          <p>Contarei ao Governador Michalis sobre suas realizações, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_1231_guard_Da_fi], reúna provas e leve para [%dic:STR_DIC_N_Bellona].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Guardiões Kysis Asmodianos enquanto eles ocupam a Fortaleza Kysis e reporte-se a Bellona.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bellona pediu ajuda na batalha pela Fortaleza Kysis.</p>
+          <p> </p>
+          <p>Você derrotou os Guardiões Asmodiano Kysis e Bellona recompensou seu feito heróico.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

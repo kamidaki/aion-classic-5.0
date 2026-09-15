@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está interessado em recompensas em moedas?</p>
+          <p> </p>
+          <p>Você pode trocar suas moedas por itens especiais que de outra forma não poderiam ser obtidos tão facilmente.</p>
+          <p> </p>
+          <p>Em que posso ajudá-lo?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+        <trade_buy>Exchange coins</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nem nos meus sonhos mais loucos eu teria pensado em realizar uma missão como esta no posto avançado no meio da vila Kishar Krall.</p>
+          <p> </p>
+          <p>Tudo graças aos bravos Daevas como você, [%username], e aos Guardiões também.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode receber recompensas em moedas, [%username].</p>
+          <p> </p>
+          <p>Verifique cuidadosamente se você possui Moedas de Platina.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

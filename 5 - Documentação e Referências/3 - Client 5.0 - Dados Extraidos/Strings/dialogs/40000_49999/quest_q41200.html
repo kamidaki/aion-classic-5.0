@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41200</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, ajude, por favor! O [%dic:STR_DIC_W_LDF4a_SZ_B1] está fervilhando de Petrahulks!</p>
+          <p> </p>
+          <p>Eu os vi atacando pessoas pacíficas enquanto caminhavam pela floresta. Nossa, é simplesmente horrível!</p>
+          <p> </p>
+          <p>[%username], você poderia eliminar os [%dic:STR_DIC_M_LDF4A_B1_CyclopsGuardQ_57_An]s antes que machuquem mais pessoas?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se livrou dos [%dic:STR_DIC_M_LDF4A_B1_CyclopsGuardQ_57_An]s? Eu me senti simplesmente péssimo com toda essa bagunça!</p>
+          <p> </p>
+          <p>Receio que tudo seja culpa minha! Veja, eu fiz um pequeno experimento para ver se poderíamos usar os Petrahulks como trabalhadores, mas... bem, as coisas ficaram um pouco confusas.</p>
+          <p> </p>
+          <p>Acho que esqueci a parte do feitiço que me permitiu manter o controle sobre eles. Nunca consigo lembrar as palavras certas. Oh, eu sou um feiticeiro terrível!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Então por que tentar em primeiro lugar?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou tão ocupado tentando memorizar todos esses feitiços. Demoro tanto que não tenho tempo para fazer o resto do meu trabalho, e foi por isso que tentei transformar os Petrahulks em trabalhadores!</p>
+          <p> </p>
+          <p>Petrahulks são tão estúpidos que pensei que seria fácil controlá-los, mas... ah, estou com tanta raiva de mim mesmo!</p>
+          <p> </p>
+          <p>De qualquer forma, obrigado!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Livre-se de [%dic:STR_DIC_M_LDF4A_B1_CyclopsGuardQ_57_An]s em [%dic:STR_DIC_W_LDF4a_SZ_B1] ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Feityios].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Petrahulks estão ficando fora de controle e machucando pessoas. Ponha fim à ameaça.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Feyos lhe contou que os Drudges Petrahulk na Floresta Anaz estão fora de controle e machucando pessoas.</p>
+          <p> </p>
+          <p>Quando você se livrou dos Petrahulk Drudges, Feyos explicou que tudo foi culpa dela depois que seu experimento deu errado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

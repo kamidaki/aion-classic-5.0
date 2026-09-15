@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q11515</QuestId>
+    <QuestName/>
+    <QuestType>샌드 샤크 사냥</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eca. Estou tão cansado de olhar para o chão sempre que decido ir a algum lugar.</p>
+          <p> </p>
+          <p>São os [%dic:STR_DIC_M_LDF4A_D_SandShark_58_An]s, [%username]. Eles caçam logo abaixo da areia e atacam quando sentem movimento próximo. O único sinal revelador são as areias movediças acima deles, mas não é um sinal que possamos ignorar. Ainda ontem vi um dos seus arrastado pelas areias nas mandíbulas de um Zanthay. Ainda posso ouvir seus gritos...</p>
+          <p> </p>
+          <p>Você não poderia matá-los, poderia? Não podemos nos dar ao luxo de perder nenhum de nossos guardas, e a questão de Zanthay está distraindo todos de seus empregos reais.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu vi outro quase ser abocanhado enquanto você estava lutando, [%username].</p>
+          <p> </p>
+          <p>Por favor, diga-me que eles foram mortos.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eles estão mortos, Rakya."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh, graças à boa senhora!</p>
+          <p> </p>
+          <p>Vou avisar os outros. Finalmente, depois de todos esses meses, podemos finalmente caminhar com calma. E tudo graças a você.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os [%dic:STR_DIC_M_LDF4A_D_SandShark_58_An]s perto de [%dic:STR_DIC_W_LDF4a_SZ_D_03] ([%2]/11).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Rakytia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Rock Blade Zanthays que estão atacando os residentes locais.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Legionário Hushblade Rakya ficou preocupado depois de ver os Rock Blade Zanthays atacando refugiados com cada vez mais frequência. Ela pediu para você sair e matar os Zanthays antes que o problema piorasse ainda mais, o que você fez devidamente.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

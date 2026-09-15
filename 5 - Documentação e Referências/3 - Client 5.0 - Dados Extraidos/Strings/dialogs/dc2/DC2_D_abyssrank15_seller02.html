@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], há muito tempo queria conhecer você. É ótimo que finalmente tenha acontecido.</p>
+          <p> </p>
+          <p>Ouvi falar de suas habilidades superiores.</p>
+          <p> </p>
+          <p>Espero que você continue a emprestar suas excelentes habilidades para uma vitória Asmodiana.</p>
+          <p> </p>
+          <p>É por isso que preparei uma pequena recompensa para você, [%username], que pode ser útil. Você quer dar uma olhada neles?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não realizou um feito digno de um alto oficial.</p>
+          <p> </p>
+          <p>Só ofereço recompensas àqueles que realizaram feitos suficientes para se tornarem generais.</p>
+          <p> </p>
+          <p>Sinto muito, mas minhas recompensas não são para gente como você.</p>
+          <p> </p>
+          <p>Se você tiver muitas escrituras que possa me apresentar em breve, volte e me veja.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

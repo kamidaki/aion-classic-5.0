@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva também acha as circunstâncias em Balaurea assustadoras, ok?</p>
+          <p> </p>
+          <p>[%username] deveria aproveitar esta oportunidade para visitar o novo Campo Etérico, ak!</p>
+          <p> </p>
+          <p>Mudirunerk não diz isso para ganhar Kinah, ak.</p>
+          <p> </p>
+          <p>Mudirunerk só quer mostrar a Daeva como chegar ao novo Campo Etérico, ak.</p>
+          <p> </p>
+          <p>Claro, Daeva pode perguntar aos Teletransportadores em Santuário, Inggison e Akaron, mas lembre-se que também existe a tecnologia Shugo, ak!</p>
+          <p> </p>
+          <p>Se Daeva quiser ir para o novo Campo Etérico, Mudirunerk ficará muito feliz em ajudar, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Saudações!</p>
+          <p> </p>
+          <p>Bem-vindo ao novo Campo Etérico!</p>
+          <p> </p>
+          <p>Muitos Daevas que chegam aqui estão nervosos, mas você parece bem relaxado.</p>
+          <p> </p>
+          <p>Você teve uma viagem agradável?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você sorri.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Espero que você complete muitas missões no novo Campo Etéreo.</p>
+          <p> </p>
+          <p>Dê uma olhada ao redor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com o Teletransportador para o novo Campo Etérico.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre-se com o Teletransportador para o novo Campo Etérico.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O teletransportador Mudirunerk em Kaldor perguntou se você já esteve dentro do novo Campo Etérico. Caso contrário, ele recomendou que você aproveitasse a oportunidade para viajar para lá.</p>
+          <p> </p>
+          <p>Você seguiu a recomendação dele e visitou o novo Campo Etérico.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Liguei para você sobre um assunto urgente, [%username].</p>
+		  <p> </p>
+          <p>Os Mau, que têm se comportado de forma suspeita há algum tempo, agora parecem estar perseguindo um plano muito mais perigoso.</p>
+          <p> </p>
+          <p>As tropas de Ishalgen e Morheim atacam constantemente os Mau para intimidá-los, mas não desistem.</p>
+          <p> </p>
+		  <p>Tenho certeza de que você sabe que os Mau tentaram contrabandear uma arma de identificação para diferentes regiões.</p>
+		  <p> </p>
+		  <p>O Exército Beritra está por trás disso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Tínhamos a situação sob controlo, mas agora soubemos que o Exército Beritra está a trabalhar em conjunto com os Mau para contrabandear uma arma de destruição maciça para Atreia - uma arma que poderia destruir Asmodae.</p>
+		  <p> </p>
+		  <p>Tememos que esta arma seja Hyperion, uma antiga arma da Tribo Rúnica, que foi descoberta em Katalam há algum tempo.</p>
+		  <p> </p>
+          <p>Contudo, não sabemos exatamente onde nossos inimigos tentarão contrabandear a arma.</p>
+          <p> </p>
+          <p>Por favor, descubra onde tudo deveria estar acontecendo.</p>
+          <p> </p>
+          <p>Procure [%dic:STR_DIC_N_DC2_Litanbid_M] no Convento de Marchutan para saber mais detalhes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q24031-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aproxime-se, [%username].</p>
+          <p> </p>
+          <p>O Governador Vidar me notificou que o Exército Beritra e os Mau estão tentando trazer Hyperion para Atreia.</p>
+          <p> </p>
+		  <p>Munin descobriu esse plano, mas até agora não conseguimos saber como eles pretendem contrabandear a arma.</p>
+		  <p> </p>
+		  <p>Munin aprendeu através de um de seus alunos que Balaur e Mau estão tentando usar um Portão do Abismo.</p>
+		  <p> </p>
+		  <p>É por isso que precisamos examinar os Portões do Abismo em todas as regiões.</p>
+		  <p> </p>
+		  <p>[%username], você guardou muitos Portões do Abismo no passado. Tenho certeza de que você poderá descobrir onde esse plano será colocado em ação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Quais regiões devo investigar mais de perto?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ishalgen, Altgard e Morheim.</p>
+          <p> </p>
+		  <p>Id foi encontrado nas proximidades do Portão do Abismo em todas essas regiões.</p>
+		  <p> </p>
+          <p>Procure [%dic:STR_DIC_N_Muninn] para obter mais informações.</p>
+		  <p> </p>
+          <p>Não perca um único minuto. Por favor, se apresse.</p>
+		  </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você diz que entendeu.</Act>
+    </Selects>
+    <Voice file="Q24031-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Litanbid te contou tudo?</p>
+          <p> </p>
+		  <p>O Exército Beritra e os Mau estão tentando contrabandear a arma Hyperion para Atreia através de um Portão do Abismo.</p>
+		  <p> </p>
+          <p>Muita energia do Id precisa ser ativada para teletransportar Hyperion para outra dimensão.</p>
+          <p> </p>
+		  <p>Por favor, examine os Portões do Abismo em Ishalgen, Altgard e Morheim.</p>
+          <p> </p>
+		  <p>Você perceberá rapidamente se um portão foi ativado procurando por vestígios de Id perto dos Portões do Abismo.</p>
+		  <p> </p>
+          <p>Vá primeiro para o Portão do Abismo de Ishalgen. Use [%dic:STR_DIC_I_quest_24031a] próximo ao portão para descobrir se ele foi ativado.</p>
+          <p> </p>
+          <p>Se nada acontecer, vá encontrar [%dic:STR_DIC_N_Aurtri] no Observatório Altgard. Ele já está preparado para sua visita.</p>
+		  </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Faz muito tempo que não vejo você. Você deve ser da investigação em Ishalgen.</p>
+          <p> </p>
+		  <p>Munin entrou em contato comigo. A seguir, você examinará o Altgard Abismo Gate.</p>
+		  <p> </p>
+		  <p>Fiquei surpreso ao saber que Ishalgen foi investigado primeiro. Achei que Ishalgen estava bastante seguro.</p>
+		  <p> </p>
+		  <p>Mas visto que os Mau estão tentando obter a identidade...</p>
+		  <p> </p>
+		  <p>Ah, você não sabia, [%username]? Você parece surpreso.</p>
+		  <p> </p>
+		  <p>Os últimos relatórios dizem que os Mau fizeram outra tentativa de abrir um Portão do Abismo. Eles querem receber identificação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1">Você diz que quer investigar o Altgard Abismo Gate.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu entendo. Aqui está [%dic:STR_DIC_I_quest_24031b] que Munin me deu.</p>
+          <p> </p>
+          <p>Leve [%dic:STR_DIC_I_quest_24031b] a [%dic:STR_DIC_W_DF1A_31] e use-o para determinar se o Abismo Gate foi ativado.</p>
+          <p> </p>
+		  <p>Como você já trabalhou com um desses dispositivos em Ishalgen, você sabe o que fazer.</p>
+		  <p> </p>
+          <p>Se não ler nenhum ID, o Abismo Gate não foi ativado e Altgard não corre risco.</p>
+		  <p> </p>
+		  <p>Se para esse caso consulte [%dic:STR_DIC_N_Tyr] no Observatório Morheim. Se você escrever Id, por favor, volte para mim.</p> 
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que bom que você está aqui. Mas não posso estar realmente feliz com a sua chegada.</p>
+          <p> </p>
+		  <p>Porque eu sei qual é a sua missão, [%username].</p>
+		  <p> </p>
+          <p>Você examinou os Portões do Abismo de Ishalgen e Altgard e depois veio aqui, certo?</p>
+		  <p> </p>
+		  <p>As outras regiões estavam, portanto, seguras.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT7_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso significa que é muito provável que o Portão do Abismo de Morheim tenha sido ativado.</p>
+		  <p> </p>
+		  <p>Espero que não seja o caso, mas recebemos relatos de atividades suspeitas de Mau perto do Portão do Abismo, então estou bastante esperando por isso.</p>
+          <p> </p>
+		  <p>Mas precisamos ter certeza antes de agirmos.</p>
+		  <p> </p>
+		  <p>Aqui está [%dic:STR_DIC_I_quest_24031c]. Munin me deu. Vá e use-o para examinar o Portão do Abismo de Morheim.</p>
+          <p> </p>
+          <p>Por favor, avise-me imediatamente se o Exército Beritra e os Mau estiverem abrindo o Portão do Abismo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO7">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q24031-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select9">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você terminou o experimento? Por favor, me conte o que você aprendeu.</p>
+          <p> </p>
+		  <p>Você descobriu alguma identificação?</p>
+		  <p> </p>
+          <p>O Exército Beritra e os Mau estão abrindo o Portão do Abismo de Morheim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT9_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select9_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então é verdade. Devemos agir rapidamente.</p>
+          <p> </p>
+		  <p>Vidar recebeu relatórios de Ishalgen e Altgard. Se os nossos inimigos tentarem implementar o seu plano em Morheim, devemos detê-los imediatamente.</p>
+		  <p> </p>
+		  <p>Acredito que nossos inimigos usarão um enorme Teletransportador de Fenda.</p>
+		  <p> </p>
+		  <p>Por favor, mate o Capitão do Exército Beritra, que está guardando o Teletransportador Fenda, e destrua o [%dic:STR_DIC_OBJ_IDAbGateL2_FOBJ_IdDevice].</p>
+          <p> </p>
+		  <p>Por favor, se apresse. Eu vou te teletransportar. Reporte-se a Vidar novamente quando tiver concluído sua missão. Temos que derrotar o plano do inimigo.</p>
+		  <p> </p>
+		  <p>Enquanto isso, observarei cada movimento que o Mau fizer.</p>
+		</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO9">Você diz que está pronto.</Act>
+    </Selects>
+    <Voice file="Q24031-4.ogg"/>
+  </HtmlPage>
+
+   <HtmlPage name="select10_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este dispositivo parece ser um Fenda Teleporter, que teletransporta a poderosa arma Hyperion.)</p>
+          <p> </p>
+          <p>(Está emitindo uma energia Id instável.)</p>
+          <p> </p>
+          <p>(O teletransportador não parece estar operacional.)</p>
+          <p> </p>
+          <p>(No entanto, uma vez funcionando, representará um grande perigo.)</p>
+          <p> </p>
+          <p>(Desligue o Teletransportador Fenda.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO11">Você usa o enorme Fenda Teleporter.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select10_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O Teletransportador Fenda não responde.)</p>
+          <p> </p>
+          <p>(Parece estar danificado sem possibilidade de reparo.)</p>
+          <p> </p>
+          <p>(Ele não emana mais energia do Id.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO12">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select10_1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta, [%username]?</p>
+          <p> </p>
+          <p>O Exército Beritra parece estar a adoptar um plano mais perigoso do que esperávamos.</p>
+          <p> </p>
+		  <p>Eles estão tentando contrabandear a arma Hyperion para Atreia.</p>
+		  <p> </p>
+		  <p>Temos que fortalecer as fronteiras e proteger Asmodae.</p>
+		  <p> </p>
+		  <p>Você completou sua missão com sucesso? Você frustrou o plano do Exército Beritra?</p>
+		  <p> </p>
+          <p>Por favor, conte-me tudo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que pode impedir que a arma Hyperion se teletransporte para Morheim.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sempre esperei que você tivesse sucesso!</p>
+          <p> </p>
+          <p>Asmodae teria sido destruída se uma arma poderosa como Hyperion tivesse chegado a Atreia.</p>
+          <p> </p>
+          <p>Nenhuma outra Mecatéc teria sido capaz de tal conquista. Excelente!</p>
+          <p> </p>
+          <p>Você agora é um Daeva de Asmodae totalmente treinado.</p>
+          <p> </p>
+          <p>Bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para Pandemônio e fale com [%dic:STR_DIC_N_Vidar].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_DC2_Litanbid_M] no Convento de Marchutan.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Vá para Ishalgen e fale com [%dic:STR_DIC_N_Muninn].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Use [%dic:STR_DIC_I_quest_24031a] fora de [%dic:STR_DIC_OBJ_Dragonpotal_DF1].</font></p></step>
+			   <step><p visible="[%12]"><font color="[%13]">Vá para Altgard e fale com [%dic:STR_DIC_N_Aurtri].</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Use [%dic:STR_DIC_I_quest_24031b] fora de [%dic:STR_DIC_OBJ_Dragonpotal_DF1a].</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Vá para Morheim e fale com [%dic:STR_DIC_N_Tyr].</font></p></step>
+               <step><p visible="[%21]"><font color="[%22]">Use [%dic:STR_DIC_I_quest_24031c] fora de [%dic:STR_DIC_OBJ_Dragonpotal_DF2].</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Relatório para [%dic:STR_DIC_N_Tyr].</font></p></step>
+               <step><p visible="[%27]"><font color="[%28]">Passe pelo [%dic:STR_DIC_OBJ_Dragonpotal_DF2] e mate Garkhan, Capitão do 45º Exército [%29].</font></p></step>
+               <step><p visible="[%30]"><font color="[%31]">Ative o [%dic:STR_DIC_OBJ_IDAbGateL2_FOBJ_IdDevice].</font></p></step>
+               <step><p visible="[%33]"><font color="[%34]">Examine o [%dic:STR_DIC_OBJ_IDAbGateL2_FOBJ_IdDeviceBroken].</font></p></step>
+               <step><p visible="[%36]"><font color="[%37]">Reporte para [%dic:STR_DIC_N_Vidar], o Governador de Pandemônio.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Governador Vidar está procurando por você. Vá para Pandemônio e encontre Vidar.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você falou com Vidar, Governador de Pandemônio, e descobriu que o Exército Beritra estava cooperando com os Mau para trazer uma arma poderosa para Atreia que destruiria Asmodae. Ele pediu que você descobrisse para onde Hyperion seria contrabandeado.</p>
+		  <p> </p>
+		  <p>Primeiro você se encontrou com Litanbid, depois com Munin, que lhe disse que os Portões do Abismo em Ishalgen, Altgard e Morheim precisavam ser investigados. Usando Fenda Analysers, você procurou vestígios de Id nas proximidades dos portões.</p>
+		  <p> </p>
+		  <p>Depois de estabelecer que o Portão do Abismo de Morheim foi ativado, Tyr pediu que você frustrasse o plano do inimigo.</p>
+		  <p> </p>
+		  <p>Você matou Garkhan, Capitão do 45º Exército, que estava guardando o Teletransportador Fenda, e desligou o enorme Teletransportador Fenda para evitar que Hyperion fosse teletransportado para Atreia. Feito isso, você voltou para Balaurea.</p>
+          <p> </p>
+          <p>Quando você relatou sua missão bem-sucedida a Vidar, ele elogiou seus feitos heróicos que protegeram Atreia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Pedido: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

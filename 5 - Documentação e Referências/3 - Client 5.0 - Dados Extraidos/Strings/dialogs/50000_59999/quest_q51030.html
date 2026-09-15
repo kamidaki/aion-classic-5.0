@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está interessado em negociar comigo?</p>
+          <p> </p>
+          <p>Pode ser uma oferta totalmente lucrativa para você.</p>
+          <p> </p>
+          <p>Porque as fórmulas de transformação subjacentes em meus experimentos são tão complexas que apenas alquimistas de alto escalão as utilizam.</p>
+          <p> </p>
+          <p>Isso certamente pode levar a amostras com falha, mas muitas vezes também são muito valiosas. Não é esse normalmente o caso da alquimia?</p>
+          <p> </p>
+          <p>Como você sabe, os ingredientes mais importantes são o [%dic:STR_DIC_I_event_worlddrop_1] e o [%dic:STR_DIC_I_event_worlddrop_2]. Se você me trouxer 6 de cada, eu lhe darei uma amostra com falha.</p>
+          <p> </p>
+          <p>Como até mesmo uma amostra falha minha costuma ser muito valiosa, acho que este será um bom negócio para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se lembra do nosso acordo?</p>
+          <p> </p>
+          <p>Havíamos concordado que eu lhe daria uma amostra fracassada de meus trabalhos alquímicos se você me trouxesse pelo menos 6 de cada [%dic:STR_DIC_I_event_worlddrop_1] e [%dic:STR_DIC_I_event_worlddrop_2].</p>
+          <p> </p>
+          <p>Você poderia me mostrar esses itens primeiro?</p>
+          <p> </p>
+          <p>Minha amostra fracassada provavelmente vale mais do que Vitalidade ou Essência de Vida.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Vitalidade da Alma e a Essência da Vida para ele.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você cumpriu sua parte do acordo.</p>
+          <p> </p>
+          <p>Estas são verdadeiramente a Vitalidade da Alma e a Essência da Vida.</p>
+          <p> </p>
+          <p>É claro que também cumprirei minha promessa. Obtive todos esses objetos testando a fórmula de transformação.</p>
+          <p> </p>
+          <p>Pode haver algo valioso entre todos.</p>
+          <p> </p>
+          <p>Mas não posso dizer com certeza o que há dentro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o [%dic:STR_DIC_I_event_worlddrop_1] e o [plur][%dic:STR_DIC_I_event_worlddrop_2] para [%dic:STR_DIC_N_event_Loylung].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Loylung sugeriu que ele lhe daria uma amostra danificada de seu trabalho alquímico se você trouxesse a ele a Vitalidade da Alma, bem como a Essência da Vida. Seria útil trazer esses materiais para ele, pois as amostras danificadas podem incluir muitos objetos úteis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Loylung sugeriu que ele lhe daria uma amostra danificada de seu trabalho alquímico se você lhe trouxesse a Vitalidade da Alma, bem como a Essência da Vida.</p>
+          <p> </p>
+          <p>Como mesmo uma amostra fracassada ainda pode ser de grande valor, você aceitou a proposta dele e trouxe-lhe a Vitalidade da Alma e a Essência da Vida.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

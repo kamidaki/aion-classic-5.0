@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41465</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora você deve reunir os [plur][%dic:STR_DIC_E_Q41465all] espalhados por Tiamaranta.</p>
+          <p> </p>
+          <p>Pode não ser fácil coletar todos eles, mas a arma Luminaciel vale bem o esforço.</p>
+          <p> </p>
+          <p>Então eu imploro que você não desista.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username]!</p>
+          <p> </p>
+          <p>Você reuniu todos os [plur][%dic:STR_DIC_E_Q41465all]?</p>
+          <p> </p>
+          <p>Deve ter sido um trabalho árduo...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as Essências da Energia Perigosa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esse foi um bom trabalho.</p>
+          <p> </p>
+          <p>Assim que o processo de refinamento terminar, enviarei isso para o templo também.</p>
+          <p> </p>
+          <p>Isso encerra os serviços que prestei para você.</p>
+          <p> </p>
+          <p>Espero que em breve você possa chamar de sua a arma Luminaciel.</p>
+          <p> </p>
+          <p>Desejo-lhe uma viagem segura.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [plur][%dic:STR_DIC_E_Q41465all] e depois volte para [%dic:STR_DIC_N_Morphiuss].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Colete as Essências da Energia Perigosa como ingrediente para a Arma Luminasiel.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Morphius pediu que você reunisse as Essências da Energia Perigosa como ingrediente adicional.</p>
+          <p> </p>
+          <p>Depois que você reuniu as essências espalhadas por Tiamaranat e retornou, ele prometeu enviar as essências para você no templo após o processo de refinamento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

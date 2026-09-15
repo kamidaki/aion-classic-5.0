@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10084</QuestId>
+    <QuestName>카룬 호위대 발견</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Água... Água...</p>
+          <p> </p>
+          <p>Flor da Lua Fineroot...</p>
+          <p> </p>
+          <p>Água da bela flor da lua-raiz...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você deve trazer para ele água da Fine Root Moonflower.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Água...</p>
+          <p> </p>
+          <p>Dê-me um pouco de água da Fine Root Moonflower...</p>
+          <p> </p>
+          <p>Posso molhar um pouco a garganta com isso...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Água.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado... agora posso pensar com clareza novamente.</p>
+          <p> </p>
+          <p>Vejo que um Elyos me ajudou.</p>
+          <p> </p>
+          <p>Sou Torio, do Kahrun Escort.</p>
+          <p> </p>
+          <p>Houve uma explosão... graças a Deus eu não me transformei em um morto-vivo.</p>
+          <p> </p>
+          <p>Mas o que aconteceu com os outros?</p>
+          <p> </p>         
+          <p>Eles foram transformados em mortos-vivos pela explosão do Id?</p>
+		  <p> </p>
+		  <p>Eu estou perguntando a você. Por favor, olhe e veja se você consegue encontrar o [%dic:STR_DIC_LDF5A_B8_YZombie_Q10084] com o [%dic:STR_DIC_W_LDF5A_B8].</p>
+		  <p> </p>
+		  <p>Por favor, encontre-os. E se eles foram transformados em mortos-vivos... então dê-lhes o presente da paz.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Água... Água...</p>
+          <p> </p>
+          <p>Preciso de um pouco de água da Fine Root Moonflower...</p>
+          <p> </p>
+          <p>Não posso dizer uma palavra antes disso...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então é assim...</p>
+          <p> </p>
+          <p>O Id transformou meus camaradas.</p>
+          <p> </p>
+          <p>Você viu Kahrun lá? Ele se tornou um morto-vivo também?</p>
+		  <p> </p>
+		  <p>Certifique-se de que nada aconteça com Kahrun.</p>
+		  <p> </p>
+		  <p>Aaah! Tudo isso aconteceu por causa da explosão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Você pergunta sobre a explosão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fomos seguidos pelo Exército Beritra.</p>
+          <p> </p>
+          <p>Encontramos um recipiente cheio de Idgel.</p>
+          <p> </p>
+          <p>Depois de encontrarmos o núcleo, o Exército Beritra nos atacou.</p>
+          <p> </p>
+          <p>Até Kahrun tentou usar o Idgel Core.</p>
+          <p> </p>
+          <p>Então o Idgel Core explodiu...</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_LDF5a_DieYunL_E]! Por favor, encontre-o!</p>
+          <p> </p>
+          <p>Ele deve ter estado com Kahrun até o fim!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você diz que entende.</Act>
+    </Selects>
+	<Voice file="Q10084-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um Reian morto, aparentemente um dos acompanhantes de Kahrun.)</p>
+          <p> </p>
+          <p>(Parece que foi um dos camaradas de Torio.)</p>
+          <p> </p>
+          <p>(Ele está carregando uma mensagem.)</p>
+          <p> </p>
+          <p>(Parece que ele caiu na batalha contra os Soldados Beritra.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você entrega a mensagem.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como posso ajudá-lo?</p>
+          <p> </p>
+          <p>Você precisa de algo verificado?</p>
+          <p> </p>
+          <p>Este lugar está bem defendido.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT7_1">Você pergunta se ele viu Kahrun ou Beritra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kahrun? Beritra?</p>
+          <p> </p>
+          <p>Eu não vi nenhum deles. Existem apenas Shugos e seus trabalhadores aqui.</p>
+          <p> </p>
+		  <p>Há batalhas acontecendo por toda Katalam, mas não aqui.</p>
+		  <p> </p>
+          <p>Espere... tem [%dic:STR_DIC_LDF5a_DieVritraL_E].</p>
+          <p> </p>
+          <p>Enquanto explorava, encontrei os restos mortais de um soldado Beritra. É claro que informei meu superior sobre isso. Você veio dar uma olhada?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT7_1_1">Você diz que gostaria de dar uma olhada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim. Vou lhe mostrar onde estão os restos mortais.</p>
+          <p> </p>
+          <p>O [%dic:STR_DIC_LDF5a_DieVritraL_E] parecia horrível.</p>
+          <p> </p>
+          <p>Há um posto de guarda Elyos nas proximidades. Vestígios de uma batalha podem ser encontrados lá. Você deveria dar uma olhada.</p>
+          <p> </p>
+          <p>Os vestígios parecem estar lá há pouco mais de três meses. [%dic:STR_DIC_LDF5a_Thrasir_E] tem mais informações sobre isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO7">Você diz que entende.</Act>
+    </Selects>
+	<Voice file="Q10084-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select8">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Os restos mortais de um soldado Beritra.)</p>
+          <p> </p>
+          <p>(Ele carrega ferimentos da batalha contra a Escolta Kahrun e da explosão.)</p>
+          <p> </p>
+          <p>(Ele se agarra a um acessório que provavelmente pertenceu a uma Reia.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO8">Você pega o acessório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select10">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Saudação.</p>
+          <p> </p>
+          <p>Tenho o prazer de conhecer Daeva neste lugar frio.</p>
+          <p> </p>
+          <p>O que posso fazer para você?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT10_1">Você pergunta sobre os vestígios da luta.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select10_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve estar aqui para encontrar sinais da batalha.</p>
+          <p> </p>
+          <p>Eu sabia que um Daeva viria, porque estes sinais são especiais.</p>
+          <p> </p>
+          <p>Vá e dê uma olhada neles. Acho que os sinais têm pelo menos três meses e deve ter sido uma luta acirrada.</p>
+          <p> </p>
+          <p>Eles ainda não estavam lá quando cheguei a Katalam. Suspeito que algo inacreditável deve ter acontecido.</p>
+          <p> </p>
+          <p>Há um [%dic:STR_DIC_LDF5a_Sword_Q10084] e o Exército Beritra passa por aqui com frequência.</p>
+		  <p> </p>
+		  <p>A princípio pensei que eles vinham aqui com tanta frequência por causa da Fortaleza Sillus. Mas tenho a sensação de que eles estão procurando alguma coisa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO10">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10084-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select10_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma espada quebrada.)</p>
+          <p> </p>
+          <p>(O nome de Kahrun está escrito no punho.)</p>
+          <p> </p>
+          <p>(Parece pertencer a Kahrun.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO11">Você pega a Espada Quebrada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estive esperando por você.</p>
+          <p> </p>
+          <p>Você trouxe a espada de Kahrun.</p>
+          <p> </p>
+          <p>Mas está quebrado.</p>
+          <p> </p>
+          <p>Ele lutou contra o Senhor Dragão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_LDF5a_Torio_E]. Ele pode ser encontrado em [%dic:STR_DIC_W_LDF5A_B8].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Colete um [%dic:STR_DIC_I_quest_10084a] e leve-o para [%dic:STR_DIC_LDF5a_Torio_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%6]"><font color="[%7]">Mate o [plur][%dic:STR_DIC_LDF5A_B8_YZombie_Q10084] ([%8]/4).</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Volte para [%dic:STR_DIC_LDF5a_Torio_E] em [%dic:STR_DIC_W_LDF5A_B8].</font></p></step>        
+               <step><p visible="[%12]"><font color="[%13]">Encontre [%dic:STR_DIC_LDF5a_DieYunL_E]. Ele pode ser encontrado em [%dic:STR_DIC_W_LDF5A_B8].</font></p></step>   
+               <step><p visible="[%15]"><font color="[%16]">Leia [%dic:STR_DIC_I_doc_quest_10084b].</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Fale com [%dic:STR_DIC_LDF5a_Gram_E] no [%dic:STR_DIC_W_LDF5a_G3].</font></p></step>
+               <step><p visible="[%21]"><font color="[%22]">Procure [%dic:STR_DIC_LDF5a_DieVritraL_E] em [%dic:STR_DIC_W_LDF5a_E7].</font></p></step>         
+               <step><p visible="[%24]"><font color="[%25]">Verifique se Kahrun está em [%dic:STR_DIC_W_LDF5a_SensoryArea_Q10084].</font></p></step>
+               <step><p visible="[%27]"><font color="[%28]">Vá para [%dic:STR_DIC_W_LDF5a_E5] onde você receberá informações de [%dic:STR_DIC_LDF5a_Thrasir_E].</font></p></step> 
+               <step><p visible="[%30]"><font color="[%31]">Vá para [%dic:STR_DIC_W_LDF5a_E5], onde podem ser encontrados vestígios de uma batalha, e procure por [%dic:STR_DIC_LDF5a_Sword_Q10084].</font></p></step>   			   
+               <step><p visible="[%33]"><font color="[%34]">Fale com Jakahn. Ele pode ser encontrado em [%dic:STR_DIC_W_LDF5a_E5].</font></p></step>      
+    </steps>
+          <p><font font_xml="quest_summary">Tarefa: Encontre o Kahrun Escort e confira os arredores.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrou Torio da Escolta Kahrun, mas ele estava mais morto do que vivo.</p> 
+		  <p> </p>  
+		  <p>Você trouxe água para ele. Depois disso, ele acordou e pôde Converse com você.</p>  
+		  <p> </p> 
+		  <p>Torio disse que houve uma explosão e pediu que você descobrisse o que havia acontecido com os outros membros da Escolta Kahrun. Ele pediu que você desse a eles o presente da paz eterna caso eles se transformassem em mortos-vivos.</p>  
+		  <p> </p>
+          <p>Depois de eliminar os mortos-vivos, você voltou para Torio.</p>
+          <p> </p>		  
+		  <p>Torio contou a triste história da explosão e mencionou outro membro da Escolta Kahrun chamado Jemini, que teria defendido Kahrun até o fim.</p>  
+		  <p> </p> 
+		  <p>Você encontrou o corpo dele, junto com uma mensagem.</p>  
+		  <p> </p> 
+		  <p>De acordo com esta mensagem, escrita por Kahrun, Kahrun foi perseguido por Beritra. É por isso que ele queria ir para o sul.</p>  
+		  <p> </p>
+          <p>Você viajou até o posto de guarda de Elyos, no sul, para encontrar Kahrun. Enquanto estava lá, você perguntou a vovó se Kahrun ou Beritra tinham sido vistos.</p> 		  
+		  <p> </p>
+		  <p>Vovó não tinha visto Kahrun nem Beritra. Mas ele havia descoberto recentemente os restos mortais de um soldado Beritra.</p>  
+		  <p> </p> 
+		  <p>Segundo Gram, Thrasir tinha mais informações.</p>  
+		  <p> </p> 
+		  <p>Você descobriu um acessório Reian quando revistou os restos mortais do soldado Beritra. Você não encontrou mais sinais no posto de guarda próximo de Beritra.</p>  
+		  <p> </p> 
+		  <p>Você perguntou a Thrasir se ele sabia alguma coisa sobre sinais de batalha. Ele disse que, em sua opinião, algo monumental deve ter acontecido na região.</p> 
+		  <p> </p> 
+		  <p>Ele também mencionou uma espada quebrada, que você conseguiu encontrar na área que ele descreveu.</p>  
+		  <p> </p> 
+		  <p>Você pegou esta espada e a trouxe para Jakahn. Jakahn já estava esperando por você e lhe contou que Kahrun havia lutado contra Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

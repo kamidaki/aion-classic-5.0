@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30762</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se eu conseguisse extrair o rancor de [%dic:STR_DIC_E_Apsu], seria o início de uma nova era de pesquisa.</p>
+          <p> </p>
+	  <p>É impossível tocar com a mão a adaga que contém o rancor, então tenho que encontrar uma maneira de extrair o rancor sem tocar na adaga.</p>
+          <p> </p>
+          <p>Hm... não é uma tarefa fácil...</p>
+          <p> </p>
+          <p>[%username], você pode me pegar o [%dic:STR_DIC_I_quest_30712a] do [%dic:STR_DIC_M_IDTiamat_S2_StealthUnit_60_Ae] na Fortaleza de Tiamat?</p>
+          <p> </p>
+          <p>Deveria ser possível em teoria. Mas esta é a primeira vez que tento algo assim.</p>
+          <p> </p>
+	  <p>Acho que vale a pena tentar. Por favor me ajude. Eu vou recompensá-lo generosamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você usou o [%dic:STR_DIC_I_quest_30712a]?</p>
+          <p> </p>
+          <p>Você não voltou de mãos vazias, espero?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o dispositivo de enfraquecimento.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aha, você trouxe a coisa certa!</p>
+          <p> </p>
+          <p>(Ele examina o Absorvedor de Escudo de Energia alterado.)</p>
+          <p> </p>
+          <p>Usar a tecnologia Shulack me deixa desconfortável... mas terei que suportar se isso ajudar no desenvolvimento da tecnologia.</p>
+          <p> </p>
+	  <p>Tudo bem. Farei um instrumento para extrair o Rancor do Apsu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Procure[%dic:STR_DIC_I_quest_30712a]% e leve esses itens para [%dic:STR_DIC_N_Gneise].</font></p>[%collectitem]</step>
+  
+    </steps>
+          <p><font font_xml="quest_summary">Procure um dispositivo adequado para obter o Rancor de Apsu, que é imensamente valioso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Grais disse que ela realmente precisava do Rancor de Apsu para sua pesquisa e pediu para você obter materiais para extrair o rancor.</p>
+          <p> </p>
+          <p>Quando você obteve o Absorvedor de Escudo de Energia do Reator de Transparência Balaur na Fortaleza de Tiamat para ela, ela explicou que o instrumento poderia ser usado para extrair o rancor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

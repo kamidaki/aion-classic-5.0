@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q20086</QuestId>
+    <QuestName>카룬 호위대 발견</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conversa com Tolkin do Protetorado de Kahrun, que foi gravemente ferido</p>
+          <p> </p>
+	  <p>Ah... Argh! Argh!</p>
+          <p> </p>
+	  <p>Uau... água!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você responde que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conversa com Tolkin do Protetorado de Kahrun, que foi gravemente ferido</p>
+          <p> </p>
+          <p>Uau... água!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Água.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Suspiro. Suspiro.</p>
+          <p> </p>
+          <p>Ele agradece e conta o que aconteceu.</p>
+          <p> </p>
+          <p>Ele diz que muitos outros ficaram feridos em uma explosão e que você deveria ir investigar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gemido ...</p>
+          <p> </p>
+          <p>Água!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conversa com Tolkin do Protetorado de Kahrun, que foi gravemente ferido</p>
+          <p> </p>
+	  <p>E pensar que foi isso que meus camaradas tiveram que sofrer.</p>
+          <p> </p>
+	  <p>Mesmo Kahrun não escapou da explosão. Ele está em perigo. Procure Kahrun!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você responde que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você examina o falecido Protetorado de Kahrun.</p>
+          <p> </p>
+	  <p>(Seus ferimentos foram infligidos em batalha, não por uma explosão.)</p>
+          <p> </p>
+	  <p>(Aparentemente eles foram mortos pelos soldados Beritra enquanto defendiam Kahrun.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO6">Você termina sua investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você examina o soldado Beritra morto.</p>
+          <p> </p>
+	  <p>(Ele carrega feridas da batalha contra o Protetorado de Kahrun.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO7">Você termina sua investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select9">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conversa com Pahel do Esquadrão de Defesa da Base</p>
+          <p> </p>
+	  <p>Não houve incidentes especiais!</p>
+          <p> </p>
+	  <p>Nem uma formiga passou por aqui, muito menos os Soldados Beritra!</p>
+          <p> </p>
+	  <p>Vá para a Defesa da Base e pergunte.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Relatório: Conversa com Daltra, o Centurião de Defesa da Base</p>
+          <p> </p>
+	  <p>O que está acontecendo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta se ele viu Kahrun.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que você estava procurando por Kahrun. Ele não esteve por aqui, no entanto.</p>
+          <p> </p>
+	  <p>Então foi isso que aconteceu...</p>
+          <p> </p>
+	  <p>Bom trabalho. Teremos o maior prazer em ajudar no futuro também.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com Tolkin.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Pegue água e leve para Tolkin.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Procure pelo Protetorado de Kahrun, que foi ferido em uma explosão.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Matar o Protetorado de Kahrun, que foi contaminado pelo Id ([%11]/4).</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Conte a Tolkin o que aconteceu.</font></p></step>        
+               <step><p visible="[%15]"><font color="[%16]">Procure rastros deixados pelo Protetorado que estava seguindo Kahrun.</font></p></step>   
+               <step><p visible="[%18]"><font color="[%19]">Procure rastros deixados pelos soldados Beritra.</font></p></step>         
+               <step><p visible="[%21]"><font color="[%22]">Examine o Posto Beritra.</font></p></step>    
+               <step><p visible="[%24]"><font color="[%25]">Você pergunta a Pahel, o soldado da Defesa da Base, se algo estranho aconteceu ultimamente.</font></p></step>    
+               <step><p visible="[%27]"><font color="[%28]">Reporte para Daltra, o Centurião de Defesa da Base.</font></p></step>    
+    </steps>
+          <p><font font_xml="quest_summary">Pedidos: Fale com Tolkin, que precisa de ajuda urgentemente.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conteúdo após a conclusão</p>
+          <p> </p>
+          <p>Entrada subsequente</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>

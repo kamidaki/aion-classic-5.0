@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>[%username], você me faria um favor?</p>
+		  <p> </p>
+          <p>Você poderia pegar [plur][%dic:STR_DIC_I_quest_25081a] do Deserto Espinhoso para mim?</p>
+          <p> </p>
+		  <p>Os corais aqui são particularmente bonitos. Eles são ainda mais valiosos porque estão petrificados.</p>
+          <p> </p>
+          <p>Depois de encontrá-los, leve-os ao [%dic:STR_DIC_N_DF5_Agran_E] para que ele possa avaliar seu valor. Seria ótimo se você pudesse me trazer alguns belos exemplos.</p>
+          <p> </p>
+          <p>Uma bela obra de arte natural terá um bom preço no Pandemônio.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você os encontrou?</p>
+          <p> </p>
+          <p>Espero que esteja em condições mais ou menos boas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Coral Vermelho.</Act>
+    </Selects>
+  </HtmlPage>
+
+      <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Suas habilidades de coleta são verdadeiramente notáveis, [%username].</p>
+		<p> </p>
+		<p>A condição é melhor do que eu esperava.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que ele pretende fazer com isso.</Act>
+    </Selects> 
+  </HtmlPage>	
+  
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Onde está meu [%dic:STR_DIC_I_quest_25081a]?</p>
+          <p> </p>
+          <p>Claro, entendo que existem tarefas mais importantes, mas também não sei quando esse deserto vai mudar novamente...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+		<Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects> 
+ </HtmlPage>
+ 
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Suas habilidades de coleta são verdadeiramente notáveis, [%username].</p>
+		<p> </p>
+		<p>A condição é melhor do que eu esperava.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que ele pretende fazer com isso.</Act>
+    </Selects>
+  </HtmlPage>  
+  
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tais obras de arte são raras em Pandemônio.</p>
+          <p> </p>
+		  <p>Eles seriam perfeitos como decoração em uma cidade grande como Pandemônio ou até mesmo em um templo...</p>
+		  <p> </p>
+		  <p>Ou... talvez também fosse do interesse de colecionadores de arte ricos?</p>
+		  <p> </p>
+          <p>Graças a você, [%username], o Pandemônio ficará cada vez mais bonito.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre um [%dic:STR_DIC_I_quest_25081a] e leve-o para [%dic:STR_DIC_N_DF5_Agran_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Agran pediu para você obter um coral vermelho petrificado. Atenda ao pedido de Agran.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agran pediu que você obtivesse Essência especial de Água-viva Vermelha.</p>
+          <p> </p>
+          <p>Você trouxe para ele a Essência da Água-Viva Vermelha. Ele agradeceu e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabe por que essa região se chama Theobomos?</p>
+          <p> </p>
+          <p>Ah! Posso ver pelo seu rosto que não. É o nome de um Daeva que governou este lugar muito antes do Cataclismo.</p>
+          <p> </p>
+          <p>Ele era tão conhecido por sua sabedoria que até os Lordes Empíreos pediram seu conselho.</p>
+          <p> </p>
+          <p>Mas infelizmente ele morreu durante o Cataclismo. Dizem que ele foi morto em combate com o próprio Dragon Lorde Fregion.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">"Realmente?"</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há uma razão para esta lição de história. Eu tenho algo para perguntar a você.</p>
+          <p> </p>
+         <p>Uma ordem especial foi emitida pelo Santuário para começar a escavar a fortaleza onde Theobomos morava, procurando por qualquer coisa que possa ser pré-Cataclismo.</p>
+         <p> </p>
+          <p>O problema é que a fortaleza está abandonada há tanto tempo que a fortaleza ruiu e não há nada para encontrar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">"Parece que você pode ir para casa."</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem...talvez não. Eu estava lutando contra alguns dos seres mágicos que atrapalhavam nossa escavação, e eles deixaram cair Pedaços de Estátua enquanto fugiam.</p>
+          <p> </p>
+          <p>Parece que remonta à época de Teobomo. Talvez devêssemos recolher mais alguns antes de perdermos a esperança.</p>
+          <p> </p>
+          <p>[%username], você vai me ajudar, não é?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Kirrins, Cariátides, Estátuas e Petrahulks na Fortaleza de Theobomos parecem carregar as Peças da Estátua.</p>
+          <p> </p>
+          <p>Se você me trouxer peças suficientes, eu lhe darei esta moeda de platina como recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Você tem um acordo!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, por que você me deixou tagarelar daquele jeito se ia apenas dizer não?</p>
+          <p> </p>
+          <p>Vá embora. Encontrarei alguém que esteja realmente interessado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Adeus, então."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username]!</p>
+          <p> </p>
+          <p>A julgar por toda aquela sujeira, você deve ter estado na Fortaleza Theobomos.</p>
+          <p> </p>
+          <p>Dê-me as peças da estátua e descanse.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Aqui você vai."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu poderia jurar que pedi mais do que isso.</p>
+          <p> </p>
+          <p>Já estou atrasado. Você vai se apressar e pegar aquelas peças de estátua?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Opa, erro meu!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Coletamos tantas peças de estátua e ainda não consigo compreender sua forma original. Deve ter sido enorme!</p>
+          <p> </p>
+          <p>Acho que vou precisar de ainda mais peças se quiser começar a juntar as peças.</p>
+          <p> </p>
+          <p>Haverá mais moedas de platina para você se decidir me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrote seres mágicos na Fortaleza de Theobomos, colete Pedaços de Estátua e leve-os para Guneus.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Guneus está encarregado de escavar a Fortaleza de Theobomos e pediu que você trouxesse para ele algumas das peças da estátua que as criaturas da fortaleza coletaram.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Guneus contou a você a história por trás do nome Theobomos e pediu que você ajudasse na escavação da Fortaleza de Theobomos.</p>
+          <p> </p>
+          <p>Como ele pediu, você matou Kirrins, Cariátides, Estátuas e Petrahulks e trouxe suas Peças de Estátua para ele, em troca ele lhe deu uma moeda de platina.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>

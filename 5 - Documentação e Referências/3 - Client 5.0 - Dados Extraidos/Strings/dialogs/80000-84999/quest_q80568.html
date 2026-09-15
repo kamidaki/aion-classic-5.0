@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>DAEVA... DAEVA é outra palavra que nunca quero esquecer, akakak.</p>
+	  <p> </p>
+          <p>Eu sofro de amnésia.</p>
+	  <p> </p>
+          <p>Tenho lembranças maravilhosas de Atreia. Eu tinha cartões com letras para ajudar a refrescar minha memória e não esquecê-los.</p>
+	  <p> </p>
+          <p>Mas um dia, monstros roubaram minhas Cartas, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+    <Act href="HACTION_ASK_QUEST_ACCEPT">Você pergunta se pode ajudar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A segunda série de cartas favorita de Shugo é ABYSS, akakak.</p>
+          <p> </p>
+	  <p>Será mais difícil do que Daeva pensa.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você diz que vai tentar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você diz que não pode fazer isso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, colete as cartas ABYSS, akakak.</p>
+          <p> </p>
+          <p>Pode ser um desafio para Daeva.</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Os Daevas que Shugo conheceu estavam sempre em busca de novos desafios.</p>
+         <p> </p>
+         <p>Shugo pensou que Daeva iria ajudá-lo, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sério? Daeva realmente obteve as cartas ABYSS? Akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a cadeia de letras ABYSS.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva está mentindo!</p>
+	  <p> </p>
+          <p>Shugo precisa de todos os A.B.Y.S.S. cartas, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva coletou todos os A.B.Y.S.S. cartas?</p>
+          <p> </p>
+          <p>Isso não demorou muito. Muito obrigado. Aqui está um presente para Daeva, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+                     <step><p visible="[%0]"><font color="[%1]">Colete as letras do ABIS</font></p>[%collectitem]</step>      
+    </steps>
+          <p><font font_xml="quest_summary">Lenarunerk pediu para você coletar as cartas ABYSS. Você recolheu as cartas e as trouxe para ele.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lenarunerk disse que coleciona cartas para manter sua memória intacta.</p>
+          <p> </p>
+          <p>Quanto mais cartas você coletar, melhor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

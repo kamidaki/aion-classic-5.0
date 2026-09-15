@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você poderia nos ajudar novamente?</p>
+          <p> </p>
+          <p>Por favor, mate [plur][%dic:STR_DIC_M_LDF5A_B6_FrillFaimam_62_An], que estão erradicando os sinais de Kahrun.</p>
+          <p> </p>
+          <p>Se as coisas continuarem assim, não poderemos usar as faixas que encontramos recentemente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o Redeye Praedium?</p>
+          <p> </p>
+          <p>Eu estava apenas esperando você voltar, [%username].</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Relate que você o matou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estamos mais uma vez em dívida com você.</p>
+          <p> </p>
+          <p>Aqui, preparamos isso para expressar nosso agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_B6_FrillFaimam_62_An] que está danificando os rastros de Kahrun ([%2]/15)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatar para [%dic:STR_DIC_LDF5a_Yarna_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Redeye Praedums que estão danificando as trilhas que nos esforçamos muito para encontrar.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Yarna, do grupo de busca de Reian Wesley, pediu que você eliminasse os encrenqueiros que estão atrapalhando a busca pelos rastros de Kahrun.</p>
+          <p> </p>
+          <p>Depois de matar os Redeye Praedums que estavam destruindo os sinais recentemente encontrados de Kahrun, você recebeu muitos elogios ao retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

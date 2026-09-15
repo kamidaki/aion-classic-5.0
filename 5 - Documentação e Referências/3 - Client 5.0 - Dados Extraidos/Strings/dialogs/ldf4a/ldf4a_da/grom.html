@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra. Eu distribuo recompensas por contribuições, como o Lanix, mas as minhas são mais poderosas, mais bonitas.</p>
+          <p> </p>
+          <p>Claro, eles exigem uma contribuição maior. Mas todas as coisas boas acontecem, certo?</p>
+          <p> </p>
+          <p>Se você está procurando uma recompensa de arma de qualidade pelos seus Pontos de Abismo, este é o lugar. Visite-me a qualquer hora.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Reward for Contribution</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desculpe. Você não tem contribuições suficientes.</p>
+          <p> </p>
+          <p>Volte novamente quando tiver mais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ah, eu voltarei."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

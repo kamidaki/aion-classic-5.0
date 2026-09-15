@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12008</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não podemos simplesmente cumprir os desejos do Reian.</p>
+          <p> </p>
+          <p>Estamos sempre tentando nos concentrar neles, mas temos nossos próprios assuntos com os quais precisamos lidar.</p>
+          <p> </p>
+          <p>É claro que precisamos manter silêncio sobre esse fato, para que os Reian não percebam.</p>
+          <p> </p>
+          <p>Mas nossos legionários não conseguem agir tão silenciosamente quanto gostariam por causa do Seafoam.</p>
+          <p> </p>
+          <p>Ajudaria muito os Legionários Hushblade se você pudesse eliminar os [%dic:STR_DIC_M_LDF4b_T2_Foam_Red_58_An]s e [%dic:STR_DIC_M_LDF4b_T2_Foam_White_58_An]s.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi a missão?</p>
+          <p> </p>
+          <p>Você conseguiu eliminá-los sem que o Reian tivesse ideia do que estava acontecendo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Tudo bem. Está tudo em ordem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora os legionários são capazes de cumprir a sua missão em paz.</p>
+          <p> </p>
+          <p>Fiquei preocupado que pudesse haver alguns problemas com o Reian.</p>
+          <p> </p>
+          <p>Em nome de nossa unidade, devo lhe agradecer muito, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua as criaturas errantes da espuma do mar.</font></p>
+                         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF4b_T2_Foam_White_58_An] ([%2]/8)</font></p>
+                         <p visible="[%3]"><font color="[%4]">[%dic:STR_DIC_M_LDF4b_T2_Foam_Red_58_An] ([%5]/6)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Canopus].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">As criaturas errantes Seafoam têm tornado extremamente difícil para os Legionários Hushblade completarem suas tarefas secretas. Ajude-os destruindo os Seafoams.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Canopus contou como os Legionários Hushblade estavam tentando realizar missões secretas sem informar a Tribo Reian, apenas para serem frustrados pela vida selvagem nativa.</p>
+          <p> </p>
+          <p>Você concordou em ajudar destruindo os Seafoams e respondeu com calorosos agradecimentos e uma recompensa decente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+        <p>Registros de pesquisa da Tribo Runa poderiam facilitar a compreensão de como produzir e aplicar Idgel.</p>
+        <p> </p>
+        <p>Alguns dos documentos foram levados pelos soldados de Beritra, mas os registros da pesquisa são mantidos por Notius em um depósito.</p>
+        <p> </p>
+        <p>[%username], você pode fazer isso com segurança. Você poderia ir até [%dic:STR_DIC_W_IDLDF5RE_solo_idgel] e pegar o [%dic:STR_DIC_I_quest_28002a]?</p>
+        <p> </p>
+        <p>O único problema é que você tem que agir rápido, porque Notius planeja explodir o armazém Idgel e fugir.</p>
+        <p> </p>
+        <p>Mate o Beritra rapidamente e quando chegar ao Armazém Idgel obtenha os registros de pesquisa da Tribo Rune, mesmo que Notius escape.</p>
+        <p> </p>
+        <p>Não se esqueça que no caminho você terá que tirar os inimigos do caminho. Caso contrário, eles poderão retirar seus registros novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você teve sucesso?</p>
+          <p> </p>
+          <p>Você encontrou o Pesquisador Chefe Beritra?</p>
+          <p> </p>
+          <p>E o Diário de Pesquisa da Tribo Rúnica?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Diário de Pesquisa da Tribo Ruhn.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não esperava nada menos de você, [%username]!</p>
+          <p> </p>
+          <p>Olhando para estes registos de investigação, os nossos cientistas certamente ficarão satisfeitos.</p>
+          <p> </p>
+          <p>Como Notius considera os registros de pesquisa tão importantes, eles certamente conterão muitas informações relacionadas à pesquisa de Idgel.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate rapidamente os soldados do Exército Beritra no [%dic:STR_DIC_W_IDLDF5RE_solo_idgel] e pegue o [%dic:STR_DIC_I_quest_28002a]. Em seguida, leve os registros de pesquisa para [%dic:STR_DIC_N_LDF5a_Ulra].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá até o Armazém Idgel e procure os Registros de Pesquisa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ulra calculou que ter o Diário de Pesquisa da Tribo Rúnica seria uma grande ajuda para a pesquisa sobre Idgel.</p>
+          <p> </p>
+          <p>Ulra agradeceu por seguir o pesquisador-chefe de Beritra em fuga e ir ao Armazém Idgel para recuperar o Diário de Pesquisa da Tribo Rúnica.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

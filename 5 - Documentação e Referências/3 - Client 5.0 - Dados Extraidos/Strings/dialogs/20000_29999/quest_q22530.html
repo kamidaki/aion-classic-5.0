@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recentemente, houve muitos Kokonats mutantes, ak.</p>
+          <p> </p>
+          <p>Shugo é um especialista em Kokonat e acredita que a Goldrinyerk Limited está por trás de tudo, ak.</p>
+          <p> </p>
+          <p>O fertilizante normal não produz Kokonats assim, ak.</p>
+          <p> </p>
+          <p>Por favor, mate [%dic:STR_DIC_M_LDF5A_C1_Coconas_62_An] que não se importa com Kokonats, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por causa dos Kokonats mutantes, meu humor não é dos melhores.</p>
+          <p> </p>
+          <p>A Goldrinyerk Limited alegou que usava fertilizantes inofensivos, mas era tudo mentira.</p>
+          <p> </p>
+          <p>Uma situação sombria, pois os Kokonats não podem ser plantados separadamente.</p>
+          <p> </p>
+          <p>A verdade deve vir à tona.</p>
+          <p> </p>
+          <p>Você destruiu os Kokonats mutantes?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa pelo seu trabalho.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sinto-me mais calmo agora que eles partiram.</p>
+          <p> </p>
+          <p>Realmente, muito obrigado, [%username]!</p>
+          <p> </p>
+          <p>Aqui vou pesquisar por que os Kokonats mutantes se desenvolveram, ak.</p>
+          <p> </p>
+          <p>Se eu continuar assistindo a Fazenda Saphirunerk, vou descobrir alguma coisa.</p>
+          <p> </p>
+          <p>Não é muito, mas aceite-o como uma recompensa pelo seu trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_C1_Coconas_62_An] ([%2]/6).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Chororing_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Kokonats mutantes.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Choroshunerk disse que os kokonats mutantes estavam em constante desenvolvimento e pediu que você os destruísse. Depois de destruir os kokonats mutantes, você será recompensado como compensação.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

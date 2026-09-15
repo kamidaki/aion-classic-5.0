@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Preciso de amostras de tecido dos mortos-vivos.</p>
+          <p> </p>
+          <p>Pepe me contou que os primeiros mortos-vivos apareceram entre os soldados de Tiamat, antes mesmo de haver mortos-vivos entre os Elyos, Asmodianos e Reians.</p>
+          <p> </p>
+          <p>Talvez pudéssemos evitar que mais mortos-vivos aparecessem entre os Elyos se descobrirmos mais sobre esses soldados Tiamat.</p>
+          <p> </p>
+          <p>Por favor, elimine o [plur][%dic:STR_DIC_M_LDF5A_F_TDrakan_Zom_Fi_64_An] e o [plur][%dic:STR_DIC_M_LDF5A_F_TDrakan_Zom_Wi_64_An] e traga-me amostras de tecido deles.</p>
+          <p> </p>
+          <p>As Amostras de Tecido nos ajudarão a descobrir mais sobre como os Mortos-Vivos são criados.</p>
+          <p> </p>
+          <p>Por favor me ajude com isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os sacerdotes afirmam que os mortos-vivos são causados pelo Id.</p>
+          <p> </p>
+          <p>Mas Pepe e eu temos uma visão diferente.</p>
+          <p> </p>
+          <p>Se eu realmente fosse o culpado, então você, [%username], e eu teríamos nos tornado mortos-vivos há muito tempo.</p>
+          <p> </p>
+          <p>Tem que haver mais do que isso.</p>
+          <p> </p>
+          <p>Precisamos de tecidos de soldados mortos-vivos de Tiamat para investigar mais a fundo este assunto.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o tecido contaminado e mutante.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Começarei a investigação imediatamente.</p>
+          <p> </p>
+          <p>O estudo de amostras de tecidos certamente nos trará novas informações.</p>
+          <p> </p>
+          <p>Em breve descobriremos a verdade.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_quest_12552a] e leve para [%dic:STR_DIC_N_LDF5a_Roeris_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os impiedosos mortos-vivos e leve tecido mutante contaminado para Roeris.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Roeris pediu para você matar os guerreiros mortos-vivos impiedosos e
+soldados mortos-vivos impiedosos e entregar essas amostras de tecido. Depois de entregar o lenço, Roeris ficou muito grato e imediatamente iniciou a investigação.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

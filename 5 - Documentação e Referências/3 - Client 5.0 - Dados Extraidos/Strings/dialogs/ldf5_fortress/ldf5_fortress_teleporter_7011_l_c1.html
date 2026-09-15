@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma relíquia infundida com magia rúnica.)</p>
+          <p> </p>
+          <p>(Você sente uma energia que pode levá-lo ao [%dic:STR_DIC_W_LDF5_Fortress_SZ_C1].)</p>
+          <p> </p>
+          <p>Você usa a Relíquia para chegar a [%dic:STR_DIC_W_LDF5_Fortress_SZ_C1].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma relíquia infundida com magia rúnica.)</p>
+          <p> </p>
+          <p>(Você sente uma energia que pode levá-lo ao [%dic:STR_DIC_W_LDF5_Fortress_SZ_C1].)</p>
+          <p> </p>
+          <p>Você usa a Relíquia para chegar a [%dic:STR_DIC_W_LDF5_Fortress_SZ_C1].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_TELEPORT_SIMPLE">Teleporte para o Olho Flamejante</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Parece que você ainda não pode usar a Relíquia.)</p>
+          <p> </p>
+          <p>(Talvez você deva tentar novamente mais tarde).</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

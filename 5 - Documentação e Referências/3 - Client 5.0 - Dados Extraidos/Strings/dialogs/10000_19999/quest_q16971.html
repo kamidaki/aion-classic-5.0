@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Artilharia não é uma arma normal. Para destruí-lo, você precisa ativar o [%dic:STR_DIC_M_IDF5_U1_PCTank_Li] e a ponte em frente ao acampamento.</p>
+          <p> </p>
+          <p>Se você destruir todos os [plur][%dic:STR_DIC_E_IDF5_U1_VriFlagall] dos 4 postes da Ponte de Jormungand, a ponte poderá ser ativada. Portanto, destrua os geradores rapidamente e capture os postos.</p>
+          <p> </p>
+          <p>Você deve estar atento, pois os Balaur podem atacar novamente após a destruição dos geradores para reconquistar os postos.</p>
+          <p> </p>
+          <p>Se você tiver sucesso com a missão, verifique com Timarkus no Katalam Underground.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você destruiu os geradores em todos os postos da Ponte de Jormungand?</p>
+          <p> </p>
+          <p>Se você destruir esses geradores, o Exército Beritra atacará incessantemente os postos para reconstruí-los. Isso porque este dispositivo é crucial para manter a Ponte de Jormungand.</p>
+          <p> </p>
+          <p>Além do mais, a Artilharia só pode ser destruída com o [%dic:STR_DIC_M_IDF5_U1_PCTank_Li] quando os geradores estiverem fora de ação.</p>
+          <p> </p>
+          <p>Como foi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que os geradores foram destruídos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado por seus esforços.</p>
+          <p> </p>
+          <p>Graças a você, a missão de destruir a artilharia também ocorrerá sem problemas.</p>
+          <p> </p>
+          <p>Os Guardiões em South Katalam estavam quase desesperados, mas você, [%username], fez com que suas preocupações desaparecessem.</p>
+          <p> </p>
+          <p>Você prestou grande honra ao seu nome.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua o [%dic:STR_DIC_E_IDF5_U1_VriFlagall] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Under_Timarchus_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Destrua os geradores para ocupar os postos na ponte de Jormungand.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Theano pediu que você destruísse os geradores no caminho para a Ponte de Jormungand para poder chegar ao arsenal onde está localizada a Artilharia.</p>
+          <p> </p>
+          <p>Você destruiu os geradores de acordo com as instruções de Theano e relatou a Timarkus, que disse que agora tinha menos uma coisa com que se preocupar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

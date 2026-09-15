@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12047</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tomar o Coração da Petrificação é uma grande vitória. Abriu todos os tipos de portas para Elysea.</p>
+          <p> </p>
+          <p>Por exemplo, temos agora a oportunidade de examinar os ambientes locais em busca de recursos que nos seriam úteis. Descobrimos que certas rochas possuem um tipo único de Éter. Infelizmente, eles também são a comida favorita dos Basiliscos Crystalump.</p>
+          <p> </p>
+          <p>Se você conseguir se livrar dos Basiliscos Crystalump, poderemos levar mais dessas rochas para estudo.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Certos Alquimistas que conheço estão extremamente entusiasmados com as rochas por aqui. Isso é motivo suficiente para o meu interesse.</p>
+          <p> </p>
+          <p>Mas vai demorar um pouco para fazer as pesquisas necessárias enquanto os Basiliscos Crystalump estiverem comendo essas pedras.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Não mais."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perfeito! Eu nem sabia que essas coisas fragmentadas comiam pedras até recentemente. Mas pelo menos eles estão resolvidos agora.</p>
+          <p> </p>
+          <p>Obrigado por nos ajudar, [%username]. Avisarei se a pesquisa der algum fruto.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Basiliscos Crystalump ([%2]/n).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para Mikena.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Basiliscos Crystalump para que a pesquisa possa ser feita em paz.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mikena descobriu que rochas próximas ao Coração da Petrificação continham Éter único. Eles também eram a comida favorita dos Basiliscos Crystalump.</p>
+          <p> </p>
+          <p>Assim, você matou Basiliscos Crystalump para que houvesse rochas suficientes para os Alquimistas estudarem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

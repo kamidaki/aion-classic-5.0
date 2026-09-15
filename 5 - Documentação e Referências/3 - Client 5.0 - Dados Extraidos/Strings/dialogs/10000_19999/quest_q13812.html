@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um documento secreto escrito em Balaur.)</p>
+          <p> </p>
+          <p>(Você reconhece a Insígnia do Exército Beritra.)</p>
+          <p> </p>
+          <p>(Parece ser importante. É melhor você levar para [%dic:STR_DIC_N_LDF5_Fortress_Village_Guard02_L].)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que posso fazer para você?</p>
+          <p> </p>
+          <p>Suponho que você esteja aqui por causa de um assunto urgente. O que aconteceu?</p>
+          <p> </p>
+          <p>Obviamente, esses assuntos não são particularmente agradáveis.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a Carta de Pedido.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As suspeitas de Kitor foram confirmadas. O Exército Beritra quer invadir Kaldor!</p>
+          <p> </p>
+          <p>Isso também explica por que o Exército Beritra queria conquistar os soldados remanescentes.</p>
+          <p> </p>
+          <p>Eles esperam que os soldados que lutaram por Tiamat os ajudem com o seu plano.</p>
+          <p> </p>
+          <p>Esta informação não poderia ter vindo em melhor hora. Muito obrigado! Informarei Kitor e meus superiores imediatamente. Muito obrigado!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Se os Elyos ocuparem [%dic:STR_DIC_W_LDF5_Fortress_SZ_A2_v02], [%dic:STR_DIC_N_LDF5_Fortress_Village_Guard02_L] aparecerá. Fale com ele.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Leve a carta de pedido para a mídia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu a Carta de Ordem do Guerreiro da 55ª Unidade, um dos soldados remanescentes de Tiamat.</p>
+          <p> </p>
+          <p>Você trouxe para a Midia, que pôde ler o documento. A Carta de Ordem contém informações sobre o plano do Exército Beritra para avançar para Kaldor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

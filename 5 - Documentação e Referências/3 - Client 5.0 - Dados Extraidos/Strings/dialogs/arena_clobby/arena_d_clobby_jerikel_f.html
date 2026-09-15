@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Prazer em conhecê-lo, Daeva!</p>
+          <p> </p>
+          <p>Você gostaria de trocar moedas antigas por armas?</p>
+          <p> </p>
+		  <p>Darei a você um preço especialmente bom como presente de boas-vindas.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_in>Exchange Coins</trade_in>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Infelizmente, isso não funcionará.</p>
+		  <p> </p>
+		  <p>Somente Daevas que possuem uma Pedra de Refúgio de Retorno podem comprar coisas aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

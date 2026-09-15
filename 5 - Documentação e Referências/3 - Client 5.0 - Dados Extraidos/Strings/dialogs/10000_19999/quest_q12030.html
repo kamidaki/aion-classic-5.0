@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12030</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tarefa mais importante no Olho de Tiamaranta é encontrar o caminho para a Fortaleza de Tiamat.</p>
+          <p> </p>
+          <p>Os Balaur estão mantendo o caminho em segredo, então encontrá-lo não será fácil.</p>
+          <p> </p>
+          <p>Mas deve haver alguém que conheça o caminho.</p>
+          <p> </p>
+          <p>Se você matar o [%dic:STR_DIC_M_TDown_DrakanFi_Noble_60_An] no Olho de Tiamaranta, poderá obter a Joia Sonora.</p>
+          <p> </p>
+          <p>Aparentemente, os Balaur o usam como mapa, então podemos encontrar a entrada para a Fortaleza Tiamat se você obtiver este [%dic:STR_DIC_I_quest_12030a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Talvez, se cortarmos a encosta...</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Este mapa deve ajudar na infiltração."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se saiu bem, [%username]. Com isso, podemos encontrar a entrada da Fortaleza Tiamat num piscar de olhos.</p>
+          <p> </p>
+          <p>Você se saiu bem, [%username].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [%dic:STR_DIC_I_quest_12030a] e leve-o para [%dic:STR_DIC_N_Ruonas].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">A Joia Sonora deve ajudá-lo a encontrar a entrada para a Fortaleza de Tiamat. Mate o Protetorado e obtenha a Joia Sonora.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hiroten disse que a tarefa mais importante no Olho de Tiamaranta é encontrar o caminho para a Fortaleza de Tiamat.</p>
+          <p> </p>
+          <p>É por isso que você matou o Protetorado e recebeu a Joia Sonora que os Balaur usam como mapa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

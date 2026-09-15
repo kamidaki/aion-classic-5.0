@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q14276</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi do arqueólogo aqui que aparentemente há um lugar chamado Templo do Fogo localizado abaixo do Templo Kyola.</p>
+          <p> </p>
+          <p>Este templo era aparentemente controlado por uma bruxa chamada Cromede. Mas ninguém consegue chegar perto do templo por causa dos seus lacaios.</p>
+          <p> </p>
+          <p>Você poderia eliminar os servos de Cromede no Templo do Fogo, o [plur][%dic:STR_DIC_M_GargoyleDF2_34_Ae], o [plur][%dic:STR_DIC_M_SAMD_34_Ae] e o [plur][%dic:STR_DIC_M_SouledstoneAReD_35_Ae]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi?</p>
+          <p> </p>
+          <p>Você eliminou os servos de Cromede?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado!</p>
+          <p> </p>
+          <p>Agora será ainda mais fácil derrotar Cromede.</p>
+          <p> </p>
+          <p>Por favor, continue me ajudando. Eu acredito em você!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine os servos de Cromede no Templo do Fogo.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Derrote o [plur][%dic:STR_DIC_M_GargoyleDF2_34_Ae] ([%2]/5).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_M_SAMD_34_Ae] ([%5]/3).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_M_SouledstoneAReD_35_Ae] ([%8]/2).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Hagne] em [%dic:STR_DIC_W_LF2_SZ_D_SUB_1].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Faça o que Hannet pediu e mate os encrenqueiros no Templo do Fogo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hannet pediu para você matar o servo de Cromede no Templo do Fogo para tornar possível derrotar Cromede.</p>
+          <p> </p>
+          <p>Você fez o que Hannet pediu e eliminou Lurker Gargoyles, Aetheric Mugolems e Kalgolems of Magic.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estranhamente, o minério de Idium extraído está desaparecendo, ak.</p>
+          <p> </p>
+          <p>Por que esse minério está desaparecendo quando não tem pernas para fugir, ok?</p>
+          <p> </p>
+          <p>Acho que o [%dic:STR_DIC_M_LDF5A_E4_Shulack_Keep_Id_As_64_An] roubou, mas não há provas, ok.</p>
+          <p> </p>
+          <p>[%username] por favor investigue o superintendente da cooperativa Mairinerk, ak!</p>
+		  <p> </p>
+		  <p>Em particular, você deve levar um [%dic:STR_DIC_I_quest_13564a] com você, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mairinerk não suspeita, mas ele sabe a verdade à primeira vista, ak.</p>
+          <p> </p>
+          <p>O Supervisor da Companhia Mairinerk é quase certamente o responsável pelo desaparecimento dos minerais, também conhecido como.</p>
+          <p> </p>
+          <p>Ele está fadado a negar tudo, mas, como Shulack, eu recomendaria retirar tudo e examiná-lo mais de perto.</p>
+          <p> </p>
+          <p>Companheiros verdadeiramente sem vergonha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a bolsa de minério.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Foi o que pensei, ah!</p>
+          <p> </p>
+		  <p>A bolsa de minério está inchada, ak!</p>
+		  <p> </p>
+          <p>Não confiei no Shulack desde o início, eles quase me enganaram, ak!</p>
+          <p> </p>
+          <p>Felizmente,[%username], você trouxe de volta o minério de Idium perdido, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Verifique se [%dic:STR_DIC_M_LDF5A_E4_Shulack_Keep_Id_As_64_An] tem o [%dic:STR_DIC_I_quest_13564a] com ele. E leve para [%dic:STR_DIC_N_LDF5a_Mairing_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Verifique a bolsa do capataz da Companhia Mairinerk e retire dele os bens roubados.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mairinerk disse que o Idium extraído estava desaparecendo lentamente e alegou que o superintendente da Companhia Mairinerk era o responsável.</p>
+          <p> </p>
+          <p>Assim, você procurou o feitor, encontrou o Idium desaparecido e o trouxe de volta em segurança.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], eu confio em você. É por isso que quero designá-lo para uma missão que é de extrema importância na conquista de Signia.</p>
+          <p> </p>
+          <p>A área deve ser explorada e limpa de quaisquer elementos perturbadores, para que possamos proteger a Caverna de Cristal.</p>
+          <p> </p>
+          <p>Mate o [plur][%dic:STR_DIC_M_LF5_P2_MimicLily_63_An], o [plur][%dic:STR_DIC_M_LF5_P2_FlowerWorm_63_An] e o [%dic:STR_DIC_M_LF5_Q15216_all]. Reúna provas de que você teve sucesso.</p>
+          <p> </p>
+          <p>Exploraremos Signia pouco a pouco e logo a reivindicaremos para nós.</p>
+          <p> </p>
+          <p>Ajude-nos, por favor!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há problemas em todos os lugares. Não são apenas os Balaur e os Asmodianos que estão causando problemas em Signia, também estamos em desvantagem na batalha porque não conhecemos a área.</p>
+          <p> </p>
+          <p>Para sermos eficazes de alguma forma, temos que conhecer a área.</p>
+          <p> </p>
+          <p>Como foram as coisas na Caverna de Cristal?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a prova de vitória da Caverna de Cristal.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu olhei todas as provas que você trouxe da Caverna de Cristal.</p>
+          <p> </p>
+          <p>Aprendi mais sobre Signia graças a você.</p>
+          <p> </p>
+          <p>Agora podemos nos concentrar no confronto com os Balaur e os Asmodianos na Caverna de Cristal.</p>
+          <p> </p>
+          <p>Obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não temos tempo a perder.</p>
+          <p> </p>
+          <p>Vá rápido e me traga a prova.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nosso trabalho será mais fácil agora, graças à sua ajuda.</p>
+          <p> </p>
+          <p>Ainda precisaremos da sua ajuda para avançar para outras regiões. Deixe-me saber se você estiver interessado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Infelizmente, não poderei lhe dar uma recompensa por esta missão.</p>
+          <p> </p>
+          <p>Por favor, receba sua recompensa na Caverna de Cristal.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna o [%dic:STR_DIC_I_LF5_Advance_Q15216_all] e leve-o para [%dic:STR_DIC_N_LF5_Brontte_E].</font></p>[%collectitem]</step>
+	       <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Brontte_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Entre na Caverna de Cristal e obtenha provas de vitória dos Sea Groves, da Caverna de Cristal Oculis e dos capangas da 48ª Tropa de Invasão. Traga todas as provas para Branth.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Branth, Comandante da 3ª Unidade da Guilda New Start, pediu que você livrasse a Caverna de Cristal dos encrenqueiros.</p>
+          <p> </p>
+          <p>Você eliminou Sea Groves, Crystal Cave Oculis e membros da 48ª Tropa de Invasão. Depois você apresentou a prova do seu sucesso ao Branth.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

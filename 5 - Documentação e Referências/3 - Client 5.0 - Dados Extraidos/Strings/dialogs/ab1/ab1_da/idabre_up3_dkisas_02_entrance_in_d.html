@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é membro da Guilda [%userguildname].</p>
+		  <p> </p>
+		  <p>A Fortaleza da Guilda Kysis está localizada na Ilha Kysis.</p>
+		  <p> </p>
+		  <p>Como uma unidade de poderosos soldados Balaur ainda permanece lá, o Governador ordenou que o acesso só pudesse ser concedido aos membros da legião que participaram na captura da fortaleza. Você é um membro, [%username].</p>
+          <p> </p>
+		  <p>Avise-me quando quiser entrar na Fortaleza da Guilda Kysis.</p>
+		  <p> </p>
+		  <p>Lembre-se, você só tem permissão para entrar na fortaleza junto com outros camaradas de armas de sua legião por causa dos perigos que o aguardam lá.</p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra na Fortaleza da Guilda Kysis.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra!</p>
+		  <p> </p>
+		  <p>Por ordem do Governador de Reshanta, sou responsável pelo acesso à Fortaleza da Guilda Kysis.</p>
+		  <p> </p>
+		  <p>O Governador ordenou que o acesso só possa ser concedido aos membros da legião que participou na captura da fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra!</p>
+		  <p> </p>
+		  <p>Por ordem do Governador de Reshanta, sou responsável pelo acesso à Fortaleza da Guilda Kysis.</p>
+		  <p> </p>
+		  <p>O Governador ordenou que o acesso só possa ser concedido aos membros da legião que participou na captura da fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

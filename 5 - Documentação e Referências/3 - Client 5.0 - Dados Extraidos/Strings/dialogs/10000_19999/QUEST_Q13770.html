@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não demorará muito até que enfrentemos a União Asmodiana e os enfrentemos directamente.</p>
+          <p> </p>
+          <p>Para se preparar para esta batalha, seria útil se você pudesse derrotar o Teimoso Chapir do [%dic:STR_DIC_M_LDF4_Advance_Chapire_Center_all]. Você pode encontrá-los perto da base.</p>
+          <p> </p>
+          <p>Sei que não será fácil, mas é imperativo que reduzamos o número de tropas da União Asmodiana.</p>
+          <p> </p>
+          <p>Por favor, elimine a União Asmodiana para que possamos sair vitoriosos da batalha que se aproxima.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A União Asmodiana está agindo de forma estranha.</p>
+          <p> </p>
+          <p>A próxima batalha é iminente.</p>
+          <p> </p>
+          <p>Eles continuam a opor-se a nós, por isso devemos fazer um ataque preventivo.</p>
+          <p> </p>
+          <p>Se derrotarmos pelo menos parte da União Asmodiana, teremos uma grande vantagem na batalha mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Suas habilidades me surpreenderam, [%username].</p>
+          <p> </p>
+          <p>Confiar esta tarefa a você foi a decisão certa. Você cumpriu a missão rapidamente.</p>
+          <p> </p>
+          <p>Agora podemos nos concentrar na batalha contra os Asmodianos.</p>
+          <p> </p>
+          <p>Muito obrigado! Sua conquista foi o primeiro passo para nossa vitória.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrote o [%dic:STR_DIC_M_LDF4_Advance_Chapire_Center_all] que aparece quando todas as guarnições centrais estão ocupadas ([%2]/12).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_E_LDF4_Advance_Village_Guard_L_Center].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine o Teimoso Chapir, que são membros da União Central Asmodiana.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um Comandante da Tropa do Escudo explicou que a União Asmodiana tinha que ser destruída.</p>
+          <p> </p>
+          <p>Depois que você eliminou a União Asmodiana, ele agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15224</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desde que as três regiões ficaram submersas, os Elyos não foram os únicos que migraram para uma nova região.</p>
+          <p> </p>
+          <p>Os Asmodianos também descobriram um novo lar para si. Chama-se Vengar.</p>
+          <p> </p>
+          <p>Equipe-se e use o Fenda para chegar a [%dic:STR_DIC_W_DF5].</p>
+          <p> </p>
+          <p>Infiltre-se no [%dic:STR_DIC_E_DF5_Vil2_Area_All] e derrote os Asmodianos que se estabeleceram lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você chegou à região de Satyr com segurança?</p>
+          <p> </p>
+          <p>Por favor, diga-me exatamente o que os Asmodianos estão fazendo lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você viu a região dos Sátiros e lutou contra os Asmodianos lá?</p>
+          <p> </p>
+          <p>Você realmente é forte!</p>
+          <p> </p>
+          <p>Por favor, continue com o bom trabalho. Lute contra os Asmodianos e apoie a vitória de Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Use o Fenda para chegar ao [%dic:STR_DIC_E_DF5_Vil2_Area_All] e derrotar os Asmodianos ([%2]/2).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Atmos_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a região Satyr em Vengar e derrote os Asmodianos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Atmos, Governador da Guilda New Start, despachou você para a região Satyr em Vengar.</p>
+          <p> </p>
+          <p>Você chegou a Vengar através de uma fenda e derrotou os Asmodianos lá. Quando você voltou, a Atmos elogiou você e pediu que continuasse com o bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

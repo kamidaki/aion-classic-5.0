@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41172</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pela Lança de Siel, esta fantasia de Shulack deve combinar melhor com você.</p>
+          <p> </p>
+          <p>Se você quiser fingir, talvez eu tenha... mudado um pouco o plano original. Veja, eu enterrei explosivos de alta qualidade em [%dic:STR_DIC_W_LDF4a_SZ_A2_03] e cobri seus fusíveis com [%dic:STR_DIC_ILDF4a_Firewood_Q41172] de queima rápida.</p>
+          <p> </p>
+          <p>Seja lá o que eles estejam fazendo, podemos simplesmente colocar fogo.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não consegui incinerar a minha própria aldeia.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu fiz isso por você."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ha! Shulacks estúpidos e destruidores não notaram os explosivos! Estou tão feliz que funcionou.</p>
+          <p> </p>
+          <p>Não tenho ideia do que eles estavam fazendo, mas não trabalharão nisso por um tempo.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre o [%dic:STR_DIC_ILDF4a_Firewood_Q41172] em [%dic:STR_DIC_W_LDF4a_SZ_A2_02] e detone os explosivos [%2].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Elmeos].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elmeos deu a você o uniforme de combate Shulack para trabalho secreto na vila de Menin. Você incendiou a vila com os explosivos enterrados dela.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Elmeos deu a você o uniforme de combate Shulack para que você pudesse se disfarçar na Vila Menin.</p>
+          <p> </p>
+          <p>Conforme ela instruiu, você encontrou marcadores de lenha sobre explosivos enterrados. Quando você colocou fogo na lenha, a aldeia pegou fogo.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

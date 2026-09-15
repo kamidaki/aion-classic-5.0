@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não sei se você já ouviu falar.</p>
+          <p> </p>
+          <p>Diz-se que um espírito da Tribo Rúnica chamado Eremion está em uma caverna perto das Muralhas.</p>
+          <p> </p>
+          <p>Se pudermos encontrar esse espírito da Tribo Rúnica, isso seria um grande passo em frente para a pesquisa do Id.</p>
+          <p> </p>
+          <p>[%username], procure na caverna pelo [%dic:STR_DIC_M_LDF5a_E6_GhostRune_As_Nmd_63_Ae].</p>
+          <p> </p>
+          <p>Mesmo a menor pista seria suficiente.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como era realmente a Tribo Rune?</p>
+          <p> </p>
+          <p>Eles eram inteligentes? Ou um povo de tolos?</p>
+          <p> </p>
+          <p>O fato é que eles não foram protegidos pela Aion.</p>
+          <p> </p>
+          <p>Aion não lhes enviou Senhores, como fez com os humanos.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega os pertences de Eremion.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então os rumores eram verdadeiros.</p>
+          <p> </p>
+          <p>O Espírito Rúnico realmente existe.</p>
+          <p> </p>
+          <p>O item que você me trouxe parece pertencer ao Arquiteto.</p>
+          <p> </p>
+          <p>Não será este talvez o Arquiteto das Muralhas?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [%dic:STR_DIC_I_quest_12559a] de [%dic:STR_DIC_M_LDF5a_E6_GhostRune_As_Nmd_63_Ae] e leve-o para [%dic:STR_DIC_N_LDF5a_Killros_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure o Espírito de Eremion na caverna para pegar seus pertences e depois volte para Kilon.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kilon disse que é verdade que o barco de que um fantasma da Tribo Rúnica chamado Eremion reside na caverna, você deveria procurá-lo. Quando você voltou para Kilon carregando os itens de Eremion, ele olhou para eles e adivinhou que o fantasma já era um cientista que construiu o muro de defesa.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

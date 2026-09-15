@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Ordem de Serviço -</p>
+          <p> </p>
+          <p>Você recebeu a missão de encontrar o raro Fóssil Antigo em Vengar.</p>
+          <p/>
+          <p>Leia atentamente as informações a seguir e siga as instruções.</p>
+          <p> </p>
+          <p>1. Alvo: [%dic:STR_DIC_I_quest_46537a]</p>
+          <p/>
+          <p>2. Detalhes: Este é um Fóssil Antigo raro que pode ser encontrado em Vengar. Quanto melhor for a condição, maior será a recompensa.</p>
+          <p> </p>
+          <p>Todos que nos trouxerem um Fóssil Antigo serão generosamente recompensados.</p>
+          <p> </p>
+          <p>- [%dic:STR_DIC_N_DF5_Toraring_E], Daemons de Charlirunerk -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você aceita a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Algumas pessoas tentam vendê-lo sozinhas, ak.</p>
+          <p> </p>
+          <p>Mas somente nós, Shugos, estamos em posição de colocar mercadorias como o[%dic:STR_DIC_I_quest_46537a] em circulação, ak.</p>
+          <p> </p>
+          <p>Então não tenha ideias estúpidas, apenas mostre para Shugo, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Fóssil Antigo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Olha de todos os lados.) Está em muito bom estado, akakak.</p>
+          <p> </p>
+          <p>Shugo dificilmente consegue afastar os cientistas que querem examinar o fóssil.</p>
+		  <p> </p>
+          <p>Muito bem. Aqui está a recompensa de Daeva, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre o [%dic:STR_DIC_I_quest_46537a] e leve-o para [%dic:STR_DIC_N_DF5_Toraring_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Você recebeu uma missão dos Daemons de Charlirunerk. Execute esta tarefa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu uma missão dos Daemons de Charlirunerk para procurar um Fóssil Antigo em Vengar.</p>
+          <p> </p>
+          <p>Você encontrou o Fóssil Antigo e então se reportou a um membro dos Daemons de Charlirunerk, que lhe deu uma recompensa por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Guilda Vasharti penetrou no Centro de Comando e conquistou toda a base a partir daí.</p>
+          <p> </p>
+          <p>Isso significa que primeiro temos que retomar o Centro de Comando.</p>
+          <p> </p>
+          <p>O acesso ao Centro de Comando é controlado por[%dic:STR_DIC_M_IDYun_Nmd_4Named_60_Ah]. O [%dic:STR_DIC_M_IDYun_Nmd_PortalWi_60_Ae] se esconde dentro.</p>
+          <p> </p>
+          <p>Por favor, mate-os.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aí está você.</p>
+          <p> </p>
+          <p>Você sobreviveu ileso à luta contra os lacaios de Vasharti?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que está bem.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para ser sincero, nunca confiei realmente nos Elyos.</p>
+          <p> </p>
+          <p>Mas eles aumentaram em minhas estimativas desde que te conheci.</p>
+          <p> </p>
+          <p>Bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+		     <step><p visible="[%0]"><font color="[%1]">Mate os lacaios de Vasharti.</font></p>
+			   <p visible="[%3]"><font color="[%4]">[%dic:STR_DIC_M_IDYun_Nmd_4Named_60_Ah] ([%5]/1)</font></p>
+			   <p visible="[%6]"><font color="[%7]">[%dic:STR_DIC_M_IDYun_Nmd_PortalWi_60_Ae] ([%8]/1)</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_Ariana].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os lacaios de Vasharti precisam ser derrotados para avançar para o Centro de Comando Rentus. Mate os lacaios de Vasharti.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ariana disse que os lacaios de Vasharti tiveram que ser derrotados para avançar para o Centro de Comando Rentus.</p>
+          <p> </p>
+          <p>Você matou os subordinados de Vasharti e, assim, fortaleceu a confiança de Ariana nos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

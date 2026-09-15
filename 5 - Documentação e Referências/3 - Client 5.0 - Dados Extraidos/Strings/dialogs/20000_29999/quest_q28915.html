@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora só nos resta destruir o Exército Beritra do Depósito de Guerra Sauro.</p>
+          <p> </p>
+          <p>O fim da missão está cada vez mais próximo.</p>
+          <p> </p>
+          <p>Vá e mate todos os [plur][%dic:STR_DIC_M_IDVritra_Base_Drakan_65_Ae_all] que você vê.</p>
+          <p> </p>
+          <p>Ajude-nos a destruir o inimigo e a anunciar a mensagem de vitória dos Asmodianos.</p>
+          <p> </p>
+          <p>Coloco toda a minha confiança em você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Sauro War Depot deve ser destruído.</p>
+          <p> </p>
+          <p>É claro que quero voltar para casa, mas não esqueci o nosso grande objetivo abrangente.</p>
+          <p> </p>
+          <p>A guerra continuará enquanto o Sauro War Depot existir.</p>
+          <p> </p>
+          <p>Como Asmodiano, isso deve ser evitado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], eu sabia que você era confiável.</p>
+          <p> </p>
+          <p>Que sorte que você voltou inteiro.</p>
+          <p> </p>
+          <p>O número de Balaur na base é tão grande que certamente serão necessários vários destacamentos para destruir todos eles.</p>
+          <p> </p>
+          <p>Mas esse número é excelente.</p>
+          <p> </p>
+          <p>Por favor, ajude-nos na próxima vez também.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_M_IDVritra_Base_Drakan_65_Ae_all] ([%2]/20).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Giriltia_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Soldados de Elite Sauro da 40ª Guilda.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Finalmente, Giriltia pediu para você matar todos os soldados de elite da 40ª Guilda do Sauro War Depot que você vê.</p>
+          <p> </p>
+          <p>De acordo com as instruções de Giriltia, você matou os soldados de elite da 40ª Guilda e, quando retornou, foi solicitado a ajudar novamente na próxima vez.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

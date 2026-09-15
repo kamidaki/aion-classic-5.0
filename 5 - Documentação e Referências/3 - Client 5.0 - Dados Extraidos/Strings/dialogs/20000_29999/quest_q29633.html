@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>A contaminação no Lago Nahor já se espalhou para as Saplands.</p>
+		  <p> </p>
+		  <p>Isso não é realmente surpreendente com toda aquela água corrente.</p>
+		  <p> </p>
+		  <p>Por favor, vá para Saplands e elimine o [plur][%dic:STR_DIC_DF2A_DionaeaSwampD_48_An] ou o [plur][%dic:STR_DIC_DF2A_MutaMantisD_47_n].</p>
+		  <p> </p>
+		  <p>Por ser bem longe, você deve procurar [%dic:STR_DIC_N_DF2a_NPC_Bumbum_Khan] quando chegar.</p>
+		  <p> </p>
+		  <p>Ele lhe dará mais tarefas para ajudar a eliminar a contaminação em Brusthonin, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva é sempre bem-vinda aqui.</p>
+          <p> </p>
+		  <p>A tribo BuBu é atormentada por muitas criaturas contaminadas.</p>
+		  <p> </p>
+		  <p>Se Daeva ajudar a tribo BuBu, Daeva continuará a ser bem-vindo aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Fui incumbido por Surt de eliminar as criaturas contaminadas.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva tem sido uma grande ajuda para a tribo BuBu.</p>
+          <p> </p>
+		  <p>As Dionae do Pântano são horríveis. BuBu tem medo deles.</p>
+		  <p> </p>
+		  <p>Daeva receberá Auxílio Alimentar de Surt.</p>
+		  <p> </p>
+		  <p>Esperamos que Daeva continue ajudando.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para Saplands e elimine o [plur][%dic:STR_DIC_DF2A_DionaeaSwampD_48_An] ou o [plur][%dic:STR_DIC_DF2A_MutaMantisD_47_n] ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_DF2a_NPC_Bumbum_Khan] no [%dic:STR_DIC_W_DF2B_SZ_C_Town].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os monstros em Brusthonin, depois vá para BuBu Khaaan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Surt pediu para você eliminar o Swamp Dionae ou o Side-eyed Sylphen em Brusthonin.</p>
+          <p> </p>
+          <p>Você eliminou os monstros e recebeu uma recompensa de BuBu Khaaan.</p>
+		  <p> </p>
+		  <p>BuBu Khaaan tinha medo de Dionae do Pântano, então ele lhe recebeu com gratidão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

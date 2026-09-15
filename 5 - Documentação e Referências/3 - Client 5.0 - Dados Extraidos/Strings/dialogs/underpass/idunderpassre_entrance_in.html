@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>D</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um enorme portão que leva ao Corredor da Traição.)</p>
+          <p> </p>
+          <p>(Não abre.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um enorme portão que leva ao Corredor da Traição.)</p>
+          <p> </p>
+          <p>(Você pode ouvir murmúrios na língua Balaur através da porta.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra no Corredor da Traição.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um portão que leva ao Corredor da Traição.)</p>
+          <p> </p>
+          <p>(Você pode ouvir murmúrios na língua Balaur através da porta.)</p>
+          <p> </p>
+          <p>(Você pode sentir o perigo. É melhor não entrar.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

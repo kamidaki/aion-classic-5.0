@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q20090</QuestId>
+    <QuestName>이드겔</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Dei uma rápida olhada nos registros de Kahrun.</p>
+          <p> </p>
+          <p>Havia algo sobre um poder místico que a Tribo Rúnica usava. Tratava-se de Id, Idgel e da antiga arma Hyperion.</p>
+          <p> </p>
+          <p>Estou realmente curioso para saber os poderes inacreditáveis que Kahrun queria pesquisar.</p>
+          <p> </p>
+          <p>Já passei o relatório. Nossos cientistas cuidarão disso e em breve decifraremos o mistério desse poder específico.</p>
+          <p> </p>
+          <p>Posso pedir mais alguma coisa a você, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pergunta o que deve fazer por ele.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Stun, o Centurião do Esquadrão de Limpeza de Katalam,[%dic:STR_DIC_N_LDF5b_Plona_E] do Grupo de Expedição às Ruínas Antigas está tendo problemas e precisa de assistência.</p>
+          <p> </p>
+	      <p>Embora não tenha certeza, o problema parece estar relacionado à investigação de Idgel.</p>
+          <p> </p>
+          <p>Então, [%username] peço sua ajuda.</p>
+	      <p> </p>
+	      <p>Afinal, como sabemos agora que Idgel não é um objeto comum, não podemos confiar essa tarefa a qualquer um, não é mesmo?</p>
+          <p> </p>
+	      <p>Vá agora para [%dic:STR_DIC_N_LDF5b_Plona_E].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você responde que entendeu.</Act>
+    </Selects>
+	<Voice file="Q20090-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Meu Deus! Você acabou de chegar!</p>
+          <p> </p>
+	      <p>Encontrei o Idgel Core, mas há muitos monstros por perto e não consigo chegar perto o suficiente.</p>
+          <p> </p>
+	      <p>É um item muito importante para minha pesquisa.</p>
+          <p> </p>
+	      <p>Você poderia me dar o [%dic:STR_DIC_N_LDF5b_Idgel_Q20090]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você responde que entendeu.</Act>
+    </Selects>
+	<Voice file="Q20090-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um estranho recipiente em forma de pirâmide. Emana uma energia misteriosa.)</p>
+          <p> </p>
+          <p>(O recipiente contém um líquido prateado e viscoso.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você pega o Idgel Core.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você também foi feito prisioneiro pelo amaldiçoado Exército Beritra.</p>
+          <p> </p>
+          <p>Meu nome é Laita. Sou um pesquisador bastante famoso de civilizações antigas. Mas dada a nossa situação, talvez devêssemos falar sobre outras coisas.</p>
+          <p> </p>
+          <p>Os Balaur estarão aqui em breve para nos enviar para a morte.</p>
+          <p> </p>
+	      <p>Vou lhe contar como podemos escapar daqui. Ouça com atenção.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Você retoma a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Abra o [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_JailDoor] e fuja. Então encontre o [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_IdgelMachine].</p>
+		  <p> </p>
+		  <p>A Tribo Rune de Katalam criou diversas armas com o poder do Idgel. Há uma arma modificada aqui, também chamada de Idgel Core.</p>
+		  <p> </p>
+		  <p>O Exército Beritra descobriu as armas da Tribo Rúnica no Subterrâneo Katalam e está testando-as em seres vivos na Prisão de Experimentação, para que possam modificar a arma para seus próprios propósitos.</p>
+		  <p> </p>
+		  <p>Visto que você tem o Núcleo Idgel em sua posse, devemos usar o Canhão de Éter modificado e fugir antes que eles façam experimentos conosco.</p>
+		  <p> </p>
+          <p>Fuja da cela e encontre o Éter Canhão modificado da Rune Tribe para inserir o Idgel Core nele.</p>
+          <p> </p>
+          <p>Demorará um pouco até que [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_IdgelMachine] seja ativado. Uma vez ativado, um Escudo Protetor será gerado e o Canhão de Éter modificado atacará o Exército Beritra.</p>
+          <p> </p>
+          <p>Pressa!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você encerra a conversa.</Act>
+    </Selects>
+	<Voice file="Q20090-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(A arma tem uma forma única.)</p>
+          <p> </p>
+          <p>(A arma tem a forma de uma pirâmide e uma inscrição desconhecida está gravada na superfície.)</p>
+          <p> </p>
+          <p>(É difícil entender como funciona.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO7">Você insere o Idgel Core.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select8">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças a você sairemos ilesos. Obrigado.</p>
+          <p> </p>
+          <p>Vejo que você tem muitas perguntas.</p>
+          <p> </p>
+	      <p>E por que você não faria isso? Tenho certeza que você quer saber muito sobre mim. Como eu sabia que você estava carregando um Idgel Core e como eu sei como operar o Idgel Core da Rune Tribe.</p>
+          <p> </p>
+	      <p>Venha comigo. Vou te contar tudo que descobri.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT8_1">Você diz que primeiro tem que dar um relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select8_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Realmente?</p>
+          <p> </p>
+	      <p>Lembre-se que você deve entregar seu relatório, apesar das notícias interessantes. Você é um Daeva confiável.</p>
+          <p> </p>
+	      <p>Entendido. Continue com sua tarefa.</p>
+          <p> </p>
+	      <p>Nos encontraremos novamente, em breve.</p>
+          <p> </p>
+          <p>Então vou deixar você sair daqui. Você está pronto?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você diz que está pronto.</Act>
+    </Selects>
+	<Voice file="Q20090-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não! Você não é [%username], o [f:"o"] Daeva que[f:"quem"] ganhou grande honra na batalha contra Tiamat?</p>
+          <p> </p>
+	      <p>Ouvi dizer que você encontrou os registros de Kahrun. Dizem que eles contêm alguns segredos antigos.</p>
+          <p> </p>
+	      <p>Muitos pesquisadores estão a caminho de Katalam. Graças à sua ajuda, em breve haverá algum progresso inovador na pesquisa Idgel.</p>
+          <p> </p>
+	      <p>Mas o que traz você aqui?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o que aconteceu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um imenso poder está contido no Núcleo Idgel da Tribo Rúnica. Ou devo dizer Canhão de Éter modificado?</p>
+          <p> </p>
+          <p>É realmente surpreendente. Eu nunca soube que Laitra havia pesquisado a civilização da antiga Tribo Runa.</p>
+          <p> </p>
+	      <p>Devemos encontrá-lo a todo custo. Ele certamente poderá nos ajudar a entender o livro de Kahrun.</p>
+          <p> </p>
+          <p>Enquanto isso, você pode se despedir dos soldados do Exército Beritra.</p>
+		  <p> </p>
+		  <p>Você quer ajudar [%dic:STR_DIC_N_LDF5a_Drakan_Kuvirkan_E]? É inacreditável, mas os soldados sobreviventes da Guilda Tiamat nos pediram ajuda para derrotar o Exército Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Paut_E].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LDF5b_Plona_E] em [%dic:STR_DIC_W_LDF5b_SZ_A1].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Seguro [%dic:STR_DIC_N_LDF5b_Idgel_Q20090] para Plona.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Você encontrará [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_Scholar1D_E] na Prisão de Experimentação. Fale com ele.</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Destrua o [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_JailDoor] ([%14]/1).</font></p></step>        
+               <step><p visible="[%15]"><font color="[%16]">Encontre o [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_IdgelMachine] na Prisão de Experimentação.</font></p></step>        
+               <step><p visible="[%18]"><font color="[%19]">Coloque o núcleo Idgel no [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_IdgelMachine].</font></p></step>    
+               <step><p visible="[%21]"><font color="[%22]">Proteja o Núcleo Idgel da Tribo Rúnica da Guarda Beritra até que o [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_IdgelMachine] seja ativado.</font></p></step>    
+               <step><p visible="[%24]"><font color="[%25]">Fale com [%dic:STR_DIC_N_IDLDF5Re_Solo_Q_Scholar2D_E].</font></p></step>    
+               <step><p visible="[%27]"><font color="[%28]">Entre no [%dic:STR_DIC_W_LDF5b_SZ_B1] e reporte-se a [%dic:STR_DIC_N_LDF5b_Stun_E].</font></p></step>  
+    </steps>
+          <p><font font_xml="quest_summary">Tarefa: ajude Plona, que está examinando as antigas ruínas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Paut ficou surpreso com as informações incríveis sobre a Tribo Rúnica contidas no livro de Kahrun. Ele pediu para você ajudar Plona, que estava enfrentando problemas devido a um problema com o Idgel Core.</p>
+          <p> </p>
+		  <p>Você rastreou Plona, que lhe informou que havia encontrado o Idgel Core, mas não conseguiu chegar perto dele por causa dos monstros mutantes. É por isso que ela pediu para você buscar o Idgel Core para ela.</p>
+          <p> </p>
+		  <p>Depois de derrotar os monstros e tomar o Idgel Core, você foi atacado por vários Balaur. Você perdeu a consciência devido ao ataque repentino.</p>
+          <p> </p>
+		  <p>Quando você acordou, você se viu na Prisão de Experimentação. Lá você encontrou a pesquisadora Laitra.</p>
+          <p> </p>
+		  <p>Laitra se apresentou como pesquisador de civilizações antigas e explicou que também era prisioneiro. Ele lhe contou sobre a possibilidade de escapar usando o Idgel Core e o Éter Canhão da Rune Tribe modificado. Você conseguiu escapar seguindo as instruções dele.</p>
+          <p> </p>
+		  <p>Após sua fuga, ele sugeriu que pudesse compartilhar seu conhecimento sobre a antiga civilização da Tribo Rúnica com você. Você recusou educadamente o pedido dele para segui-lo porque precisava apresentar um relatório.</p>
+          <p> </p>
+		  <p>Você voltou para Stun e contou a ele o que havia acontecido. Ele ficou encantado com o seu retorno e disse que precisava da ajuda de Laitra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

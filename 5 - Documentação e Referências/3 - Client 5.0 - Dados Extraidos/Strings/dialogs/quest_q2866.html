@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nossos pensamentos não deveriam girar em torno da perda da fortaleza.</p>
+          <p> </p>
+          <p>Você não pode ganhar tudo na vida.</p>
+          <p> </p>
+          <p>Mas podemos continuar a trabalhar arduamente e talvez reconquiste a fortaleza em breve.</p>
+          <p> </p>
+          <p>Nós, Asmodianos, certamente temos as habilidades para isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Precisamos do apoio de um Daeva endurecido pela batalha.</p>
+          <p> </p>
+          <p>Temos muita experiência em batalha, mas não será fácil derrotar os adversários na fortaleza devido ao grande volume de forças de combate.</p>
+          <p> </p>
+          <p>Acreditamos que você conseguirá, [%username].</p>
+          <p> </p>
+          <p>Se você lutar ao nosso lado, poderá ser útil para recapturar a fortaleza. Você quer lutar conosco?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não podemos nos dar ao luxo de perder mais tempo.</p>
+          <p> </p>
+          <p>Reúna seus camaradas de armas imediatamente e mate o [%dic:STR_DIC_E_1241_Defender_Dr] ou o [%dic:STR_DIC_E_1241_Defender_Li].</p>
+          <p> </p>
+          <p>Depois de concluir esta tarefa, você deve eliminar o Guardian General.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você realmente não quer aceitar esta tarefa?</p>
+          <p> </p>
+          <p>Eu entendo. Tenho certeza de que você tem seus motivos, então não devo questionar sua decisão.</p>
+          <p> </p>
+          <p>Siga seu caminho, então.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que um grupo de Asmodianos derrotou impiedosamente o inimigo.</p>
+          <p> </p>
+          <p>Você fez isso com seus camaradas de armas?</p>
+          <p> </p>
+          <p>Tenho certeza que foi você...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como esperado, você não me decepciona.</p>
+          <p> </p>
+          <p>Bom trabalho. Mas ainda há muito a ser feito.</p>
+          <p> </p>
+          <p>A verdadeira batalha começa agora. Espero que você continue apoiando nossa causa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_1241_Defender_Dr] ou o [%dic:STR_DIC_E_1241_Defender_Li] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate o resultado para [%dic:STR_DIC_N_Rossjof].</font></p></step>               
+    </steps>
+          <p><font font_xml="quest_summary">Reúna seus camaradas de armas e elimine o Esquadrão de Conquista Balaur Miren ou a Guarnição Elyos Miren e reporte a Rossjof.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Centurião Rossjof pediu que você ajudasse a recapturar a fortaleza.</p>       
+          <p> </p>
+          <p>Você lutou contra o Esquadrão de Conquista Balaur Miren ou a Guarnição Elyos Miren e foi recompensado.</p>         
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

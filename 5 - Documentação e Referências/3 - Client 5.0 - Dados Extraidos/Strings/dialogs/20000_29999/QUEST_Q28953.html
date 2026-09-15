@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q28953</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Essência do Poder permitiu que Beritra controlasse seus subordinados por grandes distâncias.</p>
+          <p> </p>
+          <p>Quem foi vítima da lavagem cerebral de Beritra torna-se um escravo impotente de Beritra.</p>
+          <p> </p>
+          <p>A lavagem cerebral também é a razão pela qual Beritra conseguiu chegar à Masmorra do Tormento sem problemas.</p>
+          <p> </p>
+          <p>Quando um dos servos de Beritra morre, uma substância escura é liberada de sua boca. Precisamos de uma amostra desta substância para encontrar um antídoto e impedir que mais vítimas sofram lavagem cerebral.</p>
+          <p> </p>
+          <p>Por favor, mate alguns dos lacaios de Beritra em Makarna e colete o [%dic:STR_DIC_I_quest_28953a] deles. Então traga a essência para [%dic:STR_DIC_N_DF5_Vard_E].</p>
+          <p> </p>
+          <p>Por favor, tenha misericórdia das almas dos muitos Daevas que sofrem sob o controle de Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Beritra usou a Essência do Poder para fazer lavagem cerebral em seus subordinados.</p>
+          <p> </p>
+          <p>Até agora, tudo o que sabíamos era que a lavagem cerebral termina quando a vítima morre.</p>
+          <p> </p>
+          <p>Se ao menos tivéssemos a essência, poderíamos pesquisar um antídoto...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Essência do Poder.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você obteve a essência dos subordinados de Beritra?</p>
+          <p> </p>
+          <p>Na verdade, este componente não parece fazer parte de um plano tão podre...</p>
+          <p> </p>
+          <p>Eu gostaria de dar uma olhada nisso mais de perto. Você poderia me dar, por favor?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não tenho tempo para essas piadas!</p>
+          <p> </p>
+          <p>Enquanto você está aqui conversando, Beritra já pode estar colocando seu plano em ação!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você obteve a essência dos subordinados de Beritra?</p>
+          <p> </p>
+          <p>Na verdade, este componente não parece fazer parte de um plano tão podre...</p>
+          <p> </p>
+          <p>Eu gostaria de dar uma olhada nisso mais de perto. Você poderia me dar, por favor?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmm... Essas essências podem ser a chave para a terrível lavagem cerebral de Beritra.</p>
+          <p> </p>
+          <p>Vou pedir ao especialista dos laboratórios do Pandemônio para analisar a essência de perto e encontrar um antídoto.</p>
+          <p> </p>
+          <p>Muito obrigado por prestarem esse serviço à Tropa Expedicionária e a todos os Daevas.</p>
+          <p> </p>
+          <p>Aqui, por favor, pegue isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_IDSeal] e obtenha o [%dic:STR_DIC_I_quest_28953a]. Leve para [%dic:STR_DIC_N_DF5_Vard_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_DF5_Vard_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure a Essência do Poder em Makarna e depois reporte-se a Bardo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parshia descobriu que Beritra poderia controlar seus asseclas por grandes distâncias. Ela pediu para você coletar a Essência do Poder, a substância que Beritra usou para a lavagem cerebral.</p>
+          <p> </p>
+          <p>Você libertou os asseclas de Beritra, vítimas de lavagem cerebral, de seu sofrimento e encontrou a Essência do Poder.</p>
+          <p> </p>
+          <p>Você trouxe a Essência do Poder para Bardo. Bardo esperava usá-lo para produzir um antídoto.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

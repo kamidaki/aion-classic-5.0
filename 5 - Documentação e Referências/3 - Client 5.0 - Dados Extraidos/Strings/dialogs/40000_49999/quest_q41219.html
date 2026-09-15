@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41219</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A última vez que passei pelo [%dic:STR_DIC_W_LDF4a_SZ_B2_09], notei algumas coisas estranhas flutuando acima dele.</p>
+          <p> </p>
+          <p>Não sou especialista, mas parecia que [%dic:STR_DIC_I_QUEST_41219A] havia rompido as Ruínas do Santuário Jotari. Mas Yaci não acredita em mim.</p>
+          <p> </p>
+          <p>Tenho certeza de que esses fragmentos têm algum tipo de valor, então você poderia voar pelo [%dic:STR_DIC_W_LDF4a_SZ_B2_09] e coletar alguns pedaços de [%dic:STR_DIC_I_QUEST_41219A]?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Comecei a me preocupar depois que você saiu.</p>
+          <p> </p>
+          <p>Se esses fragmentos acabarem sendo inúteis, você trabalhou muito sem motivo.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Aqui estão eles, de qualquer maneira."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado, [%username], e aqui está sua recompensa.</p>
+          <p> </p>
+          <p>Se esses fragmentos acabarem sendo importantes, farei com que todos saibam quem me ajudou a obtê-los.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete fragmentos de [%dic:STR_DIC_I_QUEST_41219A] dos céus acima de [%dic:STR_DIC_W_LDF4a_SZ_B2_09] e leve-os para [%dic:STR_DIC_N_Desios].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Desios avistou alguns detritos do santuário flutuando acima do Debarim Petralith Studio e ela acha que eles podem ser úteis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desios notou alguns Detritos do Santuário flutuando acima do Debarim Petralith Studio e enviou você para coletá-los.</p>
+          <p> </p>
+          <p>Quando você voltou com os fragmentos, ela revelou que estava preocupada que eles pudessem ser inúteis, mas ela o recompensou de qualquer maneira.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

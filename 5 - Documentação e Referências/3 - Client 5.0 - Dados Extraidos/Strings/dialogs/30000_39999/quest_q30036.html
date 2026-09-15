@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um momento, [%username]!</p>
+          <p> </p>
+          <p>Essa sua arma mágica é realmente o Canhão Mágico Supremo de Siel?</p>
+          <p> </p>
+          <p>Uau, [%userclass], você deve ter habilidades incríveis!</p>
+          <p> </p>
+          <p>E você deve ter muita sorte.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na verdade, é algo lamentável.</p>
+          <p> </p>
+          <p>Afinal, parece que há um problema com o Canhão de Poder Mágico de Siel.</p>
+          <p> </p>
+          <p>Suas habilidades reais parecem ter sido seladas e também parece que sofreu grandes danos.</p>
+          <p> </p>
+          <p>Se pudesse ser restaurado ao seu estado original, poderia ser transformado em um canhão mágico ainda mais impressionante.</p>
+          <p> </p>
+          <p>Se você estiver interessado, poderia procurar uma maneira de consertar esse canhão mágico?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essa foi uma boa decisão. Se você não conseguir desenvolver a verdadeira habilidade de uma arma, isso significa morte certa.</p>
+          <p> </p>
+          <p>É bom que eu consiga melhorar a arma, mas não tenho habilidade para concluir o trabalho.</p>
+          <p> </p>
+          <p>Então, em vez disso, vou apresentá-lo a alguém que pode ajudar.</p>
+          <p> </p>
+          <p>Vá conhecer [%dic:STR_DIC_N_Gefeios], que está na vila sagrada de Steria.</p>
+          <p> </p>
+          <p>Ele pode ser um Reian, mas quando se trata de fazer uma arma melhor, ele não se importa com mais nada.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então, para alguém com suas habilidades, [%username], armas e coisas do gênero são completamente sem importância?</p>
+          <p> </p>
+          <p>Já ouvi falar de suas habilidades extraordinárias... mas você é realmente corajoso.</p>
+          <p> </p>
+          <p>Se você realmente não precisa de nada, não vou insistir.</p>
+          <p> </p>
+          <p>Mesmo os bons Canhões Mágicos só são valiosos para aqueles que reconhecem o seu verdadeiro valor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, por que você veio?</p>
+          <p> </p>
+          <p>Acho que você veio até mim por causa de uma arma, certo?</p>
+          <p> </p>
+          <p>Diga-me no que você está interessado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que deseja restaurar o Canhão Mágico de Siel.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Canhão de Poder Mágico de Siel!</p>
+          <p> </p>
+          <p>Você conhece a origem desta arma? Diz-se que os ancestrais da Guilda de Lança de Reian Siel o usaram.</p>
+          <p> </p>
+          <p>Mas como foi armazenado e onde? Está em péssimas condições.</p>
+          <p> </p>
+          <p>Que bom que você veio. Eu vou ajudá-lo a recuperar suas forças.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Gefeios].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Eles dizem que é possível restaurar o poder original do Canhão de Poder Mágico do Siel. Vá ver Gefeios.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando Drenia viu que você tinha o Canhão de Poder Mágico de Siel, ele disse que era uma boa arma, mas que sua capacidade original foi perdida.</p>
+          <p> </p>
+          <p>Seguindo a sugestão dele, você saiu para ver o Reian, Gefeios, que queria fazer o possível para consertar a arma.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

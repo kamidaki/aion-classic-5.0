@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12041</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Coração da Gravidade agora pertence a Elysea! Deixe Tiamat se enfurecer e tremer! Em breve ele enfrentará pessoalmente nossa justiça!</p>
+          <p> </p>
+          <p>Mas este lugar sofreu muitos danos nos nossos esforços para conquistá-lo. Precisaremos reforçá-lo um pouco para nos defendermos dos Balaur.</p>
+          <p> </p>
+          <p>Eu entendo que os Mugolems da Parede Gravitacional são feitos de uma Pedra Reta especial que é mais dura que a pedra normal. Parece ideal para nossos propósitos. Para o bem de nossos esforços de guerra, peço que você consiga alguns para nós</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Existem alguns buracos e pontos fracos nas paredes externas que precisam ser remendados.</p>
+          <p> </p>
+          <p>Também se fala em construir um armazém para as Legiões estacionadas aqui.</p>
+          <p> </p>
+          <p>Precisamos de material para fazer isso. Precisamos de Pedra Reta.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"E Straight Stone você terá."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, sim... Sua qualidade é exatamente como eu ouvi. Não, melhor! Podemos até adicionar muralhas extras e muito mais!</p>
+          <p> </p>
+          <p>Com o que pudermos construir, ocuparemos esta fortaleza durante o próximo milénio!</p>
+          <p> </p>
+          <p>Tiamat sofreu um duro golpe e nós nem lutamos contra ele! Meus agradecimentos a você, [%userclass].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna Straight Stone e leve para Lilia.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Mugolems do Poço Gravitacional e obtenha sua Pedra Reta para fortalecer o Coração da Gravidade.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lilia enviou você para matar Mugolems do Poço Gravitacional e coletar sua Pedra Reta para usar na fortificação e adição ao Coração da Gravidade.</p>
+          <p> </p>
+          <p>Você fez isso, e Lilia, encantada, já estava planejando como usar a pedra que você trouxe para ela.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

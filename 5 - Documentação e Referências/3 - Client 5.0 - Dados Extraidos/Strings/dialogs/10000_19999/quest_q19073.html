@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabe onde estão as raízes da habilidade Bardo?</p>
+          <p> </p>
+          <p>Eles podem ser encontrados na música que vem sendo difundida pelos artistas desde os primeiros tempos.</p>
+          <p> </p>
+          <p>No Templo do Tempo, extensas pesquisas foram conduzidas sobre música e canções transmitidas oralmente. E afinal foi publicada uma coletânea de canções cujos efeitos foram corroborados.</p>
+          <p> </p>
+          <p>Esta obra do Templo do Tempo foi dividida em vários volumes e é muito valiosa.</p>
+          <p> </p>
+          <p>Emprestei o primeiro volume. Graças a este livro pude ajudar muitas pessoas em seus estudos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora parece ser a hora de devolver o livro secreto a Dion.</p>
+          <p> </p>
+          <p>Já analisei seu conteúdo em profundidade por bastante tempo.</p>
+          <p> </p>
+          <p>[%username], você poderia passar o livro secreto para Dion no Salão dos Protetores?</p>
+          <p> </p>
+          <p>Esta missão me parece estar em boas mãos com um [%userclass] como você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um [%userclass] certamente está interessado no conteúdo deste livro misterioso.</p>
+          <p> </p>
+          <p>Você já conhece o conteúdo do primeiro volume, [%username].</p>
+          <p> </p>
+          <p>A parte que você ainda não conhece é com [%dic:STR_DIC_N_LC1_Dion_M].</p>
+          <p> </p>
+          <p>Ele pode lhe contar mais sobre isso. Você o encontrará no Salão dos Protetores.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acha que meu pedido não é importante.</p>
+          <p> </p>
+          <p>E não é minha intenção confiar nada a você.</p>
+          <p> </p>
+          <p>A maioria dos [plur][%userclass] estão na fila para falar na minha frente.</p>
+          <p> </p>
+          <p>Se você não quiser, não há nada a ser feito.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O poder da música a nível artístico é incrivelmente forte.</p>
+          <p> </p>
+          <p>Se o poder do Éter for adicionado, o resultado é uma música extremamente poderosa. Siel sabia tudo sobre o poder da música.</p>
+          <p> </p>
+          <p>Na verdade, é o poder da música que pode encorajar os nossos soldados e enfraquecer o inimigo.</p>
+          <p> </p>
+          <p>Acredito que é por isso que você, [%username], se tornou um [%userclass].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o livro secreto.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O livro misterioso conta apenas uma fração do poder da música.</p>
+          <p> </p>
+          <p>No entanto, mesmo que seja apenas uma pequena parte, o poder destes ensinamentos é tremendo.</p>
+          <p> </p>
+          <p>Se você deseja continuar se aprimorando, leia os demais volumes do livro e utilize o conhecimento que eles contêm.</p>
+          <p> </p>
+          <p>Se você encontrar alguma dificuldade em seus estudos, [%username], você pode vir conversar comigo a qualquer momento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LC1_Dion_M]</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Dê o livro secreto que Aspásia lhe deu para Dion.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aspásia pediu que você levasse o misterioso Livro do Tempo para Dion.</p>
+          <p> </p>
+          <p>Dion aconselhou que você estudasse todos os volumes do misterioso Livro do Tempo para melhorar suas habilidades como Daeva, e prometeu ajudá-lo na tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

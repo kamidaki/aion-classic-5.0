@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41173</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqueles Shulacks devem estar perseguindo suas caudas peludas e inquietas. Exceto [%dic:STR_DIC_M_LDF4A_A2_ShulackRaQ_57_Ae_1]. Ele é sempre tão calmo. Doido.</p>
+          <p> </p>
+          <p>Se nos livrássemos dele, precisaríamos apenas de um punhado de Zayedans para expulsar os assustadores destruidores de [%dic:STR_DIC_W_LDF4a_SZ_A2_03].</p>
+          <p> </p>
+          <p>Você vai fazer isso? [%dic:STR_DIC_N_Addiru] gostaria de saber pessoalmente se você faz isso.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Elmeos me contou que nossa aldeia havia pegado fogo. Queimado! Minha casa, reduzida a cinzas.</p>
+          <p> </p>
+          <p>Mas pensar naqueles vis ocupantes correndo por aí como qooqoos sem cérebro me faz sentir melhor.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Ainda mais estúpido sem Zookin."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sem o chefe, eles se transformarão em Brax, fáceis de liderar e confundir.</p>
+          <p> </p>
+          <p>E chega de pessoas desaparecidas! Não sei como te agradecer por isso.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_LDF4A_A2_ShulackRaQ_57_Ae_1], o líder Shulack em [%dic:STR_DIC_W_LDF4a_SZ_A2_03] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Addiru].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Enquanto os Shulacks estão desorganizados, piore a situação matando seu líder.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Elmeos disse que você poderia causar ainda mais desorganização entre as forças de ocupação na vila de Luman matando o líder local, Zookin.</p>
+          <p> </p>
+          <p>Após o assassinato, você informou um agradecido Adir.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

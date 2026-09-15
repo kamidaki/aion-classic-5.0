@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>1. Destinatário: Gerente: [%username]</p>
+          <p> </p>
+          <p>2. Tarefa: levar os livros anexos para Pandarunerk em Goldrinyerk e entregar os documentos comprovativos na filial, ak.</p>
+          <p> </p>
+          <p>3. Escritório administrativo: filial da Silverin Limited em South Katalam</p>
+          <p> </p>
+          <p>Os trabalhos listados acima estão incluídos na avaliação de progresso, por isso pedimos que você faça um bom trabalho, também.</p>
+          <p> </p>
+          <p>- Danurinerk, gerente de recursos de equipe da Silverine Limited</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que traz Daeva aqui?</p>
+          <p/>
+          <p>Daeva está procurando alguma coisa em particular?</p>
+          <p/>
+          <p>(Esfrega as mãos) Se o preço for justo, Shugo pode conseguir qualquer coisa para Daeva.</p>
+          <p/>
+          <p>Na verdade, qualquer coisa, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você entrega os livros selados.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Daeva foi enviado por Silverine, ak.</p>
+          <p/>
+          <p>E Daeva não está revisando os livros?</p>
+          <p/>
+          <p>O trabalho está feito, então Daeva pode ir agora, ak. Ah, os documentos comprovativos?</p>
+          <p> </p>
+          <p>Aqui estão eles, ok.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa terminou</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os superiores pareciam ter tido uma boa impressão de [%username], ak.</p>
+          <p> </p>
+          <p>Afinal, Daeva foi encarregada de entregar os livros, ak. Mesmo aqueles que foram enviados para Goldrinyerk...</p>
+          <p> </p>
+          <p>Daeva entregou a mercadoria?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o comprovante de atestado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, sim, essa é a assinatura do Administrador Goldrinyerk.</p>
+          <p> </p>
+          <p>Daeva não deve contar a ninguém, ak.</p>
+          <p> </p>
+          <p>Nem sobre a entrega dos registros secretos, nem sobre o encontro com o Administrador Goldrinyerk, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com o funcionário da Goldrinyerk, Pandarunerk.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Entregue os documentos comprovativos à filial Silverine em South Katalam.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">As instruções vieram da Silverine Limited. Leia a tarefa e execute-a.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As instruções vieram da Silverine Limited.</p>
+          <p> </p>
+          <p>Depois de entregar os livros contábeis ao administrador de Goldrinyerk, Pandarunerk, e os documentos comprovativos à filial de Silverine South Katalam, você foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

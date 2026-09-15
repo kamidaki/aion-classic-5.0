@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabe, é claro, que as asas recebidas do Grupo Katalam podem ser trocadas por asas de alta qualidade, ok?</p>
+          <p> </p>
+          <p>Se Daeva vencedor 2 [plur][%dic:STR_DIC_I_coin_pvp_01], Shugo emitirá um certificado necessário para a troca de asas da Silverine Limited ou da Green Hat Alliance por asas de alta qualidade.</p>
+          <p> </p>
+          <p>Depois de coletar com segurança as Medalhas de Batalha para a Defesa Katalam e receber um certificado, garanto que você ganhará a confiança necessária, ak.</p>
+          <p> </p>
+          <p>Se você trocar as asas depois e apresentar o certificado, os funcionários vão atendê-lo antes de todo o mundo, também!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva está pronto, ok?</p>
+          <p> </p>
+          <p>2 medalhas de batalha são suficientes.</p>
+          <p> </p>
+          <p>Ah, e a propósito, se as coisas que Daeva deseja trocar não forem da Silverine Limited ou da Green Hat Alliance, então o certificado de Shugo não ajuda nem um pouco, ak.</p>
+          <p> </p>
+          <p>Só é necessário para a troca.</p>
+          <p> </p>
+          <p>Então dê a Shugo as medalhas de batalha que você trouxe, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Medalha de Batalha.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, agora é hora, ok.</p>
+          <p> </p>
+          <p>Não se esqueça de levar uma Silverine Insignia ou Green Hat Alliance Insignia com você se quiser trocar asas de alta qualidade.</p>
+          <p> </p>
+          <p>Shugo espera que Daeva encontre lindas asas que Daeva goste, ak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve medalhas de batalha para [%dic:STR_DIC_N_LDF5b_Lv15_Exchange_Wing].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Leve medalhas de batalha para Ararinerk e obtenha um certificado de troca por asas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Ararinerk, você deve levar Medalhas de Batalha se precisar de um certificado para troca de asas, que pode ser obtido como recompensa da Silverine Limited ou da Green Hat Alliance.</p>
+          <p> </p>
+          <p>Depois de coletar medalhas de batalha e entregá-las a Ararinerk, você receberá um certificado de troca de asas, necessário para a troca de asas de alta qualidade.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

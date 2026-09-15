@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>O Daeva de Zephyr [%dic:STR_DIC_N_Ibelia] na torre de vigia destruída pediu ajuda.</p>
+		<p> </p>
+		<p>Mais Daevas de Zephyr foram implantados em Heiron do que em qualquer outro lugar.</p>
+		<p> </p>
+		<p>Isso porque eles querem reunir informações sobre o inimigo na luta contra os Balaur.</p>
+		<p> </p>
+		<p>No entanto, eles também estão interessados em outras informações.</p>
+		<p> </p>
+		<p>Entre outras coisas, pretendem pesquisar diversas Relíquias.</p>
+		<p> </p>
+		<p>[%username], o que você me diz? Você ajudaria o Daeva de Zephyr?</p>
+		<p> </p>
+		<p>Recomendo que você aproveite esta oportunidade para trabalhar junto com um dos Daevas de Zephyr.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Sarantus enviou você para mim? [%username]... por que esse nome parece familiar?</p>
+		<p> </p>
+		<p>Oh, você é o mercenário que ascendeu. [%username]...</p>
+		<p> </p>
+		<p>Ouvi dizer que você perdeu a memória. É verdade que você não consegue mais se lembrar de nada?</p>
+		<p> </p>
+		<p>Prefiro ter alguém com uma mente mais estável para este trabalho, mas suponho que você servirá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Eu perguntei por você porque tenho um pedido...</p>
+		<p> </p>
+		<p>Se você veio da fortaleza, deve ter visto Heironópolis.</p>
+		<p> </p>
+		<p>Estou estudando as antigas ruínas de Heironópolis. A cidade já foi o centro da antiga civilização Atreiana. Você está bocejando?</p>
+		<p> </p>
+		<p>De qualquer forma, apenas restam hoje relíquias da antiga glória de Heironópolis.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_2">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+  
+     <HtmlPage name="select2_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Há algum tempo, várias paredes de pedra com tábuas de pedra gravadas foram descobertas no Pico de Vaizel. Eles retratavam cenas da vida cotidiana da antiga civilização.</p>
+		<p> </p> 
+		<p>Mas também incluíam algo que poderia estar relacionado com os Balaur.</p>
+		<p> </p> 
+		<p>Parece que há ainda mais [plur][%dic:STR_DIC_OBJ_LF3_FOBJ_Q14150]. Portanto, você poderia ir até [%dic:STR_DIC_W_LF3_SZ_B] e procurá-los?</p>
+		<p> </p> 
+		<p>Esta antiga civilização aparentemente também lutou contra os Balaur. Certamente podemos aprender algo com eles sobre os Balaur.</p>
+		<p> </p>
+		<p>Portanto, pesquise tudo minuciosamente e não deixe escapar nenhum detalhe.</p>
+		<p> </p>
+		<p>Em seguida, leve suas descobertas para [%dic:STR_DIC_N_Sarantus].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Que bom ver você de volta, [%username].</p>
+		<p> </p>
+		<p>Recebi uma mensagem de Ibelia. Ela queria que me trouxessem um achado arqueológico. Você tem algo para mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Tábua de Pedra Gravada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Hmm... não consigo encontrar nada que possa ter alguma coisa a ver com o Balaur...</p>
+		<p> </p>
+		<p>Também não tem nada a ver com o Pico de Vaizel... Infelizmente! Só podem ser as Ruínas de Roah!</p>
+		<p> </p>
+		<p>Segundo a lenda, esta cidade outrora rica entrou em declínio durante a grande catástrofe.</p>
+		<p> </p>
+		<p>Tenho que contar ao meu pessoal em Reshanta. Você não imagina o que essa descoberta significa para a arqueologia do Abismo!</p>
+		<p> </p>
+		<p>Tenho que contar a Ibelia também.</p>
+		<p> </p>
+		<p>[%username], fiz uma grande descoberta graças a você. Não posso agradecer o suficiente!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LF3_SZ_001] e fale com [%dic:STR_DIC_N_Ibelia] lá.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Encontre o [%dic:STR_DIC_OBJ_LF3_FOBJ_Q14150] no Pico de Vaizel e leve-o para [%dic:STR_DIC_N_Sarantus].</font></p>[%collectitem]</step>
+    </steps>
+		<p><font font_xml="quest_summary">Sarantus pediu para você ajudar Ibelia, a Daeva de Zephyr.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Sarantus encarregou você de ajudar Ibelia, a Daeva de Zephyr.</p>
+		<p> </p>
+		<p>Ibelia pediu para você pesquisar Tábuas de Pedra Gravadas no Pico de Vaizel.</p>
+		<p> </p>
+		<p>Você trouxe os alívios para Sarantus. Ele ficou encantado, porque sua descoberta não teve nada a ver com o Pico de Vaizel, mas sim com as Ruínas de Roah.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

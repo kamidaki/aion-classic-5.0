@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio para ajudar! [%username].</p>
+          <p> </p>
+          <p>Que sorte que existam Daevas valentes como você que fazem a sua parte para proteger Asmodae.</p>
+          <p> </p>
+          <p>Por favor ajude o Protetorado Asmodae de Atreia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Como posso ajudá-lo?</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que você ganhou força.</p>
+          <p> </p>
+          <p>Daeva! A Guilda Bakarma no [%dic:STR_DIC_W_STR_DF3_SZ_H] precisa ser eliminada!</p>
+          <p> </p>
+          <p>Por favor, elimine Saraswati no [%dic:STR_DIC_W_STR_DF3_SZ_H].</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vamos mostrar a eles do que nós, Asmodianos e você, Daeva, somos feitos!</p>
+          <p> </p>
+          <p>Para a glória dos Asmodianos!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não podemos mais recuar. Daeva!</p>
+          <p> </p>
+          <p>Vá enfrentar o inimigo assim que puder.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi?</p>
+          <p> </p>
+          <p>Você eliminou Saraswati?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que executou a tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você cuidaria de tudo!</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine Saraswati no [%dic:STR_DIC_W_STR_DF3_SZ_H] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_EVENT_GUARD_MENELAUS].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">[%dic:STR_DIC_N_EVENT_GUARD_MENELAUS] pediu para você eliminar Saraswati na Caverna Draupnir.</font></p>
+  	  <p><font font_xml="quest_summary">Eliminar Saraswati.</font></p>
+  	  <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_N_EVENT_GUARD_MENELAUS] do Protetorado Atreian Asmodae pediu para você eliminar Saraswati na Caverna Draupnir.</p>
+          <p> </p>
+          <p>Você eliminou Saraswati a pedido de [%dic:STR_DIC_N_EVENT_GUARD_MENELAUS].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

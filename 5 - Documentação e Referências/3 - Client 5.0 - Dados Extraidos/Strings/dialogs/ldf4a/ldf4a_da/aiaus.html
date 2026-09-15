@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Posso ajudar você, [%username]?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os ventos estão favoráveis hoje, [%username].</p>
+          <p> </p>
+          <p>Como resultado, podemos viajar a velocidades muito maiores e enviar as nossas forças por todo o mundo em horas, não em dias.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">"Voar muito você mesmo?"</Act>
+      <Act href="HACTION_FINISH_DIALOG">"Estou indo."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não tanto quanto eu gostaria, não. Muito ocupados enviando nossas forças para todos os lados.</p>
+          <p> </p>
+          <p>Eu me inscrevi para o treinamento de oficiais, no entanto. Talvez... talvez um dia eu seja capitão de uma daquelas belezas. Uma garota pode sonhar, né?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Boa sorte com isso."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

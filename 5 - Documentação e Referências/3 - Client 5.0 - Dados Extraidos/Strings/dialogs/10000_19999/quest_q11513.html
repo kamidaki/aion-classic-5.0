@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q11513</QuestId>
+    <QuestName>싸이클롭스 사냥</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acreditaria se eu lhe contasse que brinquei nas colinas acima de nós quando criança? Desde que o [%dic:STR_DIC_W_LDF4a_SZ_C1_000] foi formado, este lugar se transformou em algo horrível e novo.</p>
+          <p> </p>
+          <p>No passado, tremíamos se houvesse um boato de que um [%dic:STR_DIC_M_LDF4A_C1_Cyclops_Crk_58_An] foi avistado. Mas agora... eles invadiram o [%dic:STR_DIC_W_LDF4a_SZ_C1_000]. O que resta da terra estremece sob seu enorme peso.</p>
+          <p> </p>
+          <p>É ainda mais doloroso ver os Petrahulks atacando lugares que conheci. Se você os eliminasse em meu nome, Daeva, eu o recompensaria.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sempre soube que minha terra natal mudaria e não fiquei surpreso ao encontrar dificuldades. Nós, Reianos, sempre vivemos à sombra dos Balaur.</p>
+          <p> </p>
+          <p>Mas o que aconteceu aqui... parte meu coração.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Há menos Petralitos agora."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado, amigo.</p>
+          <p> </p>
+          <p>Eu sei que agarrar os fragmentos do passado só torna as mudanças mais difíceis de suportar, mas as minhas memórias daquelas colinas, verdes e pacíficas e cheias de aventuras e histórias... são preciosas para mim.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Cace [%dic:STR_DIC_M_LDF4A_C1_Cyclops_Crk_58_An]s no norte de [%dic:STR_DIC_W_LDF4a_SZ_C1_000] ([%2]/11).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Nyitia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Nytia fica triste ao ver a casa de sua infância destruída pelos pés dos cruéis Petrahulks.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sarpan Zayedan Nytia parecia nostálgico e triste, falando da terra ao redor da Grande Fissura como era antes do Selo ser destruído.</p>
+          <p> </p>
+          <p>Ela pediu para você eliminar alguns dos Petrahulks que estavam destruindo suas memórias como um favor pessoal. Você ficou feliz em atendê-la, mas quando voltou para receber sua recompensa, ela não parecia muito mais feliz.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

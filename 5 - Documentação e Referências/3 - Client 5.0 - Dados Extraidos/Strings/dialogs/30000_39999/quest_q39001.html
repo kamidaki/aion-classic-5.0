@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ajude a Legião Garra do Grifo matando [%dic:STR_DIC_E_Q39001].</p>
+          <p> </p>
+          <p>O objetivo da operação Brusthonin é salvar a Legião Garra de Grifo e purificar os Asmodianos com a marcha para a Colina Baltasar.</p>
+          <p> </p>
+          <p>Desde o pouso de emergência em Brusthonin, a Legião Garra do Grifo tem se sustentado bem, mas agora está em apuros por causa do Esquadrão de Limpeza de Brusthonin.</p>
+          <p> </p>
+          <p>Você pode ajudar a Legião Garra do Grifo?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Esquadrão de Limpeza Brusthonin que perseguia a Legião Garra de Grifo era na verdade um grupo que matava mortos-vivos.</p>
+          <p> </p>
+          <p>Mas agora ele está atacando os Elyos. Os Asmodianos devem pensar que os Elyos não são mais fortes que os mortos-vivos.</p>
+          <p> </p>
+          <p>Idiotas.</p>
+          <p> </p>
+          <p>Você demonstrou o poder dos Elyos ao Esquadrão de Limpeza Brusthonin?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">(Você diz sim.)</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Que isto sirva como um lembrete aos Asmodianos de que não devem subestimar os Elyos.</p>
+          <p> </p>
+          <p>[%username], não esquecerei tudo o que você fez.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_E_Q39001]([%2]/32).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Entregue seu relatório para [%dic:STR_DIC_NPC_Arena_Geniki_E_LHM]</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os membros do Esquadrão de Limpeza em Brusthonin e relate o resultado para Ginikki.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ginikki disse para você ajudar a Legião Garra de Grifo matando membros do Esquadrão de Limpeza Brusthonin. Você demonstrou a majestade dos Elyos matando membros do Esquadrão de Limpeza Brusthonin.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

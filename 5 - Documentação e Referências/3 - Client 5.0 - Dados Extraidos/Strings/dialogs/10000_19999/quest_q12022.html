@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12022</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por mais importante que seja manter a vantagem sobre o Asmos, a verdadeira missão aqui é derrotar as legiões de Tiamat.</p>
+          <p> </p>
+          <p>Claro, os dois não são mutuamente exclusivos. Quanto mais lutamos e provamos nossa força, mais esses Darklings se encolhem diante de nós. Também ajuda a convencer os Reianos de nossa habilidade.</p>
+          <p> </p>
+          <p>Tenho uma reunião com a chefia Reian em breve. Quero presenteá-los com o máximo de [%dic:STR_DIC_I_tiamat_banner_01]s possível, então vá tirá-los das Legiões no Olho de Tiamaranta.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom, você chegou bem na hora.</p>
+          <p> </p>
+          <p>Tenho aquela reunião estratégica com os Reians hoje mais tarde. Eu realmente quero esfregar nosso sucesso aqui na cara dos Asmodianos.</p>
+          <p> </p>
+          <p>Quantas Dragonas do Legionário você trouxe?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Eu não contei..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh... Sim, estes servirão.</p>
+          <p> </p>
+          <p>Não é um número esmagador, como eu esperava, mas os Reians ainda ficarão impressionados.</p>
+          <p> </p>
+          <p>Mal posso esperar para humilhar aqueles morcegos Asmodianos!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_tiamat_banner_01]s das legiões Naduka, Basrasa e Satra e leve-os para [%dic:STR_DIC_N_Flavia].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote os guerreiros Balaur pertencentes às Legiões Naduka, Basrasa e Satra e colete suas Dragonas Legionárias como evidência.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Flavia queria apresentar evidências do sucesso de Elyos em uma reunião estratégica com os Reians.</p>
+          <p> </p>
+          <p>Você matou guerreiros Balaur pertencentes às Legiões Naduka, Basrasa e Satra e coletou Dragonas Legionárias como prova das vitórias de seu povo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

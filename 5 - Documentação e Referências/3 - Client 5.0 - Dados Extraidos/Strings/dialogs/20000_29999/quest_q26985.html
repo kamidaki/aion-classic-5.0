@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você se lembra do Refúgio da Tribo Rune?</p>
+          <p> </p>
+          <p>Você poderia dizer que o Refúgio da Tribo Rúnica é a câmara funerária da antiga Tribo Rúnica. Foram principalmente os membros de alto escalão desta tribo que encontraram ali seu último descanso.</p>
+          <p> </p>
+          <p>A ordem foi dada para procurar tesouros e relíquias no Refúgio da Tribo Rune.</p>
+          <p> </p>
+          <p>Como conheço todas as grandes coisas que você fez no passado, [%username], tenho certeza de que concluirá esta tarefa sem problemas.</p>
+          <p> </p>
+          <p>Use o [%dic:STR_DIC_N_OBJ_IDLDF5_Under_02_Entrance_In_D] para chegar ao Refúgio da Tribo Rune, onde nosso Explorador [%dic:STR_DIC_N_IDLDF5_Under_02_E_Dintanum_E] está esperando. Fale com ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], sua tarefa é expulsar o inimigo do Refúgio da Tribo Rune.</p>
+          <p> </p>
+          <p>O Refúgio da Tribo Rune é atualmente governado pelo Exército Beritra. O Exército Beritra reivindica os tesouros e as relíquias para si.</p>
+          <p> </p>
+          <p>Ah, sim, você também não encontrará o Exército Beritra apenas no Refúgio da Tribo Rune.</p>
+          <p> </p>
+          <p>Um grupo de Chira Grave Robbers, composto por Shugos e Shulacks, também está lá.</p>
+          <p> </p>
+          <p>Eles parecem estar fornecendo suprimentos ao Exército de Beritra e, em troca, têm permissão para realizar escavações no Refúgio.</p>
+          <p> </p>
+          <p>Eles parecem estar interessados apenas nos tributos, mas se estão lutando ao lado do Exército Beritra, então também deveriam ser classificados como inimigos.</p>
+          <p> </p>
+          <p>Você terá que passar pelos Ladrões de Túmulos antes de chegar perto dos Comandantes do Exército Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Refúgio da Tribo Runa supostamente contém inúmeras relíquias e outros tesouros.</p>
+          <p> </p>
+          <p>Você pode imaginar quais riquezas a Tribo Rúnica deixou para trás?</p>
+          <p> </p>
+          <p>Um Shugo teve a gentileza de me dar essa informação, graças a um pequeno suborno de Kinah.</p>
+          <p> </p>
+          <p>Os Elyos ainda parecem não ter ouvido falar disso.</p>
+          <p> </p>
+          <p>Vamos explorar este lugar antes que os Elyos apareçam.</p>
+          <p> </p>
+          <p>De acordo com nossas informações, os Comandantes Beritra descobriram joias rúnicas raras. Por favor, obtenha o [plur][%dic:STR_DIC_I_quest_26985a] e garanta nossa vitória.</p>
+          <p> </p>
+          <p>Assim que tiver o [plur][%dic:STR_DIC_I_quest_26985a], leve-o para [%dic:STR_DIC_N_DF5_Primenk_E].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio do Refúgio da Tribo Rune?</p>
+          <p> </p>
+          <p>Você obteve o [plur][%dic:STR_DIC_I_quest_26985a]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega as joias rúnicas.</Act>
+    </Selects>
+  </HtmlPage>
+
+ <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>Você tem algo que parece muito incomum.</p>
+          <p> </p>
+	  <p>Precisarei enviar mais Daevas para o Refúgio da Tribo Rúnica se houver esse tipo de tesouro lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que ele planeja fazer com as joias rúnicas.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não é tão fácil obter [plur][%dic:STR_DIC_I_quest_26985a].</p>
+          <p> </p>
+          <p>Mas eles são muito valiosos porque fazem parte do tesouro da Tribo Rúnica.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>Você tem algo que parece muito incomum.</p>
+          <p> </p>
+	  <p>Precisarei enviar mais Daevas para o Refúgio da Tribo Rúnica se houver esse tipo de tesouro lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta o que ele planeja fazer com as joias rúnicas.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vou levar as Joias Rúnicas que você me trouxe aos meus superiores e solicitar tropas adicionais para o Refúgio da Tribo Rúnica.</p>
+          <p> </p>
+	  <p>Tenho certeza de que eles não hesitarão em enviar reforços depois de verem as joias com os próprios olhos.</p>
+	  <p> </p>
+	  <p>Espero boas notícias.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_IDLDF5_Under_02_E_Dintanum_E] no [%dic:STR_DIC_W_IDLDF5_Under_02_D].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Obtenha [plur][%dic:STR_DIC_I_quest_26985a] e leve-os para [%dic:STR_DIC_N_DF5_Primenk_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o Refúgio da Tribo Rúnica, colete as Joias Rúnicas lá e leve-as para Primenc, o Intendente do Destino.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Primenc disse a você que o Refúgio da Tribo Rúnica continha tesouros e relíquias valiosas e inimagináveis. Ele pediu para você explorar o Refúgio da Tribo Rúnica.</p>
+          <p> </p>
+          <p>Você então foi para Dintanum, que o convenceu a expulsar o inimigo do Refúgio da Tribo Rune.</p>
+          <p> </p>
+          <p>Dintanum também pediu que você coletasse as Rune Jewels e as levasse para Primenc.</p>
+          <p> </p>
+          <p>Primenc ficou muito surpreso quando você trouxe as joias para ele e decidiu solicitar ao quartel-general tropas adicionais para o Refúgio da Tribo Rúnica.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

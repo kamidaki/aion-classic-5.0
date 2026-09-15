@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41153</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deseja saber mais sobre o povo Reian? Sábio, Daeva, que você tente entender seus aliados.</p>
+          <p> </p>
+          <p>Você fará bem em começar aqui, em Kamar - nossa capital. É o coração da nossa tribo. Você deve Converse com seu arquiteto, [%dic:STR_DIC_N_Salomone].</p>
+          <p> </p>
+          <p>Ele está no [%dic:STR_DIC_W_LDF4a_SZ_OP_11], supervisionando a construção do novo bairro da cidade. Ele transborda de opiniões, então tenho certeza de que ficará feliz em compartilhar algumas delas com você.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]? Um dos nossos visitantes, hein? Bem, é um prazer conhecê-lo.</p>
+          <p> </p>
+          <p>O que você acha do nosso capital justo?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Intrigante, como as pessoas que o construíram."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bajulação, hein? Estou feliz em aceitar. Há alguns que não apreciam a maneira como equilibro o prático e o belo, mas também não aprecio as artes mais finas de espancar criaturas cruéis até a morte com espadas. Cada um com o seu, né?</p>
+          <p> </p>
+          <p>Pessoalmente, penso nesta cidade como uma metáfora para a tribo Reian. Fortificada, mas ainda elegante, construída tijolo por tijolo, desafiando o ataque constante dos Balaur e seus malditos asseclas.</p>
+          <p> </p>
+          <p>Somos nós, Daeva: poderosos, bonitos, tenazes e prósperos contra todas as probabilidades.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4a_SZ_OP_11] e peça a [%dic:STR_DIC_N_Salomone] para lhe contar sobre Kamar.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Rafael sugere que você fale com Solomon, arquiteto de Kamar, para aprender sobre a tribo Reian.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rafael aconselhou você a visitar o arquiteto Solomon, responsável pelo Distrito de Desenvolvimento de Kamena.</p>
+          <p> </p>
+          <p>Ele parecia pensar, entretanto, que não poderia lhe ensinar nada. Ele disse que se você realmente quisesse, poderia criar cidades como Santuário ou Pandemônio fora de Badlands.</p>
+          <p> </p>
+          <p>Essas palavras pareciam bastante portentosas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

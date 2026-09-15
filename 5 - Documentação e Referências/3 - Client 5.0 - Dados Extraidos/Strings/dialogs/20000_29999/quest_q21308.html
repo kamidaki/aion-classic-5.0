@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que devo fazer? É simplesmente terrível!</p>
+          <p> </p>
+          <p>Nem mesmo o Guardião Geral Asmodiano teve chance. Ele foi derrotado diante dos meus olhos.</p>
+          <p> </p>
+          <p>Fugi em busca de apoio e encontrei o Acampamento da Expedição. Eu ainda não conseguia acalmar meus nervos.</p>
+          <p> </p>
+          <p>A perda do Templo Carmesim reduz nossas chances na batalha na Cidadela Vorgaltem. Se a Cidadela de Vorgaltem e o Templo Carmesim forem ocupados por nossos inimigos, a Base de Defesa Gelkmaros estará em perigo.</p>
+          <p> </p>
+          <p>O agente ficará na Base de Defesa. Mas se nossos inimigos já penetraram lá, então a Fortaleza Gelkmaros também não é segura.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se sofrermos uma derrota em Gelkmaros, a batalha no Abismo também será mais difícil.</p>
+          <p> </p>
+          <p>Viemos para Gelkmaros para derrotar os Balaur e ocupar Balaurea. Já conseguimos muito. Não podemos recuar agora.</p>
+          <p> </p>
+          <p>Devemos fazer tudo para retomar o Templo Carmesim.</p>
+          <p/>
+          <p>[%username], por favor elimine os Guardiões hostis que ocupam o templo.</p>
+          <p> </p>
+          <p>Você só precisa levar alguns aliados de confiança ao Templo Carmesim e eliminar os Guardiões inimigos. Você pode fazer isso, não é?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve reconquistar o Templo Carmesim o mais rápido possível.</p>
+          <p> </p>
+          <p>Encarreguei outra legião de matar o Guardião Geral.</p>
+          <p> </p>
+          <p>Quando você estiver no templo, ataque o [%dic:STR_DIC_M_QUEST_21231all] e elimine o máximo de soldados que puder.</p>
+          <p> </p>
+          <p>Por favor, reporte-se a [%dic:STR_DIC_N_Cozett] assim que concluir a tarefa com sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não pensei que você recusaria esta tarefa.</p>
+          <p> </p>
+          <p>Mas não posso forçar você a fazer nada, [%username].</p>
+          <p> </p>
+          <p>Pense, entretanto, que a situação no Templo Carmesim também influenciará suas outras tarefas, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você treinou muito e veio para Gelkmaros. Espero que você não se arrependa disso.</p>
+          <p> </p>
+          <p>Já tenho muita experiência em batalha, mas ainda fico nervoso quando se trata de uma Batalha de Fortaleza.</p>
+          <p> </p>
+          <p>Acho que a queda do Templo Carmesim também foi minha culpa.</p>
+          <p> </p>
+          <p>Por isso estou especialmente feliz e aliviado agora que a fortaleza está segura. Não teria sido possível sem a ajuda de muitos lutadores.</p>
+          <p> </p>
+          <p>[%username], você também participou da Batalha da Fortaleza?</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Escreve algo.) [%username], estou anotando seus serviços. Esse foi um bom trabalho.</p>
+          <p> </p>
+          <p>E ainda assim não devemos descansar, porque nossos inimigos poderão atacar o Templo Carmesim novamente a qualquer momento.</p>
+          <p> </p>
+          <p>Então, preciso pedir sua ajuda novamente.</p>
+          <p> </p>
+          <p>Pegue isso. Você ganhou isso por seus serviços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_M_QUEST_21308all] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Cozett].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O Templo Carmesim caiu nas mãos de nossos inimigos. Elimine a tropa de ocupação!</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Raeyena deu a você a missão de eliminar os guardas inimigos como parte do esforço para recuperar o Templo Carmesim.</p>
+          <p> </p>
+          <p>Você foi lá e derrotou os Guardiões. Você então foi e relatou a Cozett.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

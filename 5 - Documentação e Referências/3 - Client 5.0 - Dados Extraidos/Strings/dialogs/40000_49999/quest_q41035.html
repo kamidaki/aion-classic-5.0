@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Inimigos de outras áreas têm como alvo a guarnição.</p>
+          <p> </p>
+          <p>A 14ª Guarnição poderia servir de base à 42ª Guilda quando esta atacasse a fortaleza.</p>
+          <p> </p>
+          <p>Não devemos permitir que tal localização estratégica caia em mãos inimigas.</p>
+          <p> </p>
+          <p>[%username], por favor proteja a 14ª Guarnição e mate o [%dic:STR_DIC_E_pangaea_enemy_all] vagando pelo [%dic:STR_DIC_W_GAb1_01_Filed04].</p>
+          <p> </p>
+          <p>Suas intenções são óbvias!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava esperando por você.</p>
+          <p> </p>
+          <p>Recentemente fomos atacados por um [%userrace], que murmurou algo ininteligível.</p>
+          <p> </p>
+          <p>Suspeitamos que o traiçoeiro Exército Beritra se disfarçou como [%userrace].</p>
+          <p> </p>
+          <p>Você matou o inimigo que invadiu o [%dic:STR_DIC_W_GAb1_01_Filed04]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você fez um ótimo trabalho nesta missão.</p>
+          <p> </p>
+          <p>Tenho certeza de que eles recuaram de medo.</p>
+          <p> </p>
+          <p>Mas defender a Pangea contra os Balaur e outros inimigos é apenas o começo.</p>
+          <p> </p>
+          <p>Eles continuarão atacando a guarnição, esperando uma oportunidade para capturar a fortaleza.</p>
+          <p> </p>
+          <p>Por favor, continue nos apoiando.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_pangaea_enemy_all] que invadiu o [%dic:STR_DIC_W_GAb1_01_Filed04] ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_GAb1_01_Village04_Guard01]. Ele aparecerá se a guarnição estiver sob controle de aliados.</font></p></step>
+          </steps>
+          <p><font font_xml="quest_summary">Atenda ao pedido do Capitão Guardião da 14ª Tropa de Ocupação e elimine o inimigo que invadiu o 4º Distrito de Belus.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Capitão Guardião da 14ª Tropa de Ocupação pediu para você matar o inimigo que havia invadido o 4º Distrito de Belus.</p>
+          <p> </p>
+          <p>Depois que você matou o inimigo invasor e voltou para o Capitão Guardião, ele agradeceu, dizendo que a defesa da Pangéia era apenas o começo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41561</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para ganhar um Trust Marble, tenho uma pequena tarefa para você. É um favor para um alquimista que conheço.</p>
+          <p> </p>
+          <p>Vá para Raksang, derrote [%dic:STR_DIC_E_Raksha] e traga-me seu [%dic:STR_DIC_I_quest_41561a]. Isso é tudo.</p>
+          <p> </p>
+          <p>Certamente um [%userrace] Daeva forte como você não deveria ter problemas? Se você não consegue lidar com isso, então como você poderia lidar com o poder do Cristal Mágico do Éter?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Essência do Remorso pode ser usada para criar poções especiais e itens de alquimia que podem mudar o rumo da guerra.</p>
+          <p> </p>
+          <p>Ou é o que dizem alguns. Não saberemos até colocarmos as mãos em alguns.</p>
+          <p> </p>
+          <p>Presumo que sua presença aqui significa que você teve sucesso em sua tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Mas é claro."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, bem, bem. Talvez você seja mais forte do que eu imaginava.</p>
+          <p> </p>
+          <p>Mas, novamente, talvez não. No mínimo, você fez o que prometeu. Você ganhou um Trust Marble.</p>
+          <p> </p>
+          <p>Infelizmente, um não é suficiente para o Cristal de Éter Mágico, então suas tarefas ainda não foram concluídas.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_E_Raksha], coletar o [%dic:STR_DIC_I_quest_41561a] e levá-lo para [%dic:STR_DIC_N_Lumen].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para Raksang, mate Raksha e traga de volta a Essência do Remorso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tarefa de Lumen, como um favor a um alquimista, era obter a Essência do Remorso.</p>
+          <p> </p>
+          <p>Você lutou contra Raksha em Raksang e pegou sua Essência do Remorso. Você trocou por um Trust Marble.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

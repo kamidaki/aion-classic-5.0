@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Entrada para a Caverna Draupnir.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um portão de pedra enorme e estável.)</p>
+          <p> </p>
+          <p>(Esta me parece ser a entrada da Caverna Draupnir).</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra na Caverna Draupnir.</Act>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH">Você procura amigos para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este portão parece levar a algum lugar interessante.)</p>
+          <p> </p>
+          <p>(Esta é a entrada para a Caverna Draupnir?)</p>
+          <p> </p>
+          <p>(Você não vê como o portão se abre.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

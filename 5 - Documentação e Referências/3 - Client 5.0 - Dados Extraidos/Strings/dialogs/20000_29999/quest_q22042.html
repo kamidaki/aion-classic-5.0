@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22042</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%userclass], aqui. Os Reianos têm um pedido especial que desejam nos fazer.</p>
+          <p> </p>
+          <p>Eles precisam aquecer o aço a uma temperatura extremamente alta. Não sabemos ao certo por que, mas sabemos do que eles precisam: Carvão Branco dos Dragrints Flamejantes.</p>
+          <p> </p>
+          <p>Nosso relacionamento com os Reians é confortável no momento, mas poderia ser necessário um pequeno empurrão na direção certa. Ajudá-los a obter carvão seria um primeiro passo sólido. Você vai ajudar?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom. Eu estava esperando por você.</p>
+          <p> </p>
+          <p>Você tem o carvão? Os Reians têm perguntado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Está tudo aqui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim, é isso. Bom trabalho, [%username].</p>
+          <p> </p>
+          <p>Vou garantir que o crédito seja dado onde é devido. Os Reianos logo saberão que nosso sangue é forte e confiável, ao contrário das gotas aquosas que os covardes queimados de sol espirram.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna o Carvão Branco dos Dragrints Flamejantes e leve-o para Lineta.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Reianos pediram Carvão Branco. Mate os Dragrints Flamejantes e colha para eles.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lineta lhe contou que os Reians enviaram um pedido especial de carvão branco, uma substância extremamente rara que se forma naturalmente dentro dos Draggrints Flamejantes. Pediram que você ajudasse e reuniu o carvão na hora certa.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

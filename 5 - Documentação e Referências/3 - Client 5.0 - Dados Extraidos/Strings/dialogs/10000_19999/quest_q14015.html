@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Krall parecem estar planejando algo. Não podemos permitir que eles se comportem dessa maneira.</p>
+          <p> </p>
+          <p>O comandante anterior da fortaleza concentrou-se apenas na defesa para evitar o pior, mas eu tenho uma abordagem diferente. O ataque é a melhor forma de defesa! Isso é o que eu penso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As pessoas pensam que me preocupo muito em me livrar do Krall. Eles acham que eu os expulso por motivos pessoais.</p>
+          <p> </p>
+          <p>É verdade. Perdi minha esposa e meu filho por causa do Krall. Durante muito tempo fiquei desesperado, pois fui o único que sobreviveu.</p>
+          <p> </p>
+          <p>Devo admitir que a vingança me ajudou a perseverar até agora.</p>
+          <p> </p>
+          <p>Mas essa não é a única razão. O que quero dizer é que minha vingança pessoal não é a única razão pela qual odeio tanto o Krall.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Tursin Krall são servos dos Balaur. É culpa dos Balaures que Atreia tenha sido dilacerada.</p>
+          <p> </p>
+          <p>É por isso que temos que destruí-los.</p>
+          <p> </p>
+          <p>Não vamos parar até que todos sejam completamente aniquilados.</p>
+          <p> </p>
+          <p>Você cuidou dos Tursin Krall e trouxe de volta suas insígnias?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Insígnia Tursin Krall.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De fato. Por que você não matou o Krall?</p>
+          <p> </p>
+          <p>Por que você os deixou viver? Eles merecem morrer.</p>
+          <p> </p>
+          <p>Quero que você me dê a Insígnia Tursin Krall.</p>
+          <p> </p>
+          <p>É isso que eu quero!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q1018-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Maravilhoso!</p>
+          <p> </p>
+          <p>Como seria maravilhoso se todos tivessem a sua determinação e habilidades extraordinárias! Então poderíamos erradicar todos os nossos inimigos de uma vez.</p>
+          <p> </p>
+          <p>Algum dia chegará o dia em que os Krall serão destruídos.</p>
+          <p> </p>
+          <p>Mas primeiro você deve ser devidamente recompensado por sua determinação e coragem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_quest_14015a] e leve-os para [%dic:STR_DIC_LA19] no [%dic:STR_DIC_FLA09].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Pedidos: Obtenha a Insígnia Tursin Krall. Você receberá a insígnia ao eliminar Tursin Krall.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A ordem do comandante da fortaleza dizia que o Tursin Krall deveria ser morto e suas insígnias recolhidas.</p>
+          <p> </p>
+          <p>Coletar Insígnias exigia paciência e perseverança. Depois de completar a missão, porém, você foi generosamente recompensado por Spatalos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Ordens: Mate o Tursin Krall e colete suas Insígnias.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

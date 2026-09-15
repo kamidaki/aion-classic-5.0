@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Deixe-me saber se você deseja ser teletransportado, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que está acontecendo, ok?</p>
+          <p> </p>
+          <p>Você quer se teletransportar para Pandarung?</p>
+          <p> </p>
+          <p>Pense nisso com muito cuidado, o teletransporte não é gratuito, você sabe, akakak.</p>
+          <p> </p>
+          <p>Shugo só aceita moedas antigas, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Teleporte para Pandarung</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Só irei te teletransportar se você tiver moedas antigas, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

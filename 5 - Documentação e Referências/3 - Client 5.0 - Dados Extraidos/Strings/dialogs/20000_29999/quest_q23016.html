@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmm, suponho que posso te dizer, [%username].</p>
+          <p> </p>
+          <p>Para dizer a verdade, estou cumprindo uma ordem de Stelman e vigiando Peniun.</p>
+          <p> </p>
+          <p>Para que os resultados do experimento Id não nos sejam tirados. Mas provavelmente deveremos ter resultados sobre os quais falar primeiro.</p>
+          <p> </p>
+          <p>Você poderia verificar [%dic:STR_DIC_N_LDF5b_Sulis_E] para ver se há alguma informação?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que está acontecendo?</p>
+          <p> </p>
+          <p>Estamos monitorando o Território Ocupado das Guerrilhas Red Fang de dia e de noite.</p>
+          <p> </p>
+          <p>Não se preocupe, eu completo todas as missões que me forem atribuídas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta se há alguma informação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que coisa, mas que tagarela Beriks é!</p>
+          <p> </p>
+          <p>Este trabalho deve ser realizado discretamente. Mas como ele pode te contar tudo [%username]?</p>
+          <p> </p>
+          <p>Por favor, guarde isso para você. Se houver quaisquer outros sinais específicos, falarei sobre eles separadamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Sulis_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Pergunte a Sulis se há alguma informação sobre Penium.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Berix, você perguntou a Sulis sobre o monitoramento de Peniun e foi informado de que o assunto era confidencial e que seria informado imediatamente assim que houvesse alguma informação.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

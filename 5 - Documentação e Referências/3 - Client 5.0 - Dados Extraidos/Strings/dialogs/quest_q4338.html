@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar do colar amaldiçoado?</p>
+          <p> </p>
+          <p>Ele condena seu dono a uma vida de solidão e enfraquece sua alma até que ele morra.</p>
+          <p> </p>
+          <p>Muitos acreditam que se trata apenas de uma lenda, mas o colar realmente existe. Estou lhe contando isso porque gostaria de lhe confiar uma missão. Você deve destruir o [%dic:STR_DIC_I_QUEST_4338b]!</p>
+          <p> </p>
+          <p>Pertence a um velho chamado Kellan que pode ser encontrado em [%dic:STR_DIC_W_DF2_SUB_A3_1] no Bosque Patamor.</p>
+          <p> </p>
+          <p>Ele é uma boa pessoa, salve-o da maldição!</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_N_Gundalpun] para destruir o colar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que você veio me ver?</p>
+          <p> </p>
+          <p>Você quer informações secretas? Informações sobre Elysea, por exemplo...</p>
+          <p> </p>
+          <p>Ou você veio por causa da lenda do Templo Celestial de Arkanis?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Urakon me enviou para destruir o Colar Amaldiçoado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você veio para destruir o [%dic:STR_DIC_I_QUEST_4338b]? Urakon deve ter enviado você.</p>
+          <p> </p>
+          <p>Ele provavelmente escolheu alguém com cuidado, mas essa tarefa é difícil.</p>
+          <p> </p>
+          <p>Se você não passar no teste, não poderei lhe dar o colar.</p>
+          <p> </p>
+          <p>Vá para o Monte Musphel, elimine [plur][%dic:STR_DIC_M_LobsterReD_25_An] e reúna 3 pedaços de [plur][%dic:STR_DIC_I_QUEST_4338a]. Se você fizer isso, eu lhe darei o colar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2033-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta.</p>
+          <p> </p>
+          <p>Você trouxe o [plur][%dic:STR_DIC_I_QUEST_4338a] com você?</p>
+          <p> </p>
+          <p>Depois de fazer isso, eu lhe darei o colar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Aqui estão as Spiner Tails.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou a tarefa para minha total satisfação.</p>
+          <p> </p>
+          <p>Isso me prova que você é um Daeva confiável.</p>
+          <p> </p>
+          <p>O objetivo desta missão era colocá-lo à prova.</p>
+          <p> </p>
+          <p>Agora tenho certeza de que o Colar Amaldiçoado não causará sua morte.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui, pegue o [%dic:STR_DIC_I_QUEST_4338b]. Leve-o para [%dic:STR_DIC_N_Kimci] na entrada do Monte. Vulcão Musphel.</p>
+          <p> </p>
+          <p>Fica perto do [%dic:STR_DIC_W_DF2_SUB_C1_ID]. Kimssi geralmente é acompanhado por um Skurv. Você deve ser capaz de encontrá-lo facilmente.</p>
+          <p> </p>
+          <p>Ele lhe dirá onde você pode destruir o colar. Então vá até lá e jogue o colar na lava.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2033-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não posso entregar o colar a um Daeva não confiável.</p>
+          <p> </p>
+          <p>Se você quiser o colar para destruí-lo, elimine [plur][%dic:STR_DIC_M_LobsterReD_25_An] e me traga 3 [plur][%dic:STR_DIC_I_QUEST_4338a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, aquele colar...</p>
+          <p> </p>
+          <p>Kellan, um velho sábio, deve finalmente ter encontrado alguém que possa destruir o colar.</p>
+          <p> </p>
+          <p>É bom saber que um item amaldiçoado como esse será finalmente destruído para sempre.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você descer esta colina, verá uma caverna do outro lado. É chamado de [%dic:STR_DIC_W_DF2_SUB_C1_ID]. Está repleto de Klaw.</p>
+          <p> </p>
+          <p>Nas profundezas da caverna há um fluxo de lava fervente. Jogue o colar na lava fervente. Esta é a única maneira de destruí-lo para sempre.</p>
+          <p> </p>
+          <p>[%username], enviarei um Skurv como companheiro para você. Ele conhece o caminho.</p>
+          <p> </p>
+          <p>Selecione um dos cinco Skurvs. Ele irá guiá-lo até a caverna.</p>
+          <p> </p>
+          <p>Você não precisa seguir o Skurv se já conhece o caminho. Ele simplesmente seguirá seu caminho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você quer ir comigo? Eu conheço o caminho.</p>
+          <p> </p>
+          <p>Me siga.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2033-5.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você está de volta.</p>
+          <p> </p>
+          <p>Você destruiu o Colar Amaldiçoado?</p>
+          <p> </p>
+          <p>Posso ver que você teve sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito bom.</p>
+          <p> </p>
+          <p>Posso imaginar o quão difícil deve ter sido sua tarefa...</p>
+          <p> </p>
+          <p>Estou aliviado porque o item amaldiçoado foi destruído.</p>
+          <p> </p>
+          <p>Considere isso uma recompensa por seus esforços.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Gundalpun].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Reúna [plur][%dic:STR_DIC_I_QUEST_4338a] e leve-os para [%dic:STR_DIC_N_Gundalpun].</font></p>[%collectitem]</step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_Gundalpun].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Conheça [%dic:STR_DIC_N_Kimci].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Selecione um Skurv para acompanhá-lo em sua jornada.</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Jogue o [%dic:STR_DIC_I_QUEST_4338b] no [%dic:STR_DIC_E_taran_magma].</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Relatório para [%dic:STR_DIC_N_Gundalpun].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Centurião Urakon informou você sobre uma missão urgente relacionada a um colar. Vá e encontre Kellan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Urakon lhe contou sobre o colar amaldiçoado. O Centurião ordenou que você visse Kellan.</p>
+          <p> </p>
+          <p>Kellan confiou o colar a você depois que você passou no teste. Kimssi lhe contou como destruir o colar. Você lançou o colar na lava.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+
+</HtmlPages>
+

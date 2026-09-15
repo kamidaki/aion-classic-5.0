@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olá Daeva, acho que você veio até mim para fazer algumas decorações de casas. Innerunerk está certo?</p>
+          <p> </p>
+          <p>Daeva sempre dá as boas-vindas, nyerk!---LOCA:NEXTRECORD---A Summer Light Box contém letras e números antigos para deixar mensagens para seus visitantes, criar placas de parede e muito mais.</p>
+          <p> </p>
+          <p>Se você está curioso sobre o que há na Summer Light Box, traga-me 1 [%dic:STR_DIC_I_junk_od_d_fragment_happy_01], 50 [%dic:STR_DIC_I_junk_od_d_fragment_amazing_01]s e 50 [%dic:STR_DIC_I_junk_od_d_fragment_lonely_01]s, nyerk.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Voltar tão cedo? Você me trouxe 1 [%dic:STR_DIC_I_junk_od_d_fragment_happy_01], 50 [%dic:STR_DIC_I_junk_od_d_fragment_amazing_01]s e 50 [%dic:STR_DIC_I_junk_od_d_fragment_lonely_01]s?</p>
+          <p> </p>
+          <p>Innerunerk não pode replicar as letras e números antigos sem eles, nyerk.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Aqui você vai."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nossa, você coletou muito!</p>
+          <p> </p>
+          <p>Muito, mas SÓ o suficiente para uma Summer Light Box, nyerk!</p>
+          <p> </p>
+          <p>Daeva é sempre bem vindo aqui se Daeva tiver Fragmentos de Éter, sim, sim.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Dê a [%dic:STR_DIC_N_Shugo_housing_53] os [%dic:STR_DIC_E_odellia_28823all]s e receba em troca a Caixa de Luz de Verão.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Colete Fragmentos de Éter e leve-os para Innerunerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Innerunerk prometeu dar a você uma Summer Light Box com caracteres e números se você dedicasse um tempo para coletar Fragmentos de Éter.</p>
+          <p> </p>
+          <p>Você coletou os Fragmentos de Éter e em troca deles recebeu uma Caixa de Luz de Verão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10050</QuestId>
+    <QuestName>연족의 인정</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma aliança é forjada, mas já questiono a sua sabedoria.</p>
+          <p> </p>
+          <p>A arrogância de Kahrun reflecte-se no seu povo. Eles parecem pensar que somos fracos, mas logo se provará que estão errados. [%dic:STR_DIC_N_Kutos] do [%dic:STR_DIC_E_LDF4a_KarunProtect] pediu a ajuda de um Elyos Daeva. Sua bravura e competência provarão nossa força para os Reianos.</p>
+          <p> </p>
+          <p>Você representa toda Elysea. Lembre-se disso ao executar suas funções.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Uh... sem pressão, nem nada."</Act>
+    </Selects>
+    <Voice file="Q10050-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], seja bem-vindo a Sarpan.</p>
+          <p> </p>
+          <p>Esta é uma terra perigosa, cheia de criaturas terríveis, e a ameaça dos Balaur está sempre próxima. Não temos o luxo da segurança. Você deve estar sempre em guarda.</p>
+          <p> </p>
+          <p>Tenho uma tarefa para você, se achar que está preparado para realizá-la.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">"Estou mais do que preparado."</Act>
+    </Selects>
+ <CutScene id="701"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A masmorra de Kamar está escavada nas profundezas da cidade. Recentemente, alguns Klaw escavadores abriram um túnel lá por acidente, ligando seu labirinto à nossa prisão.</p>
+          <p> </p>
+          <p>Alguns prisioneiros Vinculados de Dragão aproveitaram a oportunidade para escapar para as cavernas Klaw. Suspeito que eles ainda não encontraram uma saída. É fácil se perder nessas tocas, e os Vinculados de Dragão costumam ser mais fortes do que cérebros.</p>
+          <p> </p>
+          <p>Eu gostaria que você expulsasse o Vinculado de Dragão das Cavernas Mephitic na masmorra. [%dic:STR_DIC_N_Cleyos], o Dungeon Manager, tem mais informações.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Vou procurá-lo."</Act>
+    </Selects>
+ <CutScene id="713"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kutos enviou para você? Finalmente!</p>
+          <p> </p>
+          <p>Ele parece não entender que uma prisão precisa de guardas, então continua transferindo meus homens. Mas é claro que a culpa é minha quando algo dá errado! Temos que chegar lá antes que os Vinculados de Dragão encontrem o caminho para fora das cavernas. Vá e escolha o [%dic:STR_DIC_E_LDF4a_Q10050all] até que [%dic:STR_DIC_M_FanaticFi_QNmd_56_An] apareça.</p>
+          <p> </p>
+          <p>Ele é uma espécie de herói para o Vinculado de Dragão. Você vê... bem, não temos tempo para uma aula de história agora. Acredite em mim, matá-lo realmente desmoralizará o Vinculado de Dragão, então vá em frente!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">"Certo."</Act>
+    </Selects>
+    <Voice file="Q10050-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você já voltou? Você se perdeu?</p>
+          <p> </p>
+          <p>Kamar é uma cidade complicada de navegar. Posso pedir a alguém que lhe mostre o caminho...</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Não. Eu fiz tudo."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que? Já? Bem! Devo dizer que estou impressionado.</p>
+          <p> </p>
+          <p>Se foi a habilidade que lhe trouxe um sucesso tão rápido, então você é tão competente quanto o melhor dos meus homens. E se foi sorte... bem, sempre agradeço a boa sorte.</p>
+          <p> </p>
+          <p>Muito bem, [%username].</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Killios].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Ofereça seus serviços para [%dic:STR_DIC_N_Kutos].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com o gerente da masmorra [%dic:STR_DIC_N_Cleyos].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Mate [%dic:STR_DIC_E_LDF4a_Q10050all] nas Cavernas Mefíticas até que [%dic:STR_DIC_M_FanaticFi_QNmd_56_An] apareça.</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Relate para [%dic:STR_DIC_N_Kutos].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tarefa: Fale com Killios sobre como provar a competência de Elyos Daevas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Killios enviou você a Kutos, Brigada General da Guarda Kahrun, para provar o poder da convicção de Elyos.</p>
+          <p> </p>
+          <p>Kutos, por sua vez, enviou você para ajudar Cleyos, gerente da masmorra de Kamar. Você caçou os prisioneiros Vinculados de Dragão que escaparam para as Cavernas Mephitic. Finalmente, você matou o líder Vinculado de Dragão, Provocateur Kaylis, impressionando muito Kutos.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso da Missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que você armazenou bem o Instrumento Mágico de Cordas Reluzente de Siel.</p>
+          <p> </p>
+          <p>Mas suas habilidades também melhoraram, [%username]. Você não pode pensar em continuar usando o mesmo instrumento de cordas.</p>
+          <p> </p>
+          <p>Chegou a hora de aprimorar o instrumento mágico de cordas reluzente de Siel.</p>
+          <p> </p>
+          <p>Com algum esforço e um pouco de sorte, não é uma tarefa impossível.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você acha? Você quer melhorar o desempenho do instrumento de cordas Power Magic do Gleaming Siel?</p>
+          <p> </p>
+          <p>Se você estiver interessado, direi como é feito.</p>
+          <p> </p>
+          <p>Há, no entanto, uma coisa que gostaria de mencionar de antemão.</p>
+          <p> </p>
+          <p>Não é fácil obter esses materiais e o processamento básico deve ser realizado apenas por [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você reagiria dessa maneira. Da última vez, senti que você estava empenhado em armas.</p>
+          <p> </p>
+          <p>O que precisamos é da Essência da Tempestade Negra e de um Agente Shulack Especial.</p>
+          <p> </p>
+          <p>Ouvi dizer que o [%dic:STR_DIC_I_QUEST_Rudra_Essence_01] está nas mãos de um Balaur e dizem que você será amaldiçoado se pronunciar o nome dele.</p>
+          <p> </p>
+          <p>Também ouvi dizer que ele pode ser encontrado no Templo Beshmundir, mas não sei quem ele é.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_I_QUEST_30235a] pensei que a maneira mais rápida de descobrir seria perguntar a um Shulack que trabalha com Ladrões de Túmulos.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_I_Blessed_Aurium_01] é um minério especial usado pelos Shulacks. É muito caro, então seria melhor se você tivesse Kinah suficiente.</p>
+          <p> </p>
+          <p>Depois de ter todos os ingredientes, leve-os e o instrumento de cordas do Gleaming Magical Siel para a Forja de Debilkarim e aprimore-o lá. Você receberá então o Cristal da Essência de Siel. Traga-os de volta aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Talvez fosse melhor desistir imediatamente, dada a quantidade de sorte que é necessária.</p>
+          <p> </p>
+          <p>Imagine que você está cheio de esperança e sai em busca dos materiais, mas depois de muitas dificuldades, você ainda está parado ali, de mãos vazias. Que decepcionante.</p>
+          <p> </p>
+          <p>Mas volte se mudar de ideia.</p>
+          <p> </p>
+          <p>Eu direi quais materiais você precisa então.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, eu nunca... você parece estar ocupado com outra arma.</p>
+          <p> </p>
+          <p>Sem dúvida seria bom se eu pudesse fazer vários para você de uma só vez, mas então eu não conseguiria mais me concentrar adequadamente.</p>
+          <p> </p>
+          <p>Além disso, você provavelmente também acharia difícil ter que reunir tanto material, [%username].</p>
+          <p> </p>
+          <p>Então volte depois de consertar outra arma.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, aí está você de novo?</p>
+          <p> </p>
+          <p>Você obteve todo o material e conseguiu ativá-lo?</p>
+          <p> </p>
+          <p>Não deve ter sido fácil criar a Essência da Tempestade Negra e chegar ao Estúdio Jotun não poderia ter sido brincadeira de criança.</p>
+          <p> </p>
+          <p>Então me dê o que você tem com você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a Essência de Siel.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Entendo que você queira melhorar as armas rapidamente, mas está com muita pressa.</p>
+          <p> </p>
+          <p>Você precisa de materiais para melhorá-los.</p>
+          <p> </p>
+          <p>Então vá e me traga a Essência de Siel.</p>
+          <p> </p>
+          <p>Obtenha [%dic:STR_DIC_I_QUEST_Rudra_Essence_01], [%dic:STR_DIC_I_QUEST_30235a] e [%dic:STR_DIC_I_Blessed_Aurium_01] e refine-os com o Instrumento de Cordas Soberano de Siel no Jotun Studio.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim, é assim que você faz a Essência de Siel. Muito bom trabalho.</p>
+          <p> </p>
+          <p>Então, vamos ver então.</p>
+          <p> </p>
+          <p>(Coloca a Essência de Siel na fornalha e a trabalha.)</p>
+          <p> </p>
+          <p>Agora tudo está feito. Um instrumento de cordas muito bom. Lide bem com isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_QUEST_30249_All] e trabalhe-os na fornalha em [%dic:STR_DIC_W_IDTemple_Low_SZ_C3].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Então traga a essência de Siel para [%dic:STR_DIC_N_Gefeios].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Diz-se que o Power Instrumento de Cordas do Siel pode ser melhorado. Leve os materiais coletados para o Jotun Studio e trabalhe tudo na fornalha.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Gefeios, você deve atualizar sua arma após aumentar suas habilidades.</p>
+          <p> </p>
+          <p>É por isso que você obteve a Essência da Tempestade Negra, o Refinador Shulack Especial e o Lingote de Aurium Abençoado e os trouxe para o Estúdio Jotun junto com o Instrumento de Cordas Poderosas de Siel. Os componentes foram transformados no Cristal da Essência de Siel.</p>
+          <p> </p>
+          <p>Ao trazer a Essência de Siel para Gefeios, ele criou o Instrumento de Cordas com o Poder de Siel.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

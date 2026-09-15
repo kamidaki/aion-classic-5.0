@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p> </p>
+          <p>Remetente: Esquadrão de Limpeza Katalam, [%dic:STR_DIC_N_LDF5_Village_Guard06_D] do [%dic:STR_DIC_W_LDF5a_B3_6]</p>
+          <p> </p>
+          <p>Destinatário: [%username]</p>
+          <p> </p>
+          <p>Ordens: Mate os Elyos que se infiltraram no [%dic:STR_DIC_W_LDF5a_B2_B3] em North Katalam.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A conquista de Katalam é uma recompensa que só pode ser concedida aos Asmodianos.</p>
+          <p> </p>
+          <p>Você deve nos ajudar, [%username], para garantir que os Elyos não possam nem sonhar com isso.</p>
+          <p> </p>
+          <p>Reporte-me assim que tiver concluído a missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou satisfeito que você eliminou os Elyos e voltou inteiro.</p>
+          <p> </p>
+          <p>Obrigado, do fundo do meu coração.</p>
+          <p> </p>
+          <p>Me sinto mais forte porque você está aqui, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Elyos que invadiram [%dic:STR_DIC_W_LDF5a_B2_B3] em North Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LDF5_Village_Guard06_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Mate os Elyos que se infiltraram nas Terras Maculadas no Norte de Katalam e reporte-se a Sabik.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu instruções urgentes de Naat, que solicitou que você matasse os Elyos que penetraram na região da explosão no norte de Katalam, e você os matou.</p>
+          <p> </p>
+          <p>Quando você voltou e relatou, Sabik pareceu muito grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

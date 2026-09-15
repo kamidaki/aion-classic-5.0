@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar das atividades perturbadoras do Exército Beritra?</p>
+          <p> </p>
+          <p>Segundo nossas informações, Beritra acumulou um enorme exército.</p>
+          <p> </p>
+          <p>Eu secretamente enviei um pesquisador ao campo para investigar isso.</p>
+          <p> </p>
+          <p>Normalmente, eu já teria ouvido falar dele, mas ele não fez contato.</p>
+          <p> </p>
+          <p>Eu sei que você está ocupado, mas poderia ir até Mantor e ver se [%dic:STR_DIC_N_IDRaksha_Solo_StageStart_Dark] está bem?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É preocupante que Beritra esteja reunindo suas tropas num local como este.</p>
+          <p> </p>
+          <p>Eu estava começando a me preocupar em como conseguiria lidar com isso sozinho, mas agora tenho a ajuda de alguém tão famoso quanto você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você transmite o que Knut disse.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Knut estava realmente preocupado comigo?</p>
+          <p> </p>
+          <p>Eu deveria enviar-lhe um relatório rapidamente antes que ele fique ainda mais preocupado.</p>
+          <p> </p>
+          <p>Aqui está um pequeno agradecimento por me trazer a mensagem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_IDRaksha_Solo_StageStart_Dark], que se infiltrou na Mantor.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Descubra para Knut se Procura, que se infiltrou em Mantor, está bem.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Knut lhe contou que o contato com Procura, um membro da Tropa de Pesquisa, havia sido perdido e pediu sua ajuda.</p>
+          <p> </p>
+          <p>Você encontrou Procura em Mantor e reportou a Knut.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

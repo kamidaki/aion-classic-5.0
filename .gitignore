@@ -91,3 +91,6 @@ cache/
 # 8. Capturas Live / Sessões brutas de rede de grande porte (> 50MB)
 *_Live_*.pcapng
 **/Oficial_Live_Gameplay/**
+
+# 9. Backup de Seguranca de Strings Originais
+**/Strings_ORIGINAL_BACKUP/

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ainda fico arrepiado quando vejo os zumbis Reian causando estragos lá fora.</p>
+          <p> </p>
+          <p>Como você sabe, apoiei Kahrun junto com [%dic:STR_DIC_LDF5A_B2_YZombie_Q20084].</p>
+          <p> </p>
+          <p>Mas após a explosão, mesmo com seus corpos mortos, eles não conseguiram encontrar a paz e começaram a se transformar.</p>
+          <p> </p>
+          <p>[%username]. Devolva-os ao Fluxo de Éter.</p>
+          <p> </p>
+           <p>Eles tiveram que suportar esta forma por tempo suficiente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eles eram meus camaradas e meus irmãos. Ainda me lembro de seus nomes e rostos.</p>
+          <p> </p>
+          <p>Eu mesmo mataria todos eles com prazer, mas minha saúde não me permite fazê-lo.</p>
+          <p> </p>
+          <p>Você me acha tolo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado! Eles foram congelados de sua paralisia, o que não significa nem vida nem morte.</p>
+          <p> </p>
+          <p>Esse deveria ter sido realmente o meu trabalho...</p>
+          <p> </p>
+          <p>Eu não vou te esquecer.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Coloque o roaming [%dic:STR_DIC_LDF5A_B2_YZombie_Q20084] para descansar ([%2]/6).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_LDF5a_Tolkien_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Deixe a escolta Kahrun, ex-camaradas de Tolkin, para descansar.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tolkin disse que os Zumbis Reian já foram camaradas do Protetorado Kahrun, mas foram transformados em uma explosão.</p>
+          <p> </p>
+          <p>Depois de matar o Protetorado Kahrun contaminado e fazer seu relatório, você foi agradecido.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

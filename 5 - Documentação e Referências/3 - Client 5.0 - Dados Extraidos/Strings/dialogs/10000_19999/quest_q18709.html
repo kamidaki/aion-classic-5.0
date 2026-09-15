@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ter sido Drakan, senhor de toda Atreia, e portanto reduzido a esta forma insignificante de Sapien por toda a eternidade... É uma desonra, verdade.</p>
+          <p> </p>
+          <p>Só posso ficar feliz que meus subordinados não possam me ver tão deprimido... como [%dic:STR_DIC_N_Ulaguru]. Esse bom camarada lutou ao meu lado nos campos sangrentos de Elysea.</p>
+          <p> </p>
+          <p>Ah, um excelente guerreiro, Ulaguru... Uma tempestade de morte golpeando seu inimigo assim como o mar furioso cai sobre o bico de um galeão.</p>
+          <p> </p>
+          <p>Eu me pergunto se ele mora em breve. Se você tem pena de minha situação, diga-lhe que pelo menos seu velho general se lembra dele.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>ULAGURU COM FOME!! AINDA PRECISA DE MAIS COMIDA!!</p>
+          <p> </p>
+          <p>TEM COMIDA?? NÃO?? ULAGURU MATOU E COME VOCÊ!!</p>
+          <p> </p>
+          <p>MAIS COMIDA!! MUITO MAIS COMIDA!! ULAGURU COM FOME!!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">"Tenho uma mensagem para você, Krall..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>...</p>
+          <p> </p>
+          <p>(Ulaguru de repente fica quieto. Seu rosto se transforma em algo quase... triste?)</p>
+          <p> </p>
+          <p>(Uh oh. Talvez [%dic:STR_DIC_N_Mameia] saiba o que fazer agora.)</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Eu não posso sentir pena disso, posso...?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ei! O que você fez com Ulaguru? Foi o mais quieto que ele já esteve desde que o conheço!</p>
+          <p> </p>
+          <p>O que? Você falou com ele? O que diabos você disse para--</p>
+          <p> </p>
+          <p>Oh. Eu vejo. Você deveria ter falado comigo sobre isso primeiro. Eu teria dito para você agir com cautela.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"O que aconteceu?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Krall não são animais, você sabe. Eles também têm orgulho. Lembrar dos seus dias de glória, antes de eu capturá-lo, deve ter sido demais.</p>
+          <p> </p>
+          <p>Talvez fosse melhor se ele fosse um animal. Então ele pode não estar com dor agora. Não tenho certeza do que posso fazer.</p>
+          <p> </p>
+          <p>Pelo menos saber algo sobre o passado de Ulaguru me ajudará a entendê-lo melhor. Por favor, aceite isso com meus agradecimentos.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Transmite a mensagem de Maduka para [%dic:STR_DIC_N_Ulaguru].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Mameia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Transmita a mensagem de Maduka, um fantasma em Raksang, para Ulaguru.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Maduka, um fantasma em Raksang, mencionou um Krall que serviu bem com ele durante sua vida. Ele tinha um nome familiar: Ulaguru.</p>
+          <p> </p>
+          <p>Você procurou Ulaguru no Santuário e transmitiu a mensagem de Maduka. O Krall respondeu afundando-se na depressão.</p>
+          <p> </p>
+          <p>Quando você contou isso a Mameia, ela agradeceu por lhe dar novas informações sobre os Krall, embora estivesse preocupada com o orgulho de Ulaguru.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

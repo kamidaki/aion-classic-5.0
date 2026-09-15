@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Bastião Parede de Aço aparentemente está em grande perigo, mas primeiro devemos obter informações mais específicas sobre a situação no local.</p>
+          <p> </p>
+          <p>Há pouco tempo, conseguimos capturar um Batedor do exército de Beritra que espionava a área. Ele parece pertencer às tropas do Exército Beritra que estão atacando o Bastião da Parede de Aço.</p>
+          <p> </p>
+          <p>Interrogue [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter_Da] e descubra mais sobre as tropas de Beritra atacando o Bastião da Muralha de Aço.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter_Da] é um sujeito arrogante e fala com facilidade.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Bastião Parede de Aço aparentemente está em grande perigo, mas primeiro devemos obter informações mais específicas sobre a situação no local.</p>
+          <p> </p>
+          <p>Há pouco tempo, conseguimos capturar um Batedor do exército de Beritra que espionava a área. Ele parece pertencer às tropas do Exército Beritra que estão atacando o Bastião da Parede de Aço.</p>
+          <p> </p>
+          <p>Interrogue [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter_Da] e descubra mais sobre as tropas de Beritra atacando o Bastião da Muralha de Aço.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter_Da] é um sujeito arrogante e fala com facilidade.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter_Da] está atualmente detido no assentamento Rubininerk.</p>
+          <p> </p>
+          <p>Ele tentou escapar primeiro, então o colocamos em uma cela solitária que é mais segura. Desde então, ele ficou mais quieto, então um interrogatório deve ser fácil.</p>
+          <p> </p>
+          <p>Estou contando com você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você parece estar ocupado com outra missão no momento.</p>
+          <p> </p>
+          <p>É importante obter informações antecipadas sobre o Steel Wall Bastion. Depois de terminar a missão atual, venha me encontrar novamente.</p>
+          <p> </p>
+          <p>Por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acha que me segurar aqui tem alguma consequência?!</p>
+          <p> </p>
+          <p>Não falta muito para a invasão de Beritra.</p>
+          <p> </p>
+          <p>É apenas uma questão de tempo até que esmaguemos vocês, Daevas fracos.</p>
+          <p> </p>
+          <p>Muwahaha!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você pergunta sobre o Bastião Parede de Aço.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi? Ele nos deu as informações conforme esperado?</p>
+          <p> </p>
+          <p>Ele parecia muito arrogante para alguém que acabara de ser capturado, mas não deve ter sido muito difícil para você. Por favor, me diga o que você descobriu durante o interrogatório.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você transmite o que Kvash lhe disse.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isto é o que temíamos.</p>
+          <p> </p>
+          <p>Parece que o Exército Beritra está em vantagem desta vez.</p>
+          <p> </p>
+          <p>A situação no Steel Wall Bastion é preocupante. Sua tarefa é perigosa, então prepare-se bem.</p>
+		  <p> </p>
+          <p>Os Arcontes do Anoitecer já estão fazendo o seu melhor para a defesa do Bastião Parede de Aço.</p>
+		  <p> </p>
+          <p>Procure junto com camaradas confiáveis em quem você pode confiar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_IDLDF5b_TD_Drakan_Fighter_Da].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LDF5b_Latkel_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Interrogue o Kvash cativo do Exército Beritra e depois relate.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Latkel pediu que você interrogasse Kvash preso e descobrisse mais sobre o Esquadrão de Ataque do Exército Beritra.</p>
+          <p> </p>
+          <p>Quando você questionou Kvash, ele estava totalmente convencido de que os Balaur seriam vitoriosos. É por isso que ele lhe deu informações detalhadas sobre a Guilda Pashid do Exército Beritra.</p>
+          <p> </p>
+          <p>Você relatou isso a Latkel. Ele disse que a situação era perigosa e que era necessário fazer preparativos urgentes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

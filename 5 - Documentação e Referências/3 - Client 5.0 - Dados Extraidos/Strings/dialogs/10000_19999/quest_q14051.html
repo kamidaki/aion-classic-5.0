@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+<!-- Perento-->
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Existem vários problemas em Heiron, mesmo sem o Portão do Abismo.</p>
+          <p> </p>
+          <p>Os Agrints e os Rotrons são um desses problemas.</p>
+          <p> </p>
+          <p>Aphesius já está lá para cuidar dos Agrints e Rotrons, mas precisa de ajudantes.</p>
+          <p> </p>
+          <p>Por favor, vá e ajude [%dic:STR_DIC_N_Aphesius].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já esteve no Bosque Decaído?</p>
+          <p> </p>
+          <p>As árvores desapareceram quase completamente ali. Você encontrará Elim junto com Agrints e Rotrons com estranhas mutações lá.</p>
+          <p> </p>
+          <p>Mas nem sempre foi assim. Esta costumava ser uma floresta magnífica, mas depois tudo mudou.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Precisamos encontrar a causa, mas há outras coisas que nos impedem de fazê-lo.</p>
+          <p> </p>
+          <p>O Balaur vem à mente. Então ainda não fizemos nada sobre isso.</p>
+          <p> </p>
+          <p>Mas não podemos deixar isso continuar assim.</p>
+          <p> </p>
+          <p>Agora precisamos descobrir a causa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, vá para Decayed Grove e mate o [plur][%dic:STR_DIC_M_Agrint_34_An] e o [plur][%dic:STR_DIC_M_Rottentree_34_An], e traga-me amostras de suas raízes.</p>
+          <p> </p>
+          <p>Acho que as raízes nos mostrarão mais sobre a causa do problema do que os galhos ou galhos.</p>
+          <p> </p>
+          <p>Por favor ajude.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q1052-1.ogg"/>
+  </HtmlPage>
+
+<!-- Aphesius -->
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você está de volta.</p>
+          <p> </p>
+          <p>Você conseguiu as amostras de raiz?</p>
+          <p> </p>
+          <p>Eu não conseguia parar de pensar nisso. Isso está me incomodando.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega as amostras.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essas são realmente raízes de Agrint e Rotron?</p>
+          <p> </p>
+          <p>Eles não se parecem em nada com raízes de plantas...</p>
+          <p> </p>
+          <p>Não sei muito sobre árvores, então não posso dizer o que há de estranho nelas.</p>
+          <p> </p>
+          <p>Não sou especialista. Você poderia levar essas amostras para o Elim?</p>
+          <p> </p>
+          <p>Por favor, entregue-os para [%dic:STR_DIC_N_Tree_Move_Mersephon] em Arbolu's Haven. Ele pode ser capaz de nos ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Agrint e o Rotron são um pequeno problema comparado ao Balaur.</p>
+          <p> </p>
+          <p>Mas se não fizermos algo a respeito agora, isso terá consequências terríveis mais tarde.</p>
+          <p> </p>
+          <p>Então vá imediatamente e obtenha amostras de raízes. Por favor!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+<!-- Tree_Move_Mersephon -->
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aproxime-se, Daeva.</p>
+          <p> </p>
+          <p>Você tem algo para o Elim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Você entrega as amostras de raiz.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essas são as raízes de Agrint e Rotron?</p>
+          <p> </p>
+          <p>Eles não parecem naturais.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Tree_Nomove_Trajanus] tem que ver isso.</p>
+          <p> </p>
+          <p>Por favor, mostre-os a ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q1052-2.ogg"/>
+  </HtmlPage>
+
+<!-- Tree_Nomove_Trajanus -->
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você tem aí na mão?</p>
+          <p> </p>
+          <p>Foi por isso que você veio me ver?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega as amostras de raiz.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essas são raízes de Agrint e Rotron?</p>
+          <p> </p>
+          <p>As pessoas estão fazendo coisas terríveis com as árvores.</p>
+          <p> </p>
+          <p>Essas raízes não parecem naturais.</p>
+          <p> </p>
+          <p>Algo está errado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+  
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Perento] em [%dic:STR_DIC_W_LF3_SZ_A1].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Aphesius] em [%dic:STR_DIC_W_LF3_SZ_D1].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Reúna alguns [plur][%dic:STR_DIC_I_quest_14051a] do [plur][%dic:STR_DIC_M_Agrint_34_An] e alguns [plur][%dic:STR_DIC_I_quest_14051b] do [plur][%dic:STR_DIC_M_Rottentree_34_An]. Em seguida, leve-os para [%dic:STR_DIC_N_Aphesius].</font></p>[%collectitem]</step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_Tree_Move_Mersephon].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Fale com [%dic:STR_DIC_N_Tree_Nomove_Trajanus].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Aceite a missão de Perento e encontre Aphesius.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perento lhe contou que Aphesius já havia sido enviado para encontrar uma solução para o problema junto com os Agrint e os Rotrons. Mas ele precisava de ajuda para fazer isso, então você foi até ele. Aphesius pediu para você descobrir por que a floresta está morrendo. Quando você trouxe para ele amostras de raízes do Bosque Decaído, ele disse que seria melhor perguntar ao Elim sobre isso.</p>
+          <p> </p>
+          <p>Você mostrou a Elim Mersefonte e a Trajano as amostras de raiz, e eles ficaram preocupados porque as amostras não pareciam naturais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

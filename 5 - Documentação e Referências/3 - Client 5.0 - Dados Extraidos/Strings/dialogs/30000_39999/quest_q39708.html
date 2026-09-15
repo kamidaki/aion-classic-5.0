@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- A Carta Verde -</p>
+          <p> </p>
+          <p>Prezados membros da Green Hat Alliance,</p>
+          <p> </p>
+          <p>Desta vez nossas operações ocorrerão em [%dic:STR_DIC_W_LDF5a_E7].</p>
+          <p> </p>
+          <p>À medida que a infestação se espalha mais pelo lixo, [%dic:STR_DIC_I_quest_39708a] deve ser coletado. Reporte para [%dic:STR_DIC_E_LDF5a_Greenhat_BL].</p>
+          <p> </p>
+          <p>Que a natureza seja a nossa força.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde a carta no bolso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(segura o nariz.) Evidentemente, você trouxe lixo fedorento com você.</p>
+          <p> </p>
+          <p>Que tipo de lixo cheira tão mal?</p>
+          <p> </p>
+          <p>(Abre uma sacola grande.)</p>
+          <p> </p>
+          <p>Por favor, jogue o lixo aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o lixo fedorento.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que você voltou de mãos vazias, e o lixo fedorento?</p>
+          <p> </p>
+          <p>O solo ficará contaminado se o lixo for deixado ali.</p>
+          <p> </p>
+          <p>Colete [%dic:STR_DIC_I_quest_39708a] rapidamente perto da mina sindical Krerunerk.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Fecha o saco.) Ah, muito melhor.</p>
+          <p> </p>
+          <p>Colocaremos isso rapidamente no incinerador.</p>
+          <p> </p>
+          <p>Você fez um bom trabalho.</p>
+          <p> </p>
+          <p>A Green Hat Alliance tem uma grande dívida com você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna os [%dic:STR_DIC_I_quest_39708a] abandonados e leve-os para [%dic:STR_DIC_E_LDF5a_Greenhat_BL].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Chegou uma carta verde da Green Hat Alliance. Leia e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma carta verde da Green Hat Alliance foi entregue.</p>
+          <p> </p>
+          <p>Você coletou o lixo fedorento que alguém havia jogado ilegalmente na mina da Companhia Krerunerk e, quando se reportou ao Administrador da Green Hat Alliance no norte de Katalam, foi elogiado por seu trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

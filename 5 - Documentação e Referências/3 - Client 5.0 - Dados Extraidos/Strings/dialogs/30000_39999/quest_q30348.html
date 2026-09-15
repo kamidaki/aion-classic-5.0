@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30335</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, você tem o reluzente Canhão Mágico de Poder de Siel.</p>
+          <p> </p>
+          <p>Mas afinal as habilidades de Daeva melhoraram e você ainda quer usar este Canhão Mágico?</p>
+          <p> </p>
+          <p>Você não quer trabalhar no reluzente Canhão Mágico de Poder de Siel?</p>
+          <p> </p>
+          <p>Se você continuar trabalhando duro e tiver sorte, poderá obter um bom Canhão Mágico.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você estiver interessado, vou te contar o método Kobold.</p>
+          <p> </p>
+          <p>São necessários três materiais.</p>
+          <p> </p>
+          <p>Mas conseguir os materiais é difícil.</p>
+          <p> </p>
+          <p>Quando todos os materiais forem coletados, um processamento cuidadoso deve ser realizado.</p>
+          <p> </p>
+          <p>Você consegue, Daeva?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Essência da Tempestade Negra e o Fluxo Shulack Especial são necessários.</p>
+          <p> </p>
+          <p>O Balaur selado tem o [%dic:STR_DIC_I_QUEST_Rudra_Essence_01].</p>
+          <p> </p>
+          <p>Ouvi rumores de que Balaur selado está no Templo de Beshmundir.</p>
+          <p> </p>
+          <p>Se você ajudar [%dic:STR_DIC_I_QUEST_30235a], o Ladrão de Túmulos Shulack, você conseguirá obtê-lo.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_I_Blessed_Aurium_01] é um mineral especial que Shulack usa. Muito caro.</p>
+          <p> </p>
+          <p>Depois de obter todos os materiais, vá para a fornalha de fundição na Forja de Debilkarim. Coloque tudo dentro e trabalhe.</p>
+          <p> </p>
+          <p>Quando o Cristal da Essência de Siel surgir, leve-o para Kobold.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você pode estar certo, Daeva.</p>
+          <p> </p>
+          <p>Você precisa de muita sorte para conseguir essas coisas.</p>
+          <p> </p>
+          <p>Você pode falhar, apesar de todos os seus esforços.</p>
+          <p> </p>
+          <p>É por isso que é melhor não se preocupar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva já está cuidando de outra arma.</p>
+          <p> </p>
+          <p>Tataka não pode fazer tudo de uma vez.</p>
+          <p> </p>
+          <p>Obter os ingredientes não será uma tarefa fácil para Daeva.</p>
+          <p> </p>
+          <p>Preocupe-se com uma arma diferente e volte outra hora.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, você está de volta!</p>
+          <p> </p>
+          <p>Você adquiriu os materiais e processou tudo?</p>
+          <p> </p>
+          <p>Então dê a Essência de Siel ao Kobold.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a Essência de Siel.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Kobolds não podem fazer tudo.</p>
+          <p> </p>
+          <p>Siel Essence deve estar disponível.</p>
+          <p> </p>
+          <p>Obtenha [%dic:STR_DIC_I_QUEST_Rudra_Essence_01], [%dic:STR_DIC_I_QUEST_30235a] e [%dic:STR_DIC_I_Blessed_Aurium_01].</p>
+          <p> </p>
+          <p>Derreta tudo junto com o reluzente Canhão de Poder Mágico de Siel no Jotun Studio.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, eu produzi uma Essência de Siel.</p>
+          <p> </p>
+          <p>Agora a habilidade Kobold é necessária.</p>
+          <p> </p>
+          <p>(Coloca a Essência de Siel na fornalha e a trabalha.)</p>
+          <p> </p>
+          <p>Kobold fez um canhão mágico. Cuide bem disso, Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_QUEST_30248_All] e trabalhe-os na fornalha em [%dic:STR_DIC_W_IDTemple_Low_SZ_C3].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Então traga a Essência do Siel para [%dic:STR_DIC_N_DF4_NPC_Nehmatan].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Diz-se que o Canhão de Poder Mágico de Siel pode ser melhorado. Traga os materiais que você reuniu para o Jotun Studio e trabalhe tudo na fornalha.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tataka disse que suas habilidades melhoraram e agora você também deve melhorar suas armas.</p>
+          <p> </p>
+          <p>Então você levou sua arma mágica e o Canhão de Poder Mágico de Siel junto com a Essência da Tempestade Negra, um Fluxo Shulack Especial e um Lingote de Aurium Abençoado para o Estúdio Jotun para fazer a Essência de Siel com eles.</p>
+          <p> </p>
+          <p>Você levou esta Essência de Siel para Tataka, e ele criou um Canhão de Poder Mágico de Siel a partir dela.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

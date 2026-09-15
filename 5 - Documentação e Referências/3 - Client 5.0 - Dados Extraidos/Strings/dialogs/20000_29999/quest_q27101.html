@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos são instruídos a trabalhar em conjunto no desenvolvimento da aldeia.</p>
+          <p>Esperamos que a maioria das pessoas participe para tornar a aldeia um lugar encantador e hospitaleiro.</p>
+          <p> </p>
+          <p>Missão da aldeia:</p>
+          <p>3 [%dic:STR_DIC_E_fs_material_n_c_d] e 2 [%dic:STR_DIC_E_fs_material_n_c_21a_d] precisam ser trazidos para o [%dic:STR_DIC_N_Town_shugo_Worker_05] para construir o poço.</p>
+          <p> </p>
+          <p>- Administração da aldeia -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Enfrentámos muitas dificuldades desde que começámos a construir o poço, mas agora que as bases estão lançadas estamos a meio caminho.</p>
+          <p> </p>
+          <p>No entanto, os nossos fundos para a construção são limitados, o que dificulta a aquisição de materiais.</p>
+          <p> </p>
+          <p>Por favor, adquira móveis Flux de grau cada vez menor antes de irmos à falência, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Flux.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Apenas os tipos de Fluxos inferiores e de baixa qualidade que precisávamos, akakak.</p>
+          <p> </p>
+          <p>É claro que é usado para refinar móveis, mas também é necessário para construir coisas grandes como o poço.</p>
+          <p> </p>
+          <p>Aqui, como prometi.</p>
+          <p> </p>
+          <p>Tornou-se uma tarefa da aldeia obter o material para construir um poço, e é por isso que aqueles que cumprem a tarefa são recompensados adequadamente, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga [%dic:STR_DIC_E_fs_material_n_c_d] e [%dic:STR_DIC_E_fs_material_n_c_21a_d] para [%dic:STR_DIC_N_Town_shugo_Worker_05].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Flux é necessário para construir o poço, mas há alguns problemas para obter os suprimentos. O fluxo deve ser coletado e levado ao capataz da aldeia para completar a tarefa da aldeia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Anúncio de tarefa da aldeia. Diz que o Flux é necessário para a construção de um poço na aldeia.</p>
+          <p> </p>
+          <p>As pessoas estão gratas por vocês estarem participando da missão da aldeia de reunir material para o desenvolvimento da aldeia e levá-lo ao capataz da aldeia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

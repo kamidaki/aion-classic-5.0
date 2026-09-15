@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Temo que as tarefas estejam cada vez mais difíceis, Daeva.</p>
+		  <p> </p>
+		  <p>Mas visto que as palavras "desistir" parecem não estar no seu vocabulário, não tenho inibições de lhe pedir outro favor, [%username].</p>
+		  <p> </p>
+		  <p>Desta vez estou enviando você para [%dic:STR_DIC_W_ZONE_NAME_IDCatacombs].</p>
+		  <p> </p>
+		  <p>De Inggison você pode chegar ao Templo Beshmundir passando pelo Desfiladeiro Silencioso.</p>
+		  <p> </p>
+		  <p>Stormwing, que provavelmente já sonhou em governar Balaur, está preso naquele lugar. Nesse aspecto, é o lugar mais perigoso para onde te mandei até agora.</p>
+		  <p> </p>
+		  <p>Já que você decidiu atacar Balaurea, esta é a missão certa para você, [%username].</p>
+		  <p> </p>
+		  <p>Se você quiser aceitar este desafio, vá até o Agente de Kaisinel [%dic:STR_DIC_N_Cainus] em Inggison.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É bom te ver. Agora você finalmente descobrirá o que se espera de você.</p>
+          <p> </p>
+		  <p>O Templo Beshmundir dentro do Desfiladeiro Silencioso é um cemitério Balaur.</p>
+		  <p> </p>
+          <p>Não só isso, mas Stormwing também foi preso aqui após sua derrota contra Tiamat.</p>
+		  <p> </p>
+		  <p>Não apenas as tropas de elite de Tiamat, mas também os soldados da Guilda Manadar estão rondando o Templo Beshmundir e sonham com a ressurreição de Stormwing.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">O que posso fazer?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Reúna seus aliados e expulse os Balaur do Templo Beshmundir.</p>
+          <p> </p>
+		  <p>Aqueles vis e tortuosos Balaur se reuniram lá para colocar um plano terrível em ação.</p>
+		  <p> </p>
+		  <p>Vá para as ruínas da tristeza. Perto está a entrada Inggison para o Desfiladeiro Silencioso.</p>
+		  <p> </p>
+		  <p>Do cânion você pode chegar ao Hope's Demise e à entrada do Templo Beshmundir.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Cainus] no [%dic:STR_DIC_W_LF4_SZ_OP].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Fortaleza da Ilusão Inggison e encontre Outremus.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Philipp sugeriu enviar alguém ao Templo Beshmundir.</p>
+          <p> </p>
+          <p>Outremus, Agente de Kaisinel em Inggison, disse que era hora de pedir ajuda e pediu que você resolvesse os problemas no Templo de Beshmundir.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

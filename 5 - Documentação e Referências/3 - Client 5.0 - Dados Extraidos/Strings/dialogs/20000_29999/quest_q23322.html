@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Elimine o [%dic:STR_DIC_E_LDF5b_D2_Vri_Fanatic] em seu esconderijo.</p>
+          <p> </p>
+          <p>Eles deveriam ter sido eliminados há muito tempo.</p>
+          <p> </p>
+          <p>Descobrimos recentemente que membros do Vinculado de Dragão foram vistos no 40º Exército.</p>
+          <p> </p>
+          <p>Isso significa que estão em contato com o Exército Beritra.</p>
+          <p> </p>
+          <p>Isso não é motivo suficiente para erradicá-los?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O [%dic:STR_DIC_E_LDF5b_D2_Vri_Fanatic] deveria ter sido eliminado muito antes.</p>
+          <p> </p>
+          <p>Quanto mais percebo que os membros do Vinculado de Dragão estão associados ao Exército Beritra, mais assustador fica.</p>
+          <p> </p>
+          <p>Imagine o que eles poderiam alcançar juntos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora não precisamos mais nos preocupar com o Vinculado de Dragão.</p>
+          <p> </p>
+          <p>Não foi uma tarefa fácil, mas você realizou tudo com sucesso.</p>
+          <p> </p>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Aqui, aceite isso como uma recompensa por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_LDF5b_D2_Vri_Fanatic] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard14_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os membros do Vinculado de Dragão em seu esconderijo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olaf pediu para você eliminar os membros do Vinculado de Dragão em seu esconderijo.</p>
+          <p> </p>
+          <p>Você derrotou os membros do Vinculado de Dragão conforme as instruções. Você recebeu uma recompensa por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

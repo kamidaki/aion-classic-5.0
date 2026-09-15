@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], quanto você sabe sobre Idium?</p>
+          <p> </p>
+          <p>Ainda não temos informações precisas sobre o Idium, mas ele definitivamente contém uma força violentamente poderosa. É por isso que todo mundo está atrás do Idium.</p>
+          <p> </p>
+          <p>Você poderia reunir [%dic:STR_DIC_I_quest_23606a] em [%dic:STR_DIC_N_OBJ_LDF5_Under_FOBJ_Idium] e trazê-lo para [%dic:STR_DIC_N_LDF5_Under_Oturu_E]?</p>
+          <p> </p>
+          <p>Veio de cima a ordem para enviar Idium daqui para lá de cima, mas ainda não juntei a quantidade necessária.</p>
+          <p> </p>
+          <p>É urgente, então conclua o trabalho rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não demorará muito e o Idium precisará ser enviado para cima.</p>
+          <p> </p>
+          <p>Não estou pedindo muito. Só precisamos produzir a quantidade necessária para evitar qualquer crítica.</p>
+          <p> </p>
+          <p>Nem de cima nem de Brif.</p>
+          <p> </p>
+          <p>Ah, [%username], é esse Idium que você está segurando?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Idium com brilho fraco.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado por conseguir o Idium de brilho fraco.</p>
+          <p> </p>
+          <p>Eu esperava ter que assumir a responsabilidade por ultrapassar o prazo.</p>
+          <p> </p>
+          <p>Também pensei em partir sozinho, mas ainda estava um pouco indeciso.</p>
+          <p> </p>
+          <p>Mencionarei seu nome nesta carta que vai subir junto com o Idium, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_quest_23606a] em [%dic:STR_DIC_N_OBJ_LDF5_Under_FOBJ_Idium] e leve tudo para [%dic:STR_DIC_N_LDF5_Under_Oturu_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Colete Idium suavemente brilhante que precisa ser entregue ao topo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo Brif, vieram de cima pedidos para extrair Idium, mas a quantidade solicitada foi insuficiente.</p>
+          <p> </p>
+          <p>A pedido de Brif, você reuniu Idium de brilho fraco do veio de minério de Idium e o levou para Otur, que ficou grato a você por isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

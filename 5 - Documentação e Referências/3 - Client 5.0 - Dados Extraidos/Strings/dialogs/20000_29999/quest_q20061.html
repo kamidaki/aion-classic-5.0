@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q20061</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que o nosso primeiro ataque ao coração de Tiamat falhou miseravelmente. Mas nunca chegamos a lugar nenhum desistindo. Recuaremos, consideraremos nossas opções e atacaremos novamente.</p>
+          <p> </p>
+          <p>Desta vez decidimos estudar os corações criando monitores. Eles observarão os corações e relatarão suas descobertas. Esperamos ter informações suficientes para lutar não com mais força, mas com mais inteligência.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">"Então, o que precisa ser feito?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sempre útil, não é, [%username]?</p>
+          <p> </p>
+          <p>Os monitores projetados estão prontos, exceto por uma célula de energia. De acordo com nossos cientistas, os monitores exigem algo bastante poderoso para operá-los, e identificamos uma criatura vagando pelo [%dic:STR_DIC_W_LDF4b_SZ_T2_A6] como alimento adequado.</p>
+          <p> </p>
+          <p>Tudo o que precisamos agora é de alguém para derrotar a criatura...</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Eu vou embora agora."</Act>
+    </Selects>
+    <Voice file="Q20061-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que enviamos você para encontrar uma célula de energia adequada. Como você se saiu?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Isso servirá?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah. A mácula de Tiamat está por toda esta pedrinha. Que interessante!</p>
+          <p> </p>
+          <p>Certamente funcionará como uma célula de energia, [%username]. Teremos que adaptar nossos monitores, mas prefiro fazer isso do que encontrar um tipo de energia alternativa. Agora podemos plantar isso em um dos corações e descobrir uma maneira de finalmente reivindicá-los!</p>
+          <p> </p>
+          <p>Obrigado por se preocupar!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Adela].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]"> Procure o [%dic:STR_DIC_W_LDF4b_SZ_T2_A6] [%5].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Destrua o Gapemaw Fragmentado [%8].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Recupere a fonte de energia do Fenda Gap [%11].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Vá para [%dic:STR_DIC_W_LDF4b_SZ_OP_A4] e reporte para Garnon.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tarefa: A Tribo Reian tem novas informações sobre os Corações. Conheça Adella.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Adella mencionou um plano para instalar monitores nos centros de poder de Tiamat. Os monitores foram criados, mas ainda precisavam de uma fonte de energia adequada para funcionar corretamente.</p>
+          <p> </p>
+          <p>Você foi apontado para o Poço Gravitacional, onde encontrou uma enorme criatura conhecida como Fragmented Gapemaw. Você o destruiu e reuniu o núcleo de poder que ele carregava antes de retornar a Garnon para receber sua recompensa.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso da Missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

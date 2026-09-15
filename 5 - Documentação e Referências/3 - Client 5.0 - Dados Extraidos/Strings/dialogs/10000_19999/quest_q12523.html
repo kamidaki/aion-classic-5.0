@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que o Exército Beritra marchou até aqui?</p>
+          <p> </p>
+          <p>Com base no fato de que a legião está construindo um posto e preparada, tenho certeza de que ela tem um propósito importante...</p>
+          <p> </p>
+          <p>Estou ocupado com isso.</p>
+          <p> </p>
+          <p>Acho que [%dic:STR_DIC_M_LDF5A_B8_Vritra_Ri_NamedQ_62_An] sabe alguma coisa. Por favor, mate-o e traga-me provas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este momento é importante, mas devemos também decidir o que o Exército Beritra fará no futuro.</p>
+          <p> </p>
+          <p>O que você conseguiu arrancar do comandante do acampamento destruído?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Entregue um mapa de operações do Beritra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Inteligência... é provável que nem todas as informações sejam compartilhadas, mesmo dentro do Exército Beritra.</p>
+          <p> </p>
+          <p>Saber disso já é um grande sucesso, embora nenhuma informação detalhada tenha sido obtida.</p>
+          <p> </p>
+          <p>Bom trabalho, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_LDF5A_B8_Vritra_Ri_NamedQ_62_An] e recupere o [%dic:STR_DIC_I_quest_12523a]. Leve para [%dic:STR_DIC_N_LDF5A_Repta_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o comandante do acampamento destruído e traga evidências para determinar as intenções da Tropa Beritra.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lefta quer descobrir o motivo do avanço do Exército Beritra nesta região.</p>
+          <p> </p>
+          <p>Depois de matar o comandante do campo destruído e apresentar o mapa de operação do Exército Beritra que descobriu, você foi elogiado por esse grande feito.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

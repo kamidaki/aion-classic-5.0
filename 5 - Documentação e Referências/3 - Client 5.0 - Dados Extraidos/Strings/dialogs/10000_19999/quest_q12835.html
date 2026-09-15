@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Elimine todos os [%dic:STR_DIC_M_LDF5_Recon_v07_DR_all] e depois retorne.</p>
+          <p> </p>
+          <p>A 77ª Vanguarda Balaur é composta por soldados Balaur próximos a esta base.</p>
+          <p> </p>
+          <p>O plano era tomar medidas contra eles a longo prazo, mas agora isto precisa de ser bem repensado.</p>
+          <p> </p>
+          <p>Isso me deixa muito inseguro, sem saber quais planos os Balaur estão tramando bem debaixo de nossos narizes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A vanguarda Balaur nada mais é do que uma vanguarda, tal como o nome sugere.</p>
+          <p> </p>
+          <p>Mesmo que você desligue a vanguarda, logo depois chegará a retaguarda ou os reforços.</p>
+          <p> </p>
+          <p>Mas se você matar a vanguarda antecipadamente, será mais fácil eliminar as tropas posteriores porque esta linha de comunicação terá sido quebrada.</p>
+          <p> </p>
+          <p>É por isso que corremos para mudar o plano.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. Você teve um desempenho incrivelmente bom, apesar de eu ter lhe dado a tarefa em pouco tempo.</p>
+          <p> </p>
+          <p>Estou impressionado com sua aura, [%username].</p>
+          <p> </p>
+          <p>Acho que não preciso me preocupar, mesmo que a retaguarda Balaur apareça mais tarde.</p>
+          <p> </p>
+          <p>Pois tenho certeza de que continuaremos vitoriosos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5_Recon_v07_DR_all] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard07_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra o pedido de Basarian e destrua a 77ª Vanguarda Balaur.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo Basarian, o plano foi alterado para eliminar toda a Vanguarda Balaur e ele pediu ajuda.</p>
+          <p> </p>
+          <p>Você foi agradecido depois de eliminar o 77º Balaur Vanguard.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

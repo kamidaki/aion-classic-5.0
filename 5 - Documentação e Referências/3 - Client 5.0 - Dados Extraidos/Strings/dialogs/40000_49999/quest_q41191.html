@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41191</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este Drenite está muito rachado, mas até onde você pode ver, ainda é bastante difícil.)</p>
+          <p> </p>
+          <p>(Definitivamente ainda pode ser usado. Você considera trazê-lo de volta para sua cidade natal, mas talvez os Reianos possam usá-lo mais.)</p>
+          <p> </p>
+          <p>([%dic:STR_DIC_N_teccus] provavelmente saberia o melhor uso para isso.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Próxima parada: Kamar."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Não, não! O arco vai até lá! LÁ! Eu juro, [%userrace], não há ética de trabalho nesta nova geração de trabalhadores.</p>
+          <p> </p>
+          <p>É como tentar construir com pregos tortos e madeira empenada. Você pode fazer isso, mas leva muito mais tempo e os resultados são inferiores.</p>
+          <p> </p>
+          <p>Existem tantos fatores envolvidos na criação de uma grande estrutura que é uma maravilha que eu consiga fazer alguma coisa!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Como materiais? Como este Drenite?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Exatamente! Diga, deixe-me ver isso... hmmm... sim... eu acho... Oh!</p>
+          <p> </p>
+          <p>Mesmo essa pequena quantidade pode ser bem aproveitada. Eu poderia fazer cem pregos especiais de Drenite ou mil metros de filigrana...</p>
+          <p> </p>
+          <p>Onde você conseguiu... ah, isso é irrelevante. Apenas lembre-se de mim se encontrar mais alguma coisa, certo?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mostre os pedaços de Drenita rachados para [%dic:STR_DIC_N_teccus] no [%dic:STR_DIC_W_LDF4a_SZ_OP_11].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Esta Drenita pode estar rachada, mas ainda pode servir a um propósito. Mostre para Teukis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você trouxe os Pedaços de Drenita Rachados para o Supervisor de Construção Teukis, esperando que ele pudesse fazer bom uso deles.</p>
+          <p> </p>
+          <p>Ele estava muito animado e pediu que você o lembrasse se encontrasse mais algum.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

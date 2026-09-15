@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para: [%username]</p>
+          <p>De: Os Wrights do Amanhecer</p>
+          <p> </p>
+          <p>Para todos os membros da guilda com título de Artesão ou superior, sua habilidade ilimitada é solicitada.</p>
+          <p> </p>
+          <p>Crie um [%dic:STR_DIC_I_QUEST_37501A] para celebrar nossos heróis nas campanhas de Balaurea.</p>
+          <p> </p>
+          <p>Compre um design de um comerciante de artesanato no Santuário dos Mestres e leve sua criação para um [%dic:STR_DIC_E_Quest_37500a].</p>
+          <p> </p>
+          <p>Somente o seu trabalho da mais alta qualidade é apropriado. Honre seus irmãos e irmãs, honre seu ofício.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Esta é uma ótima ideia."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Balaurea - o próprio coração do inimigo. Nossas tropas ali nos aproximam um passo da vitória todos os dias.</p>
+          <p> </p>
+          <p>Eles merecem o [%dic:STR_DIC_I_QUEST_37501A] mais inspirador possível. Qualquer coisa menos... bem, digamos apenas que apenas o melhor será suficiente</p>
+          <p> </p>
+          <p>Você mostrou um potencial incrível, [%username]. Deixe a mim e aos Elyos em todos os lugares orgulhosos.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Eu dei tudo que tinha!</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que eu deveria estar olhando aqui? Simplesmente não vejo um [%dic:STR_DIC_I_QUEST_37501A] no seu cubo.</p>
+          <p> </p>
+          <p>Não podemos ficar tentados a economizar nisso. Nossos soldados merecem o melhor de nossas habilidades.</p>
+          <p> </p>
+          <p>Você tem a habilidade ou não estaria aqui. Empurre-se. Experimente novamente.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Eu definitivamente voltarei."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim... sim... ah [%username], isso é maravilhoso! É maravilhoso ver suas habilidades crescerem tão rápido.</p>
+          <p> </p>
+          <p>Nenhum Daeva poderia negar o orgulho que tal trabalho traz. Este é um poderoso lembrete de por que fazemos o que fazemos.</p>
+          <p> </p>
+          <p>Os Wrights of Dawn abraçam sua criatividade. Você é um talento maravilhoso.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Crie um [%dic:STR_DIC_I_QUEST_37501A] e entregue-o a um [%dic:STR_DIC_E_Quest_37500a].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Wrights of Dawn cobraram de você a criação de um item. Compre o design de um comerciante da guilda de artesanato e entregue os resultados a um Elyos Crafting Associate</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na carta dos Wrights of Dawn está o pedido para que você crie uma Medalha de Bravura. Simboliza a coragem de todos os grandes Daevas durante o ataque a Balaurea. Apresente-o aos Wrights.</p>
+          <p> </p>
+          <p>Com a ajuda de um desenho você conseguiu produzir a medalha. Você o entregou aos Wrights of Dawn e foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

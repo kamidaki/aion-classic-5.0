@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Em seguida, uma investigação deve ser realizada para determinar por que o Dredgion caiu.</p>
+          <p> </p>
+          <p>Para ser honesto, essa é de longe a tarefa mais importante da investigação.</p>
+          <p> </p>
+          <p>Afinal, é preciso descobrir sem dúvida como um navio de guerra daquele tamanho poderia cair, não é mesmo?</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_LDF5a_SensoryArea_Q12829] e vasculhe o local em busca de sinais úteis.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(É um Idgel Cube gravemente danificado.)</p>
+          <p> </p>
+          <p>(Está tão danificado que não pode ser restaurado.)</p>
+          <p> </p>
+          <p>(Pode ter sido cobrado em Dredgion acidentado.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Qual foi o motivo da queda do Dredgion?</p>
+          <p> </p>
+          <p>Parece impossível que um navio tão grande pudesse cair assim do nada.</p>
+          <p> </p>
+          <p>Deve ter sido um acidente. Mas não consigo imaginar qual poderia ter sido o motivo.</p>
+          <p> </p>
+          <p>Bem, é meu trabalho descobrir.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o que viu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acha que o Dredgion acidentado talvez estivesse transportando o Cubo Idgel?</p>
+          <p> </p>
+          <p>Se isso for verdade, então é possível que o acidente tenha algo a ver com o Cubo Idgel.</p>
+          <p> </p>
+          <p>Isto significa que os Balaur também têm uma ligação com os Idgel...</p>
+          <p> </p>
+          <p>Estamos caminhando para um grande perigo.</p>
+          <p> </p>
+          <p>Como nada está certo ainda, não estou inclinado a lhe contar nada prematuramente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF5a_SensoryArea_Q12829] e inspecione a área.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Examinar [%dic:STR_DIC_E_LDF5a_FOBJ_BrokenIdgel].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relatório para [%dic:STR_DIC_N_LDF5a_Tagoras_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Dê uma olhada no Crash Site para encontrar o motivo da queda do Dredgion.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tagoras pediu para você descobrir por que o Dredgion caiu.</p>
+          <p> </p>
+          <p>Após a investigação, foi descoberto um cubo Idgel quebrado que provavelmente estava a bordo do Dredgion acidentado.</p>
+          <p> </p>
+          <p>Depois que você relatou a Tagoras, ele foi da opinião de que o Dredgion aparentemente queria mover o Cubo Idgel e que o Exército Beritra provavelmente estava ligado ao Id.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

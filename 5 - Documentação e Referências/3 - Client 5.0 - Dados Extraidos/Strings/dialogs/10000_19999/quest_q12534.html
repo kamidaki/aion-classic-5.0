@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], posso te pedir uma coisa?</p>
+          <p> </p>
+          <p>Eu tenho um item que devo dar ao Elyos Daeva [%dic:STR_DIC_N_LDF5a_Mycenae_E].</p>
+          <p> </p>
+          <p>Você pode me ajudar, ok?</p>
+          <p> </p>
+          <p>Negociei com [%dic:STR_DIC_N_LDF5a_Mycenae_E] e ele queria meus discos, ok.</p>
+          <p> </p>
+          <p>Mas por favor não leia o conteúdo deles.</p>
+          <p> </p>
+          <p>Como gosto do Mikene, ofereci o item a ele por um preço muito bom, ak. Hoho</p>
+          <p> </p>
+          <p>Por favor, não conte a ninguém o segredo comercial, ok.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você tem?</p>
+          <p> </p>
+          <p>Posso dizer pelo seu olhar que você quer algo de mim, não é?</p>
+          <p> </p>
+          <p>Talvez você tenha trazido o que acho que trouxe?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o Diário de Saphirunerk.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estes são os registros que pedi a Saphirunerk.</p>
+          <p> </p>
+          <p>Isso é exatamente o que eu esperava.</p>
+          <p> </p>
+          <p>É bom que eu os tenha obtido rapidamente.</p>
+          <p> </p>
+          <p>Preciso informar a gerência sobre a compra de materiais de guerra.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Passe o [%dic:STR_DIC_N_LDF5a_Mycenae_E] para [%dic:STR_DIC_I_doc_quest_12534a].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Passe os registros de Perinerk para Mikene.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Saphirunerk pediu que você trouxesse os registros de Saphirunerk para Mikene. Quando você os trouxe para Mikene, ele disse que estava especialmente satisfeito porque tinha que reportar à Administração sobre a compra de materiais de guerra.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

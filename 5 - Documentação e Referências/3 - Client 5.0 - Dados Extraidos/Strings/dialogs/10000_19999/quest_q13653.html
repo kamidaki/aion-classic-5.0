@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Alimentar a Guilda Daeva requer a obtenção de muitos ingredientes especiais que estão disponíveis apenas no Katalam Underground, ak.</p>
+          <p> </p>
+          <p>Isso inclui [%dic:STR_DIC_I_QUEST_13653a], por exemplo. É um ingrediente importante que não deve faltar na comida de Nomrunerk, também.</p>
+          <p> </p>
+          <p>Mas Shugo atualmente tem tanta coisa para fazer que não há tempo para reunir os ingredientes. [%username], Shugo ficaria grato se Daeva pudesse ajudar, ak. Akakak!</p>
+          <p> </p>
+          <p>Pode-se obter [%dic:STR_DIC_I_QUEST_13653a] do [%dic:STR_DIC_N_OBJ_LDF5_Under_FOBJ_A1_Plant] por aqui.</p>
+          <p> </p>
+          <p>A comida deve ser terminada o mais rápido possível. Shugo pede ajuda urgentemente a Daeva, ak. Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os produtos da Nomrunerk são únicos e da mais alta qualidade.</p>
+          <p> </p>
+          <p>Você não pode compará-los com produtos de outros comerciantes, Ak!</p>
+          <p> </p>
+          <p>Daeva tem quantidade suficiente de [%dic:STR_DIC_I_QUEST_13653a]? Cada segundo conta, ok!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a erva curativa Kataluna.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora todos os ingredientes foram reunidos para não haver mais atrasos no prazo de entrega, ak.</p>
+          <p> </p>
+          <p>A erva curativa Kataluna dá às rações alimentares da legião ainda mais aroma e nutrientes especiais.</p>
+          <p> </p>
+          <p>Shugo se orgulha dos pratos de Nomrunerk, ak!</p>
+          <p> </p>
+          <p>Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Procure [%dic:STR_DIC_I_QUEST_13653a] e leve todos para [%dic:STR_DIC_N_LDF5_Under_Pudirung_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Reúna a erva curativa Kataluna, um ingrediente importante para as rações alimentares das legiões e leve-a para Nomrunerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nomrunerk precisava de outro ingrediente especial e pediu sua ajuda.</p>
+          <p> </p>
+          <p>Você reuniu ervas curativas Kataluna para ele, o que o agradou muito.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

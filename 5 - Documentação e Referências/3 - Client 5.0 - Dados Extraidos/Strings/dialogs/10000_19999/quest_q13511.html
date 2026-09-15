@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você conquistar as guarnições em North Katalam, eu lhe darei o [%dic:STR_DIC_I_quest_13511a] para completar o [%dic:STR_DIC_I_quest_13510a].</p>
+          <p> </p>
+          <p>Por favor, mate [%dic:STR_DIC_N_LDF5_Village_Guard01_D] da 71ª Guarnição, [%dic:STR_DIC_N_LDF5_Village_Guard02_D] da 72ª Guarnição, bem como [%dic:STR_DIC_N_LDF5_Village_Guard03_D] da 73ª Guarnição e [%dic:STR_DIC_N_LDF5_Village_Guard04_D] da 74ª Guarnição.</p>
+          <p> </p>
+          <p>Esses inimigos são os capitães do Esquadrão de Limpeza Katalam.</p>
+          <p> </p>
+          <p>Não é fácil conquistar Katalam.</p>
+          <p> </p>
+          <p>Somente Daevas tão forte quanto eu, Portis, pode arriscar.</p>
+          <p> </p>
+          <p>Mas como Tirins emitiu uma ordem, estou abrindo uma exceção e oferecendo aos outros a oportunidade de provarem seu valor também.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você não conseguir completar uma missão deste significado, não poderei lhe fornecer o 1º Relatório.</p>
+          <p> </p>
+          <p>Pergunte aos membros dos Cavaleiros Expedicionários do Santuário ou ao meu Protetorado.</p>
+          <p> </p>
+          <p>Eu já teria terminado.</p>
+          <p> </p>
+          <p>Sou o Sumo Sacerdote Portis e nunca decepcionei ninguém.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mesmo que você não tenha completado a missão tão rapidamente quanto eu teria feito em seu lugar, seu desempenho me impressiona.</p>
+          <p> </p>
+          <p>Eu sabia que aqueles Capitães Asmodianos não representavam uma grande ameaça.</p>
+          <p> </p>
+          <p>Você pode ver que eles são fracos simplesmente pela facilidade com que foram destruídos por você, [%username].</p>
+          <p> </p>
+          <p>Foi um bom trabalho!</p>
+          <p> </p>
+          <p>Aqui. Como prometi: o [%dic:STR_DIC_I_quest_13511a].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrote os capitães do Esquadrão de Limpeza Asmodiano Katalam.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard01_D] da 71ª Guarnição ([%2]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard02_D] da 72ª Guarnição ([%5]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard03_D] da 73ª Guarnição ([%8]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard04_D] da 74ª Guarnição ([%11]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5A_Portis_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Capitães Asmodianos das 71ª, 72ª, 73ª e 74ª Guarnições.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para obter o Primeiro Relatório de Patrulha para completar o Diário de Conquista de Katalam, você aceitou uma missão de Portis.</p>
+          <p> </p>
+          <p>Seguindo suas instruções, você matou os capitães Asmodianos Abus da 71ª Guarnição, Batan da 72ª Guarnição, Savankel da 73ª Guarnição e Garton da 74ª Guarnição. Você foi recompensado com o relatório conforme prometido.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

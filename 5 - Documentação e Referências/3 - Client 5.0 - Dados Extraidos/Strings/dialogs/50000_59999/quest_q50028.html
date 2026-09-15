@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A transformação precisa ser totalmente bem-sucedida a todo custo para que eu possa transformar meu irmão de um Talon estúpido de volta ao seu estado anterior.</p>
+          <p> </p>
+          <p>Já testei a fórmula várias vezes desde que cheguei em Elysea, e obtive sucesso até certo ponto em todas as vezes.</p>
+          <p> </p>
+          <p>Claro que desde aquele acidente com meu irmão tenho tomado muito cuidado. Não quero cometer um erro semelhante novamente e atormentá-lo ainda mais.</p>
+          <p> </p>
+          <p>Preciso da Essência da Vida, para poder ter ainda mais certeza conduzindo outro experimento.</p>
+          <p> </p>
+          <p>Se você me trouxer 5 [plur][%dic:STR_DIC_I_event_worlddrop_2], eu lhe darei uma receita de alquimia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Preciso do conhecimento antigo e da Essência da Vida para meu próximo experimento.</p>
+          <p> </p>
+          <p>Os outros ingredientes são... secretos. Só vou revelar a você que posso obtê-los sozinho.</p>
+          <p> </p>
+          <p>Definitivamente preciso do 5 [plur][%dic:STR_DIC_I_event_worlddrop_2] agora. Você os trouxe?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Essência da Vida.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. É verdadeiramente a essência da vida pura.</p>
+          <p> </p>
+          <p>Agora posso testar minha fórmula em outro experimento.</p>
+          <p> </p>
+          <p>Espero que minha experiência dê certo e que eu possa ver Alfonso novamente. Não me refiro ao Alfonso nesta forma, mas sim ao Alfonso com a sua própria alma.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o [plur][%dic:STR_DIC_I_event_worlddrop_2] para [%dic:STR_DIC_N_event_Edlung].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Warrick pediu para você adquirir vários ingredientes que ele precisa para testar uma fórmula de transformação para fazer seu irmão Alfonso voltar a ser como ele era. Traga a ele a Essência da Vida.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Warrick pediu que você conseguisse vários ingredientes necessários para testar uma fórmula de transformação que faria seu irmão Alfonso voltar a ser como era.</p>
+          <p> </p>
+          <p>Quando você trouxe a Essência da Vida para ele, ele lhe deu uma receita de alquimia em agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

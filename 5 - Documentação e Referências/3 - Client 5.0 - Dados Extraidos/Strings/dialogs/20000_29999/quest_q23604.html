@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], gostaria de pedir que você passasse algo para mim.</p>
+          <p> </p>
+          <p>Por favor, entregue esta carta que escrevi para [%dic:STR_DIC_N_LDF5_Under_Brief_E].</p>
+          <p> </p>
+          <p>Tudo que você precisa fazer é entregar a carta. Não há tarefas adicionais.</p>
+          <p> </p>
+          <p>Você sabia, é claro, que as cartas militares estão sujeitas à Lei do Sigilo?</p>
+          <p> </p>
+          <p>Portanto, gostaria de alertá-lo de que você não poderá abrir a carta em hipótese alguma.</p>
+          <p> </p>
+          <p>Se for descoberto que você atingiu o menor pico, poderá ser levado ao tribunal militar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava esperando por você.</p>
+          <p> </p>
+          <p>Otur disse que me enviaria uma mensagem através de você, [%username]. Você tem isso com você?</p>
+          <p> </p>
+          <p>O que poderia ser tão importante que tenha que ser anunciado duas vezes? Estou explodindo de curiosidade.</p>
+          <p> </p>
+          <p>Meu irmão nunca faz nada sem um bom motivo, então deve ser algo importante.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a Carta de Otur.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta é a carta que eu estava esperando. O que isso diz?</p>
+          <p> </p>
+          <p>(Abre a carta e dá uma olhada no conteúdo.) Hmm... então é assim.</p>
+          <p> </p>
+          <p>Não posso entrar em detalhes, mas as informações da Otur são muito úteis.</p>
+          <p> </p>
+          <p>[%username], como um Asmodiano honesto e leal, espero que você não tenha lido a carta.</p>
+          <p> </p>
+          <p>Um exemplo brilhante dos Asmoidanos não se comportaria de forma tão desonrosa. Certo?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve [%dic:STR_DIC_I_doc_quest_23604a] para [%dic:STR_DIC_N_LDF5_Under_Brief_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre Brif e entregue a ele a Carta de Otur.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Otur pediu que você anotasse ordens que ele mesmo havia escrito para Brif, enfatizando que você não deveria olhar o conteúdo.</p>
+          <p> </p>
+          <p>Você procurou Brif e entregou o documento de Otur, momento em que Brif acreditou que você não havia dado uma olhada no conteúdo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva? Este lugar muito perigoso para Daeva!</p>
+          <p> </p>
+          <p>Deve ser, Daeva quer o Símbolo de Kahrun. Deve querer muito, sim, vir para esse lugar tão perigoso!</p>
+          <p> </p>
+          <p>Daeva teve sorte! Horinrinerk apenas Shugo negociando pelo Símbolo de Kahrun! Quero Token do Cruzado. Daeva tem? Não? Vá encontrá-los! Akakak! Horinrinerk pode perguntar o que quiser!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Horinrinerk troca o Símbolo de Kahrun por... cérebro de dragão! Troque por... Colar de dente de Drakan! Não, não, estátua de Strigik! Feito de corindo puro! Tamanho real! Akakak! Daeva teve sorte de Horinrinerk ser Shugo razoável!</p>
+          <p> </p>
+          <p>Tão razoável que Horinrinerk até lhe dá um acordo. Tão legal! Que bom Shugo! A taxa de câmbio é de um por sete, mas troque o Símbolo de Daeva Kahrun por 6 Tokens do Cruzado!</p>
+          <p> </p>
+          <p>Não tanto lucro para Horinrinerk, mas me sentindo tão razoável hoje!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Parece menos razoável deste lado..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hein?</p>
+          <p> </p>
+          <p>Horinrinerk não entende a voz chorosa de Daeva.</p>
+          <p> </p>
+          <p>Talvez diga em voz normal e Horinrinerk se dê ao trabalho de responder.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_COIN_D_HEADQUARTERS_01]s.</font></p>[%collectitem]</step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Shugo_LDF4a_03_3].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Horinrinerk trocará o Símbolo de Kahrun por Tokens do Cruzado.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O colecionador de moedas Horinrinerk quer trocar os Tokens do Cruzado pelo Símbolo de Kahrun.</p>
+          <p> </p>
+          <p>Você fez a troca e, embora ela alegasse que estava fazendo um acordo, você se sentiu um pouco enganado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

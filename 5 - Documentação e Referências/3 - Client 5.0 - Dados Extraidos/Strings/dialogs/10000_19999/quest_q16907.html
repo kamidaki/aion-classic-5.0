@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Da mesma forma que eclodiram combates acirrados em Morheim e Eltnen, agora Heiron também enfrenta ataques de grupos de Sapiens e Asmodianos.</p>
+          <p> </p>
+          <p>Mas as ordens do Alto Comandante Fasimedes não eram para ser passivo, mas sim para atacar com entusiasmo.</p>
+          <p> </p>
+          <p>De acordo com um espião, os Revolucionários Lefaristas estabeleceram um posto na área ao redor do Passo Malek, em Beluslan. Agora eles estão aumentando seu poder de combate.</p>
+          <p> </p>
+          <p>Como pretendemos enviar uma tropa de guerrilha para capturar o posto, você deve partir para Beluslan e matar [%dic:STR_DIC_M_DF3_1_Light_Raider].</p>
+          <p> </p>
+          <p>Se tudo correr bem, talvez possamos pagar aos Asmodianos o que lhes devemos. Informe-me assim que concluir sua tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você sabe, Beluslan é uma área Asmodiana que só pode ser acessada através da Fenda aqui em Heiron.</p>
+          <p> </p>
+          <p>No passado sempre nos abstivemos de atacar devido ao perigo representado pelo Fenda irregular. Mas não podemos deixar as coisas assim por mais tempo, porque os Asmodianos estão agora invadindo ativamente.</p>
+          <p> </p>
+          <p>Ele está localizado além do Fenda, o que significa que precisamos de uma base para que possamos tomar as medidas adequadas. Se ocuparmos este posto podemos usá-lo como base.</p>
+          <p> </p>
+          <p>Vá rapidamente para a área perto de Malek Pass em Beluslan, mate [%dic:STR_DIC_M_DF3_1_Light_Raider] e ocupe [%dic:STR_DIC_W_DF3_Village_01].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o sucesso da missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Realmente? Então a ocupação foi um sucesso!</p>
+          <p> </p>
+          <p>Muito bom trabalho. Com isso, podemos garantir temporariamente uma base.</p>
+          <p> </p>
+          <p>A guerrilha é responsável pela manutenção do posto, mas como se trata de um assunto difícil, seria bom que você ficasse de olho também de vez em quando.</p>
+          <p> </p>
+          <p>Bom trabalho!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para Beluslan e mate [%dic:STR_DIC_M_DF3_1_Light_Raider] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Perento] no [%dic:STR_DIC_W_LF3_SZ_A1].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Captura [%dic:STR_DIC_W_DF3_Village_01] perto da passagem Beluslan Malek, além da fenda espaço-tempo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O General de Brigada Perento da Fortaleza Heiron ordenou um ataque ao posto dos Revolucionários Lefaristas perto da passagem Beluslan-Malek para vingança contra os Asmodianos.</p>
+          <p> </p>
+          <p>Os Guerrilhadores Elyos apareceram depois que você repeliu os defensores Asmodianos e os Guerrilhadores Revolucionários Lefaristas e ocupou o posto.</p>
+          <p> </p>
+          <p>Esta deve ser uma batalha difícil.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

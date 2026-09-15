@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41590</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Haha! Nós os pegamos nas delicadas, [%username]!</p>
+          <p> </p>
+          <p>Olhe para este lugar! Achas que os Balaur enviariam tantas das suas melhores tropas para cá se não considerassem o nosso cerco uma ameaça séria? Eles vêm e vêm, e nós lutamos contra eles e destruímos suas paredes!</p>
+          <p> </p>
+          <p>Quer se divertir? Os [%dic:STR_DIC_M_LDF4b_T1_S3_DrakanFi_Pagati_Destroy_58_An]s e [%dic:STR_DIC_M_LDF4b_T1_S3_DrakanSc_Sikara_Destroy_58_An]s ainda não conheceram ninguém do seu calibre, amigo!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olhe para eles!</p>
+          <p> </p>
+          <p>Há anos que observo o Balaur, você sabe. Sempre tão confiantes, tão poderosos, e aqui estão eles, tentando desesperadamente impedir nosso grande ataque!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eles vão ter que se esforçar mais agora."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom, bom!</p>
+          <p> </p>
+          <p>Não há nada melhor do que um soldado Balaur em pânico, [%username]! Eu poderia sentar e assistir isso o dia todo. Excelente trabalho!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os batedores Balaur que tentam encerrar o cerco.</font></p>
+                         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF4b_T1_S3_DrakanFi_Pagati_Destroy_58_An]([%2]/5)</font></p>
+                         <p visible="[%3]"><font color="[%4]">[%dic:STR_DIC_M_LDF4b_T1_S3_DrakanSc_Sikara_Destroy_58_An]([%5]/5)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Briz].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">As unidades de cavalaria Balaur estão tentando desesperadamente destruir as armas de cerco. Pare-os agora.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Briaz contou a você como a Cavalaria Balaur estava em pânico com as armas de cerco e enviou suas melhores unidades para desativá-los. Você queria ajudar, então lutou contra os batedores Balaur.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

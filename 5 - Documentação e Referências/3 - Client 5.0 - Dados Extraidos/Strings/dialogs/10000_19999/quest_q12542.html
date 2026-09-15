@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho um pedido especial para você, [%username].</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_LDF5a_G1] e traga [%dic:STR_DIC_I_quest_12542a] para nosso funcionário [%dic:STR_DIC_N_LDF5a_Chakering_E].</p>
+          <p> </p>
+          <p>Ele é um membro da Green Hat Alliance que ama nada mais do que kokonats. Ele está lá para ficar de olho na Plantação Saphirunerk, o que deve ser uma tarefa bastante árdua.</p>
+          <p> </p>
+          <p>Sem esses suprimentos verdes e quentes, não sei quanto tempo ele aguentará.</p>
+          <p> </p>
+          <p>Ele provavelmente encontrou um bom esconderijo de onde possa observar, então você terá que procurá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabe que eu sou um Shugo?</p>
+          <p> </p>
+          <p>Você certamente foi enviado por Minoa, akakak.</p>
+          <p> </p>
+          <p>Chegaram instruções dos Chapéus Verdes, ok?</p>
+          <p> </p>
+          <p>Posso dizer quando você está se dirigindo a mim. Fale suavemente, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a lancheira verde quente.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O cheiro de kokonat é tão intoxicante que posso desmaiar, akakak.</p>
+          <p> </p>
+          <p>Isso pode realmente acontecer se eu me conter por muito mais tempo, akakak.</p>
+          <p> </p>
+          <p>Muito obrigado pela comida que você me trouxe, [%username]. Isso vai me dar um impulso.</p>
+          <p> </p>
+          <p>Que delícia, a lancheira ainda está quentinha.</p>
+          <p> </p>
+          <p>Já me sinto em forma novamente agora.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Passe [%dic:STR_DIC_I_quest_12542a] para [%dic:STR_DIC_N_LDF5a_Chakering_E] localizado em [%dic:STR_DIC_W_LDF5a_G1].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Passe a Marmita Verde para Chakerunerk que está realizando uma tarefa na Fazenda Saphirunerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Minoa da Green Hat Alliance, Chakerunerk, que se infiltrou na Plantação Saphirunerk, é um Shugo que adora kokonats, o que complica o assunto.</p>
+          <p> </p>
+          <p>Depois de levar uma lancheira verde e quente para Chakerunerk na plantação Saphirunerk, você recebeu agradecimentos por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

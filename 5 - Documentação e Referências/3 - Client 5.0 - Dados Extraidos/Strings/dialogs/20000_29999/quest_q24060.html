@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aproxime-se, [%username].</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_DC2] para encontrar uma pessoa importante lá.</p>
+          <p> </p>
+          <p>Você já ouviu falar em Agehia? Ela é uma Sacerdotisa do Destino que adora o Empíreo Lorde Marchutan.</p>
+          <p> </p>
+          <p>Antes disso, ela era uma Juíza das Sombras.</p>
+          <p> </p>
+          <p>Há algum tempo, ela me pediu para lhe apresentar uma pessoa de confiança. Acho que pode ser você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pergunta o que aconteceu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Os esquemas do Exército Beritra em Atreia foram frustrados, mas é necessário fazer muito mais investigação sobre o Id.</p>
+		<p> </p>
+		<p>E como você pode descobrir muito sobre o Id em Gelkmaros e em toda Balaurea, é necessário que alguém assuma a liderança da exploração.</p>
+		<p> </p>
+		<p>Você pode descobrir mais com a Sacerdotisa do Destino [%dic:STR_DIC_N_Agehia].</p>
+		<p> </p>
+		<p>Você sabe como chegar ao Convento de Marchutan?</p>
+		<p> </p>
+		<p>Existem duas estátuas de teletransporte na frente do [%dic:STR_DIC_W_DC1_1]. A estátua dourada o arco ao [%dic:STR_DIC_W_DC2]. Use-o.</p>
+		<p> </p>
+		<p>Desejo a todos o melhor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é [%username].</p>
+          <p> </p>
+          <p>O que traz você aqui?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você entrega a mensagem de Vidar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Então, Vidar recomendou você?</p>
+		<p> </p>
+		<p>[%userclass]... Parece com ele... haha.</p>
+		<p> </p>
+		<p>Ah, não é importante. Você parece ser a pessoa certa. Esqueça o que eu disse.</p>
+		<p> </p>
+		<p>Talvez você já saiba que o Empíreo Lorde Marchutan não está aqui. Ele está em Balaurea, porque disso depende o destino de Atreia.</p>
+		<p> </p>
+		<p>As legiões em Balaurea sofreram muito devido às difíceis circunstâncias ali.</p>
+		<p> </p>
+		<p>O Governador Vidar provavelmente lhe disse que sua tarefa é investigar o Id.</p>
+		<p> </p>
+		<p>Esta tarefa parece adequada para você porque você usa o poder do Id.</p>
+		<p> </p>
+		<p>[%dic:STR_DIC_N_Tigrina] irá ajudá-lo a chegar a Balaurea. Vá para [%dic:STR_DIC_W_DC1_13] e suba a bordo de uma aeronave para Gelkmaros.</p>
+		<p> </p>
+		<p>Que o destino seja gentil com você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q24060-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você quer ir para Gelkmaros, Daeva?</p>
+          <p> </p>
+          <p>(Olha você de cima a baixo.) Você sabe que tipo de lugar é Gelkmaros?</p>
+          <p> </p>
+          <p>As coisas lá não são como são aqui em Asmodae. E também é diferente de Reshanta.</p>
+          <p> </p>
+          <p>Aconselho você a estar sempre alerta enquanto estiver lá.</p>
+          <p> </p>
+          <p>Dizem que você perde a cabeça se os Balaur o capturarem.</p>
+          <p> </p>
+          <p>O dirigível está quase pronto.</p>
+          <p> </p>
+          <p>[%username], você ainda tem certeza que quer ir para Gelkmaros?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Realmente?</p>
+           <p> </p>
+           <p>Terei interesse em ver quanto tempo você ficará lá.</p>
+           <p> </p>
+           <p>Você terá que embarcar nesta aeronave novamente quando quiser sair de Gelkmaros.</p>
+           <p> </p>
+           <p>Use o Battleship Landing Stage ao meu lado para chegar a Gelkmaros.</p>
+           <p> </p>
+           <p>Por favor, apresse-se, o navio pode partir a qualquer momento.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Eu vou observar você.</p>
+           <p> </p>
+           <p>Finalmente nos encontramos novamente neste lugar fatídico.</p>
+           <p> </p>
+           <p>Você é muito bem-vindo. Sou Richelle, agente de Marchutan.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Azfelumbra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Há muitas missões para você aqui.</p>
+           <p> </p>
+           <p>Você também será forçado a tomar algumas decisões difíceis.</p>
+           <p> </p>
+           <p>Sempre tenha fé na vontade de Aion.</p>
+           <p> </p>
+           <p>Somente sua fé pode iluminar seu caminho em tempos sombrios.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_2">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Este lugar era ocupado por Tiamat. Agora está sob controle Asmodiano.</p>
+           <p> </p>
+           <p>Mas mesmo aqui, os Elyos opõem-se a nós.</p>
+           <p> </p>
+           <p>Para se preparar para a batalha contra os Elyos, você deve aprender mais sobre a situação aqui.</p>
+           <p> </p>
+           <p>Eu já contei a Merhen sobre você. Encontre-se com [%dic:STR_DIC_N_Merhen] e saiba mais sobre este lugar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q24060-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo. Eu sou Merhen.</p>
+          <p> </p>
+          <p>Junto com Hogidin, sou responsável pela estratégia aqui em Gelkmaros.</p>
+          <p> </p>
+          <p>[%username], você está aqui para saber mais sobre a situação em Gelkmaros.</p>
+          <p> </p>
+          <p>Não tenha medo. Vou manter minhas explicações curtas para que você possa se instalar aqui rapidamente.</p>
+          <p> </p>
+          <p>Se você me permitir, começarei imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Apesar da morte de Tiamat, devemos avançar até Tiamaranta para ajudar os Elyos em dificuldades.</p>
+		<p> </p>
+		<p>Isso pode ser porque enviamos algumas das nossas tropas de Gelkmaros para Katalam e assim enfraquecemos as nossas forças de combate aqui.</p>
+		<p> </p>
+		<p>Além disso, o Vinculado de Dragão e os restantes membros da Guilda Tiamat estão se comportando de forma suspeita.</p>
+		<p> </p>
+		<p>Suspeitamos que eles tenham um dispositivo que usa a força de identificação.</p>
+		<p> </p>
+		<p>Minha explicação tornou-se um pouco prolixa. [%username], precisaremos da sua ajuda com frequência.</p>
+		<p> </p>
+		<p>Vou encerrar aqui e pedir que você encontre [%dic:STR_DIC_N_Gudinho]. Ele lhe contará mais sobre isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+         <html>
+         <body>
+          <p>Parece que Merhen já explicou algumas coisas para você.</p>
+          <p> </p>
+          <p>É um prazer. Meu nome é Hogidin. Junto com Merhen, sou responsável pela estratégia aqui em Gelkmaros.</p>
+          <p> </p>
+          <p>O que estou prestes a lhe contar é estritamente confidencial. Os Elyos não conseguem descobrir, caso contrário esta fortaleza estará em perigo. Você absolutamente tem que guardar isso para si mesmo.</p>
+          <p> </p>
+          <p>Por enquanto, eu falo e você apenas ouve.</p>
+          <p> </p>
+          <p>Responderei perguntas depois.</p>
+         </body>
+         </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT6_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_1">
+    <Contents cdata="true">
+         <html>
+         <body>
+          <p>Você conhece a região de Akaron?</p>
+          <p> </p>
+          <p>Temos que passar por Akaron na marcha de Inggison para Elysea.</p>
+          <p> </p>
+          <p>A melhor maneira de chegar a Akaron é conquistando a Fortaleza Gelkmaros.</p>
+          <p> </p>
+          <p>Mas está ocupado pelo Exército Beritra. Derrote o Balaur e capture a fortaleza.</p>
+         </body>
+         </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT6_2">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_2">
+    <Contents cdata="true">
+         <html>
+         <body>
+          <p>Você pode marchar da fortaleza através de Akaron até Inggison.</p>
+          <p> </p>
+          <p>Ah, e também: Desfiladeiro Silencioso mudou e agora também leva a Akaron.</p>
+          <p> </p>
+          <p>Mas você não pode usar o Canyon para avançar para Akaron através de uma base como faria com uma fortaleza.</p>
+          <p> </p>
+          <p>Então primeiro você terá que conquistar a fortaleza e viajar até Akaron para avançar até Inggison e poder derrotar os Elyos.</p>
+          <p> </p>
+          <p>Por favor, tenha em mente tudo o que acabei de dizer.</p>
+          <p> </p>
+		<p>Agora vá para [%dic:STR_DIC_N_Barretta] e diga a ela que você sabe agora.</p>
+         </body>
+         </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+         <html>
+         <body>
+		<p>Prazer em ver você, [%username].</p>
+		<p> </p>
+		<p>Eu estava esperando por você.</p>
+		<p> </p>
+		<p>Merhen e Hogidin explicaram tudo para você? Você agora entende a situação em Gelkmaros?</p>
+		<p> </p>
+		<p>Disseram-me que você foi enviado aqui para investigar a identidade. Mas você realmente precisa estar familiarizado com a situação aqui primeiro.</p>
+		<p> </p>
+		<p>A morte de Tiamat não mudou nada aqui. Os Balaur ainda usam este local como base, pois o Exército Beritra invadiu a terra.</p>
+		<p> </p>
+		<p>Você ainda tem algum tempo até a próxima tarefa. Você deveria fazer uma pausa.</p>
+         </body>
+         </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+         <html>
+         <body>
+           <p>Há muitas tarefas para você aqui.</p>
+           <p> </p>
+           <p>Talvez você tenha que tomar uma decisão difícil algum dia.</p>
+           <p> </p>
+           <p>Mas Aion sempre lhe mostrará o caminho. Então não se desespere.</p>
+         </body>
+         </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+         <html>
+         <body>
+     <steps>
+                <step><p visible="[%0]"><font color="[%1]">Vá para Pandemônio e fale com o Governador [%dic:STR_DIC_N_Vidar].</font></p></step>
+                <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Agehia] no Convento de Marchutan.</font></p></step>
+                <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_Tigrina].</font></p></step>
+                <step><p visible="[%9]"><font color="[%10]">Atravesse o cais até a Fortaleza Gelkmaros e fale com [%dic:STR_DIC_N_Hler] quando estiver lá.</font></p></step>
+                <step><p visible="[%12]"><font color="[%13]">Fale com [%dic:STR_DIC_N_Merhen].</font></p></step>
+                <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Gudinho].</font></p></step>
+                <step><p visible="[%18]"><font color="[%19]">Fale com [%dic:STR_DIC_N_Barretta].</font></p></step>
+     </steps>
+           <p><font font_xml="quest_summary">Ordens: O Governador Vidar de Pandemônio está procurando por você. Encontre-se com ele e ouça o que ele tem a dizer.</font></p>
+         </body>
+         </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+         <html>
+         <body>
+           <p>O Governador Vidar ligou para você. Você aprendeu em Pandemônio que deveria ir para o Convento de Marchutan.</p>
+           <p> </p>
+           <p>Ao chegar ao Convento de Marchutan, você procurou Agehia, Sacerdotisa do Destino. Ela pediu para você ir até Gelkmaros e investigar o Id lá.</p>
+           <p> </p>
+           <p>A tripulante Tigrina acompanhou você em segurança até Gelkmaros.</p>
+           <p> </p>
+           <p>Em Gelkmaros, você se encontrou com a agente de Marchutan, Richelle, e com os oficiais de inteligência Merhen e Hogidin. Eles lhe contaram mais sobre a situação local atual. Eles também lhe deram alguns conselhos que você deve seguir no futuro.</p>
+         </body>
+         </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

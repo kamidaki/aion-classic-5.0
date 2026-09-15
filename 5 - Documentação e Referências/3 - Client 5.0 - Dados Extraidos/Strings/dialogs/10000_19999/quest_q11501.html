@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q11501</QuestId>
+    <QuestName>펑기를 잡아라</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ajuda! Ajuda! Cometi um grande erro! São os Fungies, [%username]. OS FUNGOS.</p>
+          <p> </p>
+          <p>A maioria deles é venenosa, você vê, mas os [%dic:STR_DIC_M_LDF4A_A1_Fungy_Flower_56_n]s - eles não são! Eles são cheios de nutrientes e muito, muito saborosos. Então plantamos seus esporos em todo o [%dic:STR_DIC_W_LDF4a_SZ_A1], na esperança de estabelecer uma fonte sustentável de alimento.</p>
+          <p> </p>
+          <p>Quando voltamos, eles estavam por toda parte. Eles estão se multiplicando mais rápido do que podemos avaliar seus números e, se nada for feito, em breve estaremos nos afogando num mar de Fungies! Por favor, ajude-nos, [%username]! Mate-os para nós, antes que seja tarde demais!</p> 
+          <p/>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu! Você salvou todos nós!</p>
+          <p> </p>
+          <p>Não podemos agradecer o suficiente, [%username]! Haverá músicas escritas sobre este dia e placas! Este dia ficará para a história. O dia em que [%username] nos agraciou e nos salvou da terrível ameaça Fungie.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Realmente não foi assim..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bobagem! Bobagem!</p>
+          <p> </p>
+          <p>Por favor, preparamos isso para agradecer por salvar a todos nós. Não posso agradecer o suficiente, amigo.</p>
+          <p> </p>
+          <p> </p>
+         </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Apague os [%dic:STR_DIC_M_LDF4A_A1_Fungy_Flower_56_n]s do [%dic:STR_DIC_W_LDF4a_SZ_A1] antes que seja tarde demais ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Shuos].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Fungies de Folhas Sementes que cresceram demais e estão ameaçando a própria estabilidade de Atreia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shuos, um Reian no Campo de Refugiados, estava aterrorizado com a rápida disseminação dos Seedleaf Fungies, criaturas que os Reians haviam originalmente reservado para consumo. Desde então, eles se reproduziram muito rapidamente e precisavam ser eliminados de alguma forma. Você ajudou, para grande alívio de Shuos.</p>
+          <p> </p>
+          <p> </p>
+          </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

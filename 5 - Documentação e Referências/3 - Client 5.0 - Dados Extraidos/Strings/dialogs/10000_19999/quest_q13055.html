@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pode ser constrangedor para mim admitir isso como um Daeva, mas há um poderoso líder Balaur aqui perto e uma luta é inevitável.</p>
+          <p> </p>
+          <p>Já tentei superá-lo diversas vezes, mas até agora sem sucesso.</p>
+          <p> </p>
+          <p>Ele deve ser derrotado para ser vitorioso nas Planícies de Prades.</p>
+          <p> </p>
+          <p>Por favor, ajude-me a matar o [plur] [%dic:STR_DIC_M_LDF5B_f4_Vri_Poison_As_SN_NmdQ_65_Ae].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos os soldados do capitão do 43º Esquadrão de Eliminação que foram mortos... Isso é uma pena para mim.</p>
+          <p> </p>
+          <p>[%username], por favor, me liberte dessa vergonha.</p>
+          <p> </p>
+          <p>Destrua [%dic:STR_DIC_M_LDF5B_f4_Vri_Poison_As_SN_NmdQ_65_Ae].</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Não importa o quão bom ele tenha sido, ele não era páreo para você, [%username].</p>
+          <p> </p>
+          <p>Você é um verdadeiro veterano.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF5B_f4_Vri_Poison_As_SN_NmdQ_65_Ae] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Paunus_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Volte sua atenção para o capitão do 43º Esquadrão de Assassinos que está torturando Paunus.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o Capitão do 43º Esquadrão de Eliminação a pedido de Faunus.</p>
+          <p> </p>
+          <p>Fauno ficou feliz por finalmente se livrar da vergonha.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

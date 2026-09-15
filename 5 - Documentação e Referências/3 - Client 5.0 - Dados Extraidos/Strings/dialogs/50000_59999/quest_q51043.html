@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muitos Daevas ajudaram, ak.</p>
+          <p> </p>
+          <p>Alguns grupos coletaram tantos Sinais de Honra que mal se conseguia contá-los, ak.</p>
+          <p> </p>
+          <p>Se você empilhasse todos os Sinais de Honra recebidos até agora, eles chegariam até o Abismo, ak!</p>
+          <p> </p>
+          <p>Daeva deveria reunir [%dic:STR_DIC_I_Event_svs_crystal] também, ak.</p>
+          <p> </p>
+          <p>Daeva deve se esforçar mais, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva recebeu os Sinais de Honra?</p>
+          <p> </p>
+          <p>Shugo sabe que não é fácil, mas Shugo está preocupado com os concorrentes.</p>
+          <p> </p>
+          <p>Se Daeva trouxe algo, Daeva deveria entregá-lo a Shugo rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega os materiais necessários.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sinais de Honra, 3 deles, ak!</p>
+          <p> </p>
+          <p>Junkrunerk pode contar com [%username], ak!</p>
+          <p> </p>
+          <p>Isso vai ajudar a finalizar o corredor, ak!</p>
+          <p> </p>
+          <p>Obrigado, obrigado, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [plur][%dic:STR_DIC_I_Event_svs_crystal] e leve-o para [%dic:STR_DIC_N_NPC_event_svs_jabsuroong].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha os itens necessários para abrir o corredor para o Abismo e leve-os para Junkrunerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O coletor de lixo Junkrunerk disse que estava coletando itens para o laboratório de pesquisa, necessários para abrir o corredor para um novo Abismo. Ele pediu que você o ajudasse.</p>
+          <p> </p>
+          <p>Depois que você adquiriu os materiais para Junkrunerk, ele disse que tinha grandes esperanças no novo Abismo e pediu sua ajuda contínua para que pudesse acompanhar os concorrentes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

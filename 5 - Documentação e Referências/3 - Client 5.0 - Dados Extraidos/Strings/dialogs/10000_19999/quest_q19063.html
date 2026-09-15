@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você persegue seu objetivo com grande comprometimento, [%username].</p>
+          <p> </p>
+          <p>Você teve que passar por muitos testes para chegar onde está agora.</p>
+          <p> </p>
+          <p>Arathias irá ajudá-lo em sua jornada.</p>
+          <p> </p>
+          <p>Vou redigir uma carta de recomendação para você. Leve-o para [%dic:STR_DIC_N_Juvenalis] no Claustro de Kaisinel.</p>
+          <p> </p>
+          <p>Ele é muito competente e, portanto, mais adequado como Preceptor para um [%userclass] como você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estava esperando por você, [%username].</p>
+          <p> </p>
+          <p>Quando você segue os ensinamentos do destino, você sempre encontra heróis como você, que têm um bom coração.</p>
+          <p> </p>
+          <p>Mostre-me o que você trouxe.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a carta de recomendação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É uma carta de recomendação escrita pelo próprio Trasímedes. Eu tenho seu julgamento em alta conta.</p>
+          <p> </p>
+          <p>Estou feliz que você tenha decidido o caminho de [%userclass], [%username], e que eu possa ajudá-lo.</p>
+          <p> </p>
+          <p>Você tem muito que aprender para se tornar um Daeva ainda melhor.</p>
+          <p> </p>
+          <p>Você pode vir me ver a qualquer momento se encontrar dificuldades em seu caminho para se tornar um [%userclass]. Estarei sempre ao seu lado com os ensinamentos do destino.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve esta carta de recomendação para [%dic:STR_DIC_N_Juvenalis].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Levemos a carta de recomendação de Trasimedes para Juvenalis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Trasímedes elogiou seu desenvolvimento até agora e enviou você a Arathias com uma carta de recomendação.</p>
+          <p> </p>
+          <p>Após Arathias ler a carta de recomendação, ele disse que você ainda tinha muito que aprender para se tornar um Daeva excepcional e prometeu ajudá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

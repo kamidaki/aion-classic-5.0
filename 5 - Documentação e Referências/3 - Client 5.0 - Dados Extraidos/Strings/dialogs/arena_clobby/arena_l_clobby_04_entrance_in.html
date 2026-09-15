@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este é o Corredor de Conquista de Balaurea. Selecione um destino para ir até lá.)</p>
+          <p> </p>
+		  <p>(Você pode viajar até a entrada do Refúgio da Tribo Rúnica em [%dic:STR_DIC_W_LF5].)</p>
+		  <p> </p>
+		  <p>(Você pode viajar até a entrada da Ponte de Jormungand [%dic:STR_DIC_W_LF5].)</p>
+		  <p> </p>
+		  <p>(Você pode viajar para a entrada do Laboratório de Pesquisa Baruna em Akaron.)</p>
+		  <p> </p>
+          <p>(Você pode viajar até a entrada do Sauro War Depot em Akaron.)</p>
+          <p> </p>
+		  <p>(Você pode viajar até a entrada da Torre do Escudo Rúnico em Akaron.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Nível 63: Entrada para o Refúgio da Tribo Rúnica</Act>
+	  <Act href="HACTION_SETPRO2">Nível 63: Entrada para a Ponte de Jormungand</Act>
+	  <Act href="HACTION_SETPRO3">Nível 65: Entrada do Laboratório de Pesquisa Baruna</Act>
+	  <Act href="HACTION_SETPRO4">Nível 65: Entrada para o Depósito de Guerra Sauro</Act>
+	  <Act href="HACTION_SETPRO5">Nível 65: Entrada da Torre do Escudo Rúnico</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este é o Corredor de Conquista de Balaurea.)</p>
+        </body>
+        </html>
+    </Contents>
+	<Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

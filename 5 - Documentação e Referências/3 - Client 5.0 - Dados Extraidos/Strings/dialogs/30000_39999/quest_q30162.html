@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30062</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O [%dic:STR_DIC_W_IDUnderpassRe_SZ] que foi descoberto no Desfiladeiro Silencioso pode se tornar perigoso para os Asmodianos.</p>
+          <p> </p>
+          <p>Imagine o que poderia acontecer com o escondido Balaur se a Fortaleza de Tiamat caísse!</p>
+          <p> </p>
+          <p>Eles poderiam atacar Gelkmaros ou este lugar aqui em desespero.</p>
+          <p> </p>
+          <p>Mas Vergelan está ocupado com os Elyos, então é difícil para mim dizer isso, mas preciso da sua ajuda...</p>
+          <p> </p>
+          <p>[%username], você não poderia ir até [%dic:STR_DIC_W_IDUnderpassRe_SZ] e matar o [plur][%dic:STR_DIC_E_Q30062all]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username]! Você está de volta!</p>
+          <p> </p>
+          <p>Eu vi você e seus camaradas indo para a Praça Jotun.</p>
+          <p> </p>
+          <p>Como foram os [%dic:STR_DIC_E_Q30062all]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você merece a boa reputação que tem, sem dúvida!</p>
+          <p> </p>
+          <p>Eu estava com medo de que o Drakan pudesse ser mais forte do que o previsto.</p>
+          <p> </p>
+          <p>Notificarei Vergelan que o Corredor da Traição não é mais motivo de preocupação.</p>
+          <p> </p>
+          <p>É quase certo que você terá problemas ao entrar sozinho, mas no final algo de bom resultou disso, e isso é o mais importante, não é?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_E_Q30062all] que está guardando o [%dic:STR_DIC_W_IDUnderpassRe_SZ].</font></p>
+                         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_E_Q30062all_1] ([%2]/10)</font></p>
+                         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_E_Q30062all_2] ([%5]/10)</font></p>
+                         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_IDUnderpassRe_Drakan_Fi_N_57_Ae] ([%8]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_IDUnderpass_Arne].</font></p></step>
+
+    </steps>
+          <p><font font_xml="quest_summary">Mate os lacaios de Rakshaka, que podem se tornar uma ameaça.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arne temia que Vergelan estivesse tendo uma ideia errada sobre o Corredor da Traição.</p>
+          <p> </p>
+          <p>Arne acredita que os Drakan se tornarão imprevisíveis se Rakshaka for derrotado, então ele pediu para você eliminá-los.</p>
+          <p> </p>
+          <p>Você e seus camaradas eliminaram os Seguidores de Rakshaka no Corredor da Traição. Arne então quis encaminhar um relatório de que o Corredor da Traição não era mais motivo de preocupação.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aparentemente há um comandante do Exército Beritra no Local de Ascensão de Antriksha que está prestes a ascender como um dragão.</p>
+          <p> </p>
+          <p>Ele ainda não completou sua ascensão, mas uma coisa é certa. Assim que ele ascender como dragão, tudo ao seu redor será destruído.</p>
+          <p> </p>
+          <p>Devemos impedi-lo de se tornar um dragão! Se não fizermos nada agora, o dragão será a nossa ruína!</p>
+          <p> </p>
+          <p>Não podemos permitir que Antriksha se transforme num dragão poderoso. Vá ao Local de Ascensão de Antriksha, encontre o informante [%dic:STR_DIC_N_GAb1_Sub_Geowin_E] e encontre uma maneira de impedir a ascensão de Balaur.</p>
+          <p> </p>
+          <p>Lembre-se de que você só poderá participar de uma missão perigosa como essa se tiver ganho o título de [%dic:STR_DIC_I_item_gab_all_title01] na Batalha da Fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estive esperando por você.</p>
+          <p> </p>
+          <p>Apenas os melhores [%userrace] foram chamados para este lugar. Isso inclui você, [%username].</p>
+          <p> </p>
+          <p>Não somos os únicos que querem conquistar a fortaleza de Pangéia. Existem outras forças aqui também.</p>
+          <p> </p>
+          <p>Um de nossos inimigos é uma criatura que está muito perto de ascender como dragão... É difícil dizer que tipo de poderes essa criatura possui. Mas uma coisa é certa. Esta será uma das missões mais perigosas que você encontrou.</p>
+          <p> </p>
+          <p>Temos que lutar contra o Exército Beritra e também contra outros inimigos. Este será um verdadeiro desafio... ao qual nem todos aqui poderão sobreviver.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Cuidado com as tropas vindas de outras fortalezas da Pangéia.</p>
+          <p> </p>
+          <p>Não sei quais são suas verdadeiras intenções, mas provavelmente também estão tentando eliminar Antriksha.</p>
+          <p> </p>
+          <p>Entre no tanque ou no Flame Tank da frota. Destrua o dispositivo de controle primeiro para poder operá-los.</p>
+          <p> </p>
+          <p>Tenho certeza de que a próxima batalha não será fácil. Mesmo assim, conto com você, [%username].</p>
+          <p> </p>
+          <p>Boa sorte!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Ganhe o título de [%dic:STR_DIC_I_item_gab_all_title01]. Vá para o Site de Ascensão de Antriksha. Então fale com o informante, [%dic:STR_DIC_N_GAb1_Sub_Geowin_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o Site de Ascensão de Antriksha e encontre-se com Geowin, o informante.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Após a ocupação da fortaleza, você descobriu que Antriksha estava muito perto de ascender como dragão.</p>
+          <p> </p>
+          <p>Você recebeu a tarefa de eliminar Antriksha antes que ele completasse a Ascensão.</p>
+          <p> </p>
+          <p>Você conheceu o informante Geowin no Local de Ascensão de Antriksha. Ele lhe contou que tropas de outras fortalezas da Pangéia invadiram o Local da Ascensão. Diante desses fatos, não havia nada que ele pudesse fazer além de desejar-lhe boa sorte.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

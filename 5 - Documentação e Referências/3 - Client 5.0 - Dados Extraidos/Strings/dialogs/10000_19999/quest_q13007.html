@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O maior obstáculo na investigação das Muralhas é o frio, ak. Akakak!</p>
+          <p> </p>
+          <p>A empresa nunca disse a Kaberinerk quem era aquele lugar frio quando tomaram a decisão, ak.</p>
+          <p> </p>
+          <p>O frio é difícil de suportar, mas eu poderia fazer roupas de inverno decentes com [%dic:STR_DIC_I_QUEST_13007A] de [%dic:STR_DIC_W_LDF5b_SZ_A3], ak.</p>
+          <p> </p>
+          <p>Eu ficaria grato se você pudesse caçar [%dic:STR_DIC_M_LDF5B_A3_MosbearMom_63_An] e [%dic:STR_DIC_M_LDF5B_A3_MosbearMom_64_An] para mim e me trazer suas peles, ak. Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_I_QUEST_13007A] é de boa qualidade, ak.</p>
+          <p> </p>
+          <p>Acima de tudo, possui excelentes funções de isolamento térmico, por isso estou pensando em usá-lo em um negócio, também. Akakak!</p>
+          <p> </p>
+          <p>Você precisa de [%dic:STR_DIC_I_QUEST_13007A] para vencer esse frio, ak. Eu ficaria muito grato se você pudesse obter o Fur of a Ramparts Bosbear, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o couro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado, ak. Nós realmente precisávamos disso para sobreviver a esse frio, ok.</p>
+          <p> </p>
+          <p>Nós, Shugos, temos muito pelo, mas não dá para esse frio, ak. Akakak!</p>
+          <p> </p>
+          <p>Mas nem todos os cabelos são iguais, ok.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga [%dic:STR_DIC_I_QUEST_13007A] para [%dic:STR_DIC_N_LDF5b_Kaberinrin_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Reúna [%dic:STR_DIC_I_QUEST_13007A] para Kaberinerk, que está tremendo de frio.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kaberinerk pediu para você obter Ramparts Bosbear Fur.</p>
+          <p> </p>
+          <p>Quando você trouxe o pelo para ele, ele agradeceu por essa proteção contra o frio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

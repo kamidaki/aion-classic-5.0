@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12051</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Reianos podem insistir que nós e os Asmodianos coexistimos, mas isso não significa que necessariamente trabalhemos juntos. Pegue a Guarnição da Guilda Basrasa.</p>
+          <p> </p>
+          <p>A proibição de hostilidades de Kahrun não se estende até lá, então nós e os trogs estamos constantemente tropeçando uns nos outros.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF4b_NPC_Q12051A]s são os piores, graças à sua habilidade Hide.</p>
+          <p> </p>
+          <p>Mastigar esta Semente de Detecção penetrará nessa habilidade. Quero que você, [%username], elimine os brutos para o bem de Atreia.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na guerra, é matar ou morrer. Kahrun não entende isso. Espero que ele fique esperto antes de aprender da maneira mais difícil.</p>
+          <p> </p>
+          <p>Você já esteve na Guarnição da Guilda Basrasa? Aqueles Half-Draks caíram sob o poder de Elyos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eles caíram e caíram com força."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Senhores Serafins sorriem para aqueles que ajudam a causa de Elysea, [%username]. Você é sem dúvida um excelente exemplo.</p>
+          <p> </p>
+          <p>Nossos diplomatas estão trabalhando para persuadir Kahrun até agora. Talvez cheguemos a algum lugar quando Tiamat for derrotado.</p>
+          <p> </p>
+          <p>Obrigado por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Livre-se de [%dic:STR_DIC_M_LDF4b_NPC_Q12051A]s ([%2]/3).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Anon].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você prometeu se livrar dos Escoteiros da Vanguarda Asmodiana que trabalhavam na Guarnição da Guilda Basrasa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aranon reclamou que os batedores Asmodianos na Guarnição da Guilda Basrasa estavam atrapalhando Elyos Daevas em suas missões.</p>
+          <p> </p>
+          <p>Então você foi até a guarnição e se livrou dos Asmodiano Vanguard Exploradores para o futuro de Elysea.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

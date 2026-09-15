@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vou explicar a situação atual para você primeiro.</p>
+          <p> </p>
+          <p>Recentemente, o Éter tornou-se muito instável em torno dos Estilhaços Abissais. Isso criou Fragmentos Abissais quebrados.</p>
+          <p> </p>
+          <p>De acordo com isso, os seres vivos no Abismo se tornarão selvagens. Essa foi a notícia que recebi recentemente. Preciso da sua ajuda antes que a situação se torne ainda mais caótica.</p>
+          <p> </p>
+          <p>Por favor mate [%dic:STR_DIC_M_IDAbRe_Core_02_Boss_Octaside_Kn_60_Al]; eles cresceram selvagens com a influência do Éter.</p>
+          <p> </p>
+          <p>Se você matar o grande Aracna, finalmente teremos paz eterna.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], fico feliz em ver que você voltou inteiro.</p>
+          <p> </p>
+          <p>Você encontrou o quarto fragmento Kaluva?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você foi muito corajoso. É melhor para a aranha ter sido colocada em descanso eterno do que entrar em fúria selvagem.</p>
+          <p> </p>
+          <p>Ainda há muito o que fazer no destruído Abyssal Splinter, então gostaria de perguntar se você poderia me ajudar um pouco mais.</p>
+          <p> </p>
+          <p>Nunca teríamos conseguido controlar a situação tão rápido sem você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDAbRe_Core_02_Boss_Octaside_Kn_60_Al]%([%2]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Entregue seu relatório para [%dic:STR_DIC_NPC_Ab1_1011_TreasureGate_Da]%</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O fluxo instável de Éter é aparentemente a causa dos Estilhaços Abissais quebrados, bem como das criaturas no Abismo enlouquecendo. Mate Kaluva, o quarto fragmento caído.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gwal disse que o fluxo de Éter ao redor dos Estilhaços Abissais tornou-se instável. É por isso que os fragmentos abissais destruídos surgiram e as criaturas estão se tornando selvagens.</p>
+          <p> </p>
+          <p>Quando você voltou depois de matar Kaluva, ele agradeceu e pediu mais ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

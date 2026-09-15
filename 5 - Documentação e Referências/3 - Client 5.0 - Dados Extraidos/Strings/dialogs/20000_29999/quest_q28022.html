@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_IDF5_R3_VriIU_Wi_Q_65_Ae] certamente terá informações valiosas.</p>
+          <p> </p>
+		  <p>De acordo com o Arconte do Crepúsculo, Pomash, o Informador, estava investigando a Sala do Vazio desde o início.</p>
+          <p> </p>
+		  <p>Tudo ficou registrado: quando o Exército Beritra chegou, o que fizeram e o que aconteceu aqui.</p>
+		  <p> </p>
+		  <p>Sita, Mestre da Guilda dos Informadores de Beritra, provavelmente enviou Pomash nesta operação especial para obter identidade ou descobrir mais sobre sua influência.</p>
+		  <p> </p>
+		  <p>Saberemos mais se Pomash puder ser morto e colocaremos as mãos no que ele sabe.</p>
+		  <p> </p>
+          <p>Por favor me ajude neste assunto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Beritra são muito astutos e seus agentes de Inteligência são mestres no disfarce.</p>
+          <p> </p>
+          <p>Provavelmente é por isso que alguns lugares em Katalam já estão em suas mãos.</p>
+          <p> </p>
+          <p>Aparentemente eles não só têm informações sobre a Sala do Vazio, mas também sobre muitos lugares em Katalam.</p>
+          <p> </p>
+          <p>Você precisa estar em guarda, eles já podem estar entre nós.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que matou o informante.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou Pomash, o informante?</p>
+          <p> </p>
+          <p>Mas você veio de mãos vazias. Você não recuperou as informações que ele tinha sobre ele?</p>
+          <p> </p>
+          <p>Isso é uma vergonha terrível. Com essas informações poderíamos ter entendido ainda melhor a Sala do Vazio...</p>
+          <p> </p>
+          <p>Isso é lamentável, mas, de qualquer forma, você fez um excelente trabalho.</p>
+          <p> </p>
+		  <p>Verei se não conseguimos a informação do Pomash de outra forma.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_IDF5_R3_VriIU_Wi_Q_65_Ae] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_LDF5b_Niber_G_DHM] no [%dic:STR_DIC_W_LDF5b_SV_6011].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumprir o pedido de Vesmo e matar Pomash, o Informador. Em seguida, reporte-se a Niver.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vesmo pediu para você matar o informante Beritra Pomash na Sala Vazia. Você matou o informante e recebeu uma recompensa de Niver quando voltou.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

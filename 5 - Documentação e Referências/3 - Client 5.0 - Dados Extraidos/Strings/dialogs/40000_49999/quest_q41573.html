@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41573</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Há um Cristal Suspeito no Crânio de Mamut.)</p>
+          <p> </p>
+          <p>(Você sente uma energia estranha emanando dele. Este não é um item comum.)</p>
+          <p> </p>
+          <p>(Você deve levá-lo para [%dic:STR_DIC_N_Shumaron]; ele pode usá-lo, ou pelo menos saber o que é.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Eu me pergunto o que ele vai pensar...?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Galam! O que traz você hoje? Venha me ver forjar armas magistrais de cristal?</p>
+          <p> </p>
+          <p>Infelizmente, estou testando alguns materiais novos, então não posso ajudar com armas agora.</p>
+          <p> </p>
+          <p>Se tudo correr bem, em breve terei um novo armamento incrível que utiliza esses esplêndidos cristais locais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Alguma ideia sobre isso?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você disse que encontrou esse cristal em uma caveira de Mamut? Hmm... que estranho.</p>
+          <p> </p>
+          <p>Parece seguro dizer que o Mamut não era uma fera comum do dia a dia.</p>
+          <p> </p>
+          <p>Vou fazer alguns testes nele e colocá-lo à prova. Devo ser capaz de identificar este espécime. Obrigado, [%username]! Você despertou minha curiosidade.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga o Cristal Suspeito para [%dic:STR_DIC_N_Shumaron].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você encontrou um Cristal Suspeito em uma Caveira de Mamut. Leve o cristal para Shumaron para descobrir o que é.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrou um Cristal Suspeito enquanto examinava uma Caveira de Mamut.</p>
+          <p> </p>
+          <p>Você decidiu levá-lo para Shumaron. Isso despertou sua curiosidade e ele queria fazer alguns testes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

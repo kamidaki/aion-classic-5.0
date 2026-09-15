@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você é exatamente a pessoa que preciso.</p>
+          <p> </p>
+          <p>A tarefa é simples. Basta levar um livro para Anyte no Salão dos Protetores.</p>
+          <p> </p>
+          <p>O livro é um texto sobre os segredos do caminho do [%userclass].</p>
+          <p> </p>
+          <p>Anyte está atualmente mantendo os livros seguros e eu peguei um deles emprestado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É hora de devolver o livro. Mas não posso confiar um livro tão valioso a qualquer pessoa, é claro.</p>
+          <p> </p>
+          <p>Certamente posso confiar o livro a um [%userclass] como você, [%username].</p>
+          <p> </p>
+          <p>Você poderia devolver este livro para Anyte com meus agradecimentos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já aprendeu tudo neste livro, [%username].</p>
+          <p> </p>
+          <p>Você precisa do segundo volume do livro misterioso.</p>
+          <p> </p>
+          <p>Anyte tem os outros volumes.</p>
+          <p> </p>
+          <p>Leve este volume para [%dic:STR_DIC_N_LC1_Anyte_M] no Salão dos Protetores. Ela irá ajudá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não parece achar que meu pedido seja muito importante.</p>
+          <p> </p>
+          <p>Mas há uma razão pela qual escolhi você, [%username].</p>
+          <p> </p>
+          <p>Veja isso como uma recomendação para Anyte.</p>
+          <p> </p>
+          <p>Mas se você não quiser, [%username], não há nada que possa ser feito.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], o que você quer?</p>
+          <p> </p>
+          <p>Você quer saber a verdade sobre o espaço?</p>
+          <p> </p>
+          <p>Talvez tenha algo a ver com o livro em sua mão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o livro secreto.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este livro emprestado por Dâmocles não pode ser confiado a todos.</p>
+          <p> </p>
+          <p>Já que Dâmocles lhe deu este livro, isso deve significar que ele confia em você.</p>
+          <p> </p>
+          <p>Você parece promissor, [%username]. Mas você ainda tem muito que aprender se quiser se tornar um verdadeiro [%userclass].</p>
+          <p> </p>
+          <p>Eu irei ajudá-lo caso você tenha alguma dificuldade em estudar o próximo volume do livro misterioso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LC1_Anyte_M]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Passe a inscrição secreta que Dâmocles deu a você para Anyte.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Dâmocles pediu que você levasse o livro misterioso para Anyte.</p>
+          <p> </p>
+          <p>Após Anyte receber o livro, ela disse que você ainda tinha muito que aprender para se tornar um Daeva, e prometeu ajudá-lo caso tivesse alguma dificuldade em aprender o próximo livro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

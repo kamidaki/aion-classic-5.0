@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você quer viajar para o metrô Katalam, ok?</p>
+          <p> </p>
+          <p>O teletransporte não é gratuito, é claro.</p>
+          <p> </p>
+          <p>Custa 64.650 Kinah!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você quer viajar para o metrô Katalam, ok?</p>
+          <p> </p>
+          <p>Você tem que me pagar por isso, ak.</p>
+          <p> </p>
+          <p>Eu teletransportarei você para o metrô Katalam se você tiver Kinah suficiente.</p>
+          <p> </p>
+          <p>O preço especial é exatamente 64.650 Kinah. Então verifique se você tem esse valor com você, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_TELEPORT_SIMPLE">Você paga e é teletransportado para o metrô Katalam.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kinah não é suficiente, ok?</p>
+          <p> </p>
+          <p>Volte quando tiver o suficiente para pagar o teletransporte, ak.</p>
+          <p> </p>
+          <p>Você só pode viajar para o Katalam Underground depois de atingir o nível 65 - mesmo se tiver Kinah suficiente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Devemos nos preparar para a defesa do [%dic:STR_DIC_W_DF5_SZ_Village_02]. Os Elyos escolheram este local para ser alvo do seu próximo ataque.</p>
+		  <p> </p>
+		  <p>Não sabemos onde o Fenda será aberto a seguir.</p>
+          <p> </p>
+		  <p>Temos que estar prontos a qualquer momento.</p>
+		  <p> </p>
+		  <p>Se Elyos aparecer em [%dic:STR_DIC_E_DF5_Vil2_Area_All], não hesite, mas ataque-os imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muitos Elyos apareceram através do Fenda.</p>
+          <p> </p>
+          <p>Mas ouvi dizer que você não demonstrou medo, [%username].</p>
+		  <p> </p>
+		  <p>Conte-me como foi a batalha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você conta a ele o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se saiu muito bem, [%username].</p>
+          <p> </p>
+		  <p>Você continua me surpreendendo.</p>
+		  <p> </p>
+          <p>Graças a você, [%username], este lugar está seguro novamente.</p>
+          <p> </p>
+          <p>Obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+		     <step><p visible="[%0]"><font color="[%1]">Mate os Elyos que invadiram o [%dic:STR_DIC_E_DF5_Vil2_Area_All] ([%2]/2).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_DF5_Xeikun_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Atender ao pedido de Jekun. Elimine os Elyos na região de Satyr.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Jekun pediu para você eliminar os Elyos na região de Satyr.</p>
+          <p> </p>
+          <p>Você procurou a região dos Sátiros e expulsou os Elyos. Jekun agradeceu pelo seu trabalho duro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

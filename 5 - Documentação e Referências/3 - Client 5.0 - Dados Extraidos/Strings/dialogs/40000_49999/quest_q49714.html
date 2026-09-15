@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- A Carta Verde -</p>
+          <p> </p>
+          <p>Prezados membros da Green Hat Alliance,</p>
+          <p/>
+          <p>desta vez nosso foco está na Linha Ferroviária Goldrin.</p>
+          <p/>
+          <p>Examine a Ferrovia Goldrin, que está colocando em risco a segurança dos passageiros com seus frequentes descarrilamentos. Passe os resultados para a filial Katalam da Green Hat Alliance.</p>
+          <p/>
+          <p>E não se esqueça, a natureza é essencial para nossas vidas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde a carta no bolso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Os trilhos estão muito dobrados.)</p>
+          <p/>
+          <p>(Há uma lacuna nos trilhos.)</p>
+          <p/>
+          <p>(Devo dar uma olhada mais de perto.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você olha mais de perto.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(As faixas são de uma cor estranha)</p>
+          <p/>
+          <p>(Olhando mais de perto, você vê que são madeira pintada de preto)</p>
+          <p/>
+          <p>(E faltam as juntas, formando uma lacuna)</p>
+          <p> </p>
+          <p>(Alguém roubou as juntas de metal)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo ouviu que Daeva inspecionou a Linha Ferroviária Goldrin.</p>
+          <p> </p>
+          <p>Houve algum perigo?</p>
+          <p> </p>
+          <p>Sempre acontecia alguma coisa com os trabalhadores de lá, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os trilhos eram feitos de madeira e não de metal, ok?</p>
+          <p> </p>
+          <p>E todas as partes metálicas desapareceram?</p>
+          <p> </p>
+          <p>Todo dia há um problema, ak. Agradecendo a Daeva pelos esforços de Daeva, ak.</p>
+          <p> </p>
+          <p>Shugo reportará aos superiores para que medidas possam ser tomadas, ak.</p>
+          <p> </p>
+          <p>A Green Hat Alliance tem uma grande dívida com [%username], ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Inspecione a Linha Ferroviária Goldrin interrompida.</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para a filial Katalam da Green Hat Alliance.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Chegou uma carta da Green Hat Alliance. Leia e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chegou uma carta da Green Hat Alliance.</p>
+          <p> </p>
+          <p>Você examinou o fornecimento de segurança da Ferrovia Goldrin, reportou-se à filial South Katalam da Green Hat Alliance e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

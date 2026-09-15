@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você pode lutar sem consumíveis?</p>
+          <p> </p>
+          <p>Armaduras e armas são importantes, sim, mas Daevas que vão para a batalha sem itens consumíveis merecem zombaria por causa de táticas inadequadas.</p>
+          <p> </p>
+          <p>Se você tiver contribuições para mostrar, recebo seus consumíveis como recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Reward for Contribution</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desculpe. Os itens de recompensa são para aqueles que fizeram contribuições.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Volto logo."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39500</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%userclass], talvez você tenha alguma ideia do que se trata este folheto que recebi.</p>
+          <p> </p>
+          <p>Diz "Os comerciantes da nuvem negra precisam de VOCÊ!" e descreve a organização como um grupo comercial Shugo, mas... não são os Black Cloud Merchants?</p>
+          <p> </p>
+          <p>Bem, não posso sair do meu posto, mas se você estiver indo para Sarpan, pode perguntar a [%dic:STR_DIC_N_Shugo_LDF4a_04] sobre isso.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo, Daeva, mas não chegue muito perto! Os comerciantes da Nuvem Negra podem ser perigosos!</p>
+          <p> </p>
+          <p>Você está interessado em nossa organização temível e totalmente legítima, Daeva?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Vocês são afiliados aos Black Cloud Merchants?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Com quem? Nuvem Negra O que é isso? Chicorunerk não sabe do que o maluco Daeva está falando! Nunca ouvi falar daquilo que você acabou de dizer, nunca!</p>
+          <p> </p>
+          <p>Não, não, não, os Black Cloud Merchants são uma organização original totalmente nova, mas totalmente legítima e temível! Apenas começando, estabelecendo novas rotas comerciais em Sarpan e Tiamaranta!</p>
+          <p> </p>
+          <p>Daeva deveria se juntar a nós! Muito poucos membros do Daeva até agora!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para Sarpan e encontre [%dic:STR_DIC_N_Shugo_LDF4a_04].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Investigar a nova organização Black Cloud Merchants em Sarpan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Laika perguntou se você já ouviu falar dos Mercadores da Nuvem Negra, que lhe enviaram um panfleto estranho. Ela não sabia se eles eram afiliados aos Black Cloud Merchants ou não e sugeriu que você investigasse.</p>
+          <p> </p>
+          <p>Você conheceu Chicorunerk, que afirmou nunca ter ouvido falar dos Black Cloud Merchants, embora sua organização parecesse exatamente a mesma, mesmo com um nome semelhante. Ela convidou você para se juntar à organização deles.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

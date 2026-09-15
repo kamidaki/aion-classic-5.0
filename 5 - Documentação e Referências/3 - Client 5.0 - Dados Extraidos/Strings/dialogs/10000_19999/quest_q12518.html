@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou pensando em [plur][%dic:STR_DIC_E_LDF5A_FOBJ_B7_EmptyEdgel].</p>
+          <p> </p>
+          <p>Esses núcleos Idgel vazios secretam uma aura estranha. Parece bastante peculiar para mim.</p>
+          <p> </p>
+		  <p>De alguma forma, tenho um palpite de que um núcleo vazio de Idgel como este poderia explodir sem aviso prévio.</p>
+		  <p> </p>
+          <p>Tenho tanta coisa para fazer que não consigo cuidar dos núcleos também.</p>
+          <p> </p>
+          <p>Você destruiria os núcleos Idgel vazios para mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não consigo entender por que esses cubos estão espalhados em Katalam.</p>
+          <p> </p>
+          <p>Para que eles foram usados?</p>
+          <p> </p>
+          <p>Não há nenhuma evidência sólida para provar isso, mas esses cubos são perigosos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que destruiu o Cubo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Eu sabia que poderia contar com você.</p>
+          <p> </p>
+          <p>Algum dia o mistério do Id e desses Núcleos Idgel vazios certamente será resolvido.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua o [plur][%dic:STR_DIC_E_LDF5A_FOBJ_B7_EmptyEdgel] ([%2]/8).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5A_Sores_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Destrua os núcleos Idgel vazios.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sores achou que os núcleos vazios de Idgel eram perigosos. Você atendeu ao pedido dele e destruiu os núcleos Idgel vazios.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

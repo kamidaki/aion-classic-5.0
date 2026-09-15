@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+	<html>
+	<body>
+		<p>Que honra conhecer o herói de Atreia.</p>
+		<p> </p>
+		<p>O governador tem grandes esperanças em você desde que soube que você viria, [%username].</p>
+		<p> </p>
+		<p>Você já falou com o Governador Haldor?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Se você já conversou com ele, comece a se familiarizar com essa área.</p>
+		<p> </p>
+		<p>Que tal começar coletando informações sobre Vengar?</p>
+		<p> </p>
+		<p>Quanto mais você souber sobre um lugar, mais fácil será realizar missões nele.</p>
+		<p> </p>
+		<p>É melhor você Converse com [%dic:STR_DIC_N_DF5_Nixie_E].</p>
+		<p> </p>
+		<p>Nixie é muito ambiciosa e curiosa. Ela já começou a investigar as ruínas aqui em Vengar.</p>
+		<p> </p>
+		<p>Gostaria que mais membros da expedição fossem tão ambiciosos quanto Nixie.</p>
+		<p> </p>
+		<p>Por favor, veja Nixie. Ela lhe contará mais sobre Vengar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+<Voice file="Q20501-1.ogg"/>
+  </HtmlPage>
+
+   <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Na antiga Atreia, houve muitos locais que desde então foram esquecidos.</p>
+		<p> </p>
+		<p>Talvez esta região nos pareça tão misteriosa porque faz parte da história antiga de Atreia.</p>
+		<p> </p>
+		<p>Ah, o que estou pensando! Eu não deveria aborrecer outras pessoas que nem conheço com minhas explicações.</p>
+		<p> </p>
+		<p>Não me lembro de ter visto você na Tropa Expedicionária. O que traz você aqui?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você relata o que Bonath lhe disse.</Act>
+    </Selects>
+  </HtmlPage> 
+  
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>O Centurião Bonath enviou você para mim?</p>
+		<p> </p>
+		<p>De todos os cientistas da Tropa Expedicionária, ele se lembrou de mim...</p>
+		<p> </p>
+		<p>Ele sempre agiu de forma tão pouco entusiasmada comigo, então pensei que ele não tinha interesse no meu trabalho.</p>
+		<p> </p>
+		<p>Vou agradecê-lo na próxima vez que o vir.</p>
+		<p> </p>
+		<p>Já que o Centurião Bonath claramente confia em mim e enviou você até mim, farei o meu melhor para explicar tudo para você.</p>
+		<p> </p>
+		<p>Primeiro, você poderia dar uma olhada nisso?</p>
+		<p> </p>
+		<p>Quando o novo continente emergiu das inundações, pensámos que seria apenas mais um campo de batalha onde lutaríamos contra o Exército Beritra. Mas então fizemos uma descoberta surpreendente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1_1">Você olha mais de perto o item de Nixie.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Este Fragmento de Relíquia não parece interessante?</p>
+		<p> </p>
+		<p>Tenho a sensação de que já vi algo assim em algum lugar antes. Este símbolo no topo parece ser um símbolo muito antigo, mas infelizmente é difícil de identificar.</p>
+		<p> </p>
+		<p>Preciso saber mais sobre esta relíquia... Preciso de mais informações.</p>
+		<p> </p>
+		<p>Se ao menos o símbolo fosse reconhecível, poderíamos pelo menos descobrir de onde ele vem.</p>
+		<p> </p>
+		<p>Você poderia encontrar relíquias semelhantes para mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+<Voice file="Q20501-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(Está muito danificado.)</p>
+		<p> </p>
+		<p>(Você nunca viu uma forma como esta. Parece ter sido criada por uma civilização antiga.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Você o compara a um Fragmento de Relíquia.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(Parece semelhante, mas tem uma forma diferente.)</p>
+		<p> </p>
+		<p>(Você deve verificar se há mais fragmentos próximos.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(Você encontrou outro fragmento danificado próximo.)</p>
+		<p> </p>
+		<p>(Também parece bastante antigo.)</p>
+		<p> </p>
+		<p>(Parece vir de Balaur, mas é difícil ter certeza por causa dos danos.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1">Você o compara a um Fragmento de Relíquia.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(Tem uma forma semelhante, mas não é idêntica.)</p>
+		<p> </p>
+		<p>(Você deve verificar se há fragmentos não danificados nas proximidades.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(Este fragmento não está danificado.)</p>
+		<p> </p>
+		<p>(Você pode ver um símbolo semelhante aos outros.)</p>
+		<p> </p>
+		<p>(Parece ter sido usado recentemente.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+	<Act href="HACTION_SELECT6_1">Você olha para o topo.</Act>
+	<Act href="HACTION_SELECT6_1_1">Você olha para baixo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(Você atinge o topo com todas as suas forças. Nada acontece.)</p>
+		<p> </p>
+		<p>(Parece que não funciona.)</p>
+		<p> </p>
+		<p>(É semelhante ao fragmento que Nixie encontrou, mas não corresponde exatamente.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT6">Você olha de novo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(A parte inferior parece danificada.)</p>
+		<p> </p>
+		<p>(O fragmento que você possui cabe perfeitamente na abertura.)</p>
+		<p> </p>
+		<p>(Agora você pode identificar corretamente o símbolo.)</p>
+		<p> </p>
+		<p>(O símbolo na relíquia significa Dragon Lorde Tiamat.)</p>
+		<p> </p>
+		<p>(Você deveria continuar olhando ao redor.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO6">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(O cadáver de Drakan emite um cheiro pungente.)</p>
+		<p> </p>
+		<p>(Ele está vestindo o uniforme de soldado da Guilda de Tiamat.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+	<Act href="HACTION_SELECT7_1">Você olha para ele mais de perto.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select7_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>(As cicatrizes de batalha não parecem muito antigas, mas o corpo já está apodrecendo.)</p>
+		<p> </p>
+		<p>(O cadáver está vestindo um uniforme do exército de Tiamat, então parece ter alguma ligação com o fragmento.)</p>
+		<p> </p>
+		<p>(Você deveria voltar para Nixie e contar a ela o que encontrou.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage> 
+  
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Estou esperando você voltar, [%username].</p>
+		<p> </p>
+		<p>Fiquei preocupado porque não tínhamos contato há algum tempo. Estou feliz que você esteja de volta.</p>
+		<p> </p>
+		<p>Como foi a investigação?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o que aconteceu até agora.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você foi atacado pelo Exército Beritra enquanto investigava as ruínas? Você está ferido?</p>
+		<p> </p>
+		<p>Então a gravura no Fragmento da Relíquia é o símbolo de Tiamat?</p>
+		<p> </p>
+		<p>E então o corpo de um soldado da Guilda Tiamat que você encontrou perto das ruínas...</p>
+		<p> </p>
+		<p>Claramente existe uma ligação entre Tiamat e Vengar.</p>
+		<p> </p>
+		<p>Beritra também parece estar interessada nas Ruínas de Tiamat.</p>
+		<p> </p>
+		<p>Graças a você, estou um passo adiante em minha pesquisa.</p>
+		<p> </p>
+		<p>Muito obrigado!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+		     <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_DF5_SZ_ID_01] e encontre [%dic:STR_DIC_N_DF5_Bonat_E].</font></p></step>
+		     <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_DF5_Nixie_E].</font></p></step>
+		     <step><p visible="[%6]"><font color="[%7]">Vá para [%dic:STR_DIC_W_DF5_SensoryArea_Q20501a].</font></p></step>
+		     <step><p visible="[%9]"><font color="[%10]">Examine o [%dic:STR_DIC_OBJ_DF5_FOBJ_Q20501a].</font></p></step>
+		     <step><p visible="[%12]"><font color="[%13]">Examine o [%dic:STR_DIC_OBJ_DF5_FOBJ_Q20501b] próximo.</font></p></step>
+		     <step><p visible="[%15]"><font color="[%16]">Encontre o [%dic:STR_DIC_OBJ_DF5_FOBJ_Q20501c].</font></p></step>
+		     <step><p visible="[%18]"><font color="[%19]">Examine o [%dic:STR_DIC_N_DF5_TiamatArmy_Corpse_Q20501a].</font></p></step>
+		     <step><p visible="[%21]"><font color="[%22]">Conte a novidade para [%dic:STR_DIC_N_DF5_Nixie_E].</font></p></step>
+    </steps>
+		<p><font font_xml="quest_summary">Comando: Centurião Bonath está procurando por você. Vá se encontrar com ele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>O Centurião Bonath enviou você para Nixie, uma pesquisadora que estudou civilizações antigas.</p>
+		<p> </p>
+		<p>Nixie lhe deu um fragmento das ruínas e pediu que você descobrisse a qual civilização ele pertencia.</p>
+		<p> </p>
+		<p>Você fez o que Nixie pediu e descobriu que o fragmento tinha algo a ver com Tiamat.</p>
+		<p> </p>
+		<p>Você disse a Nixie que foi atacado pelo Exército Beritra enquanto investigava. Nixie suspeitava que Beritra também estivesse interessada nas ruínas.</p>
+		<p> </p>
+		<p>Nixie agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

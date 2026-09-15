@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], há uma tarefa que você deve concluir.</p>
+          <p> </p>
+          <p>Você já ouviu falar que o Templo das Balanças foi ocupado pelo inimigo?</p>
+          <p> </p>
+          <p>Esta é uma região onde são travadas as batalhas mais ferozes. O Exército Beritra, que continua expandindo sua esfera de influência, está lutando contra os Asmodianos pelo Altar da Avareza e pelo Templo das Balanças.</p>
+          <p> </p>
+          <p>É preocupante que o [%dic:STR_DIC_W_LF4_SZ_2011_A] seja agora controlado pelos nossos inimigos. Mas não devemos deixar que estas más notícias nos desanimem. Caso contrário, não teremos qualquer hipótese nesta guerra.</p>
+          <p> </p>
+          <p>Kaisinel nos guia. Não podemos recuar. Devemos balançar esta situação a nosso favor!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Capturar o Templo das Balanças é uma das partes mais importantes da nossa estratégia.</p>
+          <p> </p>
+          <p>Depois de alcançarmos uma vitória, alcançaremos muitas mais.</p>
+          <p> </p>
+          <p>Participar dessas batalhas só aumentará a sua glória, [%username].</p>
+          <p> </p>
+          <p>Reúna seus camaradas e ataque o [%dic:STR_DIC_M_QUEST_11308].</p>
+          <p> </p>
+          <p>Dê tudo de si para reconquistar o [%dic:STR_DIC_W_LF4_SZ_2011_A]. Que a bênção de Kaisinel esteja com você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eliminar o General e os seus asseclas não é uma tarefa simples.</p>
+          <p> </p>
+          <p>[%username], você não está sozinho nesta batalha. Muitos outros Daevas e legiões inteiras estão envolvidos nesta batalha. Então você certamente retornará vitorioso.</p>
+          <p> </p>
+          <p>Quando o General inimigo for eliminado e você tiver conquistado o [%dic:STR_DIC_W_LF4_SZ_2011_A], [%dic:STR_DIC_N_Queesia], o Legionário da Luz Fantasma, aparecerá.</p>
+          <p> </p>
+          <p>Fale com ela, [%username], e conte-lhe sobre suas conquistas.</p>
+          <p> </p>
+          <p>Que a proteção de Kaisinel esteja com você!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quanto mais você demora, mais a vitória escapa ao seu alcance.</p>
+          <p> </p>
+          <p>Você quer voltar ao Santuário derrotado? Ou você quer voltar para casa com aplausos de vitória?</p>
+          <p> </p>
+          <p>Lembre-se de que sua ajuda pode significar a diferença entre a vitória ou a derrota.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças à ajuda de muitos Daevas, conseguimos recapturar o Templo das Balanças.</p>
+          <p> </p>
+          <p>Muitos Elyos estão preocupados com o futuro de Elysea. Mas eles acreditam no poder de Kaisinel. Então eles vieram para Balaurea e estão lutando por Elysea.</p>
+          <p> </p>
+          <p>[%username], você é um dos bravos soldados que lutou na batalha pelo Templo das Balanças?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então é verdade.</p>
+          <p> </p>
+          <p>A princípio pensei que fosse um boato quando alguém me disse que um Daeva especial realizou feitos extraordinários na batalha pelo Templo de Escamas.</p>
+          <p> </p>
+          <p>Quero reconhecer adequadamente suas conquistas, [%username]. Então eu lhe darei uma recompensa digna.</p>
+          <p> </p>
+          <p>Estou pedindo que você continue lutando pelo Templo de Balanças e pela vitória de Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrube o Guardião Geral inimigo e recapture o [%dic:STR_DIC_W_LF4_SZ_2011_A].</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_M_QUEST_11308] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Queesia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Recapture o Templo das Escamas derrotando o Guardião Geral.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Moras pediu para você recuperar o Templo das Balanças.</p>
+          <p> </p>
+          <p>Você e seus camaradas eliminaram o Guardião Geral e recuperaram o Templo das Balanças. Então você reportou ao Siaqua.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você poderia me ajudar?</p>
+          <p> </p>
+          <p>O [plur][%dic:STR_DIC_M_LDF5A_B6_FrillFaimam_62_An] está atrapalhando o Grupo de Busca Kahrun dos Reians</p>
+          <p> </p>
+		  <p>Os Redeye Praedum estão destruindo qualquer vestígio de Kahrun.</p>
+		  <p> </p>
+          <p>É por isso que o Redeye Praedum deve ser eliminado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu matar os Redeye Praedums?</p>
+          <p> </p>
+          <p>Se você não se apressar, os rastros poderão se perder para sempre.</p>
+          <p> </p>
+          <p>Por favor, ajude-nos. É importante para o Reian.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Relate que você o matou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], obrigado. Se Kahrun realmente foi encontrado, contarei a ele sobre suas ações.</p>
+          <p> </p>
+		  <p>[%username], você é mais amigável com os Reians do que Jakahn.</p>
+		  <p> </p>
+          <p>Lamento não poder oferecer-lhe nada melhor, mas tome isto como um sinal da minha gratidão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua o [plur][%dic:STR_DIC_M_LDF5A_B6_FrillFaimam_62_An] ([%2]/15).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_LDF5a_Ambros_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Redeye Praedums que estão apagando os rastros de Kahrun.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ambros, do Grupo de Busca de Reian, pediu ajuda a você.</p>
+          <p> </p>
+          <p>Você matou os Redeye Praedums que arruinaram os sinais de Kahrun. Ambros agradeceu pelo seu retorno.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

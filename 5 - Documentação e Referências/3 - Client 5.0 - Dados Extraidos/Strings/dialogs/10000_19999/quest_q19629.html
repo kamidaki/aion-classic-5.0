@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Sauro War Depot é um santuário construído há muito tempo pela Rune Tribe.</p>
+		  <p> </p>
+		  <p>Mas quando a Tropa de Reconhecimento de Beritra o descobriu, estabeleceram ali a sua base.</p>
+		  <p> </p>
+		  <p>O importante é que as informações sobre a arma Hyperion podem ser encontradas no Sauro War Depot.</p>
+          <p> </p>
+		  <p>Sita, a Comandante da Tropa de Reconhecimento de Beritra, tem ambições de se tornar uma Dragon Lorde, [%username].</p>
+		  <p> </p>
+		  <p>Vá para o Sauro War Depot, derrote a Beritra Reconnaissance Troop e reúna informações sobre a antiga arma da Rune Tribe.</p>
+		  <p> </p>
+		  <p>O informante [%dic:STR_DIC_N_LDF5_Kanix_E] da Guilda Penas Douradas em Akaron certamente poderá ajudá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Prazer em conhecê-lo.</p>
+          <p> </p>
+		  <p>Eu sou o informante Kanix!</p>
+		  <p> </p>
+		  <p>Você pode chegar ao Sauro War Depot diretamente pelo corredor.</p>
+		  <p> </p>
+		  <p>Os soldados da Tropa de Reconhecimento Beritra não são adversários fáceis. Portanto, seria melhor se você levasse alguns aliados com você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta se há mais alguma coisa que você deveria saber.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Cada um dos corredores estreitos do Sauro War Depot abriga inimigos desagradáveis esperando para matar você, Daeva.</p>
+          <p> </p>
+		  <p>Eles são responsáveis pela morte dos meus companheiros, que eram como irmãos para mim.</p>
+		  <p> </p>
+		  <p>Ponha fim à existência deles com suas próprias mãos, Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5_Kanix_E] no [%dic:STR_DIC_W_LDF4_Advance_SZ_A_01] em Akaron.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary"> Vá até o Campo de Barreira de Fissuras em Akaron e encontre Kanix.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nicolas sugeriu enviar alguém para o Sauro War Depot.</p>
+          <p> </p>
+          <p>Kanix, o informante da Patrulha Katalam, deu-lhe informações sobre o Sauro War Depot e pediu-lhe para destruir o Exército Beritra.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,397 @@
+ParseError : abolos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\abolos.html Fail~~
+ParseError : achemenes.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\achemenes.html Fail~~
+ParseError : adelia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\adelia.html Fail~~
+ParseError : aello.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\aello.html Fail~~
+ParseError : ager.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ager.html Fail~~
+ParseError : airote.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\airote.html Fail~~
+ParseError : akarios_stone.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\akarios_stone.html Fail~~
+ParseError : alaus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\alaus.html Fail~~
+ParseError : alteno.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\alteno.html Fail~~
+ParseError : alto.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\alto.html Fail~~
+ParseError : ampeis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ampeis.html Fail~~
+ParseError : amus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\amus.html Fail~~
+ParseError : anasia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\anasia.html Fail~~
+ParseError : anontrite.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\anontrite.html Fail~~
+ParseError : antheia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\antheia.html Fail~~
+ParseError : aremine.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\aremine.html Fail~~
+ParseError : asteros.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\asteros.html Fail~~
+ParseError : atorinus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\atorinus.html Fail~~
+ParseError : auron.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\auron.html Fail~~
+ParseError : azmana.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\azmana.html Fail~~
+ParseError : belfinu.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\belfinu.html Fail~~
+ParseError : ben.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ben.html Fail~~
+ParseError : beris.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\beris.html Fail~~
+ParseError : brownielump_q43.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\brownielump_q43.html Fail~~
+ParseError : brownie_caldron.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\brownie_caldron.html Fail~~
+ParseError : brutus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\brutus.html Fail~~
+ParseError : cerios.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\cerios.html Fail~~
+ParseError : crisius.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\crisius.html Fail~~
+ParseError : daines.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\daines.html Fail~~
+ParseError : despoina.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\despoina.html Fail~~
+ParseError : dragonportal_lf1a.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\dragonportal_lf1a.html Fail~~
+ParseError : drasia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\drasia.html Fail~~
+ParseError : dress_q20.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\dress_q20.html Fail~~
+ParseError : dronoa.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\dronoa.html Fail~~
+ParseError : efrosini.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\efrosini.html Fail~~
+ParseError : elpis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\elpis.html Fail~~
+ParseError : enia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\enia.html Fail~~
+ParseError : eninte.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\eninte.html Fail~~
+ParseError : eradis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\eradis.html Fail~~
+ParseError : esera.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\esera.html Fail~~
+ParseError : estino.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\estino.html Fail~~
+ParseError : famis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\famis.html Fail~~
+ParseError : feira.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\feira.html Fail~~
+ParseError : fishing_rod.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\fishing_rod.html Fail~~
+ParseError : floatingstone_q31.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\floatingstone_q31.html Fail~~
+ParseError : fotis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\fotis.html Fail~~
+ParseError : frillfaimam_egg.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\frillfaimam_egg.html Fail~~
+ParseError : frillfaimam_egg_a.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\frillfaimam_egg_a.html Fail~~
+ParseError : gaione.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\gaione.html Fail~~
+ParseError : gano.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\gano.html Fail~~
+ParseError : gapir.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\gapir.html Fail~~
+ParseError : gen.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\gen.html Fail~~
+ParseError : glass_bottle.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\glass_bottle.html Fail~~
+ParseError : godstone_q73.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\godstone_q73.html Fail~~
+ParseError : gogohas.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\gogohas.html Fail~~
+ParseError : hanontus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\hanontus.html Fail~~
+ParseError : hianu.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\hianu.html Fail~~
+ParseError : hyacinte.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\hyacinte.html Fail~~
+ParseError : hynops.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\hynops.html Fail~~
+ParseError : ian.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ian.html Fail~~
+ParseError : ibion.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ibion.html Fail~~
+ParseError : idnovice_entrance_in.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\idnovice_entrance_in.html Fail~~
+ParseError : illos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\illos.html Fail~~
+ParseError : imerun.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\imerun.html Fail~~
+ParseError : ino.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ino.html Fail~~
+ParseError : ipis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ipis.html Fail~~
+ParseError : irona.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\irona.html Fail~~
+ParseError : ispio.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ispio.html Fail~~
+ParseError : ithers.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ithers.html Fail~~
+ParseError : jenel.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\jenel.html Fail~~
+ParseError : jewelbox_q52.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\jewelbox_q52.html Fail~~
+ParseError : kagas.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\kagas.html Fail~~
+ParseError : kairon.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\kairon.html Fail~~
+ParseError : kales.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\kales.html Fail~~
+ParseError : kalio.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\kalio.html Fail~~
+ParseError : kimena.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\kimena.html Fail~~
+ParseError : kinesos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\kinesos.html Fail~~
+ParseError : klitie.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\klitie.html Fail~~
+ParseError : krall_caldron.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\krall_caldron.html Fail~~
+ParseError : krall_flag.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\krall_flag.html Fail~~
+ParseError : krodis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\krodis.html Fail~~
+ParseError : kunandes.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\kunandes.html Fail~~
+ParseError : kustanon.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\kustanon.html Fail~~
+ParseError : lamor.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\lamor.html Fail~~
+ParseError : laskis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\laskis.html Fail~~
+ParseError : laudis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\laudis.html Fail~~
+ParseError : leipos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\leipos.html Fail~~
+ParseError : lepios.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\lepios.html Fail~~
+ParseError : leto.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\leto.html Fail~~
+ParseError : levius.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\levius.html Fail~~
+ParseError : lf1a_fobj_q18500a.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\lf1a_fobj_q18500a.html Fail~~
+ParseError : lf1a_fobj_q18500b.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\lf1a_fobj_q18500b.html Fail~~
+ParseError : linorasa.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\linorasa.html Fail~~
+ParseError : lonia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\lonia.html Fail~~
+ParseError : lostes.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\lostes.html Fail~~
+ParseError : lunax.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\lunax.html Fail~~
+ParseError : lusis.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\lusis.html Fail~~
+ParseError : mairon.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\mairon.html Fail~~
+ParseError : maniparas.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\maniparas.html Fail~~
+ParseError : manos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\manos.html Fail~~
+ParseError : melampus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\melampus.html Fail~~
+ParseError : meliodas.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\meliodas.html Fail~~
+ParseError : melpone.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\melpone.html Fail~~
+ParseError : mesarion.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\mesarion.html Fail~~
+ParseError : meteina.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\meteina.html Fail~~
+ParseError : minos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\minos.html Fail~~
+ParseError : mirdiena.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\mirdiena.html Fail~~
+ParseError : mires.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\mires.html Fail~~
+ParseError : morai.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\morai.html Fail~~
+ParseError : mune.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\mune.html Fail~~
+ParseError : muranes.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\muranes.html Fail~~
+ParseError : nadaelo.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\nadaelo.html Fail~~
+ParseError : naeru.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\naeru.html Fail~~
+ParseError : naia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\naia.html Fail~~
+ParseError : namus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\namus.html Fail~~
+ParseError : navid.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\navid.html Fail~~
+ParseError : neltonia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\neltonia.html Fail~~
+ParseError : nemia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\nemia.html Fail~~
+ParseError : nesia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\nesia.html Fail~~
+ParseError : nestos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\nestos.html Fail~~
+ParseError : newyear_lf1a_boy.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\newyear_lf1a_boy.html Fail~~
+ParseError : newyear_lf1a_girl.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\newyear_lf1a_girl.html Fail~~
+ParseError : nier.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\nier.html Fail~~
+ParseError : notos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\notos.html Fail~~
+ParseError : npc_fungchu.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\npc_fungchu.html Fail~~
+ParseError : npc_fungky.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\npc_fungky.html Fail~~
+ParseError : npc_fungo.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\npc_fungo.html Fail~~
+ParseError : npc_fungpy.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\npc_fungpy.html Fail~~
+ParseError : npc_lf1a_fethlot.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\npc_lf1a_fethlot.html Fail~~
+ParseError : npc_stony.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\npc_stony.html Fail~~
+ParseError : oldcube_q19.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\oldcube_q19.html Fail~~
+ParseError : ondanius.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ondanius.html Fail~~
+ParseError : ordais.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ordais.html Fail~~
+ParseError : ozzz.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ozzz.html Fail~~
+ParseError : palaemon.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\palaemon.html Fail~~
+ParseError : pavel.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\pavel.html Fail~~
+ParseError : perinens.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\perinens.html Fail~~
+ParseError : pernensos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\pernensos.html Fail~~
+ParseError : pernos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\pernos.html Fail~~
+ParseError : pernos_02.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\pernos_02.html Fail~~
+ParseError : phorcys.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\phorcys.html Fail~~
+ParseError : pilamonia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\pilamonia.html Fail~~
+ParseError : poa.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\poa.html Fail~~
+ParseError : pobina.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\pobina.html Fail~~
+ParseError : poliane.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\poliane.html Fail~~
+ParseError : polinia.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\polinia.html Fail~~
+ParseError : pranoa.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\pranoa.html Fail~~
+ParseError : pula.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\pula.html Fail~~
+ParseError : puppy.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\puppy.html Fail~~
+ParseError : purine.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\purine.html Fail~~
+ParseError : qydro.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\qydro.html Fail~~
+ParseError : roseino.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\roseino.html Fail~~
+ParseError : saminel.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\saminel.html Fail~~
+ParseError : sand_pile.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\sand_pile.html Fail~~
+ParseError : santenius.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\santenius.html Fail~~
+ParseError : scarecrow_nola.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\scarecrow_nola.html Fail~~
+ParseError : scroll_q41.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\scroll_q41.html Fail~~
+ParseError : scroll_q49.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\scroll_q49.html Fail~~
+ParseError : scroll_q75.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\scroll_q75.html Fail~~
+ParseError : selene.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\selene.html Fail~~
+ParseError : seril.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\seril.html Fail~~
+ParseError : shugo1.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\shugo1.html Fail~~
+ParseError : shugo2.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\shugo2.html Fail~~
+ParseError : shugo3.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\shugo3.html Fail~~
+ParseError : shugo4.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\shugo4.html Fail~~
+ParseError : shugo5.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\shugo5.html Fail~~
+ParseError : shugo6.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\shugo6.html Fail~~
+ParseError : shugo7.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\shugo7.html Fail~~
+ParseError : shugo_lf1a_01.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\shugo_lf1a_01.html Fail~~
+ParseError : soul_glaucus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\soul_glaucus.html Fail~~
+ParseError : soul_kato.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\soul_kato.html Fail~~
+ParseError : soul_melampus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\soul_melampus.html Fail~~
+ParseError : spatalos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\spatalos.html Fail~~
+ParseError : spiros.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\spiros.html Fail~~
+ParseError : statue_body.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\statue_body.html Fail~~
+ParseError : statue_head.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\statue_head.html Fail~~
+ParseError : statue_niobe.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\statue_niobe.html Fail~~
+ParseError : sukatus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\sukatus.html Fail~~
+ParseError : taiotus.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\taiotus.html Fail~~
+ParseError : tenos.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tenos.html Fail~~
+ParseError : thenon.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\thenon.html Fail~~
+ParseError : titania.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\titania.html Fail~~
+ParseError : toleo.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\toleo.html Fail~~
+ParseError : tree_keeper.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tree_keeper.html Fail~~
+ParseError : tree_lf1a_1.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tree_lf1a_1.html Fail~~
+ParseError : tree_lf1a_2.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tree_lf1a_2.html Fail~~
+ParseError : tree_move_elote.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tree_move_elote.html Fail~~
+ParseError : tree_move_noah.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tree_move_noah.html Fail~~
+ParseError : tree_nomove_daminu.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tree_nomove_daminu.html Fail~~
+ParseError : tree_sleeping.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tree_sleeping.html Fail~~
+ParseError : tula.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\tula.html Fail~~
+ParseError : une.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\une.html Fail~~
+ParseError : uno.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\uno.html Fail~~
+ParseError : urakron.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\urakron.html Fail~~
+ParseError : ursuras.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\ursuras.html Fail~~
+ParseError : uteiron.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\uteiron.html Fail~~
+ParseError : windmill_gear.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\windmill_gear.html Fail~~
+ParseError : zephyros.html Line:1, Col:1 '<' expected
+CheckFile:D:\AION CLASSIC 5.0 - EMULADOR\5 - Documentação e Referências\3 - Client 5.0 - Dados Extraidos\Strings\dialogs\lf1\zephyros.html Fail~~
+Total 198 Files Verification Failed

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para: [%username]</p>
+          <p>De: Os Wrights do Amanhecer</p>
+          <p> </p>
+          <p>Para todos os membros da guilda com título de Especialista ou superior, sua habilidade ilimitada é solicitada.</p>
+          <p> </p>
+          <p>Crie um [%dic:STR_DIC_I_QUEST_37500A] para celebrar nossos heróis nas campanhas do Abismo.</p>
+          <p> </p>
+          <p>Compre um design de um comerciante de artesanato no Santuário dos Mestres e leve sua criação para um [%dic:STR_DIC_E_Quest_37500a].</p>
+          <p> </p>
+          <p>Somente o seu trabalho da mais alta qualidade é apropriado. Honre seus irmãos e irmãs, honre seu ofício.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Isso é algo que devo fazer!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nossos companheiros de armas Elyos estão lutando por tudo que nos é caro. Devemos a eles honrar seus esforços.</p>
+          <p> </p>
+          <p>É por isso que fazer um [%dic:STR_DIC_I_QUEST_37500A] é tão importante. Tanto para o destinatário quanto para o artesão, simboliza a liberdade e a prosperidade pelas quais arriscamos tudo.</p>
+          <p> </p>
+          <p>Seu trabalho representará os Wrights of Dawn. Agora, mostre-me o que suas mãos, criatividade e coração criaram.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Espero que seja bom o suficiente."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você julgou mal, receio. Se você criou um [%dic:STR_DIC_I_QUEST_37500A], ele não está no seu Cubo.</p>
+          <p> </p>
+          <p>Você deve perceber que você faz isso não simplesmente como [%username], mas como membro dos Wrights of Dawn. Nossa reputação está em jogo.</p>
+          <p> </p>
+          <p>Você tem muito tempo. Por favor, considere cuidadosamente o seu ofício. A habilidade que você precisa já está dentro de você - você só precisa deixá-la fluir para o seu trabalho.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou pensar no que você disse."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta é a sua oferta? É... é soberbo!</p>
+          <p> </p>
+          <p>Esta é uma adição valiosa ao corpo de trabalho dos Wrights. Pode até servir de modelo para outros artesãos.</p>
+          <p> </p>
+          <p>Você se saiu bem, [%username]. Nossos irmãos e irmãs serão inspirados.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Crie um [%dic:STR_DIC_I_QUEST_37500A] e entregue-o a um [%dic:STR_DIC_E_Quest_37500a].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Wrights of Dawn cobraram de você a elaboração de um Prêmio Supremo do Abismo. Compre o design de um comerciante da guilda de artesanato e entregue os resultados a um Elyos Crafting Associate.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Wrights of Dawn solicitaram que você criasse um Prêmio Supremo do Abismo para os heróis do Abismo.</p>
+          <p> </p>
+          <p>Você fez o item conforme solicitação e entregou a um representante do grupo, que recompensou seu trabalho artesanal.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

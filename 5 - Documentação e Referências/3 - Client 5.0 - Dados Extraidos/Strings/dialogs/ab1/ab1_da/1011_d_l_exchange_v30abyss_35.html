@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Comprarei qualquer equipamento Abismo que você não precise mais.</p>
+          <p> </p>
+          <p>Tenho um preço especial para membros da Guilda [%userguildname]. Portanto, você não deve desperdiçar esta oportunidade.</p>
+          <p> </p>
+          <p>Quer me mostrar o equipamento que você tem?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_sell_list>Sell Rewards</trade_sell_list>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não é membro da Guilda que capturou a fortaleza, [%username].</p>
+          <p> </p>
+          <p>Sinto muito, mas não posso ajudá-lo porque estou ocupado servindo a Guilda que capturou a fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

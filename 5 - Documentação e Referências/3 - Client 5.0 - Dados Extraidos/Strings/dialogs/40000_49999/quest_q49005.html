@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Comando de Operação Urgente -</p>
+          <p/>
+          <p>Remetente: Alto Comando Pandaemonium</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Pedidos:</p>
+          <p/>
+          <p>Mate os [plur][%dic:STR_DIC_NPC_LF2A_DirectPortal_Guard_Li_Eh] que estão interferindo na operação em Theobomos.</p>
+          <p/>
+          <p>Reporte-se a [%dic:STR_DIC_N_Sala] no Priorado de Marchutan.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você embolsa os pedidos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, aí está você, [%username].</p>
+          <p> </p>
+          <p>Você teve muito o que fazer em Theobomos?</p>
+          <p> </p>
+          <p>Diga-me exatamente o que aconteceu, afinal ainda preciso cuidar da sua recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Venho por este meio confirmar que você cumpriu sua missão, [%username].</p>
+          <p> </p>
+          <p>Aqui está sua recompensa, espero que receba sua aprovação.</p>
+          <p> </p>
+          <p>Vejo você novamente em breve.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_NPC_LF2A_DirectPortal_Guard_Li_Eh] ([%2]/2).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatar para [%dic:STR_DIC_N_Sala].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordem de Operação Urgente: Reporte-se a Sala depois de matar os guardiões dos canhões que estão interferindo na operação em Theobomos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou a missão urgente do Alto Comando Pandaemonium e eliminou os guardiões dos canhões de Jamanok.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

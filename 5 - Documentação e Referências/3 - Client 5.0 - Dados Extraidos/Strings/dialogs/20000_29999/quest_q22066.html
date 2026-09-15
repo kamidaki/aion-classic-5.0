@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22066</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Temos pressionado muito Tiamat - ela está começando a nos temer. Mas mesmo este bom resultado gerou obstáculos.</p>
+          <p> </p>
+          <p>Ela está investindo cada vez mais poder na oposição a nós. Temos encontrado caminhos para superar, mas tem sido difícil.</p>
+          <p> </p>
+          <p>Nossos Alquimistas criaram recentemente uma possível arma: uma poção que utiliza o mesmo poder dos Corações para alimentar nossos Daevas.</p>
+          <p> </p>
+          <p>Mas precisa ser testado. Eu gostaria que você fosse a um [%dic:STR_DIC_E_LDF4B_ItemUseArea_Q12066A] e bebesse esta Poção Experimental. Diga-me se funciona ou não.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desejo assegurar-lhe, [%username], que não considero você, ou qualquer outro Daeva, um mero rato de laboratório.</p>
+          <p> </p>
+          <p>Eu não teria concordado com isso se não tivesse certeza de que a poção não faria mal, quer funcionasse ou não.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Realmente funcionou!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é uma boa notícia! Os generais do Pandemônio ficarão muito satisfeitos!</p>
+          <p> </p>
+          <p>É uma pena que a poção não possa ser usada em outro lugar. Mas talvez com algum trabalho e um pouco de tempo.... Rezo para Aion que tenhamos esse tempo.</p>
+          <p> </p>
+          <p>Mas se conseguirmos produzir essas poções em massa, teremos uma vantagem significativa sobre Balaur e Elyos. Bom trabalho!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para um dos [%dic:STR_DIC_E_LDF4B_ItemUseArea_Q12066A] e use uma Poção Experimental [%2].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relate os resultados do teste para [%dic:STR_DIC_N_Udvi].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Teste a Poção Experimental que Skafir lhe deu bebendo-a em uma das fortalezas do Coração de Tiamat.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Skafir precisava que você testasse uma poção desenvolvida pelos alquimistas do Pandemônio. Só funcionaria em uma das fortalezas do Coração.</p>
+          <p> </p>
+          <p>Você foi até um dos Corações e bebeu a poção. Funcionou, para grande alegria sua e de Skafir.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

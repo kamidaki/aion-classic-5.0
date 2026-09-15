@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lorde Marchutan pensa que Akaron é de especial importância para a conquista de Balaurea.</p>
+          <p> </p>
+          <p>E então ele enviou seus agentes para a Bacia de Tiamat, em Akaron, para apoiar o empreendimento. No entanto, os Elyos também têm um agente estacionado lá.</p>
+          <p> </p>
+          <p>Este agente é conhecido como [%dic:STR_DIC_M_LDF4_Advance_GodEliteLF]. Você deve ir imediatamente para a Bacia de Tiamat e eliminá-la. Traga de volta seu [%dic:STR_DIC_I_quest_23916a] como prova, isso deve ser suficiente.</p>
+          <p> </p>
+          <p>Veille ficou ainda mais forte desde que ascendeu. Ela também se cercou de guarda-costas. Então eu sugiro que você chame seus companheiros de armas para ajudá-lo nesta missão e não vá sozinho.</p>
+          <p> </p>
+          <p>Por favor, faça um esforço.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você eliminou o agente na Bacia de Tiamat?</p>
+          <p> </p>
+          <p>A Bacia de Tiamat é da maior importância, por isso não podemos permitir que os nossos inimigos a ocupem a qualquer custo.</p>
+          <p> </p>
+          <p>Ascended Veille e seus seguidores já causaram problemas suficientes. Sofremos muitas perdas por causa dela.</p>
+          <p> </p>
+          <p>Nossa situação está cada vez pior. Vamos perder esta luta se não fizermos nada.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Broche Quebrado do Agente.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esse é o broche quebrado do agente! Prova que você eliminou o agente Elyos.</p>
+          <p> </p>
+          <p>Excelente, realmente excelente! Imagino que tenha sido uma batalha árdua.</p>
+          <p> </p>
+          <p>Finalmente, agora há novamente esperança de que possamos vencer em Akaron, tudo graças a você.</p>
+          <p> </p>
+          <p>Esta é a recompensa pela tarefa. Por favor, pegue. Você merece muito mais, com certeza, mas temo que seja tudo o que posso oferecer por um feito tão heróico.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_M_LDF4_Advance_GodEliteLF], obtenha o [%dic:STR_DIC_I_quest_23916a] e leve-o para [%dic:STR_DIC_N_LDF4_Advance_Helgund_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine o agente Elyos ascendido Veille na Bacia de Tiamat e traga provas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Tribuno Helgund lhe disse que Veille e o agente de Elyos foram vistos na Bacia de Tiamat.</p>
+          <p> </p>
+          <p>Você partiu imediatamente, eliminou Ascended Veille e pegou seu broche quebrado como prova.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

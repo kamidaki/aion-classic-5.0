@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você consegue ver a propriedade lá atrás, do outro lado?</p>
+          <p> </p>
+          <p>Por favor, procure em todos os cantos desta grande propriedade.</p>
+          <p> </p>
+          <p>Nossas minas se estendem até lá.</p>
+          <p> </p>
+          <p>Você provavelmente não pode imaginar o tamanho de nossas minas.</p>
+          <p> </p>
+          <p>Voe com a Air Line e conheça Krerunerk. Shongshon.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nossa mina é tão grande que você pode se perder nela, ak.</p>
+          <p> </p>
+          <p>Mas você não precisa se preocupar se se perder, pois ainda está em nosso território.</p>
+          <p> </p>
+          <p>De qualquer forma, você ainda está na mina, ak.</p>
+          <p> </p>
+          <p>[%username], você também está perdido, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Diz-se que Mairinerk enviou para Shugo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mairinerk mandou você, ok?</p>
+          <p> </p>
+          <p>Achei que você fosse um convidado que havia pegado o caminho errado, ak.</p>
+          <p> </p>
+          <p>Você viu o quão grande é a nossa mina, ak.</p>
+          <p> </p>
+          <p>Você fez um esforço para chegar aqui, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_N_LDF5a_Krering_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Visite Krerunerk, que administra uma mina junto com Mairinerk, usando a Linha Aérea.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mairinerk disse que era dono de uma grande mina no caminho para as Muralhas e que você deveria subir, pegar a Linha Aérea e encontrar Krerunerk. Quando você conheceu Krerunerk, ele o parabenizou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

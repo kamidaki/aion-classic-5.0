@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39509</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Boletim de atualização para membros do comerciante Black Cloud -</p>
+          <p> </p>
+          <p>Colegas comerciantes da Nuvem Negra, por favor, estejam cientes de que os Serrators em Satrakand não dão ouvidos à razão.</p>
+          <p> </p>
+          <p>Além disso, não dê ouvidos a Shugo gritando, gritando ou chorando por ajuda.</p>
+          <p> </p>
+          <p>Os comerciantes deveriam saber que o Serrator é a pior coisa de Sarpan, com cara de pesadelo e sempre rugindo, rugindo, rugindo!</p>
+          <p> </p>
+          <p>Solicitação: Remoção de [%dic:STR_DIC_M_LDF4A_C2_DragonSnake_57_An]s em Satrakand, e também Zorinerk tirando folga amanhã.</p>
+          <p> </p>
+          <p>- Zorinerk, Vanguarda Mercante da Nuvem Negra -</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Eu meio que me sinto mal por esse Zorinerk."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Dark Stormy Daeva favorito!</p>
+          <p> </p>
+          <p>Também apenas Dark Stormy Daeva! Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu matei aqueles Serrators."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Sim, sim! Muito bom, muito bom!</p>
+          <p> </p>
+          <p>Daeva preencha este formulário de aquisição de recompensa do boletim de atualização. Assine abaixo!</p>
+          <p> </p>
+          <p>Contará a Zorinerk sobre Serrators. Talvez ele pare de gritar então, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF4A_C2_DragonSnake_57_An]s ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Arquive seu relatório com [%dic:STR_DIC_N_Shugo_LDF4a_02].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Comerciantes da Nuvem Negra precisam de ajuda com Ruthless Serrators em Satrakand.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um Boletim de Atualização dos Comerciantes da Nuvem Negra e parecia que eles estavam tendo alguns problemas.</p>
+          <p> </p>
+          <p>Você matou Ruthless Serrators em Satrakand e Muarinerk o recompensou. Você está começando a se perguntar se os Black Cloud Merchants fazem muito mais do que preencher formulários e se metem em problemas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

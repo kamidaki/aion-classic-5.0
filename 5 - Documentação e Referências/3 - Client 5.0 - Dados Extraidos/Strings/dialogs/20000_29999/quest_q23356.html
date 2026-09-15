@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Esquadrão de Limpeza Katalam,[%dic:STR_DIC_N_LDF5_Village_Guard16_D] do [%dic:STR_DIC_W_LDF5b_D1_v16]</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Ordens: Mate os Elyos que invadiram [%dic:STR_DIC_W_LDF5b_SZ_D1_1] em South Katalam.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As provocações dos Elyos estão me deixando com a testa franzida.</p>
+          <p> </p>
+          <p>Lamento ter me candidatado para vir para esta região perigosa.</p>
+          <p> </p>
+          <p>Bah, eu devia estar cego naquela época.</p>
+          <p> </p>
+          <p>Estamos contando com [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh, é realmente um golpe de sorte.</p>
+          <p> </p>
+          <p>Foi uma boa decisão recorrermos a você, [%username]. Graças a você, agora tenho uma preocupação a menos.</p>
+          <p> </p>
+          <p>Desculpe por isso antes. Como já estou aqui, farei o meu melhor para completar minha tarefa.</p>
+          <p> </p>
+          <p>Seria ótimo se você pudesse continuar me ajudando também, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Elyos que invadiram [%dic:STR_DIC_W_LDF5b_SZ_D1_1] em South Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LDF5_Village_Guard16_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens urgentes: Mate os Elyos que se infiltraram no reservatório Bassen em South Katalam e reporte-se a Igrit.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O infiltrado Elyos tinha como alvo o reservatório Bassen em South Katalam.</p>
+          <p> </p>
+          <p>Você destruiu os Elyos infiltrados e reportou a Igrit.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

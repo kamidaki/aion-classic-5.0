@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As Medalhas Ceranium são símbolos especiais que designam o seu mérito. Eles são difíceis de encontrar.</p>
+          <p> </p>
+          <p>Se você me trouxer uma Medalha de Mithril e um Soro Balaur Brilhante, posso tentar converter esses materiais em uma Medalha de Cerânio.</p>
+          <p> </p>
+          <p>Mas não posso prometer que a conversão será um sucesso. Você ainda quer experimentar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você quiser uma Medalha Ceranium, traga-me uma Medalha de Mithril e um Soro Balaur Brilhante.</p>
+          <p> </p>
+          <p>Se faltar apenas um destes materiais, a conversão não poderá ser concluída.</p>
+          <p> </p>
+          <p>Verifique se você possui os dois itens.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Medalha de Mithril e o soro sanguíneo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quero avisar antecipadamente que o material é consumido durante o processo de transformação e não posso garantir que você obterá o resultado desejado.</p>
+          <p> </p>
+          <p>Mas ainda não há maneira melhor, infelizmente. Mas vale a pena tentar.</p>
+          <p> </p>
+          <p>Verifique se a transformação foi bem-sucedida.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve as Medalhas de Mithril e o reluzente Soro Balaur para [%dic:STR_DIC_N_LDF4_Advance_j1_D_exchange_medal_01].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Dê a Helgen uma Medalha de Mithril e o reluzente Balaur Serum para que ele possa tentar converter os materiais em uma Medalha de Cerânio.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Helgen se ofereceu para converter uma Medalha de Mithril e um Soro Balaur Brilhante em uma Medalha de Cerânio.</p>
+          <p> </p>
+          <p>Você adquiriu os materiais para Helgen e o ajudou a convertê-los.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

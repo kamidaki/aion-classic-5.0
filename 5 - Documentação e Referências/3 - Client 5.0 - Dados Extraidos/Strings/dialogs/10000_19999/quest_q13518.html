@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora a batalha contra os Balaur em Katalam atingiu o seu auge.</p>
+          <p> </p>
+          <p>O [%dic:STR_DIC_E_LDF5a_5011_Killer_Drall], o [%dic:STR_DIC_E_LDF5b_6011_Killer_Drall] e o [%dic:STR_DIC_E_LDF5b_6021_Killer_Drall] apareceram para atacar as fortalezas.</p>
+          <p> </p>
+          <p>Esses Comandantes Dredgion são uma ameaça para os Generais Guardiões nas fortalezas.</p>
+          <p> </p>
+          <p>Se você completar esta missão com sucesso, receberá uma recompensa especial.</p>
+          <p> </p>
+          <p>Como ninguém sabe qual Comandante Dredgion aparecerá e quando, a velocidade é essencial.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você derrotou o [%dic:STR_DIC_E_LDF5a_5011_Killer_Drall], o [%dic:STR_DIC_E_LDF5b_6011_Killer_Drall] e o [%dic:STR_DIC_E_LDF5b_6021_Killer_Drall]?</p>
+          <p> </p>
+          <p>Os Comandantes Dredgion estão atacando os Generais Guardiões na Fortaleza Sillus, na Fortaleza Bassen e na Fortaleza Prades. Eles são lutadores impiedosos.</p>
+          <p> </p>
+          <p>Se você não parar os Comandantes Dredgion, os Generais Guardiões perderão as fortalezas para os soldados Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que eliminou os Comandantes Dredgion.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou muito aliviado em ouvir isso de você.</p>
+          <p> </p>
+          <p>O Exército Beritra parece favorecer uma tática de atacar as fortalezas usando o Dredgion e concentrando-se nos Generais Guardiões.</p>
+          <p> </p>
+          <p>Não houve estratégia de defesa para isso, mas graças a Daevas destemidos como você, posso relaxar um pouco agora.</p>
+          <p> </p>
+          <p>Aqui está a recompensa prometida. Por favor, aceite.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Comandantes Dredgion que estão ameaçando os Generais Guardiões em todas as três fortalezas ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_LDF5a_Tiryns_Commander].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Comandantes Dredgion que atacaram os Generais Guardiões das três fortalezas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Governador Tirins pediu que você parasse os Comandantes Dredgion que ameaçavam os Generais Guardiões em todas as três fortalezas.</p>
+          <p> </p>
+          <p>Você completou a missão de Tirins com sucesso, pela qual o governador agradeceu e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

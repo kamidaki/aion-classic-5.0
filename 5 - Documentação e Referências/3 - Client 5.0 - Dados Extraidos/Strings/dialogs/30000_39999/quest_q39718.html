@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- A Carta Verde -</p>
+          <p> </p>
+          <p>Prezados membros da Green Hat Alliance,</p>
+          <p/>
+          <p>desta vez nosso foco está nas Terras Altas de Katalam, no sul.</p>
+          <p/>
+          <p>Silverine vende água mineral desta região. Pegue uma amostra de água no tubo de ensaio fornecido para medir os níveis de contaminação. Então leve a amostra para *** na Vila Goldrin.</p>
+          <p/>
+          <p>E não se esqueça, a natureza é essencial para nossas vidas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde a carta no bolso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva tem alguma reclamação, ok?</p>
+          <p> </p>
+          <p>Muitas pessoas estão passando por aqui por causa de dores de estômago no momento, é o mesmo com Daeva?</p>
+          <p> </p>
+          <p>Se sim, então Daeva está certo em vir aqui. Este hospital é especializado em dores de estômago, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o tubo de ensaio contendo água do pântano.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Em voz baixa) Então Daeva também é membro da Green Hat Alliance.</p>
+          <p> </p>
+          <p>Vou examinar isso rapidamente, por favor, espere um momento.</p>
+          <p> </p>
+          <p>(Mistura algo no tubo de ensaio e examina a amostra)</p>
+          <p> </p>
+          <p>Shugo não consegue acreditar, Nyerk. Daeva realmente trouxe isso das Terras Altas de Katallam, akakak?</p>
+          <p> </p>
+          <p>A amostra está totalmente infestada de bactérias.</p>
+          <p> </p>
+          <p>Agora Shugo entende por que os pacientes ganharam tanto peso, nyerk.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para as Terras Altas de Katalam, no sul, e encha o tubo de ensaio com água do pântano.</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Leve o tubo de ensaio cheio de água do pântano para *** no hospital Goldrin.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Chegou uma carta da Green Hat Alliance. Leia e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chegou uma carta da Green Hat Alliance.</p>
+          <p> </p>
+          <p>Você trouxe o tubo de ensaio com a amostra de água suja para *** no hospital Goldrin e foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

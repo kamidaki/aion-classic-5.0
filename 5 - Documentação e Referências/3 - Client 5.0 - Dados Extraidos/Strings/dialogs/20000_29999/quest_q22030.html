@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22030</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tarefa mais importante no Olho de Tiamaranta é encontrar o caminho para a Fortaleza de Tiamat.</p>
+          <p> </p>
+          <p>Os Balaur estão mantendo o caminho em segredo, então encontrá-lo não será fácil.</p>
+          <p> </p>
+          <p>Mas há uma solução para este problema.</p>
+          <p> </p>
+          <p>Se você matar o [%dic:STR_DIC_M_TDown_DrakanFi_Noble_60_An] no Olho de Tiamaranta, poderá obter o [%dic:STR_DIC_I_quest_12030a].</p>
+          <p> </p>
+          <p>Aparentemente, os Balaur o usam como mapa, então podemos encontrar a entrada para a Fortaleza Tiamat se você obtiver este [%dic:STR_DIC_I_quest_12030a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está correndo como se sua crina estivesse pegando fogo, [%username]. Gostaria de talvez contar ao seu comandante o que está acontecendo?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Essa coisa que encontrei... é importante?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrou a joia sonora? Fragmentos, você tem ideia do que é isso? Não, você não faria isso, porque é segredo.</p>
+          <p> </p>
+          <p>Mas você trouxe para mim em vez dos Reianos... você tem bons instintos, [%username]. Devo dizer que estou impressionado.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [%dic:STR_DIC_I_quest_12030a] e leve-o para [%dic:STR_DIC_N_Trois].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">A Joia Sonora deve ajudá-lo a encontrar a entrada para a Fortaleza de Tiamat. Mate o Protetorado e obtenha a Joia Sonora.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Grandia disse que a tarefa mais importante no Olho de Tiamaranta é encontrar o caminho para a Fortaleza de Tiamat.</p>
+          <p> </p>
+          <p>É por isso que você matou o Protetorado e recebeu a Joia Sonora que os Balaur usam como mapa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Espero que essas notícias repentinas não o tenham assustado.</p>
+          <p> </p>
+          <p>Vou ser breve. Faça o seu melhor para que os Elyos possam controlar Reshanta.</p>
+          <p> </p>
+          <p>Ajude a expulsar os Asmodianos e os Balaur e ocupar as fortalezas em todas as regiões.</p> 
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho sua resposta refrescante.</p>
+          <p> </p>
+          <p>Uma palavra de cautela, no entanto. Estas missões não são como as de Atreia.</p>
+          <p> </p>
+          <p>Este lugar está cheio de inimigos. Não basta ter cuidado com os Asmodianos e os Balaur.</p>
+          <p> </p>
+          <p>Aqui, por favor, pegue isso. É uma lista de tarefas para você fazer. Basta seguir as instruções detalhadas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+        <step><p visible="[%0]"><font color="[%1]">Conheça [%dic:STR_DIC_N_Taranis], o Governador de Reshanta, e aceite sua missão.</font></p></step>                    
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Encontre o Governador Michalis em Reshanta e aceite as tarefas que ele lhe der.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O governador Michalis, em Reshanta, deu-lhe uma lista de tarefas. Ele pediu que você ajudasse os Elyos a se livrarem dos Asmodianos e dos Balaur para obter o controle de Reshanta.</p>  
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

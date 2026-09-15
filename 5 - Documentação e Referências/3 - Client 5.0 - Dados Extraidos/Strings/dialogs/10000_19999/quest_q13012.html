@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O 40º Exército deve estar atrás do Artesão Errante de Nevilim.</p>
+          <p> </p>
+          <p>Este Nevilim certamente poderá lhe contar mais sobre a arma antiga que você está procurando.</p>
+          <p> </p>
+          <p>Mas se quisermos fazer algo em relação ao 40º Exército, precisaremos eliminar a sua fonte de informação. Isso significa que teremos que liquidar os Nevilim.</p>
+          <p> </p>
+          <p>Mate [%dic:STR_DIC_M_LDF5B_A4_Nebilim_65_An].</p>
+          <p> </p>
+          <p>Ele não poderá passar informações se estiver morto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por mais resistente que um Nevilim possa ser, nem mesmo ele resistirá aos guerreiros de elite do 40º Exército.</p>
+          <p> </p>
+          <p>É apenas uma questão de tempo até que o 40º Exército obtenha informações sobre a antiga arma dos Nevilim.</p>
+          <p> </p>
+          <p>Isso simplesmente não deve acontecer.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF5B_A4_Nebilim_65_An] não tem uma atitude muito amigável conosco. Por favor, elimine-o para que ele não possa divulgar mais informações a ninguém.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho de admitir, embora me doa fazê-lo, que devo sacrificar inocentes para deter o inimigo.</p>
+          <p> </p>
+          <p>Seria um erro, porém, subestimar o Beritra.</p>
+          <p> </p>
+          <p>Um adversário malicioso como esse está apenas pedindo uma dose do mesmo tratamento.</p>
+          <p> </p>
+          <p>Muito bom. Obrigado!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrota [%dic:STR_DIC_M_LDF5B_A4_Nebilim_65_An] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Faitos_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote Nevilim para que o 40º Exército não possa receber mais informações dele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O 40º Exército estava interessado no errante Artesão Nevilim, pois queriam usá-lo para obter mais conhecimento sobre a arma antiga.</p>
+          <p> </p>
+          <p>Você eliminou o Artesão Nevilim a pedido de Paitho.</p>
+          <p> </p>
+          <p>Esta missão despertou em você uma sensação preocupante de mau presságio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

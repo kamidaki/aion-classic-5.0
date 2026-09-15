@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q49604</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>1. Destinatário: Funcionário:[%username]</p>
+          <p> </p>
+          <p>2. Tarefa: Foi dito que está se tornando difícil operar a Serraria devido aos frequentes ataques dos Indígenas Hurukuku. Por este motivo, pedimos que elimine o [%dic:STR_DIC_M_LDF5A_C3_Owllau_all] e reporte ao escritório administrativo.</p>
+          <p> </p>
+          <p>3. Escritório administrativo: [%dic:STR_DIC_E_LDF5a_Silverlin_BD]</p>
+          <p> </p>
+          <p>Assim que a tarefa for concluída, você receberá uma recompensa. Por favor, faça um trabalho bom e limpo, ak.</p>
+          <p> </p>
+          <p>- Danurinerk, chefe de pessoal da Silverine Limited</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Espere um momento, você acabou de vir do Rubininerk Lumber Camp, ok?</p>
+          <p> </p>
+          <p>Você deveria eliminar o Indígena Hurukuku! Está ficando muito mais difícil, pois eles são ainda mais fortes que os insetos.</p>
+          <p> </p>
+          <p>Conte ao Shugo como foi a missão, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Já ouvi falar dos indígenas Hurukuku antes, mas não sabia que eles ainda eram tão persistentes, ak.</p>
+          <p> </p>
+          <p>Adquirimos o título do Acampamento Madeireiro dos Rubirinerks há algum tempo. Mas eles ainda estão se escondendo e fazendo algo ruim, ak.</p>
+          <p> </p>
+          <p>De qualquer forma, Shugo enviará uma mensagem informando que Daeva realizou a tarefa para minha total satisfação, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os [plur][%dic:STR_DIC_M_LDF5A_C3_Owllau_all] que estão atacando o Acampamento Madeireiro Rubininerk ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_E_LDF5a_Silverlin_BD].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você recebeu instruções da Silverine Limited. Leia-os e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu instruções da Silverine Limited.</p>
+          <p> </p>
+          <p>Depois de matar os indígenas Hurukuku que estavam atacando o acampamento Rubininerk-Lumber e reportar-se à filial da Silverine Limited em North Katalam, você foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

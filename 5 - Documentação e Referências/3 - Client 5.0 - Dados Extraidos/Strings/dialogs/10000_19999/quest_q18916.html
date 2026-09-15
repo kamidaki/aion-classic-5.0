@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recebi uma mensagem do meu superior.</p>
+          <p> </p>
+          <p>Tratava-se de um selo que só é concedido a membros de alto escalão do Exército Beritra.</p>
+          <p> </p>
+          <p>Além disso, há também a questão de que pode ser enviado aos superiores como prova da eliminação de um líder Balaur de alto escalão.</p>
+          <p> </p>
+          <p>Se o Chefe do Estado-Maior for eliminado, o Depósito de Guerra cairá em breve.</p>
+          <p> </p>
+          <p>Você deve matar [%dic:STR_DIC_M_IDVritra_Base_Drakan_Guardian_65_Ae2_Nmd] e obter seu [%dic:STR_DIC_I_quest_18916a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, é você, [%username]?</p>
+          <p> </p>
+          <p>A liderança já começou a me pressionar. Então, estou ansioso esperando você voltar.</p>
+          <p> </p>
+          <p>Claro, nunca duvidei nem por um segundo que você obteria o selo. Mas como esse item não é fácil de obter, fiquei pensando se deveria pedir mais tempo aos meus superiores.</p>
+          <p> </p>
+          <p>Afinal, enfrentar o Chefe da Casa Civil é uma tarefa especialmente difícil.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o selo fino do Chefe de Gabinete</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que bom ver você, [%username]!</p>
+          <p> </p>
+          <p>Eu sabia que você faria isso!</p>
+          <p> </p>
+          <p>Basta olhar para o acabamento elegante. Você pode dizer que deve realmente ser um objeto pertencente a um Balaur de alto escalão.</p>
+          <p> </p>
+          <p>Vale a pena ser paciente, não é? Estou muito grato.</p>
+          <p> </p>
+          <p>Espero que você me ajude na próxima vez também. Talvez eu precise de mais selos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_IDVritra_Base_Drakan_Guardian_65_Ae2_Nmd] para obter seu [%dic:STR_DIC_I_quest_18916a]. Leve para [%dic:STR_DIC_N_LDF5_Kanix_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Chefe do Estado Maior Moriata e obtenha o selo do Chefe do Estado Maior.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kanix ordenou que você obtivesse o selo elaborado do chefe de gabinete.</p>
+          <p> </p>
+          <p>Você matou o Chefe do Estado-Maior Moriata pelo Selo Ornamentado do Chefe do Estado-Maior. Quando você deu para Kanix, ele pediu que você o ajudasse na próxima vez também.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

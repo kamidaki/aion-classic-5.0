@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chegou a hora de conquistar Pangéia. Por favor, conquiste todas as quatro regiões com bases na Pangéia e depois reporte-se a mim.</p>
+          <p> </p>
+          <p>Para conseguir isso, você deve subjugar o [%dic:STR_DIC_E_GAb1_01_chiefall] no Território Belus, o [%dic:STR_DIC_E_GAb1_02_chiefall] no Território Aspida, o [%dic:STR_DIC_E_GAb1_03_chiefall] no Território Athanos e o [%dic:STR_DIC_E_GAb1_03_chiefall] no Território Deylon.</p>
+		  <p> </p>
+          <p>Eles monitorarão os inimigos ao redor da base.</p>
+          <p> </p>
+          <p>Esta é uma oportunidade maravilhosa para impulsionar a conquista das fortalezas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Toda a nossa vitória na Pangeia depende desta missão. Se falharmos, também perderemos a guerra contra os Asmodianos.</p>
+          <p> </p>
+          <p>Mesmo que seus inimigos sejam muitos, você não deve se esquivar dessa tarefa, [%username]. Afinal, isso diz respeito à sua reputação. Esta é uma missão extremamente importante.</p>
+          <p> </p>
+          <p>Por favor, não nos decepcione. Afinal, você é a esperança brilhante da iluminada Elysea.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Incrível! Você realmente fez isso!</p>
+          <p> </p>
+          <p>Mesmo que não controlemos todas as fortalezas da Pangéia, ocupar este território ainda é uma enorme vantagem para nós. Isso nos ajudará a ocupar também as outras fortalezas.</p>
+          <p> </p>
+          <p>Esta missão continuará até governarmos toda a Pangéia. Por favor, continue tentando!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine os comandantes inimigos que ocupam as guarnições na Pangéia.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_GAb1_01_chiefall] no Território Belus ([%2]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_GAb1_02_chiefall] no Território Aspida ([%5]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_GAb1_03_chiefall] no Território Athanos ([%8]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_GAb1_04_chiefall] no Território Deylon ([%11]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_GAb1_Quest_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os comandantes inimigos nas guarnições do Território Belus, do Território Aspida, do Território Athanos e do Território Deylon.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hateron pediu que você eliminasse os comandantes inimigos no Território Belus, no Território Aspida e no Território Athanos para que Pangea pudesse ser purificada.</p>
+          <p> </p>
+          <p>Você eliminou os comandantes em cada território e foi recompensado quando retornou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], é um prazer, akakak.</p>
+          <p> </p>
+          <p>Se Daeva quiser provar seu mérito, Shugo tem uma proposta para Daeva, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+    <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>Traga para Shugo uma Grande Árvore Sagrada, ak.</p>
+          <p> </p>
+	  <p>A Grande Árvore Sagrada é muito importante para a prosperidade dos Shugos, ak.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo depende de Daeva e esperará aqui pelo retorno de Daeva. Ak!</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Daeva provavelmente ainda não está pronto, ak.</p>
+         <p> </p>
+         <p>Que pena, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva deve ir para a fortaleza!</p>
+          <p> </p>
+          <p>A Grande Árvore Sagrada aumentará os méritos gloriosos de [%username], akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Grande Árvore Sagrada.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que Daeva ainda não está envolvido na batalha.</p>
+	  <p> </p>
+          <p>Daeva deveria obter uma Grande Árvore Sagrada o mais rápido possível, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo nunca teria pensado que Daeva iria obtê-lo tão rapidamente.</p>
+          <p> </p>
+          <p>Daeva deveria ser recompensado de acordo, akakak.</p>
+          <p> </p>
+          <p>Como Daeva trouxe uma Grande Árvore, Daeva receberá uma recompensa luxuosa, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+                     <step><p visible="[%0]"><font color="[%1]">Obtenha uma Grande Árvore Sagrada e leve-a para Glorinerk.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra o pedido de Glorinerk e obtenha uma Grande Árvore Sagrada.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Glorinerk disse que muitos Daevas dariam qualquer coisa para aumentar sua honra. Isto requer uma Grande Árvore Sagrada.</p>
+          <p> </p>
+          <p>Você obteve uma Grande Árvore Sagrada e foi recompensado com honra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

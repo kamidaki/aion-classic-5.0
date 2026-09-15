@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21511</QuestId>
+    <QuestName>칼리돈 마을의 거신병 석상 5</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uck, espere, acho que vou passar mal. Não, não, estou bem. Aham. Ok, isso é sério agora, [%username].</p>
+          <p> </p>
+          <p>Nós só temos que... untar você com esse suco de fruta e... eh, espere, eu vou... não, estou bem.</p>
+          <p> </p>
+          <p>Aham. O Calydon tem um olfato incrivelmente forte. Aqueles narizes enormes, sabe? Se não aguentarmos isso - huck, espere... ok, estou bem - se não aguentarmos esse cheiro, então eles ficarão longe de você. Esse fedor deve mantê-los distantes enquanto você pega o [%dic:STR_DIC_OBJ_LDF4a_21511_piece] do [%dic:STR_DIC_W_LDF4a_SZ_A4_06].</p>
+          <p> </p>
+          <p>Hrng. Depressa, vá, saia daqui!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username]. Apenas... fique na porta onde sopra uma brisa, ok?</p>
+          <p> </p>
+          <p>Esse fedor está me dando dor de cabeça.</p>
+          <p> </p>
+          <p>O que está errado? O que aconteceu?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"O que há de errado?! DEIXE-ME DIZER O QUE HÁ DE ERRADO..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau, fácil, fácil! Então o cheiro não teve efeito no Humnaz, o Fragmento Petralith se desintegrou quando você o tocou e então algum Coordenador de Ritual apareceu para investigar?</p>
+          <p> </p>
+          <p>Ok, entendo que você esteja bravo, [%username], mas não precisa gritar. O cheiro irá embora... eventualmente. Alguns dias no máximo.</p>
+          <p> </p>
+          <p>Pelo lado positivo, acho que não precisamos nos preocupar com os Humnaz usando a tecnologia Petralith. Parece que aquele pedaço de Petralith era tão antigo que não valeu a pena todo o nosso esforço. Ah bem! Ei, por que seus olhos estão vermelhos?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Roube o [%dic:STR_DIC_OBJ_LDF4a_21511_piece] do [%dic:STR_DIC_W_LDF4a_SZ_A4_06]. ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Tanytia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tanitia descobriu uma maneira de garantir que os Humnaz lhe dêem um amplo espaço enquanto você rouba o fragmento de Petralith.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Cheirando a calças imundas, manchadas de frutas mofadas e depois bem passadas, você correu para o Santuário do Guerreiro para roubar o Fragmento de Petralite de lá.</p>
+          <p> </p>
+          <p>Você abriu caminho até o fragmento, mas assim que tocou nele, ele se desintegrou.</p>
+          <p> </p>
+          <p>Então outro Humnaz apareceu para verificar o Fragmento de Petralite, e você teve que matá-lo também.</p>
+          <p> </p>
+          <p>Você relatou a Tanitia, que pareceu não entender por que você estava insatisfeito com ela.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

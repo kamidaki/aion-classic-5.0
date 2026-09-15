@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Defender o Território Ocupado é importante, mas geri-lo também o é.</p>
+          <p> </p>
+          <p>A situação acaba de se tornar um pouco mais estável, mas não parece que esta tendência vá durar muito tempo.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF5B_D2_Rhinoce_63_An] e [%dic:STR_DIC_M_LDF5B_D2_DirebeastY_63_An] são a causa aqui.</p>
+          <p> </p>
+          <p>Eles estão rondando e impedindo todos os trabalhos de manutenção que estamos tentando fazer na aldeia, não aguento mais.</p>
+          <p> </p>
+          <p>Por favor, livre-se deles.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Devido ao [%dic:STR_DIC_M_LDF5B_D2_Rhinoce_63_An] e [%dic:STR_DIC_M_LDF5B_D2_DirebeastY_63_An] não podemos realizar manutenção ou qualquer outro trabalho.</p>
+          <p> </p>
+          <p>Mas não podemos sair da aldeia assim.</p>
+          <p> </p>
+          <p>Ajude-nos a corrigir a situação aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As obras de reparação da aldeia podem ser realizadas novamente a partir de hoje.</p>
+          <p> </p>
+          <p>Quero agradecer do fundo do meu coração por toda a ajuda.</p>
+          <p> </p>
+          <p>Graças a você, [%username], sinto que meu coração ficou dez vezes mais leve.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar [%dic:STR_DIC_M_LDF5B_D2_Rhinoce_63_An] ([%2]/5).</font></p>
+                     <p visible="[%3]"><font color="[%4]">Destruir [%dic:STR_DIC_M_LDF5B_D2_DirebeastY_63_An] ([%5]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard14_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Rynoces e Taiga que estão ameaçando a vila.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olaf pediu para você matar os Rynoces e os Taiga, que estão causando problemas na vila.</p>
+          <p> </p>
+          <p>Você matou os Rynoces e os Taiga. Olaf ficou satisfeito com seu desempenho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

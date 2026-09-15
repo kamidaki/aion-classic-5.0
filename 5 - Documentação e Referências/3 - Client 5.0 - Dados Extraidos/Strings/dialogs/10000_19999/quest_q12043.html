@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12043</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Coração da Ira é um lugar bastante inóspito. Mesmo assim, mesmo uma terra como Tiamaranta tem as suas maravilhas.</p>
+          <p> </p>
+          <p>Veja o Fragmento de Lustre, por exemplo. É carregado com um tipo de Éter desconhecido em Elysea e Asmodae. Aparentemente eles são formados no solo, e Shimmering Twisters os "desenterra".</p>
+          <p> </p>
+          <p>Recebi notícias do Santuário de que os estudiosos de lá estão ansiosos para estudar alguns. Já que você está aqui, por que não os atende?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pessoalmente, não tenho certeza sobre esta missão. Investe muito tempo e esperança em algo que pode não dar certo.</p>
+          <p> </p>
+          <p>Mas então, não sou eu quem toma essas decisões. O que devo dizer ao Santuário, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Que suas amostras estarão a caminho."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmmm, eles são bonitos, pelo menos. No mínimo, suponho que os Artesãos terão outra coisa com que trabalhar.</p>
+          <p> </p>
+          <p>Esperançosamente, porém, o Éter nestes fragmentos nos dirá algo sobre este mundo... ou nos dará acesso a um novo poder.</p>
+          <p> </p>
+          <p>Mas essa não é nossa preocupação nem sua. Você fez seu trabalho e bem, acrescento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre o Fragmento de Lustres e leve-os para Mikena.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os fragmentos varridos por Shimmering Twisters podem ser úteis. Encontre o Fragmento de Lustre e leve-o para Mikena.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mikena relatou que Santuário queria que você reunisse Fragmentos de Lustre obtidos de Espíritos Tornado para estudo.</p>
+          <p> </p>
+          <p>Então você matou Sparkle Twisters e levou os fragmentos encontrados para Mikena. Você foi agradecido por seu serviço.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

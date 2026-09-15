@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41583</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(É um anel, mas já viu dias melhores. Está manchado e sujo.)</p>
+          <p> </p>
+          <p>(Você tentou um pouco de polimento, mas não adiantou nada.)</p>
+          <p> </p>
+          <p>(Você pode apenas decifrar um nome gravado: "[%dic:STR_DIC_N_Aius]".)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Parece que tenho um destino..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ei! Você vai por ali! QUE...</p>
+          <p> </p>
+          <p>Ah, é você. Olha, [%username], se isso não é importante, você pode voltar mais tarde? Eu tenho tanto trabalho, eu...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Isso é seu?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esse? O que diabos é... oh!</p>
+          <p> </p>
+          <p>É meu! Está tão sujo e surrado que nem reconheci! Foi arrancado da minha mão meses atrás!</p>
+          <p> </p>
+          <p>Não acredito que você encontrou. Que coincidência! Eu o considerei perdido para sempre. Estou tão feliz por estar errado!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o Anel Sujo para [%dic:STR_DIC_N_Aius].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você ganhou um Grimy Ring para matar Dust Twisters. Mostrar para Aius.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você ganhou um Grimy Ring de um Dust Twister.</p>
+          <p> </p>
+          <p>Ao ver o nome de Aius nele, você levou para ela. Ela pensou que estava perdido para sempre, então ficou grata por você tê-lo encontrado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41124</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não podemos mais sofrer o [%dic:STR_DIC_M_IDElementalN_Nmd_Farmer_60_Al] na Floresta Elementis.</p>
+          <p> </p>
+          <p>Se não tomarmos nenhuma medida...</p>
+          <p> </p>
+          <p>A situação na floresta está a piorar cada vez mais e não podemos aguentar muito mais tempo.</p>
+          <p> </p>
+          <p>Realmente é um grande problema...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah!</p>
+          <p> </p>
+          <p>Finalmente a Floresta Elementis pode revelar plenamente a sua vitalidade mais uma vez.</p>
+          <p> </p>
+          <p>Muito, muito obrigado! Agora eu também posso dormir em paz novamente.</p>
+          <p> </p>
+          <p>Não sei como devo mostrar-lhe minha gratidão.</p>
+          <p> </p>
+          <p>Aqui. Não é muito, mas é um sinal da minha gratidão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDElementalN_Nmd_Farmer_60_Al] em ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Receba sua recompensa de [%dic:STR_DIC_N_Readis].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Tuali, que está sugando a vitalidade da Floresta Elementis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou Tuali na Floresta Elementis.</p>
+          <p> </p>
+          <p>Quando você relatou isso a Reddis, ela agradeceu dando-lhe um presente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

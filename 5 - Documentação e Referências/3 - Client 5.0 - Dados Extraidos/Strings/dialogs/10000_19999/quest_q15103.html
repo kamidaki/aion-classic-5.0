@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15103</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabia que existem muitas pessoas que investem grandes somas apenas para obter itens raros? Eles arriscam suas vidas para conseguir objetos que outros consideram inúteis.</p>
+          <p> </p>
+          <p>Eu sou um desses colecionadores. Vim aqui porque ouvi dizer que este Deserto Espinhoso abriga cristais misteriosos e outros tesouros até então desconhecidos.</p>
+          <p> </p>
+          <p>Os Fragmentos de Cristal de Sangue são transparentes, brilham em vermelho sangue e são cobertos por uma camada que parece ser gelo. Não importa quão quente seja o deserto, a camada de gelo nunca derrete.</p>
+          <p> </p>
+          <p>Se acontecer de você descobrir um [%dic:STR_DIC_I_quest_15103a] quando estiver no [%dic:STR_DIC_W_LF5_SZ_J_01], você o traria para mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo a lenda, os Fragmentos de Cristal de Sangue foram formados a partir de gotas de sangue de um velho dragão nos tempos antigos.</p>
+          <p> </p>
+          <p>É difícil acreditar que o sangue Balaur possa se transformar em algo tão lindo, mas não é uma ideia romântica?</p>
+          <p> </p>
+          <p>Como colecionador, preocupo-me profundamente com o fato de os itens do meu colecionador terem uma história romântica!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Fragmento de Cristal de Sangue.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quanto mais claro e translúcido for um Fragmento de Cristal de Sangue, maior será seu valor.</p>
+          <p> </p>
+          <p>Vermelho sangue claro e brilhante! Por fora parece geada e, embora estejamos em um deserto quente, irradia um frio misterioso...</p>
+          <p> </p>
+          <p>Este é o item de colecionador que sempre sonhei!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa pelo cristal.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É porque eu lhe contei a lenda?</p>
+          <p> </p>
+          <p>Ou por que você está sonhando acordado?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quanto mais claro e translúcido for um Fragmento de Cristal de Sangue, maior será seu valor.</p>
+          <p> </p>
+          <p>Vermelho sangue claro e brilhante! Por fora parece geada e, embora estejamos em um deserto quente, irradia um frio misterioso...</p>
+          <p> </p>
+          <p>Este é o item de colecionador que sempre sonhei!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa pelo cristal.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças a você, consegui um item de colecionador extremamente raro que sempre sonhei em ter!</p>
+          <p> </p>
+          <p>Não posso agradecer o suficiente, mas por favor aceite esta recompensa.</p>
+          <p> </p>
+          <p>Você tem minha eterna gratidão!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre um [%dic:STR_DIC_I_quest_15103a] e leve-o para [%dic:STR_DIC_N_LF5_Blut_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Blut_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure um Fragmento de Cristal de Sangue no Deserto Espinhoso e leve-o para Bleth.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bleth, que gosta de colecionar itens raros, pediu que você conseguisse um Fragmento de Cristal de Sangue para ele.</p>
+          <p> </p>
+          <p>Você trouxe para Bleth um Fragmento de Cristal de Sangue do Deserto Espinhoso. Bleth admitiu que isso significava que um de seus maiores sonhos havia se tornado realidade.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

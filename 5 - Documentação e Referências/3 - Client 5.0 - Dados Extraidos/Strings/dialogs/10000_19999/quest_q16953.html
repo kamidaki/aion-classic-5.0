@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q16953</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Goldrinyerk Limited e Steel Rose negociam em segredo há muito tempo. Mas é difícil negociar secretamente com piratas em quem não se pode confiar.</p>
+          <p> </p>
+          <p>É por isso que alguém da administração enviou um contador para a Rosa de Aço. O objetivo é tornar o transporte e a administração das mercadorias mais eficientes e ao mesmo tempo manter o pirata Rumakiki sob controle.</p>
+          <p> </p>
+          <p>Mas o contador estava do lado de Rumakiki e planejou assassinar o gerente. O gerente furioso pede que você a mate.</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_IDShulackShip_02_SZ_2F] e mate [%dic:STR_DIC_M_IDRose_Shugo_Guard_Mid_63_An2_Nmd]. Espero que lhes mostre que o comércio, onde a confiança é tão valiosa como a moeda, não é lugar para engano e traição.</p>
+          <p> </p>
+          <p>Por favor, fale com [%dic:STR_DIC_N_IDShulack_Rose_Ent_2F_E] quando estiver pronto para ir para a cabana. Ela irá ajudá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kanerunerk não sabe que o nobre senhor já sabe da traição. Esta é a nossa oportunidade!</p>
+          <p> </p>
+          <p>Kanerunerk deve ser morto antes de poder fugir.</p>
+          <p> </p>
+          <p>Vá para a Rosa de Aço o mais rápido e silenciosamente possível e mate Kanerunerk, que traiu a Goldrinyerk Limited!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Relatório sobre a conclusão da tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak! Como foi a morte de Kanerunerk, ok?</p>
+          <p> </p>
+          <p>Shugo espera ter tido um final miserável, de modo que Kanerunerk foi a última instância de algo assim acontecendo, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDRose_Shugo_Guard_Mid_63_An2_Nmd] na Cabine da Rosa de Aço.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Kanerunerk, o Contador ([%2]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5b_Huwooring_E] em North Katalam.</font></p></step>
+   	    </steps>
+          <p><font font_xml="quest_summary">Punir Kanerunerk, o contador, por sua traição à Goldrinyerk Limited.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hurinerk guarda um profundo ressentimento contra Kanerunerk, o contador, que foi enviado para a Rosa de Aço e traiu a Goldrinyerk Limited.</p>
+          <p> </p>
+          <p>Kanerunerk aprendeu o que acontece com os traidores.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

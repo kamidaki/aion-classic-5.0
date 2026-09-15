@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+		  <p> </p>
+		  <p>Você quer gerar uma Fenda de Invasão?</p>
+          <p> </p>
+          <p>Você precisa de uma Chave de Invasão para gerar uma Fenda de Invasão.</p>
+          <p> </p>
+          <p>Se você tiver uma chave como essa, pode me dar para abrir uma Fenda de Invasão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você gera uma Fenda de Invasão.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+		  <p> </p>
+		  <p>Somente membros da legião que protegem uma região podem gerar uma Fenda de Invasão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode gerar uma Fenda de Invasão sem uma Chave de Invasão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Há uma alta ocorrência de Id no [%dic:STR_DIC_W_ZONE_NAME_IDLDF5_Under_03]. Provavelmente porque a Tribo Runa uma vez refinou sua tecnologia de identificação lá.</p>
+          <p> </p>
+		  <p>Mas Beritra está tentando destruir uma Rune Escudo Tower.</p>
+		  <p> </p>
+		  <p>Os Elyos estão tentando detê-lo porque querem a tecnologia para si.</p>
+		  <p> </p>
+		  <p>Por favor, mantenha a Torre do Escudo Rúnico protegida de Beritra.</p>
+		  <p> </p>
+		  <p>O pesquisador [%dic:STR_DIC_N_LDF4_Advance_Gatener_E] na Rune Escudo Tower irá ajudá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Meu nome é Gattner. Estou pesquisando a Torre do Escudo Rúnico. Prazer em conhecê-lo.</p>
+		  <p> </p>
+		  <p>A Rune Escudo Tower é um lugar muito importante para pesquisar a tecnologia da Rune Tribe.</p>
+		  <p> </p>
+		  <p>Eu nunca perdoarei Dragon Lorde Beritra por querer destruir essas ruínas importantes.</p>
+		  <p> </p>
+		  <p>Duas entradas levam de Akaron à Torre do Escudo Rúnico.</p>
+		  <p> </p>
+		  <p>Uma entrada está localizada ao norte da Floresta do Silêncio, e você pode chegar à outra entrada através do Corredor do Exército Beritra, próximo ao Assentamento Chapir.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">O Corredor do Exército de Beritra pode ser utilizado?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim, isso pode ser feito.</p>
+          <p> </p>
+		  <p>Você deve ser capaz de eliminar os soldados Beritra perto do corredor e, em seguida, pegar esta estrada para a Torre do Escudo Rúnico.</p>
+		  <p> </p>
+		  <p>Você deve ser especialmente cauteloso com o Protótipo Dynatum. Hmm, provavelmente seria melhor se você fosse com seus aliados.</p>
+		  <p> </p>
+		  <p>Ah, sim, assim que chegar à Rune Escudo Tower, você deve Converse com minha camarada [%dic:STR_DIC_N_IDLDF5_Under_03_Kamenz_E].</p>
+		  <p> </p>
+		  <p>Estarei esperando aqui por você, Daeva. Esperamos que você retorne com boas notícias.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF4_Advance_Gatener_E] no [%dic:STR_DIC_W_LDF4_Advance_SZ_OP_D] em Akaron.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o Posto Avançado da Patrulha Helgund em Akaron e encontre-se com Gattner.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pascal sugeriu enviar alguém para a Rune Escudo Tower.</p>
+          <p> </p>
+          <p>O pesquisador Gattner explicou a Torre do Escudo Rúnico para você e disse que esperaria para ouvir boas notícias suas.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

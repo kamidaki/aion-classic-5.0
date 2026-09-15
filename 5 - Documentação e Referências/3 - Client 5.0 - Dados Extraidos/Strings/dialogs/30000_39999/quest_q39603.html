@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>1. Destinatário: Funcionário [%username]</p>
+          <p> </p>
+          <p>2. Tarefa: Há uma escassez de kokonats que são dados aos gerentes e funcionários da Silverine Limited como recompensa. Obtenha [%dic:STR_DIC_I_quest_39603a] de [%dic:STR_DIC_M_LDF5A_G1_Ratman_Gather_63_n] e entregue-os no escritório administrativo, ak.</p>
+          <p> </p>
+          <p>3. Escritório administrativo: [%dic:STR_DIC_E_LDF5a_Silverlin_BL]</p>
+          <p> </p>
+          <p>Assim que a tarefa for concluída, você receberá uma recompensa. Por favor, faça um trabalho bom e limpo, ak.</p>
+          <p> </p>
+          <p>- Danurinerk, chefe de pessoal da Silverine Limited</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva obteve os Kokonats, ok?</p>
+          <p> </p>
+          <p>Foi combinado que vários deles seriam usados como recompensa, mas como as moscas da fruta danificaram alguns deles, agora não sobram o suficiente, ak.</p>
+          <p> </p>
+          <p>Dê os cocos ao Shugo, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega os cocos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não havia kokonat na árvore kokonat, ok?</p>
+          <p> </p>
+          <p>Claro, tudo já foi colhido, ak.</p>
+          <p> </p>
+          <p>Não foi por isso que pedi para você pegar alguns de [%dic:STR_DIC_M_LDF5A_G1_Ratman_Gather_63_n]?</p>
+          <p> </p>
+          <p>Ele apenas começou a distribuir a recompensa diária de kokonats, então é provável que ainda tenha alguns, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não há nada mais adorável do que o cheiro de kokonat, ak.</p>
+          <p> </p>
+          <p>E deixa o casaco muito macio, nyerk.</p>
+          <p> </p>
+          <p>Os trabalhadores ficarão muito satisfeitos com esses salários, não ficarão? Akakak.</p>
+          <p> </p>
+          <p>[%username], se você trabalhar duro para a Silverine Limited, também desfrutará dessas vantagens, também.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue [%dic:STR_DIC_I_quest_39603a] de [%dic:STR_DIC_M_LDF5A_G1_Ratman_Gather_63_n] e leve para [%dic:STR_DIC_E_LDF5a_Silverlin_BL].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">As instruções chegaram da Silverine Limited. Leia a tarefa e execute-a.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chegaram instruções da Silverine Limited.</p>
+          <p> </p>
+          <p>Depois de obter kokonats do Pupu Gatherer e trazê-los para a filial Silverine em North Katalam, você recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

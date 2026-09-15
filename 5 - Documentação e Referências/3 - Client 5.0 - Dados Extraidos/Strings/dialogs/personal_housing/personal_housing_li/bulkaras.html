@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Feche os olhos. Bom, bom.</p>
+          <p> </p>
+          <p>Agora, imagine a armadura que você deseja usar. Como parece? Qual é o gosto?</p>
+          <p> </p>
+          <p>Sinta a armadura.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <combine_skill_levelup>Learn Armoursmithing</combine_skill_levelup>
+      <combine_task>Work order</combine_task>
+      <giveup_craft_expert>Relinquish expert knowledge</giveup_craft_expert>
+      <giveup_craft_master>Relinquish master knowledge</giveup_craft_master>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select_task">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mas não feche os olhos enquanto estiver elaborando!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shhh. Você tem que visualizar. Visualize, não crie.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Você vai me ensinar seus segredos?"</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

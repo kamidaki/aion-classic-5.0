@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Cada vez que tento fazer apenas uma investigação, o veloz Crynac aparece e interfere.</p>
+          <p> </p>
+          <p>[%username], você mataria o [%dic:STR_DIC_M_LDF5A_B1_Criton_62_An] por mim?</p>
+          <p> </p>
+          <p>Por alguma razão, o rápido Crynac está se reproduzindo a um ritmo inacreditável.</p>
+          <p> </p>
+          <p>Tão rapidamente que você não pode fazer nada a respeito.</p>
+          <p> </p>
+          <p>Eu me pergunto se há alguma conexão com esse tipo de caixa que encontramos em um bosque próximo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o Fast Cryton?</p>
+          <p> </p>
+          <p>O prazo para o relatório é iminente. No entanto, foi riscado por causa do Fast Cryton.</p>
+          <p> </p>
+          <p>Se isso continuar, teremos que enviar páginas em branco.</p>
+          <p> </p>
+          <p>Por favor me ajude.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não pode ser removido totalmente, mas pelo menos está diminuindo.</p>
+          <p> </p>
+          <p>Agora podemos realmente começar nossa pesquisa.</p>
+          <p> </p>
+          <p>Ficaria muito grato se você pudesse nos ajudar novamente, na próxima vez.</p>
+          <p> </p>
+          <p>Este é um pequeno sinal de gratidão. Por favor, aceite.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os [%dic:STR_DIC_M_LDF5A_B1_Criton_62_An] que estão interferindo nas investigações. ([%2]/9)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5A_Kadine_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Fast Crynacs que estão interferindo nas investigações.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kadine disse que os Fast Crynacs, que estão se multiplicando rapidamente, estão atrapalhando todas as investigações.</p>
+          <p> </p>
+          <p>Você recebeu uma recompensa após matar os Crynacs e foi solicitado a ajudar novamente em breve.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

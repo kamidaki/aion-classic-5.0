@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12042</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Só porque agora controlamos o Coração da Petrificação não significa que não haja outros assuntos para cuidar.</p>
+          <p> </p>
+          <p>Precisamos rearmar nossas tropas. Os Reianos têm ferreiros que podem fabricar armas para nós, mas enfrentam um problema. Para fabricar suas armas especiais, suas forjas devem estar particularmente quentes. O único combustível suficiente é o carvão branco da Dragrint.</p>
+          <p> </p>
+          <p>Eles já estão matando Flame Dragrints por isso, mas precisam de ajuda. Se você unir seus esforços, estará ajudando a eles e a nós ao mesmo tempo.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nosso atual suprimento de armas está estável por enquanto. Mas tenho certeza de que isso mudará em breve.</p>
+          <p> </p>
+          <p>Os Reians precisam do Carvão Branco de Dragrint, e nós precisamos dos Reians.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Cuidado, isso está quente."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quente mesmo! Um carvão que queima sozinho! Não admira que os Reianos o usem.</p>
+          <p> </p>
+          <p>Isto deve ser suficiente. Entre isso e o que eles já possuem, eles deveriam começar a forjar armas imediatamente.</p>
+          <p> </p>
+          <p>Seu avanço em nosso esforço de guerra não passará despercebido, por mim ou por Santuário.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete o carvão branco de Dragrint e leve-o para Coron.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Reianos precisam de combustível para forjar armas. Mate Dragrints Flamejantes para obter o Carvão Branco de seu Dragrint.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Tribo Reian pediu ajuda a Coron na aquisição de combustível para que pudessem fabricar novas armas para os Elyos.</p>
+          <p> </p>
+          <p>Então você matou Flame Dragrints e entregou o White Charcoal de Dragrint. Coron ficou satisfeito com seus esforços na guerra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

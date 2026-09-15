@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41600</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Sertões da Fissura estão repletos do poder de Tiamat. Tudo o que você precisa fazer para vê-lo é observar as criaturas locais.</p>
+          <p> </p>
+          <p>Eles sempre foram tão ferozes ou Tiamat os tornou assim? Suponho que seja uma questão acadêmica, considerando que temos que lidar com elas de qualquer maneira.</p>
+          <p> </p>
+          <p>Alguns monstros extraordinariamente fortes estão causando estragos específicos. Elimine [%dic:STR_DIC_M_LDF4b_T1_Twister_Named_58_An], [%dic:STR_DIC_M_LDF4b_T1_Sandshark_Named_58_An], [%dic:STR_DIC_M_LDF4b_T1_Skeleton_Named_58_An], [%dic:STR_DIC_M_LDF4b_T1_Fungy_Named_58_An] ou [%dic:STR_DIC_M_LDF4b_T1_Shadowstalker_Named_58_An], pelo bem da paz.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos aqueles monstros, tanta variedade em espécies e habilidades... mas todos eles perigosos.</p>
+          <p> </p>
+          <p>Você tem essas criaturas de onde você vem, [%userrace]? Eu adoraria ver com meus próprios olhos algum dia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Ainda estou aqui. Não estava."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Bem, sim, esse seria o melhor indicador, não seria?</p>
+          <p> </p>
+          <p>Mesmo assim, o resto ainda está à espreita, esperando para semear o caos. Talvez eu precise ligar para você novamente mais uma vez.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine um dos [%dic:STR_DIC_M_Q41600all]s em Fissure Barrens. ([%2]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Solteria].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Criaturas fortes em Fissure Barrens estão causando problemas. Elimine Augusta Giratória, Tumer Velejador, Kakaro Assombrado, Garnetis Wallowing ou Clero, o Andarilho.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Legionário da Tempestade de Areia Solteria disse que as criaturas poderosas em Fissure Barrens estão atrapalhando as atividades da Tribo Reian lá.</p>
+          <p> </p>
+          <p>Você matou uma das criaturas fortes e Solteria ficou grata por sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

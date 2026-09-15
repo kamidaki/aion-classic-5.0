@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Esquadrão de Limpeza Katalam, [%dic:STR_DIC_N_LDF5_Village_Guard13_D] do [%dic:STR_DIC_W_LDF5b_D2_v13]</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Ordens: Mate os Elyos que avançaram para [%dic:STR_DIC_W_LDF5b_SZ_D2_3] em South Katalam.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Elyos estão nos incomodando nas Montanhas Sauro.</p>
+          <p> </p>
+          <p>Eles também devem saber que as Montanhas Sauro trazem uma vantagem estratégica.</p>
+          <p> </p>
+          <p>[%username], por favor, dê uma volta com frequência para que nenhum Elyos possa invadir.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você faria isso, [%username].</p>
+          <p> </p>
+          <p>Eu sabia que você me traria boas notícias.</p>
+          <p> </p>
+          <p>Paramos os Elyos por um tempo.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Elyos que invadiram [%dic:STR_DIC_W_LDF5b_SZ_D2_3] em South Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LDF5_Village_Guard13_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Elimine os Elyos que se infiltraram nas Terras Altas do Silêncio em South Katalam e reporte-se a Torpin.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O infiltrado Elyos tinha como alvo as Terras Altas do Silêncio em South Katalam.</p>
+          <p> </p>
+          <p>Você destruiu os Elyos infiltrados e reportou a Torpin.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

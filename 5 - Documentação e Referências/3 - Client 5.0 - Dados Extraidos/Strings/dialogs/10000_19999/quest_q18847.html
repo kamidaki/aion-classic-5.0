@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma! Você deve ser novo aqui. Deixe-me ser o primeiro a recebê-lo!</p>
+          <p> </p>
+          <p>Nós, agentes de segurança residencial, temos o dever de garantir que seu estúdio esteja seguro e protegido! Afinal, é melhor prevenir do que remediar!</p>
+          <p> </p>
+          <p>Digamos, nossos superiores nos mandam distribuir presentes para rostos novos como você - uma espécie de presente de inauguração. Interessado?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não sou apenas um oficial de segurança, na verdade moro em uma casa não muito longe daqui. É uma das vantagens do trabalho.</p>
+          <p> </p>
+          <p>Desde que descobri as alegrias da casa própria, tornei-me um pouco colecionador de móveis e coisas assim.</p>
+          <p> </p>
+          <p>É por isso que gosto tanto de distribuir esses presentes! Você gostaria de dar uma olhada?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Certamente."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh... Bem, me desculpe se ofendi de alguma forma. Eu certamente não queria.</p>
+          <p> </p>
+          <p>Bem, nós, agentes da Segurança Interna, estamos sempre vigilantes. Volte a qualquer momento se mudar de ideia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Em outra hora."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sei que o mobiliário doméstico não é a coisa mais glamorosa do mundo. Mas o que mais reflete tão bem uma personalidade?</p>
+          <p> </p>
+          <p>Afinal, o sabor é altamente subjetivo. A casa de alguém diz muito sobre a pessoa que mora lá.</p>
+          <p> </p>
+          <p>É por isso que estou feliz que você tenha decidido aceitar o presente. Estou interessado em ver o que sua escolha diz sobre você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"É para isso que estou aqui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente! Por favor, leve o que quiser. Eu também gosto de designs específicos, mas escolha o que mais lhe convier.</p>
+          <p> </p>
+          <p>Espero que isso sirva como boas-vindas suficientes. Saiba que a Segurança Doméstica sempre estará atenta a você e sua propriedade.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com Sarune, o oficial de segurança residencial.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Fale com Sarune, o oficial de segurança residencial, que quer lhe dar papel de parede de presente.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sarune lhe deu as boas-vindas como novo proprietário e lhe ofereceu um presente.</p>
+          <p> </p>
+          <p>O oficial de segurança residencial mostrou uma variedade de papéis de parede e você escolheu um para sua casa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

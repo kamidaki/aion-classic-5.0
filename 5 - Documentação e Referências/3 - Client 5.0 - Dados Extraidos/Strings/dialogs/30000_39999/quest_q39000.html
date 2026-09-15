@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39000</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você ouviu falar do Portal Fenda quando estava em [%dic:STR_DIC_NPC_Arena_Rhadaman_E_LHM]?</p>
+          <p> </p>
+          <p>Parece que você não ouviu falar sobre isso.</p>
+          <p> </p>
+          <p>Não posso falar muito aqui em Sarpan porque os Asmodianos estão me observando. Mas um Portal Fenda é um assunto de grande importância para os Elyos.</p>
+          <p> </p> 
+          <p>Agora, tudo que eu disse foi que o Portal Fenda tem algo a ver com a conquista Asmodiana.</p>
+          <p> </p> 
+          <p>Vá para [%dic:STR_DIC_W_Arena_L_Lobby].</p>
+          <p> </p>
+          <p>Radaman, que está no Laboratório de Pesquisa sobre Fendas de Portal em Santuário, explicará detalhadamente as Fendas de Portal.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_NPC_Arena_Geniki_E_LHM] explicará como funciona o Portal Fenda, bem como sua primeira operação.</p>
+          <p> </p>
+          <p>Vou explicar o Portal Fenda para você agora.</p>
+          <p> </p>
+          <p>Quando um espaço instável encontra uma fenda, aparece um espaço comum, onde Elysea e Asmodae se sobrepõem. Este espaço comum é uma entrada através da qual podemos aceder a Asmodae ou Balaurea. Conduzimos pesquisas sobre a aparência deste espaço comum e finalmente conseguimos construir o Gerador de Fenda de Portal.</p> 
+          <p> </p>
+          <p>Você pode chegar a Balaurea e Asmodae através deste Portal Fenda e, com sorte, realizar um grande número de feitos gloriosos lá.</p>
+          <p> </p>
+          <p>Agora fale com [%dic:STR_DIC_NPC_Arena_Geniki_E_LHM].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa terminou</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Alto Comando do Santuário foi fundado recentemente devido ao desenvolvimento do Portal Fenda.</p>
+          <p> </p>
+          <p>Você gostaria de nos apoiar na luta contra os Asmodianos e os Balaur, [%username]?</p>
+          <p> </p>
+          <p>Você está preocupado porque o grupo foi fundado recentemente? Tais preocupações são infundadas.</p>
+          <p> </p>
+          <p>Guardiões experientes que provaram seu valor no combate ao Abismo participarão da operação e dominarão os Asmodianos e os Balaur.</p>
+          <p> </p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que participará da operação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se comporta bem.</p>
+          <p> </p>
+          <p>O Portal Fenda está bem ao meu lado.</p>
+          <p> </p>
+          <p>Entre no Portal para a primeira operação.</p>
+          <p> </p>
+          <p>Seu primeiro teatro de operações é Brusthonin.</p> 
+          <p> </p>
+          <p>Desejo-lhe sorte e sucesso na invasão de Brusthonin.</p>
+          <p> </p>
+          <p>A alegria da vitória para Santuário!</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_NPC_Arena_Rhadaman_E_LHM] perto da Academia de Kaisinel.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_NPC_Arena_Rhadaman_E_LHM] perto da Academia de Kaisinel.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ouça Radaman e Ginikki falando sobre o Portal Fenda.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Palenon perguntou se você já tinha ouvido falar sobre Portal Fenda e solicitou que você procurasse Radaman na Academia Kaisinel. Radaman contou a você sobre o Portal Fenda e apresentou Ginikki do Alto Comando do Santuário. Ginikki disse que a participação de Daevas habilidosos seria necessária para usar o Portal Fenda com sucesso e desejou boa sorte com a invasão de Brusthonin.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

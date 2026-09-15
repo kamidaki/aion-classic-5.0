@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Continuo ouvindo sobre seus feitos heróicos, [%username].</p>
+          <p> </p>
+          <p>Todo mundo conhece as coisas incríveis que você faz pelos Asmodianos.</p>
+          <p> </p>
+          <p>Você precisa de mais do que apenas coragem para conseguir tais coisas.</p>
+          <p> </p>
+          <p>Você precisa de habilidades para sobreviver no campo de batalha e ser vitorioso.</p>
+          <p> </p>
+          <p>Você realmente mereceu sua recompensa, [%username]. Tenho um enorme respeito por você.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sinto muito, mas você não é um oficial de 1 estrela.</p>
+          <p> </p>
+          <p>Eu só ofereço minhas recompensas de serviço para Oficiais de 1 Estrela.</p>
+          <p> </p>
+          <p>Volte novamente mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

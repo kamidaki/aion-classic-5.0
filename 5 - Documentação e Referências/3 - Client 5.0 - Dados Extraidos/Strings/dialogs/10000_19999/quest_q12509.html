@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>[%username], Pepe e eu somos da opinião que a invasão de Katalam será exibida pelos Elyos por causa de [%dic:STR_DIC_E_LDF5A_FOBJ_A4_KahrunShield].</p>
+		  <p> </p>
+		  <p>Como eles não podem lutar contra os Asmodianos na área da Estátua da Vinculação, fica claro que a invasão de Katalam será adiada pelos Elyos.</p>
+		  <p> </p>
+		  <p>Então eu me pergunto o que aconteceria se você destruísse a Estátua da Vinculação, [%username]?</p>
+		  <p> </p>
+		  <p>Se o assunto for ocultado, como fez o Drakan, o Reian não suspeitará.</p>
+		  <p> </p>
+		  <p>Então destrua o Estatuto de Vinculação, tire a Espada Drakan e depois retorne.</p>
+		  <p> </p>
+		  <p>Se você Converse com Adiel, ele enviará um exército e acabará com os Asmodianos.</p>
+		  <p> </p>
+		  <p>Por favor, ajude nossa causa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="ask_quest_accept" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>[%username]. Pepe e eu somos da opinião que a invasão de Katalam será exibida pelos Elyos por causa de [%dic:STR_DIC_E_LDF5A_FOBJ_A4_KahrunShield].</p>
+		  <p> </p>
+		  <p>Como eles não podem lutar contra os Asmodianos na área da Estátua da Vinculação, fica claro que a invasão de Katalam será adiada pelos Elyos.</p>
+		  <p> </p>
+		  <p>Então eu me pergunto o que aconteceria se você destruísse a Estátua da Vinculação, [%username]?</p>
+		  <p> </p>
+		  <p>Se o assunto for ocultado, como fez o Drakan, o Reian não suspeitará.</p>
+		  <p> </p>
+		  <p>Então destrua o Estatuto de Vinculação, tire a Espada Drakan e depois retorne.</p>
+		  <p> </p>
+		  <p>Se você Converse com Adiel depois, ele enviará um exército e acabará com os Asmodianos.</p>
+		  <p> </p>
+		  <p>Por favor, ajude nossa causa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você ouviu que os Drakan estão destruindo as Estátuas da Vinculação?</p>
+          <p> </p>
+		  <p>Como membro da Ordem dos Cavaleiros da Expedição ao Santuário, não posso tolerar isso.</p>
+		  <p> </p>
+		  <p>Eu gostaria de partir imediatamente para derrotar os inimigos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que está agindo em nome da Guilda Pena Dourada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então, Edis enviou você! Eu estive esperando por você.</p>
+          <p> </p>
+          <p>Edis disse que enviará um Daeva quando Ilium desativar a Estátua da Vinculação.</p>
+          <p> </p>
+          <p>Stelman apareceu em Katalam com todo o seu Protetorado e tem se gabado de manter a paz com os Reianos.</p>
+          <p> </p>
+          <p>No entanto, a Guilda Pena Dourada e nossa Ordem dos Cavaleiros do Santuário não acreditam nisso.</p>
+		  <p> </p>
+		  <p>Que bobagem! A batalha por Katalam já começou. É tudo uma questão de ganhar ou perder agora.</p>
+		  <p> </p>
+		  <p>É por isso que peço que você permita que a Tropa Expedicionária do Santuário se junte à briga.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua o [%dic:STR_DIC_E_LDF5A_FOBJ_A4_KahrunShield] [%2]</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Coloque o [%dic:STR_DIC_I_quest_12509a] perto da Estátua da Vinculação destruída e depois venha até mim.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relatório para [%dic:STR_DIC_N_LDF5A_Adiel_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Destrua a Estátua da Vinculação, abaixe a Espada Drakan e depois volte.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Preregion pediu para você destruir a Estátua da Vinculação, porque ela estava atrasando a conquista de Katalam.</p>
+          <p> </p> 		  
+		  <p>Ele disse que você deveria deixar a espada Drakan lá para que o Protetorado de Stelman não suspeitasse, e então ir até Adiel.</p> 
+		  <p> </p>
+		  <p>Você seguiu as instruções de Preregion e destruiu a Estátua da Vinculação, emoldurando o Drakan.</p>
+		  <p> </p>
+		  <p>Adiel disse que a batalha já havia começado e você deveria se preparar para a guerra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

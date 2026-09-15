@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41301</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho certeza de que a chave para domar um Pagati é capturá-lo enquanto ele é jovem, para ensiná-lo que os Daevas são confiáveis.</p>
+          <p> </p>
+          <p>Há uma população reprodutora de Pagati em Sabat's End. A ninhada do ano passado tem quase um ano de idade - idade suficiente para serem desmamadas das mães, mas esperançosamente jovens o suficiente para ainda serem responsivas.</p>
+          <p> </p>
+          <p>Há um caminho que leva até a face do penhasco no lado oeste de [%dic:STR_DIC_W_LDF4a_SZ_D_03]. É onde eles se aninham. Por favor, vá pegar o [%dic:STR_DIC_M_Q41301_baby] por aí, mas cuidado com as mães!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+              <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi relatos sobre os métodos da Cavalaria Balaur Pagati.</p>
+          <p> </p>
+          <p>Na verdade, os Balaur dormem nos estábulos com seus Pagati nos primeiros seis meses em que os possuem. Mas eles também usam métodos brutais para manter os animais sob controle.</p>
+          <p> </p>
+          <p>Você pensaria que a crueldade colocaria os Pagati contra eles, mas o medo é um motivador poderoso. Minha teoria é que gentileza e confiança funcionarão ainda melhor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Boa sorte em ganhar a confiança deles."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh meu Deus! Que grupo animado!</p>
+          <p> </p>
+          <p>Ah, eles são tão fofos! Olhe para seus lindos olhos! Veja... ai! Ai!</p>
+          <p> </p>
+          <p>Ei, não tão áspero! Ei, ai! Explodir! Ai!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Armadilha [%dic:STR_DIC_M_Q41301_baby] e leve-os para [%dic:STR_DIC_N_Vesetia].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Vesetia acha que a chave para domesticar Pagati é começar quando eles são jovens, então os Pagati Yearlings ao redor do Cemitério Final de Sabat seriam ideais.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vesetia achava que a chave para domesticar Pagati era começar com os filhotes de um ano e tratá-los com gentileza, a fim de ganhar sua confiança.</p>
+          <p> </p>
+          <p>Você prendeu Pagati Yearlings e os trouxe para ela, mas ela parecia despreparada para o quão selvagens eles eram.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

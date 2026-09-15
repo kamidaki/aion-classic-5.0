@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41120</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]? Você parece muito cansado.</p>
+          <p> </p>
+          <p>Quase como se você tivesse acabado de travar uma batalha muito difícil.</p>
+          <p> </p>
+          <p>Você matou o [%dic:STR_DIC_M_IDStation_DrakanNinja_NM_58_An]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você agiu voluntariamente pela segurança de Sarpan sem que eu tivesse que perguntar!</p>
+          <p> </p>
+          <p>[%username], sua fama não é infundada!</p>
+          <p> </p>
+          <p>Estou muito grato. Considere isso como um pequeno reembolso por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDStation_DrakanNinja_NM_58_An] em ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_Silion].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Incapacite a Fortaleza Aturam Sky matando Ashunatal Shadowslips.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou Ashunatal perto da Sala de Preparação na Área de Comando e incapacitou a Fortaleza Aturam Sky.</p>
+          <p> </p>
+          <p>Quando você relatou isso a Silion, ele lhe deu um presente de agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

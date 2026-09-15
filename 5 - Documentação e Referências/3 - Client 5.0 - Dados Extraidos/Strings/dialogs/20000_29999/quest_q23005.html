@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ultimamente, o Comando tem solicitado que quantidades cada vez maiores de Idium sejam extraídas.</p>
+          <p> </p>
+          <p>Não consigo mais cuidar de tudo sozinho.</p>
+          <p> </p>
+          <p>Acho que Peniun, que investiga a energia do Id, pediu ao Comando para aumentar a quantidade.</p>
+          <p> </p>
+          <p>Se acontecer de você estar indo para [%dic:STR_DIC_W_LDF5b_SZ_B1_1], você poderia dar a [%dic:STR_DIC_N_LDF5b_Peniun_E] uma mensagem minha?</p>
+          <p> </p>
+          <p>Por favor, diga a ele que o Idium deve ser manuseado com moderação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não é [%username]?</p>
+          <p> </p>
+          <p>É uma honra conhecer você!</p>
+          <p> </p>
+          <p>Como posso ajudar uma pessoa tão famosa quanto você?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você transmite as palavras de Keltoi.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou totalmente sem palavras.</p>
+          <p> </p>
+          <p>Como alguém pode dar tanta importância ao desenterrar alguns minerais?</p>
+          <p> </p>
+          <p>O Idium desta área não é muito puro... apenas uma pequena quantidade de energia Id pode ser extraída dele, então mais precisa ser produzida.</p>
+          <p> </p>
+          <p>Agora é urgente pesquisarmos a energia Id. Vou escrever uma carta para Kelto e falar sobre isso.</p>
+          <p> </p>
+          <p>Muito obrigado, porém, por transmitir a mensagem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Peniun_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Passe as palavras de Keltoi para Peniun.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deu a Peniun a mensagem para usar o mineral com moderação, mas recebeu uma resposta dizendo que isso não era possível devido à pesquisa de energia Id.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

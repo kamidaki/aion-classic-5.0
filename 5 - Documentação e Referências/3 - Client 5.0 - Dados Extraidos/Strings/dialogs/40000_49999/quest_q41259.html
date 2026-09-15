@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41177</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(É um mapa muito antigo. É mais antigo do que qualquer coisa que você já viu.)</p>
+          <p> </p>
+          <p>(Esta parte parece [%dic:STR_DIC_W_LDF4a_sarpan_main].... Mas o resto é uma bagunça desbotada.)</p>
+          <p> </p>
+          <p>(Talvez você precise de um [%dic:STR_DIC_E_Q41177_yohar] para entender isso.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Poderia muito bem tentar."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conhece Redien e Luespaner? Velhos amigos meus! Na verdade, eu era o comandante deles... O que é isso? Mapa? Ah, claro, deixe-me dar uma olhada!</p>
+          <p> </p>
+          <p>Uau! Isto é tão antigo quanto a cueca de Kahrun! Mas ainda acho que consigo entender isso... e aquilo...</p>
+          <p> </p>
+          <p>Lá! Se você não consegue ler agora, você não consegue ler nada! Você pode confiar no meu julgamento, sim senhor! Acha que pode dispensar uma bebida como recompensa?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Você precisa de menos bebida, não mais."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(É uma caixa velha.)</p>
+          <p> </p>
+          <p>(Você não consegue distinguir nenhuma marca que mostre a propriedade. Deve estar enterrado aqui há muito tempo.)</p>
+          <p> </p>
+          <p>(É bastante pesado, o que alimenta seu senso de expectativa.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Vamos, seja algo bom!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O baú se abre. O cheiro de mofo de séculos sai.)</p>
+          <p> </p>
+          <p>(Você olha atentamente para dentro e vê seu conteúdo.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4a_SZ_OP_17] e mostre o mapa para [%dic:STR_DIC_N_yohar].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para [%dic:STR_DIC_E_Q41259a_map] e cave onde o mapa do tesouro indica.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Abra a caixa do tesouro.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você obteve um mapa antigo. Leve para Yohar.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrou aleatoriamente um mapa antigo.</p>
+          <p> </p>
+          <p>Parece um mapa do tesouro. Depois que você o trouxe para Johar, ele explicou este mapa para você.</p>
+          <p> </p>
+          <p>Você cavou um buraco no local marcado no mapa e encontrou um baú de tesouro.</p>
+          <p> </p>
+          <p>No auge do álcool, Johar contou a você sobre Redien e Luespaner, de quem ele estava muito à frente. Nem tudo o que ele te contou eram contos de fadas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você poderia matar os [%dic:STR_DIC_M_LDF5A_B6_Kalnif_Hyena_63_An] que estão à espreita em nossa vila?</p>
+          <p> </p>
+          <p>A área fica sempre inquieta quando eles estão lá, e ficar de guarda é assustador.</p>
+          <p> </p>
+          <p>Eles não são gentis e continuam atacando.</p>
+          <p> </p>
+          <p>Eu sei que é uma tarefa cansativa. No entanto, espero que você, [%username], consiga fazer isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A princípio pensei que fosse apenas um par de Karnifs famintos e não pensei mais nisso...</p>
+          <p> </p>
+          <p>Mas então eles começaram a aumentar em número e as coisas começaram a ficar fora de controle.</p>
+          <p> </p>
+          <p>Se eu tivesse lidado com isso antes, teria sido mais fácil, mas agora isso se tornou um problema sério.</p>
+          <p> </p>
+          <p>Mas não adianta reclamar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou aliviado que os Karnifs que nos causavam tantos problemas tenham desaparecido.</p>
+          <p> </p>
+          <p>Muito obrigado por seus esforços.</p>
+          <p> </p>
+          <p>A área ao redor do posto permanecerá limpa por enquanto.</p>
+          <p> </p>
+          <p>Os guardiões também deveriam receber as boas novas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_B6_Kalnif_Hyena_63_An] perto da pequena vila ([%2]/11)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard05_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Karnifs famintos para limpar a área.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lances pediu para você matar os Karnifs famintos que vagam pela área.</p>
+          <p> </p>
+          <p>Conforme solicitado, você destruiu os famintos Karnifs, pelos quais foi profusamente agradecido.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>In</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma Fenda do Abismo que leva ao Laboratório Central.)</p>
+          <p> </p>
+          <p>(Ainda não pode ser usado.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma Fenda do Abismo que leva ao Laboratório Central.)</p>
+          <p> </p>
+          <p>(Você pode viajar para diversas dimensões e entrar nos laboratórios de lá, quebrando o selo com o [plur][%dic:STR_DIC_E_KEY_IDLDF4RE01_01].)</p>   
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_BOSS_LEVEL2">Use mais de uma chave e vá até o ferido Belsagos.</Act>
+      <Act href="HACTION_SELECT_BOSS_LEVEL3">Use mais de cinco chaves e vá até o imprevisível Belsagos.</Act>
+      <Act href="HACTION_SELECT_BOSS_LEVEL4">Use mais de sete chaves e vá até o feroz Belsagos.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma Fenda do Abismo que leva ao Laboratório Central.)</p>
+          <p> </p>
+          <p>(Você não tem [plur][%dic:STR_DIC_E_KEY_IDLDF4RE01_01] suficiente para se teletransportar para o Abismo.)</p>   
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que esta situação só continua com os Revolucionários Lefaristas.</p>
+          <p> </p>
+          <p>Hoarfrost Mau distribuiu uma nova base em South Beluslan e está recrutando novos combatentes lá.</p>
+          <p> </p>
+          <p>Visite [%dic:STR_DIC_N_Svafnir] em [%dic:STR_DIC_W_STR_DF3_SZ_G2_3] para saber mais.</p>
+          <p> </p>
+          <p>Você pode pegar o teletransportador para chegar lá rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este realmente não é o trabalho para mim. Na verdade, sou um cientista.</p>
+          <p> </p>
+          <p>As tropas militares Hoarfrost Mau formaram uma força de guerrilha perto do Posto Avançado Hoarfrost e instalaram um [%dic:STR_DIC_W_DF3_Village_02].</p>
+          <p> </p>
+          <p>Mesmo sem examinar as intenções do Mau, fica claro o que eles pretendem. Estou preocupado que as tropas guerrilheiras Elyos também estejam vagando por aqui.</p>
+          <p> </p>
+          <p>Se ao menos o [%dic:STR_DIC_M_DF3_2_Dark_Raider] pudesse ser controlado, você seria capaz de acalmar a situação com antecedência. Eu te imploro.</p>
+	  </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As defesas do [%dic:STR_DIC_W_DF3_Village_02] foram erguidas em torno do [%dic:STR_DIC_M_DF3_2_Dark_Raider].</p>
+          <p> </p>
+          <p>O líder guerrilheiro no comando é o esteio da Tropa. Se ele for morto, você poderá capturar a zona ocupada sem dificuldade.</p>
+          <p> </p>
+          <p>Se capturarmos o acampamento, Nerita enviará os Arcontes do Protetorado Beluslan e um Tribuno. Isso acalma minha mente.</p>
+          <p> </p>
+          <p>Como é a situação?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você matou o líder guerrilheiro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Realmente?!</p>
+          <p> </p>
+          <p>Então os Arcontes do Protetorado Beluslan virão agora!</p>
+          <p> </p>
+          <p>Graças a Deus! Eu estava começando a me preocupar com a possibilidade de ter que realizar uma tarefa muito grande sozinho.</p>
+          <p> </p>
+          <p>Mas se a situação é tão complicada, pergunto-me quando é que a investigação poderá realmente começar. Acho que continuará difícil.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Svafnir] de [%dic:STR_DIC_W_STR_DF3_SZ_G2_3].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Matar [%dic:STR_DIC_M_DF3_2_Dark_Raider] ([%11]/1)</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Relatório para [%dic:STR_DIC_N_Svafnir]</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ataque o Posto Avançado Hoarfrost [%dic:STR_DIC_W_DF3_Village_02] e capture-o.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Nertus, você ocupou o posto no Posto Avançado Hoarfrost e fez o inimigo fugir.</p>
+          <p> </p>
+          <p>Svapnir pesquisou Mau perto do Abrigo Hoarfrost e parecia aliviado agora que o assunto não tinha mais nada a ver com ele.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

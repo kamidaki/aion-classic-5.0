@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você veio para [%dic:STR_DIC_W_IDAb1_MiniCastle_SZ_D] e completou a missão.</p>
+          <p> </p>
+          <p>Com suas habilidades não deveria ser muito difícil, [%username].</p>
+          <p> </p>
+          <p>Quer saber do que se trata esta missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Entre no Campo de Treinamento Nochsana, destrua o [%dic:STR_DIC_M_Mini_Castle_Door_Dr] e mate o [%dic:STR_DIC_M_Mini_Castle_DrakanFi_27_Ah].</p>
+          <p> </p>
+          <p>A fortaleza está localizada nas profundezas do Campo de Treinamento Nochsana, então chegar lá não será fácil.</p>
+          <p> </p>
+          <p>Você ainda quer enfrentar isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>No Campo de Treinamento Nochsana você encontrará um artefato, o Escudo da Simpatia, e o portão da fortaleza. Você deve passar por isso para entrar na Fortaleza Nochsana.</p>
+          <p> </p>
+          <p>Mate o Protetor Nochsana e ative o artefato para facilitar a passagem pelo portão.</p>
+          <p> </p>
+          <p>Aqui, pegue esta arma de cerco. Isso tornará mais fácil destruir o [%dic:STR_DIC_M_Mini_Castle_Door_Dr].</p>
+          <p> </p>
+          <p>Destrua o portão, infiltre-se na fortaleza e mate o [%dic:STR_DIC_M_Mini_Castle_DrakanFi_27_Ah]. Então a missão estará completa.</p>
+          <p> </p>
+          <p>Essa foi a explicação. Você não deveria estar se preparando para ir agora? Fale com [%dic:STR_DIC_N_DF2_Barlack] quando estiver pronto.</p>
+          <p> </p>
+          <p>Você será enviado diretamente para o Campo de Treinamento Nochsana.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você talvez esteja com medo porque ainda não lutou contra os Balaur?</p>
+          <p> </p>
+          <p>Os Instrutores e o Guardião Geral estão lá, mas a maioria dos Draconutas ainda não completou o treinamento no Abismo.</p>
+          <p> </p>
+          <p>Um Daeva não deve recuar diante do perigo.</p>
+          <p> </p>
+          <p>Volte se você reconsiderar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você voltou mais rápido do que eu pensava.</p>
+          <p> </p>
+          <p>Você é melhor do que eu pensava.</p>
+          <p> </p>
+          <p>Você destruiu o portão da fortaleza no Campo de Treinamento Nochsana e matou o Guardião Geral?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essa foi a explicação. Você não quer começar a se preparar para ir?</p>
+          <p> </p>
+          <p>A destruição do Campo de Treinamento de Nochsana significa que os Balaur terão dificuldades em fornecer suprimentos aos seus soldados, pelo menos por um tempo.</p>
+          <p> </p>
+          <p>Claro que não podemos descansar por causa disso. Sem dúvida, novos soldados serão treinados em breve. É por isso que eu ficaria muito grato se você encontrasse tempo para voltar lá e matá-los.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Infiltre-se no [%dic:STR_DIC_W_IDAb1_MiniCastle_SZ_D], use a Arma de Cerco e ataque o [%dic:STR_DIC_M_Mini_Castle_Door_Dr].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Mate o [%dic:STR_DIC_M_Mini_Castle_DrakanFi_27_Ah][%5].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relatar para [%dic:STR_DIC_N_DF2_Kelmar].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o Campo de Treinamento Nochsana, destrua o portão da fortaleza e mate o Guardião Geral.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kelmar pediu para você ir ao Campo de Treinamento Nochsana, destruir o portão da fortaleza e matar o Guardião Geral.</p>
+          <p> </p>
+          <p>Depois que você completou a missão e voltou, ele agradeceu e pediu que você fosse ao campo de treinamento Nochsana e atacasse Balaur se tivesse tempo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

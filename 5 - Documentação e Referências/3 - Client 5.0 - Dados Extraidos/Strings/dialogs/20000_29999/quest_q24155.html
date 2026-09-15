@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Os Balaur só conseguiram invadir Beluslan porque a torre do Observatório foi destruída.</p>
+		<p> </p>
+		<p>Sem a torre instalada, não percebemos que os Balaur haviam rompido a barreira.</p>
+		<p> </p>
+		<p>Além disso, não temos Éter suficiente.</p>
+		<p> </p>
+		<p>Temos que reconstruir a torre e reforçar a barreira.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Recebemos um relatório há algum tempo.</p>
+		<p> </p>
+		<p>Aparentemente a alma de Gwendolin, a Protetora do Campo Etérico que foi morta pelos Balaur, está vagando pelo Observatório destruído.</p>
+		<p> </p>
+		<p>Vá vê-la, [%username]. [%dic:STR_DIC_N_Gwendolin] poderá lhe dizer o que vai acontecer com o Observatório.</p>
+		<p> </p>
+		<p>Ela provavelmente se culpa porque não foi capaz de protegê-lo. Talvez seja por isso que ela não pode sair do Observatório.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+	<Voice file="Q2060.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>É incomum que a alma de um Daeva permaneça em Atreia e não retorne ao Fluxo do Éter.</p>
+		<p> </p>
+		<p>É possível que seja seu senso de dever mantê-la aqui. Talvez houvesse uma tarefa que ela não conseguiu completar.</p>
+		<p> </p>
+		<p>Por favor, encontre [%dic:STR_DIC_N_Gwendolin] e fale com ela.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>A alma de um Daeva geralmente não permanece em Atreia.</p>
+		<p> </p>
+		<p>Isso certamente significa alguma coisa. Talvez você devesse levar esse assunto a sério.</p>
+		<p> </p>
+		<p>Volte se mudar de ideia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+<HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Finalmente alguém veio me ajudar!</p>
+		<p> </p>
+		<p>Aion deve ter ouvido minhas orações.</p>
+		<p> </p>
+		<p>Eu me culpo por não ter conseguido proteger o Observatório. É por isso que ainda estou aqui... mesmo estando realmente morto.</p>
+		<p> </p>
+		<p>Só encontrei descanso quando o Observatório para restaurados ao que era antes e os Balaur foram expulsos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">O que precisa ser feito?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Várias tentativas foram feitas para reconstruir o Observatório. Mas nenhum deles deu em nada, por causa dos aparelhos que o Balaur instalou.</p>
+		<p> </p>
+		<p>Os Balaur colocaram vários [%dic:STR_DIC_OBJ_DF3_DragonObelisk_Q2060]s perto do Observatório. Por favor, destrua-os.</p>
+		<p> </p>
+		<p>Quando terminar, por favor, reporte-se à fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+       <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você voltou, [%username].</p>
+		<p> </p>
+		<p>Você conheceu Gwendolin? Ela sabia como o Observatório poderia ser reconstruído?</p>
+		<p> </p>
+		<p>Vá em frente, me diga!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Supressor de campo? Entendi... Vou enviar alguns ajudantes para começar a reconstruir o Observatório.</p>
+		<p> </p>
+		<p>Deve ter sido difícil para Gwendolin deixar este mundo. Ela provavelmente estava esperando por um Daeva que a aliviaria de seu fardo.</p>
+		<p> </p>
+		<p>Obrigado, Daeva. Você tem sido de grande ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+		<step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Gwendolin] em [%dic:STR_DIC_W_STR_DF3_SZ_G6_2].</font></p></step>
+		<step><p visible="[%9]"><font color="[%10]">Destrua os [%dic:STR_DIC_OBJ_DF3_DragonObelisk_Q2060]s perto do Observatório ([%11]/3).</font></p></step>
+		<step><p visible="[%24]"><font color="[%25]">Apresente-se para [%dic:STR_DIC_N_Hod] em [%dic:STR_DIC_W_STR_DF3_SZ_A].</font></p></step>
+    </steps>
+		<p><font font_xml="quest_summary">Atenda ao pedido de Gwendolin, que está perambulando perto do Observatório.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Hod suspeitou que os Balaur conseguiram invadir Beluslan porque o Observatório havia sido destruído. Foi por isso que o Observatório precisou ser reconstruído.</p>
+		<p> </p>
+		<p>Ele lhe contou sobre Gwendolin, uma Protetora do Campo Etérico que foi morta pelos Balaur. Você foi ao encontro do espírito dela para saber mais sobre o Observatório.</p>
+		<p> </p>
+		<p>Você destruiu os Supressores de Campo a pedido de Gwendolin e reportou a Hod.</p>
+		<p> </p>
+		<p>Hod agradeceu e disse que enviaria ajudantes para iniciar a reconstrução imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

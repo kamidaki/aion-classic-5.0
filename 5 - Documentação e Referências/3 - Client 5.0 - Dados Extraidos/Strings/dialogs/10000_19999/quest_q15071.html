@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15071</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pesquisa envolve cuidar dos detalhes. E sobre fazer progressos rápidos. Lamentavelmente, os nossos investigadores por vezes esquecem-se disso.</p>
+          <p> </p>
+          <p>Nossa pesquisadora que trabalha na perseguição de Beritra costuma perder objetos, mesmo sendo uma pessoa meticulosa.</p>
+          <p> </p>
+          <p>Recentemente, ela perdeu um caderno com achados importantes de pesquisas no meio da floresta e não conseguiu localizá-lo.</p>
+          <p> </p>
+          <p>Eu confio nela, mas as pessoas não deveriam ter mais cuidado ao fazer pesquisas?</p>
+          <p> </p>
+          <p>Por favor, vá até [%dic:STR_DIC_W_LF5_SZ_H_01], procure por [%dic:STR_DIC_I_doc_quest_15071a] e traga-o para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um caderno meticulosamente guardado é uma parte importante da pesquisa.</p>
+          <p> </p>
+          <p>Por favor, encontre o Caderno de Phanon!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Caderno de Phanon.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O caderno tem páginas rasgadas e a capa está um pouco suja. Phanon trata isso de forma tão descuidada.</p>
+          <p> </p>
+          <p>Seu estado é uma evidência de que ela já o usa há algum tempo... Onde você encontrou isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você conta o que aconteceu até agora.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está ficando esquecido?</p>
+          <p> </p>
+          <p>É sobre o Caderno de Phanon, você entendeu?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O caderno tem páginas rasgadas e a capa está um pouco suja. Phanon trata isso de forma tão descuidada.</p>
+          <p> </p>
+          <p>Seu estado é uma evidência de que ela já o usa há algum tempo... Onde você encontrou isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você conta o que aconteceu até agora.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Típico de Phanon perder o caderno ali mesmo.</p>
+          <p> </p>
+          <p>Você se saiu muito bem, [%username].</p>
+          <p> </p>
+          <p>Agora que recuperamos o notebook, podemos continuar nossa pesquisa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Procure por [%dic:STR_DIC_I_doc_quest_15071a] e reporte para [%dic:STR_DIC_N_LF5_Brontte_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Brontte_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure o Caderno de Phanon na Floresta Musgosa e leve-o para Branth.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Branth pediu para você procurar o Caderno de Phanon.</p>
+          <p> </p>
+          <p>Você encontrou o Caderno de Phanon na Floresta Musgosa e o trouxe para Branth.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

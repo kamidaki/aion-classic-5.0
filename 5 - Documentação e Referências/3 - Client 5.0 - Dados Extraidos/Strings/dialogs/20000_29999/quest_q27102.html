@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mostra a tarefa conjunta para o desenvolvimento da aldeia.</p>
+          <p>Espero que todos vocês se empenhem nesta tarefa e ajudem a criar uma aldeia bonita e hospitaleira.</p>
+          <p> </p>
+          <p>Missão da aldeia:</p>
+          <p>Reúna [%dic:STR_DIC_E_junk_town_upgrade_aventurine] e leve-os para [%dic:STR_DIC_N_Town_D_shugo_Worker_05] para construir uma torre sineira.</p>
+          <p> </p>
+          <p>- Administração da aldeia -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A torre do relógio é um edifício importante, pois é um símbolo da aldeia, akakak.</p>
+          <p> </p>
+          <p>Mas são necessários materiais muito valiosos para construir a torre, akakak.</p>
+          <p> </p>
+          <p>Esse é o Quartzo Aventurina!</p>
+          <p> </p>
+          <p>Sabemos que este valioso material só pode ser obtido em Pernon, Ak. Sem quantidade suficiente desse material, a construção da torre do relógio não será possível, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Quartzo Aventurina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Quartzo Aventurina! Você deve ter corrido feito um louco por Pernon para coletar esse material, akakak.</p>
+          <p> </p>
+          <p>Eu sabia que os Daevas que amam a sua aldeia não negligenciariam as tarefas da aldeia, akakak.</p>
+          <p> </p>
+          <p>Agora temos Quartzo Aventurina. Então preciso pedir a um mestre da nossa associação de construção que construa um sino para a torre, akakak.</p>
+          <p> </p>
+          <p>Espero que meu sino possa ser construído o mais rápido possível, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_E_junk_town_upgrade_aventurine] e leve para [%dic:STR_DIC_N_Town_D_shugo_Worker_05].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Goldstone que só pode ser encontrado em Pernon é necessário para construir a torre do sino. Goldstone deve ser coletado e levado ao capataz da aldeia para completar a tarefa da aldeia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Anúncio de tarefa da aldeia. As pedras de ouro devem ser recolhidas e levadas ao capataz da aldeia para construir a torre do sino da aldeia.</p>
+          <p> </p>
+          <p>As pessoas estão gratas por vocês estarem participando da missão da aldeia de reunir material para o desenvolvimento da aldeia e levá-lo ao capataz da aldeia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

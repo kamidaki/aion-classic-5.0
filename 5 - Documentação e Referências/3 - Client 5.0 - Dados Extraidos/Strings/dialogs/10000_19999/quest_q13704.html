@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Asmodiano quer ocupar o [%dic:STR_DIC_W_LDF4_Advance_SZ_V04].</p>
+          <p> </p>
+          <p>Esta região é extremamente importante para a conquista de Akaron. Depois de ocupar esta área, você pode usar o [%dic:STR_DIC_OBJ_LDF4_Advance_Out_AB] no assentamento Chapir próximo.</p>
+          <p> </p>
+          <p>Os Asmodianos sabem disso. É por isso que eles atacam qualquer Elyos que queira usar o Abismo Gate.</p>
+          <p> </p>
+          <p>Temos que fazer algo para evitar isso...</p>
+          <p> </p>
+          <p>[%username], que tal configurar o [%dic:STR_DIC_I_quest_13704a] no Abismo Gate? Isso nos ajudaria a tornar os Elyos daquela região mais seguros.</p>
+          <p> </p>
+          <p>É irritante, sim, mas por favor nos ajude.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ultimamente, temos ouvido cada vez mais notícias sobre os sucessos de Elyos nas batalhas no Abismo.</p>
+          <p> </p>
+          <p>Prepare-se bem antes de viajar para lá. Mas você já sabe disso, não é?</p>
+          <p> </p>
+          <p>Você instalou com sucesso a faixa de alarme?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças à sua ajuda, podemos concentrar todos os nossos esforços na defesa do Posto da Guarda.</p>
+          <p> </p>
+          <p>Agora podemos finalmente concluir as tarefas que tivemos que adiar.</p>
+          <p> </p>
+          <p>Ligarei para você se tiver novas tarefas para você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Configure o [%dic:STR_DIC_I_quest_13704a] no [%dic:STR_DIC_W_LDF4_Advance_SZ_D_01] próximo ao [%dic:STR_DIC_OBJ_LDF4_Advance_Out_AB].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Quando os Elyos capturarem o [%dic:STR_DIC_W_LDF4_Advance_SZ_V04], [%dic:STR_DIC_N_LDF4_Advance_Village_Guard01_L] aparecerá. Fale com ele.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Siga as instruções de Portuna e configure a Faixa de Alarme perto do Portão do Abismo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Portuna pediu para você instalar a Fita de Alarme no Portão do Abismo para proteger os Elyos.</p>
+          <p> </p>
+          <p>Após completar a tarefa, você entregou seu relatório para Portuna e foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

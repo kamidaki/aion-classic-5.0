@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+	<HtmlPage name="select1" accept="true">
+	<Contents cdata="true">
+		<html>
+		<body>
+		<p>De acordo com as informações mais recentes, a Guilda Ereshkigal na Fortaleza de Guerra Krotan submeteu-se a Beritra.</p>
+		<p> </p>
+		<p>É por isso que o quartel-general de Reshanta lhe deu a missão de investigar a situação na Fortaleza de Guerra Krotan e matar [%dic:STR_DIC_M_Crotan_DrakanBossNamed_65_Ah].</p>
+		<p> </p>
+		<p>É a primeira vez que ouço falar dessa situação. Balaur não se submete sem motivo.</p>
+		<p> </p>
+		<p>De acordo com outra fonte, os Balaur acumularam tesouros em algum lugar da fortaleza de guerra.</p>
+		<p> </p>
+		<p>Talvez você possa roubar algum tesouro ao realizar a tarefa.</p>
+		</body>
+		</html>
+	</Contents>
+	<Selects>
+		<Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+		<Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+	</Selects>
+	</HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+		<html>
+		<body>
+		<p>Reshanta é um lugar perigoso.</p>
+		<p> </p>
+		<p>Você nunca pode ter certeza de quando seus inimigos atacarão.</p>
+		<p> </p>
+		<p>Você emana uma energia especial... Você certamente já esteve na Fortaleza de Guerra Krotan antes?</p>
+		<p> </p>
+		<p>Você matou [%dic:STR_DIC_M_Crotan_DrakanBossNamed_65_Ah]?</p>
+		</body>
+		</html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você fala sobre o que você experimentou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+	<Contents cdata="true">
+		<html>
+		<body>
+		<p>A Guilda Ereshkigal realmente se juntou ao Exército Beritra?</p>
+		<p> </p>
+		<p>Inacreditável. Algo estranho parece ter acontecido entre os Balaur.</p>
+		<p> </p>
+		<p>Vou notificar a sede sobre isso.</p>
+		<p> </p>
+		<p>Esta é uma recompensa da Sede da Reshanta.</p>
+		<p> </p>
+		<p>Bom trabalho.</p>
+		</body>
+		</html>
+	</Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o[%dic:STR_DIC_M_Crotan_DrakanBossNamed_65_Ah] ([%2]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Ab1_1221_TreasureGate_Da].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Fortaleza de Guerra Krotan ou para a Fortaleza da Guilda Krotan e mate o Lorde Furioso Krotan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O quartel-general de Reshanta pediu que você matasse o furioso Senhor Krotan na Fortaleza de Guerra Krotan e descobrisse se a Guilda Ereshkigal realmente se juntou ao Exército Beritra.</p>
+          <p> </p>
+          <p>Depois que você e seus aliados derrotaram o Senhor Krotan na Fortaleza de Guerra Krotan e confirmaram que a Guilda Ereshkigal havia se juntado ao Exército Beritra, você reportou de volta.</p>
+          </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

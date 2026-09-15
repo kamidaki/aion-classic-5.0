@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva veio por causa dos rumores, ok?</p>
+          <p> </p>
+          <p>Shugo envia Daevas que vieram de um [%dic:STR_DIC_W_PC_room] para o Runadium (bônus).</p>
+          <p> </p>
+          <p>Diz-se que a terrível Grendal, a Bruxa, mora por aqui. [%username] reuniu aliados fortes?</p>
+          <p> </p>
+          <p>Daeva está pronto, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra no Runadium (bônus).</Act>
+      <Act href="HACTION_OPEN_INSTANCE_RECRUIT">Você procura amigos para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo sente muito, akakak.</p>
+          <p> </p>
+          <p>Shugo envia Daevas que vieram de um [%dic:STR_DIC_W_PC_room] para o Runadium (bônus).</p>
+          <p> </p>
+          <p>[%username] não veio de nenhum lugar especial.</p>
+          <p> </p>
+          <p>Se Daeva deseja encontrar Grendal, a Bruxa, Daeva deve pegar a entrada do Runadium.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo sente muito, ak.</p>
+          <p> </p>
+          <p>Daeva virá novamente quando Daeva estiver pronto, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

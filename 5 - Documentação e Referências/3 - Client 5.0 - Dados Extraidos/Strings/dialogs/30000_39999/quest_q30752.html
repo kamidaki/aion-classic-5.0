@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30752</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], os Dredgions Chantra e Terath estão nos causando grandes dores de cabeça.</p>
+          <p> </p>
+          <p>Portanto, tenho uma missão para você no [%dic:STR_DIC_W_IDTiamat_SZ_R1], no [%dic:STR_DIC_W_IDTiamat_SZ_S3] para ser mais preciso.</p>
+          <p> </p>
+          <p>Se quisermos colocar os Dredgions fora de serviço, teremos que descobrir mais sobre eles. Eu mesmo iria, mas tenho que cuidar de nossas tropas agora.</p>
+          <p> </p>
+          <p>Eu sei que você tem muito o que fazer, [%username]. Mas você poderia ir ao [%dic:STR_DIC_W_IDTiamat_SZ_S3] e me fazer um favor?</p>
+          <p> </p>
+          <p>Por favor, investigue o [%dic:STR_DIC_N_IDTiamat_FOBJ_Model] e descubra sua trajetória de voo. Então cuide de [%dic:STR_DIC_M_IDTiamat_Sardha_Named_60_Ah].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Perto da maquete, você encontra informações sobre os horários de saída e rotas do Dredgion.)</p>
+          <p> </p>
+          <p>(Você deve tentar lembrar as informações da melhor maneira possível, pois não terá tempo para anotá-las)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você termina sua investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você finalmente voltou!</p>
+          <p> </p>
+          <p>Como foi na sala de controle do Dredgion?</p>
+          <p> </p>
+          <p>Se soubéssemos a rota, saberíamos o que pretendem.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você fez um ótimo trabalho!</p>
+          <p> </p>
+          <p>Terath foi finalmente derrotado... Agora não precisamos nos preocupar com o Dredgion por enquanto.</p>
+          <p> </p>
+          <p>Porém, se a informação que você obteve sobre a trajetória de vôo estiver correta, [%username], então o Dredgion já partiu. Mas podemos usar a sala de controle para fazer algo a respeito.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Digite [%dic:STR_DIC_W_IDTiamat_SZ_S3] e use [%dic:STR_DIC_N_IDTiamat_FOBJ_Model] para descobrir a trajetória de vôo do Dredgion.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Derrota [%dic:STR_DIC_M_IDTiamat_Sardha_Named_60_Ah] ([%11]/1).</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Insira o [%dic:STR_DIC_W_IDTiamat_SZ_S1] e reporte para [%dic:STR_DIC_N_IDTiamat_Sorus].</font></p></step>
+    </steps>
+	  <p><font font_xml="quest_summary">Vá para a sala de controle do Dredgion para descobrir qual é a trajetória de vôo do Dredgion.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sorus pediu que você reunisse mais informações sobre a trajetória de vôo do Dredgion e eliminasse o General de Brigada Terath.</p>
+          <p> </p>
+          <p>Graças ao modelo do Terath Dredgion, você conseguiu descobrir a trajetória do vôo. Depois de derrotar Terath, você voltou para Sorus, que ficou muito satisfeito.</p>
+          <p> </p>
+          <p>Porém, as informações que você reuniu mostraram que o Dredgion já estava em movimento. Agora Sorus quer usar a sala de controle para agir contra o Dredgion.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

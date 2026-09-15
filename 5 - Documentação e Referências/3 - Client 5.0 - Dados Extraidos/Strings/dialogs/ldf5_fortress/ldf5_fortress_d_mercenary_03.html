@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não acha que deveria reforçar sua força de combate?</p>
+          <p> </p>
+          <p>Uma vitória na batalha depende de uma força de combate robusta.</p>
+          <p> </p>
+          <p>Você pode convocar Mercenários, Dispositivos Explosivos Automáticos e Cercas de Ferro na Base Defensiva Flaming Eye e na Cratera das Chamas. Você pode convocar Mercenários e Dispositivos Explosivos Automáticos na Rota de Infiltração da Cratera de Chamas.</p>
+          <p> </p>
+          <p>Claro, você precisará ter o número necessário de Medalhas de Batalha.</p>   
+          <p> </p>
+          <p>O que você acha? Você quer reforçar sua força de combate para alcançar a vitória em nome da Guilda [%userguildname]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+	<Act href="HACTION_SELECT1_2">Mercenários, Dispositivos Explosivos Automáticos e Cercas de Ferro são necessários na Base Defensiva Flaming Eye.</Act>
+	<Act href="HACTION_SELECT1_3">Mercenários, Dispositivos Explosivos Automáticos e Cercas de Ferro são necessários na Base Defensiva da Cratera das Chamas.</Act>
+	<Act href="HACTION_SELECT1_4">Mercenários, Dispositivos Explosivos Automáticos e Cercas de Ferro são necessários na Rota de Infiltração da Cratera de Chamas.</Act>
+	<Act href="HACTION_FINISH_DIALOG">Não, nem Mercenários, Dispositivos Explosivos Automáticos nem Cercas de Ferro são necessários.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não faz parte da Guilda do Conquistador de Fortaleza, [%username].</p>
+          <p> </p> 
+          <p>Eu só ajudo membros da legião que capturou a fortaleza para convocar Mercenários, Dispositivos Explosivos Automáticos e Cercas de Ferro.</p> 
+          <p> </p> 
+          <p>Volte quando você se juntar à Guilda dos Conquistadores de Fortalezas, então serei mais do que obrigado a ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você é membro da legião [%userguildname].</p>
+          <p> </p>
+          <p>Perdoe-me, mas você precisa de mais medalhas de batalha.</p> 
+          <p> </p> 
+          <p>Você só pode convocar Mercenários, Cercas e Dispositivos Explosivos Automáticos com Medalhas de Batalha.</p> 
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você selecionou a Base Defensiva Flaming Eye.</p>
+          <p> </p>
+          <p>Você pode defender a Base Defensiva Flaming Eye de forma ainda mais eficaz aumentando a força de combate local.</p>
+          <p> </p>
+          <p>Você precisa de 39 Medalhas de Batalha para convocar Mercenários e Dispositivos Explosivos Automáticos lá.</p>
+          <p> </p>
+          <p>Um Templário, um Feiticeiro, quatro Caçadores, quatro Gladiadores, um Dispositivo Explosivo Automático e uma Cerca de Ferro serão convocados.</p>
+          <p> </p>
+          <p>O que você acha? Você deseja convocar nessas condições?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que deseja convocá-los na Base Defensiva Flaming Eye.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Base Defensiva da Cratera das Chamas...</p>
+          <p> </p>
+          <p>É adequado para defesa contra inimigos que pretendem capturar a Cratera das Chamas.</p>
+          <p> </p>
+          <p>Um Templário, um Feiticeiro, quatro Caçadores, quatro Gladiadores, um Dispositivo Explosivo Automático e uma Cerca de Ferro podem ser convocados na Base Defensiva da Cratera das Chamas.</p>
+          <p> </p>
+          <p>Você precisa de 39 medalhas de batalha para a convocação.</p>
+          <p> </p>
+          <p>É uma oferta muito boa, não é? O que você acha?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você diz que deseja convocá-los na Base Defensiva da Cratera das Chamas.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Rota de Infiltração da Cratera das Chamas, uma boa escolha.</p>
+          <p> </p>
+          <p>Você tem que aumentar as forças para evitar que os inimigos capturem a Cratera das Chamas.</p>
+          <p> </p>
+          <p>Você precisa de 20 Medalhas de Batalha para convocar Mercenários e Equipamentos na Rota de Infiltração da Cratera das Chamas.</p>
+          <p> </p>
+          <p>Dois Templários, um Feiticeiro, dois Caçadores, dois Gladiadores e um Dispositivo Explosivo Automático serão convocados.</p>
+          <p> </p>
+          <p>O que você acha? Você deseja convocar nessas condições?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você diz que deseja convocá-los na Rota de Infiltração da Cratera de Chamas.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A convocação foi bem-sucedida.</p>
+          <p> </p>
+          <p>Que sua Guilda [%userguildname] seja vitoriosa, [%username].</p>
+          <p> </p>
+          <p>Boa sorte!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

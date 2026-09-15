@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12006</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recebi notícias interessantes. Parece que a proibição de Kahrun às hostilidades entre nós e os Elyos não se estende às Guarnições da Guilda Balaur ao redor do Olho de Tiamaranta.</p>
+          <p> </p>
+          <p>Devemos aproveitar isso. Os Elyos certamente o farão. Devemos atacá-los nestes lugares antes que nos ataquem.</p>
+          <p> </p>
+          <p>O testamento de Kahrun não se estende a [%dic:STR_DIC_W_LDF4b_SZ_T2_A4], [%dic:STR_DIC_W_LDF4b_SZ_T3_A4], [%dic:STR_DIC_W_LDF4b_SZ_T4_A3] e [%dic:STR_DIC_W_LDF4b_SZ_C3]. Se isso parece um pouco assustador, você pode tentar [%dic:STR_DIC_W_LDF4b_SZ_C1_A2], [%dic:STR_DIC_W_LDF4b_SZ_C1], [%dic:STR_DIC_W_LDF4b_SZ_C2_S6] ou [%dic:STR_DIC_W_LDF4b_SZ_C2_A1].</p>
+          <p> </p>
+          <p>Não deixe os Reianos saberem disso, ou teremos mais problemas do que podemos suportar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sinto que algum dia teremos paz entre nós e Elyos... quando eles admitirem seus erros.</p>
+          <p> </p>
+          <p>Mas, por enquanto, lutamos quando podemos. Os relatórios sobre as guarnições eram precisos?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu tenho as mortes para provar isso."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente. Este conhecimento não será secreto por muito tempo, por isso devemos aproveitar ao máximo enquanto podemos.</p>
+          <p> </p>
+          <p>Se pressionarmos com força suficiente, os Elyos nunca conseguirão nos desalojar depois de derrotarmos Tiamat.</p>
+          <p> </p>
+          <p>Heh, mesmo sob o olhar de Kahrun, nossa guerra continua... Eu me pergunto se isso faz sentido. De qualquer forma, bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate Elyos no [%dic:STR_DIC_E_Q12006] ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_Gwidon].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Elyos nas áreas que a Vontade de Kahrun não alcança mais.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gidon disse para você matar Elyos em lugares onde a Vontade de Kahrun é ineficaz, para que Asmodae pudesse ganhar vantagem quando Tiamat fosse derrotado.</p>
+          <p> </p>
+          <p>Você matou os Elyos que encontrou em Tiamaranta e voltou a receber muitos elogios.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

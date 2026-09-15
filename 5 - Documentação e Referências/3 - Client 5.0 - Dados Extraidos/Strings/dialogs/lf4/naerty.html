@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Salve, [%username]!</p>
+          <p> </p>
+          <p>Mesmo as asas de um Daeva não são fortes o suficiente para cobrir toda Atreia.</p>
+          <p> </p>
+          <p>Mas é para isso que estou aqui. Para onde você gostaria de ir?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <airline_service>Teleport</airline_service>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+        <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sinto muito, mas apenas Daevas pode usar os teletransportadores.</p>
+          <p> </p>
+          <p>Não é minha regra, é do Santuário.</p>
+          <p> </p>
+          <p>E não é apenas por despeito. Os corpos humanos são demasiado frágeis para se teletransportarem.</p>
+          <p> </p>
+          <p>Por favor, não se ofenda.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Humph!"</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

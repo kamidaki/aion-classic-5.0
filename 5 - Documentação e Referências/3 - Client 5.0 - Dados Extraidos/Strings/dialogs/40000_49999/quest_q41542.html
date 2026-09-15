@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41542</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você parece útil. Você é útil, Daeva?</p>
+          <p> </p>
+          <p>Eu tenho um problema. Grande problema, preciso de ajuda. Não, não, [%dic:STR_DIC_N_NPC_Gururu_05] precisa de ajuda... Gurrp, minha memória não é tão boa.</p>
+          <p> </p>
+          <p>Vá perguntar a Davikik, ele dirá qual é o problema.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, graças a Aion! Tenho enviado orações muito sinceras a Senhora Siel para que um Daeva venha em meu auxílio, e agora - ha ha! - aqui está você!</p>
+          <p> </p>
+          <p>Daeva, eu me lembro! Veio até mim nas asas de um sonho, uma visão ao mesmo tempo perturbadora e fascinante.</p>
+          <p> </p>
+          <p>Eu não sou Gurriki, meu amigo, não de verdade. Eu tinha esquecido, mas esse sonho me devolveu a lembrança. Eu sou um Reian, assolado pela maldição de um rival perverso!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Você certamente não parece um Gurriki."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim, comprometi-me a reaprender o discurso civilizado. Não foi fácil, nem evitar os insetos que meus companheiros aqui devoram com tanta voracidade.</p>
+          <p> </p>
+          <p>Tudo o que esses Gurriki pensam é na próxima refeição. É um alívio Converse com alguém de verdadeiro intelecto.</p>
+          <p> </p>
+          <p>Oh, estou tão ansioso para retornar à minha verdadeira forma. Para voar de novo, Daeva! Para voar alto!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4b_SZ_C1_S1] e descubra como você pode ajudar [%dic:STR_DIC_N_NPC_Gururu_05].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre o Gurriki, Davikik, e veja que ajuda ele precisa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma comerciante de materiais Gurriki, Burikik, disse que sua amiga Davikik precisa de ajuda, mas ela não consegue se lembrar por quê.</p>
+          <p> </p>
+          <p>Quando você encontrou Davikik, ele explicou (com bastante eloquência) que era na verdade um Reian sob a maldição de um rival.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

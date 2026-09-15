@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora apenas os teimosos Chapir Healers permanecem no [%dic:STR_DIC_M_LDF4_Advance_Chapire_West_all].</p>
+          <p> </p>
+          <p>Eles vêm à nossa base para nos espionar.</p>
+          <p> </p>
+          <p>Também enviamos vários batedores, mas o inimigo também não descansa.</p>
+          <p> </p>
+          <p>Não podemos continuar a ignorar os esforços de reconhecimento da União Asmodiana.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você eliminou os curandeiros da União Asmodiana Ocidental?</p>
+          <p> </p>
+          <p>[%username], não duvido que você já os tenha matado. Estou certo?</p>
+          <p> </p>
+          <p>Se não nos livrarmos dos Curandeiros, isso poderá acabar mal para nós.</p>
+          <p> </p>
+          <p>Eles podem descobrir nossos segredos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, estou me sentindo melhor agora que você eliminou a União Asmodiana.</p>
+          <p> </p>
+          <p>Sinto-me liberto porque não preciso temer que nossos segredos sejam revelados.</p>
+          <p> </p>
+          <p>Qualquer missão pode realmente ser confiada a você, [%username], e você a completará com perfeição.</p>
+          <p> </p>
+          <p>Obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua o [plur][%dic:STR_DIC_M_LDF4_Advance_A_DaChapire_Pr_65_n] que aparece quando todas as guarnições ocidentais estão ocupadas ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com um dos [plur][%dic:STR_DIC_E_LDF4_Advance_Village_Guard_L_West].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra o pedido de um dos Comandantes da Tropa do Escudo e derrote os Teimosos Chapir Healers, que são membros da União Asmodiana Ocidental.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um dos comandantes ocidentais enviou-te para desmembrar a União Asmodiana.</p>
+          <p> </p>
+          <p>Você derrotou a União Asmodiana e recebeu gratidão em troca.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

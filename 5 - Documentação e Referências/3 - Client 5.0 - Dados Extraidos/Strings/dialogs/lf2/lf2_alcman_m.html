@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Posso ajudá-lo com recompensas em moedas.</p>
+          <p> </p>
+          <p>Não tenha pressa navegando pelas recompensas.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+        <trade_buy>Exchange coins</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desta vez, preparei outro tipo de recompensa em moedas para aqueles que trabalham para proteger os Eltnen.</p>
+          <p> </p>
+          <p>Você deve analisar essas ofertas com atenção, pois são diferentes daquelas oferecidas por outros Oficiais de Administração.</p>
+          <p> </p>
+          <p>Seria muito triste se você se arrependesse de sua escolha depois de usar suas valiosas moedas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode receber recompensas em moedas, [%username].</p>
+          <p> </p>
+          <p>Verifique novamente se há moedas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

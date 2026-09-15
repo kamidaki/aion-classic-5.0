@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Surt perguntou por Daeva.</p>
+          <p> </p>
+		  <p>Daeva está saindo da Vila BuBu agora? BuBu triste.</p>
+          <p> </p>
+		  <p>Se Daeva não esquecer a Vila BuBu, Daeva pode retornar à Vila BuBu a qualquer momento.</p>
+		  <p> </p>
+		  <p>No caminho, lute com [plur][%dic:STR_DIC_M_DF2A_ShellizardStoneD_48_n] ou [plur][%dic:STR_DIC_M_DF2A_ShellizardDesertD_48_n].</p>
+		  <p> </p>
+		  <p>Esta é a última coisa que BuBu pedirá a Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta.</p>
+          <p> </p>
+		  <p>Você se tornou mais imponente nesse meio tempo. É bom ver você assim.</p>
+		  <p> </p>
+		  <p>Como foram as coisas na Vila BuBu?</p>
+		  <p> </p>
+		  <p>Você conseguiu fazer alguma coisa para ajudar Brusthonin?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você explica o que aconteceu nesse meio tempo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Tribo BuBu firmou uma aliança para desenvolver a área no Norte de Brusthonin.</p>
+          <p> </p>
+		  <p>Isso foi útil, pois também precisamos de ajuda.</p>
+		  <p> </p>
+		  <p>Sua tarefa especial está concluída, Daeva.</p>
+		  <p> </p>
+		  <p>Mas a verdadeira restauração de Brusthonin apenas começou.</p>
+		  <p> </p>
+		  <p>Venha me ver sempre que quiser. Você é sempre bem vindo aqui.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para a costa da Caróbia e elimine o [plur][%dic:STR_DIC_M_DF2A_ShellizardStoneD_48_n] ou o [plur][%dic:STR_DIC_M_DF2A_ShellizardDesertD_48_n] ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Surt] no [%dic:STR_DIC_W_DF2B_SZ_A_Town].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os monstros em Brusthonin, depois vá para Surt.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>BuBu Khaaan pediu para você libertar Rocky Back Ksellids ou Crown Ksellids em Brusthonin.</p>
+          <p> </p>
+          <p>Você eliminou os monstros e recebeu uma recompensa de Surt.</p>
+		  <p> </p>
+		  <p>Surt disse que este foi apenas o primeiro passo para restaurar Brusthonin e que você pode voltar para vê-lo a qualquer momento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

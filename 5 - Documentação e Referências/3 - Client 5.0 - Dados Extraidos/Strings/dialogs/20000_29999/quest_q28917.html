@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Posso ter um momento do seu tempo? Há uma tarefa em [%dic:STR_DIC_W_IDVritra_Base_all] que precisa ser concluída.</p>
+          <p> </p>
+          <p>Foi ocupado pelo Exército Beritra. Eles armazenam seus materiais de guerra lá e realizam pesquisas de armas, de modo que o depósito é rigorosamente monitorado.</p>
+          <p> </p>
+          <p>É por isso que estabelecemos uma nova rota de infiltração para [%dic:STR_DIC_W_LDF4_Advance].</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_LDF4_Advance] e fale com [%dic:STR_DIC_N_LDF4_Advance_Helgund_E].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], fui notificado, então estava esperando por você.</p>
+          <p> </p>
+          <p>Você recebeu a ordem de se infiltrar no Sauro War Depot, certo?</p>
+          <p> </p>
+          <p>O Sauro War Depot é um lugar perigoso onde o Exército Beritra pesquisa armas.</p>
+          <p> </p>
+          <p>Já foi um santuário e também o Refúgio da Tribo Rúnica. Agora não é mais seguro lá.</p>
+          <p> </p>
+          <p>É por isso que temos que monitorar o depósito constantemente. Estabelecemos um Corredor em Akaron para que possamos nos infiltrar nele o mais rápido possível.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_LDF5_Giriltia_E] irá informá-lo detalhadamente sobre sua tarefa.</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_LDF4_Advance_SZ_F_01]. Lá você encontrará [%dic:STR_DIC_N_OBJ_IDVritra_Base_Enter] e [%dic:STR_DIC_N_LDF5_Giriltia_E].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você simplesmente não consegue descansar aqui.</p>
+          <p> </p>
+          <p>Nada mudou nesse aspecto desde que cheguei a Katalam.</p>
+          <p> </p>
+          <p>Então, se você não tem nenhuma necessidade especial, poderia voltar?</p>
+          <p> </p>
+          <p>Ou talvez você tenha recebido uma ordem para se infiltrar no War Depot?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que veio porque recebeu ordens para se infiltrar no depósito de guerra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu a ordem para se infiltrar no War Depot?</p>
+          <p> </p>
+          <p>Suponho que você já tenha explicado isso para você.</p>
+          <p> </p>
+          <p>O Sauro War Depot é ocupado pela 40ª Guilda, também conhecida como esquadrão de inteligência do Exército Beritra.</p>
+          <p> </p>
+          <p>De acordo com as nossas últimas informações, eles estão trabalhando ainda mais intensamente na pesquisa de armas.</p>
+          <p> </p>
+          <p>Passe pelo [%dic:STR_DIC_N_OBJ_IDVritra_Base_Enter], encontre seus segredos militares e destrua-os!</p>
+          <p> </p>
+          <p>Por favor, prepare-se!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF4_Advance_Helgund_E] em [%dic:STR_DIC_W_LDF4_Advance].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para [%dic:STR_DIC_W_LDF4_Advance_SZ_F_01] e fale com [%dic:STR_DIC_N_LDF5_Giriltia_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para Akaron e descubra algo sobre o Sauro War Depot.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Phon disse que você deveria se infiltrar no Sauro War Depot, que está sob o controle do Exército Beritra. Ele falou sobre a nova rota de infiltração e instruiu você a ir até lá.</p>
+          <p> </p>
+          <p>Você partiu e conheceu Helgund e Giriltia. Eles relataram que o Exército Beritra está atualmente concentrado na pesquisa de armas. Você recebeu a tarefa de revelar seus segredos militares e arruinar seus planos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

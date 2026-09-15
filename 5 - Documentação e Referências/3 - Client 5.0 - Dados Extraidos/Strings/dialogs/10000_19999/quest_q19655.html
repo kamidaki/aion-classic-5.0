@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Rosa de Aço está saqueando impiedosamente os Shugos com explosivos e armas oferecidas pela Goldrinyerk Limited, ak.</p>
+          <p> </p>
+          <p>Infelizmente, Goldrinyerk não tem forças para destruir a Rosa de Aço... Então estou pedindo sua ajuda para evitar que Shugos inocentes sejam sacrificados, ak!</p>
+          <p> </p>
+          <p>Por favor, infiltre-se no [Steel Rose Deck] e mate o [Lead Atirador Nachraki] e o [Primeiro Imediato Utsuraki], ak!</p>
+          <p> </p>
+          <p>Depois de terminar a tarefa, vá para Goldrinyerk Limited e reporte-se a Sandarinerk. Boa sorte, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Use as munições e armas obtidas da Goldrinyerk Limited para acabar com as ações dos Piratas Rosa de Aço, que estão ameaçando os Shugos.</p>
+          <p> </p>
+          <p>Os piores entre eles são Nachraki e Utsuraki, ak. Eles atiram sem se importar com os Shugos e ferem muitos deles, ak.</p>
+          <p> </p>
+          <p>Por favor, ajude-nos para que Shugos inocentes parem de se machucar, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o sucesso da missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva nocauteou Nachraki e Utsuraki, ak!</p>
+          <p> </p>
+          <p>Com a sua ajuda, nenhum Shugos inocente será vítima dos piratas malvados, ak. Muito obrigado.</p>
+          <p> </p>
+          <p>Rapidez na execução e preço razoável são os princípios dos bons negócios e o lema da Goldrinyerk Limited.</p>
+          <p> </p>
+          <p>Não rejeite isso; aceite isso. Isso vai ajudar muito o Daeva, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Canhoneiro Chefe Nachraki e o Primeiro Imediato Utsuraki no convés da Rosa de Aço.</font></p></step>
+                     <p visible="[%0]"><font color="[%1]">Chefe Canhoneiro Nachraki ([%2]/1)</font></p>
+                     <p visible="[%0]"><font color="[%1]">Primeiro Imediato Utsuraki ([%5]/1)</font></p>
+               <step><p visible="[%15]"><font color="[%16]">Fale com Sandarinyerk da Goldrinyerk Limited.</font></p></step>
+   	    </steps>
+          <p><font font_xml="quest_summary">Depois de entrar no convés do navio Steel Rose, você ensina o Canhoneiro Chefe Nachraki e o Primeiro Imediato Utsuraki a ter medo da Goldrinyerk Limited.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o Canhoneiro Chefe e o Primeiro Imediato da Rosa de Aço e mostrou suas garras aos piratas cruéis.</p>
+          <p> </p>
+          <p>Deve-se presumir que o Steel Rose, que perdeu dois tripulantes importantes, ficará quieto por enquanto.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

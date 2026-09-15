@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41267</QuestId>
+    <QuestName>용족 마을 파괴</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que a caça às recompensas está valendo a pena em mais de um aspecto. Os meus superiores ficaram tão satisfeitos com a minha iniciativa que me abordaram com uma missão especial.</p>
+          <p> </p>
+          <p>Eles querem que eu me infiltre em [%dic:STR_DIC_W_LDF4a_SZ_C2] e plante uma série de [%dic:STR_DIC_I_Q41267a_bomb]s em pilhas inflamáveis de [%dic:STR_DIC_ILDF4a_Firewood_Q41267] lá. Eles esperam semear o caos entre os Balaur - talvez até matar um número significativo em um único ataque. Mas acho que preciso de ajuda.</p>
+          <p> </p>
+          <p>Você esteve lá em meu nome; você conhece o terreno. Você pode me ajudar com o plantio da bomba, para o bem de Atreia?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+        <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta. Pensei ter visto você em Satrakand, mas não tive certeza.</p>
+          <p> </p>
+          <p>No entanto, ouvi muito mais explosões do que plantei bombas. Então eu sabia que você tinha que ter tido sucesso.</p>
+          <p> </p>
+          <p>Eu tenho que admitir - eu realmente me diverti com esse.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Assim como eu."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De fato. Não há nada como semear a discórdia e a morte entre os Balaur, não é?</p>
+          <p> </p>
+          <p>Se eu conseguir uma promoção, poderei ganhar mais dinheiro. Kinotia vai melhorar muito mais cedo.</p>
+          <p> </p>
+          <p>E será tudo por sua causa! Siel abençoe sua gentileza!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Detone os [%dic:STR_DIC_I_Q41267a_bomb]s no [%dic:STR_DIC_ILDF4a_Firewood_Q41267] em torno de [%dic:STR_DIC_W_LDF4a_SZ_C2] [%2].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Retornar para [%dic:STR_DIC_N_Joubis].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ajude Joubis em uma missão de sabotagem em Satrakand.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Jouvis recebeu a missão de detonar bombas em Satrakand e pediu sua ajuda.</p>
+          <p> </p>
+          <p>Então você pegou uma Bomba de Éter Poderosa e a detonou ali. A explosão e o caos que causou foram espetaculares.</p>
+          <p> </p>
+          <p>Você voltou para Jouvis, que também detonou bombas. Ele agradeceu e comentou que a missão foi divertida.</p>
+         </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

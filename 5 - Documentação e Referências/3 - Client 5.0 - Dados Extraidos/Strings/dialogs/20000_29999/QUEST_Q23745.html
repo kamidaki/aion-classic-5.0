@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p> </p>
+          <p>Remetente: Patrulha Helgund, [%dic:STR_DIC_N_LDF4_Advance_Helgund_E] do [%dic:STR_DIC_W_LDF4_Advance_SZ_OP_D]</p>
+          <p> </p>
+          <p>Destinatário: [%username]</p>
+          <p> </p>
+          <p>Comando: Mate os dois Elyos Daevas que invadiram Akaron.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você cumpre a missão.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Devemos capturar Akaron.</p>
+          <p> </p>
+          <p>Não podemos permitir que os Elyos reivindiquem esta região para si.</p>
+          <p> </p>
+          <p>Elimine os Elyos que continuam chegando aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho. Você lhes ensinou uma lição.</p>
+          <p> </p>
+          <p>Se você continuar assim contra os Elyos, logo nenhum deles ousará vir aqui.</p>
+          <p> </p>
+          <p>Por favor, continuem a fazer a sua parte para a vitória Asmodiana.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Elyos que invadiram [%dic:STR_DIC_W_LDF4_Advance] ([%2]/2).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LDF4_Advance_Helgund_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Mate os Elyos que invadiram Akaron e depois fale com Helgund.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seguindo as instruções de Helgund, você matou os Elyos que invadiram Akaron.</p>
+          <p> </p>
+          <p>Helgund ficou satisfeito e perguntou se você poderia fazer mais para alcançar uma vitória Asmodiana.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

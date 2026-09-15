@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu lhe darei uma recompensa em Moeda de Prata.</p>
+          <p> </p>
+          <p>Pense cuidadosamente sobre como você deseja usar essas moedas que são difíceis de encontrar.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+        <trade_buy>Exchange coins</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta região vulcânica é realmente um lugar terrível.</p>
+          <p> </p>
+          <p>Posso imaginar o quanto você, [%username], e os guardas estão constantemente lutando para proteger um local como este.</p>
+          <p> </p>
+          <p>Meu trabalho é trocar as moedas. Espero poder ajudá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode receber recompensas em moedas, [%username].</p>
+          <p> </p>
+          <p>Verifique novamente se há moedas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

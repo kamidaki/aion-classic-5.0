@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41155</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você procura conversa, estrangeiro, há outros Reianos que terão prazer em lhe atender.</p>
+          <p> </p>
+          <p>Você pode encontrar [%dic:STR_DIC_N_Favlid] em [%dic:STR_DIC_W_LDF4a_SZ_OP_02] e [%dic:STR_DIC_N_Recis] em [%dic:STR_DIC_W_LDF4a_SZ_OP_03].</p>
+          <p> </p>
+          <p>Eles adoram conversar. Vá incomodá-los em vez de mim.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, olá, Daeva! Agora, deixe-me ver, você é Asmodiano ou Elyos? Ainda não consigo distinguir os dois, embora me tenham dito que há grandes diferenças.</p>
+          <p> </p>
+          <p>Bem, vocês são todos parecidos o suficiente com nosso povo Reian. Exceto por essas suas asas notáveis, todos poderíamos ser uma família, não é?</p>
+          <p> </p>
+          <p>Uma grande família, unida contra a tirania de Balaur. Uma ideia inspiradora, não acham?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"É absolutamente aconchegante."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Diga-me, Daeva, o que você acha da trégua de Kahrun entre seus povos? Você acha que vai aguentar?</p>
+          <p> </p>
+          <p>Eu acho que é a calmaria antes da tempestade. Mas enquanto Tiamat estiver fora de cena quando o tempo melhorar, para mim tudo bem.</p>
+          <p> </p>
+          <p>Assim que esmagarmos os Senhores Dragões juntos, todos vocês poderão ir para casa e massacrar seus irmãos até que os Brax voltem para casa, pelo que me importa.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Estou ansioso por isso."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], espero que você tenha achado Kamar hospitaleiro.</p>
+          <p> </p>
+          <p>O que você aprendeu sobre o povo Reian?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Muito."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente. Você se sairá bem aqui, [%username].</p>
+          <p> </p>
+          <p>Tenho mais um conselho para você. Eu imploro a você, honre as leis estabelecidas por Kahrun.</p>
+          <p> </p>
+          <p>O equilíbrio entre Asmodiano e Elyos é delicado, a diplomacia tênue. Nossa missão é importante demais para permitir que velhos rancores influenciem nossas ações.</p>
+          <p> </p>
+          <p>Entretanto, enviarei orações à Senhora do Oriente em seu nome.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Recis] em [%dic:STR_DIC_W_LDF4a_SZ_OP_03].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Favlid] em [%dic:STR_DIC_W_LDF4a_SZ_OP_02].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relate para [%dic:STR_DIC_N_Ulstia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Iskadar enviou você para encontrar dois Reianos mais falantes do que ele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando Iskadar não estava interessado em conversar, você procurava alguns Reianos que fossem um pouco mais falantes.</p>
+          <p> </p>
+          <p>Você conversou com dois Reianos que trabalhavam nos locais de embarque de Elyos e Asmodiano e depois retornou a Ulstia para relatar seu progresso. Ela avisou você para seguir as leis de Kahrun.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

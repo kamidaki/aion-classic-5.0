@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21507</QuestId>
+    <QuestName>칼리돈 마을의 거신병 석상 1</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%userrace], bem-vindo à minha humilde morada. Ênfase na humildade. Como pode o Calydon viver nessas coisas?</p>
+          <p> </p>
+          <p>Há evidências de que os Humnaz têm alguma chave secreta para a fabricação de Petralith. Quanto mais rápido eu descobrir o que os Humnaz sabem sobre Petraliths, mais cedo sairei daqui e voltarei para um acampamento de verdade.</p>
+          <p> </p>
+          <p>Se você estiver disposto a ajudar, verifique se os Humnaz ao redor do [%dic:STR_DIC_W_LDF4a_SZ_A4_03] estão carregando algo suspeito. Se eles tiverem alguma coisa, provavelmente foi roubada dos Jotun. Os Humnaz são ferozes, mas não são exatamente cientistas de Petralith.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho certeza que os Humnaz possuem tecnologia Petralith.</p>
+          <p> </p>
+          <p>Eles simplesmente não são inteligentes o suficiente para descobrir o que isso faz.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Não encontrei nada nos bolsos deles."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Explosão.</p>
+          <p> </p>
+          <p>Bem, obrigado pela sua ajuda de qualquer maneira. Talvez eles o estejam escondendo em algum lugar... Mas onde?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Verifique os bolsos [%dic:STR_DIC_E_LDF4a_Q21507all] para tecnologia Petralith ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Tanytia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Calydons e verifique se eles carregam a tecnologia Petralith.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tanitia estava ansiosa para investigar os rumores de que a tribo Humnaz Calydon havia obtido a tecnologia Petralith.</p>
+          <p> </p>
+          <p>Ela mandou você matar Humnaz e verificar seus bolsos para ver se carregavam algo suspeito.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

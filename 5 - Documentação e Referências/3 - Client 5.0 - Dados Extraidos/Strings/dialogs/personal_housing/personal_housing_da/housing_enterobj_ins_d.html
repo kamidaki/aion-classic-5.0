@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você gostaria de voltar para casa, [%username]?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <teleport_ins_housing>Enter House</teleport_ins_housing>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(As engrenagens do portão rangem. Parece estar quebrada.)</p>
+          <p> </p>
+          <p>(Por favor, digite /petição na sua janela de bate-papo e informe um GM.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

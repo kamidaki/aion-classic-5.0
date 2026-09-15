@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você já experimentou o [%dic:STR_DIC_I_wrap_event_xenophon_shinecard]?</p>
+          <p> </p>
+          <p>Você recebe o Mapa do Comandante quando combina a metade esquerda e a metade direita do Mapa do Comandante.</p>
+          <p> </p>
+          <p>[Evento] Metade Direita do Mapa do Comandante Metades não emparelhadas são inúteis.</p>
+          <p> </p>
+          <p>A julgar pela conversa entre os Daevas, parece que há um enorme excedente de metades esquerdas do Mapa do Comandante.</p>
+          <p> </p>
+          <p>Então, se você me trouxer 10 [plur][%dic:STR_DIC_I_assembly_newyearcard_left], receberá um pequeno presente.</p>
+          <p> </p>
+          <p>Deixe-me saber se você deseja trocar as metades esquerdas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As pérolas devem ser enfiadas e as metades rasgadas do mapa devem ser reunidas para que valham alguma coisa!</p>
+          <p> </p>
+          <p>Se você tiver o [plur][%dic:STR_DIC_I_assembly_newyearcard_left] com você, por favor, entregue-o para mim.</p>
+          <p> </p>
+          <p>Você pode fazer uma troca assim que tiver 10 metades do mapa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a metade esquerda do Mapa do Comandante.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>São exatamente 10!</p>
+          <p> </p>
+          <p>[%username], você é muito preciso.</p>
+          <p> </p>
+          <p>Leve este presente. É apenas uma pequena coisa comparada aos seus esforços, mas espero que seja útil.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [plur][%dic:STR_DIC_I_assembly_newyearcard_left] e leve-os para [%dic:STR_DIC_N_DC1_Event_Matiu].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Leve as metades restantes do Mapa do Comandante para Matia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Líder Rebelde Matiyu disse que você receberia um pequeno presente pelas metades esquerdas restantes do Mapa do Comandante.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

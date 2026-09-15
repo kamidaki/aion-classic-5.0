@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nossa mina é muito grande, ak.</p>
+          <p> </p>
+          <p>Mairinerk está do outro lado, ak.</p>
+          <p> </p>
+          <p>Certamente seremos ricos, ak.</p>
+          <p> </p>
+          <p>Se você tiver tempo, pegue o Éter Air Transporter e encontre-se com [%dic:STR_DIC_N_LDF5a_Mairing_E], ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, bem-vindo, ok.</p>
+          <p> </p>
+          <p>Você quer ir para a mina, ok?</p>
+		  <p> </p>
+		  <p>Mairinerk tem muitos materiais que você pode gostar, também.</p>
+		  <p> </p>
+		  <p>Você só precisa dizer a palavra, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que ouviu a história de Krerunerk.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você é um dos clientes do Krerunerk, ok?</p>
+          <p> </p>
+          <p>Um prazer, ok. Um prazer, ok.</p>
+          <p> </p>
+          <p>Dê uma olhada em nossa mina quando quiser, ak.</p>
+          <p> </p>
+          <p>Se você gosta de algo, você pode comprá-lo, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_N_LDF5a_Mairing_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Voe com a Air Line e conheça Mairinerk que opera uma mina de minério junto com Krerunerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Krerunerk disse que tem uma grande mina na direção das Muralhas e que você deveria subir no Éter Transporter e encontrar Mairinerk. Mairinerk cumprimentou você gentilmente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

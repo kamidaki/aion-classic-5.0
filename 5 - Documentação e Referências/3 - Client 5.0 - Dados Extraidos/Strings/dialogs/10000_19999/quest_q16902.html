@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os ousados Revolucionários Lefaristas aparentemente atacaram o Refúgio de Arbolu.</p>
+          <p> </p>
+          <p>Dizem que eles construíram novos postos no Centro de Pesquisa Lefarista, no caminho para a floresta Requiem, e estão expandindo sua influência.</p>
+          <p> </p>
+          <p>Dos novos posts Lefaristas, [%dic:STR_DIC_W_LF3_SZ_DTW] é o mais recente. Então, por favor, vá lá e conheça [%dic:STR_DIC_N_Rance].</p>
+          <p> </p>
+          <p>Rance explicará a situação com mais detalhes.</p>
+	 </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você provavelmente já ouviu falar do posto construído pelos Revolucionários Lefaristas. A situação se tornou mais complicada do que eu pensava.</p>
+          <p> </p>
+          <p>Já tivemos dificuldades na luta contra os Revolucionários Lefaristas, mas agora o Esquadrão Guerrilha Asmodiano quer atacar o posto também.</p>
+          <p> </p>
+          <p>Como a situação está mudando constantemente, não posso dizer qual grupo ocupa atualmente o cargo.</p>
+          <p> </p>
+          <p>Por favor, vá para [%dic:STR_DIC_W_LF3_Village_02] primeiro e mate [%dic:STR_DIC_M_LF3_2_Light_Raider]. Depois de matar o líder guerrilheiro, o chefe do posto, você poderá conquistá-lo.</p>
+          <p> </p>
+          <p>Assim que [%dic:STR_DIC_M_LF3_2_Light_Raider] for morto, conquistaremos o posto com os Guardiões como reforços. Por favor.</p>
+	  </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tropa guerrilheira Asmodiana que apareceu através da Fenda Espaço-Tempo torna a situação mais complicada.</p>
+          <p> </p>
+          <p>O ponto mais importante é que os Asmodianos e os Revolucionários Lefaristas estão a impedir a expansão do nosso poder à medida que vão conquistando os postos.</p>
+          <p> </p>
+          <p>A postagem é liderada por [%dic:STR_DIC_M_LF3_2_Light_Raider]. Se o comandante estiver morto, o Esquadrão de Defesa poderá ocupar o posto.</p>
+          <p> </p>
+          <p>É por isso que o comandante deve ser eliminado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você matou o líder guerrilheiro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você pegou a postagem? Agora temos algum espaço para respirar. Que bênção.</p>
+          <p> </p>
+          <p>Ainda enfrentamos batalhas ferozes, tanto contra os Revolucionários Lefaristas como contra o esquadrão de guerrilha Asmodiano que parece não querer ceder.</p>
+          <p> </p>
+          <p>Os Asmodianos parecem querer estabelecer uma base estável em Heiron. Provavelmente é por isso que aproveitaram esta oportunidade.</p>
+          <p> </p>
+          <p>A defesa de Heiron será ainda mais difícil.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Rance] em [%dic:STR_DIC_W_LF3_SZ_DTW].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Matar [%dic:STR_DIC_M_LF3_2_Light_Raider] ([%11]/1).</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Relatório para [%dic:STR_DIC_N_Rance].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o líder guerrilheiro no posto que os Revolucionários Lefaristas construíram e ocupe o [%dic:STR_DIC_W_LF3_Village_02].</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se infiltrou no posto que os Revolucionários Lefaristas construíram para expandir seu domínio para o Porto de Arbolu e matou o líder guerrilheiro.</p>
+          <p> </p>
+          <p>Rance está preocupado que a situação não melhore porque os Asmodianos estão envolvidos nesta situação.</p>
+          <p> </p>
+          <p>A luta contra os Asmodianos e os Revolucionários Lefaristas poderá continuar, mesmo em Heiron.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

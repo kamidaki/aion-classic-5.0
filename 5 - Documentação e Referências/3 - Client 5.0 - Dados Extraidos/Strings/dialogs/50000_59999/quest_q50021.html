@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Alguém me ajude! Nyerk, socorro! É o fim do mundo!</p>
+          <p> </p>
+          <p>Meus queridos estão falando sobre doces artesanais há semanas, e agora, nyerk, agora... os [%dic:STR_DIC_M_ValentineEvent_Brownie_Solo]s estragaram tudo!</p>
+          <p> </p>
+          <p>Por favor, querido! Por favor! Pegue-os! Ou o coração da minha namorada vai quebrar!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Prometi aos meus namorados que poderia contrabandear [%dic:STR_DIC_I_Quest_50017a] aqui em [%dic:STR_DIC_E_FOBJ_Event_Cargobox]. Mas os Shulacks estragaram tudo!</p>
+          <p> </p>
+          <p>E agora ela nunca mais confiará em mim, Nyerk!</p>
+          <p> </p>
+          <p>Sobrou algum [%dic:STR_DIC_E_FOBJ_Event_Cargobox]? Há algum doce neles? Ah, eu vou morrer!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Você não vai morrer, acalme-se!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu peguei o [%dic:STR_DIC_I_Quest_50017a] do outro lado do Abismo em Asmer... er, outra terra!</p>
+          <p> </p>
+          <p>Todo o caminho através do Abismo para meus namorados, apenas para Shulack Singletons roubá-los!</p>
+          <p> </p>
+          <p>Meus queridos vão chorar e chorar e chorar!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Como vocês lidam com problemas reais?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não os pegou?</p>
+          <p> </p>
+          <p>Não! Minha vida não tem sentido! Sem sentido, Daeva!</p>
+          <p> </p>
+          <p>Meus queridos vão chorar e chorar se você não encontrar doces no [%dic:STR_DIC_E_FOBJ_Event_Cargobox], nyerk!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Sua namorada parece uma garota muito sensata."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Ah, sim, sim, sim!</p>
+          <p> </p>
+          <p>Quando você está apaixonado, a felicidade do seu ente querido é a maior alegria de todas!</p>
+          <p> </p>
+          <p>Estou feliz! Eu poderia chorar de alegria!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Por favor, não chore mais..."</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, mas os docinhos vão querer mais...</p>
+          <p> </p>
+          <p>São doces muito finos, e ela é uma doce muito boa!</p>
+          <p> </p>
+          <p>Talvez amanhã Daeva consiga encontrar tempo para localizar mais, nyerk?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_ValentineEvent_Brownie_Solo]s ([%2]/3).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_E_white_couple].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Encontre doces no [%dic:STR_DIC_E_FOBJ_Event_Cargobox] e leve-os para o [%dic:STR_DIC_E_white_couple].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Namorando Shugo tentou contrabandear doces através do Abismo para seus namorados, mas Shulacks os roubou no último momento. Ajude-o, ou ele certamente morrerá. Ou chorar. De qualquer forma, será feio.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um Namoro Shugo tentou contrabandear doces através do Abismo para seus namorados, mas Shulacks os roubou no último momento.</p>
+          <p> </p>
+          <p>Primeiro você eliminou alguns Shulack Singletons para acalmá-lo. Então você coletou o que sobrou dos doces para seus doces, após o que ele o recompensou e pediu que você voltasse e reunisse mais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho uma tarefa desafiadora para você.</p>
+          <p> </p>
+          <p>Trata-se de eliminar os Oficiais Elyos de toda Katalam.</p>
+          <p> </p>
+          <p>Muitos Oficiais Elyos devem ser mortos ao fazer isso.</p>
+          <p> </p>
+          <p>Para completar esta tarefa, você deve matar muito mais do que apenas um ou dois deles.</p>
+          <p> </p>
+          <p>[%username], confio que você conseguirá completar este desafio.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou os oficiais Katalam Elyos?</p>
+          <p> </p>
+          <p>Estou muito grato por você estar lutando pelos Asmodianos.</p>
+          <p> </p>
+          <p>Quase alcançamos nosso objetivo e confio que você não desistirá.</p>
+          <p> </p>
+          <p>Não duvido que seremos vitoriosos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. Você correspondeu à minha confiança em você.</p>
+          <p> </p>
+          <p>Eu sabia que você poderia vencer esse desafio com sucesso.</p>
+          <p> </p>
+          <p>Agora, a Guilda Elyos não poderá permanecer em Katalam por muito mais tempo.</p>
+          <p> </p>
+          <p>Uma recompensa espera por você. Não se esqueça de levá-lo com você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Oficiais Elyos ([%2]/44).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_LDF5a_Bard_Commander].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre os Oficiais Elyos em Katalam e derrote-os.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bardo, o Governador do Esquadrão de Limpeza Katalam, deu a você a tarefa de destruir os Oficiais Elyos.</p>
+          <p> </p>
+          <p>Você matou muitos Oficiais Elyos e recebeu uma recompensa por suas ações.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

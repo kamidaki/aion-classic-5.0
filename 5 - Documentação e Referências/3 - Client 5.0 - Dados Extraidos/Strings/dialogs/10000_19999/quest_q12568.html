@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você poderia eliminar os [plur][%dic:STR_DIC_M_LDF5A_B7_Octaside_62_An], que estão se reproduzindo tão rapidamente?</p>
+          <p> </p>
+          <p>Precisamos arrumar aqui porque uma pessoa importante deve chegar em breve.</p>
+          <p> </p>
+          <p>Estou preocupado por não conseguir completar a tarefa sozinho.</p>
+          <p> </p>
+          <p>Faça isso pelos Elyos!</p>
+          <p> </p>
+          <p>Como você também é um Daeva, não vai querer se esquivar dessa tarefa, não é?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu matar a Aracna com Pernas de Aço?</p>
+          <p> </p>
+          <p>Alguém muito importante nos visitará em breve, mas a Aracna com Pernas de Aço pode causar problemas.</p>
+          <p> </p>
+          <p>Isso poderia ser realmente embaraçoso para mim.</p>
+          <p> </p>
+          <p>Você deve me ajudar, [%username], para me poupar dessa vergonha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eles provavelmente nunca serão completamente eliminados, mas é bom que você esteja reduzindo seu número, pelo menos.</p>
+          <p> </p>
+          <p>Tudo isto faz parte dos preparativos para acolher esta importante pessoa.</p>
+          <p> </p>
+          <p>Eu ficaria muito grato se você pudesse nos ajudar novamente em breve.</p>
+          <p> </p>
+          <p>Tome isso como um sinal de minha gratidão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_M_LDF5A_B7_Octaside_62_An] ([%2]/9).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5A_Kiker_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Destrua as Aracnas com Pernas de Aço.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kiker pediu para você lutar contra a Aracna de Pernas de Aço porque uma pessoa importante chegaria em breve.</p>
+          <p> </p>
+          <p>Você destruiu a Aracna com Pernas de Aço e foi recompensado. Kiker pediu que você ajudasse novamente no futuro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

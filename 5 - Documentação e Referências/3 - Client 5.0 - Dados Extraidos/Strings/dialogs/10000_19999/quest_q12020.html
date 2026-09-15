@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12020</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Existem tantas relíquias poderosas enterradas aqui. E aqueles Drakan da Guilda Satra continuam aparecendo para eles, procurando por tudo que podem encontrar.</p>
+          <p> </p>
+          <p>Pelos olhos de Kahrun, [%userrace], temos que proteger os artefatos daqueles terríveis Balaur. Imagine se Tiamat os controlasse, os pervertesse! Haveria devastação e sofrimento incalculáveis!</p>
+          <p> </p>
+          <p>Devemos atacar agora! Antes que eles possam se organizar melhor. Você deve ir para a Guarnição da Guilda Satra e matar [%dic:STR_DIC_M_LDF4b_T4_DrakanFi_Noble_60_An]s e [%dic:STR_DIC_M_LDF4b_T4_DrakanSc_Noble_60_An]s.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não consigo parar de ver todas aquelas almas perdidas, esmagadas pela ocupação de Tiamat.</p>
+          <p> </p>
+          <p>Não podemos deixar Tiamat ganhar mais poder.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"As relíquias estão seguras."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Contivemos a maré. Por enquanto, pelo menos. Qualquer perda para o Belaur é um ganho para nós.</p>
+          <p> </p>
+          <p>Mas nunca podemos esquecer o que precisamos fazer. Nunca esqueça por que estamos aqui.</p>
+          <p> </p>
+          <p>Você prestou um ótimo serviço, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate as unidades [%dic:STR_DIC_M_Q12020_All] que frequentemente invadem as ruínas ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Materia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">A Guilda Satra Drakan invade regularmente as Ruínas do Templo de Siel. Mate Oficiais de Combate Satra e Especialistas em Busca Satra em [%dic:STR_DIC_W_LDF4b_SZ_T4_A3] para evitar isso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conheceu Materia, que estava preocupada com o fato de o Drakan da Guilda Satra continuar atacando as Ruínas do Templo de Siel. Ela pediu para você se livrar deles para proteger as relíquias desenterradas, mantendo-as fora do alcance de Tiamat.</p>
+          <p> </p>
+          <p>Você invadiu a Guarnição da Guilda Satra e matou os Oficiais de Combate e Especialistas de Busca que encontrou. Materia agradeceu seus esforços, dizendo que as ruínas ficariam seguras por um tempo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

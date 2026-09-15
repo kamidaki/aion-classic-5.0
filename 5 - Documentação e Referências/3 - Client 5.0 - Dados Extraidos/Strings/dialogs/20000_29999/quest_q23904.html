@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acha que tem o que é preciso para completar o [%dic:STR_DIC_I_quest_23903a] e o [%dic:STR_DIC_I_quest_23903b] novamente?</p>
+          <p> </p>
+          <p>Você pode completar o [%dic:STR_DIC_I_quest_23903a] coletando as partes individuais do relatório quando todas as bases em Akaron estiverem ocupadas.</p>
+          <p> </p>
+          <p>Você obterá o relatório do Tribune [%dic:STR_DIC_N_LDF4_Advance_Helgund_E], como da última vez.</p>
+          <p> </p>
+          <p>Você obtém o [%dic:STR_DIC_I_quest_23903b] unindo as quatro pérolas que recebe por feitos especiais nas batalhas das fortalezas de Inggison e Gelkmaros.</p>
+          <p> </p>
+          <p>Você fará outra tentativa de conquistar Balaurea?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nem todo mundo que aceita o desafio consegue completar o [%dic:STR_DIC_I_quest_23903a] e o [%dic:STR_DIC_I_quest_23903b].</p>
+          <p> </p>
+          <p>Há um velho provérbio que se aplica aqui: o primeiro passo é sempre o mais difícil. Mas você já conseguiu completar esta tarefa antes, então não tenho dúvidas de que conseguirá fazê-la novamente.</p>
+          <p> </p>
+          <p>Você completou o Relatório sobre a Ocupação de Akaron e a Pérola da Ocupação?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Relatório sobre a Pacificação de Akaron e a Pérola da Ocupação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Estou grato pelos seus esforços.</p>
+          <p> </p>
+          <p>Você se tornou um modelo para os Asmodianos.</p>
+          <p> </p>
+          <p>Enviarei este relatório e a pérola para Pandemônio para serem guardados em segurança.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga o [%dic:STR_DIC_I_quest_23903a] e o [%dic:STR_DIC_I_quest_23903b] para [%dic:STR_DIC_N_Hler].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Complete o relatório e a Pérola da Conquista novamente.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A agente Richelle de Marchutan disse que havia chegado a hora de conquistar Balaurea. Ela pediu que você trouxesse o Relatório sobre a Ocupação de Akaron e a Pérola da Ocupação.</p>
+          <p> </p>
+          <p>Richelle recompensou você quando você entregou a ela o relatório e a pérola.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

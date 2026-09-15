@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41157</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Espero poder contar convosco, porque acaba de ser trazido ao meu conhecimento um assunto de grande urgência.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_E_Q41157all] partiu em busca de abrigo aqui em Kamar. Eles já estão muito atrasados. Também há relatos de que eles se separaram.</p>
+          <p> </p>
+          <p>Sei que há uma guerra em curso, mas aceitei a responsabilidade de ajudar todos os necessitados - todos. Eu levo essa responsabilidade a sério.</p>
+          <p> </p>
+          <p>Se você tiver tempo, procure os refugiados desaparecidos e diga-lhes como chegar aqui com segurança.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é um [%userrace]. Já ouvi histórias sobre o seu povo, mas esta é a primeira vez que vejo um de vocês.</p>
+          <p> </p>
+          <p>Obrigado, Siel! Quando os outros desapareceram, temi o pior. Mas eu entendo que suas lutas gentis por Atreia?</p>
+          <p> </p>
+          <p>Assim que chegar a Kamar, irei me juntar à luta para retribuir sua compaixão.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Vá por ali quando estiver pronto."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você veio me resgatar? Bem, sinto muito, mas você desperdiçou seu tempo, de certa forma.</p>
+          <p> </p>
+          <p>Estou perfeitamente bem e tomei uma posição que acredito ser facilmente defensável. Então, como você pode ver, posso cuidar de mim mesma.</p>
+          <p> </p>
+          <p>Mesmo assim, suponho que deveria ir para Kamar agora. É... por ali, certo?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Não, pelo contrário. Vá em frente!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou tão envergonhado. Perdi tudo para os Balaur, então me separei deliberadamente do grupo. Eu... eu estava esperando pela morte.</p>
+          <p> </p>
+          <p>Mas então sonhei com meus pais, com todos que perdi. Eles me imploraram para viver. Acordei com uma nova determinação... mas não fazia ideia de onde estava.</p>
+          <p> </p>
+          <p>Graças a Aion você me encontrou. Apenas me diga como chegar a Kamar e sobreviverei. Para eles!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">"É por ali. Vá!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você voltou. A notícia do seu sucesso já chegou aos meus ouvidos.</p>
+          <p> </p>
+          <p>Você ficará satisfeito em saber que os três refugiados chegaram a Kamar.</p>
+          <p> </p>
+          <p>Eles estão todos seguros, embora pareçam estar em vários estados de saúde mental.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Espero que eles estejam bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na maior parte. Mesmo aquele que já foi suicida parece apreciar melhor a vida agora.</p>
+          <p> </p>
+          <p>Estou feliz que você estava lá para ajudar. Eles não estavam acostumados a tal perigo e, portanto, não sabiam o que fazer quando enfrentavam tal situação sozinhos.</p>
+          <p> </p>
+           <p>Quem sabe o que poderia ter acontecido com eles. Mas isso continuará sendo uma questão discutível. Todos os três me pediram para transmitir seus agradecimentos.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre [%dic:STR_DIC_N_LDF4a_Refugee_01], quem desapareceu.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Encontre [%dic:STR_DIC_N_LDF4a_Refugee_02], quem desapareceu.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Encontre [%dic:STR_DIC_N_LDF4a_Refugee_03], quem desapareceu.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Relatório para [%dic:STR_DIC_N_Bargeni].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Três refugiados Reian ainda não chegaram à fortaleza. Encontre-os e direcione-os para um local seguro.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Varzeni lhe disse que três refugiados Reian que deveriam chegar a Kamar estavam atrasados.</p>
+          <p> </p>
+          <p>Então você encontrou esses três refugiados e disse-lhes como chegar à fortaleza. Posteriormente, quando você se apresentou a Varzeni, ele ficou grato em nome deles.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

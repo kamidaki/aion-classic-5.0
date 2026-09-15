@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41159</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta terra tem poucos recursos preciosos. Competimos constantemente por eles com os Balaur e a fauna local.</p>
+          <p> </p>
+          <p>Pegue o deserto no [%dic:STR_DIC_W_LDF4a_SZ_A1]. Já foi uma floresta exuberante antes da explosão da população [%dic:STR_DIC_M_LDF4A_A1_SalivadoRed_56_An] devorar toda a vegetação.</p>
+          <p> </p>
+          <p>Recebemos relatos de que eles parecem estar em movimento. Não podemos permitir que transformem mais terras potencialmente agrícolas em desertos. Quero que você abata os Hornskulls de Bigode Bristle antes que eles comecem a se estabelecer em regiões de refugiados. Essas pobres almas já têm o suficiente com que se preocupar.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Alguns Daevas cometem o erro de descartar qualquer coisa que não seja um Drakan ou Sapien como uma ameaça menor, com a qual não vale a pena lidar.</p>
+          <p> </p>
+          <p>Mas você tem mais experiência e sabedoria do que isso, não é? Você sabe que um Hornskull pode ser tão destrutivo quanto um Krall.</p>
+          <p> </p>
+          <p>Falando em Hornskulls...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sutil. Mas eu os peguei."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom, bom. Esperamos que não tenhamos que nos preocupar com a possibilidade de eles desnudarem a terra novamente.</p>
+          <p> </p>
+          <p>Todos os recursos que pudermos arrancar de Sarpan não só apoiarão aqueles de nós que vivem aqui, mas também aqueles que se mudarem para Tiamaranta propriamente dita.</p>
+          <p> </p>
+          <p>Como tal, só posso dar-lhe uma pequena parte do que gostaria. Mas espero que isso mostre o apreço que todos sentimos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF4A_A1_SalivadoRed_56_An]s vagando pelo deserto de [%dic:STR_DIC_W_LDF4a_SZ_A1] ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Bargeni].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Bristlewhisker Hornskulls estão ameaçando se espalhar a partir da periferia leste de Kamar. Elimine-os para acabar com esta ameaça.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Varzeni lhe contou que os Hornskulls Bristlewhisker já haviam destruído uma região inteira de vegetação e ameaçavam se espalhar.</p>
+          <p> </p>
+          <p>Para impedir que isso acontecesse, você reduziu o número deles. Você retornou à gratidão genuína de Varzeni.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

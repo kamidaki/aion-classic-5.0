@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15020</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ugh... Essa nova região é grande e há muito o que pesquisar, mas continuo sendo atacado e não consigo fazer meu trabalho.</p>
+          <p> </p>
+          <p>Você sabe que a Tribo Barbatanas Negras habita esta região? Uma tribo Sapien agressiva e mesquinha.</p>
+          <p> </p>
+          <p>Eles parecem assustadores e lutam incessantemente por território. Se Daevas tropeçar nessas lutas, eles também serão atacados.</p>
+          <p> </p>
+          <p>Por favor, vá para [%dic:STR_DIC_W_LF5_SZ_C_01] e derrote [plur][%dic:STR_DIC_M_LF5_C_NewSpecies_Fi_57_An] e [plur][%dic:STR_DIC_M_LF5_C_NewSpecies_As_58_An] antes que Daevas ainda mais inocentes sejam feridos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os habitantes da Vila Black Fins são muito agressivos.</p>
+          <p> </p>
+          <p>Esteja atento quando estiver lá fora.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou os Guerreiros e Guardas das Barbatanas Negras e voltou!</p>
+          <p> </p>
+          <p>Eu podia ouvir seus gritos até aqui! Você quebrou o moral deles e isso me enche de satisfação.</p>
+          <p> </p>
+          <p>Espero que você continue fazendo o seu melhor para a glória de toda a Legião.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_M_LF5_C_NewSpecies_Fi_57_An] e o [plur][%dic:STR_DIC_M_LF5_C_NewSpecies_As_58_An].</font></p>
+                         <p visible="[%0]"><font color="[%1]">Derrote os Guerreiros Barbatanas Negras ([%5]/5).</font></p>
+                         <p visible="[%0]"><font color="[%1]">Mate os Guardas Barbatanas Negras ([%8]/5).</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_LF5_Monodia_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ajude Monodia destruindo os Guerreiros e Guardas Black Fins.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Monodia sofreu vários ataques dos habitantes da Vila Black Fins. Para acabar com isso, você deveria eliminar os Guerreiros e Guardas Black Fins.</p>
+          <p> </p>
+          <p>Você derrotou os habitantes da Vila Black Fins. Quando você contou a Monodia sobre seu feito, ele agradeceu e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], parece que seu destino não é fácil.</p>
+          <p> </p>
+          <p>Na verdade, desde que te conheci, tenho essa sensação... Mas nunca falei sobre isso, porque não queria te machucar.</p>
+          <p> </p>
+          <p>Mas você não precisa se preocupar. Se você praticar de forma consistente e acumular experiência de combate, será capaz de enfrentar esse destino.</p>
+          <p> </p>
+          <p>Existe uma boa oportunidade para você. Você participará da competição DP?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Isso é um teste de DP?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você não sabia disso.</p>
+          <p> </p>
+          <p>Você sabia que apenas Daevas pode usar a habilidade DP?</p>
+          <p> </p>
+          <p>Ao contrário de outras habilidades, as habilidades de DP têm muitas limitações e não podem ser usadas com frequência. É por isso que, realisticamente, há muitas pessoas que não conseguem usar as habilidades de DP de maneira adequada.</p>
+          <p> </p>
+          <p>Para contrariar este problema, o Comandante Supremo criou o teste DP como incentivo.</p>
+          <p> </p>
+          <p>Este, porém, é um tipo de treinamento que termina quando a habilidade selecionada é utilizada dez vezes.</p>
+          <p> </p>
+          <p>Quer participar do teste DP?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você é um Bardo, já experimentou a Sinfonia da Destruição I?</p>
+          <p> </p>
+          <p>Desta vez o teste DP é sobre essa habilidade. Vá e use [%dic:STR_DIC_E_DP_Ba] 10 vezes e depois novamente.</p>
+          <p> </p>
+          <p>Você pode melhorar seu DP em uma luta ou usar o Éter Gel se a luta for muito difícil.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mesmo sendo uma boa oportunidade de treinamento, se você não quiser, não há nada que possa ser feito.</p>
+          <p> </p>
+          <p>Se mudar de ideia, venha a qualquer hora. Os testes continuarão por um tempo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Já voltou?</p>
+          <p> </p>
+          <p>Isso foi mais rápido do que o esperado.</p>
+          <p> </p>
+          <p>Vamos ver se [%dic:STR_DIC_E_DP_Ba] foi usado mais de 10 vezes. Aproxime-se.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você se aproxima.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Coloca a mão na cabeça.) É incrível a rapidez com que você concluiu a tarefa.</p>
+          <p> </p>
+          <p>(Tira a mão da cabeça.) Você passou no teste de DP! Parabéns!</p>
+          <p> </p>
+          <p>Como é? Você pode usar [%dic:STR_DIC_E_DP_Ba] mesmo com os olhos fechados? Isso será uma grande ajuda para quaisquer dificuldades futuras.</p>
+          <p> </p>
+          <p>Aqui está uma recompensa para quem passou no teste. Espero que você continue treinando forte.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Use [%dic:STR_DIC_E_DP_Ba] ([%2]/10).</font></p></step>               
+               <step><p visible="[%3]"><font color="[%4]">Relate o resultado para [%dic:STR_DIC_N_DC1_Brinhild_M].</font></p></step>               
+    </steps>
+          <p><font font_xml="quest_summary">Um exame DP será realizado sob orientação do Comandante Supremo. Passe no exame DP usando a habilidade DP Symphony of Destruction I dez vezes.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Brinhild sugeriu que você participasse de um teste que o treinasse no uso do DP.</p>
+          <p> </p>
+          <p>Seguindo as instruções de Brinhild, você usou a Canção da Ilusão 10 vezes e foi parabenizado por passar no teste quando voltou.</p>
+	</body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

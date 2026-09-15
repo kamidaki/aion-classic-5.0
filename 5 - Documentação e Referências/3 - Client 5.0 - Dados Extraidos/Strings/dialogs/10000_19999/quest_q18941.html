@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Lutar contra os Asmodianos não é a única coisa que você precisa fazer aqui.</p>
+		<p> </p>
+		<p>Também precisamos da sua ajuda na caça ao [%dic:STR_DIC_M_IDLDF5_Fortress_Re_Boss_65_Ah].</p>
+		<p> </p>
+		<p>Kunax é uma criatura poderosa que foi contaminada pelo Id.</p>
+		<p> </p>
+		<p>Parece que Kunax, o Slayer, é a última criatura sobrevivente da época em que a Tribo Rúnica usava o Runatorium como arena.</p>
+		<p> </p>
+		<p>Suspeitamos que havia outras criaturas contaminadas aqui. Kunax provavelmente absorveu a energia deles, e é por isso que é tão forte.</p>
+		<p> </p>
+		<p>Por favor, reporte-se a [%dic:STR_DIC_N_LDF5_Fortress_Alphion_E] depois de matar Kunax.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Ah, [%username]. É bom te ver.</p>
+		<p> </p>
+		<p>A Tropa de Reconhecimento me disse que você estava no Runatorium.</p>
+		<p> </p>
+		<p>É verdade que você derrotou o Kunax, mesmo estando contaminado com Id?</p>
+		<p> </p>
+		<p>Como foi sua missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que cumpriu a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Ótimo! Isso confirma tudo que ouvi sobre suas habilidades, [%username].</p>
+		<p> </p>
+		<p>Graças a você, nosso esforço de pesquisa de identificação deu um grande passo em frente. O material do Runatorium é muito útil.</p>
+		<p> </p>
+		<p>Isso significa que temos que garantir ainda mais material.</p>
+		<p> </p>
+		<p>Muito obrigado. Você tem sido de grande ajuda.</p>
+		<p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar [%dic:STR_DIC_M_IDLDF5_Fortress_Re_Boss_65_Ah] ([%2]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5_Fortress_Alphion_E] em [%dic:STR_DIC_W_LDF5_Fortress].</font></p></step>
+    </steps>
+		<p><font font_xml="quest_summary">Elimine Kunax, o Matador, e reporte-se a Alphion.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>A pedido de Thales, você lutou contra os Asmodianos e perseguiu Kunax, o Matador.</p>
+		<p> </p>
+		<p>Quando você contou isso a Alphion, ele disse que você ajudou o esforço de pesquisa da Id a dar um grande passo em frente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

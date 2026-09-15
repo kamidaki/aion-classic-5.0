@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olá, [%username].</p>
+          <p> </p>
+          <p>Sou responsável por gerenciar a adesão dos Fortuneers.</p>
+          <p> </p>
+          <p>Há algo que você gostaria de saber sobre os Fortuneers? Apenas me pergunte.</p>
+          <p> </p>
+          <p>Você também pode conversar comigo sobre ingressar ou sair, se desejar.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+    	<faction_join>Join the Fortuneers</faction_join>
+		<faction_separate>Leave the Fortuneers</faction_separate>	
+    </npcfuncs>
+    <Selects>
+      <Act href="HACTION_SELECT1">Você descobre mais sobre os Fortuneers.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você parece estar interessado nos Fortuneers.</p>
+          <p> </p>
+          <p>Somos uma organização que luta pela liberdade e segurança em Elysea.</p>
+          <p> </p>
+          <p>... Falando honestamente, realizamos todas as missões desde que o pagamento seja correto.</p>
+          <p> </p>
+          <p>Muitas vezes caçamos criminosos ou caçamos tesouros.</p>
+          <p> </p>
+          <p>Você pode aceitar algumas dessas missões se ingressar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom, [%username]!</p>
+          <p> </p>
+          <p>Membros capazes são sempre bem-vindos!</p>
+          <p> </p>
+          <p>Você pode começar a realizar sua primeira missão imediatamente.</p>
+          <p> </p>
+          <p>Espero que você consiga muito. Já estou ansioso por isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pessoas diferentes trabalham para propósitos diferentes.</p>
+          <p> </p>
+          <p>Desculpe, mas não consigo cadastrar você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O nível [%userlevel] não é suficiente.</p>
+          <p> </p>
+          <p>Trabalhamos em áreas difíceis como Balaurea.</p>
+          <p> </p>
+          <p>Não podemos aceitar ninguém que ainda não esteja pronto. Por favor, não fique chateado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1_4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem certeza?</p>
+          <p> </p>
+          <p>Você não pode ingressar se já for membro.</p>
+          <p> </p>
+          <p>Se você pertencer a uma organização que não seja a Fortuneers, terá que sair dela primeiro e depois se inscrever novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é uma pena, [%username].</p>
+          <p> </p>
+          <p>Os Fortuneers perderam um membro capaz.</p>
+          <p> </p>
+          <p>A adesão à nossa organização é gratuita para todos, assim como o direito de sair. Volte se você reconsiderar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não é membro dos Fortuneers, é [%username]?</p>
+          <p> </p>
+          <p>Como você pode querer sair se ainda nem é membro?</p>
+          <p> </p>
+          <p>Por que você não se junta aos Fortuneers primeiro?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+ 
+</HtmlPages>
+

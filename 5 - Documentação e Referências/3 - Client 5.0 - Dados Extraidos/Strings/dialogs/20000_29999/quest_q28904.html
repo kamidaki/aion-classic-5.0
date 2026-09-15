@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q28904</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os agentes de infiltração passam por testes de qualificação exaustivos, mas eu estava isento. Por causa das minhas incríveis habilidades de escoteiro, você vê. Pelo menos, eles são incríveis no papel.</p>
+          <p> </p>
+          <p>Mas... sério... isto é, não sou bom em briga. Serei massacrado impiedosamente no momento em que começar a lutar.</p>
+          <p> </p>
+          <p>Mas não quero desistir e receber uma reprimenda. Você pode se livrar do [%dic:STR_DIC_E_Q18904a] para mim, por favor? Pela bondade do seu coração?</p>
+          <p> </p>
+	<p>Ah! Asráfis! Sim! Relate seu sucesso para [%dic:STR_DIC_N_Asraphis] e ela irá recompensá-lo por mim. Sem dúvida.</p>
+          <p> </p>
+	<p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Comandante está ocupado.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Estou aqui para ver você no Apsilon."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ápsilon? Ele é um excelente agente de infiltração e batedor.</p>
+          <p> </p>
+	<p>Nunca soube que ele me considerava um amigo próximo.</p>
+          <p> </p>
+          <p>Claro que vou recompensá-lo no lugar dele. Isso me tornará uma parte legítima de sua rede de informações.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+	<p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_E_Q18904a] em [%dic:STR_DIC_E_ZONE_NAME_IDTiamat_Reward] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Asraphis].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Drakan para Apsilon, desafiado pelo combate.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+	<p>Apsilon não queria largar o emprego, mas tinha habilidades de combate muito fracas. Para manter as cotas dele, você matou as Forças Especiais Drakan.</p>
+	<p> </p>
+	<p>Bem-sucedido, você foi até Asraphis em busca de uma recompensa. Ela o deu de bom grado, feliz por agora fazer parte da vasta rede de informações da Apsilon.</p>
+	<p> </p>
+	<p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

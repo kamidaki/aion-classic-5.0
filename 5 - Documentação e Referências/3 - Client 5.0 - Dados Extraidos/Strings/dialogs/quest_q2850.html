@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando Lisya me contou sobre você, fiquei dividido entre a dúvida e a confiança.</p>
+          <p> </p>
+          <p>Pois eu vi muitos Daevas cujas habilidades eram piores que sua reputação</p>
+          <p> </p>
+          <p>Mas suas habilidades excedem sua reputação</p>
+          <p> </p>
+          <p>Recentemente, tem acontecido frequentemente que os Elyos atacam e matam nossos Daevas com uma patente superior a oficial.</p>
+          <p> </p>
+          <p>Esta parece ser a estratégia deles, e é por isso que também nós temos de tomar medidas de emergência.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A estrutura de classificação dos Oficiais Elyos possui cinco níveis, desde Oficial com 1 estrela até Oficial com 5 estrelas. Dessa forma, é muito semelhante à forma como fazemos.</p>
+          <p> </p>
+          <p>Podemos eliminar os Oficiais Elyos. Claro, é bom destruir oponentes mais fortes que os Oficiais. Mas isso ainda é muito difícil para nós.</p>
+          <p> </p>
+          <p>Porque você também está acostumado a agrupar missões, assim como nós. É por isso que seria bom você não ir sozinho.</p>
+          <p> </p>
+          <p>Você pode completar esta tarefa?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que você aceitaria essa tarefa.</p>
+          <p> </p>
+          <p>Eles começaram o ataque. Mas o nosso quartel-general está a trabalhar num plano que nos dará vantagem novamente, matando impiedosamente os Oficiais.</p>
+          <p> </p>
+          <p>Estou pedindo que você desempenhe um papel de liderança na invasão.</p>
+          <p> </p>
+          <p>Você não precisa necessariamente matar oponentes fracos.</p>
+          <p> </p>
+          <p>Esperamos que os adversários fiquem desanimados ao perderem seus lutadores mais fortes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem medo da horda de asas brancas?</p>
+          <p> </p>
+          <p>Se você está com medo, não precisa ir ao acampamento inimigo.</p>
+          <p> </p>
+          <p>A Batalha pelo Abismo é o destino dos Daevas. Mas se você tem medo da batalha, você deveria pensar no seu valor como um Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu ouvi isso de escoteiros! Que você lutou contra a horda de asas brancas e finalmente os derrotou.</p>
+          <p> </p>
+          <p>Estou orgulhoso de você, [%username]!</p>
+          <p> </p>
+          <p>Conte-me o que aconteceu durante a implantação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você realmente prestou ótimos serviços.</p>
+          <p> </p>
+          <p>Obviamente gostaríamos de comemorar a sua vitória, mas ainda temos muito que fazer.</p>
+          <p> </p>
+          <p>Eles ressuscitarão novamente. Então eles logo virão para cá.</p>
+          <p> </p>
+          <p>Continuemos a combatê-los. Para a vitória Asmodiana!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar [plur][%dic:STR_DIC_E_Lgrade00] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Votan].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">A decisão foi tomada para eliminar os Oficiais Elyos para enfraquecer o poder dos Elyos no Abismo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Votan agradeceu e disse que agora você aumentaria a estima dele.</p>
+          <p> </p>
+          <p>Seguindo as ordens dele, você matou os Oficiais Elyos que ameaçavam os Asmodianos. Ele recompensou você no retorno.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

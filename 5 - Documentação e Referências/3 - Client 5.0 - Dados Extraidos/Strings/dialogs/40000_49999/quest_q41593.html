@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41593</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Enquanto todos os outros estão pensando em novas maneiras de matar os Balaur, eu criei uma abordagem inovadora: torne-nos invencíveis!</p>
+          <p> </p>
+          <p>Eu configurei um Escudo Defensivo Éter na frente da Guarnição da Tropa de Cerco. Quando estiver totalmente energizado, deverá impedir os Balaur de atacar e ajudar a nos proteger de outros ataques. Só há um problema: ele precisa ser recarregado.</p>
+          <p> </p>
+          <p>Preciso de alguém para levar um Cristal de Éter ao [%dic:STR_DIC_OBJ_LDF4b_FOBJ_Q41593A] e alimentá-lo. Não deve demorar muito. Você poderia ajudar, [%username]?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom. Eu estava esperando por você.</p>
+          <p> </p>
+          <p>O escudo está carregado? Houve algum problema?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sem problemas. Correu tudo bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perfeito. Muito obrigado!</p>
+          <p> </p>
+          <p>Isso deve ajudar nossas defesas por enquanto. E, como você sabe, quanto mais tempo conseguirmos conter os Balaur, mais tempo poderemos atacar suas muralhas com nossas armas de cerco.</p>
+          <p> </p>
+          <p>Bom trabalho, amigo! Isto é para você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Ative o poderoso Cristal de Éter próximo ao [%dic:STR_DIC_OBJ_LDF4b_FOBJ_Q41593A].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relate para [%dic:STR_DIC_N_Solpress].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O Gerador de Escudo de Éter precisa ser ligado para repelir ataques de Balaur. Você é apenas o Daeva para o trabalho.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Solas disse a você que o Escudo Defensivo de Éter, embora útil, não será 100% eficaz até que seja carregado com Cristais de Éter. Sempre disposto a ajudar, você pegou um cristal e alimentou o gerador de escudo com ele, protegendo a área por enquanto.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

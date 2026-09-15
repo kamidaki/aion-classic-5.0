@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedido urgente -</p>
+          <p> </p>
+          <p>1. Remetente: Chiliarca Pepe do Destacamento Katalam</p>
+          <p> </p>
+          <p>2. Destinatário: [%username]</p>
+          <p> </p>
+          <p>3. Ordens: Observe os Asmodianos perto de [%dic:STR_DIC_W_LDF5A_OP_D] e mate os Guardiões Arcontes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Vou falar baixinho por um momento.</p>
+		  <p> </p>
+		  <p>É sobre um assunto que Portis desconhece.</p>
+		  <p> </p>
+          <p>Você matou o Sentinela Arconte?</p>
+          <p> </p>
+		  <p>Enviei pedidos urgentes para [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz sim.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Aposto que os Asmodianos levaram o maior choque de suas vidas. Tenho certeza de que desistiram do sonho de conquistar Katalam.</p>
+          <p> </p>
+		  <p>Se Portis soubesse desse plano, teria estragado tudo na pressa de provar seu valor.</p>
+		  <p> </p>
+		  <p>[%username], que bom que você concluiu seu trabalho tão rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua o Sentinela Arconte perto de [%dic:STR_DIC_W_LDF5A_OP_D].</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_OP_D_Guard_Fi_D_Q_61_An] ([%2]/2)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5A_Pepe_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Instruções urgentes: Mate o Sentinela Arconte perto do Templo Rúnico, a fortaleza dos Asmodianos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Enquanto você dava uma olhada na base Asmodiana, você recebeu uma ordem do Chiliarch Pepe do Comando Katalam.</p> 
+		  <p> </p>
+		  <p>Você eliminou um Sentinela Arconte perto do Templo Rúnico e reportou ao Chiliarch Pepe.</p> 
+		  <p> </p>
+		  <p>O Chiliarch Pepe ficou encantado, pois isso certamente teria assustado os Asmodianos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

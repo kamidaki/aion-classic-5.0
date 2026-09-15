@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na verdade, fui enviado aqui para ficar de olho nos Ladrões de Túmulos, mas agora são os MuMu que estão causando problemas.</p>
+	  <p> </p>
+	  <p>Parece que o MuMu causou alguns danos à área próxima à vila de Altgard.</p>
+          <p> </p>
+          <p>Recebemos uma mensagem da fortaleza. É uma tarefa importante. [%dic:STR_DIC_M_RatmanChief_17_An] deve ser eliminado.</p>
+          <p> </p>
+          <p>Você poderia nos ajudar com isso, [%username]?</p>
+	  <p> </p>
+	  <p>Depois de concluir a tarefa com sucesso, vá para a Fortaleza Altgard e diga ao General de Brigada [%dic:STR_DIC_N_Sueron].</p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Prazer em conhecê-lo, [%username].</p>
+          <p> </p>
+          <p>Ouvi dizer que você provou suas habilidades em muitas missões e até as melhorou.</p>
+          <p> </p>
+          <p>Foi você quem resolveu o caso do Grave Robbers Den? E que outros feitos de bravura você realizou?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o que aconteceu até agora.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você realmente eliminou o chefe da tribo MuMu! Ótimo trabalho!</p>
+          <p> </p>
+          <p>A Tribo MuMu ajuda os Mau no cultivo de Odella.</p>
+          <p> </p>
+          <p>Não podemos nos dar ao luxo de suportá-los por muito mais tempo, isso pode colocar não apenas Altgard, mas toda Asmodae em risco!</p>
+          <p> </p>
+          <p>Então foi bom você ter feito algo a respeito deles. Você deu uma grande contribuição para a segurança de Altgard e também de Asmodae. Obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para a Vila MuMu e derrote [%dic:STR_DIC_M_RatmanChief_17_An] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Sueron].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine o Chefe Manumumu.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Brodir encarregou você de derrotar MuMu Chieftain Manumumu em Altgard.</p>
+          <p> </p>
+          <p>Você matou o Chefe Manumumu e se reportou ao General de Brigada Suthran na Fortaleza Altgard.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

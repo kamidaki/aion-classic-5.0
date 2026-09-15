@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você é um Daeva. Asas? Luz? Herói... Maldição Tiamat?</p>
+          <p> </p>
+          <p>(Ele murmura alguma coisa sem sentido, mas recupera os sentidos depois de um tempo.)</p>
+          <p> </p>
+          <p>Infelizmente... Às vezes a idade obscurece minha mente. Para falar a verdade, estou preso aqui porque profetizei a morte de [%dic:STR_DIC_MLA52].</p>
+          <p> </p>
+          <p>Minhas profecias sempre foram precisas, mas eles sempre riam de mim e diziam que eu estava ficando velho.</p>
+          <p> </p>
+          <p>Mas eu vi que Tiamat vai morrer.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este lugar, onde ambos estamos, é apenas uma ilusão.</p>
+          <p> </p>
+          <p>Você entende o que estou tentando dizer?</p>
+          <p> </p>
+          <p>Mas não quero mais ficar acorrentado a ilusões. Você poderia me ajudar?</p>
+          <p> </p>
+          <p>[plur][%dic:STR_DIC_E_Q30706a] tirou minhas profecias. Por favor, elimine-os e destrua a profecia.</p>
+          <p> </p>
+          <p>Se a profecia for destruída, finalmente será a libertação do passado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você quer ajudar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]?</p>
+          <p> </p>
+          <p>O que traz você aqui?</p>
+          <p> </p>
+          <p>O que você está segurando aí em suas mãos? Parece um registro antigo...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a ele as páginas sujas contendo a profecia.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Lê atentamente a profecia.)</p>
+          <p> </p>
+          <p>Esta profecia vem do Drakan Behasha, correto?</p>
+          <p> </p>
+          <p>É surpreendente que exista um profeta entre os Balaur que possa fazer profecias tão precisas. Tudo o que ele escreveu aqui realmente aconteceu.</p>
+          <p> </p>
+          <p>Como pode ser que ele possa prever o futuro com tanta precisão? Behasha possui um dom muito perigoso.</p>
+          <p> </p>
+          <p>Ele até sabia o que aconteceria com a fortaleza. É quase assustador!</p>
+          <p> </p>
+          <p>O valor desta profecia não pode ser medido em ouro, mas ele está certo, seria melhor destruí-la. Behasha também estará livre novamente sem a profecia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha [%dic:STR_DIC_I_quest_30707a] de [%dic:STR_DIC_E_Q30706a] e leve-o para [%dic:STR_DIC_N_DF5_Hank_E].</font></p>[%collectitem]</step>
+
+    </steps>
+          <p><font font_xml="quest_summary">Encontre a Profecia de Behasha, que prevê a morte de Tiamat, e leve-a ao pesquisador da fortaleza.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Profeta Balaur Behasha profetizou a morte de Tiamat e foi preso por isso.</p>
+          <p> </p>
+          <p>Behasha não queria sofrer mais por causa de suas profecias e pediu que você encontrasse a profecia que ele havia escrito e a destruísse.</p>
+          <p> </p>
+          <p>Você encontrou a profecia e a mostrou ao pesquisador da fortaleza. Ele ficou totalmente surpreso e disse que a profecia era de valor imensurável, mas depois concordou que a profecia deveria ser destruída.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O artefato está offline.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O artefato não irradia nenhuma energia detectável.)</p>
+          <p> </p>
+          <p>(O artefato provavelmente não funciona há muito tempo.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você termina de verificar.</Act>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH"></Act>
+      <Act href="HACTION_FINISH_DIALOG"></Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Você não reage)</p>
+          <p> </p>
+          <p>(Parece que você precisa de uma pedra de ativação de artefato)</p>  
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Fim da observação.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

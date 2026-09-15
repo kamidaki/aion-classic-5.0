@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Isso é um balde de água fedorento.)</p>
+          <p> </p>
+          <p>(Parece haver problemas com a própria água. Leve-a ao [%dic:STR_DIC_N_LDF5b_Albaring_E] para ser examinada.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que é isso, ok? Isso é um boato, ok?</p>
+          <p> </p>
+          <p>Cheira um pouco, mas tudo parece estar em ordem, ak. Akakak!</p>
+          <p> </p>
+          <p>Você não precisa se preocupar com isso, ok. Não se preocupe com isso, ok.</p>
+          <p> </p>
+          <p>De qualquer forma, quero agradecer por me trazer o item, ak. Akakak!</p>
+	</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este pântano está transbordando de água contaminada, ak.</p>
+          <p> </p>
+		  <p>Quando um tanque de água é armazenado incorretamente, às vezes a água pode se misturar com água suja, também.</p>
+          <p> </p>
+          <p>A água purificada por nós está sempre limpa, ak.</p>
+          <p> </p>
+          <p>Tenho certeza de que os estúpidos Shulacks armazenaram a água incorretamente, ak. Akakak!</p>
+          <p> </p>
+          <p>Você não precisa contar nada aos chefes sobre isso. Isso pode resultar em algum trabalho cansativo, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Albaring_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Leve o barril com a água contaminada para Albarinerk e pergunte o que aconteceu com ele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você achou a garrafa de água envenenada suspeita e a trouxe para Albarinerk. No entanto, Albarinerk disse que Shulack era o culpado.</p>
+          <p> </p>
+          <p>Provavelmente, a produção de água é problemática.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

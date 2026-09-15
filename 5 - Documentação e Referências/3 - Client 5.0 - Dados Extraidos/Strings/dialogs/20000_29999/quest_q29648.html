@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>O alvo de Beritra é claramente [%dic:STR_DIC_W_DF5]. Ele parece querer alcançar o [%dic:STR_DIC_W_DF5_SZ_OP_03].</p>
+		  <p> </p>
+		  <p>Não há dúvida disso porque Beritra ordenou que todas as suas tropas estivessem lá.</p>  
+		  <p> </p>
+		  <p>Precisaremos da ajuda de um Daeva para deter o quarto Lorde Dragão Beritra.</p>
+		  <p> </p>
+		  <p>Por favor vá até [%dic:STR_DIC_W_DF5_SZ_OP_03] e fale com Centurião [%dic:STR_DIC_N_DF5_Sefrimnir_E] lá.</p>
+		  <p> </p>
+		  <p>Vá agora, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra. Prazer em conhecê-lo.</p>
+          <p> </p>
+		  <p>Pascal já me disse que um bravo Daeva seria enviado para mim. Deve ser você.</p>
+		  <p> </p>
+		  <p>Você pode imaginar que estamos tão perto de lutar contra Beritra pessoalmente?</p>
+		  <p> </p>
+		  <p>Você está bem preparado então?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que está pronto.</Act>
+	  
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gosto da sua disposição para fazer as coisas.</p>
+          <p> </p>
+		  <p>Por favor, ajude-nos a deter Beritra.</p>
+		  <p> </p>
+		  <p>Beritra - e esse poder que ele busca - pode ser encontrado ao norte daqui.</p>
+		  <p> </p>
+		  <p>Que os Asmodianos derrotem todos os seus inimigos!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_DF5_Sefrimnir_E] no [%dic:STR_DIC_W_DF5_SZ_OP_03].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para [%dic:STR_DIC_W_DF5_SZ_OP_03] e encontre Sefrimir.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pascal sugeriu enviar alguém para a nova região.</p>
+          <p> </p>
+          <p>Você conheceu Sefrimir lá. Sefrimir queria que os Asmodianos fossem vitoriosos na nova região.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

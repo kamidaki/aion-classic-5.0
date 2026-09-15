@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recebemos informações de que uma unidade Beritra apareceu perto do Portão Sul.</p>
+          <p> </p>
+          <p>Os Balaur não são estúpidos, então enviarão um espião para estabelecer contato com a unidade.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_M_LDF5B_A4_Vri_Poison_As_SN_NmdQ_65_Ae], e se ele tiver um documento sobre assuntos militares, traga-o para mim.</p>
+          <p> </p>
+          <p>Nos ajudaria muito se pudéssemos descobrir como eles funcionam.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É bem sabido que Beritra é particularmente perspicaz e inteligente, mesmo para um Senhor Balaur.</p>
+          <p> </p>
+          <p>Podemos não conhecer o seu plano, mas talvez possamos encontrar uma solução para contrariar os planos da Tropa Beritra através da obtenção de informações.</p>
+          <p> </p>
+          <p>Você descobriu alguma coisa sobre o [%dic:STR_DIC_M_LDF5B_A4_Vri_Poison_As_SN_NmdQ_65_Ae]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as táticas de batalha do Portão Sul.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+	   <p>Isto foi como previsto.</p>
+	   <p> </p>
+	   <p>Se conseguirmos o plano de operações, ele será extremamente útil para nós.</p>
+	   <p> </p>
+	   <p>Você fez isso muito bem.</p>
+	   <p> </p>
+	   <p>Também darei ao Pepe um relatório detalhado de suas conquistas[%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga [%dic:STR_DIC_I_QUEST_13307A] para [%dic:STR_DIC_N_LDF5_Village_Guard11_L].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Exército Beritra e apreenda os documentos militares.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+	   <p>Stipon achou que ajudaria você se soubesse do plano e pediu que matasse o espião Beritra e trouxesse os documentos militares.</p>
+	   <p> </p>
+	   <p>Quando você matou o espião do Exército Beritra conforme solicitado e trouxe para ele os arquivos da operação da batalha no Portão Sul, ele agradeceu pela ajuda prestada.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

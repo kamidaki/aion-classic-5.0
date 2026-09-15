@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41577</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A magia que permeia este colar é muito diferente daquela do Edendell. Você pode aprender muito sobre um lugar ou coisa com sua energia.</p>
+          <p> </p>
+          <p>A assinatura energética do jardim, por exemplo, é semelhante à do Balaur. A influência deles está ao nosso redor... infelizmente. A energia deste colar, porém, vem da Tribo Reian. Tenho certeza disso.</p>
+          <p> </p>
+          <p>Na verdade, pensando bem, recentemente me deparei com um lugar próximo com uma energia semelhante. Leve este colar para [%dic:STR_DIC_W_LDF4b_SZ_T2_S15] e tente incutir poder nele. Talvez isso esclareça as coisas. Provavelmente não é muito perigoso. Provavelmente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Posso falar de novo! Eu posso cantar! Eu poderia beijar você!</p>
+          <p> </p>
+          <p>Meu estado... era uma prisão. Você pode imaginar? Tão terrível para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"C-claro..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, a liberdade de expressão! Tudo graças a este colar... e a você, claro.</p>
+          <p> </p>
+          <p>Obrigado! Estava tão solitário aqui. Apenas trancado na minha cabeça assim. Se não fosse por você...</p>
+          <p> </p>
+          <p>Só não quero mais imaginar a solidão! Ah, já está indo embora? Volte, muito em breve! Tenho tanta coisa para falar...</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Instila poder no colar estranho em [%dic:STR_DIC_W_LDF4b_SZ_T2_S15].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Jinikin].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Instale o estranho colar com poder no [%dic:STR_DIC_W_LDF4b_SZ_T2_S15] encontrado em um canto do Edendell.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kiriyu se sentiu confiante de que a tribo Reian havia dado poder mágico ao colar. Ele disse que há um lugar próximo que emite energia semelhante, então você foi lá e incutiu poder no colar.</p>
+          <p> </p>
+          <p>Então o Boneco de Treinamento próximo acordou e começou a falar. E conversando.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

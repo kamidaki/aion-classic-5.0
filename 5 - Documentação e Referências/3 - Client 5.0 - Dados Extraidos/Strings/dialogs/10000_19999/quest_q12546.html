@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este é o nosso país, grr.</p>
+          <p> </p>
+          <p>Os Kobolds e os Supervisores Shulack invadiram repentinamente.</p> 
+          <p> </p>
+          <p>Nossas terras serão destruídas se as árvores forem derrubadas repetidas vezes.</p>
+          <p> </p>
+          <p>Seria bom se todos desaparecessem da terra, grr.</p>
+          <p> </p>
+          <p>Elimine o [%dic:STR_DIC_M_LDF5A_G3_Brownie_63_n], [%dic:STR_DIC_M_LDF5A_G3_Brownie_Off_63_n] e também o [%dic:STR_DIC_M_LDF5A_G3_Shulack_Keep_63_An].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gogor, não gosto que eles queiram tirar a terra de nós.</p>
+          <p> </p>
+          <p>Também não quero cortar mais árvores, grrr.</p>
+          <p> </p>
+          <p>Nossa terra ficou desolada porque as árvores foram cortadas.</p>
+          <p> </p>
+          <p>É por isso que odeio mais os Lenhadores Momoki, os Trabalhadores Momoki e os Supervisores do Acampamento Madeireiro Saphirunerk.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que o matou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado pela sua ajuda, Gurriki.</p>
+          <p> </p>
+          <p>[%username], você é um [f:"a"] bom [f:"bom"] Daeva.</p>
+          <p> </p>
+          <p>Você é diferente dos outros.</p>
+          <p> </p>
+          <p>Diferente desses madeireiros.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Kobold e o Supervisor Shulack de Gogor.</font></p>
+                        <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_G3_Brownie_all] ([%2]/8)</font></p>
+                        <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_G3_Shulack_Keep_63_An] ([%5]/3)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Gurtoo_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Lenhadores Momoki, os Trabalhadores Momoki e o Supervisor do Acampamento Madeireiro Saphirunerk que estão derrubando árvores e arruinando a terra.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gogor disse que os lenhadores Momoki, os trabalhadores Momoki e os supervisores da área desmatada Saphirunerk estão derrubando árvores e arruinando a terra.</p>
+          <p> </p>
+          <p>Depois que você matou os Lenhadores Momoki, os Trabalhadores Momoki e os Supervisores da Área Desmatada Saphirunerk, Gogor expressou sua gratidão a você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

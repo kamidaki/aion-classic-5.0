@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Tribo Rune usou a sala secreta da fortaleza para pesquisar Idgel e armazenar os dados de pesquisa de Idgel.</p>
+          <p> </p>
+          <p>É melhor assim, porque preciso de muito Idgel para ativar a arma.</p>
+          <p> </p>
+          <p>O problema é que a sala contém algumas cobaias e retardatários do Exército Beritra.</p>
+          <p> </p>
+          <p>[%username], você poderia ir até lá e obter alguns [plur][%dic:STR_DIC_I_quest_28001a] de [%dic:STR_DIC_M_IDF5_R1_Vri_all] e [%dic:STR_DIC_M_IDF5_R1_65_all]?</p>
+          <p> </p>
+          <p>Você deve ir sozinho, caso contrário sua presença será óbvia demais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Está tudo bem?</p>
+          <p> </p>
+          <p>No exato momento em que você entrou, [%username], um alarme de alerta disparou - você foi detectado?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega os Núcleos Idgel Fragmentados.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os soldados do Exército Beritra são mais cuidadosos do que eu pensava, mesmo que tenham instalado um sistema de alarme.</p>
+          <p> </p>
+          <p>Graças a você, muitos fragmentos do Idgel Core foram reunidos.</p>
+          <p> </p>
+          <p>Se você extrair o Idgel dos fragmentos do Idgel Core, você obterá Idgel suficiente para ativar a arma.</p>
+          <p> </p>
+          <p>Espero que você continue me ajudando.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_IDF5_R1_Vri_all] e o [%dic:STR_DIC_M_IDF5_R1_65_all] para obter [plur][%dic:STR_DIC_I_quest_28001a] e leve-os para [%dic:STR_DIC_N_LDF5a_Ulra].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Pegue os núcleos Idgel fragmentados dos soldados sobreviventes do Exército Beritra e das cobaias e leve-os para Ulra para que ele possa usá-los para ativar a arma.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você atendeu ao pedido de Ulra e eliminou os remanescentes do Exército Beritra, bem como as Cobaias, a fim de obter fragmentos do Núcleo Idgel para ativar a arma.</p>
+          <p> </p>
+          <p>Ulra disse que extrairia Idgel dos fragmentos do Idgel Core e o usaria para ativar a arma. Ele também pediu que você continuasse ajudando-o no futuro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

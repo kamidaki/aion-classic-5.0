@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se se trata da estratégia para as forças armadas em Balaurea, é comigo que deve falar. Eu dirijo as missões em nome de Elysea.</p>
+          <p> </p>
+          <p>Eu sei que suas habilidades estão acima da média, mas não será fácil em tempos tão caóticos como estes, mesmo para um herói[f:"heroína"] como você.</p>
+          <p> </p>
+          <p>Mas não se desespere, porque o benevolente Senhor da Ilusão quer lhe dar a chance de provar sua coragem.</p>
+          <p> </p>
+          <p>Elimine o [%dic:STR_DIC_M_LDF5_Under_Rune_FrostNmd_2_N_Ma_65_Ah_ver47] em Runadium (heróico) e [%dic:STR_DIC_M_IDF5_U3_Hard_Boss_N_65_Ah_ver47] na Rune Escudo Tower. Receba os Tokens of Courage correspondentes a esses talentos.</p>
+          <p> </p>
+          <p>Se você derrotar os oponentes poderosos nesses lugares e receber os Tokens of Courage, isso provará que você é um verdadeiro herói[f:"heroína"].</p>
+          <p> </p>
+          <p>Não é fácil obter o [%dic:STR_DIC_I_quest_13901a] e o [%dic:STR_DIC_I_quest_13901b], mas eles só irão beneficiar você, sem desvantagens.</p>
+          <p> </p>
+          <p>Afinal, as missões especialmente importantes para proteger Elysea só são concedidas aos Elyos que podem apresentar Tokens of Courage.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A entrada para Runadium e a Torre do Escudo Rúnico também levará você ao Runadium (heróico) e à Torre do Escudo Rúnico (heróico).</p>
+          <p> </p>
+          <p>O Senhor lhe confiou esta tarefa para verificar se você é realmente um herói honrado. É por isso que esta tarefa não será fácil.</p>
+          <p> </p>
+          <p>Mas se você conseguir vencer o [%dic:STR_DIC_I_quest_13901a] e o [%dic:STR_DIC_I_quest_13901b], ninguém jamais duvidará que você é um herói.</p>
+          <p> </p>
+          <p>Você tem as insígnias que o Senhor exigiu?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Símbolo da Coragem.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Realmente? Então a ocupação foi um sucesso! Isso prova que você é digno de ir para a batalha pelo Senhor.</p>
+          <p> </p>
+          <p>Mesmo os Daevas mais endurecidos pela batalha teriam tido dificuldades com esta tarefa.</p>
+          <p> </p>
+          <p>Sempre tive certeza de sua bravura e força, mas agora que você realizou essa façanha, não posso elogiá-lo o suficiente.</p>
+          <p> </p>
+          <p>Acho que você também realizará facilmente outras tarefas difíceis, porque com certeza você é incrível!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Complete ou [%dic:STR_DIC_E_quest_13901all] e traga tudo para [%dic:STR_DIC_N_Corridor_L_MainQuest_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Reúna os Tokens of Courage na Rune Escudo Tower (heróico) e no Runadium (heroico) e níveis para Adras.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Adras disse que o Senhor da Ilusão criou os Símbolos de Coragem para Daevas especialmente heróis. Ele explicou que oponentes poderosos na Rune Escudo Tower (heróico) e no Runadium (heroico) devem ser derrotados para obter os Tokens of Courage.</p>
+          <p> </p>
+          <p>Você conseguiu obter os Tokens of Courage. Quando você os trouxe para Adras, ele o elogiou e disse que você provou sua bravura.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

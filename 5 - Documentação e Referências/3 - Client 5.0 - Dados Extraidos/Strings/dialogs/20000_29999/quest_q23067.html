@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você por acaso ouviu gritos de feras vindo para cá, ok?</p>
+          <p> </p>
+          <p>Snow Mountain Taiga corre no Planalto do Frio Mordedor e grita dia e noite para que eu não consiga me concentrar no meu trabalho, ak.</p>
+          <p> </p>
+          <p>Quando eles me atacam, o que às vezes fazem, Shugo fica com muito medo, ak.</p>
+          <p> </p>
+          <p>Seria maravilhoso se você pudesse matar os [%dic:STR_DIC_M_LDF5B_A1_Direbeast_63_An] que andam pelo Planalto, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As Taigas na Montanha Nevada gemem como se tivessem comido algo ruim, ak.</p>
+          <p> </p>
+          <p>Não conseguimos afugentar as Taigas.</p>
+          <p> </p>
+          <p>Essas Taigas barulhentas tornam difícil decidir se alguém está investigando as Muralhas ou se veio aqui para investigar os uivos das Taigas, ak.</p>
+          <p> </p>
+          <p>Na verdade, estou pensando em deixar de lado o relatório Ramparts e pesquisar as Taigas, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado mesmo, Shugo está cansado de ouvir aquelas Taigas, ak!</p>
+          <p> </p>
+          <p>Shugo deveria ter perguntado imediatamente, ak!</p>
+          <p> </p>
+          <p>Shugo agora tem que escrever rapidamente os relatórios urgentes, ak. A pressão de cima é enorme, ak!</p>
+          <p> </p>
+          <p>Shugo espera que Daeva venha visitá-lo novamente, ak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Ak, o [plur][%dic:STR_DIC_M_LDF5B_A1_Direbeast_63_An] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_wallring_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cace as Taigas da Montanha Nevada que estão interferindo no trabalho de Wallinerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Wallinerk, você matou a Snow Mountain Taiga e foi saudado com palavras de agradecimento ao retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

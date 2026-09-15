@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava esperando por você.</p>
+          <p> </p>
+          <p>Primeiro, por favor aceite isso. É uma carta de recomendação que você pode entregar à Hoargo.</p>
+          <p> </p>
+          <p>Parece que foi ontem que você me trouxe a carta de recomendação de Godfrey. Agora você pode se chamar de [%userclass] com orgulho.</p>
+          <p> </p>
+          <p>Com suas habilidades como [%userclass], Hoargo é um dos melhores de toda Atreia, então você aprenderá muito com ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau, você não é [%username]?</p>
+          <p> </p>
+          <p>É um prazer. Como posso ajudá-lo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a carta de recomendação de Brinhild.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Brinhild foi minha aluna. Ha, presumo que ela recomendaria apenas um verdadeiro [%userclass] para seu antigo mentor.</p>
+          <p> </p>
+          <p>Vou ajudá-lo a usar suas habilidades da melhor maneira possível. Então venha até mim sempre que tiver problemas em seu aprendizado.</p>
+          <p> </p>
+          <p>Depois falaremos sobre música e ajudaremos vocês a superarem juntos suas dificuldades.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve a carta de recomendação de Brinhild para [%dic:STR_DIC_N_DC2_Hoargo_M], que está no Priorado de Marchutan.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mostrar a carta de recomendação de Brinhild para Hoargo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Brinhild elogiou seu desenvolvimento até agora e enviou você a Hoargo com uma carta de recomendação.</p>
+          <p> </p>
+          <p>Depois que Hoargo leu a carta de recomendação, ele disse que você pode procurá-lo a qualquer momento se tiver dificuldades de aprendizado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conhece o Fio da Espada?</p>
+          <p> </p>
+          <p>Espada's Edge é uma ilha onde os Elyos e Asmodianos formaram uma aliança temporária e derrotaram os Balaur.</p>
+ 	  <p> </p>
+          <p>Mesmo assim, houve muitos conflitos</p>
+          <p> </p>
+          <p>devido à espada na ilha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quer saber mais sobre o Fio da Espada?</p>
+          <p> </p>
+          <p>[%username], se você estiver interessado em Espada's Edge, posso lhe contar mais sobre ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você diz que está interessado.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você diz que não está interessado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Finalmente encontrei alguém que compartilha dos meus interesses.</p>
+          <p> </p>
+          <p>Obrigado por querer fazer pesquisas comigo.</p>
+          <p> </p>
+          <p>Comece perguntando ao meu assistente Dranken sobre quais tarefas você pode realizar como iniciante.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você não estiver interessado, não há muito que eu possa fazer.</p>
+          <p> </p>
+	  <p>Como um Daeva que viajou para os cantos mais distantes de Atreia, você provavelmente já ouviu falar da grande espada.</p>
+          <p> </p>
+	  <p>Se você decidir que está interessado, poderá voltar para me ver a qualquer momento.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+<HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Saudação. Então você é o garoto novo na cidade.</p>
+          <p> </p>
+          <p>Não temos muito tempo, então você deveria ir ao Fio da Espada e começar a investigar imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+<HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que você hesita?</p>
+          <p> </p>
+          <p>Não temos muito tempo. Você deve se apressar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+<HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]? Prazer em conhecê-lo! Eu sou Bedin.</p>
+          <p> </p>
+          <p>Você provavelmente está aqui para explorar este lugar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Vim aqui para pesquisar. Você não acha que seria útil se nos auxiliássemos na pesquisa?</p>
+          <p> </p>
+          <p>Deixe-me saber se você estiver interessado.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pergunte a Dranken o que você deve fazer como um recém-chegado.</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Dranken diz que você deve viajar rapidamente para o Fio da Espada para começar. Mexa-se.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Dranken diz que você deveria viajar para Espada's Edge e começar a pesquisar lá. Vá para o Fio da Espada.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lysenic diz que você deve perguntar a Dranken o que deve fazer como recém-chegado.</p>
+          <p/>
+          <p>Dranken diz que não há tempo e que você deve voar rapidamente para Espada's Edge e fazer sua pesquisa lá.</p>
+          <p/>
+          <p>Um jovem chamado Bedin está em Espada's Edge.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

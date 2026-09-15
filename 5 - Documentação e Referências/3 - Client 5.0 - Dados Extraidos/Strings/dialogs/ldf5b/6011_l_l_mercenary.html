@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não tem camaradas de armas suficientes?</p>
+          <p> </p>
+		  <p>Você quer fazer preparativos adicionais para vencer esta batalha?</p>
+		  <p> </p>
+          <p>Estou ajudando a Guilda [%userguildname] a contratar mercenários.</p>
+          <p> </p>   
+          <p>O que você acha? Você quer contratar mercenários para alcançar a vitória em nome da Guilda [%userguildname]?</p>
+		  <p> </p>
+		  <p>Você pode contratar mercenários para uma das três áreas se me trouxer o número correto de medalhas de batalha. Pense nisso e tome sua decisão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+	<Act href="HACTION_SELECT2">Mercenários são necessários na Zona 1.</Act>
+	<Act href="HACTION_SELECT3">Mercenários são necessários na Zona 2.</Act>
+	<Act href="HACTION_SELECT4">Mercenários são necessários na Zona 3.</Act>
+	<Act href="HACTION_FINISH_DIALOG">Não. Mercenários não são necessários.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Estou ajudando a Guilda, que capturou a Fortaleza Bassen, a contratar mais mercenários.</p>
+		  <p> </p>
+		  <p>Sinto muito, mas não posso ajudar [%username] agora.</p>
+		  <p> </p>
+		  <p>[%username], volte quando tiver reunido uma legião e capturado a Fortaleza Bassen.</p>
+		  <p> </p>
+		  <p>Então farei tudo ao meu alcance para ajudá-lo, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pertence à Guilda [%userguildname]? O que posso fazer para você?</p>
+          <p> </p>
+		  <p>Você quer contratar mercenários?</p>
+		  <p> </p>
+		  <p>Você deve apresentar Medalhas de Batalha para contratar mercenários.</p>
+		  <p> </p>
+		  <p>Sinto muito, mas você ainda não tem Medalhas de Batalha suficientes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Zona 1 é a área na entrada da Fortaleza Basen e na passagem. É uma boa ideia posicionar mercenários lá.</p>
+          <p> </p>
+		  <p>Se você posicionar mercenários na entrada da fortaleza e na passagem, será muito mais difícil para os inimigos se infiltrarem na fortaleza.</p>
+		  <p> </p>
+		  <p>Você precisa de 14 Insígnias de Batalha Sangrenta para convocar mercenários para a Zona 1.</p>
+		  <p> </p>
+		  <p>Dois artilheiros estarão disponíveis como mercenários, bem como cinco minas Elyos, o que não é ruim.</p>
+		  <p> </p>
+		  <p>Você quer contratar mercenários nessas condições?</p>
+		  <p> </p>
+		  <p>As habilidades dos artilheiros mercenários são extremamente úteis.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que quer contratar mercenários.</Act>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Zona 2... Então você quer colocar mercenários dentro da fortaleza e na Ilha Flutuante.</p>
+          <p> </p>
+		  <p>Por 10 Insígnias de Batalha Sangrenta, você pode contratar 5 feiticeiros como mercenários.</p>
+		  <p> </p>
+		  <p>O que você acha? Você quer contratar mercenários nessas condições?</p>
+		  <p> </p>
+		  <p>Os feiticeiros mercenários exibem boas habilidades.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você diz que quer contratar mercenários.</Act>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A escolha da Zona 3 mostra que você sabe o que é necessário.</p>
+          <p> </p>
+		  <p>Se você distribuir mercenários por toda a ilha flutuante, certamente terá muitos benefícios na luta contra o inimigo.</p>
+		  <p> </p>
+		  <p>Por 10 Insígnias de Batalha Sangrenta, você pode contratar 5 artilheiros como mercenários.</p>
+		  <p> </p>
+		  <p>Você quer contratar mercenários nessas condições? Não são condições ruins.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você diz que quer contratar mercenários.</Act>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De [%username] de [%userguildname]!</p>
+		  <p> </p>
+		  <p>Os mercenários foram recrutados com sucesso.</p>
+		  <p> </p>
+		  <p>Que a Guilda [%userguildname] seja abençoada!</p>
+		</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

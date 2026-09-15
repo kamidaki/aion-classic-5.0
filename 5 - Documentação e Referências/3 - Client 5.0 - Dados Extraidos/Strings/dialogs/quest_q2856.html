@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>A sede da Reshanta emitiu uma missão importante.</p>
+		<p> </p>
+		<p>A missão é você se infiltrar na Fortaleza de Guerra Kysis e eliminar [%dic:STR_DIC_M_Dkisas_DrakanBossNamed_65_Ah].</p>
+		<p> </p>
+		<p>Parece que os Ereshkigal da Fortaleza de Guerra de Kysis se submeteram a Beritra. A sede quer que você verifique isso e relate o resultado.</p>
+		<p> </p>
+		<p>A Guilda Ereshkigal rendeu-se ao Exército Beritra. Algo deve ter acontecido.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Espero que a missão não tenha sido um grande incômodo para você.</p>
+		<p> </p>
+		<p>Mas pensei que você conseguiria matá-lo, [%username].</p>
+		<p> </p>
+		<p>Você destruiu o [%dic:STR_DIC_M_Dkisas_DrakanBossNamed_65_Ah]?</p>
+		<p> </p>
+		<p>O que aconteceu com os Balaur na Fortaleza de Guerra de Kysis?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você fala sobre o que você experimentou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>A Guilda Ereshkigal é realmente leal a Beritra?</p>
+		<p> </p>
+		<p>Isso é inacreditável. Tenho que contar isso ao alto comando.</p>
+		<p> </p>
+		<p>Você eliminou o Duque Kysis. Você realmente é incrível. Você está fazendo jus à sua boa reputação, [%username].</p>
+		<p> </p>
+		<p>Esta é uma recompensa para você da sede da Reshanta. Você completou a tarefa para nossa total satisfação.</p>
+		</body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_Dkisas_DrakanBossNamed_65_Ah] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Ab1_1231_TreasureGate_Da].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Fortaleza de Guerra Kysis ou para a Fortaleza da Guilda Kysis e elimine o furioso Duque Kysis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O quartel-general de Reshanta pediu para você matar o furioso Senhor Kysis na Fortaleza de Guerra Kysis e descobrir se a Guilda Ereshkigal se juntou ao Exército Beritra.</p>
+          <p> </p>
+          <p>Depois que você e seus aliados derrotaram o Senhor Kysis na Fortaleza de Guerra Kysis e confirmaram que a Guilda Ereshkigal havia se juntado ao Exército Beritra, você reportou de volta.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

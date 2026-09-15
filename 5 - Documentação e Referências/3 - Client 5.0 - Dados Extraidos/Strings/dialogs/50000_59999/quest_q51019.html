@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ó maldade, maldade!</p>
+          <p> </p>
+          <p>Meus queridos amores, wuv-ums e eu estávamos cuidando da nossa vida, alimentando um ao outro com chocolates e nos aconchegando na praça. E então aqueles mal-humorados Elite Shulack Loners os roubaram! Nossos chocolates!</p>
+          <p> </p>
+          <p>Eles não merecem nossos Chocolates! Por favor, por amor, castigue os [%dic:STR_DIC_M_ValentineEvent_Brownie_Solo]s perversos e leve de volta nossos [%dic:STR_DIC_I_QUEST_50011a]s, nyerk!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh, Daeva perdeu a coisa mais boba que os fofos wuffles fizeram!</p>
+          <p> </p>
+          <p>Estava rindo e então wuf-wuf bufou! Pequeno wuf-wuf arrogante! Akakak!</p>
+          <p> </p>
+          <p>Você puniu os [%dic:STR_DIC_M_ValentineEvent_Brownie_Solo]s mal-humorados?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Sim, mas agora acho que vou passar mal."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh não! Pobre Daeva! Quando estou doente, o wuffie faz sopa de Chersnip, aquece até as patas, nyerk!</p>
+          <p> </p>
+          <p>Olha o que meu fofinho fez com sobras de chocolates! É lindo, sim? Tão talentoso, meu wuffie-cuddle-pie!</p>
+          <p> </p>
+          <p>Ah! Tenha ideia! Daeva, coloque no alto do [%dic:STR_DIC_N_event_Dark_Chocolate], para que todos possam ver o talento e o brilho do snoogie-pookie-woodle-woo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Eu farei isso, nem que seja para ficar longe de você."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não sente pena dos Solitários de Elite Shulack, Daeva?</p>
+          <p> </p>
+          <p>Eles só roubaram nossos [%dic:STR_DIC_I_QUEST_50011a]s porque são ciumentos, odiosos e perversos com cérebros de Brax!</p>
+          <p> </p>
+          <p>Vá e livre-se dos [%dic:STR_DIC_M_ValentineEvent_Brownie_Solo]s para que meu poodle macarrão possa construir seus enfeites de chocolate!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ele sabe que você o chama dessas coisas?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Querida wuffle-poça fofa-pookie-woodle noo-noo!</p>
+          <p> </p>
+          <p>Ele é tão engraçado, inteligente e bonito! Akakak!</p>
+          <p> </p>
+          <p>Quando eu disse a ele que você colocou o enfeite dele na Torre de Chocolate, ele ficou tão bobo e tímido! Wooky-ooky foo-foo!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Essas nem são palavras. Você só está fazendo barulho agora."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bobo Daeva, querido!</p>
+          <p> </p>
+          <p>Se pegarmos todos os Chocolates Shulack, pense em como ficarão lindos os enfeites de Chocolate do meu oodle-doodle!</p>
+          <p> </p>
+          <p>Pensar! Pense, Daeva!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue os chocolates dos [%dic:STR_DIC_M_ValentineEvent_Brownie_Solo]s e leve-os para [%dic:STR_DIC_E_couple_shugo].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Adicione o enfeite de chocolate ao [%dic:STR_DIC_N_event_Dark_Chocolate].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_E_couple_shugo].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Elite Shulack Loners roubaram alguns chocolates. Se você recuperar os chocolates, talvez isso dê aos Lovesick Shugos outra coisa para fazer além de brigar e inventar apelidos estúpidos um para o outro.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lovesick Shugos disse que os Elite Shulack Loners roubaram seus chocolates, que eles inocentemente enfiavam na cara uns dos outros em público.</p>
+          <p> </p>
+          <p>Você recuperou os Chocolates e recebeu um enfeite de Chocolate para adicionar à Torre de Chocolate.</p>
+          <p> </p>
+          <p>Você fez isso parcialmente pela recompensa, mas principalmente para ouvir os apelidos ridículos que os Lovesick Shugos chamam uns aos outros.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

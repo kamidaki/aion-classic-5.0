@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É aqui que você pode encontrar um bom Ginseng.</p>
+          <p>(Marca o site no mapa.)</p>
+	  <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você dá uma olhada no mapa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p/>
+          <p>Por favor, vá até lá e obtenha 30 Lunacy Ginsengs para mim.</p>
+          <p>Você deve caçar Rooties, Ginsengs Envelhecidos e Ginsengs de Dez Mil Anos.</p>
+   	  <p>Você pode obter Lunacy Ginseng deles.</p>
+          <p>Mas tenha cuidado. Os Ginsengs enlouquecem mesmo nesta época do ano.</p>
+	  <p>O Ginseng de Dez Mil Anos pode ser muito difícil de superar sozinho.</p>
+          <p>Então você provavelmente não deveria ir para lá sozinho.</p>
+	  <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Vamos!</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Eu não quero.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então vá em frente!</p>
+          <p>Mas tenha cuidado...</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ei... Do que você tem medo?</p>
+          <p>Uma vez lá, na verdade não é tão ruim!</p>
+        <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+ 
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi? Obter Ginseng não é tão fácil, não é?</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Não é nada.</Act>
+    </Selects>
+  </HtmlPage>
+
+<HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que você ainda não tem nada?</p>
+	  <p>Hum? Você está com tanto medo que nem ousa chegar perto?</p>
+          <p>Que covarde!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, uau! Você arrecadou uma quantia incrível!</p>
+          <p>Muito obrigado. Deve ser uma delícia...</p>
+          <p>Venha, vamos compartilhar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Caça Rooties, Ginsengs Envelhecidos e Ginsengs de Dez Mil Anos para reunir 30 Ginsengs Lunacy.</font></p>[%collectitem]</step>
+
+    </steps>
+          <p><font font_xml="quest_summary">Vá caçar Rooties, Ginsengs Envelhecidos e Ginsengs de Dez Mil Anos. Enquanto você faz isso, reúna 30 Lunacy Ginsengs.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu informações sobre onde encontrar Ginseng.</p>
+          <p> </p>
+          <p>Você saiu e foi até o local.</p>
+          <p>Lá, você descobriu Rooties, Ginsengs Envelhecidos e Ginsengs de Dez Mil Anos.</p>
+          <p>Você os eliminou e obteve Lunacy Ginseng, que trouxe de volta ao seu capataz.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

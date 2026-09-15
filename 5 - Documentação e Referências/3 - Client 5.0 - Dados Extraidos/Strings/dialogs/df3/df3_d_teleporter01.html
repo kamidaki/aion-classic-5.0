@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa se apressar para [%dic:STR_DIC_W_STR_DF3_SZ_F]?</p>
+          <p> </p>
+          <p>Eu apoio Daevas que têm assuntos urgentes para resolver na Caverna Red Mane.</p>
+          <p> </p>
+          <p>Deixe-me saber se você deseja ser teletransportado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa se apressar para [%dic:STR_DIC_W_STR_DF3_SZ_F]?</p>
+          <p> </p>
+          <p>Eu apoio Daevas que têm assuntos urgentes para resolver na Caverna Red Mane.</p>
+          <p> </p>
+          <p>Deixe-me saber se você deseja ser teletransportado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_TELEPORT_SIMPLE">Teleporte para a Caverna Red Mane</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Infelizmente você não pode usar o teletransportador.</p>
+          <p> </p>
+          <p>Encontre outro caminho para a Caverna Red Mane.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

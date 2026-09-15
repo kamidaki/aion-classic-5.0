@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41123</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você estava na Mansão Argent?</p>
+          <p> </p>
+          <p>Pensei ter visto você, [%username], e seus camaradas de armas.</p>
+          <p> </p>
+          <p>Por favor, me perdoe se eu estava errado.</p>
+          <p> </p>
+          <p>Achei que um [%userclass] poderoso como você, [%username], seria capaz de matar um [%dic:STR_DIC_M_IDElementalN_Nmd_Wizard_60_Al].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Isso é verdade?</p>
+          <p> </p>
+          <p>Então eu não estava errado! A pessoa que eu vi realmente foi você, [%username]!</p>
+          <p> </p>
+          <p>Você realmente fez um ótimo trabalho.</p>
+          <p> </p>
+          <p>Em nome de Reia, apresento-lhe uma recompensa. Reportarei seus feitos valorosos à liderança imediatamente.</p>
+          <p> </p>
+          <p>Você é tão magnífico, [%username]!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDElementalN_Nmd_Wizard_60_Al] em ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_Aughoos].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Zadra Feiticeira na Mansão Argent.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você e seus companheiros eliminaram Zadra Spellweaver em Argent Manor.</p>
+          <p> </p>
+          <p>Quando você relatou isso a Augis, ele lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

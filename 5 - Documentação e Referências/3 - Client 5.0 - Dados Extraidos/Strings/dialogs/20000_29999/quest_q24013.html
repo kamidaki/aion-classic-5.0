@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há uma vila MuMu não muito longe de [%dic:STR_DIC_W_DF1A_19]. Os MuMu estão refinando Odella ali, protegida pelos Mau.</p>
+          <p> </p>
+          <p>Para a segurança de Asmodae, devemos impedir o MuMu de refinar Odella. Mesmo que não possamos detê-los completamente.</p>
+          <p> </p>
+          <p>Talvez fosse possível eliminar tanto o MuMu quanto o Mau... Mas é impossível mantê-los longe de Odella.</p>
+          <p> </p>
+          <p>Por isso é importante atacá-los e pelo menos enfraquecê-los.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A última vez não adiantou; agora devemos começar a usar meios mais poderosos.</p>
+          <p> </p>
+          <p>Meu plano é eliminar os Mau da Garra Negra, que protegem os MuMu, e envenenar sua fonte de água potável. Se este plano funcionar, o MuMu finalmente não causará mais problemas.</p>
+          <p> </p>
+          <p>Precisamos de um veneno eficaz. Você pede conselhos à Caçadora Shania. Ela usa flechas envenenadas, então ela conhece bem os venenos.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Sjania] estará na aldeia. Como ela gosta de passear pela vila, você poderá conhecê-la se esperar no meio da vila.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+       <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2016-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_N_Nokirjar] enviou para você?</p>
+          <p> </p>
+          <p>Você gostaria de um veneno para exterminar o MuMu?</p>
+          <p> </p>
+          <p>O MuMu... É melhor você usar o veneno de Poison Arachna que extraí.</p>
+          <p> </p>
+          <p>Acabei de preparar alguns para caçar, então pegue um pouco de [%dic:STR_DIC_I_QUEST_24013a].</p>
+          <p> </p>
+          <p>Dissolva na cachoeira da Vila MuMu.</p>
+          <p> </p>
+          <p>Você encontrará a cachoeira dentro da Vila MuMu. Ele cascata em dois níveis. Dissolva o veneno no lago da primeira cachoeira.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2016-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você adicionou [%dic:STR_DIC_I_QUEST_24013a] ao abastecimento de água da Vila MuMu e matou o Mau da Garra Negra?</p>
+          <p> </p>
+          <p>Eles não são soldados de elite, então não deve ter sido muito difícil.</p>
+          <p> </p>
+          <p>Se você não fez isso, você não é digno do título de Daeva.</p>
+          <p> </p>
+          <p>Mas tenho certeza que você conseguiu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou a tarefa de maneira brilhante.</p>
+          <p> </p>
+          <p>Os Comandantes ficarão encantados em saber disso.</p>
+          <p> </p>
+          <p>O Comandante vai elogiar nós dois porque você executou meu plano tão bem, [%username].</p>
+          <p> </p>
+          <p>Aqui está uma recompensa pelo seu bom trabalho. Por favor, aceite isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Nokirjar] na aldeia [%dic:STR_DIC_W_DF1A_19].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Sjania].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Vá para [%dic:STR_DIC_W_DF1A_13] e coloque [%dic:STR_DIC_I_QUEST_24013a] em [%dic:STR_DIC_W_DF1A_spot].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Mate o [%dic:STR_DIC_M_Lycan_all] da vila MuMu ([%11]/5).</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Relatório para [%dic:STR_DIC_N_Nokirjar].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Pedidos: Os MuMu estão refinando Odella em sua aldeia. Nokir tem uma missão para você.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nokir estava planejando punir o MuMu que estava refinando Odella. Você deveria consultar a Caçadora Shania para isso.</p>
+          <p> </p>
+          <p>Shania aconselhou você a envenenar a fonte de água doce da vila MuMu. Você deveria envenenar o lago da Vila MuMu e eliminar o Mau.</p>
+          <p> </p>
+          <p>Nokir ficou satisfeito quando o trabalho foi concluído e prometeu contar ao comandante suas conquistas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Pedido: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

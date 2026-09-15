@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Revolucionários Lefaristas compraram grandes quantidades de explosivos do Shugo. Nossos informantes não deixaram margem para dúvidas. Os Revolucionários Lefaristas querem explodir o Observatório.</p>
+          <p> </p>
+          <p>Os Revolucionários Lefaristas também possuem a Espada de Tiamat. Esta espada tem o poder de enfraquecer o Éter. Os Revolucionários Lefaristas provavelmente irão usá-lo enquanto destroem o Observatório.</p>
+          <p> </p>
+          <p>Diz-se que [%dic:STR_DIC_M_LehparWaChD_18_An] tem a espada. [%username], por favor lide com ele e pegue a espada. Dessa forma, podemos frustrar essa trama vil.</p>
+          <p> </p>
+          <p>Devemos defender o Observatório utilizando todos os meios disponíveis. A segurança de toda a região de Altgard depende disso.</p>
+          <p> </p>
+          <p>Por favor, elimine o Capitão Lefarista e arranque a espada de suas mãos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você eliminou [%dic:STR_DIC_M_LehparWaChD_18_An] e tirou [%dic:STR_DIC_I_QUEST_24113A] dele?</p>
+          <p> </p>
+          <p>Tive medo de que você tivesse falhado e que nossos inimigos pudessem atacar o Observatório, [%username].</p>
+          <p> </p>
+          <p>O Observatório significa mais para mim do que a minha própria vida. Não posso permitir que nossos inimigos a destruam.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Espada de Tiamat.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você fez um ótimo trabalho.</p>
+          <p> </p>
+          <p>Devo-lhe uma recompensa pelos seus esforços.</p>
+          <p> </p>
+          <p>Aqui, por favor, pegue.</p>
+          <p> </p>
+          <p>Você merece totalmente, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Tire [%dic:STR_DIC_I_QUEST_24113A] de [%dic:STR_DIC_M_LehparWaChD_18_An] e leve-o para [%dic:STR_DIC_N_Aurtri] em [%dic:STR_DIC_W_DF1A_28].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Revolucionários Lefaristas que ameaçam o Observatório.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aurtri ficou horrorizado com o plano dos Revolucionários Lefaristas. Eles queriam destruir o Observatório usando uma das relíquias de Tiamat.</p>
+          <p> </p>
+          <p>Você roubou a espada do Capitão Lefarista, salvando o Observatório e toda a região de Altgard de grandes danos no processo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um dos conselheiros operacionais responsáveis pelo 1º Exército Beritra foi descoberto.</p>
+          <p> </p>
+          <p>Seu nome é Wubara.</p>
+          <p> </p>
+          <p>Por ser estrategista, certamente guarda segredos militares sobre a 1ª Tropa.</p>
+          <p> </p>
+          <p>Por favor, mate o [%dic:STR_DIC_M_LDF5B_f4_Vri_Confuse_El_SN_NmdQ_65_Ae] e obtenha as informações que ele possui.</p>
+          <p> </p>
+          <p>Isso seria extremamente útil.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabe a importância dessa zona de ocupação?</p>
+          <p> </p>
+          <p>Conhecer antecipadamente o plano de operação do Exército de Beritra seria extremamente útil para nós.</p>
+          <p> </p>
+          <p>Você raramente vê os membros da equipe da sede, então esta pode ser nossa última chance.</p>
+          <p> </p>
+          <p>Você tem que obter as informações dele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Plano de Operação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você garantiu as táticas de batalha!</p>
+          <p> </p>
+          <p>Se você analisar isso, poderá conhecer os planos operacionais específicos do Exército Beritra.</p>
+          <p> </p>
+          <p>Porém, o conteúdo é criptografado, então a análise demorará um pouco.</p>
+          <p> </p>
+          <p>Você foi ótimo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga [%dic:STR_DIC_I_QUEST_13345A] para [%dic:STR_DIC_N_LDF5_Village_Guard19_L].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o estrategista Wubara e proteja os segredos militares sobre a operação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Formio disse que Ubara, um membro do estado-maior, aparentemente tinha segredos militares relacionados com esta operação.</p>
+          <p> </p>
+          <p>A pedido dele, você eliminou Ubara e trouxe um Plano de Operação. Ele agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

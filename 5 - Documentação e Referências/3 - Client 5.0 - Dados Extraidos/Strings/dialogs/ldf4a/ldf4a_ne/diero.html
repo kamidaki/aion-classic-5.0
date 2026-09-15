@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Galam. Muitos se perguntam o que significa aprimoramento de equipamento. Bem, deixe-me dizer a você.</p>
+          <p> </p>
+          <p>Posso pegar equipamentos antigos e, com apenas alguns Símbolos de Kahrun, transformá-los em algo ainda melhor!</p>
+          <p> </p>
+          <p>Você quer saber quão forte será o seu equipamento? Pois é, ver para crer!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_in>Atualizar equipamento Tempestade de Areia</trade_in>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nenhum símbolo de Kahrun?</p>
+          <p> </p>
+          <p>Se você está procurando uma missão atribuída pela Tempestade de areia, vá para Baia ou Eyan.</p>
+          <p> </p>
+          <p>Missões de tempestade de areia são dadas todos os dias e semanas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Eu farei isso..."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

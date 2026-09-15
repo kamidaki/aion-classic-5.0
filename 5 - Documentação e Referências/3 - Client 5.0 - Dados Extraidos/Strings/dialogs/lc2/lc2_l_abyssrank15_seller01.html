@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não é [%username]?</p>
+          <p> </p>
+          <p>É uma honra conhecê-lo.</p>
+          <p> </p>
+          <p>Eu ouvi muito sobre você. Você lutou contra os Asmodianos bravamente e incansavelmente, [%username]!</p>
+          <p> </p>
+          <p>Santuário preparou recompensas para aqueles que conquistaram conquistas especiais para Elysea.</p>
+          <p> </p>
+          <p>Ofereço itens para Daevas como você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sinto muito, Daeva, mas não tenho tempo para Converse com você agora.</p>
+          <p> </p>
+          <p>Meus serviços são apenas para generais Elyos que provaram seu valor em muitas batalhas difíceis.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

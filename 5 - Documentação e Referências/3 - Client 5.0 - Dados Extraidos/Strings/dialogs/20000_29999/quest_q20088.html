@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q20088</QuestId>
+    <QuestName>카룬이 찾는 것</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conversa com Niel do grupo de busca de Kahrun.</p>
+          <p> </p>
+	  <p>Uma cena é reproduzida.</p>
+          <p> </p>
+	  <p>Ele diz que algo parece ter caído e que você deveria examiná-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conversa com Niel do grupo de busca de Kahrun.</p>
+          <p> </p>
+	  <p>Ele diz que provavelmente foi assim que Kahrun desapareceu e que provavelmente tem algo a ver com o conteúdo do livro.</p>
+          <p> </p>
+	  <p>Ele diz que você deve pegar os dois tomos e ir atrás de Kahrun o mais rápido possível.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você responde que entende.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conversa com Ballan do Posto de Observação</p>
+          <p> </p>
+	  <p>Ele diz que o Centurião rumou para o sul.</p>
+          <p> </p>
+	  <p>Siga o Centurião!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você diz que entendeu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Relatório: Conversa com o centurião Paut</p>
+          <p> </p>
+	  <p>O que você está fazendo neste lugar perigoso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o livro e relata o que aconteceu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então foi isso que aconteceu.</p>
+          <p> </p>
+	  <p>Idgel... uma arma antiga</p>
+          <p> </p>
+	  <p>Bem feito!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com Niel.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Examine os itens que os Elyos deixaram espalhados.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Examine o livro.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Mostre o livro para Niel e fale com ele.</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Fale com Ballan.</font></p></step>        
+               <step><p visible="[%15]"><font color="[%16]">Entregue o livro ao Centurião Paut e entregue a ele seu relatório.</font></p></step>       
+    </steps>
+          <p><font font_xml="quest_summary">Pedidos: Fale com Niel para descobrir se ele encontrou mais rastros deixados por Kahrun.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conteúdo após a conclusão</p>
+          <p> </p>
+          <p>Entrada subsequente</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>

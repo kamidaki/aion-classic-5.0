@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma energia poderosa irradia para fora. Apertando os olhos para o brilho mágico, você pode ver o Tesouro Satra.)</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <instance_entry>"Satra riches, here I come!"</instance_entry>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(A energia instável faz você pensar que deveria ter cuidado extra.)</p>
+          <p> </p>
+          <p>(Mas isso impedirá você de visitar o Tesouro Satra?)</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_select_none_2">"Vamos, deixe-me fazer isso!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Você pressiona a abertura, mas sem sucesso. Uma energia estranha e poderosa o empurra para trás.)</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"O poder de Tiamat deve estar interferindo."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

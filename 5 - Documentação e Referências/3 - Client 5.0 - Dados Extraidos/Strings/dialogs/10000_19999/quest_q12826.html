@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tiamat foi derrotada, mas os Balaur, seus antigos súditos, ainda estão aqui. Todos eles devem ser eliminados.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_M_LDF5A_D_DrakanGhost_all] e o [plur][%dic:STR_DIC_M_LDF5A_D_BoneDrake_64_An].</p>
+          <p> </p>
+          <p>Os soldados remanescentes de Tiamat ainda vagam pela nossa área!</p>
+          <p> </p>
+          <p>Livra-os do seu destino miserável!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esses covardes Balaur não sabem nada sobre a honra de um verdadeiro guerreiro.</p>
+          <p> </p>
+          <p>Você conseguiu matar os Espíritos do Exército Kurum?</p>
+          <p> </p>
+          <p>Eles não conhecem honra. Eles também parecem não ter noção de toda a situação, pois atacam indiscriminadamente.</p>
+          <p> </p>
+          <p>Devemos tomar contramedidas imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Espíritos do Exército Kurum finalmente desapareceram.</p>
+          <p> </p>
+          <p>Tiamat... Espero que esta tenha sido a última vez que alguém tenha que falar esse nome.</p>
+          <p> </p>
+          <p>Exceto, é claro, como uma nota de rodapé nos livros de história que contarão sobre a nossa vitória...</p>
+          <p> </p>
+          <p>Muito obrigado por eliminar os soldados restantes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar os Soldados Tiamat remanescentes</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_M_LDF5A_D_DrakanGhost_all]([%2]/12).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Lute contra o [plur][%dic:STR_DIC_M_LDF5A_D_BoneDrake_64_An] ([%5]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard06_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os soldados restantes do Exército Tiamat Kurum e do 	
+Espíritos do Exército Kurum.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Morin pediu para você eliminar os sobreviventes da Guilda de Tiamat.</p>
+          <p> </p>
+          <p>Você eliminou os sobreviventes da Guilda de Tiamat e do 	
+Espíritos do Exército Kurum. Morin ficou muito grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

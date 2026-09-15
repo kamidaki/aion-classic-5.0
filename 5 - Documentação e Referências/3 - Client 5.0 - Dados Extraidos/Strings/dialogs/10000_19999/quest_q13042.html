@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estranhamente, o Vinculado de Dragão de [%dic:STR_DIC_W_LDF5b_SZ_E1_1] estava seguindo um Shugo.</p>
+          <p> </p>
+          <p>Hm, isso é realmente estranho...</p>
+          <p> </p>
+          <p>Talvez tenha algo a ver com os Shugos. De qualquer forma, os Vinculados de Dragão se tornaram ainda mais ferozes e fanáticos em sua fé.</p>
+          <p> </p>
+          <p>Por favor, mate [%dic:STR_DIC_M_LDF5B_E1_Vri2_FanaRBoss_El_65_Nmd_An], o líder do Vinculado de Dragão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Talvez este Shugo esteja usando o Vinculado de Dragão para ganhar dinheiro.</p>
+          <p> </p>
+          <p>Ainda assim, Shugo ou não, como ele poderia...</p>
+          <p> </p>
+          <p>Hum...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você está de volta!</p>
+          <p> </p>
+          <p>Fiquei me perguntando se não deveríamos examinar esse assunto mais de perto, mas não há nada que possamos fazer agora.</p>
+          <p> </p>
+          <p>Bom trabalho. Muito obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5B_E1_Vri2_FanaRBoss_El_65_Nmd_An] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5b_Ateia_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o apaixonado Shugo Athurinerk, que governa o Vinculado de Dragão em seu local sagrado Jormungand.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O líder do Vinculado de Dragão de Jormungand acabou por ser um Shugo.</p>
+          <p> </p>
+          <p>Era suspeito para um Shugo que não dá importância à religião liderar o Vinculado de Dragão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

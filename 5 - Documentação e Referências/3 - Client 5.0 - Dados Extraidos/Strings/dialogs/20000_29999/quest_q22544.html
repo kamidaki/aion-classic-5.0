@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O trabalho de limpeza deve continuar. Mas tanto trabalho é demais para um único Shugo, ak.</p>
+          <p> </p>
+          <p>Shugo não sabe como continuar, ak.</p>
+          <p> </p>
+          <p>Shugo está tão exausto de todo o trabalho, ak.</p>
+          <p> </p>
+          <p>[%username] gostaria de ajudar Shugo, ok?</p>
+          <p> </p>
+          <p>A tribo Hurukuku afirma que a área desmatada pertence a eles. Daeva terá que eliminar [%dic:STR_DIC_M_LDF5A_C3_Owllau_Fi_63_An] ou [%dic:STR_DIC_M_LDF5A_C3_Owllau_Pr_63_An]. Daeva também poderia matar o [%dic:STR_DIC_M_LDF5A_C3_Owllau_Wi_63_An]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva removeu os encrenqueiros da tribo Hurukuku, ok?</p>
+          <p> </p>
+          <p>Infelizmente, eles não falam conosco, então não há outra saída, ak.</p>
+          <p> </p>
+          <p>Shugo deve usar táticas mais fortes.</p>
+          <p> </p> 
+          <p>Para atingir os objetivos de Shugo, Shugo tem que fazer sacrifícios, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo está aliviado porque a ameaça representada pela tribo Hurukuku foi eliminada, ak.</p>
+          <p> </p>
+          <p>Shugo nunca teria pensado que haveria problemas como esse, ak.</p>
+          <p> </p>
+          <p>Agora Shugo ainda tem muito o que fazer, mas Shugo está muito grato a Daeva, ak.</p>
+          <p> </p>
+          <p>Esta é uma recompensa para [%username]. Daeva garantiu que Shugo pudesse trabalhar em paz novamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Lute contra o [%dic:STR_DIC_M_LDF5A_C3_Owllau_all], que está ameaçando o Acampamento da Madeira ([%2]/11)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5a_Rogring_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Eliminar os indígenas Hurukuku que afirmam que a região do Acampamento de Madeira pertence a eles.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rogrinerk pediu sua ajuda porque o trabalho de limpeza que ele supervisiona está sendo perturbado.</p>
+          <p> </p>
+          <p>Conforme as instruções, você eliminou os Guerreiros Hurukuku, os Herbalistas Hurukuku e o Xamã Hurukuku, que estavam reivindicando a área de trabalho de limpeza para si. Rogrinerk recompensou você pelo seu trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

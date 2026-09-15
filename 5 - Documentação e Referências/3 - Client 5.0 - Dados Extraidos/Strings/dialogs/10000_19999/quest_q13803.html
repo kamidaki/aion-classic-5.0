@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Vanguarda Balaur parece estar planejando algo.</p>
+          <p> </p>
+          <p>Eles poderiam atacar a qualquer momento.</p>
+          <p> </p>
+          <p>Então vá para o [%dic:STR_DIC_W_LDF5_Fortress_SZ_B2] rapidamente e elimine o [%dic:STR_DIC_E_LDF5_Fortress_Recon_V01_DR].</p>
+          <p> </p>
+          <p>[%username], estou contando com você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não deve subestimar o Balaur.</p>
+          <p> </p>
+          <p>Se você não os destruir, eles nunca desistirão da base.</p>
+          <p> </p>
+          <p>Temos que evitar esse risco.</p>
+          <p> </p>
+          <p>Um pouco de descuido e o plano Elyos falhará.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ultimamente tenho sentido dores de cabeça porque fico pensando no Balaur.</p>
+          <p> </p>
+          <p>Espero que minhas dores de cabeça desapareçam quando os Balaur forem completamente destruídos.</p>
+          <p> </p>
+          <p>Muito obrigado, [%username]. Você fez um ótimo trabalho!</p>
+          <p> </p>
+          <p>Espero que você continue lutando pelos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF5_Fortress_SZ_B2] e elimine o [%dic:STR_DIC_E_LDF5_Fortress_Recon_V01_DR] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Quando os Elyos conquistarem o [%dic:STR_DIC_W_LDF5_Fortress_SZ_A1_v01], [%dic:STR_DIC_N_LDF5_Fortress_Village_Guard01_L] aparecerá. Fale com ele.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumpra o pedido de Kitor e elimine o 701º Balaur Vanguard.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kitor ordenou que você eliminasse a 701ª Vanguarda Balaur.</p>
+          <p> </p>
+          <p>Depois de completar a missão com sucesso, ele agradeceu repetidamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

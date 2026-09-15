@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você provavelmente não vai acreditar, [%username], mas Brusthonin era uma terra rica e bonita antes da contaminação ocorrer.</p>
+		<p> </p>
+		<p>Mas Brusthonin não foi contaminado de uma só vez. A contaminação começou sem que ninguém percebesse e depois se espalhou gradativamente.</p>
+		<p> </p>
+		<p>Ninguém foi poupado. As pessoas não sabiam da contaminação, por isso continuaram a fazer a sua comida com os ingredientes habituais... e foi assim que foram contaminadas.</p>
+		<p> </p>
+		<p>Assim que uma pessoa era contaminada, a família logo o acompanhava e no final toda a aldeia se transformava em mortos-vivos. É realmente uma história trágica.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Todos aqueles que não foram contaminados buscaram refúgio no Forte Adma.</p>
+		<p> </p>
+		<p>Eles pensaram que estariam seguros.</p>
+		<p> </p>
+		<p>Lannok, o senhor da fortaleza, pegou todos os alimentos do Antigo Castelo de Nahor e retirou-se para a Fortaleza Adma junto com sua comitiva.</p>
+		<p> </p>
+		<p>Então ele trancou os portões, deixando o povo do lado de fora da fortaleza sofrendo e morrendo de fome.</p>
+		<p> </p>
+		<p>Ninguém sabe se as pessoas dentro da Fortaleza Adma sobreviveram ou se transformaram em mortos-vivos.</p>
+		<p> </p>
+		<p>Os portões da fortaleza permanecem fechados e não podem ser abertos. Não sabemos como devemos entrar na fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+		<CutScene id="397"/>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Se as pessoas dentro da fortaleza se transformassem em mortos-vivos, isso poderia ser uma ameaça real no futuro.</p>
+		<p> </p>
+		<p>Eu realmente não sei qual é a situação. Peça ajuda a [%dic:STR_DIC_N_Tree_Moving_Neligor]. Ele está aqui há muito tempo.</p>
+		<p> </p>
+		<p>Precisamos descobrir o que está acontecendo na Fortaleza Adma antes que as pessoas comecem a se estabelecer aqui novamente.</p>
+		<p> </p>
+		<p>O que realmente está me preocupando neste momento é a notícia de que uma criança foi vista recentemente perambulando pela Fortaleza Adma.</p>
+		<p> </p>
+		<p>Eu ficaria feliz se você assumisse esta tarefa, [%username]. Primeiro, você terá que encontrar uma maneira de acessar a fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Obrigado.</p>
+		<p> </p>
+		<p>O Elim [%dic:STR_DIC_N_Tree_Moving_Neligor] pode saber de alguma coisa.</p>
+		<p> </p>
+		<p>Por favor, vá com ele e procure uma entrada para a fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Por que você veio aqui se vai recusar meu pedido?</p>
+		<p> </p>
+		<p>O que estamos falando aqui é atualmente a questão mais urgente em Brusthonin.</p>
+		<p> </p>
+		<p>Volte se mudar de ideia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Sou sempre grato aos Daevas que se esforçam para desfazer a contaminação e proteger Baltasar.</p>
+		<p> </p>
+		<p>Portanto, não hesite em fazer qualquer pergunta que possa ter.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você pede um caminho para a Fortaleza Adma.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Nunca saí de Baltasar, por isso não conheço outros lugares.</p>
+		<p> </p>
+		<p>[%dic:STR_DIC_N_Cairon] talvez saiba, ele está vivo há tanto tempo quanto eu.</p>
+		<p> </p>
+		<p>Vá para a Floresta Iollu e peça ajuda a [%dic:STR_DIC_N_Cairon].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Já faz muito tempo que não falo com um humano ou um Daeva.</p>
+		<p> </p>
+		<p>Há muito tempo, quando a paz prevalecia...</p>
+		<p> </p>
+		<p>O Exército Beritra deve ter feito algo horrível.</p>
+		<p> </p>
+		<p>Não há outra maneira de explicar a contaminação do Brusthonin.</p>
+		<p> </p>
+		<p>O que você quer de mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você pergunta sobre como encontrar um caminho para a Fortaleza Adma.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Há uma passagem secreta dentro do Castelo Antigo de Nahor que leva à Fortaleza Adma.</p>
+		<p> </p>
+		<p>Você precisará de uma chave para entrar nesta passagem secreta.</p>
+		<p> </p>
+		<p>A chave costumava estar em um baú secreto dentro do Castelo Antigo de Nahor. A esta altura, porém, imagino que um dos mortos-vivos [plur][%dic:STR_DIC_M_DF2A_VampireNamedD_47_An] já o terá levado.</p>
+		<p> </p>
+		<p>Não há mais nada que eu possa fazer por você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage> 
+ 
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Os Asmodianos lucrarão muito se Brusthonin retornar ao seu antigo esplendor. O fornecimento de alimentos seria garantido, por exemplo.</p>
+		<p> </p>
+		<p>Mas antes que isso aconteça, precisamos lidar com a situação na Fortaleza Adma.</p>
+		<p> </p>
+		<p>Você encontrou uma maneira de entrar na fortaleza?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você diz que encontrou a chave.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>O que você descobriu é realmente surpreendente!</p>
+		<p> </p>
+		<p>Manter relacionamentos para obter informações é cada vez mais importante.</p>
+		<p> </p>
+		<p>Que sorte haver uma maneira de entrar na Fortaleza Adma a partir do Antigo Castelo de Nahor.</p>
+		<p> </p>
+		<p>Agora só resta o problema de encontrar a Passagem Secreta.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Tree_Moving_Neligor] no [%dic:STR_DIC_W_DF2B_SZ_A_Town].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para [%dic:STR_DIC_W_DF2B_SZ_C2] e fale com [%dic:STR_DIC_N_Cairon] em Cayron Hill.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Vá para o Castelo Antigo de Nahor, pegue a chave da Passagem Secreta em [%dic:STR_DIC_M_DF2A_VampireNamedD_47_An] e reporte-se a [%dic:STR_DIC_N_Surt] em [%dic:STR_DIC_W_DF2B_SZ_A_Town].</font></p>[%collectitem]</step>
+    </steps>
+		<p><font font_xml="quest_summary">Fale com Elim Neligor para encontrar uma maneira de entrar na Fortaleza Adma.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Quando a contaminação atingiu Brusthonin pela primeira vez, havia pessoas que se barricaram dentro da Fortaleza Adma para sobreviver.</p>
+		<p> </p>
+		<p>Surt pediu para você descobrir se as pessoas dentro da fortaleza se transformaram em mortos-vivos.</p>
+		<p> </p>
+		<p>Ele lhe disse que o portão ainda estava trancado e o enviou para encontrar Elim Neligor, que iria ajudá-lo a encontrar um caminho para a fortaleza.</p>
+		<p> </p>
+		<p>Neligor enviou você para ver Cayron, um amigável Brohum. Ele lhe disse que havia uma passagem secreta que levava do Antigo Castelo de Nahor até a Fortaleza Adma, e que você encontraria a chave dentro do castelo.</p>
+		<p> </p>
+		<p>Quando você trouxe a chave para Surt, ele ficou satisfeito com a perspectiva de se infiltrar na fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

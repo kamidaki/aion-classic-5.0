@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho que sei por que os Rotrons ficaram tão inquietos.</p>
+          <p> </p>
+          <p>Uma investigação revelou que há uma grande árvore nas profundezas da Floresta das Sombras.</p>
+          <p> </p>
+          <p>E ao redor da árvore chamada Hildanon há uma ala mágica onde você pode sentir o poder da Tribo Rúnica.</p>
+          <p> </p>
+          <p>Acho que há algo na Árvore Hildanon.</p>
+          <p> </p>
+          <p>Examine o [%dic:STR_DIC_W_LDF5a_SensoryArea_Q22566] ao redor da Árvore Hildanon, e se você acha que a magia causou a mudança na floresta, então dissipe-a.</p>
+          <p> </p>
+          <p>Vou te dar [%dic:STR_DIC_I_quest_22566a], que você precisará para dissipar a magia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="ask_quest_accept" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho que sei por que os Rotrons ficaram tão inquietos.</p>
+          <p> </p>
+          <p>Uma investigação revelou que há uma grande árvore nas profundezas da Floresta das Sombras.</p>
+          <p> </p>
+          <p>E ao redor da árvore chamada Hildanon há uma ala mágica onde você pode sentir o poder da Tribo Rúnica.</p>
+          <p> </p>
+          <p>Acho que há algo na Árvore Hildanon.</p>
+          <p> </p>
+          <p>Examine o [%dic:STR_DIC_W_LDF5a_SensoryArea_Q22566] ao redor da Árvore Hildanon, e se você acha que a magia causou a mudança na floresta, então dissipe-a.</p>
+          <p> </p>
+          <p>Vou te dar [%dic:STR_DIC_I_quest_22566a], que você precisará para dissipar a magia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você examinou a Árvore Hildanon?</p>
+          <p> </p>
+          <p>É verdade que as criaturas da floresta foram alteradas pelos poderes da proteção mágica?</p>
+          <p> </p>
+          <p>É a única coisa artificial na Floresta da Antiguidade.</p>
+          <p> </p>
+          <p>Diga-me exatamente o que aconteceu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o que aconteceu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na verdade, foi na árvore Hildanon.</p>
+          <p> </p>
+          <p>Mas a proteção mágica não foi dissipada com o Feitiço de Dissolução?</p>
+          <p> </p>
+          <p>Provavelmente foi preso por uma magia extremamente poderosa.</p>
+          <p> </p>
+          <p>Vou verificar com a gerência se existem outros métodos para dissipar o poder mágico.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Verifique o [%dic:STR_DIC_W_LDF5a_SensoryArea_Q22566] nas profundezas da Floresta Sombria.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Liberte [%dic:STR_DIC_W_LDF5a_SensoryArea_Q22566] usando o [%dic:STR_DIC_I_quest_22566a] na frente da Árvore Hildanon.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relatório para [%dic:STR_DIC_N_LDF5a_Pahel_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Examine a Árvore Hildanon nas profundezas da Floresta Sombria.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pahel acreditava que as enormes árvores da Floresta das Sombras e o campo de proteção mágico eram as razões das atividades selvagens dos Rotrons.</p>
+          <p> </p>
+          <p>Você examinou o campo de proteção mágico que irradiava a energia da Tribo Rúnica conforme Pahel instruiu. Você tentou levantar o campo de proteção mágico usando um pergaminho, mas falhou.</p>
+          <p> </p>
+          <p>Quando você relatou a Pahel, ele suspeitou que fosse uma magia forte e disse que tentaria encontrar outro caminho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

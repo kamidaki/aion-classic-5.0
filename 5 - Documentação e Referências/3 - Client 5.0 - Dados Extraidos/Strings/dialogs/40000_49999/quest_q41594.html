@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41594</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As difíceis missões em uma área desconhecida estão diminuindo o moral de combate dos meus companheiros.</p>
+          <p> </p>
+          <p>Agora é a hora certa para uma comida deliciosa para levantar o ânimo.</p>
+          <p> </p>
+          <p>Gostaria de preparar uma omelete com Ovos de Grifo para meus companheiros, mas não tenho os ingredientes.</p>
+          <p> </p>
+          <p>[%username], posso pedir para você matar o [plur][%dic:STR_DIC_M_LDF4b_T1_Griffon_Crack_58_An] e me trazer o [plur][%dic:STR_DIC_I_QUEST_41594a]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acha que comida deliciosa aumentará a energia? Aumentar a energia para todo o pessoal do Departamento de Abastecimento?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Você pode descobrir com isso!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eles são ovos grandes, grandes. Pronto para fazer grandes omeletes.</p>
+          <p> </p>
+          <p>Obrigado por entregar os materiais.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obter [%dic:STR_DIC_I_QUEST_41594a]s para [%dic:STR_DIC_N_Naisoi].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Nasoi quer cozinhar algo delicioso para seus colegas apáticos. Derrote Goldhook Griffons para obter alguns deliciosos Ovos de Griffon.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nasoi disse que seus colegas estavam ficando indiferentes após missões cansativas. Ele queria animá-los com alguma comida deliciosa.</p>
+          <p> </p>
+          <p>Então você matou Goldhook Griffons e trouxe Griffon Eggs para suas incríveis omeletes.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

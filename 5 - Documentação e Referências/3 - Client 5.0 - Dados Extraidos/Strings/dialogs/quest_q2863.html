@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com as nossas últimas informações, os Elyos estão a planear um grande ataque.</p>
+          <p> </p>
+          <p>Se iniciarem o ataque, os Asmodianos sofrerão danos críticos.</p>
+          <p> </p>
+          <p>Mas nós, a Guilda Rothasia, não permitiremos que isso aconteça.</p>
+          <p> </p>
+          <p>Devemos impedir o avanço dos Elyos e alterar a situação de guerra a nosso favor!</p>
+          <p> </p>
+          <p>Para fazer isso, devemos primeiro conquistar a Fortaleza Miren.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para que tenhamos alguma chance nas próximas batalhas, devemos primeiro eliminar os Guardiões da fortaleza.</p>
+          <p> </p>
+          <p>Mas não são adversários fáceis. É por isso que não devemos começar um grande ataque imediatamente, mas sim enfraquecer o inimigo com pequenas escaramuças.</p>
+          <p> </p>
+          <p>É importante rompermos as linhas inimigas... Mas não podemos fazer isso sozinhos.</p>
+          <p> </p>
+          <p>Estamos lutando contra os Balaur e também contra os Elyos. Não podemos estar em todos os lugares ao mesmo tempo.</p>    
+          <p> </p>
+          <p>O que você acha, [%username]? Você tem coragem de derrotar o [%dic:STR_DIC_E_1241_guard_Li_fi]?</p>     
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito bom. Fique de olho na situação assim que os Elyos capturarem a Fortaleza Miren. É quando os Guardiões Miren aparecerão.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_E_1241_guard_Li_fi] e colete o [plur][%dic:STR_DIC_I_QUEST_2863a].</p>
+          <p> </p>
+          <p>Você deve ter cuidado para não ser descoberto, pois os Elyos estarão guardando a fortaleza de perto.</p>
+          <p> </p>
+          <p>Reporte-me assim que tiver concluído a missão.</p>
+          <p> </p>
+          <p>[%username], se você tiver sucesso, podemos iniciar a próxima operação imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Capturar a Fortaleza Miren é a parte mais importante da nossa estratégia.</p>
+          <p> </p>
+          <p>[%username], esperava que você nos ajudasse...</p>
+          <p> </p>
+          <p>Você não poderia talvez reconsiderar isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estava esperando por você, [%username].</p>
+          <p> </p>
+          <p>O ataque à Fortaleza Miren foi bem-sucedido?</p>
+          <p> </p>
+          <p>Você trouxe o [plur][%dic:STR_DIC_I_QUEST_2863a] com você?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Aqui.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há uma razão pela qual pedi para você reunir os Kisks.</p>
+          <p> </p>
+          <p>Nossos oponentes serão ressuscitados infinitamente com esses Kisks. Então todos os nossos esforços seriam em vão.</p>
+          <p> </p>
+          <p>Então traga o [plur][%dic:STR_DIC_I_QUEST_2863a] com você. Seria bom se você pudesse fazer isso antes da ressurreição dos nossos inimigos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito bem feito. Os Elyos ficaram ainda mais fracos agora que perderam seus tão estimados Guardiões.</p>
+          <p> </p>
+          <p>[%username], graças a você agora podemos realizar a próxima operação sem problemas.</p>
+          <p> </p>
+          <p>Você pode ir descansar agora. Tenho que transmitir novas ordens ao meu pessoal.</p>
+          <p> </p>
+          <p>A Sombra esteja com você, irmão[f:"irmã"].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Lute contra o [%dic:STR_DIC_E_1241_guard_Li_fi], colete evidências e leve-as para [%dic:STR_DIC_N_Rossjof].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Guardiões Miren serão despachados assim que a Fortaleza Miren estiver sob o controle de Elyos. Elimine-os e colete os Kisks.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Centurião Rossjof estava planejando quebrar o poder de combate dos Elyos.</p>
+          <p> </p>
+          <p>Seu plano era exterminar os Guardiões Elyos Miren para privar o inimigo de alguns de seus lutadores mais importantes.</p>
+          <p> </p>
+          <p>Você desferiu um golpe debilitante nos Guardiões Elyos Miren. Rossjof agradeceu pelos seus esforços e iniciou imediatamente a próxima parte da estratégia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

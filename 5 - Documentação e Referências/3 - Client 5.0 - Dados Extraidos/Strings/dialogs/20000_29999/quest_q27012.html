@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para o bem-estar da Guilda, todas as missões a serem realizadas foram distribuídas entre todos os participantes da Guilda. Todos são convidados a cumprir a missão, pois só então a tarefa das Legiões estará totalmente concluída.</p>
+          <p> </p>
+          <p>Missão das Legiões:</p>
+          <p>Vá para o Abismo e mate o Elyos Daeva.</p>
+          <p> </p>
+          <p>Todos que realizam a missão devem reportar-se a [%dic:STR_DIC_N_Anonte], que é responsável pelas batalhas do Abismo.</p>
+          <p> </p>
+          <p>- Administração das Legiões -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um verdadeiro Membro da Guilda se interessa pelas Tarefas da Guilda.</p>
+          <p> </p>
+          <p>Neste momento os Daevas estão muito preocupados com os seus próprios assuntos e não demonstram o menor interesse na Tarefa da Guilda.</p>
+          <p> </p>
+          <p>Você realizou a Tarefa da Guilda?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O som do seu nome, [%username], irá incutir medo nos maliciosos Elyos de asas brancas por muito tempo.</p>
+          <p> </p>
+          <p>Continue realizando as missões para completar o Desafio das Legiões.</p>
+          <p> </p>
+          <p>Esta é uma pequena recompensa da legião, por favor, aceite-a.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Abismo Elyos ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Anonte].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tarefa de desafio: Complete uma missão de matar o Abismo Elyos, e assim termine uma tarefa de desafio.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu a missão na forma de um desafio da Guilda de matar Elyos no Abismo.</p>
+          <p> </p>
+          <p>Você terminou a missão para completar a tarefa do desafio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

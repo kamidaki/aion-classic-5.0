@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30712</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Rancor de [%dic:STR_DIC_E_Apsu]... Um item de pesquisa tão precioso, seu valor não pode ser medido em Kinah.</p>
+          <p> </p>
+          <p>Mas você não pode tocar na adaga, você pode enlouquecer se o fizer.</p>
+          <p> </p>
+          <p>O mais importante é extrair o Rancor de Apsu. Sem ela, a adaga é apenas uma arma comum...</p>
+          <p> </p>
+          <p>[%username]. Você pode trazer o [%dic:STR_DIC_I_quest_30712a] do [%dic:STR_DIC_M_IDTiamat_S2_StealthUnit_60_Ae] para o [%dic:STR_DIC_W_IDTiamat_SZ_R1]?</p>
+          <p> </p>
+          <p>Acho que posso extrair o Rancor de Apsu seguindo as instruções do Livro de Feitiços da Tribo Reian.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]! Você voltou!</p>
+          <p> </p>
+          <p>Eu estava esperando por você.</p>
+          <p> </p>
+          <p>Você obteve [%dic:STR_DIC_I_quest_30712a]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o dispositivo de enfraquecimento.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, exatamente o que eu estava procurando.</p>
+          <p> </p>
+          <p>Hum ...</p>
+          <p> </p>
+          <p>(Ele verifica o Absorvedor de Escudo de Energia.)</p>
+          <p> </p>
+          <p>É a primeira vez que vejo este aparelho... A tecnologia Balaur está progredindo.</p>
+          <p> </p>
+	  <p>Bom. Posso usar este dispositivo para fabricar uma ferramenta que me permitirá extrair o Rancour de Apsu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Procure [%dic:STR_DIC_I_quest_30712a]% e leve este item para [%dic:STR_DIC_N_Uquini].</font></p>[%collectitem]</step>
+  
+    </steps>
+          <p><font font_xml="quest_summary">Procure um dispositivo adequado para obter o Rancor de Apsu, que é imensamente valioso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ulian disse que o Rancor de Apsu era um item de pesquisa muito valioso e pediu que você obtivesse os ingredientes necessários para extrair o rancor.</p>
+          <p> </p>
+          <p>Você trouxe o absorvedor de escudo de energia do núcleo do Indutor de Transparência Balaur na Fortaleza de Tiamat. Ulian disse que poderia extrair o Rancor de Apsu usando este dispositivo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

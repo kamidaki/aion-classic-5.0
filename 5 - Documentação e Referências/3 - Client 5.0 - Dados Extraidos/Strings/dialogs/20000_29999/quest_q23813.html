@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É uma honra conhecê-lo.</p>
+          <p> </p>
+          <p>Na verdade, queria parabenizá-lo pela sua vitória na Batalha da Fortaleza, mas infelizmente não temos tempo a perder. Já tenho uma nova missão para você.</p>
+          <p> </p>
+          <p>Sempre há confrontos perto da fortaleza, então alguns preparativos devem ser feitos para tornar o trabalho de proteção da fortaleza muito mais fácil.</p>
+          <p> </p>
+          <p>Primeiro, cuide da área ao redor do [%dic:STR_DIC_W_LDF5_Fortress_SZ_B1], do [%dic:STR_DIC_W_LDF5_Fortress_SZ_B2] e do [%dic:STR_DIC_W_LDF5_Fortress_SZ_B3].</p>
+          <p> </p>
+          <p>Elimine todos os [%dic:STR_DIC_M_LDF5_Fortress_B1_B2_B3_all] que encontrar aí e traga-me [%dic:STR_DIC_I_quest_23813a] como prova.</p>
+          <p> </p>
+          <p>A limpeza da área é um elemento importante dos preparativos de guerra.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se uma guerra estourar, nossos inimigos tentarão invadir através das áreas vizinhas.</p>
+          <p> </p>
+          <p>Se desordeiros estiverem rondando a área, isso poderá afetar o resultado da guerra.</p>
+          <p> </p>
+          <p>Não seremos capazes de nos concentrar na verdadeira batalha por causa dos desordeiros mais próximos de casa.</p>
+          <p> </p>
+          <p>É por isso que é importante limparmos a área da fortaleza.</p>
+          <p> </p>
+          <p>Por favor, envolva-se.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as Cinzas Flamejantes.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Posso ver pelo tipo de cinza que tenho aqui que você conseguiu limpar a área da fortaleza. É um grande alívio para mim.</p>
+          <p> </p>
+          <p>Tenho certeza de que o trabalho concluído hoje será de grande ajuda para nossos soldados na próxima batalha.</p>
+          <p> </p>
+          <p>Em troca de completar a tarefa, você receberá uma recompensa adequada.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_M_LDF5_Fortress_B1_B2_B3_all] e traga [%dic:STR_DIC_I_quest_23813a] para [%dic:STR_DIC_N_LDF5_Fortress_7011_Phillipa_D_E]. Este Administrador aparece quando os Asmodianos capturaram o [%dic:STR_DIC_W_LDF5_Fortress_7011].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os encrenqueiros na área ao redor da fortaleza e receba Flaming Ash como prova de sua vitória.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A administradora da fortaleza, Philipa, pediu que você se livrasse dos desordeiros da área para se preparar para a guerra iminente.</p>
+          <p> </p>
+          <p>Você atendeu ao pedido de Philipa e eliminou os desordeiros. Você trouxe Cold Ash para ela como prova de suas ações e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

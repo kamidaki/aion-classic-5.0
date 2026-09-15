@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desculpe.</p>
+          <p> </p>
+		  <p>Desta vez Daeva receberá uma tarefa real.</p>
+		  <p> </p>
+		  <p>[plur][%dic:STR_DIC_M_DF2A_DritonBlueD_47_An] e [plur][%dic:STR_DIC_M_DF2A_StarturtleRoughD_47_An] estão contaminando a costa da Caróbia.</p>
+		  <p> </p>
+          <p>Daeva deve eliminá-los, por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva já está de volta.</p>
+          <p> </p>
+		  <p>BuBu está feliz em ver Daeva.</p>
+		  <p> </p>
+		  <p>Daeva se livrou dos Sea Skyrays ou Sea Chimaeras?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que executou a tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>BuBu está muito grato a Daeva.</p>
+          <p> </p>
+		  <p>Daeva fez um bom trabalho.</p>
+		  <p> </p>
+		  <p>Daeva receberá Ajuda Alimentar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_M_DF2A_DritonBlueD_47_An] ou o [plur][%dic:STR_DIC_M_DF2A_StarturtleRoughD_47_An] na costa da Caróbia ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_DF2a_NPC_Bumbum_Khan] no [%dic:STR_DIC_W_DF2B_SZ_C_Town].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os monstros em Brusthonin, depois vá para BuBu Khaaan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>BuBu Khaaan pediu para você se livrar dos Sea Skyrays ou Sea Chimaeras em Brusthonin.</p>
+          <p> </p>
+          <p>Depois de eliminar os monstros, você encontrou BuBu Khaaan e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

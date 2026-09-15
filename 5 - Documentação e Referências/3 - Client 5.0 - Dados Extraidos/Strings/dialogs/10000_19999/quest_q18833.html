@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(A superfície elegante brilha ao sol. Esta não pode ser uma planta comum.)</p>
+          <p> </p>
+          <p>(É melhor você dar um desconto ao Bloom Researcher [%dic:STR_DIC_N_Gadorus].)</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ela vai ficar tão animada."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quem se atreve a interromper minha contemplação silenciosa?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="PLAYEMOTION_thanks;HACTION_SELECT_QUEST_REWARD">"Eep! Desculpe, mas encontrei isso."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma aí, plantinha. O grande e mau [%username] tem cuidado bem de você?</p>
+          <p> </p>
+          <p>Você é tão brilhante e bonita. Aposto que podemos transformá-lo em uma fábrica independente em pouco tempo.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o corte de folhas para [%dic:STR_DIC_N_Gadorus].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">É melhor você levar o Corte de Folhas para um Pesquisador de Flores.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você adquiriu uma muda frondosa de uma planta incomum. Sem ter certeza do seu significado, você o levou para a pesquisadora da Bloom, Lariel.</p>
+          <p> </p>
+          <p>Ela ignorou você em favor de admirar seu novo corte.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

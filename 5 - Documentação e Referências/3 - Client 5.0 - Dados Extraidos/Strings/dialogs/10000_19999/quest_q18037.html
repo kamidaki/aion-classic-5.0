@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>O ataque do Exército Beritra ao Bastião Parede de Aço ainda não terminou.</p>
+		<p> </p>
+		<p>Recebemos relatos de batedores de que Pashid reuniu outro esquadrão de cerco e atacará em breve.</p>
+		<p> </p>
+		<p>Precisamos da sua ajuda novamente, [%username].</p>
+		<p> </p>
+		<p>O Bastião da Parede de Aço é um portão importante que nós, Elyos, devemos proteger.</p>
+		<p> </p>
+		<p>Elimine [%dic:STR_DIC_M_IDF5_TD_DragonRider_Chief_N_65_Al] para impedir o ataque do Exército Beritra.</p>
+		</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você retornou com segurança.</p>
+		<p> </p>
+		<p>Ouvi dizer que o Exército Beritra atacou o Bastião Parede de Aço com todas as suas forças, mas que um Daeva foi capaz de detê-los.</p>
+		<p> </p>
+		<p>Eu sabia que era você, [%username].</p>
+		<p> </p>
+		<p>Estou certo? Você derrotou [%dic:STR_DIC_M_IDF5_TD_DragonRider_Chief_N_65_Al]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você responde que sim.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Então Kaisinel estava com você, [%username]!</p>
+		<p> </p>
+		<p>O Steel Wall Bastion é um local estrategicamente importante, por isso não podemos nos dar ao luxo de perdê-lo.</p>
+		<p> </p>
+		<p>Todos os Elyos logo saberão seu nome.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_IDF5_TD_DragonRider_Chief_N_65_Al] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Demades_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote o Comandante Supremo Pashid no Bastião da Parede de Aço.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Demades disse que o ataque do Exército Beritra ao Bastião da Muralha de Aço simplesmente não terá fim.</p>
+		<p> </p>
+		<p>Ele temia que o Comandante Supremo Pashid atacasse novamente. Ele pediu para você matar Pashid.</p>
+		<p> </p>
+		<p>Você seguiu a ordem dele para impedir o ataque do Exército Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

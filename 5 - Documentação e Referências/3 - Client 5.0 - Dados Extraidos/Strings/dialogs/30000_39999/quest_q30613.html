@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30613</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Naquele Dredgion, não basta apenas eliminar os membros normais da tripulação. Você precisa contratar os grandes líderes.</p>
+          <p> </p>
+          <p>Não. Você tem que se livrar dos [%dic:STR_DIC_E_Q30603a] e [%dic:STR_DIC_E_Q30603b]s para realmente colocá-los na lama.</p>
+          <p> </p>
+          <p>E assim que você eliminar [%dic:STR_DIC_M_IDDreadgion_03_DrakanRa_QuestNamed_60_Ae] no Arsenal e [%dic:STR_DIC_M_IDDreadgion_03_IDDreadgion_03_DrakanGi_QuestNamed_60_Ae] na Ponte, aqueles Terath Drakan não saberão distinguir o rabo do focinho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que bom ver você, querido.</p>
+          <p> </p>
+          <p>Como você foi lá em cima?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Bem..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ótimo trabalho, então!</p>
+          <p> </p>
+          <p>É um grande conforto saber que posso confiar em você.</p>
+          <p> </p>
+          <p>Você é uma verdadeira bênção de Aion, sabia disso?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Livre-se dos capitães e ajudantes Balaur no Terath Dredgion.</font></p>
+                         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_E_Q30603a]([%2]/9)</font></p>
+                         <p visible="[%3]"><font color="[%4]">[%dic:STR_DIC_E_Q30603b]([%5]/9)</font></p>
+                         <p visible="[%6]"><font color="[%7]">[%dic:STR_DIC_M_IDDreadgion_03_DrakanRa_QuestNamed_60_Ae] ([%8]/1)</font></p>
+                         <p visible="[%9]"><font color="[%10]">[%dic:STR_DIC_M_IDDreadgion_03_IDDreadgion_03_DrakanGi_QuestNamed_60_Ae] ([%11]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Astella].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Para enfraquecer a força de combate do Terath Dredgion, você prometeu matar seus capitães e ajudantes Balaur.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Asthella pediu para você matar os capitães e ajudantes de Balaur para incapacitar o Terath Dredgion.</p>
+          <p> </p>
+          <p>Então você foi até Terath Dredgion e matou todos eles. Você voltou a receber elogios e recompensas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Já conhecemos os planos do Exército Beritra para um ataque ao Bastião Parede de Aço.</p>
+          <p> </p>
+          <p>Mas agora devemos cuidar dos seus planos para o período após a conquista bem-sucedida do bastião.</p>
+          <p> </p>
+          <p>Se você participar da batalha pelo [%dic:STR_DIC_I_IDLDF5b_TD_Map_Q18034], você consegue ficar de olho no [%dic:STR_DIC_W_IDLDF5b_TD]?</p>
+          <p> </p>
+          <p>Como eles já tinham um plano estratégico detalhado para a conquista do Bastião Parede de Aço, deve haver um para o período seguinte.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho certeza de que o Exército Beritra presume que será capaz de conquistar o Bastião Parede de Aço.</p>
+          <p> </p>
+          <p>Então eles devem ter bolado um plano para depois.</p>
+          <p> </p>
+		  <p>Com este [%dic:STR_DIC_I_IDLDF5b_TD_Map_Q18034], poderíamos encontrar os pontos fracos da nossa defesa e fortalecê-los.</p> 
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Plano de Defesa do Bastião Parede de Aço.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente. Você realmente fez isso!</p>
+          <p> </p>
+          <p>Esta é uma informação muito valiosa.</p>
+          <p> </p>
+          <p>Reportarei tudo isto aos responsáveis, para que possam ser tomadas medidas para fortalecer as defesas.</p>
+          <p> </p>
+          <p>Bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre o [%dic:STR_DIC_I_IDLDF5b_TD_Map_Q18034] e leve-o para [%dic:STR_DIC_N_LDF5b_Demades_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure um documento que contenha os planos estratégicos do inimigo no caso de uma conquista bem-sucedida do Bastião da Parede de Aço.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Demades especulou que o Exército Beritra já possuía um plano para a época após a conquista bem-sucedida do Bastião Parede de Aço.</p>
+          <p> </p>
+          <p>Durante a defesa do Bastião Parede de Aço você descobriu o Plano de Defesa do Bastião Parede de Aço e o levou para Demades. Ele ficou muito grato a você e disse que isso seria de grande utilidade para a defesa do Bastião Parede de Aço.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

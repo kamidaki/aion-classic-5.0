@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O 5º Esquadrão do Exército de Beritra originalmente não pertencia a Beritra.</p>
+          <p> </p>
+          <p>Talvez você já tenha ouvido isso, mas fazia parte do Exército de Tiamat.</p>
+          <p> </p>
+          <p>Após a morte de Tiamat, eles se renderam ao 4º Senhor Dragão, e agora estão lutando contra outros Soldados Tiamat que estão escondidos no Subterrâneo Katalam.</p>
+          <p> </p>
+          <p>Mas de qualquer maneira. O Esquadrão de Rastreamento de Elite agora está nos impedindo.</p>
+          <p> </p>
+          <p>Para conquistar o Katalam Underground, o [%dic:STR_DIC_E_LDF5_Under_VriTR_Drakan] e seu comandante [%dic:STR_DIC_M_LDF5_Under_Vri_5th_Q_Wi_N_65_Ah] devem ser exterminados.</p>
+          <p> </p>
+          <p>Você foi testado em batalha, [%username], não será grande coisa para você. Você vai me ajudar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como está indo a operação para eliminar o comandante [%dic:STR_DIC_E_LDF5_Under_VriTR_Drakan] e o comandante [%dic:STR_DIC_M_LDF5_Under_Vri_5th_Q_Wi_N_65_Ah]?</p>
+          <p> </p>
+          <p>Eles são a força mais forte do Katalam Underground e devem ser destruídos para que a conquista do Katalam Underground possa prosseguir sem problemas.</p>
+          <p> </p>
+          <p>Devemos agir agora, antes que o Exército Beritra envie reforços.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você derrotou o Exército Beritra e matou seu líder.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lata e seus seguidores rejeitaram a honra e escolheram a desgraça para sobreviver.</p>
+          <p> </p>
+          <p>No entanto, no final, aqueles que abandonam a honra não serão ajudados por ninguém e serão explorados até ao dia da sua morte.</p>
+          <p> </p>
+          <p>Os traidores terão um fim amargo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_LDF5_Under_VriTR_Drakan] ([%2]/7).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Matar [%dic:STR_DIC_M_LDF5_Under_Vri_5th_Q_Wi_N_65_Ah] ([%5]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Under_Kurius_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Siga a ordem de Kurius e mate o Esquadrão de Rastreamento de Elite, bem como seu líder.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kurius pediu para você matar o Esquadrão de Rastreamento de Elite, bem como seu líder, a fim de conquistar o Katalam Underground.</p>
+          <p> </p>
+          <p>Depois de eliminá-los e retornar, Kurius declarou que os traidores têm um fim amargo pela frente.</p>
+          <p> </p>
+          <p>Mas, ao contrário das palavras sugeridas, ele parecia não sentir nenhuma simpatia ou arrependimento real. Um Daeva de coração frio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

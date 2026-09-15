@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma descoberta surpreendente foi feita durante os trabalhos de reparação da fortaleza.</p>
+          <p> </p>
+          <p>Uma sala secreta, criada pela Tribo Rúnica, pelo que parece. Sim, quero dizer aquela velha cultura que construiu a fortaleza.</p>
+          <p> </p>
+          <p>O que a sala contém, entretanto, eu não sei. [%dic:STR_DIC_N_LDF5a_Solon] está dando uma olhada, mas provavelmente será difícil sozinho.</p>
+          <p> </p>
+          <p>Você pode nos ajudar, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você poderia talvez... [%username]?</p>
+          <p> </p>
+          <p>Sinto muito, mas você poderia esperar um momento, por favor.</p>
+          <p> </p>
+          <p>Estou lendo um documento que foi roubado da Tropa de Inteligência Beritra. Estou aprendendo muitas novidades interessantes aqui.</p>
+          </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Segurando o documento) Assim como pensei. A Inteligência Beritra sabia da sala secreta.</p>
+          <p> </p>
+          <p>E mais, transformaram parte da sala secreta em laboratório.</p>
+          <p> </p>
+          <p>Como a Inteligência Beritra está envolvida neste negócio, as investigações não serão fáceis. Que bom que você está aqui, [%username].</p>
+          <p> </p>
+          <p>Foi um golpe do destino que a porta foi descoberta e eu conheci você, [%username], além de encontrar o documento secreto da Beritra Intelligence. Katalam e eu parecemos nos dar bem um com o outro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5a_Solon].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Aparentemente uma sala secreta da Tribo Runa foi encontrada na Fortaleza Sillus. Procure Sólon e pergunte sobre isso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O centurião Kaiah pediu que você ajudasse o Guardião Solon a investigar uma sala secreta construída pela Tribo Ruhne na fortaleza.</p>
+          <p> </p>
+          <p>Ele ficou muito feliz quando soube que você ajudaria Solon na investigação.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

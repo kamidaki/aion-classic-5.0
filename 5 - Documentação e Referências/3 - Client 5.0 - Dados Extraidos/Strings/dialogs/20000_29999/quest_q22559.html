@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava examinando um documento recentemente e descobri que há uma residência próxima que pertence à Tribo Rúnica que construiu as Muralhas.</p>
+          <p> </p>
+          <p>Não é uma casa, mas sim uma caverna. Você poderia ir dar uma olhada?</p>
+          <p> </p>
+          <p>Talvez, se tivermos sorte, descobriremos que a Tribo Rune ainda vive lá.</p>
+          <p> </p>
+          <p>Eu ouvi os rumores de [%dic:STR_DIC_M_LDF5a_E6_GhostRune_As_Nmd_63_Ae].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+ 
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito interessante como a Tribo Rúnica cavou cavernas em uma parede tão gigantesca e as usou como residências.</p>
+          <p> </p>
+          <p>A tecnologia deles era muito elaborada, mas aparentemente eles tinham vidas muito privadas e retraídas.</p>
+          <p> </p>
+          <p>Eu adoraria conhecer pessoalmente a Tribo Rune.</p>
+          <p> </p>
+          <p>Como foi sua visita às cavernas?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a insígnia do Eremion.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um Fantasma da Tribo Runa?</p>
+          <p> </p>
+          <p>Você realmente conheceu o Fantasma de Eremion!</p>
+          <p> </p>
+          <p>Teria sido ainda melhor se você tivesse tentado Converse com ele.</p>
+          <p> </p>
+          <p>Este item prova que a cópia das Muralhas era real.</p>
+          <p> </p>
+          <p>O lugar onde o engenheiro construtor estava realmente existia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Receba [%dic:STR_DIC_I_quest_22559a] de [%dic:STR_DIC_M_LDF5a_E6_GhostRune_As_Nmd_63_Ae] e leve tudo para [%dic:STR_DIC_N_LDF5a_Notis_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure o Fantasma de Eremion na caverna para obter a prova. Em seguida, retorne para Notis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ao pesquisar as cópias rastreadas, Notis descobriu recentemente que a residência dos arquitetos de Rune Ramparts havia sido descoberta. Quando você foi lá, você encontrou o espírito Eremion. Após uma grande batalha com o espírito Eremion, você retornou a Notis com a Insígnia de Eremion. Notis achou uma pena não poder conversar com você e ficou surpreso ao ver que as informações da cópia rastreada eram realmente verdadeiras.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

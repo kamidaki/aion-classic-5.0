@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os gigantes Vespines agarram as criaturas do pântano assim que tomam conhecimento delas.</p>
+          <p> </p>
+          <p>Eles comem tanto que até suas excreções são enormes. Este é um local onde é necessário obter Água Não Contaminada, mas estamos sofrendo muito por causa dos monstros da região.</p>
+          <p> </p>
+          <p>Seria ótimo se você caçasse os [%dic:STR_DIC_M_LDF5B_G_VespaN_65_n] que estão poluindo o pântano com suas excreções.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você quer trabalhar aqui, precisa de espírito pioneiro.</p>
+          <p> </p>
+          <p>Achei que seria fácil obter água doce em uma área com muita água, mas as criaturas do pântano estão dificultando meu trabalho.</p>
+          <p> </p>
+          <p>Como você se saiu ao remover os resíduos, não, os Vespines Gigantes?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Agora que essas questões tediosas foram resolvidas, o verdadeiro trabalho pode começar. Se você vier novamente e me ajudar, eu o recompensarei ricamente.</p>
+          <p> </p>
+          <p>Tudo bem, vou investigar a bomba.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Extermine o [%dic:STR_DIC_M_LDF5B_G_VespaN_65_n] ([%2]/9).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Ulvali_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cace os Vespines que estão poluindo o Pântano Esquecido.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Conforme solicitado por Ulbari, você matou o Vespine Gigante que contaminava o Pântano Esquecido e retornou. Ele pediu que você o ajudasse novamente quando tivesse tempo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

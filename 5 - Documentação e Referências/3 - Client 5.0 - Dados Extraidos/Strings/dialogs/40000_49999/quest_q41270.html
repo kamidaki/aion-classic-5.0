@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41270</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, o [%dic:STR_DIC_I_Q41270A_pagati] está feito! Esse aroma não é maravilhoso? [%dic:STR_DIC_N_Kinotia] vai adorar!</p>
+          <p> </p>
+          <p>Quero desesperadamente ser aquele que lhe dará a sopa e lhe contará as boas novas... Mas acabei de ser convocado para lutar em uma grande ofensiva. Tantas vidas dependem do seu sucesso, mas não suporto deixar Kinotia esperando nem mais um momento.</p>
+          <p> </p>
+          <p>Você poderia, por favor, entregar a sopa e as notícias para ela em meu lugar? Diga a ela que irei me juntar a ela assim que puder.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>...</p>
+          <p> </p>
+          <p>(O rosto de Kinotia está estranhamente pálido e ela não está se movendo...)</p>
+          <p> </p>
+          <p>(Ela parece estar morta....)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">"Ah, não..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Você encontra um pequeno bilhete na mão dela.)</p>
+          <p> </p>
+          <p>"Querido Joubis: Minha doença progrediu muito. Não há mais esperança para mim. Lamento não ter suportado contar a você pessoalmente."</p>
+          <p> </p>
+          <p>"Por favor, não se culpe - estou morrendo como quero. Continue com sua vida... Apenas nunca se esqueça de mim. Com todo meu amor, Kinotia."</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Pobre Joubis..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username]! Você contou a Kinotia que...</p>
+          <p> </p>
+          <p>A-aquela expressão no seu rosto... É... Oh, Siel, não...</p>
+          <p> </p>
+          <p>Não me diga... Por favor, não me diga....</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sinto muito..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, não... Kinótia! O que? Uma nota? Deixe-me ver...</p>
+          <p> </p>
+          <p>Ah, Kinótia! Por que você não me contou? Eu teria voltado para casa. Eu teria te confortado em seus últimos dias... Minha querida Kinotia...!</p>
+          <p> </p>
+          <p>Eu não me importo com o que ela diz; isso é parcialmente minha culpa. Eu fiz tudo por ela, tudo menos estar lá. Mas obrigado por estar lá... em meu lugar.</p>
+          <p/>
+          <p></p>
+          <p/>
+          <p></p>
+          <p/>
+          <p></p>
+          <p/>
+          <p></p>
+          <p/>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Entregue o [%dic:STR_DIC_I_Q41270A_pagati] que Joubis fez para [%dic:STR_DIC_N_Kinotia].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Conte a [%dic:STR_DIC_N_Joubis] a trágica notícia.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Entregue a sopa e as boas notícias para Kinotia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Joubis pediu que você entregasse a sopa dele, junto com a notícia de que ele poderia pagar o tratamento, para Kinotia.</p>
+          <p> </p>
+          <p>Infelizmente, você descobriu que Kinotia já havia morrido de doença. Ela deixou um bilhete explicando que estava longe demais para tratar.</p>
+          <p> </p>
+          <p>Joubis recebeu mal a notícia, culpando-se por não estar presente nas últimas horas dela.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho que os Fragmentos da Ira Orkanimum deveriam ser eliminados.</p>
+          <p> </p>
+          <p>Aparentemente, os Fragmentos da Ira Orkanimum trazem constantemente novas entidades vivas. Se eles se tornarem agressivos devido à influência do Éter, a situação poderá piorar ainda mais.</p>
+          <p> </p>
+          <p>Por favor, destrua [%dic:STR_DIC_OBJ_IDAbRe_Core_02_Seed] no Abyssal Splinter quebrado.</p>
+          <p> </p>
+          <p>Se os fragmentos forem destruídos, seu DP será regenerado. Você será capaz de lutar melhor se destruir os Fragmentos da Ira Orkanimum.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi no Shattered Abyssal Splinter?</p>
+          <p> </p>
+          <p>Você destruiu os fragmentos selvagens de Orkanimum?</p>
+          <p> </p>
+          <p>É muito importante. Por favor, dê-me um relatório preciso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A prevenção é fundamental.</p>
+          <p> </p>
+          <p>Você não conseguiu cuidar de tudo, mas sua presença aqui me tranquilizou.</p>
+          <p> </p>
+          <p>Eu ficaria muito grato se você pudesse me ajudar na próxima vez também.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destruir [%dic:STR_DIC_OBJ_IDAbRe_Core_02_Seed]([%2]/10)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Entregue seu relatório para [%dic:STR_DIC_NPC_Ab1_1011_TreasureGate_Li]</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Se as lascas selvagens de Orkanimum não forem eliminadas de antemão, elas poderão ficar ainda mais selvagens. Destrua as lascas selvagens de Orkanimum.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arato explicou que os Fragmentos da Ira Orkanimum poderiam trazer uma nova vida. Ele pediu para você destruir os fragmentos antes que o Éter os fizesse perder o controle.</p>
+          <p> </p>
+          <p>Ele agradeceu quando retornou após destruir os Fragmentos da Ira de Orkanimum.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora os Kaidan também são um problema, além dos Revolucionários Lefaristas.</p>
+          <p> </p>
+          <p>Aiolos do Observatório Eltnen informou que os Kaidan Krall estão estabelecendo uma sentinela.</p>
+          <p> </p>
+          <p>Nem o Kaidan Krall nem os Asmodianos podem ter permissão para atacar o Observatório Eltnen.</p>
+          <p> </p>
+          <p>Veja [%dic:STR_DIC_N_Aeolus] em [%dic:STR_DIC_W_LF2_SZ_E2_SUB_1] de uma vez.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um posto foi montado na entrada da sede de Kaidan Krall. Parece que está a ser planeado um ataque à torre fronteiriça, utilizando este posto como base de operações.</p>
+          <p> </p>
+          <p>A presença do Esquadrão Guerrilha Asmodiano nas proximidades parece indicar que os Asmodianos pensam da mesma maneira.</p>
+          <p> </p>
+          <p>O poste precisa ser tomado para quebrar a vontade de atacar do Kaidan Krall.</p>
+          <p> </p>
+          <p>Vá até a entrada do quartel-general do Kaidan Krall e mate o [%dic:STR_DIC_M_LF2_2_Light_Raider] liderado por [%dic:STR_DIC_W_LF2_Village_02].</p>
+          <p> </p>
+          <p>Então, por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O esquadrão guerrilheiro Krall de Kaidan e o esquadrão guerrilheiro Asmodiano são liderados, cada um, por [%dic:STR_DIC_M_LF2_2_Light_Raider].</p>
+          <p> </p>
+          <p>Para conquistar [%dic:STR_DIC_W_LF2_Village_02], você precisa derrotar [%dic:STR_DIC_M_LF2_2_Light_Raider].</p>
+          <p> </p>
+          <p>Para a segurança de Eltnen e do observatório que protejo há muito tempo, não devemos permitir que o inimigo ataque.</p>
+          <p> </p>
+          <p>Por favor, eu imploro, pela glória e segurança do Santuário.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">O posto estava ocupado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você aceitou o emprego? Esse foi um bom trabalho.</p>
+          <p> </p>
+          <p>E o local está localizado no meio do território inimigo. Você é realmente um corajoso Daeva, [%username].</p>
+          <p> </p>
+          <p>Agora temos uma coisa a menos com que nos preocupar, mas o Brigada General de Eltnen disse que o inimigo não desistirá tão facilmente.</p>
+          <p> </p>
+          <p>Espero que você continue a nos ajudar a proteger Eltnen.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Aeolus] de [%dic:STR_DIC_W_LF2_SZ_E2_SUB_1].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Matar [%dic:STR_DIC_M_LF2_2_Light_Raider] ([%11]/1).</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Relatório para [%dic:STR_DIC_N_Aeolus]</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Conquiste o [%dic:STR_DIC_W_LF2_Village_02] do Kaidan Krall e mate os [%dic:STR_DIC_M_LF2_2_Light_Raider] que estão ameaçando o Observatório Eltnen.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kaidan Krall eliminou o líder guerrilheiro para invadir o posto utilizado para o ataque.</p>
+          <p> </p>
+          <p>Aiolos disse que a ameaça apresentada pelos Kaidan Krall e pelos Asmodianos, que estão tão famintos por aumentar o seu poder, não irá simplesmente desaparecer.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

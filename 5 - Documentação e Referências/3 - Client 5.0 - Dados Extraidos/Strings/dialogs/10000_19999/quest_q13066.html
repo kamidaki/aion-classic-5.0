@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os ataques de [%dic:STR_DIC_E_LDF5b_D2_Calydon] nas Montanhas Sauro estão nos dando dor de cabeça.</p>
+          <p> </p>
+          <p>Se os deixarmos continuar, comprometerão as nossas operações nas Montanhas Sauro.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_E_LDF5b_D2_Calydon] e enfraqueça este grupo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o [%dic:STR_DIC_E_LDF5b_D2_Calydon]?</p>
+          <p> </p>
+          <p>South Katalam é extremamente inseguro, mas estou quase perdendo a justiça porque a tribo Rakuri está constantemente saqueando aqui e ali.</p>
+          <p> </p>
+          <p>Não consigo nem cuidar da situação nas fortalezas vizinhas e nos territórios ocupados porque não tenho tempo por causa dos Rakuri.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado por cuidar disso rapidamente.</p>
+          <p> </p>
+          <p>Já não foi muito fácil lutar apenas contra o Exército Beritra e os Asmodianos.</p>
+          <p> </p>
+          <p>Eu já sei que a força das tropas da Tribo Rakuri é tão imensa que eles não podem ser derrotados de uma só vez.</p>
+          <p> </p>
+          <p>Mas podemos pelo menos tentar reduzir o seu número.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Caçar [%dic:STR_DIC_E_LDF5b_D2_Calydon] ([%2]/10)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Terea_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate a tribo Rakuri que pilha constantemente nas montanhas Sauro.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Terea pediu para você eliminar os Rakuri que estão saqueando as Montanhas Sauro.</p>
+          <p> </p>
+          <p>Quando você voltou para Terea após aniquilar os Rakuri, ele agradeceu e pediu mais ajuda, se possível.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

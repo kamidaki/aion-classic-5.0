@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q11502</QuestId>
+    <QuestName>식충 식물</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Temos muitos problemas por aqui, [%username], e muitas tarefas que precisam ser concluídas. Escusado será dizer que certamente poderíamos usar um [%userclass] de sua habilidade.</p>
+          <p> </p>
+          <p>Viu todos os equipamentos de monitoramento enquanto veio até aqui? Não? Isso porque os [%dic:STR_DIC_M_LDF4A_A1_Rafflesia_DR_56_An]s continuam confundindo-os com comida e destroem-na com uma regularidade alarmante.</p>
+          <p> </p>
+          <p>Preciso que os Malodor sejam resolvidos, e logo. Você poderia ajudar?</p>
+          <p> </p>
+          <p> </p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, que bom, você está de volta.</p>
+          <p> </p>
+          <p>Como você se saiu? Posso colocar meu equipamento de volta lá?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sim. Os Malodor estão mortos."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perfeito! Se eu tivesse perdido muito mais equipamento, provavelmente teria sido retirado da área, com o rabo entre as pernas.</p>
+          <p> </p>
+          <p>Obrigado, [%username]. Eu quero que você tenha isso!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os [%dic:STR_DIC_M_LDF4A_A1_Rafflesia_DR_56_An]s ao redor do [%dic:STR_DIC_W_LDF4a_SZ_A1_01] ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Risotiel].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Apivorous Malodors estão atrapalhando a pesquisa de Ristiel. Mate-os.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pesquisa de Ristiel foi suspensa porque os Apivorous Malodors continuaram comendo seu equipamento de monitoramento. Você concordou em ajudar e matou os Malodors por ela.</p>
+          <p> </p>
+          <p> </p>
+         </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

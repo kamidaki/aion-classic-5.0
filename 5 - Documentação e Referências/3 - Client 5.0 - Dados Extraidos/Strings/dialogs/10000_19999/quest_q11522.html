@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21521</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ei, ei! Venha aqui! Acabei de receber um relatório sobre [%dic:STR_DIC_W_LDF4a_SZ_A3_05].</p>
+          <p> </p>
+          <p>Aparentemente há um lugar lá chamado [%dic:STR_DIC_W_LDF4a_SZ_A09_pvp] que foi criado para duelar... e está fora do testamento de Kahrun!</p>
+          <p> </p>
+          <p>Seria um relatório completamente inútil se os Asmodianos não estivessem lá, mas pelo que recebi, eles ESTÃO lá, em números significativos, em busca de algum tipo de tesouro!</p>
+          <p> </p>
+          <p>Esta é uma oportunidade perfeita para lembrarmos aos Asmodianos quem somos, [%username]. Você deveria ir lá, encontrar alguns [%dic:STR_DIC_E_Q30051]s e matá-los! Ir! Fé e armas!</p>
+<p> </p>
+          <p></p>
+<p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você parece bem! Como você se saiu?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Melhor do que os furbacks."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Haha! É isso que gosto de ouvir, [%username].</p>
+          <p> </p>
+          <p>Os Asmodianos devem ser uma presa fácil para você, meu amigo. Lembrá-los de que podemos matá-los quando quisermos não é uma má ideia nestes tempos tão estranhos. Bom trabalho.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate alguns [%dic:STR_DIC_E_Q30051]s no [%dic:STR_DIC_W_LDF4a_SZ_A09_pvp] ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relate para [%dic:STR_DIC_N_Enoa].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">A guerra estourará mais cedo ou mais tarde. Vá para o Disco do Herói e mate os Asmodianos lá.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Enoa contou a você sobre um lugar chamado Disco do Herói no Ninho de Asishhav, onde a Vontade de Kahrun era ineficaz e os Asmodianos estavam rastejando pelas terras em busca de tesouros. Ela sugeriu que você fosse até lá e matasse os peles enquanto podia.</p>
+          <p> </p>
+          <p>Você completou a tarefa com muita calma.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

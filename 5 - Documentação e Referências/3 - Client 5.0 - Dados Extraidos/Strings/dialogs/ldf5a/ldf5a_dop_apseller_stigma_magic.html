@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Preparamos uma recompensa por seus esforços.</p>
+          <p> </p>
+          <p>Estes são os Cristais do Estigma, que contêm as almas dos ancestrais.</p>
+          <p> </p>
+          <p>Ah, sim, aparentemente eles irão recompensá-lo com os mesmos tipos de estigma em algumas bases, mesmo que você preste pouco serviço real.</p>
+          <p> </p>
+          <p>Mas é mais seguro aqui do que numa base.</p>
+          <p> </p>
+          <p>[%username], a escolha é sua, mas não quer ver antecipadamente quais Estigmas estão disponíveis?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Service reward</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que a paz das trevas esteja com você!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desculpe, mas você não pode comprar Estigmas com dinheiro.</p>
+          <p> </p>
+          <p>Somente Daevas que participaram das ferozes batalhas do Abismo o recebem.</p>
+          <p> </p>
+          <p>Se você quiser minhas coisas, por favor vá para o Abismo para lutar pelos Asmodianos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

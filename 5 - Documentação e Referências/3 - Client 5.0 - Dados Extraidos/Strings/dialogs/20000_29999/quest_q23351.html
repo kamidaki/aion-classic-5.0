@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Esquadrão de Limpeza Katalam, [%dic:STR_DIC_N_LDF5_Village_Guard11_D] do [%dic:STR_DIC_W_LDF5b_A4_v11]</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Ordens: Mate os Elyos que avançaram para [%dic:STR_DIC_W_LDF5b_SZ_A4] em South Katalam.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Elyos estão constantemente causando problemas no Planalto Nevilim.</p>
+          <p> </p>
+          <p>Estou pedindo ajuda, [%username], para que os Elyos não possam mais causar problemas no Planalto Nevilim.</p>
+          <p> </p>
+          <p>O grupo não é tão grande. Mas não sabemos o que pode acontecer se ignorarmos isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você me traz boas notícias.</p>
+          <p> </p>
+          <p>Eu sabia que isso poderia ser feito se perguntássemos a você, [%username].</p>
+          <p> </p>
+          <p>Espero que você nos ajude na próxima vez também.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Elyos que avançou para [%dic:STR_DIC_W_LDF5b_SZ_A4] ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LDF5_Village_Guard11_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Mate os Elyos que avançaram para os Nevilim em South Katalam e reporte-se a Tobald.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Elyos têm como alvo o Planalto Nevilim, no sul de Katalam, e estão provocando onde podem.</p>
+          <p> </p>
+          <p>Você esclareceu os invasores Elyos e reportou a Tobald.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Depois de entrar furtivamente no War Depot, a tarefa mais importante é obter segredos militares.</p>
+          <p> </p>
+          <p>Seu objetivo é derrubar o Exército Beritra, que tomou o War Depot, por dentro.</p>
+          <p> </p>
+          <p>Mate os chefes Balaur que ocupam uma posição importante no Sauro War Depot, enfraquecendo o inimigo.</p>
+          <p> </p>
+          <p>Primeiro, mate o [%dic:STR_DIC_M_IDVritra_Base_Drakan_As_65_Ae2_Nmd] e depois mate o [%dic:STR_DIC_M_IDVritra_Base_Drakan_Gi_65_Ae2_Nmd].</p>
+          <p> </p>
+          <p>Então, derrote [%dic:STR_DIC_M_IDVritra_Base_Drakan_Wi_65_Ae2_Nmd], depois [%dic:STR_DIC_M_IDVritra_Base_Drakan_Fi_65_Ae2_Nmd] e finalmente [%dic:STR_DIC_M_IDVritra_Base_Drakan_Guardian_65_Ae2_Nmd].</p>
+          <p> </p>
+          <p>Você pode fazer isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os principais soldados Balaur do Sauro War Depot não são adversários fáceis.</p>
+          <p> </p>
+          <p>Meu camarada era muito forte, mas não conseguiu enfrentá-los.</p>
+          <p> </p>
+          <p>Eu adoraria ir correndo para o Sauro War Depot agora, mas estou praticando a paciência.</p>
+          <p> </p>
+          <p>Para que possam ser finalmente derrubados de uma vez por todas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como esperado, você fez um bom trabalho.</p>
+          <p> </p>
+          <p>Sem os principais líderes Balaur, a força de combate do Forte War Depot ficará enfraquecida.</p>
+          <p> </p>
+          <p>O dia da sua derrota está se aproximando.</p>
+          <p> </p>
+          <p>Obrigado por compreender o objetivo e realizar a tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDVritra_Base_Drakan_As_65_Ae2_Nmd] ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Matar [%dic:STR_DIC_M_IDVritra_Base_Drakan_Gi_65_Ae2_Nmd] ([%5]/1).</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Matar [%dic:STR_DIC_M_IDVritra_Base_Drakan_Wi_65_Ae2_Nmd] ([%8]/1).</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Matar [%dic:STR_DIC_M_IDVritra_Base_Drakan_Fi_65_Ae2_Nmd] ([%11]/1).</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Matar [%dic:STR_DIC_M_IDVritra_Base_Drakan_Guardian_65_Ae2_Nmd] ([%14]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5_Kanix_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os principais líderes Balaur do Sauro War Depot, um após o outro.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Canix pediu para você matar os principais líderes Balaur do Sauro War Depot para enfraquecer a Guilda Balaur aqui.</p>
+          <p> </p>
+          <p>Como Canix solicitou, você matou o Capitão da Guarda Rohuka, o Canhoneiro Chefe Kurmata, o Pesquisador Teselik, o Comandante de Suprimentos Ranodim e o Chefe do Estado-Maior Moriata, um após o outro. Quando você voltou, você foi agradecido.</p>  
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

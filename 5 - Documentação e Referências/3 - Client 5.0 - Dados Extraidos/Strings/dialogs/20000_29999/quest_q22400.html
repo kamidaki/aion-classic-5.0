@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22400</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A espada larga de Adella pode ser uma arma excelente, [%username], mas não é a melhor.</p>
+          <p> </p>
+          <p>Pense nisso. Um Asmodiano como você com uma arma Adellan aprimorada em mãos? Por mais temido que você seja, nada ousaria enfrentá-lo. Você rasgaria o Balaur como asas na fumaça, meu amigo.</p>
+          <p> </p>
+          <p>Mas só posso te ajudar se você pedir ajuda. Reianos como [%dic:STR_DIC_N_Gneise] e [%dic:STR_DIC_N_Lumen] passaram a vida inteira aperfeiçoando suas habilidades artesanais. Vá até eles se quiser ver como é uma arma verdadeira.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deseja encantar a espada larga de Adella?</p>
+          <p> </p>
+          <p>Se você possuísse um Upsorceller, poderia dotar sua arma de maior poder.</p>
+          <p> </p>
+          <p>Este [%dic:STR_DIC_I_ldf4b_weapon_upgrade_01] é extremamente valioso, pois há muito tempo o carrego constantemente com magia.</p>
+          <p> </p>
+          <p>Então não posso simplesmente dar a você.</p>
+          <p> </p>
+          <p>Só o darei a você se você me provar que possui excelentes habilidades e paciência.</p>
+          <p> </p>
+          <p>Se você completar uma missão e me trazer o Gilded Marble, eu lhe darei o Upsorceller.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Nós temos, Reian."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa de mais dois itens para atualizar sua arma, meu amigo sombrio. Um está em minha posse, o outro não.</p>
+          <p> </p>
+          <p>Além do mais, o [%dic:STR_DIC_I_ldf4b_weapon_upgrade_02] que possuo é uma joia incrivelmente rara, concedida aos mais corajosos da Guilda da Lança de Siel. Para conquistá-lo, você deve superar os desafios que eu lhe propus.</p>
+          <p> </p>
+          <p>O outro item, um [%dic:STR_DIC_I_ldf4b_weapon_upgrade_03], pode simplesmente ser comprado. Acredito que [%dic:STR_DIC_N_Ruaka] os tenha à venda.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Entendi. Estou pronto."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Já voltou, [%username]? Você tem tudo?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Sim. Vamos começar."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ha, então você faz! Agora devo dividir esses itens em suas formas básicas e aplicar suas propriedades a esta sua arma. Por favor, um momento.</p>
+          <p> </p>
+          <p>...</p>
+          <p> </p>
+          <p>E está feito. Vá bem, Asmodiano. O mundo é seu para redimir ou arruinar como achar melhor.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Gneise].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para Sarpan e fale com [%dic:STR_DIC_N_Lumen].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Colete o [%dic:STR_DIC_E_Q12400] e leve-o para [%dic:STR_DIC_N_Uquini].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Parece que pode ser possível fortalecer a espada larga de Adella. Conheça Grais e Lumen para descobrir como.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ulian disse a você que o poder dos magos pode ser aproveitado para fortalecer a espada larga de Adella. Você saiu imediatamente para encontrar Grais e Lumen e reuniu os itens necessários para concluir o processo. Em seu retorno, Ulian atualizou a Espada Grande de Adella, transformando-a na ainda mais mortal Espada Grande Riqueza de Siel.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está embarcando em uma longa jornada?</p>
+          <p> </p>
+          <p>Desejo a você tudo de melhor enquanto você continua sua jornada.</p>
+          <p> </p>
+          <p>Por favor, informe-me sobre o destino, depois de decidir.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <airline_service>Teleport</airline_service>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que a paz das trevas esteja com você!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ufa, parece que ainda tem gente que não sabe que só Daevas pode se teletransportar...</p>
+          <p> </p>
+          <p>Os humanos não podem usar o teletransportador porque não podem manipular o Éter.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

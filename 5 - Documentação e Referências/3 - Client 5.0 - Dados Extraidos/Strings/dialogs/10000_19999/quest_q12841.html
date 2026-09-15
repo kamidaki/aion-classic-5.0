@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, mate o [plur][%dic:STR_DIC_M_LDF5A_E5_Fethlot_Cr_65_An] perto da base.</p>
+          <p> </p>
+          <p>Parece que eles se uniram porque estão com fome.</p> 
+          <p> </p>
+          <p>Dizem que os Guardiões da base estão lutando com os Abexes do Chifre de Gelo o tempo todo.</p>
+          <p> </p>
+          <p>Se você matá-los, isso contribuirá muito para a segurança da nossa base.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Guardiões estão reclamando dos animais perto da base e os contramestres de materiais de campo estão reclamando da falta de materiais. Não é fácil lidar com essas reclamações.</p>
+          <p> </p>
+          <p>Mas, na minha opinião, não é sensato que Daevas se queixe a todos sobre a sua situação, mesmo que as queixas sejam inevitáveis, independentemente da posição.</p>
+          <p> </p>
+          <p>Mas olha quem está falando, estou reclamando com você agora, [%username].</p>
+          <p> </p>
+          <p>Estou um pouco envergonhado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Ice Horn Abex já deveria ter sido morto.</p>
+          <p> </p>
+          <p>Caso contrário, teria tentado entrar na base.</p>
+          <p> </p>
+          <p>Eles se autodenominam Guardiões, mas o que me preocupa é que estes são novos Daevas, muitos dos quais ainda não foram devidamente treinados. Quero agradecer sua ajuda.</p>
+          <p> </p>
+          <p>Espero que a partir de agora haja menos acusações.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_E5_Fethlot_Cr_65_An] perto da base ([%2]/9).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard09_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Abexes do Chifre de Gelo reunidos ao redor da base.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aparentemente, há um grande número de Ice Horn Abexes reunidos perto da base. Eles não conseguem encontrar nada para comer nas montanhas.</p>
+          <p> </p>
+          <p>Quando você matou os Abexes do Chifre de Gelo para Ael e relatou isso a ele, ele ficou muito grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nossa situação aqui é arriscada, então não posso lhe dar uma explicação completa. Para resumir uma longa história:</p>
+          <p> </p>
+          <p>A Fortaleza Kysis, o Refúgio Krotan e a Fortaleza Miren são os pontos-chave mais importantes. Portanto, não podemos permitir que sejam tomadas pelo adversário.</p>
+          <p> </p>
+          <p>Deveríamos começar um ataque em larga escala imediatamente, mas a última batalha nos enfraqueceu a tal ponto que teremos que esperar por enquanto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nosso plano é ganhar tempo para um grande ataque à fortaleza. Então estamos enviando Daevas para lançar ataques e enfraquecer o inimigo.</p>
+          <p> </p>
+          <p>Queremos eliminar primeiro os Oficiais do Estado-Maior do inimigo. Essa é uma estratégia eficaz porque não corremos nenhum risco ao fazê-lo e ao mesmo tempo conseguimos ferir os nossos adversários.</p>
+          <p> </p>
+          <p>Felizmente, muitos Daevas corajosos estão nos dando seu apoio. Você quer lutar do nosso lado também, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado por se oferecer para nos ajudar.</p>
+          <p> </p>
+          <p>Como já expliquei, seria vantajoso para nós realizarmos o ataque enquanto os Asmodianos estão na fortaleza.</p>
+          <p> </p>
+          <p>Assim que os Asmodianos tomarem a Fortaleza Kysis, vá até aquela fortaleza e derrote o [%dic:STR_DIC_E_1231_guard_Da_ra] e o [%dic:STR_DIC_E_1231_guard_Da_wi]. Por favor, reúna o [plur][%dic:STR_DIC_I_QUEST_1860a] e traga-os para mim.</p>
+          <p> </p>
+          <p>Enquanto isso, reorganizaremos nossas forças de combate.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos os Daevas são tão egoístas hoje em dia? Eu esperava que você tivesse um pouco mais de entusiasmo por esse assunto.</p>
+          <p> </p>
+          <p>Eu entendo que você não é um Guardião. Tudo bem, não vou incomodar mais você.</p>
+          <p> </p>
+          <p>No entanto, você deveria pensar sobre por que tantos Daevas estão lutando incansavelmente por nós...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], já ouvi falar de seus feitos extraordinários.</p>
+          <p> </p>
+          <p>Um soldado em missão de reconhecimento na Fortaleza me contou sobre sua impressionante vitória.</p>
+          <p> </p>
+          <p>Estou curioso para saber como foi sua missão. Por favor, me dê o [plur][%dic:STR_DIC_I_QUEST_1860a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Eles não vão me esquecer tão rapidamente.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não trouxe as insígnias?</p>
+          <p> </p>
+          <p>Mesmo que você tenha matado muitos Asmodianos, isso não adianta, a menos que você forneça evidências.</p>
+          <p> </p>
+          <p>Então traga-me o [plur][%dic:STR_DIC_I_QUEST_1860a]!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então o que ouvi é verdade. Achei que tinha sido um exagero, mas você realmente conseguiu grandes coisas.</p>
+          <p> </p>
+          <p>Graças a você, os Asmodianos sofreram todos os tipos de danos.</p>
+          <p> </p>
+          <p>Esse foi um bom trabalho. Você merece uma pausa para poder descansar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrote o [%dic:STR_DIC_E_1231_guard_Da_ra] e o[%dic:STR_DIC_E_1231_guard_Da_wi], colete evidências e leve-as para [%dic:STR_DIC_N_Vergil].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Quando a Fortaleza Kysis foi ocupada, o Kysis Triaris e os Oficiais do Estado-Maior Asmodiano Kysis apareceram. Elimine-os e reporte-se a Vergilius.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vergilius elaborou um plano para retomar a Fortaleza Kysis.</p>
+          <p> </p>
+          <p>Você desferiu um golpe debilitante no Asmodiano Kysis Triaris e nos Oficiais Asmodiano Kysis, o que prejudicou gravemente a força de combate do inimigo. Você voltou para Vergilius com insígnias como prova de sua vitória. Vergílio agradeceu e lhe deu uma recompensa bem merecida.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

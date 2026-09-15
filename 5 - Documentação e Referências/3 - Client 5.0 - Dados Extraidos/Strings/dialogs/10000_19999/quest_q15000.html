@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15000</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Balaurea tem muito menos Éter que Atreia. É por isso que é muito importante instalar Geradores de Éter aqui.</p>
+          <p> </p>
+          <p>Este lugar não é exceção. Precisamos de Geradores de Éter para funcionar sem problemas, mas agora encontramos problemas.</p>
+          <p> </p>
+          <p>Quando trouxe um Gerador de Éter para cá, os espíritos me atacaram e roubaram minha mochila com as ferramentas de reparo.</p>
+          <p> </p>
+          <p>Já posso sentir a potência do Gerador de Éter diminuindo. Nem vale a pena pensar que pode ser minha culpa se este Gerador de Éter não funcionar mais.</p>
+          <p> </p>
+          <p>[%username], você não poderia caçar o [plur][%dic:STR_DIC_M_LF5_A_Bookie_55_An] no [%dic:STR_DIC_W_LF5_SZ_A_01] e trazer para Mack meu [%dic:STR_DIC_I_quest_15000a] para mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não posso consertar o Gerador de Éter sem minhas ferramentas de reparo.</p>
+          <p> </p>
+          <p>Infelizmente, os Espíritos Alados roubaram minha mochila com as ferramentas de reparo. O que acontecerá se eu nunca conseguir consertar o Gerador de Éter?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a mochila.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Você realmente encontrou minha mochila! Muito obrigado.</p>
+          <p> </p>
+          <p>Por favor, espere um momento. Só vou verificar se minhas ferramentas de reparo não estão danificadas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2">Você espera.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmpf, realmente não estou com humor para piadas.</p>
+          <p> </p>
+          <p>Se eu não recuperar minha mochila, não poderei consertar o Gerador de Éter. A culpa é desses espíritos irritantes!</p>
+          <p> </p>
+          <p>Se eu não conseguir consertar o Gerador de Éter, terei alta. Isso não deve ser permitido acontecer, por favor me ajude!</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Olha, ainda está tudo lá! Até as ferramentas de reparo do Gerador de Éter! Felizmente eles parecem estar em ordem.</p>
+          <p> </p>
+          <p>Essas ferramentas de reparo passaram por melhorias contínuas e tornaram-se extremamente leves! Eles são pequenos e gerenciáveis! E fácil de usar! These tools are the latest technology has to offer.</p>
+          <p> </p>
+          <p>Devo mostrar como usá-los?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você não tem vontade, mas concorda mesmo assim.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Milar tenta usar as ferramentas de reparo.)</p>
+          <p> </p>
+          <p>O que...? Hum? Por que não está funcionando? Primeiro por aqui... e depois... Talvez não?</p>
+          <p> </p>
+          <p>Por que continuo recebendo a mensagem "Você não pode usar esse item aqui"?</p>
+          <p> </p>
+          <p>Uh... [%username]...</p>
+          <p> </p>
+          <p>(Milar olha para você suplicante.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você aceita as ferramentas de reparo que Milar lhe entrega.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi, [%username]?</p>
+          <p> </p>
+          <p>As ferramentas de reparo não funcionam mais, não é?</p>
+          <p> </p>
+          <p>Não importa quantas vezes eu tente, a única resposta é "Você não pode usar esse item aqui".</p>
+          <p> </p>
+          <p>Que tipo de ferramentas de reparo você precisa para consertar ferramentas de reparo quebradas? E onde eu os encontraria?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que concluiu os reparos.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uau! Isso é brilhante! Você é um verdadeiro herói[f:"heroína"]!</p>
+          <p> </p>
+          <p>As ferramentas são muito delicadas e nem todos têm habilidade para usá-las. Mas você os aplicou como um mestre!</p>
+          <p> </p>
+          <p>Muito obrigado! Chances are good that now, I won't be discharged after all!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue o [%dic:STR_DIC_I_quest_15000a] e leve-o para [%dic:STR_DIC_N_LF5_Milliard_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Milliard_E].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Use as ferramentas de reparo no Gerador de Éter próximo ao [%dic:STR_DIC_W_LF5_SZ_OP_01].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_LF5_Milliard_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ajude Milar, o engenheiro.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Milar, o engenheiro do Gerador de Éter, perdeu sua mochila contendo as ferramentas de reparo.</p>
+          <p> </p>
+          <p>Você eliminou os Espíritos Alados e trouxe a mochila para Milar, que estava preocupada com a possibilidade de as ferramentas não funcionarem mais.</p>
+          <p> </p>
+          <p>Você testou as ferramentas de reparo próximas ao Gerador de Éter sem ter problemas. Milar was overjoyed.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Temos de descobrir porque é que os soldados Beritra se comportam como lunáticos.</p>
+          <p> </p>
+          <p>Se soubermos a razão por trás da contaminação, poderemos impedir que ela se espalhe ainda mais.</p> 
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_E_LDF5b_B2_VriZomb] e procure evidências.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu descobrir alguma coisa?</p>
+          <p> </p>
+          <p>Se você lidar com [%dic:STR_DIC_M_LDF5B_B2_VrDrZombID_Fi_64_An] e [%dic:STR_DIC_M_LDF5B_B2_VrDrZombID_Wi_64_An], poderá encontrar boas evidências.</p>
+          <p> </p>
+          <p>Outras contaminações devem ser evitadas. Portanto, você absolutamente deve encontrar alguma evidência.</p>
+          <p> </p>
+          <p>O Balaur disse que algumas experiências foram realizadas nesta área; parece haver uma conexão definitiva com esses experimentos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega uma pequena quantidade de Idgel.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É certo que vem dos Guerreiros Drakan contaminados e dos Feiticeiros Drakan contaminados?</p>
+          <p> </p>
+          <p>Hmm, devemos verificar se foram eles a causa da contaminação.</p>
+          <p> </p>
+          <p>Vou investigar mais detalhadamente e mantê-lo informado quando tiver mais informações.</p>
+          <p> </p>
+          <p>Mas obrigado, [%username], isso é uma preocupação a menos para mim.</p>
+          <p> </p>
+          <p>Espero poder contar com a sua ajuda para que South Katalam continue a ser um lugar seguro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+	<steps>
+                <step><p visible="[%0]"><font color="[%1]">Obtenha [%dic:STR_DIC_I_QUEST_13300A] e leve-o para [%dic:STR_DIC_N_LDF5_Village_Guard10_L].</font></p>[%collectitem]</step> 
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Drakan Fighters e Drakan Feiticeiros envenenados e investigue a razão pela qual eles se transformaram em zumbis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Teron disse que a causa dos Zumbis deve ser determinada para evitar que o veneno se espalhe.</p>
+          <p> </p>
+	      <p>Quando você trouxe para Teron uma pequena quantidade de Idgel, depois de matar o guerreiro Drakan envenenado e o feiticeiro Drakan envenenado, ele agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

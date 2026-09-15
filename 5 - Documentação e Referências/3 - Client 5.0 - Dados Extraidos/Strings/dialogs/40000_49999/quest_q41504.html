@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41504</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há mais uma coisa que podemos fazer para tentar derrubar essas crateras... subir? Eu não tenho certeza. De qualquer forma.</p>
+          <p> </p>
+          <p>A Bomba de Éter pode ter falhado, mas há outra forma, outra arma, que ainda temos de experimentar. Será necessário algum esforço para criar esta arma, mas o que vale a pena fazer que não exija esforço, hein?</p>
+          <p> </p>
+          <p>Se você estiver disposto a ajudar, mate os sustos [%dic:STR_DIC_M_LDF4b_T1_Skeletonre_58_An] em Fissure Barrens, obtenha [%dic:STR_DIC_I_quest_41504a]s deles e leve-os para [%dic:STR_DIC_N_Gneise]. Ela saberá o que fazer.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estava esperando por você, [%username]. Você tem as sementes?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Eu quero. Aqui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho. Um momento enquanto eu capacito esta lâmina com ela.</p>
+          <p> </p>
+          <p>"Espíritos de antigamente! Espíritos internos! Envie esta lâmina para fazer o mundo inteiro girar!" Ha! Funcionou!</p>
+          <p> </p>
+          <p>Esta agora é uma Espada Inovadora, [%username]. Pegue-o e coloque-o no [%dic:STR_DIC_OBJ_LDF4B_FOBJ_CrackPortal]. Com sorte, toda a fissura entrará em colapso. Apenas certifique-se de sair do caminho primeiro.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Aqui vamos nós..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não, isso não está certo. Você precisa trazer [%dic:STR_DIC_I_quest_41504a]s, não qualquer semente velha. Grande Siel, preste atenção.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ah. Ops."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estávamos todos esperando por você! Como você se saiu? O que aconteceu?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Bem..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hum. Bem, dano é dano. A cratera pode não ter sido destruída permanentemente, mas ainda assim causamos danos suficientes para prejudicá-la, por assim dizer.</p>
+          <p> </p>
+          <p>O teste acabou, [%username]. Também podemos considerá-lo um sucesso, graças ao seu trabalho árduo. Obrigado!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Recupere [%dic:STR_DIC_I_quest_41504a]s e leve-os para [%dic:STR_DIC_N_Gneise].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Destrua o [%dic:STR_DIC_OBJ_LDF4B_FOBJ_CrackPortal] com a Espada Inovadora.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relate para [%dic:STR_DIC_N_Grandia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Pode haver uma última maneira de destruir a cratera. Colete Sementes Esmagadoras das Sentinelas Anubitas e leve-as para Grais.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Grido, ciente de que a Bomba de Éter era inútil ao tentar destruir a Cratera Gigante, disse que era necessária uma arma especial. Ele deseja que você obtenha Crushing Seeds, que por sua vez foi usado para criar uma Groundbreaker Espada.</p>
+          <p> </p>
+          <p>Você enfiou a arma na Fenda do Abismo da Cratera Gigante, destruindo o centro da Cratera Gigante, ainda que temporariamente.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Minha tarefa real era monitorar os Ladrões de Túmulos, mas...</p>
+          <p> </p>
+          <p>Ultimamente tenho sido realmente levado ao limite.</p>
+          <p> </p>
+          <p>Preciso desesperadamente de algo para relatar para que meus superiores fiquem satisfeitos.</p>
+          <p> </p>
+          <p>[%username], com certeza você entende a situação em que estou. Você pode me ajudar? Tudo que você precisa fazer é eliminar o [%dic:STR_DIC_M_LehparWaD_14_An].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta.</p>
+          <p> </p>
+          <p>Você derrotou o [plur][%dic:STR_DIC_M_LehparWaD_14_An]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que derrotou todos eles.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não pretendo abandonar minhas tarefas como Arconte.</p>
+          <p> </p>
+          <p>Embora eu prefira fazer outras tarefas para servir a fortaleza.</p>
+		  <p> </p>
+		  <p>Pelo menos minhas tarefas aqui ficaram mais fáceis graças a você, [%username].</p>
+		  <p> </p>
+		  <p>Muito obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_M_LehparWaD_14_An] ([%2]/9).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_DF1A_Brodir_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Brodir disse que precisava de algo sobre o qual pudesse relatar. Então vá para Grave Robbers Den e elimine as Grave Robbers Sentry.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Brodir pediu que você fosse ao Grave Robbers Den e se livrasse dos Grave Robbers Sentry.</p>
+          <p> </p>
+          <p>Você foi ao Grave Robbers Den, livrou-se dos Grave Robbers Sentry e informou Brodir.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

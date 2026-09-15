@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>A batalha no campo de batalha Steel Wall Bastion está chegando ao fim.</p>
+		<p> </p>
+		<p>A defesa do Exército Beritra é muito forte, assim como a dos Elyos.</p>
+		<p> </p>
+		<p>Nossa única opção é matar [%dic:STR_DIC_M_IDF5_TD_War_Vri_Boss_65_Al] e assim tomar o campo de batalha para os Asmodianos.</p>
+		<p> </p>
+		<p>Quero confiar esta tarefa a você, [%username]. Se você e seus camaradas entrarem na batalha, vocês vencerão.</p>
+		<p> </p>
+          <p>Venha para [%dic:STR_DIC_W_LDF5_Fortress_SZ_A1_Start] depois de completar sua missão. Esperarei por você lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Bem-vindo, [%username]. Eu estive esperando por você.</p>
+		<p> </p>
+		<p>Você matou Pashid?</p>
+		</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que o matou.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você é inacreditável, [%username]!</p>
+		<p> </p>
+		<p>[%username], então os rumores sobre seus feitos heróicos são verdadeiros.</p>
+		<p> </p>
+		<p>[%username], esta recompensa é para você.</p>
+		<p> </p>
+		<p>Você matou Pashid e lutou pela honra dos Asmodianos. Você merece grande respeito por fazer isso.</p>
+          </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDF5_TD_War_Vri_Boss_65_Al] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Volte para [%dic:STR_DIC_W_LDF5_Fortress_SZ_A1_Start] e reporte para [%dic:STR_DIC_N_LDF5b_Latkel_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote o Comandante Supremo Pashid.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Você recebeu uma missão de Latkel para matar o Comandante Supremo Pashid.</p>
+		<p> </p>
+		<p>Quando ele apareceu no campo de batalha Steel Wall Bastion, você o derrotou.</p>
+		<p> </p>
+		<p>Você então retornou ao assentamento Rubininerk e se reportou a Latkel.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30763</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lá, completei o absorvedor de escudo de energia alterado. Foi mais fácil do que eu pensava.</p>
+          <p> </p>
+          <p>Use o [%dic:STR_DIC_I_quest_30713a] com [%dic:STR_DIC_N_IDTiamat_FOBJ_Dagger] próximo.</p>
+          <p> </p>
+          <p>Ele extrairá o terrível Rancor de Apsu para aquela garrafa de vidro.</p>
+          <p> </p>
+          <p>Depois de extrair o rancor com sucesso, você poderia visitar [%dic:STR_DIC_N_Garnon] e obter dela uma licença de importação?</p>
+          <p> </p>
+	  <p>Eu adoraria contrabandear o objeto para dentro da cidade, mas como tem algo a ver com o Senhor Dragão, tenho que seguir as regras.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Você sente o Rancor novamente. Você não consegue se acostumar.)</p>
+          <p> </p>
+          <p>(Se o Absorvedor de Escudo de Energia alterado não estiver funcionando corretamente, algo terrível acontecerá. Mas você acha que Grais fez tudo certo.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você usa o Absorvedor de Escudo de Energia.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É você, [%username]. Eu aprecio seus esforços.</p>
+          <p> </p>
+          <p>Achei que você estaria muito ocupado com o ataque à Fortaleza de Tiamat. O que posso fazer para você?</p>
+          <p> </p>
+          <p>Posso ajudá-lo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você fala sobre o Rancor de Apsu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rancor de Apsu!</p>
+          <p> </p>
+          <p>Você trouxe um item perigoso aqui sem notificar os Anciãos da Tribo Reian... Receio não poder permitir que você entre neste lugar com um item tão perigoso.</p>
+          <p> </p>
+          <p>O Rancor de Apsu é confiscado pelos Anciões da Tribo Reian.</p>
+          <p> </p>
+          <p>[%username], você e Grais não agiram com sabedoria.</p>
+          <p> </p>
+          <p>Desculpe. Mas espero que você entenda. Este é um assunto muito importante.</p>
+          <p> </p>
+          <p>[%username], nenhuma medida adicional será tomada contra você. Mas Grais será punido.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+              <step><p visible="[%0]"><font color="[%1]">Extraia o Rancor de Apsu do [%dic:STR_DIC_N_IDTiamat_FOBJ_Dagger] usando o [%dic:STR_DIC_I_quest_30713a].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Obtenha uma licença de importação de [%dic:STR_DIC_N_Garnon].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Extraia o Rancor de Apsu usando o dispositivo de Grais.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você foi capaz de extrair o Rancor de Apsu com o absorvedor de escudo de energia alterado de Grais.</p>
+          <p> </p>
+          <p>Mas quando você relatou a Garnon e trouxe o item para ela, ela ficou furiosa por você ter trazido um objeto tão perigoso sem contar a ninguém.</p>
+          <p> </p>
+          <p>O Rancor de Apsu foi confiscado. Uma punição adequada será encontrada para Grais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

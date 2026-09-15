@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q26954</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A capitã do Steel Rose não é conhecida apenas por sua crueldade. Ela também é uma musicista talentosa que captura almas com sua música, ak.</p>
+          <p> </p>
+          <p>Ela dominou muitos instrumentos musicais, mas um instrumento especial permite que ela controle a vontade dos Shulacks masculinos, também conhecidos como Shulacks. É realmente sinistro.</p>
+          <p> </p>
+          <p>Daeva deve derrotar Rumakiki a bordo do [%dic:STR_DIC_W_IDShulackShip_02_SZ_3F] e obter o [%dic:STR_DIC_I_quest_26954a]! Daeva deve pôr fim a este jogo horrível a bordo da Rosa de Aço.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_IDShulack_Rose_Ent_3FD_E] pode mostrar a Daeva o caminho para o convés da Rosa de Aço. Por favor ajude Shugo, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando Rumakiki toca seu instrumento especial, ela pode aumentar o número de seus subordinados a qualquer momento, ak.</p>
+          <p> </p>
+          <p>Se ela não pode ser morta, então pelo menos devemos tirar seu instrumento dela e libertar as pobres almas que ela encantou, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o instrumento.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então esse é o famoso instrumento do temido capitão. Deixe-me jogar, ok.</p>
+          <p> </p>
+          <p>(Squeeeak Caaaww Squeeeak!!!)</p>
+          <p> </p>
+          <p>Eu esperava que o instrumento seduzisse os clientes, mas parece que Rumakiki é o único que sabe tocá-lo, ak. De qualquer forma, obrigado, ak!</p>
+          <p> </p>
+          <p>A Rosa de Aço perdeu seu capitão devido aos seus esforços, nenhum Shugos inocente sofrerá sob seu governo. Muito obrigado, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+   	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [%dic:STR_DIC_I_quest_26954a] e nível para [%dic:STR_DIC_N_LDF5a_Damiring_E] em North Katalam.</font></p>[%collectitem]</step>
+   	    </steps>
+          <p><font font_xml="quest_summary">Derrote o Capitão Rumakiki a bordo do Steel Rose e pegue o instrumento dela.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou Rumakiki, a capitã do Steel Rose, e pegou o instrumento dela.</p>
+          <p> </p>
+          <p>Os Piratas Rosa de Aço ainda representam um certo risco, mas agora que sua capitã carismática e seu instrumento foram tirados deles, deve ficar muito mais difícil para eles fazerem qualquer coisa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

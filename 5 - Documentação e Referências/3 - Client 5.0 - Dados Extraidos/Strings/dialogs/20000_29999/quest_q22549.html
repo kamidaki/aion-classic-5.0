@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], nosso inimigo de longa data, o Balaur, deve ser eliminado!</p>
+          <p> </p>
+          <p>Você assumiria a missão de matar [%dic:STR_DIC_M_LDF5A_D_DrakanGhost_Fi_64_An], [%dic:STR_DIC_M_LDF5A_D_DrakanGhost_Wi_64_An] e [%dic:STR_DIC_M_LDF5A_D_BoneDrake_64_An]?</p>
+          <p> </p>
+          <p>Todos são sobreviventes da Guilda de Tiamat.</p>
+          <p> </p>
+          <p>Precisamos acabar com esse bando de imprestáveis, até o último homem.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou os Espíritos do Exército Kurum e o Kurum Acheron Drake?</p>
+          <p> </p>
+          <p>Considerando as coisas cruéis que fizeram, foi uma misericórdia.</p>
+          <p> </p>
+          <p>Você não pode ter misericórdia deles ou deixá-los ir sem contestação.</p>
+          <p> </p>
+          <p>Eu vi as Tropas Remanescentes se tornarem perigosas várias vezes porque ninguém cuidava delas...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se livrou deles.</p>
+          <p> </p>
+          <p>Agora posso dormir em paz à noite.</p>
+          <p> </p>
+          <p>É melhor livrar-se de todos os sobreviventes da Guilda de Tiamat.</p>
+          <p> </p>
+          <p>Muito obrigado por concluir a tarefa tão rapidamente, embora não tenha sido fácil.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os desertores do exército de Tiamat.</font></p>
+                        <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_D_DrakanGhost_all] ([%2]/12)</font></p>
+                        <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF5A_D_BoneDrake_64_An] ([%5]/5)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5a_Rimona_E]</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Livre-se dos espíritos dos sobreviventes da Guilda Kurum do exército de Tiamat e do Kurum Acheron Drake.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Limona atribuiu a você a tarefa de matar os soldados restantes de Tiamat.</p>
+          <p> </p>
+          <p>Você derrotou os Fantasmas do Exército Kurum e o Kurum Acheron Drake. Limona agradeceu e elogiou seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

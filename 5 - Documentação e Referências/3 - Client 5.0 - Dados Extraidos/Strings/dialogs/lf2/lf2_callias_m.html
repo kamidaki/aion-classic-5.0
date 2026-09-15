@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+          <p> </p>
+          <p>As moedas levaram você até mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+        <trade_buy>Exchange coins</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Trabalhar como Oficial de Administração Especial não deve ser muito arriscado, por isso me inscrevi. Nunca sonhei que seria enviado para um lugar como este.</p>
+          <p> </p>
+          <p>Não me olhe assim. Não sou um lutador como você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode receber recompensas em moedas, [%username].</p>
+          <p> </p>
+          <p>Verifique cuidadosamente se você tem moedas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

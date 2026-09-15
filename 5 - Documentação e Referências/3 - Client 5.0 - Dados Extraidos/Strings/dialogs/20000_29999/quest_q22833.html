@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho que você deveria obter uma amostra de [%dic:STR_DIC_I_quest_22833a] de [%dic:STR_DIC_M_LDF5A_F_TDrakan_Zom_all].</p>
+          <p> </p>
+          <p>Já faz algum tempo que penso que deve haver uma razão para os soldados de Tiamat se tornarem zumbis.</p>
+          <p> </p>
+          <p>Durante a investigação, pensei que precisaria de uma amostra de tecido dos zumbis do Exército de Tiamat para descobrir a causa.</p>
+          <p> </p>
+          <p>Uma vez determinada a causa, poderemos tomar melhores medidas contra o que está acontecendo aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos os dias penso no que aconteceu aqui e na melhor forma de lidar com isso no futuro.</p>
+          <p> </p>
+          <p>Não temos um plano para uma solução neste momento, mas algo irá mudar se a investigação e as investigações continuarem.</p>
+          <p> </p>
+          <p>Tenho certeza de que podemos encontrar uma pista no tecido dos Terríveis Soldados Mortos-Vivos.</p>
+          <p> </p>
+          <p>Precisamos urgentemente deste tecido.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o tecido da pele contaminada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado por trazer os itens tão rapidamente.</p>
+          <p> </p>
+          <p>A pele contaminada que você trouxe é um passo importante para a descoberta da verdade.</p>
+          <p> </p>
+          <p>Não demorará muito, em breve você terá boas notícias.</p>
+          <p> </p>
+          <p>Confie em mim e espere.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_M_LDF5A_F_TDrakan_Zom_all][%dic:STR_DIC_I_quest_22833a] e leve para [%dic:STR_DIC_N_LDF5_Village_Guard07_D].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os brutais soldados zumbis e leve o tecido de pele contaminado para Jarnkel.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Jarnkel não acreditava que o Exército de Tiamat tivesse simplesmente se transformado em zumbis e disse que eram necessárias evidências para responder à pergunta.</p>
+          <p> </p>
+          <p>A pedido dele, você matou os horríveis soldados zumbis e trouxe tecido de pele envenenado. Ele agradeceu e disse que a verdade logo seria revelada.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

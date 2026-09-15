@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41186</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve ter visto o [%dic:STR_DIC_W_LDF4a_SZ_C1_000] ao redor do Selo do Guardião Destruído. É meu trabalho garantir que isso não aconteça aqui também.</p>
+          <p> </p>
+          <p>Mas proteger o Selo não é apenas garantir que os Balaur não o destruam. Por exemplo, os [%dic:STR_DIC_M_LDF4A_A4_SalivadoRed_57_An]s são atraídos pelo calor que o Selo produz e rastejam por toda essa coisa no momento em que estou distraído. Eles poderiam facilmente desligá-lo por acidente.</p>
+          <p> </p>
+          <p>Existem dezenas deles por aí [%dic:STR_DIC_W_LDF4a_SZ_A1_04], e não são muito difíceis de matar, mas não posso deixar o Seal lidar com eles. Se você pudesse fazer isso, seria de grande ajuda para mim.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+     <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Selos Guardiões são a única razão pela qual Sarpan sobrevive à ira de Tiamat. Bem, os Selos Guardiões e Kahrun. Se Kahrun não tivesse tomado as rédeas, quem sabe onde estaríamos?</p>
+          <p> </p>
+          <p>Estaríamos todos ligados ao dragão, provavelmente. Não consigo imaginar um destino pior do que esse.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"O destino dos Hornskulls foi muito ruim."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você cuidou disso?</p>
+          <p> </p>
+          <p>Você sabe, percebi que havia menos por aí. Bem, isso é uma coisa a menos para se preocupar.</p>
+          <p> </p>
+          <p>Talvez eu possa comer uma refeição em paz agora.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4a_SZ_A1_04] e mate alguns [%dic:STR_DIC_M_LDF4A_A4_SalivadoRed_57_An]s ([%2]/12).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Estotia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Estotia está preocupada que os Hornskulls Barba Agulha desliguem acidentalmente o Selo Guardião.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estotia precisava de ajuda para controlar os Hornskulls Needlebeard na Estepe da Garra Vermelha, temendo que eles pudessem invadir o Selo do Guardião.</p>
+          <p> </p>
+          <p>Você matou alguns Hornskulls para manter o Seal seguro e facilitar o trabalho de Estotia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

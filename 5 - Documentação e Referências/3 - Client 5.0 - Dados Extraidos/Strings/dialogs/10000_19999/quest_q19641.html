@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Além disso, seria melhor se você não explorasse esta área sozinho.</p>
+		  <p> </p>
+		  <p>Quero dizer, seu trabalho é nos proteger, certo?</p>
+		  <p> </p>
+		  <p>Agora deixe-me apresentar sua quinta tarefa.</p>
+		  <p> </p>
+		  <p>Por favor, mate o [plur][%dic:STR_DIC_M_LF4_B_Fethlot_Highland_53_n] e o [plur][%dic:STR_DIC_M_LF4_B_Warg_Meerkat_53_An].</p>
+		  <p> </p>
+		  <p>Os Vinculados de Dragão não são a única ameaça nesta área, os outros monstros também tornam este lugar perigoso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Quero ser como vocês Daevas também e ajudar nas outras regiões e aceitar missões.</p>
+		  <p> </p>
+		  <p>Mas não consegui descobrir nada sobre o Vinculado de Dragão na área. Então minha tarefa aqui ainda não acabou.</p>
+		  <p> </p>
+		  <p>Um dia, porém, tenho certeza que poderemos descobrir algo sobre esses Vinculados de Dragão no Templo Udas e conseguiremos completar esta tarefa, certo?</p>
+		  <p> </p>
+		  <p>Eu gostaria de poder pedir ajuda a Daevas como você.</p>
+		  <p> </p>
+		  <p>Ah, você já conseguiu completar a quinta tarefa?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que executou a tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você com certeza é alguma coisa.</p>
+          <p> </p>
+		  <p>Queria pedir que você descobrisse mais sobre o Templo Udas.</p>
+		  <p> </p>
+		  <p>O nível superior é o Templo Udas abandonado e o nível inferior é chamado apenas de Templo Udas. Ambos não estão longe daqui.</p>
+		  <p> </p>
+		  <p>O Vinculado de Dragão tem uma presença muito grande na área circundante.</p>
+		  <p> </p>
+		  <p>Ah, quase esqueço de te entregar os itens que Outremus enviou.</p>
+		  <p> </p>
+		  <p>Aqui estão eles.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_M_LF4_B_Fethlot_Highland_53_n] ou o[plur][%dic:STR_DIC_M_LF4_B_Warg_Meerkat_53_An] ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Barus] no Posto de Observação de Undirborg.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Execute a quinta tarefa e encontre Barus.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A quinta tarefa que Barus lhe deu foi destruir Highland Caprexes ou Longmane Grumats em Inggison.</p>
+          <p> </p>
+          <p>Depois de eliminar os monstros, você encontrou Barus e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

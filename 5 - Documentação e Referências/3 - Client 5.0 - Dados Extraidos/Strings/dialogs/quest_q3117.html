@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q3117</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Talvez eu seja o primeiro Elyos que esteve na Fortaleza Adma.</p>
+          <p> </p>
+          <p>Caminhei muito pela fortaleza para encontrar algo valioso.</p>
+          <p> </p>
+          <p>Mas não há quase nada lá que você possa usar para ganhar dinheiro.</p>
+          <p> </p>
+          <p>Está cheio de mortos-vivos lá...</p>
+          <p> </p>
+          <p>Hmm... Me ocorreu que [%dic:STR_DIC_E_L_DF2a_Q3117] tinha uma escova de cabelo valiosa.</p>
+          <p> </p>
+          <p>Você poderia me chamar [%dic:STR_DIC_I_Q3117a]?</p>
+          <p> </p>
+          <p>Eu vou recompensá-lo por isso também!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Átropos nos encarregou de investigar...</p>
+          <p> </p>
+          <p>Mas nós, caçadores de recompensas, só estamos interessados em tarefas onde possamos ganhar dinheiro.</p>
+          <p> </p>
+          <p>Por outro lado, não é ruim acumular experiência também.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o pente de Karemiwen</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh, essa é realmente uma escova de cabelo requintada!</p>
+          <p> </p>
+          <p>Espere um momento... Você disse que é da Princesa Karemiwen?</p>
+          <p> </p>
+          <p>Mas isto tem o nome Ntuamu gravado.</p>
+          <p> </p>
+          <p>Este é apenas um item normal. Já que você fez todo esse esforço, no entanto, ainda lhe darei sua recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Você obteve [%dic:STR_DIC_I_Q3117a] na Fortaleza Adma e trouxe-o para [%dic:STR_DIC_N_Rovilance].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre a escova de cabelo da Princesa Karemiwen e leve-a para Rovilance.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rovilance pediu que você trouxesse para ele a valiosa escova de cabelo da Princesa Karemiwen.</p>
+          <p> </p>
+          <p>Ele não ficou totalmente satisfeito, mas mesmo assim recompensou você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

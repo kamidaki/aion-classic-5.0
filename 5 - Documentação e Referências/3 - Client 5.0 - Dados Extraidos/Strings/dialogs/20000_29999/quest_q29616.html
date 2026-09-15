@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Gostaria de enviar você em missão para Tiamaranta, [%username].</p>
+          <p> </p>
+		  <p>Tiamaranta e o Senhor Dragão Tiamat estão intimamente ligados um ao outro.</p>
+		  <p> </p>
+		  <p>As fontes do Poder de Tiamat são o Coração da Ira, o Coração da Gravidade, o Coração da Fissura e o Coração da Petrificação. Ela também tem uma fortaleza.</p>
+		  <p> </p>
+		  <p>O fato de o Fatebound ter chegado tão longe é uma conquista incrível.</p>
+		  <p> </p>
+		  <p>Vá para Tiamaranta e fale com o Governador [%dic:STR_DIC_N_Udvi].</p>
+		  <p> </p>
+		  <p>Ela ficará feliz em ver você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>À vitória dos Asmodianos!</p>
+          <p> </p>
+		  <p>Como chefe da Vanguarda Tiamaranta, dou-lhe as boas-vindas.</p>
+		  <p> </p>
+		  <p>Aqui é importante manter boas relações com os Reians e deter os Elyos.</p>
+		  <p> </p>
+		  <p>Mas olhando para você, destruir o Senhor Dragão e ocupar Tiamaranta não parece tão difícil.</p>
+		  <p> </p>
+		  <p>Você parece muito confiável.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz obrigado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu preciso de sua ajuda.</p>
+          <p> </p>
+		  <p>Nada é fácil aqui.</p>
+		  <p> </p>
+		  <p>A área mais perigosa é o Olho de Tiamaranta, no centro de Tiamaranta.</p>
+		  <p> </p>
+		  <p>É onde ficam a Fortaleza de Tiamat e o Abrigo de Tiamat.</p>
+		  <p> </p>
+		  <p>Mostre-me o que você pode fazer, [%username]. Se você tiver tempo, ficarei feliz em incumbi-lo de conquistar Tiamaranta.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Udvi] em [%dic:STR_DIC_W_LDF4b_SZ_OP_A2] em Tiamaranta.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a sede do Fatebound em Tiamaranta e conheça Skafir.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lethanhia sugeriu mandar alguém para Tiamaranta.</p>
+          <p> </p>
+          <p>Skafir, o Governador do Destino em Tiamaranta, falou sobre suas grandes esperanças para o futuro e pediu que você resolvesse os problemas em Tiamaranta.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

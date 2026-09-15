@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39504</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Boletim de atualização para membros do comerciante Black Cloud -</p>
+          <p> </p>
+          <p>Os comerciantes da Black Cloud estão cientes da agitação dos Snuffler na região da Estepe Redclaw.</p>
+          <p> </p>
+          <p>Black Cloud Merchant cuidando da própria vida coletando ovos de Snuffler quando Snuffles atacam do nada! Sem motivo!</p>
+          <p> </p>
+          <p>Além disso, os comerciantes devem estar cientes de que os ovos Snuffler podem causar fortes cólicas estomacais.</p>
+          <p> </p>
+          <p>Pedido: Assistência para eliminar [%dic:STR_DIC_M_LDF4A_A4_Merdion_DR_56_n]s na Estepe Garra Vermelha.</p>
+          <p> </p>
+          <p>- Zorinerk, Vanguarda Mercante da Nuvem Negra -</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ovos farejadores. Devidamente anotados."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ak! Daeva, não se assuste!</p>
+          <p> </p>
+          <p>Não posso prometer que Jeparinerk, o Nefasto, não iria rasgar você em pedacinhos de Daeva!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu apaguei aqueles Snuffles."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Daeva venceu Jeparinerk, o Nefasto!</p>
+          <p> </p>
+          <p>Estava terminando esse relatório de aquisição, depois vou cuidar da Snufflers!</p>
+          <p> </p>
+          <p>Daeva muito rápido, nyerk. Ah bem!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF4A_A4_Merdion_DR_56_n]s ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Arquive seu relatório com [%dic:STR_DIC_N_Shugo_LDF4a_01].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Comerciantes da Nuvem Negra precisam de ajuda com Snufflers Sandscale na Estepe Redclaw.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um Boletim de Atualização dos Comerciantes da Nuvem Negra e parecia que eles estavam tendo alguns problemas.</p>
+          <p> </p>
+          <p>Você caçou os Snufflers Sandscale que morderam um de seus colegas comerciantes e Jeparinerk o recompensou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O rosto de Dorph tem sido uma imagem de tristeza ultimamente.</p>
+          <p> </p>
+          <p>Eu gostaria de perguntar a ele o que ele está pensando, mas de alguma forma nunca consigo perguntar.</p>
+          <p> </p>
+          <p>[%username], você poderia perguntar sobre [%dic:STR_DIC_N_LDF5b_Dorf_E] para mim?</p>
+          <p> </p>
+          <p>Às vezes é melhor envolver terceiros.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Longo suspiro.)</p>
+          <p> </p>
+          <p>Você veio por algum motivo?</p>
+          <p> </p>
+          <p>Tenho alguma coisa no rosto, é isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Conte a história de Lathia.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lathia falou de mim?</p>
+          <p> </p>
+          <p>Ela está preocupada sem motivo.</p>
+          <p> </p>
+          <p>Mas isso não é importante agora, então é melhor não insistirmos no assunto. Falarei com Lathia mais tarde.</p>
+          <p> </p>
+          <p>Eu a angustiei muito, e você também, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Dorf_E], que está muito preocupado.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure Dorph, que está com problemas,</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Latia fomos até Dorph e perguntamos se ele estava com problemas. Ele disse que não e pedimos desculpas por incomodá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

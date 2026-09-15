@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41161</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hum. Aqueles Bristlewhisker Hornskulls ainda estão prosperando como sempre. Parece que sua caçada anterior não foi suficiente.</p>
+          <p> </p>
+          <p>Mas tentar novamente pode ser inútil se não atacarmos a raiz do problema, que é, acredito, o [%dic:STR_DIC_M_LDF4A_A1_SalivadoRedQ_57_Ae]. Parece ser algum tipo de mutante, mais forte e mais inteligente que seus companheiros. Estabeleceu-se como uma espécie de líder - um alfa, por assim dizer.</p>
+          <p> </p>
+          <p>Não será fácil localizar. Mas [%dic:STR_DIC_N_Werenne] disse que teve uma ideia. Por favor, ajude-o da maneira que ele precisar.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Varzeni mandou você? Bom momento. Acho que posso ajudar com seu problema com Hornskull.</p>
+          <p> </p>
+          <p>Sou um caçador ávido, sabe. Acredito que posso criar uma isca que atrairá o Redscale Hornskull mesmo nos mais cautelosos.</p>
+          <p> </p>
+          <p>Mas vou precisar de um pouco de [%dic:STR_DIC_I_QUEST_41161A] - a comida preferida deles. Você pode cortá-lo de [%dic:STR_DIC_M_LDF4A_A1_Brax_DR_56_n]es no prado sul de [%dic:STR_DIC_W_LDF4a_SZ_A1].</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Acho que vi aqueles Brax."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou bastante confiante de que minha isca funcionará. Mesmo que seja um mutante, o Redscale Hornskull ainda é um Hornskull.</p>
+          <p> </p>
+          <p>E ainda não conheci o Hornskull que possa resistir à atração dessa mistura em particular. Eles acham que é particularmente saboroso.</p>
+          <p> </p>
+          <p>Tudo que preciso é do [%dic:STR_DIC_I_QUEST_41161A]. Você tem isso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Sim. Mas estou ficando com fome."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Heh heh, isso é natural. Os sabores da comida Hornskull são surpreendentemente próximos aos dos humanos.</p>
+          <p> </p>
+          <p>Agora, então. Uma busca rápida e alguns temperos....</p>
+          <p> </p>
+          <p>Lá! Isso deve bastar! O Redscale Hornskull não vai conseguir resistir... mas agora estou ficando com fome também.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Werenne].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Cace [%dic:STR_DIC_M_LDF4A_A1_Brax_DR_56_n]es no sul de [%dic:STR_DIC_W_LDF4a_SZ_A1] e leve [%dic:STR_DIC_I_QUEST_41161A] para [%dic:STR_DIC_N_Werenne].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Você deve matar o Redscale Hornskull para se livrar do resto. Fale com Werenne e veja o que ele precisa para que isso aconteça.</font></p>
+        </body>
+
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Varzeni disse a você que o Redscale Hornskull, um mutante "alfa", precisava ser morto para espalhar o resto.</p>
+          <p> </p>
+          <p>Você consultou o Comerciante de Mercadorias Gerais Werenne sobre uma maneira de atrair essa fera astuta. Ele precisava de alguns ingredientes para fazer sua isca especial.</p>
+          <p> </p>
+          <p>Você trouxe para ele carne dura de Brax. Werenne conseguiu então fazer sua isca, que cheirava bem até para você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39513</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Boletim de atualização para membros do comerciante Black Cloud -</p>
+          <p> </p>
+          <p>Os comerciantes da Black Cloud são aconselhados a evitar o Poço Gravitacional.</p>
+          <p> </p>
+          <p>O Poço Gravitacional está cheio de Wriggots nojentos.</p>
+          <p> </p>
+          <p>Mesmo o intrépido Black Cloud Merchant Vanguard Vilmanerk não consegue dormir quando Wriggots nojentos se contorcem no carrinho de Brax a noite toda.</p>
+          <p> </p>
+          <p>Solicitação: Eliminação de [%dic:STR_DIC_M_LDF4b_T2_Millipede_58_An]s do Poço Gravitacional.</p>
+          <p> </p>
+          <p>- Vilmanerk, Vanguarda Mercante da Nuvem Negra -</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Isso parece um desperdício de recursos."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva[%username]!</p>
+          <p> </p>
+          <p>Estava apenas fazendo um gráfico das contribuições semanais de Daeva [%username]! É um bom gráfico! Quer ver?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Adicione uma linha para a queda na população Wriggot."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Boa ideia!</p>
+          <p> </p>
+          <p>O gráfico de Nagumonerk será o sucesso da reunião de sincronização de todas as equipes da próxima semana!</p>
+          <p> </p>
+          <p>Nesse ritmo, talvez os comerciantes consigam negociar algo em breve!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF4b_T2_Millipede_58_An]s ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Arquive seu relatório com [%dic:STR_DIC_N_Shugo_LDF4b_09].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Comerciantes da Nuvem Negra precisam de ajuda para eliminar Wriggots Flutuantes do Poço Gravitacional.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um boletim de atualização dos comerciantes da Black Cloud e eles precisavam de ajuda.</p>
+          <p> </p>
+          <p>Você matou Floating Wriggots para apaziguar um melindroso Merchant Vanguard, e Nagumonerk o recompensou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

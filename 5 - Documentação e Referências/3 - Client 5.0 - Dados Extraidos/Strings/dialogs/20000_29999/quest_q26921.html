@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q26921</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chegou a hora de investigar o Runadium.</p>
+          <p> </p>
+          <p>Mas se a bruxa ainda estiver lá, é quase certo que ela tentará usar o poder do Id.</p>
+          <p> </p>
+          <p>Temos que detê-la. Mesmo que não seja fácil destruir o último membro da Tribo Rúnica.</p>
+          <p> </p>
+          <p>Por favor, vá até [%dic:STR_DIC_W_IDLDF5_Under_Rune] e pare-a. Por favor, traga-me o [%dic:STR_DIC_I_quest_16921a] para que nada assim aconteça novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Grendal se trancou no Runadium para pesquisar como ela poderia ressuscitar seu amado morto.</p>
+          <p> </p>
+          <p>Eu entendo a tristeza dela. Mas não podemos permitir que ela use o poder do Id.</p>
+          <p> </p>
+          <p>Temos que deter Grendal. Mesmo com violência, se não tiver outro jeito.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Diário de Pesquisa da Bruxa Rúnica.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você derrotou a Bruxa da Tribo Rúnica!</p>
+          <p> </p>
+          <p>Mas, novamente, sinto muito por não termos tido a chance de Converse com ela sobre a Tribo Rúnica. Mas teria sido simplesmente muito perigoso.</p>
+          <p> </p>
+          <p>Provavelmente foi melhor para ela assim também. Ela deve ter ficado muito infeliz com todas as atrocidades que cometeu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	 <steps>
+                <step><p visible="[%0]"><font color="[%1]">Obtenha o [%dic:STR_DIC_I_quest_16921a] e reporte-se a [%dic:STR_DIC_N_LDF5_Fortress_Pintz_E] em Kaldor.</font></p>[%collectitem]</step>
+    	 </steps>
+          <p><font font_xml="quest_summary">Frustre os planos da Bruxa Rúnica no Runadium e obtenha seu Diário de Pesquisa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Grendal, a Bruxa, estava guardando o Runadium.</p>
+          <p> </p>
+          <p>Ela ficou tão furiosa em seu desespero que atacou todos que entravam no Runadium.</p>
+          <p> </p>
+          <p>Grendal não queria se comprometer. Você a derrotou e garantiu seu Diário de Pesquisa. Você então reportou ao Pintor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

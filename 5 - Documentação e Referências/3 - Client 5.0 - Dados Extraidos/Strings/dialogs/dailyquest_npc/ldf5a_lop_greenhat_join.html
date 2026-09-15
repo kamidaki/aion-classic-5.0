@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essa é uma Green Hat Alliance, também conhecida como!</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+    	<faction_join>Join the Green Hat Alliance.</faction_join>
+	<faction_separate>Leave the Green Hat Alliance</faction_separate>	
+    </npcfuncs>
+    <Selects>
+      <Act href="HACTION_SELECT1">Você aprendeu algo sobre a Green Hat Alliance.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Green Hat Alliance é uma organização que se dedica a proteger o meio ambiente de Katalam.</p>
+          <p> </p>
+          <p>Não estamos aqui com fins lucrativos e não obedecemos às ordens de ninguém. Nossa aliança é totalmente altruísta, ak.</p>
+          <p> </p>
+          <p>Você quer ajudar a Green Hat Alliance a preservar o meio ambiente de Katalam?</p>
+          <p> </p>
+          <p>[%username], alguém com habilidades incríveis como as suas é sempre bem vindo, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], agora que você se juntou à Green Hat Alliance, iremos informá-lo sobre as regras.</p>
+          <p> </p>
+          <p>Em primeiro lugar, irei informá-lo das tarefas por meio de uma carta. Cabe a você, [%username], ler a carta e concluir o trabalho.</p>
+          <p> </p>
+          <p>Em segundo lugar, você será recompensado com [%dic:STR_DIC_COIN_GREENHAT_01] pelo trabalho.</p>
+          <p> </p>
+          <p>Colete um determinado número mínimo de insígnias, mostre-as ao supervisor de recompensas da Green Hat Alliance, [%dic:STR_DIC_N_LDF5a_Lop_Greenhat_Reward], e troque-as pelo item desejado.</p>
+          <p> </p>
+          <p>Por último, enquanto for membro da Green Hat Alliance, você não poderá se tornar membro de nenhum outro grupo.</p>
+          <p> </p>
+          <p>Pronto, agora vá em frente e tente transformar Katalam em um lugar lindo!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não podemos cooperar com outras espécies se não tivermos os mesmos pilares da fé!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode entrar se estiver no nível [%userlevel].</p>
+          <p> </p>
+          <p>Espero que você não pense mal de Katalam porque é muito perigoso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1_4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você já parece pertencer a outro grupo.</p>
+          <p> </p>
+          <p>Você não pode ser membro de grupos diferentes ao mesmo tempo.</p>
+          <p> </p>
+          <p>Se você sair do seu grupo atual, poderá se tornar membro da Green Hat Alliance.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>agradeço seu tempo com a Green Hat Alliance, ak.</p>
+          <p> </p>
+          <p>Graças a [%username], o ambiente de Katalam ficou muito mais limpo, ak!</p>
+          <p> </p>
+          <p>Se você mudar de ideia no futuro, será sempre muito bem-vindo, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Somente aqueles que aderiram à Green Hat Alliance podem realizar esta tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+ 
+</HtmlPages>
+

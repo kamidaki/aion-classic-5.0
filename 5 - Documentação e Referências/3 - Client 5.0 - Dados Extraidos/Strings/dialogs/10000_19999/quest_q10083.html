@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10083</QuestId>
+    <QuestName>본격적으로 카룬 추적</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Eu não sabia que outros Elyos estavam ajudando os Reianos além de mim.</p>
+		  <p> </p>
+		  <p>Não sei se posso realmente confiar em você. Mas no momento não tenho outra escolha. Há um grupo de busca de Reian procurando por Kahrun.</p>
+		  <p> </p>
+		  <p>[%dic:STR_DIC_LDF5a_Ambros_E] é um Reian que ajudei. Ele é membro do Grupo de Busca Reian Kahrun.</p>
+          <p> </p>
+          <p>No momento eles estão procurando por Kahrun em [%dic:STR_DIC_W_LDF5A_B6].</p>
+          <p> </p>
+          <p>[%username], procure o Ambros, ele pode te contar mais.</p>
+          <p> </p>
+          <p>É melhor você partir imediatamente. E, por favor, não conte a ninguém que ajudei os Reianos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10083-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que é? Você está dizendo que um Elyos quer Converse comigo?</p>
+          <p> </p>
+          <p>Espere um momento, você é [%dic:STR_DIC_LDF5a_Trace1L_E]?</p>
+          <p> </p>
+          <p>Devo ter confundido você com outro Elyos.</p>
+          <p> </p>
+          <p>Sinto muito.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você pergunta se ele é membro do Grupo de Busca Reian.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Certo. Parece que você já sabe bastante. Nania mandou você?</p>
+		  <p> </p>
+		  <p>Perfeito. Como você é um Elyos, gostaria de lhe pedir uma coisa.</p>
+          <p> </p>
+          <p>Por favor, diga a [%dic:STR_DIC_LDF5a_Trace1L_E] que ele deveria ir para outro lugar.</p>
+          <p> </p>
+          <p>Um Elyos chamado Jakahn aparece todos os dias e pergunta onde está Kahrun. E ele está nos distraindo do nosso trabalho.</p>
+          <p> </p>
+          <p>No início, dissemos a ele que ele poderia nos ajudar a encontrar Kahrun. Mas ele nos ignorou completamente e agora está vasculhando a área ao redor. Mas tudo o que ele está a fazer é erradicar os sinais que podem levar-nos a Kahrun.</p>
+          <p> </p>
+          <p>Você é um Elyos, então estou perguntando. Diga a ele que se ele não vai nos ajudar, ele deveria ir embora.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10083-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]!</p>
+          <p> </p>
+          <p>Você veio aqui pelo mesmo motivo que eu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você pergunta o que ele quer dizer com isso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está procurando por Kahrun?</p>
+          <p> </p>
+          <p>Estou fazendo a mesma coisa.</p>
+		  <p> </p>
+		  <p>Gostaria de saber o que Kahrun fez em Katalam e quais eram seus planos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1_1">Você pergunta se ele recebeu essas ordens.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não há nenhum Daeva que possa me dar ordens.</p>
+          <p> </p>
+          <p>Eu mesmo decidi que procurarei Kahrun.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1_1_1">Você pergunta se eles encontraram alguma coisa aqui.</Act>
+    </Selects>
+  </HtmlPage>
+ 
+  <HtmlPage name="select3_1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor me ajude.</p>
+          <p> </p>
+		  <p>Para encontrar Kahrun, precisamos saber o que ele estava fazendo em Katalam.</p>
+		  <p> </p>
+          <p>Um [%dic:STR_DIC_LDF5a_Hide1_Q10083a] e um [%dic:STR_DIC_LDF5a_Hide2_Q10083b] levarão você a novas faixas.</p>
+          <p> </p>
+          <p>Pesquise nesses dois locais.</p>
+		  <p> </p>
+		  <p>Kahrun deve ter deixado rastros lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10083-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+	      <p>(Você vê um arbusto que foi escavado.)</p>
+          <p> </p>
+	      <p>(Você não encontra nada lá.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você termina suas investigações.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+	      <p>(Quando você cava na terra, você encontra um livro. No entanto, resta apenas metade dele.)</p>
+          <p> </p>
+	      <p>(Pode ser uma pista que leva a Kahrun.)</p>
+          <p> </p>		  
+          <p>(Você leva para Jakahn.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você pega o livro.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrou o [plur] [%dic:STR_DIC_LDF5a_Hide1_Q10083a] e o [plur] [%dic:STR_DIC_LDF5a_Hide2_Q10083b]?</p>
+          <p> </p>
+          <p>O que você me trouxe?</p>
+		  <p> </p>
+		  <p>Tenho que encontrar Kahrun a todo custo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o livro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você obteve metade dos registros de Kahrun para mim.</p>
+          <p> </p>
+		  <p>Bom trabalho.</p>
+		  <p> </p>
+          <p>Kahrun estava procurando por Idgel. Ele estava acompanhado de sua escolta.</p>
+          <p> </p>
+          <p>Vá em frente! Encontre a escolta de Kahrun!</p>
+          <p> </p>
+          <p>Você os encontrará no [%dic:STR_DIC_W_LDF5A_B8].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_LDF5a_Roras_E].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Encontre [%dic:STR_DIC_LDF5a_Ambros_E] em [%dic:STR_DIC_W_LDF5A_B6].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_LDF5a_Trace1L_E].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Procura sinais de Kahrun pelo [plur][%dic:STR_DIC_LDF5a_Hide1_Q10083a].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Procura sinais de Kahrun pelo [plur][%dic:STR_DIC_LDF5a_Hide2_Q10083b].</font></p></step>        
+               <step><p visible="[%15]"><font color="[%16]">Entregue o [%dic:STR_DIC_I_doc_quest_10083a] para [%dic:STR_DIC_LDF5a_Trace1L_E].</font></p></step>         
+    </steps>
+          <p><font font_xml="quest_summary">Pedidos: Encontre Ambros e Jakahn. Depois, examine arbustos e montes de terra para encontrar sinais de Kahrun.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Loras lhe disse onde encontrar Ambros, um membro do Grupo de Busca Reian.</p>
+		  <p> </p>
+		  <p>Quando você encontrou Ambros, ele fez uma cara de descontentamento e pediu que você expulsasse um perturbador Elysean Daeva chamado Jakahn.</p> 
+		  <p> </p>
+		  <p>Jakahn pediu que você o ajudasse na busca por sinais de Kahrun nos arbustos e montes de terra.</p> 
+		  <p> </p>
+		  <p>Você não encontrou nada nos arbustos, mas havia metade de um livro embaixo do monte de terra. Você deu para Jakahn.</p> 
+		  <p> </p>
+		  <p>Jakahn lhe disse que Kahrun estava procurando por Idgel e pediu que você encontrasse a Escolta Kahrun.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

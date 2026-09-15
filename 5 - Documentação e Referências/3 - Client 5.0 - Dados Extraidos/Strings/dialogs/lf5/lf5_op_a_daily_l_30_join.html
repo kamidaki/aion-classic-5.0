@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quem é esse então?</p>
+          <p> </p>
+          <p>Bem, se não for [%username]! O que traz um viajante como você aqui?</p>
+          <p> </p>
+          <p>Posso te ajudar em alguma coisa?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+    	<faction_join>Join the Alabaster Order</faction_join>
+		<faction_separate>Leave the Alabaster Order</faction_separate>	
+    </npcfuncs>
+    <Selects>
+      <Act href="HACTION_SELECT1">Você descobre mais sobre a Ordem do Alabastro.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa de uma recomendação.</p>
+          <p> </p>
+          <p>A Ordem Alabastro protege Elysea e os observatórios. Foi originalmente fundada para proteger a Torre de Aion.</p>
+          <p> </p>
+          <p>Recebemos instruções da Ordem dos Sacerdotes, mas não estamos subordinados a elas.</p>
+          <p> </p>
+          <p>Nossa organização é composta por voluntários e autogerida. Você receberá recompensas pelo trabalho que realiza.</p>
+          <p> </p>
+          <p>Se desejar, fique à vontade para se juntar a nós. Sempre podemos usar Daevas como você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], a glória da Ordem Alabastro crescerá ainda mais com você nela.</p>
+          <p> </p>
+          <p>Existem algumas regras que você deve cumprir, no entanto.</p>
+          <p> </p>
+          <p>Em primeiro lugar: você receberá a missão na forma de cartas. Você decide se deseja aceitá-los, [%username].</p>
+          <p> </p>
+          <p>Segundo: você receberá medalhas como recompensa ao completar uma missão. Você pode levá-los aos comerciantes de nossa organização e trocá-los por produtos especiais.</p>
+          <p> </p>
+          <p>Terceiro: você não pode ingressar em nenhuma outra organização enquanto for membro da nossa.</p>
+          <p> </p>
+          <p>É isso por enquanto. Avisarei se houver alguma novidade.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Povos diferentes perseguem objetivos diferentes.</p>
+          <p> </p>
+          <p>Desculpe, mas não consigo cadastrar você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode entrar no nível [%userlevel].</p>
+          <p> </p>
+          <p>Por favor, não fique chateado conosco por isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select1_4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já pertence à ordem [%username]?</p>
+          <p> </p>
+          <p>Você não pode ingressar se já for membro.</p>
+          <p> </p>
+          <p>Se você pertencer a uma organização que não seja a Ordem do Alabastro, terá que sair primeiro e depois se inscrever novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado pelo seu apoio.</p>
+          <p> </p>
+          <p>Não vou perguntar por que você está indo embora.</p>
+          <p> </p>
+          <p>Volte se mudar de ideia. Você é sempre bem-vindo, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa se registrar na Ordem do Alabastro antes de poder realizar missões.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+ 
+</HtmlPages>
+

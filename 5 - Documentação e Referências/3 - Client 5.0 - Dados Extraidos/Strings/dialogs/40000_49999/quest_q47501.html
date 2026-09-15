@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para: [%username]</p>
+          <p>De: Os Moldadores do Crepúsculo</p>
+          <p> </p>
+          <p>Todos os membros da guilda que possuem o título de Artesão ou superior atendem a este pedido.</p>
+          <p> </p>
+          <p>Crie um [%dic:STR_DIC_I_QUEST_47501A] para premiar os heróis de nossas campanhas em Balaurea.</p>
+          <p> </p>
+          <p>Compre um design de um comerciante de artesanato no Templo dos Artesãos e leve sua criação para um [%dic:STR_DIC_E_Quest_47500a].</p>
+          <p> </p>
+          <p>Espera-se que você siga os altos padrões que mantemos. Crie com amor, crie com excelência.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Acho que já tenho algumas ideias..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Balaureia! O próprio nome causa arrepios na minha espinha! Os Daevas realizam muito em um território tão hostil.</p>
+          <p> </p>
+          <p>É por isso que eles merecem um [%dic:STR_DIC_I_QUEST_47501A] bem feito. Dar-lhes qualquer outra coisa é semelhante a um insulto direto.</p>
+          <p> </p>
+          <p>Tenho grandes esperanças no que você fez, [%username]. Espero que você não decepcione.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Deleite seus olhos com isso!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Er... você realmente fez um [%dic:STR_DIC_I_QUEST_47501A]? Não está no seu cubo, se você tiver.</p>
+          <p> </p>
+          <p>É fácil fazer esses itens de maneira aleatória. Mas fazer algo digno dos nossos soldados Balaurea requer habilidade especial.</p>
+          <p> </p>
+          <p>Você não seria um membro dos Shapers of Dusk se não tivesse essa habilidade. Então sugiro que você tente novamente e retorne.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Você definitivamente me verá novamente."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Deixa eu dar uma olhada... Ah, isso é maravilhoso! Sua habilidade e gosto brilham em cada centímetro disso!</p>
+          <p> </p>
+          <p>Qualquer Daeva com algum bom senso consideraria isso uma recompensa digna até mesmo para a batalha mais difícil em Balaurea.</p>
+          <p> </p>
+          <p>Isso refletirá muito bem em nossa organização. Você mais do que merece as recompensas prometidas.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Crie um [%dic:STR_DIC_I_QUEST_47501A] e entregue-o a um [%dic:STR_DIC_E_Quest_47500a].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Shapers of Dusk cobraram de você a criação de um item. Compre o design de um comerciante da guilda de artesanato e entregue os resultados a um Aprendiz de Artesanato Asmodiano.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Shapers of Dusk solicitaram que você criasse uma Recompensa Suprema Balaurea para os heróis de Balaurea.</p>
+          <p> </p>
+          <p>Você fez o item conforme solicitação e o entregou a um representante do Shapers of Dusk, que recompensou seu trabalho artesanal.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

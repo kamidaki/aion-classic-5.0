@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este broto não se parece com nenhuma planta que você já viu. Ele brilha, como se estivesse cheio de Éter.)</p>
+          <p> </p>
+          <p>(Parece um grande desperdício apenas mantê-lo no seu Cubo, mas o que mais você pode fazer com ele?)</p>
+          <p> </p>
+          <p>(Como veio de um Guestbloom, talvez o Pesquisador Guestbloom [%dic:STR_DIC_N_Aridella] esteja interessado nele.)</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Se não, posso simplesmente comê-lo, eu acho..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É estranho: os Guestblooms estão em praticamente todas as casas de Pernon, mas sabemos tão pouco sobre eles.</p>
+          <p> </p>
+          <p>Estou particularmente fascinado pela forma como eles reagem quando tratados com fertilizantes - e nada menos que dos convidados!</p>
+          <p> </p>
+          <p>Eu até entendo que eles brotam, mas os horticultores abocanham todos antes que eu consiga.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="PLAYEMOTION_thanks;HACTION_SELECT_QUEST_REWARD">"Este é o seu dia de sorte, então."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! É... é realmente um broto Guestbloom! E eu posso ficar com isso?</p>
+          <p> </p>
+          <p>É tão lindo. E poder estudar seu ciclo de vida desde o início será um acréscimo maravilhoso à minha pesquisa.</p>
+          <p> </p>
+          <p>Isso é muito generoso da sua parte. Azphel te abençoe!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga o Broto Brilhante para [%dic:STR_DIC_N_Aridella].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você ganhou um Shining Sprout do seu Guestbloom. Leve-o a um pesquisador Guestbloom.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você ganhou um Shining Sprout de um Guestbloom.</p>
+          <p> </p>
+          <p>Quando você trouxe isso para a pesquisadora Guestbloom Aridella, ela ficou surpresa com sua generosidade.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

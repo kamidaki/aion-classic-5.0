@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para: [%username]</p>
+          <p>De: Os Moldadores do Crepúsculo</p>
+          <p> </p>
+          <p>Todos os membros da guilda que possuem o título de Mestre de Alto Nível ou superior atendem a este pedido.</p>
+          <p> </p>
+          <p>Uma grande cerimônia para homenagear os Senhores Shedim será realizada em breve. A peça central será um [%dic:STR_DIC_I_QUEST_47503A].</p>
+          <p> </p>
+          <p>Compre um design de um comerciante de artesanato no Templo dos Artesãos e leve sua criação para um [%dic:STR_DIC_E_Quest_47500a].</p>
+          <p> </p>
+          <p>Espera-se que você siga os altos padrões que mantemos. Crie com amor, crie com excelência.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Hora de começar a trabalhar, então."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você pode ver, a solicitação de [%dic:STR_DIC_I_QUEST_47503A] é realmente especial.</p>
+          <p> </p>
+          <p>Agora você não está homenageando qualquer Daeva, mas um dos primeiros Daevas. Não é hora de nos apoiarmos em conquistas anteriores.</p>
+          <p> </p>
+          <p>Você deve criar algo digno do próprio Lorde Azphel! Espero que você esteja à altura do desafio.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Eu sou, e eu tenho."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sei que fazer um [%dic:STR_DIC_I_QUEST_47503A] não é fácil, mas não tenha medo de testar seus talentos.</p>
+          <p> </p>
+          <p>Não estamos fingindo saber o que Lorde Azphel vai gostar ou não. Só podemos ser objetivos ao julgar a excelência.</p>
+          <p> </p>
+          <p>No entanto, seremos justos - definitivamente não ofereceremos nada que não consideremos de qualidade digna. Eu sugiro que você se esforce mais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Estou fazendo o meu melhor..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mal posso esperar para ver... De jeito nenhum! Como você... Nunca vi nada tão magnífico!</p>
+          <p> </p>
+          <p>Você é um Mestre de Alto Nível digno desse título! Eu ficaria surpreso se Lorde Azphel não reconhecesse seu talento!</p>
+          <p> </p>
+          <p>Os Shapers of Dusk têm sorte de ter alguém tão habilidoso quanto você em suas fileiras. Você merece isso e muito mais!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Crie um [%dic:STR_DIC_I_QUEST_47503A] e entregue-o a um [%dic:STR_DIC_E_Quest_47500a].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Shapers of Dusk cobraram de você a criação de um item. Compre o design de um comerciante da guilda de artesanato e entregue os resultados a um Guilder de Artesanato Asmodiano.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Moldadores do Crepúsculo solicitaram que você criasse uma Oferenda Shedim para uma cerimônia especial em homenagem aos Senhores Shedim.</p>
+          <p> </p>
+          <p>Você fez o item conforme solicitado e o entregou a um representante dos Shapers of Dusk, que ficou surpreso com sua habilidade e o recompensou de acordo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

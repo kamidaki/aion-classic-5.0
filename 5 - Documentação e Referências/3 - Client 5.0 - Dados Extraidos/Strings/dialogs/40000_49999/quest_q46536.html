@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Ordem de Serviço -</p>
+          <p> </p>
+          <p>Você recebeu a missão de matar o Crown Bartul.</p>
+          <p/>
+          <p>Leia atentamente as informações a seguir e siga as instruções.</p>
+          <p> </p>
+          <p>1. Nome: [%dic:STR_DIC_M_DF5_C_QNamde_Shellizard_58_N]</p>
+          <p/>
+          <p>2. Localização: Ele foi avistado próximo ao [%dic:STR_DIC_W_LF5_SZ_H_01].</p>
+          <p/>
+          <p>3. Detalhes: Ele está atacando os integrantes da Tropa Expedicionária e impedindo-os de realizar seu trabalho.</p>
+          <p> </p>
+          <p>Quem nos entregar pistas sobre seu paradeiro ou matar o Crown Bartul diretamente receberá uma recompensa.</p>
+          <p> </p>
+          <p>- [%dic:STR_DIC_N_DF5_Fishring_E], Daemons de Charlirunerk -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você aceita a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como foi?</p>
+          <p> </p>
+          <p>Se Daeva completar a missão com sucesso, Shugo dará a Daeva a recompensa que foi prometida, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo estava se perguntando quem seria o primeiro a aceitar a missão, Daeva.</p>
+          <p> </p>
+          <p>Se Daeva resolver o problema com sucesso, uma recompensa estará esperando por Daeva, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_DF5_C_QNamde_Shellizard_58_N] ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_DF5_Fishring_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você recebeu uma missão dos Daemons de Charlirunerk. Execute esta tarefa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu uma missão dos Daemons de Charlirunerk.</p>
+          <p> </p>
+          <p>Você completou a tarefa e matou o Crown Bartul. Você então se reportou a um membro dos Daemons de Charlirunerk, que lhe deu uma recompensa por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12063</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um fato: não sabemos muito sobre os Gurriki, visto que eles só moram aqui em Tiamaranta.</p>
+          <p> </p>
+          <p>No entanto, é tão provável que sejam territoriais ou trabalhem diretamente para os Balaur quanto qualquer outro Sapien.</p>
+          <p> </p>
+          <p>O enfraquecimento de Vontade de Kahrun em suas terras significa que Tiamat provavelmente está interessado em algo sério para aquela região. Seja o que for, deve ser interrompido.</p>
+          <p> </p>
+          <p>Mate [%dic:STR_DIC_M_LDF4b_C1_GururuFi_57_Ae]s, [%dic:STR_DIC_M_LDF4b_C1_Gururuwi_57_Ae]s, [%dic:STR_DIC_M_LDF4b_C1_GururuAs_57_Ae]s e [%dic:STR_DIC_M_LDF4b_C1_GururuCl_57_Ae]s; menos Gurriki hostis deveriam significar menos chances de qualquer conspiração funcionar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pessoalmente, não tenho certeza se Tiamat nos fez algum favor ao enfraquecer a Vontade de Kahrun.</p>
+          <p> </p>
+          <p>Os Reians estão certos sobre uma coisa: ter que lutar contra os Asmodianos certamente nos deixa menos capazes de lutar contra os Balaur.</p>
+          <p> </p>
+          <p>Esperançosamente, manter o hostil Gurriki sob controle irá evitar um pouco da pressão.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu resmunguei alguns para você."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom, bom. Informarei a Acanus que nossa programação está prosseguindo dentro do prazo.</p>
+          <p> </p>
+          <p>Os amigáveis Gurriki têm se aproximado de nós, pedindo ajuda para influenciar seus irmãos. Talvez seus esforços contribuam para isso.</p>
+          <p> </p>
+          <p>Obrigado por mostrar a todos que aliar-se aos Balaur só traz uma recompensa: a morte.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Derrote [%dic:STR_DIC_E_Q12063All]s na Gruta Gurriki ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Karuti].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Gurriki Fighters, Gurriki Feiticeiros, Gurriki Sentinels e Gurriki Healers, que podem fazer parte de um plano maior de Tiamat.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Karuti expressou preocupação de que Tiamat pudesse estar sinalizando interesse nos Gurriki hostis da Gruta de Gurriki.</p>
+          <p> </p>
+          <p>Assim você lutou contra o ladino Gurriki, deixando Tiamat com menos recursos para trabalhar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

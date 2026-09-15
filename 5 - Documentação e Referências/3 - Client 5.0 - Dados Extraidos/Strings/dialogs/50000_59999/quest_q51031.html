@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você precisa de um ingrediente doce especial, então você veio ao lugar certo, ak!</p>
+          <p> </p>
+          <p>Tenho uma irmã mais velha, Lovelinerk, e ela está viajando em Elysea como Missionária do Amor, ak.</p>
+          <p> </p>
+          <p>Mas recentemente ela começou a lutar contra o meu trabalho. Ela incita os Elyos Daevas, que então criam muitos problemas com os Asmodianos que me ouvem. E ela está oferecendo a eles um ingrediente para um presente especial, ak.</p>
+          <p> </p>
+          <p>Lovelinerk distribuiu meus presentes como se fossem dela no passado e muitas vezes brigamos por causa disso, ak. Como tudo está tão longe no passado, eu sempre deixo para lá, mas agora é o suficiente, akakak!</p>
+          <p> </p>
+          <p>[%username], você não poderia dar um verdadeiro chute nas calças daqueles Elyos que são instigados por Lovelinerk, ok?</p>
+          <p> </p>
+          <p>Se você fizer isso, eu lhe darei o ingrediente para um presente especial com o qual você poderá conquistar o coração da sua amada, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você precisa de um ingrediente doce especial, então você veio ao lugar certo, ak!</p>
+          <p> </p>
+          <p>Tenho uma irmã mais velha, Lovelinerk, e ela está viajando em Elysea como Missionária do Amor, ak.</p>
+          <p> </p>
+          <p>Mas recentemente ela começou a lutar contra o meu trabalho. Ela incita os Elyos Daevas, que então criam muitos problemas com os Asmodianos que me ouvem. E ela está oferecendo a eles um ingrediente para um presente especial, ak.</p>
+          <p> </p>
+          <p>Lovelinerk distribuiu meus presentes como se fossem dela no passado e muitas vezes brigamos por causa disso, ak. Como tudo está tão longe no passado, eu sempre deixo para lá, mas agora é o suficiente, akakak!</p>
+          <p> </p>
+          <p>[%username], você não poderia dar um verdadeiro chute nas calças daqueles Elyos que são instigados por Lovelinerk, ok?</p>
+          <p> </p>
+          <p>Se você fizer isso, eu lhe darei o ingrediente para um presente especial com o qual você poderá conquistar o coração da sua amada, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lovelinerk não é um missionário do amor e sim da discórdia, ak!</p>
+          <p> </p>
+          <p>Se ela pensa que me intimidou, ela aprenderá seu erro, ak.</p>
+          <p> </p>
+          <p>Talvez seja o doce ingrediente especial que dá tanta coragem aos Elyos Daevas antes de confessarem seu amor, akakak.</p>          
+          <p> </p>		  
+          <p>Você cuidou dos Elyos influenciados pela minha irmã? Como foi, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, muito obrigado por criticar aqueles Elyos que são instigados por Lovelinerk, akakak!</p>
+          <p> </p>
+          <p>A irmã de Shugo só acredita no que quer e houve muitas brigas no passado por causa de sua teimosia, ak.</p>
+          <p> </p>
+          <p>Claro, pareço um pouco melhor do que ela; afinal minha beleza é incomparável, mas não me use como desculpa; tenha confiança em si mesmo e espalhe amor, akakak.</p>
+          <p> </p>
+          <p>Aqui, use este doce ingrediente especial para fazer um presente especial também.</p>
+          <p> </p>
+          <p>Faça um presente maravilhoso e use-o para conquistar o coração da sua amada, ak!</p>
+          <p> </p>
+          <p>Haverá agitação em Atreia por um momento. Venha novamente e nos ajude se tiver tempo, ak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Elyos em Atreia ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Event_White_Shugo_Candyrinrin_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ajude Loverinerk e mate os Elyos em Atreia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Loverinerk, a Missionária do Amor, nos contou que sua irmã Lovelinerk sabotou seu trabalho para espalhar o amor entre os Asmodianos ao usar o ingrediente para um presente especial como isca com a qual ela está incitando os Elyos a um ataque contra os Asmodianos.</p>
+          <p> </p>
+          <p>Depois de matar os Elyos em Atreia e retornar, você recebeu um ingrediente com o qual poderá fazer um presente especial como recompensa pela sua ajuda e coragem.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

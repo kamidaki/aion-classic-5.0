@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os oficiais são a base de uma tropa.</p>
+          <p> </p>
+          <p>Não é diferente para o Terath Dredgion.</p>
+          <p> </p>
+          <p>Mate o Legado Drakan, o Líder Escoteiro Drakan, o Mago Drakan e o Cirurgião Drakan.</p>
+          <p> </p>
+          <p>Eliminá-los enfraquecerá gravemente o Dredgion.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estive esperando por você, [%username].</p>
+          <p> </p>
+          <p>Bem, você completou minha missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora que você matou os oficiais Dredgion, podemos respirar tranquilos novamente.</p>
+          <p> </p>
+          <p>Mas esse ainda não foi o golpe final.</p>
+          <p> </p>
+          <p>É por isso que eu gostaria que você aceitasse mais missões minhas no futuro.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua os Oficiais do Terath Dredgion ([%2]/3).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para Sharmaine.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote os Oficiais do Terath Dredgion. Mate o Legado Drakan, o Líder Escoteiro Drakan, o Mago Drakan e o Cirurgião Drakan.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se infiltrou no Dredgion e matou o Legado Drakan, o Líder Escoteiro Drakan, o Mago Drakan e o Cirurgião Drakan.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

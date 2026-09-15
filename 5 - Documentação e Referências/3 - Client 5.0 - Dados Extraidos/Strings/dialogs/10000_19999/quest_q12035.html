@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12035</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você viu isso? Lá! Não? Acabei de ver um furback passando por lá, como uma espécie de verme de sarjeta.</p>
+          <p> </p>
+          <p>Ele desapareceu atrás de uma das ameias, mas aposto que ainda está lá embaixo. Isso apenas confirma os rumores que ouvi de que os Asmos têm espiões escondidos por todo o Olho, observando nossos movimentos.</p>
+          <p> </p>
+          <p>Ugh, essa ideia só me dá arrepios. Vá encontrar os espiões Asmodianos [%dic:STR_DIC_M_TDown_NPC_Q12035A], [%dic:STR_DIC_M_TDown_NPC_Q12035B] e [%dic:STR_DIC_M_TDown_NPC_Q12035C], [%username], e certifique-se de que eles não encontrem o caminho de volta para seus comandantes.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você desapareceu por aí, [%username]. Você estava melhor disfarçado do que aqueles espiões Asmodianos!</p>
+          <p> </p>
+          <p>Ou devo dizer "eram"?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Foram. Passado."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom! A última coisa que queremos é que um daqueles meios-Draks sorrateiros nos arrebate a vitória no último momento.</p>
+          <p> </p>
+          <p>Estamos no limite agora. Não podemos cometer um único passo em falso por aí.</p>
+          <p> </p>
+          <p>Você tem sido de grande ajuda. Bom trabalho, [%username].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre e mate os espiões Asmodianos.</font></p>
+                         <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_TDown_NPC_Q12035A] ([%2]/1)</font></p>
+                         <p visible="[%3]"><font color="[%4]">[%dic:STR_DIC_M_TDown_NPC_Q12035B] ([%5]/1)</font></p>
+                         <p visible="[%6]"><font color="[%7]">[%dic:STR_DIC_M_TDown_NPC_Q12035C] ([%8]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Marmara].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Marmara viu espiões Asmodianos rastejando ao redor do Olho de Tiamaranta. Ela não quer vê-los novamente.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Marmara avisou que espiões Asmodianos estavam observando os movimentos de Elyos no Olho de Tiamaranta.</p>
+          <p> </p>
+          <p>Você os caçou e, embora não tenha sido fácil, os agradecimentos e a recompensa de Mármara fizeram com que seu esforço valesse a pena.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

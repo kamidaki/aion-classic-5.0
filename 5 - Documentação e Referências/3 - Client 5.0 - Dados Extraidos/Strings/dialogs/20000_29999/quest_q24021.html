@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Executor Sombrio na Guarnição do Deserto solicitou apoio.</p>
+          <p> </p>
+          <p>Não há pessoas suficientes na fortaleza, e agora devo enviar um Arconte em missão.</p>
+          <p> </p>
+          <p>Mas não posso simplesmente ignorar o pedido do Shadow Executor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, [%username], vá até [%dic:STR_DIC_W_DF2_SUB_B1_1] e ajude [%dic:STR_DIC_N_Tofa].</p>
+          <p> </p>
+          <p>Como o Arconte tem tanta coisa para fazer, não posso mandar mais ninguém embora.</p>
+          <p> </p>
+          <p>Por favor ajude.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2032-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Centurião Bragi enviou você?</p>
+          <p> </p>
+          <p>Eu estava esperando por você e finalmente você está aqui.</p>
+          <p> </p>
+          <p>Provavelmente é melhor se eu lhe contar primeiro do que se trata.</p>
+          <p> </p>
+          <p>Os [plur][%dic:STR_DIC_M_UNdeadLight_all] estão próximos. Por favor, mate-os e recupere os itens que eles roubaram de nós.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">O que são Antigos Espíritos Guardiões?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eles já foram Guardiões e, há muito tempo, passaram pelo Abismo até Asmodae. Eles eram membros dos Deltas e da Guilda da Tempestade.</p>
+          <p> </p>
+          <p>Ao perceberem que haviam desembarcado em Asmodae, esconderam-se para evitar confrontos. Mas, um dia, eles foram descobertos.</p>
+          <p> </p>
+          <p>Lorde Zikel os encontrou em Morheim. Ele amaldiçoou Nezekan, a quem serviam, e ordenou que os Guardiões se ajoelhassem diante dele. Mas os Deltas o desafiaram.</p>
+          <p> </p>
+          <p>Eles foram tolos o suficiente para zombar do Senhor da Destruição. Então, os membros dos Deltas e da Guilda da Tempestade foram mortos.</p>
+          <p> </p>
+          <p>Após a sua morte, os Guardiões tornaram-se espíritos que ainda assombram este lugar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Guardiões esperavam poder retornar a Elysea em algum momento.</p>
+          <p> </p>
+          <p>Então eles coletaram armas Asmodianas para serem examinadas em Elysea.</p>
+          <p> </p>
+          <p>Isso, claro, só foi possível porque houve traidores que ajudaram os Guardiões e os esconderam.</p>
+          <p> </p>
+          <p>Zikel amaldiçoou esses traidores e eles se transformaram em Kentari.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1_1_1">Por que você está interessado?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Devemos recuperar as armas e armaduras roubadas pelo [plur][%dic:STR_DIC_M_UNdeadLight_all] e realizar um ritual para aliviar seu ressentimento.</p>
+          <p> </p>
+          <p>Primeiro mate [%dic:STR_DIC_M_UNdeadLightFiD_26_An], [%dic:STR_DIC_M_UNdeadLightHighFiD_26_An] e [%dic:STR_DIC_M_UNdeadLightWiD_26_An] e pegue o [plur][%dic:STR_DIC_I_QUEST_24021a] deles.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_Undeaddark_qDNamedQ_28_An] é o líder deles. Pegue o [%dic:STR_DIC_I_QUEST_24021b] dele e leve tudo para [%dic:STR_DIC_N_DF2_Tuata_E].</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_DF2_Tuata_E] lhe dirá o que fazer a seguir.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou a tarefa de Tofa e matou os Antigos Espíritos Guardiões?</p>
+          <p> </p>
+          <p>Você trouxe também o [plur][%dic:STR_DIC_I_QUEST_24021a] e o [plur][%dic:STR_DIC_I_QUEST_24021b]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você quer dizer isso?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vejo que você recapturou as antigas Armas e Armaduras do Arconte.</p>
+          <p> </p>
+          <p>Finalmente, estes itens não estão mais em posse dos Guardiões. Que sorte!</p>
+          <p> </p>
+          <p>Mas é triste saber que eles se tornaram espíritos errantes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Embora você tenha devolvido as antigas armas e armaduras do Arconte, a responsabilidade de um Daeva inclui realizar um ritual para os mortos, para confortar suas almas torturadas.</p>
+          <p> </p>
+          <p>Se você for para [%dic:STR_DIC_W_DF2_SUB_B1_2], há uma grande torre. Foi lá que os guardiões foram executados e se tornaram espíritos.</p>
+          <p> </p>
+          <p>Pegue este Pó de Ervas da Paz e espalhe-o entre os dois pilares da torre. Este pó é usado como oferenda aos mortos.</p>
+          <p> </p>
+          <p>Deveríamos prestar esta homenagem aos mortos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você recebe o Pó de Ervas da Paz.</Act>
+    </Selects>
+    <Voice file="Q24021-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por que você ainda não eliminou os Antigos Espíritos Guardiões?</p>
+          <p> </p>
+          <p>Achei que qualquer pessoa enviada pelo Centurião Bragi seria uma pessoa em quem você poderia confiar.</p>
+          <p> </p>
+          <p>Por favor, não me decepcione ainda mais, vá buscar o [%dic:STR_DIC_I_QUEST_24021a] e o [%dic:STR_DIC_I_QUEST_24021b].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você borrifou o Pó de Ervas da Paz no Campo de Execução de Deltas?</p>
+          <p> </p>
+          <p>Trouxe paz aos Espíritos Guardiões?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É bom que os Espíritos Guardiões tenham se acalmado.</p>
+          <p> </p>
+          <p>Estou aliviado em ouvir isso.</p>
+          <p> </p>
+          <p>Obrigado por realizar a tarefa com tanta diligência.</p>
+          <p> </p>
+          <p>Por favor, aceite esta recompensa por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Bragi] no [%dic:STR_DIC_W_DF2_SUB_OP].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Tofa] no [%dic:STR_DIC_W_DF2_SUB_B1_1].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Obtenha o [%dic:STR_DIC_I_QUEST_24021a] e o [%dic:STR_DIC_I_QUEST_24021b] e leve-os para [%dic:STR_DIC_N_DF2_Tuata_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%9]"><font color="[%10]">Ouça as instruções de [%dic:STR_DIC_N_DF2_Tuata_E].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Espalhe o [%dic:STR_DIC_I_QUEST_24021c] em [%dic:STR_DIC_W_DF2_SUB_B1_2].</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Tofa].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: O Shadow Executor na Desert Garrison precisa de suporte. Acesse Bragi para saber mais sobre o pedido.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bragi lhe contou que o Shadow Executor Tofa pediu ajuda. Tofa estava tendo problemas com os espíritos dos Elyos executados que roubaram as armas e armaduras do Arconte.</p>
+          <p> </p>
+          <p>Você recuperou as armas e armaduras roubadas. Depois disso, você borrifou o Pó de Ervas no local da execução como oferenda aos mortos, dando aos espíritos descanso eterno.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+
+</HtmlPages>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo relatos, os Drakan descobertos em [%dic:STR_DIC_W_ZONE_NAME_LDF5_SZ_D1] estão se comportando de maneira muito estranha.</p>
+          <p> </p>
+          <p>Aparentemente, eles estão agindo como zumbis estúpidos e, ainda por cima, sua mutação está em estágio avançado.</p>
+          <p> </p>
+          <p>[%username], por favor mate [%dic:STR_DIC_M_LDF5_Under_VrDrZombID_Fi_65_An] e [%dic:STR_DIC_M_LDF5_Under_VrDrZombID_Wi_65_An] para descobrir a causa e traga algumas evidências.</p>
+          <p> </p>
+          <p>Acho que sei qual é a causa, mas preciso de provas.</p>
+          <p> </p>
+          <p>Tenho certeza que você encontrará algo quando matar o [%dic:STR_DIC_M_LDF5_Under_VrDrZombID_all].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você fez algum progresso na investigação?</p>
+          <p> </p>
+          <p>Os soldados Drakan mutantes lhe causaram algum problema?</p>
+          <p> </p>
+          <p>Eles não sentem dor. Isso torna muito mais difícil dominá-los.</p>
+          <p> </p>
+          <p>Mas como você não está ferido, tudo parece estar em ordem.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o diário de observação para mutação de Id.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Curiosamente, o título é 'O Diário de Observação sobre Mutações de Id'.</p>
+          <p> </p>
+          <p>(Vira as páginas e lê.) Meus camaradas estão todos mortos. Eles voltaram como zumbis. Não há como recuperá-los...</p>
+          <p> </p>
+          <p>A última linha diz que se acredita que Id seja a causa. A descrição aqui é como se o Id fosse a razão pela qual os soldados Drakan se transformaram em zumbis.</p>
+          <p> </p>
+          <p>Não sei quem foi o autor, mas as observações foram anotadas com muita precisão.</p>
+          <p> </p>
+          <p>Não é possível afirmar com certeza, mas parece que valeria a pena investigar este documento um pouco mais de perto.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5_Under_VrDrZombID_all], obtenha o [%dic:STR_DIC_I_quest_23609a] e leve-o para [%dic:STR_DIC_N_LDF5_Under_Oturu_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Investigue a razão pela qual os soldados Drakan mutantes estão se transformando em zumbis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Otur pediu que você investigasse o motivo da transformação zumbi dos soldados Drakan nas instalações da Id.</p>
+          <p> </p>
+          <p>A pedido de Otur, você matou os soldados mutantes Drakan e forneceu o diário de observação indicando a mutação Id. De acordo com Otur o que estava escrito no diário era que o Id poderia ter sido o motivo da transformação zumbi de Drakan e ele disse que vale a pena examinar mais detalhadamente esses registros.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

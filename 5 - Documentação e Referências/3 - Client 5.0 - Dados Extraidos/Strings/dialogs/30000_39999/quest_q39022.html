@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39022</QuestId>
+    <QuestName>레아흐의 지령</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Centurião Tillen da Tropa de Expedição do Santuário</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Ordem: Elimine os Asmodianos que estão atacando Inggison enquanto a Fenda está aberta!</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sua reputação precede você.</p>
+          <p> </p>
+          <p>Ou devo falar do seu espírito de luta e de como você derrotou bravamente seus oponentes.</p>
+          <p> </p>
+          <p>Você matou os Asmodianos que cruzaram a Fenda Espaço-Tempo?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Diga-me o quão difícil foi derrotar os Asmodianos?</p>
+          <p> </p>
+          <p>Com o seu apoio, a Fortaleza das Ilusões está segura novamente.</p>
+          <p> </p>
+          <p>Muito, muito obrigado.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Asmodianos que invadiram Inggison ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_Leah].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens de emergência: Enquanto a Fenda estiver aberta, mate os Asmodianos que estão atacando Inggison e reporte-se a Tillen.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Asmodianos atacaram Inggison através do Fenda. Você derrotou os Asmodianos atacantes e reportou a Tillen.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

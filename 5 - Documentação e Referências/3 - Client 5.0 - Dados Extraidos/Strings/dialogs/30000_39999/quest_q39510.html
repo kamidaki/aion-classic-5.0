@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39510</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Boletim de atualização para membros do comerciante Black Cloud -</p>
+          <p> </p>
+          <p>Os Comerciantes da Nuvem Negra devem ser avisados de que os Shulacks do Clã Nightshade podem ser hostis aos Comerciantes em seu território.</p>
+          <p> </p>
+          <p>A organização sofreu um pequeno revés hoje quando uma remessa foi perdida nos Ermos de Jotari. Black Cloud Merchant Vanguard Zorinerk ainda não apresentou seu relatório sobre a perda, pois os Shulacks o mantêm como convidado involuntário.</p>
+          <p> </p>
+          <p>Os comerciantes da Black Cloud são informados de que isso não deve afetar os lucros do terceiro trimestre.</p>
+          <p> </p>
+          <p>Solicitação: Eliminação de [%dic:STR_DIC_M_LDF4A_B2_ShulackAs_57_An]s, [%dic:STR_DIC_M_LDF4A_B2_ShulackFi_57_An]s e [%dic:STR_DIC_M_LDF4A_B2_ShulackRa_57_An]s e reaquisição do Black Cloud Merchant Vanguard.</p>
+          <p> </p>
+          <p>- Conselho de Administração do Comerciante Black Cloud -</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Acho que Zorinerk foi sequestrado."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva! Ah, Zorinerk está seguro!</p>
+          <p> </p>
+          <p>Com muita fome! Tão assustado! E areia no pelo, areia nas orelhas, areia por todo lado!</p>
+          <p> </p>
+          <p>Zorinerk toma um longo banho quente antes de preencher o formulário de Catástrofe de Remessa e Dano Emocional Grave. Talvez nem preencha o formulário até amanhã! Tome ISSO, Comerciantes da Nuvem Negra! Akakakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Isso vai mostrar a eles!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Daeva Nublado Escuro!</p>
+          <p> </p>
+          <p>Muarinerk suspeita que haverá alguma papelada a preencher. Sempre trabalhe com a papelada quando Dark Cloudy Daeva estiver por perto!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu salvei Zorinerk!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Resgatar? Oh! Você quer dizer "reavaliar o status de convidado involuntário".</p>
+          <p> </p>
+          <p>Não prisioneiro! Apenas convidado! Tudo bem!</p>
+          <p> </p>
+          <p>Talvez coloque a foto de Dark Cloudy Daeva no Boletim de Atualização para Investidores deste mês!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_Q39510all]s nos Ermos de Jotari e resgate [%dic:STR_DIC_OBJ_LDF_Daily_NPC1] [%2].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Arquive seu relatório com [%dic:STR_DIC_N_Shugo_LDF4a_02].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Black Cloud Merchant Vanguard Zorinerk foi sequestrado pelos Shulacks do Clã Nightshade.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um Boletim de Atualização dos Comerciantes da Nuvem Negra e parecia que eles estavam tendo alguns problemas.</p>
+          <p> </p>
+          <p>Você resgatou Zorinerk dos Shulacks do Clã Nightshade e Muarinerk o recompensou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

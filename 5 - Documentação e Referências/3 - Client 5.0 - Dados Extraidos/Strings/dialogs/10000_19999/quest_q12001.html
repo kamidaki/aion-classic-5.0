@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12001</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mmm... Qooqoo frito com salada de repolho.... Massa fresca com molho de creme Abex....</p>
+          <p> </p>
+          <p>Oh! Ah, desculpe. Nossa situação alimentar não é das melhores no momento. Estamos com rações básicas, e mesmo essas estão acabando!</p>
+          <p> </p>
+          <p>Temos relativamente poucas bocas para alimentar, mas isso também significa que realmente não conseguimos encontrar uma pausa para caçar comida.</p>
+          <p> </p>
+          <p>Se você pudesse matar [%dic:STR_DIC_M_LDF4b_T1_Frillfaimam_58_An]s e trazer alguns [%dic:STR_DIC_I_quest_12001a]s, isso realmente nos ajudaria. Estamos TODOS com fome!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Slushes de frutas frias.... Pão achatado com legumes....</p>
+          <p> </p>
+          <p>Ack, meu estômago está roncando! Quase parecia que estávamos sendo atacados por alguma criatura selvagem!</p>
+          <p> </p>
+          <p>Eu realmente espero que você tenha conseguido aquela comida, [%username]. É só uma questão de tempo até eu começar a ter alucinações!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"A festa começou!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Aion, certamente é. Gah, desculpe minha baba....</p>
+          <p> </p>
+          <p>Vou começar a cozinhar isso agora mesmo! Alguns vou marinar, outros vou refogar, e estes eu vou...</p>
+          <p> </p>
+          <p>Mas você não está interessado nisso, está? Por favor, pegue isso; nós e nossos estômagos agradecemos!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue [%dic:STR_DIC_I_quest_12001a]s e leve-os para [%dic:STR_DIC_N_Tocas].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">A Guilda Hushblade está ficando sem comida. Mate Needlefang Frillnecks e pegue algumas costeletas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Legionário Tocas Hushblade estava começando a ficar obcecado por comida graças à diminuição dos suprimentos de comida.</p>
+          <p> </p>
+          <p>Para ajudar a legião, você matou Needlefang Frillnecks e trouxe suas costeletas para Tocas. Ele agradeceu profusamente em nome de sua barriga vazia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

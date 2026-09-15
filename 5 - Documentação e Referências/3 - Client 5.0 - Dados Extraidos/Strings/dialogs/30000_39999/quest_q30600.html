@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q30600</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>O Terath Dredgion foi originalmente usado por Tiamat para o avanço para Tiamaranta.</p>
+		  <p> </p>
+		  <p>Mas então, quando Tiamaranta caiu, a Guilda Terath decidiu conquistar o território de Tiamat.</p>
+		  <p> </p>
+		  <p>O Dredgion é incrivelmente forte.</p>
+		  <p> </p>
+		  <p>Você tem que se infiltrar e torná-lo inútil.</p>
+		  <p> </p>
+		  <p>O Corredor o levará diretamente ao interior de Terath Dredgion.</p>
+		  <p> </p>
+		  <p>Mas por favor fale com Rokus com antecedência.</p>
+		  <p> </p>
+		  <p>Ele é o responsável e lhe dirá o que você deve fazer.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Primeiro, você deve saber como um Dredgion é construído.</p>
+          <p> </p>
+		  <p>Em princípio, o Terath Dredgion não é diferente de nenhum outro.</p>
+		  <p> </p>
+          <p>Primeiro, mate [%dic:STR_DIC_M_IDDreadgion_03_DrakanFiNamedAA_60_Ae] ou [%dic:STR_DIC_M_IDDreadgion_03_DrakanFiNamedAB_60_Ae] na Sala de Máquinas.</p>
+          <p> </p>
+          <p>Então vá para o outro lado do Dredgion e junte-se a[%dic:STR_DIC_M_IDDreadgion_03_DrakanWi_Boss_Ah].</p>
+		  <p> </p>
+		  <p>Como você encontrará não apenas os Balaur no interior de Dredgion, mas também os Asmodianos que desprezamos, você não deve ir sozinho em nenhuma circunstância.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Eu vou, senhor!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você finalmente está de volta, [%username].</p>
+          <p> </p>
+          <p>Você incapacitou o Terath Dredgion?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"O Dredgion está neutralizado."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu sabia que poderia contar com você, [%username].</p>
+          <p> </p>
+          <p>Não precisamos nos preocupar com o Terath Dredgion no momento.</p>
+          <p> </p>
+          <p>Mas ainda não acabou. A Guilda Terath não desiste tão facilmente.</p>
+          <p> </p>
+          <p>Mas não precisamos nos preocupar com você ao nosso lado, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Linocus].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Mate o [%dic:STR_DIC_E_Q30600a] no Terath Dredgion ([%11]/1).</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Mate o [%dic:STR_DIC_M_IDDreadgion_03_DrakanWi_Boss_Ah] no Terath Dredgion ([%11]/1).</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Relatório para [%dic:STR_DIC_N_Hejitor].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O Terath Dredgion apareceu. Fale com Rokus sobre a infiltração.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Jerot lhe disse que a Guilda Terath apareceu com um Dredgion. Ele pediu que você se infiltrasse neles e os colocasse fora de ação.</p>
+          <p> </p>
+          <p>Você se encontrou com Rokus. Você então se infiltrou no Dredgion e matou a Capitã Anusa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

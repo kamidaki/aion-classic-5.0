@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q3119</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Existem tantos mortos-vivos na Fortaleza Adma que você realmente pode chamá-la de fortaleza.</p>
+          <p> </p>
+          <p>Talvez devêssemos investigar os mortos-vivos mais de perto para decidir o que fazer a seguir.</p>
+          <p> </p>
+          <p>[%username], você poderia obter [%dic:STR_DIC_I_Q3118a] e trazê-los para mim?</p>
+          <p> </p>
+          <p>Você estaria prestando um grande serviço à pesquisa, Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos em Theobomos estão falando sobre o Fenda.</p>
+          <p> </p>
+          <p>Não entendo o que há de tão interessante nisso...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as Gotas de Sangue Morto-Vivo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, essas são as gotas de sangue que eu pedi!</p>
+          <p> </p>
+          <p>Conseguirei muitos Kinah se os vender aos cientistas.</p>
+          <p> </p>
+          <p>Eu aprendo rápido. Desde criança eu sabia o que daria dinheiro.</p>
+          <p> </p>
+          <p>De qualquer forma, aqui está sua recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para a Fortaleza Adma e colete [%dic:STR_DIC_I_Q3118a], depois leve-os para [%dic:STR_DIC_N_Rovilance].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Colete gotas de sangue para pesquisar os mortos-vivos e entregue-as ao Rovilance.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rovilance pediu que você encontrasse Undead Blood Drops para fins de pesquisa.</p>
+          <p> </p>
+          <p>Ele ficou satisfeito quando você os trouxe para ele.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

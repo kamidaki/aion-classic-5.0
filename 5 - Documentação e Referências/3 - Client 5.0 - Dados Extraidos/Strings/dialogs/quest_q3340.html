@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recebi um relatório dizendo que os Daevas tinham visto o artefato no Bastião Lefarista durante a investigação.</p>
+          <p> </p>
+          <p>Pretendemos destruir o artefacto para evitar que os Revolucionários Lefaristas usem o seu poder para construir a sua base. Infelizmente, os Revolucionários Lefaristas roubaram a ordem que continha os planos para destruir o artefato!</p>
+          <p> </p>
+          <p>Por favor, vá ao Posto Avançado Kuriullu imediatamente e recupere a Ordem de Destruição roubada com a ajuda de [%dic:STR_DIC_N_Laigas]'.</p>
+          <p> </p>
+          <p>A ordem foi escrita em cifra, então os Revolucionários Lefaristas levarão algum tempo para decodificá-la. Mesmo assim, não devemos perder tempo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que posso fazer para você?</p>
+          <p> </p>
+          <p>Você precisa da minha ajuda?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você transmite as palavras de Telêmaco.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava prestes a enviar uma mensagem.</p>
+          <p> </p>
+          <p>Naturalmente, o conteúdo da ordem está codificado, mas seria extremamente perigoso se um item tão importante caísse nas mãos de nossos inimigos.</p>
+          <p> </p>
+          <p>Suspeito de alguém que estava nas proximidades do artefato roubado.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_M_LehparKn_40_An] e descubra se ele tem o [%dic:STR_DIC_I_quest_3340a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta. Você matou o Comandante de Defesa Lefarista?</p>
+          <p> </p>
+          <p>Visto que ele está sempre cercado por seus capangas, tenho certeza que não foi uma tarefa fácil.</p>
+          <p> </p>
+          <p>O Comandante de Defesa Lefarista tinha a Ordem de Destruição?</p>
+          <p> </p>
+          <p>Ele deve ter conseguido.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Ordem de Destruição.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como esperado, você completou a tarefa perfeitamente.</p>
+          <p> </p>
+          <p>[%username], acho que você pode até ser forte o suficiente para ir para a batalha sozinho!</p>
+          <p> </p>
+          <p>Passaremos imediatamente para a próxima fase da nossa estratégia.</p>
+          <p> </p>
+          <p>Enviarei uma mensagem para a fortaleza.</p>
+          <p> </p>
+          <p>O General de Brigada Telêmaco pode relaxar agora.</p>
+          <p> </p>
+          <p>Aqui, esta é uma recompensa para você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Laigas].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Mate o [%dic:STR_DIC_M_LehparKn_40_An], encontre o [%dic:STR_DIC_I_quest_3340a] e leve-o para [%dic:STR_DIC_N_Laigas].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Comandante de Defesa Lefarista e traga a Ordem de Destruição para Laigas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Telêmaco disse que os Revolucionários Lefaristas roubaram ordens que continham parte dos planos para destruir o artefato roubado. Ele pediu que você falasse com Laigas sobre a devolução do documento.</p>
+          <p> </p>
+          <p>Quando você transmitiu as palavras de Telêmaco a Laigas, ele disse que tinha uma suspeita. Ele ordenou que você eliminasse o Comandante de Defesa Lefarista e verificasse se ele recebeu as ordens.</p>
+          <p> </p>
+          <p>Você eliminou o Comandante de Defesa Lefarista e recuperou as ordens. Quando você os trouxe para Laigas, ele disse que a operação precisaria ser realizada rapidamente e que enviaria uma mensagem adequada à fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

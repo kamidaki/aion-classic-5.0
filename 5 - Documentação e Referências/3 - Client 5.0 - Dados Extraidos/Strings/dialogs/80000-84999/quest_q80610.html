@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Balaur sofreram bastante até agora, mas são difíceis.</p>
+          <p> </p>
+          <p>Não importa o quanto os acertemos, eles simplesmente não desistirão e continuarão enviando o Terath Dredgion de volta à batalha.</p>
+          <p> </p>
+          <p>Temos que manter a pressão, não temos outra escolha.</p>
+          <p> </p>
+          <p>Mate o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanFi_Vil_60_Ae], o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanAs_Vil_60_Ae], o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanRa_Vil_60_Ae], o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanWi_Vil_60_Ae] e o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanPr_Vil_60_Ae].</p>
+          <p> </p>
+          <p>Por favor, continue a enfraquecer a força de combate do Terath Dredgion. Elimine o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanFi_Noble_60_Ae].</p>
+          <p> </p>
+          <p>Se você eliminá-los, o Dredgion será neutralizado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estive esperando por você, [%username].</p>
+          <p> </p>
+          <p>Bem, você completou minha missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você mostrou a eles.</p>
+          <p> </p>
+          <p>Estou muito satisfeito com seu trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_E_Q30601a] e o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanFi_Noble_60_Ae] no Terath Dredgion.</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_E_Q30601a] ([%2]/4)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanFi_Noble_60_Ae] ([%5]/15)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com Sharmaine.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o [plur][%dic:STR_DIC_E_Q30601a] e o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanFi_Noble_60_Ae] no Terath Dredgion.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se infiltrou no Dredgion e eliminou o [plur][%dic:STR_DIC_E_Q30601a] e o [plur][%dic:STR_DIC_M_IDDreadgion_03_DrakanFi_Noble_60_Ae].</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39514</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Boletim de atualização para membros do comerciante Black Cloud -</p>
+          <p> </p>
+          <p>Comerciantes da Nuvem Negra, por favor, estejam alertas ao perigo dos Espíritos Ardentes nos Campos de Fogo.</p>
+          <p> </p>
+          <p>Os Comerciantes da Nuvem Negra solicitam ajuda para lidar com os Espíritos Ardentes.</p>
+          <p> </p>
+          <p>Os Espíritos Flamejantes podem parecer chamas inofensivas, mas não toleram nem mesmo o menor tostado de salsichas no calor.</p>
+          <p> </p>
+          <p>Os comerciantes também devem estar cientes de que os Blazing Spirits comerão qualquer salsicha que avistarem.</p>
+          <p> </p>
+          <p>Pedido: Eliminação de [%dic:STR_DIC_M_LDF4b_T3_ElementalFire3_58_An]s nos Campos de Fogo.</p>
+          <p> </p>
+          <p>- Zorinerk, Vanguarda Mercante da Nuvem Negra -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Esse cara nunca aprende, não é?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estava esperando por você, Nyerk.</p>
+          <p> </p>
+          <p>Você já lidou com os Espíritos Ardentes?</p>
+          <p> </p>
+          <p>Você realmente eliminou aquelas criaturas terríveis, nyerk nyerk?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Arquive os Espíritos Ardentes em 'mortos'."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças aos seus esforços, podemos respirar aliviados!</p>
+          <p> </p>
+          <p>Agora que o obstáculo dos Espíritos Ardentes foi removido, os mercadores podem viajar livremente, nyerk nyerk.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF4b_T3_ElementalFire3_58_An]s ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Arquive seu relatório com [%dic:STR_DIC_N_Shugo_LDF4b_09].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Comerciantes da Nuvem Negra precisam de ajuda com os Espíritos Ardentes nos Campos de Fogo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um boletim de atualização dos comerciantes da Black Cloud e eles precisavam de ajuda.</p>
+          <p> </p>
+          <p>Você eliminou os Espíritos Ardentes nos Campos de Fogo e Nagumonerk o recompensou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

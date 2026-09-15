@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você parece um [%userclass] dedicado.</p>
+          <p> </p>
+          <p>Mas isso não é garantia de que você terá sucesso no Artesanato.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <combine_skill_levelup>Learn Artesanato</combine_skill_levelup>
+      <combine_task>Work Order</combine_task>
+      <giveup_craft_expert>Relinquish Expert Status</giveup_craft_expert>
+      <giveup_craft_master>Relinquish Master Status</giveup_craft_master>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select_task">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não entendo como alguém pode se comprometer apenas pela metade com o Artesanato.</p>
+          <p> </p>
+          <p>É uma paixão que tudo consome. Isso me tira da cama de manhã!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você é muito ambicioso, mas talvez um pouco estúpido também.</p>
+          <p> </p>
+          <p>Você tem que aprender mais sobre Artesanato para tentar esse projeto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Eu vou, então."</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

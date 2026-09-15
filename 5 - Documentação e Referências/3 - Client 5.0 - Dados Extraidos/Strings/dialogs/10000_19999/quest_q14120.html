@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As florestas em Eltnen continuam diminuindo devido à invasão do deserto.</p>
+          <p> </p>
+          <p>Ainda pode haver rios e árvores ao redor desta fortaleza, mas o Deserto de Eiron agora se estende por toda parte.</p>
+          <p> </p>
+          <p>Não demorará muito até que até as últimas árvores tenham desaparecido por causa da seca.</p>
+          <p> </p>
+          <p>Como um Daeva da Floresta, é claro que quero impedir a invasão do deserto, mas não posso fazer isso sozinho.</p>
+          <p> </p>
+          <p>Os Elim também são afetados por esta situação.</p>
+          <p> </p>
+          <p>Mas a causa desta calamidade é algo antinatural. É difícil fazer algo a respeito. Nem mesmo o Rei da Floresta sabe o que devemos fazer.</p>
+          <p> </p>
+          <p>Só podemos salvar a floresta se soubermos exatamente qual é a causa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Presumi que os Elim também tivessem desistido e saído em busca de outra casa.</p>
+          <p> </p>
+          <p>Mas ainda há alguns deles aqui.</p>
+          <p> </p>
+          <p>O Putrid Mire Elim enviou um pedido de ajuda. Eles falaram da ameaça representada pela invasão do Deserto de Eiron.</p>
+          <p> </p>
+          <p>Os Elim estão enfrentando um grande sofrimento.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+    <CutScene id="177"/>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], por favor ouça o pedido de ajuda dos Elim. Vá para Putrid Mire e descubra qual é a situação dos Elim.</p>
+          <p> </p>
+          <p>Mesmo que não possamos salvar o Pântano, deveríamos pelo menos salvar a tribo Elim de sua queda.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Tree_Move_Demro] é o Elim que enviou o pedido de ajuda.</p>
+          <p> </p>
+          <p>Estou confiando em você, [%username]. Por favor, faça um esforço!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  <Voice file="Q1032-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eltnen não pode ser transformado num terreno baldio! Isso está fora de questão! Devemos evitar isso!</p>
+          <p> </p>
+          <p>Com o seu apoio, esperamos que os Elim sobrevivam, Daeva!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está muito ocupado? Isso é muito ruim...</p>
+          <p> </p>
+          <p>Por favor, conclua suas tarefas atuais rapidamente, porque é necessária ajuda urgentemente aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo... Amigo do Elim.</p>
+          <p> </p>
+          <p>Você ouviu meu pedido de ajuda?</p>
+          <p> </p>
+          <p>Preciso desesperadamente da sua ajuda.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Tree_NoMove_Lodas], Rei da Floresta, está em grande perigo.</p>
+          <p> </p>
+          <p>Não há água, mas ele não quer ir embora.</p>
+          <p> </p>
+          <p>Ele diz que a floresta deve ser salva da sua morte.</p>
+          <p> </p>
+          <p>O Rei ameaça murchar e morrer porque se recusa a encontrar um lugar com melhor fonte de água.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Eu vim para ajudar você. O que posso fazer?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lodas, Rei da Floresta, está em perigo.</p>
+          <p> </p>
+          <p>Mas ele não aceitará nenhuma ajuda.</p>
+          <p> </p>
+		  <p>Devemos trazer água para ele.</p>
+		  <p> </p>
+          <p>Existem [%dic:STR_DIC_E_LF2_Cherubim_Basket] na toca Kerubian.</p>
+          <p> </p>
+          <p>O Rei Lodas precisa de [plur][%dic:STR_DIC_I_quest_14120a]!</p>
+		  <p> </p>
+          <p>Diga ao Rei da Floresta que ele deve deixar o deserto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo... Amigo do Elim.</p>
+          <p> </p>
+          <p>Quem ajuda a floresta também ajuda os Elim.</p>
+          <p> </p>
+          <p>O que posso fazer para você?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Balde Kerubian limpo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Demro mandou você aqui?</p>
+		<p> </p>
+		  <p>Obrigado. Pequena Daeva.</p>
+		  <p> </p>
+          <p>Mandei o outro Elim para o Pântano Pútrido. Mas não saí deste lugar porque pretendo protegê-lo. Esse é o meu dever como Rei da Floresta.</p>
+		<p> </p>
+		  <p>Vou ficar aqui e se o destino assim o determinar, desaparecerei junto com a floresta.</p>
+          <p> </p>
+          <p>O Rei da Floresta não pode abandonar a sua floresta.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LF2_SZ_A1] e fale com [%dic:STR_DIC_N_Tree_Move_Demro] lá.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para [%dic:STR_DIC_W_LF2_SZ_A2] e obtenha um [%dic:STR_DIC_E_LF2_Cherubim_Basket]. Leve para [%dic:STR_DIC_W_LF2_SZ_B] e leve o balde para [%dic:STR_DIC_N_Tree_NoMove_Lodas].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Elim pediram ajuda a você. Receba uma tarefa deles.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Phomona, o Daeva da Floresta, contou a você sobre um grito de socorro dos Elim. Você foi ao Putrid Mire e conheceu Demro lá. Ele lhe contou que Lodas, o Rei da Floresta, queria fugir mesmo que o deserto estivesse engolindo cada vez mais terras.</p>
+          <p> </p>
+          <p>Você trouxe água limpa para Lodas, mas ele manteve firme sua decisão de permanecer na floresta. Lodas disse que era seu dever proteger a floresta.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

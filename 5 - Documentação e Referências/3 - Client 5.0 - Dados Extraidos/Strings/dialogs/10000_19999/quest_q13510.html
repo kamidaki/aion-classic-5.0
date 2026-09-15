@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está pronto para completar o [%dic:STR_DIC_I_quest_13510a] e o [%dic:STR_DIC_I_quest_fortress_04]?</p>
+          <p> </p>
+          <p>Você sabe que pode coletar o [%dic:STR_DIC_I_quest_13510a] a partir dos relatórios individuais. Você recebe quando conquista as fortalezas em North Katalam e South Katalam</p>
+          <p> </p>
+          <p>Você pode obter os relatórios de Pepe e Portis, ambos membros ocupados da Patrulha Katalam.</p>
+          <p> </p>
+          <p>E não se esqueça que você pode receber o [%dic:STR_DIC_I_quest_fortress_04] se tiver participado das missões da fortaleza e alcançado mérito.</p>
+          <p> </p>
+          <p>Eu sei que você já tem experiência em completar o Mármore do Caos e o Diário de Conquista de Katalam.</p>
+          <p> </p>
+          <p>Fazer esse esforço novamente requer uma vontade forte e um enorme poder de permanência.</p>
+          <p> </p>
+          <p>Além do mais, a guerra ainda não acabou.</p>
+          <p> </p>
+          <p>O que você acha? Você quer tentar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já completou esta missão uma vez, certo? Portanto, agora você não deverá ter dificuldades em ter sucesso pela segunda vez.</p>
+          <p> </p>
+          <p>É sempre difícil no começo, mas depois...</p>
+          <p> </p>
+          <p>Estou confiando que você fará isso de novo.</p>
+          <p> </p>
+          <p>Sua resistência é admirável, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Mármore do Caos e o Diário de Conquista de Katalam.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você teve sucesso, como esperado.</p>
+          <p> </p>
+          <p>Muito obrigado pela sua ajuda.</p>
+          <p> </p>
+          <p>Você se tornou um verdadeiro modelo para os Elyos.</p>
+          <p> </p>
+          <p>Estou enviando este diário para o Santuário para que possa ser mantido em segurança.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o [%dic:STR_DIC_I_quest_13510a] e o [%dic:STR_DIC_I_quest_fortress_04] para [%dic:STR_DIC_LDF5a_Tiryns_Commander].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha o Mármore do Caos e o Diário da Conquista Katalam.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tirins encorajou você a tentar obter o Mármore do Caos e o Diário de Conquista Katalam.</p>
+          <p> </p>
+          <p>Você reuniu com sucesso o Mármore do Caos e o Diário de Conquista de Katalam novamente e os trouxe para Tirins. Tirins agradeceu e ficou impressionado com seu desempenho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

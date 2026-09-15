@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não funciona assim. Só o pensamento me deixa furioso.</p>
+          <p> </p>
+          <p>Vingarei o pobre Shugo pela injustiça que sofreu!</p>
+          <p> </p>
+          <p>O consolo também deve ser oferecido aos soldados Elyos que morreram em batalha.</p>
+          <p> </p>
+          <p>Por favor, separe e mate todos os Asmodianos que você encontrar no Katalam Underground, então reporte-se a [%dic:STR_DIC_N_LDF5_Under_Dures_E].</p>
+          <p> </p>
+          <p>Mate os Asmodianos que estão vagando descaradamente pelo Katalam Underground como se o país pertencesse a eles.</p>
+          <p> </p>
+          <p>Mostre a eles o espírito de luta dos Elyos!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isto não servirá. O pensamento faz a raiva ferver dentro de mim.</p>
+          <p> </p>
+          <p>Vingarei o pobre Shugo pela injustiça que sofreu!</p>
+          <p> </p>
+          <p>O consolo também deve ser oferecido aos soldados Elyos que morreram em batalha.</p>
+          <p> </p>
+          <p>Por favor, parta e mate todos os Asmodianos que encontrar e depois reporte-se a [%dic:STR_DIC_N_LDF5_Under_Dures_E].</p>
+          <p> </p>
+          <p>Mate os Asmodianos que vagam pelo Katalam Underground sem vergonha, como se a terra pertencesse a eles.</p>
+          <p> </p>
+          <p>Mostre a eles o espírito de luta dos Elyos!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É fácil esquecer a rapidez com que o tempo passa no Katalam Underground.</p>
+          <p> </p>
+          <p>Não é porque você não pode ver o céu.</p>
+          <p> </p>
+          <p>É mais porque há muito o que fazer.</p>
+          <p> </p>
+          <p>Há duas vezes mais coisas para fazer aqui do que acima do solo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você concluiu o trabalho com sucesso.</p>
+          <p> </p>
+          <p>Hadius já me contou sobre sua missão de punição aos Asmodianos.</p>
+          <p> </p>
+          <p>Assim como os Balaur, destruir os Asmodianos é urgente.</p>
+          <p> </p>
+          <p>Hadius me escreveu isso.</p>
+          <p> </p>
+          <p>Eu concordo com isso. Aqui, aceite isso como uma recompensa por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Asmodianos em [%dic:STR_DIC_W_LDF5_Under_all] ([%2]/3).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LDF5_Under_Dures_E].</font></p></step>
+
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Asmodianos vagando pelo metrô Katalam.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quanto mais Hadius considera o assunto com Aktorunerk, mais irritado ele fica. Ele, portanto, instruiu você a punir os Asmodianos que vagam pelo Katalam Underground.</p>
+          <p> </p>
+          <p>Você matou os Asmodianos no Katalam subterrâneo e informou Dyures, que lhe deu elogios e uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

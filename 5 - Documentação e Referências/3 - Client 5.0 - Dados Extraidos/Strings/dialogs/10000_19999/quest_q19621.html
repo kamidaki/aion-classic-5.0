@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conhece a área em South Katalam?</p>
+          <p> </p>
+		  <p>Assim como no Norte de Katalam, esta região também apresenta alta ocorrência de Id. Você também encontrará 10 bases e 2 fortalezas lá.</p>
+		  <p> </p>
+		  <p>A maior cidade da região sul é Pandarung. É também onde a Goldrinyerk Limited está sediada.</p>
+		  <p> </p>
+		  <p>Goldrinyerk Limited tem uma aprovação especial para poder negociar com os Balaur e os Asmodianos e conosco.</p>
+		  <p> </p>
+		  <p>A principal base Elyos no sul de Katalam é Pepe Garrison.</p>
+		  <p> </p>
+		  <p>A Gold Feather Legião, liderada pelo Tribune Pepe, está localizada lá.</p>
+		  <p> </p>
+		  <p>Se você estiver lá, encontre [%dic:STR_DIC_N_LDF5b_Demades_E].</p>
+		  <p> </p>
+		  <p>Ele é responsável por proteger South Katalam. Eu recomendo que você o encontre.</p>
+		</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nicolas enviou você?</p>
+          <p> </p>
+		  <p>Sou Demades e sou responsável pelo Bastião Parede de Aço em South Katalam.</p>
+		  <p> </p>
+		  <p>No sul e no norte de Katalam há batalhas constantes pelas bases.</p>
+		  <p> </p>
+		  <p>O Exército Beritra já avançou até o portão sul.</p>
+		  <p> </p>
+		  <p>Temos que detê-los!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Parece ser uma situação muito perigosa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está certo sobre isso.</p>
+          <p> </p>
+		  <p>Mesmo que conquistemos a fortaleza e a base, o Exército Beritra continuará a conquistar a Muralha de Aço. As coisas não parecem boas para nós.</p>
+		  <p> </p>
+		  <p>Sua ajuda é necessária em muitos lugares em South Katalam, Daeva.</p>
+		  <p> </p>
+		  <p>Aguardo sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Demades_E] no [%dic:STR_DIC_W_LDF5b_SZ_C2_1] em South Katalam.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para Pepe Garrison em South Katalam e encontre Demades.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nicolas sugeriu enviar alguém para South Katalam.</p>
+          <p> </p>
+          <p>Demades, o Capitão do Bastião Parede de Aço, contou a você suas grandes esperanças para o futuro e pediu que você resolvesse os problemas em South Katalam.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

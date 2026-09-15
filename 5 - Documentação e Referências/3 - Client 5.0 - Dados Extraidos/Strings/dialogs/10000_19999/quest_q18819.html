@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um dia, eu estava mandando uma mensagem para o Oriel Plaza quando, sim! Algo brilhante caiu do céu.</p>
+          <p> </p>
+          <p>Obviamente, corri para dar uma olhada. Ficou tão lindo que eu queria mais logo!</p>
+          <p> </p>
+          <p>Você já viu um [%dic:STR_DIC_I_junk_dailygather_stone_01] antes? Se sim, você poderia me conseguir um pouco, por favor?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você extraiu algum minério de Éter recentemente?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Sim. Encontrei esses lindos meteoritos de éter."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Yay! Meteoritos de Éter!</p>
+          <p> </p>
+          <p>Eu amo o jeito que eles brilham.</p>
+          <p> </p>
+          <p>Obrigado por trazê-los para mim.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre [%dic:STR_DIC_I_junk_dailygather_stone_01]s e leve-os para [%dic:STR_DIC_N_Setin].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Setin quer Meteoritos de Éter, encontrados durante a coleta de minérios em Oriel. Compre um pouco para ela.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Setin tropeçou em um Meteorito de Éter, então quis encontrar mais.</p>
+          <p> </p>
+          <p>Você adquiriu alguns enquanto coletava minérios em Oriel e a emocionou quando os presenteou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], surgiu algo que quero que você cuide para mim.</p>
+          <p> </p>
+          <p>Foi relatado que o principal Líder Escoteiro Drakan foi avistado em um local onde os Vinculados de Dragão se reúnem.</p>
+          <p> </p>
+          <p>Não sabemos por que o [%dic:STR_DIC_M_LDF5B_d2_Vri_Confuse_El_SN_NmdQ_65_Ae] está ali, mas provavelmente seria melhor eliminá-lo.</p>
+          <p> </p>
+          <p>Tenho uma sensação desconfortável sobre isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho que há quase certamente uma conexão entre os Soldados Beritra e Vinculado de Dragão.</p>
+          <p> </p>
+          <p>Eles devem estar planejando alguma coisa.</p>
+          <p> </p>
+          <p>O [%dic:STR_DIC_M_LDF5B_d2_Vri_Confuse_El_SN_NmdQ_65_Ae] apareceria aqui de outra forma?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Também é importante descobrir que tipo de intriga está sendo planejada aqui, mas na verdade é tarde demais.</p>
+          <p> </p>
+          <p>Afinal, dar tempo ao principal líder dos escoteiros para investigar este caso pode significar que o pior já poderia ter acontecido.</p>
+          <p> </p>
+          <p>Muito obrigado por fazer isso antes que fosse tarde demais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5B_d2_Vri_Confuse_El_SN_NmdQ_65_Ae]. ([%2]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard14_L]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Líder Escoteiro Supremo Drakan que está em contato com o Vinculado de Dragão.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shibron pediu para você matar o líder batedor Drakan da Guilda de Proteção, que apareceu na reunião dos Vinculados de Dragão.</p>
+          <p> </p>
+          <p>Conforme solicitado, você matou o líder batedor Drakan e ao retornar foi agradecido por ele ter sido eliminado antes que algo de ruim acontecesse.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

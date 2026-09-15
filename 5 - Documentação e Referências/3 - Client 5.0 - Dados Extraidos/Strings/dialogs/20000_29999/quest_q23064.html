@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu, Pandarunerk, obrigado, [%username], em nome da Goldrinyerk Limited, ak.</p>
+          <p> </p>
+          <p>É por isso que Pandarunerk ligou para você, [%username], ak.</p>
+          <p> </p>
+          <p>A Tábua da Gratidão é um símbolo do agradecimento da Goldrinyerk Limited pela ajuda de Daeva, também conhecido como.</p>
+          <p> </p>
+          <p>Leia, ok.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Goldrinyerk Limited é a maior empresa de Katalam, mas sempre recebemos calorosamente uma pessoa capaz como [%username], ak.</p>
+          <p> </p>
+          <p>Espero que Daeva goste do Tablet of Gratitude de Pandarunerk, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você ouve.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pandarunerk, estou muito impressionado com você, [%username], akakak.</p>
+          <p> </p>
+          <p>Você é um verdadeiro solucionador de problemas, [%username]!</p>
+          <p> </p>
+          <p>Esperamos que você ajude Goldrinyerk novamente no futuro, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Usar [%dic:STR_DIC_I_DOC_QUEST_23064A].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LDF5b_Pandaroong_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha um sinal de gratidão de Pandarunerk, chefe da Goldrinyerk Limited.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um troféu de Pandarunerk, presidente da Goldrinyerk Limited, por seus serviços prestados à empresa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

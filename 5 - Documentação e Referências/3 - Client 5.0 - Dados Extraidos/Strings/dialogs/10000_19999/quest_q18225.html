@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar da nova área de treinamento, [%username]?</p>
+          <p> </p>
+          <p>Foi preparado especialmente na Academia Kaisinel. Um tipo de treinamento totalmente diferente espera por você lá.</p>
+          <p> </p>
+          <p>O treinamento é ainda melhor do que no Empyrean Crucible e no Solus Crucible.</p>
+          <p> </p>
+          <p>Use o [%dic:STR_DIC_OBJ_LC1_LC2_TELEPORT] bem aqui ao meu lado e vá para o [%dic:STR_DIC_W_Arena_L_Lobby].</p>
+          <p> </p>
+          <p>Encontre o Instrutor [%dic:STR_DIC_N_Molfus] e deixe-o explicar mais sobre isso para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Faz muito tempo que não vejo você.</p>
+          <p> </p>
+          <p>Você já ouviu alguma coisa sobre o novo treinamento?</p>
+          <p> </p>
+          <p>Muito bom. Você chegou na hora certa.</p>
+          <p> </p>
+          <p>Aquele que não consegue continuar se aprimorando, um dia ficará sem outra opção a não ser recuar.</p>
+          <p> </p>
+          <p>É por isso que esta nova arena de treinamento foi aberta.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você não souber usar suas habilidades, sempre será derrotado na batalha.</p>
+          <p> </p>
+          <p>Para sobreviver, você deve se submeter a um treinamento intenso e progredir ainda mais dessa maneira.</p>
+          <p> </p>
+          <p>A Kaisinel Academy agora oferece uma maneira totalmente nova de treinar.</p>
+          <p> </p>
+          <p>No Crisol, há uma nova sala onde você pode passar por novos treinamentos para fortalecer seu espírito!</p>
+          <p> </p>
+          <p>É por isso que também não supervisionarei seu treinamento.</p>
+          <p> </p>
+          <p>Consulte o oficial administrativo [%dic:STR_DIC_N_Eno]! Ela explicará todo o resto para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+          <p> </p>
+          <p>Meu nome é Perbano. Sou responsável pela administração aqui.</p>
+          <p> </p>
+          <p>Como posso ajudá-lo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que veio por causa do cadinho.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, é você, [%username]?</p>
+          <p> </p>
+          <p>Estou tão ocupado com minha tarefa que não te reconheci a princípio.</p>
+          <p> </p>
+          <p>Eu estava esperando por você. Você veio na hora certa.</p>
+          <p> </p>
+          <p>Um momento por favor. Posso recebê-lo novamente?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Use o [%dic:STR_DIC_OBJ_LC1_LC2_TELEPORT] para chegar ao [%dic:STR_DIC_W_Arena_L_Lobby] e fale com [%dic:STR_DIC_N_Molfus] lá.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Eno] em [%dic:STR_DIC_W_Arena_L_Lobby].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Isso significa que uma nova arena de treinamento foi aberta. Vá para a Kaisinel Academy e pergunte sobre isso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O publicitário do Crisol, Quilven, contou a você sobre uma arena de treinamento recém-inaugurada e recomendou que você perguntasse a Molfus, o instrutor, sobre isso.</p>
+          <p> </p>
+          <p>Molfus lhe disse que o treinamento é totalmente único e que portanto um novo instrutor cuidaria dele. Foi por isso que ele mandou você para o Oficial de Recompensas Perbano.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

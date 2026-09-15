@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41572</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Deixei cair a cesta de frutas para perseguir os Worgs. Você sabe, por sua pele.</p>
+          <p> </p>
+          <p>Eles têm pêlo grosso que deveria servir como uma capa quente para meu avô naquelas noites frias. Mas não quero preocupar o vovô. Vou voltar, rápido, rápido.</p>
+          <p> </p>
+          <p>Você poderia me fazer um favor ao vovô e caçar [%dic:STR_DIC_M_LDF4b_T2_Monster_Quest_Zaif] por seu [%dic:STR_DIC_I_quest_41572a], [%username]? Ele adoraria!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrou minha neta! Obrigado... [%userclass].</p>
+          <p> </p>
+          <p>Estou emocionado por ela estar segura, é claro, mas ainda me preocupo com ela... exuberância.</p>
+          <p> </p>
+          <p>Eu sei que ela fez isso por mim, mas e se ela estiver machucada por um Worg ou alguma outra criatura?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Este não vai machucar ninguém..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Redina disse que pediu que você fizesse esse trabalho para ela. E aqui está!</p>
+          <p> </p>
+          <p>É um presente maravilhoso. Não posso agradecer o suficiente à minha neta e, aparentemente, a você também.</p>
+          <p> </p>
+          <p>Aqui, este é um sinal do meu agradecimento. Por favor, pegue.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue o [%dic:STR_DIC_I_quest_41572a] e leve-o para [%dic:STR_DIC_N_Kiriyu].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Redina precisa de uma skin Worg. Livre-se de [%dic:STR_DIC_M_LDF4b_T2_Monster_Quest_Zaif] e colete a pele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Redina pediu que você ganhasse a Worg Skin de presente para o avô dela. Você se livrou de [%dic:STR_DIC_M_LDF4b_T2_Monster_Quest_Zaif] e trouxe sua pele para Kiriyu, que estava surpreendentemente lúcido quando se tratava de sua neta.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

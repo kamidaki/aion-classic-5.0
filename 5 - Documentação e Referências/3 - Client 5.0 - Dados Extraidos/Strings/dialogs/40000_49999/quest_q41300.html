@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41300</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sim, tenho um pagamento quebrado. Coisa cruel, mata você assim que olha para você, mas se você for mais teimoso do que ele, pode ficar aí em cima por um ou dois minutos.</p>
+          <p> </p>
+          <p>Jasper não é exatamente amigável, mas você pode tentar montá-lo se quiser. Apenas pegue as rédeas fora do acampamento e ligue para ele. Mas não reclame comigo quando ele te jogar!</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Vesetia] ali acha que descobriu Pagati, mas ela nem montou no meu Jasper. Ela é do tipo que gosta de ciência, não gosta de sujar as mãos. Acho que ela só está com medo de cair.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu vi você andando na Pagati do Fudion, coitado. Ele chicoteia sempre que isso o derruba. Não admira que o Pagati o odeie.</p>
+          <p> </p>
+          <p>Mas você pode imaginar que cavalaria poderosa poderíamos construir se descobrirmos como realmente domesticá-los? Você enfrentou Balaur montado, não foi? Eles são uma força para ser vista!</p>
+          <p> </p>
+          <p>Acho que a chave está em capturar os Pagati enquanto eles são jovens e em construir sua confiança. Vale a pena o esforço, não acha?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Cavalaria Pagati? Definitivamente vale a pena o esforço."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Que bom que você concorda, porque preciso de ajuda!</p>
+          <p> </p>
+          <p>Preciso que alguém participe de um pequeno experimento. Ok, um grande experimento.</p>
+          <p> </p>
+          <p>Quero criar e domar uma ninhada de Pagati e construir uma cavalaria Reiana. E eu posso fazer isso - se você concordar em me ajudar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Use o [%dic:STR_DIC_I_Q41300_pagati] e ande na Pagati da Fudion.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Vesetia] [%5].</font></p></step>
+               
+    </steps>
+          <p><font font_xml="quest_summary">Fudion tem um Pagati, Jasper, do qual se orgulha. Mas o Pagati não é exatamente cooperativo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fudion se ofereceu para deixar você montar seu Pagati, Jasper. A viagem foi curta, já que Jasper odeia Daevas, mas ainda assim foi emocionante.</p>
+          <p> </p>
+          <p>Você conversou com Vesetia sobre sua pesquisa sobre domesticação de Pagati, e ela sugeriu que você a ajudasse.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

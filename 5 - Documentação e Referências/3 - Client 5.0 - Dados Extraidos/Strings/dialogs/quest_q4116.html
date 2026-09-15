@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q4116</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Passei pelo Fenda em uma missão de reconhecimento para obter o máximo de informações possível.</p>
+          <p> </p>
+	  <p>Ao fazer isso, vi o Silikor da Memória vagando como se tivesse despertado para a vida.</p>
+          <p> </p>
+          <p>Silikor da Memória... Queridos Senhores...</p>
+          <p> </p>
+ 	  <p>[%username], vá encontrar seus camaradas de armas imediatamente e entre no [%dic:STR_DIC_E_D_LF2a_entrance].</p>
+          <p> </p>
+	  <p>Mate [%dic:STR_DIC_E_D_LF2a_Q4116] e traga-me [%dic:STR_DIC_I_Q4116a].</p>
+          <p> </p>
+	  <p>Depressa, antes que os Elyos cheguem antes de nós!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pelo que sei, o laboratório secreto é um local onde são armazenados resultados de pesquisas de tremenda importância que vêm pessoalmente de Theobomos.</p>
+          <p> </p>
+          <p>É por isso que os Elyos querem muito descobrir os segredos do laboratório.</p>
+          <p> </p>
+          <p>Se conseguirmos encontrar os resultados da pesquisa realizada lá, isso daria um enorme impulso à ciência asmodiana...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Silikor da Memória.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esse é o Silikor da Memória do Laboratório Theobomos?</p>
+          <p> </p>
+          <p>Por Aion, você fez um ótimo trabalho!</p>
+          <p> </p>
+	  <p>Vou enviá-lo imediatamente para o Pandemônio para que seja decifrado.</p>
+          <p> </p>
+          <p>Bom trabalho! Estou impressionado com a riqueza de informações que ele contém.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha [%dic:STR_DIC_I_Q4116a] no Laboratório Theobomos e leve-o para [%dic:STR_DIC_N_parqusha].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha o Silikor da Memória que pode revelar os resultados da pesquisa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parqusha pediu que você trouxesse o Silikor da Memória.</p>
+          <p> </p>
+          <p>Quando você deu a ele o Silikor da Memória, ele ficou emocionado, pois poderia conter resultados valiosos de pesquisa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>São necessários 10 cristais de Id quebrados para fazer o [plur][%dic:STR_DIC_I_item_ldf5_idunder_rune_01], akakak.</p>
+          <p> </p>
+          <p>Shugo já preparou 100 peças para os bravos Daevas que aceitaram o desafio, akakak.</p>
+          <p> </p>
+          <p>Daeva quer levá-los, ok?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo pode dar a Daeva 100 cristais de Id quebrados, akakak.</p>
+          <p> </p>
+          <p>Shugo estará esperando por Daeva aqui. Daeva pode aparecer a qualquer hora, ak.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui estão 100 cristais de identificação quebrados, ak.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o cristal de identificação quebrado de Runarunerk (bônus).</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha o cristal de identificação quebrado de Runarunerk (bônus).</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu o Id Crystal quebrado de Runarunerk (bônus).</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

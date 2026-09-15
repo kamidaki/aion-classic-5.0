@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva sabe o que são medalhas de Ceranium, ok?</p>
+          <p> </p>
+          <p>As Medalhas Ceranium são Medalhas de Serviço especiais e difíceis de conseguir.</p>
+          <p> </p>
+          <p>Se Daeva trouxer uma Medalha de Mithril e um Soro Balaur Brilhante, Shugo pode tentar transformar essas coisas em uma Medalha de Cerânio.</p>
+          <p> </p>
+          <p>O método de transformação ainda não é perfeito, mas Daeva quer tentar uma vez mesmo assim, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva deve trazer para Shugo uma Medalha de Mithril e um Soro Balaur Brilhante se Daeva quiser uma Medalha de Cerânio.</p>
+          <p> </p>
+          <p>Se faltar apenas um, a transformação não pode ocorrer.</p>
+          <p> </p>
+          <p>Daeva precisa ter ambos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a medalha e o soro sanguíneo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo lhe dirá agora mesmo: a transformação pode potencialmente falhar e então não produzirá nada.</p>
+          <p> </p>
+          <p>Shugo não está mentindo para Daeva, ok.</p>
+          <p> </p>
+          <p>Daeva deve verificar imediatamente se a transformação foi bem-sucedida.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve a Medalha de Mithril e o Soro Balaur Reluzente para Betarinerk.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Traga para Betarinerk uma Medalha de Mithril e um Soro Balaur Brilhante para que ele possa tentar converter os materiais em uma Medalha de Cerânio.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Betarinerk disse que havia uma maneira de transformar uma Medalha de Mithril e um Soro Balaur Brilhante em uma Medalha de Cerânio.</p>
+          <p> </p>
+          <p>Você trouxe os materiais para ele e o ajudou a convertê-los.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

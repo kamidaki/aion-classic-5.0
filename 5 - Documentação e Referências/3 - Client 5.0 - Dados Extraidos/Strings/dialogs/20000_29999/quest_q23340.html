@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Fortaleza de Prades, importante ponto estratégico, é ocupada pelo Exército de Beritra.</p>
+          <p> </p>
+          <p>Por favor, mate a Vanguarda [%dic:STR_DIC_E_LDF5b_F4_Vri]!</p>
+          <p> </p>
+          <p>Temos que aproveitar ao máximo o tempo em que o Exército Beritra está disperso.</p>
+          <p> </p>
+          <p>Se enfraquecermos o Exército Beritra agora, o ataque à fortaleza será mais fácil para nós mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A 1ª Guilda é um Exército Beritra comum sob o comando de um Drakan chamado Vasti.</p>
+          <p> </p>
+          <p>Depois que a 2ª Guilda tomou medidas para se fundir com a 1ª Guilda, [%dic:STR_DIC_E_LDF5b_F4_Vri] parece querer controlar esta região.</p>
+          <p> </p>
+          <p>Não há melhor oportunidade do que agora, uma vez que a Força de Combate ainda não está completamente constituída.</p>
+          <p> </p>
+          <p>Não devemos permitir a liberdade de Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado por concluir a tarefa tão rapidamente.</p>
+          <p> </p>
+          <p>Graças à sua ajuda, [%username], os preparativos puderam ser feitos.</p>
+          <p> </p>
+          <p>Em breve chegará a hora de realmente avançar com a operação de ocupação da fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_E_LDF5b_F4_Vri] ([%2]/9).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard18_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Destruir o 43º Esquadrão de Eliminação da 1ª Tropa do Exército Beritra que capturou a Fortaleza de Prades.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rorik pediu para você matar o 43º Esquadrão de Eliminação do Exército Beritra, que está ocupando a Fortaleza de Prades.</p>
+          <p> </p>
+          <p>Conforme solicitado, você matou o 43º Esquadrão de Eliminação e ao retornar foi agradecido, pois o ataque à fortaleza agora ocorrerá sem problemas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21518</QuestId>
+    <QuestName>칼리돈 그림 문자</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estamos tentando entrar em [%dic:STR_DIC_W_LDF4a_SZ_A4_03] há um bom tempo. É mais difícil do que parece.</p>
+          <p> </p>
+          <p>Esses Calydons podem não ser tão espertos quanto nós, mas conhecem seu território e sabem como defendê-lo. Precisamos de uma vantagem.</p>
+          <p> </p>
+          <p>Se você pesquisar [%dic:STR_DIC_W_LDF4a_SZ_A4_03], encontrará [%dic:STR_DIC_I_QUEST_21518A]s. Pense neles como notas e memorandos primitivos.</p>
+          <p> </p>
+          <p>Posso obter informações valiosas deles - talvez até uma forma de destruir suas defesas. Você pode pegar um pouco para mim?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tribo Humnaz é uma ameaça menor no grande esquema das coisas, mas ainda é uma ameaça.</p>
+          <p> </p>
+          <p>Cada Daeva que precisamos enviar para nos defender contra eles é um a menos para enviar contra Tiamat.</p>
+          <p> </p>
+          <p>É por isso que esses [%dic:STR_DIC_I_QUEST_21518A]s são tão vitais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Então espero que sejam úteis."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vejamos... uma receita de Porgus grelhado, conteúdo de uma cabana de armazenamento, uma declaração de amor bastante angustiada a alguém chamado "Kurria"...</p>
+          <p> </p>
+          <p>Ah! Este! É uma descrição detalhada das defesas do Território Humnaz e da força de suas tropas em várias regiões!</p>
+          <p> </p>
+          <p>Isso irá para os estrategistas imediatamente! Oh, meu sangue está fluindo. Aqueles Humnaz ainda encontrarão seu destino!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pesquise [%dic:STR_DIC_W_LDF4a_SZ_A4_03], encontre [%dic:STR_DIC_I_QUEST_21518A]s e leve-os para [%dic:STR_DIC_N_Estotia].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre a chave para a queda do Território Humnaz e leve-a para Estotia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Estótia quer compreender melhor como o Território Humnaz é defendido, para melhor derrubá-lo.</p>
+          <p> </p>
+          <p>Você trouxe placas de pedra de Calydon e uma delas detalhou as defesas de Humnaz. A Estônia ficou muito feliz.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

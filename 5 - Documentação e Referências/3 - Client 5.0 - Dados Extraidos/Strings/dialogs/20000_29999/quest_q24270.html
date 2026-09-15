@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q24270</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar da arma conhecida como "Olho do Dredgion"? É o componente dos navios de guerra Balaur que se parece com uma pérola vermelha.</p>
+          <p> </p>
+          <p>Tem um imenso poder destrutivo. Aparentemente é uma arma biológica que pode se curar.</p>
+          <p> </p>
+          <p>Os Balaur hibridizaram seres vivos e armas. E é por isso que as chamamos de Armas Biológicas.</p>
+          <p> </p>
+          <p>Se quisermos resistir à tecnologia dos Balaur, precisaremos de armas mais fortes. Então precisamos de amostras de armas biológicas! Uma amostra do Olho do Dredgion seria melhor. Obter tal amostra é virtualmente impossível...</p>
+          <p> </p>
+          <p>Nosso informante [%dic:STR_DIC_N_DF3_Alberihi_E] descobriu que aparentemente há outra arma biológica Balaur no [%dic:STR_DIC_W_STR_DF3_SZ_H]. Vá vê-lo e descubra mais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que traz um Daeva como você a um lugar como este?</p>
+          <p> </p>
+          <p>Você deve estar sempre alerta por aqui - o perigo espreita por toda parte!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que Nerita te enviou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Você é a ajuda que Nerita iria enviar?</p>
+          <p> </p>
+          <p>Hmm... Você parece um tanto estranho...</p>
+          <p> </p>
+          <p>Mas de qualquer forma, você é muito bem-vindo aqui. Se você deseja completar sua missão com sucesso, não pode fazê-lo sem entusiasmo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_DF3_Alberihi_E] perto da entrada de [%dic:STR_DIC_W_STR_DF3_SZ_H].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Fale com Albrich para obter uma amostra de arma biológica da Caverna Draupnir.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O General de Brigada Nerita lhe contou sobre a Arma Biológica Balaur e disse que os Asmodianos deveriam desenvolver uma arma que se igualasse a ela.</p>
+          <p> </p>
+          <p>Amostras de armas biológicas da Caverna Draupnir foram necessárias para construir tal arma.</p>
+          <p> </p>
+          <p>Você procurou Albrich na Caverna Draupnir para saber mais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

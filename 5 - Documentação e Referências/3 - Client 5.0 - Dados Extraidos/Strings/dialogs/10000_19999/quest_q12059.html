@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12059</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqueles ignorantes de Kamar! Como posso fazer alguma coisa com um recém-chegado tão ingênuo como meu comandante? Ela nem sabe nada sobre o meio ambiente local ou seus perigos únicos!</p>
+          <p> </p>
+          <p>Quando contei a ela sobre a ameaça que os [%dic:STR_DIC_M_LDF4b_T2_Agrint_Gravity_58_An]s representavam, ela nem pareceu entender!</p>
+          <p> </p>
+          <p>Ainda assim, ela os deixou comigo, o que provavelmente é sensato. Eu, por sua vez, gostaria de solicitar que você matasse [%dic:STR_DIC_M_LDF4b_T2_Agrint_Gravity_58_An]s em conjunto com meus próprios esforços.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tentei dizer a Beiko que os Moss Agrints estavam competindo conosco pelos recursos do Éter, mas ela parecia totalmente confusa.</p>
+          <p> </p>
+          <p>Como ela pode fingir que toma decisões e comandos informados sem liderança e experiência em combate local?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu, aparentemente."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, louvado seja Siel porque há mais ALGUÉM por aqui que sabe o que é o quê!</p>
+          <p> </p>
+          <p>Agora, se eu pudesse fazer aqueles idiotas de Kamar verem que este é um posto importante demais para um comandante novato.</p>
+          <p> </p>
+          <p>Você acha que poderia Converse com eles em meu nome? Não, não. Deixa para lá. Ainda assim, você mais do que mereceu o que estou prestes a lhe dar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os [%dic:STR_DIC_M_LDF4b_T2_Agrint_Gravity_58_An]s ([%2]/7).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Magnas].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Magnas acredita que é vital matar Moss Agrints. Ajude-o.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Magnas acreditava que era necessário matar Moss Agrints para reduzir a competição por Éter, mas sentiu que Beiko não tinha qualidades de liderança para fazer o trabalho corretamente.</p>
+          <p> </p>
+          <p>Então, a pedido dele, você matou os Moss Agrints. Magnas ficou grato, mas ainda frustrado com a inexperiência de Beiko.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

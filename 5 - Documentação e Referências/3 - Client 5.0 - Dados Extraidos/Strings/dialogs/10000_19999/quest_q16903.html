@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Kishar Krall parecem estar planejando um contra-ataque.</p>
+          <p> </p>
+          <p>De acordo com Sacerdote [%dic:STR_DIC_N_Maloren] em [%dic:STR_DIC_W_LF3_SZ_004], os Kishar-Krall ergueram um posto e estão expandindo seus poderes.</p>
+          <p> </p>
+          <p>Ouvi dizer que os Krall também começaram a lançar ataques em Eltnen. Há uma forte suspeita de que alguém esteja incitando o Krall a fazer isso.</p>
+          <p> </p>
+          <p>Vá rapidamente para [%dic:STR_DIC_N_Maloren] em [%dic:STR_DIC_W_LF3_SZ_004]. Você deve manter o juízo sobre você, pois eles estão por perto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kishar Krall está reunindo reforços para atacar o posto de guarda neste local.</p>
+          <p> </p>
+          <p>De acordo com o relatório do Guardian que patrulha a aldeia, acredita-se que Krall esteja formando uma tropa de guerrilha composta por guerreiros particularmente agressivos.</p>
+          <p> </p>
+          <p>Vamos deixar Kishar Krall, que ousa testar a força de um guardião, sentir a ira do Sanctum.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_M_LF3_1_Light_Raider] no posto e pegue [%dic:STR_DIC_W_LF3_Village_01]. Vença o líder, o moral dos subordinados cairá automaticamente.</p>
+          <p> </p>
+          <p>A proteção de Ariel cuidará de você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para conquistar o posto, você precisa se livrar de [%dic:STR_DIC_M_LF3_1_Light_Raider].</p>
+          <p> </p>
+          <p>Derrubar seu líder diminuirá o moral do brutal Esquadrão Guerrilha Krall.</p>
+          <p> </p>
+          <p>Como a situação aqui está mudando constantemente e os Asmodianos estão aguardando sua oportunidade, os Asmodianos são capazes de ocupar [%dic:STR_DIC_W_LF3_Village_01].</p>
+          <p> </p>
+          <p>Demonstre o poder do Sanctum.</p>
+	  </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você matou o líder guerrilheiro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você aceitou o cargo? Estou muito grato a você, sabia que você era o Daeva selecionado pelo Sanctum.</p>
+          <p> </p>
+          <p>O Chilarch do Protetorado Heiron estará aqui em breve, mas nem Kishar Krall nem os Asmodianos desistirão rapidamente.</p>
+          <p> </p>
+          <p>Tenho a sensação de que a batalha por este posto não terminará rapidamente.</p>
+          <p> </p>
+          <p>Você deve estar em guarda, [%username]. A Proteção de Ariel irá protegê-lo.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Maloren] em [%dic:STR_DIC_W_LF3_SZ_004].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Matar [%dic:STR_DIC_M_LF3_1_Light_Raider] ([%11]/1).</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Relatar para [%dic:STR_DIC_N_Maloren].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Conquiste o [%dic:STR_DIC_W_LF3_Village_01] dos Kishar Krall, que estão fortalecendo suas forças para o ataque ao Posto de Observação de Kishar, e mate [%dic:STR_DIC_M_LF3_1_Light_Raider].</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ao comando de Perento, você ocupou o Posto de Guarda Kishar perto do Posto de Observação Kishar e removeu o líder guerrilheiro.</p>
+          <p> </p>
+          <p>Malloren, do Posto de Observação de Kishar, disse que os Asmodianos e Krall também atacariam o posto no futuro.</p>
+          <p> </p>
+          <p>A batalha não terminará tão facilmente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

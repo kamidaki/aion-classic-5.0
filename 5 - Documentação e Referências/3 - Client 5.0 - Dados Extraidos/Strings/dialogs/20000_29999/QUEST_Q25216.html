@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], estando tão ansioso quanto você, tenho certeza que gostaria de contribuir para nossa vitória em Vengar, correto?</p>
+          <p> </p>
+          <p>Você nos ajudaria a proteger o Mar Profundo?</p>
+          <p> </p>
+          <p>Basta eliminar o [plur][%dic:STR_DIC_M_DF5_P2_Mimic_63_n], o [plur][%dic:STR_DIC_M_DF5_P2_FlowerWorm_64_An] e o [%dic:STR_DIC_M_DF5_Q25216_all]. Lembre-se de coletar provas de seu sucesso.</p>
+          <p> </p>
+          <p>Se você realizar uma tarefa após a outra com segurança, em breve conquistaremos Vengar inteira.</p>
+          <p> </p>
+          <p>Por favor, faça um esforço!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Balaur e os Elyos estão causando problemas em Vengar. O que torna tudo pior é que também não podemos enviar tropas porque não conhecemos este terreno.</p>
+          <p> </p>
+          <p>Para sermos eficazes de alguma forma, temos que conhecer a área.</p>
+          <p> </p>
+          <p>Você cumpriu sua missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Prova de Vitória do Mar Profundo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Examinei todas as evidências que você trouxe.</p>
+          <p> </p>
+          <p>Aprendi mais sobre Vengar graças a você.</p>
+          <p> </p>
+          <p>Agora podemos nos concentrar no confronto com os Balaur e os Elyos.</p>
+          <p> </p>
+          <p>Obrigado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não perca meu tempo!</p>
+          <p> </p>
+          <p>Vá rápido e traga-me a prova do Mar Profundo.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças à sua ajuda, a partir de agora será mais fácil em Vengar.</p>
+          <p> </p>
+          <p>Daevas como você também são necessários em outras regiões. Avisarei você se houver alguma nova tarefa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Infelizmente, não poderei lhe dar uma recompensa por esta missão.</p>
+          <p> </p>
+          <p>Por favor, receba sua recompensa do Mar Profundo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna o [%dic:STR_DIC_I_DF5_Advance_Q25216_all] e leve-o para [%dic:STR_DIC_N_DF5_Bastan_E].</font></p>[%collectitem]</step>
+	       <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_DF5_Bastan_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Complete uma missão de Bastan. Destrua a Tropa de Perseguição, o Deep Sea Oculis e os Deep Sea Caltrops. Traga a prova da sua vitória para Bastan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bastan, o comandante interino do Protetorado, estava preocupado porque havia muitas criaturas perigosas na área. Ele lhe deu a missão de proteger a área.</p>
+          <p> </p>
+          <p>Então você eliminou a Pursuit Troop, os Deep Sea Oculis e os Deep Sea Caltrops e levou a prova de sua vitória para Bastan.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

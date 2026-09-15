@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo, [%username].</p>
+          <p> </p>
+          <p>Arconte ou não, os Daevas também têm responsabilidades.</p>
+          <p> </p>
+          <p>É tarefa dos Daevas, que foram dotados de vida eterna e asas, proteger aqueles que são mais fracos.</p>
+          <p> </p>
+          <p>Fazer algo pelos outros pode ser novo para você.</p>
+          <p> </p>
+          <p>Mas tudo tem que começar em algum lugar. Então vamos começar aos poucos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para começar, por que você não elimina as criaturas que voam ao redor da fortaleza?</p>
+          <p> </p>
+          <p>Você também pode treinar sua técnica de vôo durante esta tarefa.</p>
+          <p> </p>
+          <p>Por favor ajude; isto diz respeito à segurança de todos os cidadãos de Altgard.</p>
+          <p> </p>
+          <p>Você quer experimentar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1_1">Você concorda.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vá e pergunte a [%dic:STR_DIC_N_Blender] sobre isso. Ele pode ser encontrado no espaço aéreo acima da fortaleza.</p>
+          <p> </p>
+          <p>Você encontrará um Portão do Abismo acima da fortaleza. Você pode encontrar Borender se voar até lá.</p>
+          <p> </p>
+          <p>Ele lhe contará mais sobre sua tarefa. Ouça com atenção e siga suas instruções.</p>
+          <p> </p>
+          <p>Desejo-lhe sorte e sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+       <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q2011-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está aqui para nos ajudar, [%username]? A tarefa não é especialmente difícil, mas é muito importante. Então, por favor, faça o seu melhor.</p>
+          <p> </p>
+          <p>Como você pode ver, o Portão do Abismo está entre nós. Organismos estranhos continuam passando por este portão.</p>
+          <p> </p>
+          <p>Eles têm cores estranhas e também são horríveis de se olhar. Eles são [plur][%dic:STR_DIC_E_13]. E são muito prejudiciais à saúde.</p>
+          <p> </p>
+          <p>Portanto, eles devem ser eliminados rapidamente antes que comecem a causar sofrimento às pessoas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um Daeva como você certamente será capaz de realizar esse tipo de tarefa sozinho. Voe e livre-se do [plur][%dic:STR_DIC_E_13].</p>
+          <p> </p>
+          <p>Os Abismo Fungens não atacam ninguém, então não são perigosos. No entanto, suas habilidades de vôo precisam estar à altura da tarefa.</p>
+          <p> </p>
+          <p>Voe perto dos Fungens e use suas armas para destruí-los. A magia também resolverá o problema, é claro.</p>
+          <p> </p>
+          <p>Volte para [%dic:STR_DIC_N_Valuerin] depois de matar todos os Abismo Fungens.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você viu Borender e destruiu os Abismo Fungens?</p>
+          <p> </p>
+          <p>Parece que você não caiu enquanto voava. Você não parece estar ferido.</p>
+          <p> </p>
+          <p>Qual foi a sensação de voar e destruir o [plur][%dic:STR_DIC_E_13]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você tem uma bela vista lá de cima.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fico feliz em saber que você cumpriu a missão com sucesso.</p>
+          <p> </p>
+          <p>Espero que você continue executando suas tarefas como Daeva com tanta consciência.</p>
+          <p> </p>
+          <p>É uma pequena recompensa pelo seu bom trabalho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Valuerin].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Voe para o espaço aéreo acima do Portão do Abismo e fale com [%dic:STR_DIC_N_Blender].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Livre-se do [plur][%dic:STR_DIC_E_13] ([%8]/5).</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_Valuerin].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Vermes do Abismo estão ameaçando a saúde da população de Altgard. Ajude [%dic:STR_DIC_N_Blender] a se livrar dos Fungens do Abismo.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se encontrou com Valurion na Fortaleza Altgard. Valurion sugeriu que você ajudasse Borender.</p>
+          <p> </p>
+          <p>Então você ajudou Borender a se livrar dos Abismo Fungens. Você se reportou a Valurion depois.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Pedido: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

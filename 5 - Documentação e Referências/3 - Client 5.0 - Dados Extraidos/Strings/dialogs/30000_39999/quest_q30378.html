@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Podemos chegar ao Ninho de Kaluva, graças a [%username]. Mas o Crystal Mezzanine representa um grande problema.</p>
+          <p> </p>
+          <p>Ouvi rumores de que fortes criaturas mágicas moram lá. Por favor, elimine o [%dic:STR_DIC_M_IDAbRe_Core_02_FiNmd_Combine]% no Mezanino de Cristal.</p>
+          <p> </p>
+          <p>Matar uma criatura assim não é tarefa fácil. Então me escute com atenção!</p>
+          <p> </p>
+          <p>Diz-se que o malvado Dayshade se divide em [%dic:STR_DIC_M_IDAbRe_Core_02_Boss_Guardian_Light_Fi_60_Al]% e [%dic:STR_DIC_M_IDAbRe_Core_02_Boss_Guardian_Dark_Fi_60_Al], e então se transforma em dois discos que ficam em dois lados.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando você luta contra Rukril e Ebonsoul, eles formam um escudo. Rukril forma um Fragmento de Esplendor, Ebonsoul um Fragmento de Meia-Noite.</p>
+          <p> </p>
+          <p>Leve o Midnight Fragment para Rukril para anular seu campo de força. Use o Splendor Fragment contra Ebonsoul da mesma maneira!</p>
+          <p> </p>
+          <p>Parece complicado, mas o principal é que basicamente você tem que derrotar os dois ao mesmo tempo.</p>
+          <p> </p>
+          <p>Mas lembre-se disto: se você matar apenas um deles, o outro ficará tão agressivo que você não conseguirá derrotá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você voltou inteiro. Presumo que isso signifique que você matou o malvado Dayshade.</p>
+          <p> </p>
+          <p>Conte-me sobre seu sucesso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você trabalhou muito. Tenho certeza de que a tarefa não foi fácil. Admiro seu rápido progresso.</p>
+          <p> </p>
+          <p>Agora tudo o que precisamos fazer é nos preparar para entrar no núcleo do Splinter destruído.</p>
+          <p> </p>
+          <p>Não vou esquecer o que você fez por mim!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua os protetores do Mezanino de Cristal destruído!</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDAbRe_Core_02_Boss_Guardian_Light_Fi_60_Al]([%2]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_IDAbRe_Core_02_Boss_Guardian_Dark_Fi_60_Al]([%5]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_NPC_Ab1_1011_TreasureGate_Da].</font></p></step>
+    </steps>
+
+          <p><font font_xml="quest_summary">Destrua o malvado Rukril e o malvado Ebonsoul que estão no Mezanino de Cristal.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gwal encarregou você de matar o malvado Dayshade no Crystal Mezzanine.</p>
+          <p> </p>
+          <p>Fazendo como ele havia instruído, você derrotou o malvado Rukril, o malvado Ebonsoul e o malvado Dayshade. Quando você voltou, ele agradeceu pelo seu feito impressionante.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

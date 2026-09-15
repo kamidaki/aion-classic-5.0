@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A operação para destruir o Elyos Vanguard começará agora.</p>
+          <p> </p>
+          <p>[%username], por favor mate o [%dic:STR_DIC_M_LDF5_Recon_v01_L_all].</p>
+          <p> </p>
+          <p>Em vez de tremer e esperar pela batalha, é melhor enfrentá-la abertamente.</p>
+          <p> </p>
+          <p>Se invadirmos primeiro e prejudicarmos a Força Elyos na batalha seguinte, a vitória será nossa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como estão as coisas com o poder de combate das tropas Elyos?</p>
+          <p> </p>
+          <p>Mesmo que eles se autodenominam batedores, dizem que eles não estão no mesmo nível dos nossos estagiários no Crisol Pandemônio, certo?</p>
+          <p> </p>
+          <p>Mas provavelmente será melhor matá-los porque estamos nos preparando para a grande guerra.</p>
+          <p> </p>
+          <p>A vitória na grande guerra depende da força militar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado! Suas ações, [%username], brilharão intensamente na batalha que se aproxima.</p>
+          <p> </p>
+          <p>O ataque dos Elyos perderá força sem a Tropa Escoteira.</p>
+          <p> </p>
+          <p>A vitória Asmodiana está praticamente alcançada.</p>
+          <p> </p>
+          <p>Esta é uma recompensa pelos seus esforços, [%username], por favor aceite.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5_Recon_v01_L_all] que aparece se os Asmodianos conquistarem o [%dic:STR_DIC_W_LDF5a_A2_1] ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard01_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Destrua a 71ª Tropa de Escoteiros Elyos Vanguard para danificar a força de combate dos Elyos!</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Abus disse que seria vantajoso para o esforço de guerra se a 71ª Tropa de Escoteiros dos Elyos fosse morta e que isso seria um grande golpe para a força de combate dos Elyos.</p>
+          <p> </p>
+          <p>Depois de eliminar a 71ª Tropa de Escoteiros dos Elyos, você voltou e ele agradeceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

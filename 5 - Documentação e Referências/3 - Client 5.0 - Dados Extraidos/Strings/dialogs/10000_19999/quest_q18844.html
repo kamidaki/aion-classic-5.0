@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabe por que eu amo livros? Porque adoro viajar e os livros são a única forma de chegar a alguns lugares sem se colocar em situações perigosas.</p>
+          <p> </p>
+          <p>Mas adoro conhecer viajantes, e o Guestbloom é a melhor maneira de acompanhá-los. Então, é claro, eles também me interessam.</p>
+          <p> </p>
+          <p>Tenho lido sobre o fertilizante Guestbloom. Ajuda o seu Guestbloom a crescer vigoroso e vigoroso, perfeito para receber visitantes. Posso fazer alguns para você, se quiser.</p>
+          <p> </p>
+          <p>Tudo que preciso é de [%dic:STR_DIC_I_junk_od_fragment_amazing_01]s, [%dic:STR_DIC_I_junk_od_fragment_scary_01]s e [%dic:STR_DIC_I_junk_od_fragment_lonely_01]s - um de cada.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aparentemente, o Éter contido em algumas gemas possui qualidades únicas que reagem favoravelmente com Guestblooms.</p>
+          <p> </p>
+          <p>Porém, há muito que não sabemos sobre Guestblooms, por isso é fascinante ler as últimas notícias e descobertas.</p>
+          <p> </p>
+          <p>Se você tiver as joias de Éter que preciso para o Fertilizante Guestbloom, poderá ver por si mesmo o que acontece!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Isso é suficiente?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, definitivamente! E aqui está o fertilizante Guestbloom como prometido! Sinta-se à vontade para negociar mais a qualquer momento!</p>
+          <p> </p>
+          <p>Bem, na verdade, NENHUMA hora... Preciso de um dia para transformar os que você me traz em novos lotes de fertilizante Guestbloom.</p>
+          <p> </p>
+          <p>Por favor, conte-me sobre seus Guestblooms quando puder. Eu prometo que serei o melhor ouvinte de todos os tempos!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Dê [%dic:STR_DIC_I_quest_18844all]s para [%dic:STR_DIC_N_Rateon] e obtenha fertilizantes Guestbloom.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Rateon sabe como fazer fertilizante Guestbloom a partir de gemas Éter específicas. Encontre os materiais para ele para que ele possa fazer o fertilizante para você.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rateon sabe como fazer Fertilizante Guestbloom com gemas de Éter e se ofereceu para fazer alguns se você reunisse os materiais.</p>
+          <p> </p>
+          <p>Você reuniu as gemas de Éter certas e recebeu os fertilizantes Guestbloom que ele prometeu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

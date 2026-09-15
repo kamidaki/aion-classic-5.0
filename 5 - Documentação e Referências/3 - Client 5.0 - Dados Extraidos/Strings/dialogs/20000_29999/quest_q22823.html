@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você poderia matar os [%dic:STR_DIC_M_LDF5A_B6_Kalnif_Hyena_63_An] que estão à espreita em nossa vila?</p>
+          <p> </p>
+          <p>Essas criaturas estão deixando todo mundo louco e dificultando o trabalho de guarda.</p>
+          <p> </p>
+          <p>Eu sei que é uma tarefa cansativa. Mesmo assim, espero que você consiga, [%username].</p>
+          <p> </p>
+          <p>Eles são muito ferozes e também estão se reproduzindo. Portanto, eles são bastante perigosos e difíceis de vencer.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>No começo eu não fiz nada em relação aos poucos Karnifs famintos...</p>
+          <p> </p>
+          <p>Mas então os Karnifs se multiplicaram, a ponto de eu não poder fazer nada a respeito.</p>
+          <p> </p>
+          <p>Desde que formaram um grupo, às vezes até atacaram os postos de guarda.</p>
+          <p> </p>
+          <p>Se eu os tivesse matado no começo, não teria tantos problemas. Agora me arrependo da minha negligência.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou tão aliviado que o faminto Karnif tenha desaparecido.</p>
+          <p> </p>
+          <p>Muito obrigado por corrigir meu erro.</p>
+          <p> </p>
+          <p>A área é tão limpa que até ficar de guarda será agradável!</p>
+          <p> </p>
+          <p>Devo dar as boas notícias aos guardas imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_B6_Kalnif_Hyena_63_An] perto da pequena vila ([%2]/11)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard05_D].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Karnifs famintos para limpar a área.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Naat pediu para você matar os Karnifs famintos nas proximidades.</p>
+          <p> </p>
+          <p>Ele ficou muito grato por você ter matado os famintos Karnifs.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41100</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username].</p>
+          <p> </p>
+          <p>Nós, da Guilda Tempestade de Areia, fazemos todos os esforços possíveis para eliminar as criaturas fora de controle que ameaçam os Daevas e os refugiados em Sarpan.</p>
+          <p> </p>
+          <p>Mas tomei consciência de que não estamos a conseguir fazê-lo com sucesso com as ferramentas que temos à nossa disposição.</p>
+          <p> </p>
+          <p>Por esse motivo, peço sua ajuda.</p>
+          <p> </p>
+              <p>Você derrotaria um dos [%dic:STR_DIC_E_Q41113a]?</p>
+          <p> </p>
+             <p>Você terá nossa gratidão e será recompensado de acordo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já testemunhou uma dança de namoro Sheluk? É espetacular de assistir, mas muitas vezes sangrento. Uma dança da morte, tudo por uma chance de vida.</p>
+          <p> </p>
+          <p>Você voltou, [%username]. Então ou você mostrou uma tremenda habilidade em matar [%dic:STR_DIC_E_Q41113a] ou ainda não encontrou um.</p> 
+          <p> </p>
+          <p>Posso tirar um desses demônios da lista de tarefas?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Um alvo não é mais..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah!</p>
+          <p> </p>
+          <p>Adoraria ouvir mais detalhes sobre isso, mas imagino que você esteja muito ocupado, [%username].</p>
+          <p> </p>
+          <p>Realmente um ótimo trabalho. Aqui está sua recompensa.</p>
+          <p> </p>
+          <p>As outras feras também precisam ser derrotadas, é claro, então volte logo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate um dos [%dic:STR_DIC_E_Q41113a] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Retornar para [%dic:STR_DIC_N_Betios].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre e mate um dos alvos sombrios perigosos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Betios pediu para você matar os Alvos Sombrios Perigosos que representam ameaças aos refugiados.</p>
+          <p> </p>
+          <p>Você seguiu e matou um dos alvos e recebeu uma recompensa e gratidão da Guilda Tempestade de Areia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

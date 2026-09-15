@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não pretendia vir a Sarpan, mas fiquei intrigado com as afirmações de que este lugar tem muitas relíquias. Então aqui eu fico.</p>
+          <p> </p>
+          <p>E é ótimo! Estou coletando muitas e muitas relíquias como esperava!</p>
+          <p> </p>
+          <p>Você trouxe alguma relíquia, [%username]? Eu supervisiono as Coroas Antigas, então se você tiver uma coroa, dê-ma para mim.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+        <exchange_coin>Exchange Ancient Relics</exchange_coin>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+          <p> </p>
+          <p>Conto com você, [%username], para me ajudar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

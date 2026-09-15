@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Preciso da sua ajuda, ok.</p>
+          <p> </p>
+          <p>O Trabalhador Momoki, um trabalhador importante para nós, está preguiçoso.</p>
+          <p> </p>
+          <p>Ele não funciona, embora devesse. Portanto, ele deveria ser punido, ak.</p>
+          <p> </p>
+          <p>Punir o [%dic:STR_DIC_M_LDF5A_E7_Brownie_Off_63_n] por quem Krerunerk deve sofrer, akak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os trabalhadores demonstraram remorso?</p>
+          <p> </p>
+          <p>Eles estavam com muita dor?</p>
+          <p> </p>
+          <p>É triste, mas não há nada a ser feito.</p>
+          <p> </p>
+          <p>Alguns socos precisam acertar de vez em quando, ok.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado pela ajuda, ak!</p>
+          <p> </p>
+          <p>Espero que os Trabalhadores Momoki possam entender minha opinião corretamente, ak.</p>
+          <p> </p>
+          <p>Quero dizer, agora é preciso trabalhar diligentemente para ficar rico, ak.</p>
+          <p> </p>
+          <p>Tudo isso está a favor deles, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF5A_E7_Brownie_Off_63_n] ([%2]/6).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Krering_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Dê uma boa repreensão ao fugitivo Trabalhador Momoki.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Krerunerk pediu que você desse uma lição ao preguiçoso Trabalhador Momoki. Você dá uma lição ao Trabalhador Momoki e recebe uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

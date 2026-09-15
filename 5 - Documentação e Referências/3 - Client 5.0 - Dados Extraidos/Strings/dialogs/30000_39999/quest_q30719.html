@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41264</QuestId>
+    <QuestName>부인의 부탁</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu deveria lhe dar uma recompensa porque você me ajudou a vingar meu comandante.</p>
+          <p> </p>
+	  <p>Você deve ter visto [%dic:STR_DIC_N_IDTiamat_FOBJ_Teleport_S6] no [%dic:STR_DIC_W_IDTiamat_SZ_S1] quando entrou na fortaleza.</p>
+	  <p> </p>
+	  <p>Você pode chegar ao [%dic:STR_DIC_W_IDTiamat_SZ_S6] usando a Estátua de Pedra da Glória. Muitos bens que Tiamat acumulou estão armazenados lá.</p>
+          <p> </p>
+          <p>Se você estiver lá, nossa camarada [%dic:STR_DIC_N_IDTiamat_Drakan_Medal_Rw] lhe dirá como você pode obter esses produtos.</p>
+	  <p> </p>
+	  <p>Eu vou avisá-lo. Vá para [%dic:STR_DIC_W_IDTiamat_SZ_S6].</p>
+	  <p> </p>
+	  <p>Essa é a recompensa que posso lhe dar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, eu já ouvi.</p>
+	  <p> </p>
+          <p>Você ajudou a vingar meu chefe.</p>
+	  <p> </p>
+	  <p>Obrigado, do fundo do meu coração.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você continua conversando com ele.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você consegue ver o [%dic:STR_DIC_N_IDTiamat_FOBJ_Drakan_Armor]?</p>
+          <p> </p>
+          <p>Se você tocar na estátua, a alma do herói Drakan passará para o seu corpo por um breve período.</p>
+          <p> </p>
+          <p>Aproveite esse estado, você poderá obter suprimentos de distribuidores crédulos.</p>
+          <p> </p>
+          <p>Muitos dos nossos camaradas já obtiveram suprimentos desta forma. Confie em mim quando digo que com certeza funcionará.</p>
+          <p> </p>
+          <p>Mesmo que você seja um Daeva, não vou traí-lo. Afinal, estou em dívida com você.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+              <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_IDTiamat_SZ_S6] e conheça[%dic:STR_DIC_N_IDTiamat_Drakan_Medal_Rw]</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você deve conseguir chegar ao Jardim do Senhor Dragão usando a Estátua de Pedra da Glória. Fale com Narkun.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Murugan queria recompensá-lo por se vingar de Surama.</p>
+          <p> </p>
+          <p>Usando a Estátua de Pedra da Glória de acordo com suas instruções, você foi capaz de ir ao Jardim dos Lordes Dragões. Lá você conheceu Narkun, que lhe mostrou como reservar mercadorias.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

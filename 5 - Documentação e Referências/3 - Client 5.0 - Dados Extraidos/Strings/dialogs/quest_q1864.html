@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, eu não aguento! Será que algum dia venceremos esta batalha?</p>
+          <p> </p>
+          <p>Eu adoraria atacar a fortaleza com toda a nossa força de combate, mas infelizmente isso é impossível.</p>
+          <p> </p>
+          <p>Porque existem múltiplas fortalezas e o nosso povo está dividido por várias regiões.</p>
+          <p> </p>
+          <p>Meus guerreiros estão perdendo a vontade de continuar lutando...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, ajude-nos e ajude-nos a enfraquecer o inimigo.</p>
+          <p> </p>
+          <p>Prove sua vontade de lutar eliminando o [%dic:STR_DIC_E_1221_Defender_Dr] ou o [%dic:STR_DIC_E_1221_Defender_Da].</p>
+          <p> </p>
+          <p>A tarefa é simples. Tudo o que você e seus companheiros de armas precisam fazer é destruir um dos esquadrões.</p>
+          <p> </p>
+          <p>Você poderia aceitar esta missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não cometa o erro de subestimar o inimigo.</p>
+          <p> </p>
+          <p>Os Asmodianos e os Balaur são tão experientes em combate quanto nós.</p>
+          <p> </p>
+          <p>Portanto, escolha sabiamente seus companheiros de armas para esta missão.</p>
+          <p> </p>
+          <p>Esteja atento!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem medo dos inimigos na fortaleza?</p>
+          <p> </p>
+          <p>Se você está com medo, continue caçando o Klaw por aqui.</p>
+          <p> </p>
+          <p>Ficaríamos gratos por esse tipo de apoio também.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, estou muito confuso. Lyaeus é uma pessoa competente, mas fala demais.</p>
+          <p> </p>          
+          <p>Então, você matou o [%dic:STR_DIC_E_1221_Defender_Dr] ou o [%dic:STR_DIC_E_1221_Defender_Da]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não tinha expectativas especiais, mas aparentemente pedir sua ajuda foi uma decisão sábia.</p>
+          <p> </p>
+          <p>Você deu coragem aos meus soldados.</p>
+          <p> </p>
+          <p>Por favor, continue a nos ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_1221_Defender_Dr] ou o [%dic:STR_DIC_E_1221_Defender_Da] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Menelaus].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine o Esquadrão de Defesa Asmodiano Krotan ou o Esquadrão de Conquista Balaur Krotan junto com seus camaradas de armas e reporte-se a Menelau.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O centurião Menelau pediu que você desse aos seus soldados um exemplo de espírito de luta matando as tropas inimigas.</p>
+          <p> </p>
+          <p>Você matou o Esquadrão de Defesa Asmodiano Krotan ou o Esquadrão de Conquista Balaur Krotan com seus camaradas de armas. O Centurião agradeceu sua ajuda e pediu que você continuasse apoiando-os em missões futuras.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

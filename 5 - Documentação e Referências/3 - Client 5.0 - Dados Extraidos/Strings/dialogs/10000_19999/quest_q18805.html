@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como escrevem os grandes sábios: "Se você quer morar em uma casa chique, primeiro você deve ter muito Kinah".</p>
+          <p> </p>
+          <p>Os grandes sábios são idiotas. Eu digo: "Se você quer morar em uma casa chique, compre coisas chiques!"</p>
+          <p> </p>
+          <p>Na Light Village da Prosperity, você encontrará vários revendedores vintage. Às vezes, o [%dic:STR_DIC_N_Shugo_housing_rec] até oferece gratuitamente produtos domésticos reciclados.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceite.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ainda esta manhã, o tolo Daeva jogou um tapete caro pela janela do estúdio. Sim, sim. Tapete tinha mancha. Uma pequena mancha. Bastou uma única lavagem para consertar.</p>
+          <p> </p>
+          <p>Leia as instruções de uso ao lado do [%dic:STR_DIC_N_Housing_FOBJ_Recycle_Box], depois pergunte e veja o salvamento de hoje.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"O tesouro de um Daeva..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- [%dic:STR_DIC_N_Housing_FOBJ_Recycle_Box] Guia -</p>
+          <p> </p>
+          <p>A Apex State é líder mundial em reciclagem de móveis.</p>
+          <p> </p>
+          <p>Este Vintage Grab está disponível ao público.</p>
+          <p/>
+          <p>Por uma questão de justiça, limite suas visitas a uma vez por dia.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Que prêmios me esperam?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora entende, sim?</p>
+          <p> </p>
+          <p>Visite uma vez por dia. Este Shugo cuida da lixeira Vintage Grab para garantir que nenhum Daeva abuse do sistema.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Nós nos tornaremos amigos!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Poderia usar um amigo.</p>
+          <p> </p>
+          <p>O novo amigo verá as recuperações de hoje?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com um [%dic:STR_DIC_N_Shugo_housing_rec].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Leia o Guia [%dic:STR_DIC_N_Housing_FOBJ_Recycle_Box].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com seu [%dic:STR_DIC_N_Shugo_housing_rec].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Consulte um revendedor vintage e experimente o truque de decoração de Parrion.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O leiloeiro Parrion falou sobre os Revendedores Vintage em Prosperity's Light Village. Obtenha móveis lindos pelo preço baixo de nada!</p>
+          <p> </p>
+          <p>O Revendedor Vintage que você conheceu leu o Guia Vintage Grab, com a advertência de visitá-lo apenas uma vez por dia, e concordou em se tornar seu amigo.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você estiver interessado no Quarto Relatório de Limpeza, você deve matar [%dic:STR_DIC_N_LDF5_Village_Guard15_L] da 85ª Guarnição e [%dic:STR_DIC_N_LDF5_Village_Guard16_L] da 86ª Guarnição, bem como [%dic:STR_DIC_N_LDF5_Village_Guard17_L] da 87ª Guarnição, [%dic:STR_DIC_N_LDF5_Village_Guard18_L] da 88ª Guarnição e [%dic:STR_DIC_N_LDF5_Village_Guard19_L], que podem ser encontrados na 89ª Guarnição.</p>
+          <p> </p>
+          <p>Eles são capitães da Patrulha Elyos Katalam, portanto devem ser eliminados sem falta.</p>
+          <p> </p>
+          <p>Mate todos eles e conquiste a vitória para nós em South Katalam.</p>
+          <p> </p>
+          <p>Se você cumprir a missão com sucesso, será prometido o [%dic:STR_DIC_I_quest_23514a].</p>
+          <p> </p>
+          <p>Faça um esforço, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Katalam é um lugar com muitas perspectivas.</p>
+          <p> </p>
+          <p>Vou arrasar nossos inimigos aqui e criar uma base.</p>
+          <p> </p>
+          <p>Para fazer isso, os Elyos Squads devem ser expulsos primeiro e eu devo completar minha tarefa.</p>
+          <p> </p>
+          <p>[%username], se você me ajudar, tenho certeza que conseguirei atingir meu objetivo mais rápido.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você é amplamente conhecido por seus feitos heróicos.</p>
+          <p> </p>
+          <p>Você sempre executa suas tarefas de maneira confiável e precisa.</p>
+          <p> </p>
+          <p>Muito obrigado. Confio que você continuará fazendo um trabalho tão bom.</p>
+          <p> </p>
+          <p>Como prometido, dou-lhe o [%dic:STR_DIC_I_quest_23514a]. Que seja útil para você.</p>
+        </body>
+        </html>
+    </Contents>
+
+
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine os Capitães da Patrulha Elyos Katalam.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard15_L] da 85ª Guarnição ([%2]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard16_L] da 86ª Guarnição ([%5]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard17_L] da 87ª Guarnição ([%8]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard18_L] da 88ª Guarnição ([%11]/1).</font></p>
+                     <p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_N_LDF5_Village_Guard19_L] da 89ª Guarnição ([%14]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Phone_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Capitães Elyos das 85ª, 86ª, 87ª, 88ª e 89ª Guarnições.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para obter o Quarto Relatório de Limpeza para obter o Diário de Conquista de Katalam, você prometeu a Phon que realizaria uma missão para ele.</p>
+          <p> </p>
+          <p>Seguindo suas instruções, você matou os capitães dos Elyos Kleon da 85ª Guarnição, Kilon da 86ª Guarnição, Timoleon da 87ª Guarnição, Knemus da 88ª Guarnição e Pormio da 89ª Guarnição. Você foi recompensado com o Quarto Relatório.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

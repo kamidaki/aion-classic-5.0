@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo, [%username].</p>
+          <p> </p>
+          <p>Procuramos alguém adequado para uma tarefa específica.</p>
+          <p> </p>
+          <p>Você conseguiria eliminar o [%dic:STR_DIC_E_12] que apareceu perto da fortaleza?</p>
+          <p> </p>
+          <p>Eles estão no Lago de Gelo Altgard. E eles provavelmente estão de olho na fortaleza.</p>
+          <p> </p>
+          <p>Como se atrevem a tentar assumir o controle de uma fortaleza Arconte! Eles devem ter perdido a cabeça.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  <Voice file="Q2012-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você eliminou os revolucionários lefaristas?</p>
+          <p> </p>
+          <p>Tenho certeza de que eles não facilitaram as coisas para você. Mas você provavelmente completou bem a missão.</p>
+          <p> </p>
+          <p>É sempre melhor que aqueles que procuram trazer o caos para Asmodae sejam tratados o mais rápido possível.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+    <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que derrotou todos eles.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado pela sua ajuda.</p>
+          <p> </p>
+          <p>Os Revolucionários Lefaristas não ficarão perto da fortaleza tão cedo.</p>
+          <p> </p>
+          <p>Pedirei sua ajuda novamente se tiver mais tarefas para concluir no futuro... Espero que você também consiga realizá-las.</p>
+          <p> </p>
+          <p>Não importa se o comandante envia ordens ou não.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_N_DF1a_Q2012all] à espreita no [%dic:STR_DIC_W_DF1A_2] ([%2]/4).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Vá para [%dic:STR_DIC_W_DF1A_1] e fale com [%dic:STR_DIC_N_Meibjar].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Os Revolucionários Lefaristas avançaram para o Lago Gelado Altgard. Livre-se deles.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Meiyer pediu que você desse uma lição aos Revolucionários Lefaristas que avançaram para o Lago Gelado fora da Fortaleza Altgard.</p>
+          <p> </p>
+          <p>Você atendeu ao pedido dela e eliminou os Revolucionários Lefaristas, e então reportou a ela depois.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

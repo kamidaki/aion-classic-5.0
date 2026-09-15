@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quero tentar um método diferente de experimentar a energia Id.</p>
+          <p> </p>
+          <p>O problema é que preciso de um espaço grande e vazio, mas todos os espaços vazios ao redor da Guarnição foram ocupados pelo Espírito da Terra.</p>
+          <p> </p>
+          <p>Você poderia eliminar o [%dic:STR_DIC_M_LDF5B_B1_Element1_Earth_63_An] e o [%dic:STR_DIC_M_LDF5B_B1_Element3_Earth_63_An] que estão ocupando todos os espaços vazios ao redor do [%dic:STR_DIC_W_LDF5b_SZ_B1]?</p>
+          <p> </p>
+          <p>Há apenas um lugar próximo que seria adequado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A energia Id é extremamente instável.</p>
+          <p> </p>
+          <p>Vários testes devem ser realizados para encontrar o melhor método.</p>
+          <p> </p>
+          <p>Então precisamos de um local adequado para os testes. No entanto, parece que não conseguimos encontrar um local adequado e isso preocupa-me.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você expulsou todos os Espíritos da Terra Musgosa e os Espíritos da Terra Musgosa?</p>
+          <p> </p>
+          <p>Obrigado, [%username], estou aliviado.</p>
+          <p> </p>
+          <p>Irei agora para a praça vazia assim que estiver pronto.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_M_LDF5B_B1_Element1_Earth_63_An] e [%dic:STR_DIC_M_LDF5B_B1_Element3_Earth_63_An] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Peniun_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Espíritos da Terra Musgosa e os Espíritos da Terra Musgosa que estão interrompendo o experimento de Peniun.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Peniun estava procurando um local adequado para seus testes de identificação, e você matou os Espíritos da Terra de Moss e os Espíritos da Terra na área ao redor da guarnição a pedido dele.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

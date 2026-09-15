@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Enfim, é hora de se preparar para o grande ataque.</p>
+          <p> </p>
+          <p>Portis elaborou um plano mestre para controlar a região com um único ataque.</p>
+          <p> </p>
+          <p>O problema é que ainda existem alguns obstáculos que impedem que o ataque corra bem.</p>
+          <p> </p>
+          <p>Os [%dic:STR_DIC_M_LDF5B_C3_ShiningComad_63_An] que vivem aqui atacam a todos sem distinguir amigo ou inimigo.</p>
+          <p> </p>
+          <p>Se você os eliminar, não haverá mais obstáculos no caminho para expulsarmos o Exército Beritra desta região. Você poderia nos ajudar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_M_LDF5B_C3_ShiningComad_63_An] são monstros que vivem aqui, mas é difícil dizer o que exatamente eles são.</p>
+          <p> </p>
+          <p>Mas uma coisa é certa. São um perigo para os nossos preparativos para um grande ataque.</p>
+          <p> </p>
+          <p>Se nossa tropa sofrer danos por causa do ataque selvagem do Komad, isso provocará a ira de Portis.</p>
+          <p> </p>
+          <p>Como está indo a eliminação do Komad?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você exige uma recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você removeu o obstáculo final? Bom trabalho.</p>
+          <p> </p>
+          <p>Mas ainda não recebemos ordens do Comando.</p>
+          <p> </p>
+          <p>Se continuarmos esperando assim, perderemos nossa chance.</p>
+          <p> </p>
+          <p>Espero que as ordens de ataque cheguem em breve.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_M_LDF5B_C3_ShiningComad_63_An]. ([%2]/10)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Metamo_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Shining Crystal Komads para proteger a rota de ataque.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Metamo é um seguidor de Portis e disse que eles podem avançar se você matar o brilhante Crystal Komad.</p>
+          <p> </p>
+          <p>Você mata o Komad e reporta, mas Metamo disse que eles ainda não podem avançar porque a ordem de Portis ainda não havia chegado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

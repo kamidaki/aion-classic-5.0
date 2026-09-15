@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Respeitado Diretor de Campo:</p>
+          <p> </p>
+		  <p>seu apoio contribui para o sucesso da Tropa Expedicionária.</p>
+		<p> </p>
+		<p>[%dic:STR_DIC_I_quest_45054a] foi descoberto em Vengar que foi imbuído de uma força misteriosa.</p>
+		<p> </p>
+		<p>Sua missão é coletar [%dic:STR_DIC_I_quest_45054a] e trazê-lo para [%dic:STR_DIC_N_DF5_Andria_E].</p>
+		<p> </p>
+		<p>Que a bênção de Aion esteja com os Vigilantes de Campo.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você aceita a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que traz você aqui?</p>
+          <p> </p>
+          <p>Isso é sobre o Diretor de Campo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Antigo Drana.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu a missão de coletar [%dic:STR_DIC_I_quest_45054a].</p>
+          <p> </p>
+		  <p>Muito obrigado pela sua cooperação com os Vigilantes de Campo.</p>
+		  <p> </p>
+		  <p>Vou relatar isso aos Guardiões de Campo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_quest_45054a] e leve-o para [%dic:STR_DIC_N_DF5_Andria_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary"> Chegou uma carta dos Vigilantes de Campo. Siga as instruções.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Em uma carta dos Guardiões de Campo, você foi solicitado a coletar o Antigo Drana que contém um poder especial.</p>
+          <p> </p>
+          <p>Você trouxe o Antigo Drana para Andria, que lhe deu uma insígnia como agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

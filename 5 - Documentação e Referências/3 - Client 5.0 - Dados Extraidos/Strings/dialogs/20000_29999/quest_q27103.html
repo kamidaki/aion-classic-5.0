@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mostra a tarefa conjunta para o desenvolvimento da aldeia.</p>
+          <p>Espero que todos vocês se empenhem nesta tarefa e ajudem a criar uma aldeia bonita e hospitaleira.</p>
+          <p> </p>
+          <p>Missão da aldeia:</p>
+          <p>As plantas do canteiro estão morrendo. Reúna [%dic:STR_DIC_E_junk_town_upgrade_rich_soil_d]% e leve para [%dic:STR_DIC_N_Town_D_shugo_Worker_05].</p>
+          <p> </p>
+          <p>- Administração da aldeia -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora temos canteiros de flores, mas as plantas estão morrendo.</p>
+          <p> </p>
+          <p>Tentamos vários fertilizantes, mas nenhum funcionou, akakak.</p>
+          <p> </p>
+          <p>O solo sagrado e fértil é nossa última esperança, akakak.</p>
+          <p> </p>
+          <p>Precisamos de solo valioso para o canteiro, que é encontrado na área onde a Umbronita cresce. Embora a tarefa da aldeia tenha sido dada para isso, quase ninguém traz a terra, nyerk.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Solo Fértil Sagrado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças a Deus, akakak!</p>
+          <p> </p>
+          <p>[%username], seu amor pela aldeia será em forma de chuva fértil para as plantas do terreno, akakak.</p>
+          <p> </p>
+          <p>A energia deste solo fértil deverá salvar as plantas moribundas. Devo espalhar sementes no terreno imediatamente.</p>
+          <p> </p>
+          <p>Lindas flores florescerão em breve.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_E_junk_town_upgrade_rich_soil_d]% e leve-os para [%dic:STR_DIC_N_Town_D_shugo_Worker_05].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Precisamos do solo sagrado do local onde a Umbronite cresce para salvar as plantas moribundas no canteiro de flores. Provavelmente seria melhor reunir o solo fértil sagrado e levá-lo à autoridade de construção da aldeia para completar a tarefa da aldeia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tarefa da Vila foi anunciada. Era para coletar solo sagrado do local onde a Umbronita cresce e levá-lo à autoridade construtora da aldeia para evitar que as plantas do terreno morressem.</p>
+          <p> </p>
+          <p>Quando você trouxe o Solo Fértil para a autoridade de construção, a autoridade agradeceu pelo seu comprometimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

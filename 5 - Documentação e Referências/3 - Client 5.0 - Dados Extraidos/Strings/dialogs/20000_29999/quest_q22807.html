@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Embora nosso posto seja de construção robusta, são necessários reparos ocasionais.</p>
+          <p> </p>
+          <p>Se você matar [%dic:STR_DIC_M_LDF5A_A4_Nebilim_61_An] e nos trazer [plur][%dic:STR_DIC_I_quest_22807a], podemos consertar o posto, [%username].</p>
+          <p> </p>
+          <p>Na nossa posição, a manutenção da base é tão importante quanto as estratégias de batalha e as opções de retirada.</p>
+          <p> </p>
+          <p>Por favor, ajude-nos a tornar o posto seguro e pronto para a batalha novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você consegue encontrar as pedras do Nevilim Outrider?</p>
+          <p> </p>
+          <p>Estas Pedras dos Nevilim são supostamente especialmente duras.</p>
+          <p> </p>
+          <p>É por isso que são mais adequados como material de construção.</p>
+          <p> </p>
+          <p>Traga as Pedras do Nevilim Outrider para que possamos usá-las para consertar o poste.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Pedra do Nevilim Outrider.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta é a Pedra do Nevilim Outrider?</p>
+          <p> </p>
+          <p>É imediatamente perceptível que este é um material único.</p>
+          <p> </p>
+          <p>Se você reparar o poste com este material, o poste certamente poderá resistir a qualquer ataque.</p>
+          <p> </p>
+          <p>Obrigado por me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_A4_Nebilim_61_An], reúna [plur][%dic:STR_DIC_I_quest_22807a] e leve-os para[%dic:STR_DIC_N_LDF5_Village_Guard02_D].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote os Nevilim Outriders e adquira as Pedras do Nevilim Outrider.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Batan pediu a Pedra do Nevilim Outrider para consertar o posto.</p>
+          <p> </p>
+          <p>Você derrotou o Nevilim Outrider e depois trouxe a Pedra do Nevilim Outrider para Batan. Batan ficou muito grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

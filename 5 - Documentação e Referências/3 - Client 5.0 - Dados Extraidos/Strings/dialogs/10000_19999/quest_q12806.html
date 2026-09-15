@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>No momento, estamos sendo perturbados por algo tão poderoso quando estamos em patrulha que ameaça o serviço do Escoteiro Daevas.</p>
+          <p> </p>
+          <p>Eles são[%dic:STR_DIC_M_LDF5A_A4_Criton_61_An] e [%dic:STR_DIC_M_LDF5A_A4_Criton_H_61_An]. Por favor, mate-os, [%username].</p>
+          <p> </p>
+          <p>Os Asmodianos sempre podem atacar do leste a qualquer momento, o que significa que estamos sempre em suspense.</p>
+          <p> </p>
+          <p>É por isso que os Explorador Daevas são muito importantes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Dizem que entre os Crynacs Escamados da Floresta Granu há homens que têm a capacidade de desaparecer, o que os torna difíceis de matar.</p>
+          <p> </p>
+          <p>[%username], você pode eliminar Shardscale Crynacs e Scaled Crynacs sem grande dificuldade, correto?</p>
+          <p> </p>
+          <p>Eu estava contando com você e esperando por você.</p>
+          <p> </p>
+          <p>Por favor, me conte como foi.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como o Scaled Crynac na floresta Granu desapareceu agora, os batedores podem cuidar de seus negócios em paz.</p>
+          <p> </p>
+          <p>Contarei a todos os olheiros sobre o seu mérito, [%username].</p>
+          <p> </p>
+          <p>Eles ficarão muito gratos.</p>
+          <p> </p>
+          <p>Obrigado pela sua contribuição para a segurança dos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_LDF5A_A4_Criton_all] que estão obstruindo o reconhecimento. ([%2]/8)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard02_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Crynac Escamado na floresta Granu que está obstruindo o reconhecimento.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Verden estava preocupado que os Granu Forest Scaled Crynacs pudessem perturbar a patrulha.</p>
+          <p> </p>
+          <p>A pedido de Verden, você matou os Shardscale Crynacs e os Scaled Crynacs, pelos quais ele ficou muito grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

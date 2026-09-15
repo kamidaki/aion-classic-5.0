@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como Daeva se saiu, ok?</p>
+          <p> </p>
+          <p>O Dia Daeva também está sendo comemorado este ano.</p>
+          <p> </p>
+          <p>Shugo atendeu aos desejos dos Daevas e participa mais uma vez.</p>
+          <p> </p>
+          <p>Shugo estenderá o Cubo de Daeva como presente para o Dia de Daeva! Akakak!</p>
+          <p> </p>
+	  <p>Mas isso é apenas para os cubos de Daevas cujos cubos não foram estendidos no ano passado.</p>
+          <p> </p>
+          <p>Na verdade, é muito simples. Daeva só precisa voltar para Shugo cheio de DP. Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo está esperando por Daeva, ak.</p>
+          <p> </p>
+          <p>Shugo está muito perturbado. Shugo é incapaz de fazer qualquer coisa sem DP, akakak.</p>
+          <p> </p>
+          <p>Estender um cubo é um negócio complicado, também. Se você se desviar um pouco do design, o Cubo será inútil.</p>
+          <p> </p>
+          <p>Daeva está repleto de DP em abundância?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todo o corpo de Daeva precisa ser preenchido com DP, ak.</p>
+          <p> </p>
+          <p>Estender um cubo é um negócio complicado, também. Se você se desviar um pouco do design, a extensão não será possível.</p>
+          <p> </p>
+          <p>Daeva pode retornar para Shugo quando Daeva estiver cheio de DP? Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Daeva já está cheio de DP. Isso foi rápido.</p>
+          <p> </p>
+          <p>Daeva é exatamente o tipo de Daeva de Shugo, ak.</p>
+          <p> </p>
+          <p>Shugo agora estenderá o Cubo porque Daeva trabalhou muito para coletar DP, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encha seu corpo com DP e depois retorne para [%dic:STR_DIC_N_NPC_event_cube].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_NPC_event_cube].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">De acordo com Kodachi, é necessário muito DP para estender um cubo. Encha seu corpo com DP e depois retorne para Kodachi.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Assim como no ano passado, Kodachi também compareceu às festividades do Dia Daeva.</p>
+          <p> </p>
+	  <p>De acordo com Kodachi, é necessário muito DP para estender um Cubo.</p>
+          <p> </p>
+          <p>A pedido de Kodachi, você encheu seu corpo com DP e voltou para ele.</p>
+          <p> </p>
+          <p>Kodachi estendeu seu Cubo como uma lembrança do Dia Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

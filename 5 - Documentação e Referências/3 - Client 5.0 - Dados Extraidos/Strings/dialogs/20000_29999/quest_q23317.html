@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, descubra a verdade sobre o Vinculado de Dragão.</p>
+          <p> </p>
+          <p>O fato de o Vinculado de Dragão possuir Idium é altamente suspeito.</p>
+          <p> </p>
+          <p>Temos que analisar isso mais detalhadamente.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_M_LDF5B_D2_Vri_Fanatic_Fi_SN_NmdQ_65_An] no Vinculado de Dragão Hideout e obtenha informações sobre o Vinculado de Dragão.</p>
+          <p> </p>
+          <p>O Capitão Sentinela do Esconderijo certamente possui um documento que pode nos dar uma pista.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nossos inimigos já sabem alguma coisa sobre o Idium?</p>
+          <p> </p>
+          <p>O Idium é um mineral desconhecido cujo poder ainda não foi explicado.</p>
+          <p> </p>
+          <p>Eles provavelmente sabem algo sobre isso porque não estariam reunindo-o sem um bom motivo.</p>
+          <p> </p>
+          <p>Mas isso é apenas uma suposição e precisamos de algumas evidências concretas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a nota.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Deve ter sido muito trabalhoso conseguir essas evidências.</p>
+          <p> </p>
+          <p>(Verifica cuidadosamente a nota misteriosa.)</p>
+          <p> </p>
+          <p>Há apenas o nome de um lugar aqui.</p>
+          <p> </p>
+          <p>Hmm, como nenhum detalhe pode ser obtido, vou encaminhá-lo para cima por enquanto.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_QUEST_23317A] e leve tudo para [%dic:STR_DIC_N_LDF5_Village_Guard13_D].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Para obter informações sobre Idium e Vinculado de Dragão, mate o Capitão Sentinela do Esconderijo e traga uma evidência com você.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Torpin disse que é suspeito que Vinculado de Dragão possua o Idium e que ele precisa saber mais sobre isso.</p>
+          <p> </p>
+          <p>Ao matar o Capitão da Guarda do Esconderijo e trazer a carta misteriosa com você como uma pista, conforme solicitado, ele disse que precisaria se reportar primeiro ao quartel-general.</p>   
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

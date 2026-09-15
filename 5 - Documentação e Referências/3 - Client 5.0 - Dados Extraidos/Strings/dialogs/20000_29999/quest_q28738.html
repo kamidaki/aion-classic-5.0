@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve estar ocupado, [%username]. Mas tenho que te pedir um favor.</p>
+          <p> </p>
+          <p>O pesquisador de armas Kura me pediu para ajudá-lo.</p>
+          <p> </p>
+          <p>Mas nunca usei bombas antes.</p>
+          <p> </p>
+          <p>Eles devem ser funcionais e, portanto, úteis para você. Você só precisa usá-los e então [%dic:STR_DIC_N_DF5_Kuera_E] relatar quais problemas surgiram.</p>
+          <p> </p>
+          <p>Você pode simplesmente pegar alguns da Caixa de Suprimentos aqui ao meu lado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Algumas armas apresentam propriedades surpreendentes sob certas condições.</p>
+          <p> </p>
+          <p>No momento, estou ocupado aprimorando bombas.</p>
+          <p> </p>
+          <p>Pedi a alguns Daevas para usá-los. Mas até agora, ninguém realmente o fez.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrou algo para melhorarmos?</p>
+          <p> </p>
+          <p>Que resultado surpreendente. No futuro, quando eu encontrar uma boa arma, eu a trarei diretamente para você.</p>
+          <p> </p>
+          <p>Aqui está uma recompensa pela sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Use o [plur][%dic:STR_DIC_I_idraksha_solo_bomb_01a] ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_DF5_Kuera_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Use as bombas de Saúde aprimoradas e depois relacione os problemas para Kura.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Procura pediu que você usasse as Bombas Saúde Melhoradas e depois relatasse os problemas para Kura.</p>
+          <p> </p>
+          <p>Quando você se apresentou a Kura, ele ficou muito grato e lhe deu um presente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

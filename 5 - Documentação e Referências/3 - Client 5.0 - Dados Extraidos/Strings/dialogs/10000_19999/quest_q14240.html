@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>O poder de Sataloca era imenso.</p>
+		<p> </p>
+		<p>[plur][%dic:STR_DIC_M_ElementalFire1_26_An] e [plur][%dic:STR_DIC_M_ElementalFire2_26_An] ainda estão nas proximidades da tumba.</p>
+		<p> </p>
+		<p>O Deserto de Eracus continua crescendo.</p>
+		<p> </p>
+		<p>Os Elim querem transformar o deserto novamente em floresta. Porque esta região nem sempre foi um vasto deserto; já foi uma floresta.</p>
+		<p> </p>
+		<p>Você poderia, por favor, neutralizar os Espíritos das Cinzas?</p>
+		<p> </p>
+		<p>Elimine o [plur][%dic:STR_DIC_M_ElementalFire1_26_An] ou [plur][%dic:STR_DIC_M_ElementalFire2_26_An] perto da Tumba de Sataloca.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O coração de Sataloca algum dia irá parar de bater?</p>
+          <p> </p>
+          <p>É uma pena que não possuamos esse imenso poder.</p>
+          <p> </p>
+          <p>Você derrotou todos os Cinder Spirits como eu pedi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que eliminará os Espíritos da Chama.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Diga aos Elim que continuaremos a fazer todos os esforços para impedir a invasão do deserto.</p>
+          <p> </p>
+          <p>Suas ações não serão esquecidas, [%username]. Vou contar à fortaleza o que você fez.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_M_ElementalFire1_26_An] ou o [plur][%dic:STR_DIC_M_ElementalFire2_26_An] ([%2]/9).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Radamanthys].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine Espíritos de Chamas ou Espíritos de Cinzas na Tumba de Sataloca para atender ao pedido de Radamanthys.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Radamanthys enviou você para a Tumba de Sataloca para eliminar espíritos.</p>
+          <p> </p>
+          <p>Você derrotou Blaze Spirits ou Cinder Spirits e fez seu relatório para Radamanthys.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

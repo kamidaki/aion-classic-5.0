@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41605</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouça, [%username]. Tenho uma tarefa que precisa ser atribuída e acho que você é exatamente o [%userclass] que preciso.</p>
+          <p> </p>
+          <p>Já faz algum tempo que exploramos a Guilda Naduka e identificamos dois alvos importantes que queremos ver mortos. Seus nomes são [%dic:STR_DIC_M_LDF4b_T2_DrakanFi_Tiamat_Named_59_An] e [%dic:STR_DIC_M_LDF4b_T2_DrakanWi_Tiamat_Named_59_An]. Sem eles, a Guilda Naduka ficará sem cabeça, confusa e muito mais fácil de exterminar.</p>
+          <p> </p>
+          <p>O que você diz? Eu só preciso que um deles seja assassinado por enquanto.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu ouvi a comoção daqui, [%username]! Pelo menos, presumo que você causou isso...</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu fiz. O trabalho está feito."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente! Por enquanto, observaremos suas fileiras e veremos como eles respondem à perda.</p>
+          <p> </p>
+          <p>Obrigado, [%username]. Você se saiu muito bem, de fato.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate um dos [%dic:STR_DIC_M_Q41605all]s ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Ur].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ur precisa que um dos chefes da Guilda Naduka seja morto. Elimine o Vice-General de Brigada Lucarn ou o Ajudante Kaimar.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ur lhe contou sobre uma missão de caça-talentos que ele tinha para você. Ele queria que a Guilda Naduka fosse eliminada e sugeriu que você matasse um de seus dois líderes. Você completou a tarefa sem muitos problemas e recebeu uma recompensa justa.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

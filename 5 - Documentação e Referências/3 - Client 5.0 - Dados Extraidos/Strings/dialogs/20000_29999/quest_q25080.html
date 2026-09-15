@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recebi há pouco tempo um pó mineral que nunca tinha visto antes.</p>
+          <p> </p>
+          <p>Aquele que me enviou acha que a rocha de onde veio é quente demais para conseguir um pedaço grande dele.</p>
+          <p> </p>
+          <p>[%username], você poderia conseguir um [%dic:STR_DIC_I_quest_25080a] para mim?</p>
+          <p> </p>
+          <p>Vale a pena investigar essas rochas. Por favor? Para o avanço da ciência!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta.</p>
+          <p> </p>
+          <p>Você me trouxe o mineral que eu pedi?</p>
+          <p> </p>
+          <p>Estou certo sobre o calor que sinto vindo de você? Você teve sucesso, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Ember Rock.</Act>
+    </Selects>
+  </HtmlPage>
+
+ <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é...?</p>
+          <p> </p>
+          <p>Esta pedra é realmente tão vermelha que você mal consegue tocá-la.</p>
+          <p> </p>
+          <p>Difícil de acreditar que uma quantidade tão pequena seja tão quente!</p>
+		  <p> </p>
+		  <p>Isto deve significar então que este deserto é composto de minerais.</p>
+		  <p> </p>
+		  <p>No entanto, esse calor me parece familiar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta que tipo de mineral é.</Act>
+    </Selects> 
+  </HtmlPage>
+ 
+<HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você ainda não encontrou o [%dic:STR_DIC_OBJ_DF5_FOBJ_firestone_Q25080]?</p>
+          <p> </p>
+          <p>Então acho que terei que aguentar o tédio um pouco mais.</p>
+		  <p> </p>
+		  <p>Por favor, consiga isso para mim o mais rápido possível.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+		<Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects> 
+ </HtmlPage>
+  
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é...?</p>
+          <p> </p>
+          <p>Esta pedra é realmente tão vermelha que você mal consegue tocá-la.</p>
+          <p> </p>
+          <p>Difícil de acreditar que uma quantidade tão pequena seja tão quente!</p>
+		  <p> </p>
+		  <p>Isto deve significar então que este deserto é composto de minerais.</p>
+		  <p> </p>
+		  <p>No entanto, esse calor me parece familiar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta que tipo de mineral é.</Act>
+    </Selects> 
+  </HtmlPage> 
+  
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Isso não pode ser! Este é um mineral com o poder da Fregion!</p>
+          <p> </p>
+		  <p>Mesmo a história do Balaur não diz que Fregion alguma vez esteve neste lugar.</p>
+		  <p> </p>
+          <p>Devo informar imediatamente os especialistas de Balaur.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre um [%dic:STR_DIC_I_quest_25080a] e leve-o para [%dic:STR_DIC_N_DF5_Agran_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Atenda ao pedido de Agran e traga para ele uma Ember Rock.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agran pediu para você obter uma Ember Rock.</p>
+          <p> </p>
+          <p>Quando você trouxe a Ember Rock para ele, Agran disse que o calor da rocha o lembrava de Fregion.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

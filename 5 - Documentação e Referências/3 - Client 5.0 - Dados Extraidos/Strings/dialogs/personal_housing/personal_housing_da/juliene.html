@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As pessoas pensam que a Alquimia está apenas transformando coisas em ouro.</p>
+          <p> </p>
+          <p>Que é matéria de fantasia e fábulas.</p>
+          <p> </p>
+          <p>É a perda deles. Eles estão descartando uma arte incrivelmente útil.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <combine_skill_levelup>Learn Alquimia</combine_skill_levelup>
+      <combine_task>Work Order</combine_task>
+      <giveup_craft_expert>Relinquish Expert Status</giveup_craft_expert>
+      <giveup_craft_master>Relinquish Master Status</giveup_craft_master>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select_task">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ordens de Serviço são uma ótima maneira de praticar na Mesa do Alquimista.</p>
+          <p> </p>
+          <p>Se você pretende dominar o ofício, precisará praticar bastante.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tentar projetos de Alquimia além de suas habilidades pode levar a desastres explosivos.</p>
+          <p> </p>
+          <p>Você precisa da minha orientação e de mais experiência antes de prosseguir.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ok, tudo bem."</Act>
+    </Selects>
+  </HtmlPage>
+  
+</HtmlPages>
+

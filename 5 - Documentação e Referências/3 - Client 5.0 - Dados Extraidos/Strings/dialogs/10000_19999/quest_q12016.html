@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12016</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta tarefa está além das minhas habilidades em batalha.</p>
+          <p> </p>
+          <p>Há uma vila Vinculado de Dragão no sul de Steam Springs.</p>
+          <p> </p>
+          <p>Recebi a ordem para eliminar o Vinculado de Dragão lá. Mas sou mais um estudioso do que um lutador. Como devo completar esta tarefa?</p>
+          <p> </p>
+          <p>Não me resta mais nada a fazer exceto pedir a um Daeva como você, [%username], para me ajudar nesta tarefa.</p>
+          <p> </p>
+          <p>Você poderia eliminar os [%dic:STR_DIC_M_LDF4b_T3_FanaticFi_58_An]s, os [%dic:STR_DIC_M_LDF4b_T3_FanaticAs_58_An]s, os [%dic:STR_DIC_M_LDF4b_T3_FanaticWi_58_An]s e os [%dic:STR_DIC_M_LDF4b_T3_FanaticCh_58_An]s em meu lugar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], finalmente!</p>
+          <p> </p>
+          <p>Tenho tentado me manter discreto para que meus comandantes pensem que fui lutar contra o Vinculado de Dragão, mas não é fácil me esconder em uma tenda por dias a fio.</p>
+          <p> </p>
+          <p>Não fui feito para enganar. Se ao menos minha pesquisa de magia transformacional estivesse completa... Como foi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eles aprenderam uma lição, como espero que você tenha aprendido."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É tão bom que você tenha conseguido cuidar das unidades Vinculados de Dragão.</p>
+          <p> </p>
+          <p>Agora posso informar que a tarefa foi concluída.</p>
+          <p> </p>
+          <p>Também posso voltar a focar na pesquisa em paz.</p>
+          <p> </p>
+          <p>Obrigado pela sua ajuda, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_Q12016_All] ([%2]/15).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Favilian].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Phavilian recebeu ordem de matar Vinculado de Dragão em Avad Village, uma tarefa para a qual ele não está equipado.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Phavilian exagerou em suas habilidades de combate e recebeu uma missão que não conseguiu completar.</p>
+          <p> </p>
+          <p>Você eliminou Vinculado de Dragão em Avad Village como um favor para ele, e quando voltou parecia que ele realmente não havia aprendido a lição.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

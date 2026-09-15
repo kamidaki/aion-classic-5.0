@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Queremos trazer algumas pessoas importantes para a aldeia para o benefício comum dos aldeões.</p>
+          <p>Se esta missão for bem-sucedida, os cuidadores serão convidados. Eles darão uma recompensa a Daevas, que coletou os cálices e coroas divinos.</p>
+          <p> </p>
+          <p>Missão da aldeia:</p>
+          <p>Colete os [%dic:STR_DIC_E_junk_town_upgrade_flower_soul], que são dados como recompensa aos zeladores principais pelo Graal e pelas Coroas, e leve esses itens para [%dic:STR_DIC_N_Town_d_SZTown_d_B5].</p>
+          <p> </p>
+          <p>- Administração da aldeia -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ouvi dizer que os Daevas desta vila querem convocar os zeladores que coletam o Graal e as Coroas, akakak.</p>
+          <p> </p>
+          <p>Graal e Coroa... são itens que sempre foram de grande valor para os Daeva, akakak.</p>
+          <p> </p>
+          <p>Mas para o Shugo... eles significam ouro puro!</p>
+          <p> </p>
+          <p>Hahaha, dediquei minha vida inteira à jardinagem, mas esses itens despertam algo não muito diferente da ganância dentro de mim mais uma vez, akakak!</p>
+          <p> </p>
+          <p>Mas eles não são importantes agora. Rapidamente, traga-me a linda Floral Soul.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Alma Floral.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Alma Floral, mais bela que Graal e Coroa.</p>
+          <p> </p>
+          <p>Esta planta está repleta de Éter e, quando floresce, tem lindos botões, akakak.</p>
+          <p> </p>
+          <p>É surpreendente que os principais zeladores do Graal e das Coroas estejam obcecados por tais itens, akakak.</p>
+          <p> </p>
+          <p>Ah, enquanto contava esqueci quantos itens recebi! De qualquer forma, espero que você veja o responsável pelas recompensas em breve, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_E_junk_town_upgrade_flower_soul] e leve esses itens para [%dic:STR_DIC_N_Town_d_SZTown_d_B5]</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">A Alma Floral é necessária para que os zeladores que receberão o Graal e a Coroa e distribuam recompensas venham para a aldeia. Você precisa reunir a Alma Floral e levá-la ao jardineiro para o benefício comum da aldeia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A tarefa da Vila foi anunciada. De acordo com a tarefa, a Alma Floral é necessária para convocar os principais zeladores do Graal e das Coroas.</p>
+          <p> </p>
+          <p>As pessoas estão gratas por você estar participando da missão da aldeia de coletar a Alma Floral e trazê-la ao jardineiro para o benefício comum dos moradores.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

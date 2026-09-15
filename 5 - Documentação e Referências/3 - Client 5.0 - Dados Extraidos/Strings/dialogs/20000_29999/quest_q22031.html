@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22031</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ugh, mais uma missão que tenho que delegar. Esse assunto de comando é monótono como o globo ocular de um Kobold. Sim, posso gritar um pouco com as pessoas, mas isso é suficiente?</p>
+          <p> </p>
+          <p>O que eu realmente quero é detonar esta joia sonora no [%dic:STR_DIC_W_TDown_ItemUseArea_Q22031A] e depois segui-la. Mas você vai fazer isso por mim porque aparentemente sou importante demais para realizar tarefas servis como reconhecimento e a boa e velha evisceração de Balaur.</p>
+          <p> </p>
+          <p>Não sei dizer por que isso é tão importante. Ainda não - você não é experiente o suficiente. Esse é um benefício da minha posição, eu acho. Tudo o que você deveria saber é que há uma fenda se formando ali que leva a algo importante no Olho de Tiamaranta. Algo MUITO importante, entendeu? Então vá em frente e, pelo amor de Deus, não estrague tudo.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De volta, finalmente, [%username]. Eu teria demorado metade do tempo.</p>
+          <p> </p>
+          <p>Você encontrou a entrada para... quero dizer, qual é o seu relatório?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"A Gem me levou ao norte do Olho."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ha! Eu sabia. É por isso que esse setor está sob tão forte vigilância. Sim, é óbvio quando você sabe que está lá.</p>
+          <p> </p>
+          <p>A entrada da Fortaleza de Tiamat.</p>
+          <p> </p>
+          <p>Sim, eu disse que era bom, não disse? Bem, há mais uma parte desta missão, [%username], e isso é segurar nossas línguas e nossos temperamentos até que chegue a ordem para agirmos.</p>
+          <p> </p>
+          <p>Bom trabalho. Agora não faça nada para entregá-lo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_TDown_ItemUseArea_Q22031A] e use uma Gema Sonora [%2].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Siga a luz e encontre a entrada da Fortaleza de Tiamat [%5].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relate para [%dic:STR_DIC_N_Trois].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ative a Joia Sonora na Estrada Sobrenatural e siga a luz.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Trois enviou você para ativar a Sounding Gem na Uncanny Road. Ele não poderia dar detalhes mais específicos, embora tenha enfatizado sua importância. Você fez o que foi ordenado e seguiu o caminho que a Joia Sonora iluminou.</p>
+          <p> </p>
+          <p>Quando você relatou a localização para Trois, ele finalmente lhe contou: você descobriu a entrada para a Fortaleza de Tiamat, que deve permanecer secreta por enquanto.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

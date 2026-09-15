@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você precisa de [%dic:STR_DIC_I_Assembly_quest_light_LDF4Adv_04] para completar o [%dic:STR_DIC_I_quest_13903a]. Claro, não posso dar este documento até que você tenha conquistado todas as bases em West Akaron.</p>
+          <p> </p>
+          <p>Por favor mate o [%dic:STR_DIC_M_LDF4_Advance_S_v10Chief_Da_all], o [%dic:STR_DIC_M_LDF4_Advance_S_v11Chief_Da_all] e o [%dic:STR_DIC_M_LDF4_Advance_M_v01Chief_Da_all].</p>
+          <p> </p>
+          <p>Estes são os Legados inimigos que ocupam as bases no Ocidente.</p>
+          <p> </p>
+          <p>Se conseguiremos conquistar Balaurea depende de você, [%username]. Mas estou confiante que você terá sucesso!</p>
+          <p> </p>
+          <p>Você é a esperança brilhante dos Elyos, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Só posso emitir o [%dic:STR_DIC_I_Assembly_quest_light_LDF4Adv_04] depois que você tiver conquistado todas as bases em South Akaron.</p>
+          <p> </p>
+          <p>[%username], confio em você porque sei que você é um lutador exemplar, mas não posso simplesmente te dar o relatório se você ainda não liberou as bases.</p>
+          <p> </p>
+          <p>Ou você já conquistou todas as bases do Ocidente?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você com certeza é ótimo!</p>
+          <p> </p>
+          <p>Eu não esperava nada menos de você, [%username]. Afinal, você é famoso por feitos incríveis como esse.</p>
+          <p> </p>
+          <p>A luta em Akaron ainda não acabou, mas os seus serviços garantirão que os Elyos sairão vitoriosos em Akaron.</p>
+          <p> </p>
+          <p>Aqui está o [%dic:STR_DIC_I_Assembly_quest_light_LDF4Adv_04]. Você realmente mereceu esta prova de sua bravura.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine os Legados inimigos que ocupam as bases.</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF4_Advance_S_v10Chief_Da_all] ([%2]/1)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF4_Advance_S_v11Chief_Da_all] ([%5]/1)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF4_Advance_M_v01Chief_Da_all] ([%8]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF4_Advance_Elger_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Legados inimigos que ocupam as bases no oeste.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Tribuno Elger lhe disse que você só poderia obter o Relatório sobre a Conquista de Akaron Ocidental se expulsasse as bases dos Legados do Oeste.</p>
+          <p> </p>
+          <p>Você conseguiu derrotar todos os Legados e, como Elger prometeu, recebeu o documento para provar seu heroísmo. Afinal, você precisava deste documento para completar o Relatório da Conquista de Akaron.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

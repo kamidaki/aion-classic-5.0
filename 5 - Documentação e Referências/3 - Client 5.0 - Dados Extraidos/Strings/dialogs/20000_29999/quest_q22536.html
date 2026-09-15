@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou preocupado porque a segurança dos soldados que foram enviados para cá está ameaçada.</p>
+          <p> </p>
+          <p>Os Espíritos Selvagens da Terra recentemente começaram a correr por este lugar.</p>
+          <p> </p>
+          <p>Defendemo-nos dos ânimos, mas estamos um pouco sobrecarregados - afinal, somos apenas uma equipa pequena.</p>
+          <p> </p>
+          <p>Gostaríamos de pedir sua ajuda, [%username]. O que você acha?</p>
+          <p> </p>
+          <p>Elimine [%dic:STR_DIC_M_LDF5A_C2_El_Earth1_63_An] e[%dic:STR_DIC_M_LDF5A_C2_El_Earth3_63_An].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu não sabia que os espíritos podiam ser tão agressivos.</p>
+          <p> </p>
+          <p>Se nada for feito em relação aos Espíritos da Terra, este lugar em breve estará repleto de espíritos.</p>
+          <p> </p>
+          <p>Devemos continuar lutando até que nossa segurança esteja garantida.</p>
+          <p> </p>
+          <p>Você completou minha missão corretamente?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou convencido de que podemos ganhar estabilidade se lutarmos arduamente.</p>
+          <p> </p>
+          <p>[%username], me sinto um pouco mais calmo com sua ajuda.</p>
+          <p> </p>
+          <p>Você nos deixou esquecer nossa inferioridade.</p>
+          <p> </p>
+          <p>Muito obrigado pelo seu apoio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Espírito da Terra.</font></p>
+			         <p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_C2_El_Earth1_63_An]([%2]/8)</font></p>
+			         <p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_LDF5A_C2_El_Earth3_63_An]([%5]/8)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5a_Daltra_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Espírito da Terra, que está ameaçando a segurança da tropa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daltra pediu que você eliminasse os Espíritos da Terra para a segurança dos aliados.</p>
+          <p> </p>
+          <p>Você matou os Espíritos Cantantes da Terra e os Espíritos Gritantes da Terra a pedido dele, e foi agradecido quando retornou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

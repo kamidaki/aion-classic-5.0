@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está procurando o Templo dos Artesãos?</p>
+          <p> </p>
+          <p>Se for esse o caso, você não está no lugar certo.</p>
+          <p> </p>
+          <p>Eu sou Talon e sou responsável pela segurança aqui.</p>
+          <p> </p>
+          <p>Aqui você pode realizar todas as atividades ligadas ao artesanato.</p>
+          <p> </p>
+          <p>Por favor, vá até a Senhora [%dic:STR_DIC_N_Usener] se quiser saber mais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está interessado em artesanato?</p>
+          <p> </p>
+          <p>Tenho certeza que você sabe que existem várias habilidades de artesanato.</p>
+          <p> </p>
+          <p>Você pode aprender o seguinte: Culinária, Forja de Armas, Forja de Armaduras, Alfaiataria, Alquimia e Construção.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você só pode aprender uma habilidade de artesanato por vez, você deve pensar primeiro no que deseja aprender.</p>
+          <p> </p>
+          <p>A melhor coisa a fazer é dar uma olhada e escolher uma habilidade de artesanato.</p>
+          <p> </p>
+          <p>E aqui está um pequeno agradecimento por me ouvir.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Usener].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o Templo dos Artesãos e peça a Usener para lhe contar sobre a área.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Talon explicou a você sobre o Templo dos Artesãos e depois o enviou para Usener.</p>
+          <p> </p>
+          <p>Usener lhe deu informações sobre artesanato e depois lhe agradeceu por ouvir com paciência.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

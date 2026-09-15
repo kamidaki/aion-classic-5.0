@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>É uma honra poder mandá-lo para Gelkmaros, [%username]. Gelkmaros é a nossa base mais importante para o ataque a Balaurea.</p>
+          <p> </p>
+		  <p>Como tenho certeza que você sabe, lutar contra o Drakan é incrivelmente difícil.</p>
+		  <p> </p>
+		  <p>Somente Daevas experientes que não têm medo de nenhum perigo devem lutar nesta batalha.</p>
+		  <p> </p>
+		  <p>O Agente de Marchutan [%dic:STR_DIC_N_Hler] está lá e observa o ataque.</p>
+		  <p> </p>
+		  <p>Além disso, o Sargento Combatente [%dic:STR_DIC_N_Shinin] estava perguntando por você, [%username].</p>
+		  <p> </p>
+		  <p>Ele queria contar algo sobre as Insígnias do Crisol.</p>
+		  <p> </p>
+		  <p>Dê uma olhada no Crisol a caminho de Gelkmaros.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Saudações, Daeva!</p>
+		  <p> </p>
+		  <p>Estou feliz que você atendeu ao pedido de Christian e veio aqui.</p>
+		  <p> </p>
+		  <p>Você parece estar ocupado, então vou direto ao ponto.</p>
+		  <p> </p>
+		  <p>Você pode trocar o equipamento que recebeu no Refúgio dos Retornados por um equipamento melhor usando as Insígnias do Crisol.</p>
+		  <p> </p>
+		  <p>Você pode obter Insígnias do Crisol no Empyrean Crucible, no Solus Crucible e no Crucible Coliseum também.</p>
+		  <p> </p>
+		  <p>Você pode obter mais detalhes com os instrutores em cada Crisol.</p>
+		  <p> </p>
+		  <p>Se você quiser saber mais sobre o Coliseu do Crisol, posso lhe dar algumas informações.</p>
+		  <p> </p>
+		  <p>Até breve, Daeva!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra.</p>
+          <p> </p>
+		  <p>Lorde Marchutan predisse que você viria para Gelkmaros, [%username].</p>
+		  <p> </p>
+		  <p>Ele também predisse que você desempenhará um papel decisivo na destruição de Balaur.</p>
+		  <p> </p>
+		  <p>Estamos colocando todas as nossas esperanças em você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Para a prosperidade do Pandemônio!</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deixa uma impressão duradoura.</p>
+          <p> </p>
+		  <p>É por isso que vou confiar em você. Derrote os Balaur em todas as regiões de Gelkmaros.</p>
+		  <p> </p>
+		  <p>Vou esperar por boas notícias.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Shinin] em [%dic:STR_DIC_W_Arena_D_Lobby].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Hler] em Gelkmaros.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Fortaleza Gelkmaros e encontre Richelle.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Christian sugeriu enviar alguém para Gelkmaros.</p>
+          <p> </p>
+          <p>No caminho, você conheceu o Sargento de Combate Shinin do Crisol e descobriu como pode comprar Insígnias do Crisol.</p>
+          <p> </p>
+          <p>Richelle, Agente de Marchutan, falou sobre suas grandes esperanças para o futuro e pediu que você ajudasse a resolver os muitos problemas em Gelkmaros.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

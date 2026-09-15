@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q26955</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os piratas da Rosa de Aço estão atacando Shugos inocentes com pólvora e armas da Goldrinyerk Limited, ak.</p>
+          <p> </p>
+          <p>Os mais brutais entre eles são o Primeiro Imediato e o Canhoneiro Chefe. Suas balas de canhão mataram muitos Shugos, ak!</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_IDShulackShip_02_SZ_3F] e mate [%dic:STR_DIC_M_IDRose_Shulack_Top_Fi_64_Ae_Nmd] e [%dic:STR_DIC_M_IDRose_Shulack_Top_Gu_64_Ae_Nmd] antes que mais Shugos morram!</p>
+          <p> </p>
+          <p>Assim que Daeva estiver pronto para embarcar, Daeva pode pedir ajuda a [%dic:STR_DIC_N_IDShulack_Rose_Ent_3FD_E]. Ele dirá a Daeva como chegar ao convés. Boa sorte, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não posso mais tolerar os Piratas Rosa de Aço aterrorizando o mundo com armas e explosivos de Goldrinyerk, ak.</p>
+          <p> </p>
+          <p>Por favor, ajude-nos matando o Primeiro Imediato e o Canhoneiro Chefe, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a conclusão da tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Felizmente você voltou ileso!</p>
+          <p> </p>
+          <p>Graças a você os piratas ficaram muito mais calmos. Muito obrigado, ak!</p>
+          <p> </p>
+          <p>Rapidez de execução e preço razoável são os princípios dos bons negócios e o lema da Goldrinyerk Limited, ak.</p>
+          <p> </p>
+          <p>Por favor, pegue, ok. Obrigado novamente!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_IDRose_Shulack_Top_Fi_64_Ae_Nmd] e o [%dic:STR_DIC_M_IDRose_Shulack_Top_Gu_64_Ae_Nmd] no convés da Rosa de Aço.</font></p>
+                     <p visible="[%0]"><font color="[%1]">Primeiro Imediato Nachraki ([%2]/1)</font></p>
+                     <p visible="[%0]"><font color="[%1]">Chefe Canhoneiro Utsuraki ([%5]/1)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5a_Damiring_E] em North Katalam.</font></p></step>
+   	    </steps>
+          <p><font font_xml="quest_summary">Mate o primeiro imediato Nachraki e o canhoneiro-chefe Utsuraki no convés da Rosa de Aço.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o primeiro imediato e o canhoneiro-chefe e ensinou uma lição aos piratas brutais.</p>
+          <p> </p>
+          <p>Agora, esperamos que a Rosa de Aço não faça nada por um tempo, depois de ter perdido duas de suas figuras principais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

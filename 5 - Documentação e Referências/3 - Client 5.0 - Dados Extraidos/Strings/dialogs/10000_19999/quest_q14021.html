@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É um pouco estranho que os [%dic:STR_DIC_M_ManduriT_all] estejam tentando se estabelecer onde os humanos viveram. Animais assustados normalmente não vivem em algum lugar que tenha vestígios de humanos.</p>
+          <p> </p>
+          <p>O próprio fato de Manduri poder ser encontrado em Eltnen é estranho. Normalmente você só pode encontrar Manduri em Heiron.</p>
+          <p> </p>
+          <p>Mas agora que ocuparam a aldeia aqui, estão a causar problemas reais aos residentes.</p>
+          <p> </p>
+          <p>Eles atacam os transeuntes e até os roubam!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Guardas foram instalados perto da Aldeia Manduri, mas a área é tão grande que eles não conseguem ficar de olho em tudo.</p>
+          <p> </p>
+          <p>E não é uma solução adequada para o problema.</p>
+          <p> </p>
+          <p>Devemos impedir que os Manduri roubem os habitantes da fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1_1">Você pergunta sobre sua tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], por favor, mate esses bandidos e proteja os moradores de mais danos.</p>
+          <p> </p>
+          <p>Se você seguir para oeste, abaixo da fortaleza, verá a vila Manduri à sua frente.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_M_ManduriT_all] lá.</p>
+          <p> </p>
+          <p>Ah, e mais uma coisa: ouvimos relatos estranhos ultimamente.</p>
+          <p> </p>
+          <p>Houve vários avistamentos de misteriosos aviões de papel perto do depósito de suprimentos de Manduri.</p>
+          <p> </p>
+          <p>Por favor, investigue o assunto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q1031-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor me ajude!</p>
+          <p> </p>
+          <p>Estou preso num prédio no centro do Campo Manduri!</p>
+          <p> </p>
+          <p>Por favor, ajude-me a fugir deste lugar!</p>
+          <p> </p>
+          <p>- Melginia</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Finalmente, alguém encontrou um dos meus aviões de papel!</p>
+          <p> </p>
+          <p>Ah, que sorte.</p>
+          <p> </p>
+          <p>Por favor, ajude-me a fugir!</p>
+          <p> </p>
+          <p>Não tenho certeza de há quanto tempo estou mantido em cativeiro aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Como você chegou aqui?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na verdade, os Manduri não são animais. Eles já foram humanos. Eles eram aldeões como você e eu.</p>
+          <p> </p>
+          <p>Há muitos anos, Yustiel ordenou à nossa aldeia que protegesse Eltnen e preservasse a Semente da Vida. Mas quebramos nossa promessa e usamos a Semente da Vida para nossos próprios fins.</p>
+          <p> </p>
+          <p>Yustiel ficou cheio de ira e proferiu uma maldição que transformou todos os Manduri. A ideia de explorar a Semente da Vida foi principalmente minha, mas por alguma estranha razão fui o único que não se transformou em Manduri.</p>
+          <p> </p>
+          <p>Furiosos, os Manduri me pegaram e me mantiveram cativo aqui desde então.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mas não aguento mais. Desejo fazer penitência diante de Yustiel e salvar as pessoas que foram transformadas em Manduri.</p>
+          <p> </p>
+          <p>Por favor, ajude-me a sair desta aldeia.</p>
+          <p> </p>
+          <p>Se você encontrar [%dic:STR_DIC_N_Seora] na floresta e denunciar, eles enviarão alguém.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q14021-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aconteceu alguma coisa para você estar com tanta pressa?</p>
+          <p> </p>
+          <p>Sua expressão me diz que algo aconteceu.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1">Você atende ao pedido de Melginie.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Embora eu pertença aos Daevas da Vida, que adoram Yustiel, eu não sabia que os Manduri eram humanos.</p>
+          <p> </p>
+          <p>A transformação aconteceu há décadas e Yustiel nunca disse uma palavra sobre isso, então ninguém sabia.</p>
+          <p> </p>
+          <p>Enviarei alguém para resgatar Melginie imediatamente.</p>
+          <p> </p>
+          <p>Porque é importante, por favor vá até Centurião [%dic:STR_DIC_N_Aurelius] e entregue a notícia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q1031-5.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se livrou do Manduri?</p>
+          <p> </p>
+          <p>Você encontrou os aviões de papel na Vila Manduri?</p>
+          <p> </p>
+          <p>[%username], fiquei tão curioso para saber como foram as coisas que não fiz nada além de aguardar seu retorno.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Manduri já foram humanos?</p>
+          <p> </p>
+          <p>Meu Deus... Isso é inacreditável.</p>
+          <p> </p>
+          <p>É improvável que Yustiel acabe com a maldição. Há também a questão de como devemos lidar com os Manduri no futuro.</p>
+          <p> </p>
+          <p>Independentemente disso, você fez um bom trabalho. Aqui está uma recompensa para agradecer por seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Aurelius] no [%dic:STR_DIC_W_LF2_SZ_OP].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Caça o [%dic:STR_DIC_M_ManduriT_all] ([%5]/6).</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Encontre [%dic:STR_DIC_E_LF2_ManduriClue_Q1031].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Encontre a sobrevivente [%dic:STR_DIC_N_NPC_Manduri_Survivor] e fale com ela.</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Fale com [%dic:STR_DIC_N_Seora] no [%dic:STR_DIC_W_LF2_SZ_A1].</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Aurelius] no [%dic:STR_DIC_W_LF2_SZ_OP].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Os Manduri tiranizam os habitantes e estão causando sérios danos. Conheça Aurélio e saiba mais.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Manduri estão causando problemas aos moradores, por isso Aurélio pediu que fossem resolvidos. Depois de matar os Manduri e voltar, você descobriu um avião de papel na Vila Manduri.</p>
+          <p> </p>
+          <p>Você soube pelo avião de papel que Melginie estava sendo mantida prisioneira na vila Manduri. Uma conversa com sobreviventes revelou que os Manduri já foram humanos. Você passou o pedido para salvar Melginie para Celestine.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Pedido: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

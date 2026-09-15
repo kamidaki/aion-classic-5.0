@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este parece ser um Portão Dimensional para o Centro de Pesquisa Alquimia).</p>
+          <p> </p>
+          <p>(Nem todo mundo parece ser capaz de usá-lo.)</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <airline_service>Teleport</airline_service>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Este parece ser um Portão Dimensional para o Centro de Pesquisa Alquimia.)</p>
+          <p> </p>
+          <p>(Mesmo quando você toca aqui e ali, não há mudança.)</p>
+          <p> </p>
+          <p>(Para a ativação, você provavelmente precisará de permissão.)</p>   
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra no Centro de Pesquisa Alquimia.</Act>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH">Você procura amigos para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina suas investigações.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Esta é apenas uma pedra, mas ao tocá-la você sente a energia especial do Éter.)</p>
+          <p> </p>
+          <p>(Talvez seja um portal interdimensional para um lugar específico?)</p>
+          <p> </p>
+          <p>(Não existe nenhum método de uso conhecido.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

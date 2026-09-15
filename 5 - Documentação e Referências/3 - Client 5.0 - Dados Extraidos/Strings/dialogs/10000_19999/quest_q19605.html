@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há uma Fenda do Abismo no Campo de Escavação Anangke em Theobomos que leva ao Laboratório Theobomos.</p>
+          <p> </p>
+		  <p>O arqueólogo [%dic:STR_DIC_N_Pyrrha] já está lá há muito tempo e tenta desvendar os segredos do laboratório de pesquisa.</p>
+		  <p> </p>
+		  <p>Ela originalmente queria conduzir suas investigações sozinha, mas teve algumas dificuldades.</p>
+		  <p> </p>
+		  <p>Tenho certeza que ela ficaria grata se alguém a ajudasse, [%username].</p>
+		  <p> </p>
+		  <p>Como está a situação? Você vai ajudar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo! Meu nome é Pirra, sou arqueóloga.</p>
+          <p> </p>
+		  <p>Tenho certeza que Martine já deve ter te contado tudo.</p>
+		  <p> </p>
+		  <p>Muitas pessoas estão interessadas apenas no presente e esquecem o quão valioso é o passado. Eu vejo isso de forma diferente.</p>
+		  <p> </p>
+		  <p>Acredito firmemente que há um segredo escondido no laboratório de pesquisa de Theobomos.</p>
+		  <p> </p>
+		  <p>Minhas investigações revelaram que a construção do laboratório secreto tem a ver com espíritos.</p>
+		  <p> </p>
+		  <p>Provavelmente extraíram o poder dos espíritos no laboratório secreto. Todo o laboratório parece ser um grande gerador gigante de Petralith.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta se Petralith é tão importante.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Mas é claro.</p>
+          <p> </p>
+		  <p>Se descobrirmos o que alimenta o gerador, poderemos penetrar no interior do Laboratório Theobomos.</p>
+		  <p> </p>
+		  <p>Então poderemos ativar o Petralith. Isso não seria ótimo?</p>
+		  <p> </p>
+		  <p>Mas agora você deve reunir seus aliados ao seu redor e ajudar na investigação das relíquias dos tempos antigos, [%username].</p>
+		  <p> </p>
+		  <p>Você pode chegar diretamente ao Laboratório Theobomos através do Abismo Fenda aqui.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Pyrrha] no [%dic:STR_DIC_W_LF2B_SZ_B4_2] em Theobomos.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para o acampamento de escavação Anangke em Theobomos e encontre Pirra.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Martine sugeriu enviar alguém para o Laboratório Theobomos.</p>
+          <p> </p>
+          <p>As relíquias do passado são muito importantes para a arqueóloga Pirra em Teobomos. É por isso que ela pediu para você investigar o Laboratório Theobomos.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

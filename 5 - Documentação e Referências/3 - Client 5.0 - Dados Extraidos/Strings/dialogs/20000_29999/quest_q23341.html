@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A 43ª Tropa Beritra montou um posto nas proximidades.</p>
+          <p> </p>
+          <p>O seu propósito ainda não está claro, mas devemos estar preparados para qualquer situação.</p>
+          <p> </p>
+          <p>Mate [%dic:STR_DIC_M_LDF5B_f4_Vri_Poison_As_SN_NmdQ_65_Ae] e me traga o documento que ele tem.</p>
+          <p> </p>
+          <p>Assim que tivermos os documentos poderemos saber mais sobre o plano da 43ª Tropa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem que entender o plano do inimigo para evitar a derrota.</p>
+          <p> </p>
+          <p>Além disso, a preparação diligente levará à vitória.</p>
+          <p> </p>
+          <p>Você conseguiu obter o documento que estava em poder de [%dic:STR_DIC_M_LDF5B_f4_Vri_Poison_As_SN_NmdQ_65_Ae]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as ordens de operação da 1ª Unidade.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui está a sequência das operações a serem realizadas pelo Esquadrão Beritra.</p>
+          <p> </p>
+          <p>Poderíamos frustrar o último plano do Exército de Beritra se o analisarmos mais detalhadamente.</p>
+          <p> </p>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Graças a você, [%username], recebemos esta informação antes que seja tarde demais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_QUEST_23341A] e leve tudo para [%dic:STR_DIC_N_LDF5_Village_Guard18_D].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o capitão do 43º Elimination Squat e obtenha o documento em sua posse.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rorik pediu que você matasse o Capitão do 43º Esquadrão de Eliminação e apreendesse o documento para que possamos nos preparar para frustrar os planos do inimigo.</p>
+          <p> </p>
+          <p>Conforme ordenado, você matou o Capitão do 43º Esquadrão de Eliminação e garantiu as táticas de batalha, pelas quais Rorik ficou muito grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+</HtmlPages>
+

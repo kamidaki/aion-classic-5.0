@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Você quer embarcar nos Sadonics?</p>
+          <p> </p>
+          <p>Posso conseguir passagem para você, [%userclass].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Sim, envie-me a bordo."</Act>
+      <Act href="HACTION_FINISH_DIALOG">"Não, tenho coisas para fazer."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+          <p> </p>
+          <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Vou relatar minhas descobertas. Fique bem."</Act>
+      <Act href="HACTION_FINISH_DIALOG"> </Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Er, se você não tiver ordens específicas, não posso deixá-lo embarcar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Bem, por que você não disse isso?"</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

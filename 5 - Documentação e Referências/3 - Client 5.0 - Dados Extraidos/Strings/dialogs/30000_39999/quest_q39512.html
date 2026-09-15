@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39512</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Boletim de atualização para membros do comerciante Black Cloud -</p>
+          <p> </p>
+          <p>Os comerciantes da Nuvem Negra que viajam pelas Fissuras Sertões devem estar atentos aos estúpidos Fenda Zanthays.</p>
+          <p> </p>
+          <p>Fenda Zanthays acham que podem simplesmente pular do nada e derrubar importantes Shugos de seus importantes carrinhos Brax!</p>
+          <p> </p>
+          <p>O inteligente Mercador da Nuvem Negra Vanguard Vilmanerk deve ressaltar que ninguém leva a sério um Mercador Shugo empoeirado, sujo e mal descansado! Ruim para os negócios! Ruim!</p>
+          <p> </p>
+          <p>Pedido: Eliminação de [%dic:STR_DIC_M_LDF4b_T1_Sandshark_58_An]s no Deserto de Adora.</p>
+          <p> </p>
+          <p>- Vilmanerk, Vanguarda Mercante da Nuvem Negra -</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Aposto que aqueles pobres Zanthay levaram uma bronca."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva [%username], confira.</p>
+          <p> </p>
+          <p>Reportando, confere?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Fenda Zanthays, confira."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakakak! Shugo e Daeva fazem piada!</p>
+          <p> </p>
+          <p>É bom fazer piadas! Faça uma pausa no exaustivo sistema de arquivamento e nos Boletins de Atualização de Membros!</p>
+          <p> </p>
+          <p>E as reuniões! Tantas reuniões!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF4b_T1_Sandshark_58_An]s ([%2]/5).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Arquive seu relatório com [%dic:STR_DIC_N_Shugo_LDF4b_09].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para Fissure Barrens e mate os Fenda Zanthays que interferem com os Black Cloud Merchants.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu um boletim de atualização dos comerciantes da Black Cloud e eles precisavam de ajuda.</p>
+          <p> </p>
+          <p>Você eliminou Fenda Zanthays de Fissure Barrens e Nagumonerk o recompensou.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Diz-se que a liderança manteve um olhar muito atento sobre Rotting Belgoros, e diz-se que ele tem se comportado de maneira muito estranha e furioso.</p>
+          <p> </p>
+          <p>Isso poderia ter algo a ver com a energia do Id? Provavelmente também existe alguma ligação com os acontecimentos na Região Contaminada.</p>
+          <p> </p>
+          <p>Se as coisas continuarem assim, quem pode dizer que tipo de ações poderiam ser cometidas. Você poderia, por favor, matar[%dic:STR_DIC_M_LDF5b_B2_Vri_Zombie_Id_Fi_Nmd_65_Ae]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você se deu com Rotting Belgoros?</p>
+          <p> </p>
+          <p>Foi horrível para mim ver os estranhos fenômenos ao redor da Região Contaminada.</p>
+          <p> </p>
+          <p>A existência de uma ligação com este assunto é uma razão pela qual não posso ser tolerante.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Você descobrirá quando os resultados chegarem, mas presumo que o incidente ocorreu devido à energia Id.</p>
+          <p> </p>
+          <p>[%username], estou aliviado, agora que você cuidou de tudo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF5b_B2_Vri_Zombie_Id_Fi_Nmd_65_Ae] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Sulis_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Belgoros Apodrecido, que está conectado ao reaparecimento dos Zumbis Drakan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A pedido de Sulis você matou o Rotting Belgoros.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você chegou bem a tempo de defender a Torre do Escudo.</p>
+          <p> </p>
+          <p>O Escudo Protetor para a região rica em Id em Balaurea pode ser ativado em [%dic:STR_DIC_W_ZONE_NAME_IDLDF5_Under_03].</p>
+          <p> </p>
+          <p>O Exército Beritra destruiu a entrada da torre, mas você ainda pode usar o corredor em Akaron.</p>
+          <p> </p>
+          <p>Os Balaur presumiram que poderiam colocar a torre fora de ação fazendo isso, mas estavam errados.</p>
+          <p> </p>
+          <p>Vá para a Torre do Escudo passando pelo [%dic:STR_DIC_W_IDF5_U3_FOBJ_Entrance] no assentamento Chapir ou na Floresta do Silêncio e encontre [%dic:STR_DIC_N_IDLDF5_Under_03_Kamenz_E].</p>
+          <p> </p>
+          <p>Kamens fornecerá detalhes.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Foi o Rune quem construiu a torre do escudo. O Escudo Protetor para toda a região pode ser ativado na torre.</p>
+          <p> </p>
+          <p>Seu objetivo é fornecer proteção contra ataques externos.</p>
+          <p> </p>
+          <p>A torre geralmente processa o Id automaticamente para ativar o escudo.</p>
+          <p> </p>
+          <p>Mas os ataques destruíram partes do maquinário. Agora temos que ativar os Geradores de Energia manualmente.</p>
+          <p> </p>
+          <p>Mas isso é muito difícil de fazer, com o Esquadrão de Destruição constantemente nos atacando.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A energia precisa ser alimentada manualmente nos Geradores de Escudo para manter o Escudo Protetor até que o dano seja reparado.</p>
+          <p> </p>
+          <p>Nossos oponentes tentarão destruir a Torre do Escudo Rúnico destruindo primeiro os geradores e depois continuando a atacar para que o escudo não possa ser ativado novamente.</p>
+          <p> </p>
+          <p>Pare o 43º Esquadrão de Destruição, que atacará de todos os lados, e reunirá os Fragmentos de Idio transparentes perto do [%dic:STR_DIC_E_IDF5_U3_FOBJ_Box_Fill] e use-os para atacar os quatro [%dic:STR_DIC_E_IDF5_U3_Defence_all].</p>
+          <p> </p>
+          <p>Se você não conseguir carregar a instalação dentro de um certo tempo, a Torre do Escudo entrará em colapso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <CutScene id="895"/>
+  </HtmlPage> 
+
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], sua missão é parar o 43º Esquadrão de Destruição e ativar o Escudo Protetor.</p>
+          <p> </p>
+          <p>O Esquadrão de Destruição atacará de diferentes direções e tentará destruir os Geradores de Energia. Você e seus companheiros têm que detê-los. É melhor você se separar!</p>
+          <p> </p>
+          <p>Além disso, os quatro Geradores de Energia devem ser carregados para ativar o Escudo Protetor.</p>
+          <p> </p>
+          <p>Use uma Arma de Defesa Rúnica para impedir temporariamente o ataque dos Balaur.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que fará o seu melhor.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deve estar atento, mesmo que todos os quatro geradores de energia estejam totalmente carregados.</p>
+          <p> </p>
+          <p>Afinal, você nunca sabe o que os Balaur podem estar planejando a seguir.</p>
+          <p> </p>
+          <p>Portanto, você deve sempre ficar atento, mesmo que o Escudo Protetor na Câmara de Escudos da torre esteja ativo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Encontre [%dic:STR_DIC_N_IDLDF5_Under_03_Kamenz_E] na Rune Escudo Tower e peça para ele contar sobre isso.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_IDLDF5_Under_03_Kamenz_E] novamente.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Rune Escudo Tower, encontre Kamens e ouça seu representante.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um pedido de reforço veio da Rune Escudo Tower.</p>
+          <p> </p>
+          <p>Você foi encontrar Kamens, que então explicou o papel da Rune Escudo Tower para você. Ele relatou que o 43º Esquadrão de Destruição queria enfraquecer o Escudo Protetor para invadir e destruir a torre.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

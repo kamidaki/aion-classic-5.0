@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Suas batalhas recentes ficam evidentes em seu rosto cansado. Você já esteve em Pernon? Lá, você pode se refrescar e relaxar em uma casa só sua.</p>
+          <p> </p>
+          <p>Considere o seguinte: como recompensa por seu valioso serviço e dedicação altruísta, você pode agora afiar suas garras no conforto de seu próprio estúdio e colocar nas paredes os troféus de suas grandes conquistas.</p>
+          <p> </p>
+          <p>Peça a [%dic:STR_DIC_N_Doman] para teletransportar você para Pernon - e se você for, por favor, dê meus cumprimentos a [%dic:STR_DIC_N_Harretion].</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem alguma pergunta para mim?</p>
+          <p> </p>
+          <p>Vá em frente, não tenha pressa. Em Pernon, você encontrará menos pressa e mais lazer para forjar, fabricar ou explorar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu ouvi no Pandemônio..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! E você ouviu direito. Randiten costumava dizer que queria que mais Daevas desfrutassem deste lugar de paz.</p>
+          <p> </p>
+          <p>Ele partiu para Pandemônio para espalhar a notícia sobre Pernon. Como ele planejou, mais pessoas visitam todos os dias.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Com a ajuda de [%dic:STR_DIC_N_Doman], viaje para Pernon e fale com [%dic:STR_DIC_N_Harretion].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você foi solicitado a enviar cumprimentos a Hariton, o pregoeiro em Pernon. Com a ajuda de Doman, vá até Pernon e encontre Hariton lá.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um promotor imobiliário de Pernon pediu que você cumprimentasse seu amigo Hariton, em Pernon.</p>
+          <p> </p>
+          <p>Quando você contou a Hariton, ele lhe ofereceu calorosas boas-vindas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

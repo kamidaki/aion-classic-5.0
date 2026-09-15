@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15053</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não há justiça neste mundo, ak. Que tipo de bandido rouba Shugos, ok?</p>
+          <p> </p>
+          <p>Aqueles cruéis Cellatus roubaram uma lista de Chairunerk, ak. Chairunerk herdou este importante documento dos ancestrais de Chairunerk.</p>
+          <p> </p>
+          <p>Como poderia o Cellatus ousar roubar de Shugo, ak? Mas o que Shugo pode fazer sobre isso, ok?</p>
+          <p> </p>
+          <p>Talvez Daeva possa entrar no [%dic:STR_DIC_W_LF5_SZ_E_01] e derrotar o [plur][%dic:STR_DIC_M_LF5_E_Cellatu_59_An] para Shugo, ok? Shugo precisa de todas as páginas do [%dic:STR_DIC_I_quest_15053a], ak! Por favor, Daeva, ok!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como poderia Chairunerk perder a Lista do Tesouro dos ancestrais de Chairunerk... ak?</p>
+          <p> </p>
+          <p>Os ancestrais de Chairunerk retornarão como espíritos para punir Chairunerk...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Lista do Tesouro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta lista é tão antiga que pode virar pó no momento em que Shugo a tocar, ak.</p>
+          <p> </p>
+          <p>Esta lista é incrivelmente valiosa, pois mostra todos os tesouros do mundo, sejam eles de Daevas, Balaur ou Shugos, ak.</p>
+          <p> </p>
+          <p>Diz algo sobre o tesouro escondido do Senhor Dragão...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que está mais interessado em uma recompensa do que no que está na lista.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva está zombando da tristeza de Shugo, ok?</p>
+          <p> </p>
+          <p>Em vez de ficar sentado aqui de braços cruzados, Daeva deveria tentar recuperar as páginas da Lista de Tesouros de Shugo do Cellatu, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta lista é tão antiga que pode virar pó no momento em que Shugo a tocar, ak.</p>
+          <p> </p>
+          <p>Esta lista é incrivelmente valiosa, pois mostra todos os tesouros do mundo, sejam eles de Daevas, Balaur ou Shugos, ak.</p>
+          <p> </p>
+          <p>Diz algo sobre o tesouro escondido do Senhor Dragão...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que está mais interessado em uma recompensa do que no que está na lista.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva está sob pressão, ok?</p>
+          <p> </p>
+          <p>Uma promessa é uma promessa, ak! Shugo quer dar uma recompensa a Daeva porque Daeva encontrou a lista, ak.</p>
+          <p> </p>
+          <p>Obrigado, Daeva, ak! Graças a Daeva, Chairunerk pode continuar sua caça ao tesouro e trazer glória aos ancestrais, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha as páginas do [%dic:STR_DIC_I_quest_15053a] e reporte para [%dic:STR_DIC_N_LF5_Chairun_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Chairun_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Recupere a lista de tesouros de Chairunerk para ele.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Gold Cellatus roubou a Lista de Tesouros de Chairunerk. Chairunerk pediu que você ajudasse a recuperar a lista.</p>
+          <p> </p>
+          <p>Você reuniu as diversas páginas e as trouxe para Chairunerk. Ele agradeceu e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

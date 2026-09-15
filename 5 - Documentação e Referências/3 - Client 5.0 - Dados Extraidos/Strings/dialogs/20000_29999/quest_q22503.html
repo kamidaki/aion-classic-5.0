@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estava te procurando porque tenho um pedido urgente.</p>
+          <p> </p>
+          <p>Pelo que descobri, um espião Elyos está escondido em um local secreto.</p>
+          <p> </p>
+		  <p>[%dic:STR_DIC_M_LDF5A_OP_D_Li_Poison_AS_Nmd_61_An]. Eles são suspeitos.</p>
+		  <p> </p>
+          <p>Não sabemos que segredo ele procura, mas ele deve ser morto antes que alguém descubra. Precisamos pegá-lo antes que os rumores comecem a se espalhar e causar o caos aqui.</p>
+          <p> </p>
+          <p>Espero que você possa cuidar deste assunto, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O problema da espionagem é mais urgente do que qualquer outra coisa.</p>
+          <p> </p>
+          <p>Se você descobrir um espião, não precisará se preocupar em tentar descobrir nada dele; é melhor matá-lo imediatamente.</p>
+          <p> </p>
+          <p>Se ao menos eu pudesse descobrir onde estão os espiões, poderia usar meu Oficial de Ligação Asmodiano para descobrir toda a situação rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que matou o espião.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é realmente inacreditável. Realmente tínhamos um espião entre nós!</p>
+          <p> </p>
+		  <p>Tenho que examinar as circunstâncias mais detalhadamente.</p>
+		  <p> </p>
+          <p>Você continua me impressionando. Como você encontrou o espião tão rapidamente, [%username]? Foi certo da minha parte pedir ajuda a você.</p>
+          <p> </p>
+          <p>Este é um sinal do meu agradecimento. Por favor, continue nos ajudando.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Identificar [%dic:STR_DIC_M_LDF5A_OP_D_Li_Poison_AS_Nmd_61_An] ([%2]/2).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_LDF5A_Phone_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Determine se o Assassino Especial Arconte é um espião.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O líder guerrilheiro Phon disse que recebeu uma mensagem de que um espião Elyos havia entrado e pediu para você encontrá-lo e matá-lo.</p>
+          <p> </p>
+          <p>Depois de matar o suspeito Archon Special Assassino, você relatou o resultado. O líder guerrilheiro Phon agradeceu e pediu mais ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você já ouviu falar que o Templo Carmesim foi capturado pelo inimigo?</p>
+          <p> </p>
+          <p>Uma batalha feroz travou-se entre nós, os Elyos e os Balaur nesta área. Não podemos permitir que o Templo Carmesim e a Cidadela Vorgaltem caiam em mãos inimigas.</p>
+          <p> </p>
+          <p>Nossa situação piorou consideravelmente desde que perdemos o Templo Carmesim. Isso reduz as nossas chances de vitória, mas não podemos deixar que isso afete a nossa determinação.</p>
+          <p> </p>
+          <p>Chegamos até aqui sob a liderança de Lorde Marchutan, então não podemos desistir agora!</p>
+          <p> </p>
+          <p>Temos que reconquistar o Templo Carmesim e assim mudar o rumo da batalha a nosso favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O campo de batalha Vorgaltem é um pesadelo militar.</p>
+          <p> </p>
+          <p>Isto ocorre principalmente porque o Exército Beritra e também os Elyos estão lutando lá.</p>
+          <p> </p>
+          <p>[%username], se você provar sua bravura neste caótico campo de matança, sua fama se espalhará por toda parte. Tenho certeza que você sairá vitorioso da batalha, [%username]!</p>
+          <p> </p>
+          <p>Reúna aliados em quem você possa confiar e forme uma aliança. Marche no Templo Carmesim e derrote o General Guardião inimigo.</p>
+          <p> </p>
+          <p>Lorde Marchutan olha para você. Então faça um esforço, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não será fácil eliminar o [%dic:STR_DIC_M_QUEST_21309].</p>
+          <p> </p>
+          <p>[%username], você não precisa ter medo, porque você não está sozinho. Muitos outros Daevas e legiões inteiras participarão desta missão.</p>
+          <p> </p>
+          <p>Assim que o Guardião Geral inimigo por derrotado e o Templo Carmesim por reconquistado, a Tropa de Expedição Pandemônio enviará Cozett para o Templo Carmesim.</p>
+          <p> </p>
+          <p>[%username], por favor fale com ela, pois tenho certeza que ela lhe dará uma recompensa.</p>
+          <p> </p>
+          <p>Desejo-lhe sorte e sucesso. Que o destino esteja do seu lado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não entende que não há nada mais importante agora do que retomar o Templo Carmesim?</p>
+          <p> </p>
+          <p>[%username], se não recuperarmos a fortaleza, isso significará uma derrota esmagadora para nós.</p>
+          <p> </p>
+          <p>Se perdermos a batalha, isso significará a nossa queda. [%username], por favor reconsidere!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Só conseguimos recapturar o Templo Carmesim porque muitos Daevas participaram desta missão.</p>
+          <p> </p>
+          <p>A fortaleza foi extremamente difícil de tomar, então temos que defendê-la com todas as nossas forças.</p>
+          <p> </p>
+          <p>Há muito a ser feito, como fazer reparos, reabastecer bens consumidos, vigiar os arredores da fortaleza e muitas outras tarefas.</p>
+          <p> </p>
+          <p>Também é meu trabalho recompensar aqueles que realizaram grandes feitos durante a batalha na fortaleza. [%username], você também realizou grandes feitos durante a batalha pelo Templo Carmesim, não foi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], suas conquistas são louváveis.</p>
+          <p> </p>
+          <p>Aqui está sua recompensa merecida.</p>
+          <p> </p>
+          <p>Peço-lhe que continue trabalhando para proteger o Templo Carmesim e garantir uma vitória Asmodiana.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vanquise o Guardião Geral inimigo para recuperar o [%dic:STR_DIC_W_DF4_SZ_3021_A].</font></p>
+                     <p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_M_QUEST_21309] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Cozett].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O Templo Carmesim caiu nas mãos do inimigo. Derrote o Guardião Geral e retome o Templo Carmesim.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Raeyena pediu que você participasse da operação para reconquistar o Templo Carmesim.</p>
+          <p> </p>
+          <p>Então você marchou até lá junto com seus companheiros de confiança e eliminou o Guardião Geral inimigo. Você então foi e relatou a Cozett.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

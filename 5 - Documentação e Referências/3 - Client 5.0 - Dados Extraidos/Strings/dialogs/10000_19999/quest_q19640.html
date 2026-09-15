@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui está sua quarta tarefa.</p>
+          <p> </p>
+		  <p>A Energia de Taloc está sendo perturbada pela presença do [plur][%dic:STR_DIC_M_LF4_A3_Rottentree_Green_52_An] e do [plur][%dic:STR_DIC_M_LF4_A3_Foam_Wisp_52_n].</p>
+		  <p> </p>
+		  <p>Elimine-os e assim acabe com sua interferência no fluxo de energia.</p>
+		  <p> </p>
+		  <p>Por favor, tome cuidado com esta situação. [%dic:STR_DIC_N_Barus] está esperando por você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Ainda existem muitos perigos à espreita no Posto de Observação de Undirborg.</p>
+		  <p> </p>
+		  <p>Você deve evitar ir para lá sozinho.</p>
+		  <p> </p>
+		  <p>O que traz você até mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que realizou a quarta tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, me desculpe. Eu não te reconheci.</p>
+          <p> </p>
+		  <p>Eu pensei que você fosse outro Daeva incrível.</p>
+		  <p> </p>
+		  <p>Salve, Daeva. Sou Barus, da Força Expedicionária do Santuário.</p>
+		  <p> </p>
+		  <p>Ao completar sua quarta tarefa, eu lhe darei a recompensa que Outremus forneceu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_M_LF4_A3_Rottentree_Green_52_An] ou o [plur][%dic:STR_DIC_M_LF4_A3_Foam_Wisp_52_n] em Inggison ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Barus] no Posto de Observação de Undirborg.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Execute a quarta tarefa e encontre Barus.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A quarta tarefa que Lothas lhe deu foi destruir Kingtree Rotrons ou Icy Seafoams em Inggison.</p>
+          <p> </p>
+          <p>Depois de eliminar os monstros, você encontrou Barus e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

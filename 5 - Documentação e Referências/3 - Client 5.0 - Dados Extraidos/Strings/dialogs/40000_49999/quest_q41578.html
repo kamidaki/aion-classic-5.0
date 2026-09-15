@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41578</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Minha chamada "existência" como um mero manequim de treinamento era bastante miserável! Estremeço ao pensar como teria sido se eu pudesse sentir dor.</p>
+          <p> </p>
+          <p>Mas então fui trazido à vida gloriosa por um Mestre Espiritual empreendedor que, devo confessar, era um pouco... maluco.</p>
+          <p> </p>
+          <p>Consegui escapar dos meus limites anteriores... por favor, não pergunte como. Mas então o colar que me animava foi roubado de mim! Por um [%dic:STR_DIC_M_LDF4b_T2_Bat_Dolphin_58_An]! Bem, eu não vou tolerar isso! Mate os destruidores para mim, sim?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Apesar das feras desagradáveis vagando, este é um lugar maravilhoso. Nunca me senti tão em paz.</p>
+          <p> </p>
+          <p>Mas é claro, enquanto aqueles malditos Murmúrios de Asas Douradas ainda voarem, ficarei constantemente preocupado em perder o colar novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Bem, não se preocupe mais."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Capital! Felicidades para você, meu bom [%userclass]!</p>
+          <p> </p>
+          <p>Eu tiraria meu capacete para você se tivesse polegares oponíveis. Ou mãos, aliás.</p>
+          <p> </p>
+          <p>Ainda assim, aqui está uma pequena recompensa. Recebi isso daquele Mestre Espiritual que me deu vida. À sua boa saúde, meu amigo!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Livre-se de [%dic:STR_DIC_M_LDF4b_T2_Bat_Dolphin_58_An]s ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Retornar para [%dic:STR_DIC_N_Jinikin].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Goldenwing Murmurs para dar a Jenkin, o boneco de treinamento, um pouco de paz de espírito.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Jenkin foi animado pelo colar, dado a ele por um Mestre Espiritual. Mas um Murmúrio Goldenwing roubou isso dele.</p>
+          <p> </p>
+          <p>Para sua paz de espírito, você matou os Murmúrios próximos para evitar que isso acontecesse novamente. Ele agradeceu, embora você ainda estivesse impressionado com a surrealidade de toda a situação.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

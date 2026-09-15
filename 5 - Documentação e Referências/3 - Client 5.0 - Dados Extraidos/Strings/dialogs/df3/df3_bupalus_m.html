@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+          <p> </p>
+          <p>As moedas levaram você até mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+        <trade_buy>Exchange coins</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Este lugar é tão frio e desolado.</p>
+          <p> </p>
+          <p>Embora eu esteja aqui em nome do Santuário, prefiro desistir agora e deixar tudo para trás.</p>
+          <p> </p>
+          <p>Oh, por que meu caminho teve que me trazer aqui de todos os lugares...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não pode receber recompensas em moedas, [%username].</p>
+          <p> </p>
+          <p>Verifique cuidadosamente se você possui moedas de platina.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

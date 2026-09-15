@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>Destinatário: Trabalhador temporário [%username]</p>
+          <p/>
+          <p>Tarefa: São necessários mais *** para produzir armas, então vá até a Mina ***, obtenha 5 pedaços de aço puro e leve-os para a filial.</p>
+          <p/>
+          <p>Posto administrativo: Filial da Silverine Limited na parte sul de Katalam</p>
+          <p/>
+          <p>Esta tarefa conta para a avaliação para cargo permanente e Daeva pode receber pontos extras dependendo dos resultados. Fazer um bom trabalho vale a pena para Daeva, ak.</p>
+          <p> </p>
+          <p>Danurinerk, gerente de recursos de equipe da Silverine Limited</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essa tarefa foi fácil, não foi, ok?</p>
+          <p> </p>
+          <p>Afinal, tudo o que Daeva precisava fazer era reunir o aço que os Skurv empilharam em suas carroças.</p>
+          <p> </p>
+          <p>Por favor, dê o que Daeva trouxe para Shugo, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Aço.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que Daeva estava fazendo o tempo todo, ok?</p>
+          <p> </p>
+          <p>Daeva não quer ter um cargo permanente? Isso é motivo de demérito.</p>
+          <p> </p>
+          <p>Shugo será tolerante desta vez. Vá buscar os 5 pedaços de aço puro como lhe disseram, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Vamos dar uma olhada. Sim, parece aço de alta qualidade.</p>
+          <p> </p>
+          <p>Pontas de flecha feitas com este material certamente agradarão aos clientes, também.</p>
+          <p> </p>
+          <p>O Skurv? Daeva não precisa se preocupar com eles.</p>
+          <p> </p>
+          <p>A mineração não será muito afetada se houver menos deles.</p>
+          <p> </p>
+          <p>E há um carregamento inteiro de Skurv chegando no navio de Morheim novamente hoje, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]"> Obtenha aço dos vagões de minério na Mina *** e leve-o para a filial da Silverine Limited na parte sul de Katalam.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Você recebeu instruções da Silverine Limited. Leia-os e tome medidas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu instruções da Silverine Limited.</p>
+          <p> </p>
+          <p>Depois de reunir o aço puro e levá-lo para a filial da Silverine Limited na parte sul de Katalam, você foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

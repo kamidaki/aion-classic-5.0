@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu me pergunto o que levou o Exército Beritra a avançar tanto.</p>
+          <p> </p>
+          <p>Não consigo parar de pensar nesta questão. [%username], o que você acha?</p>
+          <p> </p>
+          <p>Eles montaram um posto e estão esperando. Algo deve estar por trás disso.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF5A_B2_Vritra_Ri_NamedQ_62_An] provavelmente já tem uma ideia. Por favor, mate-os e acabe com isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fiquei o tempo todo me perguntando qual era a intenção da Tropa Beritra ao vir aqui.</p>
+          <p> </p>
+          <p>O que você descobriu com o comandante do posto destruído?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Entregue um mapa de operações do Beritra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Inteligência... é provável que nem todas as informações sejam compartilhadas, mesmo dentro do Exército Beritra.</p>
+          <p> </p>
+          <p>Deveríamos examinar mais detalhadamente a situação interna.</p>
+          <p> </p>
+          <p>Obrigado por seus esforços, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_LDF5A_B2_Vritra_Ri_NamedQ_62_An] e obtenha [%dic:STR_DIC_I_quest_22523a]. Leve para [%dic:STR_DIC_N_LDF5A_Serip_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Temos que descobrir porque a legião Beritra veio aqui. Mate o comandante do posto destruído e traga as evidências.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Serif especulou que deve haver uma razão pela qual o Exército Beritra marchou até aqui. Ele queria descobrir qual era o motivo.</p>
+          <p> </p>
+          <p>Quando você matou o Comandante do posto destruído e trouxe para Serif um mapa de operações do Exército Beritra que você encontrou lá, ele considerou suas ações um grande serviço, pois o mapa pode ser usado para discutir a situação do Exército Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

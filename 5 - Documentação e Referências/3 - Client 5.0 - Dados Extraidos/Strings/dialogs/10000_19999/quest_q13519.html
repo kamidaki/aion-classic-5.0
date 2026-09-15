@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora você deve tomar uma decisão.</p>
+          <p> </p>
+          <p>Por favor, mate o Guardião Geral.</p>
+          <p> </p>
+          <p>Por favor, mate os generais guardiões das fortalezas Bassen, Prades e Sillus.</p>
+          <p> </p>
+          <p>Cada fortaleza é uma base fundamental para a conquista de Katalam. É por isso que eles devem ser protegidos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou os generais guardiões da Fortaleza Bassen, da Fortaleza Prades e da Fortaleza Sillus?</p>
+          <p> </p>
+          <p>Espero que você tenha conseguido ocupar as fortalezas que eles guardavam. Se você fizesse isso, avançaria muito na conquista de Katalam.</p>
+          <p> </p>
+          <p>Por favor, conte-me como foi a missão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então as fortalezas foram conquistadas.</p>
+          <p> </p>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>Como tomamos um local importante para a conquista de Katalam, a nossa vitória não estará longe.</p>
+          <p> </p>
+          <p>Aqui está a recompensa por completar a missão com sucesso. Com agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Guardião Geral ([%5]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com Bardo.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Compre o Guardião Geral e complete uma missão de conquista da fortaleza. Vamos para fortaleza.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bardo deu a ordem para matar o Protetor e invadir a fortaleza.</p>
+          <p> </p>
+          <p>Após a conclusão bem sucedida da tarefa você recebeu um item especial dele.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

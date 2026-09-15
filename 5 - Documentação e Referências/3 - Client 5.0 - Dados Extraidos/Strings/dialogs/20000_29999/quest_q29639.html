@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>Darei a você a terceira tarefa em nome de Richelle.</p>
+		  <p> </p>
+		  <p>(Pensa por algum tempo.) Ah, certo! Era sobre o [plur][%dic:STR_DIC_M_DF4_MillipedeFish_52_An] e o [plur][%dic:STR_DIC_DF4_Lepisma_52_n].</p>
+		  <p> </p>
+		  <p>Eles são provavelmente uma ameaça para a Árvore Sagrada Taloc e, portanto, para a Bacia Krug também.</p>
+		  <p> </p>
+		  <p>Por favor, mate-os.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recebi a importante tarefa de proteger Gelkmaros.</p>
+          <p> </p>
+		  <p>Mas o problema é que temos muito que fazer.</p>
+		  <p> </p>
+		  <p>As coisas seriam muito mais fáceis se você pudesse me ajudar...</p>
+		  <p> </p>
+		  <p>Mas não posso simplesmente pedir a um Daeva para fazer isso...</p>
+		  <p> </p>
+		  <p>Eu sei que você recebeu uma tarefa especial...</p>		  
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que realizou a terceira tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado. Eu sabia que poderia contar com você.</p>
+          <p> </p>
+		  <p>Livrar-se de monstros pode não ser nada de extraordinário para você, mas foi muito importante para mim.</p>
+		  <p> </p>
+		  <p>Eu precisava da sua ajuda para fazer isso.</p>
+		  <p> </p>
+		  <p>Como recompensa, darei a você um presente especial de Richelle, Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_M_DF4_MillipedeFish_52_An] ou o [plur][%dic:STR_DIC_DF4_Lepisma_52_n] em Gelkmaros ([%2]/10).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Vesvola] no acampamento do Grupo de Pesquisa Éter.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Execute a terceira tarefa e encontre Vesvola.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A terceira tarefa que Vesvola lhe deu foi destruir Longtail Gluggas ou Freshwater Slinks em Gelkmaros.</p>
+          <p> </p>
+          <p>Depois de eliminar os monstros, você encontrou Vesvola e recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

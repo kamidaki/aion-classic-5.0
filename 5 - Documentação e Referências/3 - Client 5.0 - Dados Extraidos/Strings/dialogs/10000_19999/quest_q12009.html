@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12009</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho mais coisas para fazer do que posso contar, [%username]. Tenho cartas de recompensa, tarefas de pesquisa, avaliações táticas, remessas logísticas e tributos para distribuir, e absolutamente nenhum soldado para ajudar. Se o trabalho é a força vital do povo Elyos, então estou me afogando nele.</p>
+          <p> </p>
+          <p>Ah! Você está parado aí há tempo suficiente para não parecer ocupado. Que tal uma tarefa? Preciso que alguém viaje para Edendell e escolha alguns dos [%dic:STR_DIC_OBJ_LDF4B_FOBJ_T2_Flower]s de lá. Parece bastante simples, certo? E você poderá caminhar pelos jardins privados de um dos Senhores dos Dragões!</p>
+          <p> </p>
+          <p>Então, o que você acha?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, meu ramal triturador de pedras... não, meu extraordinário colhedor de flores!</p>
+          <p> </p>
+          <p>Como você se saiu?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Eu juntei isso."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hum... sim, sim. Isso deve funcionar bem.</p>
+          <p> </p>
+          <p>Vou embrulhar isso e enviá-los para o Santuário. Não tenho ideia do que pretendem fazer com algumas flores, mas você conhece a vida militar: ordens são ordens.</p>
+          <p> </p>
+          <p>Muito obrigado, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Escolha [%dic:STR_DIC_OBJ_LDF4B_FOBJ_T2_Flower]s no jardim Edendell e leve-os para Acacia.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Você é necessário em Edendell para uma missão de colheita de flores. Depressa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acácia contou como ela estava sobrecarregada de trabalho e precisava desesperadamente de ajuda. Você, depois de ouvir por muito tempo, foi sobrecarregado com uma tarefa e enviado a Edendell para colher flores. Você fez o que ela pediu e retornou com uma recompensa justa.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

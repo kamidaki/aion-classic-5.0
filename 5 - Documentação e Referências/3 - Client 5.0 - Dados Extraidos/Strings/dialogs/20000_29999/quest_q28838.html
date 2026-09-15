@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mas nutrir um Bloom desde os primeiros estágios é muito difícil. É por isso que a maioria só os compra quando adultos.</p>
+          <p> </p>
+          <p>O Solo é a parte mais importante. Salintus Soil é o melhor meio de crescimento que conheço para flores jovens.</p>
+          <p> </p>
+          <p>Se você matar inimigos em Salintus Rise de Morheim, poderá encontrar este solo. Gostaria de solicitar sua ajuda para consegui-lo para mim.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Criar plantas que podem cultivar itens já é maravilhoso, mas Guestblooms leva esse poder maravilhoso a um nível totalmente novo.</p>
+          <p> </p>
+          <p>É incrível o que a magia e o Éter podem fazer. Aion realmente nos abençoou com um mundo maravilhoso.</p>
+          <p> </p>
+          <p>Espero que você tenha tido sorte em encontrar o solo Salintus que preciso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Eu certamente fiz."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esplêndido. Isso servirá para nutrir aquele Sprout que você me deu imediatamente.</p>
+          <p> </p>
+          <p>Você avançou tremendamente em minha pesquisa com sua generosidade, sem mencionar o conhecimento de Asmodae.</p>
+          <p> </p>
+          <p>Aguardo mais ajuda que você possa dar. Que as trevas lhe concedam paz, bom [%userclass].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_Q28838_DF2item] em [%dic:STR_DIC_W_DF2_SUB_B3] e leve-o para [%dic:STR_DIC_N_Aridella].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha o Solo Salintus que Aridella pediu.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aridella precisava de solo fértil para cultivar um broto Bloom.</p>
+          <p> </p>
+          <p>Você coletou Salintus Soil enquanto caçava em Salintus Rise. Aridella agradeceu sinceramente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21522</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora você precisa ser levado para a Guilda [%dic:STR_DIC_E_spearofCiel].</p>
+          <p> </p>
+          <p>Assim que os mais velhos souberem do sucesso do seu teste, eles não terão mais nada contra você.</p>
+          <p> </p>
+          <p>Reporte-se ao Rafael e diga que você completou todos os testes.</p>
+          <p> </p>
+          <p>Afinal, ele foi um dos mais velhos que falou contra você.</p>
+          <p> </p>
+          <p>Se [%dic:STR_DIC_N_Raffaele], responsável pela Guilda de Lança de Siel, mudar de ideia, todos os outros anciões o seguirão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah. Sim. [%username]. Ouvi dizer que você decidiu desafiar o Koligran.</p>
+          <p> </p>
+          <p>Devo admitir que admiro seu otimismo. Ainda assim, você não é um de nós e não tem o direito de se disfarçar como tal. Esperançosamente, o Koligran lhe mostrou a força do espírito Reian e o dissuadiu desse seu caminho tolo.</p>
+          <p> </p>
+          <p>Não se ofenda com minhas palavras, Asmodiano. Seu povo é tão protetor quanto o nosso. Você teria agido da mesma maneira se um Mamut quisesse se tornar um Arconte. Algumas coisas simplesmente não podem ser.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">"E ainda assim, algumas coisas podem..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mas... mas... o quê?! Você completou o Koligran?!</p>
+          <p> </p>
+          <p>Isto é inesperado. Eu não sei o que dizer. Não posso me reunir com os outros anciãos, pois demos nossa palavra a Kahrun de que você seria aceito caso fosse aprovado. E você não deveria passar.</p>
+          <p> </p>
+          <p>Mas e a nossa tradição? Nosso legado?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1_1">"Você se adapta, Rafael. Você evolui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você... você está certo. Nós, Reianos, nos adaptamos a tantas ameaças, talvez agora devêssemos nos adaptar aos nossos aliados.</p>
+          <p> </p>
+          <p>[%username], concederei a você acesso à Guilda de Lança de Siel. Este dia será lembrado tanto pelos Asmodianos quanto pelos Reianos para sempre, esperançosamente por boas razões.</p>
+          <p> </p>
+          <p>Parabéns, [%userclass]. Você abriu nossos olhos e por isso eu lhe agradeço.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">"Obrigado. É uma honra."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, [%username].</p>
+          <p> </p>
+          <p>Você falou com [%dic:STR_DIC_N_Raffaele]? O que ele disse?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Bem..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Haha! Eu sabia que ele iria balançar no final. Rafael pode ser um ancião orgulhoso, mas não é tolo.</p>
+          <p> </p>
+          <p>Ah! Eu acredito que há uma pequena questão de um anúncio agora. [%username], você é reconhecido como um membro orgulhoso e honrado da Guilda [%dic:STR_DIC_E_spearofCiel].</p>
+          <p> </p>
+          <p>Que você se mantenha firme, que Siel guie suas sombras e que as palavras dela o protejam dos perigos deste mundo. Sangue por sangue!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Informe [%dic:STR_DIC_N_Raffaele] que você completou o Koligran.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Retornar para [%dic:STR_DIC_N_Kahrun].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Kahrun sugeriu que você fosse até Rafael, um dos anciãos que se opôs à sua entrada, e informasse que você passou no Koligran. Vá agora.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+       <p>Kahrun contou como os anciões se opuseram a você se juntar à legião e colocaram o Koligran para você, esperando que você fracassasse nisso. Agora que você passou, era hora de confrontar os mais velhos e exigir a entrada.</p>
+          <p> </p>
+          <p>Você viajou até Rafael, o chefe dos anciãos, e contou-lhe sobre suas realizações. Eles, e por pura vontade, finalmente o convenceram do seu direito de se juntar à Lança de Siel e autorizaram a transferência.</p>
+          <p> </p>
+          <p>Você retorna para Kahrun, que comemorou com você quando você foi oficialmente levado sob a proteção da lendária legião.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

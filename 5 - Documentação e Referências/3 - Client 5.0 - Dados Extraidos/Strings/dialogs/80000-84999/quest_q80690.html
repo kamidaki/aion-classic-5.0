@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva deve ajudar Shugos, ak.</p>
+          <p> </p>
+          <p>Shugo está implorando a Daeva, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Conte-me mais.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os intrusos invadiram o [%dic:STR_DIC_IDSweep_Room01] e o [%dic:STR_DIC_IDSweep_Room02], ak.</p>
+	  <p> </p>
+          <p>Daeva deve eliminar [%dic:STR_DIC_IDSweep_S1_Shulack_Wi_Nmd] e [%dic:STR_DIC_IDSweep_S1_Shulack_As_65_Ae_Nmd], que estão guardando esses locais.</p>
+          <p> </p>
+          <p>Essas áreas devem ser protegidas para que os Shugos possam retornar, akakak!</p>
+	  <p> </p>
+          <p>Feito isso, Daeva deve avisar [%dic:STR_DIC_NPC_IDSweep_IN_NPC03] que reforços estão a caminho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Eu vou te ajudar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Não posso, tenho que fazer mais porta-panelas de crochê.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Até então, ok.</p>
+          <p> </p>
+          <p>Shugo está contando com Daeva!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Eu não vou decepcionar você.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva deve estar muito ocupado, ak...</p>
+          <p> </p>
+          <p>Infelizmente, Daeva era nossa única esperança, akakak...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você deve aprender a ajudar a si mesmo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>Shugo está ficando cada vez mais fraco, ak... akakak...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">O backup está a caminho.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é verdade, ok?</p>
+          <p> </p>
+          <p>Os Shugos poderão retornar em breve e forçar a retirada dos intrusos, akakak.</p>
+          <p> </p>
+          <p>Aqui, isto é para Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar [%dic:STR_DIC_IDSweep_S1_Shulack_Wi_Nmd] ([%2]/1).</font></p>
+               	     <p visible="[%0]"><font color="[%7]">Eliminar [%dic:STR_DIC_IDSweep_S1_Shulack_As_65_Ae_Nmd] ([%5]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_NPC_IDSweep_IN_NPC03].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os Shulacks que estão ocupando [%dic:STR_DIC_IDSweep_Room03].</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você foi solicitado a garantir a rota para os próximos reforços.</p>
+	  <p> </p>
+	  <p>É por isso que [%dic:STR_DIC_IDSweep_S1_Shulack_Wi_Nmd] e [%dic:STR_DIC_IDSweep_S1_Shulack_As_65_Ae_Nmd] tiveram que ser eliminados.</p>
+	  <p> </p>
+          <p>Você se transformou em Shugo e eliminou os intrusos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

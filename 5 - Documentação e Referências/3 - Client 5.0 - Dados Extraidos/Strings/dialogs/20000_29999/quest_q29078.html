@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está trabalhando duro em suas habilidades, [%username]?</p>
+          <p> </p>
+          <p>Um verdadeiro [%userclass] deve ter um alto grau de concentração e resistência.</p>
+          <p> </p>
+          <p>Uma Mecatéc deve ser capaz de tomar decisões rápidas e definir um objetivo com precisão.</p>
+          <p> </p>
+          <p>No momento você não está particularmente bem versado, mas o treinamento duro e a experiência de batalha apropriada logo mudarão isso.</p>
+          <p> </p>
+          <p>Quer participar do teste do Poder Divino para continuar treinando suas habilidades?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">O teste do poder divino.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Claro, você não sabia nada sobre isso.</p>
+          <p> </p>
+          <p>Somente Daevas como você podem usar habilidades de Poder Divino.</p>
+          <p> </p>
+          <p>Mas existem algumas limitações relacionadas ao seu uso. Essa é provavelmente também a razão pela qual até mesmo alguns veteranos o usam raramente, ou nunca.</p>
+          <p> </p>
+          <p>A prova do Poder Divino é uma iniciativa do Governador, que deve resolver este problema.</p>
+          <p> </p>
+          <p>Chamamos isso de teste, mas na verdade é mais uma unidade de treinamento. Termina quando você usa uma habilidade específica dez vezes.</p>
+          <p> </p>
+          <p>O que você acha? Você quer participar do teste do Poder Divino?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você é um Mecatéc, deve ter aprendido o [%dic:STR_DIC_E_DP_Ri].</p>
+          <p> </p>
+          <p>Seu teste de poder divino será usar este [%dic:STR_DIC_E_DP_Ri] dez vezes.</p>
+          <p> </p>
+          <p>Durante uma batalha, você coletará automaticamente poder divino. Mas também pode recorrer a marmeladas especiais que o ajudarão.</p>
+          <p> </p>
+          <p>Vamos, vá embora!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você me surpreende.</p>
+          <p> </p>
+          <p>O teste é tudo menos difícil. Mas talvez você esteja ocupado com outra coisa.</p>
+          <p> </p>
+          <p>Você também pode completar o teste do poder divino posteriormente. Então volte se mudar de ideia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Já voltou?</p>
+          <p> </p>
+          <p>Você deve ter levado muito a sério sua última tarefa de aprimoramento de habilidades.</p>
+          <p> </p>
+          <p>Vamos ver se você usou seu [%dic:STR_DIC_E_DP_Ri] dez vezes, conforme as instruções.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você chega mais perto.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Ele coloca a mão na sua cabeça.) Você completou sua tarefa de forma satisfatória.</p>
+          <p> </p>
+          <p>(Ele tira a mão da sua cabeça.) Você passou no teste do poder divino!</p>
+          <p> </p>
+          <p>Agora você nunca mais esquecerá seu [%dic:STR_DIC_E_DP_Ri]. Este teste será de grande ajuda para determinar o seu destino.</p>
+          <p> </p>
+          <p>Desde que você passou no teste, você recebe uma recompensa. Espero que isso ajude você no Caminho da Mecatéc.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Use o [%dic:STR_DIC_E_DP_Ri] ([%2]/10).</font></p></step>               
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_DC1_Hadubrand_M].</font></p></step>               
+    </steps>
+          <p><font font_xml="quest_summary">O Governador apoia o teste do poder divino. Use Regeneração Completa dez vezes para passar no teste.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hadubrant lhe contou sobre o teste do poder divino e o convidou a participar.</p>
+          <p> </p>
+          <p>Depois de usar a habilidade Regeneração Total I conforme instruído por Hadubrant, ele o parabenizou por passar no teste.</p>
+	</body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

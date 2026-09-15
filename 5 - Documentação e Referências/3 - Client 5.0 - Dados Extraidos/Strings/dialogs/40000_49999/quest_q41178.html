@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41178</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqueles Urugugu com cérebro de pássaro destruidor não conhecem o seu lugar. Eles estão correndo por todo [%dic:STR_DIC_W_LDF4a_SZ_A3] em vez de manterem seus bicos fora dos negócios de Reian.</p>
+          <p> </p>
+          <p>Não sei sobre você, [%userclass], mas não quero cocô de pássaro em Kamar. Já é ruim o suficiente deixá-los continuar como se esta fosse a floresta deles ou algo assim.</p>
+          <p> </p>
+          <p>Você vai até o [%dic:STR_DIC_W_LDF4a_SZ_A3_03] deles e mostra aos [%dic:STR_DIC_E_Q41178all]s por que nós, Daevas, estamos no comando.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem, soldado?</p>
+          <p> </p>
+          <p>Derrubou alguns ninhos, não foi?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Tenho que quebrar ovos para fazer omeletes..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você acertou, [%userclass], você acertou!</p>
+          <p> </p>
+          <p>Vamos mandar aquelas galinhas magricelas piando até o topo da Árvore Mãe delas!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_E_Q41178all]s no [%dic:STR_DIC_W_LDF4a_SZ_A3_03].</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF4A_A3_Owllau_Fi_57_An] ([%2]/4)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF4A_A3_Owllau_As_57_An] ([%5]/4)</font></p>
+                     <p visible="[%0]"><font color="[%1]">[%dic:STR_DIC_M_LDF4A_A3_Owllau_Pr_57_An] ([%8]/4)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Cribios].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cribios quer mostrar ao Urugugu Strigik porque os Daevas são supremos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sarpan Zayedan Cribios acha que os Urugugu Strigik estão ultrapassando seus limites.</p>
+          <p> </p>
+          <p>Você foi até a Aldeia Urugugu e os colocou de volta em seus lugares, eliminando os Soldados Urugugu.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Boas notícias. Os Hoarfrost Mau estão construindo um posto próximo ao Posto Avançado Hoarfrost em Beluslan.</p>
+          <p> </p>
+          <p>Se o Hoarfrost Mau ocupar o posto, ele poderá se tornar um ponto de apoio para os Arcontes.</p>
+          <p> </p>
+          <p>Vá e atravesse a fenda perto do Posto Avançado Hoarfrost em Beluslan imediatamente.</p>
+          <p> </p>
+          <p>Quando você matar [%dic:STR_DIC_M_DF3_2_Light_Raider], que guarda o [%dic:STR_DIC_W_DF3_Village_02], será mais fácil para o Esquadrão Guerrilha ocupar o posto.</p>
+          <p> </p>
+          <p>Se você tiver sucesso, volte rapidamente e relate tudo para mim.</p>
+	  </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Posto Mau, perto do Posto Avançado Hoarfrost em Beluslan, terá um papel importante a desempenhar no futuro.</p>
+          <p> </p>
+          <p>A situação não é ideal porque o Protetorado Asmodiano e a Tropa Guerrilha Mau estão lutando entre si pelo posto, mas estou pedindo que você conclua esta tarefa com sucesso.</p>
+          <p> </p>
+          <p>Você pode capturar a postagem matando [%dic:STR_DIC_M_DF3_2_Light_Raider].</p>
+          <p> </p>
+          <p>Então me dê um relatório provisório.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a conclusão da tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você completou perfeitamente uma tarefa importante.</p>
+          <p> </p>
+          <p>O Chiliarch da tropa guerrilheira será enviado para este posto.</p>
+          <p> </p>
+          <p>Ele será encarregado de tarefas extensas no futuro. Se você tiver alguma dúvida sobre a postagem, vá até o Chiliarch.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para Beluslan e mate [%dic:STR_DIC_M_DF3_2_Light_Raider] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Perento] no [%dic:STR_DIC_W_LF3_SZ_A1].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Passe pela Fenda e capture [%dic:STR_DIC_W_DF3_Village_02] em Beluslan perto do Posto Avançado Hoarfrost.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perento, Brigada General da Fortaleza Heiron, ordenou que o posto Mau perto do Posto Avançado Beluslan Hoarfrost fosse capturado para se vingar dos Asmodianos.</p>
+          <p> </p>
+          <p>Quando você derrotou as defesas do Protetorado Asmodiano e da tropa guerrilheira Hoarfrost e capturou o posto, a tropa guerrilheira Elyos apareceu.</p>
+          <p> </p>
+          <p>Esta deveria ser uma batalha acirrada.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

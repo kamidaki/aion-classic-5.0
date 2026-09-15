@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar dos Tokens do Bravo Guerreiro? Se você derrotar [%dic:STR_DIC_M_LDF5_Under_Rune_FrostNmd_2_N_Ma_65_Ah_ver47] no Runadium (heróico), você receberá um Token of the Brave Guerreiro. Você pode obter o outro Token of the Brave Guerreiro derrotando o [%dic:STR_DIC_M_IDF5_U3_Hard_Boss_N_65_Ah_ver47] na Rune Escudo Tower (heróico).</p>
+          <p> </p>
+          <p>Lorde Marchutan criou esses tokens. Somente aqueles que ganham as fichas em batalha são dignos de serem nomeados os escolhidos do Senhor.</p>
+          <p> </p>
+          <p>É o seu destino, [%username]. Você deve ser o escolhido do Senhor. Reúna as fichas e prove!</p>
+          <p> </p>
+          <p>O Senhor colocou toda a sua confiança em você.</p>
+          <p> </p>
+          <p>Traga-me o [%dic:STR_DIC_I_quest_23901a] e o [%dic:STR_DIC_I_quest_23901b]. Que a paz das trevas esteja com você!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você alcançará o Runadium (heróico) e a Torre do Escudo Rúnico (heróico) usando as respectivas entradas.</p>
+          <p> </p>
+          <p>Conseguir sobreviver à missão do Senhor será um verdadeiro desafio. Mas confio que você conseguirá vencer o [%dic:STR_DIC_I_quest_23901a] e o [%dic:STR_DIC_I_quest_23901b].</p>
+          <p> </p>
+          <p>Você teve sucesso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega os Sinais do Bravo Guerreiro.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu superar todas as dificuldades e provou sua coragem.</p>
+          <p> </p>
+          <p>Eu sabia que você não decepcionaria o Senhor.</p>
+          <p> </p>
+          <p>Eu admiro você, de verdade.</p>
+          <p> </p>
+          <p>[%username], você realmente é o escolhido do Senhor. E tenho certeza de que você realizará tarefas futuras com facilidade.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o [%dic:STR_DIC_E_quest_23901all] para [%dic:STR_DIC_N_Corridor_D_MainQuest_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Reúna as Fichas do Bravo Guerreiro no Runadium e na Torre do Escudo Rúnico e leve-as para Adras.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hallia lhe contou sobre os Símbolos do Bravo Guerreiro. Para obtê-los, você precisava vencer batalhas no Runadium (heróico) e na Torre do Escudo Rúnico (heróico).</p>
+          <p> </p>
+          <p>Você teve sucesso nas batalhas no Runadium (heróico) e na Torre do Escudo Rúnico (heróico) e obteve os Tokens do Bravo Guerreiro. Hallia elogiou suas conquistas extraordinárias.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

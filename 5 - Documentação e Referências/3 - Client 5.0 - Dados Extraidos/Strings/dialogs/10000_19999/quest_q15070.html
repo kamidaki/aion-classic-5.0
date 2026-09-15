@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15070</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Existem muitas criaturas e objetos peculiares em Signia, ak.</p>
+          <p> </p>
+          <p>Daeva ouviu falar dos Coral Shell Klocs na Floresta Musgosa?</p>
+          <p> </p>
+          <p>Yuranerk ouviu dizer que essas Carapaças de Coral são supostamente muito populares, mas Yuranerk se pergunta por que, ak.</p>
+          <p> </p>
+          <p>Seja como for, a demanda pelas carapaças é enorme e então Yuranerk deve reabastecer, ak.</p>
+          <p> </p>
+          <p>Se Daeva tiver tempo, Daeva poderia ir até o [%dic:STR_DIC_W_LF5_SZ_H_01] e trazer Yuranerk [plur][%dic:STR_DIC_I_quest_15070a] do [plur][%dic:STR_DIC_M_LF5_H_Rottentree_61_An], ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Diz-se que as Carapaças de Coral dos Coral Shell Klocs são extremamente populares, assim como...</p>
+          <p> </p>
+          <p>Mas Yuranerk não tem ideia de por que eles são tão populares, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega as Carapaças de Coral.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva reuniu Carapaças de Coral para Yuranerk, ak!</p>
+          <p> </p>
+          <p>Hmm... A cor, o brilho... são evidentemente Carapaças de Coral de alta qualidade, ak!</p>
+          <p> </p>
+          <p>Mas eles são realmente tão populares, certo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pede sua recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que é isso?</p>
+          <p> </p>
+          <p>Não é assim que as Carapaças de Coral se parecem, ak.</p>
+          <p> </p>
+          <p>Yuranerk ouviu dizer que as Carapaças de Coral são muito populares, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva reuniu Carapaças de Coral para Yuranerk, ak!</p>
+          <p> </p>
+          <p>Hmm... A cor, o brilho... são evidentemente Carapaças de Coral de alta qualidade, ak!</p>
+          <p> </p>
+          <p>Mas eles são realmente tão populares, certo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pede sua recompensa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva leva a sério a preocupação de Shugo, então Daeva receberá uma recompensa, ak.</p>
+          <p> </p>
+          <p>Yuranerk agradece e espera que Daeva continue a levar a sério os pedidos de Shugo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [plur][%dic:STR_DIC_I_quest_15070a] e reporte para [%dic:STR_DIC_N_LF5_Yuraringring_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Yuraringring_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Reúna carapaças de coral e leve-as para Yuranerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Yuranerk pediu para você coletar Carapaças de Coral dos Coral Shell Klocs na Floresta Musgosa.</p>
+          <p> </p>
+          <p>Você atendeu ao pedido de Yuranerk. Yuranerk disse que as carapaças que você reuniu eram muito populares e lhe deram uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

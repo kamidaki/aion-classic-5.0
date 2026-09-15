@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10093</QuestId>
+    <QuestName>숨겨진 이드겔을 찾아서</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Idgel é um cristal feito de energia Id concentrada e criado pela Rune Tribe.</p>
+          <p> </p>
+          <p>Você pode liberar essa energia destrutiva usando a arma antiga.</p>           
+          <p> </p>
+          <p>Esta arma também é chamada de Hyperion.</p>
+          <p> </p>
+          <p>Estou procurando os restos mortais da Tribo Rúnica em Katalam e finalmente encontrei o que procurava.</p>
+          <p> </p>
+          <p>Eu encontrei. Finalmente!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pergunta o que ele estava procurando.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não consegue adivinhar? O cristal da arma antiga e [%dic:STR_DIC_N_IDRuneWeapon_Q_Ultimate] foram encontrados!</p> 
+          <p> </p>
+          <p>O Hyperion está em boas condições!</p>
+          <p> </p>
+          <p>[%username], vou levá-lo até lá. Temos que ir para Katalamize. Foi construído pela Tribo Rune.</p>
+          <p> </p>
+          <p>É onde está o [%dic:STR_DIC_N_IDRuneWeapon_Q_Ultimate].</p>
+          <p> </p>
+		  <p>Somente você pode ativar o [%dic:STR_DIC_N_IDRuneWeapon_Q_Ultimate].</p>
+		  <p> </p>
+          <p>Esta tarefa lhe interessa? Você pode ver a arma dos povos antigos com seus próprios olhos.</p>
+          <p> </p>
+		  <p>Eu te levo lá, quer você queira ou não.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você sugere ir para Rune Katalamize.</Act>
+    </Selects>
+	<Voice file="Q10093-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Verdadeiramente magnífico. Como você conhece esse lugar?</p>
+          <p> </p>
+          <p>Você veio aqui procurar Kahrun?</p>
+          <p> </p>
+          <p>Kahrun está pior do que eu pensava!</p>
+          <p> </p>
+          <p>Não devemos perder tempo!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você promete seu apoio a Jakahn.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É uma sorte que todo o foco esteja concentrado em Kahrun.</p>
+          <p> </p>
+		  <p>Oh! Então aqui está você.</p>
+		  <p> </p>
+          <p>Eu pensei que tinha perdido você.</p>
+          <p> </p>
+		  <p>Sem você não é possível.</p>
+		  <p> </p>
+          <p>Vá agora para [%dic:STR_DIC_N_IDRuneWeapon_Q_Ultimate] e ative a arma.</p>
+		  <p> </p>
+		  <p>Perdemos tempo por causa do inútil Reian.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Você pergunta por que Kahrun e os Balaur estão aqui.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso não é da sua conta.</p>
+          <p> </p>
+		  <p>Não desperdice nenhum pensamento com o inútil Reian.</p>
+		  <p> </p>
+          <p>Só trouxe você aqui para que você possa usar o [%dic:STR_DIC_N_IDRuneWeapon_Q_GiantIdgel].</p>
+          <p> </p>
+		  <p>Aqui, pegue o [%dic:STR_DIC_N_IDRuneWeapon_Q_GiantIdgel].</p>
+		  <p> </p>
+		  <p>Eu não posso fazer isso, então você tem que fazer.</p>
+		  <p> </p>
+	      <p>Pressa. Esperei muito tempo por isso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você responde que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10093-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O enorme cubo está cheio de Idgel.)</p>
+          <p> </p>
+          <p>(Você nunca experimentou uma energia de Id tão forte.)</p>
+          <p> </p>
+          <p>(Deve-se manuseá-lo com cuidado para que não desmorone.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você pega o Idgel Core.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+		  <p>O Idgel Core foi então possuído por um espírito. É a alma das pessoas que ainda não conseguem usar o Id.</p> 
+		  <p> </p>
+		  <p>A pessoa ficou fascinada pelo Id, mas não conseguiu usá-lo. Portanto, eles caíram na dependência do Id e se tornaram um fantasma.</p>
+		  <p> </p>
+          <p>Você está com medo? Não tenha medo. Vocês já usaram com sucesso um núcleo Idgel várias vezes antes.</p>
+          <p> </p>
+		  <p>Você pode controlar o ID. Você está em condições de usar o ID.</p>
+          <p> </p>
+          <p>Então pegue o [%dic:STR_DIC_N_IDRuneWeapon_Q_GiantIdgel] e use-o.</p>
+		  <p> </p>
+		  <p>Essa é a única maneira de o [%dic:STR_DIC_N_IDRuneWeapon_Q_Ultimate] ser ativado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO7">Você encerra a conversa.</Act>
+    </Selects>
+	<Voice file="Q10093-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select8">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(O enorme cubo está cheio de Idgel.)</p>
+          <p> </p>
+          <p>(Você pode sentir a forte energia do Id.)</p>
+          <p> </p>
+          <p>(Você tem que ter cuidado para que não caia.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO8">Você insere o enorme núcleo no Hyperion.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select9">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Graças ao Kaisinel, cheguei bem na hora.</p>
+          <p> </p>
+          <p>Quem poderia imaginar que Laius seria [%dic:STR_DIC_MLA51]?!</p>
+          <p> </p>
+          <p>Se eu tivesse chegado apenas alguns segundos depois, este poderia ter sido o seu fim.</p>
+          <p> </p>
+          <p>Mas agora não é hora para longos discursos. Não é seguro aqui, vou tirar você daqui.</p>
+          <p> </p>
+          <p>Assim que chegar em [%dic:STR_DIC_W_LDF5A_OP_L], encontre [%dic:STR_DIC_LDF5a_Tiryns_Commander] imediatamente.</p>
+          <p> </p>
+          <p>Enquanto isso, irei ao Templo do Lorde Empíreo e reportarei lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO9">Você acena com a cabeça.</Act>
+    </Selects>
+	<Voice file="Q10093-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select10">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está seguro, [%username]!</p>
+          <p> </p>
+	      <p>O quarto agente de Kaisinel estava procurando por você desesperadamente.</p>
+          <p> </p>
+          <p>E ouvi dizer que Nezekan resgatou Kahrun.</p>
+          <p> </p>
+	      <p>O que aconteceu?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT10_1">Você relata o que aconteceu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select10_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então foi assim!</p>
+          <p> </p>
+          <p>Seria melhor se você visse Kaisinel e contasse a ele o que você mesmo experimentou.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_LA59] está aqui agora.</p>
+          <p> </p>
+          <p>Ele aguarda seu relatório.</p>
+          <p> </p>
+          <p>Rapidamente, vá até ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO10">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10093-5.ogg"/>
+  </HtmlPage>  
+  
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username].</p>
+          <p> </p>
+          <p>Então, nos encontramos novamente.</p>
+          <p> </p>
+          <p>Eu sei que você tem muito o que fazer em Katalam.</p>
+          <p> </p>
+          <p>E novamente você fez muito pelos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o que aconteceu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Realmente? Beritra fingiu ser o cientista Laio e nos traiu.</p>
+          <p> </p>
+          <p>Esse Dragon Lorde é realmente astuto.</p>
+          <p> </p>
+          <p>Agora, como Beritra possui a antiga arma Hyperion, ninguém pode saber o que ele pretende fazer com ela.</p>
+          <p> </p>
+          <p>Vou consultar os outros Senhores. Então poderemos planejar contramedidas.</p>
+          <p> </p>
+          <p>Eles não irão responsabilizá-lo por isso. Então vá agora e descanse.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF5b_SZ_D3] e fale com [%dic:STR_DIC_N_LDF5b_Scholar5L_E].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Derrote [plur][%dic:STR_DIC_M_IDRuneWeapon_Q_Vritra_Q10093_Fi] e [plur][%dic:STR_DIC_M_IDRuneWeapon_Q_Vritra_Q10093_As] que capturaram Kahrun ([%5]/3).</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">[%dic:STR_DIC_N_IDRuneWeapon_Q_Trace1L_E], que está procurando por Kahrun, está chegando. Fale com ele.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_IDRuneWeapon_Q_Scholar7L_E] na Runa Katalamize.</font></p></step>    
+               <step><p visible="[%12]"><font color="[%13]">Reúna [%dic:STR_DIC_N_IDRuneWeapon_Q_GiantIdgel] na Runa Katalamize.</font></p></step>    
+               <step><p visible="[%15]"><font color="[%16]">Mate o [%dic:STR_DIC_E_IDRuneWeapon_Q_IdSpecter_Q10093] que apareceu de repente ([%17]/3).</font></p></step>    
+               <step><p visible="[%18]"><font color="[%19]">Fale com [%dic:STR_DIC_N_IDRuneWeapon_Q_Scholar7L_E].</font></p></step>    
+               <step><p visible="[%21]"><font color="[%22]">Colete [%dic:STR_DIC_N_IDRuneWeapon_Q_GiantIdgel] em Rune Katalamize novamente e insira-o em [%dic:STR_DIC_N_IDRuneWeapon_Q_Ultimate].</font></p></step>    
+               <step><p visible="[%24]"><font color="[%25]">Fale com [%dic:STR_DIC_N_IDRuneWeapon_Q_Dike_E] na Runa Katalamize.</font></p></step>    
+               <step><p visible="[%27]"><font color="[%28]">Relatório para [%dic:STR_DIC_LDF5a_Tiryns_Commander] em [%dic:STR_DIC_W_LDF5A_OP_L].</font></p></step>
+               <step><p visible="[%30]"><font color="[%31]">Reporte para [%dic:STR_DIC_LA59] no [%dic:STR_DIC_W_LDF5A_OP_L].</font></p></step>    			   
+    </steps>
+          <p><font font_xml="quest_summary">Ordens: Pergunte ao nervoso Laius o que você deve fazer a seguir.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Laius levou você a um lugar desconhecido, onde você surpreendentemente encontrou Kahrun.</p>
+          <p> </p>
+	      <p>Depois de eliminar os Balaur que ameaçavam Kahrun, Jakahn apareceu. Ele viu que Kahrun estava em muito mau estado e achou que deveria ser levado rapidamente para fora.</p>
+          <p> </p>
+          <p>Mas então apareceu um Asmodiano chamado Niel, que estava atrás de Kahrun. Ela e Jakahn travaram uma briga acirrada. Após a luta, descobriu-se que os dois eram na verdade Nezekan e Triniel.</p>
+          <p> </p>
+          <p>Juntos, eles carregaram Kahrun gravemente ferido para fora. Laio apareceu pouco depois.</p>
+          <p> </p>
+          <p>Laius disse que não sabia nada sobre Kahrun e pediu que você ativasse Hyperion.</p>
+          <p> </p>
+          <p>Você então ativou o Hyperion usando o Idgel Core conforme suas instruções. Ele riu alto e revelou sua verdadeira identidade.</p>
+          <p> </p>
+          <p>Ele era o malvado Lorde Dragão Beritra.</p>
+          <p> </p>
+          <p>Ele sequestrou você para usá-lo como cobaia. Mas Dike, o quarto agente de Kaisinel, veio e resgatou você.</p>
+          <p> </p>
+          <p>Você relatou tudo isso para Tirins e Kaisinel. Eles ficaram aterrorizados quando souberam quem realmente era Laio e rapidamente convocaram uma reunião.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

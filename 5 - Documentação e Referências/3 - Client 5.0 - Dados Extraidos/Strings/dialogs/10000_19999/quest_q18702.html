@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os outros anciãos estão começando a ver as razões por trás das minhas preocupações, e tudo isso graças a você.</p>
+          <p> </p>
+          <p>Porém, a instabilidade no terreno ainda existe, e pelo mesmo motivo: o [%dic:STR_DIC_M_IDRaksha_2F_Spaller_56_Ae].</p>
+          <p> </p>
+          <p>Se você pudesse eliminá-los mais uma vez, acredito que isso resolveria o problema do colapso para sempre.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não tenho certeza, mas certamente parece que o terreno está se firmando - no bom sentido, quero dizer.</p>
+          <p> </p>
+          <p>Pela primeira vez em muito tempo, não houve tremores graves.</p>
+          <p> </p>
+          <p>Isso é por sua causa? Ou apenas uma pausa antes da tempestade?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu cuidei das feras podres."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, minha mente finalmente está tranquila... Eu estava começando a duvidar que algum dia sentiria essa calma novamente.</p>
+          <p> </p>
+          <p>Eu ainda não tinha contado aos soldados aqui sobre a situação, não querendo causar pânico. Estou feliz por não precisar fazer isso agora.</p>
+          <p> </p>
+          <p>Eles, é claro, não ficarão gratos pelo que você fez, mas mostrarei gratidão suficiente por todos eles e muito mais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Livre-se do [%dic:STR_DIC_M_IDRaksha_2F_Spaller_56_Ae] no Cofre do Terror ([%2]/20).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Kenros].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Kenros quer que você pare os tremores de uma vez por todas. Mate Balaur preso.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kenros pediu para você matar o Aprisionado Balaur para ele mais uma vez, a fim de acalmar o barulho acima do solo.</p>
+          <p> </p>
+          <p>Você entrou em outro mini-ataque e voltou para alívio e gratidão de Kenros.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

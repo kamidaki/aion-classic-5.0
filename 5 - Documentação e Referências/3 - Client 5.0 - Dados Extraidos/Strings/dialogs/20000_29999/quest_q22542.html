@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho um pedido a fazer a você, [%username]. Posso?</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_LDF5a_C1] e traga [%dic:STR_DIC_I_quest_22542a] para nosso funcionário [%dic:STR_DIC_N_LDF5a_Chororing_E].</p>
+          <p> </p>
+          <p>Ele adora Kokonats e tem a tarefa de observar a plantação Kokonat agora. Deve ser muito difícil para ele manter as mãos longe dos Kokonats.</p>
+          <p> </p>
+          <p>Pelo menos ele precisa desta lancheira verde quentinha.</p>
+          <p> </p>
+          <p>Para sua informação, ele está escondido em algum lugar para poder assistir. Lembre-se disso quando você procurar por ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Observar tudo secretamente é exaustivo, akakak.</p>
+          <p> </p>
+          <p>Achei que já era hora de alguém aparecer, akakak.</p>
+          <p> </p>
+          <p>Você veio por causa do relatório de tarefa, ok?</p>
+          <p> </p>
+          <p>Ou há outro pedido da Green Hat Alliance, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega uma lancheira verde quentinha.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De qualquer forma, eu quase teria comido o kokonat em segredo, akakak.</p>
+          <p> </p>
+          <p>Eu sei, não é permitido, mas mais um pouco e eu realmente posso ter sido pego comendo, akakak.</p>
+          <p> </p>
+          <p>Mas agora que você me trouxe provisões, [%username], terei recuperado minhas forças em pouco tempo!</p>
+          <p> </p>
+          <p>Essas provisões ainda estão quentinhas, isso aquece até meu coração.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Passe [%dic:STR_DIC_I_quest_22542a] para [%dic:STR_DIC_N_LDF5a_Chororing_E] localizado em [%dic:STR_DIC_W_LDF5a_C1].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Passe a Marmita Verde para Choroshunerk que está realizando uma tarefa na Fazenda Rubirinerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mabran, da Green Hat Alliance, disse que Shugo Choroshunerk se enraizou na fazenda Rubirinerk, mas está passando por momentos difíceis porque gosta de comer Kokonats.</p>
+          <p> </p>
+          <p>Quando você foi Choroshunerk e trouxe para o membro da Green Hat Alliance na fazenda Rubirinerk uma deliciosa Marmita Verde, ele ficou grato.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q49609</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>1. Destinatário: Funcionário:[%username]</p>
+          <p> </p>
+          <p>2. Tarefa: Mate o [%dic:STR_DIC_M_LDF5B_Cherubim_all] que está atacando o arsenal Silverine Limited e reporte-se ao escritório administrativo, ak.</p>
+          <p> </p>
+          <p>3. Escritório administrativo: [%dic:STR_DIC_E_LDF5b_Silverlin_BA]</p>
+          <p> </p>
+          <p>Assim que a tarefa for concluída, você receberá uma recompensa. Por favor, faça um trabalho bom e limpo, ak.</p>
+          <p> </p>
+          <p>- Dumurinerk, Companhia Silverine</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deu uma lição àqueles Ladrões Kerbiel?</p>
+          <p> </p>
+          <p>Como eles ousam olhar nossos itens, akakak!</p>
+          <p> </p>
+          <p>Eles têm que pagar o preço por roubarem essas armas!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Só de pensar nisso já me sinto enjoado.</p>
+          <p> </p>
+          <p>Os Ladrões Kerbiel também sabem que as armas são itens caros. Se até os Kerbiels desenvolveram um gosto pelo dinheiro, então o mundo está realmente condenado, akakak!</p>
+          <p> </p>
+          <p>De qualquer forma, desta vez eles levaram uma surra e vão se acalmar por um tempo.</p> 
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [plur][%dic:STR_DIC_M_LDF5B_Cherubim_all] atacando o arsenal Silverine ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_E_LDF5b_Silverlin_BA].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">As instruções vieram da Silverine Limited. Leia a tarefa e conclua-a.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As instruções vieram da Silverine Limited.</p>
+          <p> </p>
+          <p>Depois de matar os Ladrões Kerbiel que atacaram o depósito de armas de Silverine e se reportaram à filial de South Katalam, você recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

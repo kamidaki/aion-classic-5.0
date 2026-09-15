@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Aver, New Start Legião</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Comando: Elimine os inimigos para garantir a rota de infiltração.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As tropas de reforço devem chegar em breve, mas não recebi nenhuma notícia da Vanguarda.</p>
+          <p> </p>
+          <p>Existem problemas em todos os lugares. É importante fazer contato com a Vanguarda.</p>
+          <p> </p>
+          <p>Você matou o [%dic:STR_DIC_M_IDRaksha_solo_Course_C]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tudo está em constante evolução. Estou feliz que você completou esta missão.</p>
+          <p> </p>
+          <p>Obrigado por cuidar disso.</p>
+          <p> </p>
+          <p>Obrigado por tudo, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_IDRaksha_solo_Course_C] ([%2]/50).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LF5_Averse_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Derrote os inimigos e proteja a rota de infiltração. Reporte-se a Aver assim que terminar.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com as ordens urgentes, você afastou o inimigo da rota de infiltração e depois reportou a Aver.</p>
+          <p> </p>
+          <p>Aver agradeceu e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Senhor acredita que o conquistador de Akaron pode ocupar toda Balaurea.</p>
+          <p> </p>
+          <p>Então ele enviou agentes para a Bacia de Tiamat. Mas os Asmodianos também enviaram seu agente, Mastarius, para o mesmo lugar.</p>
+          <p> </p>
+          <p>Você deve derrotar o [%dic:STR_DIC_M_LDF4_Advance_GodEliteDM] para que os Asmodianos não possam conquistar a Bacia de Tiamat. Traga de volta o [%dic:STR_DIC_I_quest_13916a] como prova.</p>
+          <p> </p>
+          <p>Ao ascender, o Agente dos Asmodianos exercerá grande poder. Mas o nosso exército pode derrotá-lo se todos permanecermos unidos.</p>
+          <p> </p>
+          <p>Ajude-nos, por favor!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Bacia de Tiamat em Balaurea é o centro de Akaron. É por isso que esta área é muito importante e não pode cair em mãos inimigas.</p>
+          <p> </p>
+          <p>Desde que os Agentes Asmodianos ascendidos invadiram Akaron, sofremos perdas devastadoras.</p>
+          <p> </p>
+          <p>Nossa situação está pior do que nunca.</p>
+          <p> </p>
+          <p>Temos que derrubar Mastarius Ascensionado a qualquer custo para podermos vencer em Akaron.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Broche Quebrado do Agente.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Broche Quebrado prova que você derrotou o Mastarius ascendido.</p>
+          <p> </p>
+          <p>Excelente! Não deve ter sido fácil obter o broche, mesmo que você tenha eliminado o Mastarius ascendido.</p>
+          <p> </p>
+          <p>Isso aumentou imensamente nossas chances de conquistar Akaron.</p>
+          <p> </p>
+          <p>Preparei uma recompensa adequada pelo seu feito heróico. Por favor, pegue.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_M_LDF4_Advance_GodEliteDM], obtenha o [%dic:STR_DIC_I_quest_13916a] e leve-o para [%dic:STR_DIC_N_LDF4_Advance_Elger_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Bacia Tiamat, derrote o Mastarius ascendido e obtenha o Broche Quebrado do Agente.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Elger encarregou você de eliminar o Asmodiano Mastarius ascendido na Bacia de Tiamat.</p>
+          <p> </p>
+          <p>Você derrotou o Mastarius ascendido e obteve o Broche Quebrado do Agente. Você o trouxe para Elger, que o admirou pelo seu feito.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

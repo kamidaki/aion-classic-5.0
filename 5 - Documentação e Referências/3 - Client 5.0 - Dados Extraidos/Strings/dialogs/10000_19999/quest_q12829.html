@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Por favor, ajude-nos com a investigação, [%username].</p>
+          <p> </p>
+          <p>O objetivo é descobrir por que o Dredgion caiu.</p>
+          <p> </p>
+          <p>É impossível que a grande balsa tenha caído sozinha.</p>
+          <p> </p>
+          <p>A queda do Dredgion tem muito a ver com as mudanças nesta área, por isso é muito importante.</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_W_LDF5a_SensoryArea_Q12829] e vasculhe o local em busca de sinais úteis.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um cubo Idgel muito fragmentado.)</p>
+          <p> </p>
+          <p>(Está tão danificado que uma restauração é impossível.)</p>
+          <p> </p>
+          <p>(Parece ter sido instalado no Dredgion acidentado.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Descobrir qual foi o motivo da queda do Dregion permitiria que você entendesse por que esta região mudou tanto.</p>
+          <p> </p>
+          <p>Por isso esta é uma das questões que mais ocupa o Comandante Supremo.</p>
+          <p> </p>
+          <p>E até eu estou curioso para saber a resposta.</p>
+          <p> </p>
+          <p>Você terminou o experimento?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Relate o que você viu.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você diz que o Dredgion que caiu transportava um Cubo Idgel?</p>
+          <p> </p>
+          <p>Se isso for verdade, então talvez o acidente tenha algo a ver com o Cubo Idgel.</p>
+          <p> </p>
+          <p>Mas também significa que existe alguma ligação entre os Balaur e os Idgel...</p>
+          <p> </p>
+          <p>Vejo perigo à frente.</p>
+          <p> </p>
+          <p>Nada está certo ainda, então é muito cedo para tirar conclusões precipitadas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF5a_SensoryArea_Q12829] e descubra o que está acontecendo lá.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Examine o [%dic:STR_DIC_E_LDF5a_FOBJ_BrokenIdgel].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relatório para [%dic:STR_DIC_N_LDF5_Village_Guard06_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Investigar o local do acidente de Dredgion para determinar a causa do acidente.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Morin pediu para você descobrir por que o Dredgion caiu.</p>
+          <p> </p>
+          <p>Após a investigação, foi descoberto um cubo Idgel quebrado, que provavelmente estava a bordo do Dredgion acidentado.</p>
+          <p> </p>
+          <p>Depois que você relatou a Morin, ele foi da opinião de que o Dredgion aparentemente queria mover o Cubo Idgel e que o Exército Beritra provavelmente estava conectado ao Id.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

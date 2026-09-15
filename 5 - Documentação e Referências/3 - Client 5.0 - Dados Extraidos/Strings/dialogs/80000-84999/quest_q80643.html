@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ninguém deveria estar no hospital com um tempo como este.</p>
+          <p>Por isso estou tão triste porque minha filha está aí dentro e não consegue sair...</p>
+		  <p> </p>
+		  <p>O mínimo que posso fazer é comprar um chocolate saboroso para ela.</p>
+		  <p>Mas estou tão ocupado no momento que simplesmente não tenho tempo...</p>
+		  <p> </p>
+        </body>	
+        </html>
+    </Contents>
+    <Selects>
+     <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> </p>
+		  <p>Se você não estiver muito ocupado, poderia me trazer um chocolate saboroso?</p>
+		  <p>Aparentemente você pode conseguir alguns de graça em [%shoplink].</p>
+		  <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado, Daeva!</p>
+		  <p>Vou te dar algo gostoso quando você voltar com o chocolate.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh, bem... Realisticamente, não há nada que possa ser feito...</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+<HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p> </p>
+          <p>Oh, você poderia me trazer um pouco de chocolate rapidamente?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você abre sua bolsa e mostra para ela.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O chocolate não derreteu?</p>
+          <p>Tem certeza de que não colocou na outra sacola?</p>
+          <p>Você verificou seu correio expresso também?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, muito obrigado.</p>
+          <p>Não é muito, mas aqui está um sinal da minha gratidão.</p>
+          <p>Posso contar com sua ajuda novamente no futuro?</p>
+		  <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha [%dic:STR_DIC_I_junk_world_event_webshop_03a] para mãe estressada [%dic:STR_DIC_NPC_event_randrian].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha um chocolate saboroso em [%shoplink] e leve para Landria.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Landria pediu que você trouxesse um chocolate saboroso para ela levar para a filha.</p>
+          <p> </p>
+          <p>Você pegou alguns de [%shoplink] e trouxe para ela.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
+

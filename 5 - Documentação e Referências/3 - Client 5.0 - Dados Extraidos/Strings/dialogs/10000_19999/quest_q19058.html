@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então você realmente abriu seus ouvidos, olhos e mente. Colora-me ATORDOADO!</p>
+          <p> </p>
+          <p>A maioria de vocês, jovens, nem consegue distinguir uma lareira de um bandolim! Mas aqui está você, prestes a atingir o posto de Mestre.</p>
+          <p> </p>
+          <p>Mas eu não me importo com títulos! Você ainda é o bebê IGNORANTE e agitado que era quando chegou aqui! Mas agora um POUCO mais habilidoso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">"Isso é... um grande elogio para você."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>E você não ouvirá isso de mim novamente, estudante. Então aproveite!</p>
+          <p> </p>
+          <p>Há um último passo para se tornar um Mestre de Construção: lembrar que apesar do título, você NÃO é igual a mim!</p>
+          <p> </p>
+          <p>Isso e comparecer à cerimônia chique com a carta que estou prestes a escrever para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui está a carta. Aviso: sou honesto nisso, como sempre sou.</p>
+          <p> </p>
+          <p>Pegue-o e veja o Sumo Sacerdote Eremitia no Claustro de Kaisinel. Ela vai resolver você.</p>
+          <p> </p>
+          <p>E se eu ouvir um sussurro sobre você causando problemas a ela...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Não há necessidade de terminar essa frase."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ooooh, agora o grande mal [%username] é bom demais para o Sumo Sacerdote Eremitia! É isso?</p>
+          <p> </p>
+          <p>Se tem uma coisa que odeio é AROGÂNCIA! Nenhum de nós é bom demais para o Sumo Sacerdote!</p>
+          <p> </p>
+          <p>Eu conheço o seu tipo. Você cuspiria na cara de Senhora Ariel para rir, não é? Saia antes que eu te sufoque com minhas MÃOS NÃES!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Estou saindo daqui..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então, você é o [%username] de quem tanto ouvi falar.</p>
+          <p> </p>
+          <p>Nem todos conseguem seguir o estilo de ensino do Mestre Undin. O fato de você ter chegado até aqui sob a tutela dele diz muito sobre você.</p>
+          <p> </p>
+          <p>Eu confio que você tem algo para mim?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sim, esta carta."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, Undin... seu estilo de escrita é muito parecido com seu discurso. É sempre divertido.</p>
+          <p> </p>
+          <p>Pela autoridade que me foi conferida pelos Senhores Serafins, decreto [%username] um Mestre de Construção! Parabéns!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para o Claustro de Kaisinel e participe da cerimônia de nomeação de Mestre realizada pelo Sumo Sacerdote [%dic:STR_DIC_N_Eremitia]</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Construction Master Undin recomendou que você recebesse o título de Master. Pegue a carta dele e participe da cerimônia realizada pelo Sumo Sacerdote Eremitia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Mestre de Construção Undin disse para você mostrar sua carta de recomendação ao Sumo Sacerdote Eremitia.</p>
+          <p> </p>
+          <p>Depois de ler a carta de recomendação aparentemente divertida de Undin, o Sumo Sacerdote Eremitia concedeu-lhe o título de Mestre em uma cerimônia de nomeação.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

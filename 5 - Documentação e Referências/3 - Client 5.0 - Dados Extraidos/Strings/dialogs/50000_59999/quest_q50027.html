@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todo mundo ama seu irmão.</p>
+          <p> </p>
+          <p>Esta tragédia atual se deve ao meu desejo imprudente pela alquimia e à fórmula de transformação errada.</p>
+          <p> </p>
+          <p>É isso mesmo, transformei meu irmão em um Talon.</p>
+          <p> </p>
+          <p>No entanto, agora conheço uma fórmula de transformação que pode consertar tudo. A transformação não é impossível, só preciso dos ingredientes adequados.</p>
+          <p> </p>
+          <p>O ingrediente principal é a Vitalidade da Alma. Se você me trouxer 5 pedaços de [%dic:STR_DIC_I_event_worlddrop_1], posso testar minha fórmula de transformação.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você me trouxe 5 pedaços de [%dic:STR_DIC_I_event_worlddrop_1]?</p>
+          <p> </p>
+          <p>Esse é o primeiro ingrediente que preciso para transformar meu irmão de volta ao estado anterior.</p>
+          <p> </p>
+          <p>Seria sensato testar se a fórmula é segura, experimentando algumas vezes.</p>
+          <p> </p>
+          <p>Não posso cometer o mesmo erro novamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Vitalidade da Alma.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Com 5 peças de Vitalidade da Alma, posso realizar meu experimento para testar minha fórmula de transformação.</p>
+          <p> </p>
+          <p>A alquimia não é mágica, é uma ciência. A fórmula de transformação só pode ser comprovada por meio de testes precisos.</p>
+          <p> </p>
+          <p>Se esta experiência for bem-sucedida, posso devolver ao meu irmão a forma original.</p>
+          <p> </p>
+          <p>Muito obrigado pelos ingredientes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve o [%dic:STR_DIC_I_event_worlddrop_1] para [%dic:STR_DIC_N_event_Edlung].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Warrick pediu para você adquirir vários ingredientes que ele precisa para testar uma fórmula de transformação para fazer seu irmão Alfonso voltar a ser como ele era. Traga a ele a Vitalidade da Alma.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Warrick pediu que você conseguisse vários ingredientes necessários para testar uma fórmula de transformação que faria seu irmão Alfonso voltar a ser como era.</p>
+          <p> </p>
+          <p>Quando você trouxe para ele a Vitalidade da Alma, ele lhe deu uma receita de alquimia em agradecimento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

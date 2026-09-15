@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Estava esperando por você, [%username]. Ouvi falar de tudo que você conquistou em Gelkmaros.</p>
+		<p> </p>
+		<p>Mas antes de mais nada, seja bem-vindo ao Sarpan. Sou Aimah, agente de Marchutan.</p>
+		<p> </p>
+		<p>Kamar é uma cidade Reian que adotou uma posição neutra na guerra entre os Elyos e os Asmodianos.</p>
+          <p> </p>
+          <p>Você já falou com um Reian?</p>
+          <p> </p>
+          <p>Os Reians de [%dic:STR_DIC_W_LDF4a_SZ_OP] não gostam muito de nós porque estamos lutando contra os Elyos.</p>
+          <p> </p>
+          <p>Mas não devemos tratá-los com raiva ou animosidade.</p>
+          <p> </p>
+          <p>Afinal, eles não conhecem a história de Atreia.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Mas vou parar de reclamar agora.</p>
+		<p> </p>
+		<p>O veterano Reian [%dic:STR_DIC_N_Raffaele] está esperando por você, isso é mais importante agora. Vá vê-lo.</p>
+		<p> </p>
+		<p>Ele está procurando alguém que seja bom com identidade. Eu recomendei você.</p>
+		<p> </p>
+		<p>Seu pedido foi um pouco hesitante. As pessoas simplesmente não confiam em nós, Asmodianos. Mas eles precisam desesperadamente de alguém que saiba sobre a identidade.</p>
+		<p> </p>
+		<p>É por isso que pensei em enviar-lhes uma Mecatéc como você. Como o Mech é impulsionado usando Id, você está mais familiarizado com ele do que outros.</p>
+		<p> </p>
+		<p>Além disso, seus sucessos até agora indicam que você não me decepcionará.</p>
+		<p> </p>
+		<p>Vá e mostre a eles do que os Asmodianos são capazes. Transmita conhecimento sobre o Id aos Reianos e trate-os com respeito ao fazê-lo.</p>
+		<p> </p>
+		<p>Você encontrará Rafael em [%dic:STR_DIC_W_LDF4a_SZ_OP_07].</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Eu não vou decepcionar você.</Act>
+    </Selects>
+    <Voice file="Q20050-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Hmmm... Então você controla o Mech? Vejo que o agente me enviou uma pessoa especial.</p>
+		<p> </p>
+		<p>Não temos muito tempo, então vou te contar imediatamente.</p>
+		<p> </p>
+		<p>Nós, os Reianos, estamos tentando manter a paz em Sarpan. É por isso que estamos lutando contra os sobreviventes da Guilda de Tiamat e os Strigik, os Calydon e similares.</p>
+		<p> </p>
+		<p>No entanto, eles não são nosso alvo principal.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Os Reians estão lutando contra os Klaw, que há muito tempo tentam invadir Sarpan.</p>
+		<p> </p>
+		<p>Até agora conseguimos mantê-los afastados, apesar de eles continuarem a ficar mais fortes.</p>
+		<p> </p>
+		<p>De acordo com os últimos relatórios, os Klaw foram vistos perto da caverna ao sul de Kamar.</p>
+		<p> </p>
+		<p>O fato de possuírem um item de identificação é por si só extraordinário.</p>
+		<p> </p>
+		<p>Infelizmente, não temos mais guerreiros suficientes para destruir o Klaw. É por isso que pedimos ajuda a você, Daeva.</p>
+		<p> </p>
+		<p>Você pode descobrir em [%dic:STR_DIC_N_Eroos] em [%dic:STR_DIC_W_LDF4a_SZ_A1_02].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Rafael te mandou? Não devemos perder tempo. Então ouça com atenção.</p>
+		<p> </p>
+		<p>Relatórios indicam que os Klaw estão nas Cavernas Mephitic. Eles também estão de posse do item de identificação suspeito.</p>
+		<p> </p>
+		<p>A caverna foi anteriormente ocupada pelo Vinculado de Dragão. É provável que tenham deixado o item para trás.</p>
+		<p> </p>
+		<p>A energia Id parece ser extremamente perigosa. Portanto, não podemos permitir que o Klaw permaneça na posse de tal item.</p>
+		<p> </p>
+		<p>Mate o Klaw antes que qualquer coisa aconteça. Em seguida, colete o item.</p>
+		<p> </p>
+		<p>Você deve entrar nas Cavernas Mephitic através do [%dic:STR_DIC_OBJ_LDF4a_Neutdoor]. Ele está localizado ao sul daqui.</p>
+		<p> </p>
+		<p>Mate o [%dic:STR_DIC_E_LDF4a_Q20050all] na caverna e encontre o item Id.</p>
+		<p> </p>
+		<p>Depois de obtê-lo, informe [%dic:STR_DIC_N_Raffaele] imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Sons estranhos podem ser ouvidos vindos das profundezas.)</p>
+          <p> </p>
+          <p>(São sons desagradáveis, fazendo você recuar por instinto.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você entra na caverna.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você já voltou?</p>
+          <p> </p>
+          <p>Como foi na caverna sul?</p>
+          <p> </p>
+          <p>O fato de haver Klaw na caverna já é uma notícia ruim por si só, e agora dizem que eles estão de posse da identidade, além de todo o resto. Isso é verdade?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega o Dispositivo de Purificação Idgel.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Então os rumores são verdadeiros!</p>
+		<p> </p>
+		<p>O Klaw realmente tinha um dispositivo de identificação.</p>
+		<p> </p>
+		<p>Como o Klaw passou a possuir um poder tão perigoso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você fala sobre o Vinculado de Dragão e o Dispositivo de Purificação Idgel.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você já voltou?</p>
+          <p> </p>
+          <p>Ou você ainda não esteve no [%dic:STR_DIC_W_LDF4a_SZ_OP_21]?</p>
+          <p> </p>
+          <p>Definitivamente precisamos descobrir se o Klaw realmente tem um item de identificação.</p>
+          <p> </p>
+          <p>Por favor, analise esta situação o mais rápido possível.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Então os rumores são verdadeiros!</p>
+		<p> </p>
+		<p>O Klaw realmente tinha um dispositivo de identificação.</p>
+		<p> </p>
+		<p>Como o Klaw passou a possuir um poder tão perigoso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você fala sobre o Vinculado de Dragão e o Dispositivo de Purificação Idgel.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Eu entendo... O Vinculado de Dragão ocupou as Cavernas Mephitic antes do Klaw.</p>
+		<p> </p>
+		<p>O Vinculado de Dragão deve ter deixado o Dispositivo de Purificação Idgel para trás quando o Klaw invadiu a caverna.</p>
+		<p> </p>
+		<p>Eu já tinha ouvido falar que Beritra pretendia ir para Gelkmaros para acessar o poder do Id através do Vinculado de Dragão. Quem diria que isso também está acontecendo em Sarpan.</p>
+		<p> </p>
+		<p>Devemos informar os mais velhos imediatamente.</p>
+		<p> </p>
+		<p>Parece que vocês, Asmodiano Daevas, são realmente mais talentosos do que eu pensava.</p>
+		<p> </p>
+		<p>Tudo bem, você parece ser confiável. Mas ficarei de olho em você para verificar se você teve sorte desta vez ou se realmente possui habilidades excelentes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Aimah] no Habrok.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para [%dic:STR_DIC_W_LDF4a_SZ_OP] e fale com [%dic:STR_DIC_N_Raffaele].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_Eroos] no [%dic:STR_DIC_W_LDF4a_SZ_A1_02].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Entre nas Cavernas Mefíticas através de [%dic:STR_DIC_OBJ_LDF4a_Neutdoor].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Mate o [%dic:STR_DIC_E_LDF4a_Q20050all] e leve o [%dic:STR_DIC_I_QUEST_24070a] para [%dic:STR_DIC_N_Raffaele].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Pedidos: Encontre-se com Aimah.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Aimah no navio Habrok disse que o veterano Reian Rafael estava procurando por alguém que conhecesse Id.</p>
+		<p> </p>
+		<p>Rafael disse que Klaw apareceu na caverna ao sul de Kamar e surpreendentemente possuía Id.</p>
+		<p> </p>
+		<p>Rafael aconselhou você a se encontrar com Eyriss para saber mais. Eyriss disse que o Klaw possuía um item que o Vinculado de Dragão havia deixado para trás na caverna.</p>
+		<p> </p>
+		<p>Você eliminou o Klaw nas Cavernas Mephitic, pegou o dispositivo de identificação e trouxe para Rafael.</p>
+		<p> </p>
+		<p>Rafael disse que os Beritra também estavam tentando influenciar o Vinculado de Dragão em Sarpan a usar o Id. Ele achava que os outros Anciões Reian deveriam ser notificados sobre o assunto.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

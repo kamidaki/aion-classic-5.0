@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você. [%userclass]. Sim, você.</p>
+          <p> </p>
+          <p>Você deve continuar ajudando a cuidar desta planta. Traga-me o melhor [%dic:STR_DIC_I_Q18838_LF2item].</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu o composto Eltnen?</p>
+          <p> </p>
+          <p>Este pequeno corte ensolarado precisa dele para crescer brotos frescos em um vaso de flores.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Como está o garotinho?"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, obrigado. Isso tem um cheiro tão rico.</p>
+          <p> </p>
+          <p>A muda não pode deixar de brotar num vaso dessa nutritividade fértil. Você consegue, muda?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete o composto dos monstros em [%dic:STR_DIC_W_LF2_SZ_C1] e [%dic:STR_DIC_W_LF2_SZ_C2] e leve-o para [%dic:STR_DIC_N_Gadorus].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Reúna Composto Eltnen de criaturas do Deserto de Eracus Oriental e leve-o para Lariel para ser cortado.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lariel mandou você buscar Eltnen Compost para o corte.</p>
+          <p> </p>
+          <p>Você caçou criaturas em todo o Deserto de Eracus Oriental até reunir o suficiente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

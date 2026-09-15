@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q49710</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p align="center">- A Carta Verde -</p>
+          <p> </p>
+          <p>Prezados membros da Green Hat Alliance,</p>
+          <p> </p>
+          <p>Desta vez nossas operações ocorrerão em [%dic:STR_DIC_W_LDF5b_SZ_B2].</p>
+          <p> </p>
+          <p>Esta área está infestada de limo. Remova o [%dic:STR_DIC_M_LDF5B_B2_Slime_64_An] e informe [%dic:STR_DIC_E_LDF5a_Greenhat_BA] sobre o resultado do seu trabalho.</p>
+          <p> </p>
+          <p>Que a natureza seja a nossa força.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde a carta no bolso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já esteve na região contaminada, ok?</p>
+          <p> </p>
+          <p>Só de pensar no cheiro e nas marcas de queimadura me dá arrepios, akakak.</p>
+          <p> </p>
+          <p>Então, você se livrou de todo o feio Slime do Pântano?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O feio Swamp Slime é uma criatura perigosa.</p>
+          <p> </p>
+          <p>Não só se sente em casa na área contaminada, mas também espalha a contaminação, também.</p>
+          <p> </p>
+          <p>Além do mais, eles se reproduzem muito rapidamente, por isso é muito importante eliminar cada um deles.</p>
+          <p> </p>
+          <p>A Green Hat Alliance agradece seus esforços [%username], ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os [%dic:STR_DIC_M_LDF5B_B2_Slime_64_An], que estão envenenando o meio ambiente ([%2]/10)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_E_LDF5a_Greenhat_BA].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Chegou uma carta verde da Green Hat Alliance. Leia e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma carta verde da Green Hat Alliance foi entregue.</p>
+          <p> </p>
+          <p>Você removeu o revoltante Slime do Pântano que estava contaminando o meio ambiente e foi elogiado por seu trabalho duro ao reportar-se à filial de South Katalam da Green Hat Alliance.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

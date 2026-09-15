@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41463</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O [%dic:STR_DIC_I_Q41463a] é muito importante para a confecção da arma Luminaciel.</p>
+          <p> </p>
+          <p>Não se deve confundir isso com uma pétala de flor comum.</p>
+          <p> </p>
+          <p>Pois esta é uma flor que absorveu as essências que foram espalhadas ao vento durante a época da Grande Catástrofe que se seguiu à morte de Siel.</p>
+          <p> </p>
+          <p>Acesse [%dic:STR_DIC_N_Ekios] e descubra como obter a pétala.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu ouvi falar de você. Então você está interessado na arma Luminaciel... Será que você não está sendo um pouco precipitado?</p>
+          <p> </p>
+          <p>Mas se essa for sua decisão, eu vou te ajudar.</p>
+          <p> </p>
+          <p>Aqui, pegue o [%dic:STR_DIC_I_Q41463_poty] e cuide bem dele. Então me traga 7 [plur][%dic:STR_DIC_I_Q41463a].</p>
+          <p> </p>
+          <p>E por favor tenha cuidado. A Flor de Pétala de Siel é extremamente preciosa, então não a desperdice.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">A conversa terminou</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]. Parece que foi há um tempo que eu te dei o [%dic:STR_DIC_I_Q41463_poty]...</p>
+          <p> </p>
+          <p>De alguma forma você não conseguiu reunir 7 [plur][%dic:STR_DIC_I_Q41463a]?</p>
+          <p> </p>
+          <p>Aion... Quando penso naquele precioso Bloom...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as Pétalas de Siel.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah!</p>
+          <p> </p>
+          <p>Essas são as Pétalas de Siel, sem dúvida!</p>
+          <p> </p>
+          <p>Por favor, aceite minhas desculpas. Esta não é a primeira vez que neófitos deixam os Bloom morrerem...</p>
+          <p> </p>
+          <p>Esse foi um bom trabalho.</p>
+          <p> </p>
+          <p>Enviarei as pétalas para o Templo de Siel, então você se concentrará totalmente em obter os ingredientes restantes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha [%dic:STR_DIC_I_Q41463_poty] de [%dic:STR_DIC_N_Ekios].</font></p></step>
+	       <step><p visible="[%3]"><font color="[%4]">Reúna [%dic:STR_DIC_I_Q41463a] e leve tudo para [%dic:STR_DIC_N_Ekios].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Cuide bem da Flor de Pétala de Siel e receba a Pétala de Siel.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Kahrun, o ingrediente chave para fazer a arma Lumaniciel é a Pétala de Siel.</p>
+          <p> </p>
+          <p>Quando você visitou Ekios, ele lhe deu uma Flor de Pétala de Siel e pediu para você não desperdiçar este item valioso.</p>
+          <p> </p>
+          <p>Quando você entregou a Pétala de Siel, que você obteve cuidando adequadamente da Flor, para Ekios, ele prometeu que a enviaria para o Templo de Siel.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

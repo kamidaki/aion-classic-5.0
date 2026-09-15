@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você poderia fazer uma pequena entrega se tiver tempo?</p>
+          <p> </p>
+          <p>Diz-se que [%dic:STR_DIC_W_LDF5a_G1] [%dic:STR_DIC_N_LDF5a_Sapparing_E] inventou um schnapps kokonat que deixará você em êxtase após um único gole.</p>
+          <p> </p>
+          <p>A destilação requer [%dic:STR_DIC_I_quest_12547a].</p>
+          <p> </p>
+          <p>Parece ainda ser usado para o kokonat.</p>
+          <p> </p>
+          <p>Não sou especialista em aparelhos de destilaria, mas você entregaria isso em meu lugar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você tem na mão, ok?</p>
+          <p> </p>
+          <p>Por acaso é a madeira com veio claro que eu precisava, ok?</p>
+          <p> </p>
+          <p>Por favor, dê-me isso imediatamente, ak.</p>
+          <p> </p>
+          <p>Estou apenas consertando o aparelho da destilaria Kokonat, também.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a madeira com uma fibra clara.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Teríamos tido um problema se você tivesse chegado um pouco mais tarde, ak.</p>
+          <p> </p>
+          <p>Quanto mais tarde fica, pior é o gosto do licor Kokonat, ak.</p>
+          <p> </p>
+          <p>Estou grato por você ter entregue no prazo, ak.</p>
+          <p> </p>
+          <p>[%username], você entende como é importante chegar na hora certa, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF5a_G1], veja [%dic:STR_DIC_N_LDF5a_Sapparing_E] e dê a ele [%dic:STR_DIC_I_quest_12547a].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Entregar madeira para destilar Kokonats.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perinerk pediu que você conseguisse provisões para Saphirunerk da Plantação Saphirunerk.</p>
+          <p> </p>
+          <p>Você trouxe madeira de grão fino Saphirunerk para o kokonat ainda conforme solicitado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

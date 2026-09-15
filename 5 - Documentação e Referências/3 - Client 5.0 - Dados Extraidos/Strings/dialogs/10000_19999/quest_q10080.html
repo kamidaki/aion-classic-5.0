@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10080</QuestId>
+    <QuestName>카탈람으로</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Encontre [%dic:STR_DIC_N_Grgia], o soldado de manutenção da Linha Aérea.</p>
+          <p> </p>
+          <p>Ela irá levá-lo para Katalam, [%username].</p>
+          <p> </p>
+		  <p>Katalam é a última região sob influência de Tiamat. Está dividido em Katalam do Norte e Katalam do Sul.</p>
+		  <p> </p>
+		  <p>A Patrulha Katalam, enviada pelos Elyos, foi vitoriosa no norte. Agora pretendem conquistar também o Sul, mas as suas tropas estão enfraquecidas.</p>
+		  <p> </p>
+		  <p>[%username], vá e elimine os desertores de Tiamat. Lute pela glória dos Elyos!</p>
+		  <p> </p>
+		  <p>A Patrulha Katalam tomou a Torre de Luz Reconstruída em North Katalam. Faça o seu caminho até lá.</p>
+		  <p> </p>
+		  <p>Não perca tempo, vá para Katalam.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10080-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você quer ir para Katalam?</p>
+          <p> </p>
+          <p>A Patrulha Katalam pode ter tomado o norte, mas a área está longe de ser segura.</p>
+          <p> </p>
+		  <p>Os soldados de Tiamat reivindicam Katalam e continuam a oferecer uma resistência feroz.</p>
+          <p> </p>
+		  <p>Quando você chegar a Katalam, não confie em ninguém além das tropas Elyos.</p>
+		  <p> </p>
+          <p>[%username], lute pela glória dos Elyos!</p>
+		  <p> </p>
+		  <p>Você está pronto para viajar para a Torre de Luz Reconstruída em North Katalam?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você diz que está pronto.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], finalmente você acordou!</p>
+          <p> </p>
+          <p>O governador [%dic:STR_DIC_LDF5a_Tiryns_Commander] estava realmente preocupado com você. Você foi atacado logo após chegar em Katalam.</p>
+          <p> </p>
+		  <p>Ele me incomoda todos os dias porque ainda não curei você completamente.</p>
+		  <p> </p>
+		  <p>Esperei 3 meses para você acordar, [%username].</p>
+		  <p> </p>
+		  <p>Agradeça a Aion por você ter recuperado a consciência.</p>
+		  <p> </p>
+          <p>Devo enviar as boas notícias para Tirins imediatamente. Ou melhor ainda: traga você mesmo para ele, [%username].</p>
+          <p> </p>
+          <p>Tenho certeza de que ele ficará extremamente satisfeito em ver que você está de pé.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você diz que entendeu.</Act>
+    </Selects>
+	<Voice file="Q10080-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body> 
+          <p>Ah, que prazer ver você vivo e bem. Eu temia que a prole Asmodiana tivesse nos custado mais um companheiro de armas altamente talentoso.</p>
+          <p> </p>
+		  <p>Os Asmodianos atacaram sem piedade logo após a Vinculação ter sido suspensa. Não sabemos por que a vinculação foi suspensa.</p>
+		  <p> </p>
+		  <p>Quando você perguntou a Gurd sobre isso, os Asmodianos já haviam alcançado a entrada da reconstruída Torre de Luz. Você veio para Katalam depois.</p>
+		  <p> </p>
+		  <p>Gurd não foi capaz de responder e, como se isso não fosse um infortúnio suficiente, você sofreu ferimentos graves.</p>
+		  <p> </p>
+          <p>Ah, esqueci de me apresentar: sou o Governador da Patrulha Katalam. Meu nome é Tirins.</p>
+          <p> </p>
+          <p>Eu trouxe você aqui quando você perdeu a consciência. Fui eu quem pediu que você viesse para Katalam.</p>
+          <p> </p>
+          <p>Precisamos urgentemente de um herói como você em Katalam. Lidere-nos com bravura e ajude Katalam!</p>
+          <p> </p>
+          <p>Fiquei extremamente preocupado, pois você não acordou há 3 meses. Estou muito feliz em ver que você está bem novamente.</p>
+          <p> </p>
+          <p>Diga-me, como você se sente?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que está tudo bem.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como você está se sentindo? Estou aliviado em ver você consciente novamente.</p>
+          <p> </p>
+          <p>Vou lhe contar o que aconteceu recentemente, mas primeiro você deve se acalmar um pouco.</p>
+          <p> </p>
+          <p>Há muito a ser feito aqui em Katalam.</p>
+		  <p> </p>
+		  <p>Existem muitas fortalezas que você deve conquistar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF4a_D_boss] em [%dic:STR_DIC_W_LDF4a_SZ_OP].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Grgia] em [%dic:STR_DIC_W_LDF4a_SZ_OP].</font></p></step>
+			   <step><p visible="[%6]"><font color="[%7]">Procure por[%dic:STR_DIC_W_LDF5a_SensoryArea_Q10080].</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_LDF5a_Marke_E] em [%dic:STR_DIC_W_LDF5A_OP_L].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Você encontrará [%dic:STR_DIC_LDF5a_Tiryns_Commander] em [%dic:STR_DIC_W_LDF5A_OP_L]. Fale com ele.</font></p></step>             
+    </steps>
+          <p><font font_xml="quest_summary">Vá para Katalam para participar da batalha e encontre o Governador Tirins lá.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Centurião Palenon pediu que você fosse a Katalam para encontrar Gretia.</p>
+		  <p> </p>
+		  <p>Você acabou em uma batalha com os Asmodianos logo após sua chegada.</p> 
+		  <p> </p>
+		  <p>Você ficou ferido e já passou um tempo considerável até que recuperou a consciência. A médica Marga lhe disse que três meses se passaram.</p>
+		  <p> </p>
+		  <p>Assim que você estava totalmente consciente novamente, você conheceu o Governador Tirins. Ele confirmou que você estava em forma e informou que havia muitas missões para completar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

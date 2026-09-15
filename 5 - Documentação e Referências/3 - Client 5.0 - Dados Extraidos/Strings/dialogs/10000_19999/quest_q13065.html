@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Exército Beritra estabeleceu um posto perto do Portão Sul de Eremion e aumentou o número de tropas.</p>
+          <p> </p>
+          <p>Se as coisas continuarem assim, em breve eles terão toda a Muralha sob controle.</p>
+          <p> </p>
+          <p>Por favor, vá imediatamente ao posto perto do Portão Sul de Eremion e elimine o [%dic:STR_DIC_E_LDF5b_A2_Vri].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Até os Beritra sabem da importância do Portão Sul de Eremion.</p>
+          <p> </p>
+          <p>Se o número de Beritra ultrapassar um determinado valor, as Muralhas cairão em suas mãos.</p>
+          <p> </p>
+          <p>Mate [%dic:STR_DIC_E_LDF5b_A2_Vri] agora e impeça o Exército Beritra de aumentar a quantidade de suas tropas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Se tivéssemos esperado mais, o Exército Beritra teria se tornado ainda maior e eles já teriam conquistado as Muralhas há muito tempo.</p>
+          <p> </p>
+          <p>Acho que graças a você poderemos nos concentrar apenas nos movimentos do Exército Beritra.</p>
+          <p> </p>
+          <p>O Exército Beritra tentará conquistar as Muralhas novamente num futuro próximo, depois de aumentarem o seu número. Então estou pedindo mais ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar [%dic:STR_DIC_E_LDF5b_A2_Vri] ([%2]/10)</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5b_Phobos_E]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine a 43ª Tropa de Inteligência Beritra que está tentando controlar o Portão Sul de Eremion.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Povos pediu para você eliminar a 43ª Tropa de Inteligência Beritra que está tentando controlar o Portão Sul de Eremion.</p>
+          <p> </p>
+          <p>Quando regressou aos Povos depois de eliminar a 43.ª Tropa de Inteligência Beritra, ele agradeceu-lhe e pediu-lhe que o ajudasse mais um pouco, se possível.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

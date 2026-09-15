@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva! Negocie com Gritt! Daeva, é um bom negócio!</p>
+          <p> </p>
+          <p>Gritt possui informações importantes.</p>
+          <p> </p>
+          <p>Eu sei o que esses traidores estão tramando aqui. Este documento diz o que os traidores procuram.</p>
+          <p> </p>
+          <p>Leve este documento secreto ao seu superior. Tudo o que Gritt pede em troca é que você ajude Gritt a escapar.</p>
+          <p> </p>
+          <p>Você aceitará o acordo? Ou você vai recusar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você quer de Hadius?</p>
+          <p> </p>
+          <p>É algo especial?</p>
+          <p> </p>
+          <p>Você recebeu uma proposta de paz dos Balaur? Hahaha!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você repassa a sugestão de Grit.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu quis dizer isso como uma piada, não esperava que você levasse isso a sério.</p>
+          <p> </p>
+          <p>Você não pode confiar no Balaur. E você realmente não deveria confiar nas palavras de um prisioneiro.</p>
+          <p> </p>
+          <p>Já é difícil para mim observar quando nosso lado está fraco e covarde, não preciso ver o comportamento covarde de um Balaur também.</p>
+          <p> </p>
+          <p>Um bom Balaur é um Balaur morto, o que você acha?</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5_Under_Hadius_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Traga o documento secreto de Gritt para Hadius.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gritt, o Balaur que está sendo mantido prisioneiro pelo 5º Esquadrão do Exército Beritra, ofereceu-lhe uma troca em troca de informações.</p>
+          <p> </p>
+          <p>Você passou a proposta e o documento de Gritt para Brif, mas Hadius achou que Balaur não era confiável e rejeitou a proposta sem sequer olhar os documentos.</p>
+          <p> </p>
+          <p>Mas o nome Gritt parecia familiar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

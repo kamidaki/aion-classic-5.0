@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], é bom ver você novamente.</p>
+          <p> </p>
+          <p>Você provavelmente já ouviu falar do Claustro de Kaisinel, não é?</p>
+          <p> </p>
+          <p>Fui informado que há alguém lá que gostaria de falar com você.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Eremitia], a própria Alta Sacerdotisa de Mirage, deseja falar com você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você pergunta do que se trata.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pelo que ouvi, ela está procurando alguém para acompanhar as tropas até Inggison, em Balaurea.</p>
+          <p> </p>
+          <p>Ela perguntou por você pessoalmente. Isso pode significar que o Claustro de Kaisinel está interessado em você.</p>
+          <p> </p>
+          <p>Bem, o que você está esperando? É improvável que seja uma desvantagem se você for para lá.</p>
+          <p> </p>
+          <p>Há uma estátua de teletransporte à esquerda do [%dic:STR_DIC_FLA30] que o levará ao Claustro de Kaisinel.</p>
+          <p> </p>
+          <p>Cuide-se.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10031-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você falou com o Governador?</p>
+          <p> </p>
+          <p>Ouvi muito sobre você. Cada vez que Elysea esteve em perigo, você foi para a batalha inabalável.</p>
+          <p> </p>
+          <p>Você tem coragem de ir para [%dic:STR_DIC_W_ZONE_NAME_LF4] agora?</p>
+          <p> </p>
+          <p>Eles têm um problema urgente com os Obeliscos locais.</p>
+          <p> </p>
+          <p>Preciso de um Daeva para escoltar os cientistas e forças adicionais até Inggison. Você parece ser a pessoa certa para esta missão. Eu confio em você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Existem muitos lugares perigosos em Inggison.</p>
+          <p> </p>
+          <p>Agora que o quinto Senhor dos Dragões Tiamat está morto, não demorará muito para que esta região entre em agitação novamente.</p>
+          <p> </p>
+          <p>Lord Kaisinel ainda não voltou desde que partiu para Balaurea.</p>
+          <p> </p>
+          <p>Isso significa que a situação em Balaurea não é pacífica.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabe como chegar a Inggison?</p>
+          <p> </p>
+          <p>As forças armadas e os cientistas que vão reparar os Obeliscos já estão a bordo do navio de guerra. Fale com Sibylle e embarque também.</p>
+          <p> </p>
+          <p>Vá para a doca do dirigível. Você encontrará um navio de guerra saindo do Campo Etérico. Procure [%dic:STR_DIC_N_Sibylle] na doca. Ela lhe dirá tudo o que você precisa saber.</p>
+          <p> </p>
+          <p>Leve esta Pedra de Onda de Éter com você. Você achará isso muito útil quando estiver em Inggison.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10031-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo! Você é [%username], não é?</p>
+          <p> </p>
+          <p>A Suma Sacerdotisa me instruiu a esperar por você.</p>
+          <p> </p>
+          <p>Todos os outros que vão para Inggison já embarcaram.</p>
+          <p> </p>
+          <p>As peças necessárias para reparar os Obeliscos na Fortaleza Ilusória de Inggison também foram carregadas.</p>
+          <p> </p>
+          <p>Você parece um pouco preocupado, [%username]. Você está preocupado?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você admite que está nervoso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muitos Daevas ficam assustados quando têm que deixar o Campo Etérico.</p>
+          <p> </p>
+          <p>Mas não há necessidade de se preocupar. Lorde Kaisinel nos protegerá.</p>
+          <p> </p>
+          <p>De qualquer forma, já existem muitos Guardiões em missões além do Campo Etérico, então não há nada a temer.</p>
+          <p> </p>
+          <p>Não tenho dúvidas de que você conseguirá pelo menos tanto em Inggison quanto em Elysea.</p>
+          <p> </p>
+          <p>Partiremos em breve. Por favor, embarque no navio.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO3">Você embarca no navio de guerra.</Act>
+    </Selects>
+    <Voice file="Q10031-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então é você quem está escoltando os Daevas do Sanctum.</p>
+          <p> </p>
+          <p>Você veio na hora certa.</p>
+          <p> </p>
+          <p>Mas diga-me, você gosta de Inggison?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1">Você diz que ainda não sabe.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não estou surpreso.</p>
+          <p> </p>
+          <p>Você provavelmente já adivinhou. Mas Eremitia não te enviou aqui apenas para escoltar os Daevas.</p>
+          <p> </p>
+          <p>Balaurea é um campo de batalha implacável.</p>
+          <p> </p>
+          <p>Com a ajuda de Lord Kaisinel, conseguimos expulsar os Balaur de Inggison de volta à região de Angrief. Mas não fizemos nenhum progresso desde então.</p>
+          <p> </p>
+          <p>Desde a morte do Senhor Dragão Tiamat, os Balaur tornaram-se ainda mais agressivos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT5_1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Precisamos de alguém para realizar as missões em Inggison por nós.</p>
+          <p> </p>
+          <p>Conto com a Suma Sacerdotisa Eremitia que sabe o suficiente sobre Daevas para ter me enviado a pessoa certa para esta tarefa. De qualquer forma, Veille recomendou você, então não vou me opor.</p>
+          <p> </p>
+          <p>Por favor, fale com [%dic:STR_DIC_N_steropes], o oficial da equipe de inteligência.</p>
+          <p> </p>
+          <p>Steropes explicará a situação em Inggison e Balaurea.</p>
+          <p> </p>
+          <p>Oh, isso é uma Pedra de Onda de Éter que você tem com você? Vou entregá-lo imediatamente aos cientistas para que possam examiná-lo.</p>
+          <p> </p>
+          <p>Se a pedra nos ajudar a ter sucesso em nossa pesquisa, então sua jornada já terá valido a pena.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO5">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10031-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esta é a sua primeira vez em Inggison?</p>
+          <p> </p>
+          <p>Ouvi dizer que alguém escoltou Daevas de Atreia até aqui. Foi você, [%username]?</p>
+          <p> </p>
+          <p>Você sofreu um ataque de Dredgion logo após sua chegada à Inggison Illusion Fortaleza. Espero que você esteja ileso.</p>
+          <p> </p>
+          <p>Eu sei que você realizou grandes feitos em Elysea, [%username]. Espero que isso signifique que você fará o seu melhor aqui também.</p>
+          <p> </p>
+          <p>Deixe-me contar o que você precisa saber sobre a situação em Inggison.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT6_1">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A fortaleza de Inggison foi a nossa primeira base em Balaurea.</p>
+          <p> </p>
+          <p>Neste momento estamos concentrados no pesado contra-ataque dos Balaur, mas em breve iremos rechaçá-los e então poderemos atacar Gelkmaros e os Asmodianos.</p>
+          <p> </p>
+          <p>No entanto, para alcançar a vitória não devemos apenas lutar contra os Balaur, mas também garantir que temos suprimentos suficientes de Éter.</p>
+          <p> </p>
+          <p>Você está se perguntando qual será sua tarefa, [%username]?</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Versetti] irá informá-lo sobre suas tarefas em Inggison.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO6">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hmm... gosto do jeito que você exala confiança.</p>
+          <p> </p>
+          <p>A-há! Parece que você sabe manejar uma arma. [%mainslotitem], sim?</p>
+          <p> </p>
+          <p>Bom, parece que você está à altura do trabalho.</p>
+          <p> </p>
+          <p>Se você quiser nos ajudar, provavelmente seria melhor se você se familiarizasse com o trabalho da Legião da Luz Fantasma. Vou explicar tudo; então ouça com atenção.</p>
+          <p> </p>
+          <p>Você sabe como a Fortaleza da Ilusão Inggison foi construída, [%username]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT7_1">Você responde que não sabe.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabia que minha Legião construiu a Fortaleza da Ilusão Inggison em um único dia? Geralmente leva vários meses ou até anos para construir uma fortaleza desse tamanho, mas nós a concluímos com eficiência e em tempo recorde.</p>
+          <p> </p>
+          <p>Lord Kaisinel ordenou que a Legião da Luz Fantasma lutasse em Inggison.</p>
+          <p> </p>
+          <p>Você gostaria de ouvir alguns detalhes? Esta é sua primeira vez aqui, então tudo será novo para você.</p>
+          <p> </p>
+          <p>Temos três tarefas principais em Inggison. Primeiro, garantimos que o ambiente permaneça estável para a Fortaleza de Ilusão de Inggison. Segundo, usamos a magia do caos para confundir nosso inimigo e, terceiro, somos responsáveis pelos suprimentos de Éter.</p>
+          <p> </p>
+          <p>Agora, sobre os suprimentos de Éter... Pretendo confiar a você o trabalho de construção e reparo dos Obeliscos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT7_1_1">Você pergunta o que é um Obelisco.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não foi você quem nos trouxe uma Pedra de Onda de Éter? Quando os cientistas souberem que resolvemos o problema dos Obeliscos, ficarão realmente muito satisfeitos.</p>
+          <p> </p>
+          <p>Vou explicar: há uma falta chocante de Éter em Inggison. É por isso que Daevas pode usar apenas algumas de suas habilidades aqui.</p>
+          <p> </p>
+          <p>Mantemos um fragmento da Torre da Eternidade no centro da Fortaleza da Ilusão. Nós o usamos para fazer Éter. Os Obeliscos são necessários para estender o alcance do Éter a toda Inggison.</p>
+          <p> </p>
+          <p>Porém, um dos Obeliscos necessita de reparos urgentes e o outro ainda nem foi construído. Você poderia se encarregar do assunto?</p>
+          <p> </p>
+          <p>Não é preciso ir muito longe da fortaleza para fazer o trabalho; então isso facilita as coisas.</p>
+          <p> </p>
+          <p>Use a nova Pedra Onda de Éter para reparar o Obelisco e, em seguida, erga um novo Obelisco na plataforma de suporte preparada para ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT7_1_1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7_1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você encontrará o Obelisco que precisa de reparos no sul da floresta. Procure [%dic:STR_DIC_OBJ_LF4_Q10020B] quando chegar perto.</p>
+          <p> </p>
+          <p>Depois de consertar o Obelisco, erga um novo Obelisco em [%dic:STR_DIC_OBJ_LF4_FOBJ_Q10031A] no Vale Phanoe.</p>
+          <p> </p>
+          <p>Conseguimos construir o suporte do Obelisco, mas depois o Balaur veio da fazenda próxima de Drana e não conseguimos mais chegar perto. A maior parte do trabalho está concluída. Tudo que você precisa fazer é ancorar o Obelisco nele.</p>
+          <p> </p>
+          <p>Depois de erguer o Obelisco, elimine o [plur][%dic:STR_DIC_E_Q10020all] e o [%dic:STR_DIC_M_LF4_A2_Spaller_Mini_51_An] que são responsáveis por esta bagunça e depois retorne.</p>
+          <p> </p>
+          <p>Há uma pequena fazenda Drana ao sul da fortaleza, que os Balaur usaram para lançar ataques e continuar destruindo os Obeliscos perto da fortaleza.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO7">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10031-6.ogg"/>
+  </HtmlPage>
+  
+    <HtmlPage name="select8">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um dispositivo com uma luz que pisca em intervalos irregulares.)</p>
+          <p> </p>
+          <p>(Você sente uma fraca energia do Éter, então este deve ser o Obelisco.)</p>
+          <p> </p>
+          <p>(Você precisa substituir o orbe do meio pela Éter Wave Stone que recebeu do Brigada General Versetti.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO8">Você substitui o orbe pela Éter Wave Stone.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você fez um excelente trabalho reparando e erguendo os Obeliscos. Para ser sincero, você superou minhas expectativas!</p>
+          <p> </p>
+          <p>Ah, não precisa informar sobre os Obeliscos, já fui informado. Já posso sentir o Fluxo do Éter mudando neste lugar.</p>
+          <p> </p>
+          <p>Marica, que administra todos os assuntos relativos aos Obeliscos, está delirando com você. É realmente a primeira vez que você faz um trabalho assim?</p>
+          <p> </p>
+          <p>Considerando que você não tinha experiência anterior com Obeliscos e nem sabia para que serviam, você se revelou um talento natural!</p>
+          <p> </p>
+          <p>Bem, você se instalou bem em Inggison?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que esta área ainda parece desconhecida e que espera se acostumar com ela em breve.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece que alguém finalmente me enviou um Daeva capaz.</p>
+          <p> </p>
+          <p>Dependemos dos Obeliscos em toda Balaurea. Eles também são importantes em Inggison.</p>
+          <p> </p>
+          <p>Você pode encontrar Balaur em Inggison em qualquer lugar e a qualquer hora. Eles diferem dos Balaur no Campo Etérico, no entanto. Aqui também não podemos agir como faríamos no Campo Etérico.</p>
+          <p> </p>
+          <p>Tenha isso em mente e fique atento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Fasimedes].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_Eremitia].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_N_Sibylle] e embarque no navio de guerra.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Viagem para Inggison no navio de guerra.</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Fale com [%dic:STR_DIC_N_Cainus].</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_steropes].</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Fale com [%dic:STR_DIC_N_Versetti].</font></p></step>
+               <step><p visible="[%21]"><font color="[%22]">Repare o [%dic:STR_DIC_OBJ_LF4_Q10020B] [%23].</font></p></step>
+               <step><p visible="[%24]"><font color="[%25]">Erguer um Obelisco em [%dic:STR_DIC_OBJ_LF4_FOBJ_Q10031A].</font></p></step>
+               <step><p visible="[%27]"><font color="[%28]">Destrua os Hikiron Farm Balaur que querem danificar os Obeliscos.</font></p>
+                     <p visible="[%30]"><font color="[%31]">Lute contra [%dic:STR_DIC_E_Q10020all] ([%32]/10).</font></p>
+                     <p visible="[%33]"><font color="[%34]">Elimine o [%dic:STR_DIC_M_LF4_A2_Spaller_Mini_51_An] ([%35]/2).</font></p></step>	  
+               <step><p visible="[%36]"><font color="[%37]">Fale com [%dic:STR_DIC_N_Versetti].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Comando: Fasimedes, o Governador do Sanctum, está procurando por você. Vá para o Salão dos Protetores em Sanctum e encontre-o.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fasimedes, Governador do Sanctum, enviou você ao Claustro de Kaisinel, pois a Suma Sacerdotisa Eremitia queria falar com você.</p>
+          <p> </p>
+          <p>Você falou com Eremitia, Alta Sacerdotisa da Miragem, no Claustro de Kaisinel. Ela lhe contou sobre um problema urgente envolvendo o Obelisco em Inggison. Ela pediu que você acompanhasse cientistas e forças adicionais até Inggison.</p>
+          <p> </p>
+          <p>Depois, você se encontrou com Sibylle e viajou para Inggison no navio de guerra Elyos.</p>
+          <p> </p>
+          <p>Em Inggison, você se reportou a Outremus. Ele explicou que era extremamente importante garantir a extração do Éter em Inggison.</p>
+          <p> </p>
+          <p>O General de Brigada Versetti atribuiu-lhe então a sua primeira missão em Inggison. Envolveu reparar um Obelisco e depois erguer um Obelisco adicional. Você também recebeu a tarefa de eliminar Balaur, que representava uma ameaça ao Obelisco.</p>
+          <p> </p>
+          <p>Você executou as ordens do General de Brigada Versetti e relatou a ele que completou a primeira tarefa com sucesso. Ele agradeceu e aconselhou cautela especial neste território.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

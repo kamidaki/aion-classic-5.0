@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma estátua que teletransporta você para a área externa da Fortaleza.)</p>
+          <p> </p>
+          <p>(Parece ser de uso estratégico para defender a Fortaleza.)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma estátua que teletransporta você para a área externa da Fortaleza.)</p>
+          <p> </p>
+          <p>(Um ataque surpresa pode ser realizado desta forma, pois seus oponentes só estarão esperando que você defenda de dentro da Fortaleza.)</p>
+          <p> </p>
+          <p>(Parece ser de uso estratégico para defender a Fortaleza.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você se teletransporta para a área externa da Fortaleza.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Uma estátua que teletransporta você para a área externa da Fortaleza.)</p>
+          <p> </p>
+          <p>(Parece que não pode ser usado neste momento.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina de investigar.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

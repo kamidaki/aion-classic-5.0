@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username] ouviu falar do recém-descoberto corredor para o Abismo?</p>
+          <p> </p>
+          <p>Itens são necessários para pesquisa para aprender mais sobre os corredores para o Abismo, ak. Daeva quer ajudar, ok?</p>
+          <p> </p>
+          <p>Junkrunerk viveu anos coletando e vendendo lixo, também. As pessoas riram dele, mas Junkrunerk adquiriu riquezas, akakak!</p>
+          <p> </p>
+          <p>Desta vez, Shugo recebeu a tarefa de entregar mercadorias ao laboratório de pesquisa.</p>
+          <p> </p>
+          <p>[%username] poderia ajudar Junkrunerk.</p>
+          <p> </p>
+          <p>Para ajudar, Daeva deve reunir [%dic:STR_DIC_I_Event_svs_crystal], bem como [%dic:STR_DIC_I_Junk_soul_r01_65a], [%dic:STR_DIC_I_Junk_humanoid_r01_65a] e [%dic:STR_DIC_I_Junk_animal_r01_65a].</p>
+          <p> </p>
+          <p>Se Daeva ajudar, então Junkrunerk garantirá que o novo corredor seja dedicado ao primeiro Daeva que passar por ele, ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva adquiriu todos os materiais para o laboratório de pesquisa, ok?</p>
+          <p> </p>
+          <p>Se Daeva trouxe algo, Daeva deveria entregá-lo a Shugo rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega os materiais necessários.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sinais de Honra, Garras Impecáveis, Fragmento de Acessório Impecável, Fragmentos de Pedra de Mana Impecáveis... Ak!</p>
+          <p> </p>
+          <p>Daeva trouxe tudo o que Shugo queria!</p>
+          <p> </p>
+          <p>Prova de que Daeva tem senso de responsabilidade, akakak!</p>
+          <p> </p>
+          <p>Graças à ajuda de [%username], Daevas e Shugos estão um passo mais perto da nova dimensão.</p>
+          <p> </p>
+          <p>[%username], Shugo te pede mais dedicação, ak!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete os [%dic:STR_DIC_I_Event_svs_Junk_all] necessários para abrir o corredor para o Abismo e leve-os para [%dic:STR_DIC_N_NPC_event_svs_jabsuroong].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha os itens necessários para abrir o corredor para o Abismo e leve-os para Junkrunerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O coletor de lixo Junkrunerk disse que estava coletando itens para o laboratório de pesquisa, necessários para abrir o corredor para um novo Abismo. Ele pediu que você o ajudasse.</p>
+          <p> </p>
+          <p>Depois que você adquiriu os materiais para Junkrunerk, ele disse que tinha grandes esperanças no novo Abismo e pediu sua ajuda contínua para que pudesse acompanhar os concorrentes.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

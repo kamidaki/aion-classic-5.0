@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Desertores de Tiamat aparentemente tornaram-se activos novamente, sob o nome de Exército da Ressurreição.</p>
+          <p> </p>
+          <p>Seu Balaur Lorde Tiamat está morto e agora eles se autodenominam Exército da Ressurreição, não é ridículo?</p>
+          <p> </p>
+          <p>Destrua todos os [%dic:STR_DIC_M_LDF5_Under_TR_N_all] que você vê e depois reporte para mim.</p>
+          <p> </p>
+          <p>Eles começaram a entrar no metrô. Se não fizermos nada a respeito, haverá problemas.</p>
+          <p> </p>
+          <p>Depois que a área for limpa, os preparativos para uma grande batalha começarão.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Exército de Tiamat não desiste, apesar de Tiamat estar morto.</p>
+          <p> </p>
+          <p>Eles estão mostrando uma grande resiliência, tss tss.</p>
+          <p> </p>
+          <p>No entanto, não podemos permitir a criação de um novo Exército da Ressurreição.</p>
+          <p> </p>
+          <p>Destrua-os e seus grandes sonhos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Agora que o exército da Ressurreição se foi, posso respirar tranquilo novamente.</p>
+          <p> </p>
+          <p>Caso contrário, eles certamente nos teriam trazido problemas mais tarde.</p>
+          <p> </p>
+          <p>Vocês fizeram muito para garantir que os Desertores de Tiamat alcançassem o seu merecido fim.</p>
+          <p> </p>
+          <p>Agora conserve suas forças para a próxima batalha.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF5_Under_TR_N_all] ([%2]/11).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Under_Kurius_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os soldados da ressurreição e os ex-desertores de Tiamat.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kurius lhe contou que os desertores de Tiamat haviam se tornado ativos novamente e se autodenominavam Exército da Ressurreição, e pediu que você os matasse antes que se tornassem um problema.</p>
+          <p> </p>
+          <p>Você matou os Soldados da Ressurreição como Otur pediu, e quando retornou, Otur disse que agora era necessário reunir forças para a batalha que se aproximava.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Nota de Tenisian -</p>
+          <p/>
+          <p>1. De: Patrulha Katalam, Administrador da Fortaleza de Prades, Tenisian</p>
+          <p/>
+          <p>2. Para: [%username]</p>
+          <p/>
+          <p>[%username], você completou com sucesso a missão no Laboratório de Pesquisa Idgel. Por isso você será parabenizado separadamente.</p>
+          <p/>
+          <p>Se o tempo permitir, peço-lhe que visite o Administrador da Fortaleza de Prades [%dic:STR_DIC_N_LDF5b_Tenisian_G].</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Visite Tenisiano.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Laboratório de Pesquisa Idgel é um local especial que só pode ser acessado por quem capturou a Fortaleza de Prades.</p>
+          <p> </p>
+          <p>Como o ataque é muito difícil aqui e requer cooperação entre muitos Daevas, você precisará de várias tentativas.</p>
+          <p> </p>
+          <p>O Esquadrão de Limpeza Katalam apresenta uma recompensa especial aos Daevas que realizaram com sucesso a missão no Laboratório de Pesquisa Idgel.</p>
+          <p> </p>
+          <p>[%username], você também conseguiu conquistar o Laboratório de Pesquisa Idgel?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">O ataque ao Laboratório de Pesquisa Idgel acabou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Simplesmente ótimo!</p>
+          <p> </p>
+          <p>A cooperação entre companheiros é especialmente importante no Laboratório de Pesquisa Idgel. Não existem muitos Daevas que tenham caçado todos os segredos daquele lugar.</p>
+          <p> </p>
+          <p>[%username], você mais uma vez prestou grande honra ao seu nome.</p>
+          <p> </p>
+          <p>Já que o Laboratório de Pesquisa Idgel foi conquistado, experimente agora o Salão do Conhecimento e a Sala do Vazio. O Almirante Tirins está esperando febrilmente por um Daeva que possa conquistar todos os três.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5b_Tenisian_G].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure o Administrador Tenisian da Fortaleza de Prades e receba uma recompensa especial.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu uma recompensa especial por conquistar o Laboratório de Pesquisa Idgel, que pertence à Fortaleza de Prades.</p>
+          <p> </p>
+          <p>Tenisian elogiou você por seu comportamento heróico.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

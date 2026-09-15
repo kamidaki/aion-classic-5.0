@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, eu estava tão ocupado com meu trabalho que nem percebi você chegando, [%username].</p>
+          <p> </p>
+          <p>Eu estava no meio de organizar os estigmas.</p>
+          <p> </p>
+          <p>Os estigmas devem ser tratados com respeito no campo de batalha.</p>
+          <p> </p>
+          <p>Olhe ao redor e me diga se você encontrou os estigmas de batalha que procurava.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que a luz ilumine seu caminho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Lamento, mas estes estigmas não podem ser comprados com dinheiro.</p>
+          <p> </p>
+          <p>Eles estão reservados para aqueles que participaram da dura batalha contra os Asmodianos.</p>
+          <p> </p>
+          <p>Por favor, lute pela glória dos Elyos se quiser tê-los.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo gostaria de comer algumas laranjas deliciosas.</p>
+          <p> </p>
+          <p>Shugo precisa de laranjas. Akakak.</p>
+          <p> </p>
+          <p>Shugo não gosta de figos. Akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+    <Act href="HACTION_ASK_QUEST_ACCEPT">Você pergunta como obter laranjas.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+	  <p>Shugo ouviu dizer que o Senhor deu a Daeva uma misteriosa cesta de frutas.</p>
+          <p> </p>
+	  <p>Daeva encontrará laranjas na misteriosa cesta de frutas. Akakak.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Você diz que concorda.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Você diz que não vai entregá-los.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então Shugo confiará em Daeva e esperará por Daeva aqui.</p>
+          <p> </p>
+          <p>Daeva deve trazê-los para Shugo. Ak!</p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>Daeva é cruel.</p>
+         <p> </p>
+         <p>Daeva alimenta as esperanças de Shugo e depois se recusa a ajudar. Ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva realmente trouxe laranjas, ok? Akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega 75 laranjas.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não. Shugo definitivamente disse 75.</p>
+	  <p> </p>
+          <p>Daeva deve obter 75 laranjas. Akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+    <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo está muito grato a Daeva.</p>
+          <p> </p>
+          <p>Então Shugo dará a Daeva 1 figo. Akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+                     <step><p visible="[%0]"><font color="[%1]">Obtenha laranjas e leve-as para Hurunerk.</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Hurunerk pediu para você comprar 75 laranjas para ele. Atenda a esta solicitação.</font></p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hurunerk prometeu uma recompensa se você trouxesse laranjas para ele.</p>
+          <p> </p>
+          <p>Hurunerk disse que não gosta de figos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

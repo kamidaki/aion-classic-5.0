@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os movimentos dos soldados Beritra são suspeitos.</p>
+          <p> </p>
+          <p>Eles realmente precisariam de todas as suas forças para restaurar o Dredgion. Mas agora todos estão seguindo caminhos separados.</p>
+          <p> </p>
+          <p>Temos que investigar o que aconteceu.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF5B_d1_Vri_Poison_As_SN_NmdQ_65_Ae], você provavelmente já entendeu. Por favor, elimine-os e traga-me algumas evidências.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tem que haver uma razão para isso</p>
+          <p> </p>
+          <p>Só podemos lidar com incidentes futuros descobrindo o motivo.</p>
+          <p> </p>
+          <p>Precisamos das informações que o [%dic:STR_DIC_M_LDF5B_d1_Vri_Poison_As_SN_NmdQ_65_Ae] possui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a carta de pedido.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Lê atentamente a carta de pedido.)</p>
+          <p> </p>
+          <p>Idioma?</p>
+          <p> </p>
+          <p>De acordo com estas ordens, amostras estão sendo coletadas para testes de Idium.</p>
+          <p> </p>
+          <p>Portanto, havia um plano por trás de tudo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [%dic:STR_DIC_I_QUEST_23327A] e leve-o para [%dic:STR_DIC_N_LDF5_Village_Guard15_D]</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Ancião do 43º Esquadrão de Assalto para o experimento e traga provas para Ube.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ube disse que os Beritra são suspeitos e que o Ancião do 43º Esquadrão de Assalto pode saber algo sobre isso.</p>
+          <p> </p>
+          <p>Mate o Ancião do 43º Esquadrão de Assalto e traga as ordens como prova. Ube disse que contém informações sobre Idium.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

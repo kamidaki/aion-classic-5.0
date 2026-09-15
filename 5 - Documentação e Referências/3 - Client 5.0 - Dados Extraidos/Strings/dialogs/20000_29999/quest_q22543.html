@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você já me ajudou uma vez, poderia fazer uma segunda vez?</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_LDF5a_Kamoring_E] se infiltrou em [%dic:STR_DIC_W_LDF5a_C3]. Por favor, entregue [%dic:STR_DIC_I_quest_22543a].</p>
+          <p> </p>
+          <p>Para não ser reconhecido, meu camarada não pode comer nada e não sai do lugar. Como isso deve ser estressante.</p>
+          <p> </p>
+          <p>Por favor, pense em Kamozinerk, que certamente não está comendo direito, e atenda ao meu pedido.</p>
+          <p> </p>
+          <p>E, por favor, procure Kamozinerk com atenção, afinal ele está disfarçado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Já faz muito tempo que não faço exercícios e com certeza vou sentir cãibras nas pernas.</p>
+          <p> </p>
+          <p>Tudo bem, pois esta tarefa é importante, ak. Não se preocupe, akakak.</p>
+          <p> </p>
+          <p>Sou um Shugo e sou mais forte do que pareço!</p>
+          <p> </p>
+          <p>É claro que Mabran te enviou. Basta dizer qual é a sua tarefa, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega uma saborosa Marmita Verde.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu estava com tanta fome que teria pedido algo para você comer de qualquer maneira, akakak.</p>
+          <p> </p>
+          <p>Foi uma sorte você ter conseguido me ajudar, [%username].</p>
+          <p> </p>
+          <p>Esse cheiro delicioso está me deixando com água na boca.</p>
+          <p> </p>
+          <p>Por favor, diga a Mabran que a missão foi concluída com sucesso, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Em [%dic:STR_DIC_W_LDF5a_C3] você encontrará [%dic:STR_DIC_N_LDF5a_Kamoring_E]. Entregue o [%dic:STR_DIC_I_quest_22543a].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Leve Kamozinerk no Rubirinerk Lumber Camp uma lancheira verde.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mabran, da Green Hat Alliance, disse que Kamochin, o Shugo que entrou furtivamente no Acampamento da Madeira, não se mexeu por causa do seu dever de guarda e, portanto, não estava comendo direito.</p>
+          <p> </p>
+          <p>Você foi ao Acampamento Madeireiro Rubirinerk e levou para Kamochin uma saborosa lancheira verde que foi cordialmente aceita.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

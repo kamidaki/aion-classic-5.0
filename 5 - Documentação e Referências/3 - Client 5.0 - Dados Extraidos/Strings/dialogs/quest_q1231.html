@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho uma mensagem para [%dic:STR_DIC_N_LF1_Ellino_E_LHM].</p>
+          <p> </p>
+          <p>[%username], por favor passe minha mensagem para Elino.</p>
+          <p> </p>
+          <p>Sempre foi meu sonho me tornar administrador do servidor iniciante. Se ele não puder apoiar meu sonho, então nosso amor não terá futuro.</p>
+          <p> </p>
+          <p>Você pode voltar através do ícone de seleção de servidor. Por favor, certifique-se de dar a ele minha mensagem.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Meus pensamentos estão sempre girando em torno de Madeline e por isso não consigo me concentrar em mais nada.</p>
+          <p> </p>
+          <p>Ela pode ser teimosa, mas ainda amo Madeline.</p>
+          <p> </p>
+          <p>E se Madeline quiser voltar para mim? Ela desistiria do sonho de gerenciar o Servidor Iniciante? São esses pensamentos e outros que estão me ocupando.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá a ele a mensagem de Madelin.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Ele olha para você em silêncio por um longo momento)</p>
+          <p> </p>
+          <p>Eu entendo. Portanto, a posição de Administrador do servidor novato era mais importante para Madelin do que o nosso amor.</p>
+          <p> </p>
+          <p>Então não há mais esperança para o nosso amor.</p>
+          <p> </p>
+          <p>Obrigado por atuar como mediador.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Você pode sair do servidor novato através do ícone de seleção de servidor no canto inferior direito e encontrar [%dic:STR_DIC_N_LF1_Ellino_E_LHM].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Cumprir o pedido de Madelin e passar sua mensagem para Elino.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Madelin pediu para você sair do servidor iniciante e conhecer Elino.</p>
+          <p> </p>
+          <p>Elino ficou desapontado, mas ainda assim grato depois que você lhe trouxe a mensagem de Madelin e o recompensou por isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

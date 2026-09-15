@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q22060</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado pela oferta, mas estou confortavelmente sentado aqui.</p>
+          <p> </p>
+          <p>Agora, você deve concordar que se não conseguirmos derrotar seus Legionários, não conseguiremos ter sucesso contra Tiamat. É uma questão de escala... ou escalas, suponho.</p>
+          <p> </p>
+          <p>Então, vamos ver como nos saímos contra seus melhores guardas.</p>
+          <p> </p>
+          <p>Vá para a Guarnição da Guilda Naduka, Guarnição da Guilda Basrasa e Guarnição da Guilda Satra e mate o máximo de Legionários possível. Traga-me seus [%dic:STR_DIC_I_tiamat_banner_01]s manchados de sangue para usar como colar.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Como vai meu colar?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Você só precisa tecer essas dragonas."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não vou esquecer o seu serviço, [%username].</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Colete [%dic:STR_DIC_I_tiamat_banner_01]s e leve-os para [%dic:STR_DIC_N_Udvi].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote soldados da Guilda Naduka, Guilda Basrasa e Guilda Satra e colete as Dragonas do Legionário.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Skafir disse que Asmodae não poderia esperar a vitória sobre Tiamat se não conseguisse derrotar as legiões do Senhor Dragão.</p>
+          <p> </p>
+          <p>Você derrotou os soldados da Guilda Naduka, da Guilda Basrasa e da Guilda Satra e, em seguida, coletou as Dragonas do Legionário. Skafir alegou que ela os usaria como um maldito colar, mas você duvidava da probabilidade desse plano.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

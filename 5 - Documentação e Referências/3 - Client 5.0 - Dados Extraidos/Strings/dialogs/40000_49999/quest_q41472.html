@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41462</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username]. Ouvi dizer que você está procurando pelo [%dic:STR_DIC_E_60lvDeva_wepon].</p>
+          <p> </p>
+          <p>Se você completar minha missão, eu lhe darei uma das Essências dos Sentimentos Sombrios que juntei.</p>
+          <p> </p>
+          <p>Isso me irrita, mas minhas habilidades ainda são insuficientes para me tornar dono da Arma Luminasiel.</p>
+          <p> </p>
+          <p>Minha missão é matar [%dic:STR_DIC_M_IDRaksha_05_Raksha_Nmd_60_Ae], [%dic:STR_DIC_M_IDYun_Nmd_7Named_60_Ah] ou [%dic:STR_DIC_M_IDTiamat_Tahabata_Named_60_Ah]... realmente não é uma tarefa fácil.</p>
+          <p> </p>
+          <p>Que tal? Você quer arriscar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você voltou.</p>
+          <p> </p>
+          <p>Você terminou a missão, não foi?</p>
+          <p> </p>
+          <p>Se você matou um desses três, [%dic:STR_DIC_M_IDRaksha_05_Raksha_Nmd_60_Ae], [%dic:STR_DIC_M_IDYun_Nmd_7Named_60_Ah] ou [%dic:STR_DIC_M_IDTiamat_Tahabata_Named_60_Ah], então me diga.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Na verdade, é contra as regras dos Soldados Lanceiros de Siel usar toda a essência coletada de alguém.</p>
+          <p> </p>
+          <p>Mas não creio que minha ajuda lhe dará qualquer vantagem na obtenção da Arma Luminaciel com mais facilidade.</p> 
+          <p> </p>
+          <p>E aceite minha ajuda como um agradecimento por todos os seus esforços pelo Reian.</p>
+          <p> </p>
+          <p>Mas se houver problemas, assumirei total responsabilidade.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate um dos três oponentes a seguir: [%dic:STR_DIC_M_IDRaksha_05_Raksha_Nmd_60_Ae], [%dic:STR_DIC_M_IDYun_Nmd_7Named_60_Ah] ou [%dic:STR_DIC_M_IDTiamat_Tahabata_Named_60_Ah] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Bargeni].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Execute a missão de Bargeni para ele e obtenha o material necessário para fazer uma arma Luminaciel.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bargeni prometeu a você todas as suas Essências de Sentimentos Sombrios se você cumprir sua missão por ele.</p>
+          <p> </p>
+          <p>Depois que você retornou de uma missão bem-sucedida, ele lhe deu as Essências que faltavam para criar a Arma Luminasiel.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

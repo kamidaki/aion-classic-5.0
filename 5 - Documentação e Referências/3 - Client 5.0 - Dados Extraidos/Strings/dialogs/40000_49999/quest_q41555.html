@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41555</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acho que encontrei os melhores cristais para fazer armas! Eles são encontrados no Vale do Quartzo Azul.</p>
+          <p> </p>
+          <p>MAS - sempre há um "mas", não é, meu amigo? Ha! Mas, [%dic:STR_DIC_M_LDF4b_C2_ComadFi_59_Ae]s e [%dic:STR_DIC_M_LDF4b_C2_ComadWi_59_Ae]s estão arruinando esses preciosos cristais.</p>
+          <p> </p>
+          <p>Não posso realmente usar o cristal até que essas... essas coisas desapareçam. O que são eles, afinal? Mamut esterco, não importa... você pode me ajudar?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A incorporação de cristais está provando ter seus próprios desafios. Mas essa é a parte que mais amo! Ha!</p>
+          <p> </p>
+          <p>Não consigo imaginar que iria gostar se fosse fácil. O desafio e o esforço fazem tudo valer a pena.</p>
+          <p> </p>
+          <p>Isso e a expressão no rosto dos Balaur quando percebem o que estão enfrentando! Alguma sorte com os Komads?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Criaturas estranhas? Lidamos!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente, [%username]! Você certamente é bom no que faz!</p>
+          <p> </p>
+          <p>Posso me concentrar no meu trabalho agora. Estou tão perto de uma descoberta com esses cristais!</p>
+          <p> </p>
+          <p>Eu apreciaria se você continuasse ajudando a manter os Komads sob controle.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Alivia o problema [%dic:STR_DIC_M_Q41555_All] ([%2]/6).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Shumaron].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Livre-se dos Guerreiros Elite Komad e dos Feiticeiros Elite Komad, destruindo os cristais necessários para fazer armas.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shumaron determinou que os cristais no Vale do Quartzo Azul eram um bom material para armas, mas os Komads remanescentes arruinam os cristais lá.</p>
+          <p> </p>
+          <p>Você ajudou matando Elite Komad Guerreiros e Elite Komad Feiticeiros, e Shumaron agradeceu por sua ajuda, podendo finalmente voltar a fabricar suas armas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

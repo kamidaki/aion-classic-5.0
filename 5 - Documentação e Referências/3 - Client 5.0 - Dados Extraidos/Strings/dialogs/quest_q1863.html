@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O inimigo lançará um grande ataque no Abismo assim como a Fortaleza Miren capturada.</p>
+          <p> </p>
+          <p>Poderemos sofrer grandes danos quando este ataque começar.</p>
+          <p> </p>
+          <p>Mas nós, a Guilda do Vento Cinzento, não permitiremos que isso aconteça.</p>
+          <p> </p>
+          <p>Devemos capturar a fortaleza, impedir o grande ataque e alterar a situação de guerra a nosso favor!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Asmodianos, em particular, estão a recrutar forças armadas em grande escala para se prepararem para um grande ataque.</p>
+          <p> </p>
+          <p>É por isso que está claro quem devemos atacar: os Guardiões Miren Asmodianos!</p>
+          <p> </p>
+          <p>Mas eles são bastante fortes. Portanto, não será fácil infligir danos críticos com um único golpe. É por isso que deveríamos enfraquecer o seu poder através de ataques repetidos.</p>
+          <p> </p>
+          <p>Não podemos romper as linhas inimigas sozinhos...</p>    
+          <p> </p>
+          <p>O que você acha, [%username]? Você está pronto para matar o [%dic:STR_DIC_E_1241_guard_Da_fi]?</p>     
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom. Vamos esperar até que os Asmodianos capturem a Fortaleza Miren. Atacaremos assim que eles ocuparem a fortaleza.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_E_1241_guard_Da_fi] e tire seu [plur][%dic:STR_DIC_I_QUEST_1863a].</p>
+          <p> </p>
+          <p>A fortaleza é bem guardada. Portanto, tenha cuidado!</p>
+          <p> </p>
+          <p>Venha e me informe assim que tiver concluído a missão.</p>
+          <p> </p>
+          <p>[%username], se você tiver sucesso, podemos iniciar a próxima operação imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nosso objetivo principal é capturar a Fortaleza Miren.</p>
+          <p> </p>
+          <p>[%username], esperava que você nos ajudasse...</p>
+          <p> </p>
+          <p>Você não poderia talvez reconsiderar? Por favor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estava esperando por você, [%username].</p>
+          <p> </p>
+          <p>O ataque planejado à Fortaleza Miren foi bem-sucedido?</p>
+          <p> </p>
+          <p>Você tem o [plur][%dic:STR_DIC_I_QUEST_1863a]?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega os Miren Archon Kisks.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há uma razão pela qual pedi para você reunir os Kisks.</p>
+          <p> </p>
+          <p>Os oponentes podem ressuscitar novamente usando Kisks. Todos os esforços do nosso lado serão inúteis se continuarem usando os Kisks.</p>
+          <p> </p>
+          <p>Então vá e busque o [plur][%dic:STR_DIC_I_QUEST_1863a]. Seria bom se você pudesse lidar com isso antes que os oponentes ressuscitassem.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Asmodianos sofreram uma grande derrota. Isso os manterá ocupados por um tempo.</p>
+          <p> </p>
+          <p>A missão foi concluída com sucesso. Podemos agora continuar a realizar a operação sem dificuldades.</p>
+          <p> </p>
+          <p>Agora você merece um descanso.</p>
+          <p> </p>
+          <p>Devo preparar meu povo para os próximos passos do plano.</p>
+          <p> </p>
+          <p>Lealdade e armas!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine o [%dic:STR_DIC_E_1241_guard_Da_fi], reúna provas e leve para [%dic:STR_DIC_N_Monerva].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote os Guardiões Asmodianos Miren assim que os Asmodianos capturarem a Fortaleza Miren, colete Miren Archon Kisks e leve-os para Minerva.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Minerva elaborou um plano para recapturar a Fortaleza Miren e alterar a situação de guerra. Seu plano era atacar os Asmodianos que guardavam a fortaleza.</p>
+          <p> </p>
+          <p>Você eliminou os Guardiões Asmodianos Miren para Minerva e pegou seus Kisks. Minerva ficou orgulhosa de sua conquista e encantada por seu plano ter funcionado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

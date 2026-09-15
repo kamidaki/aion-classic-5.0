@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esse é um lugar horrível.</p>
+          <p> </p>
+          <p>A contaminação aqui foi supostamente causada por experimentos com armas conduzidos pelo Exército Beritra.</p>
+          <p> </p>
+          <p>Você precisa descobrir quais experimentos o Exército Beritra realizou.</p>
+          <p> </p>
+          <p>Mate o [%dic:STR_DIC_M_LDF5B_b2_Vri_Weabind_Ri_SN_NmdQ_65_Ae] e obtenha as informações que ele possui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu descobrir alguma coisa?</p>
+          <p> </p>
+          <p>Precisamos determinar os detalhes do experimento para que possamos impedir a propagação da contaminação.</p>
+          <p> </p>
+          <p>O Exército Beritra saberá. Afinal, eles conduziram o experimento.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_LDF5B_b2_Vri_Weabind_Ri_SN_NmdQ_65_Ae] certamente tem algumas pistas sobre ele em algum lugar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Diário de Pesquisa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hm, é um relatório de pesquisa.</p>
+          <p> </p>
+          <p>Preciso dar uma olhada mais de perto para saber quais testes foram realizados.</p>
+          <p> </p>
+          <p>Obrigado por esta importante evidência.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [%dic:STR_DIC_I_QUEST_23300A] e leve-o para [%dic:STR_DIC_N_LDF5_Village_Guard10_D].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Uzak para aprofundar a investigação e procure evidências dos experimentos Balaur.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Herbo pediu para você matar Uzak e trazer informações que esclarecerão os experimentos realizados aqui.</p>
+          <p> </p>
+          <p>Atendendo ao pedido dele, você trouxe o relatório da pesquisa. Ele agradeceu, dizendo que continha informações valiosas.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

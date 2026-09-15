@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12014</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ai! É a terceira vez que bato a canela nas caixas do armazém! Você pensaria que teríamos mais luz, estando perto de um vulcão.</p>
+          <p> </p>
+          <p>Mas não, é mais úmido do que claro. E as cinzas escurecem tanto o céu que quase não dá para ver nada.</p>
+          <p> </p>
+          <p>Não quero usar tochas; eles são perigosos e já está quente o suficiente. [%dic:STR_DIC_I_quest_12014a]s são perfeitos: luz brilhante sem calor.</p>
+          <p> </p>
+          <p>Você pode obtê-los dos restos de [%dic:STR_DIC_M_LDF4b_T3_Elementallight_m_spring_58_An]s. Traga-me um pouco e farei valer a pena.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que desastre! Eu quase dei a um homem corpulento uma cota de malha de Arconte feita para mulheres!</p>
+          <p> </p>
+          <p>Isso porque é muito difícil ver lá dentro. Um dia destes, vou cometer um grande erro.</p>
+          <p> </p>
+          <p>Mas isso está prestes a mudar... isto é, se você conseguiu o que eu pedi....</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Haja luz!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De fato! Só estes serão suficientes para iluminar todo o espaço do armazém!</p>
+          <p> </p>
+          <p>Estou feliz que ainda existam Daevas como você por aí. As linhas da frente são importantes, mas nós, apoiantes, também precisamos de ajuda.</p>
+          <p> </p>
+          <p>Este pode ser apenas um pequeno trabalho para você, [%username], mas cada pouquinho faz sentido. Obrigado.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue [%dic:STR_DIC_I_quest_12014a]s e leve-os para [%dic:STR_DIC_N_Sephira].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Sephira precisa de Light Beads para seu trabalho. Mate Espíritos Brilhantes e pegue-os para ela.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sephira tinha dificuldade em administrar armazéns por causa da escuridão e ela queria Contas de Luz que a ajudassem no trabalho.</p>
+          <p> </p>
+          <p>Você matou Espíritos Brilhantes e conseguiu as Contas de Luz para ela, para seu profundo apreço.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

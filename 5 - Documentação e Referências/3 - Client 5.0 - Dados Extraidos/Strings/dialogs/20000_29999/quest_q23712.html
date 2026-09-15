@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q23712</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As Medalhas Ceranium são símbolos especiais que designam o seu mérito. Eles são difíceis de encontrar.</p>
+          <p> </p>
+          <p>Se você me trouxer uma Medalha de Mithril e um Soro Balaur Brilhante, posso tentar converter esses materiais em uma Medalha de Cerânio.</p>
+          <p> </p>
+          <p>Mas não posso prometer que a conversão será um sucesso. Você ainda quer experimentar?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você quiser uma Medalha Ceranium, traga-me uma Medalha de Mithril e um Soro Balaur Brilhante.</p>
+          <p> </p>
+          <p>Se faltar apenas um destes materiais, a conversão não poderá ser concluída.</p>
+          <p> </p>
+          <p>Por favor, certifique-se de ter ambos.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Medalha de Mithril e o soro sanguíneo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Uma Medalha Ceranium não é fácil de conseguir.</p>
+          <p> </p>
+          <p>Não fique desapontado se a transformação não funcionar. Você pode tentar novamente mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve as Medalhas de Mithril e o Soro Balaur para [%dic:STR_DIC_N_LDF4_Advance_e1_D_exchange_medal_02].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Dê a Aberon uma Medalha de Mithril e o reluzente Balaur Serum para que ele possa tentar converter os materiais em uma Medalha de Cerânio.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aberon lhe disse que havia uma maneira de transformar uma Medalha de Mithril e um Soro Balaur reluzente em uma Medalha de Cerânio.</p>
+          <p> </p>
+          <p>Você trouxe os materiais para ele e o ajudou a convertê-los.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

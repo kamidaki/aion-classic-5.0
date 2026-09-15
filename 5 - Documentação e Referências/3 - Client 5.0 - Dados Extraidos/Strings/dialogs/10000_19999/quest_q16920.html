@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q16920</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hm, de acordo com a informação, o Runadium está localizado na parte norte do subsolo Katalam. Seria fantástico se fôssemos os primeiros a encontrar o Runadium. Olhe para a fricção.</p>
+          <p> </p>
+          <p>"O Runadium foi usado como arena de treinamento da Tribo Rúnica. Lá, os membros desta tribo melhoraram suas habilidades mágicas. Energia de Id Concentrada pode ser encontrada neste local."</p>
+	  <p> </p>
+          <p>"Mas ninguém pode mais entrar neste local. Isso é culpa de Grendal, a Bruxa da Tribo Rúnica. Sua dor a levou à loucura."</p>
+	  <p> </p>
+	  <p>Como ninguém entrou nesta arena de treinamento, ela contém uma enorme quantidade de Energia de Id Concentrada. Pesquisar o Runadium certamente nos daria muitos insights.</p>
+	  <p> </p>
+	  <p>Vá para a parte norte do Katalam Underground e proteja o [%dic:STR_DIC_W_LDF5_Under_SensoryArea_Q16920] antes que alguém chegue lá primeiro. Pressa!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hm, de acordo com a informação, o Runadium está localizado na parte norte do subsolo Katalam. Seria fantástico se fôssemos os primeiros a encontrar o Runadium. Olhe para a fricção.</p>
+          <p> </p>
+          <p>"O Runadium foi usado como arena de treinamento da Tribo Rúnica. Lá, os membros desta tribo melhoraram suas habilidades mágicas. A energia concentrada do Id pode ser encontrada neste local."</p>
+	  <p> </p>
+          <p>"No entanto, ninguém pode mais entrar neste local. Isso é culpa de Grendal, a Bruxa da Tribo Rúnica. Sua dor a levou à loucura."</p>
+	  <p> </p>
+	  <p>Como ninguém entrou nesta arena de treinamento, ela contém uma enorme quantidade de energia de Id Concentrada. Pesquisar o Runadium certamente nos daria muitos insights.</p>
+	  <p> </p>
+	  <p>Vá para a parte norte do Katalam Underground e proteja o [%dic:STR_DIC_W_LDF5_Under_SensoryArea_Q16920] antes que alguém chegue lá primeiro. Pressa!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você conseguiu descobrir onde o Runadium pode ser encontrado?</p>
+          <p> </p>
+          <p>De acordo com os desenhos, o Runadium está concluído no subsolo em North Katalam...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado da tarefa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você descobriu onde fica o Runadium?!</p>
+          <p> </p>
+          <p>Achei que fosse apenas uma lenda. Nunca imaginei que poderia estar aqui.</p>
+          <p> </p>
+		  <p>Mas a entrada foi destruída...</p>
+		  <p> </p>
+          <p>Não temos tempo a perder.</p>
+		  <p> </p>
+		  <p>Devemos começar a examinar o Runadium imediatamente!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Descubra onde o [%dic:STR_DIC_W_LDF5_Under_SensoryArea_Q16920] está localizado.</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatório para [%dic:STR_DIC_N_LDF5_Under_Liponia_E].</font></p></step>
+    	    </steps>
+          <p><font font_xml="quest_summary">Descubra onde o Runadium está localizado ao norte do metrô Katalam. Reporte para Liponia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você descobriu a localização do Runadium a pedido de Liponia.</p>
+          <p> </p>
+          <p>A investigação revelou que o Runadium já foi uma arena de treinamento para a Tribo Rune. Esta constatação será de grande ajuda para os Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

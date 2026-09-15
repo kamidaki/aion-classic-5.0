@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, eu não aguento! Será que algum dia venceremos esta batalha?</p>
+          <p> </p>
+          <p>Eu adoraria atacar a fortaleza com toda a nossa força de combate, mas infelizmente isso é impossível.</p>
+          <p> </p>
+          <p>Porque existem múltiplas fortalezas e o nosso povo está dividido por várias regiões.</p>
+          <p> </p>
+          <p>Meus guerreiros estão perdendo a vontade de continuar lutando...</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Asmodianos podem tornar-se uma enorme ameaça para nós. Se permitirmos que eles nos derrotem, isso trará desgraça ao nosso Senhor.</p>
+          <p> </p>
+          <p>Você poderia matar alguns dos Oficiais Asmodianos para dar coragem às nossas tropas?</p>
+          <p> </p>
+          <p>A tarefa é simples. Mate o [%dic:STR_DIC_E_1221_guard_Da_gu] e o [%dic:STR_DIC_E_1221_guard_Da_wi]. Não esqueça de trazer o [plur][%dic:STR_DIC_I_QUEST_1858a] como prova de sua vitória.</p>
+          <p> </p>
+          <p>Você poderia aceitar esta tarefa?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não deve subestimar os Asmodianos.</p>
+          <p> </p>
+          <p>Eles são tão experientes quanto nós acompanhamos suas batalhas no Abismo.</p>
+          <p> </p>
+          <p>É por isso que sugiro que você entre secretamente na fortaleza quando a batalha para capturá-la começar.</p>
+          <p> </p>
+          <p>Observe a situação e saia no momento oportuno. Mate o [%dic:STR_DIC_E_1221_guard_Da_gu] e o [%dic:STR_DIC_E_1221_guard_Da_wi]. Reúna o [plur][%dic:STR_DIC_I_QUEST_1858a] como prova.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você tem medo dos inimigos na fortaleza?</p>
+          <p> </p>
+          <p>Se você estiver com medo, continue caçando o Klaw nas proximidades.</p>
+          <p> </p>
+          <p>Agradecemos por esse tipo de ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, estou muito confuso. Lyaeus é uma pessoa competente, mas fala demais.</p>
+          <p> </p>          
+          <p>Então, você completou sua missão?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">De nada.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seja honesto...</p>
+          <p> </p>
+          <p>Você esqueceu as capas?</p>
+          <p> </p>
+          <p>Eu não ligo.</p>
+          <p> </p>
+          <p>Se você quiser uma recompensa, traga-me [plur][%dic:STR_DIC_I_QUEST_1858a].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou satisfeito por você ter concluído esta tarefa.</p>
+          <p> </p>
+          <p>Você é um bom exemplo para todos os meus soldados.</p>
+          <p> </p>
+          <p>Por favor, continue disponível para nós para tarefas.</p>
+          <p> </p>
+          <p>Aqui, pegue isso. Esta é uma recompensa pelos seus esforços.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_1221_guard_Da_gu] e o [%dic:STR_DIC_E_1221_guard_Da_wi], colete evidências e leve-as para [%dic:STR_DIC_N_Menelaus].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Oficiais Krotan e os Oficiais do Estado-Maior Asmodiano Krotan e apresente um relatório ao Centurião Menelau.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Centurião Menelau pediu que você matasse os Oficiais Asmodianos na Fortaleza Krotan para dar o exemplo aos soldados e ajudar a aumentar sua confiança.</p>
+          <p> </p>
+          <p>Você matou os Oficiais Krotan e os Oficiais do Estado-Maior Asmodiano Krotan e reuniu suas capas como prova. Menelau ficou encantado com o seu sucesso e pediu-lhe que permanecesse disponível para futuras missões.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

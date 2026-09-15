@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q21510</QuestId>
+    <QuestName>칼리돈 마을의 거신병 석상 4</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ok, meu próximo plano é bem simples.</p>
+          <p> </p>
+          <p>Vá reunir alguns [%dic:STR_DIC_I_QUEST_21510A]s dos [%dic:STR_DIC_M_LDF4A_A4_Worm_Oasis_56_An]s. Há um monte crescendo no oásis do deserto em [%dic:STR_DIC_W_LDF4a_SZ_A1].</p>
+          <p> </p>
+          <p>Explicarei mais tarde. Pressa!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você está de volta! [%username], parece que você foi arrastado por uma guarnição de Balaur. Ah, acho que esqueci de dizer que os Amphas podem ser um pouco violentos.</p>
+          <p> </p>
+          <p>Uau! Você deve ter tido sucesso. Posso sentir o cheiro daqueles [%dic:STR_DIC_I_QUEST_21510A]s daqui.</p>
+          <p> </p>
+          <p>Ah, é horrível. Uck. É como se alguém tivesse comido um par de meias sujas e as jogado de volta no fogo.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">"Não, cheira a melão maduro demais enfiado em tripas de salsicha e depois incinerado."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eca. Como um Brax morto caído na cratera de um vulcão sulfúrico que também está cheio de cascas de banana velhas.</p>
+          <p> </p>
+          <p>Mas isso é ótimo.</p>
+          <p> </p>
+          <p>Se aguentarmos o cheiro, teremos um caminho livre até os fragmentos de Petralite!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_QUEST_21510A]s do [%dic:STR_DIC_M_LDF4A_A4_Worm_Oasis_56_An] no oásis leste de [%dic:STR_DIC_W_LDF4a_SZ_A1].</font></p>[%collectitem]</step>
+               <step><p visible="[%15]"><font color="[%16]">Traga-os para [%dic:STR_DIC_N_Tanytia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Tanitia precisa que você colha algumas frutas. Prepare-se.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tanitia insistiu que seu plano exigia frutas e enviou você para colher os frutos do Carnívoro Ampha.</p>
+          <p> </p>
+          <p>Ela se esqueceu de avisar que o Amph era violento. Ela também se esqueceu de avisar que as frutas cheiravam como se um Hornskull tivesse se empanturrado de tanta Mela que explodiu e depois mofou sob o sol quente por uma semana.</p>
+          <p> </p>
+          <p>Você estava ansioso pela próxima tarefa dela.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

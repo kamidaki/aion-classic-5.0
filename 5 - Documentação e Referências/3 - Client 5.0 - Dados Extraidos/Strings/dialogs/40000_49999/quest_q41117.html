@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41100</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Embora sejam muito menos numerosos em comparação com o passado recente, os Balaur ainda representam uma ameaça muito real. Muitos grupos de manutenção da paz foram enviados, incluindo os Protetores Sarpan, mas continuamos a não conseguir neutralizar completamente a ameaça.</p>
+          <p> </p>
+          <p>Decidimos adotar uma abordagem diferente: incapacitar o sistema de comando deles. Mas pacificar Drakan dessa força não é tarefa fácil.</p>
+          <p> </p>
+          <p>Você cuidaria de um dos [%dic:STR_DIC_E_Q41117a], [%username]? Com colegas confiáveis, acho que você pode fazer isso.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você está de volta!</p>
+          <p> </p>
+          <p>Você pacificou o [%dic:STR_DIC_E_Q41117a]?</p>
+          <p> </p>
+          <p>Nenhum deles poderia ter sido fácil de lidar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Mantendo a paz, um Drakan de cada vez..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado! E... você não tem um único arranhão! Você deve ter alguns amigos igualmente capazes.</p>
+          <p> </p>
+          <p>Pela primeira vez, sinto que há uma possibilidade real de uma paz duradoura em Sarpan.</p>
+          <p> </p>
+          <p>Espero que você continue emprestando seus talentos para a Guilda Tempestade de Areia. Você está realmente movendo montanhas, [%username].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate um dos [%dic:STR_DIC_E_Q41117a] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Retornar para [%dic:STR_DIC_N_Olibaia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Baia disse que era necessário quebrar o sistema de comando dos Balaur para expulsá-los de Sarpan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Baia explicou que o sistema de comando Drakan era muito forte, permitindo-lhes continuar a ser uma ameaça contínua em Sarpan.</p>
+          <p> </p>
+          <p>Ela pediu sua ajuda. Vocês cuidaram do problema, abrindo caminho para uma paz duradoura na região.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

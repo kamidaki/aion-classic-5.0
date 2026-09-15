@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q16930</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Tenho más notícias. O Exército Beritra descobriu a localização de Hyperion e quer controlá-la agora.</p>
+          <p> </p>
+          <p>Viaje para [%dic:STR_DIC_W_IDRuneweapon] e descubra a localização do Hyperion ativado e do Exército Beritra. Não podemos permitir que Hyperion caia nas mãos dos Balaur.</p>
+          <p> </p>
+          <p>Se ficar evidente que não podemos mais controlar Hyperion, teremos que destruí-lo. Um [%dic:STR_DIC_I_quest_16930a] deve ser suficiente como prova.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os movimentos do Exército Beritra são muito suspeitos.</p>
+          <p> </p>
+          <p>Eles pretendem usar o Hyperion ativado como arma.</p>
+          <p> </p>
+          <p>Se não conseguirmos controlar Hyperion, também não permitiremos que mais ninguém tente. Temos que destruí-lo!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega as peças do Hyperion.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Portanto não foi possível controlar o Hyperion.</p>
+          <p> </p>
+          <p>É uma pena não termos tido escolha. No entanto, teria sido catastrófico se os Balaur tivessem tomado posse dela.</p>
+          <p> </p>
+          <p>Bom trabalho, Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    	    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Traga um [%dic:STR_DIC_I_quest_16930a] para [%dic:STR_DIC_N_LDF4_Advance_Renitis_E] em Akaron.</font></p>[%collectitem]</step>
+   	    </steps>
+          <p><font font_xml="quest_summary">Viaje para Katalamize, destrua Hyperion e colete provas de sua destruição.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Exército Beritra planeja usar o Cubo Idgel para ativar o Hyperion.</p>
+          <p> </p>
+          <p>Você decidiu destruir Hyperion para evitar que caísse nas mãos dos Balaur.</p> 
+          <p> </p>
+          <p>Depois de conseguir isso, você trouxe evidências da destruição de Hyperion para Lentis.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

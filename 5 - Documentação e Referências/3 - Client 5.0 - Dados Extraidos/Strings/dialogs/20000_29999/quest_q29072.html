@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você lutou bravamente no difícil caminho para se tornar um [%userclass]!</p>
+          <p> </p>
+          <p>Agora não há mais ajuda que eu possa lhe dar.</p>
+          <p> </p>
+          <p>Isso não significa que você dominou todas as habilidades. Você precisará continuar trabalhando duro para se considerar um verdadeiro [%userclass].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É por isso que gostaria de apresentar a você um novo mestre.</p>
+          <p> </p>
+          <p>Por favor, encontre-se com Hadubrand do Edifício da Assembleia Nacional em Pandemônio.</p>
+          <p> </p>
+          <p>Com suas instruções, você será capaz de se desenvolver muito mais como [%userclass].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aqui, esta é a carta de recomendação. Não esqueça de colocar pegue.</p>
+          <p> </p>
+          <p>Vá até o prédio da Assembleia Nacional e mostre para [%dic:STR_DIC_N_DC1_Hadubrand_M].</p>
+          <p> </p>
+          <p>Então você será aceito sem mais delongas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sobre sua recusa... por acaso você está sendo ensinado por Hadubrand?</p>
+          <p> </p>
+          <p>Mesmo que estivesse, seria uma boa ideia levar a carta de recomendação com você.</p>
+          <p> </p>
+          <p>Se eu recomendei você, Hadubrand deveria prestar ainda mais atenção em você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa termina.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Prontidão significa dar o primeiro passo para se tornar um verdadeiro Daeva.</p>
+          <p> </p>
+          <p>Se você quer se tornar um verdadeiro Daeva, então você deve fazer sua pesquisa e expandir seus limites por meio da experiência de combate.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a carta de recomendação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Enquanto lê a carta de recomendação) Mesaina escreveu isso?</p>
+          <p> </p>
+          <p>Já faz muito tempo que alguém não a recomendou.</p>
+          <p> </p>
+          <p>Mas você não precisa se orgulhar disso. Quando você está começando, um pouco de talento pode parecer mais do que realmente é.</p>
+          <p> </p>
+          <p>Ah, eu não quis dizer você.</p>
+          <p> </p>
+          <p>Se você tiver alguma dúvida, venha até mim a qualquer momento. Eu vou te ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve esta carta de recomendação para [%dic:STR_DIC_N_DC1_Hadubrand_M].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mostrar a carta de recomendação de Mesaina para Hadubrand.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mesaina disse que não tinha mais nada para lhe ensinar, deu-lhe uma carta de recomendação e enviou-o para ver Hadubrant.</p>
+          <p> </p>
+          <p>Depois que Hadubrant leu a carta de recomendação, ele disse que você ainda tinha muito que aprender para se tornar um Daeva excepcional e que poderia voltar a procurá-lo a qualquer momento se precisar de ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

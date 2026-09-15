@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], precisamos da sua ajuda.</p>
+          <p> </p>
+          <p>Por favor, mate os [%dic:STR_DIC_E_LDF5b_B2_VriZomb] que foram criados como resultado dos experimentos de Beritra.</p>
+          <p> </p>
+          <p>Estando infectados, eles precisam ser eliminados de qualquer maneira, mas estão se comportando de forma muito agressiva.</p>
+          <p> </p>
+          <p>Talvez porque eles costumavam ser Balaur.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece-me que o Exército Beritra produziu intencionalmente os zumbis.</p>
+          <p> </p>
+          <p>Afinal, eles não podem sentir dor porque não vivem mais e estão constantemente atacando.</p>
+          <p> </p>
+          <p>Se continuar, poderão até penetrar no Território Ocupado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Graças à sua ajuda, o número de zumbis foi visivelmente reduzido.</p>
+          <p> </p>
+          <p>Não é muito, mas tenho uma recompensa para você, [%username]</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_E_LDF5b_B2_VriZomb] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard10_D]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Zumbi Drakan envenenado que está atacando você violentamente.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Herbo pediu para você matar os zumbis Drakan contaminados, que atacam como furiosos e se tornaram um problema.</p>
+          <p> </p>
+          <p>Você eliminou os zumbis Drakan infectados conforme as instruções e foi recompensado ao retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

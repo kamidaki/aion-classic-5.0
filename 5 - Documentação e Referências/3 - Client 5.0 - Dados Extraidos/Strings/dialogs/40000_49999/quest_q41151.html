@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41151</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você deseja compreender nossa tribo, deve compreender nosso líder, Kahrun.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_Kutos], o General da Brigada [%dic:STR_DIC_E_LDF4a_KarunProtect], o conhece bem. Você o encontrará no [%dic:STR_DIC_W_LDF4a_SZ_OP_06], se quiser Converse com ele.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+        <p>[%username], é isso? O que traz você aqui?</p>
+        <p> </p>
+        <p> </p>
+     </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Gostaria de saber mais sobre Kahrun."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_N_Kahrun]? Ele é difícil de saber, embora seja sensato perguntar. Sua é a vontade do povo Reian personificada. Se você o conhece, então conhecerá todos nós.</p>
+          <p> </p>
+          <p>Ele unificou a nossa tribo, ensinou-nos a falar a uma só voz e a confrontar os Balaur com força unida. Com a sua orientação, o povo Reian fez progressos sem precedentes na expulsão dos Balaur de Sarpan.</p>
+          <p> </p>
+          <p>Tenho muita fé nele, [%username], e conforme você vê seu poder em ação, acredito que você também terá.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LDF4a_SZ_OP_06] e pergunte a [%dic:STR_DIC_N_Kutos] sobre Kahrun.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ulstia sugeriu que você falasse com Kutos, o General da Brigada da Guarda Kahrun, para saber mais sobre o líder Reian, Kahrun.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ulstia enviou você para perguntar a Kutos sobre o líder Reian, Kahrun.</p>
+          <p> </p>
+          <p>Kutos falou de Kahrun como um unificador poderoso e a vontade do povo Reian personificada.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

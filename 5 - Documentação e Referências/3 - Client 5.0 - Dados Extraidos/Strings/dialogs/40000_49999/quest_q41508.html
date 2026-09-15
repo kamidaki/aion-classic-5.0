@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41508</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você foi fundamental, [%username], em nosso ataque à Base de Cavalaria de Balaur.</p>
+          <p> </p>
+          <p>Mas ainda não podemos desistir. Só um esforço contínuo pode quebrar as suas forças e abrir o caminho para a vitória.</p>
+          <p> </p>
+          <p>Você deve voltar para a Base de Cavalaria Balaur e destruir ainda mais [%dic:STR_DIC_M_LDF4b_T1_Pagati_58_An] e [%dic:STR_DIC_M_LDF4b_T1_Sikara_58_An]s.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Seu porte orgulhoso sugere que você teve sucesso.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"As forças estão espalhadas pelos ventos."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Trabalho estelar, [%username].</p>
+          <p> </p>
+          <p>Devemos manter esta pressão sobre as forças de cavalaria.</p>
+          <p> </p>
+          <p>Sob o olhar sempre atento de Kahrun, venceremos!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine os [%dic:STR_DIC_M_LDF4b_T1_Sikara_58_An] e [%dic:STR_DIC_M_LDF4b_T1_Pagati_58_An]s ([%2]/8).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relate para [%dic:STR_DIC_N_Karlsruh].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para a Base de Cavalaria Balaur e mate o Vasharti Pagati Fighter e os Vasharti Combat Sikars.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kalsruhi lhe contou que Hiroten deu ordens para continuar atacando a Base de Cavalaria Balaur.</p>
+          <p> </p>
+          <p>Conforme solicitado, você matou o Vasharti Pagati Fighter e os Vasharti Combat Sikars. Quando você voltou, Kalsruhi ficou muito grato pela sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

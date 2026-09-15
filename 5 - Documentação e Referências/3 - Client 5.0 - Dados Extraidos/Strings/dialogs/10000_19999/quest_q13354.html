@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: Katalam Patrol, [%dic:STR_DIC_N_LDF5_Village_Guard14_L] do [%dic:STR_DIC_W_LDF5b_D2_v14]</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>Ordens: Derrote o Asmodiano que avançou para [%dic:STR_DIC_W_LDF5b_SZ_D2_2] em South Katalam.</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os ataques Asmodianos estão aumentando aqui nas Montanhas Sauro.</p>
+          <p> </p>
+          <p>É importante proteger este local dos Asmodianos para o moral da tropa de despacho Katalam.</p>
+          <p> </p>
+          <p>Será difícil defendê-lo com nossa pequena tropa, mas com ajuda como a sua, [%username], teremos uma chance.</p>
+          <p> </p>
+          <p>Como você eliminou os Asmodianos invasores?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que sorte que os Asmodianos foram expulsos.</p>
+          <p> </p>
+          <p>Os Elyos foram de grande ajuda para nós na batalha.</p>
+          <p> </p>
+          <p>Esperamos que você nos ajude na próxima vez também.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o Asmodiano que avançou para [%dic:STR_DIC_W_LDF5b_SZ_D2_2] em South Katalam ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_LDF5_Village_Guard14_L].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordens Urgentes: Mate o Asmodiano que avançou para o Caminho da Colina Sauro em South Katalam e reporte-se a Shibron.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O infiltrado Asmodiano tinha como alvo o Caminho da Colina Sauro em South Katalam.</p>
+          <p> </p>
+          <p>Você matou o invasor Asmodiano e relatou isso a Shibron.</p>
+          <p> </p>
+          <p/>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

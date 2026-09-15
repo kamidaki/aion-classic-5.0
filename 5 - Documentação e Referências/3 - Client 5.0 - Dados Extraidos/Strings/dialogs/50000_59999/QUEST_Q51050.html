@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo precisa da melhor de todas as bolas de neve para vencer a luta de bolas de neve!</p>
+          <p> </p>
+          <p>Shugo pegou aleatoriamente uma bola de neve que voou como uma borboleta e derrubou três Shugos.</p>
+          <p> </p>               
+          <p>Shugo descobriu que era um [%dic:STR_DIC_wrap_event_2014xmas_snow_5]!</p>
+          <p> </p>
+          <p>Shugo definitivamente vencerá com isso.</p>
+          <p> </p>
+          <p>[%username] poderia conseguir um [%dic:STR_DIC_wrap_event_2014xmas_snow_5] para Shugo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva realmente conseguiu um [%dic:STR_DIC_wrap_event_2014xmas_snow_5] para Shugo?</p>
+          <p> </p>
+          <p>Shugo pensou que Shugo poderia simplesmente lançar [plur][%dic:STR_DIC_wrap_event_2014xmas_snow_1].</p>
+          <p> </p>
+          <p>Rápido, dê ao Shugo o [%dic:STR_DIC_wrap_event_2014xmas_snow_5], ak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega a Superb Catalium Snowball.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Com isso, Shugo governará o campo de batalha.</p>
+          <p> </p>
+          <p>Daeva é a alma gêmea de Shugo, ak.</p>
+          <p> </p>
+          <p>Shugo descobriu esta grande caixa enquanto vasculhava o armazém da gangue Shugo. Shugo gostaria de entregá-los a Daeva!</p>
+          <p> </p>
+          <p>Se Daeva encontrar mais [plur][%dic:STR_DIC_wrap_event_2014xmas_snow_5], Shugo ficaria muito feliz se Daeva os trouxesse para Shugo!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha um [%dic:STR_DIC_wrap_event_2014xmas_snow_5] e leve-o para [%dic:STR_DIC_event_2014christmas_d_blueshugo].</font></p>[%collectitem]</step>
+           </steps>
+          <p><font font_xml="quest_summary">Traga para Snorunerk uma excelente bola de neve de catálio.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você trouxe para Snorunerk uma Superb Catalium Snowball para a luta de bolas de neve.</p>
+          <p> </p>
+          <p>Ele disse que seria capaz de derrotar pelo menos três Shugos com ela e agradeceu.</p>
+          <p> </p>
+          <p>Você recebeu uma caixa de presente grande Shugo como recompensa pela bola de neve.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

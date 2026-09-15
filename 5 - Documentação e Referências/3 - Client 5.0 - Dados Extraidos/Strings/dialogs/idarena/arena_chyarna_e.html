@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>LHF</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo à Arena de Treinamento da Unidade, [%username].</p>
+          <p> </p>
+          <p>Eu sou Sharma, um instrutor na Arena de Treinamento da Unidade.</p>
+          <p> </p>
+          <p>Lutar sozinho é mais fácil do que juntar-se a outros e lutar com eles.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo à Arena de Treinamento da Unidade, [%username].</p>
+          <p> </p>
+          <p>Eu sou Sharma, um instrutor na Arena de Treinamento da Unidade.</p>
+          <p> </p>
+          <p>Lutar juntos pode ser ainda mais difícil do que ser deixado sozinho.</p>
+          <p> </p>
+          <p>Mas quando você domina uma tarefa difícil, você tem uma sensação maior de satisfação, não é?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH">Procuro um parceiro de treino para a Arena da Unidade.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], me perdoe, mas você não pode entrar neste momento.</p>
+          <p> </p>
+          <p>Volte quando atingir o nível 46, akakak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

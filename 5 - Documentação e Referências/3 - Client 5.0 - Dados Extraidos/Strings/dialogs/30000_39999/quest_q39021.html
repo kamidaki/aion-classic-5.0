@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q39021</QuestId>
+    <QuestName>페렌토의 지령</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedido urgente -</p>
+          <p/>
+          <p>1. Remetente: Brigada Geral do guardião, Perento</p>
+          <p/>
+          <p>2. Destinatário: [%username]</p>
+          <p/>
+          <p>3ª Ordem: Elimine os Asmodianos que penetraram em Heiron enquanto o Abismo Espaço-Tempo está aberto!</p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Confio totalmente em você, mas me preocupo com o que os Asmodianos estão fazendo.</p>
+          <p> </p>
+          <p>Você já fez muito, então não quero julgá-lo tão rapidamente. Ouvirei seu relatório primeiro.</p>
+          <p> </p>
+          <p>Você derrotou os Asmodianos que passaram pelo Fenda?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito bem, muito bem feito, realmente.</p>
+          <p> </p>
+          <p>Ufa - o ataque Asmodiano foi evitado por enquanto.</p>
+          <p> </p>
+          <p>Tudo graças a você.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Asmodianos que estão atacando Heiron ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_Perento].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Ordem de Operação Urgente: Elimine os Asmodianos que estão atacando Heiron enquanto a Fenda está aberta e reporte-se a Perento.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Asmodianos atacaram através da Fenda Heiron. Você matou os Asmodianos atacantes e reportou a Perento.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

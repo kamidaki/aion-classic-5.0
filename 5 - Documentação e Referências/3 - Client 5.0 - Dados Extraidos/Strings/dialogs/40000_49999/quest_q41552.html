@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41552</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hondarunerk é o pior Shugo de todos os tempos. Tem uma cabecinha gorda e cheia de ideias ruins e ruins.</p>
+          <p> </p>
+          <p>Sabe o que ele faz? Rouba bebês! Baby Enos, rouba-os das mães! É horrível, horrível Shugo, horrível! Quebra o triste coração de Shugo de Becarinrinerk ao ouvir seus choramingos, nyerk!</p>
+          <p> </p>
+          <p>Becarinrinerk não vai deixar Hondarunerk fazer isso. Becarinrinerk tem plano! Vai deixar Hondarunerk com raiva, bebê Enos feliz! Akakakak! Mas precisa da ajuda do bom e forte Daeva, certo? Daeva usa esse [%dic:STR_DIC_I_quest_41552a] para pegar um grande [%dic:STR_DIC_M_LDF4b_C2_Enos_59_An] e trazê-lo aqui para o acampamento, ok?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você pegou a grande mãe Enos?</p>
+          <p> </p>
+          <p>A mãe de Enos ajudará Becarinrinerk a salvar o bebê de Enos do malvado Hondarunerk!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Não tenho certeza de como cabe nesta gaiola..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não [%dic:STR_DIC_M_LDF4b_C2_Enos_59_An] no [%dic:STR_DIC_I_quest_41552a]!</p>
+          <p> </p>
+          <p>Daeva, ouça! Ouvir! Ouça o bebê Enos choramingando!</p>
+          <p> </p>
+          <p>"Mãe!" querido Enos diz! "Mãe, mãe! Onde está a mãe!" Daeva não tem coração? Daeva feita de pedras e cobras podres, horríveis e terríveis sem coração?!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Ok, ok! Cacos sagrados, já estou indo!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ak! Ak! O plano não correu muito bem!</p>
+          <p> </p>
+          <p>Ok, ok... tudo bem. Pode consertar, pode consertar. Posso usar os cristais para tirar o bebê Enos da gaiola, certo?</p>
+          <p> </p>
+          <p>Com os cristais Enos, o plano ainda funciona. Depressa, Daeva, dê cristais, dê! Ouviu o bebê de Enos chorando?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Eu... não? Talvez? Estou confuso. Apenas... pegue isso."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hum. Não há tantos cristais aqui. O bebê Enos talvez pense: "huh, cheira como Shugo segurando cristal".</p>
+          <p> </p>
+          <p>Não posso parar agora. Tenho Enos para salvar! É um trabalho árduo arruinar os péssimos planos de Hondarunerk!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado, bom e forte Daeva. Enos, obrigado também... mais ou menos.</p>
+          <p> </p>
+          <p>Uau! O coração está acelerado. É um trabalho árduo arruinar os péssimos planos de Hondarunerk!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado Daeva, obrigado, obrigado!</p>
+          <p> </p>
+          <p>Tantos cristais! O plano está salvo!</p>
+          <p> </p>
+          <p>Pense no bebê Enos, encontrando a mãe! Feliz Enos, triste Hondarunerk!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue um [%dic:STR_DIC_M_LDF4b_C2_Enos_59_An] em [%dic:STR_DIC_I_quest_41552a] e leve-o para [%dic:STR_DIC_N_Shugo_LDF4b_17].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Mate o furioso Destruidor Enos.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Colete os cristais antes que desapareçam.</font></p></step>
+               <step><p visible="[%9]"><font color="[%10]">Dê os cristais para [%dic:STR_DIC_N_Shugo_LDF4b_17].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Becarinrinerk está furioso com o plano de Hondarunerk de roubar o bebê Enos de suas mães. Becarinrinerk tem um plano para impedir o cochilo de Enos, embora ela não lhe dê os detalhes.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Becarinrinerk ficou indignado com o terrível plano de Hondarunerk de sequestrar o bebê Enos de suas mães. Ela convenceu você a ajudá-la a salvar o bebê Enos dele.</p>
+          <p> </p>
+          <p>Ela enviou você para a Floresta de Enos com uma gaiola encantada, e você capturou a mãe Enos nela.</p>
+          <p> </p>
+          <p>Mas quando você devolveu a jaula para Becarinrinerk, os Enos explodiram e começaram a atacar. Quando você matou o Enos, Becarinrinerk disse que os cristais que ele deixou para trás provavelmente seriam suficientes para ajudar o bebê Enos a escapar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

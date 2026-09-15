@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para o bem-estar da Guilda, todas as missões a serem realizadas foram distribuídas entre os participantes da Guilda. A todos é pedido que cumpram as suas missões porque só assim a tarefa da Guilda estará totalmente concluída.</p>
+          <p> </p>
+          <p>Missão da Guilda:</p>
+          <p>Vá para o Campo de Treinamento Nochsana e mate o [%dic:STR_DIC_M_Mini_Castle_DrakanFi_27_Ah].</p>
+          <p> </p>
+          <p>Reporte-se a [%dic:STR_DIC_N_Kellin], pois ele é responsável pelas batalhas de Asmodae.</p>
+          <p> </p>
+          <p>- Administração das Legiões -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você esteve no Campo de Treinamento Nochsana para completar a missão da legião?</p>
+          <p> </p>
+          <p>Eu esperava que você matasse o Guardião Geral, [%username].</p>
+          <p> </p>
+          <p>Por favor, conte-me como foi.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sua missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Fantástico! Seus feitos são o orgulho da Guilda, [%username].</p>
+          <p> </p>
+          <p>Continue realizando missões até que a tarefa da Guilda seja concluída.</p>
+          <p> </p>
+          <p>Por favor, aceite esta pequena recompensa da Guilda.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate o [%dic:STR_DIC_M_Mini_Castle_DrakanFi_27_Ah] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Kellin].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Guardião Geral do Campo de Treinamento para completar a ordem da Guilda. Você deve realizar a tarefa da Guilda, pois está participando da missão.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A Guilda ordenou que você matasse o Guardião Geral do Campo de Treinamento.</p>
+          <p> </p>
+          <p>Você participou da morte do Guardião Geral do Campo de Treinamento para que a missão da Guilda pudesse ser concluída.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

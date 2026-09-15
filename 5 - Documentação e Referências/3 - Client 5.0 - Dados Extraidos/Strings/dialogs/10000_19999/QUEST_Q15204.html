@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q15204</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Desde que as três regiões foram submersas, os Elyos não são os únicos que se interessaram pela nova região.</p>
+          <p> </p>
+          <p>Os Asmodianos também se tornaram ativos.</p>
+          <p> </p>
+          <p>Eles vieram para Signia vindos de uma região chamada Vengar. Poucos momentos após a aliança desmoronar, os Asmodianos mostram sua verdadeira face traidora.</p>
+          <p> </p>
+          <p>Por favor, saia agora mesmo e pare os Asmodianos que pretendem invadir Signia.</p>
+          <p> </p>
+          <p>Mostre-lhes que é inútil nos ameaçar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma, [%username].</p>
+          <p> </p>
+          <p>Como foi a batalha contra os nojentos Asmodianos que invadiram Signia? Você os devolve à escuridão que os gerou?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata sobre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho! Não podemos permitir que ninguém desafie o nosso direito à Signia.</p>
+          <p> </p>
+          <p>Continue apoiando nossa Guilda e garanta o progresso dos Elyos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Asmodianos que invadiram Signia ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com [%dic:STR_DIC_N_LF5_Eukraton_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Asmodianos que invadiram Signia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eukraton deu-lhe a tarefa de derrotar os Asmodianos que invadiram Signia.</p>
+          <p> </p>
+          <p>Você matou os Asmodianos em Signia. Quando você contou a Eukraton sobre o sucesso de sua missão, ele agradeceu e lhe deu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

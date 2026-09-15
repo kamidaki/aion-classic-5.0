@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma.</p>
+          <p> </p>
+          <p>Você veio se equipar com Pedras do Estigma?</p>
+          <p> </p>
+          <p>Sempre sinto um brilho caloroso em meu coração quando vejo uma Pedra do Estigma. Sinto o espírito da Pedra.</p>
+          <p> </p>
+          <p>Que a Pedra do Estigma lhe traga poder e um espírito honrado.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <stigma_open>Equip/remove Estigma Stone</stigma_open>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que a luz ilumine seu caminho.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estranho. Você ainda não está autorizado a usar Estigmas?</p>
+          <p> </p>
+          <p>Sinto muito, mas você ainda não pode equipar Pedras Estigma.</p>
+          <p> </p>
+          <p>Por favor, volte quando estiver autorizado a usar Pedras Estigma.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

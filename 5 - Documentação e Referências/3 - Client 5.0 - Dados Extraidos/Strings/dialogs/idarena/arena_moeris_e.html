@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>LHF</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não, você não é [%username]?</p>
+          <p> </p>
+          <p>Bem-vindo à Arena de Treinamento da Cooperação.</p>
+          <p> </p>
+          <p>Eu sou Moeris, o instrutor aqui.</p>
+          <p> </p>
+          <p>Para lutarem juntos os outros precisam de algum treinamento.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não é [%username]?</p>
+          <p> </p>
+          <p>Bem-vindo à Arena de Treinamento da Solidariedade.</p>
+          <p> </p>
+          <p>Eu sou Moeris, o instrutor responsável por esta Arena de Treinamento.</p>
+          <p> </p>
+          <p>Se você quiser lutar junto com outros, precisará de prática.</p>
+          <p> </p>
+          <p>É diferente de lutar um contra um, você tem que encontrar um ritmo quando está lutando junto com os outros.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_INSTANCE_PARTY_MATCH">Procuro um parceiro de treino para a Arena da Unidade.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você não pode usar isso agora.</p>
+          <p> </p>
+          <p>Você poderia voltar quando atingir o nível 46?</p>
+          <p> </p>
+          <p>Com um pouco mais de esforço você poderá entrar na Arena de Treinamento Solidário.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

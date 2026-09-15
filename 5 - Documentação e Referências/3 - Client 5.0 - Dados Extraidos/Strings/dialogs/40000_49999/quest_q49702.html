@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q49702</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- A Carta Verde -</p>
+          <p> </p>
+          <p>Prezados membros da Green Hat Alliance,</p>
+          <p> </p>
+          <p>A nova missão diz respeito ao [%dic:STR_DIC_W_LDF5a_C1].</p>
+          <p> </p>
+          <p>Elimine os [plur][%dic:STR_DIC_E_LDF5a_Coconas_Q39702] que estão perturbando o equilíbrio da natureza e reporte-se ao [%dic:STR_DIC_E_LDF5a_Greenhat_BD].</p>
+          <p> </p>
+          <p>Que a natureza seja a nossa força.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde a carta no bolso.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você estava na Fazenda Rubininerk?</p>
+          <p> </p>
+          <p>A terra pertencia originalmente às pessoas que viviam em Katalam há gerações. A Silverine Limited, entretanto, desmatou a floresta e estabeleceu ali uma fazenda kokonat.</p>
+          <p> </p>
+          <p>Agora, você poderia derrubar as árvores kokonat?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Estou aliviado por você ter removido as árvores kokonat.</p>
+          <p> </p>
+          <p>Os coqueiros sugam todos os nutrientes do solo, fazendo com que todas as outras plantas murchem.</p>
+          <p> </p>
+          <p>A Green Hat Alliance tem uma grande dívida com você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Destrua os [plur][%dic:STR_DIC_E_LDF5a_Coconas_Q39702] que estão ameaçando o ecossistema (%2/6).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_E_LDF5a_Greenhat_BD].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você recebeu uma carta verde da Green Hat Alliance. Leia e entre em ação.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Chegou uma carta da Green Hat Alliance.</p>
+          <p> </p>
+          <p>Depois de destruir o coqueiro, que estava destruindo o ecossistema com seu poder reprodutivo, e reportando-se à filial North Katalam da Green Hat Alliance, você recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

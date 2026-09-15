@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva veio caminhar até a ponte de Jormungand (bônus)?</p>
+          <p> </p>
+          <p>Daeva aparentemente participa fortemente dos combates.</p>
+          <p> </p>
+          <p>Mas o acesso não é concedido a todos.</p>
+          <p> </p>
+          <p>Shugo está cuidando de Daevas que vieram de um [%dic:STR_DIC_W_PC_room], akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você entra na ponte de Jormungand (bônus).</Act>
+      <Act href="HACTION_OPEN_INSTANCE_RECRUIT">Você procura amigos para acompanhá-lo.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shugo tem muito o que fazer. O que está acontecendo?</p>
+          <p> </p>
+          <p>Shugo está cuidando de Daevas que vieram de um [%dic:STR_DIC_W_PC_room].</p>
+          <p> </p>
+          <p>Shugo lamenta, mas Daeva não vem de nenhum lugar especial.</p>
+          <p> </p>
+          <p>Infelizmente, Shugo não pode ajudar Daeva agora, akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva não pode caminhar até a ponte de Jormungand (bônus) em nenhum momento.</p>
+          <p> </p>
+          <p>Daeva voltará quando Daeva estiver pronto.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

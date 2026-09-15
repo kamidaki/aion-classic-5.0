@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>É um prazer, [%username].</p>
+		<p> </p>
+		<p>Você precisa de equipamentos mais fortes para se juntar à luta contra os Elyos.</p>
+		<p> </p>
+		<p>Você veio ao lugar certo!</p>
+		<p> </p>
+		<p>A compra vai custar Pontos Abismo e Medalhas Ceranium, mas vale a pena!</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+		<p>Azfelumbra!</p>
+		<p> </p>
+		<p>Só ofereço recompensas a oficiais com mais de 2 estrelas.</p>
+		<p> </p>
+		<p>Se você quiser uma recompensa, volte quando tiver alcançado o posto de oficial com 2 estrelas ou mais.</p>
+		<p> </p>
+		<p>Eu ainda estarei aqui.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

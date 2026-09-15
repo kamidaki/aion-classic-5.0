@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo de volta, [%username]. Você quer ver o que há na lixeira Vintage Grab hoje?</p>
+          <p> </p>
+          <p>Você é um Daeva tão econômico, nyerk!</p>
+          <p> </p>
+          <p>Sim, gastar menos é melhor do que ganhar mais. Vá em frente e dê uma olhada, veja o que você pode encontrar.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Há muitos itens antigos, mas úteis aqui. O Revendedor Vintage parece muito cuidadoso ao garantir que os itens não sejam danificados.)</p>
+          <p> </p>
+          <p>(Talvez haja algo aqui que você possa usar....)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Vamos ver o que consigo..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Ah, tenho alguma coisa!)</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Olhe através de [%dic:STR_DIC_N_Housing_FOBJ_Recycle_Box].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O Revendedor Vintage diz que você deve saber como economizar Kinah em vez de gastá-lo, e aconselha você a verificar a lixeira Vintage Grab. Veja o que está disponível hoje.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Revendedor Vintage disse que você deveria saber como economizar Kinah para uma vida melhor e aconselhou você a verificar a lixeira Vintage Grab.</p>
+          <p> </p>
+          <p>Você obteve algo do Vintage Grab.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

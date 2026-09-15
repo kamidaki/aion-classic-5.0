@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], que bom que você está aqui. Há algo que precisamos que você faça.</p>
+          <p> </p>
+          <p>Você já ouviu falar de um lugar chamado Kaldor?</p>
+          <p> </p>
+          <p>Por favor, vá até lá e realize missões para os Asmodianos.</p>
+          <p> </p>
+          <p>Ninguém mais, exceto você, parece ser adequado para o trabalho, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kaldor só foi descoberto muito recentemente.</p>
+          <p> </p>
+          <p>Um Shugo da Fazenda Rubininerk que morava em Katalam o encontrou.</p>
+          <p> </p>
+          <p>Chamamos o lugar de Kaldor e enviamos Daevas aqui para nos ajudar a capturá-lo antes que Katalam seja destruída.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_ASK_QUEST_ACCEPT">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], por favor, ajude-nos a conquistar Kaldor.</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_LDF5_Fortress_Pintz_E] pode informá-lo melhor.</p>
+          <p> </p>
+          <p>Você só pode chegar lá pelo Teletransportador. Vá para [%dic:STR_DIC_N_DF5_OP1_ZoneTeleport_D].</p>
+          <p> </p>
+          <p>Você está pronto?</p>
+          <p> </p>
+          <p>Contamos com você, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_1">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_1">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_accept_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Que bom que você está aqui, [%username].</p>
+          <p> </p>
+          <p>Veja [%dic:STR_DIC_N_DF5_OP1_ZoneTeleport_D] primeiro.</p>
+          <p> </p>
+          <p>Dê a ele [%dic:STR_DIC_I_quest_23800a]. Ele explicará como chegar a Kaldor.</p>
+          <p> </p>
+          <p>Assim que chegar lá, encontre-se com [%dic:STR_DIC_N_LDF5_Fortress_Pintz_E].</p>
+          <p> </p>
+          <p>Vou avisá-lo de que você está vindo, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="quest_refuse_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você não estava ouvindo?</p>
+          <p> </p>
+          <p>Apenas um Daeva habilidoso como você seria apropriado para esta tarefa.</p>
+          <p> </p>
+          <p>Você deve ir para Kaldor para os Asmodianos.</p>
+          <p> </p>
+          <p>Por favor, reconsidere.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Daeva, o que traz você a Vengar?</p>
+          <p> </p>
+          <p>Muitos Daevas têm vindo aqui recentemente.</p>
+          <p> </p>
+          <p>Cada um deles está furioso com a maldade de Beritra.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Você apresenta a Carta de Haldor.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Isso é uma carta de Haldor?</p>
+          <p> </p>
+          <p>(Lê a carta com atenção e depois a deixa de lado.) Então foi assim. Você foi enviado para Kaldor.</p>
+          <p> </p>
+          <p>Bom. Estou muito ocupado, mas vou te ajudar.</p>
+          <p> </p>
+          <p>Não é difícil. Tudo que você precisa fazer é se teletransportar para lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você passou por alguns problemas para chegar até aqui.</p>
+          <p> </p>
+          <p>Meu nome é Pintor e sou o líder da Patrulha Kaldor. Haldor já me informou da sua vinda.</p>
+          <p> </p>
+          <p>[%username], você acredita que Kaldor em breve pertencerá aos Asmodianos, não é?</p>
+          <p> </p>
+          <p>Lamentavelmente, no momento Kaldor é o lar não apenas dos Asmodianos, mas também dos Elyos e Balaur. Parece que eles vieram aqui por outro caminho.</p>
+          <p> </p>
+          <p>Contamos com Daevas qualificados como você para resolver esta situação difícil, [%username].</p>
+          <p> </p>
+          <p>Deixe-me explicar como é a estratégia para a conquista de Kaldor.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para colocar Kaldor sob o controle dos Asmodianos, primeiro precisamos conquistar a fortaleza.</p>
+          <p> </p>
+          <p>A fortaleza é um ponto estrategicamente importante.</p>
+          <p> </p>
+          <p>Você deve sempre ter isso em mente.</p>
+          <p> </p>
+          <p>Não só isso, mas Kaldor é uma região onde vários grupos lutam entre si.</p>
+          <p> </p>
+          <p>A situação aqui está em constante mudança. Portanto, todas as forças devem ser mobilizadas para conquistar a fortaleza.</p>
+          <p> </p>
+          <p>Podem ser os Balaur, e não os Elyos, que conquistam a fortaleza. Vou explicar o caso para você primeiro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT3_1_1">Você acena com a cabeça.</Act>
+    </Selects>
+	<CutScene id="828"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Há algo que você absolutamente deve ter em mente. Se o Exército Beritra ocupou uma base defensiva e você deseja conquistá-la, você terá que fazer as coisas de maneira diferente do que faria se estivesse lutando contra Elyos. O alvo principal do seu ataque contra o Exército Beritra na batalha da fortaleza deve ser o Artefato deles.</p>
+          <p> </p>
+          <p>Portanto, concentre-se nisso se quiser conquistar uma base defensiva.</p>
+          <p> </p>
+          <p>Existem três bases defensivas. Conquistar essas três bases ativa a Chama da Cura.</p>
+          <p> </p>
+          <p>Cada vez que você ocupa outra base defensiva, um nível mais alto da Chama da Cura é ativado. Isto aumenta a regeneração dos seus aliados, o que é uma vantagem útil para você.</p>
+          <p> </p>
+          <p>Assim que todos os três locais estiverem ocupados, a chance de vitória aumenta.</p>
+          <p> </p>
+          <p>Por favor, lembre-se disso.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Então essa foi a minha introdução às missões que vocês precisam realizar aqui em Kaldor.</p>
+          <p> </p>
+          <p>Há muito a ser feito para conquistar Kaldor.</p>
+          <p> </p>
+          <p>Você descobrirá os detalhes em breve.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Já ouvi tudo sobre seus feitos incríveis, [%username].</p>
+          <p> </p>
+          <p>Espero que você faça o seu melhor neste assunto também.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Pegue [%dic:STR_DIC_I_quest_23800a] e veja [%dic:STR_DIC_N_DF5_OP1_ZoneTeleport_D].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Vá para Kaldor e fale com [%dic:STR_DIC_N_LDF5_Fortress_Pintz_E].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relate para [%dic:STR_DIC_N_LDF5_Fortress_Pintz_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre o Pintor em Kaldor.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você se encontrou com o Governador Haldor, que o enviou em missão.</p>
+          <p> </p>
+          <p>Com a carta em mãos, você foi até o Teletransportador, que explicou como chegar até Kaldor.</p>
+          <p> </p>
+          <p>Depois você se encontrou com Pintor. Ele lhe contou mais sobre as tarefas em Kaldor.</p>
+          <p> </p>
+          <p>Ele pediu sua ajuda para capturar uma fortaleza estrategicamente situada para permitir que os Asmodianos ocupassem Kaldor.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

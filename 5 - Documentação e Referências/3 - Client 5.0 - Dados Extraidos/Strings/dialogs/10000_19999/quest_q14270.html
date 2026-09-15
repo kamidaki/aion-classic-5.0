@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q14270</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já ouviu falar da arma conhecida como "Olho do Dredgion"? É o componente dos navios de guerra Balaur que se parece com uma pérola vermelha.</p>
+          <p> </p>
+          <p>Tem um imenso poder destrutivo. Aparentemente é uma arma biológica que pode se curar.</p>
+          <p> </p>
+          <p>Os Balaur hibridizaram seres vivos e armas. E é por isso que as chamamos de Armas Biológicas.</p>
+          <p> </p>
+          <p>Se quisermos resistir à tecnologia dos Balaur, precisaremos de armas mais fortes. Então precisamos de amostras de armas biológicas! Uma amostra do Olho do Dredgion seria melhor. Obter tal amostra é virtualmente impossível...</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_N_LF3_Anaxa_E] descobriu que aparentemente há outra arma biológica Balaur na caverna Draupnir. Vá vê-lo e descubra mais.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que traz você aqui?</p>
+          <p> </p>
+          <p>É muito perigoso aqui. Você deve sempre se certificar de que ninguém o está atacando em uma emboscada.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você diz que Perento te enviou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Perento mandou você aqui para nos ajudar?</p>
+          <p> </p>
+          <p>Hmm... Você ainda parece inseguro...</p>
+          <p> </p>
+          <p>Tenha coragem! Você precisará de determinação para cumprir esta missão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Vá para [%dic:STR_DIC_W_LF3_SZ_E3] e fale com [%dic:STR_DIC_N_LF3_Anaxa_E] lá.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para Anax para obter informações sobre a arma biológica Balaur na caverna Draupnir.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Perento relatou a você sobre as armas biológicas Balaur. Ele disse que até mesmo os Elyos tiveram que desenvolver uma arma apropriada para enfrentar os Balaur.</p>
+          <p> </p>
+          <p>O desenvolvimento de tal arma exigiria uma amostra da arma biológica na Caverna Draupnir.</p>
+          <p> </p>
+          <p>Você conheceu Anax na Caverna Draupnir para saber mais.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

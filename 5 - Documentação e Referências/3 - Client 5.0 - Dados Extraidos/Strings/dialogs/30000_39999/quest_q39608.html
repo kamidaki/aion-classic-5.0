@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p align="center">- Instruções -</p>
+          <p> </p>
+          <p>1. Destinatário: Funcionário:[%username]</p>
+          <p> </p>
+          <p>2. Tarefa: Não há blocos de construção suficientes para a fundação, ak. Reúna [%dic:STR_DIC_I_quest_39608a] perto de [%dic:STR_DIC_W_LDF5a_E6] e leve tudo para a filial responsável, ak.</p>
+          <p> </p>
+          <p>3. Escritório administrativo: [%dic:STR_DIC_E_LDF5a_Silverlin_BL]</p>
+          <p> </p>
+          <p>Assim que a tarefa for concluída, você receberá uma recompensa. Por favor, faça um trabalho bom e limpo, ak.</p>
+          <p> </p>
+          <p>- Danurinerk, chefe de pessoal da Silverine Limited</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Guarde as instruções.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Faz lançamentos diligentemente no livro de contas.)</p>
+          <p> </p>
+          <p>Shugo tem muito o que fazer, então diga o que Daeva exige, ak.</p>
+          <p> </p>
+          <p>Shugo não consegue acompanhar todas as perguntas de todos os Katalam, então Shugo deve anotá-las, ak.</p>
+          <p> </p>
+          <p>Daeva parece ser um empreiteiro Silverine. Daeva terminou o que precisava ser feito, ok?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega as peças não danificadas.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você trouxe o item correto, certo?</p>
+          <p> </p>
+          <p>Como pode um Daeva tentar tal engano? Mesmo quando estou ocupado olho tudo de perto, ak.</p>
+          <p> </p>
+          <p>Nunca mais faça nada assim, ak</p>
+          <p> </p>
+          <p>Vou perdoá-lo só desta vez, já que temos poucos funcionários. Traga o [%dic:STR_DIC_I_quest_39608a] rapidamente, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">A conversa terminou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Fecha o livro de contas.) Shugo está sentindo uma espécie de arrepio.</p>
+          <p> </p>
+          <p>É claro que vem das Ruínas do Remorso.</p>
+          <p> </p>
+          <p>Às vezes, Daevas tenta enganar Shugo com pedras que parecem semelhantes, ak.</p>
+          <p> </p>
+          <p>Graças à sua ajuda, agora temos materiais de construção suficientes.</p>
+          <p> </p>
+          <p>Aqui está a recompensa de Daeva por hoje, ak.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_I_quest_39608a] e leve para [%dic:STR_DIC_E_LDF5a_Silverlin_BL].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">As instruções vieram da Silverine Limited. Leia a tarefa e execute-a.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>As instruções vieram da Silverine Limited.</p>
+          <p> </p>
+          <p>Depois de obter pedras ao redor das Ruínas do Arrependimento e entregá-las na filial de Silverine em North Katalam, você foi recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

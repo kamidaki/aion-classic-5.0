@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>- Pedidos Urgentes -</p>
+          <p/>
+          <p>Remetente: [%dic:STR_DIC_N_Corridor_D_PangeaQuest_E], Administrador do Templo de Honra em Pandaemonium, jurisdição: Pangea</p>
+          <p/>
+          <p>Destinatário: [%username]</p>
+          <p/>
+          <p>3. Comando: Conquiste uma fortaleza na Pangéia derrotando um [%dic:STR_DIC_E_GAb1_Boss_all].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você cumpre a missão.</Act>
+    </Selects>
+  </HtmlPage>
+
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pangea é composta pelos quatro territórios de Belus, Aspida, Athanos e Deylon. Há uma fortaleza em cada um dos territórios.</p>
+          <p> </p>
+          <p>Conquistar estas fortalezas seria de importância estratégica para obter o controle sobre Pangéia, portanto, apenas Daevas experimentados e testados podem tentar esta tarefa.</p>
+          <p> </p>
+          <p>Devemos obter o controle desses pontos estrategicamente importantes a qualquer custo. É por isso que vim até você, [%username]. Como você está se saindo com a eliminação do Guardião Geral?</p>
+		</body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você eliminou o Guardião Geral e conseguiu conquistar a fortaleza. Bom trabalho, Daeva.</p>
+          <p> </p>
+          <p>Agora nós, Asmodianos, controlamos um ponto estrategicamente importante na Pangéia, por isso a nossa posição para as próximas batalhas deve melhorar.</p>
+          <p> </p>
+          <p>Uma tarefa tão difícil e perigosa - e ainda assim você conseguiu no final. Eu realmente não sei o que dizer!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine um [%dic:STR_DIC_E_GAb1_Boss_all] ([%2]/1).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Relatar para [%dic:STR_DIC_N_Corridor_D_PangeaQuest_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Derrote um dos quatro Generais Guardiões das Fortalezas da Pangéia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eldran, o Administrador encarregado da Pangéia, enviou-lhe ordens urgentes com a tarefa de conquistar uma fortaleza localizada em um dos quatro territórios da Pangéia, livrando-se do Guardião Geral da área.</p>
+          <p> </p>
+          <p>Você seguiu as ordens dele e se livrou do Guardião Geral, e depois voltou para ele. Ele ficou muito feliz com suas conquistas na batalha pelas fortalezas de Pangéia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

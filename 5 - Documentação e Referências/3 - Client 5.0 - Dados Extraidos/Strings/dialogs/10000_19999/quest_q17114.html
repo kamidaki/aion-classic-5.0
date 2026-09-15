@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Todos são instruídos a garantir conjuntamente a segurança da aldeia.</p>
+          <p>Esperamos que todos participem para tornar a aldeia um lugar seguro e hospitaleiro.</p>
+          <p> </p>
+          <p>Missão da aldeia:</p>
+          <p>Uma gangue de ladrões que está atrás de objetos valiosos, como Guestblooms, está causando estragos. Mate os [%dic:STR_DIC_M_Housing_Town_Upgrade_Task_Shulack] que estão esperando nos arredores da vila por uma chance de atacar e reporte-se a [%dic:STR_DIC_N_Town_Visitorpot_seller_05].</p>
+          <p> </p>
+          <p>- A administração da aldeia -</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu queria saber por que os itens estavam desaparecendo constantemente. Então é por causa dos batedores de carteira Shulack...</p>
+          <p> </p>
+          <p>O que é tão assustador nisso é que eles eram tão habilidosos que você nem notaria quando algo sumisse. Você nunca sabe quando eles atacarão.</p>
+          <p> </p>
+          <p>Com as coisas tão inseguras, você não ousaria andar perto dos lugares onde os Shulack estão hospedados.</p>
+          <p> </p>
+          <p>Alguém deveria cuidar dessa gangue de ladrões - e fazê-lo rapidamente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata que a gangue de ladrões acabou.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Maravilhoso, verdadeiramente maravilhoso!</p>
+          <p> </p>
+          <p>Como se tratava de uma tarefa de aldeia, eu sabia que muitos Daevas participariam, mas certamente não contava com a eliminação tão rápida da gangue de ladrões.</p>
+          <p> </p>
+          <p>Havia tantos aldeões cujos Guestblooms foram roubados. Agora, com a missão concluída, espero que mais comerciantes especializados em vendas de Guestbloom sejam convidados para a aldeia.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar[%dic:STR_DIC_M_Housing_Town_Upgrade_Task_Shulack] em ([%2]/3).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Town_Visitorpot_seller_05].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Há relatos de uma gangue de ladrões causando estragos e roubando os moradores. Os batedores de carteira Shulack na área devem ser mortos.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Anúncio da missão da aldeia. O 	
+Os batedores de carteira Shulack que estão roubando dos moradores serão mortos.</p>
+          <p> </p>
+          <p>Quando você relatou ao Village Guestbloom Trader que havia matado a gangue de ladrões de Dadokin para a segurança da vila, ele agradeceu por participar da missão da vila.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

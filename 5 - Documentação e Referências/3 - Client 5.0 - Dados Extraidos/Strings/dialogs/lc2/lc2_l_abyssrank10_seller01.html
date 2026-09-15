@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Não é fácil colocar a honra dos Elyos acima da segurança pessoal.</p>
+          <p> </p>
+          <p>Você mergulhou na luta sem hesitação durante a batalha contra os Asmodianos e conquistou muitas vitórias.</p>
+          <p> </p>
+          <p>Santuário preparou recompensas para aqueles que conquistaram conquistas especiais para Elysea. Então, para Daevas como você, [%username].</p>
+          <p> </p>
+          <p>Diferentes itens estão sendo oferecidos. Dê uma olhada se há algo que você possa usar.</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Recompensa</trade_buy>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Sinto muito, Daeva, mas não tenho tempo para Converse com você agora.</p>
+          <p> </p>
+          <p>Meus serviços são apenas para Oficiais Elyos que possuem mais de 1 estrela.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os pesquisadores da Goldrinyerk reclamam todos os dias que o mineral Idium normal é difícil de processar, também.</p>
+          <p> </p>
+          <p>Mas eles ficam maravilhados quando Brorinrinerk lhes traz um mineral de Idio particularmente bom, como o Idium purificado, ak.</p>
+          <p> </p>
+          <p>Eles podem ganhar muito Kinah com este mineral, mas Brorinrinerk é fraco demais para buscá-lo sozinho, ak. Shugo precisa da ajuda de um Daeva forte como você, [%username].</p>
+          <p> </p>
+          <p>Os Klaw do Katalam Underground usam o mineral Idium como alimento, por isso costumam purificá-lo, também. Este tipo de mineral de Idio purificado também é menos tóxico.</p>
+          <p> </p>
+          <p>Mate [%dic:STR_DIC_M_LDF5_Under_Neuth1_Worker_65_An] e [%dic:STR_DIC_M_LDF5_Under_Neuth2_Abyss_65_An]. Então traga o [%dic:STR_DIC_I_QUEST_13655a] para Shugo, e Daeva conseguirá um bom preço por ele, ak.</p>
+          <p> </p>
+          <p>Que tal, ok? Daeva está interessado em colaborar, ok? Há muito Kinah guardado, ak. Akakak!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você obteve [%dic:STR_DIC_I_QUEST_13655a]?</p>
+          <p> </p>
+          <p>Um mineral de Idio purificado como este é muito raro, também. Um segredo que só Borinrinerk conhece, ak.</p>
+          <p> </p>
+          <p>É por isso que Daeva não pode revelar esse segredo comercial a ninguém, ak.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o Idium limpo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>muito Bom!</p>
+          <p> </p>
+          <p>Ambos os lados podem lucrar com tal comércio.</p>
+          <p> </p>
+          <p>Idium de boa qualidade está sempre em demanda. Então Daeva [%username] e Borinerk estão sentados em uma mina de ouro.</p>
+          <p> </p>
+          <p>Isso não pode alcançar outros ouvidos do Shugo, ak! Nem uma palavra!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha o [%dic:STR_DIC_I_quest_13655a] e leve-o para [%dic:STR_DIC_N_LDF5_Under_Broringring_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Obtenha Idium purificado conforme sugerido por Borinerk e leve-o para Borinerk.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De acordo com Borinerk, você pode ganhar muito Kinah com o mineral Idium purificado que pode ser obtido no Klaw no Underground Katalam, então ele sugeriu uma troca.</p>
+          <p> </p>
+          <p>Você aprovou o comércio de Borinerk e comprou o mineral, então Borinerk pediu que você mantivesse esse negócio lucrativo em segredo de todos os outros.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

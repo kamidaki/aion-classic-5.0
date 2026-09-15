@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41171</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+            <p>Chegou a hora de testar seu artesanato.</p>
+	<p> </p>
+	<p>Um membro dos Fenris Fangs deve ser habilidoso em pelo menos um ofício.</p>
+	<p> </p>
+	<p>Eu não acho que você seja um Daeva que tem pouca consideração pelo artesanato, ou é?</p>
+	<p> </p>
+            <p>Se você passar no teste, será recompensado com um par de calças Fenris Fangs. Então faça um esforço.</p>
+	<p> </p>
+	<p>Se você deseja fazer o Teste de Artesanato de Móveis, fale com [%dic:STR_DIC_N_Darfen] para obter mais informações.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+         <p>[%username], vou ajudá-lo a passar no teste de habilidades artesanais com ainda mais facilidade.</p>
+         <p> </p>
+	<p>Normalmente, você criaria um sagrado Coração da Magia. Usener inspecionaria este Coração e lhe daria uma insígnia.</p>
+         <p> </p>
+         <p>Mas vou lhe dar o padrão da Insígnia Fenris Fangs para que você mesmo possa fazer essa insígnia.</p>
+         <p> </p>
+             <p>Isso não permitirá que você evite a Cerimônia de Purificação, mas Kvasir terá grande estima por você quando descobrir que você mesmo fez a insígnia.</p>
+         <p> </p>
+         <p>Quando terminar a insígnia, leve [%dic:STR_DIC_I_relic_d_02] para [%dic:STR_DIC_N_Balder]. Ele então realizará o Ritual de Purificação para você.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma Cerimônia de Purificação... da última vez foi sobre uma Marca de Contribuição e desta vez parece que será sobre o sagrado Coração da Magia.</p>
+          <p> </p>
+          <p>Você sem dúvida teve sucesso novamente, não foi?</p>
+          <p> </p>
+          <p>Quer dizer, estou feliz por Asmodae e pelos Fenris Fangs, mas sinto pena de você mesmo assim, [%username].</p>
+          <p> </p>
+          <p>Não consigo entender por que você está se esforçando tanto para tentar se juntar aos Fenris Fangs. Existem muitas outras oportunidades para fazer algo pela Asmodae.</p>
+           <p> </p>
+          <p>Ugh, eu não deveria ter dito isso. Mas não use isso contra mim, eu só disse isso porque estou preocupado com você, [%username].</p>
+           <p> </p>
+           <p>Agora, vamos começar com o Ritual de Purificação. Dê-me seu [%dic:STR_DIC_I_relic_d_02].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você pede a ele para realizar a Cerimônia de Purificação.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+	<p>Tudo bem, a Cerimônia de Purificação terminou.</p>
+	<p> </p>
+	<p>No entanto, a Insígnia Fenris Fangs que você trouxe parece um pouco diferente das Insígnias que vi até agora.</p>
+	<p> </p>
+	<p>Hm... a textura e o acabamento foram ligeiramente melhorados?</p>
+	<p> </p>
+	<p>Isso é realmente estranho.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Darfen] em [%dic:STR_DIC_W_DC1_5].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Pegue a Insígnia Fenris Fang e [%dic:STR_DIC_I_relic_d_02] para [%dic:STR_DIC_N_Balder].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Faça o teste de habilidades artesanais exigido por Kvasir.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kvasir disse que agora você deveria fazer o teste de habilidade artesanal.</p>
+          <p> </p>
+          <p>A Mestre em Artesanato de Móveis disse que quer ajudá-lo a obter uma pontuação melhor e lhe deu um padrão para a Insígnia Fenris.</p>
+          <p> </p>
+          <p>Você criou a Insígnia Fenris Fangs de acordo com este padrão. Quando você apresentou esta insígnia a Balder, ele realizou a Cerimônia de Purificação.</p>
+	 </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

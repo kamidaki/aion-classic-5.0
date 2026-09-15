@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], você poderia obter [%dic:STR_DIC_I_quest_12833a] para mim?</p>
+          <p> </p>
+          <p>Você receberá isso quando matar [%dic:STR_DIC_M_LDF5A_B9_RottenTree_Id_64_An] lá fora.</p>
+          <p> </p>
+          <p>O Rottentrunk Rotron pode ser um pouco selvagem, mas você deve me trazer as raízes de qualquer maneira.</p>
+          <p> </p>
+          <p>Preciso disso para minha inspeção de amostra. Peço sinceramente sua ajuda.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, você já voltou?</p>
+          <p> </p>
+          <p>O motivo do exame por amostra não foi compartilhado com você.</p>
+          <p> </p>
+          <p>Isto é, para descobrir o motivo da mutação de Rotron e investigar a ecologia de seu ambiente.</p>
+          <p> </p>
+          <p>Quando você conhece o seu ambiente, você pode claramente reagir melhor aos problemas, não é mesmo?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o galho de árvore contaminado com Id.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado por concluir a tarefa tão rapidamente.</p>
+          <p> </p>
+          <p>Com esta valiosa amostra que você me trouxe posso realizar pesquisas importantes, [%username].</p>
+          <p> </p>
+          <p>A propósito, é estranho que um tronco de árvore sofra tanta mutação.</p>
+          <p> </p>
+          <p>Essa mutação não parece ser natural.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_LDF5A_B9_RottenTree_Id_64_An] e obtenha [%dic:STR_DIC_I_quest_12833a] e leve-o para [%dic:STR_DIC_N_LDF5_Village_Guard07_L].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate o Rottentrunk Rotron e traga uma amostra.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Basarian quer entender o ecossistema da região e o motivo da mutação do Rotron. Ele, portanto, pediu que você conseguisse algumas amostras.</p>
+          <p> </p>
+          <p>A pedido de Basarian, você ceifou o galho podre de Rotron e coletou os galhos contaminados com Id, pelo que lhe agradecemos.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

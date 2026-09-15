@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], tenho um pedido para você. Encontre-se com [%dic:STR_DIC_N_LF1_Marelin_E_LHW] e dê a ela uma mensagem minha.</p>
+          <p> </p>
+          <p>Teremos que nos separar se as coisas continuarem assim...</p>
+          <p> </p>
+          <p>Meu sonho é explorar Atreia e partir em aventuras, mas o sonho dela é gerenciar o Servidor Novato.</p>
+          <p> </p>
+          <p>Você pode acessar o [%dic:STR_DIC_E_Combine_Rookie] através do símbolo "Novice Server" no canto inferior direito da barra de menu. Procure [%dic:STR_DIC_N_LF1_Marelin_E_LHW] lá e diga a ela que nada mudou para mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Recentemente passei por uma separação.</p>
+          <p> </p>
+          <p>Nos conhecemos em Santuário e nos apaixonamos. Ficamos juntos por muito tempo.</p>
+          <p> </p>
+          <p>Achei que ficaríamos juntos para sempre.</p>
+          <p> </p>
+          <p>Mas... soluça... me perdoe. Você realmente vive como quiser, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você passa a mensagem de Elino.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você está dizendo? Ele ainda está apaixonado por mim?</p>
+          <p> </p>
+          <p>Mas... não importa como eu olhe, nada pode resultar de nós dois.</p>
+          <p> </p>
+          <p>Ele se recusa a vir para o Servidor Iniciante, mas manda dizer que me ama. O que devo fazer com isso?</p>
+          <p> </p>
+          <p>De qualquer forma, obrigado por passar sua mensagem para mim.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Você pode acessar [%dic:STR_DIC_E_Combine_Rookie] através do item de menu 'Alterar canal/servidor iniciante' no canto inferior direito. Encontre [%dic:STR_DIC_N_LF1_Marelin_E_LHW] lá.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Procure Madelin, ex-amante de Elino, no servidor novato e passe sua mensagem.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Elino disse que tinha uma mensagem para sua ex-amada Madelin no servidor Iniciante.</p>
+          <p> </p>
+          <p>Você passou a mensagem para Madelin, mas ela não pareceu particularmente feliz com isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

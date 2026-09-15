@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41101</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Quando você está na Guilda da Tempestade de Areia, a palavra "prazo" assume um significado mais literal do que o normal.</p>
+          <p> </p>
+          <p>Por exemplo, devemos matar [%dic:STR_DIC_M_LDF4A_A2_Sheluk_Worm_Nmd_57_An], [%dic:STR_DIC_M_LDF4A_A2_IronGolem_Nmd_57_An] e [%dic:STR_DIC_M_LDF4A_A2_Daru_DR_Nmd_57_n] no norte de Sarpan para abrir caminho para uma grande ofensiva. Mas o afluxo de refugiados interferiu seriamente na eficiência da Tempestade de Areia.</p>
+          <p> </p>
+          <p>Se você conseguir matar apenas um deles, teremos tempo para eliminar o resto antes do prazo. [%username], a paz em Sarpan depende disso.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Venomous Geruk, Kugen the Ravager e Careful Peruru são bastante poderosos. Ter que lidar com todos eles além dos objetivos ofensivos seria demais.</p>
+          <p> </p>
+          <p>Iremos atacar os outros dois assim que soubermos que você lidou com o terceiro.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Então é hora de ir."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Excelente! Vou mandar uma mensagem imediatamente!</p>
+          <p> </p>
+          <p>Meus superiores não vão me dizer por que nossa agenda está tão apertada, mas isso deve ser importante.</p>
+          <p> </p>
+          <p>Portanto, tenho certeza de que sua contribuição será notada. Até então, assuma isso em nome do resto da Guilda da Tempestade de Areia.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate qualquer um destes 3 monstros: [%dic:STR_DIC_M_LDF4A_A2_Sheluk_Worm_Nmd_57_An], [%dic:STR_DIC_M_LDF4A_A2_IronGolem_Nmd_57_An] ou [%dic:STR_DIC_M_LDF4A_A2_Daru_DR_Nmd_57_n] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Olibaia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Baia pediu para você se livrar de Geruk Venenoso, Kugen, o Devastador, ou Peruru Cuidadoso, ameaças do norte de Sarpan.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Baia pediu que você eliminasse um dos três monstros no norte de Sarpan para cumprir o prazo da Guilda da Tempestade de Areia: Geruk Venenoso, Kugen, o Devastador ou Peruru Cuidadoso.</p>
+          <p> </p>
+          <p>Quando você derrotou um deles e retornou em segurança, você foi profusamente agradecido e recompensado.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

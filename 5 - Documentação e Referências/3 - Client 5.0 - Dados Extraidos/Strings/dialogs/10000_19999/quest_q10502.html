@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q10502</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Meu avô sempre dizia: As pessoas e os registros podem mentir. Se você quiser descobrir a verdade, precisará de pelo menos três evidências.</p>
+          <p> </p>
+          <p>Se eu conseguir encontrar apenas três evidências para fundamentar minha teoria, poderei prová-la.</p>
+          <p> </p>
+          <p>Você está interessado em uma teoria?</p>
+          <p> </p>
+          <p>Você não está ocupado agora.</p>
+          <p> </p>
+          <p>Primeiro, você falou comigo. Em segundo lugar, você ainda está aqui me ouvindo e, em terceiro lugar, você estava interessado no meu dispositivo e queria me perguntar sobre ele.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1">Quem é você e o que está fazendo aqui?</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Meu nome é Kaion.</p>
+          <p> </p>
+          <p>Estou aqui para pesquisar uma teoria neste campo incipiente.</p>
+          <p> </p>
+          <p>Preciso da ajuda de um Daeva capaz que possa obter provas. Você me ajudaria?</p>
+          <p> </p>
+          <p>É claro que eu também poderia fazer isso, mas a objetividade das evidências seria duvidosa.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT1_1_1">Eu vou te ajudar.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Essa foi a prova final da minha teoria de que você não está ocupado! Bem, este jogo não está sendo divertido?</p>
+          <p> </p>
+          <p>Bom, então vamos provar uma teoria que é muito mais interessante!</p>
+          <p> </p>
+          <p>Quando vim para Signia, descobri Sapiens morando em uma aldeia. Gostaria de examinar a aldeia para provar a minha teoria. No entanto, você deve primeiro ver com seus próprios olhos.</p>
+          <p> </p>
+          <p>Entre na Vila Barbatanas Negras! Lá, explicarei o que você deve fazer para provar minha teoria.</p>
+          <p> </p>
+          <p>Vejo você no [%dic:STR_DIC_W_LF5_SZ_C_Shark]! Ah, a propósito, estarei escondido, então você terá que me procurar!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO1">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10502-1.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo! Esta é a sua primeira vez na Vila Black Fins?</p>
+          <p> </p>
+          <p>Você os viu? Como você os descreveria?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT2_1">Eles parecem mais viver debaixo d'água do que em terra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A-há! Muito astuto. Na verdade, há muitas coisas peculiares aqui.</p>
+          <p> </p>
+          <p>Mal posso esperar para descobrir os mistérios de Signia.</p>
+          <p> </p>
+          <p>Primeiro, precisarei de uma amostra da terra local. Deveria me ajudar a provar minha teoria.</p>
+          <p> </p>
+          <p>Por favor, vá ao [%dic:STR_DIC_OBJ_LF5_FOBJ_Soil_Creep_Q10502a] em Northern Coral Hills e traga-me um [%dic:STR_DIC_I_quest_10502a]. Vou preparar todo o resto que preciso para provar minha teoria.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10502-2.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select3">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu as amostras que pedi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">Você entrega a Amostra da Terra.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Parece estranho.</p>
+          <p> </p>
+          <p>Parece que já esteve molhado uma vez, mas depois secou. Seco por fora, mas ainda úmido por dentro... Ou como algo que foi congelado, descongelado e endurecido novamente.</p>
+          <p> </p>
+          <p>A terra também é incomum. Como se algo que nada sabemos tivesse acontecido aqui há muito, muito tempo.</p>
+          <p> </p>
+          <p>Quase penso que estou obtendo evidências para fundamentar minha teoria.</p>
+          <p> </p>
+          <p>Que interessante! Quero continuar a desvendar os segredos deste lugar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que você tem?</p>
+          <p> </p>
+          <p>O que preciso é de uma amostra de terra dos Montes Terrestres nas Colinas de Coral do Norte.</p>
+          <p> </p>
+          <p>Venha, não temos tempo a perder! Faça um trabalho adequado!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os Sapiens aqui parecem estar mais bem equipados para viver debaixo d'água.</p>
+          <p> </p>
+          <p>Não é surpreendente, considerando que esta região ficou submersa até o dia da Grande Ofensiva. Mas acho surpreendente que eles consigam respirar fora da água.</p>
+          <p> </p>
+          <p>Descobri algo singularmente peculiar na aldeia deles. Não tenho dúvidas de que é a prova final da minha teoria.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT4_1">Você continua ouvindo.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select4_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para saber mais sobre a história de um lugar, é preciso observar a fauna local e estudar seu passado. Pelo que pude perceber em minha pesquisa, duas culturas existem aqui lado a lado.</p>
+          <p> </p>
+          <p>É possível que os habitantes da Vila Barbatanas Negras tenham governado Signia em algum passado muito distante? Acho difícil chegar a uma resposta a esta pergunta.</p>
+          <p> </p>
+          <p>Chegou a hora de obter evidências para minha teoria! Aqui, pegue isso. Aqui estão as ferramentas para esfregar um relevo de parede.</p>
+          <p> </p>
+          <p>Você encontrará um [%dic:STR_DIC_W_LF6_SZ_C_Shark_Fresco] na Vila Black Fins. Por favor, faça-me um [%dic:STR_DIC_I_quest_10502c] disso. Enquanto isso, procurarei as outras evidências.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO4">Você pega as ferramentas de fricção.</Act>
+    </Selects>
+    <Voice file="Q10502-3.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select6">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Oh! Suas costas, finalmente? Eu estava cansado de esperar e só ia te procurar.</p>
+          <p> </p>
+          <p>Você esfregou diligentemente? Mostre para mim.</p>
+          <p> </p>
+          <p>A-há! Eu sabia!</p>
+          <p> </p>
+          <p>Esta é uma fricção que fiz em outro lugar na Vila Black Fins. Você poderia compará-lo com o que você trouxe?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT6_1">Você compara as imagens nas esfregações.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se você olhar de perto, verá que minha fricção não é tão antiga. Não há nada de especial nesta parede. Apenas mostra fotos da vida cotidiana na Vila Black Fins.</p>
+          <p> </p>
+          <p>Mas a fricção que você me trouxe, [%username], retrata o sol, a lua e as nuvens, bem como criaturas quadrúpedes e voadoras.</p>
+          <p> </p>
+          <p>O que você diria que torna as duas imagens diferentes uma da outra?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT6_1_1">Os planos de fundo dos desenhos são diferentes.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select6_1_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Correto! Minha teoria estava certa. Estamos começando a resolver esse mistério.</p>
+          <p> </p>
+          <p>Agora chegou a hora de encontrar a prova final.</p>
+          <p> </p>
+          <p>Descobri um fóssil interessante em minha pesquisa. É a prova final de que preciso para minha teoria.</p>
+          <p> </p>
+          <p>Procure [%dic:STR_DIC_OBJ_LF5_FOBJ_Ancient_Fossil_Q10502a] e obtenha uma amostra dele. Depois volte para a aldeia. Estarei esperando por você lá.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO6">Você encerra a conversa.</Act>
+    </Selects>
+    <Voice file="Q10502-4.ogg"/>
+  </HtmlPage>
+
+  <HtmlPage name="select7">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Você vê o fóssil de uma criatura que habitou Signia há muito tempo.)</p>
+          <p> </p>
+          <p>(Deve ser inconcebivelmente antigo, já que muitas partes dele perderam características.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT7_1">Você examina isso mais de perto.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select7_1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(A estrutura do fóssil implica que a criatura vivia na terra e não na água.)</p>
+          <p> </p>
+          <p>(Não se parece com nenhuma criatura ainda encontrada em Signia hoje.)</p>
+          <p> </p>
+          <p>(Parece o fóssil de uma criatura antiga que foi extinta há muito tempo.)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SET_SUCCEED">Você extrai uma amostra do fóssil.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem-vindo! Fiquei preocupado porque não tive notícias suas.</p>
+          <p> </p>
+          <p>Como foi? Você examinou o fóssil de que lhe falei? Você conseguiu as amostras?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Exatamente como eu esperava! Isso significa que Signia já esteve na superfície e afundou no mar por razões desconhecidas. Aumentou novamente após o dia da Ofensiva Maior. Isso prova minha teoria.</p>
+          <p> </p>
+          <p>Concluo, a partir do fóssil e das camadas de sedimentos, que o continente afundou sob as ondas há cerca de mil anos. Lá permaneceu até ressurgir no dia da Grande Ofensiva.</p>
+          <p> </p>
+          <p>O solo que sofreu tantas mudanças climáticas repentinas, os relevos das paredes, os fósseis de criaturas antigas há muito desaparecidas... São todos elementos da minha teoria.</p>
+          <p> </p>
+          <p>A questão é: por que Signia ressurgiu tão de repente? Mas isso não faz parte da minha área.</p>
+          <p> </p>
+          <p>Graças a você consegui provar minha teoria. Vou escrever meu relatório agora. Obrigado novamente pelo seu trabalho duro!</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LF5_Nixkaion_E] em [%dic:STR_DIC_W_LF5_SZ_Village_01].</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Entre em [%dic:STR_DIC_W_LF5_SZ_C_Shark] e procure por [%dic:STR_DIC_N_LF5_Nixkaion_Disguise_E].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Vá para [%dic:STR_DIC_OBJ_LF5_FOBJ_Soil_Creep_Q10502a] e colete um [%dic:STR_DIC_I_quest_10502a]. Em seguida, reporte para [%dic:STR_DIC_N_LF5_Nixkaion_Disguise_E].</font></p>[%collectitem]</step>
+               <step><p visible="[%9]"><font color="[%10]">Fale com [%dic:STR_DIC_N_LF5_Nixkaion_Disguise_E] no [%dic:STR_DIC_W_LF5_SZ_C_Shark].</font></p></step>
+               <step><p visible="[%12]"><font color="[%13]">Procure o [%dic:STR_DIC_W_LF6_SZ_C_Shark_Fresco] no [%dic:STR_DIC_W_LF5_SZ_C_Shark] e use os itens para fazer uma fricção.</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LF5_Nixkaion_Disguise_E] no [%dic:STR_DIC_W_LF5_SZ_C_Shark].</font></p></step>
+               <step><p visible="[%18]"><font color="[%19]">Examine o [%dic:STR_DIC_OBJ_LF5_FOBJ_Ancient_Fossil_Q10502a].</font></p></step>
+               <step><p visible="[%21]"><font color="[%22]">Volte para [%dic:STR_DIC_W_LF5_SZ_Village_01] e reporte para [%dic:STR_DIC_N_LF5_Nixkaion_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Comando: Ajude Kaion e desvende os segredos de Signia.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você coleta amostras de montes de terra, uma fricção de relevo de parede e amostras de um fóssil na vila de Barbatanas Negras para Kaion.</p>
+          <p> </p>
+          <p>Isso fundamentou a teoria de Kaion de que Signia já esteve na superfície, mas depois submergiu no mar, e ressurgiu desde o dia da Ofensiva Maior.</p>
+          <p> </p>
+          <p>Lamentavelmente, você ainda não sabe exatamente o que causou isso.</p>
+          <p> </p>
+          <p/>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Progresso: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

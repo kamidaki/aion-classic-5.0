@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Um recipiente para armazenar algo. Parece bem antigo.)</p>
+          <p> </p>
+          <p>(Parece ser importante. Deve ser levado a [%dic:STR_DIC_N_LDF5A_Serip_E] e identificado).</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você termina a investigação.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Posso ajudar?</p>
+          <p> </p>
+		  <p>Estou bem no meio da investigação do Beritra e já estou bastante ocupado...</p>
+		  <p> </p>
+		  <p>É melhor que seja importante.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o contêiner.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hm, parece ser um contêiner, mas não é nada que o Exército Beritra use.</p>
+          <p> </p>
+          <p>Eu preciso descobrir o que é.</p>
+          <p> </p>
+		  <p>Talvez seja algum tipo de contêiner de teste usado pelo Exército de Tiamat...</p>
+		  <p> </p>
+          <p>De qualquer forma, muito obrigado por trazê-lo para mim. Avisarei você assim que tiver um resultado, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5A_Serip_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Traga o contêiner vazio obtido coincidentemente para Serif.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aconteceu que você obteve um recipiente vazio. Você trouxe para Serif porque parecia importante.</p>
+          <p> </p>
+          <p>Serif queria dizer que tipo de item é esse contêiner depois de inspecioná-lo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

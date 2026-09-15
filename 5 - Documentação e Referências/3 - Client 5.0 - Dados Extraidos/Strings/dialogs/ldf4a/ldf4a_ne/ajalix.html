@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p>As pessoas sempre me perguntam como posso fornecer tantos e tão variados materiais nesta terra árida.</p>
+           <p> </p>
+           <p>O que posso dizer? Como um Flux Merchant competente, estou apenas cumprindo meus deveres.</p>
+           <p> </p>
+           <p>Preços baixos também. Viu alguma coisa que você precisa?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <trade_buy>Buy</trade_buy>
+      <trade_sell>Sell</trade_sell>
+    </npcfuncs>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+           <p> Algo deu errado, muito errado. Não consigo fazer meu trabalho! Explosão! Fragmentos! Que vergonha!</p>
+           <p> </p>
+           <p>Por favor, digite /petição na sua janela de bate-papo e informe um GM.</p>
+           <p> </p>
+           <p>Conto com você, [%username], para me ajudar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Vou relatar minhas descobertas. Fique bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

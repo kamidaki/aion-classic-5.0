@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41516</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Acredito que o trabuco está completo. Agora só precisamos testá-lo antes que eu possa passá-lo às nossas tropas.</p>
+          <p> </p>
+          <p>Eu poderia usar sua ajuda novamente, [%username]. Os [%dic:STR_DIC_OBJ_LDF4b_FOBJ_TankBomb]s também foram espalhados pelos Dust Twisters, e preciso de alguns coletados para realizar este teste. Você pode ajudar?</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Aí está você.</p>
+          <p> </p>
+          <p>Você já coletou mísseis Drana suficientes? Demore mais e esta guerra pode acabar sozinha, [%username].</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Eu tenho tudo!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah, então você faz!</p>
+          <p> </p>
+          <p>Preciso examiná-los rapidamente. Qualquer amassado... ou dano, e eles não voem corretamente, podem até... explodir durante o processo de disparo.</p>
+          <p> </p>
+          <p>Não. Tudo bem. Agora você vai para o [%dic:STR_DIC_OBJ_LDF4b_FOBJ_Tank] e certifica-se de que ele funciona corretamente. Mire na Fortaleza Tiamat e atire!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Uau!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Argh! Não, [%username]! Não, você não!</p>
+          <p> </p>
+          <p>Não podemos testar o trabuco sem os [%dic:STR_DIC_OBJ_LDF4b_FOBJ_TankBomb]s, seu idiota!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Poderia jurar que os tinha..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom, você está de volta.</p>
+          <p> </p>
+          <p>Como foi o teste?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Correu muito bem."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom. Bom.</p>
+          <p> </p>
+          <p>Não espero que a Fortaleza Tiamat desmorone com um único ataque, mas nosso cerco irá gradualmente destruir suas muralhas. Mais cedo ou mais tarde, o Balaur cairá.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Reúna [%dic:STR_DIC_OBJ_LDF4b_FOBJ_TankBomb]s e leve-os para [%dic:STR_DIC_N_Debron].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Dispare o [%dic:STR_DIC_OBJ_LDF4b_FOBJ_Tank] [%5].</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Relate para [%dic:STR_DIC_N_Debron].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">O Trebuchet está pronto para teste. Reúna os mísseis Drana e dispare-os na Fortaleza Tiamat.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Debron lhe disse que o trabuco estava completo e agora precisava passar por testes de tiro real. Você reuniu mísseis Drana para o teste e depois disparou contra a Fortaleza Tiamat. Funcionou bem - mais do que bem, na verdade!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+	    <p>Você ouviu que as tropas de Beritra estão se reunindo agora?</p> 
+	    <p> </p>
+	    <p>Suas forças são grandes. Em breve haverá uma grande batalha.</p>
+	    <p> </p>
+	    <p>Um maior reforço das suas forças deve ser evitado antes de estarem totalmente preparados.</p>
+	    <p> </p>
+	    <p>Por favor, elimine o [%dic:STR_DIC_E_LDF5b_A4_Vri] atrás de nós, até o último.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+	    <p>O Exército Beritra parece incerto, pois não conseguiu conquistar o Bastião Parede de Aço.</p>
+	    <p> </p>
+	    <p>Caso contrário, eles não teriam enviado uma força de combate tão grande.</p>
+	    <p> </p>
+	    <p>Eles devem ser eliminados antes da batalha.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+	    <p>Agradeço seus esforços, [%username].</p>
+	    <p> </p>
+	    <p>Se os Balaur tivessem concluído o recrutamento, teria sido difícil derrotá-los.</p>
+	    <p> </p>
+	    <p>Sorte que você poderia fazer algo sobre isso a tempo.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Eliminar [%dic:STR_DIC_E_LDF5b_A4_Vri] ([%2]/10).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Village_Guard11_L]%.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine o 40º Esquadrão de Inteligência antes que o Exército Beritra possa se reunir.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+	    <p>Stifon disse que as forças de Beritra estão se reunindo e em breve travaremos uma grande batalha.</p>
+	    <p> </p>
+	    <p>Quando você eliminou o 40º Esquadrão de Inteligência antes que suas forças estivessem completamente reunidas, você recebeu uma recompensa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q12046</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>미입력</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Coração da Ira! Finalmente! Tiamat deve estar furioso agora que capturamos uma de suas fortalezas pessoais! Claro, isso significa que também ganhamos sua inimizade pessoal. Em breve ele enviará algumas das criaturas para suavizar nossas forças.</p>
+          <p> </p>
+          <p>Os Kerubiels Vulcânicos são sua criatura preferida no momento. Ele provavelmente está planejando enviar tropas mais fortes quando estivermos exaustos.</p>
+          <p> </p>
+          <p>Não podemos deixar chegar a esse ponto. Mate os Kerubiels Vulcânicos e você acabará com a trama de Tiamat.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A estratégia da Tiamat é básica, mas eficaz. Infelizmente, os Balaur têm números para fazer isso muito bem.</p>
+          <p> </p>
+          <p>É por isso que matar os Kerubiels Vulcânicos agora é tão importante.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Então foi uma sorte eu estar aqui."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>De fato. Tiamat agora terá que gastar ainda mais recursos para recuperar o Coração da Ira. Isso só pode ser bom para nós.</p>
+          <p> </p>
+          <p>Nossas chances de vitória aqui acabaram de aumentar, e tudo o que você precisou fazer foi matar alguns Sapiens. Esse é o caminho da guerra.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate os Querubiis Vulcânicos ([%2]/n).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para Coron.</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate os Querubiis Vulcânicos que estão ameaçando as defesas do Coração da Ira.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Coron estava preocupado que os Kerubiels Vulcânicos estivessem sendo enviados por Tiamat para quebrar as defesas do Coração da Ira.</p>
+          <p> </p>
+          <p>A pedido, você matou Kerubiels Vulcânicos para facilitar a vida das tropas Elyos lá.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gostaria de pedir um favor.</p>
+          <p> </p>
+          <p>Por favor, entregue esta carta para [%dic:STR_DIC_N_LDF5_Under_Hadius_E] para mim.</p>
+          <p> </p>
+          <p>Basta entregar a carta; não há outra tarefa.</p>
+          <p> </p>
+          <p>Espero que você não dê uma espiada na carta.</p>
+          <p> </p>
+          <p>O conteúdo é estritamente confidencial!</p>
+          <p> </p>
+          <p>Não abra a carta em hipótese alguma. Entendido?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você deveria cuidar de uma tarefa desta vez?</p>
+          <p> </p>
+          <p>Posso ver a carta em sua mão.</p>
+          <p> </p>
+          <p>Então o assunto está claro.</p>
+          <p> </p>
+          <p>Kurius enviou você, não foi?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega a carta de Kurius.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Uma carta de ordem de Kurius, eu sabia!</p>
+          <p> </p>
+          <p>(Abre a carta e lê.) Hmm, hmm... aha, então é isso.</p>
+          <p> </p>
+          <p>[%username], você não deu uma olhada na carta, não é?</p>
+          <p> </p>
+          <p>Se sim, é melhor você me contar agora!</p>
+          <p> </p>
+          <p>Se não, então está tudo bem. Muito obrigado por cumprir esta missão.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve [%dic:STR_DIC_I_doc_quest_13604a] para [%dic:STR_DIC_N_LDF5_Under_Hadius_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Encontre Hadius e leve para ele a carta de Kurius.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Kurius pediu que você trouxesse uma carta que ele escreveu para Hadius. Kurius enfatizou que em nenhuma circunstância você poderá ler a carta.</p>
+          <p> </p>
+          <p>Você encontrou Hadius e deu a ele a carta de Kurius. Ao mesmo tempo lhe perguntaram se você havia lido a carta.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

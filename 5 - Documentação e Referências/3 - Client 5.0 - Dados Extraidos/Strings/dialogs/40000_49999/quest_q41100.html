@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41100</QuestId>
+    <QuestName>???</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mais e mais Reianos são deslocados pelos Balaur todos os dias. Eles estão exaustos. Eles perderam suas casas e entes queridos. Pior ainda, monstros assombram o Campo de Refugiados e aterrorizam as pessoas de lá.</p>
+          <p> </p>
+          <p>Os habitantes do acampamento os chamam de [%dic:STR_DIC_M_LDF4A_A1_FennecFox_Nmd_56_n] e [%dic:STR_DIC_M_LDF4A_A1_SpakyButterfly_Nmd_56_n] e estão causando grandes dores de cabeça.</p>
+          <p> </p>
+          <p>Se você pudesse matar apenas um deles, seria um grande benefício para a paz.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Rajalf, o Astuto, é o líder da toca Nojolf. Ele é extraordinariamente inteligente e de temperamento muito curto.</p>
+          <p> </p>
+          <p>A Rainha Maphis pode ser um mero inseto, mas suas asas espalham pó venenoso por onde ela voa... e ela voa muito longe.</p>
+          <p> </p>
+          <p>Qual deles você matou?</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Foi uma batalha difícil, mas..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Esse é o que eu mesmo teria tirado. Talvez pensemos da mesma forma.</p>
+          <p> </p>
+          <p>A Guilda da Tempestade de Areia não esquecerá a sua ajuda, e nem os refugiados, aposto.</p>
+          <p> </p>
+          <p>Eles não podem recompensá-lo como seria adequado aos seus atos, mas eu posso, em nome deles. Por favor, pegue isso.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Mate [%dic:STR_DIC_M_LDF4A_A1_FennecFox_Nmd_56_n] ou [%dic:STR_DIC_M_LDF4A_A1_SpakyButterfly_Nmd_56_n] ([%2]/1).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Relatório para [%dic:STR_DIC_N_Olibaia].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Baia pediu para você matar Rajalf, o Astuto, ou a Rainha Maphis, dois monstros que ameaçam os refugiados.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Baia disse que os refugiados nos arredores de Kamar estavam sendo atormentados por dois monstros, Rajalf, o Astuto e a Rainha Maphis, e pediu que você se livrasse de pelo menos um deles.</p>
+          <p> </p>
+          <p>Você matou um deles e foi recompensado por seus esforços ao retornar.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

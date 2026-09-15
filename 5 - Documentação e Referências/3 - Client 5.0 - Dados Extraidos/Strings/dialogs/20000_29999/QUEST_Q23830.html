@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Azfelumbra!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+  
+   <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você já sabe que tem exatamente 6 espaços Estigma, certo?</p>
+          <p> </p>
+          <p>Destes, três são espaços para Estigmas normais, dois são espaços para Estigmas Maiores e um slot é para Estigmas Poderosos. Quanto mais forte você se tornar, mais soquetes serão desbloqueados.</p>
+          <p> </p>
+          <p>Você recebe o primeiro espaço normal de Estigma ao completar uma missão, e os outros dois espaços Normal Estigma são desbloqueados quando você atinge o nível 30 e 40, respectivamente. Você recebe os espaços de Grande Estigma ao atingir os níveis 45 e 50, respectivamente, e o slot Powerful Estigma é desbloqueado no nível 55.</p>
+          <p> </p>
+          <p>O poder dos seus estigmas aumenta com o seu nível.</p>
+          <p> </p>
+          <p>No entanto, tenha em mente que cada encaixe do Estigma requer o Estigma correspondente.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você acena com a cabeça.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu preparei algo para você, [%username].</p>
+          <p> </p>
+          <p>Este pacote contém estigmas normais para seu uso, [%username]. Você pode selecionar um Estigma do pacote.</p>
+          <p> </p>
+          <p>Você pode ir a um Estigma Master para equipar ou remover Estigmas. Os estigmas equipados podem ser visualizados abrindo a janela Estigma em seu perfil (P).</p>
+          <p> </p>
+          <p>Você pode usar estigmas equipados como habilidades e vinculá-los a teclas de atalho.</p>
+          <p> </p>
+          <p>Por favor, use-os com sabedoria.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_Herner].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Conheça Herner e receba um pacote Estigma.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você visitou Herner e lhe explicaram os estigmas. Depois disso, você recebeu um pacote de estigmas úteis.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

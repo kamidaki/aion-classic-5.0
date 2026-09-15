@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_quest">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para a vitória!</p>
+          <p> </p>
+          <p>A Delegação de Xenofonte apoia a Jornada Violeta dos Daevas ao Templo de Beshmundir.</p>
+          <p> </p>
+          <p>Se você pretende ir ao Templo de Beshmundir, não seria este o momento oportuno?</p>
+        </body>
+        </html>
+    </Contents>
+    <npcfuncs>
+      <instance_entry>Enter Beshmundir Temple</instance_entry>
+    </npcfuncs>
+    <Selects>
+      <Act href="HACTION_OPEN_INSTANCE_RECRUIT">Procuro um Grupo Auto.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_none">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para a vitória!</p>
+          <p> </p>
+          <p>A Delegação de Xenofonte apoia a Jornada Violeta dos Daevas ao Templo de Beshmundir.</p>
+          <p> </p>
+          <p>Se você pretende ir ao Templo de Beshmundir, não seria este o momento oportuno?</p>
+          <p> </p>
+          <p>No Templo Beshmundir você pode decidir entre um caminho fácil e um difícil.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_select_none_1">Teleporte-se para o caminho mais fácil no Templo Beshmundir.</Act>
+      <Act href="HACTION_select_none_2">Teleporte-se para o caminho difícil no Templo Beshmundir.</Act>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Para a vitória!</p>
+          <p> </p>
+          <p>A Delegação de Xenofonte apoia a Jornada Violeta dos Daevas ao Templo de Beshmundir.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="no_right">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Infelizmente, não posso ajudá-lo a se teletransportar para o Templo Beshmundir agora.</p>
+          <p> </p>
+          <p>Volte quando tiver adquirido mais experiência ou qualificações.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Você encerra a conversa.</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

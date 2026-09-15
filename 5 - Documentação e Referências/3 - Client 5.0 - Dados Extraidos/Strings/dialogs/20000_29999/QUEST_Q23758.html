@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>A União Elyos segue um plano traiçoeiro.</p>
+          <p> </p>
+          <p>[%username], por favor, pare-os e elimine os Cruel Popoku Fighters e Popoku Assassinos do [%dic:STR_DIC_M_LDF4_Advance_Popoku_South_all].</p>
+          <p> </p>
+          <p>Devemos mostrar que não temos medo e que os enfrentaremos em combate.</p>
+          <p> </p>
+          <p>Se atacarmos primeiro e infligirmos pesadas perdas aos Elyos, venceremos a batalha mais tarde.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Qual é a força de combate da União Elyos?</p>
+          <p> </p>
+          <p>Eles podem se autodenominar União Elyos, mas ouvi dizer que sua força de combate é mais parecida com a dos novatos no Crisol. Isso é verdade?</p>
+          <p> </p>
+          <p>Pensar na batalha que se aproxima me faz acreditar que estaríamos melhor se nos livrássemos da União Elyos.</p>
+          <p> </p>
+          <p>A sua força de combate decidirá o resultado.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você dá seu relatório.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Obrigado! Espero que você continue lutando por nós, [%username].</p>
+          <p> </p>
+          <p>Os Elyos não irão longe sem a União Elyos.</p>
+          <p> </p>
+          <p>Isso significa que nossas chances de vitória acabaram de aumentar.</p>
+          <p> </p>
+          <p>Permita-me apresentar-lhe uma recompensa pelos seus esforços, [%username].</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+	       <step><p visible="[%0]"><font color="[%1]">Elimine o [plur][%dic:STR_DIC_M_LDF4_Advance_C_LiPopoku_Fi_65_An] e o [plur][%dic:STR_DIC_M_LDF4_Advance_C_LiPopoku_As_65_An] que aparecem quando uma das guarnições do sul está ocupada ([%2]/5).</font></p></step>
+               <step><p visible="[%3]"><font color="[%4]">Fale com um dos [plur][%dic:STR_DIC_E_LDF4_Advance_Village_Guard_D_South].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Execute as ordens dos Comandantes do Sul e elimine os Cruel Popoku Fighters e Popoku Assassinos que se juntaram à Southern Elyos Union.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um dos Comandantes do Protetorado enviou você para desmembrar a União Elyos.</p>
+          <p> </p>
+          <p>Você matou os Cruel Popoku Fighters e os Popoku Assassinos. Você recebeu uma recompensa por isso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

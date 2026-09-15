@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Exército Beritra foi ao Refúgio da Tribo Rune para aprender mais sobre o uso do Id.</p>
+		  <p> </p>
+		  <p>O refúgio é o local de descanso da Runa. Existem muitas relíquias lá.</p>
+		  <p> </p>
+		  <p>Beritra provavelmente quer usar o poder do Id.</p>
+		  <p> </p>
+		  <p>Pressa!</p>
+		  <p> </p>
+		  <p>Devemos impedi-lo de colocar seu plano em ação.</p>
+		  <p> </p>
+		  <p>Reúna-se com [%dic:STR_DIC_N_LF5_Supri_E].</p>
+		  <p> </p>
+		  <p>Ele lhe contará mais sobre o Refúgio.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Recusar</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Arieluma!</p>
+          <p> </p>
+		  <p>Você decidiu ir para o Refúgio da Tribo Rúnica.</p>
+		  <p> </p>
+		  <p>Se você usar o dispositivo de teleporte próximo a mim, você será teletransportado diretamente para o Refúgio da Tribo Rúnica.</p>
+		  <p> </p>
+		  <p>Este lugar é como um labirinto, mas se você não for sozinho, você conseguirá passar.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você pergunta se há mais alguma coisa que você deveria saber.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%dic:STR_DIC_N_IDLDF5_Under_02_Alkatron_E] está esperando sua chegada ao Refúgio da Tribo Rúnica.</p>
+          <p> </p>
+		  <p>Você deveria aceitar a ajuda dele. Ele sabe muito sobre a cultura da Tribo Rune.</p>
+		  <p> </p>
+		  <p>Espero que você não me decepcione.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LF5_Supri_E] em [%dic:STR_DIC_W_LF5].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Vá para [%dic:STR_DIC_W_LF5] e encontre Supres.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Nicolas sugeriu enviar alguém para o Refúgio da Tribo Rúnica.</p>
+          <p> </p>
+          <p>Supres lhe deu mais informações e pediu que você se encontrasse com Alkatron.</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

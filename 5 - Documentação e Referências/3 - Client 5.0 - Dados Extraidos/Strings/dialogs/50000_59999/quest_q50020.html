@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select_none" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Shulacks estúpidos, segurando as patas, batendo os cílios.</p>
+          <p> </p>
+          <p>Em locais públicos! Não tenha decência! Não tenha vergonha! Não tenha... não... respeito por... razoável, er... qualquer outra pessoa!</p>
+          <p> </p>
+          <p>[%dic:STR_DIC_M_ValentineEvent_Shulack_Couple] são egoístas! Os pombinhos presunçosos são estúpidos! Eles não merecem chocolate! Daeva, pegue o chocolate deles! Pegue!</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Ah! Daeva!</p>
+          <p> </p>
+          <p>A missão está completa? Daeva ensinou aos Shulacks estúpidos e estúpidos um pouco de educação, nyerk?</p>
+          <p> </p>
+          <p>Eles não merecem chocolate! Eu mereço Chocolate! Dá aqui, dá!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM">"Cuidado, diz que é Extra-Amargo..."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_ok">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pah! Tudo bem! Estou acostumado com a amargura! Prefira isso à doçura doentia de qualquer maneira!</p>
+          <p> </p>
+          <p>Daeva é bom solitário! Ganhou a missão final do Solitário...</p>
+          <p> </p>
+          <p>A bomba de chocolate! Daeva irá detoná-lo e derrubar o [%dic:STR_DIC_N_event_Light_Chocolate]! Akakakak!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SETPRO2">"Um chocolate o quê? Isso é ridículo!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="check_user_item_fail">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O que? Daeva?</p>
+          <p> </p>
+          <p>Daeva não vê aqueles Shulacks nojentos tocando as pontas dos narizes e rindo ali?</p>
+          <p> </p>
+          <p>Vá buscá-los! Leve seus chocolates! Deixe-os tristes! Triste!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">"Triste! Entendi!"</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_success">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bem?</p>
+          <p> </p>
+          <p>Não sei dizer se os Shulacks têm os olhos marejados porque estão tristes ou porque finalmente percebem como são estúpidos!</p>
+          <p> </p>
+          <p>Então? Daeva? Sucesso?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Sim, eu estraguei aquela coisa estúpida do Chocolate."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Akakak!</p>
+          <p> </p>
+          <p>A estúpida Torre de Chocolate me enche de amargor de chocolate!</p>
+          <p> </p>
+          <p>Shulacks tão estúpidos, vão construí-lo novamente. Mas vamos detê-los novamente! Sim! Akakak!</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Elimine [%dic:STR_DIC_M_ValentineEvent_Shulack_Couple] e leve o chocolate para [%dic:STR_DIC_E_single_shugo].</font></p>[%collectitem]</step>
+               <step><p visible="[%3]"><font color="[%4]">Explodir o [%dic:STR_DIC_N_event_Light_Chocolate] com a bomba de chocolate.</font></p></step>
+               <step><p visible="[%6]"><font color="[%7]">Fale com [%dic:STR_DIC_E_single_shugo].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Um Shugo solteiro despreocupado encurralou você e insistiu que você roubasse chocolates dos Shulacks bêbados de amor.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Um Shugo Solteiro Despreocupado encurralou você, furioso com os Shulacks bêbados de amor.</p>
+          <p> </p>
+          <p>Você roubou os chocolates deles para ele, mas isso não foi suficiente. Ele mandou você explodir a Torre de Chocolate com uma... Bomba de Chocolate.</p>
+          <p> </p>
+          <p>Você completou a missão parcialmente por solidariedade com seus amigos solteiros e parcialmente por curiosidade para saber se uma bomba de chocolate era realmente uma coisa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

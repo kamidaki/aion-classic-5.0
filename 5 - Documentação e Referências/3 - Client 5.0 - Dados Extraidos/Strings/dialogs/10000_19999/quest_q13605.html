@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], há uma tarefa para você!</p>
+          <p> </p>
+          <p>Você conhece o Idium?</p>
+          <p> </p>
+          <p>Idium é... bem... não é tão fácil de explicar. De qualquer forma, é um mineral que contém uma nova energia.</p>
+          <p> </p>
+          <p>Ainda não sabemos muito sobre esta energia, e é por isso que estamos reunindo Idium aqui no Subterrâneo.</p>
+          <p> </p>
+          <p>Mas [%dic:STR_DIC_M_LDF5_Under_TrDrZombID_all] continua aparecendo nos pontos de mineração de Idium e atrapalha o trabalho.</p>
+          <p> </p>
+          <p>Por favor, mate esses encrenqueiros e reporte para [%dic:STR_DIC_N_LDF5_Under_Kurius_E]!</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Mesmo na superfície, há muito interesse na situação no subsolo de Katalam.</p>
+          <p> </p>
+          <p>Quero dizer, a herança da Tribo Runa, Idium, etc. está toda aqui embaixo</p>
+          <p> </p>
+          <p>Agora parece ser o momento certo.</p>
+          <p> </p>
+          <p>O momento para escrever a história novamente no Katalam Underground.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Reunir Idium é muito importante. Você fez todos os esforços.</p>
+          <p> </p>
+          <p>O que isso significa para os zumbis, os ex-desertores de Tiamat? Afinal, eles já são zumbis.</p>
+          <p> </p>
+          <p>Eliminá-los foi uma coisa boa.</p>
+          <p> </p>
+          <p>Você não entrou em contato com os zumbis, não é?</p>
+          <p> </p>
+          <p>Eu estava dizendo isso... posso ver que você está em boa forma. Incrível.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Matar [%dic:STR_DIC_M_LDF5_Under_TrDrZombID_all]([%2]/6).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_LDF5_Under_Kurius_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Elimine os terríveis zumbis que estão atrapalhando a coleta de Idium.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Hadius pediu para você eliminar a terrível multidão de zumbis que estava atrapalhando a mineração de Idium.</p>
+          <p> </p>
+          <p>Seguindo o pedido de Hadius, você eliminou os terríveis lutadores zumbis e feiticeiros zumbis e reportou a Otur. Ele o elogiou muito e ficou satisfeito em vê-lo ileso.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

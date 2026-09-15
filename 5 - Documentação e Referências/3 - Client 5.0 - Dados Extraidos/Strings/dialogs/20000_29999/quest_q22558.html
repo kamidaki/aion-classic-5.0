@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É sempre divertido esfregar.</p>
+          <p> </p>
+          <p>Assim sinto que as ruínas me pertencem.</p>
+          <p> </p>
+          <p>[%username], você quer experimentar também?</p>
+          <p> </p>
+          <p>Vá para [%dic:STR_DIC_E_LDF5a_FOBJ_RunePiece_1] e [%dic:STR_DIC_E_LDF5a_FOBJ_RunePiece_2], faça cópias e traga para mim. Isso me ajudaria muito.</p>
+          <p> </p>
+          <p>Essas poderosas muralhas construídas pela Tribo Rúnica contam muitas histórias.</p>
+          <p> </p>
+          <p>E o prazer de pesquisar a Tribo Rúnica anda de mãos dadas com a confecção de esfregações.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Espero que esta cópia contenha algo sobre a Tribo Rúnica que governou Katalam.</p>
+          <p> </p>
+          <p>Qual diabos foi o motivo da queda da Runa?</p>
+          <p> </p>
+          <p>Poderia ter algo a ver com o fato de que o Rune usou Nevilim para construir as Muralhas. Traremos a verdade à luz, agora que temos esta cópia.</p>
+          <p> </p>
+          <p>Você trouxe a cópia de perto das Muralhas?</p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o rastreamento.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Muito obrigado.</p>
+          <p> </p>
+          <p>O estado da cópia rastreada é excelente.</p>
+          <p> </p>
+          <p>Tentarei ver se consigo dizer se a Tribo Rúnica construiu a Tribo Rúnica com Nevilim.</p>
+          <p> </p>
+          <p>Ele conterá muito.</p>
+          <p> </p>
+          <p>A pesquisa levará algum tempo, mas valerá a pena.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Obtenha [%dic:STR_DIC_I_quest_22558a] em[%dic:STR_DIC_E_LDF5a_FOBJ_RunePiece_1], [%dic:STR_DIC_I_quest_22558b] em [%dic:STR_DIC_E_LDF5a_FOBJ_RunePiece_2] e traga tudo para [%dic:STR_DIC_N_LDF5a_Notis_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Faça uma cópia apagada nas Muralhas e leve para Notis.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo Notis, muitas histórias da Tribo Rune podem ser encontradas nas Muralhas, e fazer um rastreamento nas Muralhas onde isso foi possível. Você deu ao Notis dois traçados, um distinto e outro relativamente claro. Notis agradeceu e disse que os usaria para pesquisar a Tribo Rúnica e Nevilim.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

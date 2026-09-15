@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Segundo Skuldun, o 4º Representante de Marchutan, eles estavam esperando por um Daeva como você, [%username], que conquistaria o Salão do Conhecimento em Sillus, o Laboratório de Pesquisa Idgel em Prades e a Sala Void em Bassen.</p>
+          <p> </p>
+		  <p>[%dic:STR_DIC_N_LDF5a_OP_D_Skuldun_E] tem muita consideração por seus atos e deseja recompensá-lo pessoalmente por seus esforços. Por favor, vá até ele.</p>
+          <p> </p>
+          <p>Agora é um momento importante, pois os Elyos traíram a Aliança e os seguidores de Beritra estão activos.</p>
+          <p> </p>
+          <p>Em tal situação, o trabalho de descobrir os segredos da antiga Tribo Rúnica escondidos nas fortalezas Katalam, bem como de descobrir todas as intrigas de Balaur, é verdadeiramente louvável.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>[%username], estava esperando por você.</p>
+          <p> </p>
+          <p>Meu gêmeo no meu ombro já ouviu falar de você.</p>
+          <p> </p>
+          <p>Aparentemente você executou com sucesso a difícil ordem das masmorras escondidas em todas as fortalezas.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você relata o resultado dos ataques até agora.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Gostaria de lhe agradecer do fundo do coração por completar esta importante tarefa em circunstâncias tão difíceis aqui em Katalam.</p>
+          <p> </p>
+          <p>É bom saber que Daevas tão honrados como você estão lutando ao lado do Pandemônio.</p>
+          <p> </p>
+          <p>[%username], você é um verdadeiro herói para Pandemônio.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Fale com [%dic:STR_DIC_N_LDF5a_OP_D_Skuldun_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Visite o 4º Dique Representativo e receba uma recompensa.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você recebeu uma recompensa do agente de Marchutan pela ocupação bem-sucedida do Hall of Knowledge, do Idgel Research Laboratory e da Void Room.</p>
+          <p> </p>
+          <p>O representante elogiou você pelo seu desempenho verdadeiramente heróico.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

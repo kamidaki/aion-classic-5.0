@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <QuestInfo>
+    <QuestId>Q41272</QuestId>
+    <QuestName>킬루스 사냥</QuestName>
+    <QuestType>undefined</QuestType>
+  </QuestInfo>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você sabia que os Violetip Neokins começam como feras normais da floresta? Eles são distorcidos pela energia Drana de Balaur.</p>
+          <p> </p>
+          <p>Alguns anciãos dizem que Tiamat transplantou deliberadamente esses animais para [%dic:STR_DIC_W_LDF4a_SZ_C2] para criar guardiões cruéis.</p>
+          <p> </p>
+          <p>Não podemos permitir que tais ultrajes permaneçam, eu digo. Matar os [%dic:STR_DIC_M_LDF4A_C2_Kuillus_DR_57_An]s seria uma misericórdia, para eles e para nós.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Aceitar.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Declínio.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select2">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Se há uma coisa que os Drakan fizeram que é absolutamente imperdoável, foi distorcer a natureza.</p>
+          <p> </p>
+          <p>Eles foram criados para defender e nutrir toda a criação de Aion, incluindo a natureza. Para eles perverterem isso tão...</p>
+          <p> </p>
+          <p>Espero que esses [%dic:STR_DIC_M_LDF4A_C2_Kuillus_DR_57_An]s estejam agora em paz.</p>
+          <p> </p>
+          <p></p>
+          <p> </p>
+          <p></p>
+         </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">"Mesmo que eles não estejam, nós estamos."</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Eu esperava que você levasse isso a sério, [%userrace]. Estou feliz que você fez isso.</p>
+          <p> </p>
+          <p>Pena que não há como fazer com que os Neokins voltem a ser os animais que já foram. Talvez eu devesse tentar encontrar um.</p>
+          <p> </p>
+          <p>Tenho certeza de que se Aion pudesse aparecer diante de nós agora, você receberia o agradecimento que merece. Só posso esperar que o meu seja bom o suficiente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+             
+               <step><p visible="[%0]"><font color="[%1]">Terminar [%dic:STR_DIC_M_LDF4A_C2_Kuillus_DR_57_An]s em [%dic:STR_DIC_W_LDF4a_SZ_C2] ([%2]/11).</font></p></step>
+               <step><p visible="[%15]"><font color="[%16]">Fale com [%dic:STR_DIC_N_Dohios].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Mate Violetip Neokins em nome de Dohios, que respeita profundamente a natureza.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Dohios lhe contou que os Violetip Neokins começam a vida como animais normais, mas sofrem mutação por Drana graças aos Balaur.</p>
+          <p> </p>
+          <p>Ele ficou enojado com essa intromissão na ordem natural e pediu que você matasse Neokins para ele vingar as ações de Tiamat.</p>
+          <p> </p>
+          <p>Você fez isso, principalmente para tornar as coisas mais fáceis para Daevas, e não para a natureza.</p>
+          <p> </p>
+          <p> </p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

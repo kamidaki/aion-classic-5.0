@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="select1" accept="true">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Pedaços de detritos estão flutuando na Bacia de Basen. Eles são uma bomba-relógio.</p>
+          <p> </p>
+          <p>Diz-se que são fragmentos de Idgel que estão abandonados em uma condição muito instável por razões desconhecidas.</p>
+          <p> </p>
+          <p>Kaisinel também está preocupado porque esses Idgel muito poderosos foram deixados lá assim.</p>
+          <p> </p>
+          <p>Você poderia coletar [%dic:STR_DIC_N_LDF5b_FOBJ_D1_UnstableIdgel], que está abandonado em [%dic:STR_DIC_W_LDF5b_SZ_D1]?</p>
+          <p> </p>
+          <p>Se você coletar os fragmentos instáveis de Idgel, eu mesmo posso purificá-los. Por favor, faça isso por mim.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_QUEST_ACCEPT_SIMPLE">Você aceita.</Act>
+      <Act href="HACTION_QUEST_REFUSE_SIMPLE">Você recusa.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Os pesquisadores acham que Idgel está fazendo com que coisas flutuem no Vale Bassen.</p>
+          <p> </p>
+          <p>Se você olhar o vale mais de perto, é fácil perceber que algo explodiu ali no passado.</p>
+          <p> </p>
+          <p>É difícil dizer se a mesma coisa aconteceu novamente. Portanto, você precisa trazer [%dic:STR_DIC_N_LDF5b_FOBJ_D1_UnstableIdgel] de volta rapidamente e purificá-lo.</p>
+          <p> </p>
+          <p>Seu trabalho está progredindo bem?</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_CHECK_USER_HAS_QUEST_ITEM_SIMPLE">Você entrega o cofre Idgel.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Bom trabalho.</p>
+          <p> </p>
+          <p>Agora que o problemático Idgel foi recuperado, ele só precisa ser limpo. Eu farei isso, você não precisa se preocupar por enquanto.</p>
+          <p> </p>
+          <p>Foi uma tarefa difícil, mas você a executou bem. Você é um verdadeiro Daeva.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Busque [%dic:STR_DIC_I_QUEST_13031A] e passe para [%dic:STR_DIC_N_LDF5b_Nesimo_E].</font></p>[%collectitem]</step>
+    </steps>
+          <p><font font_xml="quest_summary">Pegue o Idgel incompleto deixado para trás na Bacia Bassen.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>O Sumo Sacerdote Nessimo pediu que você trouxesse Idgel da Bacia de Bassen para purificá-lo.</p>
+          <p> </p>
+          <p>Nessimo está preocupado com possíveis acidentes devido ao instável Idgel. Então ele ficou encantado e disse que estava aliviado por sua causa.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão:[%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Em andamento: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+

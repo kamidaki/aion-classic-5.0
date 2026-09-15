@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HtmlPages>
+
+  <HtmlPage name="ask_quest_accept">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Parece ser sobre uma relíquia rúnica da tumba.)</p>
+          <p> </p>
+          <p>(As pistas apontam para que seja antigo e ainda assim esteja rodeado por uma luz fraca.)</p>
+          <p> </p>
+          <p>(Há um traço de magia antiga nesta luz.)</p>
+          <p> </p>
+          <p>(Há algo escrito na linguagem Runa, mas suponho que tenha algo a ver com o Idgel.)</p>
+          <p> </p>
+          <p>(É melhor levar para [%dic:STR_DIC_N_LDF5_Under_Nibella_E].)</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_FINISH_DIALOG">Fim da investigação.</Act>
+    </Selects>
+  </HtmlPage>
+  
+  <HtmlPage name="select5">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>É claro que a Tribo Rune conseguiu muitas coisas com sua pesquisa Idgel.</p>
+          <p> </p>
+          <p>Caso contrário, eles não teriam sido capazes de registrar o método de utilização do Idgel.</p>
+          <p> </p>
+          <p>Devemos encontrar esse método e colocá-lo em nosso poder.</p>
+          <p> </p>
+          <p>Todos os meus pensamentos estão concentrados nisso agora.</p>
+        </body>
+        </html>
+    </Contents>
+    <Selects>
+      <Act href="HACTION_SELECT_QUEST_REWARD">Você entrega o documento do Sumo Sacerdote Rúnico.</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_quest_reward1">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>(Após inspeção cuidadosa) Inacreditável. Este documento é exatamente a relíquia que procuramos há tanto tempo.</p>
+          <p> </p>
+          <p>Tenho ainda mais certeza porque estava em posse do Oficial de Estado-Maior Suyaroka.</p>
+          <p> </p>
+          <p>Saberemos exatamente o que diz após uma análise minuciosa, mas deve ter algo a ver com o Idgel.</p>
+          <p> </p>
+          <p>As seções divididas em letras pequenas mostram que provavelmente se trata do método de uso do Idgel.</p>
+          <p> </p>
+          <p>Muito obrigado por me trazer algo tão valioso. Enviarei ao Brif um relatório separado.</p>
+          <p> </p>
+          <p>Vou começar a análise imediatamente.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+   <HtmlPage name="quest_summary">
+    <Contents cdata="true">
+        <html>
+        <body>
+    <steps>
+               <step><p visible="[%0]"><font color="[%1]">Leve [%dic:STR_DIC_I_quest_26982a] para [%dic:STR_DIC_N_LDF5_Under_Nibella_E].</font></p></step>
+    </steps>
+          <p><font font_xml="quest_summary">Você entrega o documento ao Sumo Sacerdote Rúnico Nivella.</font></p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="quest_complete">
+    <Contents cdata="true">
+        <html>
+        <body>
+          <p>Você matou o Oficial de Estado-Maior Suyaroka e levou o documento do Sumo Sacerdote Rúnico que você obteve para Nivella.</p>
+          <p> </p>
+          <p>Liponia agradeceu pela relíquia que ela procurava há tanto tempo e disse que nela havia algo escrito sobre o Idgel.</p>
+        </body>
+        </html>
+    </Contents>
+  </HtmlPage>
+
+  <HtmlPage name="select_acqusitive_quest_desc">
+    <Selects>
+      <Act>Nova missão: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+  <HtmlPage name="select_progressive_quest_desc">
+    <Selects>
+      <Act>Ativo: [%questname]</Act>
+    </Selects>
+  </HtmlPage>
+
+</HtmlPages>
+
