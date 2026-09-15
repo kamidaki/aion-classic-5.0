@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="220040000">
-		<!-- Rift -->
+		<!-- Fenda -->
 		<spawn npc_id="700137" handler="RIFT">
 			<spot x="233.323" y="150.91" z="240.881" anchor="BELUSLAN_AM"/>		<!-- id 2240 -->
 			<spot x="1301.48" y="634.125" z="247" anchor="BELUSLAN_BM"/>		<!-- id 2241 -->

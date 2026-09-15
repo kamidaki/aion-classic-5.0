@@ -46,7 +46,7 @@
 				<!-- Belsal Recon Cutthroat -->
 			</occupier_template>
 			<occupier_template occupier="ASPIDA">
-				<!-- Belani Base -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802677" handler="FLAG">
 					<spot x="187.29445" y="200.62192" z="1490.0648" h="5" />
 				</spawn>
@@ -79,7 +79,7 @@
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="ATANATOS">
-				<!-- Belani Base -->
+				<!-- Atirador -->
 				<spawn npc_id="802682" handler="FLAG">
 					<spot x="187.29445" y="200.62192" z="1490.0648" h="5" />
 				</spawn>
@@ -112,7 +112,7 @@
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="DISILLON">
-				<!-- Belani Base -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802687" handler="FLAG">
 					<spot x="187.29445" y="200.62192" z="1490.0648" h="5" />
 				</spawn>
@@ -145,7 +145,7 @@
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Belani Base -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802692" handler="FLAG">
 					<spot x="187.29445" y="200.62192" z="1490.0648" h="5" />
 				</spawn>
@@ -165,13 +165,13 @@
 		<!-- Belfarth Fort -->
 		<base_spawn id="4202">
 			<occupier_template occupier="PEACE">
-				<!-- Belfarth Base -->
+				<!-- <Tetal> -->
 				<spawn npc_id="802715" handler="FLAG">
 					<spot x="202.76358" y="1861.6301" z="1511.9462" h="5" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BELUS">
-				<!-- Belfarth Base -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802694" handler="FLAG">
 					<spot x="202.76358" y="1861.6301" z="1490.086" h="5" />
 				</spawn>
@@ -206,7 +206,7 @@
 				<!-- Belfarth Cutthroat -->
 			</occupier_template>
 			<occupier_template occupier="ASPIDA">
-				<!-- Belfarth Base -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802699" handler="FLAG">
 					<spot x="202.76358" y="1861.6301" z="1490.086" h="5" />
 				</spawn>
@@ -246,7 +246,7 @@
 				<!-- Belfarth Recon War Subjugator -->
 				<!-- Belfarth Aegis -->
 				<!-- Teleporter -->
-				<!-- Belfarth Vanguard -->
+				<!-- Ailuris -->
 				<spawn npc_id="802482" respawn_time="180" handler="SENTINEL">
 					<spot x="210.25887" y="1863.6201" z="1490.217" h="90" />
 				</spawn>
@@ -278,7 +278,7 @@
 				<!-- Belfarth Recon War Subjugator -->
 				<!-- Belfarth Aegis -->
 				<!-- Teleporter -->
-				<!-- Belfarth Emissary -->
+				<!-- Agora -->
 				<spawn npc_id="802483" respawn_time="180" handler="SENTINEL">
 					<spot x="210.25887" y="1863.6201" z="1490.217" h="90" />
 				</spawn>
@@ -286,11 +286,11 @@
 				<spawn npc_id="804256" respawn_time="180" handler="MERCHANT">
 					<spot x="217.32347" y="1846.3193" z="1489.1941" h="50" />
 				</spawn>
-				<!-- Belfarth Crafting Materials Merchant -->
+				<!-- <Glorious Cerânio Medal Trader> -->
 				<spawn npc_id="804257" respawn_time="180" handler="MERCHANT">
 					<spot x="230.19624" y="1842.1769" z="1489.0238" h="50" />
 				</spawn>
-				<!-- Belfarth Warehouse Manager -->
+				<!-- Passagem secreta de Indiana Jonshunerk -->
 				<spawn npc_id="804259" respawn_time="180" handler="MERCHANT">
 					<spot x="186.78061" y="1829.8837" z="1489.5087" h="15" />
 				</spawn>
@@ -302,7 +302,7 @@
 				<!-- Belfarth Slayer -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Belfarth Base -->
+				<!-- Tempestade do caos -->
 				<spawn npc_id="802714" handler="FLAG">
 					<spot x="202.76358" y="1861.6301" z="1490.086" h="5" />
 				</spawn>
@@ -321,13 +321,13 @@
 		<!-- Beling Fort -->
 		<base_spawn id="4203">
 			<occupier_template occupier="PEACE">
-				<!-- Beling Base -->
+				<!-- Adereno -->
 				<spawn npc_id="802737" handler="FLAG">
 					<spot x="1865.5791" y="1842.6656" z="1511.9462" h="5" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BELUS">
-				<!-- Beling Base -->
+				<!-- <Território do Belus> -->
 				<spawn npc_id="802716" handler="FLAG">
 					<spot x="1865.5791" y="1842.6656" z="1490.0587" h="5" />
 				</spawn>
@@ -335,7 +335,7 @@
 				<!-- Beling Recon War Subjugator -->
 				<!-- Beling Aegis -->
 				<!-- Teleporter -->
-				<!-- Beling Security -->
+				<!-- Karunerk -->
 				<spawn npc_id="802484" respawn_time="180" handler="SENTINEL">
 					<spot x="1869.1464" y="1834.6943" z="1490.2268" h="65" />
 				</spawn>
@@ -363,7 +363,7 @@
 				<!-- Beling Recon Cutthroat -->
 			</occupier_template>
 			<occupier_template occupier="ASPIDA">
-				<!-- Beling Base -->
+				<!-- <Tetal> -->
 				<spawn npc_id="802721" handler="FLAG">
 					<spot x="1865.5791" y="1842.6656" z="1490.0587" h="5" />
 				</spawn>
@@ -371,7 +371,7 @@
 				<!-- Beling Recon War Subjugator -->
 				<!-- Beling Aegis -->
 				<!-- Teleporter -->
-				<!-- Beling Commander -->
+				<!-- Salodin -->
 				<spawn npc_id="802485" respawn_time="180" handler="SENTINEL">
 					<spot x="1869.1464" y="1834.6943" z="1490.2268" h="65" />
 				</spawn>
@@ -396,7 +396,7 @@
 				<!-- Beling Scout Slayer -->
 			</occupier_template>
 			<occupier_template occupier="ATANATOS">
-				<!-- Beling Base -->
+				<!-- Guardião do assentamento Rubininerk -->
 				<spawn npc_id="802726" handler="FLAG">
 					<spot x="1865.5791" y="1842.6656" z="1490.0587" h="5" />
 				</spawn>
@@ -404,7 +404,7 @@
 				<!-- Beling Recon War Subjugator -->
 				<!-- Beling Aegis -->
 				<!-- Teleporter -->
-				<!-- Beling Vanguard -->
+				<!-- Ailami -->
 				<spawn npc_id="802486" respawn_time="180" handler="SENTINEL">
 					<spot x="1869.1464" y="1834.6943" z="1490.2268" h="65" />
 				</spawn>
@@ -437,7 +437,7 @@
 				<!-- Beling Recon War Subjugator -->
 				<!-- Beling Aegis -->
 				<!-- Teleporter -->
-				<!-- Beling Emissary -->
+				<!-- Halmgatt -->
 				<spawn npc_id="802487" respawn_time="180" handler="SENTINEL">
 					<spot x="1869.1464" y="1834.6943" z="1490.2268" h="65" />
 				</spawn>
@@ -449,7 +449,7 @@
 				<spawn npc_id="804262" respawn_time="180" handler="MERCHANT">
 					<spot x="1838.799" y="1820.1323" z="1489.0945" h="25" />
 				</spawn>
-				<!-- Beling Warehouse Manager -->
+				<!-- Passagem secreta de Indiana Jonshunerk -->
 				<spawn npc_id="804263" respawn_time="180" handler="MERCHANT">
 					<spot x="1834.7109" y="1856.0095" z="1489.4929" h="110" />
 				</spawn>
@@ -462,7 +462,7 @@
 				<!-- Beling Scout Slayer -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Beling Base -->
+				<!-- Pescoço cheio -->
 				<spawn npc_id="802736" handler="FLAG">
 					<spot x="1865.5791" y="1842.6656" z="1490.0587" h="5" />
 				</spawn>
@@ -482,13 +482,13 @@
 		<!-- Belsal Fort -->
 		<base_spawn id="4204">
 			<occupier_template occupier="PEACE">
-				<!-- Belsal Base -->
+				<!-- Vinho -->
 				<spawn npc_id="802759" handler="FLAG">
 					<spot x="1847.9998" y="181.83011" z="1511.9462" h="5" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BELUS">
-				<!-- Belsal Base -->
+				<!-- Patrulha do Guardião -->
 				<spawn npc_id="802738" handler="FLAG">
 					<spot x="1847.9998" y="181.83011" z="1490.252" h="5" />
 				</spawn>
@@ -496,7 +496,7 @@
 				<!-- Belsal Recon War Subjugator -->
 				<!-- Belsal Aegis -->
 				<!-- Teleporter -->
-				<!-- Belsal Security -->
+				<!-- Manuan -->
 				<spawn npc_id="802488" respawn_time="180" handler="SENTINEL">
 					<spot x="1841.9337" y="179.30136" z="1490.231" h="35" />
 				</spawn>
@@ -524,7 +524,7 @@
 				<!-- Belsal Recon Cutthroat -->
 			</occupier_template>
 			<occupier_template occupier="ASPIDA">
-				<!-- Belsal Base -->
+				<!-- Arconte -patrulha -->
 				<spawn npc_id="802743" handler="FLAG">
 					<spot x="1847.9998" y="181.83011" z="1490.252" h="5" />
 				</spawn>
@@ -532,7 +532,7 @@
 				<!-- Belsal Recon War Subjugator -->
 				<!-- Belsal Aegis -->
 				<!-- Teleporter -->
-				<!-- Belsal Commander -->
+				<!-- Gilbas -->
 				<spawn npc_id="802489" respawn_time="180" handler="SENTINEL">
 					<spot x="1841.9337" y="179.30136" z="1490.231" h="35" />
 				</spawn>
@@ -590,7 +590,7 @@
 				<!-- Belsal Scout Slayer -->
 			</occupier_template>
 			<occupier_template occupier="DISILLON">
-				<!-- Belsal Base -->
+				<!-- <Kaldor Patrol> -->
 				<spawn npc_id="802753" handler="FLAG">
 					<spot x="1847.9998" y="181.83011" z="1490.252" h="5" />
 				</spawn>
@@ -598,11 +598,11 @@
 				<!-- Belsal Recon War Subjugator -->
 				<!-- Belsal Aegis -->
 				<!-- Teleporter -->
-				<!-- Belsal Emissary -->
+				<!-- Beira -->
 				<spawn npc_id="802491" respawn_time="180" handler="SENTINEL">
 					<spot x="1841.9337" y="179.30136" z="1490.231" h="35" />
 				</spawn>
-				<!-- Belsal General Goods Merchant -->
+				<!-- Confuso Indiana Jonshunerk -->
 				<spawn npc_id="804264" respawn_time="180" handler="MERCHANT">
 					<spot x="1835.0762" y="195.08134" z="1489.2267" h="110" />
 				</spawn>
@@ -623,7 +623,7 @@
 				<!-- Belsal Scout Slayer -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Belsal Base -->
+				<!-- Gerd -->
 				<spawn npc_id="802758" handler="FLAG">
 					<spot x="1847.9998" y="181.83011" z="1490.252" h="5" />
 				</spawn>
@@ -642,14 +642,14 @@
 		<!-- Ivy Temple -->
 		<base_spawn id="4211">
 			<occupier_template occupier="PEACE">
-				<!-- Ivy Temple -->
+				<!-- <Tropa da Expedição do 4º Belus Refuge> -->
 				<spawn npc_id="802957" handler="FLAG">
 					<spot x="571.7128" y="572.41235" z="1550.3589" />
 				</spawn>
 				<!-- Ivy Temple Gate -->
 				<!-- Ivy Temple Gate -->
 				<!-- Advance Corridor -->
-				<!-- Belus Escort -->
+				<!-- Goldrinyerk Overer -->
 				<spawn npc_id="802544" handler="MERCHANT">
 					<spot x="590.4048" y="601.127" z="1484.4587" h="75" />
 				</spawn>
@@ -667,7 +667,7 @@
 				<!-- Ivy Temple Gate -->
 				<!-- Ivy Temple Gate -->
 				<!-- Advance Corridor -->
-				<!-- Belus Escort -->
+				<!-- Goldrinyerk Overer -->
 				<spawn npc_id="802544" handler="MERCHANT">
 					<spot x="590.4048" y="601.127" z="1484.4587" h="75" />
 				</spawn>
@@ -692,7 +692,7 @@
 				<!-- Temple Deadeye -->
 			</occupier_template>
 			<occupier_template occupier="HIGHLAND_TEMPLE">
-				<!-- Highland Temple -->
+				<!-- <Tropa da Expedição do 2º Refúgio Aspida> -->
 				<spawn npc_id="802960" handler="FLAG">
 					<spot x="571.8113" y="1476.5089" z="1545.3778" />
 				</spawn>
@@ -778,7 +778,7 @@
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BELUS">
-				<!-- Mirage Dance -->
+				<!-- <Distribuidor de itens de oficiais de elite>> -->
 				<spawn npc_id="802760" handler="FLAG">
 					<spot x="720.18115" y="900.0184" z="1534.3507" h="5" />
 				</spawn>
@@ -790,7 +790,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="IVY_TEMPLE">
-				<!-- Mirage Dance -->
+				<!-- <O distribuidor do governador> -->
 				<spawn npc_id="802761" handler="FLAG">
 					<spot x="720.18115" y="900.0184" z="1534.3507" h="5" />
 				</spawn>
@@ -802,7 +802,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="HIGHLAND_TEMPLE">
-				<!-- Mirage Dance -->
+				<!-- <Mestre de Bênçãos> -->
 				<spawn npc_id="802762" handler="FLAG">
 					<spot x="720.18115" y="900.0184" z="1534.3507" h="5" />
 				</spawn>
@@ -814,7 +814,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="ALPINE_TEMPLE">
-				<!-- Mirage Dance -->
+				<!-- <Distribuidor de Bênçãos da Armadura Abismo> -->
 				<spawn npc_id="802763" handler="FLAG">
 					<spot x="720.18115" y="900.0184" z="1534.3507" h="5" />
 				</spawn>
@@ -826,7 +826,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="GRANDWEIR_TEMPLE">
-				<!-- Mirage Dance -->
+				<!-- Alavanca de portão -->
 				<spawn npc_id="802764" handler="FLAG">
 					<spot x="720.18115" y="900.0184" z="1534.3507" h="5" />
 				</spawn>
@@ -852,7 +852,7 @@
 		<!-- Chaos Wind NW -->
 		<base_spawn id="4222">
 			<occupier_template occupier="PEACE">
-				<!-- Chaos Wind -->
+				<!-- <Beritra Exército Escoteiro> -->
 				<spawn npc_id="802803" handler="FLAG">
 					<spot x="626.42804" y="811.01306" z="1494.4083" h="5" />
 				</spawn>
@@ -894,7 +894,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="ALPINE_TEMPLE">
-				<!-- Chaos Wind -->
+				<!-- <Tropa de ocupação da fortaleza de ferro> -->
 				<spawn npc_id="802785" handler="FLAG">
 					<spot x="626.42804" y="811.01306" z="1494.4083" h="5" />
 				</spawn>
@@ -906,7 +906,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="GRANDWEIR_TEMPLE">
-				<!-- Chaos Wind -->
+				<!-- <Tropa de ocupação da fortaleza de ferro> -->
 				<spawn npc_id="802786" handler="FLAG">
 					<spot x="626.42804" y="811.01306" z="1494.4083" h="5" />
 				</spawn>
@@ -918,7 +918,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Chaos Wind -->
+				<!-- <Deylon Faction Escoteiro> -->
 				<spawn npc_id="802802" handler="FLAG">
 					<spot x="626.42804" y="811.01306" z="1494.4083" h="5" />
 				</spawn>
@@ -932,13 +932,13 @@
 		<!-- Mirage Dance NE -->
 		<base_spawn id="4223">
 			<occupier_template occupier="PEACE">
-				<!-- Mirage Dance -->
+				<!-- <Para o templo de honra> -->
 				<spawn npc_id="802825" handler="FLAG">
 					<spot x="899.94653" y="1327.8076" z="1534.3492" h="5" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BELUS">
-				<!-- Mirage Dance -->
+				<!-- <Beritra Exército Vanguard> -->
 				<spawn npc_id="802804" handler="FLAG">
 					<spot x="899.94653" y="1327.8076" z="1534.3492" h="5" />
 				</spawn>
@@ -950,7 +950,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="IVY_TEMPLE">
-				<!-- Mirage Dance -->
+				<!-- <Tropa de Ocupação do Exército de Beritra> -->
 				<spawn npc_id="802805" handler="FLAG">
 					<spot x="899.94653" y="1327.8076" z="1534.3492" h="5" />
 				</spawn>
@@ -962,7 +962,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="HIGHLAND_TEMPLE">
-				<!-- Mirage Dance -->
+				<!-- <Para base> -->
 				<spawn npc_id="802806" handler="FLAG">
 					<spot x="899.94653" y="1327.8076" z="1534.3492" h="5" />
 				</spawn>
@@ -974,7 +974,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="ALPINE_TEMPLE">
-				<!-- Mirage Dance -->
+				<!-- <Para a fortaleza Anoha> -->
 				<spawn npc_id="802807" handler="FLAG">
 					<spot x="899.94653" y="1327.8076" z="1534.3492" h="5" />
 				</spawn>
@@ -986,7 +986,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="GRANDWEIR_TEMPLE">
-				<!-- Mirage Dance -->
+				<!-- Silona -->
 				<spawn npc_id="802808" handler="FLAG">
 					<spot x="899.94653" y="1327.8076" z="1534.3492" h="5" />
 				</spawn>
@@ -1012,13 +1012,13 @@
 		<!-- Chaos Wind NE -->
 		<base_spawn id="4224">
 			<occupier_template occupier="PEACE">
-				<!-- Chaos Wind -->
+				<!-- <Para o 3º Refúgio Aspida> -->
 				<spawn npc_id="802847" handler="FLAG">
 					<spot x="810.86053" y="1421.7698" z="1494.4103" h="5" />
 				</spawn>
 			</occupier_template>
 			<occupier_template occupier="BELUS">
-				<!-- Chaos Wind -->
+				<!-- <Para santum> -->
 				<spawn npc_id="802826" handler="FLAG">
 					<spot x="810.86053" y="1421.7698" z="1494.4103" h="5" />
 				</spawn>
@@ -1030,7 +1030,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="IVY_TEMPLE">
-				<!-- Chaos Wind -->
+				<!-- <Para pandaemonium> -->
 				<spawn npc_id="802827" handler="FLAG">
 					<spot x="810.86053" y="1421.7698" z="1494.4103" h="5" />
 				</spawn>
@@ -1042,7 +1042,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="HIGHLAND_TEMPLE">
-				<!-- Chaos Wind -->
+				<!-- <Para a fortaleza capturada> -->
 				<spawn npc_id="802828" handler="FLAG">
 					<spot x="810.86053" y="1421.7698" z="1494.4103" h="5" />
 				</spawn>
@@ -1054,7 +1054,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="ALPINE_TEMPLE">
-				<!-- Chaos Wind -->
+				<!-- <Para a fortaleza capturada> -->
 				<spawn npc_id="802829" handler="FLAG">
 					<spot x="810.86053" y="1421.7698" z="1494.4103" h="5" />
 				</spawn>
@@ -1066,7 +1066,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="GRANDWEIR_TEMPLE">
-				<!-- Chaos Wind -->
+				<!-- <Para a fortaleza capturada> -->
 				<spawn npc_id="802830" handler="FLAG">
 					<spot x="810.86053" y="1421.7698" z="1494.4103" h="5" />
 				</spawn>
@@ -1078,7 +1078,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Chaos Wind -->
+				<!-- <Para o 3º Refúgio Aspida> -->
 				<spawn npc_id="802846" handler="FLAG">
 					<spot x="810.86053" y="1421.7698" z="1494.4103" h="5" />
 				</spawn>
@@ -1318,7 +1318,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Mirage Dance -->
+				<!-- Atirador -->
 				<spawn npc_id="802912" handler="FLAG">
 					<spot x="1147.7898" y="720.5032" z="1534.349" h="5" />
 				</spawn>
@@ -1374,7 +1374,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="ALPINE_TEMPLE">
-				<!-- Chaos Wind -->
+				<!-- <Para base> -->
 				<spawn npc_id="802917" handler="FLAG">
 					<spot x="1236.9615" y="626.565" z="1494.4088" h="5" />
 				</spawn>
@@ -1386,7 +1386,7 @@
 				<!-- Artifact Master Physician -->
 			</occupier_template>
 			<occupier_template occupier="GRANDWEIR_TEMPLE">
-				<!-- Chaos Wind -->
+				<!-- <Para base> -->
 				<spawn npc_id="802918" handler="FLAG">
 					<spot x="1236.9615" y="626.565" z="1494.4088" h="5" />
 				</spawn>

@@ -32,7 +32,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Patuan -->
 				<spawn npc_id="701519" respawn_time="1800">
 					<spot x="618.2563" y="2260.4648" z="163.79773" h="14" static_id="5029" />
 					<spot x="710.32855" y="2112.371" z="162.80807" h="14" static_id="5031" />
@@ -54,7 +54,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Patuan -->
 				<spawn npc_id="701519" respawn_time="1800">
 					<spot x="618.2563" y="2260.4648" z="163.79773" h="14" static_id="5029" />
 					<spot x="710.32855" y="2112.371" z="162.80807" h="14" static_id="5031" />
@@ -103,7 +103,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Patuan -->
 				<spawn npc_id="701519" respawn_time="1800">
 					<spot x="169.81021" y="2114.9495" z="125.61671" h="14" static_id="5498" />
 					<spot x="290.54037" y="2156.1538" z="128.61852" h="14" static_id="5496" />
@@ -125,7 +125,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Patuan -->
 				<spawn npc_id="701519" respawn_time="1800">
 					<spot x="169.81021" y="2114.9495" z="125.61671" h="14" static_id="5498" />
 					<spot x="290.54037" y="2156.1538" z="128.61852" h="14" static_id="5496" />
@@ -174,7 +174,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Patuan -->
 				<spawn npc_id="701519" respawn_time="1800">
 					<spot x="225.1162" y="2649.6946" z="266.35355" h="14" static_id="5099" />
 					<spot x="242.25499" y="2513.4758" z="268.38785" h="14" static_id="5078" />
@@ -196,7 +196,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Patuan -->
 				<spawn npc_id="701519" respawn_time="1800">
 					<spot x="225.1162" y="2649.6946" z="266.35355" h="14" static_id="5099" />
 					<spot x="242.25499" y="2513.4758" z="268.38785" h="14" static_id="5078" />
@@ -245,7 +245,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Patuan -->
 				<spawn npc_id="701519" respawn_time="1800">
 					<spot x="912.6702" y="2722.4697" z="100.47089" h="14" static_id="5036" />
 					<spot x="959.0986" y="2435.958" z="112.97173" h="14" static_id="5034" />
@@ -267,7 +267,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Patuan -->
 				<spawn npc_id="701519" respawn_time="1800">
 					<spot x="912.6702" y="2722.4697" z="100.47089" h="14" static_id="5036" />
 					<spot x="959.0986" y="2435.958" z="112.97173" h="14" static_id="5034" />
@@ -316,7 +316,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="642.6651" y="997.8584" z="93.84589" h="14" static_id="5566" />
 					<spot x="747.3767" y="1195.5885" z="99.49001" h="14" static_id="5562" />
@@ -338,7 +338,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="642.6651" y="997.8584" z="93.84589" h="14" static_id="5566" />
 					<spot x="747.3767" y="1195.5885" z="99.49001" h="14" static_id="5562" />
@@ -387,7 +387,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="660.2926" y="1462.891" z="104.2573" h="14" static_id="5504" />
 					<spot x="728.20245" y="1624.0222" z="102.7466" h="14" static_id="5506" />
@@ -409,7 +409,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="660.2926" y="1462.891" z="104.2573" h="14" static_id="5504" />
 					<spot x="728.20245" y="1624.0222" z="102.7466" h="14" static_id="5506" />
@@ -458,7 +458,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="245.54495" y="1500.9119" z="92.5945" h="14" static_id="5500" />
 					<spot x="334.70837" y="1524.708" z="92.08386" h="14" static_id="5502" />
@@ -480,7 +480,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="245.54495" y="1500.9119" z="92.5945" h="14" static_id="5500" />
 					<spot x="334.70837" y="1524.708" z="92.08386" h="14" static_id="5502" />
@@ -529,7 +529,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="187.9053" y="307.02676" z="134.3633" h="14" static_id="5578" />
 					<spot x="226.42308" y="469.32343" z="128.9636" h="14" static_id="5580" />
@@ -551,7 +551,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="187.9053" y="307.02676" z="134.3633" h="14" static_id="5578" />
 					<spot x="226.42308" y="469.32343" z="128.9636" h="14" static_id="5580" />
@@ -600,7 +600,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="401.89246" y="764.2675" z="86.32527" h="14" static_id="5570" />
 					<spot x="452.36133" y="628.3803" z="86.8287" h="14" static_id="5574" />
@@ -622,7 +622,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="401.89246" y="764.2675" z="86.32527" h="14" static_id="5570" />
 					<spot x="452.36133" y="628.3803" z="86.8287" h="14" static_id="5574" />
@@ -671,7 +671,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="624.13776" y="276.6281" z="120.57031" h="14" static_id="5582" />
 					<spot x="652.6091" y="184.95886" z="129.48633" h="14" static_id="5584" />
@@ -693,7 +693,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="624.13776" y="276.6281" z="120.57031" h="14" static_id="5582" />
 					<spot x="652.6091" y="184.95886" z="129.48633" h="14" static_id="5584" />
@@ -742,7 +742,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="1189.8635" y="1140.0736" z="103.27678" h="14" static_id="5645" />
 					<spot x="1291.0813" y="1123.2524" z="103.07919" h="14" static_id="5643" />
@@ -764,7 +764,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="1189.8635" y="1140.0736" z="103.27678" h="14" static_id="5645" />
 					<spot x="1291.0813" y="1123.2524" z="103.07919" h="14" static_id="5643" />
@@ -813,7 +813,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="967.8214" y="909.11456" z="80.815895" h="14" static_id="5641" />
 					<spot x="1008.6869" y="726.9521" z="80.52702" h="14" static_id="5639" />
@@ -835,7 +835,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="967.8214" y="909.11456" z="80.815895" h="14" static_id="5641" />
 					<spot x="1008.6869" y="726.9521" z="80.52702" h="14" static_id="5639" />
@@ -884,7 +884,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="1133.9877" y="507.38623" z="97.74826" h="14" static_id="5607" />
 					<spot x="1159.9171" y="590.37146" z="111.46603" h="14" static_id="5614" />
@@ -906,7 +906,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kirke -->
 				<spawn npc_id="701520" respawn_time="1800">
 					<spot x="1133.9877" y="507.38623" z="97.74826" h="14" static_id="5607" />
 					<spot x="1159.9171" y="590.37146" z="111.46603" h="14" static_id="5614" />
@@ -955,7 +955,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2518.327" y="1416.8248" z="179.15247" h="14" static_id="5677" />
 					<spot x="2587.7446" y="1586.1421" z="185.75693" h="14" static_id="5675" />
@@ -977,7 +977,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2518.327" y="1416.8248" z="179.15247" h="14" static_id="5677" />
 					<spot x="2587.7446" y="1586.1421" z="185.75693" h="14" static_id="5675" />
@@ -1026,7 +1026,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2056.2659" y="1435.8978" z="80.66426" h="14" static_id="5671" />
 					<spot x="2129.3665" y="1279.9613" z="86.5755" h="14" static_id="3710" />
@@ -1048,7 +1048,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2056.2659" y="1435.8978" z="80.66426" h="14" static_id="5671" />
 					<spot x="2129.3665" y="1279.9613" z="86.5755" h="14" static_id="3710" />
@@ -1097,7 +1097,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="1865.689" y="2080.5828" z="81.05721" h="14" static_id="5713" />
 					<spot x="1920.038" y="1993.0713" z="81.26391" h="14" static_id="5711" />
@@ -1119,7 +1119,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="1865.689" y="2080.5828" z="81.05721" h="14" static_id="5713" />
 					<spot x="1920.038" y="1993.0713" z="81.26391" h="14" static_id="5711" />
@@ -1168,7 +1168,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2023.6711" y="808.6053" z="86.14799" h="14" static_id="5663" />
 					<spot x="2095.6345" y="831.43115" z="90.75728" h="14" static_id="5661" />
@@ -1190,7 +1190,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2023.6711" y="808.6053" z="86.14799" h="14" static_id="5663" />
 					<spot x="2095.6345" y="831.43115" z="90.75728" h="14" static_id="5661" />
@@ -1239,7 +1239,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2577.849" y="1040.6278" z="162.14891" h="14" static_id="5077" />
 					<spot x="2714.9485" y="1019.6284" z="189.4263" h="14" static_id="4980" />
@@ -1261,7 +1261,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2577.849" y="1040.6278" z="162.14891" h="14" static_id="5077" />
 					<spot x="2714.9485" y="1019.6284" z="189.4263" h="14" static_id="4980" />
@@ -1310,7 +1310,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2268.3718" y="2260.8145" z="137.8171" h="14" static_id="5683" />
 					<spot x="2336.7576" y="2143.911" z="137.78943" h="14" static_id="5679" />
@@ -1332,7 +1332,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2268.3718" y="2260.8145" z="137.8171" h="14" static_id="5683" />
 					<spot x="2336.7576" y="2143.911" z="137.78943" h="14" static_id="5679" />
@@ -1381,7 +1381,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="1448.4489" y="2666.1008" z="88.21169" h="14" static_id="5707" />
 					<spot x="1519.6385" y="2762.7808" z="88.01009" h="14" static_id="5705" />
@@ -1403,7 +1403,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="1448.4489" y="2666.1008" z="88.21169" h="14" static_id="5707" />
 					<spot x="1519.6385" y="2762.7808" z="88.01009" h="14" static_id="5705" />
@@ -1452,7 +1452,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="1538.4207" y="2289.0647" z="86.12105" h="14" static_id="5701" />
 					<spot x="1601.4841" y="2356.4353" z="86.00159" h="14" static_id="5699" />
@@ -1474,7 +1474,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="1538.4207" y="2289.0647" z="86.12105" h="14" static_id="5701" />
 					<spot x="1601.4841" y="2356.4353" z="86.00159" h="14" static_id="5699" />
@@ -1523,7 +1523,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2127.0496" y="511.78125" z="86.55259" h="14" static_id="5651" />
 					<spot x="2165.8694" y="392.97983" z="87.035645" h="14" static_id="5649" />
@@ -1545,7 +1545,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2127.0496" y="511.78125" z="86.55259" h="14" static_id="5651" />
 					<spot x="2165.8694" y="392.97983" z="87.035645" h="14" static_id="5649" />
@@ -1594,7 +1594,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="1915.0" y="2628.0" z="150.0" h="14" static_id="5693" />
 					<spot x="2039.0" y="2566.0" z="157.0" h="14" static_id="5695" />
@@ -1616,7 +1616,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="1915.0" y="2628.0" z="150.0" h="14" static_id="5693" />
 					<spot x="2039.0" y="2566.0" z="157.0" h="14" static_id="5695" />
@@ -1665,7 +1665,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2490.1428" y="539.1684" z="135.56664" h="14" static_id="5655" />
 					<spot x="2532.178" y="755.0614" z="141.45241" h="14" static_id="5657" />
@@ -1687,7 +1687,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2490.1428" y="539.1684" z="135.56664" h="14" static_id="5655" />
 					<spot x="2532.178" y="755.0614" z="141.45241" h="14" static_id="5657" />
@@ -1736,7 +1736,7 @@
 				<!-- Village Warehouse Manager -->
 			</town_level>
 			<town_level level="4">
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2387.916" y="2729.95" z="187.53645" h="14" static_id="5689" />
 					<spot x="2492.892" y="2526.8564" z="184.02992" h="14" static_id="5685" />
@@ -1758,7 +1758,7 @@
 			<town_level level="5">
 				<!-- Ancient Crown Administrator -->
 				<!-- Deployed Ancient Goblet Administrator -->
-				<!-- Dye Plant -->
+				<!-- Kilix -->
 				<spawn npc_id="701521" respawn_time="1800">
 					<spot x="2387.916" y="2729.95" z="187.53645" h="14" static_id="5689" />
 					<spot x="2492.892" y="2526.8564" z="184.02992" h="14" static_id="5685" />

@@ -4,7 +4,7 @@
 		<base_spawn id="71">
 			<!-- 71-Occupier's Lounge -->
 			<occupier_template occupier="ELYOS">
-				<!-- Elyos Territory -->
+				<!-- Ultrid -->
 				<spawn npc_id="801600">
 					<spot x="225.67972" y="835.3145" z="216.086" />
 				</spawn>
@@ -15,27 +15,27 @@
 				<!-- Occupation Garrison Protector -->
 				<!-- Occupation Garrison Healer -->
 				<!-- Occupation Garrison Sentry -->
-				<!-- Mailbox -->
+				<!-- Caixa de correio -->
 				<spawn npc_id="700000" respawn_time="295">
 					<spot x="225.6701" y="838.7197" z="210.8750" />
 				</spawn>
-				<!-- Seidia Soul Healer -->
+				<!-- Gladiador especial dos reforços do Pandaemonium -->
 				<spawn npc_id="800648" respawn_time="295">
 					<spot x="224.7814" y="845.0668" z="210.8750" />
 				</spawn>
-				<!-- Rose General Goods Merchant -->
+				<!-- Sacerdote especial dos reforços do Pandaemonium -->
 				<spawn npc_id="800649" respawn_time="295">
 					<spot x="234.9009" y="849.0286" z="210.8750" h="100" />
 				</spawn>
-				<!-- Brynolio Food -->
+				<!-- Invocador especial dos reforços do Pandaemonium -->
 				<spawn npc_id="800650" respawn_time="295">
 					<spot x="238.5945" y="828.9783" z="210.8750" h="26" />
 				</spawn>
-				<!-- Tatiana Special Vendor -->
+				<!-- Templário Especial dos reforços da Guilda da Grada de Griffon -->
 				<spawn npc_id="800651" respawn_time="295">
 					<spot x="230.1254" y="847.4946" z="210.8750" h="100" />
 				</spawn>
-				<!-- Anastasia -->
+				<!-- Saída de circo -->
 				<spawn npc_id="801230" respawn_time="295">
 					<spot x="233.2867" y="829.9488" z="210.8750" />
 				</spawn>
@@ -46,7 +46,7 @@
 				<!-- Occupation Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="ASMODIANS">
-				<!-- Asmodians Territory -->
+				<!-- Scrooge -->
 				<spawn npc_id="801601">
 					<spot x="225.67972" y="835.3145" z="216.086" />
 				</spawn>
@@ -57,27 +57,27 @@
 				<!-- Occupation Protector -->
 				<!-- Occupation Healer -->
 				<!-- Occupation Sentry -->
-				<!-- Mailbox -->
+				<!-- Caixa de correio -->
 				<spawn npc_id="700079" respawn_time="295">
 					<spot x="225.6701" y="838.7197" z="210.8750" />
 				</spawn>
-				<!-- Arfast -->
+				<!-- IU-Harlequin -->
 				<spawn npc_id="801239" respawn_time="295">
 					<spot x="233.2867" y="829.9488" z="210.8750" />
 				</spawn>
-				<!-- Ildun Soul Healer -->
+				<!-- Gladiador especial dos reforços da Guilda da Grada de Griffon -->
 				<spawn npc_id="800652" respawn_time="295">
 					<spot x="224.7814" y="845.0668" z="210.8750" />
 				</spawn>
-				<!-- Bodon General Goods Merchant -->
+				<!-- Sacerdote especial dos reforços da Guilda da Grada de Griffon -->
 				<spawn npc_id="800653" respawn_time="295">
 					<spot x="234.90094" y="849.02863" z="212.1178" h="100" />
 				</spawn>
-				<!-- Edtha Food -->
+				<!-- Brusthonin Templário Especial -->
 				<spawn npc_id="800654" respawn_time="295">
 					<spot x="238.5945" y="828.9783" z="210.8750" h="26" />
 				</spawn>
-				<!-- Moldof Special Vendor -->
+				<!-- Brusthonin Gladiador Especial -->
 				<spawn npc_id="800655" respawn_time="295">
 					<spot x="230.1254" y="847.4946" z="210.8750" h="100" />
 				</spawn>
@@ -88,7 +88,7 @@
 				<!-- Occupation Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Balaur Territory -->
+				<!-- Desconhecido -->
 				<spawn npc_id="801602">
 					<spot x="225.67972" y="835.3145" z="216.086" />
 				</spawn>
@@ -104,7 +104,7 @@
 		<base_spawn id="72">
 			<!-- 72-Spiralroot Shelter -->
 			<occupier_template occupier="ELYOS">
-				<!-- Elyos Territory -->
+				<!-- Desconhecido -->
 				<spawn npc_id="801603">
 					<spot x="138.1662" y="2208.9534" z="184.1250" h="88" />
 				</spawn>
@@ -115,27 +115,27 @@
 				<!-- Spiralroot Garrison Protector -->
 				<!-- Spiralroot Garrison Healer -->
 				<!-- Spiralroot Garrison Sentry -->
-				<!-- Mailbox -->
+				<!-- Caixa de correio -->
 				<spawn npc_id="700000" respawn_time="295">
 					<spot x="133.0322" y="2203.4038" z="184.1250" h="90" />
 				</spawn>
-				<!-- Limanon Soul Healer -->
+				<!-- Brusthonin Clérigo Special -->
 				<spawn npc_id="800656" respawn_time="295">
 					<spot x="143.1435" y="2204.7368" z="184.1250" h="90" />
 				</spawn>
-				<!-- Morias General Goods Merchant -->
+				<!-- Baltasar Canhão Keeper -->
 				<spawn npc_id="800657" respawn_time="295">
 					<spot x="127.5038" y="2196.2080" z="184.1250" />
 				</spawn>
-				<!-- Rondius Food -->
+				<!-- Canhão montado no Jamanok Inn -->
 				<spawn npc_id="800658" respawn_time="295">
 					<spot x="150.2473" y="2194.7266" z="184.1250" h="60" />
 				</spawn>
-				<!-- Lopan Special Vendor -->
+				<!-- Canhão montado em Baltasar -->
 				<spawn npc_id="800659" respawn_time="295">
 					<spot x="129.0440" y="2200.9377" z="184.1250" h="110" />
 				</spawn>
-				<!-- Berden -->
+				<!-- Kobold Cleaner -->
 				<spawn npc_id="801231" respawn_time="295">
 					<spot x="150.0544" y="2207.2302" z="184.1250" h="90" />
 				</spawn>
@@ -147,7 +147,7 @@
 				<!-- Spiralroot Recon Messenger -->
 			</occupier_template>
 			<occupier_template occupier="ASMODIANS">
-				<!-- Asmodians Territory -->
+				<!-- Duonerk -->
 				<spawn npc_id="801604">
 					<spot x="138.1662" y="2208.9534" z="184.1250" h="100" />
 				</spawn>
@@ -158,27 +158,27 @@
 				<!-- Spiralroot Protector -->
 				<!-- Spiralroot Healer -->
 				<!-- Spiralroot Sentry -->
-				<!-- Mailbox -->
+				<!-- Caixa de correio -->
 				<spawn npc_id="700079" respawn_time="295">
 					<spot x="133.0322" y="2203.4038" z="184.1250" h="90" />
 				</spawn>
 				<!-- Battlegroup Supply Box -->
-				<!-- Valmon Soul Healer -->
+				<!-- Jamanok -->
 				<spawn npc_id="800660" respawn_time="295">
 					<spot x="143.1435" y="2204.7368" z="184.1250" h="90" />
 				</spawn>
 				<spawn npc_id="800661" respawn_time="295">
 					<spot x="127.503754" y="2196.208008" z="185.512955" />
 				</spawn>
-				<!-- Darmut -->
+				<!-- Abunka -->
 				<spawn npc_id="800662" respawn_time="295">
 					<spot x="150.2473" y="2194.7266" z="184.1250" h="60" />
 				</spawn>
-				<!-- Hilgran Special Vendor -->
+				<!-- Surt -->
 				<spawn npc_id="800663" respawn_time="295">
 					<spot x="129.0440" y="2200.9377" z="184.1250" h="110" />
 				</spawn>
-				<!-- Batan -->
+				<!-- <FORTRIZEMA EMBLEME MERCOMENTO> -->
 				<spawn npc_id="801240" respawn_time="295">
 					<spot x="150.0544" y="2207.2302" z="184.1250" h="90" />
 				</spawn>
@@ -189,7 +189,7 @@
 				<!-- Spiralroot Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Balaur Territory -->
+				<!-- Duonerk -->
 				<spawn npc_id="801605">
 					<spot x="138.16624" y="2208.9534" z="192.916" />
 				</spawn>
@@ -205,7 +205,7 @@
 		<base_spawn id="73">
 			<!-- 73-Beritran Foothold -->
 			<occupier_template occupier="ELYOS">
-				<!-- Elyos Territory -->
+				<!-- Duonerk -->
 				<spawn npc_id="801606">
 					<spot x="1110.6884" y="511.8578" z="184.7500" h="85" />
 				</spawn>
@@ -217,35 +217,35 @@
 				<!-- Foothold Garrison Healer -->
 				<!-- Foothold Garrison Sentry -->
 				<!-- Foothold Garrison Supervisor -->
-				<!-- Dikane Soul Healer -->
+				<!-- Giel -->
 				<spawn npc_id="800664" respawn_time="295">
 					<spot x="1104.6735" y="505.9909" z="184.7504" h="76" />
 				</spawn>
-				<!-- Legias Conditioning Officer -->
+				<!-- Dinos -->
 				<spawn npc_id="800665" respawn_time="295">
 					<spot x="1114.7546" y="504.8595" z="184.7500" h="76" />
 				</spawn>
-				<!-- Carmelos Augmenting Officer -->
+				<!-- Apenas para teste npc_system01 -->
 				<spawn npc_id="800666" respawn_time="295">
 					<spot x="1116.4993" y="503.9944" z="184.7500" h="76" />
 				</spawn>
-				<!-- Faras Kisk Merchant -->
+				<!-- Gerador de fenda portal em Brusthonin -->
 				<spawn npc_id="800667" respawn_time="295">
 					<spot x="1092.4353" y="499.5628" z="184.7286" h="105" />
 				</spawn>
-				<!-- Benekis Food -->
+				<!-- <Potencializadores Extra> -->
 				<spawn npc_id="800668" respawn_time="295">
 					<spot x="1109.1857" y="490.0416" z="184.6250" h="50" />
 				</spawn>
-				<!-- Aranis Special Vendor -->
+				<!-- Feiticeiro de protetorado de Jamanok -->
 				<spawn npc_id="800669" respawn_time="295">
 					<spot x="1093.8470" y="501.6663" z="184.7500" h="105" />
 				</spawn>
-				<!-- Cerise -->
+				<!-- <Limpador empregado> -->
 				<spawn npc_id="801232" respawn_time="295">
 					<spot x="1111.5592" y="497.1464" z="184.6250" h="60" />
 				</spawn>
-				<!-- Teldanis General Goods Merchant -->
+				<!-- Baú de armazenamento de bomba -->
 				<spawn npc_id="801402" respawn_time="295">
 					<spot x="1111.0746" y="491.3936" z="184.6250" h="50" />
 				</spawn>
@@ -260,7 +260,7 @@
 				<!-- Foothold Recon Messenger -->
 			</occupier_template>
 			<occupier_template occupier="ASMODIANS">
-				<!-- Asmodians Territory -->
+				<!-- TRIONERK -->
 				<spawn npc_id="801607">
 					<spot x="1110.6884" y="511.8578" z="184.7500" h="34" />
 				</spawn>
@@ -272,27 +272,27 @@
 				<!-- Foothold Healer -->
 				<!-- Foothold Sentry -->
 				<!-- Foothold Supervisor -->
-				<!-- Gintea Soul Healer -->
+				<!-- Brusthonin Gladiador -->
 				<spawn npc_id="800670" respawn_time="295">
 					<spot x="1104.6735" y="505.9909" z="184.7504" h="90" />
 				</spawn>
-				<!-- Zebel Conditioning Officer -->
+				<!-- Brusthonin Archer -->
 				<spawn npc_id="800671" respawn_time="295">
 					<spot x="1114.7546" y="504.8595" z="184.7500" h="76" />
 				</spawn>
-				<!-- Hilgar Augmenting Officer -->
+				<!-- Feiticor de Brusthonin -->
 				<spawn npc_id="800672" respawn_time="295">
 					<spot x="1116.4993" y="503.9944" z="184.7500" h="76" />
 				</spawn>
-				<!-- Smidik Kisk Merchant -->
+				<!-- Kent sério -->
 				<spawn npc_id="800673" respawn_time="295">
 					<spot x="1092.4353" y="499.5628" z="184.7286" h="16" />
 				</spawn>
-				<!-- Dezak Food -->
+				<!-- Inisha -->
 				<spawn npc_id="800674" respawn_time="295">
 					<spot x="1109.1857" y="490.0416" z="184.6250" h="50" />
 				</spawn>
-				<!-- Shulke Special Vendor -->
+				<!-- Windton, o Womanizer -->
 				<spawn npc_id="800675" respawn_time="295">
 					<spot x="1093.8470" y="501.6663" z="184.7500" h="105" />
 				</spawn>
@@ -300,11 +300,11 @@
 				<spawn npc_id="801792" respawn_time="295">
 					<spot x="1113.1454" y="513.6146" z="184.7500" h="83" />
 				</spawn>
-				<!-- Cavloft -->
+				<!-- <Rel&#237;quias Emblem&#225;ticas> -->
 				<spawn npc_id="801241" respawn_time="295">
 					<spot x="1111.5592" y="497.1464" z="184.6250" h="60" />
 				</spawn>
-				<!-- Nahal General Goods Merchant -->
+				<!-- Baú de armazenamento de bomba -->
 				<spawn npc_id="801401" respawn_time="295">
 					<spot x="1111.0746" y="491.3936" z="184.6250" h="50" />
 				</spawn>
@@ -315,7 +315,7 @@
 				<!-- Foothold Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Balaur Territory -->
+				<!-- TRIONERK -->
 				<spawn npc_id="801608">
 					<spot x="1110.6884" y="511.85785" z="184.75" />
 				</spawn>
@@ -344,23 +344,23 @@
 				<!-- Ruins Garrison Healer -->
 				<!-- Ruins Garrison Sentry -->
 				<!-- Ruins Garrison Supervisor -->
-				<!-- Camion Soul Healer -->
+				<!-- Sharinne -->
 				<spawn npc_id="800676" respawn_time="295">
 					<spot x="856.3464" y="2765.6436" z="182.1250" h="103" />
 				</spawn>
-				<!-- Gatena Conditioning Officer -->
+				<!-- Suike -->
 				<spawn npc_id="800677" respawn_time="295">
 					<spot x="844.8800" y="2749.0713" z="182.1250" />
 				</spawn>
-				<!-- Midion Augmenting Officer -->
+				<!-- Warrick -->
 				<spawn npc_id="800678" respawn_time="295">
 					<spot x="844.8473" y="2751.1599" z="182.1250" />
 				</spawn>
-				<!-- Tanipsis Kisk Merchant -->
+				<!-- Loylung -->
 				<spawn npc_id="800679" respawn_time="295">
 					<spot x="851.6402" y="2745.5100" z="182.1250" h="15" />
 				</spawn>
-				<!-- Lamos Food -->
+				<!-- Morrendo grande alma -->
 				<spawn npc_id="800680" respawn_time="295">
 					<spot x="865.6063" y="2759.0520" z="182.1250" h="75" />
 				</spawn>
@@ -368,11 +368,11 @@
 				<spawn npc_id="800681" respawn_time="295">
 					<spot x="849.6420" y="2746.5576" z="182.1250" h="15" />
 				</spawn>
-				<!-- Pollon General Goods Merchant -->
+				<!-- Cidadão Reian caído -->
 				<spawn npc_id="801404" respawn_time="295">
 					<spot x="863.8289" y="2762.8884" z="182.1250" h="75" />
 				</spawn>
-				<!-- Diena -->
+				<!-- <Iu de amigo> -->
 				<spawn npc_id="801233" respawn_time="295">
 					<spot x="853.3615" y="2761.5935" z="182.125" h="119" />
 				</spawn>
@@ -396,7 +396,7 @@
 				</spawn>
 				<!-- Territory Boss -->
 				<!-- Ruins Shieldcaptain -->
-				<!-- Ruins Assassin -->
+				<!-- Klain -->
 				<spawn npc_id="801242" respawn_time="295">
 					<spot x="853.2407" y="2757.1309" z="182.125" h="115" />
 				</spawn>
@@ -475,7 +475,7 @@
 				<!-- Cliffside Garrison Protector -->
 				<!-- Cliffside Garrison Healer -->
 				<!-- Cliffside Garrison Sentry -->
-				<!-- Mailbox -->
+				<!-- Caixa de correio -->
 				<spawn npc_id="700000" respawn_time="295">
 					<spot x="1561.7084" y="1487.1411" z="129.2682" />
 				</spawn>
@@ -491,19 +491,19 @@
 				<spawn npc_id="800692" respawn_time="295">
 					<spot x="1583.9296" y="1480.9175" z="129.6250" h="45" />
 				</spawn>
-				<!-- Ceros Balic Design Merchant -->
+				<!-- <Tropa ARUNT do 40º Exército> -->
 				<spawn npc_id="801408" respawn_time="295">
 					<spot x="1573.5452" y="1474.2893" z="129.6250" h="31" />
 				</spawn>
-				<!-- Bellua Material Conversion Designs -->
+				<!-- <Tropa ARUNT do 40º Exército> -->
 				<spawn npc_id="801410" respawn_time="295">
 					<spot x="1574.9664" y="1474.4030" z="129.6250" h="31" />
 				</spawn>
-				<!-- Lazaro General Goods Merchant -->
+				<!-- Northern Guardian Base Area -->
 				<spawn npc_id="801412" respawn_time="295">
 					<spot x="1561.7808" y="1484.0839" z="129.2506" h="6" />
 				</spawn>
-				<!-- Irania Decorative Accents-->
+				<!-- Amante -->
 				<spawn npc_id="801556" respawn_time="295">
 					<spot x="1585.7476" y="1482.2584" z="129.6250" h="45" />
 				</spawn>
@@ -541,7 +541,7 @@
 				<!-- Cliffside Protector -->
 				<!-- Cliffside Healer -->
 				<!-- Cliffside Force Sentry -->
-				<!-- Mailbox -->
+				<!-- Caixa de correio -->
 				<spawn npc_id="700079" respawn_time="295">
 					<spot x="1561.7084" y="1487.1411" z="129.2682" />
 				</spawn>
@@ -557,19 +557,19 @@
 				<spawn npc_id="800697" respawn_time="295">
 					<spot x="1583.9296" y="1480.9175" z="131.4137" h="45" />
 				</spawn>
-				<!-- Shida Balic Design Merchant -->
+				<!-- IUTitlesong_Vasharti -->
 				<spawn npc_id="801407" respawn_time="295">
 					<spot x="1573.5452" y="1474.2893" z="131.4137" h="32" />
 				</spawn>
-				<!-- Snapt Material Conversion Designs -->
+				<!-- <Tropa ARUNT do 40º Exército> -->
 				<spawn npc_id="801409" respawn_time="295">
 					<spot x="1574.9664" y="1474.403" z="131.4137" h="32" />
 				</spawn>
-				<!-- Bromma General Goods Merchant -->
+				<!-- IUTitlesong_Lighting -->
 				<spawn npc_id="801411" respawn_time="295">
 					<spot x="1561.7808" y="1484.0839" z="130.1053" h="7" />
 				</spawn>
-				<!-- Refkell Decorative Accents-->
+				<!-- Lovelinerk -->
 				<spawn npc_id="801555" respawn_time="295">
 					<spot x="1585.7476" y="1482.2584" z="131.4137" h="45" />
 				</spawn>
@@ -594,7 +594,7 @@
 				<!-- Cliffside Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Balaur Territory -->
+				<!-- Quarto -->
 				<spawn npc_id="801614">
 					<spot x="1571.7942" y="1472.2792" z="129.625" />
 				</spawn>
@@ -610,7 +610,7 @@
 		<base_spawn id="76">
 			<!-- 76-Irigani Keep -->
 			<occupier_template occupier="ELYOS">
-				<!-- Elyos Territory -->
+				<!-- Patrono justo -->
 				<spawn npc_id="801615">
 					<spot x="1686.3455" y="1121.6199" z="200.7053" h="119" />
 				</spawn>
@@ -630,11 +630,11 @@
 				<spawn npc_id="800699" respawn_time="295">
 					<spot x="1673.2354" y="1122.3911" z="186.3248" h="90" />
 				</spawn>
-				<!-- Fabiana -->
+				<!-- IU-Tiger -->
 				<spawn npc_id="801235" respawn_time="295">
 					<spot x="1693.9078" y="1116.8210" z="186.3248" h="83" />
 				</spawn>
-				<!-- Lamesis Material Conversion Designs -->
+				<!-- Mistmorn Fenda Area -->
 				<spawn npc_id="801414" respawn_time="295">
 					<spot x="1651.0814" y="1086.7291" z="183.4350" />
 				</spawn>
@@ -662,7 +662,7 @@
 				<!-- Irigani Recon Messenger -->
 			</occupier_template>
 			<occupier_template occupier="ASMODIANS">
-				<!-- Asmodians Territory -->
+				<!-- <Elysea Protectorate> -->
 				<spawn npc_id="801616">
 					<spot x="1686.3455" y="1121.6199" z="200.7053" h="22" />
 				</spawn>
@@ -685,15 +685,15 @@
 				<spawn npc_id="800704" respawn_time="295">
 					<spot x="1673.2354" y="1122.3911" z="186.3248" h="90" />
 				</spawn>
-				<!-- Fjotra -->
+				<!-- Drian -->
 				<spawn npc_id="801244" respawn_time="295">
 					<spot x="1693.9078" y="1116.8210" z="186.3248" h="83" />
 				</spawn>
-				<!-- Vera Material Conversion Designs -->
+				<!-- Brackwater Area -->
 				<spawn npc_id="801413" respawn_time="295">
 					<spot x="1651.0814" y="1086.7291" z="184.8828" />
 				</spawn>
-				<!-- Siklin Field Crafting Material Merchant -->
+				<!-- Mistmorn Fenda Area -->
 				<spawn npc_id="801418" respawn_time="295">
 					<spot x="1651.1268" y="1090.2479" z="184.8828" />
 				</spawn>
@@ -733,7 +733,7 @@
 				<!-- Irigani Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Balaur Territory -->
+				<!-- <Asmodae Protetorate> -->
 				<spawn npc_id="801617">
 					<spot x="1686.3455" y="1121.6199" z="195.51602" />
 				</spawn>
@@ -749,7 +749,7 @@
 		<base_spawn id="77">
 			<!-- 77-Crumbling Redoubt -->
 			<occupier_template occupier="ELYOS">
-				<!-- Elyos Territory -->
+				<!-- <Sacerdote de Ariel> -->
 				<spawn npc_id="801618">
 					<spot x="1544.1140" y="2260.9583" z="200.7053" />
 				</spawn>
@@ -763,27 +763,27 @@
 					<spot x="1556.7842" y="2245.4985" z="177.7881" h="45" />
 				</spawn>
 				<!-- Teleport Device -->
-				<!-- Dortemes Consumable Item Distributor -->
+				<!-- Admirador do príncipe herdeiro -->
 				<spawn npc_id="800709" respawn_time="295">
 					<spot x="1565.3582" y="2237.6680" z="176.0401" h="15" />
 				</spawn>
-				<!-- Artemon Material Conversion Designs -->
+				<!-- Arena Administrator -->
 				<spawn npc_id="801429" respawn_time="295">
 					<spot x="1579.5123" y="2236.0789" z="175.7352" h="31" />
 				</spawn>
-				<!-- Abaris Field Crafting Material Merchant -->
+				<!-- <225 pontos> -->
 				<spawn npc_id="801433" respawn_time="295">
 					<spot x="1582.1764" y="2237.2048" z="175.4744" h="31" />
 				</spawn>
-				<!-- Proteas General Goods Merchant -->
+				<!-- <225 pontos> -->
 				<spawn npc_id="801435" respawn_time="295">
 					<spot x="1573.5419" y="2282.9263" z="174.7500" h="90" />
 				</spawn>
-				<!-- Hemesius Supplement Merchant -->
+				<!-- <225 pontos> -->
 				<spawn npc_id="801437" respawn_time="295">
 					<spot x="1562.2885" y="2238.7061" z="176.1250" h="15" />
 				</spawn>
-				<!-- Setimis Food -->
+				<!-- <75 pontos> -->
 				<spawn npc_id="801439" respawn_time="295">
 					<spot x="1564.4740" y="2277.2537" z="174.7500" h="90" />
 				</spawn>
@@ -799,7 +799,7 @@
 				<!-- Redoubt Recon Messenger -->
 			</occupier_template>
 			<occupier_template occupier="ASMODIANS">
-				<!-- Asmodians Territory -->
+				<!-- <Sacerdote de Azphel> -->
 				<spawn npc_id="801619">
 					<spot x="1544.114" y="2260.9583" z="184.08958" />
 				</spawn>
@@ -812,7 +812,7 @@
 				<spawn npc_id="730656" respawn_time="295">
 					<spot x="1556.7842" y="2245.4985" z="177.7881" h="45" static_id="791" />
 				</spawn>
-				<!-- Kategart Consumable Item Distributor -->
+				<!-- Admirador encantado da imperatriz -->
 				<spawn npc_id="800714" respawn_time="295">
 					<spot x="1565.3582" y="2237.668" z="176.47769" h="15" />
 				</spawn>
@@ -820,23 +820,23 @@
 				<spawn npc_id="801428" respawn_time="295">
 					<spot x="1579.5123" y="2236.0789" z="176.47769" h="32" />
 				</spawn>
-				<!-- Algat Field Crafting Material Merchant -->
+				<!-- <225 pontos> -->
 				<spawn npc_id="801432" respawn_time="295">
 					<spot x="1582.1764" y="2237.2048" z="176.47769" h="32" />
 				</spawn>
-				<!-- Amandira General Goods Merchant -->
+				<!-- <225 pontos> -->
 				<spawn npc_id="801434" respawn_time="295">
 					<spot x="1573.5419" y="2282.9263" z="176.25769" h="90" />
 				</spawn>
-				<!-- Eleanor Supplement Merchant -->
+				<!-- <225 pontos> -->
 				<spawn npc_id="801436" respawn_time="295">
 					<spot x="1562.2885" y="2238.7061" z="176.1250" h="15" />
 				</spawn>
-				<!-- Stella Food -->
+				<!-- <225 pontos> -->
 				<spawn npc_id="801438" respawn_time="295">
 					<spot x="1564.474" y="2277.2537" z="176.25769" h="90" />
 				</spawn>
-				<!-- Emilira Kisk Merchant -->
+				<!-- Caixa de tesouro -->
 				<spawn npc_id="801440" respawn_time="295">
 					<spot x="1567.2073" y="2277.3359" z="174.7500" h="90" />
 				</spawn>
@@ -848,7 +848,7 @@
 				<!-- Redoubt Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Balaur Territory -->
+				<!-- peixe -->
 				<spawn npc_id="801620">
 					<spot x="1544.114" y="2260.9583" z="184.08958" />
 				</spawn>
@@ -864,7 +864,7 @@
 		<base_spawn id="78">
 			<!-- 78-Windswept Camp -->
 			<occupier_template occupier="ELYOS">
-				<!-- Elyos Territory -->
+				<!-- Sharmaine -->
 				<spawn npc_id="801621">
 					<spot x="1902.3711" y="1179.6218" z="259.2688" h="109" />
 				</spawn>
@@ -874,20 +874,20 @@
 				<!-- Windswept Garrison Combatant -->
 				<!-- Windswept Garrison Healer -->
 				<!-- Windswept Garrison Sentry -->
-				<!-- Teleport Device -->
+				<!-- Não -linha -->
 				<spawn npc_id="730659" respawn_time="295">
 					<spot x="1890.0247" y="1178.1595" z="261.5746" h="45" static_id="2913" />
 				</spawn>
-				<!-- Callimakus Soul Healer -->
+				<!-- Marion Reiving -->
 				<spawn npc_id="800718" respawn_time="295">
 					<spot x="1888.3840" y="1180.8652" z="259.2364" h="15" />
 				</spawn>
-				<!-- Marlima Warehouse Manager -->
+				<!-- Moeda npc01 -->
 				<spawn npc_id="800719" respawn_time="295">
 					<spot x="1888.0930" y="1185.4955" z="259.3793" h="15" />
 				</spawn>
 				<!-- Bavrius Food -->
-				<!-- Herminia -->
+				<!-- Urso polar -->
 				<spawn npc_id="801237" respawn_time="295">
 					<spot x="1903.4720" y="1179.8046" z="259.3330" h="45" />
 				</spawn>
@@ -895,7 +895,7 @@
 				<spawn npc_id="801443" respawn_time="295">
 					<spot x="1905.8456" y="1189.3507" z="259.6250" h="70" />
 				</spawn>
-				<!-- Cadmus General Goods Merchant -->
+				<!-- Ioren -->
 				<spawn npc_id="801447" respawn_time="295">
 					<spot x="1903.1980" y="1192.2169" z="259.6250" h="70" />
 				</spawn>
@@ -918,7 +918,7 @@
 				<!-- Windswept Recon Messenger -->
 			</occupier_template>
 			<occupier_template occupier="ASMODIANS">
-				<!-- Asmodians Territory -->
+				<!-- Capitão Protetor Sherylin -->
 				<spawn npc_id="801622">
 					<spot x="1902.3711" y="1179.6218" z="259.2688" h="104" />
 				</spawn>
@@ -932,27 +932,27 @@
 				<spawn npc_id="730658" respawn_time="295">
 					<spot x="1890.0247" y="1178.1595" z="261.5746" h="45" static_id="2913" />
 				</spawn>
-				<!-- Elsia Soul Healer -->
+				<!-- Relíquia do príncipe herdeiro -->
 				<spawn npc_id="800722" respawn_time="295">
 					<spot x="1888.3840" y="1180.8652" z="259.2364" h="15" />
 				</spawn>
-				<!-- Polk Warehouse Manager -->
+				<!-- Skill Box01 -->
 				<spawn npc_id="800723" respawn_time="295">
 					<spot x="1888.0930" y="1185.4955" z="259.3793" h="15" />
 				</spawn>
-				<!-- Eleanor Food -->
+				<!-- ATHER GRIP TRAP -->
 				<spawn npc_id="800725" respawn_time="295">
 					<spot x="1901.0243" y="1194.4457" z="260.44849" h="70" />
 				</spawn>
-				<!-- Hrund -->
+				<!-- <Distribuidor de Acessórios para Glória> -->
 				<spawn npc_id="801246" respawn_time="295">
 					<spot x="1903.4720" y="1179.8046" z="259.3330" h="45" />
 				</spawn>
-				<!-- Punir Ceramium Trade Administrator -->
+				<!-- Jionas -->
 				<spawn npc_id="801442" respawn_time="295">
 					<spot x="1905.8456" y="1189.3507" z="259.6250" h="70" />
 				</spawn>
-				<!-- Elvira General Goods Merchant -->
+				<!-- Jionas -->
 				<spawn npc_id="801446" respawn_time="295">
 					<spot x="1903.1980" y="1192.2169" z="259.6250" h="70" />
 				</spawn>
@@ -969,7 +969,7 @@
 				<!-- Windswept Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Balaur Territory -->
+				<!-- Capitão protetor Ashif -->
 				<spawn npc_id="801623" respawn_time="295">
 					<spot x="1902.3711" y="1179.6218" z="259.25" />
 				</spawn>
@@ -984,7 +984,7 @@
 		<base_spawn id="79">
 			<!-- 79-Sillus Pass Watchpost -->
 			<occupier_template occupier="ELYOS">
-				<!-- Elyos Territory -->
+				<!-- Capitão Protetor Lailin -->
 				<spawn npc_id="801624">
 					<spot x="2492.3337" y="1830.4594" z="325.6250" />
 				</spawn>
@@ -994,19 +994,19 @@
 				<!-- Pass Garrison Combatant -->
 				<!-- Pass Garrison Sentry -->
 				<!-- Pass Garrison Supervisor -->
-				<!-- Mailbox -->
+				<!-- Caixa de correio -->
 				<spawn npc_id="700000" respawn_time="295">
 					<spot x="2483.5681" y="1845.7616" z="325.5000" h="113" />
 				</spawn>
-				<!-- Teleport Device -->
+				<!-- Adereno -->
 				<spawn npc_id="730661" respawn_time="295">
 					<spot x="2483.2947" y="1850.1829" z="327.7146" h="45" static_id="752" />
 				</spawn>
-				<!-- Aripia Soul Healer -->
+				<!-- Você fez uma cobaia fora de mim ... -->
 				<spawn npc_id="800726" respawn_time="295">
 					<spot x="2485.3142" y="1831.0632" z="325.9563" h="20" />
 				</spawn>
-				<!-- Kavrias Food -->
+				<!-- Eu vou te transformar em um golem, irmão ... -->
 				<spawn npc_id="800728" respawn_time="295">
 					<spot x="2503.4424" y="1838.9840" z="325.8750" h="45" />
 				</spawn>
@@ -1014,15 +1014,15 @@
 				<spawn npc_id="800729" respawn_time="295">
 					<spot x="2479.8049" y="1832.5497" z="325.8792" h="15" />
 				</spawn>
-				<!-- Iole -->
+				<!-- IU-Tiger -->
 				<spawn npc_id="801238" respawn_time="295">
 					<spot x="2488.3040" y="1830.6973" z="325.7310" h="20" />
 				</spawn>
-				<!-- Cerasis General Goods Merchant -->
+				<!-- Pelilu -->
 				<spawn npc_id="801451" respawn_time="295">
 					<spot x="2482.7334" y="1842.1658" z="325.5000" h="116" />
 				</spawn>
-				<!-- Epina Special Vendor -->
+				<!-- Caixa de tesouro -->
 				<spawn npc_id="801968" respawn_time="295">
 					<spot x="2490.3811" y="1828.1097" z="325.7206" h="20" />
 				</spawn>
@@ -1033,7 +1033,7 @@
 				<!-- Pass Recon Messenger -->
 			</occupier_template>
 			<occupier_template occupier="ASMODIANS">
-				<!-- Asmodians Territory -->
+				<!-- Capitão Protetor Jayshif -->
 				<spawn npc_id="801625">
 					<spot x="2492.3337" y="1830.4594" z="325.6250" h="16" />
 				</spawn>
@@ -1043,11 +1043,11 @@
 				<!-- Pass Combatant -->
 				<!-- Pass Sentry -->
 				<!-- Pass Supervisor -->
-				<!-- Mailbox -->
+				<!-- Caixa de correio -->
 				<spawn npc_id="700079" respawn_time="295">
 					<spot x="2483.5681" y="1845.7616" z="325.5000" h="113" />
 				</spawn>
-				<!-- Teleport Device -->
+				<!-- ROIRUNKER -->
 				<spawn npc_id="730660" respawn_time="295">
 					<spot x="2483.2947" y="1850.1829" z="327.7146" h="45" static_id="752" />
 				</spawn>
@@ -1066,11 +1066,11 @@
 				<spawn npc_id="800733" respawn_time="295">
 					<spot x="2479.8049" y="1832.5497" z="325.8792" h="15" />
 				</spawn>
-				<!-- Ingi -->
+				<!-- <Booster para acessórios de glória> -->
 				<spawn npc_id="801247" respawn_time="295">
 					<spot x="2488.3040" y="1830.6973" z="325.7310" h="20" />
 				</spawn>
-				<!-- Whixt General Goods Merchant -->
+				<!-- Bardo (mulher) -->
 				<spawn npc_id="801450" respawn_time="295">
 					<spot x="2482.7334" y="1842.1658" z="325.5000" h="116" />
 				</spawn>
@@ -1085,7 +1085,7 @@
 				<!-- Pass Scout Envoy -->
 			</occupier_template>
 			<occupier_template occupier="BALAUR">
-				<!-- Balaur Territory -->
+				<!-- Protetor você -->
 				<spawn npc_id="801626">
 					<spot x="2492.3337" y="1830.4594" z="325.625" />
 				</spawn>

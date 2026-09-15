@@ -8,15 +8,15 @@
 				<!-- Territory Boss -->
 				<!-- Elyos Heiron Inspector -->
 				<!-- Heiron Sentinel -->
-				<!-- Anaxilas General Goods Merchant -->
+				<!-- Marina -->
 				<spawn handler="MERCHANT" npc_id="801180" respawn_time="295">
 					<spot h="45" x="2125.8938" y="1475.2031" z="136.32527" />
 				</spawn>
-				<!-- Chares Warehouse Manager -->
+				<!-- Ludion -->
 				<spawn handler="MERCHANT" npc_id="801181" respawn_time="295">
 					<spot h="30" x="2113.5986" y="1466.5072" z="136.22552" />
 				</spawn>
-				<!-- Dinon Administration Officer -->
+				<!-- Eos Crewman -->
 				<spawn handler="MERCHANT" npc_id="801182" respawn_time="295">
 					<spot h="45" x="2122.8694" y="1471.4498" z="137.00826" />
 				</spawn>
@@ -27,15 +27,15 @@
 				<!-- Asmodian Heiron Inspector -->
 				<!-- Heiron Infiltrator -->
 				<!-- Heiron Scout -->
-				<!-- Rasiv General Goods Merchant -->
+				<!-- Eos Crewman -->
 				<spawn handler="MERCHANT" npc_id="801183" respawn_time="295">
 					<spot h="45" x="2125.8938" y="1475.2031" z="136.32527" />
 				</spawn>
-				<!-- Tullusso Warehouse Manager -->
+				<!-- Doroto -->
 				<spawn handler="MERCHANT" npc_id="801184" respawn_time="295">
 					<spot h="30" x="2113.5986" y="1466.5072" z="136.22552" />
 				</spawn>
-				<!-- Gudrun Administration Officer -->
+				<!-- Kiana -->
 				<spawn handler="MERCHANT" npc_id="801185" respawn_time="295">
 					<spot h="45" x="2122.8694" y="1471.4498" z="137.00826" />
 				</spawn>

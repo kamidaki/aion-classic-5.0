@@ -1,97 +1,65 @@
 <?xml version='1.0' encoding='utf-8'?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="300540000">
-		<!-- Blessed Totem added in 4.5 to many instances 271 340 335 338
-		<spawn npc_id="831990">
-			<spot x="739" y="284" z="233.7515" h="16" />
-		</spawn> -->
-		<!-- Ammo Box -->
-		<!-- Cannon Supplies Box -->
-		<!-- Supply Box -->
+		
+		
+		
+		
 		<spawn npc_id="801268">
 			<spot x="750.168" y="330.497" z="233.816" h="40" static_id="331" />
 		</spawn>
-		<!-- Supply Box -->
+		
 		<spawn npc_id="801269">
 			<spot x="746.884" y="329.019" z="233.816" h="40" static_id="330" />
 		</spawn>
-		<!-- Post-Bastion Strategy -->
-		<!-- Dropped Letter -->
-		<!-- Siege Mine -->
-		<!-- Dredgion Signal Tower -->
-		<!-- Dredgion Signal Tower -->
-		<!-- Right Castle Gate -->
-		<!-- Inner Water Gate -->
-		<!-- Pashid Assault Gunner -->
-		<!-- Pashid Siege Soldier -->
-		<!-- Pashid Elite Siege Ambusher -->
-		<!-- Pashid Elite Siege Troublemaker -->
-		<!-- Pashid Elite Siege Rampager -->
-		<!-- Pashid Elite Siege Medic -->
-		<!-- Pashid Siege Ambusher -->
-		<!-- Pashid Siege Cavalry -->
-		<!-- Pashid Siege Healer -->
-		<!-- Castle Wall -->
-		<!-- Commander Hakunta -->
-		<!-- Commander Rakunta -->
-		<!-- Pashid Army Barricade -->
-		<!-- Pashid Assault Dragon -->
-		<!-- Pashid Assault Flamethrower -->
-		<!-- Pashid Assault Supply Officer -->
-		<!-- Pashid Elite Siege Cavalry -->
-		<!-- Pashid Elite Siege Combatant -->
-		<!-- Pashid Elite Siege Magus -->
-		<!-- Pashid Elite Siege Marksman -->
-		<!-- Pashid Elite Siege Gunner -->
-		<!-- Pashid Elite Siege Protector -->
-		<!-- Pashid Elite Siege Striker -->
-		<!-- Pashid Elite Siege Summoner -->
-		<!-- Pashid Siege Cannon -->
-		<!-- Pashid Siege Engineer -->
-		<!-- Pashid Siege Mage -->
-		<!-- Pashid Assault Rider -->
-		<!-- Pashid Snare Turret -->
-		<!-- Pashid's Guard (deactivated since their spawn conditions are unclear
-		<spawn npc_id="284075">
-			<spot x="618.467" y="313.100" z="235.762" h="40" />
-		</spawn>
-		<spawn npc_id="284076">
-			<spot x="603.936" y="344.245" z="225.489" h="40" />
-		</spawn>
-		<spawn npc_id="284555">
-			<spot x="627.740" y="338.931" z="235.760" h="40" />
-		</spawn>
-		<spawn npc_id="284556">
-			<spot x="652.258" y="372.178" z="238.622" h="40" />
-		</spawn>
-		<spawn npc_id="284557">
-			<spot x="668.256" y="368.178" z="241.595" h="40" />
-		</spawn>
-		<spawn npc_id="284558">
-			<spot x="679.080" y="394.844" z="238.649" h="40" />
-		</spawn>
-		<spawn npc_id="284559">
-			<spot x="710.129" y="408.246" z="241.037" h="40" />
-		</spawn>
-		<spawn npc_id="284560">
-			<spot x="716.852" y="427.914" z="230.064" h="40" />
-		</spawn>
-		<spawn npc_id="284561">
-			<spot x="737.750" y="411.693" z="241.039" h="40" />
-		</spawn> -->
-		<!-- Shatter Mine -->
-		<!-- Trebuchet Parts -->
-		<!-- Beritran Chariot -->
-		<!-- Shatter Mine -->
-		<!-- Tiamat’s Fast Throw -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		<spawn npc_id="701415">
-			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
-			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
-		</spawn>
-		<!-- v7 food and medicine merchant (+supplement) -->
+			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8" />
+			</spawn>
+		
 		<spawn npc_id="800716">
-			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
-			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
-		</spawn>
+			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8" />
+			</spawn>
 	</spawn_map>
 </spawns>

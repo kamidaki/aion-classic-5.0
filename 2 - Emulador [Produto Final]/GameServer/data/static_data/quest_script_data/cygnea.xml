@@ -150,20 +150,20 @@
 	<!-- COLLECTING QUESTS -->
 	<item_collecting id="15002" start_npc_ids="804698"/>
 	<item_collecting id="15010" start_npc_ids="804700"/>
-	<item_collecting id="15011" start_npc_ids="804875"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="15011" start_npc_ids="804875"/> -->
 	<item_collecting id="15012" start_npc_ids="804875"/>
-	<item_collecting id="15021" start_npc_ids="804877"/>
-	<item_collecting id="15022" start_npc_ids="804878"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="15021" start_npc_ids="804877"/> -->
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="15022" start_npc_ids="804878"/> -->
 	<item_collecting id="15043" start_npc_ids="804886"/>
-	<item_collecting id="15044" start_npc_ids="804887"/>
-	<item_collecting id="15052" start_npc_ids="804888"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="15044" start_npc_ids="804887"/> -->
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="15052" start_npc_ids="804888"/> -->
 	<item_collecting id="15053" start_npc_ids="804888"/>
 	<item_collecting id="15066" start_npc_ids="804889"/>
 	<item_collecting id="15070" start_npc_ids="804891"/>
-	<item_collecting id="15071" start_npc_ids="804709"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="15071" start_npc_ids="804709"/> -->
 	<item_collecting id="15072" start_npc_ids="804890"/>
-	<item_collecting id="15102" start_npc_ids="804895"/>
-	<item_collecting id="15103" start_npc_ids="804896"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="15102" start_npc_ids="804895"/> -->
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="15103" start_npc_ids="804896"/> -->
 	<item_collecting id="15210" start_npc_ids="805133"/>
 	<item_collecting id="15211" start_npc_ids="805134"/>
 	<item_collecting id="15212" start_npc_ids="805135"/>

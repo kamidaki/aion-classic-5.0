@@ -141,7 +141,7 @@
 		<spawn npc_id="730488" respawn_time="295">
 			<spot x="564.0755" y="313.2925" z="94.2999" h="0"/>
 		</spawn>
-		<!-- &amp;lt;Rabbiterk&amp;gt; -->
+		<!-- <Rabbiterk> -->
 		<spawn npc_id="730544" respawn_time="295">
 			<spot x="534.6518" y="313.1476" z="96.1064" h="0"/>
 		</spawn>
@@ -183,7 +183,7 @@
 		<spawn npc_id="800180" respawn_time="295">
 			<spot x="503.5901" y="302.4701" z="94.4249" h="0"/>
 		</spawn>
-		<!-- &amp;lt;Oficial Aumentador&amp;gt; -->
+		<!-- <Oficial Aumentador> -->
 		<spawn npc_id="800182" respawn_time="295">
 			<spot x="490.4967" y="314.7528" z="94.2999" h="0"/>
 		</spawn>

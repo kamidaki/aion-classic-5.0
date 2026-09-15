@@ -59,6 +59,10 @@ public class ShieldService {
 	public SiegeShield tryRegisterShield(int worldId, Spatial geometry) {
 		if (!GeoDataConfig.GEO_SHIELDS_ENABLE || isIgnored(worldId, geometry.getName()))
 			return null;
+		if (DataManager.SIEGE_LOCATION_DATA == null || DataManager.SIEGE_LOCATION_DATA.getFortress() == null
+			|| DataManager.SIEGE_LOCATION_DATA.getFortress().values().stream().noneMatch(f -> f.getWorldId() == worldId)) {
+			return null;
+		}
 		SiegeShield shield = new SiegeShield(geometry);
 		registeredShields.computeIfAbsent(worldId, _ -> new ArrayList<>()).add(shield);
 		return shield;

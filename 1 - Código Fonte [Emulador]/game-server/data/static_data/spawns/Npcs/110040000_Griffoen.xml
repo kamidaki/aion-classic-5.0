@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="110040000">
-		<!-- Pernos of Griffoen -->
+		<!-- Tempestade do caos -->
 		<spawn npc_id="730650" respawn_time="295">
 			<spot x="126" y="394" z="197" h="0"/>
 			<spot x="407" y="400" z="197" h="0"/>
 			<spot x="407" y="131" z="197" h="0"/>
 			<spot x="123" y="131" z="197" h="0"/>
 		</spawn>
-		<!-- Sanctum Teleporter Entrance Area -->
+		<!-- Tempestade do caos -->
 		<spawn npc_id="730652" respawn_time="295">
 			<spot x="414" y="131" z="197" h="0"/>
 			<spot x="414" y="400" z="197" h="0"/>

@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='utf-8'?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="300240000">
-		<!-- Activated Teleporter -->
+		<!-- Teleporter de Balaur ativado -->
 		<spawn npc_id="730392">
 			<spot x="815.013" y="303.204" z="603.343" static_id="97" />
 		</spawn>
-		<!-- Alarm -->
+		<!-- Bakarma Dragon Sester -->
 		<spawn npc_id="219184">
 			<spot x="709.696" y="62.394" z="603.586" h="90" />
 		</spawn>
-		<!-- Aldreen -->
+		<!-- Bakarma místico -->
 		<spawn npc_id="219185">
 			<spot x="671.876" y="68.561" z="612.483" h="30" />
 		</spawn>
-		<!-- Ashunatal Shadowslip -->
+		<!-- Monitor treinado -->
 		<spawn npc_id="219183">
 			<spot x="302.087" y="875.245" z="900.964" h="40" />
 		</spawn>
-		<!-- Ashunatal Shadowslip -->
+		<!-- Nastika -->
 		<spawn npc_id="217376">
 			<spot x="407.000" y="820.000" z="903.000" h="50" />
 		</spawn>
-		<!-- Balaur Armament Box -->
+		<!-- Caixa de armamento Balaur -->
 		<spawn npc_id="701034">
 			<spot x="492.296" y="394.689" z="650.003" static_id="30" />
 			<spot x="571.442" y="39.736" z="611.999" static_id="84" />
 			<spot x="590.808" y="26.938" z="611.999" static_id="96" />
 		</spawn>
-		<!-- Balaur Armament Box -->
+		<!-- Caixa de armamento Balaur -->
 		<spawn npc_id="701033">
 			<spot x="549.9543" y="397.3575" z="650.0026" static_id="8" />
 			<spot x="595.767" y="60.51034" z="611.9988" static_id="73" />
@@ -36,11 +36,11 @@
 			<spot x="741.713" y="99.655" z="613.999" static_id="51" />
 		</spawn>
 		<!-- Balaur Spy Crystal -->
-		<!-- Barrier Controler -->
+		<!-- Controles de barreira -->
 		<spawn npc_id="701043">
 			<spot x="815.692" y="248.096" z="603.193" static_id="18" />
 		</spawn>
-		<!-- Drakan Combatant -->
+		<!-- Beritra Fighter -->
 		<spawn npc_id="217368">
 			<spot x="181.65" y="698.66" z="900.70624" h="46" />
 			<spot x="189.979" y="683.091" z="900.720" h="80" />
@@ -57,7 +57,7 @@
 			<spot x="257.324" y="752.919" z="900.477" h="53" />
 			<spot x="259.523" y="757.330" z="900.477" h="53" />
 		</spawn>
-		<!-- Drakan Crewhand -->
+		<!-- Beritra Sailor -->
 		<spawn npc_id="217369">
 			<spot x="175.549" y="676.355" z="900.973" h="103" />
 			<spot x="179.828" y="696.396" z="900.716" h="103" />
@@ -97,7 +97,7 @@
 			<spot x="256.752" y="760.771" z="900.477" h="53" />
 			<spot x="257.163" y="776.274" z="901.124" h="80" />
 		</spawn>
-		<!-- Drakan Petty Officer -->
+		<!-- Beritra NCO -->
 		<spawn npc_id="217370">
 			<spot x="176.531" y="703.707" z="900.951" h="103" />
 			<spot x="193.138" y="683.838" z="900.716" h="80" />
@@ -113,22 +113,22 @@
 		<!-- Dredgion Generator -->
 		<!-- Dredgion Generator -->
 		<!-- Dredgion Generator -->
-		<!-- Energy Barrier -->
+		<!-- Barreira energética -->
 		<spawn npc_id="701030">
 			<spot x="813.219" y="261.431" z="603.712" static_id="72" />
 		</spawn>
-		<!-- Energy Generator -->
+		<!-- Gerador de energia -->
 		<spawn npc_id="701029">
 			<spot x="807.929" y="254.934" z="603.712" static_id="20" />
 			<spot x="808.080" y="271.624" z="603.712" static_id="83" />
 			<spot x="824.356" y="254.581" z="603.712" static_id="61" />
 			<spot x="824.836" y="270.745" z="603.712" static_id="15" />
 		</spawn>
-		<!-- Escape Route -->
+		<!-- Rota de fuga -->
 		<spawn npc_id="730389">
 			<spot x="696.914" y="434.884" z="657.405" static_id="36" />
 		</spawn>
-		<!-- Flagon -->
+		<!-- Suprimentos de cura Shulack -->
 		<spawn npc_id="730398">
 			<spot x="544.7755" y="401.032" z="648.0292" static_id="59" />
 			<spot x="482.2515" y="406.2547" z="648.0363" static_id="44" />
@@ -140,29 +140,29 @@
 		<spawn npc_id="799530">
 			<spot x="682.206" y="466.289" z="655.230" h="110" />
 		</spawn>
-		<!-- Hariken's Supply Chest -->
+		<!-- Baú de suprimento de Hariken -->
 		<spawn npc_id="205494">
 			<spot x="688.476" y="469.824" z="655.219" h="10" />
 		</spawn>
-		<!-- Heavy Handle -->
+		<!-- Alça pesada -->
 		<spawn npc_id="730410">
 			<spot x="549.329" y="157.318" z="615.115" static_id="19" />
 		</spawn>
 		<!-- IDStation_3F_Door_Ctrl_1 -->
-		<!-- IDStation_Searchlight_Act -->
+		<!-- Reklov -->
 		<spawn npc_id="730546">
 			<spot x="697.545" y="96.138" z="612.844" static_id="74" />
 			<spot x="697.573" y="114.730" z="612.844" static_id="182" />
 		</spawn>
 		<!-- LDF4a_Invisible_npc_24 -->
-		<!-- Lift Controls -->
+		<!-- Templário de elite da 1ª vanguarda -->
 		<spawn npc_id="730537">
 			<spot x="699.029" y="454.553" z="655.780" static_id="179" />
 		</spawn>
 		<!-- Magma Tachysphere -->
 		<!-- Magma Tachysphere -->
 		<!-- Marabata Watcher -->
-		<!-- New Surkana -->
+		<!-- Novo Surkana -->
 		<spawn npc_id="700980">
 			<spot x="414.287" y="815.478" z="902.985" static_id="76" />
 		</spawn>
@@ -170,20 +170,20 @@
 		<spawn npc_id="217373">
 			<spot x="375.450" y="424.294" z="653.525" />
 		</spawn>
-		<!-- Recharger -->
+		<!-- Recarregar -->
 		<spawn npc_id="730397">
 			<spot x="606.480" y="348.385" z="639.338" static_id="181" />
 		</spawn>
-		<!-- Recharging Talon Guardian -->
+		<!-- Recarregando o talão guardião -->
 		<spawn npc_id="217344">
 			<spot x="737.258" y="66.069" z="604.141" h="60" />
 		</spawn>
-		<!-- Recharging Talon Laborer -->
+		<!-- Recarregando o trabalhador do Talon -->
 		<spawn npc_id="217342">
 			<spot x="697.389" y="85.954" z="604.119" h="90" />
 			<spot x="737.619" y="54.139" z="604.143" h="60" />
 		</spawn>
-		<!-- Seal Stamped Box -->
+		<!-- Caixa estampada de vedação -->
 		<spawn npc_id="700979">
 			<spot x="543.025" y="82.837" z="610.097" static_id="67" />
 			<spot x="543.121" y="49.928" z="610.097" static_id="98" />
@@ -191,19 +191,19 @@
 			<spot x="590.306" y="43.406" z="610.096" static_id="71" />
 			<spot x="591.275" y="113.244" z="611.772" static_id="66" />
 		</spawn>
-		<!-- Shulack Assistant -->
+		<!-- Assistente de Shulack -->
 		<spawn npc_id="217349">
 			<spot x="473.796" y="418.203" z="647.939" />
 			<spot x="473.807" y="432.308" z="647.939" />
 			<spot x="613.31" y="541.83" z="599.23474" h="7" />
 		</spawn>
-		<!-- Shulack Assistant -->
+		<!-- Assistente de Shulack -->
 		<spawn npc_id="217350">
 			<spot x="482.457" y="393.811" z="648.036" h="105" />
 			<spot x="511.873" y="408.547" z="648.147" h="15" />
 			<spot x="565.171" y="392.842" z="648.029" h="60" />
 		</spawn>
-		<!-- Shulack Assistant -->
+		<!-- Assistente de Shulack -->
 		<spawn npc_id="217348">
 			<spot x="522.85" y="422.64" z="647.90735" />
 		</spawn>
@@ -219,47 +219,47 @@
 			<spot x="574.841" y="469.515" z="647.939" h="30" />
 			<spot x="574.845" y="398.111" z="648.029" h="30" />
 		</spawn>
-		<!-- Shulack Engineer -->
+		<!-- Engenheiro Shulack -->
 		<spawn npc_id="217355">
 			<spot x="497.08" y="468.33" z="648.9778" h="70" />
 			<spot x="522.0" y="431.95" z="647.91296" h="70" />
 			<spot x="522.85" y="422.64" z="647.90735" walker_index="1" />
 			<spot x="541.62" y="472.28" z="649.4745" h="52" />
 		</spawn>
-		<!-- Shulack Engineer -->
+		<!-- Engenheiro Shulack -->
 		<spawn npc_id="217358">
 			<spot x="493.250" y="398.004" z="648.386" h="60" />
 			<spot x="523.850" y="398.268" z="648.386" h="73" />
 			<spot x="524.832" y="498.634" z="650.915" h="40" />
 			<spot x="622.590" y="538.215" z="599.235" />
 		</spawn>
-		<!-- Shulack Engineer -->
+		<!-- Engenheiro Shulack -->
 		<spawn npc_id="217356">
 			<spot x="485.025" y="405.463" z="648.036" h="60" />
 			<spot x="546.879" y="400.731" z="648.029" h="50" />
 		</spawn>
-		<!-- Shulack Engineer -->
+		<!-- Engenheiro Shulack -->
 		<spawn npc_id="217357">
 			<spot x="464.898" y="471.743" z="648.920" h="40" />
 			<spot x="515.341" y="439.798" z="647.794" h="30" />
 		</spawn>
-		<!-- Shulack Repairer -->
+		<!-- Reparador Shulack -->
 		<spawn npc_id="217363">
 			<spot x="511.937" y="400.794" z="648.029" h="105" />
 			<spot x="580.702" y="465.499" z="648.973" h="16" />
 			<spot x="591.735" y="407.355" z="649.982" h="15" />
 			<spot x="667.951" y="488.491" z="599.243" h="15" />
 		</spawn>
-		<!-- Shulack Repairer -->
+		<!-- Reparador Shulack -->
 		<spawn npc_id="217364">
 			<spot x="528.751" y="396.318" z="648.029" h="56" />
 			<spot x="555.547" y="404.445" z="648.386" h="103" />
 		</spawn>
-		<!-- Shulack Repairer -->
+		<!-- Reparador Shulack -->
 		<spawn npc_id="217362">
 			<spot x="463.58" y="450.67" z="647.93896" h="30" />
 		</spawn>
-		<!-- Shulack Supervisor -->
+		<!-- Supervisor de Shulack -->
 		<spawn npc_id="217347">
 			<spot x="659.076" y="121.443" z="612.480" h="60" />
 			<spot x="659.253" y="89.078" z="612.483" h="60" />
@@ -268,11 +268,11 @@
 			<spot x="695.740" y="95.842" z="612.480" />
 			<spot x="695.873" y="114.501" z="612.512" />
 		</spawn>
-		<!-- Shulack Watcher -->
+		<!-- Vigilante Shulack -->
 		<spawn npc_id="217360">
 			<spot x="562.955" y="428.578" z="647.939" />
 		</spawn>
-		<!-- Shulack Watcher -->
+		<!-- Vigilante Shulack -->
 		<spawn npc_id="217361">
 			<spot x="545.152" y="92.567" z="614.014" h="15" />
 			<spot x="577.26" y="115.98" z="611.77216" h="14" />
@@ -290,12 +290,12 @@
 			<spot x="734.275" y="147.882" z="608.517" h="75" />
 			<spot x="747.845" y="32.272" z="608.841" h="43" />
 		</spawn>
-		<!-- Steam Tachysphere -->
+		<!-- Tachysphere staper -->
 		<spawn npc_id="730390">
 			<spot x="635.738" y="495.982" z="658.466" static_id="86" />
 		</spawn>
 		<!-- Summoning Device -->
-		<!-- Talon Guardian -->
+		<!-- Talão guardião -->
 		<spawn npc_id="217343">
 			<spot x="536.608" y="175.691" z="612.956" h="6" />
 			<spot x="581.83" y="112.91" z="611.77216" h="27" />
@@ -303,7 +303,7 @@
 			<spot x="749.313" y="166.075" z="608.790" h="90" />
 			<spot x="815.389" y="208.363" z="605.696" h="90" />
 		</spawn>
-		<!-- Talon Laborer -->
+		<!-- Talon trabalhador -->
 		<spawn npc_id="217341">
 			<spot x="553.961" y="126.016" z="615.107" h="30" />
 			<spot x="564.25" y="96.79" z="614.0145" h="66" />
@@ -322,13 +322,13 @@
 			<spot x="750.280" y="136.425" z="611.317" h="92" />
 			<spot x="751.477" y="125.348" z="612.931" h="67" />
 		</spawn>
-		<!-- Teleporter -->
+		<!-- Teleporter de Balaur -->
 		<spawn npc_id="730391">
 			<spot x="352.608" y="424.051" z="655.715" static_id="297" />
 		</spawn>
 		<!-- Teleporter -->
 		<!-- Teleporter -->
-		<!-- Weapon H -->
+		<!-- Arma h -->
 		<spawn npc_id="217371">
 			<spot x="816.040" y="263.409" z="603.712" h="90" />
 		</spawn>

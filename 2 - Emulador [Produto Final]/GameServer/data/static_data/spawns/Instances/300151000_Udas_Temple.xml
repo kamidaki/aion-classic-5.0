@@ -1,42 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version='1.0' encoding='utf-8'?>
+<spawns>
 	<spawn_map map_id="300151000">
-		<!-- Udas Brainwasher -->
+		
 		<spawn npc_id="216591" respawn_time="295">
-			<spot x="575.5923" y="195.3467" z="137.0" h="30"/>
-			<spot x="584.4727" y="212.5203" z="137.0" h="30"/>
-			<spot x="547.5845" y="196.5972" z="137.0" h="15"/>
-			<spot x="562.8905" y="196.7261" z="137.0" h="30"/>
-			<spot x="560.5741" y="197.1043" z="137.0" h="30"/>
-			<spot x="573.7376" y="195.0542" z="137.0" h="30"/>
-			<spot x="538.4377" y="221.2901" z="137.0" h="0"/>
-			<spot x="540.458" y="212.4556" z="137.0" h="20"/>
-			<spot x="585.7747" y="223.1226" z="137.0" h="75"/>
-			<spot x="549.7836" y="196.0891" z="137.0" h="30"/>
-		</spawn>
-		<!-- Vaporfrost -->
+			<spot x="575.5923" y="195.3467" z="137.0" h="30" />
+			<spot x="584.4727" y="212.5203" z="137.0" h="30" />
+			<spot x="547.5845" y="196.5972" z="137.0" h="15" />
+			<spot x="562.8905" y="196.7261" z="137.0" h="30" />
+			<spot x="538.4377" y="221.2901" z="137.0" h="0" />
+			<spot x="540.458" y="212.4556" z="137.0" h="20" />
+			<spot x="585.7747" y="223.1226" z="137.0" h="75" />
+			</spawn>
+		
 		<spawn npc_id="281655" respawn_time="295">
-			<spot x="775.7543" y="329.9329" z="138" h="0"/>
+			<spot x="775.7543" y="329.9329" z="138" h="0" />
 		</spawn>
-		<!-- Rebirthing Chamber Exit -->
+		
 		<spawn npc_id="700706" respawn_time="295">
-			<spot x="562.1129" y="181.2764" z="137" h="0"/>
+			<spot x="562.1129" y="181.2764" z="137" h="0" />
 		</spawn>
-		<!-- Brainwashed Reian -->
+		
 		<spawn npc_id="799513" respawn_time="295">
-			<spot x="541.1841" y="221.2292" z="137" h="0"/>
+			<spot x="541.1841" y="221.2292" z="137" h="0" />
 		</spawn>
-		<!-- Brainwashed Reian -->
+		
 		<spawn npc_id="799514" respawn_time="295">
-			<spot x="541.271" y="214.6451" z="137" h="0"/>
+			<spot x="541.271" y="214.6451" z="137" h="0" />
 		</spawn>
-		<!-- Brainwashed Reian -->
+		
 		<spawn npc_id="799515" respawn_time="295">
-			<spot x="584.4714" y="221.3496" z="137" h="0"/>
+			<spot x="584.4714" y="221.3496" z="137" h="0" />
 		</spawn>
-		<!-- Brainwashed Reian -->
+		
 		<spawn npc_id="799516" respawn_time="295">
-			<spot x="584.4665" y="215.0515" z="137" h="0"/>
+			<spot x="584.4665" y="215.0515" z="137" h="0" />
 		</spawn>
 	</spawn_map>
 </spawns>

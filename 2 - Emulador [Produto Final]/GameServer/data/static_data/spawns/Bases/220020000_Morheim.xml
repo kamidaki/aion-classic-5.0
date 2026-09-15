@@ -8,15 +8,15 @@
 				<!-- Territory Boss -->
 				<!-- Elyos Morheim Inspector -->
 				<!-- Morheim Infiltrator -->
-				<!-- Aition General Goods Merchant -->
+				<!-- Landing Site Teleport Statue -->
 				<spawn npc_id="801168" handler="MERCHANT" respawn_time="295">
 					<spot x="1583.4044" y="1667.53" z="214.75" h="37" />
 				</spawn>
-				<!-- Mikon Warehouse Manager -->
+				<!-- Landing Site Teleport Statue -->
 				<spawn npc_id="801169" handler="MERCHANT" respawn_time="295">
 					<spot x="1573.5592" y="1677.3947" z="214.75" h="90" />
 				</spawn>
-				<!-- Lamakus Administration Officer -->
+				<!-- Diaros -->
 				<spawn npc_id="801170" handler="MERCHANT" respawn_time="295">
 					<spot x="1590.8715" y="1669.8474" z="214.66992" h="75" />
 				</spawn>
@@ -26,15 +26,15 @@
 				<!-- Territory Boss -->
 				<!-- Asmodian Morheim Inspector -->
 				<!-- Morheim Defender -->
-				<!-- Ingolfur General Goods Merchant -->
+				<!-- Dirini -->
 				<spawn npc_id="801171" handler="MERCHANT" respawn_time="295">
 					<spot x="1583.4044" y="1667.53" z="214.75" h="37" />
 				</spawn>
-				<!-- Thialfarr Warehouse Manager -->
+				<!-- Ronius -->
 				<spawn npc_id="801172" handler="MERCHANT" respawn_time="295">
 					<spot x="1573.5592" y="1677.3947" z="214.75" h="90" />
 				</spawn>
-				<!-- Kalfar Administration Officer -->
+				<!-- Rihina -->
 				<spawn npc_id="801173" handler="MERCHANT" respawn_time="295">
 					<spot x="1590.8715" y="1669.8474" z="214.66992" h="75" />
 				</spawn>
@@ -54,15 +54,15 @@
 				<!-- Territory Boss -->
 				<!-- Elyos Morheim Inspector -->
 				<!-- Morheim Defender -->
-				<!-- Albinus General Goods Merchant -->
+				<!-- Shariana -->
 				<spawn npc_id="801174" handler="MERCHANT" respawn_time="295">
 					<spot x="2033.5592" y="731.14465" z="246" h="113" />
 				</spawn>
-				<!-- Diagoras Warehouse Manager -->
+				<!-- Dionamion -->
 				<spawn npc_id="801175" handler="MERCHANT" respawn_time="295">
 					<spot x="2039.0592" y="720.64465" z="246.0437" h="30" />
 				</spawn>
-				<!-- Boethus Administration Officer -->
+				<!-- Nirr -->
 				<spawn npc_id="801176" handler="MERCHANT" respawn_time="295">
 					<spot x="2035.8092" y="734.89465" z="246" />
 				</spawn>
@@ -72,15 +72,15 @@
 				<!-- Territory Boss -->
 				<!-- Asmodian Morheim Inspector -->
 				<!-- Morheim Defender -->
-				<!-- Naddoddr General Goods Merchant -->
+				<!-- Duaro -->
 				<spawn npc_id="801177" handler="MERCHANT" respawn_time="295">
 					<spot x="2033.5592" y="731.14465" z="246" h="113" />
 				</spawn>
-				<!-- Narkel Warehouse Manager -->
+				<!-- Lalasia -->
 				<spawn npc_id="801178" handler="MERCHANT" respawn_time="295">
 					<spot x="2039.0592" y="720.64465" z="246.0437" h="30" />
 				</spawn>
-				<!-- Nibelr Administration Officer -->
+				<!-- Myrdos -->
 				<spawn npc_id="801179" handler="MERCHANT" respawn_time="295">
 					<spot x="2035.8092" y="734.89465" z="246" />
 				</spawn>

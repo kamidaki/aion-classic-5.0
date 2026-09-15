@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
 	<spawn_map map_id="120030000">
-		<!-- Pandaemonium Guardian -->
+		<!-- Atirador -->
 		<spawn npc_id="730649" respawn_time="295">
 			<spot x="1655.9443" y="1400.7506" z="195.6885" h="0"/>
 		</spawn>

@@ -8,15 +8,15 @@
 				<!-- Territory Boss -->
 				<!-- Elyos Eltnen Inspector (possible for Quest?) -->
 				<!-- Eltnen Defender -->
-				<!-- Alcman Administration Officer -->
+				<!-- Landing Site Teleport Statue -->
 				<spawn npc_id="801164" handler="MERCHANT" respawn_time="295">
 					<spot x="1821.25" y="1102.75" z="436.375" h="67" />
 				</spawn>
-				<!-- Apion Warehouse Manager -->
+				<!-- Landing Site Teleport Statue -->
 				<spawn npc_id="801163" handler="MERCHANT" respawn_time="295">
 					<spot x="1801.875" y="1098.125" z="436.375" h="15" />
 				</spawn>
-				<!-- Aelius General Goods Merchant -->
+				<!-- Eos Portal -->
 				<spawn npc_id="801162" handler="MERCHANT" respawn_time="295">
 					<spot x="1801.5" y="1104.25" z="436.375" />
 				</spawn>
@@ -26,15 +26,15 @@
 				<!-- Territory Boss -->
 				<!-- Asmodian Eltnen Inspector (possible for Quest?) -->
 				<!-- Eltnen Infiltrator -->
-				<!-- Dalla Administration Officer -->
+				<!-- Minox Portal -->
 				<spawn npc_id="801167" handler="MERCHANT" respawn_time="295">
 					<spot x="1821.25" y="1102.75" z="436.375" h="67" />
 				</spawn>
-				<!-- Thorgil Warehouse Manager -->
+				<!-- Abismo Fenda -->
 				<spawn npc_id="801166" handler="MERCHANT" respawn_time="295">
 					<spot x="1801.875" y="1098.125" z="436.375" h="15" />
 				</spawn>
-				<!-- Hrothgar General Goods Merchant -->
+				<!-- Minox Portal -->
 				<spawn npc_id="801165" handler="MERCHANT" respawn_time="295">
 					<spot x="1801.5" y="1104.25" z="436.375" />
 				</spawn>
@@ -54,15 +54,15 @@
 				<!-- Territory Boss -->
 				<!-- Elyos Eltnen Inspector (possible for Quest?) -->
 				<!-- Eltnen Sentinel -->
-				<!-- Akron General Goods -->
+				<!-- Tikirunerk -->
 				<spawn npc_id="801156" handler="MERCHANT" respawn_time="295">
 					<spot x="1019" y="665.5" z="310.75" h="30" />
 				</spawn>
-				<!-- Karsinus Warehouse Manager -->
+				<!-- <Oriel teatro de viagem> -->
 				<spawn npc_id="801157" handler="MERCHANT" respawn_time="295">
 					<spot x="1005.5" y="661" z="310.75" h="15" />
 				</spawn>
-				<!-- Callias Administration Officer -->
+				<!-- <Pernon Traveling Theatre> -->
 				<spawn npc_id="801158" handler="MERCHANT" respawn_time="295">
 					<spot x="1010.125" y="660.5" z="310.75" h="30" />
 				</spawn>
@@ -72,15 +72,15 @@
 				<!-- Territory Boss -->
 				<!-- Asmodian Eltnen Inspector (possible for Quest?) -->
 				<!-- Eltnen Infiltrator -->
-				<!-- Hastein General Goods -->
+				<!-- Jesro -->
 				<spawn npc_id="801159" handler="MERCHANT" respawn_time="295">
 					<spot x="1019" y="665.5" z="310.75" h="30" />
 				</spawn>
-				<!-- Tulus Warehouse Manager -->
+				<!-- Eos Portal -->
 				<spawn npc_id="801160" handler="MERCHANT" respawn_time="295">
 					<spot x="1005.5" y="661" z="310.75" h="15" />
 				</spawn>
-				<!-- Donar Administration Officer -->
+				<!-- Abismo Fenda -->
 				<spawn npc_id="801161" handler="MERCHANT" respawn_time="295">
 					<spot x="1010.125" y="660.5" z="310.75" h="30" />
 				</spawn>

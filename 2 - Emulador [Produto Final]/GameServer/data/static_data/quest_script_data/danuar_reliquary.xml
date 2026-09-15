@@ -10,6 +10,6 @@
 	-->
 	
 	<!-- COLLECTING QUESTS -->
-	<item_collecting id="16921" start_npc_ids="802431"/>
-	<item_collecting id="26921" start_npc_ids="802433"/>
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="16921" start_npc_ids="802431"/> -->
+	<!-- Obsolete 4.8 quest disabled for Classic 5.0: <item_collecting id="26921" start_npc_ids="802433"/> -->
 </quest_scripts>

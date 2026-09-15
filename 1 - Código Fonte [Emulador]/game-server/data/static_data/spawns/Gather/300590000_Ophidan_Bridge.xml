@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300590000">
-		<!-- Condensed Time Echoes -->
+		<!-- Rolagem de entrada para a esoterrace -->
 		<spawn npc_id="409081" respawn_time="295">
 			<spot x="556.1136" y="667.2686" z="913.9288" h="0"/>
 			<spot x="357.4029" y="804.0374" z="162.2272" h="117"/>

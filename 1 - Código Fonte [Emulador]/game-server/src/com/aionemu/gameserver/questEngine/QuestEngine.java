@@ -819,7 +819,7 @@ public class QuestEngine implements GameEngine {
 	public boolean registerCanAct(int questId, int npcId) {
 		NpcTemplate template = DataManager.NPC_DATA.getNpcTemplate(npcId);
 		if (template == null) {
-			log.warn("[QuestEngine] No such NPC template for " + npcId + " in Q" + questId);
+			log.debug("[QuestEngine] No such NPC template for {} in Q{}", npcId, questId);
 			return false;
 		}
 		if ("quest_use_item".equals(template.getAiName())) {

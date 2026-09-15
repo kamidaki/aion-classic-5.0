@@ -15,7 +15,6 @@ import com.aionemu.gameserver.geoEngine.models.GeoMap;
 import com.aionemu.gameserver.geoEngine.scene.NavGeometry;
 import com.aionemu.gameserver.geoEngine.scene.Spatial;
 import com.aionemu.gameserver.model.gameobjects.Creature;
-import com.lostacademy.Utilidades.CityMapUtil;
 
 /**
  * Ponto de entrada para consultas de navegação e pathfinding via NavMesh.
@@ -73,7 +72,6 @@ public final class NavService {
 			if (!GeoDataConfig.GEO_NAV_ENABLE) return true;
 			if (creature == null || target == null) return true;
 			int worldId = creature.getWorldId();
-			if (CityMapUtil.isDefaultPathfinding(worldId)) return true;
 			if (target.isFlying()) return true;
 			float x1 = creature.getX(), y1 = creature.getY(), z1 = creature.getZ();
 			NavGeometry tile1 = getNavTile(worldId, x1, y1, z1);
@@ -83,7 +81,6 @@ public final class NavService {
 			}
 			float x2 = target.getX(), y2 = target.getY(), z2 = target.getZ();
 			int targetWorldId = target.getWorldId();
-			if (CityMapUtil.isDefaultPathfinding(targetWorldId)) return true;
 			NavGeometry tile2 = getNavTile(targetWorldId, x2, y2, z2);
 			if (tile2 == null) {
 				tile2 = getNavTileWithBox(targetWorldId, x2, y2, z2);
@@ -180,7 +177,6 @@ public final class NavService {
 			if (pathOwner.getWorldId() != target.getWorldId()) return null;
 
 			int worldId = pathOwner.getWorldId();
-			if (CityMapUtil.isDefaultPathfinding(worldId)) return null;
 			float x1 = pathOwner.getX(), y1 = pathOwner.getY(), z1 = pathOwner.getZ();
 			float x2 = target.getX(), y2 = target.getY(), z2 = target.getZ();
 
@@ -200,7 +196,6 @@ public final class NavService {
 			if (pathOwner == null) return null;
 			if (pathOwner.getLifeStats().isDead()) return null;
 			int worldId = pathOwner.getWorldId();
-			if (CityMapUtil.isDefaultPathfinding(worldId)) return null;
 			float x1 = pathOwner.getX(), y1 = pathOwner.getY(), z1 = pathOwner.getZ();
 
 			return navigateFromLocationToLocation(worldId, null, null, x1, y1, z1, x, y, z);
@@ -215,8 +210,6 @@ public final class NavService {
 		totalQueries.incrementAndGet();
 		queriesInLastSecond.incrementAndGet();
 		try {
-			if (!GeoDataConfig.GEO_NAV_ENABLE) return Float.NaN;
-			if (CityMapUtil.isDefaultPathfinding(worldId)) return Float.NaN;
 			NavGeometry tile = getNavTile(worldId, x, y, z);
 			if (tile == null) {
 				tile = getNavTileWithBox(worldId, x, y, z);
@@ -228,9 +221,7 @@ public final class NavService {
 			recordQuery(start);
 		}
 	}
-	
 	private float[][] navigateFromLocationToLocation(int worldId, NavGeometry tile, NavGeometry tile2, float x1, float y1, float z1, float x2, float y2, float z2) {
-		if (CityMapUtil.isDefaultPathfinding(worldId)) return null;
 		boolean boxed = false;
 		if (tile == null) {
 			tile = getNavTile(worldId, x1, y1, z1);
@@ -412,9 +403,7 @@ public final class NavService {
 	private static float crossZ(float[] vec1, float[] vec2) {
 		return ((vec1[0] * vec2[1]) - (vec1[1] * vec2[0]));
 	}
-
 	private NavGeometry getNavTile(int worldId, float x, float y, float z) {
-		if (CityMapUtil.isDefaultPathfinding(worldId)) return null;
 		GeoMap navMap = navData.getNavMap(worldId);
 		if (navMap == null) return null;
 		Vector3f pos = new Vector3f(x, y, z + 1F);
@@ -437,9 +426,7 @@ public final class NavService {
 		}
 		return null;
 	}
-
 	private NavGeometry getNavTileWithBox(int worldId, float x, float y, float z) {
-		if (CityMapUtil.isDefaultPathfinding(worldId)) return null;
 		GeoMap navMap = navData.getNavMap(worldId);
 		if (navMap == null) return null;
 		Vector3f min = new Vector3f(x - 0.8F, y - 0.8F, z - 1);

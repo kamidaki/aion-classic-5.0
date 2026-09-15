@@ -143,7 +143,7 @@
 		<spawn npc_id="730487" respawn_time="295">
 			<spot x="569.2908" y="236.6141" z="127.811" h="0"/>
 		</spawn>
-		<!-- &amp;lt;Daeva do caos&amp;gt; -->
+		<!-- <Daeva do caos> -->
 		<spawn npc_id="730543" respawn_time="295">
 			<spot x="570.3943" y="268.3941" z="129.9347" h="0"/>
 		</spawn>
@@ -151,7 +151,7 @@
 		<spawn npc_id="730576" respawn_time="295">
 			<spot x="571.3831" y="267.3938" z="127.246" h="0" static_id="36"/>
 		</spawn>
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="730644" respawn_time="295">
 			<spot x="570.1114" y="237.7756" z="127.3317" h="0" static_id="77"/>
 		</spawn>
@@ -177,11 +177,11 @@
 			<spot x="601.4633" y="240.9161" z="127.2457" h="46"/>
 			<spot x="600.1334" y="264.9202" z="127.2458" h="76"/>
 		</spawn>
-		<!-- &amp;lt;MARMER&amp;gt; -->
+		<!-- <MARMER> -->
 		<spawn npc_id="800175" respawn_time="295">
 			<spot x="542.118" y="332.5155" z="126.9689" h="0"/>
 		</spawn>
-		<!-- &amp;lt;Farmer's Child&amp;gt; -->
+		<!-- <Farmer's Child> -->
 		<spawn npc_id="800176" respawn_time="295">
 			<spot x="544.7776" y="334.9861" z="126.9689" h="0"/>
 		</spawn>

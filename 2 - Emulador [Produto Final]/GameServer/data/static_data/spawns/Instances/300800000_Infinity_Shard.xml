@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<spawn_map map_id="300800000">
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="802558" respawn_time="295">
 			<spot x="26.0" y="245.0" z="239.56" h="0"/>
 			<spot x="22.5" y="245.0" z="239.56" h="0"/>
@@ -10,7 +10,7 @@
 			<spot x="26.0" y="261.0" z="239.56" h="0"/>
 			<spot x="22.5" y="261.0" z="239.56" h="0"/>
 		</spawn>
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="802560" respawn_time="295">
 			<spot x="348.4" y="237.77" z="251.06" h="0"/>
 		</spawn>
@@ -22,11 +22,11 @@
 		<spawn npc_id="802562" respawn_time="295">
 			<spot x="342.5015" y="221.6352" z="251.0643" h="30"/>
 		</spawn>
-		<!-- &amp;lt;Two Bass Fortaleza&amp;gt; -->
+		<!-- <Two Bass Fortaleza> -->
 		<spawn npc_id="802564" respawn_time="295">
 			<spot x="181" y="253" z="245" h="0"/>
 		</spawn>
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="802565" respawn_time="295">
 			<spot x="402.9176" y="204.2901" z="252" h="0"/>
 		</spawn>
@@ -34,13 +34,13 @@
 		<spawn npc_id="802566" respawn_time="295">
 			<spot x="402.812" y="296.0403" z="252" h="0"/>
 		</spawn>
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="802567" respawn_time="295">
 			<spot x="332.3693" y="229.1428" z="259" h="0"/>
 			<spot x="335.8365" y="194.7095" z="259" h="0"/>
 			<spot x="367.8781" y="221.8131" z="259" h="0"/>
 		</spawn>
-		<!-- Dança da ilusão da espada -->
+		<!-- Atirador -->
 		<spawn npc_id="802568" respawn_time="295">
 			<spot x="327.1275" y="291.4677" z="259" h="0"/>
 			<spot x="358.734" y="266.5374" z="259" h="0"/>
