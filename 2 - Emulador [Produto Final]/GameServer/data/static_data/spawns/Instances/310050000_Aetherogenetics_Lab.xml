@@ -190,7 +190,7 @@
 		</spawn>
 		<!-- Lepharist Secret Safe -->
 		<spawn npc_id="700279">
-			<spot x="255.302" y="310.364" z="128.25" h="28" static_id="64"/>
+			<spot x="255.1613" y="309.8366" z="128.25" h="28" static_id="64"/>
 		</spawn>
 		<!-- Red Journal -->
 		<spawn npc_id="730148">
@@ -225,7 +225,7 @@
 		</spawn>
 		<!-- Lepharist Research Data -->
 		<spawn npc_id="700352">
-			<spot x="327.8312" y="284.2470" z="141.9855" static_id="189"/>
+			<spot x="327.8312" y="284.247" z="141.9855" static_id="189"/>
 			<spot x="366.8953" y="186.0838" z="141.8717" static_id="188"/>
 			<spot x="249.9133" y="253.5948" z="132.8345" static_id="186"/>
 			<spot x="176.0297" y="205.9863" z="132.6022" static_id="185"/>
@@ -246,5 +246,9 @@
 		<spawn npc_id="280790">
 			<spot x="243.7621" y="308.1200" z="124.9966"/>
 		</spawn> -->
+		<!-- Omne Solum (Aetherogenetics Lab) -->
+		<spawn npc_id="730534">
+			<spot x="261.3093" y="314.593" z="129.1973" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

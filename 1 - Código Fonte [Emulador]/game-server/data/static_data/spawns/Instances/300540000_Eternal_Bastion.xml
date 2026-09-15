@@ -83,5 +83,15 @@
 		<!-- Trebuchet Parts -->
 		<!-- Beritran Chariot -->
 		<!-- Shatter Mine -->
+		<!-- Tiamat’s Fast Throw -->
+		<spawn npc_id="701415">
+			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
+			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
+		</spawn>
+		<!-- v7 food and medicine merchant (+supplement) -->
+		<spawn npc_id="800716">
+			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
+			<spot x="228.95" y="253.79" z="213.2864" h="0" random_walk="8"/>
+		</spawn>
 	</spawn_map>
 </spawns>

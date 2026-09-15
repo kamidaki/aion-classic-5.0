@@ -320,5 +320,13 @@
 			<spot x="1579.1322" y="364.9623" z="198.2500" />
 			<spot x="1585.3311" y="372.1372" z="198.2500" />
 		</spawn>
+		<!-- haorunerk's bag -->
+		<spawn npc_id="700522">
+			<spot x="401.7416" y="502.9903" z="886.3228" h="0"/>
+		</spawn>
+		<!-- str_sen_idship_sensoryarea_entrance_02 -->
+		<spawn npc_id="206100">
+			<spot x="409.4545" y="509.6769" z="889.1545" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

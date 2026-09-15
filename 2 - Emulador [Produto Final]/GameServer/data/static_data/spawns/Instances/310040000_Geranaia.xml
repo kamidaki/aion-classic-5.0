@@ -5,5 +5,9 @@
 		<spawn npc_id="204044">
 			<spot x="269.79" y="176.751" z="204.347" h="94"/>
 		</spawn>
+		<!-- dimension exit -->
+		<spawn npc_id="700187">
+			<spot x="275.9359" y="162.0081" z="208.4809" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

@@ -205,19 +205,19 @@
 		</spawn>
 		<!-- Captured Archon -->
 		<spawn npc_id="798328">
-			<spot x="380.008" y="697.248" z="404.07" h="59"/>
+			<spot x="380.0082" y="697.2482" z="404.07" h="59"/>
 		</spawn>
 		<!-- Captured Asmodian Scholar -->
 		<spawn npc_id="798330">
-			<spot x="591.782" y="711.621" z="403.969" h="107"/>
+			<spot x="591.7817" y="711.6214" z="403.969" h="107"/>
 		</spawn>
 		<!-- Captured Elyos Scholar -->
 		<spawn npc_id="798326">
-			<spot x="589.894" y="697.263" z="403.962" h="54"/>
+			<spot x="589.8936" y="697.2634" z="403.962" h="54"/>
 		</spawn>
 		<!-- Captured Guardian -->
 		<spawn npc_id="798324">
-			<spot x="378.52" y="712.348" z="404.101" h="59"/>
+			<spot x="378.5201" y="712.3478" z="404.101" h="59"/>
 		</spawn>
 		<!-- Drop Device Surkana -->
 		<spawn npc_id="700492">
@@ -229,8 +229,8 @@
 		</spawn>
 		<!-- Exhausted Shugo -->
 		<spawn npc_id="730196">
-			<spot x="388.766" y="173.59" z="432.574" h="52"/>
-			<spot x="583.135" y="172.481" z="432.594" h="56"/>
+			<spot x="388.7658" y="173.5897" z="432.574" h="52"/>
+			<spot x="583.1348" y="172.481" z="432.594" h="56"/>
 		</spawn>
 		<!-- Fighter Enhancing Surkana -->
 		<spawn npc_id="700494">
@@ -265,7 +265,7 @@
 			<spot x="398.457" y="160.152" z="432.284" h="20" static_id="10"/>
 			<spot x="402.334" y="175.117" z="432.285" h="41" static_id="64"/>
 			<spot x="484.72" y="761.42" z="388.655" h="29" static_id="91"/>
-			<spot x="567.591" y="175.197" z="432.285" h="64" static_id="65"/>
+			<spot x="567.3602" y="175.2826" z="432.285" h="64" static_id="65"/>
 			<spot x="571.88" y="160.62" z="432.285" h="112" static_id="9"/>
 		</spawn>
 		<!-- Nuclear Control Surkana -->
@@ -327,6 +327,38 @@
 		<!-- Vice Gun Captain Zha -->
 		<spawn npc_id="215091">
 			<spot x="391.251" y="564.982" z="408.922" h="98"/>
+		</spawn>
+		<!-- captain's cabin teleport device -->
+		<spawn npc_id="730197">
+			<spot x="484.9489" y="761.5105" z="389.8377" h="0"/>
+		</spawn>
+		<!-- captured archon -->
+		<spawn npc_id="798329">
+			<spot x="591.7817" y="711.6214" z="405.9453" h="0"/>
+		</spawn>
+		<!-- captured asmodian scholar -->
+		<spawn npc_id="798327">
+			<spot x="380.0082" y="697.2482" z="405.9453" h="0"/>
+		</spawn>
+		<!-- captured elyos scholar -->
+		<spawn npc_id="798323">
+			<spot x="378.5201" y="712.3478" z="405.9453" h="0"/>
+		</spawn>
+		<!-- captured guardian -->
+		<spawn npc_id="798325">
+			<spot x="589.8936" y="697.2634" z="405.9453" h="0"/>
+		</spawn>
+		<!-- no. 1 nuclear control room teleporter -->
+		<spawn npc_id="730213">
+			<spot x="402.3323" y="175.0037" z="433.9405" h="0"/>
+		</spawn>
+		<!-- portside central teleporter -->
+		<spawn npc_id="730187">
+			<spot x="398.3614" y="160.2706" z="433.9405" h="0"/>
+		</spawn>
+		<!-- starboard central teleporter -->
+		<spawn npc_id="730188">
+			<spot x="571.887" y="160.7908" z="433.9293" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

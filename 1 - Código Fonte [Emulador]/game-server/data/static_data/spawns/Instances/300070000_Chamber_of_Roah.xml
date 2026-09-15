@@ -136,5 +136,9 @@
 			<spot x="504.15" y="542.48" z="98.73432" h="89" walker_id="D8908FE717E2269C9263C19102DE240418BCBF45"/>
 			<spot x="523.02" y="599.44" z="100.50599" h="89" walker_id="28CE19D8AC55E8665081C6B9DB4ECE74B5082413"/>
 		</spawn>
+		<!-- str_sen_idab1_sensoryarea_timer_b -->
+		<spawn npc_id="206088">
+			<spot x="504.4267" y="413.8243" z="97.5576" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

@@ -3,8 +3,8 @@
 	<spawn_map map_id="300650000">
 		<!-- Siel's Energy Pack -->
 		<spawn npc_id="800534" respawn_time="295">
-			<spot x="483.045" y="327.2818" z="266.7929" h="0"/>
-			<spot x="497.9242" y="720.6047" z="270.1577" h="0"/>
+			<spot x="483.045" y="327.2818" z="265.375" h="0"/>
+			<spot x="497.9242" y="720.6047" z="269" h="0"/>
 		</spawn>
 		<!-- Battlefield Outpost Teleporter -->
 		<spawn npc_id="801641" respawn_time="295">
@@ -18,9 +18,9 @@
 		</spawn>
 		<!-- Dranium Processing Camp -->
 		<spawn npc_id="801665" respawn_time="295">
-			<spot x="498.2789" y="720.4695" z="271.3044" h="0"/>
-			<spot x="483.0267" y="327.1716" z="267.7015" h="0"/>
-			<spot x="483.0267" y="327.1716" z="267.7015" h="0"/>
+			<spot x="498.2789" y="720.4695" z="269" h="0"/>
+			<spot x="483.0267" y="327.1716" z="265.375" h="0"/>
+			<spot x="483.0267" y="327.1716" z="265.375" h="0"/>
 		</spawn>
 		<!-- Riana -->
 		<spawn npc_id="801674" respawn_time="295">
@@ -42,7 +42,7 @@
 		</spawn>
 		<!-- Archon Prefect's Sash -->
 		<spawn npc_id="801790" respawn_time="295">
-			<spot x="421.7217" y="492.46" z="255.8944" h="0"/>
+			<spot x="421.7217" y="492.46" z="254.4599" h="0"/>
 		</spawn>
 		<!-- Guardian Battle Commander's Corundum Earring -->
 		<spawn npc_id="801791" respawn_time="295">
@@ -64,12 +64,12 @@
 		</spawn>
 		<!-- Guardian Battle Commander's Corundum Necklace -->
 		<spawn npc_id="801795" respawn_time="295">
-			<spot x="421.4706" y="500.9895" z="255.2619" h="0"/>
+			<spot x="421.4706" y="500.9895" z="253.875" h="0"/>
 		</spawn>
 		<!-- Guardian Battle Commander's Turquoise Necklace -->
 		<spawn npc_id="801796" respawn_time="295">
-			<spot x="421.1664" y="501.1013" z="256.2222" h="0"/>
-			<spot x="421.1664" y="501.1013" z="256.2222" h="0"/>
+			<spot x="421.1664" y="501.1013" z="253.875" h="0"/>
+			<spot x="421.1664" y="501.1013" z="253.875" h="0"/>
 		</spawn>
 		<!-- Archon Battle Commander's Corundum Necklace -->
 		<spawn npc_id="801797" respawn_time="295">

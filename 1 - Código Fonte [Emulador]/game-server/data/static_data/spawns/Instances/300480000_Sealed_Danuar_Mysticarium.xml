@@ -22,5 +22,9 @@
 		<!-- sturdy boulder -->
 		<!-- Ancient Box -->
 		<!-- Ancient Box -->
+		<!--   -->
+		<spawn npc_id="206214">
+			<spot x="759.9973" y="431.5216" z="322" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

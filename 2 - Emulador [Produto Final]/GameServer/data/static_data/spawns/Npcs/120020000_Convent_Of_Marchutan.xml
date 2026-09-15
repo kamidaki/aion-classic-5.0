@@ -16,7 +16,7 @@
 		</spawn>
 		<!-- Hodorski -->
 		<spawn npc_id="798705" respawn_time="295">
-			<spot x="1550.6200" y="1362.8000" z="271.4236" h="40" />
+			<spot x="1550.62" y="1362.8" z="271.4236" h="40" />
 		</spawn>
 		<!-- Deltandra -->
 		<spawn npc_id="798706" respawn_time="295">
@@ -32,15 +32,15 @@
 		</spawn>
 		<!-- Angulof -->
 		<spawn npc_id="798700" respawn_time="295">
-			<spot x="1516.7000" y="1402.1000" z="271.8239" h="10" />
+			<spot x="1516.7" y="1402.1" z="271.8239" h="10" />
 		</spawn>
 		<!-- Kijan -->
 		<spawn npc_id="798804" respawn_time="295">
-			<spot x="1519.1742" y="1397.5990" z="271.7242" h="10" />
+			<spot x="1518.58" y="1398.3599" z="271.7242" h="10" />
 		</spawn>
 		<!-- Garvan -->
 		<spawn npc_id="798701" respawn_time="295">
-			<spot x="1540.1320" y="1395.2190" z="266.0138" h="36" />
+			<spot x="1540.132" y="1395.219" z="266.0138" h="36" />
 		</spawn>
 		<!-- Gylfir -->
 		<!-- Kratyr -->
@@ -109,12 +109,12 @@
 		<!-- Eriu -->
 		<!-- Imever -->
 		<spawn npc_id="798710" respawn_time="295">
-			<spot x="1513.8322" y="1453.0438" z="271.4236" h="100" />
+			<spot x="1515.2999" y="1453.8978" z="271.4236" h="100" />
 		</spawn>
 		<!-- Fairev -->
 		<!-- Nunor -->
 		<spawn npc_id="798801" respawn_time="295">
-			<spot x="1505.3667" y="1448.5347" z="271.4236" h="100" />
+			<spot x="1506.2876" y="1448.9426" z="271.4236" h="100" />
 		</spawn>
 		<!-- Agehia -->
 		<spawn npc_id="798800" respawn_time="295">

@@ -3,24 +3,24 @@
 	<spawn_map map_id="300230000">
 		<!-- Altar of Healing -->
 		<spawn npc_id="282092">
-			<spot x="643.917" y="753.299" z="216.159" h="30" />
-			<spot x="643.935" y="795.351" z="216.159" h="30" />
+			<spot x="643.9172" y="753.299" z="216.159" h="30" />
+			<spot x="643.935" y="795.3513" z="216.159" h="30" />
 		</spawn>
 		<!-- Altar of Healing -->
 		<spawn npc_id="282111">
 			<spot x="643.92" y="753.3" z="216.159" h="30" />
-			<spot x="643.938" y="795.352" z="216.159" h="30" />
+			<spot x="643.9378" y="795.3522" z="216.159" h="30" />
 		</spawn>
 		<!-- Ancient Temple Nagolem -->
 		<spawn npc_id="282126">
-			<spot x="613.889" y="793.743" z="216.095" h="90" />
-			<spot x="613.903" y="754.872" z="216.095" h="30" />
-			<spot x="623.769" y="793.648" z="216.095" h="90" />
-			<spot x="623.783" y="754.777" z="216.095" h="30" />
-			<spot x="633.67" y="793.666" z="216.095" h="90" />
-			<spot x="633.683" y="754.795" z="216.095" h="30" />
-			<spot x="653.908" y="793.669" z="216.095" h="90" />
-			<spot x="653.922" y="754.797" z="216.095" h="30" />
+			<spot x="613.8892" y="793.7428" z="216.095" h="90" />
+			<spot x="613.903" y="754.8715" z="216.095" h="30" />
+			<spot x="623.7693" y="793.6479" z="216.095" h="90" />
+			<spot x="623.7831" y="754.7766" z="216.095" h="30" />
+			<spot x="633.6696" y="793.6663" z="216.095" h="90" />
+			<spot x="633.6834" y="754.7949" z="216.095" h="30" />
+			<spot x="653.908" y="793.6688" z="216.095" h="90" />
+			<spot x="653.9218" y="754.7974" z="216.095" h="30" />
 		</spawn>
 		<!-- Captive -->
 		<spawn npc_id="216970">
@@ -52,7 +52,7 @@
 		</spawn>
 		<!-- Dream Boundary -->
 		<spawn npc_id="700949">
-			<spot x="229.358" y="252.257" z="191.168" h="110" />
+			<spot x="229.3581" y="252.2569" z="191.168" h="110" />
 		</spawn>
 		<!-- Dungeon Bloodwing -->
 		<spawn npc_id="217109">
@@ -109,7 +109,7 @@
 		</spawn>
 		<!-- Emergency Exit -->
 		<spawn npc_id="700928">
-			<spot x="679.964" y="774.286" z="216.854" static_id="105" />
+			<spot x="680.7784" y="774.0101" z="216.854" static_id="105" />
 		</spawn>
 		<!-- Faithful Temple Nagolem -->
 		<spawn npc_id="216966">
@@ -124,15 +124,15 @@
 		</spawn>
 		<!-- Fruit Basket -->
 		<spawn npc_id="730337">
-			<spot x="523.179" y="756.26" z="216.615" static_id="70" />
+			<spot x="522.8628" y="755.2494" z="216.615" static_id="70" />
 		</spawn>
 		<!-- Garden Fountain -->
 		<spawn npc_id="730336">
-			<spot x="512.5" y="640.37" z="202.464" static_id="14" />
+			<spot x="512.2545" y="640.27" z="202.464" static_id="14" />
 		</spawn>
 		<!-- Grave Robber's Corpse -->
 		<spawn npc_id="700961">
-			<spot x="467.363" y="350.658" z="170.391" h="66" static_id="56" />
+			<spot x="467.1877" y="351.8859" z="170.391" h="66" static_id="56" />
 		</spawn>
 		<!-- Guard Bitin -->
 		<spawn npc_id="217030">
@@ -161,11 +161,11 @@
 		</spawn>
 		<!-- IDCromede_Invisible_NPC5 -->
 		<spawn npc_id="282087">
-			<spot x="654.749" y="561.479" z="205.219" />
+			<spot x="654.7493" y="561.4789" z="205.219" />
 		</spawn>
 		<!-- IDCromede_Invisible_NPC9 -->
 		<spawn npc_id="282091">
-			<spot x="365.452" y="183.656" z="146.838" h="76" />
+			<spot x="365.4517" y="183.6557" z="146.838" h="76" />
 		</spawn>
 		<!-- Yulina -->
 		<spawn npc_id="216994">
@@ -181,43 +181,43 @@
 		</spawn>
 		<!-- Kaliga's Bow Rack -->
 		<spawn npc_id="730330">
-			<spot x="634.145" y="785.075" z="216.117" static_id="195" />
+			<spot x="634.2675" y="785.0919" z="216.117" static_id="195" />
 		</spawn>
 		<!-- Kaliga's Dagger Rack -->
 		<spawn npc_id="730328">
-			<spot x="644.205" y="785.075" z="216.117" static_id="197" />
+			<spot x="644.2499" y="784.9734" z="216.117" static_id="197" />
 		</spawn>
 		<!-- Kaliga's Greatsword Rack -->
 		<spawn npc_id="730327">
-			<spot x="613.782" y="785.075" z="216.117" static_id="13" />
+			<spot x="613.7907" y="784.8866" z="216.117" static_id="13" />
 		</spawn>
 		<!-- Kaliga's Mace Rack -->
 		<spawn npc_id="730331">
-			<spot x="653.417" y="763.317" z="216.117" static_id="202" />
+			<spot x="653.2491" y="763.3508" z="216.117" static_id="202" />
 		</spawn>
 		<!-- Kaliga's Orb Rack -->
 		<spawn npc_id="730334">
-			<spot x="634.166" y="763.317" z="216.117" static_id="208" />
+			<spot x="634.1136" y="763.3427" z="216.117" static_id="208" />
 		</spawn>
 		<!-- Kaliga's Polearm Rack -->
 		<spawn npc_id="730329">
-			<spot x="653.439" y="785.075" z="216.117" static_id="200" />
+			<spot x="653.3656" y="784.7784" z="216.117" static_id="200" />
 		</spawn>
 		<!-- Kaliga's Shield Rack -->
 		<spawn npc_id="730335">
-			<spot x="613.782" y="763.317" z="216.117" static_id="268" />
+			<spot x="613.6698" y="763.2537" z="216.117" static_id="268" />
 		</spawn>
 		<!-- Kaliga's Spellbook Rack -->
 		<spawn npc_id="730333">
-			<spot x="623.682" y="785.075" z="216.117" static_id="193" />
+			<spot x="623.5991" y="784.9503" z="216.117" static_id="193" />
 		</spawn>
 		<!-- Kaliga's Staff Rack -->
 		<spawn npc_id="730332">
-			<spot x="623.695" y="763.317" z="216.117" static_id="260" />
+			<spot x="623.6439" y="763.1602" z="216.117" static_id="260" />
 		</spawn>
 		<!-- Kaliga's Sword Rack -->
 		<spawn npc_id="730326">
-			<spot x="644.227" y="763.317" z="216.117" static_id="206" />
+			<spot x="644.2064" y="763.1987" z="216.117" static_id="206" />
 		</spawn>
 		<!-- Kaliga's Gun Rack -->
 		<!-- Kaliga's Cannon Rack -->
@@ -237,11 +237,11 @@
 		</spawn>
 		<!-- Maga's Potion -->
 		<spawn npc_id="730341">
-			<spot x="542.388" y="640.625" z="217.092" h="100" static_id="553" />
+			<spot x="542.481" y="641.3745" z="217.092" h="100" static_id="553" />
 		</spawn>
 		<!-- Maga's Potion -->
 		<spawn npc_id="730308">
-			<spot x="350.282" y="168.371" z="148.178" static_id="6" />
+			<spot x="350.284" y="169.9596" z="148.178" static_id="6" />
 		</spawn>
 		<!-- Mana Relic -->
 		<spawn npc_id="282093">
@@ -379,7 +379,7 @@
 		</spawn>
 		<!-- Old Relic Chest -->
 		<spawn npc_id="730340">
-			<spot x="741.711" y="530.559" z="199.322" h="60" static_id="319" />
+			<spot x="741.7551" y="530.597" z="199.322" h="60" static_id="319" />
 		</spawn>
 		<!-- Pet Tog -->
 		<spawn npc_id="216997">
@@ -402,7 +402,7 @@
 		</spawn>
 		<!-- Prophet's Tower -->
 		<spawn npc_id="730339">
-			<spot x="591.071" y="640.167" z="212.911" static_id="15" />
+			<spot x="591.2065" y="640.5705" z="212.911" static_id="15" />
 		</spawn>
 		<!-- Relic Guardian -->
 		<spawn npc_id="217130">
@@ -411,7 +411,7 @@
 		</spawn>
 		<!-- Robstin -->
 		<spawn npc_id="282116">
-			<spot x="677.825" y="584.14" z="210.464" />
+			<spot x="677.8253" y="584.1404" z="210.464" />
 		</spawn>
 		<!-- Robstin's Corpse -->
 		<spawn npc_id="700939">
@@ -419,13 +419,13 @@
 		</spawn>
 		<!-- Scared Captive -->
 		<spawn npc_id="217114">
-			<spot x="650.28" y="630.031" z="201.191" h="110" />
-			<spot x="662.308" y="622.497" z="201.191" h="73" />
+			<spot x="650.2802" y="630.0307" z="201.191" h="110" />
+			<spot x="662.3082" y="622.4972" z="201.191" h="73" />
 		</spawn>
 		<!-- Scared Prisoner -->
 		<spawn npc_id="217113">
-			<spot x="659.348" y="634.124" z="201.191" h="10" />
-			<spot x="668.368" y="628.765" z="201.191" />
+			<spot x="659.348" y="634.1241" z="201.191" h="10" />
+			<spot x="668.3679" y="628.7651" z="201.191" />
 		</spawn>
 		<!-- Sealed Stone Door -->
 		<spawn npc_id="700835">
@@ -433,7 +433,7 @@
 		</spawn>
 		<!-- Secret Safe Door -->
 		<spawn npc_id="700924">
-			<spot x="588.077" y="774.257" z="217.883" h="60" static_id="5" />
+			<spot x="587.6711" y="774.232" z="217.883" h="60" static_id="5" />
 		</spawn>
 		<!-- Shadow Executor Asusin -->
 		<spawn npc_id="700964">
@@ -445,7 +445,7 @@
 		</spawn>
 		<!-- Sleep Flower -->
 		<spawn npc_id="730325">
-			<spot x="492.046" y="628.599" z="201.342" h="90" static_id="79" />
+			<spot x="492.2245" y="628.733" z="201.342" h="90" static_id="79" />
 		</spawn>
 		<!-- Strength Relic -->
 		<spawn npc_id="282095">
@@ -468,13 +468,13 @@
 		</spawn>
 		<!-- Tortured Captive -->
 		<spawn npc_id="700946">
-			<spot x="754.037" y="622.719" z="197.545" h="53" />
-			<spot x="757.089" y="621.965" z="197.545" h="30" />
+			<spot x="754.037" y="622.7186" z="197.545" h="53" />
+			<spot x="757.0891" y="621.9651" z="197.545" h="30" />
 		</spawn>
 		<!-- Tortured Prisoner -->
 		<spawn npc_id="700947">
-			<spot x="752.761" y="620.356" z="197.545" h="30" />
-			<spot x="754.365" y="617.891" z="197.177" h="43" />
+			<spot x="752.761" y="620.3555" z="197.545" h="30" />
+			<spot x="754.3646" y="617.8907" z="197.177" h="43" />
 		</spawn>
 		<!-- Troll Lookout -->
 		<spawn npc_id="216961">
@@ -501,6 +501,42 @@
 		<spawn npc_id="216963">
 			<spot x="446.35" y="337.93" z="172.27985" h="106" walker_id="2FF98E4BBAAD804997D94B0D2AF23F8D1BDE9E82" />
 			<spot x="477.34" y="335.29" z="170.51137" h="50" walker_id="BD29DAB70520B9045B705ABF8E7747502B4FF4AD" />
+		</spawn>
+		<!-- bedroom door -->
+		<spawn npc_id="700926">
+			<spot x="560.9319" y="614.9413" z="216.3681" h="0"/>
+		</spawn>
+		<!-- forbidden book repository door -->
+		<spawn npc_id="700927">
+			<spot x="576.5803" y="800.7534" z="228.4342" h="0"/>
+		</spawn>
+		<!-- hidden area -->
+		<spawn npc_id="206154">
+			<spot x="445.9433" y="341.2761" z="180.1052" h="0"/>
+		</spawn>
+		<!-- idcromede_invisible_npc19 -->
+		<spawn npc_id="282119">
+			<spot x="585.9294" y="774.2844" z="218.8763" h="0"/>
+		</spawn>
+		<!-- robstin -->
+		<spawn npc_id="700965">
+			<spot x="657.2007" y="585.7778" z="200.3622" h="0"/>
+		</spawn>
+		<!-- str_sen_idcromede_sensoryarea_2up_way -->
+		<spawn npc_id="206165">
+			<spot x="597.9297" y="620.4356" z="219.0933" h="0"/>
+		</spawn>
+		<!-- str_sen_idcromede_sensoryarea_bossdoor -->
+		<spawn npc_id="206163">
+			<spot x="566.7839" y="762.2076" z="219.7122" h="0"/>
+		</spawn>
+		<!-- str_sen_idcromede_sensoryarea_robstin -->
+		<spawn npc_id="206164">
+			<spot x="701.837" y="516.2601" z="199.132" h="0"/>
+		</spawn>
+		<!-- torture chamber door -->
+		<spawn npc_id="700922">
+			<spot x="711.5991" y="629.3586" z="197.543" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

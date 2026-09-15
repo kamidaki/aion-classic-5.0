@@ -7,7 +7,7 @@
 		</spawn>
 		<!-- Balaur Artifact -->
 		<spawn npc_id="700515">
-			<spot x="491.68869" y="516.29236" z="968.84601" h="100" static_id="54"/>
+			<spot x="492.296" y="516.6047" z="968.84601" h="100" static_id="54"/>
 		</spawn>
 		<!-- Brigadier Indratu -->
 		<spawn npc_id="214159">
@@ -19,7 +19,7 @@
 		</spawn>
 		<!-- Erebus -->
 		<spawn npc_id="204651">
-			<spot x="571.475" y="354.722" z="1013.19" h="79"/>
+			<spot x="570.8017" y="355.3908" z="1013.19" h="79"/>
 		</spawn>
 		<!-- Indratu Aegis -->
 		<spawn npc_id="214127">
@@ -329,6 +329,10 @@
 		<!-- Staff Captain Lahumu -->
 		<spawn npc_id="214158">
 			<spot x="550" y="493" z="967.084" h="52"/>
+		</spawn>
+		<!-- Indratu Fortress Omne Solum (Emergency Exit) -->
+		<spawn npc_id="730547">
+			<spot x="499.1137" y="526.6756" z="971.4353" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

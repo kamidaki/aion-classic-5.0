@@ -158,8 +158,8 @@
 		</spawn>
 		<!-- Fabled Stigma Chest III (Level 55) -->
 		<spawn npc_id="803822" respawn_time="295">
-			<spot x="99.7716" y="512.1029" z="276.2094" h="0" walker_id="00BA653578287302015C561C87FF56528C85EB98" walker_index="5"/>
-			<spot x="99.7716" y="512.1029" z="276.2094" h="0" walker_id="00BA653578287302015C561C87FF56528C85EB98" walker_index="5"/>
+			<spot x="99.7716" y="512.1029" z="273.25" h="0" walker_id="00BA653578287302015C561C87FF56528C85EB98" walker_index="5"/>
+			<spot x="99.7716" y="512.1029" z="273.25" h="0" walker_id="00BA653578287302015C561C87FF56528C85EB98" walker_index="5"/>
 		</spawn>
 		<!-- Class Change Support Chest III -->
 		<spawn npc_id="803823" respawn_time="295">
@@ -217,7 +217,7 @@
 			<spot x="1430.9181" y="749.0978" z="301.1051" h="0"/>
 			<spot x="1680.3301" y="235.3974" z="241.5146" h="0"/>
 			<spot x="895.2723" y="1254.979" z="349.8815" h="0"/>
-			<spot x="327.4882" y="470.6659" z="259.7457" h="0" walker_id="2CDEC341C664BA916A308C68BA400B358C189ACB" walker_index="9"/>
+			<spot x="327.4882" y="470.6659" z="256.285" h="0" walker_id="2CDEC341C664BA916A308C68BA400B358C189ACB" walker_index="9"/>
 		</spawn>
 		<!-- 2nd Level Teleporter -->
 		<spawn npc_id="803855" respawn_time="295">
@@ -300,7 +300,7 @@
 		</spawn>
 		<!-- This rapier might finally makes your mother proud of you. -->
 		<spawn npc_id="803932" respawn_time="295">
-			<spot x="99.6041" y="513.0191" z="276.8362" h="0"/>
+			<spot x="99.6041" y="513.0191" z="273.25" h="0"/>
 		</spawn>
 		<!-- A Sunstorm Dragon's Rapier.\nYou can use it to change the appearance of another item. -->
 		<spawn npc_id="803934" respawn_time="295">
@@ -316,7 +316,7 @@
 		</spawn>
 		<!-- Teleporter to 3rd Level Entrance -->
 		<spawn npc_id="803956" respawn_time="295">
-			<spot x="334.0911" y="484.3509" z="260.4019" h="0" walker_id="2CDEC341C664BA916A308C68BA400B358C189ACB" walker_index="9"/>
+			<spot x="334.0911" y="484.3509" z="257.1469" h="0" walker_id="2CDEC341C664BA916A308C68BA400B358C189ACB" walker_index="9"/>
 		</spawn>
 		<!-- Battle Rapier -->
 		<spawn npc_id="803957" respawn_time="295">

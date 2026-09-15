@@ -63,7 +63,7 @@
 		</spawn>
 		<!-- Heavy Stone Door -->
 		<spawn npc_id="700484">
-			<spot x="527.251" y="105.021" z="175.889" h="103" static_id="4"/>
+			<spot x="527.2094" y="106.1177" z="175.889" h="103" static_id="4"/>
 		</spawn>
 		<!-- IDAB1_SensoryArea_Timer_H -->
 		<spawn npc_id="206097">

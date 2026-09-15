@@ -49,19 +49,19 @@
 		</spawn>
 		<!-- IDArena_Solo_RoundNPC_1 -->
 		<spawn npc_id="205654" respawn_time="295">
-			<spot x="1777.6056" y="306.9807" z="471.1734" h="0"/>
+			<spot x="1777.6056" y="306.9807" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_RoundNPC_2 -->
 		<spawn npc_id="205655" respawn_time="295">
-			<spot x="1777.6056" y="306.9807" z="471.1734" h="0"/>
+			<spot x="1777.6056" y="306.9807" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_RoundNPC_3 -->
 		<spawn npc_id="205656" respawn_time="295">
-			<spot x="1775.6146" y="307.0689" z="471.1734" h="0"/>
+			<spot x="1775.6146" y="307.0689" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_RoundNPC_4 -->
 		<spawn npc_id="205657" respawn_time="295">
-			<spot x="1775.6146" y="307.0689" z="471.1734" h="0"/>
+			<spot x="1775.6146" y="307.0689" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_RoundNPC_5 -->
 		<spawn npc_id="205658" respawn_time="295">
@@ -78,8 +78,8 @@
 		</spawn>
 		<!-- IDArena_Solo_RoundNPC_8 -->
 		<spawn npc_id="205661" respawn_time="295">
-			<spot x="1773.4771" y="307.0297" z="471.1734" h="0"/>
-			<spot x="1773.4771" y="307.0297" z="471.1734" h="0"/>
+			<spot x="1773.4771" y="307.0297" z="469.25" h="0"/>
+			<spot x="1773.4771" y="307.0297" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_RoundNPC_9 -->
 		<spawn npc_id="205662" respawn_time="295">
@@ -95,7 +95,7 @@
 		</spawn>
 		<!-- Arbiter -->
 		<spawn npc_id="205665" respawn_time="295">
-			<spot x="1821.5776" y="801.9846" z="471.1734" h="0"/>
+			<spot x="1821.5776" y="801.9846" z="469" h="0"/>
 		</spawn>
 		<!-- Recordkeeper -->
 		<spawn npc_id="205666" respawn_time="295">
@@ -156,15 +156,15 @@
 		</spawn>
 		<!-- Arbiter -->
 		<spawn npc_id="205682" respawn_time="295">
-			<spot x="383.3434" y="1667.2977" z="98.3352" h="0"/>
+			<spot x="383.3434" y="1667.2977" z="97.7929" h="0"/>
 		</spawn>
 		<!-- Arbiter -->
 		<spawn npc_id="205683" respawn_time="295">
-			<spot x="1821.5643" y="311.9248" z="471.1734" h="0"/>
+			<spot x="1821.5643" y="311.9248" z="468.9567" h="0"/>
 		</spawn>
 		<!-- Arbiter -->
 		<spawn npc_id="205684" respawn_time="295">
-			<spot x="1358.4021" y="1758.744" z="320.9201" h="0"/>
+			<spot x="1358.4021" y="1758.744" z="319.1966" h="0"/>
 		</spawn>
 		<!-- Arbiter -->
 		<spawn npc_id="205685" respawn_time="295">
@@ -184,23 +184,23 @@
 		</spawn>
 		<!-- IDArena_Solo_InviNPC_1 -->
 		<spawn npc_id="205689" respawn_time="295">
-			<spot x="1783.098" y="304.789" z="471.1734" h="0"/>
+			<spot x="1783.098" y="304.789" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_InviNPC_2 -->
 		<spawn npc_id="205690" respawn_time="295">
-			<spot x="1783.0964" y="306.9802" z="471.1734" h="0"/>
+			<spot x="1783.0964" y="306.9802" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_InviNPC_3 -->
 		<spawn npc_id="205691" respawn_time="295">
-			<spot x="1783.088" y="309.1517" z="471.1734" h="0"/>
+			<spot x="1783.088" y="309.1517" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_InviNPC_4 -->
 		<spawn npc_id="205692" respawn_time="295">
-			<spot x="1786.0027" y="307.0311" z="471.1734" h="0"/>
+			<spot x="1786.0027" y="307.0311" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_SensoryArea_H2 -->
 		<spawn npc_id="206205" respawn_time="295">
-			<spot x="1802.2156" y="795.3983" z="471.1734" h="0"/>
+			<spot x="1802.2156" y="795.3983" z="469.25" h="0"/>
 		</spawn>
 		<!-- IDArena_Solo_CTRL01 -->
 		<spawn npc_id="206206" respawn_time="295">
@@ -222,7 +222,7 @@
 		</spawn>
 		<!-- Crucible Rift -->
 		<spawn npc_id="730460" respawn_time="295">
-			<spot x="1780.8339" y="786.7057" z="470.2828" h="0"/>
+			<spot x="1780.8339" y="786.7057" z="469.25" h="0"/>
 			<spot x="1759.2914" y="1786.37" z="390.7308" h="0"/>
 		</spawn>
 	</spawn_map>

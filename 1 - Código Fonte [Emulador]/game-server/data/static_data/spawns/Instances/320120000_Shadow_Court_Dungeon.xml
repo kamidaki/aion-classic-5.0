@@ -105,7 +105,7 @@
 		</spawn>
 		<!-- Underground Arena Exit -->
 		<spawn npc_id="700369">
-			<spot x="407.429" y="396.514" z="245.108" h="29" static_id="3"/>
+			<spot x="407.5443" y="396.794" z="245.108" h="29" static_id="3"/>
 		</spawn>
 		<!-- Unfest Guard Captain -->
 		<spawn npc_id="214347">

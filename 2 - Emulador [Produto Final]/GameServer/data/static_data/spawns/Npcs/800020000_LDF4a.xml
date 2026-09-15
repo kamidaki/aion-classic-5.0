@@ -3,7 +3,7 @@
 	<spawn_map map_id="800020000">
 		<!-- BIDReward_TreasureBoxDespawnNPCSpawn_50_n -->
 		<spawn npc_id="281069" respawn_time="295">
-			<spot x="647.6594" y="2577.4966" z="366.7757" h="0"/>
+			<spot x="647.6594" y="2577.4966" z="366.3027" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

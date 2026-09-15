@@ -4,6 +4,7 @@
 		<!-- Abyssal Splinter Exit -->
 		<spawn npc_id="730317">
 			<spot x="719.756" y="161.833" z="449.343" h="40" />
+			<spot x="308.3104" y="756.2557" z="198.8538" h="0" />
 		</spawn>
 		<!-- Ancient Treasure Box -->
 		<spawn npc_id="700859">
@@ -31,7 +32,7 @@
 		</spawn>
 		<!-- Artifact of Protection -->
 		<spawn npc_id="700856">
-			<spot x="326.1492" y="766.9335" z="203.1832" static_id="60" />
+			<spot x="326.2084" y="766.9338" z="203.1832" static_id="60" />
 		</spawn>
 		<!-- Broken Orkanimum -->
 		<spawn npc_id="700862">
@@ -127,7 +128,7 @@
 		</spawn>
 		<!-- Teleportation Device -->
 		<spawn npc_id="281905">
-			<spot x="302.201" y="735.16" z="197.668" h="17" />
+			<spot x="302.2203" y="735.6071" z="197.668" h="17" />
 			<spot x="334.001" y="707.736" z="197.779" h="32" />
 			<spot x="362.192" y="741.592" z="197.301" h="67" />
 		</spawn>
@@ -140,6 +141,51 @@
 			<spot x="644.2296" y="281.9138" z="462.87057" h="89" />
 			<spot x="641.0626" y="243.04953" z="462.51718" h="89" />
 			<spot x="649.9115" y="216.81348" z="456.61218" h="96" />
+		</spawn>
+		<!-- aether fragment -->
+		<spawn npc_id="282066">
+			<spot x="705.9849" y="415.983" z="463.4556" h="0"/>
+		</spawn>
+		<!-- artifact of protection -->
+		<spawn npc_id="700857">
+			<spot x="326.1719" y="766.9722" z="201.6832" h="0"/>
+			<spot x="326.1719" y="766.9722" z="201.6832" h="0"/>
+			<spot x="326.1719" y="766.9722" z="201.6832" h="0"/>
+			<spot x="326.1719" y="766.9722" z="201.6832" h="0"/>
+		</spawn>
+		<!-- artifact of protection -->
+		<spawn npc_id="700858">
+			<spot x="326.2091" y="766.9937" z="201.1832" h="0"/>
+			<spot x="326.2091" y="766.9937" z="201.1832" h="0"/>
+			<spot x="326.2091" y="766.9937" z="201.1832" h="0"/>
+		</spawn>
+		<!-- artifact of protection -->
+		<spawn npc_id="700945">
+			<spot x="326.1492" y="766.9335" z="203.1832" h="0"/>
+			<spot x="326.1492" y="766.9335" z="203.1832" h="0"/>
+		</spawn>
+		<!-- artifact of protection -->
+		<spawn npc_id="700957">
+			<spot x="326.1821" y="766.964" z="202.1832" h="0"/>
+			<spot x="326.1821" y="766.964" z="202.1832" h="0"/>
+			<spot x="326.1821" y="766.964" z="202.1832" h="0"/>
+			<spot x="326.1821" y="766.964" z="202.1832" h="0"/>
+		</spawn>
+		<!-- death reception -->
+		<spawn npc_id="282013">
+			<spot x="447.267" y="695.3739" z="433.7726" h="0"/>
+		</spawn>
+		<!-- spawn gate -->
+		<spawn npc_id="282016">
+			<spot x="661.0615" y="357.5867" z="467.3172" h="0"/>
+		</spawn>
+		<!-- teleportation device -->
+		<spawn npc_id="282038">
+			<spot x="334.415" y="708.8055" z="199.1524" h="0"/>
+		</spawn>
+		<!-- teleportation device -->
+		<spawn npc_id="282039">
+			<spot x="361.1144" y="741.8724" z="199.1524" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

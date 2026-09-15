@@ -1,0 +1,48 @@
+Spawns de NPC corrigidos pela captura do servidor oficial: posicao, altura e direcao exatas.
+
+capturas:
+  06_Sistemas_Novos_Poeta_5.0_2026-09-12_22-41-50_00001_20260912224150.pcapng
+lido: sessoes 1 | objetos 1077 | se moveu (S_MOVE_NEW) 834 | parado 243
+
+== resultado ==
+  corrigido: posicao e h                                             77
+  corrigido: so h                                                    6
+  corrigido: so posicao                                              62
+  ja igual ao oficial                                                55
+  pendente: par distante                                             27
+  pontos em spawn novo                                               4
+  spawn novo                                                         3
+  spot oficial acrescentado                                          8
+
+== por mapa ==
+  210010000 Poeta                            corrigidos  145  acrescentados    8  novos    4
+
+== pendentes (27) -- a captura ve o NPC mas nao da para aplicar sem risco ==
+  (mapa, npc, nome, motivo, servidor x/y/z h, oficial x/y/z h)
+  210010000  210096 dukaki brawler           par a 43 m: preso a static_id/walker_id      (433.0, 1850.0, 137.8) h98   -> (390.8, 1860.1, 146.7) h118
+  210010000  210096 dukaki brawler           par a 131 m: 9 spots no servidor, 3 oficiais (233.4, 1887.4, 169.6) h33   -> (358.6, 1849.0, 146.1) h100
+  210010000  210135 wandering kerub          par a 40 m: 48 spots no servidor, 2 oficiais (904.1, 1118.7, 102.1) h32   -> (872.1, 1141.9, 105.3) h13
+  210010000  210135 wandering kerub          par a 41 m: 48 spots no servidor, 2 oficiais (910.5, 1127.3, 101.5) h11   -> (872.8, 1143.1, 105.0) h15
+  210010000  210149 dukaki digger            par a 16 m: 21 spots no servidor, 16 oficiai (297.3, 1887.4, 154.8) h2    -> (299.6, 1871.9, 153.1) h80
+  210010000  210149 dukaki digger            par a 17 m: 21 spots no servidor, 16 oficiai (225.4, 1996.7, 151.9) h60   -> (218.1, 2011.9, 151.7) h0
+  210010000  210149 dukaki digger            par a 56 m: 21 spots no servidor, 16 oficiai (282.9, 1957.9, 154.6) h60   -> (336.1, 1939.4, 154.6) h58
+  210010000  210149 dukaki digger            par a 83 m: 21 spots no servidor, 16 oficiai (249.6, 1862.6, 152.5) h94   -> (328.3, 1835.2, 145.4) h35
+  210010000  210154 dukaki worker            par a 12 m: 18 spots no servidor, 16 oficiai (337.7, 1939.1, 154.6) h90   -> (327.4, 1944.7, 155.1) h118
+  210010000  210665 smallfoot kerub          par a 66 m: 6 spots no servidor, 3 oficiais  (1053.2, 1123.3, 119.5) h49  -> (1113.8, 1097.8, 134.6) h11
+  210010000  210665 smallfoot kerub          par a 77 m: 6 spots no servidor, 3 oficiais  (1041.1, 1122.0, 118.8) h26  -> (1113.4, 1095.7, 134.4) h21
+  210010000  210665 smallfoot kerub          par a 175 m: 6 spots no servidor, 3 oficiais (959.4, 1184.2, 108.2) h2    -> (821.5, 1291.8, 120.1) h117
+  210010000  210666 wandering kerub          par a 43 m: preso a static_id/walker_id      (740.2, 1175.2, 106.5) h57   -> (782.1, 1185.0, 105.8) h12
+  210010000  210666 wandering kerub          par a 50 m: preso a static_id/walker_id      (876.4, 1145.4, 103.7) h31   -> (864.7, 1193.6, 113.8) h0
+  210010000  210667 porgus                   par a 277 m: 6 spots no servidor, 1 oficiais (1049.0, 1130.9, 119.8) h97  -> (823.3, 1291.5, 120.3) h114
+  210010000  210669 wandering kerub          par a 301 m: 2 spots no servidor, 1 oficiais (670.5, 1164.2, 106.3) h42   -> (574.1, 879.6, 108.3) h14
+  210010000  210681 dukaki woodcutter        par a 51 m: 2 spots no servidor, 2 oficiais  (540.0, 1832.8, 133.9) h106  -> (567.0, 1790.1, 137.6) h7
+  210010000  210682 dukaki lumberjack        par a 14 m: 10 spots no servidor, 2 oficiais (565.2, 1803.9, 136.0) h111  -> (567.0, 1790.1, 137.6) h47
+  210010000  210702 dukaki woodcutter        par a 190 m: 7 spots no servidor, 7 oficiais (310.6, 1825.3, 146.6) h113  -> (487.3, 1756.5, 123.3) h59
+  210010000  210702 dukaki woodcutter        par a 238 m: 7 spots no servidor, 7 oficiais (269.0, 1759.1, 128.6) h113  -> (505.8, 1736.9, 122.2) h86
+  210010000  700081 green power generator    par a 58 m: preso a static_id/walker_id      (228.2, 1014.0, 121.4) h0    -> (254.1, 1066.0, 120.8) h0
+  210010000  700082 blue power generator     par a 55 m: preso a static_id/walker_id      (250.9, 1060.5, 121.3) h0    -> (226.3, 1011.9, 121.2) h0
+  210010000  700105 kerub grain sack         par a 12 m: 32 spots no servidor, 37 oficiai (1125.5, 977.6, 132.1) h0    -> (1136.0, 983.8, 132.9) h0
+  210010000  700105 kerub grain sack         par a 16 m: 32 spots no servidor, 37 oficiai (1121.4, 993.1, 130.7) h0    -> (1136.6, 988.3, 132.9) h0
+  210010000  700105 kerub grain sack         par a 17 m: 32 spots no servidor, 37 oficiai (1194.2, 1176.5, 137.6) h94  -> (1178.0, 1171.1, 136.0) h85
+  210010000  700105 kerub grain sack         par a 232 m: 32 spots no servidor, 37 oficia (1042.9, 1220.5, 108.5) h3   -> (1020.7, 990.1, 129.5) h102
+  210010000  700105 kerub grain sack         par a 252 m: 32 spots no servidor, 37 oficia (1196.8, 1168.7, 137.2) h19  -> (1019.4, 989.7, 129.5) h113

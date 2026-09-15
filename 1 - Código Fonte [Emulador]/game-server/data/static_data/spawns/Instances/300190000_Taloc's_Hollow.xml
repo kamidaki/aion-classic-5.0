@@ -17,7 +17,7 @@
 		</spawn>
 		<!-- Bug Fluid -->
 		<spawn npc_id="700942">
-			<spot x="139.593" y="483.648" z="1137.99" static_id="163"/>
+			<spot x="139.5929" y="483.6482" z="1137.99" static_id="163"/>
 			<spot x="190.96" y="593.85" z="1150.39" static_id="162"/>
 		</spawn>
 		<!-- Celestius -->
@@ -31,8 +31,8 @@
 		<!-- Concentrated Sap -->
 		<spawn npc_id="700943">
 			<spot x="597.83" y="819.42" z="1381.05" static_id="171"/>
-			<spot x="677.209" y="796.324" z="1381.58" static_id="175"/>
-			<spot x="679.358" y="858.122" z="1380.82" static_id="174"/>
+			<spot x="677.2086" y="796.3238" z="1381.58" static_id="175"/>
+			<spot x="679.3582" y="858.1223" z="1380.82" static_id="174"/>
 		</spawn>
 		<!-- Concentrated Sap -->
 		<spawn npc_id="700958">
@@ -40,7 +40,7 @@
 		</spawn>
 		<!-- Contaminated Fragment of Aion Tower -->
 		<spawn npc_id="700740">
-			<spot x="634.214" y="787.213" z="1383" static_id="93"/>
+			<spot x="634.2142" y="787.2128" z="1383" static_id="93"/>
 		</spawn>
 		<!-- Cursed Log Sheluk -->
 		<spawn npc_id="216931">
@@ -174,10 +174,10 @@
 		<!-- Healing Plant -->
 		<spawn npc_id="700940">
 			<spot x="171.85" y="564.59" z="1139.85"/>
-			<spot x="289.559" y="311.042" z="1186.59"/>
-			<spot x="398.351" y="784.894" z="1274.33"/>
-			<spot x="405.836" y="566.818" z="1176.45"/>
-			<spot x="506.204" y="883.862" z="1272.05"/>
+			<spot x="289.559" y="311.0418" z="1186.59"/>
+			<spot x="398.3513" y="784.8936" z="1274.33"/>
+			<spot x="405.8356" y="566.8179" z="1176.45"/>
+			<spot x="506.2043" y="883.8618" z="1272.05"/>
 		</spawn>
 		<!-- Hyas -->
 		<spawn npc_id="799527">
@@ -198,7 +198,7 @@
 		</spawn>
 		<!-- Huge Insect Egg -->
 		<spawn npc_id="700738">
-			<spot x="653.92" y="839.163" z="1303.95" static_id="90"/>
+			<spot x="653.9202" y="839.1627" z="1303.95" static_id="90"/>
 		</spawn>
 		<!-- Kinquid -->
 		<spawn npc_id="215467">
@@ -515,12 +515,12 @@
 		</spawn>
 		<!-- Taloc's Soil -->
 		<spawn npc_id="700634">
-			<spot x="115.316" y="716.95" z="1138.54" static_id="33"/>
+			<spot x="115.3161" y="716.9502" z="1138.54" static_id="33"/>
 			<spot x="238.66" y="460.65" z="1124.42" static_id="18"/>
-			<spot x="266.894" y="319.461" z="1186.56" static_id="32"/>
-			<spot x="373.867" y="789.905" z="1270.6" static_id="169"/>
-			<spot x="379.428" y="607.701" z="1177.63" static_id="36"/>
-			<spot x="443.936" y="1000.21" z="1264.28" static_id="170"/>
+			<spot x="266.8939" y="319.4613" z="1186.56" static_id="32"/>
+			<spot x="373.867" y="789.9052" z="1270.6" static_id="169"/>
+			<spot x="379.428" y="607.7014" z="1177.63" static_id="36"/>
+			<spot x="443.9356" y="1000.2059" z="1264.28" static_id="170"/>
 		</spawn>
 		<!-- Taloc's Soul -->
 		<spawn npc_id="799526">
@@ -528,7 +528,7 @@
 		</spawn>
 		<!-- Tealen -->
 		<spawn npc_id="799528">
-			<spot x="516.891" y="804.87" z="1284.79" h="60"/>
+			<spot x="516.8909" y="804.8695" z="1284.79" h="60"/>
 		</spawn>
 		<!-- Terra Dionae -->
 		<spawn npc_id="215481">
@@ -545,7 +545,7 @@
 		</spawn>
 		<!-- Thorny Vines -->
 		<spawn npc_id="700633">
-			<spot x="164.816" y="337.846" z="1125" static_id="51"/>
+			<spot x="164.8162" y="337.8464" z="1125" static_id="51"/>
 		</spawn>
 		<!-- Vampiric Arachna -->
 		<spawn npc_id="216142">
@@ -570,11 +570,79 @@
 		</spawn>
 		<!-- Writhing Cocoon -->
 		<spawn npc_id="730233">
-			<spot x="148.29" y="395.256" z="1141.74" h="86" static_id="55"/>
+			<spot x="148.2903" y="395.2559" z="1141.74" h="86" static_id="55"/>
 		</spawn>
 		<!-- Writhing Cocoon -->
 		<spawn npc_id="730232">
-			<spot x="143.774" y="394.256" z="1142.05" h="113" static_id="54"/>
+			<spot x="143.774" y="394.2562" z="1142.05" h="113" static_id="54"/>
+		</spawn>
+		<!-- accessory destruction -->
+		<spawn npc_id="282008" pool="2">
+			<spot x="263.4334" y="716.73" z="1174" h="0"/>
+			<spot x="266.7068" y="680.6733" z="1174" h="0"/>
+			<spot x="292.0247" y="719.7132" z="1174" h="0"/>
+		</spawn>
+		<!-- bidelim_eventa_noshownpc -->
+		<spawn npc_id="281529">
+			<spot x="303.4143" y="348.7557" z="1187.743" h="0" random_walk="8"/>
+		</spawn>
+		<!-- bidelim_eventc_noshownpc -->
+		<spawn npc_id="281531">
+			<spot x="157.299" y="665.9868" z="1142" h="0" random_walk="8"/>
+		</spawn>
+		<!-- bidelim_eventd_noshownpc -->
+		<spawn npc_id="281532">
+			<spot x="355.3375" y="552.8378" z="1175" h="0" random_walk="8"/>
+		</spawn>
+		<!-- bidelim_evente_noshownpc -->
+		<spawn npc_id="281533">
+			<spot x="144.1768" y="374.4873" z="1141.2445" h="0" random_walk="8"/>
+		</spawn>
+		<!-- bidelim_eventf_noshownpc -->
+		<spawn npc_id="281534">
+			<spot x="158.76" y="340.63" z="1126" h="0" random_walk="8"/>
+		</spawn>
+		<!-- bidelim_npcspawnnoshownpc_51_ae -->
+		<spawn npc_id="282110">
+			<spot x="471.071" y="901.5333" z="1270" h="0"/>
+		</spawn>
+		<!-- bidelim_rusha_noshownpc -->
+		<spawn npc_id="281613">
+			<spot x="195.2082" y="295.5051" z="1109" h="0" random_walk="8"/>
+		</spawn>
+		<!-- bidelim_rushb_noshownpc -->
+		<spawn npc_id="281614">
+			<spot x="257.7175" y="702.7896" z="1173" h="0"/>
+		</spawn>
+		<!-- bidelim_zone1bosschambercutscene_noshownpc_51_ae -->
+		<spawn npc_id="282138">
+			<spot x="255.2383" y="657.527" z="1171.8802" h="0"/>
+		</spawn>
+		<!-- bidelim_zone1bosschambernotice_noshownpc -->
+		<spawn npc_id="282122">
+			<spot x="263.417" y="703.1113" z="1171" h="0"/>
+		</spawn>
+		<!-- bidelim_zone1caspafruitusenotice_noshownpc -->
+		<spawn npc_id="282149">
+			<spot x="195.7202" y="232.1321" z="1103.324" h="0"/>
+		</spawn>
+		<!-- bidelim_zone1caspatearusenotice_noshownpc -->
+		<spawn npc_id="282150">
+			<spot x="191.582" y="271.8907" z="1108.1453" h="0"/>
+		</spawn>
+		<!-- cleave armor -->
+		<spawn npc_id="282009" pool="2">
+			<spot x="263.4334" y="716.73" z="1174" h="0"/>
+			<spot x="266.7068" y="680.6733" z="1174" h="0"/>
+			<spot x="292.0247" y="719.7132" z="1174" h="0"/>
+		</spawn>
+		<!-- str_sen_idelim_sensoryarea_enalethe -->
+		<spawn npc_id="206166">
+			<spot x="252.6446" y="650.4295" z="1171" h="0"/>
+		</spawn>
+		<!-- str_sen_idelim_sensoryarea_enalethe -->
+		<spawn npc_id="206167">
+			<spot x="593.9789" y="841.9739" z="1294.7349" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

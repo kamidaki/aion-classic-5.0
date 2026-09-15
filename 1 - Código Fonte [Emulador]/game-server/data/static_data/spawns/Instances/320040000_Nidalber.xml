@@ -3,7 +3,11 @@
 	<spawn_map map_id="320040000">
 		<!-- Kargate -->
 		<spawn npc_id="204432">
-			<spot x="272.829" y="176.814" z="204.347"/>
+			<spot x="272.8289" y="176.8144" z="204.347"/>
+		</spawn>
+		<!-- dimension exit -->
+		<spawn npc_id="700185">
+			<spot x="275.683" y="162.6172" z="205.516" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

@@ -156,69 +156,69 @@
 		</spawn>
 		<!-- Reian Corpse -->
 		<spawn npc_id="701454" respawn_time="295">
-			<spot x="2598.7212" y="1424.0558" z="360.6192" h="0"/>
-			<spot x="2448.519" y="1857.9575" z="376.0146" h="0"/>
-			<spot x="2593.0212" y="1426.0558" z="359.6265" h="0"/>
-			<spot x="2587.0874" y="1422.9506" z="357.3327" h="0"/>
-			<spot x="2531.4214" y="1922.6162" z="375.4539" h="0"/>
-			<spot x="2449.8682" y="1851.147" z="376.3829" h="0"/>
-			<spot x="2504.2212" y="1893.6558" z="376.5787" h="0"/>
-			<spot x="2639.1213" y="1349.2557" z="362.5716" h="0"/>
-			<spot x="2641.7212" y="1354.9557" z="363.2895" h="0"/>
-			<spot x="2443.4214" y="1862.8557" z="377.1952" h="0"/>
+			<spot x="2598.7212" y="1424.0558" z="356.875" h="0"/>
+			<spot x="2448.519" y="1857.9575" z="374.7202" h="0"/>
+			<spot x="2593.0212" y="1426.0558" z="356.8138" h="0"/>
+			<spot x="2587.0874" y="1422.9506" z="356.3156" h="0"/>
+			<spot x="2531.4214" y="1922.6162" z="373.9308" h="0"/>
+			<spot x="2449.8682" y="1851.147" z="374.8116" h="0"/>
+			<spot x="2504.2212" y="1893.6558" z="372.8673" h="0"/>
+			<spot x="2639.1213" y="1349.2557" z="360.5236" h="0"/>
+			<spot x="2641.7212" y="1354.9557" z="360.9651" h="0"/>
+			<spot x="2443.4214" y="1862.8557" z="374.4353" h="0"/>
 		</spawn>
 		<!-- Evidence of Runaway Workers -->
 		<spawn npc_id="701455" respawn_time="295">
-			<spot x="1688.8624" y="2091.063" z="245.5019" h="0"/>
-			<spot x="1520.1063" y="2188.9512" z="282.0327" h="0"/>
+			<spot x="1688.8624" y="2091.063" z="244.0047" h="0"/>
+			<spot x="1520.1063" y="2188.9512" z="281.5528" h="0"/>
 			<spot x="1839.3931" y="2098.356" z="300.0327" h="0"/>
-			<spot x="1813.285" y="1811.9598" z="251.0327" h="0"/>
-			<spot x="1585.9197" y="2097.3188" z="275.0327" h="0"/>
+			<spot x="1813.285" y="1811.9598" z="249.0372" h="0"/>
+			<spot x="1585.9197" y="2097.3188" z="273.9427" h="0"/>
 			<spot x="1739.381" y="1827.1743" z="262.0327" h="0"/>
-			<spot x="1793.1914" y="1913.0632" z="266.6937" h="0"/>
+			<spot x="1793.1914" y="1913.0632" z="263.5211" h="0"/>
 			<spot x="1888.5793" y="1884.9275" z="266.0327" h="0"/>
-			<spot x="1897.1271" y="2049.6929" z="258.5529" h="0"/>
-			<spot x="1774.0706" y="2024.4291" z="246.68" h="0"/>
+			<spot x="1897.1271" y="2049.6929" z="257.6571" h="0"/>
+			<spot x="1774.0706" y="2024.4291" z="243.875" h="0"/>
 		</spawn>
 		<!-- Eroded Cell Door -->
 		<spawn npc_id="730564" respawn_time="295">
-			<spot x="1138.6541" y="768.5324" z="307.2577" h="0"/>
+			<spot x="1138.6541" y="768.5324" z="305.25" h="0"/>
 		</spawn>
 		<!-- Scroll of Obscurity -->
 		<spawn npc_id="730565" respawn_time="295">
-			<spot x="2076.8354" y="506.9878" z="191.818" h="0"/>
-			<spot x="2213.7092" y="460.766" z="192.9999" h="0"/>
+			<spot x="2076.8354" y="506.9878" z="190.8258" h="0"/>
+			<spot x="2213.7092" y="460.766" z="192.125" h="0"/>
 		</spawn>
 		<!-- Sealed Scroll -->
 		<spawn npc_id="730566" respawn_time="295">
-			<spot x="2288.0657" y="666.6117" z="203.744" h="0"/>
-			<spot x="2348" y="480.5383" z="198.9076" h="0"/>
+			<spot x="2288.0657" y="666.6117" z="201.7198" h="0"/>
+			<spot x="2348" y="480.5383" z="197.8077" h="0"/>
 		</spawn>
 		<!-- Weathered Cell Door -->
 		<spawn npc_id="730567" respawn_time="295">
-			<spot x="953.6025" y="980.9624" z="306.9927" h="0"/>
+			<spot x="953.6025" y="980.9624" z="304.9752" h="0"/>
 		</spawn>
 		<!-- Opaque Document -->
 		<spawn npc_id="730568" respawn_time="295">
 			<spot x="2172.2903" y="2555.2002" z="276.6612" h="0"/>
-			<spot x="2146.4155" y="2662.7302" z="241.5713" h="0"/>
+			<spot x="2146.4155" y="2662.7302" z="240.625" h="0"/>
 		</spawn>
 		<!-- Sealed Document -->
 		<spawn npc_id="730569" respawn_time="295">
-			<spot x="1919.9869" y="2568.0171" z="220.6495" h="0"/>
-			<spot x="2213.3694" y="2487.2319" z="256.3324" h="0"/>
+			<spot x="1919.9869" y="2568.0171" z="219.7535" h="0"/>
+			<spot x="2213.3694" y="2487.2319" z="255.25" h="0"/>
 		</spawn>
 		<!-- Secret Compartment -->
 		<spawn npc_id="730571" respawn_time="295">
-			<spot x="2129.5959" y="490.0347" z="195.5648" h="0"/>
-			<spot x="2268.4707" y="390.015" z="183.474" h="0"/>
-			<spot x="1945.484" y="414.7155" z="205.0916" h="0"/>
+			<spot x="2129.5959" y="490.0347" z="195.0253" h="0"/>
+			<spot x="2268.4707" y="390.015" z="183.1222" h="0"/>
+			<spot x="1945.484" y="414.7155" z="204.677" h="0"/>
 		</spawn>
 		<!-- Secret Safe -->
 		<spawn npc_id="730572" respawn_time="295">
-			<spot x="2154.0852" y="2684.803" z="242.1043" h="0"/>
-			<spot x="2012.3651" y="2529.6877" z="229.2249" h="0"/>
-			<spot x="2259.5615" y="2616.8005" z="235.1947" h="0"/>
+			<spot x="2154.0852" y="2684.803" z="241.6559" h="0"/>
+			<spot x="2012.3651" y="2529.6877" z="228.6869" h="0"/>
+			<spot x="2259.5615" y="2616.8005" z="234.6275" h="0"/>
 		</spawn>
 		<!-- Chronos -->
 		<spawn npc_id="800918" respawn_time="295">
@@ -238,7 +238,7 @@
 		</spawn>
 		<!-- Kensunerk -->
 		<spawn npc_id="800950" respawn_time="295">
-			<spot x="254.8366" y="1580.1626" z="356.8782" h="0"/>
+			<spot x="254.8366" y="1580.1626" z="355.0293" h="0"/>
 		</spawn>
 		<!-- Resource Bookkeeper -->
 		<spawn npc_id="800965" respawn_time="295">
@@ -336,7 +336,7 @@
 		</spawn>
 		<!-- Langolas -->
 		<spawn npc_id="801191" respawn_time="295">
-			<spot x="209.3934" y="1959.8304" z="398.8553" h="0"/>
+			<spot x="209.3934" y="1959.8304" z="396.278" h="0"/>
 		</spawn>
 		<!-- Renaus -->
 		<spawn npc_id="801192" respawn_time="295">
@@ -348,7 +348,7 @@
 		</spawn>
 		<!-- Hirina -->
 		<spawn npc_id="801194" respawn_time="295">
-			<spot x="205.5664" y="1963.1412" z="398.8553" h="0"/>
+			<spot x="205.5664" y="1963.1412" z="396.6255" h="0"/>
 		</spawn>
 		<!-- Prado -->
 		<spawn npc_id="801195" respawn_time="295">
@@ -376,7 +376,7 @@
 		</spawn>
 		<!-- Amarena -->
 		<spawn npc_id="801317" respawn_time="295">
-			<spot x="749.9" y="1649.7" z="298.9872" h="0"/>
+			<spot x="749.9" y="1649.7" z="295.7312" h="0"/>
 		</spawn>
 		<!-- Chimanaus -->
 		<spawn npc_id="801319" respawn_time="295">
@@ -384,23 +384,23 @@
 		</spawn>
 		<!-- Mychanon -->
 		<spawn npc_id="801320" respawn_time="295">
-			<spot x="826.6378" y="1126.9918" z="314.7105" h="0"/>
+			<spot x="826.6378" y="1126.9918" z="311.625" h="0"/>
 		</spawn>
 		<!-- Bleary-Eyed Prisoner -->
 		<spawn npc_id="801321" respawn_time="295">
-			<spot x="1163.8856" y="773.7408" z="307.3652" h="0"/>
+			<spot x="1163.8856" y="773.7408" z="305.25" h="0"/>
 		</spawn>
 		<!-- Bleary-Eyed Prisoner -->
 		<spawn npc_id="801322" respawn_time="295">
-			<spot x="1175.6948" y="744.7903" z="307.3581" h="0"/>
+			<spot x="1175.6948" y="744.7903" z="305.375" h="0"/>
 		</spawn>
 		<!-- Bleary-Eyed Prisoner -->
 		<spawn npc_id="801323" respawn_time="295">
-			<spot x="1184.8422" y="751.3474" z="307.6328" h="0"/>
+			<spot x="1184.8422" y="751.3474" z="305.5" h="0"/>
 		</spawn>
 		<!-- Clear-Headed Prisoner -->
 		<spawn npc_id="801324" respawn_time="295">
-			<spot x="1138.8397" y="769.4484" z="307.4993" h="0"/>
+			<spot x="1138.8397" y="769.4484" z="305.25" h="0"/>
 		</spawn>
 		<!-- Entu -->
 		<spawn npc_id="801328" respawn_time="295">
@@ -420,35 +420,35 @@
 		</spawn>
 		<!-- Disillusioned Prisoner -->
 		<spawn npc_id="801333" respawn_time="295">
-			<spot x="960.7188" y="990.5031" z="306.8427" h="0"/>
+			<spot x="960.7188" y="990.5031" z="305.0629" h="0"/>
 		</spawn>
 		<!-- Disillusioned Prisoner -->
 		<spawn npc_id="801334" respawn_time="295">
-			<spot x="930.3106" y="1001.2828" z="307.2518" h="0"/>
+			<spot x="930.3106" y="1001.2828" z="305.1504" h="0"/>
 		</spawn>
 		<!-- Disillusioned Prisoner -->
 		<spawn npc_id="801335" respawn_time="295">
-			<spot x="956.1592" y="1038.5605" z="306.1772" h="0"/>
+			<spot x="956.1592" y="1038.5605" z="303.875" h="0"/>
 		</spawn>
 		<!-- Clear-Eyed Prisoner -->
 		<spawn npc_id="801336" respawn_time="295">
-			<spot x="954.8474" y="980.5529" z="306.9164" h="0"/>
+			<spot x="954.8474" y="980.5529" z="305" h="0"/>
 		</spawn>
 		<!-- New Laphsaran Rift -->
 		<spawn npc_id="801337" respawn_time="295">
-			<spot x="1625.1209" y="1249.2021" z="146.3837" h="0"/>
+			<spot x="1625.1209" y="1249.2021" z="143.9698" h="0"/>
 		</spawn>
 		<!-- Blocked Passage -->
 		<spawn npc_id="801339" respawn_time="295">
-			<spot x="511.9918" y="2720.6997" z="292.8749" h="0"/>
+			<spot x="511.9918" y="2720.6997" z="290.875" h="0"/>
 		</spawn>
 		<!-- Generated Laphsaran Rift -->
 		<spawn npc_id="801341" respawn_time="295">
-			<spot x="1519.7894" y="1137.1296" z="212.0601" h="0"/>
+			<spot x="1519.7894" y="1137.1296" z="209.8368" h="0"/>
 		</spawn>
 		<!-- Collapsed Passage -->
 		<spawn npc_id="801343" respawn_time="295">
-			<spot x="768.619" y="2781.009" z="300.335" h="0"/>
+			<spot x="768.619" y="2781.009" z="298.25" h="0"/>
 		</spawn>
 		<!-- Laferinerk -->
 		<spawn npc_id="801372" respawn_time="295">
@@ -462,8 +462,8 @@
 		</spawn>
 		<!-- Lanterinerk -->
 		<spawn npc_id="801374" respawn_time="295">
-			<spot x="817.7217" y="1092.8788" z="314.4299" h="0"/>
-			<spot x="817.7217" y="1092.8788" z="314.4299" h="0"/>
+			<spot x="817.7217" y="1092.8788" z="311.4299" h="0"/>
+			<spot x="817.7217" y="1092.8788" z="311.4299" h="0"/>
 		</spawn>
 		<!-- Lanterunerk -->
 		<spawn npc_id="801375" respawn_time="295">
@@ -514,7 +514,7 @@
 			<spot x="724.7075" y="1638.7128" z="314.5889" h="0"/>
 			<spot x="743.9292" y="1557.7694" z="314.5889" h="0"/>
 			<spot x="836.1796" y="1654.8573" z="314.5889" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="7"/>
-			<spot x="699.4514" y="1583.295" z="307.1677" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="13"/>
+			<spot x="699.4514" y="1583.295" z="303.4559" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="13"/>
 			<spot x="727.6959" y="1674.5995" z="314.5889" h="0"/>
 			<spot x="785.2351" y="1632.6493" z="314.5889" h="0"/>
 			<spot x="804.3535" y="1651.1171" z="307.0684" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="11"/>
@@ -540,13 +540,13 @@
 			<spot x="737.4146" y="1578.9641" z="314.5889" h="0"/>
 			<spot x="733.59" y="1643.6605" z="314.5889" h="0"/>
 			<spot x="690.7538" y="1579.0922" z="314.5889" h="0"/>
-			<spot x="698.4514" y="1585.295" z="307.1677" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="1"/>
+			<spot x="698.4514" y="1585.295" z="303.6619" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="1"/>
 			<spot x="728.0471" y="1572.1414" z="314.5889" h="0"/>
 			<spot x="803.3535" y="1653.1171" z="307.0684" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="1"/>
 			<spot x="758.2214" y="1654.8524" z="307.1342" h="0" walker_id="DCCF0FFA776EDF6F3170B402FB219D52A8019D39" walker_index="13"/>
 			<spot x="787.6029" y="1635.8102" z="314.5889" h="0"/>
 			<spot x="809.3153" y="1697.2034" z="314.5889" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="6"/>
-			<spot x="822.3893" y="1686.621" z="307.0826" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="12"/>
+			<spot x="822.3893" y="1686.621" z="303.2026" h="0" walker_id="EE9AE9464F3BE42845524F91BFB2A049FEE1AFB8" walker_index="12"/>
 		</spawn>
 		<!-- Reian Bodyguard -->
 		<spawn npc_id="801392" respawn_time="295">
@@ -559,7 +559,7 @@
 			<spot x="733.0747" y="1678.1556" z="314.5889" h="0"/>
 			<spot x="776.4951" y="1611.2924" z="307.0785" h="0" walker_id="4834B595E762309B59049AE868CB3EFAD86AF60B" walker_index="13"/>
 			<spot x="764.7308" y="1574.4664" z="314.5889" h="0"/>
-			<spot x="698.4514" y="1581.295" z="307.1677" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="13"/>
+			<spot x="698.4514" y="1581.295" z="303.3591" h="0" walker_id="E5E73FC84FF611CD2C9EE869CC6961BF7B89D423" walker_index="13"/>
 			<spot x="803.3535" y="1649.1171" z="307.0684" h="0" walker_id="BC27FDD1C050D9409687464A440C70B591B97FBF" walker_index="1"/>
 			<spot x="746.5404" y="1560.864" z="314.5889" h="0"/>
 			<spot x="758.2214" y="1650.8524" z="307.1342" h="0" walker_id="DCCF0FFA776EDF6F3170B402FB219D52A8019D39" walker_index="12"/>
@@ -576,7 +576,7 @@
 			<spot x="763.5735" y="1491.2443" z="314.5889" h="0"/>
 			<spot x="864.3767" y="1749.7035" z="325.8316" h="0" walker_id="5F51DBA3CDE2E81A3EB2AB7B95A722BFD8B998BF" walker_index="19"/>
 			<spot x="844.2874" y="1578.1278" z="314.5889" h="0" walker_id="AD0CAF52DB12D53B3ABAF4DD9ABE667B5A5CB0E8" walker_index="1"/>
-			<spot x="812.0666" y="1638.87" z="295.5526" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="21"/>
+			<spot x="812.0666" y="1638.87" z="293.0381" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="21"/>
 			<spot x="782.739" y="1520.1182" z="314.5889" h="0" walker_id="1A1238F14C4F7EA6F30140B6F9FE5443074AF19E" walker_index="22"/>
 			<spot x="838.6726" y="1532.0861" z="314.5889" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="9"/>
 			<spot x="838.8411" y="1467.6327" z="307.0982" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="18"/>
@@ -594,8 +594,8 @@
 			<spot x="860.4907" y="1719.5696" z="314.5889" h="0"/>
 			<spot x="820.5256" y="1525.4529" z="314.5889" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="9"/>
 			<spot x="773.8932" y="1546.7712" z="314.5889" h="0" walker_id="551EA5298262F19B4661B982EEF43B0A26F1B786" walker_index="16"/>
-			<spot x="813.0666" y="1636.87" z="295.5526" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="1"/>
-			<spot x="812.0666" y="1634.87" z="295.5526" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="20"/>
+			<spot x="813.0666" y="1636.87" z="292.6631" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="1"/>
+			<spot x="812.0666" y="1634.87" z="292.3546" h="0" walker_id="6EE060D6FF5DB340A34BEE8B77645191F24DBC76" walker_index="20"/>
 			<spot x="787.3948" y="1665.5035" z="314.5889" h="0"/>
 			<spot x="839.8411" y="1465.6327" z="307.0982" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="18"/>
 			<spot x="838.8411" y="1463.6327" z="307.0982" h="0" walker_id="B50CCEE68B9482EBE25AA02C4976183DFEDBA40A" walker_index="18"/>
@@ -611,15 +611,15 @@
 		</spawn>
 		<!-- The key opens the Protectorate's Treasure Chest. -->
 		<spawn npc_id="801397" respawn_time="295">
-			<spot x="887.4453" y="823.3031" z="289.4584" h="0"/>
-			<spot x="2126.8542" y="1478.2456" z="235.6419" h="0"/>
-			<spot x="2509.7808" y="1278.7095" z="301.2638" h="0"/>
-			<spot x="1179.0898" y="712.7597" z="320.3023" h="0"/>
-			<spot x="842.8937" y="1921.9094" z="272.8039" h="0"/>
-			<spot x="2120.1685" y="1730.5835" z="246.9445" h="0"/>
-			<spot x="2373.6909" y="2060.6838" z="319.4422" h="0"/>
-			<spot x="1115.8127" y="803.1259" z="295.1229" h="0"/>
-			<spot x="1109.4048" y="1965.4938" z="271.4635" h="0"/>
+			<spot x="887.4453" y="823.3031" z="288.4056" h="0"/>
+			<spot x="2126.8542" y="1478.2456" z="232.5943" h="0"/>
+			<spot x="2509.7808" y="1278.7095" z="299.0622" h="0"/>
+			<spot x="1179.0898" y="712.7597" z="318.5968" h="0"/>
+			<spot x="842.8937" y="1921.9094" z="271.1809" h="0"/>
+			<spot x="2120.1685" y="1730.5835" z="245.2816" h="0"/>
+			<spot x="2373.6909" y="2060.6838" z="317.8405" h="0"/>
+			<spot x="1115.8127" y="803.1259" z="292.3673" h="0"/>
+			<spot x="1109.4048" y="1965.4938" z="270.8039" h="0"/>
 		</spawn>
 		<!-- Northern Guardian Base Area -->
 		<spawn npc_id="801412" respawn_time="295">
@@ -635,7 +635,7 @@
 		</spawn>
 		<!-- Rift Area -->
 		<spawn npc_id="801415" respawn_time="295">
-			<spot x="1617.0649" y="1254.7677" z="148.5691" h="0"/>
+			<spot x="1617.0649" y="1254.7677" z="145.6145" h="0"/>
 		</spawn>
 		<!-- Northern Archon Base Area -->
 		<spawn npc_id="801416" respawn_time="295">
@@ -659,7 +659,7 @@
 		</spawn>
 		<!-- 1st Guardian Quartermaster -->
 		<spawn npc_id="801467" respawn_time="295">
-			<spot x="296.5804" y="2346.6299" z="321.8326" h="0"/>
+			<spot x="296.5804" y="2346.6299" z="319.7863" h="0"/>
 		</spawn>
 		<!-- 1st Guardian Quartermaster -->
 		<spawn npc_id="801468" respawn_time="295">
@@ -683,7 +683,7 @@
 		</spawn>
 		<!-- 1st Guardian Quartermaster -->
 		<spawn npc_id="801473" respawn_time="295">
-			<spot x="2607.3286" y="1656.855" z="397.1977" h="0"/>
+			<spot x="2607.3286" y="1656.855" z="396.292" h="0"/>
 		</spawn>
 		<!-- 1st Guardian Quartermaster -->
 		<spawn npc_id="801474" respawn_time="295">
@@ -699,7 +699,7 @@
 		</spawn>
 		<!-- 1st Archon Quartermaster -->
 		<spawn npc_id="801477" respawn_time="295">
-			<spot x="296.5804" y="2346.6299" z="321.8326" h="0"/>
+			<spot x="296.5804" y="2346.6299" z="319.7863" h="0"/>
 		</spawn>
 		<!-- 1st Archon Quartermaster -->
 		<spawn npc_id="801478" respawn_time="295">
@@ -723,7 +723,7 @@
 		</spawn>
 		<!-- 1st Archon Quartermaster -->
 		<spawn npc_id="801483" respawn_time="295">
-			<spot x="2607.3286" y="1656.855" z="397.1977" h="0"/>
+			<spot x="2607.3286" y="1656.855" z="396.292" h="0"/>
 		</spawn>
 		<!-- 1st Archon Quartermaster -->
 		<spawn npc_id="801484" respawn_time="295">
@@ -763,13 +763,13 @@
 		</spawn>
 		<!-- Guardian Refugee -->
 		<spawn npc_id="801496" respawn_time="295">
-			<spot x="2574.7847" y="1724.9312" z="393.9993" h="0"/>
+			<spot x="2574.7847" y="1724.9312" z="391.6228" h="0"/>
 		</spawn>
 		<!-- Guardian Prisoner -->
 		<spawn npc_id="801498" respawn_time="295">
 			<spot x="2597.6433" y="1573.3439" z="384.84" h="0"/>
 			<spot x="2597.6433" y="1573.3439" z="384.84" h="0"/>
-			<spot x="2519.9131" y="1704.646" z="391.3268" h="0"/>
+			<spot x="2519.9131" y="1704.646" z="387.8804" h="0"/>
 			<spot x="2481.6409" y="1758.0392" z="385.5069" h="0"/>
 			<spot x="2478.1321" y="1761.8075" z="385.3336" h="0"/>
 			<spot x="2525.9541" y="1704.4124" z="393.703" h="0"/>
@@ -795,26 +795,26 @@
 		</spawn>
 		<!-- Suhandra -->
 		<spawn npc_id="801505" respawn_time="295">
-			<spot x="1638.9238" y="1220.2502" z="4.1018" h="0"/>
+			<spot x="1638.9238" y="1220.2502" z="2.7969" h="0"/>
 		</spawn>
 		<!-- Archon Refugee -->
 		<spawn npc_id="801506" respawn_time="295">
-			<spot x="2627.3213" y="1509.455" z="372.9263" h="0"/>
+			<spot x="2627.3213" y="1509.455" z="369.1045" h="0"/>
 		</spawn>
 		<!-- Archon Prisoner -->
 		<spawn npc_id="801508" respawn_time="295">
-			<spot x="2492.3884" y="1730.0177" z="385.2271" h="0"/>
-			<spot x="2490.6084" y="1733.2684" z="385.2271" h="0"/>
+			<spot x="2492.3884" y="1730.0177" z="383.5525" h="0"/>
+			<spot x="2490.6084" y="1733.2684" z="382.9555" h="0"/>
 			<spot x="2596.4575" y="1602.3721" z="385.2271" h="0"/>
-			<spot x="2590.9209" y="1537.5696" z="385.2585" h="0"/>
+			<spot x="2590.9209" y="1537.5696" z="381.3544" h="0"/>
 			<spot x="2471.0762" y="1783.0231" z="385.2271" h="0"/>
-			<spot x="2594.5352" y="1545.5515" z="385.2584" h="0"/>
+			<spot x="2594.5352" y="1545.5515" z="382.125" h="0"/>
 			<spot x="2596.6206" y="1598.6683" z="385.2271" h="0"/>
-			<spot x="2466.7612" y="1786.2786" z="385.2271" h="0"/>
+			<spot x="2466.7612" y="1786.2786" z="381.5774" h="0"/>
 		</spawn>
 		<!-- Runaway Mont -->
 		<spawn npc_id="801562" respawn_time="295">
-			<spot x="828.1378" y="1105.2418" z="314.7105" h="0"/>
+			<spot x="828.1378" y="1105.2418" z="311.2414" h="0"/>
 		</spawn>
 		<!-- Escaped Mont -->
 		<spawn npc_id="801563" respawn_time="295">

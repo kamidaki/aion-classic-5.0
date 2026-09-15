@@ -3,7 +3,7 @@
 	<spawn_map map_id="300100000">
 		<!-- Amabille -->
 		<spawn npc_id="798334">
-			<spot x="480.554" y="438.386" z="887.706" h="30"/>
+			<spot x="480.5537" y="438.3855" z="887.706" h="30"/>
 		</spawn>
 		<!-- Brass-Eye Grogget -->
 		<spawn npc_id="215081">
@@ -70,7 +70,7 @@
 		</spawn>
 		<!-- Drana Generator Chamber Access Door -->
 		<spawn npc_id="730202">
-			<spot x="657.111" y="509.11" z="872.948" static_id="10"/>
+			<spot x="657.4266" y="509.1142" z="872.948" static_id="10"/>
 		</spawn>
 		<!-- Elevator Lever -->
 		<spawn npc_id="701456">
@@ -82,11 +82,11 @@
 		</spawn>
 		<!-- Escape Anchor -->
 		<spawn npc_id="730198">
-			<spot x="235.491" y="496.842" z="948.67" h="32" static_id="68"/>
+			<spot x="234.4778" y="497.6577" z="948.67" h="32" static_id="68"/>
 		</spawn>
 		<!-- Escape Exit -->
 		<spawn npc_id="700525">
-			<spot x="505.82" y="432.098" z="887.28" h="59" static_id="9"/>
+			<spot x="506.2492" y="432.8453" z="887.28" h="59" static_id="9"/>
 		</spawn>
 		<!-- Firelord Kadomch -->
 		<spawn npc_id="215072">
@@ -126,23 +126,23 @@
 		</spawn>
 		<!-- Haorunerk's Bag -->
 		<spawn npc_id="700522">
-			<spot x="401.239" y="503.193" z="885.76" h="119"/>
+			<spot x="401.7416" y="502.9903" z="885.76" h="119"/>
 		</spawn>
 		<!-- IDShip_SensoryArea_Entrance_02 -->
 		<spawn npc_id="206100">
-			<spot x="409.454" y="509.677" z="889.155"/>
+			<spot x="409.4545" y="509.6769" z="889.155"/>
 		</spawn>
 		<!-- IDShip_SensoryArea_Q3211 -->
 		<spawn npc_id="206098">
-			<spot x="384.996" y="524.758" z="1074.17" h="60"/>
+			<spot x="384.996" y="524.7581" z="1074.17" h="60"/>
 		</spawn>
 		<!-- IDShulackShip_SensoryArea_Q3212A -->
 		<spawn npc_id="206093">
-			<spot x="444.754" y="459.265" z="889.155" h="60"/>
+			<spot x="444.7538" y="459.2648" z="889.155" h="60"/>
 		</spawn>
 		<!-- IDShulackShip_SensoryArea_Q3212B -->
 		<spawn npc_id="206094">
-			<spot x="481.527" y="459.039" z="889.155" h="60"/>
+			<spot x="481.5267" y="459.0393" z="889.155" h="60"/>
 		</spawn>
 		<!-- Kaneron Agent -->
 		<spawn npc_id="215041">
@@ -228,11 +228,11 @@
 		</spawn>
 		<!-- Large Gun Deck Entrance -->
 		<spawn npc_id="730203">
-			<spot x="722.564" y="508.877" z="1012.93" h="31" static_id="88"/>
+			<spot x="721.8991" y="509.0235" z="1012.93" h="31" static_id="88"/>
 		</spawn>
 		<!-- Large Gun Deck Exit -->
 		<spawn npc_id="730204">
-			<spot x="724.042" y="508.901" z="1012.83" h="31" static_id="89"/>
+			<spot x="724.4448" y="509.0849" z="1012.83" h="31" static_id="89"/>
 		</spawn>
 		<!-- Largimark the Smoker -->
 		<spawn npc_id="215067">
@@ -244,19 +244,19 @@
 		</spawn>
 		<!-- Nasuri -->
 		<spawn npc_id="798335">
-			<spot x="419.327" y="531.353" z="885.76"/>
+			<spot x="419.3274" y="531.3529" z="885.76"/>
 		</spawn>
 		<!-- Old Book -->
 		<spawn npc_id="730195">
-			<spot x="696.922" y="506.838" z="939.85" h="15"/>
+			<spot x="696.9218" y="506.8379" z="939.85" h="15"/>
 		</spawn>
 		<!-- Parten -->
 		<spawn npc_id="798336">
-			<spot x="504.299" y="523.84" z="885.76" h="60"/>
+			<spot x="504.2988" y="523.84" z="885.76" h="60"/>
 		</spawn>
 		<!-- Pirate Ship Anchor -->
 		<spawn npc_id="730209">
-			<spot x="727.459" y="463.354" z="867.666" h="22" aerial_spawn="true"/>
+			<spot x="727.387" y="463.3126" z="867.666" h="22" aerial_spawn="true"/>
 		</spawn>
 		<!-- Pirate Ship Treasure Box -->
 		<spawn npc_id="700554">
@@ -275,7 +275,7 @@
 		</spawn>
 		<!-- Prison Door -->
 		<spawn npc_id="730208">
-			<spot x="479.4789" y="454.3800" z="888.0911" h="30" static_id="1"/>
+			<spot x="479.4789" y="454.38" z="888.0911" h="30" static_id="1"/>
 		</spawn>
 		<!-- Rabinerk -->
 		<spawn npc_id="798331">
@@ -288,16 +288,16 @@
 		<!-- Shugo Minion -->
 		<spawn npc_id="215418">
 			<spot x="280.34" y="504.6" z="899.9443" h="90" walker_id="14FDF48034C4644133FF74362C34F8ED0F152E5C" walker_index="1"/>
-			<spot x="281.68" y="506.11" z="900.01917" h="90" walker_id="E34447F71447C6E217EF80D31C4A833C6D74CDC4"/>
+			<spot x="280.0945" y="506.7425" z="900.01917" h="90" walker_id="E34447F71447C6E217EF80D31C4A833C6D74CDC4"/>
 		</spawn>
 		<!-- Shugo Minion -->
 		<spawn npc_id="215419">
-			<spot x="376.4" y="495.52" z="894.792" h="90" walker_id="23D049668BBBD8CE542BFA966C47877836246F1D" walker_index="1"/>
+			<spot x="376.4346" y="497.3295" z="894.792" h="90" walker_id="23D049668BBBD8CE542BFA966C47877836246F1D" walker_index="1"/>
 			<spot x="379.22" y="495.97" z="894.792" h="90" walker_id="F4BDC6B4C040D8D2C1F47CCC0BBB01FC8165690F"/>
 		</spawn>
 		<!-- Shugo Minion -->
 		<spawn npc_id="214966">
-			<spot x="572.76" y="576.58" z="882.0682" h="60" walker_id="34DA6DB172442E45B070183C9F91C525491C04A4"/>
+			<spot x="571.3806" y="576.1407" z="882.0682" h="60" walker_id="34DA6DB172442E45B070183C9F91C525491C04A4"/>
 			<spot x="592.33" y="536.08" z="869.79144" h="75" walker_id="67E75E382B0962F763785ECD0856F3CA04B1819D"/>
 			<spot x="594.95" y="533.85" z="869.79144" h="67" walker_id="348C9B31C53FDDA0334DD915C59ADF36F80F3AB5" walker_index="1"/>
 			<spot x="603.01" y="479.99" z="869.7917" h="60" walker_id="7023BEDEC8A9489B964BCEE36F4539CE3533C8D5"/>
@@ -307,20 +307,20 @@
 		<spawn npc_id="214965">
 			<spot x="559.25" y="467.44" z="882.0684" h="72" walker_id="759B831B6135E2A0473A7AFBABB97901B1DE1AB7"/>
 			<spot x="560.2" y="465.39" z="882.0684" h="67" walker_id="6EC594927C10D9CCDC51B42AE23F49499E0398A8" walker_index="1"/>
-			<spot x="574.514" y="441.119" z="882.068" h="48"/>
-			<spot x="574.601" y="442.989" z="882.068" h="67"/>
+			<spot x="574.5136" y="441.119" z="882.068" h="48"/>
+			<spot x="574.6006" y="442.9887" z="882.068" h="67"/>
 		</spawn>
 		<!-- Shugo Minion -->
 		<spawn npc_id="215435">
-			<spot x="556.209" y="556.299" z="882.068" h="93"/>
-			<spot x="557.78" y="557.654" z="882.068" h="90"/>
-			<spot x="559.229" y="556.378" z="882.068" h="87"/>
+			<spot x="556.2093" y="556.2988" z="882.068" h="93"/>
+			<spot x="557.7803" y="557.6543" z="882.068" h="90"/>
+			<spot x="559.2293" y="556.3777" z="882.068" h="87"/>
 			<spot x="563.11" y="543.19" z="882.0682" h="60" walker_id="233D0667A4D11A02C92461DDFB550A921F24F2F3" walker_index="1"/>
 			<spot x="563.12" y="544.71" z="882.0682" h="60" walker_id="EBD85DF50505C9D1C9B7C14DEEDC2407B39A11BB"/>
 		</spawn>
 		<!-- Sidrunerk -->
 		<spawn npc_id="798337">
-			<spot x="445.575" y="441.818" z="887.706" h="30"/>
+			<spot x="445.5755" y="441.8181" z="887.706" h="30"/>
 		</spawn>
 		<!-- Silk Hair Arachna -->
 		<spawn npc_id="215053">
@@ -355,51 +355,51 @@
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281109">
-			<spot x="688.168" y="482.262" z="868"/>
+			<spot x="688.1675" y="482.2617" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281108">
-			<spot x="704.338" y="486.975" z="868"/>
+			<spot x="704.3376" y="486.9746" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281111">
-			<spot x="661.379" y="509.586" z="868"/>
+			<spot x="661.3795" y="509.5858" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281110">
-			<spot x="671.043" y="488.819" z="868"/>
+			<spot x="671.0432" y="488.8193" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281113">
-			<spot x="688.363" y="536.82" z="868"/>
+			<spot x="688.3632" y="536.8204" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281112">
-			<spot x="669.51" y="528.695" z="868"/>
+			<spot x="669.5099" y="528.6949" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281114">
-			<spot x="707.265" y="529.433" z="868"/>
+			<spot x="707.2651" y="529.4335" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281323">
-			<spot x="701.688" y="508.989" z="868"/>
+			<spot x="701.6879" y="508.9894" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281322">
-			<spot x="716.048" y="507.126" z="868"/>
+			<spot x="716.048" y="507.1259" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281326">
-			<spot x="689.137" y="522.365" z="868"/>
+			<spot x="689.1372" y="522.3652" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281325">
-			<spot x="675.688" y="509.442" z="868"/>
+			<spot x="675.6877" y="509.4418" z="868"/>
 		</spawn>
 		<!-- Steam Effusion Nozzle -->
 		<spawn npc_id="281324">
-			<spot x="689.335" y="495.924" z="868"/>
+			<spot x="689.3354" y="495.9242" z="868"/>
 		</spawn>
 		<!-- Steel Rake Dark Mage -->
 		<spawn npc_id="214999">
@@ -730,11 +730,11 @@
 		</spawn>
 		<!-- Steering House Door -->
 		<spawn npc_id="730205">
-			<spot x="389.745" y="545.895" z="1072.09" h="66" static_id="92"/>
+			<spot x="390.3996" y="546.0579" z="1072.09" h="66" static_id="92"/>
 		</spawn>
 		<!-- Stigma Amplifier -->
 		<spawn npc_id="281180">
-			<spot x="403.184" y="510.165" z="1076.36" aerial_spawn="true"/>
+			<spot x="403.1838" y="510.1653" z="1076.36" aerial_spawn="true"/>
 		</spawn>
 		<!-- Sturdy Bubukin -->
 		<spawn npc_id="215401">
@@ -750,11 +750,11 @@
 		</spawn>
 		<!-- The Brig Entrance -->
 		<spawn npc_id="730200">
-			<spot x="461.898" y="487.228" z="877.713" static_id="30"/>
+			<spot x="461.8975" y="487.2284" z="877.713" static_id="30"/>
 		</spawn>
 		<!-- The Brig Exit -->
 		<spawn npc_id="730201">
-			<spot x="461.898" y="488.349" z="877.682" static_id="82"/>
+			<spot x="461.8975" y="488.3492" z="877.682" static_id="82"/>
 		</spawn>
 		<!-- Timid Alakin -->
 		<spawn npc_id="215058">
@@ -774,6 +774,73 @@
 		<!-- Zerkin the One-eyed -->
 		<spawn npc_id="215411">
 			<spot x="716.91" y="504.28" z="1012.8969" h="90" walker_id="721965A09BC65D1D5AB405B6DBFE094D41657D99"/>
+		</spawn>
+		<!-- big wine barrel -->
+		<spawn npc_id="700523">
+			<spot x="459.1922" y="555.7996" z="952.5986" h="0"/>
+			<spot x="465.2373" y="557.6564" z="952.4948" h="0"/>
+			<spot x="467.8871" y="574.8282" z="952.4948" h="0"/>
+			<spot x="469.9933" y="580.0145" z="958.8492" h="0"/>
+			<spot x="484.6116" y="555.7364" z="952.4948" h="0"/>
+		</spawn>
+		<!-- elevator lever -->
+		<spawn npc_id="730210">
+			<spot x="282.3289" y="451.5678" z="953.3258" h="0"/>
+		</spawn>
+		<!-- elevator lever -->
+		<spawn npc_id="730216">
+			<spot x="282.3182" y="451.3351" z="903.9021" h="0"/>
+		</spawn>
+		<!-- feed supply device -->
+		<spawn npc_id="700527" respawn_time="295">
+			<spot x="701.01" y="495.02" z="942" h="0"/>
+			<spot x="709.5989" y="511.1916" z="942" h="0"/>
+			<spot x="716.54" y="494.67" z="942" h="0"/>
+		</spawn>
+		<!-- grogget's safe door -->
+		<spawn npc_id="730199">
+			<spot x="690.9774" y="500.8819" z="943.7291" h="0"/>
+		</spawn>
+		<!-- hidden escape exit -->
+		<spawn npc_id="730206">
+			<spot x="428.2649" y="487.258" z="1076.127" h="0"/>
+			<spot x="713.9587" y="526.3901" z="868.8255" h="0"/>
+			<spot x="734.0789" y="484.8488" z="942.5283" h="0"/>
+		</spawn>
+		<!-- pegureronerk -->
+		<spawn npc_id="798376">
+			<spot x="516.1984" y="489.708" z="886.8549" h="0"/>
+		</spawn>
+		<!-- sommelikinerk -->
+		<spawn npc_id="798375">
+			<spot x="529.7466" y="523.4805" z="953.9128" h="0"/>
+		</spawn>
+		<!-- Space Rift -->
+		<spawn npc_id="800420" respawn_time="295">
+			<spot x="239.2949" y="514.7355" z="951.8494" h="0"/>
+		</spawn>
+		<!-- steel rake logbook -->
+		<spawn npc_id="700524">
+			<spot x="355.6472" y="594.6694" z="949.4537" h="0"/>
+		</spawn>
+		<!-- str_sen_idship_sensoryarea_entrance_01 -->
+		<spawn npc_id="206099">
+			<spot x="240.9018" y="505.5402" z="950.725" h="0"/>
+		</spawn>
+		<!-- str_sen_idship_sensoryarea_timer -->
+		<spawn npc_id="206103">
+			<spot x="611.6736" y="550.3585" z="938.7364" h="0"/>
+		</spawn>
+		<!-- strongbox -->
+		<spawn npc_id="700562">
+			<spot x="333.6602" y="573.1157" z="902.3679" h="0"/>
+			<spot x="352.4" y="587.8" z="950" h="0"/>
+		</spawn>
+		<!-- water supply device -->
+		<spawn npc_id="700528" respawn_time="295">
+			<spot x="701.08" y="506.28" z="945" h="0"/>
+			<spot x="704.9312" y="490.296" z="945" h="0"/>
+			<spot x="716.2804" y="509.3841" z="945" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

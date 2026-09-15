@@ -41,7 +41,7 @@
 		</spawn>
 		<!-- Artifact of Memory -->
 		<spawn npc_id="700552">
-			<spot x="305.58514" y="293.97534" z="206.45227" static_id="82"/>
+			<spot x="305.7166" y="293.8427" z="206.45227" static_id="82"/>
 		</spawn>
 		<!-- Grunt -->
 		<spawn npc_id="215397">
@@ -110,7 +110,7 @@
 		</spawn>
 		<!-- Hermione -->
 		<spawn npc_id="205119">
-			<spot x="85.0" y="192.0" z="231.65344" h="95"/>
+			<spot x="85.0" y="191" z="231.65344" h="95"/>
 		</spawn>
 		<!-- Lephar -->
 		<spawn npc_id="205118">

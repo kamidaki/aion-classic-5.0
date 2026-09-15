@@ -59,7 +59,7 @@
 		</spawn>
 		<!-- Mossy Gate -->
 		<spawn npc_id="700459">
-			<spot x="527.4063" y="106.0371" z="175.9239" static_id="4" />
+			<spot x="527.4062" y="106.0371" z="175.9239" static_id="4" />
 		</spawn>
 		<!-- IDAB1_SensoryArea_Timer_F -->
 		<spawn npc_id="206095">
@@ -67,7 +67,7 @@
 		</spawn>
 		<!-- Krotan Barracks Artifact -->
 		<spawn npc_id="215413">
-			<spot x="528.15" y="775.56" z="199.6" h="53" static_id="122"/>
+			<spot x="528.1818" y="775.5576" z="199.6" h="53" static_id="122"/>
 		</spawn>
 		<!-- Ranx Apone -->
 		<spawn npc_id="215122">

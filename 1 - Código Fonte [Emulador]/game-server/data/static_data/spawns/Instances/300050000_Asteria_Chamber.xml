@@ -3,7 +3,7 @@
 	<spawn_map map_id="300050000">
 		<!-- Beautiful Landscape Painting -->
 		<spawn npc_id="700461">
-			<spot x="461.056" y="567.035" z="205.751" static_id="33"/>
+			<spot x="461.7051" y="567.3436" z="205.751" static_id="33"/>
 		</spawn>
 		<!-- Dakaer Ambusher -->
 		<spawn npc_id="214757">
@@ -127,7 +127,7 @@
 		</spawn>
 		<!-- IDAB1_SensoryArea_Timer_A -->
 		<spawn npc_id="206087">
-			<spot x="479.589" y="567.707" z="205.124" h="109"/>
+			<spot x="479.5888" y="567.7067" z="202.1067" h="109"/>
 		</spawn>
 		<!-- Jeweled Abyss Crate -->
 		<spawn npc_id="700476">

@@ -590,5 +590,111 @@
 		<spawn npc_id="730668">
 			<spot x="1090.5620" y="1069.0687" z="787.0775" h="60" static_id="12" />
 		</spawn>
+		<!--   -->
+		<spawn npc_id="206215">
+			<spot x="794" y="383" z="162.5" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="206216">
+			<spot x="794" y="385" z="162.5" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800531" respawn_time="295">
+			<spot x="420" y="459" z="99.1" h="0"/>
+			<spot x="420" y="459" z="99.1" h="0"/>
+			<spot x="420" y="459" z="99.1" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800532" respawn_time="295">
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800533" respawn_time="295">
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800581" respawn_time="295">
+			<spot x="354.2149" y="587.6049" z="136.5" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800582" respawn_time="295">
+			<spot x="354.2149" y="599.6049" z="136.5" h="0"/>
+		</spawn>
+		<!-- Controller -->
+		<spawn npc_id="800583" respawn_time="295">
+			<spot x="354.2149" y="614.6049" z="136.5" h="0"/>
+		</spawn>
+		<!-- Dilator Key Box -->
+		<spawn npc_id="800524" respawn_time="295">
+			<spot x="464.5237" y="385.3164" z="177.6" h="0"/>
+		</spawn>
+		<!-- Drana Report -->
+		<spawn npc_id="800505" respawn_time="295">
+			<spot x="670" y="397" z="146" h="0"/>
+			<spot x="686" y="324" z="146" h="0"/>
+		</spawn>
+		<!-- Empty Soldier Chest -->
+		<spawn npc_id="800584" respawn_time="295">
+			<spot x="393" y="634" z="138" h="0"/>
+			<spot x="416" y="569" z="129" h="0"/>
+			<spot x="457" y="638" z="144" h="0"/>
+			<spot x="468" y="343" z="116" h="0"/>
+			<spot x="495" y="621" z="129" h="0"/>
+			<spot x="654" y="415" z="150" h="0"/>
+			<spot x="687" y="425" z="150" h="0"/>
+			<spot x="692" y="345" z="150" h="0"/>
+			<spot x="738" y="346" z="150" h="0"/>
+			<spot x="761" y="400" z="150" h="0"/>
+		</spawn>
+		<!-- laelius -->
+		<spawn npc_id="800585">
+			<spot x="207.81" y="601.98" z="140.5736" h="0" random_walk="8"/>
+			<spot x="207.81" y="601.98" z="140.5736" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Macerator -->
+		<spawn npc_id="730533">
+			<spot x="207.568" y="602.2228" z="139.7154" h="0" random_walk="8"/>
+			<spot x="207.568" y="602.2228" z="139.7154" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Meleris -->
+		<spawn npc_id="800577">
+			<spot x="791.9854" y="382.9349" z="162.5" h="0"/>
+			<spot x="791.9854" y="382.9349" z="162.5" h="0"/>
+		</spawn>
+		<!-- nania -->
+		<spawn npc_id="800534" respawn_time="295">
+			<spot x="206.7914" y="603.8776" z="136.1621" h="0" random_walk="8"/>
+			<spot x="420" y="459" z="99.6" h="0"/>
+			<spot x="420" y="459" z="99.6" h="0"/>
+			<spot x="420" y="459" z="99.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="450.5" y="459.5" z="101.6" h="0"/>
+			<spot x="489.5" y="373" z="113.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+			<spot x="491.5" y="460" z="100.1" h="0"/>
+		</spawn>
+		<!-- Omne Solum -->
+		<spawn npc_id="800579">
+			<spot x="186.25" y="602" z="139.1488" h="0"/>
+		</spawn>
+		<!-- Omne Solum -->
+		<spawn npc_id="800603">
+			<spot x="805" y="384.6594" z="161.25" h="0"/>
+		</spawn>
+		<!-- Prototype Device -->
+		<spawn npc_id="800580">
+			<spot x="441" y="617" z="126" h="0"/>
+		</spawn>
+		<!-- Prototype Report -->
+		<spawn npc_id="800506" respawn_time="295">
+			<spot x="420" y="576" z="133" h="0"/>
+			<spot x="459" y="626" z="133" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

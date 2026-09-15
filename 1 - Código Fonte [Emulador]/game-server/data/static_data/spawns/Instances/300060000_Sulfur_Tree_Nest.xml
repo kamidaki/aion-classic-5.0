@@ -171,7 +171,7 @@
 		</spawn>
 		<!-- Hidden Stone Door -->
 		<spawn npc_id="700453">
-			<spot x="462.625" y="332.894" z="162.807" static_id="3"/>
+			<spot x="463.0348" y="334.7261" z="162.807" static_id="3"/>
 		</spawn>
 		<!-- Pesky Drakie -->
 		<spawn npc_id="214803">
@@ -210,6 +210,10 @@
 		<!-- Sealed Gold Chest -->
 		<spawn npc_id="214804">
 			<spot x="457.1115" y="487.4510" z="163.7297" h="46"/>
+		</spawn>
+		<!-- str_sen_idab1_sensoryarea_timer_e -->
+		<spawn npc_id="206091">
+			<spot x="463.3703" y="384.8628" z="168" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

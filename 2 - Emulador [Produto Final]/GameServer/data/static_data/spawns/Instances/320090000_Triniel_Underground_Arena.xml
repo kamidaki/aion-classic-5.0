@@ -12,7 +12,7 @@
 		</spawn>
 		<!-- Underground Arena Exit -->
 		<spawn npc_id="730067">
-			<spot x="275.897" y="295.694" z="163.531" h="90" static_id="26"/>
+			<spot x="275.897" y="295.6943" z="163.531" h="90" static_id="26"/>
 		</spawn>
 		<!-- Warrior Spirit -->
 		<spawn npc_id="213583">

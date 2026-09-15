@@ -3,15 +3,15 @@
 	<spawn_map map_id="210050000">
 		<!-- 1221_Temporary Door -->
 		<spawn npc_id="700545" respawn_time="295">
-			<spot x="978.149" y="1018.74" z="335.395" h="33" static_id="2312" />
+			<spot x="978.1489" y="1018.7421" z="335.395" h="33" static_id="2312" />
 			<spot x="1454.7737" y="1526.7189" z="362" h="33" static_id="2310" />
-			<spot x="1660.0983" y="928.6717" z="406" static_id="2292" />
-			<spot x="1745.9287" y="1716.3834" z="226.582" h="33" static_id="1039" />
-			<spot x="2288.0205" y="1067.0623" z="286.0" static_id="2311" />
-			<spot x="338.14932" y="573.5503" z="460.0" static_id="755" />
-			<spot x="2602.8613" y="1525.5096" z="260.0" static_id="754" />
-			<spot x="1633.24" y="1623.51" z="172" h="33" static_id="756" />
-			<spot x="749.15466" y="1285.6238" z="198" static_id="1174" />
+			<spot x="1660.0983" y="928.6717" z="404.5" static_id="2292" />
+			<spot x="1745.9287" y="1716.3834" z="225.4849" h="33" static_id="1039" />
+			<spot x="2288.0205" y="1067.0623" z="285.375" static_id="2311" />
+			<spot x="338.1493" y="573.5503" z="460.0" static_id="755" />
+			<spot x="2602.8613" y="1525.5096" z="257.8577" static_id="754" />
+			<spot x="1633.2354" y="1623.5104" z="170.4718" h="33" static_id="756" />
+			<spot x="749.1547" y="1285.6238" z="195.4262" static_id="1174" />
 		</spawn>
 		<!-- Abyss Murmur -->
 		<spawn npc_id="216476" respawn_time="295">
@@ -22,7 +22,7 @@
 		</spawn>
 		<!-- Acid Canister -->
 		<spawn npc_id="700763" respawn_time="295">
-			<spot x="1375.42" y="1865.09" z="318.943" />
+			<spot x="1375.4147" y="1865.0933" z="317.7834" />
 		</spawn>
 		<!-- Acute Shugo -->
 		<spawn npc_id="799747" respawn_time="295">
@@ -30,40 +30,40 @@
 		</spawn>
 		<!-- Adias -->
 		<spawn npc_id="798953" respawn_time="295">
-			<spot x="2654.23" y="345.53" z="512" h="63" />
+			<spot x="2654.2283" y="345.5297" z="508.5715" h="63" />
 		</spawn>
 		<!-- Adicia -->
 		<spawn npc_id="798988" respawn_time="295">
-			<spot x="379.701" y="950.057" z="460.79" h="117" />
+			<spot x="379.7009" y="950.0566" z="460.79" h="117" />
 		</spawn>
 		<!-- Adrinne -->
 		<!-- Aerolink to Sanctum -->
 		<spawn npc_id="730220" respawn_time="295">
-			<spot x="1375.89" y="367.848" z="589.6" h="73" static_id="1314" />
+			<spot x="1375.8845" y="367.8477" z="589.6" h="73" static_id="1314" />
 		</spawn>
 		<!-- Aethercraft -->
 		<spawn npc_id="799057" respawn_time="295">
-			<spot x="398.93082" y="949.9519" z="460.34537" static_id="202" />
+			<spot x="398.9663" y="949.847" z="460.25" static_id="202" />
 		</spawn>
 		<!-- Aethercraft -->
 		<spawn npc_id="798901" respawn_time="295">
-			<spot x="1333.8577" y="273.83041" z="589.26276" static_id="621" />
+			<spot x="1333.9467" y="273.9589" z="588.625" static_id="621" />
 		</spawn>
 		<!-- Aethercraft -->
 		<spawn npc_id="798962" respawn_time="295">
-			<spot x="2719.0725" y="1424.7885" z="384.70993" static_id="1202" />
+			<spot x="2719.124" y="1424.8901" z="382.9743" static_id="1202" />
 		</spawn>
 		<!-- Agelastos -->
 		<spawn npc_id="798935" respawn_time="295">
-			<spot x="1366.89" y="355.08" z="589.5761" h="16" walker_id="DBE9B7C0DEDB8D4EBAF7A36C086C3442D5490801" />
+			<spot x="1366.7961" y="354.8557" z="589.5761" h="16" walker_id="DBE9B7C0DEDB8D4EBAF7A36C086C3442D5490801" />
 		</spawn>
 		<!-- Agent Greenlake -->
 		<spawn npc_id="216631" respawn_time="295">
-			<spot x="971.191" y="1870.23" z="329.015" h="87" />
+			<spot x="971.1911" y="1870.2346" z="329.015" h="87" />
 		</spawn>
 		<!-- Alphecca -->
 		<spawn npc_id="799078" respawn_time="295">
-			<spot x="2296.29" y="1685.49" z="273.785" h="108" />
+			<spot x="2296.4141" y="1685.2998" z="273.785" h="108" />
 		</spawn>
 		<!-- Amauri -->
 		<spawn npc_id="798917" respawn_time="295">
@@ -124,7 +124,7 @@
 		</spawn>
 		<!-- Ambred -->
 		<spawn npc_id="798951" respawn_time="295">
-			<spot x="1941.29" y="239.21" z="506.68" h="87" />
+			<spot x="2066.8296" y="445" z="438.3963" h="87" />
 		</spawn>
 		<!-- Ancient Excura -->
 		<spawn npc_id="215494" respawn_time="295">
@@ -709,7 +709,7 @@
 		</spawn>
 		<!-- Arissa -->
 		<spawn npc_id="799841" respawn_time="295">
-			<spot x="2706.77" y="1442.68" z="386" h="97" />
+			<spot x="2705.9485" y="1445.0516" z="383.5625" h="97" />
 		</spawn>
 		<!-- Armond -->
 		<spawn npc_id="798956" respawn_time="295">
@@ -758,15 +758,15 @@
 		</spawn>
 		<!-- Artem -->
 		<spawn npc_id="798911" respawn_time="295">
-			<spot x="1270.94" y="297.725" z="590.094" h="20" />
+			<spot x="1270.9396" y="297.7251" z="590.094" h="20" />
 		</spawn>
 		<!-- Atalos -->
 		<spawn npc_id="798972" respawn_time="295">
-			<spot x="2645.01" y="1408.62" z="346" h="73" />
+			<spot x="2645.0144" y="1408.623" z="344.5606" h="73" />
 		</spawn>
 		<!-- Auralia -->
 		<spawn npc_id="798999" respawn_time="295">
-			<spot x="1085" y="1617.78" z="409.939" h="90" />
+			<spot x="1547.7528" y="1156.9054" z="419.1096" h="90" />
 		</spawn>
 		<!-- Awl Airon -->
 		<spawn npc_id="216780" respawn_time="295">
@@ -877,7 +877,7 @@
 		</spawn>
 		<!-- Backache Daeva -->
 		<spawn npc_id="799074" respawn_time="295">
-			<spot x="1442.94" y="268.833" z="549.191" h="110" />
+			<spot x="1442.9382" y="268.8333" z="548.375" h="110" />
 		</spawn>
 		<!-- Baydeeafa -->
 		<spawn npc_id="216521" respawn_time="7200" pool="1">
@@ -892,7 +892,7 @@
 		<!-- Bane Spirit -->
 		<!-- Barus -->
 		<spawn npc_id="798991" respawn_time="295">
-			<spot x="381.484" y="981.563" z="460.282" h="119" />
+			<spot x="379.3729" y="981.9368" z="460.3711" h="119" />
 		</spawn>
 		<!-- Basalki the Third -->
 		<spawn npc_id="217070" respawn_time="295">
@@ -1533,7 +1533,7 @@
 		</spawn>
 		<!-- Biahios -->
 		<spawn npc_id="799009" respawn_time="295">
-			<spot x="715.262" y="1519.47" z="361.5" h="32" />
+			<spot x="719.0966" y="1516.2654" z="361.4149" h="32" />
 		</spawn>
 		<!-- Bigbelly Cellatu -->
 		<spawn npc_id="215580" respawn_time="295">
@@ -1829,11 +1829,11 @@
 		</spawn>
 		<!-- Caceus -->
 		<spawn npc_id="798938" respawn_time="295">
-			<spot x="1295.96" y="229.635" z="595.633" h="18" />
+			<spot x="1295.9565" y="229.6352" z="595.633" h="18" />
 		</spawn>
 		<!-- Cadir -->
 		<spawn npc_id="799819" respawn_time="295">
-			<spot x="2703.85" y="1411.53" z="372" h="60" />
+			<spot x="2704.6187" y="1412.316" z="370.5387" h="60" />
 		</spawn>
 		<!-- Caicedo -->
 		<spawn npc_id="798910" respawn_time="295">
@@ -1951,7 +1951,7 @@
 		</spawn>
 		<!-- Castalia -->
 		<spawn npc_id="799027" respawn_time="295">
-			<spot x="1277.91" y="308.148" z="590.094" h="80" />
+			<spot x="1277.9081" y="308.1478" z="588.0638" h="80" />
 		</spawn>
 		<!-- Chief Kurnus -->
 		<spawn npc_id="216501" respawn_time="7200" pool="1">
@@ -1965,7 +1965,7 @@
 		</spawn>
 		<!-- Chloris -->
 		<spawn npc_id="799824" respawn_time="295">
-			<spot x="1369.69" y="380.598" z="557.556" h="86" />
+			<spot x="1369.6855" y="380.5977" z="557.556" h="86" />
 		</spawn>
 		<!-- Chubarunerk -->
 		<!-- Cicero -->
@@ -1974,11 +1974,11 @@
 		</spawn>
 		<!-- Cinisca -->
 		<spawn npc_id="798963" respawn_time="295">
-			<spot x="2751.99" y="1479.51" z="386" h="67" />
+			<spot x="2751.9917" y="1479.5083" z="384.75" h="67" />
 		</spawn>
 		<!-- Cintus -->
 		<spawn npc_id="798944" respawn_time="295">
-			<spot x="1380.13" y="378.073" z="557.612" h="66" />
+			<spot x="1380.1263" y="378.0725" z="557.612" h="66" />
 		</spawn>
 		<!-- Claypool -->
 		<spawn npc_id="216491" respawn_time="295">
@@ -1986,7 +1986,7 @@
 		</spawn>
 		<!-- Clodia -->
 		<spawn npc_id="798940" respawn_time="295">
-			<spot x="1301.82" y="262.487" z="590.961" h="18" />
+			<spot x="1645.0629" y="526.8711" z="454.25" h="18" />
 		</spawn>
 		<!-- Collector Spaller -->
 		<spawn npc_id="215625" respawn_time="295">
@@ -2022,8 +2022,8 @@
 		</spawn>
 		<!-- Combat Resources -->
 		<spawn npc_id="799609" respawn_time="295">
-			<spot x="1340.68" y="393.785" z="548.634" h="33" />
-			<spot x="1434.55" y="324.171" z="549.25" />
+			<spot x="1340.6808" y="393.7849" z="548.634" h="33" />
+			<spot x="1434.5515" y="324.1706" z="549.25" />
 		</spawn>
 		<!-- Comus -->
 		<spawn npc_id="799817" respawn_time="295">
@@ -2031,7 +2031,7 @@
 		</spawn>
 		<!-- Concussed Daeva -->
 		<spawn npc_id="799073" respawn_time="295">
-			<spot x="1413.27" y="225.096" z="549.374" h="110" />
+			<spot x="1413.2701" y="225.096" z="548.375" h="110" />
 		</spawn>
 		<!-- Contaminated Murmur -->
 		<spawn npc_id="215628" respawn_time="295">
@@ -2069,7 +2069,7 @@
 		</spawn>
 		<!-- Corocota -->
 		<spawn npc_id="798989" respawn_time="295">
-			<spot x="381.768" y="984.051" z="460.375" h="117" />
+			<spot x="377.9919" y="979.9052" z="460.3701" h="117" />
 		</spawn>
 		<!-- Corridor Entry Controller -->
 		<!-- Crackled Crestlich -->
@@ -2097,7 +2097,7 @@
 		</spawn>
 		<!-- Crasus -->
 		<spawn npc_id="799006" respawn_time="295">
-			<spot x="1892.3" y="1749.5" z="327.625" h="76" />
+			<spot x="1891.9344" y="1749.8271" z="327.6291" h="76" />
 		</spawn>
 		<!-- Crater Spaller -->
 		<spawn npc_id="215739" respawn_time="295">
@@ -2128,11 +2128,11 @@
 		</spawn>
 		<!-- Creatures of the Dawning Era -->
 		<spawn npc_id="748004" respawn_time="295">
-			<spot x="1362.01" y="370.872" z="558.345" static_id="1216" />
+			<spot x="1353.7659" y="376.5163" z="557.625" static_id="1216" />
 		</spawn>
 		<!-- Cretos -->
 		<spawn npc_id="799080" respawn_time="295">
-			<spot x="1780.39" y="1754.56" z="283.74432" h="87" />
+			<spot x="1780.3939" y="1754.5604" z="283.74432" h="87" />
 		</spawn>
 		<!-- Crystal Caltrops -->
 		<spawn npc_id="216154" respawn_time="295">
@@ -2224,11 +2224,11 @@
 		</spawn>
 		<!-- Crosia -->
 		<spawn npc_id="798952" respawn_time="295">
-			<spot x="2647.62" y="331.368" z="512" h="3" />
+			<spot x="2647.6245" y="331.3683" z="510.375" h="3" />
 		</spawn>
 		<!-- Daidra -->
 		<spawn npc_id="799553" respawn_time="295">
-			<spot x="1087" y="1561" z="408" h="30" />
+			<spot x="1087.933" y="1561.1301" z="406.875" h="30" />
 		</spawn>
 		<!-- Dancing Seafoam -->
 		<spawn npc_id="216479" respawn_time="295">
@@ -2412,11 +2412,11 @@
 		</spawn>
 		<!-- Delus -->
 		<spawn npc_id="798960" respawn_time="295">
-			<spot x="1061.76" y="582.337" z="515.25" h="30" />
+			<spot x="1061.7562" y="582.3375" z="513.25" h="30" />
 		</spawn>
 		<!-- Derna -->
 		<spawn npc_id="799586" respawn_time="295">
-			<spot x="1071.543" y="1561.055" z="408" h="30" />
+			<spot x="1071.5428" y="1561.0547" z="408" h="30" />
 		</spawn>
 		<!-- Detachment Centurion -->
 		<spawn npc_id="209009" respawn_time="295">
@@ -2512,7 +2512,7 @@
 		</spawn>
 		<!-- Deteriorated Obelisk -->
 		<spawn npc_id="730225" respawn_time="295">
-			<spot x="2299.38" y="256" z="465.639" static_id="163" />
+			<spot x="2299.3799" y="256" z="465.639" static_id="163" />
 		</spawn>
 		<!-- Dimaia Waterfall -->
 		<spawn npc_id="206107" respawn_time="295">
@@ -2524,23 +2524,23 @@
 		</spawn>
 		<!-- Dolabella -->
 		<spawn npc_id="798961" respawn_time="295">
-			<spot x="2716.81" y="1481.23" z="384" h="83" />
+			<spot x="2716.8137" y="1481.2267" z="383.6559" h="83" />
 		</spawn>
 		<!-- Donatus -->
 		<spawn npc_id="799833" respawn_time="295">
-			<spot x="2709.42" y="1444.22" z="386" h="87" />
+			<spot x="2709.2407" y="1445.8965" z="382.6233" h="87" />
 		</spawn>
 		<!-- Donikia -->
 		<spawn npc_id="799020" respawn_time="295">
-			<spot x="2369.52" y="2053.51" z="252" h="97" />
+			<spot x="2369.5193" y="2053.5149" z="252" h="97" />
 		</spawn>
 		<!-- Doria -->
 		<spawn npc_id="798959" respawn_time="295">
-			<spot x="1071.36" y="584.056" z="514" h="19" />
+			<spot x="1071.3621" y="584.0556" z="513.3317" h="19" />
 		</spawn>
 		<!-- Drakan Stone Statue -->
 		<spawn npc_id="730295" respawn_time="295">
-			<spot x="344.47" y="1374.34" z="336.433" static_id="204" />
+			<spot x="344.9297" y="1374.5505" z="336.433" static_id="204" />
 		</spawn>
 		<!-- Drey -->
 		<spawn npc_id="798904" respawn_time="295">
@@ -2548,11 +2548,15 @@
 		</spawn>
 		<!-- Drenia -->
 		<spawn npc_id="798903" respawn_time="295">
-			<spot x="1276.3" y="323.737" z="590.084" h="110" />
+			<spot x="1276.2964" y="323.7366" z="590.084" h="110" />
 		</spawn>
 		<!-- Dry Crater -->
 		<spawn npc_id="700914" respawn_time="295">
 			<spot x="947.9281" y="1814.0986" z="326.25" static_id="2393" />
+			<spot x="839.1528" y="1513.3734" z="357.0984" h="0" />
+			<spot x="814.0257" y="1511.6603" z="361.5293" h="0" />
+			<spot x="824.7805" y="1499.5525" z="359.6733" h="0" />
+			<spot x="806.402" y="1502.7454" z="361" h="0" />
 		</spawn>
 		<!-- Eare -->
 		<spawn npc_id="799953" respawn_time="295">
@@ -2560,7 +2564,7 @@
 		</spawn>
 		<!-- Eastern Obelisk Support -->
 		<spawn npc_id="700628" respawn_time="295">
-			<spot x="458" y="514" z="460.362" static_id="159" />
+			<spot x="457.55" y="513.11" z="461.7637" static_id="159" />
 		</spawn>
 		<!-- Eastern Petrified Mass -->
 		<spawn npc_id="730227" respawn_time="295">
@@ -2595,10 +2599,10 @@
 		</spawn>
 		<!-- Elyos Tower Sentry -->
 		<spawn npc_id="281492" respawn_time="295">
-			<spot x="549.884" y="740.742" z="480.074" h="82" />
-			<spot x="566.989" y="727.75" z="480.065" h="67" />
-			<spot x="2520.38" y="847.318" z="412.073" h="96" />
-			<spot x="2537.82" y="834.778" z="412.087" h="89" />
+			<spot x="549.8836" y="740.7418" z="480.074" h="82" />
+			<spot x="566.9886" y="727.7502" z="480.065" h="67" />
+			<spot x="2520.3787" y="847.3176" z="412.073" h="96" />
+			<spot x="2537.8179" y="834.7783" z="412.087" h="89" />
 		</spawn>
 		<!-- Elrin -->
 		<spawn npc_id="799946" respawn_time="295">
@@ -2606,7 +2610,7 @@
 		</spawn>
 		<!-- Enoitia -->
 		<spawn npc_id="798993" respawn_time="295">
-			<spot x="1085.92" y="1605.88" z="407.906" h="79" />
+			<spot x="1112.6724" y="1600.8533" z="406.875" h="79" />
 		</spawn>
 		<!-- Ereshkigal Monument -->
 		<spawn npc_id="700747" respawn_time="295">
@@ -2626,19 +2630,19 @@
 		</spawn>
 		<!-- Eutyches -->
 		<spawn npc_id="799834" respawn_time="295">
-			<spot x="2703.14" y="1439.29" z="386" h="117" />
+			<spot x="2704.3479" y="1439.7231" z="383.4871" h="117" />
 		</spawn>
 		<!-- Everinrinerk -->
 		<spawn npc_id="798980" respawn_time="295">
-			<spot x="1366.43" y="348.272" z="558.037" h="50" />
+			<spot x="1366.4252" y="348.2721" z="558.037" h="50" />
 		</spawn>
 		<!-- Fabius -->
 		<spawn npc_id="798964" respawn_time="295">
-			<spot x="2740" y="1484.09" z="386" h="87" />
+			<spot x="2740.0049" y="1484.0859" z="384.625" h="87" />
 		</spawn>
 		<!-- Favonius -->
 		<spawn npc_id="799802" respawn_time="295">
-			<spot x="1403.23" y="321.582" z="589.576" h="110" />
+			<spot x="1352.2672" y="261.5983" z="588.5244" h="110" />
 		</spawn>
 		<!-- Ferocious Barghest -->
 		<spawn npc_id="215718" respawn_time="295">
@@ -2891,7 +2895,7 @@
 		</spawn>
 		<!-- Gefeios -->
 		<spawn npc_id="799032" respawn_time="295">
-			<spot x="2743.77" y="1496.07" z="384.92" h="78" />
+			<spot x="2743.77" y="1496.0664" z="384.92" h="78" />
 		</spawn>
 		<!-- Geffen -->
 		<spawn npc_id="216524" respawn_time="7200">
@@ -2899,15 +2903,15 @@
 		</spawn>
 		<!-- Gellius -->
 		<spawn npc_id="798929" respawn_time="295">
-			<spot x="1362.13" y="189.363" z="599.756" h="46" />
+			<spot x="1362.1305" y="189.3633" z="599.756" h="46" />
 		</spawn>
 		<!-- Gelon -->
 		<spawn npc_id="798979" respawn_time="295">
-			<spot x="2757.78" y="1431.32" z="385" h="37" />
+			<spot x="2762.6899" y="1432.2023" z="385.0431" h="37" />
 		</spawn>
 		<!-- Geta -->
 		<spawn npc_id="798976" respawn_time="295">
-			<spot x="2708.52" y="1398.74" z="370.689" h="86" />
+			<spot x="2707.7998" y="1398.6802" z="370.625" h="86" />
 		</spawn>
 		<!-- Gioni -->
 		<spawn npc_id="799947" respawn_time="295">
@@ -3232,27 +3236,27 @@
 		</spawn>
 		<!-- Guardian in Training -->
 		<spawn npc_id="799625" respawn_time="295">
-			<spot x="1296.868" y="395.148" z="548.845" h="35" />
-			<spot x="1338.970" y="419.197" z="549.000" h="43" />
-			<spot x="1367.829" y="448.284" z="548.454" h="19" />
-			<spot x="1473.049" y="282.576" z="548.250" h="104" />
-			<spot x="1482.461" y="299.987" z="548.250" h="114" />
+			<spot x="1296.9742" y="394.8054" z="548.8612" h="35" />
+			<spot x="1338.9701" y="419.1974" z="549.000" h="43" />
+			<spot x="1367.8293" y="448.2839" z="548.454" h="19" />
+			<spot x="1473.0494" y="282.5758" z="548.250" h="104" />
+			<spot x="1482.4609" y="299.9872" z="548.250" h="114" />
 		</spawn>
 		<!-- Guardian in Training -->
 		<spawn npc_id="799624" respawn_time="295">
-			<spot x="1302.324" y="396.956" z="549.000" h="36" />
-			<spot x="1329.496" y="412.513" z="549.000" h="40" />
-			<spot x="1372.442" y="446.443" z="548.776" h="10" />
+			<spot x="1307.7745" y="397.8638" z="549.000" h="36" />
+			<spot x="1321.7919" y="406.5544" z="549.000" h="40" />
+			<spot x="1372.8663" y="445.1766" z="549.0294" h="10" />
 			<spot x="1483.356" y="295.097" z="548.250" h="89" />
 		</spawn>
 		<!-- Guarding Eye -->
 		<spawn npc_id="700765" respawn_time="295">
-			<spot x="982.934" y="1457.37" z="393.308" h="76" />
-			<spot x="1221.71" y="794.22" z="396.285" h="76" />
+			<spot x="982.9341" y="1457.3696" z="393.308" h="76" />
+			<spot x="1221.7129" y="794.2195" z="396.285" h="76" />
 		</spawn>
 		<!-- Half-rotten Animal Carcass -->
 		<spawn npc_id="700761" respawn_time="295">
-			<spot x="1698.98" y="977.35" z="401.843" h="81" />
+			<spot x="1698.9778" y="977.3503" z="401.1194" h="81" />
 		</spawn>
 		<!-- Hanarkand Bodyguard -->
 		<spawn npc_id="216437" respawn_time="295">
@@ -3282,7 +3286,7 @@
 		<!-- Hanarkand Mystic -->
 		<!-- Hanarkand Prison Entrance -->
 		<spawn npc_id="206127" respawn_time="295">
-			<spot x="2346.54" y="1951.31" z="260.382" h="44" />
+			<spot x="2346.5435" y="1951.3141" z="260.382" h="44" />
 		</spawn>
 		<!-- Hanarkand Quartermaster -->
 		<spawn npc_id="216436" respawn_time="295">
@@ -3303,15 +3307,19 @@
 		<!-- Hanarkand Worker -->
 		<!-- Harami -->
 		<spawn npc_id="799084" respawn_time="295">
-			<spot x="2468.2852" y="333.90924" z="504" h="57" />
+			<spot x="2468.2852" y="333.90924" z="502.25" h="57" />
 		</spawn>
 		<!-- Hardened Crater -->
 		<spawn npc_id="700911" respawn_time="295">
 			<spot x="712.82715" y="1866.3936" z="322.125" static_id="2390" />
+			<spot x="784.144" y="1567.4296" z="349.4463" h="0" />
+			<spot x="772.0958" y="1579.131" z="351.159" h="0" />
+			<spot x="784.0624" y="1594.3391" z="349.2673" h="0" />
+			<spot x="761.974" y="1553.5045" z="350.5626" h="0" />
 		</spawn>
 		<!-- Harknes -->
 		<spawn npc_id="798942" respawn_time="295">
-			<spot x="1357.19" y="380.833" z="557.625" h="60" />
+			<spot x="1671.1677" y="1604.3844" z="173.593" h="60" />
 		</spawn>
 		<!-- Harp Mookie -->
 		<spawn npc_id="216794" respawn_time="295">
@@ -3483,11 +3491,11 @@
 		</spawn>
 		<!-- Hodirunerk -->
 		<spawn npc_id="798913" respawn_time="295">
-			<spot x="1426.17" y="289.969" z="590.766" h="53" />
+			<spot x="1426.17" y="289.9691" z="590.766" h="53" />
 		</spawn>
 		<!-- Honeus -->
 		<spawn npc_id="799029" respawn_time="295">
-			<spot x="371.297" y="948.568" z="460.853" h="67" />
+			<spot x="371.6654" y="949.4079" z="460.3541" h="67" />
 		</spawn>
 		<!-- Hoodwink Gnarl -->
 		<spawn npc_id="215593" respawn_time="295">
@@ -3523,11 +3531,15 @@
 		</spawn>
 		<!-- Horitius -->
 		<spawn npc_id="799064" respawn_time="295">
-			<spot x="1345.315" y="288.5842" z="589.3667" h="16" />
+			<spot x="1345.3146" y="288.5842" z="589.3667" h="16" />
 		</spawn>
 		<!-- Hot Crater -->
 		<spawn npc_id="700913" respawn_time="295">
 			<spot x="892.07727" y="1775.3905" z="326.5816" static_id="3719" />
+			<spot x="652.1445" y="1659.636" z="328.9729" h="0" />
+			<spot x="678.1699" y="1621.1863" z="327.9089" h="0" />
+			<spot x="668.6833" y="1648.6549" z="329" h="0" />
+			<spot x="656.591" y="1627.4639" z="327.8239" h="0" />
 		</spawn>
 		<!-- Huge Egg -->
 		<spawn npc_id="217095" respawn_time="550">
@@ -3543,7 +3555,7 @@
 		</spawn>
 		<!-- Iaetia -->
 		<spawn npc_id="798996" respawn_time="295">
-			<spot x="1079.82" y="1618.01" z="409.939" h="90" />
+			<spot x="1073.5438" y="1616.0438" z="406.875" h="90" />
 		</spawn>
 		<!-- Icy Seafoam -->
 		<spawn npc_id="215525" respawn_time="295">
@@ -3631,11 +3643,11 @@
 		</spawn>
 		<!-- Illusion & Phanoe Windstream -->
 		<spawn npc_id="206169" respawn_time="295">
-			<spot x="1609.916" y="509.97122" z="538" aerial_spawn="true" />
+			<spot x="1609.916" y="509.9712" z="538" aerial_spawn="true" />
 		</spawn>
 		<!-- Illusion Fortress Windstream -->
 		<spawn npc_id="206168" respawn_time="295">
-			<spot x="1405.8973" y="365.36523" z="590" aerial_spawn="true" />
+			<spot x="1405.8973" y="365.3652" z="590" aerial_spawn="true" />
 		</spawn>
 		<!-- Infused Crestlich -->
 		<spawn npc_id="215627" respawn_time="295">
@@ -3689,7 +3701,7 @@
 		</spawn>
 		<!-- Inggison Coin Fountain -->
 		<spawn npc_id="730241" respawn_time="295">
-			<spot x="1355.5326" y="332.65009" z="588.12" static_id="268" />
+			<spot x="1353.8225" y="331.9704" z="588.625" static_id="268" />
 		</spawn>
 		<!-- Inggison Drana -->
 		<spawn npc_id="700601" respawn_time="295">
@@ -3726,21 +3738,21 @@
 		</spawn>
 		<!-- Inggison Recruit -->
 		<spawn npc_id="799608" respawn_time="295">
-			<spot x="1279.86" y="212.184" z="595.813" h="80" />
-			<spot x="1281.93" y="214.907" z="595.813" h="80" />
-			<spot x="1284.01" y="217.569" z="595.813" h="80" />
-			<spot x="1320.51" y="262.505" z="591.217" h="76" />
-			<spot x="1323.57" y="260.23" z="591.357" h="73" />
-			<spot x="1326.15" y="257.978" z="591.209" h="73" />
+			<spot x="1279.858" y="212.1843" z="595.813" h="80" />
+			<spot x="1281.925" y="214.9067" z="595.813" h="80" />
+			<spot x="1284.0138" y="217.5691" z="595.813" h="80" />
+			<spot x="1320.5078" y="262.5051" z="591.217" h="76" />
+			<spot x="1323.571" y="260.2305" z="591.357" h="73" />
+			<spot x="1326.1487" y="257.9779" z="591.209" h="73" />
 		</spawn>
 		<!-- Inggison Recruit -->
 		<spawn npc_id="799607" respawn_time="295">
-			<spot x="1286.96" y="206.79" z="595.813" h="80" />
-			<spot x="1289.16" y="209.405" z="595.813" h="80" />
-			<spot x="1291.31" y="212.096" z="595.813" h="80" />
-			<spot x="1322.27" y="264.936" z="591.21" h="76" />
-			<spot x="1325.39" y="262.775" z="591.362" h="76" />
-			<spot x="1327.97" y="260.376" z="591.214" h="73" />
+			<spot x="1286.9652" y="206.7901" z="595.813" h="80" />
+			<spot x="1289.1566" y="209.4052" z="595.813" h="80" />
+			<spot x="1291.3116" y="212.0957" z="595.813" h="80" />
+			<spot x="1322.2733" y="264.9359" z="591.21" h="76" />
+			<spot x="1325.3871" y="262.7749" z="588.625" h="76" />
+			<spot x="1327.9688" y="260.376" z="591.214" h="73" />
 		</spawn>
 		<!-- Inggison Trico -->
 		<spawn npc_id="215872" respawn_time="295">
@@ -3820,11 +3832,11 @@
 		</spawn>
 		<!-- Yulia -->
 		<spawn npc_id="798928" respawn_time="295">
-			<spot x="1245.19" y="278.631" z="599.771" h="60" />
+			<spot x="1245.2184" y="278.509" z="599.771" h="60" />
 		</spawn>
 		<!-- Jamia -->
 		<spawn npc_id="799092" respawn_time="295">
-			<spot x="144.4453" y="1996.6343" z="433.7184" h="83" />
+			<spot x="278.7282" y="1867.1497" z="320.6093" h="83" />
 		</spawn>
 		<!-- Jandar -->
 		<spawn npc_id="798919" respawn_time="295">
@@ -3844,7 +3856,7 @@
 		</spawn>
 		<!-- Jienia -->
 		<spawn npc_id="799067" respawn_time="295">
-			<spot x="1391.48" y="373.804" z="589.576" />
+			<spot x="1391.4766" y="373.8043" z="589.576" />
 		</spawn>
 		<!-- Jocanerk -->
 		<spawn npc_id="799055" respawn_time="295">
@@ -3852,7 +3864,7 @@
 		</spawn>
 		<!-- Jondas -->
 		<spawn npc_id="798905" respawn_time="295">
-			<spot x="1400.69" y="237.414" z="590.084" h="48" />
+			<spot x="1341.1641" y="265.2382" z="588.5774" h="48" />
 		</spawn>
 		<!-- Jotun Artificer -->
 		<spawn npc_id="217040" respawn_time="295">
@@ -3928,11 +3940,11 @@
 		</spawn>
 		<!-- Juris Po -->
 		<spawn npc_id="799840" respawn_time="295">
-			<spot x="1368.97" y="369.884" z="557.64" h="10" />
+			<spot x="1368.5771" y="370.6896" z="557.625" h="10" />
 		</spawn>
 		<!-- Kailaus -->
 		<spawn npc_id="798946" respawn_time="295">
-			<spot x="1273.9" y="197.29" z="595.937" h="16" />
+			<spot x="1273.8953" y="197.29" z="595.937" h="16" />
 		</spawn>
 		<!-- King Myrn -->
 		<spawn npc_id="216497" respawn_time="295">
@@ -4006,7 +4018,7 @@
 		</spawn>
 		<!-- Laestrygos -->
 		<spawn npc_id="799038" respawn_time="295">
-			<spot x="1375.06" y="248.769" z="589.844" h="46" />
+			<spot x="1375.0547" y="248.7692" z="587.2471" h="46" />
 		</spawn>
 		<!-- Lagaga Crettin -->
 		<spawn npc_id="215870" respawn_time="295">
@@ -4042,7 +4054,7 @@
 		</spawn>
 		<!-- Layton -->
 		<spawn npc_id="799058" respawn_time="295">
-			<spot x="386.697" y="952.894" z="460.643" h="67" />
+			<spot x="386.6766" y="953.6982" z="460.2689" h="67" />
 		</spawn>
 		<!-- Laokon -->
 		<spawn npc_id="799025" respawn_time="295">
@@ -4054,22 +4066,22 @@
 		</spawn>
 		<!-- Lausus -->
 		<spawn npc_id="799026" respawn_time="295">
-			<spot x="2710.69" y="1426.85" z="384.549" h="16" />
+			<spot x="2720.2764" y="1425.4952" z="383.4144" h="16" />
 		</spawn>
 		<!-- LDF4_Fortress_InvisibleNPC -->
 		<spawn npc_id="258260" respawn_time="295">
-			<spot x="1345.31" y="288.576" z="589.367" h="69" />
+			<spot x="1345.311" y="288.5761" z="589.367" h="69" />
 		</spawn>
 		<!-- LDF4_Fortress_InvisibleNPC -->
 		<spawn npc_id="258261" respawn_time="295">
 			<spot x="1079.88" y="1626.38" z="410" h="100" />
-			<spot x="1345.31" y="288.584" z="589.367" h="37" />
+			<spot x="1345.3146" y="288.5842" z="589.367" h="37" />
 		</spawn>
 		<!-- LDF4_Fortress_InvisibleNPC -->
 		<spawn npc_id="258262" respawn_time="295">
 			<spot x="925.567" y="1912.1" z="338.014" h="51" />
-			<spot x="1355.99" y="2292.08" z="301.281" h="107" />
-			<spot x="1372.17" y="2294.77" z="301.281" h="93" />
+			<spot x="1355.9861" y="2292.0784" z="301.281" h="107" />
+			<spot x="1372.1675" y="2294.7681" z="301.281" h="93" />
 			<spot x="1802.39" y="2211.55" z="326.457" h="24" />
 		</spawn>
 		<!-- Lenard -->
@@ -4079,19 +4091,19 @@
 		</spawn>
 		<!-- Levilus -->
 		<spawn npc_id="798965" respawn_time="295">
-			<spot x="2750.03" y="1428.26" z="386" h="47" />
+			<spot x="2750.0308" y="1428.2563" z="385" h="47" />
 		</spawn>
 		<!-- LF4_2011_DirectTeleporter_Dr -->
 		<spawn npc_id="257227" respawn_time="295">
-			<spot x="1805.87" y="2201" z="325.589" h="100" />
+			<spot x="1805.8656" y="2201" z="325.589" h="100" />
 		</spawn>
 		<!-- LF4_2021_DirectTeleporter_Dr -->
 		<spawn npc_id="257527" respawn_time="295">
-			<spot x="921.531" y="1902.38" z="338.536" h="72" />
+			<spot x="921.5313" y="1902.377" z="338.536" h="72" />
 		</spawn>
 		<!-- Licinius -->
 		<spawn npc_id="799822" respawn_time="295">
-			<spot x="1363.71" y="375.155" z="557.625" h="20" />
+			<spot x="1363.7112" y="375.1552" z="557.625" h="20" />
 		</spawn>
 		<!-- Light Aerial Aether Searcher -->
 		<spawn npc_id="700614" respawn_time="295">
@@ -4099,7 +4111,7 @@
 		</spawn>
 		<!-- Limping Daeva -->
 		<spawn npc_id="799072" respawn_time="295">
-			<spot x="1279.63" y="382.746" z="548.25" h="106" />
+			<spot x="1279.631" y="382.7456" z="548.25" h="106" />
 		</spawn>
 		<!-- Lionel -->
 		<spawn npc_id="798906" respawn_time="295">
@@ -4292,7 +4304,7 @@
 		</spawn>
 		<!-- Lower Udas Temple Entrance -->
 		<spawn npc_id="730279" respawn_time="295">
-			<spot x="343.78" y="1349.81" z="262.265" h="48" static_id="443" />
+			<spot x="342.78" y="1349.8051" z="262.265" h="48" static_id="443" />
 		</spawn>
 		<!-- Luminos Seaswept -->
 		<spawn npc_id="217015" respawn_time="295">
@@ -4355,16 +4367,16 @@
 		<!-- Mailbox -->
 		<spawn npc_id="700000" respawn_time="295">
 			<spot x="381.309" y="946.156" z="460.754" h="100" />
-			<spot x="1379.314" y="256.260" z="589.790" h="46" />
-			<spot x="2764.52" y="1438.54" z="384.662" h="45" />
+			<spot x="1379.3145" y="256.2597" z="586.9389" h="46" />
+			<spot x="2764.6599" y="1439.58" z="384.2212" h="45" />
 		</spawn>
 		<!-- Mairunerk -->
 		<spawn npc_id="799085" respawn_time="295">
-			<spot x="1434.54" y="317.723" z="549.255" h="116" />
+			<spot x="1434.5383" y="317.7229" z="549.255" h="116" />
 		</spawn>
 		<!-- Maisa -->
 		<spawn npc_id="798973" respawn_time="295">
-			<spot x="2628.89" y="1418.23" z="346" h="83" />
+			<spot x="2628.8896" y="1418.2307" z="344.4243" h="83" />
 		</spawn>
 		<!-- Manuki Redfur -->
 		<spawn npc_id="216604" respawn_time="295">
@@ -4372,19 +4384,19 @@
 		</spawn>
 		<!-- Marcellinus -->
 		<spawn npc_id="799823" respawn_time="295">
-			<spot x="1366.68" y="380.79" z="557.543" h="83" />
+			<spot x="1366.6769" y="380.7903" z="557.543" h="83" />
 		</spawn>
 		<!-- Marcion -->
 		<spawn npc_id="799832" respawn_time="295">
-			<spot x="2702.83" y="1443.26" z="386" h="90" />
+			<spot x="2701.0649" y="1444.7974" z="382.7148" h="90" />
 		</spawn>
 		<!-- Marica -->
 		<spawn npc_id="798955" respawn_time="295">
-			<spot x="580.472" y="457.02" z="460" h="80" />
+			<spot x="580.4719" y="457.0196" z="459" h="80" />
 		</spawn>
 		<!-- Matias -->
 		<spawn npc_id="798900" respawn_time="295">
-			<spot x="1385.6" y="306.593" z="588.872" h="68" />
+			<spot x="1385.6051" y="306.5931" z="588.872" h="68" />
 		</spawn>
 		<!-- Mazion -->
 		<spawn npc_id="799088" respawn_time="295">
@@ -4400,7 +4412,7 @@
 		</spawn>
 		<!-- Medicine Box -->
 		<spawn npc_id="730323" respawn_time="295">
-			<spot x="1436.17" y="323.363" z="549.25" static_id="2343" />
+			<spot x="1436.1696" y="323.3633" z="549.25" static_id="2343" />
 		</spawn>
 		<!-- Megabex -->
 		<spawn npc_id="217012" respawn_time="295">
@@ -4412,11 +4424,11 @@
 		</spawn>
 		<!-- Meiria -->
 		<spawn npc_id="798945" respawn_time="295">
-			<spot x="1328.03" y="242.684" z="590.962" h="13" />
+			<spot x="1328.0292" y="242.6844" z="590.962" h="13" />
 		</spawn>
 		<!-- Meletos -->
 		<spawn npc_id="799825" respawn_time="295">
-			<spot x="1313.57" y="321.653" z="589.795" h="106" />
+			<spot x="1347.7249" y="256.9265" z="586.7999" h="106" />
 		</spawn>
 		<!-- Mervin -->
 		<spawn npc_id="216515" respawn_time="7200">
@@ -4424,7 +4436,7 @@
 		</spawn>
 		<!-- Mesalina -->
 		<spawn npc_id="798949" respawn_time="295">
-			<spot x="1359.07" y="350.593" z="558.037" h="3" />
+			<spot x="1359.0656" y="350.593" z="558.037" h="3" />
 		</spawn>
 		<!-- Meslamtaeda Monument -->
 		<spawn npc_id="700746" respawn_time="295">
@@ -4610,7 +4622,7 @@
 		</spawn>
 		<!-- Naiting -->
 		<spawn npc_id="799071" respawn_time="295">
-			<spot x="1270.09" y="349.462" z="548.375" h="33" />
+			<spot x="1270.093" y="349.4619" z="548.375" h="33" />
 		</spawn>
 		<!-- Needlehorn -->
 		<spawn npc_id="217007" respawn_time="295">
@@ -4619,7 +4631,7 @@
 		<!-- Neiane -->
 		<!-- Nellinerk -->
 		<spawn npc_id="798912" respawn_time="295">
-			<spot x="1426.1" y="288.485" z="590.766" h="66" />
+			<spot x="1426.1041" y="288.4853" z="590.766" h="66" />
 		</spawn>
 		<!-- Nightbutcher Shaten -->
 		<spawn npc_id="217013" respawn_time="295">
@@ -4627,19 +4639,19 @@
 		</spawn>
 		<!-- Nydrea -->
 		<spawn npc_id="799053" respawn_time="295">
-			<spot x="1273.82" y="204.599" z="595.813" h="16" />
+			<spot x="1273.8203" y="204.599" z="595.813" h="16" />
 		</spawn>
 		<!-- Nonnos -->
 		<spawn npc_id="798943" respawn_time="295">
-			<spot x="1377.73" y="381.167" z="557.572" h="80" />
+			<spot x="1377.7268" y="381.167" z="557.572" h="80" />
 		</spawn>
 		<!-- Noratha -->
 		<spawn npc_id="205314" respawn_time="295">
-			<spot x="1290.26" y="200.381" z="595.813" h="46" />
+			<spot x="1290.2552" y="200.381" z="595.813" h="46" />
 		</spawn>
 		<!-- Northern Obelisk Support -->
 		<spawn npc_id="700630" respawn_time="295">
-			<spot x="177.021" y="63.0992" z="530.093" static_id="156" />
+			<spot x="176.888" y="62.9117" z="531.375" static_id="156" />
 		</spawn>
 		<!-- Obelisk -->
 		<spawn npc_id="730281" respawn_time="295">
@@ -4655,11 +4667,11 @@
 		</spawn>
 		<!-- Obelisk -->
 		<spawn npc_id="730236" respawn_time="295">
-			<spot x="2714.708" y="1482.349" z="384.637" static_id="552" />
+			<spot x="2714.7075" y="1482.3495" z="384.637" static_id="552" />
 		</spawn>
 		<!-- Oconerk -->
 		<spawn npc_id="798948" respawn_time="295">
-			<spot x="2746.23" y="1425.11" z="385.483" h="33" />
+			<spot x="2746.2263" y="1425.1055" z="385" h="33" />
 		</spawn>
 		<!-- Old Aerial Aether Searcher -->
 		<spawn npc_id="700613" respawn_time="295">
@@ -4679,27 +4691,27 @@
 		</spawn>
 		<!-- Otus -->
 		<spawn npc_id="799066" respawn_time="295">
-			<spot x="2798.52" y="1449.1" z="395.193" h="60" />
+			<spot x="2798.5198" y="1449.1022" z="395.193" h="60" />
 		</spawn>
 		<!-- Outremus -->
 		<spawn npc_id="798926" respawn_time="295">
-			<spot x="1271.83" y="194.744" z="597.062" h="16" />
+			<spot x="1271.8264" y="194.7438" z="597.062" h="16" />
 		</spawn>
 		<!-- Overheated Obelisk -->
 		<spawn npc_id="730224" respawn_time="295">
-			<spot x="1700.34" y="186.64" z="531.244" static_id="164" />
+			<spot x="1700.34" y="186.64" z="530.8538" static_id="164" />
 		</spawn>
 		<!-- Padmarashka's Cave Entrance -->
 		<spawn npc_id="730485" respawn_time="295">
-			<spot x="136.981" y="2006.66" z="434.292" h="93" static_id="1315" />
+			<spot x="138.0042" y="2006.5481" z="434.228" h="93" static_id="1315" />
 		</spawn>
 		<!-- Parchment Map -->
 		<spawn npc_id="700605" respawn_time="295">
-			<spot x="1518.82" y="1313.11" z="398.168" static_id="246" />
+			<spot x="1518.9492" y="1312.899" z="398.168" static_id="246" />
 		</spawn>
 		<!-- Parilae -->
 		<spawn npc_id="799804" respawn_time="295">
-			<spot x="2703.49" y="1408.56" z="372" h="67" />
+			<spot x="2704.698" y="1409.1638" z="370.5" h="67" />
 		</spawn>
 		<!-- Paulina -->
 		<spawn npc_id="798925" respawn_time="295">
@@ -4838,27 +4850,27 @@
 		</spawn>
 		<!-- Phailos -->
 		<spawn npc_id="798933" respawn_time="295">
-			<spot x="1329.24" y="241.492" z="590.958" h="15" />
+			<spot x="1329.2384" y="241.4922" z="590.958" h="15" />
 		</spawn>
 		<!-- Phanoe & Taloc Windstream -->
 		<spawn npc_id="206170" respawn_time="295">
-			<spot x="2529.0056" y="180.72392" z="445" aerial_spawn="true" />
+			<spot x="2529.0056" y="180.7239" z="445" aerial_spawn="true" />
 		</spawn>
 		<!-- Philon -->
 		<spawn npc_id="798981" respawn_time="295">
-			<spot x="2738.85" y="924.638" z="393" h="54" />
+			<spot x="2738.637" y="921.6661" z="393" h="54" />
 		</spawn>
 		<!-- Phryne -->
 		<spawn npc_id="798936" respawn_time="295">
-			<spot x="1264.9" y="281.44" z="599.439" h="1" />
+			<spot x="1264.9014" y="281.4404" z="599.439" h="1" />
 		</spawn>
 		<!-- Pilipides -->
 		<spawn npc_id="798918" respawn_time="295">
-			<spot x="1320.64" y="374.749" z="589.969" h="95" />
+			<spot x="1315.9408" y="287.1395" z="588.625" h="95" />
 		</spawn>
 		<!-- Pilomenes -->
 		<spawn npc_id="798941" respawn_time="295">
-			<spot x="1355.17" y="380.833" z="557.625" />
+			<spot x="1668" y="1602" z="173.375" />
 		</spawn>
 		<!-- Pixiebelle -->
 		<spawn npc_id="216492" respawn_time="295">
@@ -4892,11 +4904,11 @@
 		</spawn>
 		<!-- Plinius -->
 		<spawn npc_id="798930" respawn_time="295">
-			<spot x="1356.04" y="186.603" z="599.756" h="26" />
+			<spot x="1356.0405" y="186.6029" z="599.756" h="26" />
 		</spawn>
 		<!-- Pluma Bait -->
 		<spawn npc_id="700759" respawn_time="295">
-			<spot x="986.087" y="246.41" z="530.219" h="43" />
+			<spot x="986.0866" y="246.4098" z="529.5" h="43" />
 		</spawn>
 		<!-- Poisonmist Spirit -->
 		<!-- Poisonous Wind Mushroom -->
@@ -4937,15 +4949,15 @@
 		</spawn>
 		<!-- Pomponia -->
 		<spawn npc_id="798970" respawn_time="295">
-			<spot x="2684.41" y="1449.37" z="373.232" h="72" />
+			<spot x="2684.4922" y="1449.5526" z="373.232" h="72" />
 		</spawn>
 		<!-- Pool Geyser -->
 		<spawn npc_id="206156" respawn_time="295">
-			<spot x="1010.85" y="1681.88" z="182.423" h="107" />
+			<spot x="1010.8538" y="1681.884" z="182.423" h="107" />
 		</spawn>
 		<!-- Popaea -->
 		<spawn npc_id="798924" respawn_time="295">
-			<spot x="1322.27" y="363.569" z="589.969" h="5" />
+			<spot x="1329.9875" y="286.217" z="588.625" h="5" />
 		</spawn>
 		<!-- Priest Zitan -->
 		<spawn npc_id="216512" respawn_time="7200" pool="1">
@@ -4989,23 +5001,23 @@
 			<spot x="2079.1" y="1148.19" z="266.556" static_id="80" />
 			<spot x="2084.18" y="1214.01" z="265" static_id="135" />
 			<spot x="2101.89" y="1108.17" z="266.125" static_id="79" />
-			<spot x="2124.23" y="1266.47" z="268.387" static_id="77" />
+			<spot x="2124.23" y="1266.4692" z="268.387" static_id="77" />
 			<spot x="2127.86" y="1469.67" z="233.14" static_id="86" />
 			<spot x="2127.86" y="1577.97" z="232.48" static_id="85" />
 			<spot x="2131.94" y="1463.02" z="241.637" static_id="131" />
-			<spot x="2139.57" y="1314.74" z="259.829" static_id="136" />
-			<spot x="2172.75" y="1363.18" z="233.548" static_id="130" />
+			<spot x="2139.5713" y="1314.7378" z="259.829" static_id="136" />
+			<spot x="2172.7527" y="1363.1792" z="233.548" static_id="130" />
 			<spot x="2182.82" y="1512.44" z="209.5" static_id="52" />
-			<spot x="2184.58" y="1558.85" z="240.408" static_id="51" />
-			<spot x="2190.21" y="1243.56" z="230.4" static_id="78" />
-			<spot x="2194.43" y="1437.55" z="207.951" static_id="120" />
+			<spot x="2184.5757" y="1558.7932" z="240.408" static_id="51" />
+			<spot x="2190.2053" y="1243.5565" z="230.4" static_id="78" />
+			<spot x="2195.5286" y="1437.4159" z="207.9045" static_id="120" />
 			<spot x="2199.59" y="1128.62" z="274.125" static_id="81" />
-			<spot x="2210.44" y="1197.33" z="227.338" static_id="134" />
-			<spot x="2223.35" y="1330.93" z="256.868" static_id="132" />
-			<spot x="2241.51" y="1270.87" z="277.766" static_id="133" />
+			<spot x="2210.4373" y="1197.3256" z="227.338" static_id="134" />
+			<spot x="2223.3528" y="1330.9337" z="256.868" static_id="132" />
+			<spot x="2241.512" y="1270.8743" z="277.766" static_id="133" />
 			<spot x="2258.55" y="986.481" z="280.462" static_id="126" />
-			<spot x="2272.65" y="1116.23" z="283.302" static_id="125" />
-			<spot x="2285.76" y="1418.85" z="237.25" static_id="124" />
+			<spot x="2272.6472" y="1116.2344" z="283.302" static_id="125" />
+			<spot x="2285.7617" y="1418.8473" z="237.25" static_id="124" />
 			<spot x="2336.8" y="1269.63" z="249.25" static_id="82" />
 			<spot x="2371.28" y="1002.4" z="251.778" static_id="127" />
 			<spot x="2385.84" y="1090.6" z="239.173" static_id="75" />
@@ -5016,10 +5028,29 @@
 			<spot x="2494.64" y="1015.22" z="256.158" static_id="138" />
 			<spot x="2537.27" y="1211.83" z="247.872" static_id="76" />
 			<spot x="2574.06" y="1224.79" z="245.5" static_id="84" />
+			<spot x="2244.5613" y="1053.9484" z="294.5828" h="0" />
+			<spot x="2209.1091" y="1296.475" z="281.7874" h="0" />
+			<spot x="2265.7549" y="1392.254" z="257.3003" h="0" />
+			<spot x="2211.5679" y="1370.8273" z="281.7874" h="0" />
+			<spot x="2306.085" y="1350.552" z="256.3594" h="0" />
+			<spot x="2261.2798" y="1079.9905" z="281.9604" h="0" />
+			<spot x="2254.5505" y="1082.5061" z="285.3911" h="0" />
+			<spot x="2281.2192" y="1316.064" z="281.7874" h="0" />
+			<spot x="2242.8154" y="1026.7129" z="294.5828" h="0" />
+			<spot x="2283.6396" y="1331.024" z="281.7874" h="0" />
+			<spot x="2243.4805" y="1392.6805" z="257.3003" h="0" />
+			<spot x="2240.7202" y="1057.6146" z="294.5828" h="0" />
+			<spot x="2231.9795" y="1388.0664" z="257.3003" h="0" />
+			<spot x="2260.3989" y="1318.1707" z="281.7874" h="0" />
+			<spot x="2306.8071" y="1389.7804" z="257.3003" h="0" />
+			<spot x="2281.6692" y="1352.618" z="259.1735" h="0" />
+			<spot x="2249.7986" y="1022.5228" z="294.5828" h="0" />
+			<spot x="2294.5339" y="1352.429" z="255.2029" h="0" />
+			<spot x="2270.438" y="1386.9512" z="257.3003" h="0" />
 		</spawn>
 		<!-- Pucio -->
 		<spawn npc_id="798931" respawn_time="295">
-			<spot x="1246.91" y="281.824" z="599.828" h="110" />
+			<spot x="1246.9103" y="281.8241" z="599.828" h="110" />
 		</spawn>
 		<!-- Queen Klawnickt -->
 		<spawn npc_id="216514" respawn_time="7200">
@@ -5027,7 +5058,7 @@
 		</spawn>
 		<!-- Radzen -->
 		<spawn npc_id="799839" respawn_time="295">
-			<spot x="1366.74" y="373.673" z="557.625" h="13" />
+			<spot x="1366.7356" y="373.6727" z="557.625" h="13" />
 		</spawn>
 		<!-- Raging Neokin -->
 		<spawn npc_id="215619" respawn_time="295">
@@ -5116,32 +5147,32 @@
 		</spawn>
 		<!-- Reemul -->
 		<spawn npc_id="798909" respawn_time="295">
-			<spot x="1267.34" y="307.492" z="590.094" h="110" />
+			<spot x="1267.3397" y="307.4922" z="590.094" h="110" />
 		</spawn>
 		<!-- Report Scraps -->
 		<spawn npc_id="700766" respawn_time="295">
-			<spot x="882.922" y="1305.19" z="404.98" h="76" />
-			<spot x="952.233" y="1249.73" z="417.997" h="76" />
-			<spot x="1073.43" y="1287.32" z="416.073" h="76" />
-			<spot x="1573.31" y="253.15" z="531.971" h="76" />
+			<spot x="882.9218" y="1305.1866" z="404.98" h="76" />
+			<spot x="952.2332" y="1249.7256" z="417.997" h="76" />
+			<spot x="1073.4285" y="1287.3206" z="416.073" h="76" />
+			<spot x="1573.3119" y="253.1504" z="531.971" h="76" />
 			<spot x="1606.39" y="415.64" z="501.628" h="76" />
-			<spot x="1637.29" y="301.912" z="524.635" h="76" />
+			<spot x="1637.2874" y="301.912" z="524.635" h="76" />
 		</spawn>
 		<!-- Researcher's Equipment -->
 		<spawn npc_id="700762" respawn_time="295">
-			<spot x="1596.68" y="1153.78" z="419.172" h="81" />
+			<spot x="1596.6747" y="1153.7822" z="419.172" h="81" />
 		</spawn>
 		<!-- Resource Bookkeeper -->
 		<spawn npc_id="799610" respawn_time="295">
-			<spot x="1342.6" y="393.744" z="548.588" h="33" />
-			<spot x="1434.78" y="325.759" z="549.25" />
+			<spot x="1342.6005" y="393.7438" z="548.588" h="33" />
+			<spot x="1434.7806" y="325.7586" z="549.25" />
 		</spawn>
 		<!-- Resource Transporter -->
 		<spawn npc_id="799602" respawn_time="295">
-			<spot x="1331.98" y="396.12" z="548.7575" walker_id="A690563DF8D15347C722F63D2665016DC96D9ED0" />
-			<spot x="1363.41" y="349.78" z="557.9825" walker_id="51414AA7A00A181C3813E190888C6DA09464DD30" />
-			<spot x="1414.81" y="346.77" z="558.125" walker_id="138508C979D87E76D14913F29C335194148FDF61" />
-			<spot x="1439.35" y="317.37" z="549.375" walker_id="615ED2AEE5E53F866258F8DBCEC41DCD25DA48B7" />
+			<spot x="1331.601" y="396.6427" z="548.7902" walker_id="A690563DF8D15347C722F63D2665016DC96D9ED0" />
+			<spot x="1363.52" y="349.78" z="557.9825" walker_id="51414AA7A00A181C3813E190888C6DA09464DD30" />
+			<spot x="1415.01" y="346.62" z="558.125" walker_id="138508C979D87E76D14913F29C335194148FDF61" />
+			<spot x="1439.6196" y="317.1343" z="549.375" walker_id="615ED2AEE5E53F866258F8DBCEC41DCD25DA48B7" />
 		</spawn>
 		<!-- Rhonna -->
 		<spawn npc_id="799816" respawn_time="295">
@@ -5157,7 +5188,7 @@
 		</spawn>
 		<!-- Rima -->
 		<spawn npc_id="799837" respawn_time="295">
-			<spot x="1362.6" y="356.806" z="558.037" h="106" />
+			<spot x="1362.5999" y="356.8058" z="558.037" h="106" />
 		</spawn>
 		<!-- Risoneus -->
 		<spawn npc_id="799955" respawn_time="295">
@@ -5165,7 +5196,7 @@
 		</spawn>
 		<!-- Rock Geyser -->
 		<spawn npc_id="206157" respawn_time="295">
-			<spot x="1109.15" y="1688.08" z="185.95" h="28" />
+			<spot x="1109.1493" y="1688.0824" z="185.95" h="28" />
 		</spawn>
 		<!-- Rockhorn -->
 		<spawn npc_id="216505" respawn_time="7200">
@@ -5251,17 +5282,17 @@
 		</spawn>
 		<!-- Royal Guard -->
 		<spawn npc_id="296448" respawn_time="295">
-			<spot x="499.372" y="704.907" z="489.401" h="106" />
+			<spot x="499.3252" y="706.8672" z="489.401" h="106" />
 			<spot x="522.908" y="695.786" z="484.049" h="75" />
 			<spot x="530.444" y="689.904" z="484.049" h="77" />
 			<spot x="544.203" y="670.955" z="489.401" h="47" />
 			<spot x="545.317" y="735.643" z="493.481" h="17" />
 			<spot x="562.324" y="722.637" z="493.481" h="17" />
-			<spot x="2472.42" y="809.962" z="421.185" h="107" />
+			<spot x="2471.0015" y="811.3521" z="419.875" h="107" />
 			<spot x="2494.15" y="800.885" z="415.833" h="76" />
 			<spot x="2502.22" y="795.471" z="415.833" h="77" />
 			<spot x="2516.12" y="841.74" z="425.265" h="17" />
-			<spot x="2517.98" y="778.394" z="421.185" h="46" />
+			<spot x="2519.9805" y="776.605" z="419.6291" h="46" />
 			<spot x="2533.41" y="829.58" z="425.265" h="18" />
 		</spawn>
 		<!-- Rokoros Village Entrance -->
@@ -5270,19 +5301,19 @@
 		</spawn>
 		<!-- Rollia -->
 		<spawn npc_id="798997" respawn_time="295">
-			<spot x="1074.57" y="1617.95" z="409.939" h="90" />
+			<spot x="1060.8745" y="1616.5559" z="406.875" h="90" />
 		</spawn>
 		<!-- Romaos -->
 		<spawn npc_id="799820" respawn_time="295">
-			<spot x="2707.73" y="1400.26" z="370.625" h="24" />
+			<spot x="2707.9783" y="1401.2423" z="370.625" h="24" />
 		</spawn>
 		<!-- Rough Wind Mushroom -->
 		<spawn npc_id="700915" respawn_time="295">
-			<spot x="963.45135" y="1563.2386" z="315.0337" static_id="2385" />
+			<spot x="963.4514" y="1563.2386" z="315.0337" static_id="2385" />
 		</spawn>
 		<!-- Roukianos -->
 		<spawn npc_id="799821" respawn_time="295">
-			<spot x="2705.04" y="1414.44" z="372" h="53" />
+			<spot x="2702.929" y="1404.7836" z="370.607" h="53" />
 		</spawn>
 		<!-- Rubyback Neokin -->
 		<spawn npc_id="216649" respawn_time="295">
@@ -5345,12 +5376,12 @@
 		</spawn>
 		<!-- Samirunerk -->
 		<spawn npc_id="799054" respawn_time="295">
-			<spot x="1277.38" y="325.297" z="590.084" h="106" />
+			<spot x="1277.3757" y="325.2965" z="590.084" h="106" />
 		</spawn>
 		<!-- Sanctum Medic -->
 		<spawn npc_id="799603" respawn_time="295">
-			<spot x="1277.81" y="379.95" z="548.25" h="106" />
-			<spot x="1444.85" y="245.166" z="548.375" h="43" />
+			<spot x="1277.8071" y="379.9503" z="548.25" h="106" />
+			<spot x="1444.8499" y="245.1662" z="548.375" h="43" />
 		</spawn>
 		<!-- Sandstorm Obscura -->
 		<spawn npc_id="215735" respawn_time="295">
@@ -5392,7 +5423,7 @@
 		</spawn>
 		<!-- Sarapion -->
 		<spawn npc_id="798998" respawn_time="295">
-			<spot x="1073.45" y="1605.53" z="408" h="87" />
+			<spot x="1073.4489" y="1605.5303" z="406.875" h="87" />
 		</spawn>
 		<!-- Sateva the Observer -->
 		<spawn npc_id="216493" respawn_time="295">
@@ -5406,7 +5437,7 @@
 		</spawn>
 		<!-- Savinus -->
 		<spawn npc_id="798978" respawn_time="295">
-			<spot x="2759.24" y="1431.74" z="385" h="39" />
+			<spot x="2760.8413" y="1430.1025" z="385" h="39" />
 		</spawn>
 		<!-- Sawtooth Alitaur -->
 		<spawn npc_id="215576" respawn_time="295">
@@ -5433,15 +5464,15 @@
 		</spawn>
 		<!-- Secundila -->
 		<spawn npc_id="798932" respawn_time="295">
-			<spot x="1412.79" y="343.152" z="558.125" h="13" />
+			<spot x="1412.7928" y="343.152" z="558.125" h="13" />
 		</spawn>
 		<!-- Seikin -->
 		<spawn npc_id="798985" respawn_time="295">
-			<spot x="1867.22" y="1041.4" z="395" h="53" />
+			<spot x="1867.2175" y="1041.3972" z="394.1514" h="53" />
 		</spawn>
 		<!-- Seneca -->
 		<spawn npc_id="798937" respawn_time="295">
-			<spot x="1299.98" y="226.508" z="595.633" h="16" />
+			<spot x="1299.9783" y="226.5083" z="595.633" h="16" />
 		</spawn>
 		<!-- Seppi -->
 		<spawn npc_id="798915" respawn_time="295">
@@ -5449,23 +5480,23 @@
 		</spawn>
 		<!-- Seriously Wounded Daeva -->
 		<spawn npc_id="799606" respawn_time="295">
-			<spot x="1276" y="383.167" z="549.096" h="110" />
-			<spot x="1306.92" y="377.81" z="549.302" h="36" />
-			<spot x="1412.89" y="224.422" z="549.374" h="110" />
-			<spot x="1442.66" y="268.236" z="549.191" h="110" />
+			<spot x="1275.9988" y="383.1665" z="548.3229" h="110" />
+			<spot x="1306.9244" y="377.8095" z="548.375" h="36" />
+			<spot x="1412.8883" y="224.4221" z="548.375" h="110" />
+			<spot x="1442.6555" y="268.2362" z="548.375" h="110" />
 		</spawn>
 		<!-- Seriously Wounded Daeva -->
 		<spawn npc_id="799605" respawn_time="295">
-			<spot x="1269.55" y="344.576" z="549.315" />
-			<spot x="1275.53" y="382.548" z="549.096" h="110" />
+			<spot x="1269.5463" y="344.5755" z="548.375" />
+			<spot x="1275.5312" y="382.5476" z="548.2842" h="110" />
 		</spawn>
 		<!-- Serooth -->
 		<spawn npc_id="799948" respawn_time="295">
-			<spot x="1344.68" y="357.124" z="591" h="100" />
+			<spot x="1326.1643" y="282.9779" z="588.625" h="100" />
 		</spawn>
 		<!-- Setzkiki -->
 		<spawn npc_id="798986" respawn_time="295">
-			<spot x="1869.09" y="1042.57" z="395.004" h="57" />
+			<spot x="1869.0854" y="1042.569" z="394.0506" h="57" />
 		</spawn>
 		<!-- Shaorunerk -->
 		<spawn npc_id="799076" respawn_time="295">
@@ -6136,7 +6167,7 @@
 		</spawn>
 		<!-- Small Jewel Box -->
 		<spawn npc_id="700631" respawn_time="295">
-			<spot x="2947.29" y="324.693" z="346.64" static_id="27" />
+			<spot x="2947.2947" y="324.6931" z="346.64" static_id="27" />
 		</spawn>
 		<!-- Smiling Puca -->
 		<spawn npc_id="215597" respawn_time="295">
@@ -6210,15 +6241,19 @@
 		</spawn>
 		<!-- Socinus -->
 		<spawn npc_id="799838" respawn_time="295">
-			<spot x="2702.66" y="1436.82" z="386" h="113" />
+			<spot x="2703.8284" y="1437.3942" z="382.2905" h="113" />
 		</spawn>
 		<!-- Soggy Crater -->
 		<spawn npc_id="700912" respawn_time="295">
 			<spot x="775.9929" y="1797.2437" z="322.125" static_id="2391" />
+			<spot x="749.5909" y="1648.5282" z="330.4933" h="0" />
+			<spot x="755.1169" y="1630.073" z="341.307" h="0" />
+			<spot x="735.2845" y="1649.8038" z="329.7108" h="0" />
+			<spot x="762.9617" y="1648.8641" z="331.4103" h="0" />
 		</spawn>
 		<!-- Song of Three Sages -->
 		<spawn npc_id="748009" respawn_time="295">
-			<spot x="361.50354" y="942.0997" z="460.73312" h="33" static_id="1215" />
+			<spot x="361.50354" y="942.0997" z="460.281" h="33" static_id="1215" />
 		</spawn>
 		<!-- Sourwind Wraithling -->
 		<spawn npc_id="215733" respawn_time="295">
@@ -6256,7 +6291,7 @@
 		<!-- Southern Obelisk Support -->
 		<!-- Southern Petrified Mass -->
 		<spawn npc_id="730228" respawn_time="295">
-			<spot x="2938.32" y="1211.81" z="356.422" static_id="611" />
+			<spot x="2938.0759" y="1211.6122" z="356.355" static_id="611" />
 		</spawn>
 		<!-- Spidona -->
 		<spawn npc_id="217008" respawn_time="295">
@@ -6264,19 +6299,19 @@
 		</spawn>
 		<!-- Spiritcaller Incense Burner -->
 		<spawn npc_id="700760" respawn_time="295">
-			<spot x="2962.91" y="613.221" z="349.188" />
+			<spot x="2962.9133" y="613.2207" z="345.7987" />
 		</spawn>
 		<!-- Squamp -->
 		<spawn npc_id="799036" respawn_time="295">
-			<spot x="223.668" y="277.914" z="586" h="77" />
+			<spot x="223.6682" y="277.9141" z="583.625" h="77" />
 		</spawn>
 		<!-- Squeep -->
 		<spawn npc_id="799037" respawn_time="295">
-			<spot x="225.012" y="277.936" z="586" h="100" />
+			<spot x="225.0124" y="277.9362" z="583.625" h="100" />
 		</spawn>
 		<!-- Squip -->
 		<spawn npc_id="799035" respawn_time="295">
-			<spot x="593.921" y="424.065" z="460" h="53" />
+			<spot x="593.9207" y="424.0648" z="459.5" h="53" />
 		</spawn>
 		<!-- Starved Crestlich -->
 		<spawn npc_id="216475" respawn_time="295">
@@ -6446,15 +6481,15 @@
 		</spawn>
 		<!-- Stelvia -->
 		<spawn npc_id="798957" respawn_time="295">
-			<spot x="579.111" y="461.961" z="460" h="85" />
+			<spot x="579.1107" y="461.9605" z="459" h="85" />
 		</spawn>
 		<!-- Steropes -->
 		<spawn npc_id="799052" respawn_time="295">
-			<spot x="1281.12" y="198.987" z="595.813" h="20" />
+			<spot x="1281.1196" y="198.9868" z="595.813" h="20" />
 		</spawn>
 		<!-- Steurios -->
 		<spawn npc_id="799031" respawn_time="295">
-			<spot x="394.534" y="955.347" z="460.384" h="8" />
+			<spot x="394.9287" y="956.1508" z="460.25" h="8" />
 		</spawn>
 		<!-- Stilts -->
 		<spawn npc_id="216490" respawn_time="295">
@@ -6474,7 +6509,7 @@
 		</spawn>
 		<!-- Sueros -->
 		<spawn npc_id="799030" respawn_time="295">
-			<spot x="393.429" y="981.1" z="460.408" h="56" />
+			<spot x="394.0957" y="980.374" z="460.3984" h="56" />
 		</spawn>
 		<!-- Sukana the Learned -->
 		<!-- Suleion -->
@@ -6527,11 +6562,11 @@
 		</spawn>
 		<!-- Sulinia -->
 		<spawn npc_id="799017" respawn_time="295">
-			<spot x="1901.57" y="1739.71" z="327.428" h="50" />
+			<spot x="1895.2396" y="1741.1495" z="327.75" h="50" />
 		</spawn>
 		<!-- Sulla -->
 		<spawn npc_id="798975" respawn_time="295">
-			<spot x="2699.49" y="1397.74" z="372" h="37" />
+			<spot x="2699.4917" y="1397.7426" z="370.625" h="37" />
 		</spawn>
 		<!-- Summoner Rundilima -->
 		<spawn npc_id="216619" respawn_time="295">
@@ -6684,7 +6719,7 @@
 		</spawn>
 		<!-- Supraklaw Lure -->
 		<spawn npc_id="206158" respawn_time="295">
-			<spot x="1096.54" y="1129.34" z="440.342" h="46" />
+			<spot x="1096.5378" y="1129.3385" z="440.342" h="46" />
 		</spawn>
 		<!-- Supraklaw Outflyer -->
 		<spawn npc_id="215697" respawn_time="295">
@@ -6762,7 +6797,7 @@
 		</spawn>
 		<!-- Suspicious Zombie -->
 		<spawn npc_id="281822" respawn_time="295">
-			<spot x="151.314" y="2133.11" z="440.207" h="89" />
+			<spot x="151.3139" y="2133.1108" z="440.207" h="89" />
 		</spawn>
 		<!-- Swamp Vortile -->
 		<spawn npc_id="215532" respawn_time="295">
@@ -6852,12 +6887,12 @@
 		<spawn npc_id="700908" respawn_time="295">
 			<spot x="2754.7336" y="362.6173" z="342.5771" static_id="2345" />
 			<spot x="2770.9312" y="333.6735" z="339.7099" static_id="2358" />
-			<spot x="2785.1440" y="426.7791" z="339.0000" static_id="2357" />
+			<spot x="2785.144" y="426.7791" z="339.0000" static_id="2357" />
 			<spot x="2787.0225" y="287.2079" z="342.8392" static_id="2344" />
 			<spot x="2789.2395" y="358.8634" z="348.7928" static_id="2360" />
 			<spot x="2797.8645" y="455.8243" z="339.3775" static_id="2355" />
 			<spot x="2810.5977" y="304.8549" z="345.0383" static_id="2346" />
-			<spot x="2834.7180" y="292.4097" z="338.3973" static_id="2347" />
+			<spot x="2834.718" y="292.4097" z="338.3973" static_id="2347" />
 			<spot x="2835.8281" y="510.4403" z="339.9617" static_id="2356" />
 			<spot x="2839.8948" y="314.3695" z="352.1208" static_id="2361" />
 			<spot x="2852.3379" y="461.9882" z="335.3348" static_id="2354" />
@@ -6979,11 +7014,11 @@
 		</spawn>
 		<!-- Teressa -->
 		<spawn npc_id="798934" respawn_time="295">
-			<spot x="1358.31" y="205.165" z="599.438" h="33" />
+			<spot x="1358.3127" y="205.1647" z="599.438" h="33" />
 		</spawn>
 		<!-- Tersichore -->
 		<spawn npc_id="799801" respawn_time="295">
-			<spot x="2701.45" y="1403" z="370.5" h="59" />
+			<spot x="2701.155" y="1402.4272" z="370.5" h="59" />
 		</spawn>
 		<!-- The Dragonkissed -->
 		<spawn npc_id="216496" respawn_time="295">
@@ -7004,36 +7039,36 @@
 		</spawn>
 		<!-- Thick Silk Pouch -->
 		<spawn npc_id="700609" respawn_time="295">
-			<spot x="644.882" y="227.176" z="532.185" static_id="169" />
-			<spot x="703.082" y="244.614" z="533.875" static_id="618" />
-			<spot x="705.134" y="316.885" z="529.156" static_id="526" />
-			<spot x="751.746" y="289.225" z="533.286" static_id="158" />
-			<spot x="773.353" y="228.97" z="540.129" static_id="521" />
-			<spot x="775.354" y="387.067" z="530.553" static_id="166" />
-			<spot x="793.438" y="283.204" z="531.025" static_id="514" />
-			<spot x="824.722" y="311.038" z="531.584" static_id="522" />
-			<spot x="835.643" y="516.41" z="529.3" static_id="152" />
-			<spot x="835.981" y="415.306" z="539.545" static_id="515" />
-			<spot x="846.176" y="482.007" z="527.75" static_id="155" />
-			<spot x="851.992" y="443.309" z="537.168" static_id="162" />
+			<spot x="644.8822" y="227.1757" z="532.185" static_id="169" />
+			<spot x="703.0824" y="244.6142" z="533.875" static_id="618" />
+			<spot x="705.1337" y="316.8855" z="529.156" static_id="526" />
+			<spot x="751.7455" y="289.2254" z="533.286" static_id="158" />
+			<spot x="773.3528" y="228.9705" z="540.129" static_id="521" />
+			<spot x="775.3545" y="387.0671" z="530.553" static_id="166" />
+			<spot x="793.4382" y="283.2045" z="531.025" static_id="514" />
+			<spot x="824.7222" y="311.0378" z="531.584" static_id="522" />
+			<spot x="835.6434" y="516.4103" z="529.3" static_id="152" />
+			<spot x="835.9812" y="415.3061" z="539.545" static_id="515" />
+			<spot x="846.1758" y="482.0075" z="527.75" static_id="155" />
+			<spot x="851.9922" y="443.3089" z="537.168" static_id="162" />
 			<spot x="864.67" y="541.74" z="538.614" static_id="153" />
-			<spot x="875.217" y="279.812" z="540.438" static_id="513" />
-			<spot x="875.718" y="605.061" z="537.951" static_id="530" />
-			<spot x="882.863" y="548.593" z="539.741" static_id="1197" />
-			<spot x="890.4" y="208.101" z="533.1" static_id="511" />
+			<spot x="875.2173" y="279.8123" z="540.438" static_id="513" />
+			<spot x="875.7183" y="605.0612" z="537.951" static_id="530" />
+			<spot x="882.8632" y="548.5934" z="539.741" static_id="1197" />
+			<spot x="890.4002" y="208.1006" z="533.1" static_id="511" />
 			<spot x="902.03" y="431.16" z="527.696" static_id="520" />
-			<spot x="912.775" y="353.538" z="528.06" static_id="518" />
-			<spot x="915.645" y="222.284" z="533" static_id="160" />
-			<spot x="916.745" y="558.625" z="524.921" static_id="161" />
-			<spot x="942.921" y="417.827" z="531.75" static_id="516" />
-			<spot x="956.661" y="431.907" z="531.791" static_id="620" />
-			<spot x="958.907" y="340.914" z="534.246" static_id="517" />
-			<spot x="974.594" y="493.377" z="529.072" static_id="619" />
-			<spot x="977.968" y="256.594" z="527.923" static_id="510" />
-			<spot x="997.078" y="519.016" z="525.73" static_id="524" />
-			<spot x="1034.93" y="539.368" z="524.197" static_id="167" />
+			<spot x="912.7747" y="353.5384" z="528.06" static_id="518" />
+			<spot x="915.6453" y="222.2843" z="533" static_id="160" />
+			<spot x="916.7454" y="558.6251" z="524.921" static_id="161" />
+			<spot x="942.921" y="417.8273" z="531.75" static_id="516" />
+			<spot x="956.6608" y="431.9072" z="531.791" static_id="620" />
+			<spot x="958.9069" y="340.9144" z="534.246" static_id="517" />
+			<spot x="974.5939" y="493.3769" z="529.072" static_id="619" />
+			<spot x="977.9676" y="256.5942" z="527.923" static_id="510" />
+			<spot x="997.0784" y="519.0164" z="525.73" static_id="524" />
+			<spot x="1034.9347" y="539.3677" z="524.197" static_id="167" />
 			<spot x="1043.59" y="636.49" z="515.099" static_id="157" />
-			<spot x="1085.21" y="587.356" z="512.279" static_id="523" />
+			<spot x="1085.2103" y="587.356" z="512.279" static_id="523" />
 		</spawn>
 		<!-- Thicket Brohie -->
 		<spawn npc_id="215521" respawn_time="295">
@@ -7132,7 +7167,7 @@
 		</spawn>
 		<!-- Thrax -->
 		<spawn npc_id="798974" respawn_time="295">
-			<spot x="2763.67" y="1470.75" z="385.334" h="62" />
+			<spot x="2766.4214" y="1481.8401" z="385.01" h="62" />
 		</spawn>
 		<!-- Thunderhoof -->
 		<spawn npc_id="216489" respawn_time="295">
@@ -7140,7 +7175,7 @@
 		</spawn>
 		<!-- Tialla -->
 		<spawn npc_id="798954" respawn_time="295">
-			<spot x="2652.17" y="345.094" z="512" h="3" />
+			<spot x="2652.1707" y="345.0942" z="509.9628" h="3" />
 		</spawn>
 		<!-- Tidal Seafoam -->
 		<spawn npc_id="215875" respawn_time="295">
@@ -7200,7 +7235,7 @@
 		</spawn>
 		<!-- Tillen -->
 		<spawn npc_id="799552" respawn_time="295">
-			<spot x="1276.79" y="208.162" z="595.813" h="106" />
+			<spot x="1276.7909" y="208.1624" z="595.813" h="106" />
 		</spawn>
 		<!-- Tiritaphon -->
 		<spawn npc_id="216513" respawn_time="7200" pool="1">
@@ -7217,15 +7252,15 @@
 		</spawn>
 		<!-- Titus -->
 		<spawn npc_id="798990" respawn_time="295">
-			<spot x="372.489" y="946.526" z="460.741" h="67" />
+			<spot x="372.3003" y="947.2381" z="460.375" h="67" />
 		</spawn>
 		<!-- Tonis -->
 		<spawn npc_id="798977" respawn_time="295">
-			<spot x="2707.09" y="1430.61" z="386" h="70" />
+			<spot x="2707.0857" y="1430.6082" z="386" h="70" />
 		</spawn>
 		<!-- Totus -->
 		<spawn npc_id="799008" respawn_time="295">
-			<spot x="723.12" y="1511.38" z="362.274" h="73" />
+			<spot x="720.5063" y="1514.4526" z="361.8233" h="73" />
 		</spawn>
 		<!-- Training Dummy -->
 		<spawn npc_id="799623" respawn_time="295">
@@ -7257,11 +7292,15 @@
 		</spawn>
 		<!-- Tramis -->
 		<spawn npc_id="799070" respawn_time="295">
-			<spot x="1935.01" y="232.612" z="505.178" h="70" />
+			<spot x="1958.4528" y="225.7174" z="502.2371" h="70" />
 		</spawn>
 		<!-- Old Sack -->
 		<spawn npc_id="700620" respawn_time="295">
 			<spot x="460.1300" y="2027.9900" z="287.4879" static_id="616" />
+			<spot x="391.5091" y="1764.8163" z="282.0433" h="0" />
+			<spot x="389.3768" y="1753.7791" z="283.2858" h="0" />
+			<spot x="397.4733" y="1752.2273" z="285.0757" h="0" />
+			<spot x="402.6355" y="1764.6067" z="282.7139" h="0" />
 		</spawn>
 		<!-- Treasure Box -->
 		<spawn npc_id="217099" respawn_time="1800">
@@ -7270,7 +7309,7 @@
 		</spawn>
 		<!-- Tricorn Food -->
 		<spawn npc_id="700764" respawn_time="295">
-			<spot x="2703.68" y="1985.8" z="190.853" />
+			<spot x="2703.6831" y="1985.7988" z="190.853" />
 		</spawn>
 		<!-- Trigon -->
 		<spawn npc_id="296444" respawn_time="295">
@@ -7278,7 +7317,7 @@
 		</spawn>
 		<!-- Udas Temple Entrance -->
 		<spawn npc_id="730277" respawn_time="295">
-			<spot x="211.06819" y="1393.9124" z="266.69495" h="74" />
+			<spot x="210.7907" y="1393.3815" z="266.69495" h="74" />
 		</spawn>
 		<!-- Umbatana -->
 		<spawn npc_id="216618" respawn_time="295">
@@ -7286,11 +7325,11 @@
 		</spawn>
 		<!-- Uminosus -->
 		<spawn npc_id="205453" respawn_time="295">
-			<spot x="1281.68" y="316.8" z="590.08435" h="10" />
+			<spot x="1292.8417" y="302.3059" z="588.625" h="10" />
 		</spawn>
 		<!-- Underground Passage Entrance -->
 		<spawn npc_id="206104" respawn_time="295">
-			<spot x="334.114" y="1351.62" z="263.492" h="64" />
+			<spot x="334.114" y="1351.6182" z="263.492" h="64" />
 		</spawn>
 		<!-- Undirborg Treasure Vault -->
 		<spawn npc_id="206134" respawn_time="295">
@@ -7298,7 +7337,7 @@
 		</spawn>
 		<!-- Unknown Book -->
 		<spawn npc_id="700616" respawn_time="295">
-			<spot x="62.184353" y="916.74963" z="358.30826" static_id="139" />
+			<spot x="62.1141" y="916.6923" z="358.30826" static_id="139" />
 		</spawn>
 		<!-- Valens -->
 		<spawn npc_id="798923" respawn_time="295">
@@ -7379,7 +7418,7 @@
 		</spawn>
 		<!-- Versetti -->
 		<spawn npc_id="798927" respawn_time="295">
-			<spot x="1359.39" y="185.439" z="599.7" h="94" />
+			<spot x="1359.7118" y="185.8881" z="599.7" h="94" />
 		</spawn>
 		<!-- Vilethorn Laupede -->
 		<spawn npc_id="215692" respawn_time="295">
@@ -7437,7 +7476,7 @@
 		<!-- Voyeur Ashulagen -->
 		<!-- Vrius -->
 		<spawn npc_id="798983" respawn_time="295">
-			<spot x="2737.44" y="932.25" z="393" h="67" />
+			<spot x="2741.2285" y="929.2108" z="393" h="67" />
 		</spawn>
 		<!-- Vudu Crestlich -->
 		<spawn npc_id="216650" respawn_time="295">
@@ -7565,7 +7604,7 @@
 		<!-- Warden Angasa -->
 		<!-- Warokin -->
 		<spawn npc_id="799051" respawn_time="295">
-			<spot x="1869.03" y="1044.79" z="395.004" h="70" />
+			<spot x="1869.025" y="1044.7875" z="393.4281" h="70" />
 		</spawn>
 		<!-- Watcher Garma -->
 		<spawn npc_id="216849" respawn_time="295">
@@ -7573,15 +7612,16 @@
 		</spawn>
 		<!-- Western Obelisk Support -->
 		<spawn npc_id="700629" respawn_time="295">
-			<spot x="389.799" y="104.065" z="463.433" static_id="165" />
+			<spot x="390.12" y="104.3" z="464.5" static_id="165" />
 		</spawn>
 		<!-- Western Petrified Mass -->
 		<spawn npc_id="730226" respawn_time="295">
-			<spot x="2843.79" y="1129.2" z="343.789" static_id="612" />
+			<spot x="2843.7905" y="1129.2039" z="343.789" static_id="612" />
 		</spawn>
 		<!-- Wet Parchment Book -->
 		<spawn npc_id="700610" respawn_time="295">
-			<spot x="370" y="558" z="459.64133" static_id="529" />
+			<spot x="369.4712" y="557.4205" z="459.6282" static_id="529" />
+			<spot x="365.2534" y="589.8875" z="458.985" h="0" />
 		</spawn>
 		<!-- Whiskered Mookie -->
 		<spawn npc_id="215578" respawn_time="295">
@@ -7727,7 +7767,7 @@
 		</spawn>
 		<!-- Wivius -->
 		<spawn npc_id="799010" respawn_time="295">
-			<spot x="590.061" y="1583.93" z="298.076" h="96" />
+			<spot x="590.061" y="1583.9302" z="298.076" h="96" />
 		</spawn>
 		<!-- Woodland Brohie -->
 		<spawn npc_id="215520" respawn_time="295">
@@ -7812,34 +7852,34 @@
 		</spawn>
 		<!-- Wounded Daeva -->
 		<spawn npc_id="799604" respawn_time="295">
-			<spot x="1266.7" y="347.95" z="548.375" h="33" />
-			<spot x="1267.07" y="341.278" z="548.375" h="66" />
-			<spot x="1271.05" y="382.419" z="548.276" h="16" />
-			<spot x="1273.92" y="372.181" z="548.375" h="113" />
-			<spot x="1277.08" y="350.513" z="548.375" h="33" />
-			<spot x="1301.31" y="377.108" z="548.399" h="63" />
-			<spot x="1307.64" y="382.095" z="548.376" h="36" />
-			<spot x="1313.48" y="381.891" z="548.38" h="28" />
-			<spot x="1389.92" y="438.838" z="553.113" h="86" />
-			<spot x="1394.54" y="439.979" z="553.125" h="70" />
-			<spot x="1408.76" y="223.314" z="548.375" h="106" />
-			<spot x="1417.01" y="230.956" z="548.375" h="16" />
-			<spot x="1417.24" y="224.666" z="548.375" h="106" />
-			<spot x="1439.82" y="235.02" z="548.375" h="70" />
-			<spot x="1441.88" y="263.583" z="548.375" h="80" />
-			<spot x="1442.27" y="238.594" z="548.375" h="36" />
-			<spot x="1444.37" y="275.475" z="548.375" h="80" />
-			<spot x="1446.91" y="270.037" z="548.318" h="113" />
-			<spot x="1447.41" y="247.651" z="548.375" h="60" />
-			<spot x="1447.83" y="275.589" z="548.375" h="106" />
-			<spot x="1452.49" y="252.281" z="548.375" h="16" />
-			<spot x="1477.8" y="365.754" z="553.136" h="63" />
-			<spot x="1481.04" y="369.816" z="553.179" h="80" />
-			<spot x="1485.49" y="366.694" z="553.043" h="76" />
+			<spot x="1266.6987" y="347.9497" z="548.375" h="33" />
+			<spot x="1267.0696" y="341.2782" z="548.375" h="66" />
+			<spot x="1271.0499" y="382.4187" z="548.276" h="16" />
+			<spot x="1273.9196" y="372.1812" z="548.375" h="113" />
+			<spot x="1277.0779" y="350.5125" z="548.375" h="33" />
+			<spot x="1301.3065" y="377.1081" z="548.399" h="63" />
+			<spot x="1307.6351" y="382.0945" z="548.376" h="36" />
+			<spot x="1313.4849" y="381.8914" z="548.38" h="28" />
+			<spot x="1389.9196" y="438.8381" z="553.113" h="86" />
+			<spot x="1394.5409" y="439.9795" z="553.125" h="70" />
+			<spot x="1408.7549" y="223.3144" z="548.375" h="106" />
+			<spot x="1417.005" y="230.9565" z="548.375" h="16" />
+			<spot x="1417.2396" y="224.666" z="548.375" h="106" />
+			<spot x="1439.8217" y="235.0199" z="548.375" h="70" />
+			<spot x="1441.8801" y="263.5827" z="548.375" h="80" />
+			<spot x="1442.274" y="238.5935" z="548.375" h="36" />
+			<spot x="1444.3695" y="275.4753" z="548.375" h="80" />
+			<spot x="1446.9092" y="270.0368" z="548.318" h="113" />
+			<spot x="1447.4131" y="247.6507" z="548.375" h="60" />
+			<spot x="1447.8311" y="275.5892" z="548.375" h="106" />
+			<spot x="1452.4926" y="252.2814" z="548.375" h="16" />
+			<spot x="1477.8014" y="365.754" z="553.136" h="63" />
+			<spot x="1481.043" y="369.8165" z="553.179" h="80" />
+			<spot x="1485.491" y="366.6943" z="553.043" h="76" />
 		</spawn>
 		<!-- Wounded Daeva -->
 		<spawn npc_id="799021" respawn_time="295">
-			<spot x="2646.56" y="332.846" z="510.428" h="10" />
+			<spot x="2648.1851" y="329.5735" z="510.375" h="10" />
 		</spawn>
 		<!-- Wounded Steelback Neokin -->
 		<spawn npc_id="216652" respawn_time="295">
@@ -7850,43 +7890,43 @@
 		</spawn>
 		<!-- Wriggling Klaw Egg -->
 		<spawn npc_id="700910" respawn_time="295">
-			<spot x="1023.0985" y="901.33862" z="415.66333" static_id="2382" />
-			<spot x="1030.1354" y="946.35199" z="415.64133" static_id="2384" />
-			<spot x="1055.7737" y="923.67462" z="416.41064" static_id="2383" />
-			<spot x="1074.8907" y="900.21759" z="415.25171" static_id="2365" />
-			<spot x="1076.7119" y="796.41675" z="406.66592" static_id="2377" />
-			<spot x="1090.4008" y="870.86572" z="415.5267" static_id="2366" />
-			<spot x="1091.3461" y="1033.8612" z="433.13489" static_id="2368" />
-			<spot x="1101.9111" y="814.40057" z="406.577" static_id="2376" />
-			<spot x="1111.9307" y="915.60931" z="415.88763" static_id="2367" />
-			<spot x="1120.6304" y="884.85736" z="413.59421" static_id="2370" />
-			<spot x="1127.8036" y="838.03723" z="408.11255" static_id="2381" />
-			<spot x="1138.921" y="1038.2955" z="435.24762" static_id="2375" />
-			<spot x="1173.2013" y="801.97516" z="390.28323" static_id="2372" />
-			<spot x="1177.0483" y="912.61401" z="408.28561" static_id="2380" />
-			<spot x="1201.8378" y="803.33704" z="389.01169" static_id="2373" />
-			<spot x="1203.5254" y="964.23444" z="408.54825" static_id="2378" />
-			<spot x="1215.5809" y="782.12427" z="388.70673" static_id="2374" />
-			<spot x="1219.4552" y="930.7348" z="410.1676" static_id="2379" />
-			<spot x="1251.7596" y="879.31836" z="409.07425" static_id="2369" />
-			<spot x="1257.9177" y="899.51416" z="408.68262" static_id="2371" />
+			<spot x="1022.8236" y="902.6667" z="415.66333" static_id="2382" />
+			<spot x="1029.9849" y="944.9077" z="415.64133" static_id="2384" />
+			<spot x="1054.4723" y="923.7125" z="416.41064" static_id="2383" />
+			<spot x="1075.9515" y="899.8311" z="415.25171" static_id="2365" />
+			<spot x="1076.7615" y="797.5252" z="406.66592" static_id="2377" />
+			<spot x="1090.8226" y="872.315" z="415.5267" static_id="2366" />
+			<spot x="1092.6836" y="1034.002" z="433.13489" static_id="2368" />
+			<spot x="1100.8214" y="814.7624" z="406.577" static_id="2376" />
+			<spot x="1110.311" y="915.1359" z="415.88763" static_id="2367" />
+			<spot x="1119.1676" y="884.7012" z="413.59421" static_id="2370" />
+			<spot x="1128.7255" y="838.7651" z="408.11255" static_id="2381" />
+			<spot x="1138.0342" y="1039.2455" z="435.24762" static_id="2375" />
+			<spot x="1174.1373" y="801.0411" z="390.28323" static_id="2372" />
+			<spot x="1176.5807" y="913.6892" z="408.28561" static_id="2380" />
+			<spot x="1200.9713" y="804.2636" z="389.01169" static_id="2373" />
+			<spot x="1202.7109" y="964.7933" z="408.54825" static_id="2378" />
+			<spot x="1214.1781" y="782.3926" z="388.70673" static_id="2374" />
+			<spot x="1218.465" y="931.0078" z="410.1676" static_id="2379" />
+			<spot x="1252.2928" y="880.5825" z="409.07425" static_id="2369" />
+			<spot x="1256.9706" y="898.4484" z="408.68262" static_id="2371" />
 		</spawn>
 		<!-- Zaniah -->
 		<spawn npc_id="799077" respawn_time="295">
-			<spot x="1781.23" y="1744.65" z="283.15027" h="67" />
+			<spot x="1781.2291" y="1744.6531" z="283.15027" h="67" />
 		</spawn>
 		<!-- Zausis -->
 		<spawn npc_id="216630" respawn_time="295">
-			<spot x="1527.95" y="1910.4" z="312.482" h="61" />
+			<spot x="1542.9413" y="1889.1384" z="312.0612" h="61" />
 		</spawn>
 		<!-- Zeirunerk -->
 		<!-- Zenobia -->
 		<spawn npc_id="798947" respawn_time="295">
-			<spot x="1417.35" y="337.624" z="558.125" h="26" />
+			<spot x="1417.3474" y="337.6241" z="558.125" h="26" />
 		</spawn>
 		<!-- Silentera Westgate -->
 		<spawn npc_id="730256" respawn_time="295">
-			<spot x="1362.51" y="2304.22" z="296.6737" h="93" static_id="1200" />
+			<spot x="1362.7411" y="2302.4023" z="296.6737" h="93" static_id="1200" />
 		</spawn>
 		<!-- Obillos -->
 		<!-- Fenia -->
@@ -7903,7 +7943,7 @@
 		<!-- Ancillary Camp -->
 		<!-- Ambrinerk-->
 		<spawn npc_id="799086" respawn_time="295">
-			<spot x="1782.4" y="1740.8" z="283.03854" h="71" />
+			<spot x="1782.587" y="1740.4178" z="283.03854" h="71" />
 		</spawn>
 		<!-- Conquest Offering Npc spots -->
 		<!-- blf4_rotation_nor_spawnnpc_01 -->
@@ -7929,12 +7969,18 @@
 		</spawn>
 		<spawn npc_id="700621" respawn_time="60">
 			<spot x="488.739990" y="1881.750000" z="282.000000" static_id="617" />
+			<spot x="456.88" y="1670.8152" z="282.93" h="0" />
+			<spot x="438.7604" y="1678.2303" z="281.9225" h="0" />
+			<spot x="450.3578" y="1675.8077" z="282.6474" h="0" />
+			<spot x="443.5602" y="1687.0187" z="281.8113" h="0" />
 		</spawn>
 		<spawn npc_id="700622" respawn_time="60">
-			<spot x="354.740295" y="1686.106201" z="290.000000" static_id="615" />
+			<spot x="354.740295" y="1686.106201" z="289.5258" static_id="615" />
 		</spawn>
 		<spawn npc_id="700623" respawn_time="60">
-			<spot x="487.192871" y="1607.949341" z="290.655701" static_id="614" />
+			<spot x="490.5602" y="1603.9677" z="288.5969" static_id="614" />
+			<spot x="516.2648" y="1619.9738" z="291.1307" h="0" />
+			<spot x="513.4449" y="1631.5973" z="291.2007" h="0" />
 		</spawn>
 		<spawn npc_id="700624" respawn_time="60">
 			<spot x="2472.598633" y="1886.505615" z="238.000000" static_id="140" />
@@ -7944,6 +7990,676 @@
 		</spawn>
 		<spawn npc_id="700626" respawn_time="60">
 			<spot x="2509.407715" y="1844.360352" z="238.000000" static_id="141" />
+		</spawn>
+		<!--   -->
+		<spawn npc_id="206294" respawn_time="295">
+			<spot x="2852.8621" y="2939.5156" z="269.3775" h="0"/>
+		</spawn>
+		<!-- (a): chaos rage -->
+		<spawn npc_id="257202" respawn_time="295">
+			<spot x="1787.9956" y="2234.5798" z="328.0311" h="0"/>
+		</spawn>
+		<!-- (a): chaos rage -->
+		<spawn npc_id="257502" respawn_time="295">
+			<spot x="930.1044" y="1939.6058" z="339.7037" h="0"/>
+		</spawn>
+		<!-- (a): lava explosion -->
+		<spawn npc_id="257205" respawn_time="295">
+			<spot x="1881.6738" y="1843.8506" z="307.0773" h="0"/>
+		</spawn>
+		<!-- (a): soul destruction -->
+		<spawn npc_id="257208" respawn_time="295">
+			<spot x="1537.3347" y="2111.3865" z="326.9665" h="0"/>
+		</spawn>
+		<!-- (a): soul destruction -->
+		<spawn npc_id="257508" respawn_time="295">
+			<spot x="686.6209" y="1676.3677" z="331.079" h="0"/>
+		</spawn>
+		<!-- (b): chaos rage -->
+		<spawn npc_id="257203" respawn_time="295">
+			<spot x="1787.9956" y="2234.5798" z="328.0311" h="0"/>
+		</spawn>
+		<!-- (b): chaos rage -->
+		<spawn npc_id="257503" respawn_time="295">
+			<spot x="930.1044" y="1939.6058" z="339.7037" h="0"/>
+		</spawn>
+		<!-- (b): lava explosion -->
+		<spawn npc_id="257206" respawn_time="295">
+			<spot x="1881.6738" y="1843.8506" z="307.0773" h="0"/>
+		</spawn>
+		<!-- (b): lava explosion -->
+		<spawn npc_id="257504" respawn_time="295">
+			<spot x="831.17" y="1493.4" z="364" h="0"/>
+		</spawn>
+		<!-- (b): lava explosion -->
+		<spawn npc_id="257505" respawn_time="295">
+			<spot x="831.17" y="1493.4" z="364" h="0"/>
+		</spawn>
+		<!-- (b): lava explosion -->
+		<spawn npc_id="257506" respawn_time="295">
+			<spot x="831.17" y="1493.4" z="364" h="0"/>
+		</spawn>
+		<!-- (b): soul destruction -->
+		<spawn npc_id="257209" respawn_time="295">
+			<spot x="1537.3347" y="2111.3865" z="326.9665" h="0"/>
+		</spawn>
+		<!-- (b): soul destruction -->
+		<spawn npc_id="257509" respawn_time="295">
+			<spot x="686.6209" y="1676.3677" z="331.079" h="0"/>
+		</spawn>
+		<!-- (e): chaos rage -->
+		<spawn npc_id="257201" respawn_time="295">
+			<spot x="1787.9956" y="2234.5798" z="328.0311" h="0"/>
+		</spawn>
+		<!-- (e): chaos rage -->
+		<spawn npc_id="257501" respawn_time="295">
+			<spot x="930.1044" y="1939.6058" z="339.7037" h="0"/>
+		</spawn>
+		<!-- (e): lava explosion -->
+		<spawn npc_id="257204" respawn_time="295">
+			<spot x="1881.6738" y="1843.8506" z="307.0773" h="0"/>
+		</spawn>
+		<!-- (e): soul destruction -->
+		<spawn npc_id="257207" respawn_time="295">
+			<spot x="1537.3347" y="2111.3865" z="326.9665" h="0"/>
+		</spawn>
+		<!-- (e): soul destruction -->
+		<spawn npc_id="257507" respawn_time="295">
+			<spot x="686.6209" y="1676.3677" z="331.079" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="802520" respawn_time="295">
+			<spot x="271.5048" y="1311.51" z="271.3539" h="0"/>
+		</spawn>
+		<!-- Abyss Rift -->
+		<spawn npc_id="803571" respawn_time="295">
+			<spot x="1351.4277" y="322.8877" z="588.625" h="0"/>
+		</spawn>
+		<!-- Angasa Sighting Area -->
+		<spawn npc_id="701568" respawn_time="295">
+			<spot x="2143" y="2344" z="82.6875" h="0"/>
+		</spawn>
+		<!-- Artwork Treasure Chest -->
+		<spawn npc_id="219388" respawn_time="295">
+			<spot x="701" y="1767" z="322.25" h="0"/>
+			<spot x="750" y="1462" z="358.75" h="0"/>
+			<spot x="1112.4" y="1819" z="329.2625" h="0"/>
+			<spot x="1118" y="2160" z="347.9641" h="0"/>
+			<spot x="1429.4" y="2013.9" z="309.8375" h="0"/>
+			<spot x="1678" y="1986.4" z="306.925" h="0"/>
+			<spot x="1930.5" y="1801" z="312.2188" h="0"/>
+		</spawn>
+		<!-- aryshmarna -->
+		<spawn npc_id="257525" respawn_time="295">
+			<spot x="921.5313" y="1902.377" z="338.536" h="0"/>
+		</spawn>
+		<!-- chekius -->
+		<spawn npc_id="799016" respawn_time="295">
+			<spot x="1895.7836" y="1749.2943" z="327.625" h="0"/>
+		</spawn>
+		<!-- Cloelia -->
+		<spawn npc_id="800865" respawn_time="295">
+			<spot x="1352" y="359" z="590" h="0"/>
+		</spawn>
+		<!-- Devastation Approaches -->
+		<spawn npc_id="804448" respawn_time="295">
+			<spot x="1408.3479" y="1981.5753" z="379.807" h="0"/>
+		</spawn>
+		<!-- disilgot general goods merchant -->
+		<spawn npc_id="804412" respawn_time="295">
+			<spot x="72" y="1376" z="420.2747" h="0"/>
+			<spot x="108" y="1646" z="378.2747" h="0"/>
+			<spot x="130" y="1790" z="398.2747" h="0"/>
+			<spot x="152" y="586" z="614.2747" h="0"/>
+			<spot x="154" y="1292" z="348.2747" h="0"/>
+			<spot x="178" y="1082" z="350.2747" h="0"/>
+			<spot x="184" y="360" z="594.2747" h="0"/>
+			<spot x="236" y="1170" z="302.2747" h="0"/>
+			<spot x="236" y="1170" z="302.2747" h="0"/>
+			<spot x="238" y="1814" z="330.2747" h="0"/>
+			<spot x="238" y="1814" z="330.2747" h="0"/>
+			<spot x="238" y="1814" z="330.2747" h="0"/>
+			<spot x="266" y="922" z="408.2747" h="0"/>
+			<spot x="334" y="388" z="602.2747" h="0"/>
+			<spot x="374" y="1768" z="312.2747" h="0"/>
+			<spot x="394" y="828" z="434.2747" h="0"/>
+			<spot x="412" y="1102" z="336.2747" h="0"/>
+			<spot x="412" y="1102" z="336.2747" h="0"/>
+			<spot x="412" y="1102" z="336.2747" h="0"/>
+			<spot x="412" y="1102" z="336.2747" h="0"/>
+			<spot x="412" y="1102" z="336.2747" h="0"/>
+			<spot x="412" y="1102" z="336.2747" h="0"/>
+			<spot x="446" y="94" z="548.2747" h="0"/>
+			<spot x="466" y="1942" z="314.2747" h="0"/>
+			<spot x="472" y="1394" z="392.2747" h="0"/>
+			<spot x="496" y="1644" z="312.2747" h="0"/>
+			<spot x="506" y="904" z="458.2747" h="0"/>
+			<spot x="508" y="512" z="496.2747" h="0"/>
+			<spot x="540" y="810" z="408.2747" h="0"/>
+			<spot x="574" y="1862" z="340.2747" h="0"/>
+			<spot x="582" y="768" z="492.2747" h="0"/>
+			<spot x="648" y="1046" z="452.2747" h="0"/>
+			<spot x="660" y="1730" z="340.2747" h="0"/>
+			<spot x="660" y="1730" z="340.2747" h="0"/>
+			<spot x="660" y="1730" z="340.2747" h="0"/>
+			<spot x="686" y="1342" z="396.2747" h="0"/>
+			<spot x="744" y="1194" z="430.2747" h="0"/>
+			<spot x="768" y="320" z="566.2747" h="0"/>
+			<spot x="790" y="1082" z="236.2747" h="0"/>
+			<spot x="798" y="1588" z="360.2747" h="0"/>
+			<spot x="798" y="1588" z="360.2747" h="0"/>
+			<spot x="800" y="1758" z="346.2747" h="0"/>
+			<spot x="890" y="1410" z="198.2747" h="0"/>
+			<spot x="910" y="202" z="578.2747" h="0"/>
+			<spot x="916" y="502" z="564.2747" h="0"/>
+			<spot x="952" y="1390" z="392.2747" h="0"/>
+			<spot x="958" y="1214" z="430.2747" h="0"/>
+			<spot x="958" y="1214" z="430.2747" h="0"/>
+			<spot x="958" y="1214" z="430.2747" h="0"/>
+			<spot x="958" y="1214" z="430.2747" h="0"/>
+			<spot x="974" y="1784" z="346.2747" h="0"/>
+			<spot x="976" y="1066" z="236.2747" h="0"/>
+			<spot x="1102" y="622" z="524.2747" h="0"/>
+			<spot x="1112" y="1326" z="422.2747" h="0"/>
+			<spot x="1112" y="1326" z="422.2747" h="0"/>
+			<spot x="1112" y="1326" z="422.2747" h="0"/>
+			<spot x="1116" y="2076" z="346.2747" h="0"/>
+			<spot x="1116" y="2076" z="346.2747" h="0"/>
+			<spot x="1116" y="2076" z="346.2747" h="0"/>
+			<spot x="1118" y="1164" z="444.2747" h="0"/>
+			<spot x="1118" y="1164" z="444.2747" h="0"/>
+			<spot x="1118" y="1164" z="444.2747" h="0"/>
+			<spot x="1164" y="1890" z="346.2747" h="0"/>
+			<spot x="1244" y="1042" z="470.2747" h="0"/>
+			<spot x="1282" y="1634" z="382.2747" h="0"/>
+			<spot x="1296" y="638" z="524.2747" h="0"/>
+			<spot x="1300" y="1790" z="182.2747" h="0"/>
+			<spot x="1300" y="1790" z="182.2747" h="0"/>
+			<spot x="1300" y="1790" z="182.2747" h="0"/>
+			<spot x="1300" y="1790" z="182.2747" h="0"/>
+			<spot x="1316" y="1210" z="430.2747" h="0"/>
+			<spot x="1316" y="1210" z="430.2747" h="0"/>
+			<spot x="1316" y="1210" z="430.2747" h="0"/>
+			<spot x="1316" y="1210" z="430.2747" h="0"/>
+			<spot x="1316" y="1210" z="430.2747" h="0"/>
+			<spot x="1356" y="2068" z="346.2747" h="0"/>
+			<spot x="1374" y="1896" z="346.2747" h="0"/>
+			<spot x="1382" y="1384" z="430.2747" h="0"/>
+			<spot x="1456" y="1278" z="338.2747" h="0"/>
+			<spot x="1456" y="1278" z="338.2747" h="0"/>
+			<spot x="1456" y="1278" z="338.2747" h="0"/>
+			<spot x="1456" y="1278" z="338.2747" h="0"/>
+			<spot x="1456" y="1278" z="338.2747" h="0"/>
+			<spot x="1472" y="640" z="524.2747" h="0"/>
+			<spot x="1518" y="1798" z="346.2747" h="0"/>
+			<spot x="1528" y="2034" z="346.2747" h="0"/>
+			<spot x="1546" y="1148" z="430.2747" h="0"/>
+			<spot x="1546" y="1148" z="430.2747" h="0"/>
+			<spot x="1546" y="1148" z="430.2747" h="0"/>
+			<spot x="1546" y="1148" z="430.2747" h="0"/>
+			<spot x="1552" y="1612" z="190.2747" h="0"/>
+			<spot x="1598" y="312" z="544.2747" h="0"/>
+			<spot x="1662" y="1428" z="222.2747" h="0"/>
+			<spot x="1672" y="634" z="498.2747" h="0"/>
+			<spot x="1704" y="1242" z="402.2747" h="0"/>
+			<spot x="1716" y="1712" z="244.2747" h="0"/>
+			<spot x="1724" y="1952" z="346.2747" h="0"/>
+			<spot x="1730" y="160" z="544.2747" h="0"/>
+			<spot x="1730" y="160" z="544.2747" h="0"/>
+			<spot x="1762" y="1064" z="399.625" h="0"/>
+			<spot x="1762" y="1064" z="399.625" h="0"/>
+			<spot x="1762" y="1064" z="399.625" h="0"/>
+			<spot x="1762" y="1064" z="399.625" h="0"/>
+			<spot x="1810" y="1430" z="374.2747" h="0"/>
+			<spot x="1862" y="1210" z="404.2747" h="0"/>
+			<spot x="1862" y="1210" z="404.2747" h="0"/>
+			<spot x="1862" y="1210" z="404.2747" h="0"/>
+			<spot x="1862" y="1210" z="404.2747" h="0"/>
+			<spot x="1876" y="1872" z="316.2747" h="0"/>
+			<spot x="1884" y="1630" z="346.2747" h="0"/>
+			<spot x="1926" y="2060" z="312.2747" h="0"/>
+			<spot x="1930" y="204" z="536.2747" h="0"/>
+			<spot x="1930" y="204" z="536.2747" h="0"/>
+			<spot x="2002" y="1310" z="404.2747" h="0"/>
+			<spot x="2002" y="1310" z="404.2747" h="0"/>
+			<spot x="2008" y="1108" z="402.2747" h="0"/>
+			<spot x="2008" y="1108" z="402.2747" h="0"/>
+			<spot x="2008" y="1108" z="402.2747" h="0"/>
+			<spot x="2008" y="1108" z="402.2747" h="0"/>
+			<spot x="2008" y="1108" z="402.2747" h="0"/>
+			<spot x="2008" y="1108" z="402.2747" h="0"/>
+			<spot x="2044" y="1956" z="316.2747" h="0"/>
+			<spot x="2044" y="1956" z="316.2747" h="0"/>
+			<spot x="2044" y="1956" z="316.2747" h="0"/>
+			<spot x="2070" y="1758" z="306.2747" h="0"/>
+			<spot x="2098" y="472" z="462.2747" h="0"/>
+			<spot x="2098" y="472" z="462.2747" h="0"/>
+			<spot x="2098" y="472" z="462.2747" h="0"/>
+			<spot x="2098" y="472" z="462.2747" h="0"/>
+			<spot x="2222" y="1928" z="298.2747" h="0"/>
+			<spot x="2230" y="2098" z="90.2747" h="0"/>
+			<spot x="2234" y="1444" z="240.2747" h="0"/>
+			<spot x="2234" y="1444" z="240.2747" h="0"/>
+			<spot x="2234" y="1444" z="240.2747" h="0"/>
+			<spot x="2234" y="1444" z="240.2747" h="0"/>
+			<spot x="2234" y="1444" z="240.2747" h="0"/>
+			<spot x="2234" y="1444" z="240.2747" h="0"/>
+			<spot x="2234" y="1444" z="240.2747" h="0"/>
+			<spot x="2234" y="1444" z="240.2747" h="0"/>
+			<spot x="2238" y="634" z="446.2747" h="0"/>
+			<spot x="2242" y="1178" z="306.2747" h="0"/>
+			<spot x="2264" y="202" z="492.2747" h="0"/>
+			<spot x="2360" y="460" z="446.2747" h="0"/>
+			<spot x="2386" y="1842" z="254.2747" h="0"/>
+			<spot x="2386" y="1842" z="254.2747" h="0"/>
+			<spot x="2410" y="1318" z="302.2747" h="0"/>
+			<spot x="2418" y="710" z="446.2747" h="0"/>
+			<spot x="2458" y="1624" z="282.2747" h="0"/>
+			<spot x="2462" y="536" z="390.2747" h="0"/>
+			<spot x="2474" y="1108" z="272.2747" h="0"/>
+			<spot x="2474" y="1108" z="272.2747" h="0"/>
+			<spot x="2474" y="1108" z="272.2747" h="0"/>
+			<spot x="2482" y="100" z="390.2747" h="0"/>
+			<spot x="2522" y="2054" z="238.2747" h="0"/>
+			<spot x="2554" y="1870" z="262.2747" h="0"/>
+			<spot x="2554" y="1870" z="262.2747" h="0"/>
+			<spot x="2618" y="1606" z="282.2747" h="0"/>
+			<spot x="2618" y="1606" z="282.2747" h="0"/>
+			<spot x="2618" y="1606" z="282.2747" h="0"/>
+			<spot x="2618" y="1606" z="282.2747" h="0"/>
+			<spot x="2618" y="1606" z="282.2747" h="0"/>
+			<spot x="2662" y="956" z="396.2747" h="0"/>
+			<spot x="2662" y="956" z="396.2747" h="0"/>
+			<spot x="2700" y="1982" z="226.2747" h="0"/>
+			<spot x="2716" y="1716" z="218.2747" h="0"/>
+			<spot x="2742" y="392" z="382.2747" h="0"/>
+			<spot x="2794" y="1182" z="396.2747" h="0"/>
+			<spot x="2836" y="136" z="382.2747" h="0"/>
+			<spot x="2954" y="344" z="382.2747" h="0"/>
+		</spawn>
+		<!-- disilheim crafting materials merchant -->
+		<spawn npc_id="804409" respawn_time="295">
+			<spot x="1748" y="336" z="618.875" h="0"/>
+		</spawn>
+		<!-- disilheim crafting materials merchant -->
+		<spawn npc_id="804441" respawn_time="295">
+			<spot x="1069.9771" y="1495.786" z="404.125" h="0"/>
+		</spawn>
+		<!-- disilheim general goods merchant -->
+		<spawn npc_id="804440" respawn_time="295">
+			<spot x="1070.5735" y="1488.7819" z="404.125" h="0"/>
+		</spawn>
+		<!-- disilheim supplements distributor -->
+		<spawn npc_id="804442" respawn_time="295">
+			<spot x="1061.4712" y="1488.4719" z="404.75" h="0"/>
+		</spawn>
+		<!-- disilheim warehouse manager -->
+		<spawn npc_id="804443" respawn_time="295">
+			<spot x="1060.3124" y="1496.308" z="404.5946" h="0"/>
+		</spawn>
+		<!-- disiltroll special buyer -->
+		<spawn npc_id="804406" respawn_time="295">
+			<spot x="1745" y="336" z="618.875" h="0"/>
+		</spawn>
+		<!-- disilveir general goods merchant -->
+		<spawn npc_id="804400" respawn_time="295">
+			<spot x="1745" y="329" z="618.6875" h="0"/>
+		</spawn>
+		<!-- disilveir warehouse manager -->
+		<spawn npc_id="804403" respawn_time="295">
+			<spot x="1745" y="333" z="618.75" h="0"/>
+		</spawn>
+		<!-- distine -->
+		<spawn npc_id="799060" respawn_time="295">
+			<spot x="720.2048" y="1501.7356" z="360.037" h="0"/>
+		</spawn>
+		<!-- Drakan Corpse -->
+		<spawn npc_id="800555" respawn_time="295">
+			<spot x="2221.7798" y="1337.8311" z="256.8198" h="0"/>
+		</spawn>
+		<!-- dredgion core -->
+		<spawn npc_id="258247" respawn_time="295">
+			<spot x="2540.8623" y="1922.1737" z="1801.5084" h="0" random_walk="8"/>
+			<spot x="2548.781" y="1252.281" z="1546.3834" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Duana -->
+		<spawn npc_id="800951" respawn_time="295">
+			<spot x="1327.7206" y="377.14" z="590.2972" h="0"/>
+		</spawn>
+		<!-- Eingael -->
+		<spawn npc_id="800038" respawn_time="295">
+			<spot x="1363.2744" y="342.9048" z="595.9812" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257192" respawn_time="295">
+			<spot x="1763.8739" y="2114.5952" z="325.9323" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257193" respawn_time="295">
+			<spot x="1763.8739" y="2114.5952" z="325.9323" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257194" respawn_time="295">
+			<spot x="1763.8739" y="2114.5952" z="325.9323" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257236" respawn_time="295">
+			<spot x="1691.6344" y="2107.7178" z="323.6297" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257237" respawn_time="295">
+			<spot x="1691.6344" y="2107.7178" z="323.6297" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257238" respawn_time="295">
+			<spot x="1691.6344" y="2107.7178" z="323.6297" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257239" respawn_time="295">
+			<spot x="1748.7954" y="2173.7253" z="326.7443" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257240" respawn_time="295">
+			<spot x="1748.7954" y="2173.7253" z="326.7443" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257241" respawn_time="295">
+			<spot x="1748.7954" y="2173.7253" z="326.7443" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257492" respawn_time="295">
+			<spot x="833.7343" y="1863.4446" z="338.6071" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257493" respawn_time="295">
+			<spot x="833.7343" y="1863.4446" z="338.6071" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257494" respawn_time="295">
+			<spot x="833.7343" y="1863.4446" z="338.6071" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257536" respawn_time="295">
+			<spot x="774.392" y="1904.7914" z="336.0061" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257537" respawn_time="295">
+			<spot x="774.392" y="1904.7914" z="336.0061" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257538" respawn_time="295">
+			<spot x="774.392" y="1904.7914" z="336.0061" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257539" respawn_time="295">
+			<spot x="859.5812" y="1918.4957" z="340.0608" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257540" respawn_time="295">
+			<spot x="859.5812" y="1918.4957" z="340.0608" h="0"/>
+		</spawn>
+		<!-- fortress gate -->
+		<spawn npc_id="257541" respawn_time="295">
+			<spot x="859.5812" y="1918.4957" z="340.0608" h="0"/>
+		</spawn>
+		<!-- fundin -->
+		<spawn npc_id="799354" respawn_time="295">
+			<spot x="1258.3398" y="1851.6006" z="325.6487" h="0"/>
+		</spawn>
+		<!-- Gamblerunerk -->
+		<spawn npc_id="801732" respawn_time="295">
+			<spot x="1322.0183" y="292.9138" z="588.625" h="0"/>
+		</spawn>
+		<!-- gate -->
+		<spawn npc_id="258230" respawn_time="295">
+			<spot x="618.9023" y="1248.4873" z="397.6237" h="0"/>
+			<spot x="1343.7295" y="1668.1511" z="366.9465" h="0"/>
+			<spot x="1779.048" y="1326.4427" z="384.9869" h="0"/>
+		</spawn>
+		<!-- gate -->
+		<spawn npc_id="258231" respawn_time="295">
+			<spot x="618.9023" y="1248.4873" z="397.6237" h="0"/>
+			<spot x="1343.7295" y="1668.1511" z="366.9465" h="0"/>
+			<spot x="1779.048" y="1326.4427" z="384.9869" h="0"/>
+		</spawn>
+		<!-- gate -->
+		<spawn npc_id="258232" respawn_time="295">
+			<spot x="618.9023" y="1248.4873" z="397.6237" h="0"/>
+			<spot x="1343.7295" y="1668.1511" z="366.9465" h="0"/>
+			<spot x="1779.048" y="1326.4427" z="384.9869" h="0"/>
+		</spawn>
+		<!-- gate stone -->
+		<spawn npc_id="257195" respawn_time="295">
+			<spot x="1757.5985" y="2135.6504" z="324.6101" h="0"/>
+		</spawn>
+		<!-- gate stone -->
+		<spawn npc_id="257196" respawn_time="295">
+			<spot x="1757.5985" y="2135.6504" z="324.6101" h="0"/>
+		</spawn>
+		<!-- gate stone -->
+		<spawn npc_id="257197" respawn_time="295">
+			<spot x="1757.5985" y="2135.6504" z="324.6101" h="0"/>
+		</spawn>
+		<!-- gate stone -->
+		<spawn npc_id="257495" respawn_time="295">
+			<spot x="843.06" y="1883.321" z="335.5072" h="0"/>
+		</spawn>
+		<!-- gate stone -->
+		<spawn npc_id="257496" respawn_time="295">
+			<spot x="843.06" y="1883.321" z="335.5072" h="0"/>
+		</spawn>
+		<!-- gate stone -->
+		<spawn npc_id="257497" respawn_time="295">
+			<spot x="843.06" y="1883.321" z="335.5072" h="0"/>
+		</spawn>
+		<!-- Gelkmaros’ Scouts -->
+		<spawn npc_id="804455" respawn_time="295">
+			<spot x="1941.5535" y="2119.8799" z="291.2441" h="0"/>
+		</spawn>
+		<!-- Gwen -->
+		<spawn npc_id="800772" respawn_time="180">
+			<spot x="1323.7153" y="277.9174" z="588.625" h="0"/>
+		</spawn>
+		<!-- ingnie -->
+		<spawn npc_id="799005" respawn_time="295">
+			<spot x="705.8985" y="1513.9548" z="360.993" h="0"/>
+		</spawn>
+		<!-- Ishan -->
+		<spawn npc_id="800575" respawn_time="295">
+			<spot x="445.9287" y="847.1508" z="450" h="0"/>
+		</spawn>
+		<!-- jennathea -->
+		<spawn npc_id="257225" respawn_time="295">
+			<spot x="1805.8656" y="2201" z="325.6423" h="0"/>
+		</spawn>
+		<!-- Karin -->
+		<spawn npc_id="800626" respawn_time="295">
+			<spot x="1370.915" y="232.098" z="588.3133" h="0"/>
+		</spawn>
+		<!-- kerus -->
+		<spawn npc_id="799024" respawn_time="295">
+			<spot x="707.9005" y="1514.7036" z="361.2182" h="0"/>
+		</spawn>
+		<!-- kirhua -->
+		<spawn npc_id="799360" respawn_time="295">
+			<spot x="1523.7227" y="1910.1011" z="313.022" h="0"/>
+		</spawn>
+		<!-- lady eiros -->
+		<spawn npc_id="296490" respawn_time="295">
+			<spot x="1350.1738" y="1670.6958" z="365.0024" h="0"/>
+			<spot x="1350.1738" y="1670.6958" z="365.0024" h="0"/>
+			<spot x="1350.1738" y="1670.6958" z="365.0024" h="0"/>
+			<spot x="1350.1738" y="1670.6958" z="365.0024" h="0"/>
+			<spot x="1350.1738" y="1670.6958" z="365.0024" h="0"/>
+		</spawn>
+		<!-- lady pasiphae -->
+		<spawn npc_id="296491" respawn_time="295">
+			<spot x="622.7765" y="1253.6624" z="397.0024" h="0"/>
+			<spot x="622.7765" y="1253.6624" z="397.0024" h="0"/>
+			<spot x="622.7765" y="1253.6624" z="397.0024" h="0"/>
+			<spot x="622.7765" y="1253.6624" z="397.0024" h="0"/>
+			<spot x="622.7765" y="1253.6624" z="397.0024" h="0"/>
+			<spot x="622.7765" y="1253.6624" z="397.0024" h="0"/>
+		</spawn>
+		<!-- lanuaga -->
+		<spawn npc_id="799584" respawn_time="295">
+			<spot x="1075.7882" y="1562.5032" z="406.875" h="0"/>
+		</spawn>
+		<!-- Laonos -->
+		<spawn npc_id="730671" respawn_time="295">
+			<spot x="1375.7405" y="353.5606" z="590" h="0"/>
+		</spawn>
+		<!-- Latis -->
+		<spawn npc_id="800557" respawn_time="295">
+			<spot x="2589.2725" y="1416.7089" z="337.7442" h="0"/>
+		</spawn>
+		<!-- Leon -->
+		<spawn npc_id="800628" respawn_time="295">
+			<spot x="1369.6309" y="230.8153" z="588.1529" h="0"/>
+		</spawn>
+		<!-- lf4_2011_directteleporter_da -->
+		<spawn npc_id="257226" respawn_time="295">
+			<spot x="1805.8656" y="2201" z="325.6423" h="0"/>
+		</spawn>
+		<!-- lf4_2021_directteleporter_da -->
+		<spawn npc_id="257526" respawn_time="295">
+			<spot x="921.5313" y="1902.377" z="338.536" h="0"/>
+		</spawn>
+		<!-- Lodos -->
+		<spawn npc_id="803572" respawn_time="295">
+			<spot x="1347.5111" y="320.4294" z="588.625" h="0"/>
+		</spawn>
+		<!-- lord agios -->
+		<spawn npc_id="296489" respawn_time="295">
+			<spot x="1780.3369" y="1333.019" z="382" h="0"/>
+			<spot x="1780.3369" y="1333.019" z="382" h="0"/>
+			<spot x="1780.3369" y="1333.019" z="382" h="0"/>
+		</spawn>
+		<!-- Mia -->
+		<spawn npc_id="730645" respawn_time="295">
+			<spot x="326.0174" y="1707" z="304.4342" h="0"/>
+		</spawn>
+		<!-- northern star -->
+		<spawn npc_id="700627" respawn_time="295">
+			<spot x="2227.6799" y="2088.894" z="58.105" h="0"/>
+		</spawn>
+		<!-- obelisk -->
+		<spawn npc_id="730282" respawn_time="295">
+			<spot x="1889.9365" y="1748.7122" z="327.75" h="0"/>
+		</spawn>
+		<!-- Odanerk -->
+		<spawn npc_id="802445" respawn_time="295">
+			<spot x="1344.9796" y="268.959" z="588.625" h="0"/>
+		</spawn>
+		<!-- pompo -->
+		<spawn npc_id="799828" respawn_time="295">
+			<spot x="1313.5996" y="322.2151" z="588.6116" h="0"/>
+		</spawn>
+		<!-- Ragged Windstream -->
+		<spawn npc_id="701565" respawn_time="295">
+			<spot x="2287" y="1069" z="306.2769" h="0"/>
+		</spawn>
+		<!-- royal combat mage -->
+		<spawn npc_id="296893" respawn_time="295">
+			<spot x="541.884" y="732.411" z="495.0024" h="0"/>
+			<spot x="561.2112" y="718.3112" z="495.0024" h="0"/>
+			<spot x="2512.9302" y="840.4487" z="427.0024" h="0"/>
+			<spot x="2533.4338" y="826.8574" z="427.0024" h="0"/>
+		</spawn>
+		<!-- Royal Combat Mage -->
+		<spawn npc_id="296978" respawn_time="295">
+			<spot x="623.1299" y="1274.8352" z="407.0024" h="0"/>
+			<spot x="642.6997" y="1260.6827" z="407.0024" h="0"/>
+			<spot x="1362.0151" y="1688.2483" z="375.0024" h="0"/>
+			<spot x="1369.9283" y="1665.4304" z="375.0024" h="0"/>
+			<spot x="1771.452" y="1351.9156" z="392" h="0"/>
+			<spot x="1795.2083" y="1347.5669" z="392" h="0"/>
+		</spawn>
+		<!-- Royal Gate Guard -->
+		<spawn npc_id="296971" respawn_time="295">
+			<spot x="595.4097" y="1224.8923" z="397.0024" h="0"/>
+			<spot x="603.5155" y="1219.108" z="397.0024" h="0"/>
+			<spot x="1310.8745" y="1661.5632" z="365.0024" h="0"/>
+			<spot x="1314.1357" y="1652.4755" z="365.0024" h="0"/>
+			<spot x="1768.3301" y="1294.7921" z="382" h="0"/>
+			<spot x="1777.8832" y="1293.0787" z="382" h="0"/>
+		</spawn>
+		<!-- royal guard -->
+		<spawn npc_id="296889" respawn_time="295">
+			<spot x="544.605" y="730.6284" z="495.0024" h="0"/>
+			<spot x="558.8134" y="719.9677" z="494.0024" h="0"/>
+			<spot x="2515.4341" y="838.6216" z="427.0024" h="0"/>
+			<spot x="2530.8662" y="828.4184" z="427.0024" h="0"/>
+		</spawn>
+		<!-- Royal Guard -->
+		<spawn npc_id="296975" respawn_time="295">
+			<spot x="578.1829" y="1243.266" z="403.0024" h="0"/>
+			<spot x="626.8042" y="1208.4119" z="403.0024" h="0"/>
+			<spot x="1307.374" y="1686.91" z="371.0024" h="0"/>
+			<spot x="1327.6215" y="1630.0626" z="371.0024" h="0"/>
+			<spot x="1744.7571" y="1303.7961" z="388" h="0"/>
+			<spot x="1804.178" y="1293.495" z="388" h="0"/>
+		</spawn>
+		<!-- Royal Guard -->
+		<spawn npc_id="296976" respawn_time="295">
+			<spot x="625.2713" y="1273.311" z="407.0024" h="0"/>
+			<spot x="640.2674" y="1262.535" z="407.0024" h="0"/>
+			<spot x="1362.8951" y="1685.7715" z="375.0024" h="0"/>
+			<spot x="1368.9983" y="1668.3429" z="375.0024" h="0"/>
+			<spot x="1774.041" y="1351.4619" z="392" h="0"/>
+			<spot x="1792.2155" y="1348.1916" z="392" h="0"/>
+		</spawn>
+		<!-- scopas -->
+		<spawn npc_id="799059" respawn_time="295">
+			<spot x="1899.5415" y="1736.9485" z="327.6907" h="0"/>
+		</spawn>
+		<!-- Seona -->
+		<spawn npc_id="800639" respawn_time="295">
+			<spot x="1355.6412" y="268.117" z="588.625" h="0"/>
+		</spawn>
+		<!-- somia -->
+		<spawn npc_id="799091" respawn_time="295">
+			<spot x="1373.4363" y="246.8725" z="587.208" h="0"/>
+		</spawn>
+		<!-- Somnium Portal -->
+		<spawn npc_id="801994" respawn_time="295">
+			<spot x="1356" y="358.1" z="590" h="0"/>
+		</spawn>
+		<!-- thalia -->
+		<spawn npc_id="799023" respawn_time="295">
+			<spot x="2180.1069" y="1930.9293" z="284.8081" h="0"/>
+		</spawn>
+		<!-- tiamat monument -->
+		<spawn npc_id="700749" respawn_time="295">
+			<spot x="1042" y="1741.0941" z="201.383" h="0"/>
+		</spawn>
+		<!-- tosel -->
+		<spawn npc_id="799374" respawn_time="295">
+			<spot x="1526.2035" y="1910.0007" z="312.7245" h="0"/>
+		</spawn>
+		<!-- turen -->
+		<spawn npc_id="799375" respawn_time="295">
+			<spot x="1257.1542" y="1850.3145" z="325.2492" h="0"/>
+		</spawn>
+		<!-- Unknown Land Rift -->
+		<spawn npc_id="803790" respawn_time="295">
+			<spot x="2798.6855" y="1437.8301" z="395.8452" h="0"/>
+		</spawn>
+		<!-- valentius -->
+		<spawn npc_id="799831" respawn_time="295">
+			<spot x="1316.1918" y="325.3864" z="588.625" h="0"/>
+		</spawn>
+		<!-- veille -->
+		<spawn npc_id="798958" respawn_time="295">
+			<spot x="1079.8804" y="1626.3826" z="406.875" h="0"/>
+		</spawn>
+		<!-- warden angasa -->
+		<spawn npc_id="216498" respawn_time="295">
+			<spot x="2090.1062" y="2322.4031" z="77.4356" h="0"/>
+		</spawn>
+		<!-- Zeniah -->
+		<spawn npc_id="730644" respawn_time="295">
+			<spot x="2764" y="1486" z="385" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

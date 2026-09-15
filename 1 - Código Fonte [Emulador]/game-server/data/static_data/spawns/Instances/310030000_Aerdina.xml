@@ -7,7 +7,7 @@
 		</spawn>
 		<!-- Abyss Gate Guardian Stone -->
 		<spawn npc_id="700142">
-			<spot x="261.406" y="229.555" z="213.927" h="35"/>
+			<spot x="261.4184" y="229.5311" z="213.927" h="35"/>
 		</spawn>
 		<!-- Crusader -->
 		<spawn npc_id="211624">
@@ -25,6 +25,14 @@
 		<spawn npc_id="211625">
 			<spot x="258.055" y="241.453" z="219.08" h="94"/>
 			<spot x="264.054" y="215.517" z="210.201" h="95"/>
+		</spawn>
+		<!-- abyss gate -->
+		<spawn npc_id="700143">
+			<spot x="250.9115" y="270.455" z="235" h="0"/>
+		</spawn>
+		<!-- dimension exit -->
+		<spawn npc_id="700186">
+			<spot x="276.1247" y="161.6532" z="208.0833" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

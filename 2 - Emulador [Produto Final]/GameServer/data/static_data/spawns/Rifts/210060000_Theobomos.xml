@@ -135,7 +135,7 @@
 			<state_type state="PEACE">
 				<!-- Jamanok -->
 				<spawn npc_id="798176" respawn_time="295">
-					<spot x="402.823" y="1219.26" z="134.589" h="60" />
+					<spot x="402.8232" y="1219.2579" z="134.589" h="60" />
 				</spawn>
 			</state_type>
 		</vortex_spawn>

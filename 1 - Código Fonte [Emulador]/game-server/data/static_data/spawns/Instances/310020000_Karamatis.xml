@@ -6,14 +6,14 @@
 			<spot x="127.0000" y="203.0000" z="225.0000" h="38" state="35" aerial_spawn="true"/>
 			<spot x="164.0000" y="221.0000" z="220.0000" h="75" state="35" aerial_spawn="true"/>
 			<spot x="164.0000" y="239.0000" z="220.0000" h="51" state="35" aerial_spawn="true"/>
-			<spot x="165.8012" y="189.8012" z="203.0000" h="75" state="35" aerial_spawn="true"/>
+			<spot x="166" y="190" z="203.0000" h="75" state="35" aerial_spawn="true"/>
 			<spot x="175.0000" y="268.0000" z="212.0000" h="69" state="35" aerial_spawn="true"/>
 		</spawn>
 		<!-- Archon Legionary -->
 		<spawn npc_id="205010">
 			<spot x="109.0000" y="208.0000" z="213.0000" h="99" state="35" aerial_spawn="true"/>
 			<spot x="143.0000" y="232.0000" z="199.0000" h="45" state="35" aerial_spawn="true"/>
-			<spot x="151.8012" y="223.8012" z="213.0000" h="75" state="35" aerial_spawn="true"/>
+			<spot x="152" y="224" z="213.0000" h="75" state="35" aerial_spawn="true"/>
 			<spot x="185.0000" y="236.0000" z="223.0000" h="30" state="35" aerial_spawn="true"/>
 			<spot x="188.0000" y="204.0000" z="219.0000" h="105" state="35" aerial_spawn="true"/>
 		</spawn>
@@ -79,10 +79,10 @@
 		<spawn npc_id="205007">
 			<spot x="110.0000" y="206.0000" z="213.0000" h="38" state="35" aerial_spawn="true"/>
 			<spot x="126.0000" y="205.0000" z="225.0000" h="99" state="35" aerial_spawn="true"/>
-			<spot x="162.1988" y="219.1988" z="220.0000" h="15" state="35" aerial_spawn="true"/>
+			<spot x="162" y="219" z="220.0000" h="15" state="35" aerial_spawn="true"/>
 			<spot x="164.0000" y="188.0000" z="203.0000" h="15" state="35" aerial_spawn="true"/>
 			<spot x="185.0000" y="238.0000" z="223.0000" h="90" state="35" aerial_spawn="true"/>
-			<spot x="189.8012" y="202.1988" z="219.0000" h="45" state="35" aerial_spawn="true"/>
+			<spot x="190" y="202" z="219.0000" h="45" state="35" aerial_spawn="true"/>
 		</spawn>
 		<!-- Legionary -->
 		<spawn npc_id="205012">
@@ -91,7 +91,7 @@
 		</spawn>
 		<!-- Legionary -->
 		<spawn npc_id="205008">
-			<spot x="141.1988" y="233.8012" z="199.0000" h="105" state="35" aerial_spawn="true"/>
+			<spot x="141" y="234" z="199.0000" h="105" state="35" aerial_spawn="true"/>
 			<spot x="150.0000" y="222.0000" z="213.0000" h="15" state="35" aerial_spawn="true"/>
 			<spot x="162.0000" y="240.0000" z="220.0000" h="111" state="35" aerial_spawn="true"/>
 			<spot x="173.0000" y="267.0000" z="212.0000" h="8" state="35" aerial_spawn="true"/>
@@ -108,6 +108,11 @@
 		<!-- Legionary -->
 		<spawn npc_id="205017">
 			<spot x="297.0000" y="278.0000" z="206.6896" h="81"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="203000">
+			<spot x="202" y="215" z="216" h="0" random_walk="8"/>
+			<spot x="226" y="213" z="210" h="0" random_walk="8"/>
 		</spawn>
 	</spawn_map>
 </spawns>

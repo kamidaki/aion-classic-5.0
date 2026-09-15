@@ -1,0 +1,437 @@
+NPCs criados a partir do cliente 5.0 onde o servidor nao tinha spawn.
+h="0" em todos (o cliente nao tem direcao); z do terreno quando mensuravel. Tudo vem da captura depois.
+
+== criado ==
+  pontos em spawn novo                                           6030
+  z do cliente (sem terreno util)                                5178
+  z do terreno                                                   1564
+  spawn novo                                                     1132
+  spot acrescentado em spawn existente                           712
+  spawn novo com pool                                            11
+  probabilidade sem pool possivel: spawna sempre                 7
+  arquivo novo                                                   5
+
+  arquivos novos:
+    spawns\Instances\300560000_Shugo_Imperial_Tomb.xml
+    spawns\Npcs\210070000_Telos.xml
+    spawns\Npcs\210080000_Lacrima.xml
+    spawns\Npcs\220080000_Telos.xml
+    spawns\Npcs\220090000_Lacrima.xml
+
+== por mapa ==
+  110010000 Sanctum                          novos     0  acrescentados    0  fora    19
+  110070000 Kaisinel_Academy                 novos     9  acrescentados    4  fora     0
+  120010000 Pandaemonium                     novos     0  acrescentados    0  fora    14
+  120080000 Marchutan_Priory                 novos     9  acrescentados    4  fora     0
+  210010000 Poeta                            novos     2  acrescentados    9  fora   434
+  210020000 Eltnen                           novos    55  acrescentados   65  fora   154
+  210030000 Verteron                         novos    10  acrescentados    7  fora    32
+  210040000 Heiron                           novos    30  acrescentados  113  fora    26
+  210050000 Inggison                         novos   331  acrescentados   46  fora   138
+  210060000 Theobomos                        novos   143  acrescentados   21  fora    13
+  210070000 Telos                            novos   111  acrescentados    0  fora     0
+  210080000 Lacrima                          novos     4  acrescentados    0  fora     0
+  220010000 Ishalgen                         novos     2  acrescentados    1  fora    68
+  220020000 Morheim                          novos    53  acrescentados   50  fora    35
+  220030000 Altgard                          novos    16  acrescentados   68  fora    76
+  220040000 Beluslan                         novos    20  acrescentados   88  fora    21
+  220050000 Brusthonin                       novos   108  acrescentados   69  fora    12
+  220070000 Gelkmaros                        novos   373  acrescentados  130  fora   140
+  220080000 Telos                            novos   111  acrescentados    0  fora     0
+  220090000 Lacrima                          novos     4  acrescentados    0  fora     0
+  300040000 Dark_Poeta                       novos     6  acrescentados    0  fora     5
+  300060000 Sulfur_Tree_Nest                 novos     1  acrescentados    0  fora     0
+  300070000 Chamber_of_Roah                  novos     1  acrescentados    0  fora     0
+  300100000 Steel_Rake                       novos    25  acrescentados    0  fora     0
+  300110000 Dredgion                         novos     8  acrescentados    0  fora     0
+  300150000 Udas_Temple                      novos     1  acrescentados    0  fora     1
+  300160000 Lower_Udas_Temple                novos     2  acrescentados    0  fora     0
+  300170000 Beshmundir_Temple                novos    13  acrescentados    0  fora     1
+  300190000 Talocs_Hollow                    novos    20  acrescentados    0  fora     8
+  300210000 Chantra_Dredgion                 novos     2  acrescentados    0  fora    17
+  300220000 Abyssal_Splinter                 novos    18  acrescentados    1  fora     3
+  300230000 Kromedes_Trial                   novos     9  acrescentados    0  fora     0
+  300250000 Esoterrace                       novos    35  acrescentados    3  fora    27
+  300280000 Rentus_Base                      novos   328  acrescentados    8  fora    40
+  300350000 Arena_of_Chaos                   novos    73  acrescentados    0  fora     2
+  300360000 Arena_of_Discipline              novos    11  acrescentados    0  fora     1
+  300420000 Chaos_Training_Grounds           novos    73  acrescentados    1  fora     2
+  300430000 Discipline_Training_Grounds      novos     9  acrescentados    0  fora     0
+  300440000 Terath_Dredgion                  novos   209  acrescentados    0  fora     0
+  300450000 Arena_of_Harmony                 novos     2  acrescentados    0  fora     0
+  300460000 Steel_Rake_Cabin                 novos     0  acrescentados    0  fora     8
+  300480000 Sealed_Danuar_Mysticarium        novos     1  acrescentados    0  fora     2
+  300500000 Tempus                           novos     0  acrescentados    0  fora     1
+  300510000 Tiamat_Stronghold                novos    49  acrescentados    0  fora     2
+  300520000 Dragon_Lords_Refuge              novos   160  acrescentados    0  fora     0
+  300540000 The_Eternal_Bastion              novos     4  acrescentados    0  fora     0
+  300550000 Arena_of_Glory                   novos    21  acrescentados    0  fora     0
+  300560000 Shugo_Imperial_Tomb              novos  2185  acrescentados    0  fora     0
+  300590000 Ophidan_Bridge                   novos   157  acrescentados    0  fora     9
+  300600000 Unstable_Abyssal_Splinter        novos   126  acrescentados    0  fora     0
+  300610000 Raksang_Ruins                    novos   213  acrescentados    0  fora     1
+  300620000 Occupied_Rentus_Base             novos     2  acrescentados    0  fora     0
+  300630000 Anguished_Dragon_Lords_Refuge    novos   248  acrescentados    0  fora    39
+  300660000 Burning_Blood_Fortress           novos     0  acrescentados    0  fora     9
+  300670000 Dokkaebi_Realm                   novos     0  acrescentados    0  fora    12
+  300700000 The_Hexway                       novos     2  acrescentados    0  fora    14
+  300800000 Infinity_Shard                   novos    11  acrescentados    0  fora     0
+  301000000 Tiamats_Sanctuary                novos     0  acrescentados    0  fora     8
+  310010000 Karamatis1                       novos     2  acrescentados    0  fora     0
+  310020000 Karamatis2                       novos     2  acrescentados    0  fora     0
+  310030000 Aerdina                          novos     2  acrescentados    0  fora     0
+  310040000 Geranaia                         novos     1  acrescentados    0  fora     0
+  310050000 Aetherogenetics_Lab              novos     1  acrescentados    0  fora     6
+  310070000 Sliver_of_Darkness               novos     1  acrescentados    0  fora     0
+  310080000 Sanctum_Underground_Arena        novos     1  acrescentados    0  fora     0
+  310090000 Indratu_Fortress                 novos     1  acrescentados    0  fora     2
+  310100000 Azoturan_Fortress                novos     2  acrescentados    0  fora     2
+  310110000 Theobomos_Lab                    novos    12  acrescentados    0  fora     9
+  320010000 Ataxiar1                         novos    24  acrescentados    4  fora     0
+  320040000 Nidalber                         novos     1  acrescentados    0  fora     0
+  320050000 Sky_Temple_Interior              novos     1  acrescentados    0  fora     0
+  320080000 Draupnir_Cave                    novos     3  acrescentados    0  fora    30
+  320100000 Fire_Temple                      novos     4  acrescentados    1  fora     7
+  320110000 Alquimia_Research_Center         novos     2  acrescentados    0  fora    10
+  320130000 Adma_Stronghold                  novos    14  acrescentados    3  fora    16
+  320140000 Ataxiar3                         novos    38  acrescentados    0  fora     0
+  320150000 Padmarashkas_Cave                novos    66  acrescentados    0  fora     0
+  390000000 Land_of_Shadows                  novos     0  acrescentados    0  fora    38
+  400010000 Reshanta                         novos   311  acrescentados   14  fora  1579
+  600010000 Silentera_Canyon                 novos   125  acrescentados    2  fora     5
+  800010000 Apheta_Beluslan                  novos     0  acrescentados    0  fora    17
+  800030000 Laphsaran                        novos     0  acrescentados    0  fora    36
+  800040000 Tiamaranta_Mesa                  novos     0  acrescentados    0  fora    91
+  800070000 Balic_Treasury                   novos     0  acrescentados    0  fora     1
+  800090000 Balic_Treasury_of_Torment        novos     0  acrescentados    0  fora     1
+
+== fora, por motivo ==
+  cerco                                                        1471
+  a menos de 30 m de um spot do mesmo npc                      1097
+  condicao de fase (c2..cN)                                    318
+  condicao de evento/horario/script                            165
+  condicao c1 que e alternativa no mapa                        93
+  sem npc_template                                             80
+  probabilidade em npc que ja existe sem pool                  20
+
+== fora, detalhado por mapa (o cerco e as condicoes sao os proximos passos) ==
+  110010000 Sanctum
+         15  a menos de 30 m de um spot do mesmo npc
+          1  condicao Day
+          1  condicao Time
+          1  condicao Night
+          1  condicao c2
+  110070000 Kaisinel_Academy
+  120010000 Pandaemonium
+         12  a menos de 30 m de um spot do mesmo npc
+          1  condicao Time
+          1  condicao c2
+  120080000 Marchutan_Priory
+  210010000 Poeta
+        432  a menos de 30 m de um spot do mesmo npc
+          2  condicao LF1_Night
+  210020000 Eltnen
+        128  a menos de 30 m de um spot do mesmo npc
+         24  condicao Day
+          2  condicao Night
+  210030000 Verteron
+         30  a menos de 30 m de um spot do mesmo npc
+          2  condicao Day
+  210040000 Heiron
+         22  a menos de 30 m de um spot do mesmo npc
+          2  condicao Night
+          1  condicao LF3_Rain
+          1  condicao LF3_FObj_Day
+  210050000 Inggison
+         26  cerco (abyss_info ALi_1)
+         26  cerco (abyss_info ADa_1)
+         23  a menos de 30 m de um spot do mesmo npc
+         14  cerco (abyss_info ADr_1)
+          9  condicao GHA
+          5  condicao WindBox_On
+          3  condicao Event1
+          3  condicao Event2
+          2  cerco (abyss_info ALi_2)
+          2  cerco (abyss_info ALi_3)
+          2  cerco (abyss_info ALi_4)
+          2  cerco (abyss_info ALi_5)
+          2  cerco (abyss_info ADa_2)
+          2  cerco (abyss_info ADa_3)
+          2  cerco (abyss_info ADa_4)
+          2  cerco (abyss_info ADa_5)
+          2  condicao A
+          2  cerco (abyss_info Adr_1)
+          2  cerco (abyss_info Adr_2)
+          2  cerco (abyss_info Adr_3)
+          1  condicao Night
+          1  condicao Day
+          1  sem npc_template (780188)
+          1  sem npc_template (780186)
+          1  condicao c2
+  210060000 Theobomos
+          6  a menos de 30 m de um spot do mesmo npc
+          4  condicao Day
+          3  condicao Night
+  210070000 Telos
+  210080000 Lacrima
+  220010000 Ishalgen
+         68  a menos de 30 m de um spot do mesmo npc
+  220020000 Morheim
+         24  a menos de 30 m de um spot do mesmo npc
+          4  condicao Day
+          4  condicao Night
+          1  condicao DF2_Night
+          1  condicao DF2_night_S
+          1  condicao DF2_Day_P
+  220030000 Altgard
+         75  a menos de 30 m de um spot do mesmo npc
+          1  condicao Day
+  220040000 Beluslan
+         18  a menos de 30 m de um spot do mesmo npc
+          1  condicao Freki
+          1  condicao Hild
+          1  condicao Byggvir
+  220050000 Brusthonin
+          4  condicao Day
+          4  condicao Night
+          4  a menos de 30 m de um spot do mesmo npc
+  220070000 Gelkmaros
+         26  cerco (abyss_info ALi_1)
+         26  cerco (abyss_info ADa_1)
+         26  a menos de 30 m de um spot do mesmo npc
+         15  cerco (abyss_info ADr_1)
+          6  condicao Night
+          6  condicao GH
+          4  condicao Day
+          2  cerco (abyss_info ALi_2)
+          2  cerco (abyss_info ALi_3)
+          2  cerco (abyss_info ALi_4)
+          2  cerco (abyss_info ALi_5)
+          2  cerco (abyss_info ADa_2)
+          2  cerco (abyss_info ADa_3)
+          2  cerco (abyss_info ADa_4)
+          2  cerco (abyss_info ADa_5)
+          2  cerco (abyss_info ALi)
+          2  cerco (abyss_info ADa)
+          2  cerco (abyss_info ADr)
+          1  condicao Shield_Spawn1
+          1  sem npc_template (780188)
+          1  condicao A
+          1  sem npc_template (780186)
+          1  condicao Shield_Spawn3
+          1  condicao Shield_Spawn2
+          1  condicao Shield_Spawn4
+          1  condicao c2
+          1  condicao ON
+  220080000 Telos
+  220090000 Lacrima
+  300040000 Dark_Poeta
+          2  a menos de 30 m de um spot do mesmo npc
+          1  condicao IDLF1_Boss
+          1  condicao IDLF1_GATE
+          1  condicao EXIT
+  300060000 Sulfur_Tree_Nest
+  300070000 Chamber_of_Roah
+  300100000 Steel_Rake
+  300110000 Dredgion
+  300150000 Udas_Temple
+          1  a menos de 30 m de um spot do mesmo npc
+  300160000 Lower_Udas_Temple
+  300170000 Beshmundir_Temple
+          1  a menos de 30 m de um spot do mesmo npc
+  300190000 Talocs_Hollow
+          2  condicao IDElim_Wind
+          1  condicao AION_2
+          1  condicao sensory
+          1  condicao AION
+          1  condicao Kill
+          1  condicao spawn_h
+          1  condicao Rush
+  300210000 Chantra_Dredgion
+         13  a menos de 30 m de um spot do mesmo npc
+          1  condicao teleport_7
+          1  condicao teleport_4
+          1  condicao teleport_6
+          1  condicao teleport_5
+  300220000 Abyssal_Splinter
+          2  a menos de 30 m de um spot do mesmo npc
+          1  condicao C2
+  300230000 Kromedes_Trial
+  300250000 Esoterrace
+         15  condicao Type_02
+          4  probabilidade em npc que ja existe sem pool
+          3  condicao Type_01
+          2  condicao Spawn_On
+          1  condicao C2
+          1  condicao Type_2
+          1  a menos de 30 m de um spot do mesmo npc
+  300280000 Rentus_Base
+         25  sem npc_template (220793)
+          6  sem npc_template (220928)
+          4  sem npc_template (220931)
+          2  sem npc_template (220927)
+          2  sem npc_template (220906)
+          1  a menos de 30 m de um spot do mesmo npc
+  300350000 Arena_of_Chaos
+          2  a menos de 30 m de um spot do mesmo npc
+  300360000 Arena_of_Discipline
+          1  a menos de 30 m de um spot do mesmo npc
+  300420000 Chaos_Training_Grounds
+          2  a menos de 30 m de um spot do mesmo npc
+  300430000 Discipline_Training_Grounds
+  300440000 Terath_Dredgion
+  300450000 Arena_of_Harmony
+  300460000 Steel_Rake_Cabin
+          4  condicao c1 que e alternativa neste mapa
+          4  condicao c2
+  300480000 Sealed_Danuar_Mysticarium
+          2  sem npc_template (800484)
+  300500000 Tempus
+          1  condicao c2
+  300510000 Tiamat_Stronghold
+          2  condicao c2
+  300520000 Dragon_Lords_Refuge
+  300540000 The_Eternal_Bastion
+  300550000 Arena_of_Glory
+  300560000 Shugo_Imperial_Tomb
+  300590000 Ophidan_Bridge
+          3  condicao despawn
+          1  condicao seal
+          1  condicao exit
+          1  condicao dust2
+          1  condicao dust1
+          1  condicao nmddie
+          1  condicao shield
+  300600000 Unstable_Abyssal_Splinter
+  300610000 Raksang_Ruins
+          1  condicao c2
+  300620000 Occupied_Rentus_Base
+  300630000 Anguished_Dragon_Lords_Refuge
+          8  condicao C2
+          3  condicao C3
+          3  condicao C4
+          3  sem npc_template (220264)
+          3  sem npc_template (220263)
+          2  sem npc_template (220262)
+          2  sem npc_template (220265)
+          1  condicao C5
+          1  condicao C6
+          1  condicao C7
+          1  condicao C8
+          1  condicao C9
+          1  condicao C10
+          1  condicao C11
+          1  condicao C12
+          1  condicao C13
+          1  condicao C14
+          1  condicao C15
+          1  condicao C16
+          1  sem npc_template (220266)
+          1  sem npc_template (220257)
+          1  sem npc_template (220261)
+  300660000 Burning_Blood_Fortress
+          6  condicao c1 que e alternativa neste mapa
+          3  condicao c2
+  300670000 Dokkaebi_Realm
+          7  condicao c1 que e alternativa neste mapa
+          3  condicao c2
+          2  condicao c3
+  300700000 The_Hexway
+          4  condicao c1 que e alternativa neste mapa
+          4  condicao c2
+          2  condicao c5
+          2  condicao c6
+          1  condicao c3
+          1  condicao c4
+  300800000 Infinity_Shard
+  301000000 Tiamats_Sanctuary
+          6  condicao WindBox_On
+          2  condicao C2
+  310010000 Karamatis1
+  310020000 Karamatis2
+  310030000 Aerdina
+  310040000 Geranaia
+  310050000 Aetherogenetics_Lab
+          6  a menos de 30 m de um spot do mesmo npc
+  310070000 Sliver_of_Darkness
+  310080000 Sanctum_Underground_Arena
+  310090000 Indratu_Fortress
+          2  a menos de 30 m de um spot do mesmo npc
+  310100000 Azoturan_Fortress
+          2  a menos de 30 m de um spot do mesmo npc
+  310110000 Theobomos_Lab
+          9  a menos de 30 m de um spot do mesmo npc
+  320010000 Ataxiar1
+  320040000 Nidalber
+  320050000 Sky_Temple_Interior
+  320080000 Draupnir_Cave
+         30  a menos de 30 m de um spot do mesmo npc
+  320100000 Fire_Temple
+          7  a menos de 30 m de um spot do mesmo npc
+  320110000 Alquimia_Research_Center
+         10  a menos de 30 m de um spot do mesmo npc
+  320130000 Adma_Stronghold
+         16  probabilidade em npc que ja existe sem pool
+  320140000 Ataxiar3
+  320150000 Padmarashkas_Cave
+  390000000 Land_of_Shadows
+         27  condicao c1 que e alternativa neste mapa
+         11  condicao c2
+  400010000 Reshanta
+        259  cerco (abyss_info ALi)
+        251  cerco (abyss_info ADa)
+        232  cerco (abyss_info ADr)
+        122  a menos de 30 m de um spot do mesmo npc
+         98  cerco (abyss_info ADr_1)
+         74  cerco (abyss_info ADr_2)
+         74  cerco (abyss_info ADr_3)
+         74  cerco (abyss_info ADr_4)
+         74  cerco (abyss_info ADr_5)
+         45  condicao c1 que e alternativa neste mapa
+         42  condicao c2
+         42  condicao c3
+         42  condicao c4
+         42  condicao c5
+         42  condicao c6
+         24  cerco (abyss_info ALi_1)
+         24  cerco (abyss_info ADa_1)
+          2  sem npc_template (276309)
+          2  sem npc_template (276310)
+          2  sem npc_template (276311)
+          2  sem npc_template (276409)
+          2  sem npc_template (276410)
+          2  sem npc_template (276411)
+          2  sem npc_template (276212)
+          2  sem npc_template (276213)
+          2  sem npc_template (276214)
+  600010000 Silentera_Canyon
+          2  sem npc_template (780187)
+          1  sem npc_template (800479)
+          1  sem npc_template (780190)
+          1  condicao c2
+  800010000 Apheta_Beluslan
+          5  cerco (abyss_info ALi_1)
+          5  cerco (abyss_info ADa_1)
+          2  cerco (abyss_info A_Li)
+          2  cerco (abyss_info A_Da)
+          2  cerco (abyss_info A_Dr)
+          1  cerco (abyss_info ADr_3)
+  800030000 Laphsaran
+         16  cerco (abyss_info A_Li)
+         16  cerco (abyss_info A_Da)
+          2  condicao c2
+          2  condicao c3
+  800040000 Tiamaranta_Mesa
+         23  cerco (abyss_info ALi)
+         23  cerco (abyss_info ADa)
+         15  cerco (abyss_info ADr)
+          5  condicao C2
+          5  condicao c2
+          5  condicao c3
+          5  condicao c4
+          5  condicao c5
+          5  condicao c6
+  800070000 Balic_Treasury
+          1  condicao c2
+  800090000 Balic_Treasury_of_Torment
+          1  condicao C2

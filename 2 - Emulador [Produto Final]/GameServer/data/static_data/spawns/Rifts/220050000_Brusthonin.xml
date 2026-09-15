@@ -110,7 +110,7 @@
 			<state_type state="PEACE">
 				<!-- Surt -->
 				<spawn npc_id="205150" respawn_time="295">
-					<spot x="1402.37" y="1907.99" z="48.2008" h="42" />
+					<spot x="1402.4091" y="1907.9341" z="48.2008" h="42" />
 				</spawn>
 			</state_type>
 		</vortex_spawn>

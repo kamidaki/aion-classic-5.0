@@ -3,7 +3,7 @@
 	<spawn_map map_id="320080000">
 		<!-- Artifact of Sealing -->
 		<spawn npc_id="700514">
-			<spot x="875.48767" y="533.40948" z="329.71783" static_id="262"/>
+			<spot x="875.3906" y="533.3828" z="329.71783" static_id="262"/>
 		</spawn>
 		<!-- Bakarma Berseker -->
 		<spawn npc_id="213557">
@@ -535,21 +535,21 @@
 		</spawn>
 		<!-- Balaur Aether-consuming Stone -->
 		<spawn npc_id="700295">
-			<spot x="411.11749" y="640.0708" z="447.2366" static_id="9"/>
-			<spot x="430.09009" y="531.85992" z="453.92999" static_id="10"/>
-			<spot x="438.83939" y="583.87439" z="454.53165" static_id="6"/>
-			<spot x="481.43866" y="561.33923" z="443.6196" static_id="8"/>
-			<spot x="501.47983" y="497.26285" z="447.00479" static_id="11"/>
-			<spot x="506.54187" y="674.23779" z="447.25797" static_id="5"/>
-			<spot x="551.70758" y="643.90918" z="451.33875" static_id="7"/>
-			<spot x="552.46368" y="564.60846" z="446.25189" static_id="13"/>
+			<spot x="411.03" y="639.98" z="447.2366" static_id="9"/>
+			<spot x="430.6737" y="532.0216" z="453.92999" static_id="10"/>
+			<spot x="439.32" y="583.7" z="454.53165" static_id="6"/>
+			<spot x="481.4597" y="561.4471" z="443.6196" static_id="8"/>
+			<spot x="501.4748" y="497.345" z="447.00479" static_id="11"/>
+			<spot x="506.5623" y="674.3552" z="447.25797" static_id="5"/>
+			<spot x="551.6898" y="643.95" z="451.33875" static_id="7"/>
+			<spot x="552.5814" y="564.5331" z="446.25189" static_id="13"/>
 		</spawn>
 		<!-- Balaur Bio Weapon -->
 		<spawn npc_id="700354">
-			<spot x="479.07117" y="593.66254" z="516.32574" static_id="145"/>
-			<spot x="480.97903" y="587.92255" z="516.05609" static_id="1"/>
-			<spot x="483.68723" y="595.40387" z="515.97339" static_id="3"/>
-			<spot x="485.862" y="590.58997" z="516.65887" static_id="2"/>
+			<spot x="478.4982" y="593.9934" z="516.32574" static_id="145"/>
+			<spot x="480.8548" y="587.7586" z="516.05609" static_id="1"/>
+			<spot x="484.0496" y="595.8392" z="515.97339" static_id="3"/>
+			<spot x="486.3942" y="590.3619" z="516.65887" static_id="2"/>
 		</spawn>
 		<!-- Beautiful Lakshmi -->
 		<spawn npc_id="213778">
@@ -557,7 +557,7 @@
 		</spawn>
 		<!-- Bloodfury Booster -->
 		<spawn npc_id="700296">
-			<spot x="322.26001" y="693.28003" z="597.27002" static_id="51"/>
+			<spot x="322.2625" y="693.4002" z="597.27002" static_id="51"/>
 		</spawn>
 		<!-- Bloodlock's Minion -->
 		<spawn npc_id="213449">
@@ -606,11 +606,11 @@
 		</spawn>
 		<!-- Draupnir Cave Exit -->
 		<spawn npc_id="700371">
-			<spot x="489.54996" y="363.84995" z="622.19507" static_id="52"/>
+			<spot x="489.6927" y="363.9688" z="622.19507" static_id="52"/>
 		</spawn>
 		<!-- Fafner -->
 		<spawn npc_id="204807">
-			<spot x="488.877" y="379.081" z="621.866" h="30"/>
+			<spot x="489.7011" y="380.5246" z="621.866" h="30"/>
 		</spawn>
 		<!-- Fetid Earth Spirit -->
 		<spawn npc_id="213602">
@@ -657,14 +657,14 @@
 		</spawn>
 		<!-- Man Locked in the Wall -->
 		<spawn npc_id="700350">
-			<spot x="315.85342" y="441.27106" z="516.94556" static_id="131"/>
-			<spot x="333.97842" y="410.89606" z="514.19556" static_id="132"/>
-			<spot x="340.72842" y="405.77106" z="512.57056" static_id="128"/>
-			<spot x="361.97842" y="458.89606" z="509.69556" static_id="135"/>
-			<spot x="376.35342" y="427.77106" z="511.32056" static_id="134"/>
-			<spot x="376.97842" y="420.02106" z="509.32056" static_id="133"/>
-			<spot x="378.11249" y="469.62558" z="509.82962" static_id="130"/>
-			<spot x="381.11188" y="457.51221" z="509.6763" static_id="126"/>
+			<spot x="316.0561" y="440.7867" z="516.94556" static_id="131"/>
+			<spot x="334.6328" y="410.459" z="514.19556" static_id="132"/>
+			<spot x="341.1045" y="406.151" z="512.57056" static_id="128"/>
+			<spot x="361.7875" y="458.7711" z="509.69556" static_id="135"/>
+			<spot x="375.9533" y="427.4284" z="511.32056" static_id="134"/>
+			<spot x="376.9784" y="420.0211" z="509.32056" static_id="133"/>
+			<spot x="377.7542" y="469.189" z="509.82962" static_id="130"/>
+			<spot x="380.6899" y="457.872" z="509.6763" static_id="126"/>
 		</spawn>
 		<!-- Murk Spirit -->
 		<spawn npc_id="213600">
@@ -763,6 +763,18 @@
 		<!-- Vicious Energy -->
 		<spawn npc_id="213436">
 			<spot x="218.769" y="673.911" z="523.383" h="80"/>
+		</spawn>
+		<!-- combat power booster engine -->
+		<spawn npc_id="700353">
+			<spot x="298.2465" y="699.1468" z="603.8534" h="0"/>
+		</spawn>
+		<!-- Lair of the Drake Rift -->
+		<spawn npc_id="730542">
+			<spot x="417.7184" y="580.9218" z="602.1221" h="0"/>
+		</spawn>
+		<!-- Omne Solum (Draupnir Cave) -->
+		<spawn npc_id="730536">
+			<spot x="765.3085" y="435.3258" z="322.1684" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

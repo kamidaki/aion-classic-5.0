@@ -621,15 +621,15 @@
 		</spawn>
 		<!-- Balaur Operation Order -->
 		<spawn npc_id="730192">
-			<spot x="823.561" y="555.299" z="118.974" h="71" static_id="136"/>
+			<spot x="823.58" y="555.28" z="118.974" h="71" static_id="136"/>
 		</spawn>
 		<!-- Balaur Supply Box -->
 		<spawn npc_id="700510">
-			<spot x="210.724" y="1217.95" z="171.655" h="4"/>
+			<spot x="216.2" y="1219.0601" z="170.8625" h="4"/>
 		</spawn>
 		<!-- Balic Materials Converter -->
 		<spawn npc_id="730212">
-			<spot x="246.934" y="408.861" z="104.13" h="117" static_id="95"/>
+			<spot x="246.91" y="408.9" z="104.13" h="117" static_id="95"/>
 		</spawn>
 		<!-- Black Branch Dragrint -->
 		<spawn npc_id="214869">
@@ -662,7 +662,7 @@
 		</spawn>
 		<!-- Camouflaging Stone Wall -->
 		<spawn npc_id="700516">
-			<spot x="166" y="415" z="132.749" h="76" static_id="142"/>
+			<spot x="165.83" y="415.84" z="132.749" h="76" static_id="142"/>
 		</spawn>
 		<!-- Controller Protection Device -->
 		<spawn npc_id="281121">
@@ -673,19 +673,19 @@
 		</spawn>
 		<!-- Controller Protection Device -->
 		<spawn npc_id="281350">
-			<spot x="231.023" y="414.093" z="103.806" h="55"/>
+			<spot x="231.023" y="414.0929" z="103.806" h="55"/>
 		</spawn>
 		<!-- Controller Protection Device -->
 		<spawn npc_id="281348">
-			<spot x="241.321" y="428.049" z="103.806" h="87"/>
+			<spot x="241.3209" y="428.049" z="103.806" h="87"/>
 		</spawn>
 		<!-- Controller Protection Device -->
 		<spawn npc_id="281349">
-			<spot x="243.092" y="416.024" z="103.806" h="46"/>
+			<spot x="243.0921" y="416.0244" z="103.806" h="46"/>
 		</spawn>
 		<!-- Controller Protection Device -->
 		<spawn npc_id="281347">
-			<spot x="228.541" y="427.384" z="103.806" h="62"/>
+			<spot x="228.541" y="427.3841" z="103.806" h="62"/>
 		</spawn>
 		<!-- Drana -->
 		<spawn npc_id="700520">
@@ -713,12 +713,12 @@
 		</spawn>
 		<!-- Drana Lump -->
 		<spawn npc_id="281178" respawn_time="60">
-			<spot x="249.02" y="1310.59" z="149.31" h="32"/>
-			<spot x="261.423" y="1413.46" z="155.787" h="55"/>
-			<spot x="267.671" y="1162.31" z="147.946" h="102"/>
-			<spot x="335.006" y="1171.01" z="150.833" h="12"/>
-			<spot x="339.661" y="1280.07" z="153.306" h="108"/>
-			<spot x="344.383" y="1404.41" z="152.274" h="20"/>
+			<spot x="249.0203" y="1310.5864" z="149.31" h="32"/>
+			<spot x="261.4234" y="1413.4564" z="155.787" h="55"/>
+			<spot x="267.6708" y="1162.3098" z="147.946" h="102"/>
+			<spot x="335.0064" y="1171.0132" z="150.833" h="12"/>
+			<spot x="339.661" y="1280.072" z="153.306" h="108"/>
+			<spot x="344.3829" y="1404.4099" z="152.274" h="20"/>
 		</spawn>
 		<!-- Emergency Generator -->
 		<spawn npc_id="214897">
@@ -726,7 +726,7 @@
 		</spawn>
 		<!-- Generator Core Controller -->
 		<spawn npc_id="281210">
-			<spot x="247.495" y="337.923" z="121.618" h="98"/>
+			<spot x="247.4951" y="337.9233" z="121.618" h="98"/>
 		</spawn>
 		<!-- Huge Drana -->
 		<spawn npc_id="700518">
@@ -1043,7 +1043,25 @@
 		</spawn>
 		<!-- Wounded Scar -->
 		<spawn npc_id="214871">
-			<spot x="679.61" y="1193.51" z="143.42218" h="14" />
+			<spot x="679.6033" y="1193.5363" z="143.42218" h="14" />
+		</spawn>
+		<!-- controller protection device -->
+		<spawn npc_id="281118">
+			<spot x="228.5862" y="427.661" z="105" h="0"/>
+			<spot x="228.5862" y="427.661" z="105" h="0"/>
+		</spawn>
+		<!-- controller protection device -->
+		<spawn npc_id="281119">
+			<spot x="243.4608" y="428.6632" z="105" h="0"/>
+		</spawn>
+		<!-- controller protection device -->
+		<spawn npc_id="281120">
+			<spot x="243.4066" y="415.7753" z="105" h="0"/>
+			<spot x="243.4066" y="415.7753" z="105" h="0"/>
+		</spawn>
+		<!-- poeta live body experiment white paper -->
+		<spawn npc_id="730193">
+			<spot x="140.25" y="409.08" z="136" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

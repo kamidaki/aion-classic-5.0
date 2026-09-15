@@ -31,11 +31,11 @@
 		</spawn>
 		<!-- [Supply] Manastone: Accuracy +20 -->
 		<spawn npc_id="803174" respawn_time="295">
-			<spot x="259.267" y="264.423" z="89.3" h="0"/>
+			<spot x="259.267" y="264.423" z="85.5986" h="0"/>
 		</spawn>
 		<!-- [Supply] Manastone: Accuracy +22 -->
 		<spawn npc_id="803175" respawn_time="295">
-			<spot x="269.873" y="253.817" z="89.3" h="0"/>
+			<spot x="269.873" y="253.817" z="85.625" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

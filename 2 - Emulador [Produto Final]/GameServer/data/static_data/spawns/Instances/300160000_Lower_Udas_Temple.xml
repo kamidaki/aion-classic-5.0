@@ -126,7 +126,7 @@
 		</spawn>
 		<!-- Lower Udas Temple Exit -->
 		<spawn npc_id="730273">
-			<spot x="1145.629" y="272.979" z="115.563" static_id="310"/>
+			<spot x="1145.629" y="272.9786" z="115.563" static_id="310"/>
 		</spawn>
 		<!-- Mystic Chakra -->
 		<spawn npc_id="215849">
@@ -178,7 +178,7 @@
 		</spawn>
 		<!-- Petralith Energy Source -->
 		<spawn npc_id="700566">
-			<spot x="449.364" y="1510.939" z="189.327" static_id="138"/>
+			<spot x="449.3638" y="1510.939" z="189.327" static_id="138"/>
 		</spawn>
 		<!-- Pyre Soul -->
 		<spawn npc_id="215845">
@@ -678,6 +678,14 @@
 		<!-- Hidden Library Exit -->
 		<spawn npc_id="700603">
 			<spot x="750.2999" y="947.5026" z="149.2838" h="45" static_id="45"/>
+		</spawn>
+		<!-- randolf the great -->
+		<spawn npc_id="281761" respawn_time="295">
+			<spot x="744.9698" y="889.726" z="154" h="0"/>
+		</spawn>
+		<!-- str_sen_idtemple_sensoryarea_q30011 -->
+		<spawn npc_id="206105">
+			<spot x="1641.6322" y="978.6708" z="110" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

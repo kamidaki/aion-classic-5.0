@@ -236,7 +236,7 @@
 		</spawn>
 		<!-- IDAB1_SensoryArea_Timer_D -->
 		<spawn npc_id="206090">
-			<spot x="265.306" y="349.738" z="104.642" h="66"/>
+			<spot x="265.3064" y="349.7378" z="104.642" h="66"/>
 		</spawn>
 		<!-- Pesky Drakie -->
 		<spawn npc_id="214803">

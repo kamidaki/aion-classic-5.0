@@ -7,62 +7,62 @@
 		</spawn>
 		<!-- Ghost Stories: Chapter 1 -->
 		<spawn npc_id="730588" respawn_time="295">
-			<spot x="491.9104" y="567.5641" z="318.2252" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="491.9104" y="567.5641" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 4 -->
 		<spawn npc_id="730589" respawn_time="295">
-			<spot x="496.1471" y="572.5608" z="317.5057" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="496.1471" y="572.5608" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 11 -->
 		<spawn npc_id="730590" respawn_time="295">
-			<spot x="503.7312" y="580.5718" z="317.6297" h="0"/>
+			<spot x="503.7312" y="580.5718" z="316.9107" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 17 -->
 		<spawn npc_id="730591" respawn_time="295">
-			<spot x="499.9378" y="567.6495" z="316.3284" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="499.9378" y="567.6495" z="315.5" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 23 -->
 		<spawn npc_id="730592" respawn_time="295">
-			<spot x="497.4352" y="566.8707" z="317.4042" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="497.4352" y="566.8707" z="315.5706" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 52 -->
 		<spawn npc_id="730593" respawn_time="295">
-			<spot x="497.3476" y="574.5303" z="318.1331" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="497.3476" y="574.5303" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 68 -->
 		<spawn npc_id="730594" respawn_time="295">
-			<spot x="503.5935" y="577.314" z="317.7029" h="0"/>
+			<spot x="503.5935" y="577.314" z="317" h="0"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 87 -->
 		<spawn npc_id="730595" respawn_time="295">
-			<spot x="493.6558" y="569.3291" z="317.5676" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
+			<spot x="493.6558" y="569.3291" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="2"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 94 -->
 		<spawn npc_id="730596" respawn_time="295">
-			<spot x="500.8026" y="580.2286" z="317.7638" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="1"/>
+			<spot x="500.8026" y="580.2286" z="317" h="0" walker_id="85B8D5F65D3D43006E0FAEE543FE275F839A696D" walker_index="1"/>
 		</spawn>
 		<!-- Ghost Stories: Chapter 98 -->
 		<spawn npc_id="730597" respawn_time="295">
-			<spot x="507.5293" y="583.1168" z="317.6545" h="0"/>
+			<spot x="507.5293" y="583.1168" z="316.9448" h="0"/>
 		</spawn>
 		<!-- Dokkaebi Realm Exit -->
 		<spawn npc_id="801744" respawn_time="295">
-			<spot x="152.2915" y="680.9398" z="300.5942" h="0"/>
-			<spot x="983.2183" y="305.9543" z="306.0904" h="0" walker_id="A2BAC7D7CC3FFB037C5621298018A551B18DC2FD" walker_index="1"/>
+			<spot x="152.2915" y="680.9398" z="297.75" h="0"/>
+			<spot x="983.2183" y="305.9543" z="303.6494" h="0" walker_id="A2BAC7D7CC3FFB037C5621298018A551B18DC2FD" walker_index="1"/>
 		</spawn>
 		<!-- Archon Battle Officer's Turquoise Earring -->
 		<spawn npc_id="801762" respawn_time="295">
-			<spot x="325.3193" y="753.8024" z="317.5152" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
-			<spot x="325.3193" y="753.8024" z="317.5152" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
+			<spot x="325.3193" y="753.8024" z="316.2405" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
+			<spot x="325.3193" y="753.8024" z="316.2405" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
 			<spot x="523.2012" y="539.5525" z="315.5763" h="0"/>
-			<spot x="404.3961" y="582.3299" z="288.5712" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
-			<spot x="404.3961" y="582.3299" z="288.5712" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
-			<spot x="445.1414" y="617.9326" z="314.7555" h="0"/>
+			<spot x="404.3961" y="582.3299" z="287.2611" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
+			<spot x="404.3961" y="582.3299" z="287.2611" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
+			<spot x="445.1414" y="617.9326" z="312.4337" h="0"/>
 		</spawn>
 		<!-- Humble Ancestors' Table -->
 		<spawn npc_id="801763" respawn_time="295">
-			<spot x="325.3193" y="753.8024" z="317.5152" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
-			<spot x="404.3961" y="582.3299" z="288.5712" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
+			<spot x="325.3193" y="753.8024" z="316.2405" h="0" walker_id="88FBB06B52C6453DEBA3CB290296C9CEBD07B644" walker_index="6"/>
+			<spot x="404.3961" y="582.3299" z="287.2611" h="0" walker_id="63477FFD31E41277780CA96462994A5E4ADDC67E" walker_index="7"/>
 		</spawn>
 		<!-- Sealed Bhulrasan Treasure Chest -->
 		<spawn npc_id="801766" respawn_time="295">
@@ -74,7 +74,7 @@
 		</spawn>
 		<!-- Makdong -->
 		<spawn npc_id="801830" respawn_time="295">
-			<spot x="504.3736" y="313.387" z="302.3796" h="0" walker_id="62E1417E8675F3710FA2AB0A122F49C793529EC4" walker_index="5"/>
+			<spot x="504.3736" y="313.387" z="301.75" h="0" walker_id="62E1417E8675F3710FA2AB0A122F49C793529EC4" walker_index="5"/>
 		</spawn>
 		<!-- Started Janggi Board -->
 		<spawn npc_id="801838" respawn_time="295">
@@ -82,7 +82,7 @@
 		</spawn>
 		<!-- Dokkaebi Hat -->
 		<spawn npc_id="801840" respawn_time="295">
-			<spot x="919.715" y="298.2711" z="302.7763" h="0" walker_id="A2BAC7D7CC3FFB037C5621298018A551B18DC2FD" walker_index="4"/>
+			<spot x="919.715" y="298.2711" z="301.9679" h="0" walker_id="A2BAC7D7CC3FFB037C5621298018A551B18DC2FD" walker_index="4"/>
 		</spawn>
 	</spawn_map>
 </spawns>

@@ -3,15 +3,15 @@
 	<spawn_map map_id="320030000">
 		<!-- Dimension Exit -->
 		<spawn npc_id="700184">
-			<spot x="275.738" y="162.703" z="205.332" static_id="17"/>
+			<spot x="275.7379" y="162.7033" z="205.332" static_id="17"/>
 		</spawn>
 		<!-- Abyss Gate -->
 		<spawn npc_id="700141">
-			<spot x="250.91148" y="270.45502" z="230.087" static_id="8"/>
+			<spot x="250.9115" y="270.455" z="230.087" static_id="8"/>
 		</spawn>
 		<!-- Abyss Gate Guardian Stone -->
 		<spawn npc_id="700140">
-			<spot x="261.418" y="229.531" z="213.918" static_id="75"/>
+			<spot x="261.4184" y="229.5311" z="213.918" static_id="75"/>
 		</spawn>
 		<!-- Draconute Vaegir -->
 		<spawn npc_id="211625">

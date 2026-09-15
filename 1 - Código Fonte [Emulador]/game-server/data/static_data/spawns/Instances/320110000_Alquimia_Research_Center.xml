@@ -3,7 +3,7 @@
 	<spawn_map map_id="320110000">
 		<!-- A Perfect Human -->
 		<spawn npc_id="730112">
-			<spot x="405.65979" y="483.00708" z="207.66235" static_id="456"/>
+			<spot x="405.9215" y="484.0152" z="207.66235" static_id="456"/>
 		</spawn>
 		<!-- Aetherogeneticist -->
 		<spawn npc_id="213949">
@@ -14,11 +14,11 @@
 		</spawn>
 		<!-- Alquimia Exit -->
 		<spawn npc_id="730111">
-			<spot x="610.08032" y="527.09961" z="199.75391" static_id="1"/>
+			<spot x="609.2126" y="527" z="199.75391" static_id="1"/>
 		</spawn>
 		<!-- Atla -->
 		<spawn npc_id="204815">
-			<spot x="440.236" y="487.107" z="206.735" h="22"/>
+			<spot x="440.2364" y="487.1071" z="206.735" h="22"/>
 		</spawn>
 		<!-- Consecrated Guardian -->
 		<spawn npc_id="213960">
@@ -111,7 +111,7 @@
 		</spawn>
 		<!-- IDDF3_lp_HiddenNPC_Q2669 -->
 		<spawn npc_id="204829">
-			<spot x="597.41" y="527.263" z="199.255" h="2"/>
+			<spot x="597.4103" y="527.2628" z="199.255" h="2"/>
 		</spawn>
 		<!-- Key Protector Nimue -->
 		<spawn npc_id="214034">
@@ -145,17 +145,17 @@
 		</spawn>
 		<!-- Remodeled Test Subject -->
 		<spawn npc_id="204810">
-			<spot x="424.36" y="487.628" z="206.735" h="67"/>
-			<spot x="448.867" y="486.872" z="206.735" h="115"/>
-			<spot x="456.422" y="511.393" z="206.736" h="47"/>
+			<spot x="424.3603" y="487.6279" z="206.735" h="67"/>
+			<spot x="448.8673" y="486.8718" z="206.735" h="115"/>
+			<spot x="456.4225" y="511.3929" z="206.736" h="47"/>
 		</spawn>
 		<!-- Research Center Cabinet -->
 		<spawn npc_id="700362">
-			<spot x="401.882" y="546.404" z="204.691" h="83" static_id="9"/>
+			<spot x="401.9654" y="547.7103" z="204.691" h="83" static_id="9"/>
 		</spawn>
 		<!-- Research Center Journal -->
 		<spawn npc_id="700363">
-			<spot x="448.60913" y="570.86133" z="206.48297" static_id="455"/>
+			<spot x="448.712" y="570.212" z="206.48297" static_id="455"/>
 		</spawn>
 		<!-- Research Center Power Generator -->
 		<spawn npc_id="700349">
@@ -283,7 +283,7 @@
 		</spawn>
 		<!-- Strahein -->
 		<spawn npc_id="204814">
-			<spot x="456.043" y="503.599" z="206.736" h="77"/>
+			<spot x="456.043" y="503.5993" z="206.736" h="77"/>
 		</spawn>
 		<!-- The Confession of a Lepharist -->
 		<spawn npc_id="730113">
@@ -301,6 +301,11 @@
 			<spot x="530.271" y="547.564" z="202.168" h="27"/>
 			<spot x="531.352" y="562.981" z="202.168" h="58"/>
 			<spot x="540.268" y="563.685" z="202.13" h="106"/>
+		</spawn>
+		<!-- Omne Solum (Alquimia Research Centre) -->
+		<spawn npc_id="730535">
+			<spot x="451.7704" y="510.5273" z="207.7852" h="0"/>
+			<spot x="451.7704" y="510.5273" z="207.7852" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

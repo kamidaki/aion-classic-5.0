@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="210070000">
+		<!-- Abandoned Bag -->
+		<spawn npc_id="800708" respawn_time="295">
+			<spot x="1922.375" y="775" z="228.9609" h="0"/>
+		</spawn>
+		<!-- Bonkers Shugo -->
+		<spawn npc_id="800678" respawn_time="295">
+			<spot x="1617.25" y="741" z="271.5469" h="0"/>
+		</spawn>
+		<!-- Cloudwing -->
+		<spawn npc_id="800714" respawn_time="295">
+			<spot x="1097.6801" y="1153.213" z="346.75" h="0"/>
+		</spawn>
+		<!-- Cracked Obelisk -->
+		<spawn npc_id="800713" respawn_time="295">
+			<spot x="1137.9899" y="1304.7644" z="289.2022" h="0"/>
+		</spawn>
+		<!-- Creta -->
+		<spawn npc_id="800658" respawn_time="295">
+			<spot x="1660.6989" y="1066.8796" z="256.0288" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Distorted World Elim -->
+		<spawn npc_id="800675" respawn_time="295">
+			<spot x="1470.1305" y="576.896" z="277" h="0"/>
+		</spawn>
+		<!-- Dyer -->
+		<spawn npc_id="800633" respawn_time="295">
+			<spot x="1081.4835" y="1253.7991" z="325.4073" h="0"/>
+		</spawn>
+		<!-- Felling Chainblades -->
+		<spawn npc_id="800715" respawn_time="295">
+			<spot x="1006.5951" y="944.7057" z="339.878" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Foamwort -->
+		<spawn npc_id="701413" respawn_time="295">
+			<spot x="1144.139" y="521.392" z="255.9936" h="0"/>
+			<spot x="1144.465" y="534.8774" z="257.5428" h="0"/>
+			<spot x="1146.3982" y="509.1532" z="254.597" h="0"/>
+			<spot x="1155.7498" y="494.3727" z="255.5784" h="0"/>
+			<spot x="1159.4695" y="553.2411" z="260.9021" h="0"/>
+			<spot x="1174.0056" y="552.2687" z="261.4254" h="0"/>
+			<spot x="1174.8709" y="580.2289" z="264.7482" h="0"/>
+			<spot x="1176.5275" y="483.9512" z="255.9463" h="0"/>
+			<spot x="1194.0247" y="487.7273" z="253.8564" h="0"/>
+			<spot x="1197.1862" y="585.5477" z="266.3876" h="0"/>
+			<spot x="1202.3486" y="568.7913" z="263.4521" h="0"/>
+			<spot x="1202.9677" y="485.7224" z="252.754" h="0"/>
+			<spot x="1203.6416" y="479.7367" z="253.258" h="0"/>
+			<spot x="1221.8561" y="578.1851" z="264.2641" h="0"/>
+			<spot x="1224.3186" y="479.2388" z="250.2876" h="0"/>
+			<spot x="1227.4752" y="595.226" z="269.3831" h="0"/>
+			<spot x="1227.6794" y="552.6733" z="264.4179" h="0"/>
+			<spot x="1239.2036" y="469.5982" z="247.5499" h="0"/>
+			<spot x="1242.9871" y="475.2755" z="247.4563" h="0"/>
+			<spot x="1253.9009" y="473.3151" z="246.1374" h="0"/>
+			<spot x="1255.4946" y="483.2765" z="245.8132" h="0"/>
+			<spot x="1259.0272" y="469.9538" z="245.4966" h="0"/>
+			<spot x="1262.9666" y="462.5148" z="244.8509" h="0"/>
+			<spot x="1282.9658" y="445.6392" z="241.1067" h="0"/>
+			<spot x="1286.1931" y="458.7095" z="242.4073" h="0"/>
+			<spot x="1298.4735" y="291.6815" z="235.2505" h="0"/>
+			<spot x="1299.9419" y="445.8412" z="241.2536" h="0"/>
+			<spot x="1301.5852" y="336.1658" z="234.1872" h="0"/>
+			<spot x="1302.1401" y="345.0267" z="235.1196" h="0"/>
+			<spot x="1303.3428" y="302.692" z="232.9961" h="0"/>
+			<spot x="1307.0946" y="429.8023" z="239.8189" h="0"/>
+			<spot x="1310.167" y="419.9534" z="239.7396" h="0"/>
+			<spot x="1310.2988" y="354.1586" z="236.5396" h="0"/>
+			<spot x="1311.7336" y="426.2876" z="239.643" h="0"/>
+			<spot x="1312.4701" y="396.3722" z="241.1017" h="0"/>
+			<spot x="1314.2836" y="447.7313" z="239.9813" h="0"/>
+			<spot x="1314.8425" y="287.3766" z="231.7286" h="0"/>
+			<spot x="1315.6516" y="415.1908" z="239.6756" h="0"/>
+			<spot x="1316.9994" y="276.0144" z="233.559" h="0"/>
+			<spot x="1318.1771" y="460.8859" z="238.1139" h="0"/>
+			<spot x="1328.6709" y="383.0625" z="238.632" h="0"/>
+			<spot x="1329.535" y="364.77" z="236.2315" h="0"/>
+			<spot x="1335.9108" y="390.6762" z="238.7207" h="0"/>
+			<spot x="1344.8599" y="261.9355" z="234.3952" h="0"/>
+			<spot x="1349.3975" y="272.2868" z="231.6465" h="0"/>
+			<spot x="1366.2942" y="268.2423" z="230.1526" h="0"/>
+			<spot x="1370.8014" y="250.064" z="232.5208" h="0"/>
+			<spot x="1386.8942" y="254.9244" z="230.8845" h="0"/>
+		</spawn>
+		<!-- Hyogemont -->
+		<spawn npc_id="800664" respawn_time="295">
+			<spot x="1699.8906" y="1006.9948" z="260.3963" h="0"/>
+		</spawn>
+		<!-- Iruinerk -->
+		<spawn npc_id="800725" respawn_time="295">
+			<spot x="1628.9369" y="1054.2107" z="250.7368" h="0"/>
+		</spawn>
+		<!-- Jadiel -->
+		<spawn npc_id="800632" respawn_time="295">
+			<spot x="1660.4639" y="1024.7098" z="250.2492" h="0"/>
+		</spawn>
+		<!-- Japarunerk -->
+		<spawn npc_id="800657" respawn_time="295">
+			<spot x="1118.1003" y="1244.032" z="324.25" h="0"/>
+		</spawn>
+		<!-- Junsu -->
+		<spawn npc_id="800665" respawn_time="295">
+			<spot x="1682.7152" y="1025.5175" z="260.3963" h="0"/>
+		</spawn>
+		<!-- Kiminseone -->
+		<spawn npc_id="800663" respawn_time="295">
+			<spot x="1662.9066" y="1072.3414" z="260.3963" h="0"/>
+		</spawn>
+		<!-- Lucing -->
+		<spawn npc_id="800667" respawn_time="295">
+			<spot x="1641.1291" y="1047.7715" z="260.3963" h="0"/>
+		</spawn>
+		<!-- Mailbox -->
+		<spawn npc_id="701412" respawn_time="295">
+			<spot x="1667.1047" y="1073.7239" z="252.744" h="0"/>
+		</spawn>
+		<!-- Marou -->
+		<spawn npc_id="800662" respawn_time="295">
+			<spot x="1646.7751" y="1027.4144" z="250.6165" h="0"/>
+		</spawn>
+		<!-- Misty Hollow Abyss Gate -->
+		<spawn npc_id="701414" respawn_time="295">
+			<spot x="1035.8071" y="1016.6547" z="348.9007" h="0" random_walk="8"/>
+		</spawn>
+		<!-- nania -->
+		<spawn npc_id="800534" respawn_time="295">
+			<spot x="1123.771" y="1307.7472" z="288.6092" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Near Abandoned Bag -->
+		<spawn npc_id="206248" respawn_time="295">
+			<spot x="1894.4247" y="787.9738" z="231.2762" h="0"/>
+		</spawn>
+		<!-- Near Ephegeon -->
+		<spawn npc_id="206247" respawn_time="295">
+			<spot x="1627.4205" y="1106.2722" z="241.5181" h="0"/>
+		</spawn>
+		<!-- Near Shugo Backpack -->
+		<spawn npc_id="206246" respawn_time="295">
+			<spot x="1524.9072" y="784.3376" z="278.5" h="0"/>
+		</spawn>
+		<!-- Near the Centre of Rumbling Reef -->
+		<spawn npc_id="206252" respawn_time="295">
+			<spot x="1019.9503" y="1038.5297" z="351.0283" h="0"/>
+		</spawn>
+		<!-- No. 10 -->
+		<spawn npc_id="800710" respawn_time="295">
+			<spot x="1731.25" y="1469.25" z="258.5" h="0"/>
+		</spawn>
+		<!-- No. 177 -->
+		<spawn npc_id="800648" respawn_time="295">
+			<spot x="1405" y="235.5" z="229.8438" h="0"/>
+		</spawn>
+		<!-- No. 190 -->
+		<spawn npc_id="800644" respawn_time="295">
+			<spot x="1402" y="203.5" z="227.5938" h="0"/>
+		</spawn>
+		<!-- No. 211 -->
+		<spawn npc_id="800647" respawn_time="295">
+			<spot x="1400" y="189.25" z="226.5" h="0"/>
+		</spawn>
+		<!-- No. 25 -->
+		<spawn npc_id="800645" respawn_time="295">
+			<spot x="1419.25" y="176.5" z="226" h="0"/>
+		</spawn>
+		<!-- No. 270 -->
+		<spawn npc_id="800649" respawn_time="295">
+			<spot x="1424.0591" y="222.0668" z="226.6218" h="0"/>
+		</spawn>
+		<!-- No. 310 -->
+		<spawn npc_id="800709" respawn_time="295">
+			<spot x="1028.75" y="1461.5" z="280.5938" h="0"/>
+		</spawn>
+		<!-- No. 310 (City) -->
+		<spawn npc_id="800705" respawn_time="295">
+			<spot x="1686.25" y="1065.5" z="253.5" h="0"/>
+		</spawn>
+		<!-- No. 310 at the Crashed Dredgion -->
+		<spawn npc_id="800653" respawn_time="295">
+			<spot x="1479.7595" y="202.063" z="227.3711" h="0"/>
+		</spawn>
+		<!-- No. 334 -->
+		<spawn npc_id="800646" respawn_time="295">
+			<spot x="1411" y="188" z="226.625" h="0"/>
+		</spawn>
+		<!-- No. 370 -->
+		<spawn npc_id="800643" respawn_time="295">
+			<spot x="1391.75" y="211.5" z="232.5" h="0"/>
+		</spawn>
+		<!-- No. 451 -->
+		<spawn npc_id="800642" respawn_time="295">
+			<spot x="1400.25" y="218.75" z="228.25" h="0"/>
+		</spawn>
+		<!-- No. 573 -->
+		<spawn npc_id="800641" respawn_time="295">
+			<spot x="1407.5" y="180" z="226.5" h="0"/>
+		</spawn>
+		<!-- No. 599 -->
+		<spawn npc_id="800712" respawn_time="295">
+			<spot x="1262.25" y="1429.75" z="277.2188" h="0"/>
+		</spawn>
+		<!-- No. 68 -->
+		<spawn npc_id="800711" respawn_time="295">
+			<spot x="1454" y="1491.5" z="258.5" h="0"/>
+		</spawn>
+		<!-- Obelisk -->
+		<spawn npc_id="701408" respawn_time="295">
+			<spot x="1662.1104" y="1024.5938" z="254.9357" h="0"/>
+		</spawn>
+		<!-- Obelisk -->
+		<spawn npc_id="701409" respawn_time="295">
+			<spot x="1081.2455" y="1256.8108" z="325.2465" h="0"/>
+		</spawn>
+		<!-- Pandlinerk -->
+		<spawn npc_id="800656" respawn_time="295">
+			<spot x="1623.1869" y="1056.9607" z="250.7867" h="0"/>
+		</spawn>
+		<!-- Plane Tree Mail -->
+		<spawn npc_id="800668" respawn_time="295">
+			<spot x="1488.5" y="1293.5" z="245.875" h="0"/>
+		</spawn>
+		<!-- Pretago -->
+		<spawn npc_id="800659" respawn_time="295">
+			<spot x="1662.6989" y="1066.8796" z="256.0288" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Rapid Tornado -->
+		<spawn npc_id="800753" respawn_time="295">
+			<spot x="1014" y="1156" z="372.1" h="0"/>
+			<spot x="1324" y="466" z="344.1" h="0"/>
+			<spot x="1389" y="1412" z="344.1" h="0"/>
+			<spot x="1461" y="556" z="344.1" h="0"/>
+			<spot x="1606" y="1168" z="344.1" h="0"/>
+			<spot x="1613.5885" y="683.2567" z="344.1" h="0"/>
+		</spawn>
+		<!-- Robik -->
+		<spawn npc_id="800666" respawn_time="295">
+			<spot x="1655.6958" y="1045.8925" z="260.3963" h="0"/>
+		</spawn>
+		<!-- Rumbling Reef -->
+		<spawn npc_id="206250" respawn_time="295">
+			<spot x="1048.7672" y="1165.3916" z="336.5046" h="0"/>
+		</spawn>
+		<!-- Samdashunerk -->
+		<spawn npc_id="800654" respawn_time="295">
+			<spot x="1117.8759" y="1250.1" z="324.25" h="0"/>
+		</spawn>
+		<!-- Shugo Backpack -->
+		<spawn npc_id="800677" respawn_time="295">
+			<spot x="1494.5742" y="825.6118" z="276.9352" h="0"/>
+		</spawn>
+		<!-- Sienoring -->
+		<spawn npc_id="800631" respawn_time="295">
+			<spot x="1122.7367" y="1255.6423" z="324.25" h="0"/>
+		</spawn>
+		<!-- Sinane -->
+		<spawn npc_id="800660" respawn_time="295">
+			<spot x="1677.2661" y="1039.7172" z="260.3963" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Stormy Watch -->
+		<spawn npc_id="206249" respawn_time="295">
+			<spot x="1120.9447" y="1274.3435" z="336.5046" h="0"/>
+		</spawn>
+		<!-- Thunderdome -->
+		<spawn npc_id="206251" respawn_time="295">
+			<spot x="1033.5513" y="942.6713" z="349.7893" h="0"/>
+		</spawn>
+		<!-- Tiamat Weapon -->
+		<spawn npc_id="800652" respawn_time="295">
+			<spot x="1501.025" y="202.4123" z="228.9422" h="0"/>
+			<spot x="1513.3599" y="235.7931" z="227.3079" h="0"/>
+			<spot x="1552.1178" y="251.2858" z="233.5546" h="0"/>
+		</spawn>
+		<!-- Timika -->
+		<spawn npc_id="800661" respawn_time="295">
+			<spot x="1679.2661" y="1039.7172" z="260.3963" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Wayfinder -->
+		<spawn npc_id="800707" respawn_time="295">
+			<spot x="1612.5" y="1120.963" z="250.9572" h="0"/>
+		</spawn>
+		<!-- Waywing -->
+		<spawn npc_id="800706" respawn_time="295">
+			<spot x="1637.25" y="1029" z="254.5" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

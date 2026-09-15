@@ -28,7 +28,7 @@
 		<!-- Baiern -->
 		<!-- Balaurea Teleporter -->
 		<spawn npc_id="730428" respawn_time="295">
-			<spot x="549.3882" y="213.3909" z="93.64215" static_id="1601" />
+			<spot x="549.2467" y="213.8778" z="93.64215" static_id="1601" />
 		</spawn>
 		<!-- Bilskirnir -->
 		<!-- Brisingamen -->
@@ -46,12 +46,12 @@
 		<spawn npc_id="799635" respawn_time="295">
 			<spot x="577.1289" y="241.7952" z="93.50441" h="60" />
 			<spot x="577.1365" y="263.3724" z="93.48666" h="60" />
-			<spot x="537.5983" y="312.2403" z="93.4828" h="15" />
+			<spot x="537.5433" y="312.2491" z="93.4828" h="15" />
 			<spot x="560.6036" y="312.52" z="93.48281" h="45" />
-			<spot x="564.5825" y="316.4659" z="93.48281" h="45" />
+			<spot x="564.2827" y="316.4443" z="93.48281" h="45" />
 			<spot x="533.8721" y="316.2209" z="93.4828" h="15" />
-			<spot x="533.4332" y="339.4381" z="93.4828" h="105" />
-			<spot x="564.6946" y="339.8288" z="93.4828" h="75" />
+			<spot x="533.7037" y="339.1549" z="93.4828" h="105" />
+			<spot x="564.0125" y="339.8497" z="93.4828" h="75" />
 			<spot x="537.3069" y="343.1154" z="93.4828" h="105" />
 			<spot x="560.751" y="343.7315" z="93.4828" h="75" />
 		</spawn>
@@ -59,6 +59,10 @@
 		<spawn npc_id="799634" respawn_time="295">
 			<spot x="577.1282" y="236.6414" z="93.50441" h="60" />
 			<spot x="577.1358" y="258.2187" z="93.49354" h="60" />
+			<spot x="560.5562" y="343.4236" z="93.4328" h="0" />
+			<spot x="534.0871" y="315.823" z="93.4328" h="0" />
+			<spot x="537.2908" y="342.7779" z="93.4328" h="0" />
+			<spot x="561.0738" y="313.1879" z="94.2999" h="0" />
 		</spawn>
 		<!-- Dorsi -->
 		<spawn npc_id="207028" respawn_time="295">
@@ -120,7 +124,7 @@
 		</spawn>
 		<!-- Meiren -->
 		<spawn npc_id="205460" respawn_time="295">
-			<spot x="534.5413" y="267.2113" z="93.48001" />
+			<spot x="534.5516" y="267.5899" z="93.48001" />
 		</spawn>
 		<!-- Merca -->
 		<spawn npc_id="207093" respawn_time="295">
@@ -203,7 +207,43 @@
 		<!-- Tsyarna -->
 		<!-- Verthen -->
 		<spawn npc_id="205325" respawn_time="295">
-			<spot x="484.3042" y="314.5854" z="93.45" h="90" />
+			<spot x="482.6483" y="314.7354" z="93.45" h="90" />
+		</spawn>
+		<!-- Aeyren -->
+		<spawn npc_id="800257" respawn_time="295">
+			<spot x="488.4967" y="314.7528" z="94.2999" h="0"/>
+		</spawn>
+		<!-- Baeksaek -->
+		<spawn npc_id="800499" respawn_time="295">
+			<spot x="469.5556" y="296.2238" z="94.2999" h="0"/>
+		</spawn>
+		<!-- Entrance to the Arena of Cooperation -->
+		<spawn npc_id="730544" respawn_time="295">
+			<spot x="534.6518" y="313.1476" z="96.1064" h="0"/>
+		</spawn>
+		<!-- Entrance to the Arena of Glory -->
+		<spawn npc_id="730488" respawn_time="295">
+			<spot x="564.0755" y="313.2925" z="94.2999" h="0"/>
+		</spawn>
+		<!-- Mendia -->
+		<spawn npc_id="800501" respawn_time="295">
+			<spot x="469.5556" y="298.7238" z="94.2999" h="0"/>
+		</spawn>
+		<!-- Neillia -->
+		<spawn npc_id="800182" respawn_time="295">
+			<spot x="490.4967" y="314.7528" z="94.2999" h="0"/>
+		</spawn>
+		<!-- Oriki -->
+		<spawn npc_id="800179" respawn_time="295">
+			<spot x="503.576" y="300.612" z="94.4357" h="0"/>
+		</spawn>
+		<!-- renen -->
+		<spawn npc_id="205472" respawn_time="295">
+			<spot x="534.5516" y="272.3399" z="94.2999" h="0"/>
+		</spawn>
+		<!-- Roliaz -->
+		<spawn npc_id="800180" respawn_time="295">
+			<spot x="503.5901" y="302.4701" z="94.4249" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

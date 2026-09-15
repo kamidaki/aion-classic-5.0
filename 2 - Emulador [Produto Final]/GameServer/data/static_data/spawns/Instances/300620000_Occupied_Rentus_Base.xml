@@ -149,5 +149,13 @@
 			<spot x="453.4" y="531.41" z="139.5" static_id="195" />
 		</spawn>
 		<!-- Building Debris -->
+		<!--   -->
+		<spawn npc_id="801262">
+			<spot x="498.8692" y="500.2058" z="305.0866" h="0"/>
+		</spawn>
+		<!-- nania -->
+		<spawn npc_id="800534" respawn_time="295">
+			<spot x="497.6383" y="500.1072" z="302.6021" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

@@ -51,7 +51,7 @@
 		</spawn>
 		<!-- Kysis Chamber Artifact -->
 		<spawn npc_id="215414">
-			<spot x="528.15" y="775.56" z="199.6" h="106" static_id="122"/>
+			<spot x="528.1523" y="775.5623" z="199.6" h="106" static_id="122"/>
 		</spawn>
 		<!-- Ranx Ambusher -->
 		<spawn npc_id="215318">

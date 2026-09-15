@@ -37,7 +37,7 @@
 		<!-- Athea -->
 		<!-- Balaurea Teleporter -->
 		<spawn npc_id="730425" respawn_time="295">
-			<spot x="459.8366" y="251.7952" z="127.1336" static_id="1601" />
+			<spot x="460.0643" y="252.2537" z="127.1336" static_id="1601" />
 		</spawn>
 		<!-- Barius -->
 		<spawn npc_id="205456" respawn_time="295">
@@ -56,19 +56,23 @@
 		<spawn npc_id="799632" respawn_time="295">
 			<spot x="506.9673" y="217.3922" z="127.2953" h="30" />
 			<spot x="488.8033" y="217.3897" z="127.2954" h="30" />
+			<spot x="601.2604" y="239.9617" z="127.3243" h="0" />
+			<spot x="573.7741" y="269.4246" z="127.3243" h="0" />
+			<spot x="595.7068" y="269.3834" z="127.3243" h="0" />
+			<spot x="568.6637" y="240.399" z="127.3243" h="0" />
 		</spawn>
 		<!-- Crucible Guard -->
 		<spawn npc_id="799633" respawn_time="295">
 			<spot x="495.805" y="217.4153" z="127.2953" h="30" />
 			<spot x="513.969" y="217.4179" z="127.2954" h="30" />
 			<spot x="568.3924" y="240.6126" z="127.2458" h="15" />
-			<spot x="573.1162" y="235.9949" z="127.2457" h="15" />
-			<spot x="569.0079" y="264.2847" z="127.2457" h="106" />
+			<spot x="573.0903" y="235.9357" z="127.2457" h="15" />
+			<spot x="569.3729" y="265.3609" z="127.2457" h="106" />
 			<spot x="574.3513" y="269.5636" z="127.2458" h="106" />
-			<spot x="596.4377" y="235.8395" z="127.2458" h="43" />
+			<spot x="596.8592" y="235.898" z="127.2458" h="43" />
 			<spot x="595.3439" y="269.6938" z="127.2458" h="76" />
 			<spot x="601.4633" y="240.9161" z="127.2457" h="46" />
-			<spot x="600.5625" y="264.3542" z="127.2458" h="76" />
+			<spot x="600.1334" y="264.9202" z="127.2458" h="76" />
 		</spawn>
 		<!-- Empyrean Crucible Entrance -->
 		<spawn npc_id="730430" respawn_time="295">
@@ -90,7 +94,7 @@
 		</spawn>
 		<!-- Howkis -->
 		<spawn npc_id="205310" respawn_time="295">
-			<spot x="567.4409" y="323.2314" z="126.0967" h="60" />
+			<spot x="567.8143" y="323.8787" z="126.0967" h="60" />
 		</spawn>
 		<!-- Hypsitos -->
 		<!-- Inggril -->
@@ -116,7 +120,7 @@
 		</spawn>
 		<!-- Kirroy -->
 		<spawn npc_id="205311" respawn_time="295">
-			<spot x="567.4394" y="326.5379" z="126.0967" h="60" />
+			<spot x="567.8143" y="326.0037" z="126.0967" h="60" />
 		</spawn>
 		<!-- Kyra -->
 		<spawn npc_id="802215" respawn_time="295">
@@ -205,6 +209,42 @@
 		<!-- Valdia -->
 		<spawn npc_id="207121" respawn_time="295">
 			<spot x="604.7266" y="251.5166" z="126.9815" h="60" />
+		</spawn>
+		<!-- Chloyl -->
+		<spawn npc_id="800502" respawn_time="295">
+			<spot x="553.6608" y="340.1774" z="126.9689" h="0"/>
+		</spawn>
+		<!-- Danian -->
+		<spawn npc_id="800255" respawn_time="295">
+			<spot x="553.1893" y="309.6287" z="126.9689" h="0"/>
+		</spawn>
+		<!-- Delnia -->
+		<spawn npc_id="800175" respawn_time="295">
+			<spot x="542.118" y="332.5155" z="126.9689" h="0"/>
+		</spawn>
+		<!-- Entrance to the Arena of Cooperation -->
+		<spawn npc_id="730543" respawn_time="295">
+			<spot x="570.3943" y="268.3941" z="129.9347" h="0"/>
+		</spawn>
+		<!-- Entrance to the Arena of Glory -->
+		<spawn npc_id="730487" respawn_time="295">
+			<spot x="569.2908" y="236.6141" z="127.811" h="0"/>
+		</spawn>
+		<!-- Muras -->
+		<spawn npc_id="800176" respawn_time="295">
+			<spot x="544.7776" y="334.9861" z="126.9689" h="0"/>
+		</spawn>
+		<!-- Nenento -->
+		<spawn npc_id="800178" respawn_time="295">
+			<spot x="551.0643" y="309.6287" z="126.9689" h="0"/>
+		</spawn>
+		<!-- quilven -->
+		<spawn npc_id="205471" respawn_time="295">
+			<spot x="481.1411" y="271.1062" z="128.1456" h="0"/>
+		</spawn>
+		<!-- Scorpia -->
+		<spawn npc_id="800498" respawn_time="295">
+			<spot x="550.6608" y="340.1774" z="126.9689" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

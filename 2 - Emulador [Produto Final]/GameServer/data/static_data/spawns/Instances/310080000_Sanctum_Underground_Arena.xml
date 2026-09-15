@@ -22,5 +22,9 @@
 			<spot x="279.003" y="164.71" z="162.014" h="31"/>
 			<spot x="279.109" y="169.582" z="162.014" h="31"/>
 		</spawn>
+		<!-- underground arena exit -->
+		<spawn npc_id="730065">
+			<spot x="275.897" y="295.6943" z="163.9151" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

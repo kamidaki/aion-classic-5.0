@@ -102,15 +102,15 @@
 		</spawn>
 		<!-- Fine Odium -->
 		<spawn npc_id="700833">
-			<spot x="121.647" y="100.535" z="146.297" static_id="94"/>
-			<spot x="122.496" y="60.7915" z="145.661" static_id="123"/>
-			<spot x="122.983" y="111.513" z="148.111" static_id="118"/>
-			<spot x="132.386" y="112.438" z="146.053" static_id="48"/>
-			<spot x="135.407" y="60.9233" z="145.661" static_id="131"/>
+			<spot x="121.6466" y="100.5348" z="146.297" static_id="94"/>
+			<spot x="122.4959" y="60.7915" z="145.661" static_id="123"/>
+			<spot x="122.9833" y="111.5135" z="148.111" static_id="118"/>
+			<spot x="132.3863" y="112.4379" z="146.053" static_id="48"/>
+			<spot x="135.4069" y="60.9233" z="145.661" static_id="131"/>
 		</spawn>
 		<!-- Gestanerk -->
 		<spawn npc_id="799524">
-			<spot x="289.776" y="422.453" z="89.5563" h="90"/>
+			<spot x="289.776" y="422.4531" z="89.5563" h="90"/>
 		</spawn>
 		<!-- Hamerun the Bleeder -->
 		<spawn npc_id="216922">
@@ -118,11 +118,11 @@
 		</spawn>
 		<!-- Haramel Exit -->
 		<spawn npc_id="730320">
-			<spot x="185.738" y="20.1436" z="144.224" static_id="117"/>
+			<spot x="185.7381" y="20.1436" z="144.224" static_id="117"/>
 		</spawn>
 		<!-- Huge Cauldron -->
 		<spawn npc_id="730359">
-			<spot x="293.999" y="295.611" z="90.6128" static_id="169"/>
+			<spot x="293.9993" y="295.6115" z="90.6128" static_id="169"/>
 		</spawn>
 		<!-- Keymaster MuMu Dang -->
 		<spawn npc_id="217025">
@@ -130,11 +130,11 @@
 		</spawn>
 		<!-- Moofrenerk -->
 		<spawn npc_id="799523">
-			<spot x="228.416" y="160.876" z="137.059" h="60"/>
+			<spot x="228.4156" y="160.8762" z="137.059" h="60"/>
 		</spawn>
 		<!-- Moorilerk -->
 		<spawn npc_id="799522">
-			<spot x="141.776" y="21.4674" z="144.245"/>
+			<spot x="141.7758" y="21.4674" z="144.245"/>
 		</spawn>
 		<!-- MuMu Assistant -->
 		<spawn npc_id="216908">
@@ -189,10 +189,10 @@
 		</spawn>
 		<!-- Odella -->
 		<spawn npc_id="700834">
-			<spot x="333.817" y="345.084" z="86.9499" static_id="17"/>
-			<spot x="339.157" y="323.219" z="88.0086" static_id="115"/>
-			<spot x="350.922" y="366.013" z="90.1839" static_id="50"/>
-			<spot x="365.372" y="357.365" z="89.4211" static_id="53"/>
+			<spot x="333.8173" y="345.0841" z="86.9499" static_id="17"/>
+			<spot x="339.157" y="323.2185" z="88.0086" static_id="115"/>
+			<spot x="350.9222" y="366.0133" z="90.1839" static_id="50"/>
+			<spot x="365.3721" y="357.3652" z="89.4211" static_id="53"/>
 			<spot x="373.48" y="330.55" z="85.4616" static_id="54"/>
 		</spawn>
 		<!-- Prison Door -->
@@ -204,17 +204,17 @@
 		</spawn>
 		<!-- Processed Odella -->
 		<spawn npc_id="700953">
-			<spot x="294.047" y="250.026" z="90.1643" static_id="285"/>
-			<spot x="314.04" y="288.418" z="89.0267" static_id="283"/>
-			<spot x="314.067" y="263.26" z="89.0267" static_id="282"/>
+			<spot x="294.0466" y="250.0263" z="90.1643" static_id="285"/>
+			<spot x="314.0401" y="288.4178" z="89.0267" static_id="283"/>
+			<spot x="314.0671" y="263.2599" z="89.0267" static_id="282"/>
 		</spawn>
 		<!-- Raw Odium -->
 		<spawn npc_id="700951">
 			<spot x="82.9601" y="88.3994" z="141.745" static_id="245"/>
 			<spot x="87.2192" y="99.919" z="138.926" static_id="137"/>
-			<spot x="90.2555" y="112.174" z="139.197" static_id="177"/>
+			<spot x="90.2555" y="112.1743" z="139.197" static_id="177"/>
 			<spot x="95.8721" y="76.1201" z="143.515" static_id="171"/>
-			<spot x="116.283" y="83.0092" z="144.198" static_id="246"/>
+			<spot x="116.2833" y="83.0092" z="144.198" static_id="246"/>
 		</spawn>
 		<!-- Rooty -->
 		<spawn npc_id="210595">
@@ -224,11 +224,11 @@
 		</spawn>
 		<!-- Severely Rusted Box -->
 		<spawn npc_id="700853">
-			<spot x="231.031" y="223.091" z="139.82"/>
+			<spot x="231.031" y="223.0911" z="139.82"/>
 		</spawn>
 		<!-- Tower Lift -->
 		<spawn npc_id="730321">
-			<spot x="220.868" y="213.263" z="89.2787" static_id="79"/>
+			<spot x="220.8683" y="213.2629" z="89.2787" static_id="79"/>
 		</spawn>
 		<!-- Treasure Box -->
 		<spawn npc_id="216925">
@@ -238,11 +238,11 @@
 		</spawn>
 		<!-- Well-Dried Ginseng -->
 		<spawn npc_id="700954">
-			<spot x="321.273" y="255.168" z="90.0806" static_id="102"/>
-			<spot x="321.574" y="250.836" z="92.0757" static_id="100"/>
-			<spot x="322.395" y="255.481" z="90.0806" static_id="101"/>
-			<spot x="324.928" y="261.07" z="90.0806" static_id="103"/>
-			<spot x="327.225" y="243.462" z="90.5051" static_id="99"/>
+			<spot x="321.2726" y="255.1678" z="90.0806" static_id="102"/>
+			<spot x="321.5738" y="250.8363" z="92.0757" static_id="100"/>
+			<spot x="322.3952" y="255.4808" z="90.0806" static_id="101"/>
+			<spot x="324.9276" y="261.0701" z="90.0806" static_id="103"/>
+			<spot x="327.2246" y="243.4624" z="90.5051" static_id="99"/>
 		</spawn>
 	</spawn_map>
 </spawns>

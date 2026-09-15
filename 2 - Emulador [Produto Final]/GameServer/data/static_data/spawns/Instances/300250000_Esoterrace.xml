@@ -26,7 +26,7 @@
 		</spawn>
 		<!-- Dimensional Rift -->
 		<spawn npc_id="701044">
-			<spot x="324.3860" y="426.3448" z="327.7138" h="20"/>
+			<spot x="324.386" y="426.3448" z="327.7138" h="20"/>
 		</spawn>
 		<!-- Door Controls -->
 		<spawn npc_id="282295">
@@ -92,12 +92,12 @@
 		</spawn>
 		<!-- Entwined Chest -->
 		<spawn npc_id="701022">
-			<spot x="1235.45" y="651.307" z="296.67" h="60" static_id="91"/>
-			<spot x="1248.15" y="673.602" z="296.173" h="60" static_id="206"/>
-			<spot x="1255.46" y="629.088" z="296.546" h="60" static_id="93"/>
-			<spot x="1276.99" y="614.481" z="296.128" h="60" static_id="85"/>
-			<spot x="1286.06" y="671.232" z="296.327" h="60" static_id="89"/>
-			<spot x="1291.42" y="634.639" z="296.113" h="60" static_id="86"/>
+			<spot x="1235.4454" y="651.3075" z="296.67" h="60" static_id="91"/>
+			<spot x="1248.1488" y="673.6015" z="296.173" h="60" static_id="206"/>
+			<spot x="1255.4554" y="629.0878" z="296.546" h="60" static_id="93"/>
+			<spot x="1276.9922" y="614.4807" z="296.128" h="60" static_id="85"/>
+			<spot x="1286.0552" y="671.2324" z="296.327" h="60" static_id="89"/>
+			<spot x="1291.4229" y="634.6386" z="296.113" h="60" static_id="86"/>
 		</spawn>
 		<!-- Esoterrace Anesthetist -->
 		<spawn npc_id="217228">
@@ -242,13 +242,14 @@
 		</spawn>
 		<!-- Esoterrace Reian Survivor -->
 		<spawn npc_id="799627">
-			<spot x="340.512" y="466.218" z="327.208" h="113"/>
-			<spot x="389.644" y="531.806" z="321.924" h="26"/>
+			<spot x="340.512" y="466.2184" z="327.208" h="113"/>
+			<spot x="389.6436" y="531.8063" z="321.924" h="26"/>
+			<spot x="1151.1218" y="683.8171" z="304" h="0" random_walk="8"/>
 		</spawn>
 		<!-- Esoterrace Reian Survivor -->
 		<spawn npc_id="799626">
-			<spot x="336.429" y="464.342" z="327.038" h="90"/>
-			<spot x="382.402" y="539.137" z="321.629" h="26"/>
+			<spot x="336.429" y="464.3425" z="327.038" h="90"/>
+			<spot x="382.4021" y="539.1367" z="321.629" h="26"/>
 		</spawn>
 		<!-- Esoterrace Researcher -->
 		<spawn npc_id="217201">
@@ -305,42 +306,42 @@
 		</spawn>
 		<!-- IDF4Re_Drana_2nd_Gate_NPC -->
 		<spawn npc_id="282358">
-			<spot x="1061.56" y="895.236" z="326.119" h="105"/>
+			<spot x="1061.5575" y="895.2361" z="326.119" h="105"/>
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_id_dranamach_01a -->
 		<spawn npc_id="701045">
-			<spot x="1315.31" y="1170.77" z="209.044" static_id="338" aerial_spawn="true"/>
+			<spot x="1315.309" y="1170.7719" z="209.044" static_id="338" aerial_spawn="true"/>
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_id_dranamach_02b -->
 		<spawn npc_id="701046">
-			<spot x="1315.17" y="1170.45" z="210.223" static_id="178" aerial_spawn="true"/>
+			<spot x="1315.1749" y="1170.4541" z="210.223" static_id="178" aerial_spawn="true"/>
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_idf4re_lazer_02 -->
 		<spawn npc_id="701049">
-			<spot x="1316.3" y="1170.21" z="55.2492" static_id="73" aerial_spawn="true"/>
+			<spot x="1316.3031" y="1170.2109" z="55.2492" static_id="73" aerial_spawn="true"/>
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_idf4re_smoke -->
 		<spawn npc_id="701050">
-			<spot x="1343.62" y="1176.03" z="150.967" static_id="128" aerial_spawn="true"/>
+			<spot x="1343.624" y="1176.0315" z="150.967" static_id="128" aerial_spawn="true"/>
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_idf4re_spark -->
 		<spawn npc_id="701051">
-			<spot x="1302.56" y="1164.92" z="119.066" static_id="176" aerial_spawn="true"/>
-			<spot x="1306.22" y="1177.17" z="139.633" static_id="116" aerial_spawn="true"/>
-			<spot x="1321.17" y="1172.85" z="122.167" static_id="175" aerial_spawn="true"/>
-			<spot x="1321.49" y="1160.81" z="150.65" static_id="179" aerial_spawn="true"/>
+			<spot x="1302.5649" y="1164.9171" z="119.066" static_id="176" aerial_spawn="true"/>
+			<spot x="1306.2197" y="1177.1705" z="139.633" static_id="116" aerial_spawn="true"/>
+			<spot x="1321.1737" y="1172.8468" z="122.167" static_id="175" aerial_spawn="true"/>
+			<spot x="1321.4888" y="1160.8097" z="150.65" static_id="179" aerial_spawn="true"/>
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_NPC_2 -->
 		<spawn npc_id="282292">
-			<spot x="1315.9" y="1171.45" z="112.509" aerial_spawn="true"/>
-			<spot x="1316.02" y="1171.47" z="113.468" aerial_spawn="true"/>
-			<spot x="1316.21" y="1170.22" z="152.72" aerial_spawn="true"/>
-			<spot x="1316.48" y="1170.22" z="143.597" aerial_spawn="true"/>
-			<spot x="1316.5" y="1170.28" z="142.545" aerial_spawn="true"/>
+			<spot x="1315.9" y="1171.4502" z="112.509" aerial_spawn="true"/>
+			<spot x="1316.02" y="1171.4666" z="113.468" aerial_spawn="true"/>
+			<spot x="1316.2089" y="1170.2163" z="152.72" aerial_spawn="true"/>
+			<spot x="1316.4799" y="1170.2157" z="143.597" aerial_spawn="true"/>
+			<spot x="1316.5033" y="1170.2847" z="142.545" aerial_spawn="true"/>
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_NPC_4 -->
 		<spawn npc_id="282294">
-			<spot x="1373.68" y="1178.3" z="159.325" h="113" aerial_spawn="true"/>
+			<spot x="1373.6781" y="1178.3036" z="159.325" h="113" aerial_spawn="true"/>
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_NPC_6 -->
 		<spawn npc_id="282296">
@@ -348,11 +349,11 @@
 		</spawn>
 		<!-- IDF4Re_Drana_FOBJ_NPC_7 -->
 		<spawn npc_id="282297">
-			<spot x="1139.83" y="724.1" z="299.296" static_id="187"/>
+			<spot x="1139.8313" y="724.1" z="299.296" static_id="187"/>
 		</spawn>
 		<!-- IDF4Re_Drana_NamedE_NPC_5 -->
 		<spawn npc_id="282175">
-			<spot x="1316.35" y="1170.75" z="51.8012"/>
+			<spot x="1316.3546" y="1170.7521" z="51.8012"/>
 		</spawn>
 		<!-- IDF4Re_Drana_Shulack_Broad_NPC -->
 		<spawn npc_id="282379">
@@ -424,24 +425,24 @@
 		</spawn>
 		<!-- LDF4_Fortress_InvisibleNPC -->
 		<spawn npc_id="258262">
-			<spot x="1058.33" y="890.048" z="346.956" static_id="601" aerial_spawn="true"/>
-			<spot x="1058.35" y="895.644" z="346.956" static_id="600" aerial_spawn="true"/>
+			<spot x="1058.3341" y="890.0479" z="346.956" static_id="601" aerial_spawn="true"/>
+			<spot x="1058.353" y="895.6443" z="346.956" static_id="600" aerial_spawn="true"/>
+			<spot x="1058.353" y="901.4495" z="346.956" static_id="599" aerial_spawn="true"/>
 			<spot x="1058.35" y="901.449" z="346.956" static_id="599" aerial_spawn="true"/>
-			<spot x="1058.35" y="901.449" z="346.956" static_id="599" aerial_spawn="true"/>
-			<spot x="1344.2" y="1038.84" z="204.19" static_id="467" aerial_spawn="true"/>
-			<spot x="1347.59" y="1029.35" z="204.19" static_id="470" aerial_spawn="true"/>
+			<spot x="1344.2014" y="1038.8402" z="204.19" static_id="467" aerial_spawn="true"/>
+			<spot x="1347.5946" y="1029.3545" z="204.19" static_id="470" aerial_spawn="true"/>
 		</spawn>
 		<!-- Murugan's Mailbox -->
 		<spawn npc_id="730381">
-			<spot x="1320.11" y="1146.62" z="189.225" static_id="54"/>
+			<spot x="1320.1072" y="1146.6151" z="189.225" static_id="54"/>
 		</spawn>
 		<!-- Nepion -->
 		<spawn npc_id="799563">
-			<spot x="339.009" y="464.46" z="327.029" h="100"/>
+			<spot x="339.0088" y="464.4604" z="327.029" h="100"/>
 		</spawn>
 		<!-- Rothyns -->
 		<spawn npc_id="799590">
-			<spot x="387.19" y="539.969" z="320.906" h="15"/>
+			<spot x="387.1898" y="539.9688" z="320.906" h="15"/>
 		</spawn>
 		<!-- Sand Potcrab -->
 		<spawn npc_id="212363">
@@ -494,46 +495,48 @@
 		</spawn>
 		<!-- Shulack Peon -->
 		<spawn npc_id="799579">
-			<spot x="1004.72" y="899.051" z="326.265" h="60"/>
-			<spot x="1108.02" y="958.681" z="316.443" h="90"/>
-			<spot x="1182.21" y="892.709" z="325.621" h="30"/>
-			<spot x="1217.39" y="884.398" z="323.597"/>
+			<spot x="1004.7225" y="899.0513" z="326.265" h="60"/>
+			<spot x="1108.0193" y="958.6807" z="316.443" h="90"/>
+			<spot x="1182.2051" y="892.7091" z="325.621" h="30"/>
+			<spot x="1217.3884" y="884.3979" z="323.597"/>
 		</spawn>
 		<!-- Shulack Worker -->
 		<spawn npc_id="799577">
-			<spot x="1003.63" y="885.26" z="326.26535" h="108" walker_id="482243F14AE4C4E2A3D37AA75C059CA063B0DE25"/>
-			<spot x="1003.95" y="889.9" z="326.26535" h="108" walker_id="5271573A3A1802B1F9179DE447ECF2198C59D989"/>
-			<spot x="1136.11" y="944.345" z="316.53"/>
+			<spot x="1002.7507" y="886.6595" z="326.26535" h="108" walker_id="482243F14AE4C4E2A3D37AA75C059CA063B0DE25"/>
+			<spot x="1003.1219" y="891.3009" z="326.26535" h="108" walker_id="5271573A3A1802B1F9179DE447ECF2198C59D989"/>
+			<spot x="1135.0121" y="944.6938" z="316.53"/>
 			<spot x="1145.05" y="943.668" z="316.53" h="114"/>
 			<spot x="1188.33" y="890.91" z="325.62115" h="91" walker_id="E92424F3A5BC6585D7C6BEBE0244448EBCC30735"/>
 			<spot x="1193.57" y="886.81" z="325.66507" h="78" walker_id="56221F224B8DE75C1DBD1CB8A52A61ADDC8D9E02"/>
 			<spot x="1220.17" y="900.51" z="323.59695" h="91" walker_id="0D6AB443655A054425315B45CA57C4C599CBA846"/>
 			<spot x="1229.76" y="894.21" z="323.59695" h="63" walker_id="DCF47C1A1161197C5392854A78ABD32B5DCA8059"/>
+			<spot x="1133.7847" y="892.912" z="328" h="0" random_walk="8"/>
+			<spot x="1133.7847" y="892.912" z="328" h="0" random_walk="8"/>
 		</spawn>
 		<!-- Shulack Worker -->
 		<spawn npc_id="799576">
+			<spot x="1258.6815" y="883.6932" z="251.316" h="60"/>
 			<spot x="1258.68" y="883.693" z="251.316" h="60"/>
-			<spot x="1258.68" y="883.693" z="251.316" h="60"/>
+			<spot x="1265.2623" y="811.1622" z="258.151" h="11"/>
 			<spot x="1265.26" y="811.162" z="258.151" h="11"/>
-			<spot x="1265.26" y="811.162" z="258.151" h="11"/>
-			<spot x="1267.97" y="849.29" z="259.138" h="30"/>
+			<spot x="1267.9701" y="849.2899" z="259.138" h="30"/>
+			<spot x="1273.6776" y="869.8023" z="255.136" h="30"/>
 			<spot x="1273.68" y="869.802" z="255.136" h="30"/>
-			<spot x="1273.68" y="869.802" z="255.136" h="30"/>
-			<spot x="1277.19" y="810.759" z="258.25" h="41"/>
+			<spot x="1277.1902" y="810.7592" z="258.25" h="41"/>
 			<spot x="1277.19" y="810.759" z="258.25" h="41"/>
 		</spawn>
 		<!-- Surama's Infosphere -->
 		<spawn npc_id="730380">
-			<spot x="1310.63" y="1146.82" z="189.161" static_id="42"/>
+			<spot x="1310.6274" y="1146.8192" z="189.161" static_id="42"/>
 		</spawn>
 		<!-- Surkana Box -->
 		<spawn npc_id="701016">
-			<spot x="1102.75" y="862.699" z="318.304" static_id="92"/>
-			<spot x="1103.66" y="953.323" z="316.53" static_id="136"/>
-			<spot x="1116.05" y="911.902" z="316.53" static_id="140"/>
-			<spot x="1154.45" y="865.949" z="316.53" static_id="135"/>
-			<spot x="1163.41" y="940.278" z="316.53" static_id="144"/>
-			<spot x="1170.23" y="905.19" z="316.53" static_id="90"/>
+			<spot x="1102.7461" y="862.6985" z="318.304" static_id="92"/>
+			<spot x="1103.6603" y="953.3231" z="316.53" static_id="136"/>
+			<spot x="1116.0531" y="911.9016" z="316.53" static_id="140"/>
+			<spot x="1154.454" y="865.9486" z="316.53" static_id="135"/>
+			<spot x="1163.4069" y="940.2777" z="316.53" static_id="144"/>
+			<spot x="1170.2256" y="905.1902" z="316.53" static_id="90"/>
 		</spawn>
 		<!-- Surkana Feeder -->
 		<spawn npc_id="282291">
@@ -541,11 +544,100 @@
 		</spawn>
 		<!-- Teho -->
 		<spawn npc_id="799591">
-			<spot x="1254.2" y="740.774" z="296.778" h="30"/>
+			<spot x="1254.2008" y="740.7741" z="296.778" h="30"/>
 		</spawn>
 		<!-- Ventilator -->
 		<spawn npc_id="282293">
 			<spot x="877.132" y="1100.94" z="362.811" static_id="40"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282171">
+			<spot x="1317.0977" y="1145.4196" z="53.2035" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282172">
+			<spot x="1343.4261" y="1170.6753" z="53.2035" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282173">
+			<spot x="1316.954" y="1196.8613" z="53.2035" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282174">
+			<spot x="1290.7784" y="1170.731" z="53.2035" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282298">
+			<spot x="1136.9501" y="814.4235" z="323.0163" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282425">
+			<spot x="1305.3101" y="1159.3378" z="53.2035" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282426">
+			<spot x="1328.4463" y="1159.0625" z="53.2035" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282427">
+			<spot x="1328.6138" y="1182.3699" z="53.2035" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282428">
+			<spot x="1305.0831" y="1182.4249" z="53.2035" h="0"/>
+		</spawn>
+		<!--   -->
+		<spawn npc_id="282435">
+			<spot x="1253.8292" y="646.3349" z="309" h="0"/>
+		</spawn>
+		<!-- chilled treasure -->
+		<spawn npc_id="701024">
+			<spot x="751.5135" y="1136.0219" z="367.5" h="0"/>
+			<spot x="829.6208" y="1134.3301" z="367.5" h="0"/>
+		</spawn>
+		<!-- dimensional rift -->
+		<spawn npc_id="205437">
+			<spot x="1309.3699" y="1163.5947" z="53" h="0"/>
+			<spot x="1309.3903" y="1163.6443" z="55" h="0"/>
+		</spawn>
+		<!-- esoterrace reian survivor -->
+		<spawn npc_id="205436">
+			<spot x="1150.3284" y="687.0675" z="304" h="0" random_walk="8"/>
+		</spawn>
+		<!-- keening sirokin -->
+		<spawn npc_id="799580" pool="1">
+			<spot x="1034.11" y="985.01" z="330" h="0"/>
+			<spot x="1037.1659" y="987.2184" z="330" h="0"/>
+			<spot x="1037.53" y="981.94" z="330" h="0"/>
+			<spot x="1038.2207" y="986.2846" z="330" h="0"/>
+			<spot x="1038.35" y="987.43" z="330" h="0"/>
+		</spawn>
+		<!-- laboratory treasure chest -->
+		<spawn npc_id="701027">
+			<spot x="1318.6698" y="1180.4677" z="52.8799" h="0"/>
+			<spot x="1323.1818" y="1177.5653" z="52.8534" h="0"/>
+			<spot x="1325.4845" y="1173.1985" z="52.8799" h="0"/>
+		</spawn>
+		<!-- shulack peon -->
+		<spawn npc_id="799578" pool="4">
+			<spot x="1034.11" y="985.01" z="330" h="0"/>
+			<spot x="1034.11" y="985.01" z="330" h="0"/>
+			<spot x="1037.1659" y="987.2184" z="330" h="0"/>
+			<spot x="1037.1659" y="987.2184" z="330" h="0"/>
+			<spot x="1037.53" y="981.94" z="330" h="0"/>
+			<spot x="1037.53" y="981.94" z="330" h="0"/>
+			<spot x="1038.2207" y="986.2846" z="330" h="0"/>
+			<spot x="1038.2207" y="986.2846" z="330" h="0"/>
+			<spot x="1038.35" y="987.43" z="330" h="0"/>
+			<spot x="1038.35" y="987.43" z="330" h="0"/>
+		</spawn>
+		<!-- str_sen_idf4re_drana_sensoryarea_q18410 -->
+		<spawn npc_id="206179">
+			<spot x="1132.05" y="846.86" z="322" h="0"/>
+		</spawn>
+		<!-- sundries box -->
+		<spawn npc_id="701025">
+			<spot x="1038.637" y="987.7415" z="328.3564" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

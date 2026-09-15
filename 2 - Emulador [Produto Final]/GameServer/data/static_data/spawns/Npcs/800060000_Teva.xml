@@ -3,7 +3,7 @@
 	<spawn_map map_id="800060000">
 		<!-- Lake of Tears -->
 		<spawn npc_id="206290" respawn_time="295">
-			<spot x="2272.3687" y="1534.3527" z="243" h="0"/>
+			<spot x="2272.3687" y="1534.3527" z="241.523" h="0"/>
 		</spawn>
 		<!-- Karst of Desperation -->
 		<spawn npc_id="206291" respawn_time="295">
@@ -215,11 +215,11 @@
 		</spawn>
 		<!-- Locatinerk -->
 		<spawn npc_id="803236" respawn_time="295">
-			<spot x="1017.1106" y="806.9093" z="320.8343" h="0"/>
+			<spot x="1017.1106" y="806.9093" z="318.7031" h="0"/>
 		</spawn>
 		<!-- Explorinerk -->
 		<spawn npc_id="803237" respawn_time="295">
-			<spot x="1062.5398" y="2043.0881" z="278.8375" h="0"/>
+			<spot x="1062.5398" y="2043.0881" z="277.7535" h="0"/>
 		</spawn>
 		<!-- Shugo Hammerer -->
 		<spawn npc_id="803309" respawn_time="295">

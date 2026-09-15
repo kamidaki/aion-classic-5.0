@@ -7,27 +7,27 @@
 		</spawn>
 		<!-- Ancient Dragonbound Document -->
 		<spawn npc_id="700750">
-			<spot x="774.849" y="485.698" z="136" h="103" static_id="425"/>
+			<spot x="774.8492" y="485.6979" z="136" h="103" static_id="425"/>
 		</spawn>
 		<!-- Balaur's Order -->
 		<spawn npc_id="730217">
-			<spot x="638.725" y="441.301" z="140" h="103" static_id="117"/>
+			<spot x="638.7247" y="441.301" z="140" h="103" static_id="117"/>
 		</spawn>
 		<!-- Brainwashed Reian -->
 		<spawn npc_id="799513">
-			<spot x="541.691" y="220.877" z="134.349" h="117"/>
+			<spot x="541.1841" y="221.2292" z="134.349" h="117"/>
 		</spawn>
 		<!-- Brainwashed Reian -->
 		<spawn npc_id="799514">
-			<spot x="541.181" y="214.526" z="134.349" h="1"/>
+			<spot x="541.271" y="214.6451" z="134.349" h="1"/>
 		</spawn>
 		<!-- Brainwashed Reian -->
 		<spawn npc_id="799515">
-			<spot x="585.037" y="221.475" z="134.349" h="60"/>
+			<spot x="584.4714" y="221.3496" z="134.349" h="60"/>
 		</spawn>
 		<!-- Brainwashed Reian -->
 		<spawn npc_id="799516">
-			<spot x="584.328" y="214.996" z="134.349" h="59"/>
+			<spot x="584.4665" y="215.0515" z="134.349" h="59"/>
 		</spawn>
 		<!-- Cota the Gatekeeper -->
 		<spawn npc_id="215787">
@@ -54,42 +54,42 @@
 		</spawn>
 		<!-- Poison Bottle -->
 		<spawn npc_id="700567">
-			<spot x="467.359" y="585.815" z="131" h="29" static_id="151"/>
-			<spot x="470.349" y="618.6" z="131" h="29" static_id="153"/>
-			<spot x="481.494" y="707.273" z="128" h="29" static_id="126"/>
-			<spot x="482.496" y="386.035" z="136" h="29" static_id="172"/>
-			<spot x="489.599" y="520.595" z="134" h="29" static_id="171"/>
-			<spot x="490.054" y="602.242" z="129" h="29" static_id="148"/>
-			<spot x="506.064" y="657.556" z="128" h="29" static_id="152"/>
-			<spot x="507.073" y="674.166" z="128" h="29" static_id="128"/>
-			<spot x="507.961" y="587.668" z="130" h="29" static_id="122"/>
-			<spot x="515.066" y="402.483" z="135" h="29" static_id="174"/>
-			<spot x="520.81" y="484.198" z="133" h="29" static_id="112"/>
-			<spot x="532.977" y="694.617" z="128" h="29" static_id="116"/>
-			<spot x="534.126" y="381.001" z="137" h="29" static_id="173"/>
-			<spot x="563.317" y="667.581" z="131" h="29" static_id="170"/>
-			<spot x="568.96" y="688.028" z="131" h="29" static_id="168"/>
-			<spot x="587.895" y="675.709" z="131" h="29" static_id="166"/>
-			<spot x="695.652" y="670.501" z="136" h="29" static_id="111"/>
-			<spot x="723.72" y="622.944" z="136" h="29" static_id="134"/>
-			<spot x="743.878" y="628.765" z="136" h="29" static_id="144"/>
-			<spot x="747.31" y="576.03" z="133" h="29" static_id="147"/>
-			<spot x="748.164" y="673.045" z="136" h="29" static_id="156"/>
-			<spot x="748.957" y="542.383" z="133" h="29" static_id="142"/>
-			<spot x="749.664" y="407.078" z="134" h="29" static_id="163"/>
-			<spot x="759.532" y="482.755" z="136" h="29" static_id="157"/>
-			<spot x="766.058" y="583.26" z="133" h="29" static_id="150"/>
+			<spot x="467.3586" y="585.8146" z="131" h="29" static_id="151"/>
+			<spot x="470.3495" y="618.6003" z="131" h="29" static_id="153"/>
+			<spot x="481.494" y="707.2729" z="128" h="29" static_id="126"/>
+			<spot x="482.4964" y="386.0352" z="136" h="29" static_id="172"/>
+			<spot x="489.5994" y="520.5953" z="134" h="29" static_id="171"/>
+			<spot x="490.0543" y="602.2422" z="129" h="29" static_id="148"/>
+			<spot x="506.0642" y="657.5555" z="128" h="29" static_id="152"/>
+			<spot x="507.073" y="674.1664" z="128" h="29" static_id="128"/>
+			<spot x="507.9614" y="587.6685" z="130" h="29" static_id="122"/>
+			<spot x="515.066" y="402.4833" z="135" h="29" static_id="174"/>
+			<spot x="520.8103" y="484.1977" z="133" h="29" static_id="112"/>
+			<spot x="532.9775" y="694.6171" z="128" h="29" static_id="116"/>
+			<spot x="534.1265" y="381.0007" z="137" h="29" static_id="173"/>
+			<spot x="563.3167" y="667.5809" z="131" h="29" static_id="170"/>
+			<spot x="568.9604" y="688.0275" z="131" h="29" static_id="168"/>
+			<spot x="587.895" y="675.7086" z="131" h="29" static_id="166"/>
+			<spot x="695.6522" y="670.5007" z="136" h="29" static_id="111"/>
+			<spot x="723.7197" y="622.9435" z="136" h="29" static_id="134"/>
+			<spot x="743.8784" y="628.7654" z="136" h="29" static_id="144"/>
+			<spot x="747.3096" y="576.03" z="133" h="29" static_id="147"/>
+			<spot x="748.1641" y="673.0453" z="136" h="29" static_id="156"/>
+			<spot x="748.9568" y="542.3826" z="133" h="29" static_id="142"/>
+			<spot x="749.6639" y="407.0775" z="134" h="29" static_id="163"/>
+			<spot x="759.5323" y="482.7553" z="136" h="29" static_id="157"/>
+			<spot x="766.0582" y="583.2604" z="133" h="29" static_id="150"/>
 			<spot x="768.038" y="671.226" z="136" h="29" static_id="113"/>
-			<spot x="770.939" y="393.651" z="133" h="29" static_id="165"/>
-			<spot x="774.179" y="458.918" z="135" h="29" static_id="155"/>
-			<spot x="782.984" y="632.856" z="135" h="29" static_id="120"/>
-			<spot x="784.936" y="644.362" z="135" h="29" static_id="145"/>
-			<spot x="803.138" y="539.684" z="133" h="29" static_id="125"/>
-			<spot x="827.766" y="485.508" z="136" h="29" static_id="162"/>
+			<spot x="770.939" y="393.6512" z="133" h="29" static_id="165"/>
+			<spot x="774.1793" y="458.9178" z="135" h="29" static_id="155"/>
+			<spot x="782.9841" y="632.8558" z="135" h="29" static_id="120"/>
+			<spot x="784.9365" y="644.3616" z="135" h="29" static_id="145"/>
+			<spot x="803.1375" y="539.684" z="133" h="29" static_id="125"/>
+			<spot x="827.7662" y="485.5077" z="136" h="29" static_id="162"/>
 		</spawn>
 		<!-- Rebirthing Chamber Exit -->
 		<spawn npc_id="700706">
-			<spot x="561.854" y="180.389" z="136.306" h="89" static_id="213"/>
+			<spot x="562.1129" y="181.2764" z="136.306" h="89" static_id="213"/>
 		</spawn>
 		<!-- Tala the Protector -->
 		<spawn npc_id="215790">
@@ -381,11 +381,11 @@
 		</spawn>
 		<!-- Udas Temple Exit -->
 		<spawn npc_id="730272">
-			<spot x="636.69" y="658.75" z="135" h="89" static_id="158"/>
+			<spot x="636.6904" y="658.7498" z="135" h="89" static_id="158"/>
 		</spawn>
 		<!-- Udas Temple Exit -->
 		<spawn npc_id="730255">
-			<spot x="508.361" y="362.717" z="137" h="31"/>
+			<spot x="508.3607" y="362.7174" z="137" h="31"/>
 		</spawn>
 		<!-- Udas Titan -->
 		<spawn npc_id="216324">
@@ -403,6 +403,10 @@
 		<!-- Vida the Protector -->
 		<spawn npc_id="215789">
 			<spot x="764.823" y="484.256" z="136" h="2"/>
+		</spawn>
+		<!-- vaporfrost -->
+		<spawn npc_id="281655" respawn_time="295">
+			<spot x="775.7543" y="329.9329" z="138" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

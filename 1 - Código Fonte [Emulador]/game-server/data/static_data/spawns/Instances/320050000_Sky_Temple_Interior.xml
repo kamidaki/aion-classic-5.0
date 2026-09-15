@@ -303,7 +303,7 @@
 		</spawn>
 		<!-- Water Room Exit -->
 		<spawn npc_id="730042">
-			<spot x="377.547" y="72.9379" z="226.345" static_id="15"/>
+			<spot x="379.4" y="72.83" z="226.345" static_id="15"/>
 		</spawn>
 		<!-- Waterdrop Spirit -->
 		<spawn npc_id="212761">
@@ -327,7 +327,11 @@
 		</spawn>
 		<!-- Wind Room Exit -->
 		<spawn npc_id="730044">
-			<spot x="461.581" y="438.242" z="374.965" static_id="16"/>
+			<spot x="460.36" y="437.46" z="374.965" static_id="16"/>
+		</spawn>
+		<!-- str_sen_iddf2flying_sensoryarea_q2035 -->
+		<spawn npc_id="206058">
+			<spot x="470.04" y="113.32" z="215.5" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

@@ -3,35 +3,35 @@
 	<spawn_map map_id="330030000">
 		<!-- Collapsed Villager -->
 		<spawn npc_id="801225" respawn_time="295">
-			<spot x="312" y="144" z="215.875" h="0"/>
-			<spot x="312" y="144" z="215.875" h="0"/>
-			<spot x="316" y="87" z="212" h="0"/>
-			<spot x="316" y="87" z="212" h="0"/>
-			<spot x="316" y="87" z="212" h="0"/>
-			<spot x="340" y="98" z="213.125" h="0"/>
-			<spot x="340" y="98" z="213.125" h="0"/>
+			<spot x="312" y="144" z="214.875" h="0"/>
+			<spot x="312" y="144" z="214.875" h="0"/>
+			<spot x="316" y="87" z="211.0625" h="0"/>
+			<spot x="316" y="87" z="211.0625" h="0"/>
+			<spot x="316" y="87" z="211.0625" h="0"/>
+			<spot x="340" y="98" z="212.25" h="0"/>
+			<spot x="340" y="98" z="212.25" h="0"/>
 			<spot x="265" y="118" z="212.875" h="0"/>
-			<spot x="330.3448" y="104.9058" z="213.125" h="0"/>
+			<spot x="330.3448" y="104.9058" z="210.1583" h="0"/>
 		</spawn>
 		<!-- Injured Villager -->
 		<spawn npc_id="801226" respawn_time="295">
-			<spot x="291" y="74" z="211" h="0"/>
+			<spot x="291" y="74" z="207.875" h="0"/>
 		</spawn>
 		<!-- Drunken Villager -->
 		<spawn npc_id="801227" respawn_time="295">
-			<spot x="268" y="76" z="212" h="0"/>
+			<spot x="268" y="76" z="209.375" h="0"/>
 		</spawn>
 		<!-- [Event] Elite Archon Suicide Squad's Armour Chest -->
 		<spawn npc_id="801311" respawn_time="295">
-			<spot x="313.5604" y="105.6434" z="211.0161" h="0" walker_id="AABC8D892A5F9299A0C0B843548854599A7E2F00" walker_index="6"/>
+			<spot x="313.5604" y="105.6434" z="209.75" h="0" walker_id="AABC8D892A5F9299A0C0B843548854599A7E2F00" walker_index="6"/>
 			<spot x="42.2638" y="218.7935" z="247.5373" h="0"/>
-			<spot x="195" y="401" z="232" h="0" walker_id="9AFB1209341FE13530A5FA0BE0654488D5F1502A" walker_index="1"/>
-			<spot x="457.578" y="125.1315" z="186.6275" h="0"/>
-			<spot x="434.828" y="429.1315" z="221.8775" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
-			<spot x="434.828" y="429.1315" z="221.8775" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
+			<spot x="195" y="401" z="230.4375" h="0" walker_id="9AFB1209341FE13530A5FA0BE0654488D5F1502A" walker_index="1"/>
+			<spot x="457.578" y="125.1315" z="185.6858" h="0"/>
+			<spot x="434.828" y="429.1315" z="220.726" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
+			<spot x="434.828" y="429.1315" z="220.726" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 			<spot x="84.718" y="216.8959" z="246.6727" h="0"/>
 			<spot x="84.718" y="216.8959" z="246.6727" h="0"/>
-			<spot x="433.828" y="428.1315" z="221.8775" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
+			<spot x="433.828" y="428.1315" z="220.4842" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 		</spawn>
 		<!-- Omne Solum -->
 		<spawn npc_id="801312" respawn_time="295">
@@ -49,14 +49,14 @@
 		<!-- Transport Barrel -->
 		<spawn npc_id="801401" respawn_time="295">
 			<spot x="19.2749" y="290.5003" z="247.1057" h="0" walker_id="D4C84DBAEBA27FF071869ECD00B3D560462CF771" walker_index="10"/>
-			<spot x="41.3635" y="398.3341" z="252.6334" h="0" walker_id="BAFA9AFB932BA2C57A0AFEFC86EDBC6236FAF9A6" walker_index="7"/>
+			<spot x="41.3635" y="398.3341" z="249.0853" h="0" walker_id="BAFA9AFB932BA2C57A0AFEFC86EDBC6236FAF9A6" walker_index="7"/>
 			<spot x="267.181" y="378.3637" z="225.1917" h="0" walker_id="72FA8F2365E9B546DEF44D5E22DBD21495E09A8C" walker_index="5"/>
 			<spot x="106.5601" y="236.892" z="247.1057" h="0" walker_id="429C2897BAD91005CF35936369A7D30635D083DC" walker_index="15"/>
 			<spot x="410.9914" y="419.9283" z="221.2037" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 			<spot x="410.9914" y="419.9283" z="221.2037" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
-			<spot x="256.7117" y="132.776" z="214.4253" h="0" walker_id="AABC8D892A5F9299A0C0B843548854599A7E2F00" walker_index="1"/>
-			<spot x="249.2074" y="86.5145" z="210.6365" h="0" walker_id="16BC8EC01DAB842C57541E5BBBB9BA54AA8A6191" walker_index="16"/>
-			<spot x="321.6358" y="79.9655" z="209.8611" h="0" walker_id="16BC8EC01DAB842C57541E5BBBB9BA54AA8A6191" walker_index="11"/>
+			<spot x="256.7117" y="132.776" z="213.4595" h="0" walker_id="AABC8D892A5F9299A0C0B843548854599A7E2F00" walker_index="1"/>
+			<spot x="249.2074" y="86.5145" z="210.0495" h="0" walker_id="16BC8EC01DAB842C57541E5BBBB9BA54AA8A6191" walker_index="16"/>
+			<spot x="321.6358" y="79.9655" z="209.0661" h="0" walker_id="16BC8EC01DAB842C57541E5BBBB9BA54AA8A6191" walker_index="11"/>
 			<spot x="405.9287" y="454.4375" z="222.7188" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 			<spot x="412.1698" y="419.6035" z="221.2135" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 			<spot x="412.1698" y="419.6035" z="221.2135" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
@@ -64,33 +64,33 @@
 			<spot x="411.479" y="419.4635" z="221.2829" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 			<spot x="411.479" y="419.4635" z="221.2829" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 			<spot x="411.479" y="419.4635" z="221.2829" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
-			<spot x="192.0602" y="418.994" z="232.9809" h="0" walker_id="9AFB1209341FE13530A5FA0BE0654488D5F1502A" walker_index="1"/>
-			<spot x="70.2327" y="406.7013" z="251.0123" h="0" walker_id="2391F9767FCE4384C6E42DC96EA2A3221B4E6C39" walker_index="1"/>
-			<spot x="70.2327" y="406.7013" z="251.0123" h="0" walker_id="2391F9767FCE4384C6E42DC96EA2A3221B4E6C39" walker_index="1"/>
-			<spot x="70.0339" y="405.9246" z="251.0123" h="0" walker_id="2391F9767FCE4384C6E42DC96EA2A3221B4E6C39" walker_index="1"/>
-			<spot x="70.0339" y="405.9246" z="251.0123" h="0" walker_id="2391F9767FCE4384C6E42DC96EA2A3221B4E6C39" walker_index="1"/>
-			<spot x="168.7973" y="380.699" z="235.011" h="0" walker_id="9AFB1209341FE13530A5FA0BE0654488D5F1502A" walker_index="16"/>
+			<spot x="192.0602" y="418.994" z="232.4925" h="0" walker_id="9AFB1209341FE13530A5FA0BE0654488D5F1502A" walker_index="1"/>
+			<spot x="70.2327" y="406.7013" z="249.9874" h="0" walker_id="2391F9767FCE4384C6E42DC96EA2A3221B4E6C39" walker_index="1"/>
+			<spot x="70.2327" y="406.7013" z="249.9874" h="0" walker_id="2391F9767FCE4384C6E42DC96EA2A3221B4E6C39" walker_index="1"/>
+			<spot x="70.0339" y="405.9246" z="250.2441" h="0" walker_id="2391F9767FCE4384C6E42DC96EA2A3221B4E6C39" walker_index="1"/>
+			<spot x="70.0339" y="405.9246" z="250.2441" h="0" walker_id="2391F9767FCE4384C6E42DC96EA2A3221B4E6C39" walker_index="1"/>
+			<spot x="168.7973" y="380.699" z="234.3497" h="0" walker_id="9AFB1209341FE13530A5FA0BE0654488D5F1502A" walker_index="16"/>
 			<spot x="69.1066" y="224.2067" z="247.1057" h="0"/>
-			<spot x="412.8795" y="458.8453" z="223.4529" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
+			<spot x="412.8795" y="458.8453" z="222.5658" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 			<spot x="108.2528" y="235.565" z="247.1057" h="0" walker_id="429C2897BAD91005CF35936369A7D30635D083DC" walker_index="15"/>
 		</spawn>
 		<!-- Transport Barrel -->
 		<spawn npc_id="801402" respawn_time="295">
-			<spot x="432.5996" y="448.5959" z="221.994" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
-			<spot x="428.2849" y="420.1253" z="220.5153" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
+			<spot x="432.5996" y="448.5959" z="221.4367" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
+			<spot x="428.2849" y="420.1253" z="220" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
 			<spot x="433.6142" y="442.7825" z="220.9409" h="0" walker_id="CA1D0507D5D1BAC932B6E969D865718BF6A771E9" walker_index="8"/>
-			<spot x="237.3812" y="426.5171" z="230.2516" h="0" walker_id="72FA8F2365E9B546DEF44D5E22DBD21495E09A8C" walker_index="4"/>
-			<spot x="294.3399" y="147.7346" z="216.1787" h="0" walker_id="AABC8D892A5F9299A0C0B843548854599A7E2F00" walker_index="14"/>
-			<spot x="333.7638" y="82.0582" z="211.417" h="0" walker_id="16BC8EC01DAB842C57541E5BBBB9BA54AA8A6191" walker_index="11"/>
-			<spot x="256.0786" y="428.3553" z="230.2516" h="0" walker_id="72FA8F2365E9B546DEF44D5E22DBD21495E09A8C" walker_index="10"/>
+			<spot x="237.3812" y="426.5171" z="229.722" h="0" walker_id="72FA8F2365E9B546DEF44D5E22DBD21495E09A8C" walker_index="4"/>
+			<spot x="294.3399" y="147.7346" z="215.6577" h="0" walker_id="AABC8D892A5F9299A0C0B843548854599A7E2F00" walker_index="14"/>
+			<spot x="333.7638" y="82.0582" z="210.2425" h="0" walker_id="16BC8EC01DAB842C57541E5BBBB9BA54AA8A6191" walker_index="11"/>
+			<spot x="256.0786" y="428.3553" z="229.375" h="0" walker_id="72FA8F2365E9B546DEF44D5E22DBD21495E09A8C" walker_index="10"/>
 		</spawn>
 		<!-- Kenshiro -->
 		<spawn npc_id="801408" respawn_time="295">
-			<spot x="379.0753" y="141.4941" z="206" h="0"/>
+			<spot x="379.0753" y="141.4941" z="203.4812" h="0"/>
 		</spawn>
 		<!-- Kenshiro -->
 		<spawn npc_id="801461" respawn_time="295">
-			<spot x="223.25" y="138.25" z="206" h="0"/>
+			<spot x="223.25" y="138.25" z="205.3438" h="0"/>
 		</spawn>
 		<!-- Kenshiro -->
 		<spawn npc_id="801462" respawn_time="295">

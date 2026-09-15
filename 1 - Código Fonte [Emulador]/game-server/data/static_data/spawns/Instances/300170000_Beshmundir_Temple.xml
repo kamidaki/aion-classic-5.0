@@ -175,7 +175,7 @@
 		</spawn>
 		<!-- IDCatacome_SensoryArea_Q20025 -->
 		<spawn npc_id="206109">
-			<spot x="1355.42" y="119.871" z="246.272"/>
+			<spot x="1355.4243" y="119.871" z="246.272"/>
 		</spawn>
 		<!-- Vehala Eidolon -->
 		<spawn npc_id="216283" difficult_id="1">
@@ -279,7 +279,7 @@
 		</spawn>
 		<!-- Altar of Soul Invocation -->
 		<spawn npc_id="730274">
-			<spot x="1355.93" y="394.16" z="249.006" static_id="160"/>
+			<spot x="1355.7262" y="393.4167" z="249.006" static_id="160"/>
 		</spawn>
 		<!-- Asmodian Soulmedic -->
 		<spawn npc_id="216213">
@@ -315,11 +315,11 @@
 		</spawn>
 		<!-- Beshmundir Temple Exit -->
 		<spawn npc_id="730286">
-			<spot x="1583" y="1523" z="304.14" h="30" static_id="468"/>
+			<spot x="1583.1122" y="1522.7534" z="301.125" h="30" static_id="468"/>
 		</spawn>
 		<!-- Beshmundir Temple Exit -->
 		<spawn npc_id="730285">
-			<spot x="1476.91" y="226.821" z="243.52429" h="30" static_id="476"/>
+			<spot x="1476.9679" y="226.7349" z="243.52429" h="30" static_id="476"/>
 		</spawn>
 		<!-- Bhemah -->
 		<spawn npc_id="799505">
@@ -327,7 +327,7 @@
 		</spawn>
 		<!-- Entrance of Blue Flame Incinerator -->
 		<spawn npc_id="730290">
-			<spot x="1450.02" y="1102.52" z="291.133" static_id="517"/>
+			<spot x="1450.312" y="1102.5642" z="291.133" static_id="517"/>
 		</spawn>
 		<!-- Entrance of Oracular Chamber -->
 		<spawn npc_id="730288">
@@ -631,7 +631,7 @@
 		</spawn>
 		<!-- Summon Brigade General NPC -->
 		<spawn npc_id="281696">
-			<spot x="979.343" y="135.742" z="241.796"/>
+			<spot x="979.3428" y="135.7418" z="241.796"/>
 		</spawn>
 		<!-- Summon Brigade General NPC -->
 		<spawn npc_id="281759">
@@ -639,7 +639,7 @@
 		</spawn>
 		<!-- Summon Brigade General NPC -->
 		<spawn npc_id="281760">
-			<spot x="982.20" y="135.82" z="244.00" h="30"/>
+			<spot x="982.2341" y="135.7979" z="244.00" h="30"/>
 		</spawn>
 		<!-- Taros Lifebane -->
 		<spawn npc_id="216167" difficult_id="1">
@@ -726,10 +726,10 @@
 		</spawn>
 		<!-- Burial Chamber of the Hero -->
 		<spawn npc_id="281392" difficult_id="1">
-			<spot x="1214.92" y="506.924" z="246.231"/>
-			<spot x="1215.17" y="536.924" z="246.231"/>
-			<spot x="1215.29" y="596.953" z="246.231"/>
-			<spot x="1215.41" y="626.668" z="246.717"/>
+			<spot x="1214.9164" y="506.9244" z="246.231"/>
+			<spot x="1215.1664" y="536.9244" z="246.231"/>
+			<spot x="1215.2913" y="596.9525" z="246.231"/>
+			<spot x="1215.4128" y="626.6684" z="246.717"/>
 		</spawn>
 		<!-- Manadar Trapper -->
 		<spawn npc_id="216278" difficult_id="1">
@@ -1719,11 +1719,54 @@
 		</spawn>
 		<!-- Sorcery Wardstone -->
 		<spawn npc_id="700637">
-			<spot x="1329.42" y="96.4236" z="246.477" static_id="558"/>
+			<spot x="1329.4055" y="96.4457" z="246.477" static_id="558"/>
 		</spawn>
 		<!-- Power Wardstone -->
 		<spawn npc_id="700607">
-			<spot x="1384.14" y="97.4025" z="246.486" static_id="394"/>
+			<spot x="1384.0168" y="97.4489" z="246.486" static_id="394"/>
+		</spawn>
+		<!-- bacla -->
+		<spawn npc_id="804467">
+			<spot x="1477.6453" y="241.5944" z="246.6938" h="0"/>
+		</spawn>
+		<!-- Bossrinerk -->
+		<spawn npc_id="804488">
+			<spot x="1483.8507" y="302.0788" z="237.8862" h="0"/>
+		</spawn>
+		<!-- Burnt Documents -->
+		<spawn npc_id="730525">
+			<spot x="1432.283" y="263.6799" z="245" h="0" random_walk="8"/>
+			<spot x="1432.283" y="263.6799" z="245" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Lockinerk -->
+		<spawn npc_id="804487">
+			<spot x="1469.6772" y="301.7291" z="238.1892" h="0"/>
+		</spawn>
+		<!-- Lost Bag -->
+		<spawn npc_id="730526">
+			<spot x="1332.283" y="110.6799" z="247" h="0" random_walk="8"/>
+			<spot x="1332.283" y="110.6799" z="247" h="0" random_walk="8"/>
+		</spawn>
+		<!-- plegeton boatman -->
+		<spawn npc_id="799518">
+			<spot x="933.983" y="444.2691" z="222" h="0"/>
+		</spawn>
+		<!-- plegeton boatman -->
+		<spawn npc_id="799519">
+			<spot x="788.7447" y="442.3533" z="222" h="0"/>
+			<spot x="788.7447" y="442.3533" z="222" h="0"/>
+		</spawn>
+		<!-- plegeton boatman -->
+		<spawn npc_id="799520">
+			<spot x="817.9744" y="276.8995" z="222" h="0"/>
+		</spawn>
+		<!-- rift orb -->
+		<spawn npc_id="730275">
+			<spot x="1611.1532" y="1604.6184" z="312.2963" h="0"/>
+		</spawn>
+		<!-- the plaguebearer -->
+		<spawn npc_id="700596">
+			<spot x="1049.2643" y="83.2529" z="244" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

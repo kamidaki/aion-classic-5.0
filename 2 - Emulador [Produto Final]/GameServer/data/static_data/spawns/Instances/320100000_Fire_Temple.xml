@@ -27,35 +27,36 @@
 		</spawn>
 		<!-- Ancient Treasure Chest -->
 		<spawn npc_id="700252">
-			<spot x="131.045" y="295.222" z="124.618" static_id="27"/>
-			<spot x="138.333" y="167.274" z="100.297" static_id="29"/>
-			<spot x="139.503" y="195.859" z="103.027" static_id="28"/>
-			<spot x="149.238" y="385.993" z="144.393" static_id="35"/>
-			<spot x="155.952" y="354.62" z="144.906" static_id="36"/>
-			<spot x="166.89" y="179.998" z="105.967" static_id="30"/>
-			<spot x="169.27" y="274.887" z="124.217" static_id="25"/>
-			<spot x="177.611" y="318.258" z="124.113" static_id="26"/>
-			<spot x="200.217" y="259.113" z="119.776" static_id="23"/>
-			<spot x="231.732" y="259.664" z="122.862" static_id="24"/>
-			<spot x="264.21" y="211.523" z="118.295" static_id="16"/>
-			<spot x="275.076" y="77.96" z="128.831" static_id="13"/>
-			<spot x="277.457" y="174.99" z="119.777" static_id="18"/>
-			<spot x="281.196" y="406.806" z="133.633" static_id="33"/>
-			<spot x="281.467" y="132.784" z="128.704" static_id="15"/>
-			<spot x="289.766" y="439.357" z="133.579" static_id="32"/>
-			<spot x="295.092" y="210.761" z="119.614" static_id="22"/>
-			<spot x="306.348" y="244.583" z="117.607" static_id="17"/>
-			<spot x="306.846" y="295.637" z="130.607" static_id="19"/>
-			<spot x="319.976" y="410.755" z="133.843" static_id="31"/>
-			<spot x="323.404" y="96.8504" z="127.178" static_id="14"/>
-			<spot x="346.242" y="316.856" z="136.502" static_id="21"/>
-			<spot x="353.782" y="350.256" z="147.411" static_id="20"/>
-			<spot x="370.718" y="257.529" z="109.678" static_id="37"/>
-			<spot x="371.565" y="88.6843" z="117.212" static_id="12"/>
-			<spot x="376.523" y="293.597" z="109.674" static_id="39"/>
-			<spot x="382.274" y="75.4597" z="117.229" static_id="11"/>
-			<spot x="407.877" y="285.939" z="110.873" static_id="38"/>
-			<spot x="415.499" y="117.921" z="117.22" static_id="10"/>
+			<spot x="131.6208" y="296.0446" z="124.618" static_id="27"/>
+			<spot x="139.0776" y="167.8605" z="100.297" static_id="29"/>
+			<spot x="139.7" y="196.87" z="103.027" static_id="28"/>
+			<spot x="150.1472" y="386.2038" z="144.393" static_id="35"/>
+			<spot x="156.5734" y="355.3445" z="144.906" static_id="36"/>
+			<spot x="166.0222" y="179.3804" z="105.967" static_id="30"/>
+			<spot x="169.3098" y="275.779" z="124.217" static_id="25"/>
+			<spot x="176.8979" y="317.3311" z="124.113" static_id="26"/>
+			<spot x="200.8991" y="259.9952" z="119.776" static_id="23"/>
+			<spot x="231.3424" y="258.6998" z="122.862" static_id="24"/>
+			<spot x="265.0483" y="211.0148" z="118.295" static_id="16"/>
+			<spot x="275.0786" y="78.9258" z="128.831" static_id="13"/>
+			<spot x="278.395" y="174.998" z="119.777" static_id="18"/>
+			<spot x="281.9288" y="407.5032" z="133.633" static_id="33"/>
+			<spot x="282.4199" y="132.0792" z="128.704" static_id="15"/>
+			<spot x="290.6609" y="438.9555" z="133.579" static_id="32"/>
+			<spot x="295.6925" y="211.5727" z="119.614" static_id="22"/>
+			<spot x="305.7612" y="243.6522" z="117.607" static_id="17"/>
+			<spot x="306.9379" y="296.5649" z="130.607" static_id="19"/>
+			<spot x="319.4817" y="411.6867" z="133.843" static_id="31"/>
+			<spot x="323.436" y="97.784" z="127.178" static_id="14"/>
+			<spot x="345.4415" y="317.3881" z="136.502" static_id="21"/>
+			<spot x="352.8299" y="350.3357" z="147.411" static_id="20"/>
+			<spot x="371.4727" y="257.0893" z="109.678" static_id="37"/>
+			<spot x="371.6045" y="89.6442" z="117.212" static_id="12"/>
+			<spot x="376.6099" y="292.6289" z="109.674" static_id="39"/>
+			<spot x="382.27" y="76.33" z="117.229" static_id="11"/>
+			<spot x="406.912" y="285.3081" z="110.873" static_id="38"/>
+			<spot x="415.576" y="116.9754" z="117.22" static_id="10"/>
+			<spot x="211.6678" y="371.6512" z="145.5" h="0"/>
 		</spawn>
 		<!-- Bloodfist Gargoyle -->
 		<spawn npc_id="214095">
@@ -82,7 +83,7 @@
 		</spawn>
 		<!-- Chalice Guard Denlavis -->
 		<spawn npc_id="212878">
-			<spot x="386.637" y="242.747" z="110.601" h="45"/>
+			<spot x="386.6365" y="242.7465" z="110.601" h="45"/>
 		</spawn>
 		<!-- Crouching Gargoyle -->
 		<spawn npc_id="212807">
@@ -107,7 +108,7 @@
 		</spawn>
 		<!-- Fire Temple Exit -->
 		<spawn npc_id="730048">
-			<spot x="148.834" y="465.875" z="138.756" static_id="647"/>
+			<spot x="148.8546" y="465.9351" z="138.756" static_id="647"/>
 		</spawn>
 		<!-- Havoc Obscura -->
 		<spawn npc_id="212800">
@@ -247,7 +248,7 @@
 		</spawn>
 		<!-- Sacred Chalice -->
 		<spawn npc_id="700236">
-			<spot x="393.849" y="237.304" z="112.196" static_id="3"/>
+			<spot x="393.6034" y="237.5583" z="112.196" static_id="3"/>
 		</spawn>
 		<!-- Sentry Mugolem -->
 		<spawn npc_id="212806">
@@ -257,7 +258,7 @@
 		</spawn>
 		<!-- Talking Mirror -->
 		<spawn npc_id="730051">
-			<spot x="424.381" y="91.9498" z="117.337" static_id="9"/>
+			<spot x="423.6388" y="91.9462" z="117.337" static_id="9"/>
 		</spawn>
 		<!-- Temple Caryatid -->
 		<spawn npc_id="212808">
@@ -297,6 +298,19 @@
 			<spot x="327.287" y="372.926" z="141.767" h="80"/>
 			<spot x="333.424" y="348.945" z="143.232" h="50"/>
 			<spot x="338.0" y="327.76" z="136.3422" h="50" walker_id="18467BC3DEC56C62E544025E8BB7DCD9E92B94E3"/>
+		</spawn>
+		<!-- Fire Temple Emergency Rift -->
+		<spawn npc_id="801698">
+			<spot x="432.3066" y="112.6189" z="117.3761" h="0"/>
+		</spawn>
+		<!-- Goblet Guard Denlavis -->
+		<spawn npc_id="219155">
+			<spot x="386.6365" y="242.7465" z="113.5647" h="0"/>
+			<spot x="386.6365" y="242.7465" z="113.5647" h="0"/>
+		</spawn>
+		<!-- Omne Solum (Fire Temple) -->
+		<spawn npc_id="730539">
+			<spot x="395.5966" y="249.2835" z="113.5647" h="0"/>
 		</spawn>
 	</spawn_map>
 </spawns>

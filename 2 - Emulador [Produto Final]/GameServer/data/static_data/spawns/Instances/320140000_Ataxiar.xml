@@ -160,5 +160,73 @@
 		<spawn npc_id="205118">
 			<spot x="200" y="251" z="203"/>
 		</spawn>
+		<!-- archon legionary -->
+		<spawn npc_id="798347">
+			<spot x="336.9947" y="306.5163" z="203.5" h="0" random_walk="8"/>
+			<spot x="345.9947" y="271.5163" z="209.5" h="0" random_walk="8"/>
+			<spot x="409.9947" y="390.0163" z="228" h="0" random_walk="8"/>
+			<spot x="428.9947" y="352.7663" z="227.25" h="0" random_walk="8"/>
+			<spot x="480" y="435.25" z="225" h="0" random_walk="8"/>
+			<spot x="484.5" y="448.25" z="225" h="0" random_walk="8"/>
+			<spot x="486.5" y="444.25" z="225" h="0" random_walk="8"/>
+		</spawn>
+		<!-- archon legionary -->
+		<spawn npc_id="798348">
+			<spot x="334.9947" y="310.5163" z="203.5" h="0" random_walk="8"/>
+			<spot x="411.9947" y="394.0163" z="228" h="0" random_walk="8"/>
+			<spot x="428.9947" y="360.7663" z="227.25" h="0" random_walk="8"/>
+		</spawn>
+		<!-- archon legionary -->
+		<spawn npc_id="798349">
+			<spot x="343.9947" y="275.5163" z="209.5" h="0" random_walk="8"/>
+			<spot x="478" y="431.25" z="225" h="0" random_walk="8"/>
+			<spot x="480" y="427.25" z="225" h="0" random_walk="8"/>
+			<spot x="486.5" y="452.25" z="225" h="0" random_walk="8"/>
+		</spawn>
+		<!-- archon legionary -->
+		<spawn npc_id="798350">
+			<spot x="336.9947" y="314.5163" z="203.5" h="0" random_walk="8"/>
+			<spot x="345.9947" y="279.5163" z="209.5" h="0" random_walk="8"/>
+			<spot x="411.9947" y="386.0163" z="228" h="0" random_walk="8"/>
+			<spot x="426.9947" y="356.7663" z="227.25" h="0" random_walk="8"/>
+		</spawn>
+		<!-- archon legionary -->
+		<spawn npc_id="798351">
+			<spot x="341.2447" y="305.0163" z="203.75" h="0"/>
+			<spot x="392.9947" y="339.0163" z="234.5" h="0" random_walk="8"/>
+			<spot x="424.4947" y="372.5163" z="224" h="0"/>
+		</spawn>
+		<!-- archon legionary -->
+		<spawn npc_id="798352">
+			<spot x="366.7447" y="353.2663" z="216.25" h="0"/>
+			<spot x="380.4947" y="338.0163" z="217.5" h="0"/>
+		</spawn>
+		<!-- archon legionary -->
+		<spawn npc_id="798353">
+			<spot x="348.4947" y="341.2663" z="209.75" h="0"/>
+			<spot x="351.4947" y="301.2663" z="201.75" h="0"/>
+			<spot x="419.7447" y="361.0163" z="231.75" h="0"/>
+		</spawn>
+		<!-- archon legionary -->
+		<spawn npc_id="798354">
+			<spot x="380.7447" y="314.2663" z="221" h="0"/>
+			<spot x="387.7447" y="355.2663" z="229.75" h="0"/>
+		</spawn>
+		<!-- legionary -->
+		<spawn npc_id="798355">
+			<spot x="339.2447" y="308.0163" z="203.75" h="0"/>
+			<spot x="369.7447" y="354.7663" z="216.25" h="0"/>
+			<spot x="377.9947" y="340.2663" z="217.5" h="0"/>
+			<spot x="393.7447" y="343.0163" z="234.5" h="0"/>
+			<spot x="425.9947" y="376.2663" z="224" h="0"/>
+		</spawn>
+		<!-- legionary -->
+		<spawn npc_id="798356">
+			<spot x="345.9947" y="345.0163" z="209.75" h="0"/>
+			<spot x="354.4947" y="304.7663" z="201.75" h="0"/>
+			<spot x="377.2447" y="312.0163" z="221" h="0"/>
+			<spot x="390.7447" y="359.2663" z="229.75" h="0"/>
+			<spot x="417.2447" y="357.2663" z="231.75" h="0"/>
+		</spawn>
 	</spawn_map>
 </spawns>

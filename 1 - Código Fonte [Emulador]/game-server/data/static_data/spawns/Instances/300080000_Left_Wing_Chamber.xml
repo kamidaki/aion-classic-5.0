@@ -131,11 +131,11 @@
 		</spawn>
 		<!-- IDAB1_SensoryArea_Timer_C -->
 		<spawn npc_id="206089">
-			<spot x="572.718" y="585.926" z="354" h="60"/>
+			<spot x="572.7178" y="585.9265" z="354" h="60"/>
 		</spawn>
 		<!-- Shining Magic Ward -->
 		<spawn npc_id="700455">
-			<spot x="672.83" y="606.22" z="321.19" h="66" static_id="1"/>
+			<spot x="672.8343" y="606.225" z="321.19" h="66" static_id="1"/>
 		</spawn>
 	</spawn_map>
 </spawns>
